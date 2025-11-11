@@ -2,14 +2,113 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Prueba GitHub Pages</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GeoData - Visualizaciones</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; text-align: center; padding-top: 100px; }
-    h1 { color: #336699; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(to bottom right, #1e3c72, #2a5298);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px;
+    }
+    header {
+      margin-bottom: 40px;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+    header p {
+      font-size: 1.1rem;
+      margin-top: 10px;
+      color: #d0d9ff;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+      width: 100%;
+      max-width: 900px;
+      margin-top: 40px;
+    }
+    .card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 30px 20px;
+      backdrop-filter: blur(6px);
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-4px);
+    }
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #d9e3ff;
+      margin-bottom: 15px;
+    }
+    .card a {
+      text-decoration: none;
+      background: #fff;
+      color: #2a5298;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .card a:hover {
+      background: #d9e3ff;
+    }
+    footer {
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: #b7c2e3;
+    }
   </style>
 </head>
 <body>
-  <h1>¡Hola desde GitHub Pages!</h1>
-  <p>Esta es una prueba publicada desde mi repositorio.</p>
+
+  <header>
+    <h1>GeoData</h1>
+    <p>Visualizaciones y recursos geoespaciales</p>
+  </header>
+
+  <section class="grid">
+    <div class="card">
+      <h2>🗺️ Mapa de prueba</h2>
+      <p>Visualización base con Leaflet</p>
+      <a href="mapa.html" target="_blank">Abrir</a>
+    </div>
+
+    <div class="card">
+      <h2>📊 Tablero Año Móvil</h2>
+      <p>Análisis de pasajeros y rutas</p>
+      <a href="TableroAnioMovil.html" target="_blank">Abrir</a>
+    </div>
+
+    <div class="card">
+      <h2>✈️ Proyecto SNA Litio</h2>
+      <p>Visualización del mapa regional</p>
+      <a href="MapaSNAlitio.html" target="_blank">Abrir</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 GeoData | Publicado en GitHub Pages
+  </footer>
+
 </body>
 </html>
