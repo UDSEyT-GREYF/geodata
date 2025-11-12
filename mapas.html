@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GeoData – Mapas</title>
+  <style>
+    :root { --bg:#0f172a; --card:#111827; --ink:#e5e7eb; --muted:#94a3b8; --accent:#60a5fa; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(160deg,#0b1224,#14213d);color:var(--ink);min-height:100vh;display:flex;flex-direction:column}
+    header,footer{padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    header a, footer a{color:var(--ink);text-decoration:none;opacity:.85}
+    header a:hover, footer a:hover{opacity:1}
+    .wrap{width:min(1100px,92vw);margin:0 auto}
+    h1{font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:700;margin:8px 0}
+    p.lead{margin:4px 0 18px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin:18px 0 28px}
+    .card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;transition:.25s;display:flex;flex-direction:column;gap:10px}
+    .card:hover{transform:translateY(-3px);background:rgba(255,255,255,.09)}
+    .title{font-weight:600}
+    .muted{color:var(--muted);font-size:.95rem}
+    .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+    .btn{display:inline-block;padding:8px 12px;border-radius:12px;text-decoration:none;font-weight:600;border:1px solid rgba(255,255,255,.2)}
+    .btn.primary{background:#fff;color:#0b1224}
+    .btn.ghost{background:transparent;color:#fff}
+    .iframe-wrap{position:relative;width:100%;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.15);background:#0b1224}
+    .iframe-wrap::before{content:"";display:block;padding-top:62%}
+    .iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    section{margin:10px 0 40px}
+    h2{margin:0 0 10px;font-size:1.2rem;opacity:.95}
+    .hint{font-size:.9rem;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <a href="./index.html">← Inicio</a>
+    <div style="opacity:.8">GeoData – Mapas</div>
+  </header>
+
+  <main class="wrap">
+    <h1>Mapas publicados</h1>
+    <p class="lead">Elegí un mapa para abrirlo en pantalla completa o previsualizarlo embebido.</p>
+
+    <!-- ArcGIS Instant App: Sidebar -->
+    <section>
+      <h2>ArcGIS – Visor lateral</h2>
+      <div class="grid">
+        <article class="card">
+          <div class="title">Mapa ArcGIS – Sidebar</div>
+          <div class="muted">App ID: 0019494a28b544468f4bd3c08fa55e10</div>
+          <div class="btns">
+            <a class="btn primary" target="_blank" rel="noopener" href="https://www.arcgis.com/apps/instant/sidebar/index.html?appid=0019494a28b544468f4bd3c08fa55e10">Abrir en pestaña nueva</a>
+            <a class="btn ghost" href="#preview-arcgis">Ver embebido</a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Preview embed -->
+      <div id="preview-arcgis" class="iframe-wrap" style="margin-top:14px">
+        <iframe class="iframe" title="ArcGIS Instant App" src="https://www.arcgis.com/apps/instant/sidebar/index.html?appid=0019494a28b544468f4bd3c08fa55e10"></iframe>
+      </div>
+      <p class="hint">Sugerencia: si el mapa tarda en cargar, probá abrirlo a pantalla completa con el botón superior.</p>
+    </section>
+
+    <!-- Sección para tus propios mapas estáticos/HTML -->
+    <section>
+      <h2>Otros mapas de Geoleti</h2>
+      <div class="grid">
+        <article class="card">
+          <div class="title">Mapa de prueba Leaflet</div>
+          <div class="muted">HTML estático servido desde este repositorio</div>
+          <div class="btns">
+            <a class="btn primary" target="_blank" rel="noopener" href="./mapa.html">Abrir</a>
+            <a class="btn ghost" target="_blank" rel="noopener" href="https://geoleti.github.io/geodata/mapa.html">URL pública</a>
+          </div>
+        </article>
+        <!-- Ejemplo adicional (habilitar cuando exista)
+        <article class="card">
+          <div class="title">SNA Litio – Cobertura</div>
+          <div class="muted">Mapa temático</div>
+          <div class="btns">
+            <a class="btn primary" target="_blank" rel="noopener" href="./MapaSNAlitio.html">Abrir</a>
+          </div>
+        </article> -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <span class="hint">© 2025 – GeoData | GitHub Pages</span>
+    <a href="#top">Volver arriba ↑</a>
+  </footer>
+</body>
+</html>
