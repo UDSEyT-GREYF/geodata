@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GeoData – Mapas</title>
+  <title>GeoData – Accesibilidad aeroportuaria</title>
   <style>
     :root { --bg:#0b1224; --ink:#e5e7eb; --muted:#9fb0cc; }
     *{box-sizing:border-box}
@@ -12,16 +12,30 @@
     header a, footer a{color:var(--ink);text-decoration:none;opacity:.85}
     header a:hover, footer a:hover{opacity:1}
     .wrap{width:min(1100px,92vw);margin:0 auto}
-    .hero{margin:18px 0 10px}
-    .hero a{display:block;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 30px rgba(0,0,0,.35)}
-    .hero img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
-    .caption{margin:8px 2px 20px;color:var(--muted);font-size:.95rem}
-    .panel{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:18px;line-height:1.55}
-    .panel h2{margin:0 0 8px;font-size:1.1rem}
+    .banner{background:linear-gradient(135deg,#1e3c72,#2a5298);color:#fff;text-align:center;padding:40px 20px 50px;margin-bottom:25px;box-shadow:0 4px 25px rgba(0,0,0,.4);border-bottom:1px solid rgba(255,255,255,.15);position:relative}
+    .banner h1{font-size:2rem;margin:0 0 6px;font-weight:700}
+    .banner p{margin:0;font-size:1rem;opacity:.9}
+    .banner .btn{
+      display:inline-block;
+      margin-top:16px;
+      background:#fff;
+      color:#1e3c72;
+      padding:10px 18px;
+      border-radius:20px;
+      font-weight:600;
+      text-decoration:none;
+      transition:background .3s;
+    }
+    .banner .btn:hover{background:#d9e3ff}
+    h2{margin:0 0 8px;font-size:1.1rem}
+    .panel{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:18px;line-height:1.55;margin-bottom:28px}
     .panel p{margin:8px 0}
     .bullets{margin:10px 0 6px;padding-left:18px}
     .bullets li{margin:6px 0}
-    .note{font-size:.9rem;color:var(--muted)}
+    .hero{margin:10px 0 20px;text-align:center}
+    .hero a{display:inline-block;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .hero img{display:block;width:100%;height:auto;max-width:960px;aspect-ratio:16/9;object-fit:cover}
+    .caption{margin:8px 2px 20px;color:var(--muted);font-size:.95rem}
   </style>
 </head>
 <body>
@@ -30,17 +44,15 @@
     <div style="opacity:.8">GeoData – Mapas</div>
   </header>
 
-  <main class="wrap">
-    <!-- HERO: previsualización como imagen fija que abre el mapa en pestaña nueva -->
-    <div class="hero">
-      <!-- Reemplazá el src por la portada que subas a tu repo (p.ej. img/SNA/preview_cobertura.png) -->
-      <a href="https://www.arcgis.com/apps/instant/sidebar/index.html?appid=0019494a28b544468f4bd3c08fa55e10" target="_blank" rel="noopener">
-        <img src="img/preview_cobertura.png" alt="Cobertura y accesibilidad " />
-      </a>
-      <div class="caption">Click en la imagen para abrir el mapa interactivo en una pestaña nueva.</div>
-    </div>
+  <!-- ENCABEZADO / BANNER PRINCIPAL -->
+  <section class="banner">
+    <h1>✈️ Accesibilidad aeroportuaria</h1>
+    <p>por Leticia Dall'Ospedale</p>
+    <a class="btn" href="https://www.arcgis.com/apps/instant/sidebar/index.html?appid=0019494a28b544468f4bd3c08fa55e10" target="_blank" rel="noopener">Abrir mapa interactivo</a>
+  </section>
 
-    <!-- TEXTO EXPLICATIVO solicitado -->
+  <main class="wrap">
+    <!-- TEXTO PRINCIPAL -->
     <article class="panel">
       <p>🗺️ A partir de la red vial (OSM) y los tiempos estimados de desplazamiento terrestre, se elaboró un mapa que muestra los <strong>tiempos de viaje desde los aeropuertos del Sistema Nacional</strong>, a 1, 2 y 3 horas de distancia.</p>
       <p>Estos tiempos constituyen el <strong>insumo base para definir las áreas de influencia aeroportuarias</strong>, entendidas como los espacios geográficos sobre los cuales cada aeropuerto ejerce un poder de atracción y delimita el universo de potenciales pasajeros.</p>
@@ -53,8 +65,15 @@
       </ul>
       <p>Las zonas ubicadas a más de tres horas de cualquier aeropuerto coinciden con las regiones de menor densidad poblacional, reforzando la relación entre accesibilidad aérea y concentración demográfica.</p>
       <p>Este análisis permite comprender la <strong>cobertura territorial efectiva del sistema aeroportuario</strong>, aportando información clave para la <strong>planificación de infraestructuras</strong>, la <strong>integración regional</strong> y la <strong>equidad territorial</strong>.</p>
-      <p class="note">Sugerencia: podés actualizar el porcentaje si publicás nuevas estimaciones; este texto quedará en la misma página que el acceso al mapa.</p>
     </article>
+
+    <!-- HERO: imagen fija que abre el mapa -->
+    <div class="hero">
+      <a href="https://www.arcgis.com/apps/instant/sidebar/index.html?appid=0019494a28b544468f4bd3c08fa55e10" target="_blank" rel="noopener">
+        <img src="img/SNA/preview_cobertura.PNG" alt="Previsualización del mapa de cobertura y accesibilidad" />
+      </a>
+      <div class="caption">Click en la imagen para abrir el mapa interactivo en una pestaña nueva.</div>
+    </div>
   </main>
 
   <footer class="wrap" style="margin:26px 0 20px">
