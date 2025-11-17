@@ -50,22 +50,20 @@
     .counter.animate { color: var(--accent); }
 
     /* el “+” decorativo, como en el tutorial */
-    .counter::after {
-      content: attr(data-suffix);
-      font-size: 32px;
-      position: absolute;
-      top: 8px;
-      right: -24px;
-      color: var(--primary);
-      opacity: 0;
-      transform: translateX(10px);
-      transition: opacity .3s ease-out, transform .3s ease-out, color .3s ease;
-    }
+.counter::after {
+  content: attr(data-suffix);
+  font-size: 0.6em; /* mismo nivel que el número */
+  margin-left: 6px; /* pequeño espacio */
+  position: static; /* elimina superíndice */
+  opacity: 0;
+  transform: translateX(4px);
+  transition: opacity .3s ease-out, transform .3s ease-out, color .3s ease;
+}
     .counter.animate::after {
-      opacity: 1;
-      transform: translateX(0);
-      color: var(--accent);
-    }
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--accent);
+}
 
     /* helper para ver que se dispara al scrollear */
     .spacer { height: 30svh; }
