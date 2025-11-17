@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contador animado</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f0f4f8;
+      --card: #fff;
+      --primary: #3a86ff;
+      --accent: #8338ec;
+    }
+    body {
+      margin: 0;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      background: var(--bg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    }
+    .wrap {
+      display: grid;
+      gap: 28px;
+      padding: 40px 60px;
+      background: var(--card);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.1);
+      text-align: center;
+    }
+    .row {
+      display: grid;
+      grid-auto-flow: column;
+      gap: 40px;
+      justify-content: center;
+    }
+    .label {
+      font-size: 14px;
+      opacity: .7;
+    }
+
+    .counter {
+      font-size: 64px;
+      font-weight: 800;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+      transition: color .3s ease;
+    }
+    .counter.animate { color: var(--accent); }
+
+    /* el “+” decorativo, como en el tutorial */
+    .counter::after {
+      content: attr(data-suffix);
+      font-size: 32px;
+      position: absolute;
+      top: 8px;
+      right: -24px;
+      color: var(--primary);
+      opacity: 0;
+      transform: translateX(10px);
+      transition: opacity .3s ease-out, transform .3s ease-out, color .3s ease;
+    }
+    .counter.animate::after {
+      opacity: 1;
+      transform: translateX(0);
+      color: var(--accent);
+    }
+
+    /* helper para ver que se dispara al scrollear */
+    .spacer { height: 30svh; }
+  </style>
+</head>
+<body>
+
+  <div class="spacer"></div>
+
+  <div class="wrap">
+    <div class="row">
+      <div>
+        <div class="counter" data-target="57" data-suffix="">0</div>
+        <div class="label">Aeropuertos</div>
+      </div>
+      <div>
+        <div class="counter" data-target="30" data-suffix="M">0</div>
+        <div class="label">Pasajeros</div>
+      </div>
+      <div>
+        <div class="counter" data-target="98" data-suffix="%">0</div>
+        <div class="label">Satisfacción</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <script>
+    // Configurables
+    const DURATION_MS = 2000; // duración de la animación
+    const FORMAT_WITH_GROUPING = true; // 1,000 en lugar de 1000
+
+    const nf = new Intl.NumberFormat(undefined, { maximumFractionDigits: 0 });
+
+    function animateCount(el) {
+      const target = Number(el.getAttribute('data-target'));
+      if (!Number.isFinite(target)) return;
+
+      const start = performance.now();
+      const initial = 0;
+
+      function tick(now) {
+        const t = Math.min(1, (now - start) / DURATION_MS);
+        // easing suave (easeOutCubic)
+        const eased = 1 - Math.pow(1 - t, 3);
+        const value = Math.round(initial + (target - initial) * eased);
+
+        el.textContent = FORMAT_WITH_GROUPING ? nf.format(value) : value;
+
+        if (t < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          // aseguramos el final exacto
+          el.textContent = FORMAT_WITH_GROUPING ? nf.format(target) : target;
+          el.classList.add('animate');
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+
+    // Disparo al entrar en viewport, una sola vez
+    const counters = Array.from(document.querySelectorAll('.counter'));
+    const seen = new WeakSet();
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !seen.has(entry.target)) {
+          seen.add(entry.target);
+          animateCount(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    counters.forEach(c => io.observe(c));
+
+    // Fallback si IntersectionObserver no existe (navegadores muy viejos)
+    if (typeof IntersectionObserver === 'undefined') {
+      counters.forEach(animateCount);
+    }
+  </script>
+</body>
+</html>
