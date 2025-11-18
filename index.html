@@ -14,23 +14,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       text-align: center;
       padding: 40px;
     }
-    header {
-      margin-bottom: 40px;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      letter-spacing: 1px;
-      font-weight: 600;
-    }
-    header p {
-      font-size: 1.1rem;
-      margin-top: 10px;
-      color: #d0d9ff;
-    }
+    header { margin-bottom: 40px; }
+    header h1 { font-size: 2.5rem; letter-spacing: 1px; font-weight: 600; }
+    header p { font-size: 1.1rem; margin-top: 10px; color: #d0d9ff; }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -50,16 +40,8 @@
       background: rgba(255,255,255,0.2);
       transform: translateY(-4px);
     }
-    .card h2 {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-      color: #fff;
-    }
-    .card p {
-      font-size: 0.95rem;
-      color: #d9e3ff;
-      margin-bottom: 15px;
-    }
+    .card h2 { font-size: 1.2rem; margin-bottom: 10px; color: #fff; }
+    .card p { font-size: 0.95rem; color: #d9e3ff; margin-bottom: 15px; }
     .card a {
       text-decoration: none;
       background: #fff;
@@ -69,14 +51,8 @@
       font-weight: 600;
       transition: 0.3s;
     }
-    .card a:hover {
-      background: #d9e3ff;
-    }
-    footer {
-      margin-top: 60px;
-      font-size: 0.85rem;
-      color: #b7c2e3;
-    }
+    .card a:hover { background: #d9e3ff; }
+    footer { margin-top: 60px; font-size: 0.85rem; color: #b7c2e3; }
   </style>
 </head>
 <body>
@@ -100,10 +76,44 @@
     </div>
 
     <div class="card">
-      <h2>✈️ Informes </h2>
-      <p>Impacto socioeconómico</p>
-      <a href="MapaSNAlitio.html" target="_blank">Abrir</a>
+      <h2>✈️ Informes</h2>
+      <p>Impacto socioeconómico y análisis territoriales</p>
+      <ul style="list-style:none; padding:0; margin:0; text-align:left;">
+        <li style="margin-bottom:8px;"><a href="http://172.20.2.70:8082/mapstore/#/geostory/740" target="_blank">• Accesibilidad aeroportuaria</a></li>
+        <li style="margin-bottom:8px;"><a href="http://172.20.2.70:8082/mapstore/#/geostory/1010" target="_blank">• Cobertura y Litio</a></li>
+        <li style="margin-bottom:8px;"><a href="http://172.20.2.70:8082/mapstore/#/geostory/1094" target="_blank">• Movimientos y Pasajeros</a></li>
+        <li><a href="http://172.20.2.70:8082/mapstore/#/geostory/1153" target="_blank">• Infraestructura y Proyectos</a></li>
+      </ul>
     </div>
+  </section>
+
+  <!-- ✅ Nueva sección INFORMES -->
+  <section id="informes" class="grid" style="margin-top:60px;">
+
+    <div class="card">
+      <h2>Accesibilidad aeroportuaria</h2>
+      <p>Análisis de tiempos de viaje y áreas de influencia del SNA.</p>
+      <a href="http://172.20.2.70:8082/mapstore/#/geostory/740" target="_blank">Abrir Geostory</a>
+    </div>
+
+    <div class="card">
+      <h2>Cobertura y Litio</h2>
+      <p>Relación entre corredores productivos y la red aeroportuaria.</p>
+      <a href="http://172.20.2.70:8082/mapstore/#/geostory/1010" target="_blank">Abrir Geostory</a>
+    </div>
+
+    <div class="card">
+      <h2>Movimientos y Pasajeros</h2>
+      <p>Visualización de tendencias operativas y estadísticas del SNA.</p>
+      <a href="http://172.20.2.70:8082/mapstore/#/geostory/1094" target="_blank">Abrir Geostory</a>
+    </div>
+
+    <div class="card">
+      <h2>Infraestructura y Proyectos</h2>
+      <p>Inventario de capacidades, obras y equipamiento aeroportuario.</p>
+      <a href="http://172.20.2.70:8082/mapstore/#/geostory/1153" target="_blank">Abrir Geostory</a>
+    </div>
+
   </section>
 
   <footer>
