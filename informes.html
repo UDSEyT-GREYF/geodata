@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GeoData – Informes</title>
+  <style>
+    :root {
+      --bg:#0b1224;
+      --ink:#e5e7eb;
+      --muted:#9fb0cc;
+      --card:rgba(15,23,42,0.9);
+      --accent:#60a5fa;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:linear-gradient(160deg,#0b1224,#14213d);
+      color:var(--ink);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+    header,footer{padding:18px 20px;display:flex;align-items:center;justify-content:space-between}
+    header a, footer a{color:var(--ink);text-decoration:none;opacity:.85}
+    header a:hover, footer a:hover{opacity:1}
+    .wrap{width:min(1100px,92vw);margin:0 auto}
+    .banner{
+      text-align:left;
+      padding:26px 0 10px;
+    }
+    .banner h1{
+      font-size:2rem;
+      font-weight:700;
+      margin-bottom:4px;
+    }
+    .banner p{
+      font-size:0.98rem;
+      color:var(--muted);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:22px;
+      margin:28px 0 40px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(148,163,184,0.4);
+      box-shadow:0 10px 30px rgba(0,0,0,.45);
+      display:flex;
+      flex-direction:column;
+    }
+    .thumb{
+      width:100%;
+      height:150px;
+      object-fit:cover;
+      display:block;
+    }
+    .body{
+      padding:14px 16px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .title{font-size:1.05rem;font-weight:600;}
+    .desc{font-size:0.92rem;color:var(--muted);}
+    .tag{
+      font-size:0.8rem;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      color:var(--accent);
+    }
+    .btn{
+      align-self:flex-start;
+      margin-top:10px;
+      text-decoration:none;
+      background:#fff;
+      color:#1f2937;
+      padding:7px 14px;
+      border-radius:999px;
+      font-size:0.9rem;
+      font-weight:600;
+      transition:background .25s,transform .2s;
+    }
+    .btn:hover{
+      background:#e5edf9;
+      transform:translateY(-1px);
+    }
+    .note{
+      font-size:0.85rem;
+      color:var(--muted);
+      margin-bottom:24px;
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <a href="./index.html">← Inicio</a>
+    <div style="opacity:.8">GeoData – Informes</div>
+  </header>
+
+  <main class="wrap">
+    <section class="banner">
+      <h1>✈️ Informes y geohistorias</h1>
+      <p>Selección de informes interactivos y narrativas territoriales sobre el Sistema Nacional de Aeropuertos.</p>
+      <p class="note">Algunos enlaces apuntan a MapStore en red interna (ORSNA); sólo serán accesibles desde esa red.</p>
+    </section>
+
+    <section class="grid">
+      <!-- INFORME 1 -->
+      <article class="card">
+        <!-- 🔹 Mini-gráfico / portada (subí la imagen a img/informes/accesibilidad_preview.png) -->
+        <img class="thumb" src="img/informes/accesibilidad_preview.png" alt="Miniatura informe accesibilidad aeroportuaria" />
+        <div class="body">
+          <div class="tag">Accesibilidad</div>
+          <div class="title">Accesibilidad aeroportuaria</div>
+          <p class="desc">Mapa y análisis de tiempos de viaje y áreas de influencia de los aeropuertos del SNA, a 1, 2 y 3 horas.</p>
+          <a class="btn" href="http://172.20.2.70:8082/mapstore/#/geostory/740" target="_blank" rel="noopener">Abrir Geostory</a>
+        </div>
+      </article>
+
+      <!-- INFORME 2 -->
+      <article class="card">
+        <!-- 🔹 Mini-gráfico / portada (subí la imagen a img/informes/litio_preview.png) -->
+        <img class="thumb" src="img/informes/litio_preview.png" alt="Miniatura informe cobertura y litio" />
+        <div class="body">
+          <div class="tag">Cobertura · Litio</div>
+          <div class="title">Cobertura del SNA y triángulo del litio</div>
+          <p class="desc">Relación entre la red aeroportuaria, los proyectos de litio y la articulación con los corredores viales y urbanos.</p>
+          <a class="btn" href="http://172.20.2.70:8082/mapstore/#/geostory/1010" target="_blank" rel="noopener">Abrir Geostory</a>
+        </div>
+      </article>
+
+      <!-- INFORME 3 -->
+      <article class="card">
+        <!-- 🔹 Mini-gráfico / portada (subí la imagen a img/informes/movimientos_preview.png) -->
+        <img class="thumb" src="img/informes/movimientos_preview.png" alt="Miniatura informe movimientos y pasajeros" />
+        <div class="body">
+          <div class="tag">Estadística</div>
+          <div class="title">Movimientos y pasajeros del SNA</div>
+          <p class="desc">Exploración visual de la evolución de vuelos, pasajeros y rutas, con foco en patrones recientes.</p>
+          <a class="btn" href="http://172.20.2.70:8082/mapstore/#/geostory/1094" target="_blank" rel="noopener">Abrir Geostory</a>
+        </div>
+      </article>
+
+      <!-- INFORME 4 -->
+      <article class="card">
+        <!-- 🔹 Mini-gráfico / portada (subí la imagen a img/informes/infraestructura_preview.png) -->
+        <img class="thumb" src="img/informes/infraestructura_preview.png" alt="Miniatura informe infraestructura y proyectos" />
+        <div class="body">
+          <div class="tag">Infraestructura</div>
+          <div class="title">Infraestructura y proyectos aeroportuarios</div>
+          <p class="desc">Inventario geoespacial de obras, capacidades y equipamiento del sistema aeroportuario.</p>
+          <a class="btn" href="http://172.20.2.70:8082/mapstore/#/geostory/1153" target="_blank" rel="noopener">Abrir Geostory</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="wrap" style="margin:26px 0 20px">
+    <a href="#top">Volver arriba ↑</a>
+  </footer>
+</body>
+</html>
