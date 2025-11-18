@@ -17,10 +17,19 @@
       text-align: center;
       padding: 40px;
     }
-    header { margin-bottom: 40px; }
-    header h1 { font-size: 2.5rem; letter-spacing: 1px; font-weight: 600; }
-    header p { font-size: 1.1rem; margin-top: 10px; color: #d0d9ff; }
-
+    header {
+      margin-bottom: 40px;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+    header p {
+      font-size: 1.1rem;
+      margin-top: 10px;
+      color: #d0d9ff;
+    }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -40,8 +49,16 @@
       background: rgba(255,255,255,0.2);
       transform: translateY(-4px);
     }
-    .card h2 { font-size: 1.2rem; margin-bottom: 10px; color: #fff; }
-    .card p { font-size: 0.95rem; color: #d9e3ff; margin-bottom: 15px; }
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #d9e3ff;
+      margin-bottom: 15px;
+    }
     .card a {
       text-decoration: none;
       background: #fff;
@@ -51,15 +68,21 @@
       font-weight: 600;
       transition: 0.3s;
     }
-    .card a:hover { background: #d9e3ff; }
-    footer { margin-top: 60px; font-size: 0.85rem; color: #b7c2e3; }
+    .card a:hover {
+      background: #d9e3ff;
+    }
+    footer {
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: #b7c2e3;
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>GeoData ORSNA</h1>
-    <p>Visualizaciones, recursos geoespaciales e informes</p>
+    <h1>GeoData</h1>
+    <p>Visualizaciones y recursos geoespaciales</p>
   </header>
 
   <section class="grid">
@@ -70,50 +93,16 @@
     </div>
 
     <div class="card">
-      <h2>📊 Tableros </h2>
+      <h2>📊 Tableros</h2>
       <p>Análisis de pasajeros y rutas</p>
       <a href="TableroAnioMovil.html" target="_blank">Abrir</a>
     </div>
 
     <div class="card">
       <h2>✈️ Informes</h2>
-      <p>Impacto socioeconómico y territorial</p>
-      <ul style="list-style:none; padding:0; margin:0; text-align:left;">
-        <li style="margin-bottom:8px;"><a href="http://172.20.2.70:8082/mapstore/#/geostory/740" target="_blank">• Neuquén y Vaca Muerta</a></li>
-        <li style="margin-bottom:8px;"><a href="http://172.20.2.70:8082/mapstore/#/geostory/1010" target="_blank">• Salta y el Litio</a></li>
-        <li style="margin-bottom:8px;"><a href="http://172.20.2.70:8082/mapstore/#/geostory/1094" target="_blank">• Concordia reinauguración</a></li>
-        <li><a href="http://172.20.2.70:8082/mapstore/#/geostory/1153" target="_blank">• General Pico vuelos regulares 2025</a></li>
-      </ul>
+      <p>Impacto socioeconómico y análisis territoriales</p>
+      <a href="informes.html" target="_blank">Ver informes</a>
     </div>
-  </section>
-
-  <!-- ✅ Nueva sección INFORMES -->
-  <section id="informes" class="grid" style="margin-top:60px;">
-
-    <div class="card">
-      <h2>Neuquén y Vaca Muerta</h2>
-      <p>-.</p>
-      <a href="http://172.20.2.70:8082/mapstore/#/geostory/740" target="_blank">Abrir Geostory</a>
-    </div>
-
-    <div class="card">
-      <h2>Salta y el Litio</h2>
-      <p>-.</p>
-      <a href="http://172.20.2.70:8082/mapstore/#/geostory/1010" target="_blank">Abrir Geostory</a>
-    </div>
-
-    <div class="card">
-      <h2>Concerdia reinauguración</h2>
-      <p>-.</p>
-      <a href="http://172.20.2.70:8082/mapstore/#/geostory/1094" target="_blank">Abrir Geostory</a>
-    </div>
-
-    <div class="card">
-      <h2>General Pico vuelos regulares 2025</h2>
-      <p>-.</p>
-      <a href="http://172.20.2.70:8082/mapstore/#/geostory/1153" target="_blank">Abrir Geostory</a>
-    </div>
-
   </section>
 
   <footer>
