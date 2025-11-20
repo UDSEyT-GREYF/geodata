@@ -5,108 +5,370 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GeoData - Visualizaciones</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    /* Reset básico */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background: linear-gradient(to bottom right, #1e3c72, #2a5298);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    a {
+      color: #0072bb;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Barra superior tipo argentina.gob.ar */
+    .topbar {
+      background-color: #002855;
       color: #fff;
-      min-height: 100vh;
+      font-size: 0.85rem;
+      padding: 4px 16px;
+    }
+
+    .topbar-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .topbar-left {
+      font-weight: 500;
+    }
+
+    .topbar-right a {
+      color: #fff;
+      margin-left: 16px;
+      font-weight: 400;
+    }
+
+    .topbar-right a:hover {
+      text-decoration: underline;
+    }
+
+    /* Encabezado principal tipo gobierno */
+    .gov-header {
+      background-color: #ffffff;
+      border-bottom: 1px solid #dde2e6;
+    }
+
+    .gov-header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00a3e0, #0072bb);
+    }
+
+    .brand-text {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 40px;
     }
-    header {
-      margin-bottom: 40px;
+
+    .brand-text span:first-child {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #6c757d;
     }
-    header h1 {
-      font-size: 2.5rem;
-      letter-spacing: 1px;
-      font-weight: 600;
-    }
-    header p {
+
+    .brand-text span:last-child {
       font-size: 1.1rem;
-      margin-top: 10px;
-      color: #d0d9ff;
+      font-weight: 600;
+      color: #002855;
     }
+
+    .gov-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-left: auto;
+    }
+
+    .gov-link {
+      font-size: 0.9rem;
+      color: #0072bb;
+      font-weight: 500;
+    }
+
+    .gov-search {
+      position: relative;
+      flex: 1 1 220px;
+      max-width: 260px;
+    }
+
+    .gov-search input {
+      width: 100%;
+      padding: 7px 30px 7px 10px;
+      border-radius: 4px;
+      border: 1px solid #cfd4da;
+      font-size: 0.9rem;
+    }
+
+    .gov-search-icon {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      background-color: #eef2f7;
+      border-bottom: 1px solid #dde2e6;
+      font-size: 0.85rem;
+    }
+
+    .breadcrumb-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 8px 16px;
+      color: #6c757d;
+    }
+
+    .breadcrumb-inner a {
+      color: #0072bb;
+    }
+
+    .breadcrumb-separator {
+      margin: 0 4px;
+    }
+
+    /* Contenido principal */
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    header.page-header {
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    header.page-header h1 {
+      font-size: 2rem;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+      color: #002855;
+    }
+
+    header.page-header p {
+      font-size: 1rem;
+      margin-top: 8px;
+      color: #555;
+      max-width: 560px;
+    }
+
+    /* Grilla de tarjetas (tu contenido) */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 25px;
-      width: 100%;
-      max-width: 900px;
-      margin-top: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
     }
+
     .card {
-      background: rgba(255,255,255,0.1);
-      border-radius: 16px;
-      padding: 30px 20px;
-      backdrop-filter: blur(6px);
-      transition: all 0.3s ease;
+      background-color: #ffffff;
+      border-radius: 4px;
+      border: 1px solid #dde2e6;
+      padding: 18px 16px 20px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: box-shadow 0.15s ease, transform 0.15s ease;
     }
+
     .card:hover {
-      background: rgba(255,255,255,0.2);
-      transform: translateY(-4px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transform: translateY(-1px);
     }
+
     .card h2 {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-      color: #fff;
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+      color: #002855;
     }
+
     .card p {
       font-size: 0.95rem;
-      color: #d9e3ff;
-      margin-bottom: 15px;
+      color: #555;
+      margin-bottom: 12px;
     }
+
     .card a {
+      display: inline-block;
       text-decoration: none;
-      background: #fff;
-      color: #2a5298;
-      padding: 8px 14px;
+      background-color: #0072bb;
+      color: #fff;
+      padding: 7px 14px;
       border-radius: 20px;
       font-weight: 600;
-      transition: 0.3s;
+      font-size: 0.9rem;
+      transition: background-color 0.2s ease;
     }
+
     .card a:hover {
-      background: #d9e3ff;
+      background-color: #005f99;
+      text-decoration: none;
     }
+
+    /* Pie de página tipo gov simple */
     footer {
-      margin-top: 60px;
+      border-top: 1px solid #dde2e6;
+      background-color: #ffffff;
+      margin-top: 24px;
       font-size: 0.85rem;
-      color: #b7c2e3;
+      color: #6c757d;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .footer-note {
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 600px) {
+      .gov-header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .gov-actions {
+        width: 100%;
+      }
+
+      .gov-search {
+        flex: 1 1 100%;
+        max-width: none;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>GeoData</h1>
-    <p>Visualizaciones y recursos geoespaciales</p>
-  </header>
-
-  <section class="grid">
-    <div class="card">
-      <h2>🗺️ Mapas</h2>
-      <p>Análisis geoespaciales</p>
-      <a href="mapas.html" target="_blank">Ver mapas</a>
+  <!-- Barra superior -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-left">
+        Presidencia de la Nación
+      </div>
+      <div class="topbar-right">
+        <a href="#">Argentina.gob.ar</a>
+      </div>
     </div>
+  </div>
 
-    <div class="card">
-      <h2>📊 Tableros</h2>
-      <p>Análisis de pasajeros y rutas</p>
-      <a href="TableroAnioMovil.html" target="_blank">Abrir</a>
+  <!-- Encabezado principal -->
+  <div class="gov-header">
+    <div class="gov-header-inner">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true"></div>
+        <div class="brand-text">
+          <span>Argentina.gob.ar</span>
+          <span>GeoData</span>
+        </div>
+      </div>
+
+      <div class="gov-actions">
+        <a class="gov-link" href="https://www.argentina.gob.ar/orsna" target="_blank" rel="noopener">
+          Ir al sitio oficial del ORSNA
+        </a>
+        <div class="gov-search">
+          <input type="search" placeholder="Buscar (decorativo)">
+          <span class="gov-search-icon" aria-hidden="true">🔍</span>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <div class="card">
-      <h2>✈️ Informes</h2>
-      <p>Impacto socioeconómico y análisis territoriales</p>
-      <a href="informes.html" target="_blank">Ver informes</a>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="#">Inicio</a>
+      <span class="breadcrumb-separator">›</span>
+      GeoData
     </div>
-  </section>
+  </nav>
 
+  <!-- Contenido principal -->
+  <main>
+    <header class="page-header">
+      <h1>GeoData</h1>
+      <p>Visualizaciones y recursos geoespaciales vinculados al Sistema Nacional de Aeropuertos.</p>
+    </header>
+
+    <section class="grid" aria-label="Secciones principales">
+      <div class="card">
+        <h2>🗺️ Mapas</h2>
+        <p>Análisis geoespaciales.</p>
+        <a href="mapas.html" target="_blank">Ver mapas</a>
+      </div>
+
+      <div class="card">
+        <h2>📊 Tableros</h2>
+        <p>Análisis de pasajeros y rutas.</p>
+        <a href="TableroAnioMovil.html" target="_blank">Abrir tablero</a>
+      </div>
+
+      <div class="card">
+        <h2>✈️ Informes</h2>
+        <p>Impacto socioeconómico y análisis territoriales.</p>
+        <a href="informes.html" target="_blank">Ver informes</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
   <footer>
-    © 2025 GeoData | Publicado en GitHub Pages
+    <div class="footer-inner">
+      <div>© 2025 GeoData</div>
+      <div class="footer-note">
+        Sitio experimental publicado en GitHub Pages. Inspirado en la estética de Argentina.gob.ar – ORSNA.
+      </div>
+    </div>
   </footer>
 
 </body>
