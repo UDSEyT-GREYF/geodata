@@ -4,164 +4,223 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>GeoData – Informes</title>
+
   <style>
-    :root {
-      --bg:#0b1224;
-      --ink:#e5e7eb;
-      --muted:#9fb0cc;
-      --card:rgba(15,23,42,0.9);
-      --accent:#60a5fa;
+    /* ===== ESTILO ORSNA UNIFICADO ===== */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      background:linear-gradient(160deg,#0b1224,#14213d);
-      color:var(--ink);
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
+
+    header {
+      background: #004b80;
+      color: #fff;
+      padding: 12px 20px;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    header,footer{padding:18px 20px;display:flex;align-items:center;justify-content:space-between}
-    header a, footer a{color:var(--ink);text-decoration:none;opacity:.85}
-    header a:hover, footer a:hover{opacity:1}
-    .wrap{width:min(1100px,92vw);margin:0 auto}
-    .banner{
-      text-align:left;
-      padding:26px 0 10px;
+
+    header a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.9;
+      font-weight: 500;
     }
-    .banner h1{
-      font-size:2rem;
-      font-weight:700;
-      margin-bottom:4px;
+    header a:hover { opacity: 1; }
+
+    .wrap {
+      width: min(1100px, 92vw);
+      margin: 0 auto;
     }
-    .banner p{
-      font-size:0.98rem;
-      color:var(--muted);
+
+    /* Banner principal */
+    .banner {
+      padding: 28px 4px 10px;
+      margin-top: 10px;
     }
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:22px;
-      margin:28px 0 40px;
+    .banner h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #004b80;
+      margin-bottom: 6px;
     }
-    .card{
-      background:var(--card);
-      border-radius:18px;
-      overflow:hidden;
-      border:1px solid rgba(148,163,184,0.4);
-      box-shadow:0 10px 30px rgba(0,0,0,.45);
-      display:flex;
-      flex-direction:column;
+    .banner p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 6px;
+      max-width: 760px;
     }
-    .thumb{
-      width:100%;
-      height:290px;
-      object-fit:cover;
-      display:block;
+    .note {
+      font-size: 0.85rem;
+      color: #777;
+      margin-bottom: 16px;
     }
-    .body{
-      padding:14px 16px 16px;
-      display:flex;
-      flex-direction:column;
-      gap:6px;
+
+    /* GRID de informes */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin: 22px 0 40px;
     }
-    .title{font-size:1.05rem;font-weight:600;}
-    .desc{font-size:0.92rem;color:var(--muted);}
-    .tag{
-      font-size:0.8rem;
-      text-transform:uppercase;
-      letter-spacing:0.08em;
-      color:var(--accent);
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #d0d7e2;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s ease, box-shadow .2s ease;
     }
-    .btn{
-      align-self:flex-start;
-      margin-top:10px;
-      text-decoration:none;
-      background:#fff;
-      color:#1f2937;
-      padding:7px 14px;
-      border-radius:999px;
-      font-size:0.9rem;
-      font-weight:600;
-      transition:background .25s,transform .2s;
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.10);
     }
-    .btn:hover{
-      background:#e5edf9;
-      transform:translateY(-1px);
+
+    .thumb {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
     }
-    .note{
-      font-size:0.85rem;
-      color:var(--muted);
-      margin-bottom:24px;
+
+    .body {
+      padding: 14px 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
     }
+
+    .tag {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #0066b3;
+      font-weight: 600;
+    }
+    .title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #004b80;
+    }
+    .desc {
+      font-size: 0.92rem;
+      color: #555;
+      line-height: 1.4;
+    }
+
+    .btn {
+      align-self: flex-start;
+      margin-top: 10px;
+      text-decoration: none;
+      background: #0066b3;
+      color: #fff;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: background .25s, transform .2s;
+    }
+    .btn:hover {
+      background: #004b80;
+      transform: translateY(-1px);
+    }
+
+    footer {
+      border-top: 1px solid #d2d9e3;
+      padding: 12px 0 16px;
+      font-size: 0.83rem;
+      color: #555;
+      text-align: center;
+      background: #f9fafb;
+      margin-top: auto;
+    }
+    footer a {
+      color: #004b80;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    footer a:hover { text-decoration: underline; }
   </style>
 </head>
+
 <body>
+
   <header class="wrap">
-    <a href="./index.html">← Inicio</a>
-    <div style="opacity:.8">GeoData – Informes</div>
+    <a href="./index.html">← Volver al inicio</a>
+    <div style="opacity:.9; font-weight:600">GeoData – Informes</div>
   </header>
 
   <main class="wrap">
     <section class="banner">
       <h1>✈️ Informes y geohistorias</h1>
-      <p>Selección de informes interactivos y narrativas territoriales sobre el Sistema Nacional de Aeropuertos.</p>
-      <p class="note">Algunos enlaces apuntan a MapStore en red interna (ORSNA); sólo serán accesibles desde esa red.</p>
+      <p>Informes interactivos y narrativas territoriales sobre el Sistema Nacional de Aeropuertos.</p>
+      <p class="note">Los informes vinculados a MapStore solo son accesibles desde la red interna del ORSNA.</p>
     </section>
 
     <section class="grid">
+
       <!-- INFORME 1 -->
       <article class="card">
-        <!-- 🔹 Mini-gráfico / portada (subí la imagen a img/informes/NQN_VacaMuerta.png) -->
-        <img class="thumb" src="img/informes/NQN_VacaMuerta.png" alt="Miniatura informe Neuquén y Vaca muerta" />
+        <img class="thumb" src="img/informes/NQN_VacaMuerta.png" alt="Neuquén y Vaca Muerta" />
         <div class="body">
-          <div class="tag">Neuquén y Vaca Muerta</div>
+          <div class="tag">Neuquén · Vaca Muerta</div>
           <div class="title">Neuquén y Vaca Muerta</div>
-          <p class="desc">El transporte aéreo cumple funciones clave para la industria hidrocarburífera en Neuquén.</p>
-          <a class="btn" href="http://172.20.2.70:8082/mapstore/#/geostory/740" target="_blank" rel="noopener">Abrir Informe</a>
+          <p class="desc">El transporte aéreo cumple funciones clave para la industria hidrocarburífera y su logística regional.</p>
+          <a class="btn" href="http://172.20.2.70:8082/mapstore/#/geostory/740" target="_blank" rel="noopener">Abrir informe</a>
         </div>
       </article>
 
       <!-- INFORME 2 -->
       <article class="card">
-        <!-- 🔹 Mini-gráfico / portada (subí la imagen a img/informes/litio_preview.png) -->
         <img class="thumb" src="img/informes/litio_preview.png" alt="SNA y litio" />
         <div class="body">
           <div class="tag">Salta · Litio</div>
           <div class="title">Aeropuerto de Salta y el litio</div>
-          <p class="desc">La conectividad aérea asociada a la minería de litio, con un aumento significativo en los vuelos y pasajeros hacia los LAD, reflejan la creciente demanda de transporte aéreo para la operación de proyectos mineros.</p>
-          <a class="btn" href="http://172.20.2.70:8082/mapstore/#/geostory/1010" target="_blank" rel="noopener">Abrir Informe</a>
+          <p class="desc">Análisis de la conectividad aérea asociada al desarrollo minero en el triángulo del litio.</p>
+          <a class="btn" href="http://172.20.2.70:8082/mapstore/#/geostory/1010" target="_blank" rel="noopener">Abrir informe</a>
         </div>
       </article>
 
       <!-- INFORME 3 -->
       <article class="card">
-        <!-- 🔹 Mini-gráfico / portada (subí la imagen a img/informes/Concordia.png) -->
         <img class="thumb" src="img/informes/Concordia.png" alt="Concordia" />
         <div class="body">
           <div class="tag">Concordia</div>
-          <div class="title">Concordia reinauguración</div>
-          <p class="desc">El Aeropuerto Concordia inicia una nueva etapa como motor del desarrollo económico y social de la región, consolidándose como puerta de entrada aérea al litoral argentino y plataforma clave de integración binacional con Uruguay.</p>
-          <a class="btn" href="http://172.20.2.70:8082/mapstore/#/geostory/1094" target="_blank" rel="noopener">Abrir Informe</a>
+          <div class="title">Concordia: reinauguración</div>
+          <p class="desc">Nueva etapa del aeropuerto como motor del desarrollo regional y la integración binacional.</p>
+          <a class="btn" href="http://172.20.2.70:8082/mapstore/#/geostory/1094" target="_blank" rel="noopener">Abrir informe</a>
         </div>
       </article>
 
       <!-- INFORME 4 -->
       <article class="card">
-        <!-- 🔹 Mini-gráfico / portada (subí la imagen a img/informes/ListaVuelos.png) -->
-        <img class="thumb" src="img/informes/ListaVuelos.png" alt="Miniatura General Pico" />
+        <img class="thumb" src="img/informes/ListaVuelos.png" alt="General Pico" />
         <div class="body">
           <div class="tag">General Pico</div>
           <div class="title">General Pico y vuelos regulares</div>
-          <p class="desc">General Pico recuperó los vuelos comerciales regulares.</p>
-          <a class="btn" href="http://172.20.2.70:8082/mapstore/#/geostory/1153" target="_blank" rel="noopener">Abrir Informe</a>
+          <p class="desc">General Pico recuperó los vuelos comerciales regulares tras años sin operaciones.</p>
+          <a class="btn" href="http://172.20.2.70:8082/mapstore/#/geostory/1153" target="_blank" rel="noopener">Abrir informe</a>
         </div>
       </article>
+
     </section>
   </main>
 
-  <footer class="wrap" style="margin:26px 0 20px">
-    <a href="#top">Volver arriba ↑</a>
+  <footer>
+    © 2025 GeoData · ORSNA — <a href="#top">Volver arriba</a>
   </footer>
+
 </body>
 </html>
