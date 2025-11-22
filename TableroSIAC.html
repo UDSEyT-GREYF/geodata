@@ -3,17 +3,53 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tablero SIAC – GeoData</title>
+  <title>Tablero SIAC – ORSNA GeoData</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Segoe UI, Roboto, Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+    #msg {
+      padding: 40px 20px;
+      max-width: 600px;
+      margin: 80px auto;
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+  </style>
 </head>
 
-<body style="margin:0;padding:0;overflow:hidden">
+<body>
 
-  <iframe 
-    src="http://rpserver/PBIReports/powerbi/GREF_2024/SIAC_ANAC_ORSNA_v3?rs:Embed=true"
-    frameborder="0"
-    style="position:absolute;top:0;left:0;bottom:0;right:0;width:100%;height:100%;border:none;"
-    allowfullscreen>
-  </iframe>
+<!-- Mensaje para cuando NO se puede cargar el reporte -->
+<div id="msg">
+  Cargando tablero SIAC…  
+  <br><br>
+  Si el tablero no aparece en unos segundos,<br>
+  asegurate de estar conectado a la <strong>red interna del ORSNA</strong> o mediante VPN.
+</div>
+
+<!-- Contenedor del iframe -->
+<iframe 
+  id="pbiFrame"
+  src="http://rpserver/PBIReports/powerbi/GREF_2024/SIAC_ANAC_ORSNA_v3?rs:Embed=true"
+  frameborder="0"
+  style="width:100%;height:100vh;border:none;display:none;"
+  allowfullscreen>
+</iframe>
+
+<script>
+  // Intentar cargar el iframe — si carga, ocultamos el mensaje
+  const iframe = document.getElementById('pbiFrame');
+  iframe.onload = () => {
+    iframe.style.display = 'block';
+    document.getElementById('msg').style.display = 'none';
+  };
+</script>
 
 </body>
 </html>
