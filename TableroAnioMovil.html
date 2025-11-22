@@ -3,17 +3,89 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tablero Año Móvil – GeoData</title>
+  <title>Tablero Año Móvil – ORSNA GeoData</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background: #004b80;
+      color: #fff;
+      padding: 10px 16px;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+
+    header strong {
+      font-weight: 600;
+    }
+
+    #msg {
+      padding: 40px 20px;
+      max-width: 600px;
+      margin: 80px auto;
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    .frame-wrap {
+      position: fixed;
+      top: 42px; /* altura del header */
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #fafafa;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: none;
+    }
+  </style>
 </head>
 
-<body style="margin:0;padding:0;overflow:hidden">
+<body>
 
-  <iframe 
-    src="https://app.powerbi.com/view?r=eyJrIjoiYjgxOGEzMDItZjQ4Ni00MzY3LWI5MzYtNjc0NzUxMmM0OGI4IiwidCI6IjA2Yjk5YmUzLWQzNGItNDJmMy1iMTk0LTQ5MzU0OTNkMTNkNCIsImMiOjR9"
-    frameborder="0"
-    style="position:absolute;top:0;left:0;bottom:0;right:0;width:100%;height:100%;border:none;"
-    allowfullscreen>
-  </iframe>
+  <!-- Encabezado estilo ORSNA -->
+  <header>
+    <strong>ORSNA · GeoData</strong> – Tablero Año Móvil (Power BI)
+  </header>
+
+  <!-- Mensaje de carga -->
+  <div id="msg">
+    Cargando tablero Año Móvil…  
+    <br><br>
+    Este reporte proviene de Power BI.<br>
+    Si no aparece en unos segundos, verificá tu conexión a internet.
+  </div>
+
+  <!-- Contenedor del iframe -->
+  <div class="frame-wrap">
+    <iframe 
+      id="pbiFrame"
+      src="https://app.powerbi.com/view?r=eyJrIjoiYjgxOGEzMDItZjQ4Ni00MzY3LWI5MzYtNjc0NzUxMmM0OGI4IiwidCI6IjA2Yjk5YmUzLWQzNGItNDJmMy1iMTk0LTQ5MzU0OTNkMTNkNCIsImMiOjR9"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <script>
+    // Cuando el iframe cargue ocultamos el mensaje
+    const iframe = document.getElementById('pbiFrame');
+    iframe.onload = () => {
+      iframe.style.display = 'block';
+      document.getElementById('msg').style.display = 'none';
+    };
+  </script>
 
 </body>
 </html>
