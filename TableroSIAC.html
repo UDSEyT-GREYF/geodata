@@ -5,51 +5,92 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tablero SIAC – ORSNA GeoData</title>
   <style>
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
       padding: 0;
-      font-family: Segoe UI, Roboto, Arial, sans-serif;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
       background: #f5f5f5;
       color: #333;
     }
-    #msg {
-      padding: 40px 20px;
-      max-width: 600px;
-      margin: 80px auto;
+
+    .wrap {
+      max-width: 720px;
+      margin: 60px auto;
+      padding: 24px 16px;
       text-align: center;
-      font-size: 1.1rem;
-      line-height: 1.5;
+      background: #ffffff;
+      border-radius: 6px;
+      border: 1px solid #dde2e6;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      color: #002855;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin: 8px 0;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 18px;
+      background: #0072bb;
+      color: #fff;
+      padding: 9px 18px;
+      border-radius: 22px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .btn:hover { background: #005f99; }
+
+    .note {
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: #666;
     }
   </style>
+
+  <script>
+    // Redirección automática al tablero interno (si la red lo permite)
+    window.addEventListener('DOMContentLoaded', () => {
+      const target = "http://rpserver/PBIReports/powerbi/GREF_2024/SIAC_ANAC_ORSNA_v3?rs:Embed=true";
+      // Pequeño delay para que se vea algo de contenido si falla
+      setTimeout(() => {
+        window.location.href = target;
+      }, 500);
+    });
+  </script>
 </head>
 
 <body>
 
-<!-- Mensaje para cuando NO se puede cargar el reporte -->
-<div id="msg">
-  Cargando tablero SIAC…  
-  <br><br>
-  Si el tablero no aparece en unos segundos,<br>
-  asegurate de estar conectado a la <strong>red interna del ORSNA</strong> o mediante VPN.
-</div>
+  <div class="wrap">
+    <h1>Tablero SIAC</h1>
+    <p>
+      Estás siendo redirigido al tablero SIAC en el servidor interno del ORSNA.
+    </p>
+    <p>
+      Si la redirección no ocurre automáticamente en unos segundos, podés abrirlo manualmente desde el siguiente enlace:
+    </p>
 
-<!-- Contenedor del iframe -->
-<iframe 
-  id="pbiFrame"
-  src="http://rpserver/PBIReports/powerbi/GREF_2024/SIAC_ANAC_ORSNA_v3?rs:Embed=true"
-  frameborder="0"
-  style="width:100%;height:100vh;border:none;display:none;"
-  allowfullscreen>
-</iframe>
+    <a class="btn"
+       href="http://rpserver/PBIReports/powerbi/GREF_2024/SIAC_ANAC_ORSNA_v3?rs:Embed=true">
+      Abrir tablero SIAC
+    </a>
 
-<script>
-  // Intentar cargar el iframe — si carga, ocultamos el mensaje
-  const iframe = document.getElementById('pbiFrame');
-  iframe.onload = () => {
-    iframe.style.display = 'block';
-    document.getElementById('msg').style.display = 'none';
-  };
-</script>
+    <p class="note">
+      Recordá que el tablero solo es accesible desde la <strong>red interna del ORSNA</strong> o mediante
+      <strong>VPN institucional</strong>. Si el enlace no abre, verificá tu conexión o contactá al área de Sistemas.
+    </p>
+  </div>
 
 </body>
 </html>
