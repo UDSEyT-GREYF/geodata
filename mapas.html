@@ -23,7 +23,6 @@
       color: #0072bb;
       text-decoration: none;
     }
-
     a:hover { text-decoration: underline; }
 
     /* Barra superior */
@@ -41,7 +40,7 @@
       align-items: center;
     }
 
-    /* Encabezado gov */
+    /* Header gov */
     .gov-header {
       background-color: #ffffff;
       border-bottom: 1px solid #dde2e6;
@@ -56,15 +55,17 @@
       flex-wrap: wrap;
     }
 
-    .brand { display: flex; align-items: center; gap: 10px; }
-
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
     .brand-logo {
       width: 36px;
       height: 36px;
       border-radius: 50%;
       background: linear-gradient(135deg, #00a3e0, #0072bb);
     }
-
     .brand-text { display: flex; flex-direction: column; }
     .brand-text span:first-child {
       font-size: 0.78rem;
@@ -114,61 +115,70 @@
       gap: 24px;
     }
 
-    /* Card con imagen */
+    /* Tarjetas estilo Informes */
     .card {
-      background-color: #ffffff;
-      border-radius: 4px;
+      background: #fff;
+      border-radius: 6px;
       border: 1px solid #dde2e6;
       overflow: hidden;
-      transition: box-shadow 0.15s ease, transform 0.15s ease;
       display: flex;
       flex-direction: column;
+      transition: 0.2s ease;
     }
-
     .card:hover {
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      transform: translateY(-1px);
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
-    .card img {
+    .thumb {
       width: 100%;
-      height: 150px;
+      height: 160px;
       object-fit: cover;
       border-bottom: 1px solid #dde2e6;
+      transition: transform 0.25s ease;
     }
 
-    .card-content {
+    .card:hover .thumb {
+      transform: scale(1.04);
+    }
+
+    .body {
       padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
-    .card-content h2 {
-      font-size: 1.05rem;
+    .tag {
+      font-size: 0.8rem;
+      color: #0072bb;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .title {
+      font-size: 1.1rem;
+      font-weight: 600;
       color: #002855;
     }
 
-    .card-content p {
+    .desc {
       font-size: 0.9rem;
       color: #555;
-      flex-grow: 1;
+      margin-bottom: 8px;
     }
 
-    .button {
+    .btn {
+      display: inline-block;
       background-color: #0072bb;
+      padding: 7px 14px;
       color: #fff !important;
-      padding: 8px 14px;
       border-radius: 20px;
       font-weight: 600;
       text-align: center;
-      display: inline-block;
-    }
-
-    .button:hover {
-      background-color: #005f99;
       text-decoration: none;
     }
+    .btn:hover { background-color: #005f99; }
 
     /* Footer */
     footer {
@@ -229,62 +239,61 @@
     <section class="grid">
 
       <!-- SISTEMA NACIONAL DE AEROPUERTOS -->
-      <div class="card">
-        <img src="img/Mapas/SNAtable.png" alt="Sistema Nacional de Aeropuertos">
-        <div class="card-content">
-          <h2>Sistema Nacional de Aeropuertos</h2>
-          <p>Visualización de infraestructura, espacios y datos clave del SNA.</p>
-          <a class="button" href="http://172.20.2.70:8082/mapstore/#/dashboard/39" target="_blank">Abrir dashboard</a>
+      <article class="card">
+        <img class="thumb" src="img/Mapas/SNAtable.png" alt="Sistema Nacional de Aeropuertos" />
+        <div class="body">
+          <div class="tag">SNA</div>
+          <div class="title">Sistema Nacional de Aeropuertos</div>
+          <p class="desc">Visualización de infraestructura, espacios y datos clave del SNA.</p>
+          <a class="btn" href="http://172.20.2.70:8082/mapstore/#/dashboard/39" target="_blank" rel="noopener">Abrir</a>
         </div>
-      </div>
+      </article>
 
-<!-- TIEMPOS DE VIAJE -->
-<div class="card">
-  <img src="img/Mapas/cobertura.png" alt="Tiempos de viaje desde aeropuertos">
-  <div class="card-content">
-    <h2>Tiempos de viaje desde aeropuertos</h2>
-    <p>Accesibilidad territorial por distancia y tiempo desde cada aeropuerto.</p>
-    <a class="button" 
-       href="https://www.arcgis.com/apps/instant/sidebar/index.html?appid=0019494a28b544468f4bd3c08fa55e10" 
-       target="_blank">
-       Abrir visor
-    </a>
-  </div>
-</div>
-
+      <!-- TIEMPOS DE VIAJE -->
+      <article class="card">
+        <img class="thumb" src="img/Mapas/cobertura.png" alt="Tiempos de viaje desde aeropuertos" />
+        <div class="body">
+          <div class="tag">Accesibilidad</div>
+          <div class="title">Tiempos de viaje desde aeropuertos</div>
+          <p class="desc">Accesibilidad territorial por distancia y tiempo desde cada aeropuerto.</p>
+          <a class="btn" href="https://www.arcgis.com/apps/instant/sidebar/index.html?appid=0019494a28b544468f4bd3c08fa55e10" target="_blank" rel="noopener">Abrir</a>
+        </div>
+      </article>
 
       <!-- PROGRAMACIÓN FINANCIERA -->
-      <div class="card">
-        <img src="img/Mapas/Programacion.png" alt="Programación Financiera">
-        <div class="card-content">
-          <h2>Tablero Programación Financiera</h2>
-          <p>Dashboard de inversiones y programación financiera 2025–2027.</p>
-          <a class="button" href="http://172.20.2.70:8082/mapstore/#/dashboard/147" target="_blank">Abrir dashboard</a>
+      <article class="card">
+        <img class="thumb" src="img/Mapas/Programacion.png" alt="Programación Financiera" />
+        <div class="body">
+          <div class="tag">Finanzas</div>
+          <div class="title">Programación Financiera 2025–2027</div>
+          <p class="desc">Dashboard de inversiones y programación financiera del SNA.</p>
+          <a class="btn" href="http://172.20.2.70:8082/mapstore/#/dashboard/147" target="_blank" rel="noopener">Abrir</a>
         </div>
-      </div>
+      </article>
 
-      <!-- Aeropuertos SNA – OCULTO -->
+      <!-- OCULTOS: NO SE MOSTRAN -->
       <!--
-      <div class="card">
-        <img src="img/Mapas/aeropuertos.png">
-        <div class="card-content">
-          <h2>Aeropuertos SNA</h2>
-          <p>Mapa aeropuertos del SNA.</p>
-          <a class="button" href="http://172.20.2.70:8082/mapstore/#/viewer/15" target="_blank">Abrir visor</a>
+      <article class="card">
+        <img class="thumb" src="img/Mapas/aeropuertos.png" />
+        <div class="body">
+          <div class="tag">SNA</div>
+          <div class="title">Aeropuertos SNA</div>
+          <p class="desc">Mapa aeropuertos del SNA.</p>
+          <a class="btn" href="http://172.20.2.70:8082/mapstore/#/viewer/15" target="_blank">Abrir</a>
         </div>
-      </div>
+      </article>
       -->
 
-      <!-- Aeropuerto San Juan – OCULTO -->
       <!--
-      <div class="card">
-        <img src="img/Mapas/sanjuan.png">
-        <div class="card-content">
-          <h2>Aeropuerto San Juan</h2>
-          <p>Mapa del aeropuerto de San Juan.</p>
-          <a class="button" href="#" target="_blank">Abrir visor</a>
+      <article class="card">
+        <img class="thumb" src="img/Mapas/sanjuan.png" />
+        <div class="body">
+          <div class="tag">San Juan</div>
+          <div class="title">Aeropuerto San Juan</div>
+          <p class="desc">Mapa del aeropuerto de San Juan.</p>
+          <a class="btn" href="#" target="_blank">Abrir</a>
         </div>
-      </div>
+      </article>
       -->
 
     </section>
