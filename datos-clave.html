@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Datos clave de aeropuertos – GeoData ORSNA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    a { color: #0072bb; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* TOPBAR */
+    .topbar {
+      background-color: #002855;
+      color: #fff;
+      font-size: 0.85rem;
+      padding: 4px 16px;
+    }
+    .topbar-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* HEADER ORSNA */
+    .gov-header {
+      background-color: #ffffff;
+      border-bottom: 1px solid #dde2e6;
+    }
+    .gov-header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00a3e0, #0072bb);
+    }
+
+    .brand-text { display: flex; flex-direction: column; }
+    .brand-text span:first-child {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      color: #6c757d;
+    }
+    .brand-text span:last-child {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #002855;
+    }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      background-color: #eef2f7;
+      border-bottom: 1px solid #dde2e6;
+      font-size: 0.85rem;
+    }
+    .breadcrumb-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 8px 16px;
+      color: #6c757d;
+    }
+
+    /* MAIN */
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    header.page-header {
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .page-header-left h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #002855;
+    }
+    .page-header-left p {
+      margin-top: 4px;
+      color: #555;
+      font-size: 0.95rem;
+    }
+
+    .selector {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      font-size: 0.9rem;
+    }
+    .selector label { color: #444; }
+    .selector select {
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid #c0c7d4;
+      font-size: 0.9rem;
+      min-width: 220px;
+    }
+
+    /* GRID DE FICHAS */
+    .grid {
+      display: grid;
+      grid-template-columns: 2fr 2fr 2fr;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .panel {
+      background: #fff;
+      border-radius: 4px;
+      border: 1px solid #d0d7e2;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .panel-header {
+      background: #306fb0;
+      color: #fff;
+      padding: 6px 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
+
+    .panel-body {
+      padding: 8px 10px 10px;
+      font-size: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .two-rows {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 6px;
+      font-size: 0.9rem;
+    }
+    .metric-row .value {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #2a5fa0;
+    }
+
+    .small-label {
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    ul {
+      padding-left: 18px;
+      font-size: 0.88rem;
+    }
+
+    .subpanel-title {
+      margin-top: 4px;
+      font-weight: 600;
+      color: #2a5fa0;
+      font-size: 0.9rem;
+    }
+
+    .chart-container img {
+      width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 3px;
+      border: 1px solid #dde2e6;
+    }
+
+    .img-double {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .img-double img {
+      width: 100%;
+      max-height: 120px;
+      object-fit: cover;
+      border-radius: 3px;
+      border: 1px solid #dde2e6;
+    }
+
+    footer {
+      border-top: 1px solid #dde2e6;
+      background-color: #ffffff;
+      margin-top: 24px;
+      font-size: 0.83rem;
+      color: #555;
+    }
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      text-align: right;
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      header.page-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .selector { align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div>Presidencia de la Nación</div>
+      <div><a href="index.html" style="color:#fff;text-decoration:none;">GeoData</a></div>
+    </div>
+  </div>
+
+  <!-- HEADER ORSNA -->
+  <div class="gov-header">
+    <div class="gov-header-inner">
+      <div class="brand">
+        <div class="brand-logo"></div>
+        <div class="brand-text">
+          <span>Organismo Regulador del Sistema Nacional de Aeropuertos</span>
+          <span>ORSNA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BREADCRUMB -->
+  <nav class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html">Inicio</a> › Datos clave por aeropuerto
+    </div>
+  </nav>
+
+  <main>
+    <header class="page-header">
+      <div class="page-header-left">
+        <h1 id="pageTitle">Datos clave por aeropuerto</h1>
+        <p id="pageSubtitle">
+          Fichas dinámicas de infraestructura y operación del Sistema Nacional de Aeropuertos.
+        </p>
+      </div>
+
+      <div class="selector">
+        <label for="airportSelect">Seleccionar aeropuerto</label>
+        <select id="airportSelect">
+          <option value="">Cargando aeropuertos...</option>
+        </select>
+      </div>
+    </header>
+
+    <section class="grid">
+
+      <!-- PANEL 1: SUPERFICIE / CONCESIÓN / PISTAS -->
+      <section class="panel">
+        <div class="panel-header">Superficie y área de movimiento</div>
+        <div class="panel-body two-rows">
+
+          <div>
+            <div class="metric-row">
+              <span>Superficie total del predio</span>
+              <span class="value" id="supPredioHa">–</span>
+            </div>
+            <div class="small-label">hectáreas</div>
+
+            <div class="metric-row" style="margin-top:6px;">
+              <span>Superficie concesionada</span>
+              <span class="value" id="supConcesionadaHa">–</span>
+            </div>
+            <div class="small-label">hectáreas</div>
+
+            <div class="small-label" style="margin-top:6px;">Áreas concesionadas</div>
+            <div class="small-label" id="areasConcesionadas">–</div>
+          </div>
+
+          <div>
+            <div class="subpanel-title">Pistas y plataforma</div>
+            <div class="small-label" style="margin-top:4px;">Orientación de pistas</div>
+            <div class="small-label" id="pistaOrientacion">–</div>
+
+            <div class="small-label" style="margin-top:6px;">Dimensiones (m x ancho)</div>
+            <ul id="dimensionesList"></ul>
+
+            <div class="small-label" style="margin-top:6px;">Material de pista</div>
+            <div class="small-label" id="materialPista">–</div>
+
+            <div class="metric-row" style="margin-top:6px;">
+              <span>Posiciones en plataforma (PSN)</span>
+              <span class="value" id="psnTotal">–</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANEL 2: TERMINAL Y SERVICIOS A PASAJEROS -->
+      <section class="panel">
+        <div class="panel-header">Terminal de pasajeros</div>
+        <div class="panel-body">
+          <div class="metric-row">
+            <span>Superficie de terminal</span>
+            <span class="value" id="terminalM2">–</span>
+          </div>
+          <div class="small-label">m²</div>
+
+          <div class="metric-row" style="margin-top:6px;">
+            <span>Mostradores de check-in</span>
+            <span class="value" id="mostradoresCheckin">–</span>
+          </div>
+
+          <div class="metric-row">
+            <span>Kioscos self check-in</span>
+            <span class="value" id="kioscosSelf">–</span>
+          </div>
+
+          <div class="metric-row">
+            <span>Puertas de embarque (total)</span>
+            <span class="value" id="puertasTotal">–</span>
+          </div>
+          <div class="small-label" id="puertasDetalle">–</div>
+
+          <div class="metric-row" style="margin-top:6px;">
+            <span>Mangas telescópicas</span>
+            <span class="value" id="mangas">–</span>
+          </div>
+
+          <div class="metric-row">
+            <span>Cintas de equipaje (total)</span>
+            <span class="value" id="cintasTotal">–</span>
+          </div>
+          <div class="small-label" id="cintasDetalle">–</div>
+
+          <div class="metric-row" style="margin-top:6px;">
+            <span>Plazas de estacionamiento vehicular</span>
+            <span class="value" id="estacionamiento">–</span>
+          </div>
+
+          <div class="metric-row">
+            <span>Carritos porta equipajes</span>
+            <span class="value" id="carritos">–</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANEL 3: IMÁGENES Y UBICACIÓN -->
+      <section class="panel">
+        <div class="panel-header">Imágenes y ubicación</div>
+        <div class="panel-body">
+          <div class="small-label">Ubicación</div>
+          <div class="small-label" id="ubicacionText">–</div>
+
+          <div class="small-label" style="margin-top:6px;">Distancia al centro de la ciudad</div>
+          <div class="small-label" id="distanciaCentro">–</div>
+
+          <div class="small-label" style="margin-top:6px;">Horario de operación</div>
+          <div class="small-label" id="horarioOperacion">–</div>
+
+          <div class="img-double">
+            <div>
+              <div class="small-label">Predio</div>
+              <img id="imgPredio" src="" alt="Imagen del predio">
+            </div>
+            <div>
+              <div class="small-label">Terminal</div>
+              <img id="imgAeropuerto" src="" alt="Imagen del aeropuerto">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANEL 4: EXPLOTACIÓN, CÓDIGOS Y CONCESIÓN -->
+      <section class="panel">
+        <div class="panel-header">Concesión y explotación</div>
+        <div class="panel-body">
+          <div class="small-label">Explotador</div>
+          <div class="small-label" id="explotador">–</div>
+
+          <div class="small-label" style="margin-top:6px;">Grupo de concesión</div>
+          <div class="small-label" id="grupo">–</div>
+
+          <div class="small-label" style="margin-top:6px;">Concesión hasta</div>
+          <div class="small-label" id="concesionHasta">–</div>
+
+          <div class="small-label" style="margin-top:6px;">Códigos</div>
+          <div class="small-label" id="codigos">–</div>
+
+          <div class="small-label" style="margin-top:6px;">Habilitación</div>
+          <div class="small-label" id="habilitacion">–</div>
+        </div>
+      </section>
+
+      <!-- PANEL 5: EMPLEO Y POBLACIÓN -->
+      <section class="panel">
+        <div class="panel-header">Empleo y área de influencia</div>
+        <div class="panel-body">
+          <div class="small-label">Empleo directo 2024</div>
+          <div class="metric-row">
+            <span>Personas empleadas</span>
+            <span class="value" id="empleoDirecto">–</span>
+          </div>
+
+          <div class="small-label" style="margin-top:6px;">Población del área de influencia (Censo 2022)</div>
+          <div class="metric-row">
+            <span>Población estimada</span>
+            <span class="value" id="poblacionInfluencia">–</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANEL 6: AYUDAS, CARGAS, SERVICIOS -->
+      <section class="panel">
+        <div class="panel-header">Servicios y ayudas</div>
+        <div class="panel-body">
+          <div class="small-label">Ayudas radioeléctricas</div>
+          <div class="small-label" id="radioayudas">–</div>
+
+          <div class="small-label" style="margin-top:6px;">Ayudas visuales</div>
+          <div class="small-label" id="ayudasVisuales">–</div>
+
+          <div class="small-label" style="margin-top:6px;">AWOS</div>
+          <div class="small-label" id="awos">–</div>
+
+          <div class="small-label" style="margin-top:6px;">Operador de cargas</div>
+          <div class="small-label" id="operadorCargas">–</div>
+
+          <div class="small-label" style="margin-top:6px;">Terminal de cargas (m²)</div>
+          <div class="small-label" id="terminalCargasM2">–</div>
+
+          <div class="small-label" style="margin-top:6px;">Aeroplantas</div>
+          <div class="small-label" id="aeroplantas">–</div>
+
+          <div class="small-label" style="margin-top:6px;">Clave de referencia de aeródromo</div>
+          <div class="small-label" id="claveRef">–</div>
+
+          <div class="small-label" style="margin-top:6px;">Categoría SEI normal</div>
+          <div class="small-label" id="categoriaSEI">–</div>
+        </div>
+      </section>
+
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner" id="footerNote">
+      Fuente: ORSNA – Datos de la planilla básica por aeropuerto.
+    </div>
+  </footer>
+
+  <script>
+    let aeropuertos = [];
+    const selectEl = document.getElementById("airportSelect");
+
+    function formatNumber(n) {
+      if (n === null || n === undefined || n === "" || isNaN(n)) return "–";
+      return Number(n).toLocaleString("es-AR");
+    }
+
+    function clean(text) {
+      if (text === null || text === undefined) return "";
+      return String(text).trim();
+    }
+
+    function renderAirport(iataCode) {
+      const a = aeropuertos.find(x => x.IATA === iataCode);
+      if (!a) return;
+
+      // Títulos
+      const nombre = clean(a["Aeropuerto"]) || clean(a["Nombre del Aeropuerto"]) || a.IATA;
+      document.getElementById("pageTitle").textContent =
+        `Aeropuerto de ${nombre} (${a.IATA})`;
+      document.getElementById("pageSubtitle").textContent =
+        `Sistema Nacional de Aeropuertos · ORSNA · Datos ${a["Año"] || ""}`;
+
+      // Superficie
+      document.getElementById("supPredioHa").textContent = formatNumber(a["SupPredioHa"]);
+      document.getElementById("supConcesionadaHa").textContent = formatNumber(a["SupConcesionadaHa"]);
+      document.getElementById("areasConcesionadas").textContent =
+        clean(a["AreasConcesionadas"]) || "–";
+
+      // Pistas
+      document.getElementById("pistaOrientacion").textContent =
+        clean(a["PistaOrientacion"]) || "–";
+
+      const dimList = document.getElementById("dimensionesList");
+      dimList.innerHTML = "";
+      const dims = clean(a["Dimensiones"]);
+      if (dims) {
+        dims.split(";").map(d => d.trim()).filter(Boolean).forEach(d => {
+          const li = document.createElement("li");
+          li.textContent = d;
+          dimList.appendChild(li);
+        });
+      }
+
+      document.getElementById("materialPista").textContent =
+        clean(a["MaterialPista"]) || "–";
+      document.getElementById("psnTotal").textContent =
+        formatNumber(a["PSNTotal"]);
+
+      // Terminal / servicios
+      document.getElementById("terminalM2").textContent =
+        formatNumber(a["TerminalM2"]);
+      document.getElementById("mostradoresCheckin").textContent =
+        formatNumber(a["Mostradores Check in"]);
+      document.getElementById("kioscosSelf").textContent =
+        formatNumber(a["Kioscos         (self check In)"]);
+      document.getElementById("puertasTotal").textContent =
+        formatNumber(a["PuertasEmbarqueTotal"]);
+
+      const puertasDetalle = [];
+      if (a["PuertasEmbarqueInter"]) puertasDetalle.push(`Inter: ${a["PuertasEmbarqueInter"]}`);
+      if (a["PuertasEmbarqueCabot"]) puertasDetalle.push(`Cabot: ${a["PuertasEmbarqueCabot"]}`);
+      if (a["PuertasEmbarqueFlex"]) puertasDetalle.push(`Flex: ${a["PuertasEmbarqueFlex"]}`);
+      document.getElementById("puertasDetalle").textContent =
+        puertasDetalle.length ? puertasDetalle.join(" · ") : "–";
+
+      document.getElementById("mangas").textContent =
+        formatNumber(a["Mangas telescópicas"]);
+      document.getElementById("cintasTotal").textContent =
+        formatNumber(a["CintasTotal"]);
+      const cintasDetalle = [];
+      if (a["CintasInter"]) cintasDetalle.push(`Inter: ${a["CintasInter"]}`);
+      if (a["CintasCabot"]) cintasDetalle.push(`Cabot: ${a["CintasCabot"]}`);
+      if (a["CintasFlex"]) cintasDetalle.push(`Flex: ${a["CintasFlex"]}`);
+      document.getElementById("cintasDetalle").textContent =
+        cintasDetalle.length ? cintasDetalle.join(" · ") : "–";
+
+      document.getElementById("estacionamiento").textContent =
+        formatNumber(a["Estacionamiento Vehicular"]);
+      document.getElementById("carritos").textContent =
+        formatNumber(a["Carritos porta equipajes"]);
+
+      // Ubicación y horario
+      const loc = `${clean(a["Localidad"])} · ${clean(a["Provincia"])}`.replace(/^ · | · $/g, "");
+      document.getElementById("ubicacionText").textContent = loc || "–";
+
+      const dist = a["Distancia al centro de la ciudad (km)"];
+      document.getElementById("distanciaCentro").textContent =
+        dist ? `${formatNumber(dist)} km` : "–";
+
+      document.getElementById("horarioOperacion").textContent =
+        clean(a["Horario de operación"]) || "–";
+
+      // Imágenes
+      const imgPredio = document.getElementById("imgPredio");
+      const imgAero = document.getElementById("imgAeropuerto");
+      const predPath = clean(a["imagenPredio"]);
+      const aeroPath = clean(a["imagenAeropuerto"]);
+      imgPredio.src = predPath || "";
+      imgPredio.alt = `Predio del aeropuerto ${nombre}`;
+      imgAero.src = aeroPath || "";
+      imgAero.alt = `Terminal del aeropuerto ${nombre}`;
+
+      // Concesión / explotación
+      document.getElementById("explotador").textContent =
+        clean(a["Explotador"]) || "–";
+      document.getElementById("grupo").textContent =
+        clean(a["Grupo"]) || "–";
+      document.getElementById("concesionHasta").textContent =
+        clean(a["ConcesionHasta"]) || "–";
+
+      const cods = [];
+      if (clean(a["OACI"])) cods.push(`OACI: ${clean(a["OACI"])}`);
+      if (clean(a["ANAC"])) cods.push(`ANAC: ${clean(a["ANAC"])}`);
+      if (clean(a["IATA"])) cods.push(`IATA: ${clean(a["IATA"])}`);
+      document.getElementById("codigos").textContent =
+        cods.length ? cods.join(" · ") : "–";
+
+      document.getElementById("habilitacion").textContent =
+        clean(a["Habilitación"]) || "–";
+
+      // Empleo y población
+      document.getElementById("empleoDirecto").textContent =
+        formatNumber(a["EmpleoDirecto2024"]);
+      document.getElementById("poblacionInfluencia").textContent =
+        formatNumber(a["Población del Área de Influencia (Censo 2022)"]);
+
+      // Servicios y ayudas
+      document.getElementById("radioayudas").textContent =
+        clean(a["Radioayudas"]) || "–";
+      document.getElementById("ayudasVisuales").textContent =
+        clean(a["Ayudas visuales"]) || "–";
+      document.getElementById("awos").textContent =
+        clean(a["AWOS"]) || "–";
+
+      document.getElementById("operadorCargas").textContent =
+        clean(a["OperadorCargas"]) || "–";
+      document.getElementById("terminalCargasM2").textContent =
+        formatNumber(a["TerminalCargasM2"]);
+
+      const aeroComb = [];
+      if (a["Aeroplantas AV GAS"]) aeroComb.push(`AV GAS: ${a["Aeroplantas AV GAS"]}`);
+      if (a["Aeroplantas JP1"]) aeroComb.push(`JP1: ${a["Aeroplantas JP1"]}`);
+      document.getElementById("aeroplantas").textContent =
+        aeroComb.length ? aeroComb.join(" · ") : "–";
+
+      document.getElementById("claveRef").textContent =
+        clean(a["CLAVE DE REFERENCIA DE AERÓDROMO"]) || "–";
+      document.getElementById("categoriaSEI").textContent =
+        clean(a["CATEGORÍA SEI NORMAL"]) || "–";
+
+      document.getElementById("footerNote").textContent =
+        `Fuente: ORSNA – Datos básicos por aeropuerto · Año ${a["Año"] || ""}.`;
+    }
+
+    async function loadData() {
+      try {
+        const resp = await fetch("fuentes/Datos_aeropuertos.geojson");
+        const geojson = await resp.json();
+
+        const features = geojson.features || [];
+        aeropuertos = features
+          .map(f => f.properties || {})
+          .filter(p => p.IATA);
+
+        // Ordenar por IATA
+        aeropuertos.sort((a, b) => String(a.IATA).localeCompare(String(b.IATA)));
+
+        // Llenar selector
+        selectEl.innerHTML = "";
+        aeropuertos.forEach(p => {
+          const opt = document.createElement("option");
+          const nombre = clean(p["Aeropuerto"]) || clean(p["Nombre del Aeropuerto"]) || p.IATA;
+          opt.value = p.IATA;
+          opt.textContent = `${nombre} (${p.IATA})`;
+          selectEl.appendChild(opt);
+        });
+
+        // Ver si viene ?airport=IATA en la URL
+        const params = new URLSearchParams(window.location.search);
+        const fromUrl = params.get("airport");
+        let initial = aeropuertos[0]?.IATA;
+        if (fromUrl && aeropuertos.find(a => String(a.IATA) === String(fromUrl))) {
+          initial = fromUrl;
+        }
+
+        if (initial) {
+          selectEl.value = initial;
+          renderAirport(initial);
+        }
+
+        selectEl.addEventListener("change", e => {
+          renderAirport(e.target.value);
+          // actualizar la URL sin recargar
+          const url = new URL(window.location.href);
+          url.searchParams.set("airport", e.target.value);
+          window.history.replaceState({}, "", url);
+        });
+      } catch (err) {
+        console.error("Error cargando GeoJSON:", err);
+        selectEl.innerHTML = "<option>Error al cargar datos</option>";
+      }
+    }
+
+    loadData();
+  </script>
+</body>
+</html>
