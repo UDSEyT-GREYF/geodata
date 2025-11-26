@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Datos clave del aeropuerto – ORSNA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* ===== ENCABEZADO ===== */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      gap: 16px;
+    }
+
+    .title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #2a5fa0;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: #555;
+      margin-top: 4px;
+    }
+
+    .selector {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      font-size: 0.9rem;
+    }
+
+    .selector label { color: #444; }
+
+    .selector select {
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid #c0c7d4;
+      font-size: 0.9rem;
+    }
+
+    /* ===== LAYOUT PRINCIPAL ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: 2fr 2fr 2fr;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .panel {
+      background: #fff;
+      border-radius: 3px;
+      border: 1px solid #d0d7e2;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .panel-header {
+      background: #306fb0;
+      color: #fff;
+      padding: 6px 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
+
+    .panel-body {
+      padding: 8px 10px;
+      font-size: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    /* ===== SUPERFICIE / ÁREA MOVIMIENTO ===== */
+    .two-rows {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 6px;
+      font-size: 0.9rem;
+    }
+
+    .metric-row span.value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #2a5fa0;
+    }
+
+    .small-label {
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    ul {
+      padding-left: 18px;
+      font-size: 0.88rem;
+    }
+
+    /* ===== PASAJEROS / VUELOS ===== */
+    .big-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      background: #2a8ad4;
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 999px;
+      margin: 6px 0;
+    }
+
+    .inline-metrics {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+    }
+
+    .inline-metrics div span.value {
+      font-weight: 600;
+    }
+
+    .subpanel-title {
+      margin-top: 8px;
+      font-weight: 600;
+      color: #2a5fa0;
+      font-size: 0.9rem;
+    }
+
+    /* ===== AEROLÍNEAS Y DESTINOS ===== */
+    .airlines-list,
+    .destinations-list {
+      margin-top: 4px;
+      font-size: 0.88rem;
+    }
+
+    .pill {
+      display: inline-block;
+      background: #2a5fa0;
+      color: #fff;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 0.8rem;
+      margin-right: 4px;
+    }
+
+    footer {
+      margin-top: 10px;
+      text-align: right;
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      header { flex-direction: column; align-items: flex-start; }
+      .selector { align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <div class="title" id="titleText">
+          Aeropuerto de Bahía Blanca (BHI) – Datos clave del aeropuerto
+        </div>
+        <div class="subtitle" id="subtitleText">
+          Sistema Nacional de Aeropuertos · ORSNA
+        </div>
+      </div>
+
+      <div class="selector">
+        <label for="airportSelect">Seleccionar aeropuerto</label>
+        <select id="airportSelect">
+          <!-- opciones se generan por JS -->
+        </select>
+      </div>
+    </header>
+
+    <!-- GRID PRINCIPAL -->
+    <div class="grid">
+
+      <!-- SUPERFICIE + ÁREA DE MOVIMIENTO -->
+      <section class="panel">
+        <div class="panel-header">Superficie</div>
+        <div class="panel-body two-rows">
+
+          <div>
+            <div class="metric-row">
+              <span>Tamaño del predio</span>
+              <span class="value" id="surfaceHa">1082</span>
+            </div>
+            <div class="small-label">hectáreas</div>
+
+            <div class="metric-row" style="margin-top:6px;">
+              <span>Tamaño de la terminal de pasajeros</span>
+              <span class="value" id="terminalArea">3000</span>
+            </div>
+            <div class="small-label">m²</div>
+          </div>
+
+          <div>
+            <div class="subpanel-title">Área de movimiento</div>
+            <div class="metric-row" style="margin-top:4px;">
+              <span>Pistas de aterrizaje</span>
+              <span class="value" id="runwaysCount">3</span>
+            </div>
+            <div class="small-label" id="runwaysIds">06/24 · 17R/35L · 17L/35R</div>
+
+            <div class="small-label" style="margin-top:6px;">Longitud de las pistas (m x ancho)</div>
+            <ul id="runwaysLengths">
+              <!-- se llena por JS -->
+            </ul>
+
+            <div class="metric-row" style="margin-top:6px;">
+              <span>Posiciones en plataforma – Comerciales</span>
+              <span class="value" id="standsCom">3</span>
+            </div>
+            <div class="metric-row">
+              <span>Posiciones en plataforma – Aviación general</span>
+              <span class="value" id="standsGa">5</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TERMINAL DE PASAJEROS -->
+      <section class="panel">
+        <div class="panel-header">Terminal de pasajeros</div>
+        <div class="panel-body">
+          <div class="metric-row">
+            <span>Mostradores de check-in</span>
+            <span class="value" id="checkinCounters">10</span>
+          </div>
+          <div class="metric-row">
+            <span>Puertas de embarque</span>
+            <span class="value" id="boardingGates">2</span>
+          </div>
+          <div class="metric-row">
+            <span>Cintas de equipaje</span>
+            <span class="value" id="baggageBelts">1</span>
+          </div>
+          <div class="metric-row">
+            <span>Mangas telescópicas</span>
+            <span class="value" id="jetbridges">1</span>
+          </div>
+          <div class="metric-row">
+            <span>Plazas de estacionamiento vehicular</span>
+            <span class="value" id="parkingSpots">350</span>
+          </div>
+          <div class="metric-row">
+            <span>Puestos de seguridad</span>
+            <span class="value" id="securityPosts">2</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PASAJEROS 2024 -->
+      <section class="panel">
+        <div class="panel-header">Pasajeros 2024</div>
+        <div class="panel-body">
+          <span class="small-label">Embarcados y desembarcados</span>
+          <div class="big-number" id="passengersTotal">240.584</div>
+
+          <div class="inline-metrics">
+            <div>
+              <span class="value" id="passengersWeekly">4.6273</span>
+              <span> promedio semanal</span>
+            </div>
+            <div>
+              <span class="value" id="passengersDaily">659</span>
+              <span> promedio diario</span>
+            </div>
+          </div>
+
+          <div class="subpanel-title">Vuelos 2024</div>
+          <div class="metric-row" style="margin-top:4px;">
+            <span>Movimientos de aeronaves (anual)</span>
+            <span class="value" id="flightsYear">3.730</span>
+          </div>
+          <div class="inline-metrics">
+            <div>
+              <span class="value" id="flightsWeekly">72</span>
+              <span> promedio semanal</span>
+            </div>
+            <div>
+              <span class="value" id="flightsDaily">10</span>
+              <span> promedio diario</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AEROLÍNEAS Y DESTINOS -->
+      <section class="panel">
+        <div class="panel-header">Aerolíneas y destinos</div>
+        <div class="panel-body">
+          <div class="subpanel-title">Líneas aéreas</div>
+          <div class="airlines-list" id="airlinesList">
+            <!-- JS -->
+          </div>
+
+          <div class="subpanel-title" style="margin-top:10px;">Destinos nacionales</div>
+          <div class="destinations-list" id="destinationsList">
+            <!-- JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Puedes sumar otros paneles en las celdas que quedan libres, si querés -->
+    </div>
+
+    <footer id="footerNote">
+      Fuente: ORSNA – Datos de ejemplo 2024.
+    </footer>
+  </div>
+
+  <script>
+    // ====== DATOS DE AEROPUERTOS ======
+    const airports = {
+      BHI: {
+        code: "BHI",
+        name: "Bahía Blanca",
+        surfaceHa: 1082,
+        terminalArea: 3000,
+        runwaysCount: 3,
+        runwaysIds: "06/24 · 17R/35L · 17L/35R",
+        runwaysLengths: [
+          "1.980 × 30",
+          "1.498 × 30",
+          "2.410 × 45"
+        ],
+        standsCom: 3,
+        standsGa: 5,
+        checkinCounters: 10,
+        boardingGates: 2,
+        baggageBelts: 1,
+        jetbridges: 1,
+        parkingSpots: 350,
+        securityPosts: 2,
+        passengersTotal: 240584,
+        passengersWeekly: 46273 / 10, // solo ejemplo numérico
+        passengersDaily: 659,
+        flightsYear: 3730,
+        flightsWeekly: 72,
+        flightsDaily: 10,
+        airlines: [
+          "Aerolíneas Argentinas"
+        ],
+        destinations: [
+          { code: "BUE", name: "Buenos Aires", detail: "22 frecuencias semanales · Tarifa USD 72–240" },
+          { code: "MDQ", name: "Mar del Plata", detail: "2 frecuencias semanales" },
+          { code: "REL", name: "Trelew", detail: "2 frecuencias semanales" }
+        ],
+        year: 2024
+      },
+
+      // EJEMPLOS EXTRA – podés cargarlos con tus números reales
+      NQN: {
+        code: "NQN",
+        name: "Neuquén",
+        surfaceHa: 900,
+        terminalArea: 5500,
+        runwaysCount: 1,
+        runwaysIds: "09/27",
+        runwaysLengths: ["2.570 × 45"],
+        standsCom: 4,
+        standsGa: 6,
+        checkinCounters: 12,
+        boardingGates: 3,
+        baggageBelts: 2,
+        jetbridges: 2,
+        parkingSpots: 400,
+        securityPosts: 3,
+        passengersTotal: 800000,
+        passengersWeekly: 15385,
+        passengersDaily: 2200,
+        flightsYear: 9000,
+        flightsWeekly: 173,
+        flightsDaily: 25,
+        airlines: [
+          "Aerolíneas Argentinas",
+          "Flybondi",
+          "JetSMART"
+        ],
+        destinations: [
+          { code: "AEP", name: "Buenos Aires (Aeroparque)", detail: "múltiples frecuencias diarias" },
+          { code: "EZE", name: "Buenos Aires (Ezeiza)", detail: "conexiones internacionales" }
+        ],
+        year: 2024
+      },
+
+      SLA: {
+        code: "SLA",
+        name: "Salta",
+        surfaceHa: 700,
+        terminalArea: 4000,
+        runwaysCount: 1,
+        runwaysIds: "02/20",
+        runwaysLengths: ["3.000 × 45"],
+        standsCom: 4,
+        standsGa: 4,
+        checkinCounters: 8,
+        boardingGates: 3,
+        baggageBelts: 2,
+        jetbridges: 1,
+        parkingSpots: 300,
+        securityPosts: 2,
+        passengersTotal: 1200000,
+        passengersWeekly: 23000,
+        passengersDaily: 3300,
+        flightsYear: 12000,
+        flightsWeekly: 230,
+        flightsDaily: 33,
+        airlines: [
+          "Aerolíneas Argentinas",
+          "JetSMART"
+        ],
+        destinations: [
+          { code: "AEP", name: "Buenos Aires (Aeroparque)", detail: "frecuencias diarias" },
+          { code: "NQN", name: "Neuquén", detail: "conectividad regional" }
+        ],
+        year: 2024
+      }
+    };
+
+    // ====== RENDER ======
+    const selectEl = document.getElementById("airportSelect");
+
+    function formatNumber(n) {
+      return n.toLocaleString("es-AR");
+    }
+
+    function renderAirport(code) {
+      const a = airports[code];
+      if (!a) return;
+
+      // Título
+      document.getElementById("titleText").textContent =
+        `Aeropuerto de ${a.name} (${a.code}) – Datos clave del aeropuerto`;
+      document.getElementById("subtitleText").textContent =
+        `Sistema Nacional de Aeropuertos · ORSNA · Datos ${a.year}`;
+
+      // Superficie / terminal
+      document.getElementById("surfaceHa").textContent = formatNumber(a.surfaceHa);
+      document.getElementById("terminalArea").textContent = formatNumber(a.terminalArea);
+
+      // Área de movimiento
+      document.getElementById("runwaysCount").textContent = a.runwaysCount;
+      document.getElementById("runwaysIds").textContent = a.runwaysIds;
+      const rl = document.getElementById("runwaysLengths");
+      rl.innerHTML = "";
+      a.runwaysLengths.forEach(txt => {
+        const li = document.createElement("li");
+        li.textContent = txt;
+        rl.appendChild(li);
+      });
+      document.getElementById("standsCom").textContent = a.standsCom;
+      document.getElementById("standsGa").textContent = a.standsGa;
+
+      // Terminal
+      document.getElementById("checkinCounters").textContent = a.checkinCounters;
+      document.getElementById("boardingGates").textContent = a.boardingGates;
+      document.getElementById("baggageBelts").textContent = a.baggageBelts;
+      document.getElementById("jetbridges").textContent = a.jetbridges;
+      document.getElementById("parkingSpots").textContent = a.parkingSpots;
+      document.getElementById("securityPosts").textContent = a.securityPosts;
+
+      // Pasajeros / vuelos
+      document.getElementById("passengersTotal").textContent = formatNumber(a.passengersTotal);
+      document.getElementById("passengersWeekly").textContent = formatNumber(a.passengersWeekly);
+      document.getElementById("passengersDaily").textContent = formatNumber(a.passengersDaily);
+      document.getElementById("flightsYear").textContent = formatNumber(a.flightsYear);
+      document.getElementById("flightsWeekly").textContent = formatNumber(a.flightsWeekly);
+      document.getElementById("flightsDaily").textContent = formatNumber(a.flightsDaily);
+
+      // Aerolíneas
+      const al = document.getElementById("airlinesList");
+      al.innerHTML = "";
+      a.airlines.forEach(name => {
+        const div = document.createElement("div");
+        div.innerHTML = `<span class="pill">${a.airlines.length}</span> ${name}`;
+        al.appendChild(div);
+      });
+
+      // Destinos
+      const dl = document.getElementById("destinationsList");
+      dl.innerHTML = "";
+      a.destinations.forEach(d => {
+        const div = document.createElement("div");
+        div.innerHTML = `<span class="pill">${d.code}</span> <strong>${d.name}</strong> – ${d.detail}`;
+        dl.appendChild(div);
+      });
+
+      document.getElementById("footerNote").textContent =
+        `Fuente: ORSNA – Datos ${a.year}.`;
+    }
+
+    // Llenar selector de aeropuertos
+    function init() {
+      Object.values(airports).forEach(a => {
+        const opt = document.createElement("option");
+        opt.value = a.code;
+        opt.textContent = `${a.name} (${a.code})`;
+        selectEl.appendChild(opt);
+      });
+
+      // Si viene ?airport=XXX en la URL, usarlo como inicial
+      const params = new URLSearchParams(window.location.search);
+      const fromUrl = params.get("airport");
+      const initial = airports[fromUrl] ? fromUrl : "BHI";
+
+      selectEl.value = initial;
+      renderAirport(initial);
+
+      selectEl.addEventListener("change", e => renderAirport(e.target.value));
+    }
+
+    init();
+  </script>
+</body>
+</html>
