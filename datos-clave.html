@@ -1245,11 +1245,26 @@ let mapPSN, psnLayer;      // NUEVO: mapa y capa de PSN
         return String(code).toUpperCase() === String(iata).toUpperCase();
       });
 
-      if (!featsPSN.length) {
-        // si no hay PSN para este aeropuerto solo recentramos en Argentina
-        mapPSN.setView([-34.6, -58.4], 5);
-        return;
-      }
+// Si no hay PSN para este aeropuerto → centrar en la lat/lon del aeropuerto
+if (!featsPSN.length) {
+  let lat = a["Lat"] || a["LAT"];
+  let lon = a["Lon"] || a["LON"] || a["Long"];
+
+  if (lat && lon && !isNaN(Number(lat)) && !isNaN(Number(lon))) {
+    const latNum = Number(lat);
+    const lonNum = Number(lon);
+
+    setTimeout(() => {
+      mapPSN.invalidateSize();
+      mapPSN.setView([latNum, lonNum], 15);
+    }, 0);
+  } else {
+    // Fallback a vista general de Argentina
+    mapPSN.setView([-34.6, -58.4], 5);
+  }
+  return;
+}
+
 
       psnLayer = L.geoJSON(featsPSN, {
         pointToLayer: (feature, latlng) => {
