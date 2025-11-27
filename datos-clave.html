@@ -247,20 +247,20 @@
     }
 
     /* === SUPERFICIE (compactada) === */
-    .panel-superficie { 
-      grid-area: superficie; 
+    .panel-superficie {
+      grid-area: superficie;
     }
 
     .panel-superficie .panel-body {
-      padding: 6px 10px 6px;  /* 🔹 menos padding vertical */
-      gap: 4px;               /* 🔹 menos separación interna */
+      padding: 6px 10px 6px;
+      gap: 4px;
     }
 
     .superficie-grid {
       display: flex;
       align-items: flex-end;
       gap: 16px;
-      margin-bottom: 4px; /* 🔹 menos espacio debajo de los valores */
+      margin-bottom: 4px;
     }
 
     .superficie-item {
@@ -293,8 +293,8 @@
       display: flex;
       align-items: stretch;
       gap: 16px;
-      margin-top: 4px;   /* 🔹 acercamos un poco las fotos al título */
-      margin-bottom: 0;  /* 🔹 sin aire extra debajo */
+      margin-top: 4px;
+      margin-bottom: 0;
     }
 
     .superficie-img-col {
@@ -304,7 +304,7 @@
 
     .superficie-img {
       width: 100%;
-      max-height: 140px;  /* 🔹 ESTA LÍNEA ACHICA EL PANEL */
+      max-height: 140px;
       border-radius: 4px;
       border: 1px solid #ccc;
       object-fit: cover;
@@ -796,8 +796,9 @@
 
   <script>
     let aeropuertos = [];
+    let poligonos = [];
     const selectEl = document.getElementById("airportSelect");
-    let map, mapMarker;
+    let map, mapMarker, poligonoLayer;
 
     function formatNumber(n) {
       if (n === null || n === undefined || n === "" || isNaN(n)) return "–";
@@ -829,17 +830,66 @@
     function updateMapForAirport(a) {
       if (!map) return;
 
-      const lat = a["Lat"] || a["LAT"];
-      const lon = a["Lon"] || a["LON"] || a["Long"];
+      // Limpiamos polígono anterior si existe
+      if (poligonoLayer) {
+        map.removeLayer(poligonoLayer);
+        poligonoLayer = null;
+      }
+
+      const iata = a.IATA;
+
+      // 1) Intentar dibujar polígono(s) del predio para este IATA
+      if (poligonos.length > 0 && iata) {
+        const feats = poligonos.filter(f => {
+          const props = f.properties || {};
+          const code = props.IATA || props.iata || props.iata_code;
+          return String(code).toUpperCase() === String(iata).toUpperCase();
+        });
+
+        if (feats.length > 0) {
+          poligonoLayer = L.geoJSON(feats, {
+            style: {
+              color: "#0072bb",
+              weight: 2,
+              fillColor: "#4fa3ff",
+              fillOpacity: 0.35
+            }
+          }).addTo(map);
+
+          const bounds = poligonoLayer.getBounds();
+          if (bounds.isValid()) {
+            map.fitBounds(bounds, { padding: [5, 5] });
+          }
+
+          // Opcional: ocultar marcador si hay polígono
+          if (mapMarker) {
+            map.removeLayer(mapMarker);
+          }
+          return;
+        }
+      }
+
+      // 2) Si no hay polígono, usamos Lat/Lon como fallback
+      let lat = a["Lat"] || a["LAT"];
+      let lon = a["Lon"] || a["LON"] || a["Long"];
 
       if (lat && lon && !isNaN(Number(lat)) && !isNaN(Number(lon))) {
         const latNum = Number(lat);
         const lonNum = Number(lon);
+
         map.setView([latNum, lonNum], 11);
-        mapMarker.setLatLng([latNum, lonNum]);
+
+        if (!mapMarker) {
+          mapMarker = L.marker([latNum, lonNum]).addTo(map);
+        } else {
+          mapMarker.setLatLng([latNum, lonNum]).addTo(map);
+        }
       } else {
+        // Vista general si no hay datos
         map.setView([-34.6, -58.4], 5);
-        mapMarker.setLatLng([-34.6, -58.4]);
+        if (mapMarker) {
+          mapMarker.setLatLng([-34.6, -58.4]).addTo(map);
+        }
       }
     }
 
@@ -956,6 +1006,7 @@
       document.getElementById("horarioOperacion").textContent =
         clean(a["Horario de operación"]) || "–";
 
+      // Actualizar mapa (polígono o punto)
       updateMapForAirport(a);
 
       /* CONCESIÓN Y EXPLOTACIÓN */
@@ -1017,16 +1068,13 @@
 
     async function loadData() {
       try {
+        // 1) Datos básicos por aeropuerto
         const resp = await fetch("fuentes/Datos_aeropuertos.geojson");
         const geojson = await resp.json();
 
         const features = geojson.features || [];
         aeropuertos = features
-          .map(f => {
-            const props = f.properties || {};
-            props._geometry = f.geometry || null;
-            return props;
-          })
+          .map(f => f.properties || {})
           .filter(p => p.IATA);
 
         aeropuertos.sort((a, b) => String(a.IATA).localeCompare(String(b.IATA)));
@@ -1040,6 +1088,17 @@
           selectEl.appendChild(opt);
         });
 
+        // 2) Polígonos de predios
+        try {
+          const respPoly = await fetch("fuentes/poligonos_aeropuertos.geojson");
+          const gjPoly = await respPoly.json();
+          poligonos = gjPoly.features || [];
+        } catch (e) {
+          console.warn("No se pudieron cargar los polígonos de aeropuertos:", e);
+          poligonos = [];
+        }
+
+        // Selección inicial
         const params = new URLSearchParams(window.location.search);
         const fromUrl = params.get("airport");
         let initial = aeropuertos[0]?.IATA;
