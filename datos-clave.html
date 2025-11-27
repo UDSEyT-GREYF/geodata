@@ -5,6 +5,14 @@
   <title>Datos clave de aeropuertos – GeoData ORSNA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Leaflet CSS para el mini mapa -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -170,10 +178,14 @@
       font-size: 0.78rem;
     }
 
-    /* GRID DE FICHAS */
+    /* GRID DE FICHAS – nueva disposición con áreas */
     .grid {
       display: grid;
       grid-template-columns: 2fr 2fr 2fr;
+      grid-template-areas:
+        "superficie terminal ubicacion"
+        "movimiento terminal concesion"
+        "empleo servicios servicios";
       gap: 12px;
       margin-top: 8px;
     }
@@ -234,22 +246,29 @@
       font-size: 0.9rem;
     }
 
-    /* SUPERFICIE */
-.superficie-grid {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  align-items: flex-end;   /* 🔥 alinea los VALORES abajo en la misma línea */
-}
+    /* SUPERFICIE (+ separadores verticales) */
+    .panel-superficie { grid-area: superficie; }
 
+    .superficie-grid {
+      display: flex;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
 
-.superficie-item {
-  width: 48%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end; /* 🔥 fuerza que los valores queden alineados */
-}
+    .superficie-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
 
+    .superficie-separator {
+      width: 1px;
+      align-self: stretch;
+      background-color: #d0d7e2;
+      opacity: 0.7;
+    }
 
     .superficie-label {
       font-size: 0.95rem;
@@ -265,24 +284,44 @@
 
     .superficie-imgs {
       display: flex;
-      justify-content: space-between;
+      align-items: stretch;
       gap: 16px;
       margin-top: 12px;
     }
 
+    .superficie-img-col {
+      flex: 1;
+      display: flex;
+    }
+
     .superficie-img {
-      width: 48%;
-      height: auto;
+      width: 100%;
+      height: 100%;
       border-radius: 4px;
       border: 1px solid #ccc;
       object-fit: cover;
     }
 
+    .superficie-separator-img {
+      width: 1px;
+      background-color: #d0d7e2;
+      opacity: 0.7;
+    }
+
+    .unit {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #004b80;
+    }
+
     /* PANEL MOVIMIENTO */
+    .panel-movimiento { grid-area: movimiento; }
+
     .mov-row {
       display: flex;
       justify-content: space-between;
       margin-bottom: 20px;
+      gap: 12px;
     }
 
     .mov-col {
@@ -370,20 +409,24 @@
       justify-content: center;
     }
 
-    .img-double {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
-      margin-top: 6px;
+    /* PANEL TERMINAL (columna central grande) */
+    .panel-terminal { grid-area: terminal; }
+
+    /* PANEL UBICACIÓN (con mapa) */
+    .panel-ubicacion { grid-area: ubicacion; }
+
+    .map-kpi {
+      margin-top: 10px;
+      height: 180px;
+      border-radius: 4px;
+      border: 1px solid #d0d7e2;
+      overflow: hidden;
     }
 
-    .img-double img {
-      width: 100%;
-      max-height: 120px;
-      object-fit: cover;
-      border-radius: 3px;
-      border: 1px solid #dde2e6;
-    }
+    /* PANEL CONCESIÓN / EMPLEO / SERVICIOS */
+    .panel-concesion { grid-area: concesion; }
+    .panel-empleo { grid-area: empleo; }
+    .panel-servicios { grid-area: servicios; }
 
     footer {
       border-top: 1px solid #dde2e6;
@@ -398,14 +441,19 @@
       padding: 12px 16px;
       text-align: right;
     }
-    .unit {
-      font-size: 1rem;
-      font-weight: 700;
-      color: #004b80;
-    }
 
     @media (max-width: 900px) {
-      .grid { grid-template-columns: 1fr; }
+      .grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "superficie"
+          "movimiento"
+          "terminal"
+          "ubicacion"
+          "concesion"
+          "empleo"
+          "servicios";
+      }
       header.page-header {
         flex-direction: column;
         align-items: flex-start;
@@ -452,7 +500,7 @@
       <div class="page-header-left">
         <h1 id="pageTitle">Datos clave por aeropuerto</h1>
         <p id="pageSubtitle">
-          Fichas dinámicas de infraestructura y operación del Sistema Nacional de Aeropuertos.
+          Sistema Nacional de Aeropuertos · Datos Clave 2025
         </p>
       </div>
 
@@ -506,35 +554,41 @@
     <section class="grid">
 
       <!-- PANEL 1: SUPERFICIE -->
-      <section class="panel">
+      <section class="panel panel-superficie">
         <div class="panel-header">Superficie</div>
         <div class="panel-body">
           <div class="superficie-grid">
             <div class="superficie-item">
               <div class="superficie-label">Tamaño del predio</div>
               <div class="superficie-value">
-              <span id="supPredio"></span> <span class="unit">hectáreas</span>
+                <span id="supPredio"></span> <span class="unit">hectáreas</span>
+              </div>
             </div>
-            </div>
+
+            <div class="superficie-separator"></div>
 
             <div class="superficie-item">
               <div class="superficie-label">Terminal de pasajeros</div>
-    <div class="superficie-value">
-        <span id="terminalM2"></span> <span class="unit">m²</span>
-    </div>
-
+              <div class="superficie-value">
+                <span id="terminalM2"></span> <span class="unit">m²</span>
+              </div>
             </div>
           </div>
 
           <div class="superficie-imgs">
-            <img id="imgPredio" class="superficie-img" alt="Imagen del predio del aeropuerto">
-            <img id="imgTerminal" class="superficie-img" alt="Imagen de la terminal del aeropuerto">
+            <div class="superficie-img-col">
+              <img id="imgPredio" class="superficie-img" alt="Imagen del predio del aeropuerto">
+            </div>
+            <div class="superficie-separator-img"></div>
+            <div class="superficie-img-col">
+              <img id="imgTerminal" class="superficie-img" alt="Imagen de la terminal del aeropuerto">
+            </div>
           </div>
         </div>
       </section>
 
       <!-- PANEL 2: ÁREA DE MOVIMIENTO -->
-      <section class="panel">
+      <section class="panel panel-movimiento">
         <div class="panel-header">Área de movimiento</div>
         <div class="panel-body">
           <div class="mov-row">
@@ -571,8 +625,8 @@
         </div>
       </section>
 
-      <!-- PANEL 3: TERMINAL Y SERVICIOS A PASAJEROS -->
-      <section class="panel">
+      <!-- PANEL 3: TERMINAL Y SERVICIOS A PASAJEROS (columna central grande) -->
+      <section class="panel panel-terminal">
         <div class="panel-header">Terminal de pasajeros</div>
         <div class="panel-body">
           <div class="metric-row">
@@ -620,8 +674,8 @@
         </div>
       </section>
 
-      <!-- PANEL 4: UBICACIÓN Y ACCESIBILIDAD -->
-      <section class="panel">
+      <!-- PANEL 4: UBICACIÓN Y ACCESIBILIDAD (con mapa Leaflet) -->
+      <section class="panel panel-ubicacion">
         <div class="panel-header">Ubicación y accesibilidad</div>
         <div class="panel-body">
           <div class="small-label">Ubicación</div>
@@ -632,11 +686,14 @@
 
           <div class="small-label" style="margin-top:6px;">Horario de operación</div>
           <div class="small-label" id="horarioOperacion">–</div>
+
+          <!-- KPI de mapa -->
+          <div id="map" class="map-kpi"></div>
         </div>
       </section>
 
       <!-- PANEL 5: CONCESIÓN Y EXPLOTACIÓN -->
-      <section class="panel">
+      <section class="panel panel-concesion">
         <div class="panel-header">Concesión y explotación</div>
         <div class="panel-body">
           <div class="metric-row">
@@ -666,7 +723,7 @@
       </section>
 
       <!-- PANEL 6: EMPLEO Y POBLACIÓN -->
-      <section class="panel">
+      <section class="panel panel-empleo">
         <div class="panel-header">Empleo y área de influencia</div>
         <div class="panel-body">
           <div class="small-label">Empleo directo 2024</div>
@@ -684,7 +741,7 @@
       </section>
 
       <!-- PANEL 7: SERVICIOS Y AYUDAS -->
-      <section class="panel">
+      <section class="panel panel-servicios">
         <div class="panel-header">Servicios y ayudas</div>
         <div class="panel-body">
           <div class="small-label">Ayudas radioeléctricas</div>
@@ -722,9 +779,17 @@
     </div>
   </footer>
 
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin="">
+  </script>
+
   <script>
     let aeropuertos = [];
     const selectEl = document.getElementById("airportSelect");
+    let map, mapMarker;
 
     function formatNumber(n) {
       if (n === null || n === undefined || n === "" || isNaN(n)) return "–";
@@ -740,6 +805,52 @@
       return (v !== null && v !== undefined && v !== "" && !isNaN(v))
         ? formatNumber(v)
         : (clean(v) || "–");
+    }
+
+    function initMap() {
+      // Centro por defecto sobre Argentina
+      map = L.map("map").setView([-34.6, -58.4], 5);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "&copy; OpenStreetMap contributors"
+      }).addTo(map);
+
+      mapMarker = L.marker([-34.6, -58.4]).addTo(map);
+    }
+
+    function updateMapForAirport(a) {
+      if (!map) return;
+
+      // Primero buscamos propiedades Lat/Lon si existieran
+      let lat = a["Lat"] || a["LAT"];
+      let lon = a["Lon"] || a["LON"] || a["Long"];
+
+      // Si no existen, intentamos usar la geometría del GeoJSON (si se cargó)
+      if ((!lat || !lon) && a._geometry && a._geometry.type === "Point") {
+        const coords = a._geometry.coordinates;
+        if (Array.isArray(coords) && coords.length >= 2) {
+          lon = coords[0];
+          lat = coords[1];
+        }
+      }
+
+      if (lat && lon) {
+        const latNum = Number(lat);
+        const lonNum = Number(lon);
+        if (!isNaN(latNum) && !isNaN(lonNum)) {
+          map.setView([latNum, lonNum], 11);
+          if (mapMarker) {
+            mapMarker.setLatLng([latNum, lonNum]);
+          } else {
+            mapMarker = L.marker([latNum, lonNum]).addTo(map);
+          }
+          return;
+        }
+      }
+
+      // Si no hay coordenadas válidas, dejamos el mapa general
+      map.setView([-34.6, -58.4], 5);
     }
 
     function renderAirport(iataCode) {
@@ -855,6 +966,9 @@
       document.getElementById("horarioOperacion").textContent =
         clean(a["Horario de operación"]) || "–";
 
+      // Actualizar mapa para este aeropuerto
+      updateMapForAirport(a);
+
       /* CONCESIÓN Y EXPLOTACIÓN */
       document.getElementById("supConcesionadaHa").textContent =
         safeVal(a["SupConcesionadaHa"]);
@@ -919,7 +1033,12 @@
 
         const features = geojson.features || [];
         aeropuertos = features
-          .map(f => f.properties || {})
+          .map(f => {
+            const props = f.properties || {};
+            // Guardamos la geometría por si necesitamos coordenadas
+            props._geometry = f.geometry || null;
+            return props;
+          })
           .filter(p => p.IATA);
 
         aeropuertos.sort((a, b) => String(a.IATA).localeCompare(String(b.IATA)));
@@ -957,7 +1076,10 @@
       }
     }
 
-    loadData();
+    document.addEventListener("DOMContentLoaded", () => {
+      initMap();
+      loadData();
+    });
   </script>
 </body>
 </html>
