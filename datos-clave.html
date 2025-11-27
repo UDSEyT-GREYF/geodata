@@ -235,16 +235,21 @@
     }
 
     /* SUPERFICIE */
-    .superficie-grid {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 16px;
-      margin-top: 8px;
-    }
+.superficie-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-end;   /* 🔥 alinea los VALORES abajo en la misma línea */
+}
 
-    .superficie-item {
-      width: 48%;
-    }
+
+.superficie-item {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* 🔥 fuerza que los valores queden alineados */
+}
+
 
     .superficie-label {
       font-size: 0.95rem;
@@ -744,7 +749,7 @@
       document.getElementById("pageTitle").textContent =
         `Aeropuerto de ${nombre} (${a.IATA})`;
       document.getElementById("pageSubtitle").textContent =
-        `Sistema Nacional de Aeropuertos · ORSNA · Datos ${a["Año"] || ""}`;
+        `Sistema Nacional de Aeropuertos · Datos Clave ${a["Año"] || ""}`;
 
       /* KPI strip */
       document.getElementById("kpiCheckin").textContent =
