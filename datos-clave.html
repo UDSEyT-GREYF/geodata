@@ -246,81 +246,55 @@
       font-size: 0.9rem;
     }
 
-    /* === SUPERFICIE (compactada) === */
-    .panel-superficie {
-      grid-area: superficie;
-    }
+/* === SUPERFICIE (compactada) === */
+.panel-superficie {
+  grid-area: superficie;
+}
 
-    .panel-superficie .panel-body {
-      padding: 4px 10px 4px; /* menos alto */
-      gap: 4px;
-    }
+.panel-superficie .panel-body {
+  padding: 4px 10px 4px; /* poco alto */
+  gap: 4px;
+}
 
-    .superficie-grid {
-      display: flex;
-      align-items: flex-end;
-      gap: 16px;
-      margin-bottom: 2px;
-    }
+.superficie-grid {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 2px;
+}
 
-    .superficie-item {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-    }
+.superficie-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
 
-    .superficie-separator {
-      width: 1px;
-      align-self: stretch;
-      background-color: #d0d7e2;
-      opacity: 0.7;
-    }
+.superficie-separator {
+  width: 1px;
+  align-self: stretch;
+  background-color: #d0d7e2;
+  opacity: 0.7;
+}
 
-    .superficie-label {
-      font-size: 0.95rem;
-      color: #444;
-      margin-bottom: 2px;
-    }
+.superficie-label {
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 2px;
+}
 
-    .superficie-value {
-      font-size: 1.3rem; /* antes 1.6rem */
-      font-weight: 700;
-      color: #004b80;
-    }
+.superficie-value {
+  font-size: 1.2rem;  /* más chico que antes */
+  font-weight: 700;
+  color: #004b80;
+}
 
-    .superficie-imgs {
-      display: flex;
-      align-items: stretch;
-      gap: 16px;
-      margin-top: 2px;
-      margin-bottom: 0;
-    }
+.unit {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #004b80;
+}
 
-    .superficie-img-col {
-      flex: 1;
-      display: flex;
-    }
-
-    .superficie-img {
-      width: 100%;
-      max-height: 90px; /* antes 140px */
-      border-radius: 4px;
-      border: 1px solid #ccc;
-      object-fit: cover;
-    }
-
-    .superficie-separator-img {
-      width: 1px;
-      background-color: #d0d7e2;
-      opacity: 0.7;
-    }
-
-    .unit {
-      font-size: 1rem;
-      font-weight: 700;
-      color: #004b80;
-    }
 
     /* PANEL MOVIMIENTO */
     .panel-movimiento { grid-area: movimiento; }
