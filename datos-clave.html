@@ -246,80 +246,78 @@
       font-size: 0.9rem;
     }
 
-/* === SUPERFICIE como 2 KPIs (texto arriba, imagen abajo) === */
-.panel-superficie {
-  grid-area: superficie;
-}
+    /* === SUPERFICIE como 2 KPIs con mapa + imagen === */
+    .panel-superficie {
+      grid-area: superficie;
+    }
 
-.panel-superficie .panel-body {
-  padding: 8px 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+    .panel-superficie .panel-body {
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
 
-.superficie-kpi {
-  display: flex;
-  flex-direction: column;       /* 👈 texto arriba, imagen abajo */
-  align-items: stretch;
-  gap: 6px;
-  border: 1px solid #d0d7e2;
-  border-radius: 4px;
-  padding: 6px 8px;
-  background: #ffffff;/* fondo blanco */
-}
+    .superficie-kpi {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
 
-.superficie-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
+      background: #ffffff;
+      border: 1px solid #d0d7e2;
+      border-radius: 4px;
+      padding: 6px 8px;
+    }
 
-.superficie-label {
-  font-size: 0.85rem;
-  color: #555;
-}
+    .superficie-header-row {
+      display: flex;
+      justify-content: space-between;  /* etiqueta izq / valor der */
+      align-items: baseline;
+      gap: 6px;
+    }
 
-.superficie-value-row {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-}
+    .superficie-label {
+      font-size: 0.9rem;
+      color: #444;
+    }
 
-.superficie-value {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #004b80;
-}
+    .superficie-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #004b80;
+      white-space: nowrap;
+    }
 
-.superficie-unit {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #004b80;
-}
+    .superficie-unit {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #004b80;
+    }
 
-/* contenedor de la imagen */
-.superficie-thumb {
-  flex-shrink: 0;
-  width: 100%;          /* ocupa todo el ancho de la tarjeta */
-  height: 170px;        /* alto fijo aprox 4,5 cm */
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ffffff;   /* 👈 ahora fondo blanco */
-}
+    .superficie-thumb {
+      width: 100%;
+      height: 160px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background: #ffffff;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-.superficie-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;  /* no recorta la imagen, la ajusta */
-}
+    /* mapa Leaflet dentro de la caja de predio */
+    .map-predio {
+      width: 100%;
+      height: 100%;
+    }
 
-/* en mobile se mantiene igual (no hace falta override) */
-
+    /* imagen de terminal dentro de la caja */
+    .superficie-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
 
     /* PANEL MOVIMIENTO */
     .panel-movimiento { grid-area: movimiento; }
@@ -419,16 +417,8 @@
     /* PANEL TERMINAL (columna central grande) */
     .panel-terminal { grid-area: terminal; }
 
-    /* PANEL UBICACIÓN (con mapa) */
+    /* PANEL UBICACIÓN (solo texto ahora, sin mapa) */
     .panel-ubicacion { grid-area: ubicacion; }
-
-    .map-kpi {
-      margin-top: 10px;
-      height: 180px;
-      border-radius: 4px;
-      border: 1px solid #d0d7e2;
-      overflow: hidden;
-    }
 
     /* PANEL CONCESIÓN / EMPLEO / SERVICIOS */
     .panel-concesion { grid-area: concesion; }
@@ -468,14 +458,6 @@
       .selector { align-items: flex-start; }
       .kpi-strip {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .superficie-kpi {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .superficie-thumb {
-        width: 100%;
-        height: 180px;
       }
     }
   </style>
@@ -569,41 +551,42 @@
     <section class="grid">
 
       <!-- PANEL 1: SUPERFICIE -->
-<section class="panel panel-superficie">
-  <div class="panel-header">Superficie</div>
-  <div class="panel-body">
+      <section class="panel panel-superficie">
+        <div class="panel-header">Superficie</div>
+        <div class="panel-body">
 
-    <!-- KPI 1: Predio -->
-    <div class="superficie-kpi">
-      <div class="superficie-header-row">
-        <div class="superficie-label">Tamaño del predio</div>
-        <div class="superficie-value">
-          <span id="supPredio"></span> <span class="superficie-unit">hectáreas</span>
+          <!-- KPI: Tamaño del predio con mapa Leaflet -->
+          <div class="superficie-kpi">
+            <div class="superficie-header-row">
+              <div class="superficie-label">Tamaño del predio</div>
+              <div class="superficie-value">
+                <span id="supPredio"></span>
+                <span class="superficie-unit">hectáreas</span>
+              </div>
+            </div>
+
+            <div class="superficie-thumb">
+              <div id="mapPredio" class="map-predio"></div>
+            </div>
+          </div>
+
+          <!-- KPI: Terminal de pasajeros con imagen -->
+          <div class="superficie-kpi">
+            <div class="superficie-header-row">
+              <div class="superficie-label">Terminal de pasajeros</div>
+              <div class="superficie-value">
+                <span id="terminalM2"></span>
+                <span class="superficie-unit">m²</span>
+              </div>
+            </div>
+
+            <div class="superficie-thumb">
+              <img id="imgTerminal" alt="Imagen de la terminal del aeropuerto">
+            </div>
+          </div>
+
         </div>
-      </div>
-
-      <div class="superficie-thumb">
-        <img id="imgPredio" alt="Imagen del predio del aeropuerto">
-      </div>
-    </div>
-
-    <!-- KPI 2: Terminal -->
-    <div class="superficie-kpi">
-      <div class="superficie-header-row">
-        <div class="superficie-label">Terminal de pasajeros</div>
-        <div class="superficie-value">
-          <span id="terminalM2"></span> <span class="superficie-unit">m²</span>
-        </div>
-      </div>
-
-      <div class="superficie-thumb">
-        <img id="imgTerminal" alt="Imagen de la terminal del aeropuerto">
-      </div>
-    </div>
-
-  </div>
-</section>
-
+      </section>
 
       <!-- PANEL 2: ÁREA DE MOVIMIENTO -->
       <section class="panel panel-movimiento">
@@ -692,7 +675,7 @@
         </div>
       </section>
 
-      <!-- PANEL 4: UBICACIÓN Y ACCESIBILIDAD (con mapa Leaflet) -->
+      <!-- PANEL 4: UBICACIÓN Y ACCESIBILIDAD (solo texto) -->
       <section class="panel panel-ubicacion">
         <div class="panel-header">Ubicación y accesibilidad</div>
         <div class="panel-body">
@@ -704,9 +687,6 @@
 
           <div class="small-label" style="margin-top:6px;">Horario de operación</div>
           <div class="small-label" id="horarioOperacion">–</div>
-
-          <!-- KPI de mapa -->
-          <div id="map" class="map-kpi"></div>
         </div>
       </section>
 
@@ -827,7 +807,8 @@
     }
 
     function initMap() {
-      map = L.map("map").setView([-34.6, -58.4], 5);
+      // ahora el mapa va en la caja de Superficie (predio)
+      map = L.map("mapPredio").setView([-34.6, -58.4], 5);
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
@@ -871,7 +852,7 @@
             map.fitBounds(bounds, { padding: [5, 5] });
           }
 
-          // Opcional: ocultar marcador si hay polígono
+          // Ocultar marcador si hay polígono
           if (mapMarker) {
             map.removeLayer(mapMarker);
           }
@@ -935,28 +916,14 @@
       document.getElementById("terminalM2").textContent =
         safeVal(a["TerminalM2"]);
 
-      const imgPredio = document.getElementById("imgPredio");
       const imgTerminal = document.getElementById("imgTerminal");
       const iataUpper = String(a.IATA || "").toUpperCase();
-
-      const predioProp = clean(a["imagenPredio"]);
       const terminalProp = clean(a["imagenAeropuerto"]);
-
-      // Rutas dinámicas según IATA
-      const predioSrc = predioProp || (iataUpper ? `img/Predios/${iataUpper}.png` : "");
       const terminalSrc = terminalProp || (iataUpper ? `img/Terminales/${iataUpper}_terminal.png` : "");
 
-      imgPredio.style.display = predioSrc ? "block" : "none";
       imgTerminal.style.display = terminalSrc ? "block" : "none";
-
-      imgPredio.src = predioSrc;
-      imgPredio.alt = `Predio del aeropuerto ${nombre}`;
       imgTerminal.src = terminalSrc;
       imgTerminal.alt = `Terminal del aeropuerto ${nombre}`;
-
-      imgPredio.onerror = () => {
-        imgPredio.style.display = "none";
-      };
       imgTerminal.onerror = () => {
         imgTerminal.style.display = "none";
       };
@@ -1035,7 +1002,7 @@
       document.getElementById("horarioOperacion").textContent =
         clean(a["Horario de operación"]) || "–";
 
-      // Actualizar mapa (polígono o punto)
+      // Actualizar mapa (polígono del predio o punto)
       updateMapForAirport(a);
 
       /* CONCESIÓN Y EXPLOTACIÓN */
