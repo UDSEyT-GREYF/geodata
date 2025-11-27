@@ -383,6 +383,22 @@
       justify-content: center;
       font-size: 0.95rem;
     }
+.map-psn {
+  width: 100%;
+  height: 220px;   /* ajustá el alto a gusto */
+}
+
+    .mov-aids {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid #e0e7f0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.mov-aids strong {
+  font-weight: 600;
+}
 
     /* === PANEL TERMINAL (nuevo diseño por recorrido del pasajero) === */
     .panel-terminal { grid-area: terminal; }
@@ -649,30 +665,45 @@
             </div>
           </div>
 
-          <!-- KPI Posiciones en plataforma -->
-          <div class="superficie-kpi">
-            <div class="superficie-header-row">
-              <div class="superficie-label">
-                <img src="img/icons/PSN.png" class="kpi-icon" alt="">
-                <span>Posiciones en plataforma</span>
-              </div>
-              <div class="superficie-value">
-                <span id="psnTotal">–</span>
-                <span class="superficie-unit">PSN</span>
-              </div>
-            </div>
+<!-- KPI Posiciones en plataforma -->
+<div class="superficie-kpi">
+  <div class="superficie-header-row">
+    <div class="superficie-label">
+      <img src="img/icons/PSN.png" class="kpi-icon" alt="">
+      <span>Posiciones en plataforma</span>
+    </div>
+    <div class="superficie-value">
+      <span id="psnTotal">–</span>
+      <span class="superficie-unit">PSN</span>
+    </div>
+  </div>
 
-            <div class="mov-psn-list">
-              <div class="mov-item">
-                <span>Aeronaves comerciales</span>
-                <span class="mov-badge" id="psnCom">–</span>
-              </div>
-              <div class="mov-item">
-                <span>Aviación general</span>
-                <span class="mov-badge" id="psnGen">–</span>
-              </div>
-            </div>
-          </div>
+  <div class="subpanel-title" style="margin-top:4px;">Ayudas y clasificación</div>
+<div class="mov-aids">
+  <div class="small-label"><strong>Radioayudas:</strong> <span id="radioayudas_mov">–</span></div>
+  <div class="small-label"><strong>Ayudas visuales:</strong> <span id="ayudasVisuales_mov">–</span></div>
+  <div class="small-label"><strong>Clave de referencia:</strong> <span id="claveRef_mov">–</span></div>
+  <div class="small-label"><strong>Categoría SEI:</strong> <span id="categoriaSEI_mov">–</span></div>
+</div>
+
+  
+  <div class="mov-psn-list">
+    <div class="mov-item">
+      <span>Aeronaves comerciales</span>
+      <span class="mov-badge" id="psnCom">–</span>
+    </div>
+    <div class="mov-item">
+      <span>Aviación general</span>
+      <span class="mov-badge" id="psnGen">–</span>
+    </div>
+  </div>
+
+  <!-- NUEVO: mapa de posiciones -->
+  <div class="superficie-thumb" style="margin-top:6px;">
+    <div id="mapPSN" class="map-psn"></div>
+  </div>
+</div>
+
 
         </div>
       </section>
@@ -909,10 +940,14 @@
   </script>
 
   <script>
-    let aeropuertos = [];
-    let poligonos = [];
-    const selectEl = document.getElementById("airportSelect");
-    let map, mapMarker, poligonoLayer;
+let aeropuertos = [];
+let poligonos = [];
+let psnFeatures = [];      // NUEVO: posiciones de estacionamiento
+
+const selectEl = document.getElementById("airportSelect");
+
+let map, mapMarker, poligonoLayer;
+let mapPSN, psnLayer;      // NUEVO: mapa y capa de PSN
 
     function formatNumber(n) {
       if (n === null || n === undefined || n === "" || isNaN(n)) return "–";
@@ -931,16 +966,28 @@
     }
 
     function initMap() {
-      // mapa en la caja de Superficie (predio)
-      map = L.map("mapPredio").setView([-34.6, -58.4], 5);
+  // Mapa de predio (como ya lo tenías)
+  map = L.map("mapPredio").setView([-34.6, -58.4], 5);
 
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-        attribution: "&copy; OpenStreetMap contributors"
-      }).addTo(map);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: "&copy; OpenStreetMap contributors"
+  }).addTo(map);
 
-      mapMarker = L.marker([-34.6, -58.4]).addTo(map);
+  mapMarker = L.marker([-34.6, -58.4]).addTo(map);
+
+  // NUEVO: mapa de posiciones de estacionamiento (imagen satelital)
+  mapPSN = L.map("mapPSN").setView([-34.6, -58.4], 5);
+
+  L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{x}/{y}",
+    {
+      maxZoom: 19,
+      attribution: "Tiles © Esri"
     }
+  ).addTo(mapPSN);
+}
+
 
     function updateMapForAirport(a) {
       if (!map) return;
@@ -1142,8 +1189,8 @@
         safeVal(a["PuertasEmbarqueTotal"]);
 
       const puertasDetalle = [];
-      if (a["PuertasEmbarqueInter"]) puertasDetalle.push(`Inter: ${a["PuertasEmbarqueInter"]}`);
-      if (a["PuertasEmbarqueCabot"]) puertasDetalle.push(`Cabot: ${a["PuertasEmbarqueCabot"]}`);
+      if (a["PuertasEmbarqueInter"]) puertasDetalle.push(`Internacional: ${a["PuertasEmbarqueInter"]}`);
+      if (a["PuertasEmbarqueCabot"]) puertasDetalle.push(`Cabotaje: ${a["PuertasEmbarqueCabot"]}`);
       if (a["PuertasEmbarqueFlex"]) puertasDetalle.push(`Flex: ${a["PuertasEmbarqueFlex"]}`);
       document.getElementById("puertasDetalle").textContent =
         puertasDetalle.length ? puertasDetalle.join(" · ") : "–";
@@ -1154,8 +1201,8 @@
         safeVal(a["CintasTotal"]);
 
       const cintasDetalle = [];
-      if (a["CintasInter"]) cintasDetalle.push(`Inter: ${a["CintasInter"]}`);
-      if (a["CintasCabot"]) cintasDetalle.push(`Cabot: ${a["CintasCabot"]}`);
+      if (a["CintasInter"]) cintasDetalle.push(`Internacional: ${a["CintasInter"]}`);
+      if (a["CintasCabot"]) cintasDetalle.push(`Cabotaje: ${a["CintasCabot"]}`);
       if (a["CintasFlex"]) cintasDetalle.push(`Flex: ${a["CintasFlex"]}`);
       document.getElementById("cintasDetalle").textContent =
         cintasDetalle.length ? cintasDetalle.join(" · ") : "–";
@@ -1178,6 +1225,50 @@
         clean(a["Horario de operación"]) || "–";
 
       updateMapForAirport(a);
+      // ... (lo que ya tenías para predio y fallback de punto)
+      // al final de updateMapForAirport(a):
+
+      // === NUEVO: actualizar mapa de posiciones (PSN) ===
+      if (!mapPSN) return;
+
+      if (psnLayer) {
+        mapPSN.removeLayer(psnLayer);
+        psnLayer = null;
+      }
+
+      const iata = a.IATA;
+      if (!iata || !psnFeatures.length) return;
+
+      const featsPSN = psnFeatures.filter(f => {
+        const props = f.properties || {};
+        const code = props.IATA || props.iata || props.iata_code;
+        return String(code).toUpperCase() === String(iata).toUpperCase();
+      });
+
+      if (!featsPSN.length) {
+        // si no hay PSN para este aeropuerto solo recentramos en Argentina
+        mapPSN.setView([-34.6, -58.4], 5);
+        return;
+      }
+
+      psnLayer = L.geoJSON(featsPSN, {
+        pointToLayer: (feature, latlng) => {
+          const tipo = (feature.properties?.tipo || "").toLowerCase();
+          const color = tipo.includes("general") ? "#ffb703" : "#219ebc";
+          return L.circleMarker(latlng, {
+            radius: 5,
+            color,
+            weight: 1,
+            fillColor: color,
+            fillOpacity: 0.9
+          });
+        }
+      }).addTo(mapPSN);
+
+      const boundsPSN = psnLayer.getBounds();
+      if (boundsPSN.isValid()) {
+        mapPSN.fitBounds(boundsPSN, { padding: [5, 5] });
+      }
 
       /* CONCESIÓN Y EXPLOTACIÓN */
       document.getElementById("supConcesionadaHa").textContent =
@@ -1232,6 +1323,17 @@
       document.getElementById("categoriaSEI").textContent =
         clean(a["CATEGORÍA SEI NORMAL"]) || "–";
 
+           // duplicamos en Área de movimiento
+      document.getElementById("radioayudas_mov").textContent =
+        clean(a["Radioayudas"]) || "–";
+      document.getElementById("ayudasVisuales_mov").textContent =
+        clean(a["Ayudas visuales"]) || "–";
+      document.getElementById("claveRef_mov").textContent =
+        clean(a["CLAVE DE REFERENCIA DE AERÓDROMO"]) || "–";
+      document.getElementById("categoriaSEI_mov").textContent =
+        clean(a["CATEGORÍA SEI NORMAL"]) || "–";
+ 
+      
       document.getElementById("footerNote").textContent =
         `Fuente: ORSNA – Datos básicos por aeropuerto · Año ${a["Año"] || ""}.`;
     }
@@ -1264,6 +1366,15 @@
         } catch (e) {
           console.warn("No se pudieron cargar los polígonos de aeropuertos:", e);
           poligonos = [];
+        }
+        // 3) Posiciones de estacionamiento (PSN) – NUEVO
+        try {
+          const respPSN = await fetch("fuentes/psn_posiciones.geojson");
+          const gjPSN = await respPSN.json();
+          psnFeatures = gjPSN.features || [];
+        } catch (e) {
+          console.warn("No se pudieron cargar las posiciones de estacionamiento:", e);
+          psnFeatures = [];
         }
 
         const params = new URLSearchParams(window.location.search);
