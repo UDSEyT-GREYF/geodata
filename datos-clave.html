@@ -251,18 +251,16 @@
       grid-area: superficie; 
     }
 
-    /* achicamos padding y espacios internos solo en este panel */
     .panel-superficie .panel-body {
-      padding-top: 6px;
-      padding-bottom: 6px;
-      gap: 4px;
+      padding: 6px 10px 6px;  /* 🔹 menos padding vertical */
+      gap: 4px;               /* 🔹 menos separación interna */
     }
 
     .superficie-grid {
       display: flex;
       align-items: flex-end;
       gap: 16px;
-      margin-bottom: 4px; /* antes 10px, menos aire debajo de valores */
+      margin-bottom: 4px; /* 🔹 menos espacio debajo de los valores */
     }
 
     .superficie-item {
@@ -295,8 +293,8 @@
       display: flex;
       align-items: stretch;
       gap: 16px;
-      margin-top: 4px;   /* antes 6px, lo acercamos un poquito al título */
-      margin-bottom: 0;  /* sin aire extra debajo */
+      margin-top: 4px;   /* 🔹 acercamos un poco las fotos al título */
+      margin-bottom: 0;  /* 🔹 sin aire extra debajo */
     }
 
     .superficie-img-col {
@@ -306,7 +304,7 @@
 
     .superficie-img {
       width: 100%;
-      height: 100%;
+      max-height: 140px;  /* 🔹 ESTA LÍNEA ACHICA EL PANEL */
       border-radius: 4px;
       border: 1px solid #ccc;
       object-fit: cover;
@@ -330,7 +328,7 @@
     .mov-row {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 14px;  /* un poquito menos para subir contenido */
+      margin-bottom: 14px;
       gap: 12px;
     }
 
@@ -471,11 +469,6 @@
       .selector { align-items: flex-start; }
       .kpi-strip {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      /* un poco más compacto en mobile también */
-      .panel-superficie .panel-body {
-        gap: 4px;
-        padding-bottom: 4px;
       }
     }
   </style>
@@ -805,8 +798,6 @@
     let aeropuertos = [];
     const selectEl = document.getElementById("airportSelect");
     let map, mapMarker;
-    let prediosGeojson = null;
-    let prediosLayer = null;
 
     function formatNumber(n) {
       if (n === null || n === undefined || n === "" || isNaN(n)) return "–";
@@ -825,7 +816,6 @@
     }
 
     function initMap() {
-      // Centro por defecto sobre Argentina
       map = L.map("map").setView([-34.6, -58.4], 5);
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -833,93 +823,22 @@
         attribution: "&copy; OpenStreetMap contributors"
       }).addTo(map);
 
-      // Marker solo como fallback cuando no haya polígono
       mapMarker = L.marker([-34.6, -58.4]).addTo(map);
-    }
-
-    async function loadPredios() {
-      try {
-        const resp = await fetch("fuentes/poligonos_predios.geojson");
-        prediosGeojson = await resp.json();
-      } catch (err) {
-        console.error("Error cargando polígonos de predios:", err);
-      }
     }
 
     function updateMapForAirport(a) {
       if (!map) return;
 
-      // Limpiar polígono anterior si existiera
-      if (prediosLayer) {
-        map.removeLayer(prediosLayer);
-        prediosLayer = null;
-      }
+      const lat = a["Lat"] || a["LAT"];
+      const lon = a["Lon"] || a["LON"] || a["Long"];
 
-      const iata = String(a.IATA || "").trim().toUpperCase();
-
-      // 1) Intentar dibujar polígono según IATA
-      if (prediosGeojson && Array.isArray(prediosGeojson.features)) {
-        const feats = prediosGeojson.features.filter(f => {
-          const props = f.properties || {};
-          const code = String(props.IATA || props.iata || "").trim().toUpperCase();
-          return code === iata;
-        });
-
-        if (feats.length) {
-          prediosLayer = L.geoJSON(feats, {
-            style: {
-              color: "#004b80",
-              weight: 2,
-              fillColor: "#2a5fa0",
-              fillOpacity: 0.25
-            }
-          }).addTo(map);
-
-          const bounds = prediosLayer.getBounds();
-          if (bounds.isValid()) {
-            map.fitBounds(bounds, { padding: [10, 10] });
-          }
-
-          // Si mostramos polígono, no hace falta el marcador puntual
-          if (mapMarker) {
-            map.removeLayer(mapMarker);
-            mapMarker = null;
-          }
-          return;
-        }
-      }
-
-      // 2) Si no hay polígono, usamos punto (Lat/Lon o geometría Point)
-      let lat = a["Lat"] || a["LAT"];
-      let lon = a["Lon"] || a["LON"] || a["Long"];
-
-      if ((!lat || !lon) && a._geometry && a._geometry.type === "Point") {
-        const coords = a._geometry.coordinates;
-        if (Array.isArray(coords) && coords.length >= 2) {
-          lon = coords[0];
-          lat = coords[1];
-        }
-      }
-
-      if (lat && lon) {
+      if (lat && lon && !isNaN(Number(lat)) && !isNaN(Number(lon))) {
         const latNum = Number(lat);
         const lonNum = Number(lon);
-        if (!isNaN(latNum) && !isNaN(lonNum)) {
-          map.setView([latNum, lonNum], 11);
-          if (mapMarker) {
-            mapMarker.setLatLng([latNum, lonNum]);
-          } else {
-            mapMarker = L.marker([latNum, lonNum]).addTo(map);
-          }
-          return;
-        }
-      }
-
-      // 3) Fallback general
-      map.setView([-34.6, -58.4], 5);
-      if (!mapMarker) {
-        mapMarker = L.marker([-34.6, -58.4]).addTo(map);
+        map.setView([latNum, lonNum], 11);
+        mapMarker.setLatLng([latNum, lonNum]);
       } else {
+        map.setView([-34.6, -58.4], 5);
         mapMarker.setLatLng([-34.6, -58.4]);
       }
     }
@@ -1037,7 +956,6 @@
       document.getElementById("horarioOperacion").textContent =
         clean(a["Horario de operación"]) || "–";
 
-      // Actualizar mapa para este aeropuerto (polígono o punto)
       updateMapForAirport(a);
 
       /* CONCESIÓN Y EXPLOTACIÓN */
@@ -1106,7 +1024,6 @@
         aeropuertos = features
           .map(f => {
             const props = f.properties || {};
-            // Guardamos la geometría por si necesitamos coordenadas puntuales
             props._geometry = f.geometry || null;
             return props;
           })
@@ -1149,7 +1066,6 @@
 
     document.addEventListener("DOMContentLoaded", () => {
       initMap();
-      loadPredios();
       loadData();
     });
   </script>
