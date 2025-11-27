@@ -650,8 +650,8 @@
         formatNumber(a["PuertasEmbarqueTotal"]);
 
       const puertasDetalle = [];
-      if (a["PuertasEmbarqueInter"]) puertasDetalle.push(`Inter: ${a["PuertasEmbarqueInter"]}`);
-      if (a["PuertasEmbarqueCabot"]) puertasDetalle.push(`Cabot: ${a["PuertasEmbarqueCabot"]}`);
+      if (a["PuertasEmbarqueInter"]) puertasDetalle.push(`Internacional: ${a["PuertasEmbarqueInter"]}`);
+      if (a["PuertasEmbarqueCabot"]) puertasDetalle.push(`Cabotaje: ${a["PuertasEmbarqueCabot"]}`);
       if (a["PuertasEmbarqueFlex"]) puertasDetalle.push(`Flex: ${a["PuertasEmbarqueFlex"]}`);
       document.getElementById("puertasDetalle").textContent =
         puertasDetalle.length ? puertasDetalle.join(" · ") : "–";
@@ -661,8 +661,8 @@
       document.getElementById("cintasTotal").textContent =
         formatNumber(a["CintasTotal"]);
       const cintasDetalle = [];
-      if (a["CintasInter"]) cintasDetalle.push(`Inter: ${a["CintasInter"]}`);
-      if (a["CintasCabot"]) cintasDetalle.push(`Cabot: ${a["CintasCabot"]}`);
+      if (a["CintasInter"]) cintasDetalle.push(`Internacional: ${a["CintasInter"]}`);
+      if (a["CintasCabot"]) cintasDetalle.push(`Cabotaje: ${a["CintasCabot"]}`);
       if (a["CintasFlex"]) cintasDetalle.push(`Flex: ${a["CintasFlex"]}`);
       document.getElementById("cintasDetalle").textContent =
         cintasDetalle.length ? cintasDetalle.join(" · ") : "–";
