@@ -246,69 +246,75 @@
       font-size: 0.9rem;
     }
 
-    /* === SUPERFICIE (compactada, en columna) === */
+    /* === SUPERFICIE como 2 KPIs === */
     .panel-superficie {
       grid-area: superficie;
     }
 
     .panel-superficie .panel-body {
-      padding: 6px 10px 8px;
+      padding: 8px 10px;
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
-    /* Cada bloque: texto + valor + imagen */
-    .superficie-block {
+    .superficie-kpi {
       display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    /* Fila: etiqueta a la izq, valor a la derecha */
-    .superficie-header {
-      display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: baseline;
-      gap: 8px;
+      gap: 12px;
+      border: 1px solid #d0d7e2;
+      border-radius: 4px;
+      padding: 6px 8px;
+      background: #f9fafb;
+    }
+
+    .superficie-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
 
     .superficie-label {
-      font-size: 0.9rem;
-      color: #444;
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .superficie-value-row {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
     }
 
     .superficie-value {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: #004b80;
-      white-space: nowrap;
     }
 
-    .unit {
-      font-size: 0.9rem;
+    .superficie-unit {
+      font-size: 0.85rem;
       font-weight: 600;
       color: #004b80;
     }
 
-    /* Contenedor de la imagen */
-    .superficie-img-wrapper {
+    .superficie-thumb {
+      flex-shrink: 0;
+      width: 340px;   /* aprox 9 cm en pantalla */
+      height: 170px;  /* aprox 4,5 cm */
       border-radius: 4px;
       border: 1px solid #ccc;
-      background-color: #f8f8f8;
-      max-height: 160px;   /* ajustable */
-      min-height: 110px;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
+      background: #f3f4f6;
     }
 
-    /* Imagen que se adapta sin recortarse */
-    .superficie-img {
+    .superficie-thumb img {
       width: 100%;
       height: 100%;
-      object-fit: contain; /* no recorta la imagen */
+      object-fit: contain; /* no corta la imagen, la ajusta */
     }
 
     /* PANEL MOVIMIENTO */
@@ -459,6 +465,14 @@
       .kpi-strip {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+      .superficie-kpi {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .superficie-thumb {
+        width: 100%;
+        height: 180px;
+      }
     }
   </style>
 </head>
@@ -555,29 +569,31 @@
         <div class="panel-header">Superficie</div>
         <div class="panel-body">
 
-          <!-- Bloque: Predio -->
-          <div class="superficie-block">
-            <div class="superficie-header">
+          <!-- KPI: Tamaño del predio -->
+          <div class="superficie-kpi">
+            <div class="superficie-text">
               <div class="superficie-label">Tamaño del predio</div>
-              <div class="superficie-value">
-                <span id="supPredio"></span> <span class="unit">hectáreas</span>
+              <div class="superficie-value-row">
+                <span id="supPredio" class="superficie-value"></span>
+                <span class="superficie-unit">hectáreas</span>
               </div>
             </div>
-            <div class="superficie-img-wrapper">
-              <img id="imgPredio" class="superficie-img" alt="Imagen del predio del aeropuerto">
+            <div class="superficie-thumb">
+              <img id="imgPredio" alt="Imagen del predio del aeropuerto">
             </div>
           </div>
 
-          <!-- Bloque: Terminal -->
-          <div class="superficie-block">
-            <div class="superficie-header">
+          <!-- KPI: Terminal de pasajeros -->
+          <div class="superficie-kpi">
+            <div class="superficie-text">
               <div class="superficie-label">Terminal de pasajeros</div>
-              <div class="superficie-value">
-                <span id="terminalM2"></span> <span class="unit">m²</span>
+              <div class="superficie-value-row">
+                <span id="terminalM2" class="superficie-value"></span>
+                <span class="superficie-unit">m²</span>
               </div>
             </div>
-            <div class="superficie-img-wrapper">
-              <img id="imgTerminal" class="superficie-img" alt="Imagen de la terminal del aeropuerto">
+            <div class="superficie-thumb">
+              <img id="imgTerminal" alt="Imagen de la terminal del aeropuerto">
             </div>
           </div>
 
