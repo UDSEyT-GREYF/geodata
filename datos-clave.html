@@ -154,8 +154,8 @@
       text-align: center;
     }
     .kpi-card img {
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
       object-fit: contain;
       margin-bottom: 2px;
     }
@@ -204,12 +204,6 @@
       gap: 6px;
     }
 
-    .two-rows {
-      display: grid;
-      grid-template-rows: 1fr 1fr;
-      gap: 8px;
-    }
-
     .metric-row {
       display: flex;
       justify-content: space-between;
@@ -240,12 +234,135 @@
       font-size: 0.9rem;
     }
 
-    .chart-container img {
-      width: 100%;
-      max-height: 180px;
+    /* SUPERFICIE */
+    .superficie-grid {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      margin-top: 8px;
+    }
+
+    .superficie-item {
+      width: 48%;
+    }
+
+    .superficie-label {
+      font-size: 0.95rem;
+      color: #444;
+      margin-bottom: 4px;
+    }
+
+    .superficie-value {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #004b80;
+    }
+
+    .superficie-imgs {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .superficie-img {
+      width: 48%;
+      height: auto;
+      border-radius: 4px;
+      border: 1px solid #ccc;
       object-fit: cover;
-      border-radius: 3px;
-      border: 1px solid #dde2e6;
+    }
+
+    /* PANEL MOVIMIENTO */
+    .mov-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .mov-col {
+      width: 48%;
+    }
+
+    .mov-label {
+      font-size: 0.95rem;
+      color: #444;
+      margin-bottom: 6px;
+    }
+
+    .mov-pista {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mov-num {
+      background: #6b2f82;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.4rem;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mov-orient {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #004b80;
+    }
+
+    .mov-icon {
+      width: 48px;
+      opacity: 0.8;
+    }
+
+    .mov-dim-box {
+      background: #d1d1d1;
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+      display: inline-block;
+    }
+
+    .mov-material {
+      margin-top: 6px;
+      font-size: 0.92rem;
+      color: #555;
+      font-weight: 500;
+    }
+
+    .mov-seccion {
+      margin-top: 4px;
+    }
+
+    .mov-list {
+      margin-top: 8px;
+    }
+
+    .mov-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      color: #444;
+    }
+
+    .mov-badge {
+      background: #6b2f82;
+      color: #fff;
+      font-weight: 700;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .img-double {
@@ -357,7 +474,7 @@
       <div class="kpi-card">
         <img src="img/icons/PSN.png" alt="PSN">
         <div class="kpi-value" id="kpiPSN">–</div>
-        <div class="kpi-label">Posiciones aeronaves</div>
+        <div class="kpi-label">PSN totales</div>
       </div>
       <div class="kpi-card">
         <img src="img/icons/estacionamiento.png" alt="Estacionamiento">
@@ -378,55 +495,80 @@
 
     <section class="grid">
 
-      <!-- PANEL 1: SUPERFICIE / CONCESIÓN / PISTAS -->
+      <!-- PANEL 1: SUPERFICIE -->
       <section class="panel">
-        <div class="panel-header">Superficie y área de movimiento</div>
-        <div class="panel-body two-rows">
-
-          <div>
-            <div class="metric-row">
-              <span>Superficie total del predio</span>
-              <span class="value" id="supPredioHa">–</span>
+        <div class="panel-header">Superficie</div>
+        <div class="panel-body">
+          <div class="superficie-grid">
+            <div class="superficie-item">
+              <div class="superficie-label">Tamaño del predio</div>
+              <div class="superficie-value">
+                <span id="supPredio"></span> hectáreas
+              </div>
             </div>
-            <div class="small-label">hectáreas</div>
 
-            <div class="metric-row" style="margin-top:6px;">
-              <span>Superficie concesionada</span>
-              <span class="value" id="supConcesionadaHa">–</span>
+            <div class="superficie-item">
+              <div class="superficie-label">Tamaño de la terminal de pasajeros</div>
+              <div class="superficie-value">
+                <span id="terminalM2"></span> m²
+              </div>
             </div>
-            <div class="small-label">hectáreas</div>
-
-            <div class="small-label" style="margin-top:6px;">Áreas concesionadas</div>
-            <div class="small-label" id="areasConcesionadas">–</div>
           </div>
 
-          <div>
-            <div class="subpanel-title">Pistas y plataforma</div>
-            <div class="small-label" style="margin-top:4px;">Orientación de pistas</div>
-            <div class="small-label" id="pistaOrientacion">–</div>
+          <div class="superficie-imgs">
+            <img id="imgPredio" class="superficie-img" alt="Imagen del predio del aeropuerto">
+            <img id="imgTerminal" class="superficie-img" alt="Imagen de la terminal del aeropuerto">
+          </div>
+        </div>
+      </section>
 
-            <div class="small-label" style="margin-top:6px;">Dimensiones (largo x ancho en metros)</div>
-            <ul id="dimensionesList"></ul>
+      <!-- PANEL 2: ÁREA DE MOVIMIENTO -->
+      <section class="panel">
+        <div class="panel-header">Área de movimiento</div>
+        <div class="panel-body">
+          <div class="mov-row">
+            <div class="mov-col">
+              <div class="mov-label">Pistas de aterrizaje</div>
+              <div class="mov-pista">
+                <div class="mov-num" id="cantPistas">–</div>
+                <div class="mov-orient" id="pistaOrient">–</div>
+                <img src="img/icons/runway.png" class="mov-icon" alt="Pista">
+              </div>
+            </div>
 
-            <div class="small-label" style="margin-top:6px;">Material de pista</div>
-            <div class="small-label" id="materialPista">–</div>
+            <div class="mov-col">
+              <div class="mov-label">Longitud de la pista principal</div>
+              <div class="mov-dim-box" id="dimensiones">–</div>
+              <div class="mov-label" style="margin-top:8px;">Material de pista</div>
+              <div class="mov-material" id="materialPista">–</div>
+            </div>
+          </div>
 
-            <div class="metric-row" style="margin-top:6px;">
-              <span>Posiciones en plataforma (PSN)</span>
-              <span class="value" id="psnTotal">–</span>
+          <div class="mov-seccion">
+            <div class="mov-label">Posiciones en plataforma</div>
+            <div class="mov-list">
+              <div class="mov-item">
+                <span>Aeronaves comerciales</span>
+                <span class="mov-badge" id="psnCom">–</span>
+              </div>
+              <div class="mov-item">
+                <span>Aviación general</span>
+                <span class="mov-badge" id="psnGen">–</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- PANEL 2: TERMINAL Y SERVICIOS A PASAJEROS -->
+      <!-- PANEL 3: TERMINAL Y SERVICIOS A PASAJEROS -->
       <section class="panel">
         <div class="panel-header">Terminal de pasajeros</div>
         <div class="panel-body">
           <div class="metric-row">
-            <span>Superficie de terminal (m2)</span>
-            <span class="value" id="terminalM2">–</span>
+            <span>Superficie de terminal</span>
+            <span class="value" id="terminalM2Dup">–</span>
           </div>
+          <div class="small-label">m²</div>
 
           <div class="metric-row" style="margin-top:6px;">
             <span>Mostradores de check-in</span>
@@ -467,9 +609,9 @@
         </div>
       </section>
 
-      <!-- PANEL 3: IMÁGENES Y UBICACIÓN -->
+      <!-- PANEL 4: UBICACIÓN Y ACCESIBILIDAD -->
       <section class="panel">
-        <div class="panel-header">Imágenes y ubicación</div>
+        <div class="panel-header">Ubicación y accesibilidad</div>
         <div class="panel-body">
           <div class="small-label">Ubicación</div>
           <div class="small-label" id="ubicacionText">–</div>
@@ -479,25 +621,23 @@
 
           <div class="small-label" style="margin-top:6px;">Horario de operación</div>
           <div class="small-label" id="horarioOperacion">–</div>
-
-          <div class="img-double">
-            <div>
-              <div class="small-label">Predio</div>
-              <img id="imgPredio" src="" alt="Imagen del predio">
-            </div>
-            <div>
-              <div class="small-label">Terminal</div>
-              <img id="imgAeropuerto" src="" alt="Imagen del aeropuerto">
-            </div>
-          </div>
         </div>
       </section>
 
-      <!-- PANEL 4: EXPLOTACIÓN, CÓDIGOS Y CONCESIÓN -->
+      <!-- PANEL 5: CONCESIÓN Y EXPLOTACIÓN -->
       <section class="panel">
         <div class="panel-header">Concesión y explotación</div>
         <div class="panel-body">
-          <div class="small-label">Explotador</div>
+          <div class="metric-row">
+            <span>Superficie concesionada</span>
+            <span class="value" id="supConcesionadaHa">–</span>
+          </div>
+          <div class="small-label">hectáreas</div>
+
+          <div class="small-label" style="margin-top:6px;">Áreas concesionadas</div>
+          <div class="small-label" id="areasConcesionadas">–</div>
+
+          <div class="small-label" style="margin-top:10px;">Explotador</div>
           <div class="small-label" id="explotador">–</div>
 
           <div class="small-label" style="margin-top:6px;">Grupo de concesión</div>
@@ -514,7 +654,7 @@
         </div>
       </section>
 
-      <!-- PANEL 5: EMPLEO Y POBLACIÓN -->
+      <!-- PANEL 6: EMPLEO Y POBLACIÓN -->
       <section class="panel">
         <div class="panel-header">Empleo y área de influencia</div>
         <div class="panel-body">
@@ -532,7 +672,7 @@
         </div>
       </section>
 
-      <!-- PANEL 6: AYUDAS, CARGAS, SERVICIOS -->
+      <!-- PANEL 7: SERVICIOS Y AYUDAS -->
       <section class="panel">
         <div class="panel-header">Servicios y ayudas</div>
         <div class="panel-body">
@@ -585,94 +725,116 @@
       return String(text).trim();
     }
 
+    function safeVal(v) {
+      return (v !== null && v !== undefined && v !== "" && !isNaN(v))
+        ? formatNumber(v)
+        : (clean(v) || "–");
+    }
+
     function renderAirport(iataCode) {
       const a = aeropuertos.find(x => x.IATA === iataCode);
       if (!a) return;
 
-      // Títulos
       const nombre = clean(a["Aeropuerto"]) || clean(a["Nombre del Aeropuerto"]) || a.IATA;
       document.getElementById("pageTitle").textContent =
         `Aeropuerto de ${nombre} (${a.IATA})`;
       document.getElementById("pageSubtitle").textContent =
-        `Sistema Nacional de Aeropuertos · Datos Clave ${a["Año"] || ""}`;
+        `Sistema Nacional de Aeropuertos · ORSNA · Datos ${a["Año"] || ""}`;
 
-      // KPI strip
+      /* KPI strip */
       document.getElementById("kpiCheckin").textContent =
-        formatNumber(a["Mostradores Check in"]);
+        safeVal(a["Mostradores Check in"]);
       document.getElementById("kpiPuertas").textContent =
-        formatNumber(a["PuertasEmbarqueTotal"]);
+        safeVal(a["PuertasEmbarqueTotal"]);
       document.getElementById("kpiCintas").textContent =
-        formatNumber(a["CintasTotal"]);
+        safeVal(a["CintasTotal"]);
       document.getElementById("kpiPSN").textContent =
-        formatNumber(a["PSNTotal"]);
+        safeVal(a["PSNTotal"]);
       document.getElementById("kpiEstac").textContent =
-        formatNumber(a["Estacionamiento Vehicular"]);
+        safeVal(a["Estacionamiento Vehicular"]);
       document.getElementById("kpiMangas").textContent =
-        formatNumber(a["Mangas telescópicas"]);
+        safeVal(a["Mangas telescópicas"]);
       document.getElementById("kpiPSA").textContent =
-        formatNumber(a["PSAScanTotal"]);
+        safeVal(a["PSAScanTotal"]);
 
-      // Superficie
-      document.getElementById("supPredioHa").textContent = formatNumber(a["SupPredioHa"]);
-      document.getElementById("supConcesionadaHa").textContent = formatNumber(a["SupConcesionadaHa"]);
-      document.getElementById("areasConcesionadas").textContent =
-        clean(a["AreasConcesionadas"]) || "–";
+      /* SUPERFICIE */
+      document.getElementById("supPredio").textContent =
+        safeVal(a["SupPredioHa"]);
+      document.getElementById("terminalM2").textContent =
+        safeVal(a["TerminalM2"]);
 
-      // Pistas
-      document.getElementById("pistaOrientacion").textContent =
-        clean(a["PistaOrientacion"]) || "–";
+      const imgPredio = document.getElementById("imgPredio");
+      const imgTerminal = document.getElementById("imgTerminal");
+      imgPredio.src = clean(a["imagenPredio"]) || "";
+      imgPredio.alt = `Predio del aeropuerto ${nombre}`;
+      imgTerminal.src = clean(a["imagenAeropuerto"]) || "";
+      imgTerminal.alt = `Terminal del aeropuerto ${nombre}`;
 
-      const dimList = document.getElementById("dimensionesList");
-      dimList.innerHTML = "";
+      /* ÁREA DE MOVIMIENTO */
+      const orient = clean(a["PistaOrientacion"]);
+      document.getElementById("pistaOrient").textContent = orient || "–";
+
       const dims = clean(a["Dimensiones"]);
-      if (dims) {
-        dims.split(";").map(d => d.trim()).filter(Boolean).forEach(d => {
-          const li = document.createElement("li");
-          li.textContent = d;
-          dimList.appendChild(li);
-        });
-      }
+      document.getElementById("dimensiones").textContent = dims || "–";
 
       document.getElementById("materialPista").textContent =
         clean(a["MaterialPista"]) || "–";
-      document.getElementById("psnTotal").textContent =
-        formatNumber(a["PSNTotal"]);
 
-      // Terminal / servicios
-      document.getElementById("terminalM2").textContent =
-        formatNumber(a["TerminalM2"]);
+      let pistas = 1;
+      if (orient) {
+        pistas = orient.split(";").filter(Boolean).length;
+      }
+      document.getElementById("cantPistas").textContent = pistas;
+
+      const psnCom = (a["PSN_C"] !== undefined && a["PSN_C"] !== "")
+        ? a["PSN_C"]
+        : (a["PSNRemotasC"] !== undefined ? a["PSNRemotasC"] : "");
+      const psnGen = (a["PSN_AG"] !== undefined && a["PSN_AG"] !== "")
+        ? a["PSN_AG"]
+        : (a["PSNRemotasAG"] !== undefined ? a["PSNRemotasAG"] : "");
+
+      document.getElementById("psnCom").textContent =
+        psnCom !== "" ? safeVal(psnCom) : "–";
+      document.getElementById("psnGen").textContent =
+        psnGen !== "" ? safeVal(psnGen) : "–";
+
+      /* TERMINAL */
+      document.getElementById("terminalM2Dup").textContent =
+        safeVal(a["TerminalM2"]);
       document.getElementById("mostradoresCheckin").textContent =
-        formatNumber(a["Mostradores Check in"]);
+        safeVal(a["Mostradores Check in"]);
       document.getElementById("kioscosSelf").textContent =
-        formatNumber(a["Kioscos         (self check In)"]);
+        safeVal(a["Kioscos         (self check In)"]);
       document.getElementById("puertasTotal").textContent =
-        formatNumber(a["PuertasEmbarqueTotal"]);
+        safeVal(a["PuertasEmbarqueTotal"]);
 
       const puertasDetalle = [];
-      if (a["PuertasEmbarqueInter"]) puertasDetalle.push(`Internacional: ${a["PuertasEmbarqueInter"]}`);
-      if (a["PuertasEmbarqueCabot"]) puertasDetalle.push(`Cabotaje: ${a["PuertasEmbarqueCabot"]}`);
+      if (a["PuertasEmbarqueInter"]) puertasDetalle.push(`Inter: ${a["PuertasEmbarqueInter"]}`);
+      if (a["PuertasEmbarqueCabot"]) puertasDetalle.push(`Cabot: ${a["PuertasEmbarqueCabot"]}`);
       if (a["PuertasEmbarqueFlex"]) puertasDetalle.push(`Flex: ${a["PuertasEmbarqueFlex"]}`);
       document.getElementById("puertasDetalle").textContent =
         puertasDetalle.length ? puertasDetalle.join(" · ") : "–";
 
       document.getElementById("mangas").textContent =
-        formatNumber(a["Mangas telescópicas"]);
+        safeVal(a["Mangas telescópicas"]);
       document.getElementById("cintasTotal").textContent =
-        formatNumber(a["CintasTotal"]);
+        safeVal(a["CintasTotal"]);
+
       const cintasDetalle = [];
-      if (a["CintasInter"]) cintasDetalle.push(`Internacional: ${a["CintasInter"]}`);
-      if (a["CintasCabot"]) cintasDetalle.push(`Cabotaje: ${a["CintasCabot"]}`);
+      if (a["CintasInter"]) cintasDetalle.push(`Inter: ${a["CintasInter"]}`);
+      if (a["CintasCabot"]) cintasDetalle.push(`Cabot: ${a["CintasCabot"]}`);
       if (a["CintasFlex"]) cintasDetalle.push(`Flex: ${a["CintasFlex"]}`);
       document.getElementById("cintasDetalle").textContent =
         cintasDetalle.length ? cintasDetalle.join(" · ") : "–";
 
       document.getElementById("estacionamiento").textContent =
-        formatNumber(a["Estacionamiento Vehicular"]);
+        safeVal(a["Estacionamiento Vehicular"]);
       document.getElementById("carritos").textContent =
-        formatNumber(a["Carritos porta equipajes"]);
+        safeVal(a["Carritos porta equipajes"]);
 
-      // Ubicación y horario
-      const loc = `${clean(a["Localidad"])} · ${clean(a["Provincia"])}`.replace(/^ · | · $/g, "");
+      /* UBICACIÓN */
+      const loc = `${clean(a["Localidad"])} · ${clean(a["Provincia"])}`
+        .replace(/^ · | · $/g, "");
       document.getElementById("ubicacionText").textContent = loc || "–";
 
       const dist = a["Distancia al centro de la ciudad (km)"];
@@ -682,17 +844,12 @@
       document.getElementById("horarioOperacion").textContent =
         clean(a["Horario de operación"]) || "–";
 
-      // Imágenes
-      const imgPredio = document.getElementById("imgPredio");
-      const imgAero = document.getElementById("imgAeropuerto");
-      const predPath = clean(a["imagenPredio"]);
-      const aeroPath = clean(a["imagenAeropuerto"]);
-      imgPredio.src = predPath || "";
-      imgPredio.alt = `Predio del aeropuerto ${nombre}`;
-      imgAero.src = aeroPath || "";
-      imgAero.alt = `Terminal del aeropuerto ${nombre}`;
+      /* CONCESIÓN Y EXPLOTACIÓN */
+      document.getElementById("supConcesionadaHa").textContent =
+        safeVal(a["SupConcesionadaHa"]);
+      document.getElementById("areasConcesionadas").textContent =
+        clean(a["AreasConcesionadas"]) || "–";
 
-      // Concesión / explotación
       document.getElementById("explotador").textContent =
         clean(a["Explotador"]) || "–";
       document.getElementById("grupo").textContent =
@@ -710,13 +867,13 @@
       document.getElementById("habilitacion").textContent =
         clean(a["Habilitación"]) || "–";
 
-      // Empleo y población
+      /* EMPLEO Y POBLACIÓN */
       document.getElementById("empleoDirecto").textContent =
-        formatNumber(a["EmpleoDirecto2024"]);
+        safeVal(a["EmpleoDirecto2024"]);
       document.getElementById("poblacionInfluencia").textContent =
-        formatNumber(a["Población del Área de Influencia (Censo 2022)"]);
+        safeVal(a["Población del Área de Influencia (Censo 2022)"]);
 
-      // Servicios y ayudas
+      /* SERVICIOS Y AYUDAS */
       document.getElementById("radioayudas").textContent =
         clean(a["Radioayudas"]) || "–";
       document.getElementById("ayudasVisuales").textContent =
@@ -727,7 +884,7 @@
       document.getElementById("operadorCargas").textContent =
         clean(a["OperadorCargas"]) || "–";
       document.getElementById("terminalCargasM2").textContent =
-        formatNumber(a["TerminalCargasM2"]);
+        safeVal(a["TerminalCargasM2"]);
 
       const aeroComb = [];
       if (a["Aeroplantas AV GAS"]) aeroComb.push(`AV GAS: ${a["Aeroplantas AV GAS"]}`);
@@ -756,7 +913,6 @@
 
         aeropuertos.sort((a, b) => String(a.IATA).localeCompare(String(b.IATA)));
 
-        // Llenar selector
         selectEl.innerHTML = "";
         aeropuertos.forEach(p => {
           const opt = document.createElement("option");
@@ -766,7 +922,6 @@
           selectEl.appendChild(opt);
         });
 
-        // ?airport=IATA
         const params = new URLSearchParams(window.location.search);
         const fromUrl = params.get("airport");
         let initial = aeropuertos[0]?.IATA;
