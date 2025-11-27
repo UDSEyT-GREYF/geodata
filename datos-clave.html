@@ -271,7 +271,7 @@
 
     .superficie-header-row {
       display: flex;
-      justify-content: space-between;  /* etiqueta izq / valor der */
+      justify-content: space-between;
       align-items: baseline;
       gap: 6px;
     }
@@ -296,7 +296,7 @@
 
     .superficie-thumb {
       width: 100%;
-      height: 230px;
+      height: 230px;  /* ajustás el alto del mapa / imagen acá */
       border-radius: 4px;
       border: 1px solid #ccc;
       background: #ffffff;
@@ -414,8 +414,72 @@
       justify-content: center;
     }
 
-    /* PANEL TERMINAL (columna central grande) */
+    /* === PANEL TERMINAL (nuevo diseño por recorrido del pasajero) === */
     .panel-terminal { grid-area: terminal; }
+
+    .terminal-body {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .terminal-step-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #2a5fa0;
+      margin-top: 4px;
+    }
+
+    .terminal-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+      border-bottom: 1px dashed #d0d7e2;
+    }
+
+    .terminal-item:last-child {
+      border-bottom: none;
+    }
+
+    .terminal-icon img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+
+    .terminal-text {
+      flex: 1;
+    }
+
+    .terminal-title {
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    .terminal-sub {
+      font-size: 0.78rem;
+      color: #777;
+    }
+
+    .terminal-badge {
+      min-width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #6b2f82;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .terminal-separator {
+      border-top: 1px solid #e0e7f0;
+      margin: 4px 0;
+    }
 
     /* PANEL UBICACIÓN (solo texto ahora, sin mapa) */
     .panel-ubicacion { grid-area: ubicacion; }
@@ -626,52 +690,125 @@
         </div>
       </section>
 
-      <!-- PANEL 3: TERMINAL Y SERVICIOS A PASAJEROS -->
+      <!-- PANEL 3: TERMINAL Y SERVICIOS A PASAJEROS (NUEVO) -->
       <section class="panel panel-terminal">
         <div class="panel-header">Terminal de pasajeros</div>
-        <div class="panel-body">
-          <div class="metric-row">
-            <span>Superficie de terminal</span>
-            <span class="value" id="terminalM2Dup">–</span>
-          </div>
-          <div class="small-label">m²</div>
+        <div class="panel-body terminal-body">
 
-          <div class="metric-row" style="margin-top:6px;">
-            <span>Mostradores de check-in</span>
-            <span class="value" id="mostradoresCheckin">–</span>
-          </div>
+          <!-- Llegada / Check-in -->
+          <div class="terminal-step-title">Llegada y check-in</div>
 
-          <div class="metric-row">
-            <span>Kioscos self check-in</span>
-            <span class="value" id="kioscosSelf">–</span>
-          </div>
-
-          <div class="metric-row">
-            <span>Puertas de embarque (total)</span>
-            <span class="value" id="puertasTotal">–</span>
-          </div>
-          <div class="small-label" id="puertasDetalle">–</div>
-
-          <div class="metric-row" style="margin-top:6px;">
-            <span>Mangas telescópicas</span>
-            <span class="value" id="mangas">–</span>
+          <div class="terminal-item">
+            <div class="terminal-icon">
+              <img src="img/icons/checkin.png" alt="">
+            </div>
+            <div class="terminal-text">
+              <div class="terminal-title">Mostradores de check-in</div>
+              <div class="terminal-sub">Puestos habilitados para atención presencial</div>
+            </div>
+            <div class="terminal-badge" id="mostradoresCheckin">–</div>
           </div>
 
-          <div class="metric-row">
-            <span>Cintas de equipaje (total)</span>
-            <span class="value" id="cintasTotal">–</span>
+          <div class="terminal-item">
+            <div class="terminal-icon">
+              <img src="img/icons/checkin.png" alt="">
+            </div>
+            <div class="terminal-text">
+              <div class="terminal-title">Kioscos self check-in</div>
+              <div class="terminal-sub">Equipos de autoatención</div>
+            </div>
+            <div class="terminal-badge" id="kioscosSelf">–</div>
           </div>
-          <div class="small-label" id="cintasDetalle">–</div>
 
-          <div class="metric-row" style="margin-top:6px;">
-            <span>Plazas de estacionamiento vehicular</span>
-            <span class="value" id="estacionamiento">–</span>
+          <div class="terminal-separator"></div>
+
+          <!-- Control de seguridad -->
+          <div class="terminal-step-title">Control de seguridad</div>
+
+          <div class="terminal-item">
+            <div class="terminal-icon">
+              <img src="img/icons/PSA.png" alt="">
+            </div>
+            <div class="terminal-text">
+              <div class="terminal-title">Puestos PSA</div>
+              <div class="terminal-sub">Puestos de control de seguridad</div>
+            </div>
+            <div class="terminal-badge" id="psaBadgeProxy">–</div>
           </div>
 
-          <div class="metric-row">
-            <span>Carritos porta equipajes</span>
-            <span class="value" id="carritos">–</span>
+          <div class="terminal-separator"></div>
+
+          <!-- Embarque -->
+          <div class="terminal-step-title">Embarque</div>
+
+          <div class="terminal-item">
+            <div class="terminal-icon">
+              <img src="img/icons/boarding.png" alt="">
+            </div>
+            <div class="terminal-text">
+              <div class="terminal-title">Puertas de embarque</div>
+              <div class="terminal-sub" id="puertasDetalle">–</div>
+            </div>
+            <div class="terminal-badge" id="puertasTotal">–</div>
           </div>
+
+          <div class="terminal-item">
+            <div class="terminal-icon">
+              <img src="img/icons/manga.png" alt="">
+            </div>
+            <div class="terminal-text">
+              <div class="terminal-title">Mangas telescópicas</div>
+              <div class="terminal-sub">Conexión directa aeronave–terminal</div>
+            </div>
+            <div class="terminal-badge" id="mangas">–</div>
+          </div>
+
+          <div class="terminal-separator"></div>
+
+          <!-- Arribo / equipaje -->
+          <div class="terminal-step-title">Arribo y equipaje</div>
+
+          <div class="terminal-item">
+            <div class="terminal-icon">
+              <img src="img/icons/baggage.png" alt="">
+            </div>
+            <div class="terminal-text">
+              <div class="terminal-title">Cintas de equipaje</div>
+              <div class="terminal-sub" id="cintasDetalle">–</div>
+            </div>
+            <div class="terminal-badge" id="cintasTotal">–</div>
+          </div>
+
+          <div class="terminal-item">
+            <div class="terminal-icon">
+              <img src="img/icons/baggage.png" alt="">
+            </div>
+            <div class="terminal-text">
+              <div class="terminal-title">Carritos porta equipajes</div>
+              <div class="terminal-sub">Disponibles para el pasajero</div>
+            </div>
+            <div class="terminal-badge" id="carritos">–</div>
+          </div>
+
+          <div class="terminal-separator"></div>
+
+          <!-- Apoyo al pasajero -->
+          <div class="terminal-step-title">Apoyo al pasajero</div>
+
+          <div class="terminal-item">
+            <div class="terminal-icon">
+              <img src="img/icons/estacionamiento.png" alt="">
+            </div>
+            <div class="terminal-text">
+              <div class="terminal-title">Plazas de estacionamiento vehicular</div>
+              <div class="terminal-sub">Capacidad total de estacionamiento</div>
+            </div>
+            <div class="terminal-badge" id="estacionamiento">–</div>
+          </div>
+
+          <!-- elemento oculto solo para que no falle el JS que carga terminalM2Dup -->
+          <span id="terminalM2Dup" style="display:none;"></span>
+
         </div>
       </section>
 
@@ -956,13 +1093,19 @@
       document.getElementById("psnGen").textContent =
         psnGen !== "" ? safeVal(psnGen) : "–";
 
-      /* TERMINAL */
+      /* TERMINAL – usamos los mismos IDs que antes, pero en badges circulares */
       document.getElementById("terminalM2Dup").textContent =
-        safeVal(a["TerminalM2"]);
+        safeVal(a["TerminalM2"]);  // queda oculto
+
       document.getElementById("mostradoresCheckin").textContent =
         safeVal(a["Mostradores Check in"]);
       document.getElementById("kioscosSelf").textContent =
         safeVal(a["Kioscos         (self check In)"]);
+
+      // PSA: usamos el valor total en el badge de seguridad
+      document.getElementById("psaBadgeProxy").textContent =
+        safeVal(a["PSAScanTotal"]);
+
       document.getElementById("puertasTotal").textContent =
         safeVal(a["PuertasEmbarqueTotal"]);
 
