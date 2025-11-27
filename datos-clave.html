@@ -393,6 +393,11 @@
       padding: 12px 16px;
       text-align: right;
     }
+    .unit {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: #666;
+    }
 
     @media (max-width: 900px) {
       .grid { grid-template-columns: 1fr; }
@@ -503,8 +508,8 @@
             <div class="superficie-item">
               <div class="superficie-label">Tamaño del predio</div>
               <div class="superficie-value">
-                <span id="supPredio"></span> hectáreas
-              </div>
+              <span id="supPredio"></span> <span class="unit">hectáreas</span>
+            </div>
             </div>
 
             <div class="superficie-item">
