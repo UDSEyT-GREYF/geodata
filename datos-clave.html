@@ -246,55 +246,70 @@
       font-size: 0.9rem;
     }
 
-/* === SUPERFICIE (compactada) === */
-.panel-superficie {
-  grid-area: superficie;
-}
+    /* === SUPERFICIE (compactada, en columna) === */
+    .panel-superficie {
+      grid-area: superficie;
+    }
 
-.panel-superficie .panel-body {
-  padding: 4px 10px 4px; /* poco alto */
-  gap: 4px;
-}
+    .panel-superficie .panel-body {
+      padding: 6px 10px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
 
-.superficie-grid {
-  display: flex;
-  align-items: flex-end;
-  gap: 12px;
-  margin-bottom: 2px;
-}
+    /* Cada bloque: texto + valor + imagen */
+    .superficie-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
 
-.superficie-item {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
+    /* Fila: etiqueta a la izq, valor a la derecha */
+    .superficie-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
 
-.superficie-separator {
-  width: 1px;
-  align-self: stretch;
-  background-color: #d0d7e2;
-  opacity: 0.7;
-}
+    .superficie-label {
+      font-size: 0.9rem;
+      color: #444;
+    }
 
-.superficie-label {
-  font-size: 0.9rem;
-  color: #444;
-  margin-bottom: 2px;
-}
+    .superficie-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #004b80;
+      white-space: nowrap;
+    }
 
-.superficie-value {
-  font-size: 1.2rem;  /* más chico que antes */
-  font-weight: 700;
-  color: #004b80;
-}
+    .unit {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #004b80;
+    }
 
-.unit {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #004b80;
-}
+    /* Contenedor de la imagen */
+    .superficie-img-wrapper {
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background-color: #f8f8f8;
+      max-height: 160px;   /* ajustable */
+      min-height: 110px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
+    /* Imagen que se adapta sin recortarse */
+    .superficie-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* no recorta la imagen */
+    }
 
     /* PANEL MOVIMIENTO */
     .panel-movimiento { grid-area: movimiento; }
@@ -539,33 +554,33 @@
       <section class="panel panel-superficie">
         <div class="panel-header">Superficie</div>
         <div class="panel-body">
-          <div class="superficie-grid">
-            <div class="superficie-item">
+
+          <!-- Bloque: Predio -->
+          <div class="superficie-block">
+            <div class="superficie-header">
               <div class="superficie-label">Tamaño del predio</div>
               <div class="superficie-value">
                 <span id="supPredio"></span> <span class="unit">hectáreas</span>
               </div>
             </div>
+            <div class="superficie-img-wrapper">
+              <img id="imgPredio" class="superficie-img" alt="Imagen del predio del aeropuerto">
+            </div>
+          </div>
 
-            <div class="superficie-separator"></div>
-
-            <div class="superficie-item">
+          <!-- Bloque: Terminal -->
+          <div class="superficie-block">
+            <div class="superficie-header">
               <div class="superficie-label">Terminal de pasajeros</div>
               <div class="superficie-value">
                 <span id="terminalM2"></span> <span class="unit">m²</span>
               </div>
             </div>
-          </div>
-
-          <div class="superficie-imgs">
-            <div class="superficie-img-col">
-              <img id="imgPredio" class="superficie-img" alt="Imagen del predio del aeropuerto">
-            </div>
-            <div class="superficie-separator-img"></div>
-            <div class="superficie-img-col">
+            <div class="superficie-img-wrapper">
               <img id="imgTerminal" class="superficie-img" alt="Imagen de la terminal del aeropuerto">
             </div>
           </div>
+
         </div>
       </section>
 
@@ -906,7 +921,7 @@
       const predioProp = clean(a["imagenPredio"]);
       const terminalProp = clean(a["imagenAeropuerto"]);
 
-      // 🔹 RUTAS SEGÚN TUS NOMBRES DE ARCHIVO
+      // Rutas dinámicas según IATA
       const predioSrc = predioProp || (iataUpper ? `img/Predios/${iataUpper}.png` : "");
       const terminalSrc = terminalProp || (iataUpper ? `img/Terminales/${iataUpper}_terminal.png` : "");
 
@@ -924,7 +939,6 @@
       imgTerminal.onerror = () => {
         imgTerminal.style.display = "none";
       };
-
 
       /* ÁREA DE MOVIMIENTO */
       const orient = clean(a["PistaOrientacion"]);
