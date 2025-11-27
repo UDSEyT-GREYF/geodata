@@ -178,7 +178,7 @@
       font-size: 0.78rem;
     }
 
-    /* GRID DE FICHAS – nueva disposición con áreas */
+    /* GRID DE FICHAS – disposición con áreas */
     .grid {
       display: grid;
       grid-template-columns: 2fr 2fr 2fr;
@@ -246,14 +246,23 @@
       font-size: 0.9rem;
     }
 
-    /* SUPERFICIE (+ separadores verticales) */
-    .panel-superficie { grid-area: superficie; }
+    /* === SUPERFICIE (compactada) === */
+    .panel-superficie { 
+      grid-area: superficie; 
+    }
+
+    /* achicamos padding y espacios internos solo en este panel */
+    .panel-superficie .panel-body {
+      padding-top: 6px;
+      padding-bottom: 6px;
+      gap: 4px;
+    }
 
     .superficie-grid {
       display: flex;
       align-items: flex-end;
       gap: 16px;
-      margin-bottom: 10px;
+      margin-bottom: 4px; /* antes 10px, menos aire debajo de valores */
     }
 
     .superficie-item {
@@ -286,7 +295,8 @@
       display: flex;
       align-items: stretch;
       gap: 16px;
-      margin-top: 6px;
+      margin-top: 4px;   /* antes 6px, lo acercamos un poquito al título */
+      margin-bottom: 0;  /* sin aire extra debajo */
     }
 
     .superficie-img-col {
@@ -320,7 +330,7 @@
     .mov-row {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 20px;
+      margin-bottom: 14px;  /* un poquito menos para subir contenido */
       gap: 12px;
     }
 
@@ -462,10 +472,11 @@
       .kpi-strip {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-/* Ajuste específico para el panel de Superficie */
-.panel-superficie .panel-body {
-  gap: 4px;
-}
+      /* un poco más compacto en mobile también */
+      .panel-superficie .panel-body {
+        gap: 4px;
+        padding-bottom: 4px;
+      }
     }
   </style>
 </head>
@@ -629,7 +640,7 @@
         </div>
       </section>
 
-      <!-- PANEL 3: TERMINAL Y SERVICIOS A PASAJEROS (columna central grande) -->
+      <!-- PANEL 3: TERMINAL Y SERVICIOS A PASAJEROS -->
       <section class="panel panel-terminal">
         <div class="panel-header">Terminal de pasajeros</div>
         <div class="panel-body">
@@ -794,6 +805,8 @@
     let aeropuertos = [];
     const selectEl = document.getElementById("airportSelect");
     let map, mapMarker;
+    let prediosGeojson = null;
+    let prediosLayer = null;
 
     function formatNumber(n) {
       if (n === null || n === undefined || n === "" || isNaN(n)) return "–";
@@ -820,17 +833,66 @@
         attribution: "&copy; OpenStreetMap contributors"
       }).addTo(map);
 
+      // Marker solo como fallback cuando no haya polígono
       mapMarker = L.marker([-34.6, -58.4]).addTo(map);
+    }
+
+    async function loadPredios() {
+      try {
+        const resp = await fetch("fuentes/poligonos_predios.geojson");
+        prediosGeojson = await resp.json();
+      } catch (err) {
+        console.error("Error cargando polígonos de predios:", err);
+      }
     }
 
     function updateMapForAirport(a) {
       if (!map) return;
 
-      // Primero buscamos propiedades Lat/Lon si existieran
+      // Limpiar polígono anterior si existiera
+      if (prediosLayer) {
+        map.removeLayer(prediosLayer);
+        prediosLayer = null;
+      }
+
+      const iata = String(a.IATA || "").trim().toUpperCase();
+
+      // 1) Intentar dibujar polígono según IATA
+      if (prediosGeojson && Array.isArray(prediosGeojson.features)) {
+        const feats = prediosGeojson.features.filter(f => {
+          const props = f.properties || {};
+          const code = String(props.IATA || props.iata || "").trim().toUpperCase();
+          return code === iata;
+        });
+
+        if (feats.length) {
+          prediosLayer = L.geoJSON(feats, {
+            style: {
+              color: "#004b80",
+              weight: 2,
+              fillColor: "#2a5fa0",
+              fillOpacity: 0.25
+            }
+          }).addTo(map);
+
+          const bounds = prediosLayer.getBounds();
+          if (bounds.isValid()) {
+            map.fitBounds(bounds, { padding: [10, 10] });
+          }
+
+          // Si mostramos polígono, no hace falta el marcador puntual
+          if (mapMarker) {
+            map.removeLayer(mapMarker);
+            mapMarker = null;
+          }
+          return;
+        }
+      }
+
+      // 2) Si no hay polígono, usamos punto (Lat/Lon o geometría Point)
       let lat = a["Lat"] || a["LAT"];
       let lon = a["Lon"] || a["LON"] || a["Long"];
 
-      // Si no existen, intentamos usar la geometría del GeoJSON (si se cargó)
       if ((!lat || !lon) && a._geometry && a._geometry.type === "Point") {
         const coords = a._geometry.coordinates;
         if (Array.isArray(coords) && coords.length >= 2) {
@@ -853,8 +915,13 @@
         }
       }
 
-      // Si no hay coordenadas válidas, dejamos el mapa general
+      // 3) Fallback general
       map.setView([-34.6, -58.4], 5);
+      if (!mapMarker) {
+        mapMarker = L.marker([-34.6, -58.4]).addTo(map);
+      } else {
+        mapMarker.setLatLng([-34.6, -58.4]);
+      }
     }
 
     function renderAirport(iataCode) {
@@ -970,7 +1037,7 @@
       document.getElementById("horarioOperacion").textContent =
         clean(a["Horario de operación"]) || "–";
 
-      // Actualizar mapa para este aeropuerto
+      // Actualizar mapa para este aeropuerto (polígono o punto)
       updateMapForAirport(a);
 
       /* CONCESIÓN Y EXPLOTACIÓN */
@@ -1039,7 +1106,7 @@
         aeropuertos = features
           .map(f => {
             const props = f.properties || {};
-            // Guardamos la geometría por si necesitamos coordenadas
+            // Guardamos la geometría por si necesitamos coordenadas puntuales
             props._geometry = f.geometry || null;
             return props;
           })
@@ -1082,8 +1149,10 @@
 
     document.addEventListener("DOMContentLoaded", () => {
       initMap();
+      loadPredios();
       loadData();
     });
   </script>
 </body>
 </html>
+
