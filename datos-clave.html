@@ -88,7 +88,7 @@
 
     /* BREADCRUMB */
     .breadcrumb {
-      background-color: #eef2f7;
+      background-color: #EEF2F7;
       border-bottom: 1px solid #dde2e6;
       font-size: 0.85rem;
     }
@@ -262,7 +262,6 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
-
       background: #ffffff;
       border: 1px solid #d0d7e2;
       border-radius: 4px;
@@ -279,6 +278,9 @@
     .superficie-label {
       font-size: 0.9rem;
       color: #444;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
     .superficie-value {
@@ -292,11 +294,12 @@
       font-size: 0.85rem;
       font-weight: 600;
       color: #004b80;
+      margin-left: 3px;
     }
 
     .superficie-thumb {
       width: 100%;
-      height: 230px;  /* ajustás el alto del mapa / imagen acá */
+      height: 230px;  /* alto del mapa / imagen */
       border-radius: 4px;
       border: 1px solid #ccc;
       background: #ffffff;
@@ -319,91 +322,57 @@
       object-fit: contain;
     }
 
-    /* PANEL MOVIMIENTO */
-    .panel-movimiento { grid-area: movimiento; }
+    /* === PANEL ÁREA DE MOVIMIENTO (nuevo estilo KPI) === */
+    .panel-movimiento {
+      grid-area: movimiento;
+    }
 
-    .mov-row {
+    .kpi-icon {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+      vertical-align: middle;
+    }
+
+    .mov-runway-list {
+      margin-top: 6px;
+      font-size: 0.82rem;
+      color: #555;
+    }
+
+    .mov-runway-row {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 14px;
-      gap: 12px;
+      gap: 6px;
+      padding: 2px 0;
     }
 
-    .mov-col {
-      width: 48%;
-    }
-
-    .mov-label {
-      font-size: 0.95rem;
-      color: #444;
-      margin-bottom: 6px;
-    }
-
-    .mov-pista {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .mov-num {
-      background: #6b2f82;
-      color: #fff;
-      font-weight: 700;
-      font-size: 1.4rem;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .mov-orient {
-      font-size: 1.4rem;
+    .mov-runway-orient {
       font-weight: 600;
       color: #004b80;
+      white-space: nowrap;
     }
 
-    .mov-icon {
-      width: 48px;
-      opacity: 0.8;
+    .mov-runway-info {
+      flex: 1;
+      text-align: right;
     }
 
-    .mov-dim-box {
-      background: #d1d1d1;
-      padding: 6px 14px;
-      border-radius: 4px;
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #333;
-      display: inline-block;
-    }
-
-    .mov-material {
+    .mov-psn-list {
       margin-top: 6px;
-      font-size: 0.92rem;
-      color: #555;
-      font-weight: 500;
-    }
-
-    .mov-seccion {
-      margin-top: 4px;
-    }
-
-    .mov-list {
-      margin-top: 8px;
     }
 
     .mov-item {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 10px;
-      font-size: 1rem;
+      align-items: center;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
       color: #444;
     }
 
     .mov-badge {
-      background: #6b2f82;
+      background: #6b2f82;   /* cambiar a #306fb0 si lo querés azul */
       color: #fff;
       font-weight: 700;
       width: 32px;
@@ -412,6 +381,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 0.95rem;
     }
 
     /* === PANEL TERMINAL (nuevo diseño por recorrido del pasajero) === */
@@ -622,7 +592,9 @@
           <!-- KPI: Tamaño del predio con mapa Leaflet -->
           <div class="superficie-kpi">
             <div class="superficie-header-row">
-              <div class="superficie-label">Tamaño del predio</div>
+              <div class="superficie-label">
+                <span>Tamaño del predio</span>
+              </div>
               <div class="superficie-value">
                 <span id="supPredio"></span>
                 <span class="superficie-unit">hectáreas</span>
@@ -637,7 +609,9 @@
           <!-- KPI: Terminal de pasajeros con imagen -->
           <div class="superficie-kpi">
             <div class="superficie-header-row">
-              <div class="superficie-label">Terminal de pasajeros</div>
+              <div class="superficie-label">
+                <span>Terminal de pasajeros</span>
+              </div>
               <div class="superficie-value">
                 <span id="terminalM2"></span>
                 <span class="superficie-unit">m²</span>
@@ -652,31 +626,43 @@
         </div>
       </section>
 
-      <!-- PANEL 2: ÁREA DE MOVIMIENTO -->
+      <!-- PANEL 2: ÁREA DE MOVIMIENTO (nuevo diseño KPI) -->
       <section class="panel panel-movimiento">
         <div class="panel-header">Área de movimiento</div>
         <div class="panel-body">
-          <div class="mov-row">
-            <div class="mov-col">
-              <div class="mov-label">Pistas de aterrizaje</div>
-              <div class="mov-pista">
-                <div class="mov-num" id="cantPistas">–</div>
-                <div class="mov-orient" id="pistaOrient">–</div>
-                <img src="img/icons/runway.png" class="mov-icon" alt="Pista">
+
+          <!-- KPI Pistas -->
+          <div class="superficie-kpi">
+            <div class="superficie-header-row">
+              <div class="superficie-label">
+                <img src="img/icons/runway.png" class="kpi-icon" alt="">
+                <span>Pistas de aterrizaje</span>
+              </div>
+              <div class="superficie-value">
+                <span id="cantPistas">–</span>
+                <span class="superficie-unit" id="cantPistasUnit"></span>
               </div>
             </div>
 
-            <div class="mov-col">
-              <div class="mov-label">Longitud de la pista principal</div>
-              <div class="mov-dim-box" id="dimensiones">–</div>
-              <div class="mov-label" style="margin-top:8px;">Material de pista</div>
-              <div class="mov-material" id="materialPista">–</div>
+            <div class="mov-runway-list" id="pistasDetalle">
+              <!-- se completa por JS -->
             </div>
           </div>
 
-          <div class="mov-seccion">
-            <div class="mov-label">Posiciones en plataforma</div>
-            <div class="mov-list">
+          <!-- KPI Posiciones en plataforma -->
+          <div class="superficie-kpi">
+            <div class="superficie-header-row">
+              <div class="superficie-label">
+                <img src="img/icons/PSN.png" class="kpi-icon" alt="">
+                <span>Posiciones en plataforma</span>
+              </div>
+              <div class="superficie-value">
+                <span id="psnTotal">–</span>
+                <span class="superficie-unit">PSN</span>
+              </div>
+            </div>
+
+            <div class="mov-psn-list">
               <div class="mov-item">
                 <span>Aeronaves comerciales</span>
                 <span class="mov-badge" id="psnCom">–</span>
@@ -687,10 +673,11 @@
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
-      <!-- PANEL 3: TERMINAL Y SERVICIOS A PASAJEROS (NUEVO) -->
+      <!-- PANEL 3: TERMINAL Y SERVICIOS A PASAJEROS (como lo dejamos antes) -->
       <section class="panel panel-terminal">
         <div class="panel-header">Terminal de pasajeros</div>
         <div class="panel-body terminal-body">
@@ -781,7 +768,7 @@
 
           <div class="terminal-item">
             <div class="terminal-icon">
-              <img src="img/icons/Carrito.png" alt="">
+              <img src="img/icons/baggage.png" alt="">
             </div>
             <div class="terminal-text">
               <div class="terminal-title">Carritos porta equipajes</div>
@@ -944,7 +931,7 @@
     }
 
     function initMap() {
-      // ahora el mapa va en la caja de Superficie (predio)
+      // mapa en la caja de Superficie (predio)
       map = L.map("mapPredio").setView([-34.6, -58.4], 5);
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -958,7 +945,6 @@
     function updateMapForAirport(a) {
       if (!map) return;
 
-      // Limpiamos polígono anterior si existe
       if (poligonoLayer) {
         map.removeLayer(poligonoLayer);
         poligonoLayer = null;
@@ -966,7 +952,6 @@
 
       const iata = a.IATA;
 
-      // 1) Intentar dibujar polígono(s) del predio para este IATA
       if (poligonos.length > 0 && iata) {
         const feats = poligonos.filter(f => {
           const props = f.properties || {};
@@ -989,7 +974,6 @@
             map.fitBounds(bounds, { padding: [5, 5] });
           }
 
-          // Ocultar marcador si hay polígono
           if (mapMarker) {
             map.removeLayer(mapMarker);
           }
@@ -997,7 +981,6 @@
         }
       }
 
-      // 2) Si no hay polígono, usamos Lat/Lon como fallback
       let lat = a["Lat"] || a["LAT"];
       let lon = a["Lon"] || a["LON"] || a["Long"];
 
@@ -1013,12 +996,19 @@
           mapMarker.setLatLng([latNum, lonNum]).addTo(map);
         }
       } else {
-        // Vista general si no hay datos
         map.setView([-34.6, -58.4], 5);
         if (mapMarker) {
           mapMarker.setLatLng([-34.6, -58.4]).addTo(map);
         }
       }
+    }
+
+    function splitField(str) {
+      if (!str) return [];
+      return str
+        .split(/[\n;]+| {2,}|\t+/)
+        .map(s => s.trim())
+        .filter(Boolean);
     }
 
     function renderAirport(iataCode) {
@@ -1065,21 +1055,59 @@
         imgTerminal.style.display = "none";
       };
 
-      /* ÁREA DE MOVIMIENTO */
-      const orient = clean(a["PistaOrientacion"]);
-      document.getElementById("pistaOrient").textContent = orient || "–";
+      /* ÁREA DE MOVIMIENTO – nuevo */
+      const orientRaw = clean(a["PistaOrientacion"]);
+      const dimsRaw = clean(a["Dimensiones"]);
+      const matRaw  = clean(a["MaterialPista"]);
 
-      const dims = clean(a["Dimensiones"]);
-      document.getElementById("dimensiones").textContent = dims || "–";
+      const oriArr  = splitField(orientRaw);
+      const dimsArr = splitField(dimsRaw);
+      const matArr  = splitField(matRaw);
 
-      document.getElementById("materialPista").textContent =
-        clean(a["MaterialPista"]) || "–";
+      const runways = oriArr.length
+        ? oriArr.map((ori, idx) => ({
+            ori,
+            dim: dimsArr[idx] || "",
+            mat: matArr[idx] || ""
+          }))
+        : [];
 
-      let pistas = 1;
-      if (orient) {
-        pistas = orient.split(";").filter(Boolean).length;
+      const cant = runways.length || (orientRaw ? 1 : 0);
+      const cantEl = document.getElementById("cantPistas");
+      const cantUnitEl = document.getElementById("cantPistasUnit");
+
+      if (cant > 0) {
+        cantEl.textContent = formatNumber(cant);
+        cantUnitEl.textContent = cant === 1 ? "pista" : "pistas";
+      } else {
+        cantEl.textContent = "–";
+        cantUnitEl.textContent = "";
       }
-      document.getElementById("cantPistas").textContent = pistas;
+
+      const pistasDetalleEl = document.getElementById("pistasDetalle");
+      pistasDetalleEl.innerHTML = "";
+
+      if (runways.length) {
+        runways.forEach(r => {
+          const row = document.createElement("div");
+          row.className = "mov-runway-row";
+          const info = [];
+          if (r.dim) info.push(r.dim);
+          if (r.mat) info.push(r.mat);
+          row.innerHTML = `
+            <span class="mov-runway-orient">${r.ori}</span>
+            <span class="mov-runway-info">${info.join(" · ")}</span>
+          `;
+          pistasDetalleEl.appendChild(row);
+        });
+      } else if (orientRaw || dimsRaw || matRaw) {
+        const row = document.createElement("div");
+        row.className = "mov-runway-row";
+        row.textContent = `${orientRaw} ${dimsRaw} ${matRaw}`.trim();
+        pistasDetalleEl.appendChild(row);
+      } else {
+        pistasDetalleEl.textContent = "–";
+      }
 
       const psnCom = (a["PSN_C"] !== undefined && a["PSN_C"] !== "")
         ? a["PSN_C"]
@@ -1093,19 +1121,23 @@
       document.getElementById("psnGen").textContent =
         psnGen !== "" ? safeVal(psnGen) : "–";
 
-      /* TERMINAL – usamos los mismos IDs que antes, pero en badges circulares */
-      document.getElementById("terminalM2Dup").textContent =
-        safeVal(a["TerminalM2"]);  // queda oculto
+      let totalPsn = 0;
+      const psnComNum = Number(psnCom);
+      const psnGenNum = Number(psnGen);
+      if (!isNaN(psnComNum)) totalPsn += psnComNum;
+      if (!isNaN(psnGenNum)) totalPsn += psnGenNum;
+      document.getElementById("psnTotal").textContent =
+        totalPsn ? formatNumber(totalPsn) : "–";
 
+      /* TERMINAL */
+      document.getElementById("terminalM2Dup").textContent =
+        safeVal(a["TerminalM2"]);
       document.getElementById("mostradoresCheckin").textContent =
         safeVal(a["Mostradores Check in"]);
       document.getElementById("kioscosSelf").textContent =
         safeVal(a["Kioscos         (self check In)"]);
-
-      // PSA: usamos el valor total en el badge de seguridad
       document.getElementById("psaBadgeProxy").textContent =
         safeVal(a["PSAScanTotal"]);
-
       document.getElementById("puertasTotal").textContent =
         safeVal(a["PuertasEmbarqueTotal"]);
 
@@ -1145,7 +1177,6 @@
       document.getElementById("horarioOperacion").textContent =
         clean(a["Horario de operación"]) || "–";
 
-      // Actualizar mapa (polígono del predio o punto)
       updateMapForAirport(a);
 
       /* CONCESIÓN Y EXPLOTACIÓN */
@@ -1207,7 +1238,6 @@
 
     async function loadData() {
       try {
-        // 1) Datos básicos por aeropuerto
         const resp = await fetch("fuentes/Datos_aeropuertos.geojson");
         const geojson = await resp.json();
 
@@ -1227,7 +1257,6 @@
           selectEl.appendChild(opt);
         });
 
-        // 2) Polígonos de predios
         try {
           const respPoly = await fetch("fuentes/poligonos_aeropuertos.geojson");
           const gjPoly = await respPoly.json();
@@ -1237,7 +1266,6 @@
           poligonos = [];
         }
 
-        // Selección inicial
         const params = new URLSearchParams(window.location.search);
         const fromUrl = params.get("airport");
         let initial = aeropuertos[0]?.IATA;
