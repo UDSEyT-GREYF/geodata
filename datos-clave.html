@@ -252,7 +252,7 @@
     }
 
     .panel-superficie .panel-body {
-      padding: 6px 10px 6px;
+      padding: 4px 10px 4px; /* menos alto */
       gap: 4px;
     }
 
@@ -260,7 +260,7 @@
       display: flex;
       align-items: flex-end;
       gap: 16px;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .superficie-item {
@@ -280,11 +280,11 @@
     .superficie-label {
       font-size: 0.95rem;
       color: #444;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .superficie-value {
-      font-size: 1.6rem;
+      font-size: 1.3rem; /* antes 1.6rem */
       font-weight: 700;
       color: #004b80;
     }
@@ -293,7 +293,7 @@
       display: flex;
       align-items: stretch;
       gap: 16px;
-      margin-top: 4px;
+      margin-top: 2px;
       margin-bottom: 0;
     }
 
@@ -304,7 +304,7 @@
 
     .superficie-img {
       width: 100%;
-      max-height: 140px;
+      max-height: 90px; /* antes 140px */
       border-radius: 4px;
       border: 1px solid #ccc;
       object-fit: cover;
@@ -927,10 +927,30 @@
 
       const imgPredio = document.getElementById("imgPredio");
       const imgTerminal = document.getElementById("imgTerminal");
-      imgPredio.src = clean(a["imagenPredio"]) || "";
+      const iataUpper = String(a.IATA || "").toUpperCase();
+
+      const predioProp = clean(a["imagenPredio"]);
+      const terminalProp = clean(a["imagenAeropuerto"]);
+
+      // 🔹 RUTAS SEGÚN TUS NOMBRES DE ARCHIVO
+      const predioSrc = predioProp || (iataUpper ? `img/Predios/${iataUpper}.png` : "");
+      const terminalSrc = terminalProp || (iataUpper ? `img/Terminales/${iataUpper}_terminal.png` : "");
+
+      imgPredio.style.display = predioSrc ? "block" : "none";
+      imgTerminal.style.display = terminalSrc ? "block" : "none";
+
+      imgPredio.src = predioSrc;
       imgPredio.alt = `Predio del aeropuerto ${nombre}`;
-      imgTerminal.src = clean(a["imagenAeropuerto"]) || "";
+      imgTerminal.src = terminalSrc;
       imgTerminal.alt = `Terminal del aeropuerto ${nombre}`;
+
+      imgPredio.onerror = () => {
+        imgPredio.style.display = "none";
+      };
+      imgTerminal.onerror = () => {
+        imgTerminal.style.display = "none";
+      };
+
 
       /* ÁREA DE MOVIMIENTO */
       const orient = clean(a["PistaOrientacion"]);
