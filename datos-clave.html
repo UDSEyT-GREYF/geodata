@@ -569,40 +569,41 @@
     <section class="grid">
 
       <!-- PANEL 1: SUPERFICIE -->
-      <section class="panel panel-superficie">
-        <div class="panel-header">Superficie</div>
-        <div class="panel-body">
+<section class="panel panel-superficie">
+  <div class="panel-header">Superficie</div>
+  <div class="panel-body">
 
-          <!-- KPI: Tamaño del predio -->
-          <div class="superficie-kpi">
-            <div class="superficie-text">
-              <div class="superficie-label">Tamaño del predio</div>
-              <div class="superficie-value-row">
-                <span id="supPredio" class="superficie-value"></span>
-                <span class="superficie-unit">hectáreas</span>
-              </div>
-            </div>
-            <div class="superficie-thumb">
-              <img id="imgPredio" alt="Imagen del predio del aeropuerto">
-            </div>
-          </div>
-
-          <!-- KPI: Terminal de pasajeros -->
-          <div class="superficie-kpi">
-            <div class="superficie-text">
-              <div class="superficie-label">Terminal de pasajeros</div>
-              <div class="superficie-value-row">
-                <span id="terminalM2" class="superficie-value"></span>
-                <span class="superficie-unit">m²</span>
-              </div>
-            </div>
-            <div class="superficie-thumb">
-              <img id="imgTerminal" alt="Imagen de la terminal del aeropuerto">
-            </div>
-          </div>
-
+    <!-- KPI 1: Predio -->
+    <div class="superficie-kpi">
+      <div class="superficie-header-row">
+        <div class="superficie-label">Tamaño del predio</div>
+        <div class="superficie-value">
+          <span id="supPredio"></span> <span class="superficie-unit">hectáreas</span>
         </div>
-      </section>
+      </div>
+
+      <div class="superficie-thumb">
+        <img id="imgPredio" alt="Imagen del predio del aeropuerto">
+      </div>
+    </div>
+
+    <!-- KPI 2: Terminal -->
+    <div class="superficie-kpi">
+      <div class="superficie-header-row">
+        <div class="superficie-label">Terminal de pasajeros</div>
+        <div class="superficie-value">
+          <span id="terminalM2"></span> <span class="superficie-unit">m²</span>
+        </div>
+      </div>
+
+      <div class="superficie-thumb">
+        <img id="imgTerminal" alt="Imagen de la terminal del aeropuerto">
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
       <!-- PANEL 2: ÁREA DE MOVIMIENTO -->
       <section class="panel panel-movimiento">
