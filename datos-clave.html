@@ -1043,18 +1043,20 @@
     /* ============================================
        INICIALIZACIÓN DE MAPAS LEAFLET
        ============================================ */
-    function initMap() {
-      // Mapa de predio (OpenStreetMap)
-      map = L.map("mapPredio").setView([-34.6, -58.4], 5);
+function initMap() {
+  // Mapa de predio (OpenStreetMap)
+  map = L.map("mapPredio").setView([-34.6, -58.4], 5);
 
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-        attribution: "&copy; OpenStreetMap contributors"
-      }).addTo(map);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: "&copy; OpenStreetMap contributors"
+  }).addTo(map);
 
-      mapMarker = L.marker([-34.6, -58.4]).addTo(map);
+  mapMarker = L.marker([-34.6, -58.4]).addTo(map);
 
-      // Mapa de posiciones de estacionamiento (imagen satelital)
+  // Mapa de posiciones de estacionamiento (imagen satelital)
+  mapPSN = L.map("mapPSN").setView([-34.6, -58.4], 5);
+
   // Opción A: Esri World Imagery
   L.tileLayer(
     "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{x}/{y}",
@@ -1063,7 +1065,8 @@
       attribution: "Tiles © Esri"
     }
   ).addTo(mapPSN);
-    }
+}
+
 
     /* ============================================
        MAPA DE PREDIO (polígono o punto)
