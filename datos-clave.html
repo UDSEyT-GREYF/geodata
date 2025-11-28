@@ -993,29 +993,29 @@
     </div>
   </footer>
 
-  <!-- Leaflet JS core -->
+  <!-- Leaflet JS -->
   <script
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin="">
   </script>
 
-  <!-- Esri Leaflet (sin integrity para evitar problemas de hash) -->
-  <script src="https://unpkg.com/esri-leaflet@3.0.10/dist/esri-leaflet.js"></script>
+  <!-- Esri Leaflet (para mapa satelital) -->
+  <script src="https://unpkg.com/esri-leaflet@3/dist/esri-leaflet.js" crossorigin=""></script>
 
-  <!-- Script principal de la página -->
   <script>
     /* ============================================
        VARIABLES GLOBALES
        ============================================ */
     let aeropuertos = [];
-    let poligonos = [];      // Predios (polígonos)
-    let psnFeatures = [];    // Posiciones de estacionamiento (puntos)
+    let poligonos = [];       // Predios (polígonos)
+    let psnFeatures = [];     // Posiciones de estacionamiento (puntos)
+    let pistasFeatures = [];  // NUEVO: Pistas (MultiPolygon)
 
     const selectEl = document.getElementById("airportSelect");
 
-    let map, mapMarker, poligonoLayer; // Mapa predio
-    let mapPSN, psnLayer;              // Mapa PSN
+    let map, mapMarker, poligonoLayer;    // Mapa predio
+    let mapPSN, psnLayer, pistasLayerPSN; // Mapa PSN + pistas
 
     /* ============================================
        HELPERS DE FORMATEO
@@ -1059,11 +1059,8 @@
 
       mapMarker = L.marker([-34.6, -58.4]).addTo(map);
 
-      // 2) Mapa de posiciones de estacionamiento (imagen satelital Esri)
+      // 2) Mapa de PSN (Esri Imagery vía Esri Leaflet)
       mapPSN = L.map("mapPSN").setView([-34.6, -58.4], 5);
-
-      // Base satelital de Esri vía Esri Leaflet
-      // (necesita que esri-leaflet.js se haya cargado antes)
       L.esri.basemapLayer("Imagery").addTo(mapPSN);
     }
 
@@ -1146,7 +1143,7 @@
     }
 
     /* ============================================
-       MAPA DE POSICIONES (PSN) SOBRE SATÉLITE
+       MAPA DE POSICIONES (PSN) + PISTAS SOBRE SATÉLITE
        ============================================ */
     function updatePSNMapForAirport(a) {
       if (!mapPSN) return;
@@ -1157,71 +1154,120 @@
         psnLayer = null;
       }
 
+      // Limpiar capa previa de pistas
+      if (pistasLayerPSN) {
+        mapPSN.removeLayer(pistasLayerPSN);
+        pistasLayerPSN = null;
+      }
+
       const iata = a.IATA;
-      if (!iata || !psnFeatures.length) return;
+      if (!iata) return;
 
-      // Filtrar features PSN por IATA (aceptando IATA / iata / iata_code)
-      const featsPSN = psnFeatures.filter(f => {
-        const props = f.properties || {};
-        const code = props.IATA || props.iata || props.iata_code;
-        return String(code).toUpperCase() === String(iata).toUpperCase();
-      });
+      /* ----- 1) Filtrar PSN por IATA ----- */
+      let featsPSN = [];
+      if (psnFeatures.length) {
+        featsPSN = psnFeatures.filter(f => {
+          const props = f.properties || {};
+          const code = props.IATA || props.iata || props.iata_code;
+          return String(code).toUpperCase() === String(iata).toUpperCase();
+        });
+      }
 
-      // Si no hay PSN para este aeropuerto, centramos en su Lat/Lon
-      if (!featsPSN.length) {
-        let lat = a["Lat"] || a["LAT"];
-        let lon = a["Lon"] || a["LON"] || a["Long"];
+      if (featsPSN.length) {
+        // Crear capa PSN (EPSG:4326, coordenadas lon/lat) con marcadores circulares
+        psnLayer = L.geoJSON(featsPSN, {
+          pointToLayer: (feature, latlng) => {
+            // 🔴 Marcador pequeño rojo con borde negro
+            const marker = L.circleMarker(latlng, {
+              radius: 4,
+              color: "#000000",     // borde negro
+              weight: 1,
+              fillColor: "#ff0000", // relleno rojo
+              fillOpacity: 0.9
+            });
 
-        if (lat && lon && !isNaN(Number(lat)) && !isNaN(Number(lon))) {
-          const latNum = Number(lat);
-          const lonNum = Number(lon);
+            // Etiqueta con el valor del campo "posicion"
+            const posLabel = feature.properties?.posicion || "";
+            if (posLabel) {
+              marker.bindTooltip(posLabel, {
+                permanent: true,
+                direction: "top",
+                offset: [0, -4],
+                className: "psn-tooltip"
+              });
+            }
 
-          setTimeout(() => {
-            mapPSN.invalidateSize();
-            mapPSN.setView([latNum, lonNum], 15);
-          }, 0);
-        } else {
-          // Fallback a vista general de Argentina
-          setTimeout(() => {
-            mapPSN.invalidateSize();
-            mapPSN.setView([-34.6, -58.4], 5);
-          }, 0);
+            return marker;
+          }
+        }).addTo(mapPSN);
+      }
+
+      /* ----- 2) Filtrar PISTAS por IATA y agregarlas al mismo mapa ----- */
+      let featsPistas = [];
+      if (pistasFeatures.length) {
+        featsPistas = pistasFeatures.filter(f => {
+          const props = f.properties || {};
+          const code = props.IATA || props.iata || props.iata_code;
+          return String(code).toUpperCase() === String(iata).toUpperCase();
+        });
+      }
+
+      if (featsPistas.length) {
+        pistasLayerPSN = L.geoJSON(featsPistas, {
+          style: {
+            color: "#ffff00",      // borde amarillo
+            weight: 2,
+            fillColor: "#ffff00",
+            fillOpacity: 0.15      // relleno suave
+          }
+        }).addTo(mapPSN);
+      }
+
+      /* ----- 3) Ajustar vista (bounds combinados PSN + pistas) ----- */
+      let bounds = null;
+
+      if (psnLayer) {
+        const b1 = psnLayer.getBounds();
+        if (b1.isValid()) bounds = b1;
+      }
+
+      if (pistasLayerPSN) {
+        const b2 = pistasLayerPSN.getBounds();
+        if (b2.isValid()) {
+          if (bounds) {
+            bounds.extend(b2);
+          } else {
+            bounds = b2;
+          }
         }
+      }
+
+      // Si hay al menos PSN o pistas, centramos en sus bounds
+      if (bounds && bounds.isValid()) {
+        setTimeout(() => {
+          mapPSN.invalidateSize();
+          mapPSN.fitBounds(bounds, { padding: [5, 5] });
+        }, 0);
         return;
       }
 
-      // Crear capa PSN (EPSG:4326, coordenadas lon/lat)
-      psnLayer = L.geoJSON(featsPSN, {
-        pointToLayer: (feature, latlng) => {
-          // 🔴 Marcador pequeño rojo con borde negro
-          const marker = L.circleMarker(latlng, {
-            radius: 4,
-            color: "#000000",     // borde negro
-            weight: 1,
-            fillColor: "#ff0000", // relleno rojo
-            fillOpacity: 0.9
-          });
+      /* ----- 4) Si NO hay PSN ni pistas, centramos en Lat/Lon del aeropuerto ----- */
+      let lat = a["Lat"] || a["LAT"];
+      let lon = a["Lon"] || a["LON"] || a["Long"];
 
-          // Etiqueta con el valor del campo "posicion"
-          const posLabel = feature.properties?.posicion || "";
-          if (posLabel) {
-            marker.bindTooltip(posLabel, {
-              permanent: true,
-              direction: "top",
-              offset: [0, -4],
-              className: "psn-tooltip"
-            });
-          }
+      if (lat && lon && !isNaN(Number(lat)) && !isNaN(Number(lon))) {
+        const latNum = Number(lat);
+        const lonNum = Number(lon);
 
-          return marker;
-        }
-      }).addTo(mapPSN);
-
-      const boundsPSN = psnLayer.getBounds();
-      if (boundsPSN.isValid()) {
         setTimeout(() => {
           mapPSN.invalidateSize();
-          mapPSN.fitBounds(boundsPSN, { padding: [5, 5] });
+          mapPSN.setView([latNum, lonNum], 15);
+        }, 0);
+      } else {
+        // Fallback a vista general de Argentina
+        setTimeout(() => {
+          mapPSN.invalidateSize();
+          mapPSN.setView([-34.6, -58.4], 5);
         }, 0);
       }
     }
@@ -1514,6 +1560,16 @@
         } catch (e) {
           console.warn("No se pudieron cargar las posiciones de estacionamiento:", e);
           psnFeatures = [];
+        }
+
+        // 4) NUEVO: Pistas (MultiPolygon)
+        try {
+          const respPistas = await fetch("fuentes/pistas.geojson");
+          const gjPistas = await respPistas.json();
+          pistasFeatures = gjPistas.features || [];
+        } catch (e) {
+          console.warn("No se pudieron cargar las pistas:", e);
+          pistasFeatures = [];
         }
 
         // Selección inicial (por URL ?airport=XXX o primer aeropuerto)
