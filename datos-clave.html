@@ -1212,16 +1212,30 @@
         });
       }
 
-      if (featsPistas.length) {
-        pistasLayerPSN = L.geoJSON(featsPistas, {
-          style: {
-            color: "#ffff00",      // borde amarillo
-            weight: 2,
-            fillColor: "#ffff00",
-            fillOpacity: 0.15      // relleno suave
-          }
-        }).addTo(mapPSN);
+if (featsPistas.length) {
+  pistasLayerPSN = L.geoJSON(featsPistas, {
+    style: {
+      color: "#ffff00",      // borde amarillo
+      weight: 2,
+      fillColor: "#ffff00",
+      fillOpacity: 0.15      // relleno suave
+    },
+    onEachFeature: (feature, layer) => {
+      // Tomamos el campo "etiqueta" (o "ETIQUETA" por las dudas)
+      const label =
+        (feature.properties && (feature.properties.etiqueta || feature.properties.ETIQUETA)) || "";
+
+      if (label) {
+        layer.bindTooltip(label, {
+          permanent: true,
+          direction: "center",
+          className: "psn-tooltip" // misma clase que usás para las PSN
+        });
       }
+    }
+  }).addTo(mapPSN);
+}
+
 
       /* ----- 3) Ajustar vista (bounds combinados PSN + pistas) ----- */
       let bounds = null;
