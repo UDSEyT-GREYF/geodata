@@ -1212,7 +1212,7 @@ function getAirportCenterLatLng(a) {
       }
 
       mapUbicacion = L.map("mapUbicacion", {
-      zoomControl: false
+      zoomControl: true
       }).setView([-38, -64], 4);
 
 L.tileLayer(
@@ -1452,23 +1452,26 @@ L.tileLayer(
 function updateUbicacionMapForAirport(a) {
   if (!mapUbicacion) return;
 
-  // 1) Agregar provincias (solo una vez)
-  if (!provinciasLayer && provinciasFeatures.length) {
-    provinciasLayer = L.geoJSON(provinciasFeatures, {
-      style: {
-        color: "#b0b0b0",
-        weight: 1,
-        fillColor: "#f5f5f5",
-        fillOpacity: 0.6
-      }
-    }).addTo(mapUbicacion);
-  }
+// 1) Agregar provincias (solo una vez)
+if (!provinciasLayer && provinciasFeatures.length) {
+  provinciasLayer = L.geoJSON(provinciasFeatures, {
+    style: {
+      color: "#b0b0b0",
+      weight: 1,
+      fillColor: "#f5f5f5",
+      fillOpacity: 0.6
+    }
+  }).addTo(mapUbicacion);
 
-  // 2) Limpiar marcador anterior
-  if (ubicacionMarker) {
-    mapUbicacion.removeLayer(ubicacionMarker);
-    ubicacionMarker = null;
+  // Ajustar la vista para mostrar TODAS las provincias solo una vez
+  const provBounds = provinciasLayer.getBounds();
+  if (provBounds.isValid()) {
+    setTimeout(() => {
+      mapUbicacion.invalidateSize();
+      mapUbicacion.fitBounds(provBounds, { padding: [10, 10] });
+    }, 0);
   }
+}
 
   // 3) Obtener centro del aeropuerto (polígono o lat/lon)
   const center = getAirportCenterLatLng(a);
@@ -1491,17 +1494,13 @@ if (center) {
     });
   }
 
+} else {
+  // Sin centro conocido: solo aseguramos que el mapa se redibuje
   setTimeout(() => {
     mapUbicacion.invalidateSize();
-    mapUbicacion.setView([latNum, lonNum], 4);
   }, 0);
-  } else {
-    // Sin centro conocido: vista general estándar
-    setTimeout(() => {
-      mapUbicacion.invalidateSize();
-      mapUbicacion.setView([-38, -64], 4);
-    }, 0);
-  }
+}
+
 }
 
 
