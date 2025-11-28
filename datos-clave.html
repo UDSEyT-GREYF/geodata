@@ -611,6 +611,39 @@
       text-align: right;
     }
 
+    /* ===== KPI estilo texto para Concesión ===== */
+
+.concesion-kpi {
+  background: #ffffff;
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  padding: 6px 8px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.concesion-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.concesion-label {
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.concesion-chip {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #004b80;   /* azul igual a ubicacion y pistas */
+  white-space: normal;
+  text-align: right;
+}
+
     /* ==============================
        RESPONSIVE
        ============================== */
@@ -1001,31 +1034,47 @@
       <!-- PANEL 5: CONCESIÓN Y EXPLOTACIÓN -->
       <section class="panel panel-concesion">
       <div class="panel-header" id="hdrConcesion">Concesión y explotación</div>
-        <div class="panel-body">
-          <div class="metric-row">
-            <span>Superficie concesionada</span>
-            <span class="value" id="supConcesionadaHa">–</span>
-          </div>
-          <div class="small-label">hectáreas</div>
+<div class="panel-body">
 
-          <div class="small-label" style="margin-top:6px;">Áreas concesionadas</div>
-          <div class="small-label" id="areasConcesionadas">–</div>
+  <div class="concesion-kpi">
+    <div class="concesion-row">
+      <span class="concesion-label">Superficie concesionada</span>
+      <span class="concesion-chip" id="supConcesionadaHa">–</span>
+    </div>
 
-          <div class="small-label" style="margin-top:10px;">Explotador</div>
-          <div class="small-label" id="explotador">–</div>
+    <div class="concesion-row">
+      <span class="concesion-label">Áreas concesionadas</span>
+      <span class="concesion-chip" id="areasConcesionadas">–</span>
+    </div>
 
-          <div class="small-label" style="margin-top:6px;">Grupo de concesión</div>
-          <div class="small-label" id="grupo">–</div>
+    <div class="concesion-row">
+      <span class="concesion-label">Explotador</span>
+      <span class="concesion-chip" id="explotador">–</span>
+    </div>
 
-          <div class="small-label" style="margin-top:6px;">Concesión hasta</div>
-          <div class="small-label" id="concesionHasta">–</div>
+    <div class="concesion-row">
+      <span class="concesion-label">Grupo de concesión</span>
+      <span class="concesion-chip" id="grupo">–</span>
+    </div>
 
-          <div class="small-label" style="margin-top:6px;">Códigos</div>
-          <div class="small-label" id="codigos">–</div>
+    <div class="concesion-row">
+      <span class="concesion-label">Concesión hasta</span>
+      <span class="concesion-chip" id="concesionHasta">–</span>
+    </div>
 
-          <div class="small-label" style="margin-top:6px;">Habilitación</div>
-          <div class="small-label" id="habilitacion">–</div>
-        </div>
+    <div class="concesion-row">
+      <span class="concesion-label">Códigos</span>
+      <span class="concesion-chip" id="codigos">–</span>
+    </div>
+
+    <div class="concesion-row">
+      <span class="concesion-label">Habilitación</span>
+      <span class="concesion-chip" id="habilitacion">–</span>
+    </div>
+  </div>
+
+</div>
+
       </section>
 
       <!-- PANEL 6: EMPLEO Y POBLACIÓN -->
