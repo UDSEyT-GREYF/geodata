@@ -1048,9 +1048,9 @@
 
       // Mapa de posiciones de estacionamiento (imagen satelital)
       mapPSN = L.map("mapPSN").setView([-34.6, -58.4], 5);
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      L.tileLayer('https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png', {
         maxZoom: 19,
-        attribution: "&copy; OpenStreetMap contributors"
+        attribution: '<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | <a href="http://www.ign.gob.ar/AreaServicios/Argenmap/IntroduccionV2" target="_blank">Instituto Geográfico Nacional</a> + <a href="http://www.osm.org/copyright" target="_blank">OpenStreetMap</a>',
 
         }).addTo(mapPSN);
     }
