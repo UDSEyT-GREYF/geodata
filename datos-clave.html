@@ -451,6 +451,25 @@
       font-size: 0.5rem;
       color: #111;
     }
+/* Para valores en formato "188 hectáreas" con estilo Superficie */
+.concesion-value-group {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.concesion-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #004b80;
+  white-space: nowrap;
+}
+
+.concesion-unit {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #004b80;
+}
 
     /* ==============================
        PANEL TERMINAL (recorrido del pasajero)
@@ -1036,11 +1055,15 @@
       <div class="panel-header" id="hdrConcesion">Concesión y explotación</div>
 <div class="panel-body">
 
-  <div class="concesion-kpi">
-    <div class="concesion-row">
-      <span class="concesion-label">Superficie concesionada</span>
-      <span class="concesion-chip" id="supConcesionadaHa">–</span>
-    </div>
+<div class="concesion-row">
+  <span class="concesion-label">Superficie concesionada</span>
+
+  <span class="concesion-value-group">
+    <span class="concesion-value" id="supConcesionadaHa">–</span>
+    <span class="concesion-unit">hectáreas</span>
+  </span>
+</div>
+
 
     <div class="concesion-row">
       <span class="concesion-label">Áreas concesionadas</span>
