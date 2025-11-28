@@ -378,10 +378,39 @@
       white-space: nowrap;
     }
 
-    .mov-runway-info {
-      flex: 1;
-      text-align: right;
-    }
+.mov-runway-orient {
+  font-weight: 700;
+  color: #004b80;
+  white-space: nowrap;
+  font-size: 0.95rem;  /* más grande que antes */
+}
+
+.mov-runway-info {
+  flex: 1;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Cajita gris para la medida tipo "2.804 x 45" */
+.runway-chip {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #b3b3b3;
+  color: #ffffff;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* Material de la pista (asfalto, hormigón, etc.) */
+.mov-runway-mat {
+  font-size: 0.8rem;
+  color: #666;
+}
+
 
     .mov-psn-list {
       margin-top: 6px;
@@ -1381,30 +1410,47 @@ document.getElementById("hdrServicios").textContent =
         if (pistasSubEl) pistasSubEl.textContent = "Sin información de pistas";
       }
 
-      // Detalle de cada pista
-      pistasDetalleEl.innerHTML = "";
+// Detalle de cada pista
+pistasDetalleEl.innerHTML = "";
 
-      if (runways.length) {
-        runways.forEach(r => {
-          const row = document.createElement("div");
-          row.className = "mov-runway-row";
-          const info = [];
-          if (r.dim) info.push(r.dim);
-          if (r.mat) info.push(r.mat);
-          row.innerHTML = `
-            <span class="mov-runway-orient">${r.ori}</span>
-            <span class="mov-runway-info">${info.join(" · ")}</span>
-          `;
-          pistasDetalleEl.appendChild(row);
-        });
-      } else if (orientRaw || dimsRaw || matRaw) {
-        const row = document.createElement("div");
-        row.className = "mov-runway-row";
-        row.textContent = `${orientRaw} ${dimsRaw} ${matRaw}`.trim();
-        pistasDetalleEl.appendChild(row);
-      } else {
-        pistasDetalleEl.textContent = "–";
-      }
+if (runways.length) {
+  runways.forEach(r => {
+    const row = document.createElement("div");
+    row.className = "mov-runway-row";
+
+    const dimText = r.dim || "";
+    const matText = r.mat || "";
+
+    row.innerHTML = `
+      <span class="mov-runway-orient">Pista ${r.ori}</span>
+      <span class="mov-runway-info">
+        ${dimText ? `<span class="runway-chip">${dimText}</span>` : ""}
+        ${matText ? `<span class="mov-runway-mat">${matText}</span>` : ""}
+      </span>
+    `;
+    pistasDetalleEl.appendChild(row);
+  });
+} else if (orientRaw || dimsRaw || matRaw) {
+  // Caso simple (solo un registro en campos planos)
+  const row = document.createElement("div");
+  row.className = "mov-runway-row";
+
+  const dimText = dimsRaw || "";
+  const matText = matRaw || "";
+  const oriText = orientRaw ? `Pista ${orientRaw}` : "";
+
+  row.innerHTML = `
+    <span class="mov-runway-orient">${oriText}</span>
+    <span class="mov-runway-info">
+      ${dimText ? `<span class="runway-chip">${dimText}</span>` : ""}
+      ${matText ? `<span class="mov-runway-mat">${matText}</span>` : ""}
+    </span>
+  `;
+  pistasDetalleEl.appendChild(row);
+} else {
+  pistasDetalleEl.textContent = "–";
+}
+
 
       /* ----- PSN: comerciales / aviación general + total ----- */
       // Comerciales = PSNRemotasC + PSNRemotasC_1
