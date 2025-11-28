@@ -536,10 +536,58 @@
       margin: 4px 0;
     }
 
-    /* ==============================
-       PANEL UBICACIÓN (solo texto)
-       ============================== */
-    .panel-ubicacion { grid-area: ubicacion; }
+/* ==============================
+   PANEL UBICACIÓN Y ACCESIBILIDAD
+   ============================== */
+.panel-ubicacion { grid-area: ubicacion; }
+
+.ubicacion-kpi {
+  background: #ffffff;
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  padding: 6px 8px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ubi-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.ubi-label {
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.ubi-chip {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #b3b3b3;   /* gris tipo chip de pista */
+  color: #ffffff;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* Contenedor del mapa de ubicación */
+.ubicacion-map-wrapper {
+  margin-top: 6px;
+}
+
+.map-ubicacion {
+  width: 100%;
+  height: 220px;               /* podés subirlo a 240–260 si querés más mapa */
+  border-radius: 4px;
+  border: 1px solid #d0d7e2;
+  overflow: hidden;
+}
+
 
     /* ==============================
        PANELES CONCESIÓN / EMPLEO / SERVICIOS
@@ -921,19 +969,36 @@
       </section>
 
       <!-- PANEL 4: UBICACIÓN Y ACCESIBILIDAD (solo texto) -->
-      <section class="panel panel-ubicacion">
-      <div class="panel-header" id="hdrUbicacion">Ubicación y accesibilidad</div>
-        <div class="panel-body">
-          <div class="small-label">Ubicación</div>
-          <div class="small-label" id="ubicacionText">–</div>
+<section class="panel panel-ubicacion">
+  <div class="panel-header" id="hdrUbicacion">Ubicación y accesibilidad</div>
+  <div class="panel-body">
 
-          <div class="small-label" style="margin-top:6px;">Distancia al centro de la ciudad</div>
-          <div class="small-label" id="distanciaCentro">–</div>
+    <!-- KPI tipo fila (similar a Pistas) -->
+    <div class="ubicacion-kpi">
+      <div class="ubi-row">
+        <span class="ubi-label">Ubicación</span>
+        <span class="ubi-chip" id="ubicacionText">–</span>
+      </div>
 
-          <div class="small-label" style="margin-top:6px;">Horario de operación</div>
-          <div class="small-label" id="horarioOperacion">–</div>
-        </div>
-      </section>
+      <div class="ubi-row">
+        <span class="ubi-label">Distancia al centro de la ciudad</span>
+        <span class="ubi-chip" id="distanciaCentro">–</span>
+      </div>
+
+      <div class="ubi-row">
+        <span class="ubi-label">Horario de operación</span>
+        <span class="ubi-chip" id="horarioOperacion">–</span>
+      </div>
+    </div>
+
+    <!-- Mapa de ubicación nacional -->
+    <div class="ubicacion-map-wrapper">
+      <div id="mapUbicacion" class="map-ubicacion"></div>
+    </div>
+
+  </div>
+</section>
+
 
       <!-- PANEL 5: CONCESIÓN Y EXPLOTACIÓN -->
       <section class="panel panel-concesion">
@@ -1046,8 +1111,12 @@
 
     const selectEl = document.getElementById("airportSelect");
 
-    let map, mapMarker, poligonoLayer;    // Mapa predio
-    let mapPSN, psnLayer, pistasLayerPSN; // Mapa PSN + pistas
+let map, mapMarker, poligonoLayer;           // Mapa predio
+let mapPSN, psnLayer, pistasLayerPSN;        // Mapa PSN + pistas
+let mapUbicacion, ubicacionMarker, provinciasLayer; // Mapa nacional
+
+let provinciasFeatures = [];                 // GeoJSON de provincias (opcional)
+
 
     /* ============================================
        HELPERS DE FORMATEO
@@ -1094,7 +1163,16 @@
       // 2) Mapa de PSN (Esri Imagery vía Esri Leaflet)
       mapPSN = L.map("mapPSN").setView([-34.6, -58.4], 5);
       L.esri.basemapLayer("Imagery").addTo(mapPSN);
-    }
+      // 3) Mapa de ubicación nacional (OSM)
+  mapUbicacion = L.map("mapUbicacion", {
+    zoomControl: false
+  }).setView([-38, -64], 4);   // centro aproximado de Argentina
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 10,
+    attribution: "&copy; OpenStreetMap contributors"
+  }).addTo(mapUbicacion);
+}
 
     /* ============================================
        MAPA DE PREDIO (polígono o punto)
@@ -1316,6 +1394,59 @@
         }, 0);
       }
     }
+/* ============================================
+   MAPA DE UBICACIÓN NACIONAL
+   ============================================ */
+function updateUbicacionMapForAirport(a) {
+  if (!mapUbicacion) return;
+
+  // 1) Agregar provincias (solo una vez)
+  if (!provinciasLayer && provinciasFeatures.length) {
+    provinciasLayer = L.geoJSON(provinciasFeatures, {
+      style: {
+        color: "#b0b0b0",
+        weight: 1,
+        fillColor: "#f5f5f5",
+        fillOpacity: 0.6
+      }
+    }).addTo(mapUbicacion);
+  }
+
+  // 2) Limpiar marcador anterior
+  if (ubicacionMarker) {
+    mapUbicacion.removeLayer(ubicacionMarker);
+    ubicacionMarker = null;
+  }
+
+  // 3) Tomar coordenadas del aeropuerto
+  let lat = a["Lat"] || a["LAT"];
+  let lon = a["Lon"] || a["LON"] || a["Long"];
+
+  if (lat && lon && !isNaN(Number(lat)) && !isNaN(Number(lon))) {
+    const latNum = Number(lat);
+    const lonNum = Number(lon);
+
+    ubicacionMarker = L.circleMarker([latNum, lonNum], {
+      radius: 5,
+      color: "#d00000",
+      weight: 2,
+      fillColor: "#ff6666",
+      fillOpacity: 0.95
+    }).addTo(mapUbicacion);
+
+    // Vista general del país, pero recentrada
+    setTimeout(() => {
+      mapUbicacion.invalidateSize();
+      mapUbicacion.setView([latNum, lonNum], 4);
+    }, 0);
+  } else {
+    // Sin coordenadas: vista general estándar
+    setTimeout(() => {
+      mapUbicacion.invalidateSize();
+      mapUbicacion.setView([-38, -64], 4);
+    }, 0);
+  }
+}
 
     /* ============================================
        RENDER PRINCIPAL DEL AEROPUERTO
@@ -1612,6 +1743,7 @@ if (runways.length) {
       /* ----- ACTUALIZAR MAPAS ----- */
       updateMapForAirport(a);
       updatePSNMapForAirport(a);
+      updateUbicacionMapForAirport(a);
     }
 
     /* ============================================
@@ -1670,6 +1802,16 @@ if (runways.length) {
           console.warn("No se pudieron cargar las pistas:", e);
           pistasFeatures = [];
         }
+
+        // 5) Provincias (para mapa nacional) - opcional
+try {
+  const respProv = await fetch("fuentes/provincias.geojson");
+  const gjProv = await respProv.json();
+  provinciasFeatures = gjProv.features || [];
+} catch (e) {
+  console.warn("No se pudieron cargar las provincias:", e);
+  provinciasFeatures = [];
+}
 
         // Selección inicial (por URL ?airport=XXX o primer aeropuerto)
         const params = new URLSearchParams(window.location.search);
