@@ -1318,7 +1318,7 @@
       const imgTerminal = document.getElementById("imgTerminal");
       const iataUpper = String(a.IATA || "").toUpperCase();
       const terminalProp = clean(a["imagenAeropuerto"]);
-      const terminalSrc = terminalProp || (iataUpper ? `img/Terminales/${iataUpper}_terminal.png` : "";
+      const terminalSrc = terminalProp || (iataUpper ? `img/Terminales/${iataUpper}_terminal.png` : "");
 
       imgTerminal.style.display = terminalSrc ? "block" : "none";
       imgTerminal.src = terminalSrc;
