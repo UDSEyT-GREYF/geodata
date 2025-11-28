@@ -1044,7 +1044,7 @@
        INICIALIZACIÓN DE MAPAS LEAFLET
        ============================================ */
 function initMap() {
-  // Mapa de predio (OpenStreetMap)
+  // 1) Mapa de predio (OpenStreetMap)
   map = L.map("mapPredio").setView([-34.6, -58.4], 5);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -1054,19 +1054,19 @@ function initMap() {
 
   mapMarker = L.marker([-34.6, -58.4]).addTo(map);
 
+  mapMarker = L.marker([-34.6, -58.4]).addTo(map);
   // Mapa de posiciones de estacionamiento (imagen satelital)
+  // 2) Mapa de PSN (Esri Imagery vía Esri Leaflet)
   mapPSN = L.map("mapPSN").setView([-34.6, -58.4], 5);
 
-  // Opción A: Esri World Imagery
-  L.tileLayer(
-    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{x}/{y}",
-    {
-      maxZoom: 19,
-      attribution: "Tiles © Esri"
-    }
-  ).addTo(mapPSN);
+  // 👇 en lugar de tileLayer usamos el helper de Esri Leaflet
+  L.esri.basemapLayer('Imagery').addTo(mapPSN);
 }
 
+<script src="https://unpkg.com/esri-leaflet@3.0.10/dist/esri-leaflet.js"
+  integrity="sha512-qjQnJbZ+Z4uOEvqDYO7BviRhxUtU6DdzJ3G1aOukX390lQcVv3gZz8H1Ry49FTZqHwyj/wBjO6wZlC2KVDmR1g=="
+  crossorigin="">
+</script>
 
     /* ============================================
        MAPA DE PREDIO (polígono o punto)
