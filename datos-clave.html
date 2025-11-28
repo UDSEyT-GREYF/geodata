@@ -580,7 +580,7 @@
 
 .map-ubicacion {
   width: 100%;
-  height: 480px !important;  /* probá 300–340 según el espacio que veas */
+  height: 500px !important;  /* probá 300–340 según el espacio que veas */
   border-radius: 4px;
   border: 1px solid #d0d7e2;
   overflow: hidden;
@@ -991,7 +991,7 @@
 
     <!-- Mapa de ubicación nacional -->
     <div class="ubicacion-map-wrapper">
-      <div id="mapUbicacion" class="map-ubicacion" style="height:480px;"></div>
+      <div id="mapUbicacion" class="map-ubicacion" style="height:500px;"></div>
     </div>
 
   </div>
@@ -1208,7 +1208,7 @@ function getAirportCenterLatLng(a) {
       // 3) Mapa de ubicación nacional (OSM)
       const mapUbDiv = document.getElementById("mapUbicacion");
       if (mapUbDiv) {
-        mapUbDiv.style.height = "480px";  // FORZAMOS la altura desde JS
+        mapUbDiv.style.height = "500px";  // FORZAMOS la altura desde JS
       }
 
       mapUbicacion = L.map("mapUbicacion", {
