@@ -1196,20 +1196,25 @@ function getAirportCenterLatLng(a) {
       // 2) Mapa de PSN (Esri Imagery vía Esri Leaflet)
       mapPSN = L.map("mapPSN").setView([-34.6, -58.4], 5);
       L.esri.basemapLayer("Imagery").addTo(mapPSN);
-// 3) Mapa de ubicación nacional (OSM)
-const mapUbDiv = document.getElementById("mapUbicacion");
-if (mapUbDiv) {
-  mapUbDiv.style.height = "320px";  // FORZAMOS la altura desde JS
-}
 
-mapUbicacion = L.map("mapUbicacion", {
-  zoomControl: false
-}).setView([-38, -64], 4);
+      // 3) Mapa de ubicación nacional (OSM)
+      const mapUbDiv = document.getElementById("mapUbicacion");
+      if (mapUbDiv) {
+        mapUbDiv.style.height = "320px";  // FORZAMOS la altura desde JS
+      }
 
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 10,
-  attribution: "&copy; OpenStreetMap contributors"
-}).addTo(mapUbicacion);
+      mapUbicacion = L.map("mapUbicacion", {
+      zoomControl: false
+      }).setView([-38, -64], 4);
+
+L.tileLayer(
+  "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG:3857@png/{z}/{x}/{-y}.png",
+  {
+    maxZoom: 14,
+    tms: true,
+    attribution: "© IGN Argentina - Argenmap"
+  }
+).addTo(mapUbicacion);
 
 }
 
@@ -1463,13 +1468,14 @@ function updateUbicacionMapForAirport(a) {
   if (center) {
     const [latNum, lonNum] = center;
 
-    ubicacionMarker = L.circleMarker([latNum, lonNum], {
-      radius: 5,
-      color: "#d00000",
-      weight: 2,
-      fillColor: "#ff6666",
-      fillOpacity: 0.95
-    }).addTo(mapUbicacion);
+ubicacionMarker = L.circleMarker([latNum, lonNum], {
+  radius: 6,
+  color: "#004b80",     // borde azul oscuro
+  weight: 2,
+  fillColor: "#2a5fa0", // relleno azul más claro
+  fillOpacity: 0.95
+}).addTo(mapUbicacion);
+
 
     const iataLabel = a["IATA"] ? String(a["IATA"]).toUpperCase() : "";
     if (iataLabel) {
