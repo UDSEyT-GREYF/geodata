@@ -1215,10 +1215,10 @@
 if (featsPistas.length) {
   pistasLayerPSN = L.geoJSON(featsPistas, {
     style: {
-      color: "#ffff00",      // borde amarillo
+      color: "#222",      // gris oscuro
       weight: 1,
       fillColor: "#ffff00",
-      fillOpacity: 0.1      // relleno suave
+      fillOpacity: 0.15      // relleno suave
     },
     onEachFeature: (feature, layer) => {
       // Tomamos el campo "etiqueta" (o "ETIQUETA" por las dudas)
