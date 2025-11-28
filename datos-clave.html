@@ -1179,19 +1179,32 @@
       }
 
       // Crear capa PSN (EPSG:4326, coordenadas lon/lat)
-      psnLayer = L.geoJSON(featsPSN, {
-        pointToLayer: (feature, latlng) => {
-          const tipo = (feature.properties?.tipo || "").toLowerCase();
-          const color = tipo.includes("general") ? "#ffb703" : "#219ebc";
-          return L.circleMarker(latlng, {
-            radius: 5,
-            color,
-            weight: 1,
-            fillColor: color,
-            fillOpacity: 0.9
-          });
-        }
-      }).addTo(mapPSN);
+psnLayer = L.geoJSON(featsPSN, {
+  pointToLayer: (feature, latlng) => {
+    // 🔴 Marcador pequeño rojo con borde negro
+    const marker = L.circleMarker(latlng, {
+      radius: 4,
+      color: "#000000",     // borde negro
+      weight: 1,
+      fillColor: "#ff0000", // relleno rojo
+      fillOpacity: 0.9
+    });
+
+    // Etiqueta con el valor del campo "posicion"
+    const posLabel = feature.properties?.posicion || "";
+    if (posLabel) {
+      marker.bindTooltip(posLabel, {
+        permanent: true,
+        direction: "top",
+        offset: [0, -4],
+        className: "psn-tooltip"
+      });
+    }
+
+    return marker;
+  }
+}).addTo(mapPSN);
+
 
       const boundsPSN = psnLayer.getBounds();
       if (boundsPSN.isValid()) {
