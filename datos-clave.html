@@ -1049,8 +1049,7 @@
       // Mapa de posiciones de estacionamiento (imagen satelital)
       mapPSN = L.map("mapPSN").setView([-34.6, -58.4], 5);
 
-      L.tileLayer(
-        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{x}/{y}",
+      L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{x}/{y}",
         {
           maxZoom: 19,
           attribution: "Tiles © Esri"
