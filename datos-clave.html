@@ -1403,6 +1403,48 @@ if (featsPistas.length) {
       } else {
         pistasDetalleEl.textContent = "–";
       }
+      /* ----- PSN: comerciales / aviación general + total ----- */
+      // Comerciales = PSNRemotasC + PSNRemotasC_1
+      // Aviación general = PSN_C
+
+      const rawPsnRemC  = a["PSNRemotasC"];
+      const rawPsnRemC1 = a["PSNRemotasC_1"];
+      const rawPsnGen   = a["PSN_C"];
+
+      // Suma para Aeronaves comerciales
+      const psnComNum = (Number(rawPsnRemC) || 0) + (Number(rawPsnRemC1) || 0);
+      const hasPsnCom = rawPsnRemC !== undefined || rawPsnRemC1 !== undefined;
+
+      // Valor para Aviación general
+      const psnGenNum = Number(rawPsnGen);
+      const hasPsnGen = rawPsnGen !== undefined && rawPsnGen !== "";
+
+      // Texto en las “burbujas” de la sección Área de movimiento
+      const psnComEl = document.getElementById("psnCom");
+      const psnGenEl = document.getElementById("psnGen");
+      const badgePsnTotalEl = document.getElementById("badgePsnTotal");
+
+      // Aeronaves comerciales
+      if (psnComEl) {
+        psnComEl.textContent =
+          hasPsnCom && !isNaN(psnComNum) ? formatNumber(psnComNum) : "–";
+      }
+
+      // Aviación general
+      if (psnGenEl) {
+        psnGenEl.textContent =
+          hasPsnGen && !isNaN(psnGenNum) ? formatNumber(psnGenNum) : "–";
+      }
+
+      // Total de PSN (comerciales + aviación general) para la burbuja morada
+      let totalPsn = 0;
+      if (hasPsnCom && !isNaN(psnComNum)) totalPsn += psnComNum;
+      if (hasPsnGen && !isNaN(psnGenNum)) totalPsn += psnGenNum;
+
+      if (badgePsnTotalEl) {
+        badgePsnTotalEl.textContent =
+          totalPsn ? formatNumber(totalPsn) : "–";
+      }
 
 
       /* ----- TERMINAL (recorrido) ----- */
