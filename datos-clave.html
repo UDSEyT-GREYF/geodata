@@ -345,7 +345,7 @@
     /* ==============================
        PANEL ÁREA DE MOVIMIENTO
        - estilo tipo KPI
-       - pistas + PSN + ayudas
+       - pistas + PSN
        - mapa de PSN satelital
        ============================== */
     .panel-movimiento {
@@ -414,18 +414,6 @@
       height: 220px;   /* alto del mapa de PSN */
     }
 
-    .mov-aids {
-      margin-top: 4px;
-      padding-top: 4px;
-      border-top: 1px solid #e0e7f0;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .mov-aids strong {
-      font-weight: 600;
-    }
-
     .psn-tooltip {
       background: rgba(255, 255, 255, 0.9);
       border: 1px solid #333;
@@ -470,6 +458,12 @@
       width: 32px;
       height: 32px;
       object-fit: contain;
+    }
+
+    /* Iconos más grandes SOLO en Área de movimiento (Pistas + PSN) */
+    .panel-movimiento .terminal-icon img {
+      width: 48px;
+      height: 48px;
     }
 
     .terminal-text {
@@ -757,7 +751,6 @@
               </div>
             </div>
 
-            
             <!-- Mapa Leaflet de PSN sobre satélite -->
             <div class="superficie-thumb" style="margin-top:6px;">
               <div id="mapPSN" class="map-psn"></div>
@@ -766,8 +759,6 @@
 
         </div>
       </section>
-
-
 
       <!-- PANEL 3: TERMINAL DE PASAJEROS (recorrido) -->
       <section class="panel panel-terminal">
@@ -1215,30 +1206,29 @@
         });
       }
 
-if (featsPistas.length) {
-  pistasLayerPSN = L.geoJSON(featsPistas, {
-    style: {
-      color: "#222",      // gris oscuro
-      weight: 1,
-      fillColor: "#ffff00",
-      fillOpacity: 0.15      // relleno suave
-    },
-    onEachFeature: (feature, layer) => {
-      // Tomamos el campo "etiqueta" (o "ETIQUETA" por las dudas)
-      const label =
-        (feature.properties && (feature.properties.etiqueta || feature.properties.ETIQUETA)) || "";
+      if (featsPistas.length) {
+        pistasLayerPSN = L.geoJSON(featsPistas, {
+          style: {
+            color: "#222",      // gris oscuro
+            weight: 1,
+            fillColor: "#ffff00",
+            fillOpacity: 0.15      // relleno suave
+          },
+          onEachFeature: (feature, layer) => {
+            // Tomamos el campo "etiqueta" (o "ETIQUETA" por las dudas)
+            const label =
+              (feature.properties && (feature.properties.etiqueta || feature.properties.ETIQUETA)) || "";
 
-      if (label) {
-        layer.bindTooltip(label, {
-          permanent: true,
-          direction: "center",
-          className: "psn-tooltip" // misma clase que usás para las PSN
-        });
+            if (label) {
+              layer.bindTooltip(label, {
+                permanent: true,
+                direction: "center",
+                className: "psn-tooltip" // misma clase que usás para las PSN
+              });
+            }
+          }
+        }).addTo(mapPSN);
       }
-    }
-  }).addTo(mapPSN);
-}
-
 
       /* ----- 3) Ajustar vista (bounds combinados PSN + pistas) ----- */
       let bounds = null;
@@ -1328,7 +1318,7 @@ if (featsPistas.length) {
       const imgTerminal = document.getElementById("imgTerminal");
       const iataUpper = String(a.IATA || "").toUpperCase();
       const terminalProp = clean(a["imagenAeropuerto"]);
-      const terminalSrc = terminalProp || (iataUpper ? `img/Terminales/${iataUpper}_terminal.png` : "");
+      const terminalSrc = terminalProp || (iataUpper ? `img/Terminales/${iataUpper}_terminal.png` : "";
 
       imgTerminal.style.display = terminalSrc ? "block" : "none";
       imgTerminal.src = terminalSrc;
@@ -1355,8 +1345,8 @@ if (featsPistas.length) {
         : [];
 
       const cant = runways.length || (orientRaw ? 1 : 0);
-      const badgeCantEl   = document.getElementById("badgeCantPistas");
-      const pistasSubEl   = document.getElementById("pistasSubtitulo");
+      const badgeCantEl     = document.getElementById("badgeCantPistas");
+      const pistasSubEl     = document.getElementById("pistasSubtitulo");
       const pistasDetalleEl = document.getElementById("pistasDetalle");
 
       // Cantidad de pistas + subtítulo dinámico
@@ -1396,6 +1386,7 @@ if (featsPistas.length) {
       } else {
         pistasDetalleEl.textContent = "–";
       }
+
       /* ----- PSN: comerciales / aviación general + total ----- */
       // Comerciales = PSNRemotasC + PSNRemotasC_1
       // Aviación general = PSN_C
@@ -1413,8 +1404,8 @@ if (featsPistas.length) {
       const hasPsnGen = rawPsnGen !== undefined && rawPsnGen !== "";
 
       // Texto en las “burbujas” de la sección Área de movimiento
-      const psnComEl = document.getElementById("psnCom");
-      const psnGenEl = document.getElementById("psnGen");
+      const psnComEl       = document.getElementById("psnCom");
+      const psnGenEl       = document.getElementById("psnGen");
       const badgePsnTotalEl = document.getElementById("badgePsnTotal");
 
       // Aeronaves comerciales
@@ -1438,7 +1429,6 @@ if (featsPistas.length) {
         badgePsnTotalEl.textContent =
           totalPsn ? formatNumber(totalPsn) : "–";
       }
-
 
       /* ----- TERMINAL (recorrido) ----- */
       document.getElementById("terminalM2Dup").textContent =
@@ -1539,16 +1529,6 @@ if (featsPistas.length) {
       document.getElementById("claveRef").textContent =
         clean(a["CLAVE DE REFERENCIA DE AERÓDROMO"]) || "–";
       document.getElementById("categoriaSEI").textContent =
-        clean(a["CATEGORÍA SEI NORMAL"]) || "–";
-
-      // Duplicamos datos de ayudas en Área de movimiento
-      document.getElementById("radioayudas_mov").textContent =
-        clean(a["Radioayudas"]) || "–";
-      document.getElementById("ayudasVisuales_mov").textContent =
-        clean(a["Ayudas visuales"]) || "–";
-      document.getElementById("claveRef_mov").textContent =
-        clean(a["CLAVE DE REFERENCIA DE AERÓDROMO"]) || "–";
-      document.getElementById("categoriaSEI_mov").textContent =
         clean(a["CATEGORÍA SEI NORMAL"]) || "–";
 
       /* ----- FOOTER ----- */
