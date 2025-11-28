@@ -580,7 +580,7 @@
 
 .map-ubicacion {
   width: 100%;
-  height: 280px;               /* podés subirlo a 240–260 si querés más mapa */
+  height: 300px;               /* podés subirlo a 240–260 si querés más mapa */
   border-radius: 4px;
   border: 1px solid #d0d7e2;
   overflow: hidden;
@@ -1143,6 +1143,41 @@ let provinciasFeatures = [];                 // GeoJSON de provincias (opcional)
         .map(s => s.trim())
         .filter(Boolean);
     }
+// Devuelve [lat, lon] del centro del aeropuerto
+// usando primero el polígono de predio y, si no hay, lat/lon del registro
+function getAirportCenterLatLng(a) {
+  const iata = a.IATA;
+
+  // 1) Intentar con polígono de predio
+  if (poligonos.length && iata) {
+    const feats = poligonos.filter(f => {
+      const props = f.properties || {};
+      const code = props.IATA || props.iata || props.iata_code;
+      return String(code).toUpperCase() === String(iata).toUpperCase();
+    });
+
+    if (feats.length) {
+      // No hace falta agregarlo al mapa, solo usamos bounds
+      const tempLayer = L.geoJSON(feats);
+      const bounds = tempLayer.getBounds();
+      if (bounds.isValid()) {
+        const center = bounds.getCenter();
+        return [center.lat, center.lng];
+      }
+    }
+  }
+
+  // 2) Fallback: campos Lat / Lon del GeoJSON de aeropuertos, si existen
+  let lat = a["Lat"] || a["LAT"];
+  let lon = a["Lon"] || a["LON"] || a["Long"];
+
+  if (lat && lon && !isNaN(Number(lat)) && !isNaN(Number(lon))) {
+    return [Number(lat), Number(lon)];
+  }
+
+  // 3) Si no hay nada, devolvemos null
+  return null;
+}
 
     /* ============================================
        INICIALIZACIÓN DE MAPAS LEAFLET
@@ -1416,13 +1451,11 @@ function updateUbicacionMapForAirport(a) {
     ubicacionMarker = null;
   }
 
-  // 3) Tomar coordenadas del aeropuerto
-  let lat = a["Lat"] || a["LAT"];
-  let lon = a["Lon"] || a["LON"] || a["Long"];
+  // 3) Obtener centro del aeropuerto (polígono o lat/lon)
+  const center = getAirportCenterLatLng(a);
 
-  if (lat && lon && !isNaN(Number(lat)) && !isNaN(Number(lon))) {
-    const latNum = Number(lat);
-    const lonNum = Number(lon);
+  if (center) {
+    const [latNum, lonNum] = center;
 
     ubicacionMarker = L.circleMarker([latNum, lonNum], {
       radius: 5,
@@ -1432,30 +1465,30 @@ function updateUbicacionMapForAirport(a) {
       fillOpacity: 0.95
     }).addTo(mapUbicacion);
 
-  // Etiqueta con el código IATA
-  const iataLabel = a["IATA"] ? String(a["IATA"]).toUpperCase() : "";
-  if (iataLabel) {
-    ubicacionMarker.bindTooltip(iataLabel, {
-      permanent: true,
-      direction: "top",
-      offset: [0, -4],
-      className: "psn-tooltip"  // reutilizamos estilo de tooltip chiquito
-    });
-  }
-    
-    // Vista general del país, pero recentrada
+    const iataLabel = a["IATA"] ? String(a["IATA"]).toUpperCase() : "";
+    if (iataLabel) {
+      ubicacionMarker.bindTooltip(iataLabel, {
+        permanent: true,
+        direction: "top",
+        offset: [0, -4],
+        className: "psn-tooltip"
+      });
+    }
+
+    // Vista general del país, pero centrada en el aeropuerto
     setTimeout(() => {
       mapUbicacion.invalidateSize();
       mapUbicacion.setView([latNum, lonNum], 4);
     }, 0);
   } else {
-    // Sin coordenadas: vista general estándar
+    // Sin centro conocido: vista general estándar
     setTimeout(() => {
       mapUbicacion.invalidateSize();
       mapUbicacion.setView([-38, -64], 4);
     }, 0);
   }
 }
+
 
     /* ============================================
        RENDER PRINCIPAL DEL AEROPUERTO
