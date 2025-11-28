@@ -1287,6 +1287,25 @@
       if (!a) return;
 
       const nombre = clean(a["Aeropuerto"]) || clean(a["Nombre del Aeropuerto"]) || a.IATA;
+
+      const tituloAeroSeccion = `${nombre} (${a.IATA})`;
+
+document.getElementById("hdrSuperficie").textContent =
+  `Superficie ${tituloAeroSeccion}`;
+document.getElementById("hdrMovimiento").textContent =
+  `Área de movimiento ${tituloAeroSeccion}`;
+document.getElementById("hdrTerminal").textContent =
+  `Terminal de pasajeros ${tituloAeroSeccion}`;
+document.getElementById("hdrUbicacion").textContent =
+  `Ubicación y accesibilidad ${tituloAeroSeccion}`;
+document.getElementById("hdrConcesion").textContent =
+  `Concesión y explotación ${tituloAeroSeccion}`;
+document.getElementById("hdrEmpleo").textContent =
+  `Empleo y área de influencia ${tituloAeroSeccion}`;
+document.getElementById("hdrServicios").textContent =
+  `Servicios y ayudas ${tituloAeroSeccion}`;
+
+      
       document.getElementById("pageTitle").textContent =
         `Aeropuerto de ${nombre} (${a.IATA})`;
       document.getElementById("pageSubtitle").textContent =
