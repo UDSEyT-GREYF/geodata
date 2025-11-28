@@ -1115,6 +1115,14 @@ let mapUbicacion, ubicacionMarker, provinciasLayer; // Mapa nacional
 
 let provinciasFeatures = [];                 // GeoJSON de provincias (opcional)
 
+    // Icono para el aeropuerto seleccionado en el mapa nacional
+const airportIcon = L.icon({
+  iconUrl: "img/icons/AeropuertosSNA.png",
+  iconSize:     [32, 32],  // ajustá si lo ves muy grande/chico
+  iconAnchor:   [16, 16],  // centro del ícono
+  tooltipAnchor:[0, -18]   // dónde aparece la etiqueta IATA respecto del ícono
+});
+
 
     /* ============================================
        HELPERS DE FORMATEO
@@ -1465,33 +1473,28 @@ function updateUbicacionMapForAirport(a) {
   // 3) Obtener centro del aeropuerto (polígono o lat/lon)
   const center = getAirportCenterLatLng(a);
 
-  if (center) {
-    const [latNum, lonNum] = center;
+if (center) {
+  const [latNum, lonNum] = center;
 
-ubicacionMarker = L.circleMarker([latNum, lonNum], {
-  radius: 6,
-  color: "#004b80",     // borde azul oscuro
-  weight: 2,
-  fillColor: "#2a5fa0", // relleno azul más claro
-  fillOpacity: 0.95
-}).addTo(mapUbicacion);
+  // 🔹 Marker con icono personalizado
+  ubicacionMarker = L.marker([latNum, lonNum], {
+    icon: airportIcon
+  }).addTo(mapUbicacion);
 
+  const iataLabel = a["IATA"] ? String(a["IATA"]).toUpperCase() : "";
+  if (iataLabel) {
+    ubicacionMarker.bindTooltip(iataLabel, {
+      permanent: true,
+      direction: "top",
+      offset: [0, -4],
+      className: "psn-tooltip"
+    });
+  }
 
-    const iataLabel = a["IATA"] ? String(a["IATA"]).toUpperCase() : "";
-    if (iataLabel) {
-      ubicacionMarker.bindTooltip(iataLabel, {
-        permanent: true,
-        direction: "top",
-        offset: [0, -4],
-        className: "psn-tooltip"
-      });
-    }
-
-    // Vista general del país, pero centrada en el aeropuerto
-    setTimeout(() => {
-      mapUbicacion.invalidateSize();
-      mapUbicacion.setView([latNum, lonNum], 4);
-    }, 0);
+  setTimeout(() => {
+    mapUbicacion.invalidateSize();
+    mapUbicacion.setView([latNum, lonNum], 4);
+  }, 0);
   } else {
     // Sin centro conocido: vista general estándar
     setTimeout(() => {
