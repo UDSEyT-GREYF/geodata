@@ -1196,15 +1196,21 @@ function getAirportCenterLatLng(a) {
       // 2) Mapa de PSN (Esri Imagery vía Esri Leaflet)
       mapPSN = L.map("mapPSN").setView([-34.6, -58.4], 5);
       L.esri.basemapLayer("Imagery").addTo(mapPSN);
-      // 3) Mapa de ubicación nacional (OSM)
-  mapUbicacion = L.map("mapUbicacion", {
-    zoomControl: false
-  }).setView([-38, -64], 4);   // centro aproximado de Argentina
+// 3) Mapa de ubicación nacional (OSM)
+const mapUbDiv = document.getElementById("mapUbicacion");
+if (mapUbDiv) {
+  mapUbDiv.style.height = "320px";  // FORZAMOS la altura desde JS
+}
 
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 10,
-    attribution: "&copy; OpenStreetMap contributors"
-  }).addTo(mapUbicacion);
+mapUbicacion = L.map("mapUbicacion", {
+  zoomControl: false
+}).setView([-38, -64], 4);
+
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 10,
+  attribution: "&copy; OpenStreetMap contributors"
+}).addTo(mapUbicacion);
+
 }
 
     /* ============================================
