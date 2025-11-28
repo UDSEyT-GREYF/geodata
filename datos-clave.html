@@ -1463,15 +1463,20 @@ if (!provinciasLayer && provinciasFeatures.length) {
     }
   }).addTo(mapUbicacion);
 
-  // Ajustar la vista para mostrar TODAS las provincias solo una vez
+  // Ajustar la vista para mostrar TODAS las provincias y acercar un poco
   const provBounds = provinciasLayer.getBounds();
   if (provBounds.isValid()) {
     setTimeout(() => {
       mapUbicacion.invalidateSize();
       mapUbicacion.fitBounds(provBounds, { padding: [10, 10] });
+
+      // Acercamos un nivel de zoom para que no se vean tan chiquitas
+      const z = mapUbicacion.getZoom();
+      mapUbicacion.setZoom(z + 1);
     }, 0);
   }
 }
+
 
   // 3) Obtener centro del aeropuerto (polígono o lat/lon)
   const center = getAirportCenterLatLng(a);
