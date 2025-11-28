@@ -1319,21 +1319,21 @@
 
       const tituloAeroSeccion = `${nombre} (${a.IATA})`;
 
-document.getElementById("hdrSuperficie").textContent =
-  `Superficie ${tituloAeroSeccion}`;
-document.getElementById("hdrMovimiento").textContent =
-  `Área de movimiento ${tituloAeroSeccion}`;
-document.getElementById("hdrTerminal").textContent =
-  `Terminal de pasajeros ${tituloAeroSeccion}`;
-document.getElementById("hdrUbicacion").textContent =
-  `Ubicación y accesibilidad ${tituloAeroSeccion}`;
-document.getElementById("hdrConcesion").textContent =
-  `Concesión y explotación ${tituloAeroSeccion}`;
-document.getElementById("hdrEmpleo").textContent =
-  `Empleo y área de influencia ${tituloAeroSeccion}`;
-document.getElementById("hdrServicios").textContent =
-  `Servicios y ayudas ${tituloAeroSeccion}`;
+document.getElementById("hdrSuperficie").innerHTML =
+  `Superficie <small>${tituloAeroSeccion}</small>`;
 
+document.getElementById("hdrMovimiento").innerHTML =
+  `Área de movimiento <small>${tituloAeroSeccion}</small>`;
+document.getElementById("hdrTerminal").innerHTML =
+  `Terminal de pasajeros <small>${tituloAeroSeccion}</small>`;
+document.getElementById("hdrUbicacion").innerHTML =
+  `Ubicación y accesibilidad <small>${tituloAeroSeccion}</small>`;
+document.getElementById("hdrConcesion").innerHTML =
+  `Concesión y explotación <small>${tituloAeroSeccion}</small>`;
+document.getElementById("hdrEmpleo").innerHTML =
+  `Empleo y área de influencia <small>${tituloAeroSeccion}</small>`;
+document.getElementById("hdrServicios").innerHTML =
+  `Servicios y ayudas <small>${tituloAeroSeccion}</small>`;
       
       document.getElementById("pageTitle").textContent =
         `Aeropuerto de ${nombre} (${a.IATA})`;
