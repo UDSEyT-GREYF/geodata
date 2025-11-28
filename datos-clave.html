@@ -705,39 +705,48 @@
         <div class="panel-header">Área de movimiento</div>
         <div class="panel-body">
 
-          <!-- KPI Pistas -->
-          <div class="superficie-kpi">
-            <div class="superficie-header-row">
-              <div class="superficie-label">
-                <img src="img/icons/runway.png" class="kpi-icon" alt="">
-                <span>Pistas de aterrizaje</span>
+          <!-- KPI Pistas (estilo Terminal) -->
+          <div class="superficie-kpi" style="padding:10px 8px;">
+            <div class="terminal-item" style="border-bottom:none;">
+              <div class="terminal-icon">
+                <img src="img/icons/runway.png" alt="">
               </div>
-              <div class="superficie-value">
-                <span id="cantPistas">–</span>
-                <span class="superficie-unit" id="cantPistasUnit"></span>
+              <div class="terminal-text">
+                <div class="terminal-title">Pistas de aterrizaje</div>
+                <!-- Subtítulo dinámico (se completa desde JS) -->
+                <div class="terminal-sub" id="pistasSubtitulo">
+                  Orientaciones y dimensiones
+                </div>
               </div>
+              <!-- Burbuja con la cantidad de pistas -->
+              <div class="terminal-badge" id="badgeCantPistas">–</div>
             </div>
 
-            <div class="mov-runway-list" id="pistasDetalle">
+            <!-- Lista de pistas -->
+            <div class="mov-runway-list" id="pistasDetalle" style="margin-top:8px;">
               <!-- Se completa desde JS -->
             </div>
           </div>
 
-          <!-- KPI Posiciones en plataforma + ayudas + mapa PSN -->
-          <div class="superficie-kpi">
-            <div class="superficie-header-row">
-              <div class="superficie-label">
-                <img src="img/icons/PSN.png" class="kpi-icon" alt="">
-                <span>Posiciones en plataforma</span>
+          <!-- KPI Posiciones en plataforma (estilo Terminal) -->
+          <div class="superficie-kpi" style="padding:10px 8px;">
+
+            <div class="terminal-item" style="border-bottom:none;">
+              <div class="terminal-icon">
+                <img src="img/icons/PSN.png" alt="">
               </div>
-              <div class="superficie-value">
-                <span id="psnTotal">–</span>
-                <span class="superficie-unit">PSN</span>
+              <div class="terminal-text">
+                <div class="terminal-title">Posiciones en plataforma</div>
+                <div class="terminal-sub">
+                  Clasificación, ayudas y mapa de posiciones
+                </div>
               </div>
+              <!-- Burbuja con el TOTAL de PSN -->
+              <div class="terminal-badge" id="badgePsnTotal">–</div>
             </div>
 
             <!-- Ayudas y clasificación (duplicadas de panel Servicios) -->
-            <div class="subpanel-title" style="margin-top:4px;">Ayudas y clasificación</div>
+            <div class="subpanel-title" style="margin-top:8px;">Ayudas y clasificación</div>
             <div class="mov-aids">
               <div class="small-label"><strong>Radioayudas:</strong> <span id="radioayudas_mov">–</span></div>
               <div class="small-label"><strong>Ayudas visuales:</strong> <span id="ayudasVisuales_mov">–</span></div>
@@ -746,7 +755,7 @@
             </div>
 
             <!-- PSN comerciales / aviación general -->
-            <div class="mov-psn-list">
+            <div class="mov-psn-list" style="margin-top:8px;">
               <div class="mov-item">
                 <span>Aeronaves comerciales</span>
                 <span class="mov-badge" id="psnCom">–</span>
@@ -765,6 +774,7 @@
 
         </div>
       </section>
+
 
       <!-- PANEL 3: TERMINAL DE PASAJEROS (recorrido) -->
       <section class="panel panel-terminal">
@@ -1336,8 +1346,8 @@ if (featsPistas.length) {
 
       /* ----- ÁREA DE MOVIMIENTO: pistas ----- */
       const orientRaw = clean(a["PistaOrientacion"]);
-      const dimsRaw = clean(a["Dimensiones"]);
-      const matRaw  = clean(a["MaterialPista"]);
+      const dimsRaw   = clean(a["Dimensiones"]);
+      const matRaw    = clean(a["MaterialPista"]);
 
       const oriArr  = splitField(orientRaw);
       const dimsArr = splitField(dimsRaw);
@@ -1352,18 +1362,24 @@ if (featsPistas.length) {
         : [];
 
       const cant = runways.length || (orientRaw ? 1 : 0);
-      const cantEl = document.getElementById("cantPistas");
-      const cantUnitEl = document.getElementById("cantPistasUnit");
+      const badgeCantEl   = document.getElementById("badgeCantPistas");
+      const pistasSubEl   = document.getElementById("pistasSubtitulo");
+      const pistasDetalleEl = document.getElementById("pistasDetalle");
 
+      // Cantidad de pistas + subtítulo dinámico
       if (cant > 0) {
-        cantEl.textContent = formatNumber(cant);
-        cantUnitEl.textContent = cant === 1 ? "pista" : "pistas";
+        if (badgeCantEl) badgeCantEl.textContent = formatNumber(cant);
+        if (pistasSubEl) {
+          pistasSubEl.textContent = cant === 1
+            ? "1 pista registrada"
+            : `${formatNumber(cant)} pistas registradas`;
+        }
       } else {
-        cantEl.textContent = "–";
-        cantUnitEl.textContent = "";
+        if (badgeCantEl) badgeCantEl.textContent = "–";
+        if (pistasSubEl) pistasSubEl.textContent = "Sin información de pistas";
       }
 
-      const pistasDetalleEl = document.getElementById("pistasDetalle");
+      // Detalle de cada pista
       pistasDetalleEl.innerHTML = "";
 
       if (runways.length) {
@@ -1388,26 +1404,6 @@ if (featsPistas.length) {
         pistasDetalleEl.textContent = "–";
       }
 
-      /* ----- PSN: comerciales / general + total ----- */
-      const psnCom = (a["PSN_C"] !== undefined && a["PSN_C"] !== "")
-        ? a["PSN_C"]
-        : (a["PSNRemotasC"] !== undefined ? a["PSNRemotasC"] : "");
-      const psnGen = (a["PSN_AG"] !== undefined && a["PSN_AG"] !== "")
-        ? a["PSN_AG"]
-        : (a["PSNRemotasAG"] !== undefined ? a["PSNRemotasAG"] : "");
-
-      document.getElementById("psnCom").textContent =
-        psnCom !== "" ? safeVal(psnCom) : "–";
-      document.getElementById("psnGen").textContent =
-        psnGen !== "" ? safeVal(psnGen) : "–";
-
-      let totalPsn = 0;
-      const psnComNum = Number(psnCom);
-      const psnGenNum = Number(psnGen);
-      if (!isNaN(psnComNum)) totalPsn += psnComNum;
-      if (!isNaN(psnGenNum)) totalPsn += psnGenNum;
-      document.getElementById("psnTotal").textContent =
-        totalPsn ? formatNumber(totalPsn) : "–";
 
       /* ----- TERMINAL (recorrido) ----- */
       document.getElementById("terminalM2Dup").textContent =
