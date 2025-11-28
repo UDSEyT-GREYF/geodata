@@ -1055,12 +1055,14 @@
       mapMarker = L.marker([-34.6, -58.4]).addTo(map);
 
       // Mapa de posiciones de estacionamiento (imagen satelital)
-      mapPSN = L.map("mapPSN").setView([-34.6, -58.4], 5);
-      L.tileLayer('https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png', {
-        maxZoom: 19,
-        attribution: '<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | <a href="http://www.ign.gob.ar/AreaServicios/Argenmap/IntroduccionV2" target="_blank">Instituto Geográfico Nacional</a> + <a href="http://www.osm.org/copyright" target="_blank">OpenStreetMap</a>',
-
-        }).addTo(mapPSN);
+  // Opción A: Esri World Imagery
+  L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{x}/{y}",
+    {
+      maxZoom: 19,
+      attribution: "Tiles © Esri"
+    }
+  ).addTo(mapPSN);
     }
 
     /* ============================================
