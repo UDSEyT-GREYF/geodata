@@ -604,6 +604,59 @@
   border: 1px solid #d0d7e2;
   overflow: hidden;
 }
+/* KPI de Contacto (Administrador / Jefe) */
+.contact-kpi {
+  background: #ffffff;
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.contact-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-header img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.contact-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #004b80;
+}
+
+.contact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.contact-label {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.contact-chip {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #004b80;
+  background: #eef4ff;
+  border-radius: 999px;
+  padding: 3px 10px;
+  border: 1px solid #d0d7e2;
+  max-width: 50%;
+  text-align: right;
+  word-break: break-word;
+}
 
 
     /* ==============================
@@ -1072,9 +1125,57 @@
         <span class="ubi-chip" id="contactoJefeCorreo">–</span>
       </div>
     </div>
+
+  <!-- KPI Administrador -->
+<div class="contact-kpi">
+  <div class="contact-header">
+    <img src="img/icons/admin.png" alt="">
+    <div class="contact-title">Administrador del aeropuerto</div>
+  </div>
+
+  <div class="contact-row">
+    <span class="contact-label">Nombre</span>
+    <span class="contact-chip" id="contactoAdminNombre">–</span>
+  </div>
+
+  <div class="contact-row">
+    <span class="contact-label">Teléfono</span>
+    <span class="contact-chip" id="contactoAdminTel">–</span>
+  </div>
+
+  <div class="contact-row">
+    <span class="contact-label">Correo</span>
+    <span class="contact-chip" id="contactoAdminCorreo">–</span>
+  </div>
+</div>
+
+
+  <!-- KPI Jefe de aeropuerto -->
+<div class="contact-kpi">
+  <div class="contact-header">
+    <img src="img/icons/jefe.png" alt="">
+    <div class="contact-title">Jefe de Aeropuerto</div>
+  </div>
+
+  <div class="contact-row">
+    <span class="contact-label">Nombre</span>
+    <span class="contact-chip" id="contactoJefeNombre">–</span>
+  </div>
+
+  <div class="contact-row">
+    <span class="contact-label">Teléfono</span>
+    <span class="contact-chip" id="contactoJefeTel">–</span>
+  </div>
+
+  <div class="contact-row">
+    <span class="contact-label">Correo</span>
+    <span class="contact-chip" id="contactoJefeCorreo">–</span>
+  </div>
+</div>
+
     <!-- Mapa de ubicación nacional -->
     <div class="ubicacion-map-wrapper">
-      <div id="mapUbicacion" class="map-ubicacion" style="height:450px;"></div>
+      <div id="mapUbicacion" class="map-ubicacion" style="height:400px;"></div>
     </div>
 
   </div>
