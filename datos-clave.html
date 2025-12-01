@@ -1076,7 +1076,7 @@
   <div class="panel-header" id="hdrUbicacion">Ubicación y accesibilidad</div>
   <div class="panel-body">
 
-    <!-- KPI tipo fila (similar a Pistas) -->
+    <!-- KPI Ubicación / Distancia / Horario -->
     <div class="ubicacion-kpi">
       <div class="ubi-row">
         <span class="ubi-label">Ubicación</span>
@@ -1093,89 +1093,56 @@
         <span class="ubi-chip" id="horarioOperacion">–</span>
       </div>
     </div>
-      <!-- 🔹 Datos de contacto: Administrador -->
-      <div class="ubi-row">
-        <span class="ubi-label">Administrador</span>
-        <span class="ubi-chip" id="contactoAdminNombre">–</span>
+
+    <!-- KPI Administrador -->
+    <div class="contact-kpi">
+      <div class="contact-header">
+        <img src="img/icons/admin.png" alt="">
+        <div class="contact-title">Administrador del aeropuerto</div>
       </div>
 
-      <div class="ubi-row">
-        <span class="ubi-label">Teléfono administrador</span>
-        <span class="ubi-chip" id="contactoAdminTel">–</span>
+      <div class="contact-row">
+        <span class="contact-label">Nombre</span>
+        <span class="contact-chip" id="contactoAdminNombre">–</span>
       </div>
 
-      <div class="ubi-row">
-        <span class="ubi-label">Correo administrador</span>
-        <span class="ubi-chip" id="contactoAdminCorreo">–</span>
+      <div class="contact-row">
+        <span class="contact-label">Teléfono</span>
+        <span class="contact-chip" id="contactoAdminTel">–</span>
       </div>
 
-      <!-- 🔹 Datos de contacto: Jefe de Aeropuerto -->
-      <div class="ubi-row">
-        <span class="ubi-label">Jefe de Aeropuerto</span>
-        <span class="ubi-chip" id="contactoJefeNombre">–</span>
-      </div>
-
-      <div class="ubi-row">
-        <span class="ubi-label">Teléfono jefe de aeropuerto</span>
-        <span class="ubi-chip" id="contactoJefeTel">–</span>
-      </div>
-
-      <div class="ubi-row">
-        <span class="ubi-label">Correo jefe de aeropuerto</span>
-        <span class="ubi-chip" id="contactoJefeCorreo">–</span>
+      <div class="contact-row">
+        <span class="contact-label">Correo</span>
+        <span class="contact-chip" id="contactoAdminCorreo">–</span>
       </div>
     </div>
 
-  <!-- KPI Administrador -->
-<div class="contact-kpi">
-  <div class="contact-header">
-    <img src="img/icons/admin.png" alt="">
-    <div class="contact-title">Administrador del aeropuerto</div>
-  </div>
+    <!-- KPI Jefe de Aeropuerto -->
+    <div class="contact-kpi">
+      <div class="contact-header">
+        <img src="img/icons/jefe.png" alt="">
+        <div class="contact-title">Jefe de Aeropuerto</div>
+      </div>
 
-  <div class="contact-row">
-    <span class="contact-label">Nombre</span>
-    <span class="contact-chip" id="contactoAdminNombre">–</span>
-  </div>
+      <div class="contact-row">
+        <span class="contact-label">Nombre</span>
+        <span class="contact-chip" id="contactoJefeNombre">–</span>
+      </div>
 
-  <div class="contact-row">
-    <span class="contact-label">Teléfono</span>
-    <span class="contact-chip" id="contactoAdminTel">–</span>
-  </div>
+      <div class="contact-row">
+        <span class="contact-label">Teléfono</span>
+        <span class="contact-chip" id="contactoJefeTel">–</span>
+      </div>
 
-  <div class="contact-row">
-    <span class="contact-label">Correo</span>
-    <span class="contact-chip" id="contactoAdminCorreo">–</span>
-  </div>
-</div>
-
-
-  <!-- KPI Jefe de aeropuerto -->
-<div class="contact-kpi">
-  <div class="contact-header">
-    <img src="img/icons/jefe.png" alt="">
-    <div class="contact-title">Jefe de Aeropuerto</div>
-  </div>
-
-  <div class="contact-row">
-    <span class="contact-label">Nombre</span>
-    <span class="contact-chip" id="contactoJefeNombre">–</span>
-  </div>
-
-  <div class="contact-row">
-    <span class="contact-label">Teléfono</span>
-    <span class="contact-chip" id="contactoJefeTel">–</span>
-  </div>
-
-  <div class="contact-row">
-    <span class="contact-label">Correo</span>
-    <span class="contact-chip" id="contactoJefeCorreo">–</span>
-  </div>
-</div>
+      <div class="contact-row">
+        <span class="contact-label">Correo</span>
+        <span class="contact-chip" id="contactoJefeCorreo">–</span>
+      </div>
+    </div>
 
     <!-- Mapa de ubicación nacional -->
     <div class="ubicacion-map-wrapper">
-      <div id="mapUbicacion" class="map-ubicacion" style="height:400px;"></div>
+      <div id="mapUbicacion" class="map-ubicacion"></div>
     </div>
 
   </div>
@@ -1311,6 +1278,8 @@
     let psnFeatures = [];     // Posiciones de estacionamiento (puntos)
     let pistasFeatures = [];  // NUEVO: Pistas (MultiPolygon)
     let contactos = [];       // 🔹 NUEVO: datos de contacto por aeropuerto
+    let contactosPorIATA = {};   // contactos (admin / jefe) por aeropuerto
+
 
 
     const selectEl = document.getElementById("airportSelect");
@@ -1952,49 +1921,22 @@ if (runways.length) {
       document.getElementById("horarioOperacion").textContent =
         clean(a["Horario de operación"]) || "–";
 
-      /* 🔹 DATOS DE CONTACTO (Datos_aeropuertos_contactos.geojson) */
-      const contacto = contactos.find(c =>
-        String(c.IATA).toUpperCase() === String(a.IATA).toUpperCase()
-      );
+// ----- CONTACTO (Administrador / Jefe) desde Datos_aeropuertos_contactos.geojson -----
+const contacto = contactosPorIATA[String(a.IATA).toUpperCase()] || {};
 
-      const adminNombreEl  = document.getElementById("contactoAdminNombre");
-      const adminTelEl     = document.getElementById("contactoAdminTel");
-      const adminCorreoEl  = document.getElementById("contactoAdminCorreo");
-      const jefeNombreEl   = document.getElementById("contactoJefeNombre");
-      const jefeTelEl      = document.getElementById("contactoJefeTel");
-      const jefeCorreoEl   = document.getElementById("contactoJefeCorreo");
+document.getElementById("contactoAdminNombre").textContent =
+  clean(contacto["Administrador"]) || "–";
+document.getElementById("contactoAdminTel").textContent =
+  clean(contacto["AdmTelef"]) || "–";
+document.getElementById("contactoAdminCorreo").textContent =
+  clean(contacto["AdmCorreo"]) || "–";
 
-      if (contacto) {
-        // Administrador
-        adminNombreEl.textContent = clean(contacto["Administrador"]) || "–";
-        adminTelEl.textContent    = clean(contacto["AdmTelef"]) || "–";
-
-        const admMail = clean(contacto["AdmCorreo"]);
-        if (admMail) {
-          adminCorreoEl.innerHTML = `<a href="mailto:${admMail}">${admMail}</a>`;
-        } else {
-          adminCorreoEl.textContent = "–";
-        }
-
-        // Jefe de Aeropuerto
-        jefeNombreEl.textContent = clean(contacto["JefeAeropuerto"]) || "–";
-        jefeTelEl.textContent    = clean(contacto["JefeTelef"]) || "–";
-
-        const jefeMail = clean(contacto["JefeCorreo"]);
-        if (jefeMail) {
-          jefeCorreoEl.innerHTML = `<a href="mailto:${jefeMail}">${jefeMail}</a>`;
-        } else {
-          jefeCorreoEl.textContent = "–";
-        }
-      } else {
-        // Si no hay registro de contacto para ese IATA
-        adminNombreEl.textContent = "–";
-        adminTelEl.textContent    = "–";
-        adminCorreoEl.textContent = "–";
-        jefeNombreEl.textContent  = "–";
-        jefeTelEl.textContent     = "–";
-        jefeCorreoEl.textContent  = "–";
-      }
+document.getElementById("contactoJefeNombre").textContent =
+  clean(contacto["Jefe de Aeropuerto"]) || "–";
+document.getElementById("contactoJefeTel").textContent =
+  clean(contacto["JefeTelef"]) || "–";
+document.getElementById("contactoJefeCorreo").textContent =
+  clean(contacto["JefeCorreo"]) || "–";
 
 
 
@@ -2129,18 +2071,20 @@ try {
 }
 
         // 6) 🔹 Datos de contacto por aeropuerto
-        try {
-          const respContactos = await fetch("fuentes/Datos_aeropuertos_contactos.geojson");
-          const gjContactos = await respContactos.json();
-          contactos = (gjContactos.features || [])
-            .map(f => f.properties || {})
-            .filter(p =>
-              p.IATA && String(p.IATA).toUpperCase() !== "IATA" // descarta la fila cabecera
-            );
-        } catch (e) {
-          console.warn("No se pudieron cargar los datos de contacto:", e);
-          contactos = [];
-        }
+try {
+  const respContactos = await fetch("fuentes/Datos_aeropuertos_contactos.geojson");
+  const gjContactos = await respContactos.json();
+  (gjContactos.features || []).forEach(f => {
+    const p = f.properties || {};
+    const iata = p.IATA;
+    if (iata) {
+      contactosPorIATA[String(iata).toUpperCase()] = p;
+    }
+  });
+} catch (e) {
+  console.warn("No se pudieron cargar los contactos de aeropuertos:", e);
+  contactosPorIATA = {};
+}
 
         // Selección inicial (por URL ?airport=XXX o primer aeropuerto)
         const params = new URLSearchParams(window.location.search);
