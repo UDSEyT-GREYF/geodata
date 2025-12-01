@@ -637,12 +637,22 @@
 }
 
 .contact-value {
-  font-size: 0.9rem;
+  font-size: 0.9rem;      /* Nombre un poquito más grande */
   font-weight: 700;
   color: #004b80;
   text-align: right;
-  white-space: nowrap;    /* todo en una sola línea */
+  white-space: nowrap;
 }
+
+/* Versión más pequeña para teléfono y correo */
+.contact-value-small {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #004b80;
+  text-align: right;
+  white-space: nowrap;
+}
+
 
 
     /* ==============================
@@ -1082,7 +1092,7 @@
 
 <!-- KPI Administrador -->
 <div class="contact-kpi">
-  <div class="contact-title">Administrador del aeropuerto</div>
+  <div class="contact-title">Administración del aeropuerto</div>
 
   <div class="contact-row">
     <span class="contact-label">Nombre</span>
@@ -1091,19 +1101,19 @@
 
   <div class="contact-row">
     <span class="contact-label">Teléfono</span>
-    <span class="contact-value" id="contactoAdminTel">–</span>
+    <span class="contact-value-small" id="contactoAdminTel">–</span>
   </div>
 
   <div class="contact-row">
     <span class="contact-label">Correo</span>
-    <span class="contact-value" id="contactoAdminCorreo">–</span>
+    <span class="contact-value-small" id="contactoAdminCorreo">–</span>
   </div>
 </div>
 
 
 <!-- KPI Jefe de Aeropuerto -->
 <div class="contact-kpi">
-  <div class="contact-title">Jefe de Aeropuerto</div>
+  <div class="contact-title">Jefatura de aeropuerto</div>
 
   <div class="contact-row">
     <span class="contact-label">Nombre</span>
@@ -1112,12 +1122,12 @@
 
   <div class="contact-row">
     <span class="contact-label">Teléfono</span>
-    <span class="contact-value" id="contactoJefeTel">–</span>
+    <span class="contact-value-small" id="contactoJefeTel">–</span>
   </div>
 
   <div class="contact-row">
     <span class="contact-label">Correo</span>
-    <span class="contact-value" id="contactoJefeCorreo">–</span>
+    <span class="contact-value-small" id="contactoJefeCorreo">–</span>
   </div>
 </div>
 
