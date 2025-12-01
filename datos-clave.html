@@ -1040,7 +1040,22 @@
         <span class="ubi-chip" id="horarioOperacion">–</span>
       </div>
     </div>
+      <!-- 🔹 Datos de contacto del aeropuerto -->
+      <div class="ubi-row">
+        <span class="ubi-label">Teléfono</span>
+        <span class="ubi-chip" id="contactoTel">–</span>
+      </div>
 
+      <div class="ubi-row">
+        <span class="ubi-label">Correo electrónico</span>
+        <span class="ubi-chip" id="contactoEmail">–</span>
+      </div>
+
+      <div class="ubi-row">
+        <span class="ubi-label">Sitio web</span>
+        <span class="ubi-chip" id="contactoWeb">–</span>
+      </div>
+    </div>
     <!-- Mapa de ubicación nacional -->
     <div class="ubicacion-map-wrapper">
       <div id="mapUbicacion" class="map-ubicacion" style="height:450px;"></div>
@@ -1178,6 +1193,8 @@
     let poligonos = [];       // Predios (polígonos)
     let psnFeatures = [];     // Posiciones de estacionamiento (puntos)
     let pistasFeatures = [];  // NUEVO: Pistas (MultiPolygon)
+    let contactos = [];       // 🔹 NUEVO: datos de contacto por aeropuerto
+
 
     const selectEl = document.getElementById("airportSelect");
 
@@ -1818,6 +1835,45 @@ if (runways.length) {
       document.getElementById("horarioOperacion").textContent =
         clean(a["Horario de operación"]) || "–";
 
+      /* 🔹 DATOS DE CONTACTO (desde Datos_aeropuertos_contactos.geojson) */
+      const contacto = contactos.find(c =>
+        String(c.IATA).toUpperCase() === String(a.IATA).toUpperCase()
+      );
+
+      const telEl   = document.getElementById("contactoTel");
+      const mailEl  = document.getElementById("contactoEmail");
+      const webEl   = document.getElementById("contactoWeb");
+
+      if (contacto) {
+        // Teléfono
+        const tel = clean(contacto["Telefono"]);
+        telEl.textContent = tel || "–";
+
+        // Email como link mailto
+        const email = clean(contacto["Email"]);
+        if (email) {
+          mailEl.innerHTML = `<a href="mailto:${email}">${email}</a>`;
+        } else {
+          mailEl.textContent = "–";
+        }
+
+        // Web como link clickeable
+        const web = clean(contacto["Web"]);
+        if (web) {
+          // si viene sin http, opcionalmente podrías anteponerlo
+          const url = web.startsWith("http") ? web : `https://${web}`;
+          webEl.innerHTML = `<a href="${url}" target="_blank" rel="noopener">Visitar sitio</a>`;
+        } else {
+          webEl.textContent = "–";
+        }
+      } else {
+        // Si no hay registro de contacto para ese IATA
+        if (telEl)  telEl.textContent  = "–";
+        if (mailEl) mailEl.textContent = "–";
+        if (webEl)  webEl.textContent  = "–";
+      }
+
+
       /* ----- CONCESIÓN Y EXPLOTACIÓN ----- */
       document.getElementById("supConcesionadaHa").textContent =
         safeVal(a["SupConcesionadaHa"]);
@@ -1948,6 +2004,17 @@ try {
   provinciasFeatures = [];
 }
 
+                // 6) 🔹 Datos de contacto por aeropuerto
+        try {
+          const respContactos = await fetch("fuentes/Datos_aeropuertos_contactos.geojson");
+          const gjContactos = await respContactos.json();
+          contactos = (gjContactos.features || [])
+            .map(f => f.properties || {})
+            .filter(p => p.IATA);   // nos quedamos con los que tienen IATA
+        } catch (e) {
+          console.warn("No se pudieron cargar los datos de contacto:", e);
+          contactos = [];
+        }
         // Selección inicial (por URL ?airport=XXX o primer aeropuerto)
         const params = new URLSearchParams(window.location.search);
         const fromUrl = params.get("airport");
