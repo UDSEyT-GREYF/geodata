@@ -637,20 +637,23 @@
 }
 
 .contact-value {
-  font-size: 0.8rem;      /* Nombre un poquito más grande */
+  font-size: 0.8rem;
   font-weight: 700;
   color: #004b80;
   text-align: right;
-  white-space: nowrap;
+  white-space: normal;      /* permite 2 líneas */
+  word-break: break-word;   /* corta cuando es necesario */
+  max-width: 60%;           /* evita que invada el label */
 }
 
-/* Versión más pequeña para teléfono y correo */
 .contact-value-small {
   font-size: 0.7rem;
   font-weight: 700;
   color: #004b80;
   text-align: right;
-  white-space: nowrap;
+  white-space: normal;      /* permite varias líneas */
+  word-break: break-word;
+  max-width: 60%;           /* igual que arriba */
 }
 
 
