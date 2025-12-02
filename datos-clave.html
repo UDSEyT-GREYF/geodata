@@ -1000,8 +1000,37 @@
             <div class="terminal-text">
               <div class="terminal-title">Puestos PSA</div>
               <div class="terminal-sub">Puestos de control de seguridad</div>
+              <!-- NUEVO: detalle Internacional / Cabotaje -->
+              <div class="terminal-sub" id="psaDetalle">–</div>
             </div>
             <div class="terminal-badge" id="psaBadgeProxy">–</div>
+          </div>
+
+          <div class="terminal-separator"></div>
+
+          <!-- NUEVO BLOQUE: Control migratorio -->
+          <div class="terminal-step-title">Control migratorio</div>
+
+          <div class="terminal-item">
+            <div class="terminal-icon">
+              <img src="img/icons/Aduana.png" alt="">
+            </div>
+            <div class="terminal-text">
+              <div class="terminal-title">Puestos de Aduana</div>
+              <div class="terminal-sub">Control aduanero de equipajes y cargas</div>
+            </div>
+            <div class="terminal-badge" id="aduanaPuestos">–</div>
+          </div>
+
+          <div class="terminal-item">
+            <div class="terminal-icon">
+              <img src="img/icons/migraciones.png" alt="">
+            </div>
+            <div class="terminal-text">
+              <div class="terminal-title">Puestos de Migraciones</div>
+              <div class="terminal-sub" id="migracionesDetalle">–</div>
+            </div>
+            <div class="terminal-badge" id="migracionesTotal">–</div>
           </div>
 
           <div class="terminal-separator"></div>
@@ -1228,7 +1257,7 @@
     let psnFeatures = [];
     let pistasFeatures = [];
     let contactos = [];
-    let contactosPorIATA = {};
+    let contactosPorIATA = [];
 
     const selectEl = document.getElementById("airportSelect");
 
@@ -1800,6 +1829,43 @@
         safeVal(a["Kioscos         (self check In)"]);
       document.getElementById("psaBadgeProxy").textContent =
         safeVal(a["PSAScanTotal"]);
+
+      // NUEVO: detalle PSA Internacional / Cabotaje
+      (function() {
+        const psaParts = [];
+        if (a["PSAScanInter"]) psaParts.push(`Internacional: ${safeVal(a["PSAScanInter"])}`);
+        if (a["PSAScanCabot"]) psaParts.push(`Cabotaje: ${safeVal(a["PSAScanCabot"])}`);
+        const psaDetalleEl = document.getElementById("psaDetalle");
+        if (psaDetalleEl) {
+          psaDetalleEl.textContent = psaParts.length ? psaParts.join(" · ") : "–";
+        }
+      })();
+
+      // NUEVO: Aduana
+      const aduanaEl = document.getElementById("aduanaPuestos");
+      if (aduanaEl) {
+        aduanaEl.textContent = safeVal(a["Puestos de Aduanas"]);
+      }
+
+      // NUEVO: Migraciones (total + detalle partidas / arribos)
+      const migrTotEl = document.getElementById("migracionesTotal");
+      if (migrTotEl) {
+        migrTotEl.textContent = safeVal(a["PuestosMigracionesTot"]);
+      }
+      (function() {
+        const parts = [];
+        if (a["PuestosMigracionesPartidas"]) {
+          parts.push(`Partidas: ${safeVal(a["PuestosMigracionesPartidas"])}`);
+        }
+        if (a["PuestosMigracionesArribos"]) {
+          parts.push(`Arribos: ${safeVal(a["PuestosMigracionesArribos"])}`);
+        }
+        const detEl = document.getElementById("migracionesDetalle");
+        if (detEl) {
+          detEl.textContent = parts.length ? parts.join(" · ") : "–";
+        }
+      })();
+
       document.getElementById("puertasTotal").textContent =
         safeVal(a["PuertasEmbarqueTotal"]);
 
