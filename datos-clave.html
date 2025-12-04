@@ -340,7 +340,31 @@
       height: 100%;
       object-fit: contain;
     }
+/* Tabla de inversiones dentro del KPI */
+.kpi-table-inv {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4px;
+  font-size: 0.85rem;
+}
 
+.kpi-table-inv th,
+.kpi-table-inv td {
+  border-bottom: 1px solid #d0d7e2;
+  padding: 4px 6px;
+  text-align: right;
+}
+
+.kpi-table-inv th:first-child,
+.kpi-table-inv td:first-child {
+  text-align: left;
+}
+
+.kpi-table-inv thead th {
+  font-weight: 600;
+  color: #444;
+  background-color: #f3f6fb;
+}
     /* ==============================
        PANEL ÁREA DE MOVIMIENTO
        ============================== */
@@ -883,6 +907,38 @@
         <div id="mapPredio" class="map-predio"></div>
       </div>
     </div>
+    <!-- KPI: Programación de inversiones 2025–2027 -->
+    <div class="superficie-kpi">
+      <div class="superficie-label">
+        <span>Programación de inversiones 2025–2027</span>
+      </div>
+
+      <table class="kpi-table-inv">
+        <thead>
+          <tr>
+            <th>Año</th>
+            <th>Monto previsto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2025</td>
+            <td id="inv2025">–</td>
+          </tr>
+          <tr>
+            <td>2026</td>
+            <td id="inv2026">–</td>
+          </tr>
+          <tr>
+            <td>2027</td>
+            <td id="inv2027">–</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="small-label" style="margin-top:6px;">Descripción de las obras</div>
+      <div class="small-label" id="invObra">–</div>
+    </div>
 
   </div>
 </section>
@@ -1224,6 +1280,8 @@
     let pistasFeatures = [];
     let contactos = [];
     let contactosPorIATA = [];
+    let inversionesPorIATA = {};   // 🔹 NUEVO: inversiones 2025-2027 por aeropuerto
+
 
     const selectEl = document.getElementById("airportSelect");
 
@@ -1662,7 +1720,27 @@
 
       document.getElementById("habilitacion").textContent =
         clean(a["Habilitación"]) || "–";
+      /* ----- INVERSIONES 2025–2027 (Programación financiera) ----- */
+      const inv = inversionesPorIATA[String(a.IATA).toUpperCase()] || null;
 
+      const inv2025El = document.getElementById("inv2025");
+      const inv2026El = document.getElementById("inv2026");
+      const inv2027El = document.getElementById("inv2027");
+      const invObraEl = document.getElementById("invObra");
+
+      if (inv) {
+        if (inv2025El) inv2025El.textContent = safeVal(inv.A2025);
+        if (inv2026El) inv2026El.textContent = safeVal(inv.A2026);
+        if (inv2027El) inv2027El.textContent = safeVal(inv.A2027);
+        if (invObraEl)  invObraEl.textContent  = clean(inv.ObraWeb) || "–";
+      } else {
+        if (inv2025El) inv2025El.textContent = "–";
+        if (inv2026El) inv2026El.textContent = "–";
+        if (inv2027El) inv2027El.textContent = "–";
+        if (invObraEl)  invObraEl.textContent  = "–";
+      }
+
+      
       /* ----- TERMINAL (m² + imagen) ----- */
       document.getElementById("terminalM2").textContent =
         safeVal(a["TerminalM2"]);
@@ -1931,6 +2009,57 @@
     /* ============================================
        CARGA DE DATOS (GeoJSON)
        ============================================ */
+function parseInversionesCSV(text) {
+  const result = {};
+  if (!text) return result;
+
+  const lines = text.trim().split(/\r?\n/);
+  if (lines.length < 2) return result;
+
+  const headerLine = lines[0];
+  const sep = headerLine.indexOf(";") !== -1 ? ";" : ",";   // ; por defecto si existe
+
+  const headers = headerLine.split(sep).map(h => h.trim());
+
+  // Buscamos columnas clave
+  const idxIATA = headers.findIndex(h =>
+    h.toUpperCase() === "IATA" ||
+    h.toUpperCase() === "COD_IATA" ||
+    h.toUpperCase() === "CODIGO_IATA"
+  );
+  const idx2025 = headers.findIndex(h => h.toUpperCase() === "A2025");
+  const idx2026 = headers.findIndex(h => h.toUpperCase() === "A2026");
+  const idx2027 = headers.findIndex(h => h.toUpperCase() === "A2027");
+  const idxObra = headers.findIndex(h => h.toUpperCase() === "OBRAWEB");
+
+  if (idxIATA === -1) {
+    console.warn("No se encontró columna IATA en Programacion_por_aeropuerto_aprobada2025_web.csv");
+    return result;
+  }
+
+  for (let i = 1; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (!line) continue;
+
+    const cols = line.split(sep);
+
+    const rawIata = (cols[idxIATA] || "").trim();
+    if (!rawIata) continue;
+
+    const iata = rawIata.toUpperCase();
+
+    result[iata] = {
+      A2025: idx2025 !== -1 ? (cols[idx2025] || "").trim() : "",
+      A2026: idx2026 !== -1 ? (cols[idx2026] || "").trim() : "",
+      A2027: idx2027 !== -1 ? (cols[idx2027] || "").trim() : "",
+      ObraWeb: idxObra !== -1 ? (cols[idxObra] || "").trim() : ""
+    };
+  }
+
+  return result;
+}
+
+    
     async function loadData() {
       try {
         const resp = await fetch("fuentes/Datos_aeropuertos.geojson");
@@ -2003,6 +2132,17 @@
           contactosPorIATA = {};
         }
 
+  // 7) Programación de inversiones 2025-2027
+        try {
+          const respInv = await fetch("fuentes/Programacion_por_aeropuerto_aprobada2025_web.csv");
+          const textInv = await respInv.text();
+          inversionesPorIATA = parseInversionesCSV(textInv);
+        } catch (e) {
+          console.warn("No se pudieron cargar las inversiones por aeropuerto:", e);
+          inversionesPorIATA = {};
+        }
+
+        
         const params = new URLSearchParams(window.location.search);
         const fromUrl = params.get("airport");
         let initial = aeropuertos[0]?.IATA;
