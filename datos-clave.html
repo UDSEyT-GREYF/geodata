@@ -275,15 +275,17 @@
       gap: 8px;
     }
 
-    .superficie-kpi {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      background: #ffffff;
-      border: 1px solid #d0d7e2;
-      border-radius: 4px;
-      padding: 6px 8px;
-    }
+.superficie-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  padding: 6px 8px;
+  margin-bottom: 8px;   /* NUEVO: espacio uniforme entre KPIs */
+}
+
 
     .superficie-header-row {
       display: flex;
@@ -817,69 +819,73 @@
     <!-- GRID PRINCIPAL -->
     <section class="grid">
 
-      <!-- PANEL 1: EXPLOTACIÓN -->
-      <section class="panel panel-superficie">
-        <div class="panel-header" id="hdrSuperficie">Explotación</div>
-        <div class="panel-body">
+<!-- PANEL 1: EXPLOTACIÓN -->
+<section class="panel panel-superficie">
+  <div class="panel-header" id="hdrSuperficie">Explotación</div>
+  <div class="panel-body">
 
-          <div class="concesion-row">
-            <span class="concesion-label">Explotador</span>
-            <span class="concesion-chip" id="explotador">–</span>
-          </div>
+    <!-- KPI de Explotación en caja -->
+    <div class="superficie-kpi">
+      <div class="concesion-row">
+        <span class="concesion-label">Explotador</span>
+        <span class="concesion-chip" id="explotador">–</span>
+      </div>
 
-          <div class="concesion-row">
-            <span class="concesion-label">Superficie del predio</span>
-            <span class="concesion-value-group">
-              <span class="concesion-value" id="supPredio">–</span>
-              <span class="concesion-unit">hectáreas</span>
-            </span>
-          </div>
+      <div class="concesion-row">
+        <span class="concesion-label">Superficie del predio</span>
+        <span class="concesion-value-group">
+          <span class="concesion-value" id="supPredio">–</span>
+          <span class="concesion-unit">hectáreas</span>
+        </span>
+      </div>
 
-          <div class="concesion-row">
-            <span class="concesion-label">Superficie concesionada</span>
-            <span class="concesion-value-group">
-              <span class="concesion-value" id="supConcesionadaHa">–</span>
-              <span class="concesion-unit">hectáreas</span>
-            </span>
-          </div>
+      <div class="concesion-row">
+        <span class="concesion-label">Superficie concesionada</span>
+        <span class="concesion-value-group">
+          <span class="concesion-value" id="supConcesionadaHa">–</span>
+          <span class="concesion-unit">hectáreas</span>
+        </span>
+      </div>
 
-          <div class="concesion-row">
-            <span class="concesion-label">Áreas concesionadas</span>
-            <span class="concesion-chip" id="areasConcesionadas">–</span>
-          </div>
+      <div class="concesion-row">
+        <span class="concesion-label">Áreas concesionadas</span>
+        <span class="concesion-chip" id="areasConcesionadas">–</span>
+      </div>
 
-          <div class="concesion-row">
-            <span class="concesion-label">Grupo de concesión</span>
-            <span class="concesion-chip" id="grupo">–</span>
-          </div>
+      <div class="concesion-row">
+        <span class="concesion-label">Grupo de concesión</span>
+        <span class="concesion-chip" id="grupo">–</span>
+      </div>
 
-          <div class="concesion-row">
-            <span class="concesion-label">Concesionado hasta</span>
-            <span class="concesion-chip" id="concesionHasta">–</span>
-          </div>
+      <div class="concesion-row">
+        <span class="concesion-label">Concesionado hasta</span>
+        <span class="concesion-chip" id="concesionHasta">–</span>
+      </div>
 
-          <div class="concesion-row">
-            <span class="concesion-label">Códigos</span>
-            <span class="concesion-chip" id="codigos">–</span>
-          </div>
+      <div class="concesion-row">
+        <span class="concesion-label">Códigos</span>
+        <span class="concesion-chip" id="codigos">–</span>
+      </div>
 
-          <div class="concesion-row">
-            <span class="concesion-label">Habilitación</span>
-            <span class="concesion-chip" id="habilitacion">–</span>
-          </div>
+      <div class="concesion-row">
+        <span class="concesion-label">Habilitación</span>
+        <span class="concesion-chip" id="habilitacion">–</span>
+      </div>
+    </div>
 
-          <!-- Mapa del predio -->
-          <div class="superficie-kpi">
-            <div class="superficie-label">
-              <span>Mapa del predio</span>
-            </div>
-            <div class="superficie-thumb">
-              <div id="mapPredio" class="map-predio"></div>
-            </div>
-          </div>
+    <!-- KPI: Mapa del predio en otra caja -->
+    <div class="superficie-kpi">
+      <div class="superficie-label">
+        <span>Mapa del predio</span>
+      </div>
+      <div class="superficie-thumb">
+        <div id="mapPredio" class="map-predio"></div>
+      </div>
+    </div>
 
-        </div>
-      </section>
+  </div>
+</section>
+
 
       <!-- PANEL 2: ÁREA DE MOVIMIENTO -->
       <section class="panel panel-movimiento">
