@@ -688,6 +688,12 @@
       word-break: break-word;
       max-width: 60%;
     }
+/* Tamaño más pequeño para las descripciones de obras dentro de la tabla */
+.inv-obras-cell {
+  font-size: 0.78rem;
+  line-height: 1.25;
+  color: #444;
+}
 
     /* ==============================
        12. PANELES EMPLEO / SERVICIOS
@@ -914,26 +920,27 @@
         <thead>
           <tr>
             <th>Año</th>
-            <th>Obras previstas</th>
-            <th>Monto previsto</th>
+            <th>Obras</th>
+            <th>Millones</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>2025</td>
-            <td id="invObras2025">–</td>
-            <td id="inv2025">–</td>
-          </tr>
-          <tr>
-            <td>2026</td>
-            <td id="invObras2026">–</td>
-            <td id="inv2026">–</td>
-          </tr>
-          <tr>
-            <td>2027</td>
-            <td id="invObras2027">–</td>
-            <td id="inv2027">–</td>
-          </tr>
+<tr>
+  <td>2025</td>
+  <td id="invObras2025" class="inv-obras-cell">–</td>
+  <td id="inv2025">–</td>
+</tr>
+<tr>
+  <td>2026</td>
+  <td id="invObras2026" class="inv-obras-cell">–</td>
+  <td id="inv2026">–</td>
+</tr>
+<tr>
+  <td>2027</td>
+  <td id="invObras2027" class="inv-obras-cell">–</td>
+  <td id="inv2027">–</td>
+</tr>
+
         </tbody>
       </table>
     </div>
