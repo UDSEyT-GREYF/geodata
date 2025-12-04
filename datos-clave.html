@@ -5,7 +5,9 @@
   <title>Datos clave de aeropuertos – GeoData ORSNA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Leaflet CSS para los mapas -->
+  <!-- ==========================
+       LEAFLET CSS
+       ========================== -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -15,7 +17,7 @@
 
   <style>
     /* ==============================
-       RESETEO BÁSICO
+       1. RESETEO BÁSICO Y TIPOGRAFÍA
        ============================== */
     *, *::before, *::after {
       box-sizing: border-box;
@@ -34,7 +36,7 @@
     a:hover { text-decoration: underline; }
 
     /* ==============================
-       TOPBAR
+       2. TOPBAR (PRESIDENCIA / GEODATA)
        ============================== */
     .topbar {
       background-color: #002855;
@@ -51,7 +53,7 @@
     }
 
     /* ==============================
-       HEADER ORSNA
+       3. HEADER ORSNA
        ============================== */
     .gov-header {
       background-color: #ffffff;
@@ -94,7 +96,7 @@
     }
 
     /* ==============================
-       BREADCRUMB
+       4. BREADCRUMB
        ============================== */
     .breadcrumb {
       background-color: #EEF2F7;
@@ -109,7 +111,7 @@
     }
 
     /* ==============================
-       MAIN LAYOUT
+       5. LAYOUT PRINCIPAL
        ============================== */
     main {
       max-width: 1120px;
@@ -154,7 +156,7 @@
     }
 
     /* ==============================
-       BANDA KPI SUPERIOR
+       6. BANDA KPI SUPERIOR (RESUMEN RÁPIDO)
        ============================== */
     .kpi-strip {
       display: grid;
@@ -192,7 +194,7 @@
     }
 
     /* ==============================
-       GRID PRINCIPAL DE FICHAS
+       7. GRID PRINCIPAL DE PANELES
        ============================== */
     .grid {
       display: grid;
@@ -262,7 +264,7 @@
     }
 
     /* ==============================
-       PANEL EXPLOTACIÓN AEROPORTUARIA
+       8. PANEL EXPLOTACIÓN (CONCESIÓN, MAPA, INVERSIONES)
        ============================== */
     .panel-superficie {
       grid-area: superficie;
@@ -275,17 +277,17 @@
       gap: 8px;
     }
 
-.superficie-kpi {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  background: #ffffff;
-  border: 1px solid #d0d7e2;
-  border-radius: 4px;
-  padding: 6px 8px;
-  margin-bottom: 8px;   /* NUEVO: espacio uniforme entre KPIs */
-}
-
+    /* Caja KPI reutilizable para explotación, terminal, etc. */
+    .superficie-kpi {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: #ffffff;
+      border: 1px solid #d0d7e2;
+      border-radius: 4px;
+      padding: 6px 8px;
+      margin-bottom: 8px;  /* separación homogénea entre cajas */
+    }
 
     .superficie-header-row {
       display: flex;
@@ -340,33 +342,75 @@
       height: 100%;
       object-fit: contain;
     }
-/* Tabla de inversiones dentro del KPI */
-.kpi-table-inv {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 4px;
-  font-size: 0.85rem;
-}
 
-.kpi-table-inv th,
-.kpi-table-inv td {
-  border-bottom: 1px solid #d0d7e2;
-  padding: 4px 6px;
-  text-align: right;
-}
+    /* Tabla de inversiones dentro del KPI */
+    .kpi-table-inv {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4px;
+      font-size: 0.85rem;
+    }
 
-.kpi-table-inv th:first-child,
-.kpi-table-inv td:first-child {
-  text-align: left;
-}
+    .kpi-table-inv th,
+    .kpi-table-inv td {
+      border-bottom: 1px solid #d0d7e2;
+      padding: 4px 6px;
+      text-align: right;
+    }
 
-.kpi-table-inv thead th {
-  font-weight: 600;
-  color: #444;
-  background-color: #f3f6fb;
-}
+    .kpi-table-inv th:first-child,
+    .kpi-table-inv td:first-child {
+      text-align: left;
+    }
+
+    .kpi-table-inv thead th {
+      font-weight: 600;
+      color: #444;
+      background-color: #f3f6fb;
+    }
+
+    /* Valores tipo "188 hectáreas" */
+    .concesion-value-group {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .concesion-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #004b80;
+      white-space: nowrap;
+    }
+
+    .concesion-unit {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #004b80;
+    }
+
+    .concesion-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .concesion-label {
+      font-size: 0.85rem;
+      color: #444;
+    }
+
+    .concesion-chip {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #004b80;
+      white-space: normal;
+      text-align: right;
+    }
+
     /* ==============================
-       PANEL ÁREA DE MOVIMIENTO
+       9. PANEL ÁREA DE MOVIMIENTO (PISTAS Y PLATAFORMAS)
        ============================== */
     .panel-movimiento {
       grid-area: movimiento;
@@ -463,28 +507,8 @@
       color: #111;
     }
 
-    /* Valores tipo "188 hectáreas" */
-    .concesion-value-group {
-      display: flex;
-      align-items: baseline;
-      gap: 4px;
-    }
-
-    .concesion-value {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #004b80;
-      white-space: nowrap;
-    }
-
-    .concesion-unit {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #004b80;
-    }
-
     /* ==============================
-       PANEL TERMINAL (recorrido del pasajero)
+       10. PANEL TERMINAL (RECORRIDO DEL PASAJERO)
        ============================== */
     .panel-terminal { grid-area: terminal; }
 
@@ -567,7 +591,7 @@
     }
 
     /* ==============================
-       PANEL UBICACIÓN Y ACCESIBILIDAD
+       11. PANEL UBICACIÓN Y ACCESIBILIDAD
        ============================== */
     .panel-ubicacion { grid-area: ubicacion; }
 
@@ -666,13 +690,13 @@
     }
 
     /* ==============================
-       PANELES EMPLEO / SERVICIOS
+       12. PANELES EMPLEO / SERVICIOS
        ============================== */
     .panel-empleo { grid-area: empleo; }
     .panel-servicios { grid-area: servicios; }
 
     /* ==============================
-       FOOTER
+       13. FOOTER
        ============================== */
     footer {
       border-top: 1px solid #dde2e6;
@@ -688,40 +712,8 @@
       text-align: right;
     }
 
-    /* ===== KPI estilo texto para Explotación/Concesión ===== */
-    .concesion-kpi {
-      background: #ffffff;
-      border: 1px solid #d0d7e2;
-      border-radius: 4px;
-      padding: 6px 8px;
-      margin-bottom: 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .concesion-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .concesion-label {
-      font-size: 0.85rem;
-      color: #444;
-    }
-
-    .concesion-chip {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: #004b80;
-      white-space: normal;
-      text-align: right;
-    }
-
     /* ==============================
-       RESPONSIVE
+       14. RESPONSIVE
        ============================== */
     @media (max-width: 900px) {
       .grid {
@@ -785,7 +777,7 @@
        CONTENIDO PRINCIPAL
        ========================== -->
   <main>
-    <!-- Encabezado + selector de aeropuerto -->
+    <!-- Encabezado general + selector de aeropuerto -->
     <header class="page-header">
       <div class="page-header-left">
         <h1 id="pageTitle">Datos clave por aeropuerto</h1>
@@ -802,7 +794,9 @@
       </div>
     </header>
 
-    <!-- BANDA KPI SUPERIOR -->
+    <!-- ==========================
+         BANDA KPI SUPERIOR (RESUMEN)
+         ========================== -->
     <section class="kpi-strip">
       <div class="kpi-card">
         <img src="img/icons/checkin.png" alt="Check-in">
@@ -841,115 +835,117 @@
       </div>
     </section>
 
-    <!-- GRID PRINCIPAL -->
+    <!-- ==========================
+         GRID PRINCIPAL DE PANELES
+         ========================== -->
     <section class="grid">
 
-<!-- PANEL 1: EXPLOTACIÓN -->
-<section class="panel panel-superficie">
-  <div class="panel-header" id="hdrSuperficie">Explotación</div>
-  <div class="panel-body">
+      <!-- PANEL 1: EXPLOTACIÓN / CONCESIÓN / INVERSIONES -->
+      <section class="panel panel-superficie">
+        <div class="panel-header" id="hdrSuperficie">Explotación</div>
+        <div class="panel-body">
 
-    <!-- KPI de Explotación en caja -->
-    <div class="superficie-kpi">
-      <div class="concesion-row">
-        <span class="concesion-label">Explotador</span>
-        <span class="concesion-chip" id="explotador">–</span>
-      </div>
+          <!-- KPI: Datos de concesión y habilitación -->
+          <div class="superficie-kpi">
+            <div class="concesion-row">
+              <span class="concesion-label">Explotador</span>
+              <span class="concesion-chip" id="explotador">–</span>
+            </div>
 
-      <div class="concesion-row">
-        <span class="concesion-label">Superficie del predio</span>
-        <span class="concesion-value-group">
-          <span class="concesion-value" id="supPredio">–</span>
-          <span class="concesion-unit">hectáreas</span>
-        </span>
-      </div>
+            <div class="concesion-row">
+              <span class="concesion-label">Superficie del predio</span>
+              <span class="concesion-value-group">
+                <span class="concesion-value" id="supPredio">–</span>
+                <span class="concesion-unit">hectáreas</span>
+              </span>
+            </div>
 
-      <div class="concesion-row">
-        <span class="concesion-label">Superficie concesionada</span>
-        <span class="concesion-value-group">
-          <span class="concesion-value" id="supConcesionadaHa">–</span>
-          <span class="concesion-unit">hectáreas</span>
-        </span>
-      </div>
+            <div class="concesion-row">
+              <span class="concesion-label">Superficie concesionada</span>
+              <span class="concesion-value-group">
+                <span class="concesion-value" id="supConcesionadaHa">–</span>
+                <span class="concesion-unit">hectáreas</span>
+              </span>
+            </div>
 
-      <div class="concesion-row">
-        <span class="concesion-label">Áreas concesionadas</span>
-        <span class="concesion-chip" id="areasConcesionadas">–</span>
-      </div>
+            <div class="concesion-row">
+              <span class="concesion-label">Áreas concesionadas</span>
+              <span class="concesion-chip" id="areasConcesionadas">–</span>
+            </div>
 
-      <div class="concesion-row">
-        <span class="concesion-label">Grupo de concesión</span>
-        <span class="concesion-chip" id="grupo">–</span>
-      </div>
+            <div class="concesion-row">
+              <span class="concesion-label">Grupo de concesión</span>
+              <span class="concesion-chip" id="grupo">–</span>
+            </div>
 
-      <div class="concesion-row">
-        <span class="concesion-label">Concesionado hasta</span>
-        <span class="concesion-chip" id="concesionHasta">–</span>
-      </div>
+            <div class="concesion-row">
+              <span class="concesion-label">Concesionado hasta</span>
+              <span class="concesion-chip" id="concesionHasta">–</span>
+            </div>
 
-      <div class="concesion-row">
-        <span class="concesion-label">Códigos</span>
-        <span class="concesion-chip" id="codigos">–</span>
-      </div>
+            <div class="concesion-row">
+              <span class="concesion-label">Códigos</span>
+              <span class="concesion-chip" id="codigos">–</span>
+            </div>
 
-      <div class="concesion-row">
-        <span class="concesion-label">Habilitación</span>
-        <span class="concesion-chip" id="habilitacion">–</span>
-      </div>
-    </div>
+            <div class="concesion-row">
+              <span class="concesion-label">Habilitación</span>
+              <span class="concesion-chip" id="habilitacion">–</span>
+            </div>
+          </div>
 
-    <!-- KPI: Mapa del predio en otra caja -->
-    <div class="superficie-kpi">
-      <div class="superficie-label">
-        <span>Mapa del predio</span>
-      </div>
-      <div class="superficie-thumb">
-        <div id="mapPredio" class="map-predio"></div>
-      </div>
-    </div>
-    <!-- KPI: Programación de inversiones 2025–2027 -->
-    <div class="superficie-kpi">
-      <div class="superficie-label">
-        <span>Programación de inversiones 2025–2027</span>
-      </div>
+          <!-- KPI: Mapa del predio concesionado -->
+          <div class="superficie-kpi">
+            <div class="superficie-label">
+              <span>Mapa del predio</span>
+            </div>
+            <div class="superficie-thumb">
+              <div id="mapPredio" class="map-predio"></div>
+            </div>
+          </div>
 
-      <table class="kpi-table-inv">
-        <thead>
-          <tr>
-            <th>Año</th>
-            <th>Monto previsto</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>2025</td>
-            <td id="inv2025">–</td>
-          </tr>
-          <tr>
-            <td>2026</td>
-            <td id="inv2026">–</td>
-          </tr>
-          <tr>
-            <td>2027</td>
-            <td id="inv2027">–</td>
-          </tr>
-        </tbody>
-      </table>
+          <!-- KPI: Programación de inversiones 2025–2027 -->
+          <div class="superficie-kpi">
+            <div class="superficie-label">
+              <span>Programación de inversiones 2025–2027</span>
+            </div>
 
-      <div class="small-label" style="margin-top:6px;">Descripción de las obras</div>
-      <div class="small-label" id="invObra">–</div>
-    </div>
+            <table class="kpi-table-inv">
+              <thead>
+                <tr>
+                  <th>Año</th>
+                  <th>Monto previsto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2025</td>
+                  <td id="inv2025">–</td>
+                </tr>
+                <tr>
+                  <td>2026</td>
+                  <td id="inv2026">–</td>
+                </tr>
+                <tr>
+                  <td>2027</td>
+                  <td id="inv2027">–</td>
+                </tr>
+              </tbody>
+            </table>
 
-  </div>
-</section>
+            <div class="small-label" style="margin-top:6px;">Descripción de las obras</div>
+            <div class="small-label" id="invObra">–</div>
+          </div>
 
+        </div>
+      </section>
 
-      <!-- PANEL 2: ÁREA DE MOVIMIENTO -->
+      <!-- PANEL 2: ÁREA DE MOVIMIENTO (PISTAS Y PSN) -->
       <section class="panel panel-movimiento">
         <div class="panel-header" id="hdrMovimiento">Área de movimiento</div>
         <div class="panel-body">
 
-          <!-- KPI Pistas -->
+          <!-- KPI Pistas de aterrizaje -->
           <div class="superficie-kpi" style="padding:10px 8px;">
             <div class="terminal-item" style="border-bottom:none;">
               <div class="terminal-icon">
@@ -969,9 +965,8 @@
             </div>
           </div>
 
-          <!-- KPI Posiciones en plataforma -->
+          <!-- KPI Posiciones en plataforma (PSN) -->
           <div class="superficie-kpi" style="padding:10px 8px;">
-
             <div class="terminal-item" style="border-bottom:none;">
               <div class="terminal-icon">
                 <img src="img/icons/PSN.png" alt="" style="width:55px;">
@@ -1004,131 +999,155 @@
         </div>
       </section>
 
-      <!-- PANEL 3: TERMINAL DE PASAJEROS -->
-<div class="panel-body terminal-body">
+      <!-- PANEL 3: TERMINAL DE PASAJEROS (RECORRIDO) -->
+      <section class="panel panel-terminal">
+        <div class="panel-header" id="hdrTerminal">Terminal de pasajeros</div>
+        <div class="panel-body terminal-body">
 
-  <!-- KPI Terminal m² + imagen -->
-  <div class="superficie-kpi">
-    <div class="superficie-header-row">
-      <div class="superficie-label">
-        <span>Terminal de pasajeros</span>
-      </div>
-      <div class="superficie-value">
-        <span id="terminalM2"></span>
-        <span class="superficie-unit">m²</span>
-      </div>
-    </div>
+          <!-- KPI Terminal de pasajeros: superficie e imagen -->
+          <div class="superficie-kpi">
+            <div class="superficie-header-row">
+              <div class="superficie-label">
+                <span>Terminal de pasajeros</span>
+              </div>
+              <div class="superficie-value">
+                <span id="terminalM2"></span>
+                <span class="superficie-unit">m²</span>
+              </div>
+            </div>
 
-    <div class="superficie-thumb">
-      <img id="imgTerminal" alt="Imagen de la terminal del aeropuerto">
-    </div>
-  </div>
+            <div class="superficie-thumb">
+              <img id="imgTerminal" alt="Imagen de la terminal del aeropuerto">
+            </div>
+          </div>
 
-  <!-- KPI Llegada y check-in -->
-  <div class="superficie-kpi">
-    <div class="terminal-step-title">Llegada y check-in</div>
+          <!-- KPI Llegada y check-in -->
+          <div class="superficie-kpi">
+            <div class="terminal-step-title">Llegada y check-in</div>
 
-    <div class="terminal-item">
-      <div class="terminal-icon"><img src="img/icons/checkin.png" alt=""></div>
-      <div class="terminal-text">
-        <div class="terminal-title">Mostradores de check-in</div>
-        <div class="terminal-sub">Puestos habilitados para atención presencial</div>
-      </div>
-      <div class="terminal-badge" id="mostradoresCheckin">–</div>
-    </div>
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/checkin.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Mostradores de check-in</div>
+                <div class="terminal-sub">Puestos habilitados para atención presencial</div>
+              </div>
+              <div class="terminal-badge" id="mostradoresCheckin">–</div>
+            </div>
 
-    <div class="terminal-item">
-      <div class="terminal-icon"><img src="img/icons/kiosko.png" alt=""></div>
-      <div class="terminal-text">
-        <div class="terminal-title">Kioscos self check-in</div>
-        <div class="terminal-sub">Equipos de autoatención</div>
-      </div>
-      <div class="terminal-badge" id="kioscosSelf">–</div>
-    </div>
-  </div>
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/kiosko.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Kioscos self check-in</div>
+                <div class="terminal-sub">Equipos de autoatención</div>
+              </div>
+              <div class="terminal-badge" id="kioscosSelf">–</div>
+            </div>
+          </div>
 
-  <!-- KPI Control de seguridad -->
-  <div class="superficie-kpi">
-    <div class="terminal-step-title">Control de seguridad</div>
+          <!-- KPI Control de seguridad y fronterizo (PSA, Aduana, Migraciones) -->
+          <div class="superficie-kpi">
+            <div class="terminal-step-title">Control de seguridad y fronterizo</div>
 
-    <div class="terminal-item">
-      <div class="terminal-icon"><img src="img/icons/PSA.png" alt=""></div>
-      <div class="terminal-text">
-        <div class="terminal-title">Puestos PSA</div>
-        <div class="terminal-sub">Puestos de control de seguridad</div>
-      </div>
-      <div class="terminal-badge" id="psaBadgeProxy">–</div>
-    </div>
+            <!-- PSA -->
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/PSA.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Puestos PSA</div>
+                <div class="terminal-sub">Puestos de control de seguridad</div>
+              </div>
+              <div class="terminal-badge" id="psaBadgeProxy">–</div>
+            </div>
 
-    <!-- NUEVO: detalle internacional/cabotaje -->
-    <div class="terminal-sub" style="color:#555; font-size:0.78rem; margin-left:42px;">
-      Internacional: <span id="psaInter">–</span> · Cabotaje: <span id="psaCabot">–</span>
-    </div>
-  </div>
+            <!-- Detalle PSA Inter / Cabotaje -->
+            <div class="terminal-sub" style="color:#555; font-size:0.78rem; margin-left:42px;">
+              Internacional: <span id="psaInter">–</span> · Cabotaje: <span id="psaCabot">–</span>
+            </div>
 
-  <!-- KPI Embarque -->
-  <div class="superficie-kpi">
-    <div class="terminal-step-title">Embarque</div>
+            <!-- Aduana -->
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/Aduana.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Puestos de Aduanas</div>
+                <div class="terminal-sub">Puestos de control aduanero</div>
+              </div>
+              <div class="terminal-badge" id="aduanaPuestos">–</div>
+            </div>
 
-    <div class="terminal-item">
-      <div class="terminal-icon"><img src="img/icons/boarding.png" alt=""></div>
-      <div class="terminal-text">
-        <div class="terminal-title">Puertas de embarque</div>
-        <div class="terminal-sub" id="puertasDetalle">–</div>
-      </div>
-      <div class="terminal-badge" id="puertasTotal">–</div>
-    </div>
+            <!-- Migraciones -->
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/migraciones.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Puestos de Migraciones</div>
+                <div class="terminal-sub" id="migracionesDetalle">–</div>
+              </div>
+              <div class="terminal-badge" id="migracionesTotal">–</div>
+            </div>
+          </div>
 
-    <div class="terminal-item">
-      <div class="terminal-icon"><img src="img/icons/manga.png" alt=""></div>
-      <div class="terminal-text">
-        <div class="terminal-title">Mangas telescópicas</div>
-        <div class="terminal-sub">Conexión directa aeronave–terminal</div>
-      </div>
-      <div class="terminal-badge" id="mangas">–</div>
-    </div>
-  </div>
+          <!-- KPI Embarque -->
+          <div class="superficie-kpi">
+            <div class="terminal-step-title">Embarque</div>
 
-  <!-- KPI Arribo y equipaje -->
-  <div class="superficie-kpi">
-    <div class="terminal-step-title">Arribo y equipaje</div>
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/boarding.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Puertas de embarque</div>
+                <div class="terminal-sub" id="puertasDetalle">–</div>
+              </div>
+              <div class="terminal-badge" id="puertasTotal">–</div>
+            </div>
 
-    <div class="terminal-item">
-      <div class="terminal-icon"><img src="img/icons/baggage.png" alt=""></div>
-      <div class="terminal-text">
-        <div class="terminal-title">Cintas de equipaje</div>
-        <div class="terminal-sub" id="cintasDetalle">–</div>
-      </div>
-      <div class="terminal-badge" id="cintasTotal">–</div>
-    </div>
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/manga.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Mangas telescópicas</div>
+                <div class="terminal-sub">Conexión directa aeronave–terminal</div>
+              </div>
+              <div class="terminal-badge" id="mangas">–</div>
+            </div>
+          </div>
 
-    <div class="terminal-item">
-      <div class="terminal-icon"><img src="img/icons/Carrito.png" alt=""></div>
-      <div class="terminal-text">
-        <div class="terminal-title">Carritos porta equipajes</div>
-        <div class="terminal-sub">Disponibles para el pasajero</div>
-      </div>
-      <div class="terminal-badge" id="carritos">–</div>
-    </div>
-  </div>
+          <!-- KPI Arribo y equipaje -->
+          <div class="superficie-kpi">
+            <div class="terminal-step-title">Arribo y equipaje</div>
 
-  <!-- KPI Apoyo al pasajero -->
-  <div class="superficie-kpi">
-    <div class="terminal-step-title">Apoyo al pasajero</div>
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/baggage.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Cintas de equipaje</div>
+                <div class="terminal-sub" id="cintasDetalle">–</div>
+              </div>
+              <div class="terminal-badge" id="cintasTotal">–</div>
+            </div>
 
-    <div class="terminal-item">
-      <div class="terminal-icon"><img src="img/icons/estacionamiento.png" alt=""></div>
-      <div class="terminal-text">
-        <div class="terminal-title">Plazas de estacionamiento vehicular</div>
-        <div class="terminal-sub">Capacidad total de estacionamiento</div>
-      </div>
-      <div class="terminal-badge" id="estacionamiento">–</div>
-    </div>
-  </div>
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/Carrito.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Carritos porta equipajes</div>
+                <div class="terminal-sub">Disponibles para el pasajero</div>
+              </div>
+              <div class="terminal-badge" id="carritos">–</div>
+            </div>
+          </div>
 
-  <span id="terminalM2Dup" style="display:none;"></span>
-</div>
+          <!-- KPI Apoyo al pasajero -->
+          <div class="superficie-kpi">
+            <div class="terminal-step-title">Apoyo al pasajero</div>
 
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/estacionamiento.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Plazas de estacionamiento vehicular</div>
+                <div class="terminal-sub">Capacidad total de estacionamiento</div>
+              </div>
+              <div class="terminal-badge" id="estacionamiento">–</div>
+            </div>
+          </div>
+
+          <!-- elemento oculto para mantener compatibilidad con lógica previa -->
+          <span id="terminalM2Dup" style="display:none;"></span>
+
+        </div>
       </section>
 
       <!-- PANEL 4: UBICACIÓN Y ACCESIBILIDAD -->
@@ -1136,6 +1155,7 @@
         <div class="panel-header" id="hdrUbicacion">Ubicación y accesibilidad</div>
         <div class="panel-body">
 
+          <!-- KPI Ubicación básica y distancia al centro -->
           <div class="ubicacion-kpi">
             <div class="ubi-row">
               <span class="ubi-label">Ubicación</span>
@@ -1153,7 +1173,7 @@
             </div>
           </div>
 
-          <!-- KPI Administrador -->
+          <!-- KPI Administrador del aeropuerto -->
           <div class="contact-kpi">
             <div class="contact-title">Administración del aeropuerto</div>
 
@@ -1173,7 +1193,7 @@
             </div>
           </div>
 
-          <!-- KPI Jefe de Aeropuerto -->
+          <!-- KPI Jefatura de aeropuerto -->
           <div class="contact-kpi">
             <div class="contact-title">Jefatura de aeropuerto</div>
 
@@ -1193,6 +1213,7 @@
             </div>
           </div>
 
+          <!-- Mapa de ubicación nacional -->
           <div class="ubicacion-map-wrapper">
             <div id="mapUbicacion" class="map-ubicacion"></div>
           </div>
@@ -1260,7 +1281,9 @@
     </div>
   </footer>
 
-  <!-- Leaflet JS -->
+  <!-- ==========================
+       SCRIPTS LEAFLET
+       ========================== -->
   <script
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
@@ -1270,25 +1293,26 @@
   <!-- Esri Leaflet (para mapa satelital) -->
   <script src="https://unpkg.com/esri-leaflet@3/dist/esri-leaflet.js" crossorigin=""></script>
 
+  <!-- ==========================
+       LÓGICA JS DE LA PÁGINA
+       ========================== -->
   <script>
     /* ============================================
-       VARIABLES GLOBALES
+       A. VARIABLES GLOBALES
        ============================================ */
     let aeropuertos = [];
     let poligonos = [];
     let psnFeatures = [];
     let pistasFeatures = [];
     let contactos = [];
-    let contactosPorIATA = [];
-    let inversionesPorIATA = {};   // 🔹 NUEVO: inversiones 2025-2027 por aeropuerto
-
+    let contactosPorIATA = {};        // mapa IATA -> datos de contacto
+    let inversionesPorIATA = {};      // mapa IATA -> inversiones 2025–2027
 
     const selectEl = document.getElementById("airportSelect");
 
     let map, mapMarker, poligonoLayer;
     let mapPSN, psnLayer, pistasLayerPSN;
     let mapUbicacion, ubicacionMarker, provinciasLayer;
-
     let provinciasFeatures = [];
 
     const airportIcon = L.icon({
@@ -1299,7 +1323,7 @@
     });
 
     /* ============================================
-       HELPERS DE FORMATEO
+       B. HELPERS DE FORMATEO Y UTILIDADES
        ============================================ */
     function formatNumber(n) {
       if (n === null || n === undefined || n === "" || isNaN(n)) return "–";
@@ -1356,7 +1380,7 @@
     }
 
     /* ============================================
-       INICIALIZACIÓN DE MAPAS LEAFLET
+       C. INICIALIZACIÓN DE MAPAS LEAFLET
        ============================================ */
     function initMap() {
       // 1) Mapa de predio
@@ -1394,7 +1418,7 @@
     }
 
     /* ============================================
-       MAPA DE PREDIO
+       D. ACTUALIZACIÓN DE MAPA DEL PREDIO
        ============================================ */
     function updateMapForAirport(a) {
       if (!map) return;
@@ -1467,7 +1491,7 @@
     }
 
     /* ============================================
-       MAPA DE POSICIONES (PSN) + PISTAS
+       E. MAPA POSICIONES (PSN) + PISTAS
        ============================================ */
     function updatePSNMapForAirport(a) {
       if (!mapPSN) return;
@@ -1598,7 +1622,7 @@
     }
 
     /* ============================================
-       MAPA DE UBICACIÓN NACIONAL
+       F. MAPA DE UBICACIÓN NACIONAL
        ============================================ */
     function updateUbicacionMapForAirport(a) {
       if (!mapUbicacion) return;
@@ -1653,16 +1677,69 @@
     }
 
     /* ============================================
-       RENDER PRINCIPAL DEL AEROPUERTO
+       G. PARSEO CSV DE INVERSIONES POR AEROPUERTO
+       ============================================ */
+    function parseInversionesCSV(text) {
+      const result = {};
+      if (!text) return result;
+
+      const lines = text.trim().split(/\r?\n/);
+      if (lines.length < 2) return result;
+
+      const headerLine = lines[0];
+      const sep = headerLine.indexOf(";") !== -1 ? ";" : ",";   // detecta ; o ,
+
+      const headers = headerLine.split(sep).map(h => h.trim());
+
+      // Buscamos columnas clave
+      const idxIATA = headers.findIndex(h =>
+        h.toUpperCase() === "IATA" ||
+        h.toUpperCase() === "COD_IATA" ||
+        h.toUpperCase() === "CODIGO_IATA"
+      );
+      const idx2025 = headers.findIndex(h => h.toUpperCase() === "A2025");
+      const idx2026 = headers.findIndex(h => h.toUpperCase() === "A2026");
+      const idx2027 = headers.findIndex(h => h.toUpperCase() === "A2027");
+      const idxObra = headers.findIndex(h => h.toUpperCase() === "OBRAWEB");
+
+      if (idxIATA === -1) {
+        console.warn("No se encontró columna IATA en Programacion_por_aeropuerto_aprobada2025_web.csv");
+        return result;
+      }
+
+      for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+
+        const cols = line.split(sep);
+
+        const rawIata = (cols[idxIATA] || "").trim();
+        if (!rawIata) continue;
+
+        const iata = rawIata.toUpperCase();
+
+        result[iata] = {
+          A2025: idx2025 !== -1 ? (cols[idx2025] || "").trim() : "",
+          A2026: idx2026 !== -1 ? (cols[idx2026] || "").trim() : "",
+          A2027: idx2027 !== -1 ? (cols[idx2027] || "").trim() : "",
+          ObraWeb: idxObra !== -1 ? (cols[idxObra] || "").trim() : ""
+        };
+      }
+
+      return result;
+    }
+
+    /* ============================================
+       H. RENDER PRINCIPAL DEL AEROPUERTO SELECCIONADO
        ============================================ */
     function renderAirport(iataCode) {
       const a = aeropuertos.find(x => x.IATA === iataCode);
       if (!a) return;
 
       const nombre = clean(a["Aeropuerto"]) || clean(a["Nombre del Aeropuerto"]) || a.IATA;
-
       const tituloAeroSeccion = `${nombre} (${a.IATA})`;
 
+      // Encabezados de paneles
       document.getElementById("hdrSuperficie").innerHTML =
         `Explotación <small>${tituloAeroSeccion}</small>`;
       document.getElementById("hdrMovimiento").innerHTML =
@@ -1676,12 +1753,13 @@
       document.getElementById("hdrServicios").innerHTML =
         `Servicios y ayudas <small>${tituloAeroSeccion}</small>`;
 
+      // Título principal
       document.getElementById("pageTitle").textContent =
         `Aeropuerto de ${nombre} (${a.IATA})`;
       document.getElementById("pageSubtitle").textContent =
         `Sistema Nacional de Aeropuertos · Datos Clave ${a["Año"] || ""}`;
 
-      /* ----- KPI strip superior ----- */
+      /* ----- BANDA KPI SUPERIOR ----- */
       document.getElementById("kpiCheckin").textContent =
         safeVal(a["Mostradores Check in"]);
       document.getElementById("kpiPuertas").textContent =
@@ -1720,7 +1798,8 @@
 
       document.getElementById("habilitacion").textContent =
         clean(a["Habilitación"]) || "–";
-      /* ----- INVERSIONES 2025–2027 (Programación financiera) ----- */
+
+      /* ----- INVERSIONES 2025–2027 ----- */
       const inv = inversionesPorIATA[String(a.IATA).toUpperCase()] || null;
 
       const inv2025El = document.getElementById("inv2025");
@@ -1740,7 +1819,6 @@
         if (invObraEl)  invObraEl.textContent  = "–";
       }
 
-      
       /* ----- TERMINAL (m² + imagen) ----- */
       document.getElementById("terminalM2").textContent =
         safeVal(a["TerminalM2"]);
@@ -1874,24 +1952,21 @@
       document.getElementById("psaBadgeProxy").textContent =
         safeVal(a["PSAScanTotal"]);
 
-      // NUEVO: detalle PSA Internacional / Cabotaje
-      (function() {
-        const psaParts = [];
-        if (a["PSAScanInter"]) psaParts.push(`Internacional: ${safeVal(a["PSAScanInter"])}`);
-        if (a["PSAScanCabot"]) psaParts.push(`Cabotaje: ${safeVal(a["PSAScanCabot"])}`);
-        const psaDetalleEl = document.getElementById("psaDetalle");
-        if (psaDetalleEl) {
-          psaDetalleEl.textContent = psaParts.length ? psaParts.join(" · ") : "–";
-        }
+      // Detalle PSA Internacional / Cabotaje
+      (function () {
+        const interEl = document.getElementById("psaInter");
+        const cabotEl = document.getElementById("psaCabot");
+        if (interEl) interEl.textContent = safeVal(a["PSAScanInter"]);
+        if (cabotEl) cabotEl.textContent  = safeVal(a["PSAScanCabot"]);
       })();
 
-      // NUEVO: Aduana
+      // Aduana
       const aduanaEl = document.getElementById("aduanaPuestos");
       if (aduanaEl) {
         aduanaEl.textContent = safeVal(a["Puestos de Aduanas"]);
       }
 
-      // NUEVO: Migraciones (total + detalle partidas / arribos)
+      // Migraciones (total + detalle partidas / arribos)
       const migrTotEl = document.getElementById("migracionesTotal");
       if (migrTotEl) {
         migrTotEl.textContent = safeVal(a["PuestosMigracionesTot"]);
@@ -2007,61 +2082,11 @@
     }
 
     /* ============================================
-       CARGA DE DATOS (GeoJSON)
+       I. CARGA DE DATOS (GeoJSON + CSV)
        ============================================ */
-function parseInversionesCSV(text) {
-  const result = {};
-  if (!text) return result;
-
-  const lines = text.trim().split(/\r?\n/);
-  if (lines.length < 2) return result;
-
-  const headerLine = lines[0];
-  const sep = headerLine.indexOf(";") !== -1 ? ";" : ",";   // ; por defecto si existe
-
-  const headers = headerLine.split(sep).map(h => h.trim());
-
-  // Buscamos columnas clave
-  const idxIATA = headers.findIndex(h =>
-    h.toUpperCase() === "IATA" ||
-    h.toUpperCase() === "COD_IATA" ||
-    h.toUpperCase() === "CODIGO_IATA"
-  );
-  const idx2025 = headers.findIndex(h => h.toUpperCase() === "A2025");
-  const idx2026 = headers.findIndex(h => h.toUpperCase() === "A2026");
-  const idx2027 = headers.findIndex(h => h.toUpperCase() === "A2027");
-  const idxObra = headers.findIndex(h => h.toUpperCase() === "OBRAWEB");
-
-  if (idxIATA === -1) {
-    console.warn("No se encontró columna IATA en Programacion_por_aeropuerto_aprobada2025_web.csv");
-    return result;
-  }
-
-  for (let i = 1; i < lines.length; i++) {
-    const line = lines[i].trim();
-    if (!line) continue;
-
-    const cols = line.split(sep);
-
-    const rawIata = (cols[idxIATA] || "").trim();
-    if (!rawIata) continue;
-
-    const iata = rawIata.toUpperCase();
-
-    result[iata] = {
-      A2025: idx2025 !== -1 ? (cols[idx2025] || "").trim() : "",
-      A2026: idx2026 !== -1 ? (cols[idx2026] || "").trim() : "",
-      A2027: idx2027 !== -1 ? (cols[idx2027] || "").trim() : "",
-      ObraWeb: idxObra !== -1 ? (cols[idxObra] || "").trim() : ""
-    };
-  }
-
-  return result;
-}
-
-    
     async function loadData() {
       try {
+        // 1) Datos principales de aeropuertos
         const resp = await fetch("fuentes/Datos_aeropuertos.geojson");
         const geojson = await resp.json();
 
@@ -2081,6 +2106,7 @@ function parseInversionesCSV(text) {
           selectEl.appendChild(opt);
         });
 
+        // 2) Polígonos de aeropuertos
         try {
           const respPoly = await fetch("fuentes/poligonos_aeropuertos.geojson");
           const gjPoly = await respPoly.json();
@@ -2090,6 +2116,7 @@ function parseInversionesCSV(text) {
           poligonos = [];
         }
 
+        // 3) Posiciones de estacionamiento (PSN)
         try {
           const respPSN = await fetch("fuentes/psn_posiciones.geojson");
           const gjPSN = await respPSN.json();
@@ -2099,6 +2126,7 @@ function parseInversionesCSV(text) {
           psnFeatures = [];
         }
 
+        // 4) Pistas
         try {
           const respPistas = await fetch("fuentes/pistas.geojson");
           const gjPistas = await respPistas.json();
@@ -2108,6 +2136,7 @@ function parseInversionesCSV(text) {
           pistasFeatures = [];
         }
 
+        // 5) Provincias para mapa nacional
         try {
           const respProv = await fetch("fuentes/provincias.geojson");
           const gjProv = await respProv.json();
@@ -2117,6 +2146,7 @@ function parseInversionesCSV(text) {
           provinciasFeatures = [];
         }
 
+        // 6) Contactos por aeropuerto
         try {
           const respContactos = await fetch("fuentes/Datos_aeropuertos_contactos.geojson");
           const gjContactos = await respContactos.json();
@@ -2132,7 +2162,7 @@ function parseInversionesCSV(text) {
           contactosPorIATA = {};
         }
 
-  // 7) Programación de inversiones 2025-2027
+        // 7) Programación de inversiones 2025-2027 por aeropuerto
         try {
           const respInv = await fetch("fuentes/Programacion_por_aeropuerto_aprobada2025_web.csv");
           const textInv = await respInv.text();
@@ -2142,7 +2172,7 @@ function parseInversionesCSV(text) {
           inversionesPorIATA = {};
         }
 
-        
+        // Aeropuerto inicial (URL ?airport=IATA o el primero de la lista)
         const params = new URLSearchParams(window.location.search);
         const fromUrl = params.get("airport");
         let initial = aeropuertos[0]?.IATA;
@@ -2155,12 +2185,14 @@ function parseInversionesCSV(text) {
           renderAirport(initial);
         }
 
+        // Cambio de aeropuerto desde el selector
         selectEl.addEventListener("change", e => {
           renderAirport(e.target.value);
           const url = new URL(window.location.href);
           url.searchParams.set("airport", e.target.value);
           window.history.replaceState({}, "", url);
         });
+
       } catch (err) {
         console.error("Error cargando GeoJSON:", err);
         selectEl.innerHTML = "<option>Error al cargar datos</option>";
@@ -2168,7 +2200,7 @@ function parseInversionesCSV(text) {
     }
 
     /* ============================================
-       INICIO
+       J. INICIO (DOMContentLoaded)
        ============================================ */
     document.addEventListener("DOMContentLoaded", () => {
       initMap();
