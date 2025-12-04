@@ -904,38 +904,40 @@
             </div>
           </div>
 
-          <!-- KPI: Programación de inversiones 2025–2027 -->
-          <div class="superficie-kpi">
-            <div class="superficie-label">
-              <span>Programación de inversiones 2025–2027</span>
-            </div>
+    <!-- KPI: Programación de inversiones 2025–2027 -->
+    <div class="superficie-kpi">
+      <div class="superficie-label">
+        <span>Programación de inversiones 2025–2027</span>
+      </div>
 
-            <table class="kpi-table-inv">
-              <thead>
-                <tr>
-                  <th>Año</th>
-                  <th>Monto previsto</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>2025</td>
-                  <td id="inv2025">–</td>
-                </tr>
-                <tr>
-                  <td>2026</td>
-                  <td id="inv2026">–</td>
-                </tr>
-                <tr>
-                  <td>2027</td>
-                  <td id="inv2027">–</td>
-                </tr>
-              </tbody>
-            </table>
+      <table class="kpi-table-inv">
+        <thead>
+          <tr>
+            <th>Año</th>
+            <th>Obras previstas</th>
+            <th>Monto previsto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2025</td>
+            <td id="invObras2025">–</td>
+            <td id="inv2025">–</td>
+          </tr>
+          <tr>
+            <td>2026</td>
+            <td id="invObras2026">–</td>
+            <td id="inv2026">–</td>
+          </tr>
+          <tr>
+            <td>2027</td>
+            <td id="invObras2027">–</td>
+            <td id="inv2027">–</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-            <div class="small-label" style="margin-top:6px;">Descripción de las obras</div>
-            <div class="small-label" id="invObra">–</div>
-          </div>
 
         </div>
       </section>
@@ -1860,10 +1862,12 @@
       /* ----- INVERSIONES 2025–2027 (Programación financiera) ----- */
       const inv = inversionesPorIATA[String(a.IATA).toUpperCase()] || null;
 
-      const inv2025El = document.getElementById("inv2025");
-      const inv2026El = document.getElementById("inv2026");
-      const inv2027El = document.getElementById("inv2027");
-      const invObraEl = document.getElementById("invObra");
+      const inv2025El      = document.getElementById("inv2025");
+      const inv2026El      = document.getElementById("inv2026");
+      const inv2027El      = document.getElementById("inv2027");
+      const invObras2025El = document.getElementById("invObras2025");
+      const invObras2026El = document.getElementById("invObras2026");
+      const invObras2027El = document.getElementById("invObras2027");
 
       if (inv) {
         // Montos en millones (ej.: 25,5 M)
@@ -1871,26 +1875,45 @@
         if (inv2026El) inv2026El.textContent = inv.A2026 ? formatMillions(inv.A2026) : "–";
         if (inv2027El) inv2027El.textContent = inv.A2027 ? formatMillions(inv.A2027) : "–";
 
-        // Descripción separada por año
-        if (invObraEl) {
-          const descParts = [];
+        // Descripciones por año, numeradas dentro de la celda
+        if (invObras2025El) {
           if (inv.obras2025 && inv.obras2025.length) {
-            descParts.push(`2025: ${inv.obras2025.join(" · ")}`);
+            invObras2025El.innerHTML = inv.obras2025
+              .map((o, idx) => `${idx + 1}) ${o}`)
+              .join("<br>");
+          } else {
+            invObras2025El.textContent = "–";
           }
+        }
+
+        if (invObras2026El) {
           if (inv.obras2026 && inv.obras2026.length) {
-            descParts.push(`2026: ${inv.obras2026.join(" · ")}`);
+            invObras2026El.innerHTML = inv.obras2026
+              .map((o, idx) => `${idx + 1}) ${o}`)
+              .join("<br>");
+          } else {
+            invObras2026El.textContent = "–";
           }
+        }
+
+        if (invObras2027El) {
           if (inv.obras2027 && inv.obras2027.length) {
-            descParts.push(`2027: ${inv.obras2027.join(" · ")}`);
+            invObras2027El.innerHTML = inv.obras2027
+              .map((o, idx) => `${idx + 1}) ${o}`)
+              .join("<br>");
+          } else {
+            invObras2027El.textContent = "–";
           }
-          invObraEl.textContent = descParts.length ? descParts.join(" | ") : "–";
         }
       } else {
-        if (inv2025El) inv2025El.textContent = "–";
-        if (inv2026El) inv2026El.textContent = "–";
-        if (inv2027El) inv2027El.textContent = "–";
-        if (invObraEl)  invObraEl.textContent  = "–";
+        if (inv2025El)      inv2025El.textContent      = "–";
+        if (inv2026El)      inv2026El.textContent      = "–";
+        if (inv2027El)      inv2027El.textContent      = "–";
+        if (invObras2025El) invObras2025El.textContent = "–";
+        if (invObras2026El) invObras2026El.textContent = "–";
+        if (invObras2027El) invObras2027El.textContent = "–";
       }
+
 
 
       /* ----- TERMINAL (m² + imagen) ----- */
