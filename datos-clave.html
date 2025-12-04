@@ -1335,6 +1335,26 @@
       return String(text).trim();
     }
 
+    function parseMonto(raw) {
+      if (raw === null || raw === undefined) return 0;
+      let s = String(raw).trim();
+      if (!s) return 0;
+      // Limpia formatos tipo 25.500.000 o 25,5
+      s = s.replace(/\./g, "").replace(/,/g, ".");
+      const n = Number(s);
+      return isNaN(n) ? 0 : n;
+    }
+
+    function formatMillions(n) {
+      if (!n || isNaN(n)) return "–";
+      const millones = Number(n) / 1e6;
+      return millones.toLocaleString("es-AR", {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 1
+      }) + " M";
+    }
+
+    
     function safeVal(v) {
       return (v !== null && v !== undefined && v !== "" && !isNaN(v))
         ? formatNumber(v)
@@ -1691,7 +1711,7 @@
 
       const headers = headerLine.split(sep).map(h => h.trim());
 
-      // Buscamos columnas clave
+      // Columnas clave
       const idxIATA = headers.findIndex(h =>
         h.toUpperCase() === "IATA" ||
         h.toUpperCase() === "COD_IATA" ||
@@ -1717,17 +1737,55 @@
         if (!rawIata) continue;
 
         const iata = rawIata.toUpperCase();
+        if (!result[iata]) {
+          result[iata] = {
+            A2025: 0,
+            A2026: 0,
+            A2027: 0,
+            obras2025: [],
+            obras2026: [],
+            obras2027: []
+          };
+        }
 
-        result[iata] = {
-          A2025: idx2025 !== -1 ? (cols[idx2025] || "").trim() : "",
-          A2026: idx2026 !== -1 ? (cols[idx2026] || "").trim() : "",
-          A2027: idx2027 !== -1 ? (cols[idx2027] || "").trim() : "",
-          ObraWeb: idxObra !== -1 ? (cols[idxObra] || "").trim() : ""
-        };
+        const obraStr = idxObra !== -1 ? (cols[idxObra] || "").trim() : "";
+
+        // Sumar por año
+        if (idx2025 !== -1) {
+          const m2025 = parseMonto(cols[idx2025]);
+          if (m2025) {
+            result[iata].A2025 += m2025;
+            if (obraStr) result[iata].obras2025.push(obraStr);
+          }
+        }
+
+        if (idx2026 !== -1) {
+          const m2026 = parseMonto(cols[idx2026]);
+          if (m2026) {
+            result[iata].A2026 += m2026;
+            if (obraStr) result[iata].obras2026.push(obraStr);
+          }
+        }
+
+        if (idx2027 !== -1) {
+          const m2027 = parseMonto(cols[idx2027]);
+          if (m2027) {
+            result[iata].A2027 += m2027;
+            if (obraStr) result[iata].obras2027.push(obraStr);
+          }
+        }
       }
+
+      // Opcional: eliminar duplicados de descripciones
+      Object.keys(result).forEach(iata => {
+        ["obras2025", "obras2026", "obras2027"].forEach(k => {
+          result[iata][k] = [...new Set(result[iata][k])];
+        });
+      });
 
       return result;
     }
+
 
     /* ============================================
        H. RENDER PRINCIPAL DEL AEROPUERTO SELECCIONADO
@@ -1799,7 +1857,7 @@
       document.getElementById("habilitacion").textContent =
         clean(a["Habilitación"]) || "–";
 
-      /* ----- INVERSIONES 2025–2027 ----- */
+      /* ----- INVERSIONES 2025–2027 (Programación financiera) ----- */
       const inv = inversionesPorIATA[String(a.IATA).toUpperCase()] || null;
 
       const inv2025El = document.getElementById("inv2025");
@@ -1808,16 +1866,32 @@
       const invObraEl = document.getElementById("invObra");
 
       if (inv) {
-        if (inv2025El) inv2025El.textContent = safeVal(inv.A2025);
-        if (inv2026El) inv2026El.textContent = safeVal(inv.A2026);
-        if (inv2027El) inv2027El.textContent = safeVal(inv.A2027);
-        if (invObraEl)  invObraEl.textContent  = clean(inv.ObraWeb) || "–";
+        // Montos en millones (ej.: 25,5 M)
+        if (inv2025El) inv2025El.textContent = inv.A2025 ? formatMillions(inv.A2025) : "–";
+        if (inv2026El) inv2026El.textContent = inv.A2026 ? formatMillions(inv.A2026) : "–";
+        if (inv2027El) inv2027El.textContent = inv.A2027 ? formatMillions(inv.A2027) : "–";
+
+        // Descripción separada por año
+        if (invObraEl) {
+          const descParts = [];
+          if (inv.obras2025 && inv.obras2025.length) {
+            descParts.push(`2025: ${inv.obras2025.join(" · ")}`);
+          }
+          if (inv.obras2026 && inv.obras2026.length) {
+            descParts.push(`2026: ${inv.obras2026.join(" · ")}`);
+          }
+          if (inv.obras2027 && inv.obras2027.length) {
+            descParts.push(`2027: ${inv.obras2027.join(" · ")}`);
+          }
+          invObraEl.textContent = descParts.length ? descParts.join(" | ") : "–";
+        }
       } else {
         if (inv2025El) inv2025El.textContent = "–";
         if (inv2026El) inv2026El.textContent = "–";
         if (inv2027El) inv2027El.textContent = "–";
         if (invObraEl)  invObraEl.textContent  = "–";
       }
+
 
       /* ----- TERMINAL (m² + imagen) ----- */
       document.getElementById("terminalM2").textContent =
