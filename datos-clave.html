@@ -348,7 +348,7 @@
       width: 100%;
       border-collapse: collapse;
       margin-top: 4px;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
     }
 
     .kpi-table-inv th,
@@ -356,6 +356,7 @@
       border-bottom: 1px solid #d0d7e2;
       padding: 4px 6px;
       text-align: right;
+      font-size: 0.75rem;
     }
 
     .kpi-table-inv th:first-child,
@@ -690,7 +691,7 @@
     }
 /* Tamaño más pequeño para las descripciones de obras dentro de la tabla */
 .inv-obras-cell {
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   line-height: 1.25;
   color: #444;
   text-align: left !important;   /* ← ahora queda alineado a la izquierda */
@@ -1357,14 +1358,12 @@
       return isNaN(n) ? 0 : n;
     }
 
-    function formatMillions(n) {
-      if (!n || isNaN(n)) return "–";
-      const millones = Number(n) / 1e6;
-      return millones.toLocaleString("es-AR", {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 1
-      }) + " M";
-    }
+function formatMillions(valor) {
+  if (!valor || isNaN(Number(valor))) return "–";
+  const millones = Number(valor) / 1_000_000;
+  return millones.toLocaleString("es-AR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+}
+
 
     
     function safeVal(v) {
