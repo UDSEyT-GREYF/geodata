@@ -2209,6 +2209,27 @@ function formatMillions(valor) {
       document.getElementById("terminalCargasM2").textContent =
         safeVal(a["TerminalCargasM2"]);
 
+      // Mostrar/ocultar KPIs de cargas según haya datos
+      const opCargasEl   = document.getElementById("operadorCargas");
+      const termCargasEl = document.getElementById("terminalCargasM2");
+
+      const opCargasBox  = opCargasEl ? opCargasEl.closest(".servicio-kpi") : null;
+      const termCargasBox = termCargasEl ? termCargasEl.closest(".servicio-kpi") : null;
+
+      if (opCargasBox) {
+        if (!clean(a["OperadorCargas"])) {
+          opCargasBox.style.display = "none";
+        } else {
+          opCargasBox.style.display = "flex";
+        }
+      }
+
+      if (termCargasBox) {
+        const hasTerm = a["TerminalCargasM2"] && a["TerminalCargasM2"] !== "0";
+        termCargasBox.style.display = hasTerm ? "flex" : "none";
+      }
+
+      
       const aeroComb = [];
       if (a["Aeroplantas AV GAS"]) aeroComb.push(`AV GAS: ${a["Aeroplantas AV GAS"]}`);
       if (a["Aeroplantas JP1"]) aeroComb.push(`JP1: ${a["Aeroplantas JP1"]}`);
