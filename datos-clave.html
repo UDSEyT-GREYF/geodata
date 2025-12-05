@@ -706,25 +706,20 @@
       color: #555;
     }
 
-    .contact-value {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: #004b80;
-      text-align: right;
-      white-space: normal;
-      word-break: break-word;
-      max-width: 60%;
-    }
+.contact-value {
 
-    .contact-value-small {
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: #004b80;
-      text-align: right;
-      white-space: normal;
-      word-break: break-word;
-      max-width: 60%;
-    }
+.contact-value-small {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #004b80;
+  text-align: right;
+  white-space: nowrap;        /* evita saltos de línea */
+  word-break: normal;         /* no corta palabras */
+  overflow: hidden;           /* evita desbordes raros */
+  text-overflow: ellipsis;    /* si algún día fuera muy largo, agrega "…" */
+  max-width: 100%;            /* ahora aprovecha todo el ancho disponible */
+}
+
 /* Tamaño más pequeño para las descripciones de obras dentro de la tabla */
 .inv-obras-cell {
   font-size: 0.72rem;
