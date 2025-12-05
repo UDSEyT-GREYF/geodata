@@ -421,6 +421,31 @@
       text-align: right;
     }
 
+    /* KPI estilo caja para Servicios y Ayudas */
+.servicio-kpi {
+  background: #ffffff;
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  padding: 6px 8px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.servicio-label {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.servicio-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2a5fa0;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
     /* ==============================
        9. PANEL ÁREA DE MOVIMIENTO (PISTAS Y PLATAFORMAS)
        ============================== */
@@ -1276,11 +1301,18 @@
           <div class="small-label" style="margin-top:6px;">AWOS</div>
           <div class="small-label" id="awos">–</div>
 
-          <div class="small-label" style="margin-top:6px;">Operador de cargas</div>
-          <div class="small-label" id="operadorCargas">–</div>
+<!-- KPI: Operador de cargas -->
+<div class="servicio-kpi">
+  <div class="servicio-label">Operador de cargas</div>
+  <div class="servicio-value" id="operadorCargas">–</div>
+</div>
 
-          <div class="small-label" style="margin-top:6px;">Terminal de cargas (m²)</div>
-          <div class="small-label" id="terminalCargasM2">–</div>
+<!-- KPI: Terminal de cargas -->
+<div class="servicio-kpi">
+  <div class="servicio-label">Terminal de cargas (m²)</div>
+  <div class="servicio-value" id="terminalCargasM2">–</div>
+</div>
+
 
           <div class="small-label" style="margin-top:6px;">Aeroplantas</div>
           <div class="small-label" id="aeroplantas">–</div>
@@ -2315,6 +2347,21 @@ function formatMillions(valor) {
         selectEl.innerHTML = "<option>Error al cargar datos</option>";
       }
     }
+// Ocultar KPI cuando no hay datos
+const opCargasBox = document.getElementById("operadorCargas").closest(".servicio-kpi");
+const termCargasBox = document.getElementById("terminalCargasM2").closest(".servicio-kpi");
+
+if (!clean(a["OperadorCargas"])) {
+  opCargasBox.style.display = "none";
+} else {
+  opCargasBox.style.display = "flex";
+}
+
+if (!a["TerminalCargasM2"] || a["TerminalCargasM2"] === "0") {
+  termCargasBox.style.display = "none";
+} else {
+  termCargasBox.style.display = "flex";
+}
 
     /* ============================================
        J. INICIO (DOMContentLoaded)
