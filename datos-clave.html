@@ -2347,21 +2347,7 @@ function formatMillions(valor) {
         selectEl.innerHTML = "<option>Error al cargar datos</option>";
       }
     }
-// Ocultar KPI cuando no hay datos
-const opCargasBox = document.getElementById("operadorCargas").closest(".servicio-kpi");
-const termCargasBox = document.getElementById("terminalCargasM2").closest(".servicio-kpi");
 
-if (!clean(a["OperadorCargas"])) {
-  opCargasBox.style.display = "none";
-} else {
-  opCargasBox.style.display = "flex";
-}
-
-if (!a["TerminalCargasM2"] || a["TerminalCargasM2"] === "0") {
-  termCargasBox.style.display = "none";
-} else {
-  termCargasBox.style.display = "flex";
-}
 
     /* ============================================
        J. INICIO (DOMContentLoaded)
