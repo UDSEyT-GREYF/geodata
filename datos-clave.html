@@ -2336,7 +2336,7 @@ function formatMillions(valor) {
       const iataUpper = String(a.IATA || "").toUpperCase();
       const transpBox   = document.querySelector(".transporte-kpi");
       const transpLines = document.getElementById("transporteLineas");
-      const transpData  = transportePorIATA[iataUpper] || [];
+      const transpData  = transportePorIATA[iataUpperTrans] || [];
 
       if (transpBox) {
         if (transpData.length) {
