@@ -729,6 +729,37 @@
   vertical-align: top;            /* ← mejora la estética cuando hay varias líneas */
   padding-left: 4px;
 }
+    /* KPI Transporte público */
+    .transporte-kpi {
+      background: #ffffff;
+      border: 1px solid #d0d7e2;
+      border-radius: 4px;
+      padding: 6px 8px;
+      margin-bottom: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .transporte-list {
+      font-size: 0.78rem;
+      color: #555;
+      line-height: 1.3;
+    }
+
+    .transporte-thumb {
+      margin-top: 4px;
+      width: 100%;
+      height: 200px;
+      border-radius: 4px;
+      border: 1px solid #d0d7e2;
+      overflow: hidden;
+    }
+
+    .map-transporte {
+      width: 100%;
+      height: 100%;
+    }
 
     /* ==============================
        12. PANELES EMPLEO / SERVICIOS
@@ -1217,6 +1248,22 @@
             </div>
           </div>
 
+                    <!-- KPI Transporte público -->
+          <div class="transporte-kpi">
+            <div class="superficie-label">
+              <span>Transporte público</span>
+            </div>
+
+            <div class="small-label" style="margin-top:4px;">
+              Líneas de colectivo que llegan al aeropuerto
+            </div>
+            <div class="transporte-list" id="transporteLineas">–</div>
+
+            <div class="transporte-thumb">
+              <div id="mapTransporte" class="map-transporte"></div>
+            </div>
+          </div>
+
           <!-- KPI Administrador del aeropuerto -->
           <div class="contact-kpi">
             <div class="contact-title">Administración del aeropuerto</div>
@@ -1358,12 +1405,15 @@
     let contactos = [];
     let contactosPorIATA = {};        // mapa IATA -> datos de contacto
     let inversionesPorIATA = {};      // mapa IATA -> inversiones 2025–2027
-
+    let transportePorIATA = {};       // mapa IATA -> transporte público (CSV)
+    let paradasFeatures = [];         // paradas de transporte (GeoJSON)
+    
     const selectEl = document.getElementById("airportSelect");
 
     let map, mapMarker, poligonoLayer;
     let mapPSN, psnLayer, pistasLayerPSN;
     let mapUbicacion, ubicacionMarker, provinciasLayer;
+    let mapTransporte, transporteLayer;
     let provinciasFeatures = [];
 
     const airportIcon = L.icon({
@@ -1485,6 +1535,12 @@ function formatMillions(valor) {
         }
       ).addTo(mapUbicacion);
     }
+      // 4) Mapa de transporte público (paradas de colectivo)
+      mapTransporte = L.map("mapTransporte").setView([-34.6, -58.4], 5);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "&copy; OpenStreetMap contributors"
+      }).addTo(mapTransporte);
 
     /* ============================================
        D. ACTUALIZACIÓN DE MAPA DEL PREDIO
@@ -1745,6 +1801,71 @@ function formatMillions(valor) {
       }
     }
 
+        /* ============================================
+       F2. MAPA DE TRANSPORTE PÚBLICO
+       ============================================ */
+    function updateTransporteMapForAirport(a) {
+      if (!mapTransporte) return;
+
+      if (transporteLayer) {
+        mapTransporte.removeLayer(transporteLayer);
+        transporteLayer = null;
+      }
+
+      const iata = a.IATA;
+      if (!iata) return;
+
+      // Filtrar paradas por IATA (propiedad IATA del GeoJSON)
+      const feats = (paradasFeatures || []).filter(f => {
+        const props = f.properties || {};
+        const code = props.IATA;
+        return String(code).toUpperCase() === String(iata).toUpperCase();
+      });
+
+      if (feats.length) {
+        transporteLayer = L.geoJSON(feats, {
+          pointToLayer: (feature, latlng) => {
+            return L.circleMarker(latlng, {
+              radius: 5,
+              color: "#004b80",
+              weight: 1,
+              fillColor: "#2a5fa0",
+              fillOpacity: 0.9
+            });
+          },
+          onEachFeature: (feature, layer) => {
+            const nombre = feature.properties && feature.properties.name ? feature.properties.name : "";
+            if (nombre) {
+              layer.bindTooltip(nombre, {
+                permanent: true,
+                direction: "top",
+                offset: [0, -4],
+                className: "psn-tooltip"
+              });
+            }
+          }
+        }).addTo(mapTransporte);
+
+        const bounds = transporteLayer.getBounds();
+        if (bounds.isValid()) {
+          setTimeout(() => {
+            mapTransporte.invalidateSize();
+            mapTransporte.fitBounds(bounds, { padding: [5, 5] });
+          }, 0);
+          return;
+        }
+      }
+
+      // Si no hay paradas, centrar en el aeropuerto o vista general
+      const center = getAirportCenterLatLng(a) || [-34.6, -58.4];
+      const zoom   = getAirportCenterLatLng(a) ? 12 : 5;
+
+      setTimeout(() => {
+        mapTransporte.invalidateSize();
+        mapTransporte.setView(center, zoom);
+      }, 0);
+    }
+
     /* ============================================
        G. PARSEO CSV DE INVERSIONES POR AEROPUERTO
        ============================================ */
@@ -1831,6 +1952,46 @@ function formatMillions(valor) {
           result[iata][k] = [...new Set(result[iata][k])];
         });
       });
+
+      return result;
+    }
+
+        /* ============================================
+       Helper: TRANSPORTE PÚBLICO (CSV Paradasapp)
+       ============================================ */
+    function parseTransporteCSV(text) {
+      const result = {};
+      if (!text) return result;
+
+      const lines = text.trim().split(/\r?\n/);
+      if (lines.length < 2) return result;
+
+      const headerLine = lines[0];
+      const sep = headerLine.indexOf(";") !== -1 ? ";" : ",";
+      const headers = headerLine.split(sep).map(h => h.trim().toUpperCase());
+
+      const idxIATA   = headers.indexOf("IATA");
+      const idxLINEA  = headers.indexOf("LINEA");
+      const idxPARADA = headers.indexOf("PARADAAEP"); // encabezado ParadaAEP
+
+      if (idxIATA === -1) return result;
+
+      for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+
+        const cols = line.split(sep);
+        const rawIata = (cols[idxIATA] || "").trim();
+        if (!rawIata) continue;
+
+        const iata = rawIata.toUpperCase();
+        if (!result[iata]) result[iata] = [];
+
+        const linea  = idxLINEA  !== -1 ? (cols[idxLINEA]  || "").trim() : "";
+        const parada = idxPARADA !== -1 ? (cols[idxPARADA] || "").trim() : "";
+
+        result[iata].push({ LINEA: linea, ParadaAEP: parada });
+      }
 
       return result;
     }
@@ -2168,6 +2329,32 @@ function formatMillions(valor) {
       document.getElementById("horarioOperacion").textContent =
         clean(a["Horario de operación"]) || "–";
 
+            /* ----- TRANSPORTE PÚBLICO ----- */
+      const iataUpper = String(a.IATA || "").toUpperCase();
+      const transpBox   = document.querySelector(".transporte-kpi");
+      const transpLines = document.getElementById("transporteLineas");
+      const transpData  = transportePorIATA[iataUpper] || [];
+
+      if (transpBox) {
+        if (transpData.length) {
+          transpBox.style.display = "flex";
+
+          if (transpLines) {
+            transpLines.innerHTML = transpData
+              .map((t, idx) => {
+                const linea  = t.LINEA ? `Línea ${t.LINEA}` : "";
+                const parada = t.ParadaAEP ? ` – ${t.ParadaAEP}` : "";
+                return `${idx + 1}) ${linea}${parada}`;
+              })
+              .join("<br>");
+          }
+        } else {
+          transpBox.style.display = "none";
+          if (transpLines) transpLines.textContent = "–";
+        }
+      }
+
+      
       /* ----- CONTACTO ----- */
       const contacto = contactosPorIATA[String(a.IATA).toUpperCase()] || {};
 
@@ -2244,6 +2431,7 @@ function formatMillions(valor) {
       updateMapForAirport(a);
       updatePSNMapForAirport(a);
       updateUbicacionMapForAirport(a);
+      updateTransporteMapForAirport(a);
     }
 
     /* ============================================
@@ -2363,6 +2551,25 @@ function formatMillions(valor) {
         selectEl.innerHTML = "<option>Error al cargar datos</option>";
       }
     }
+        // 8) Líneas de transporte público (CSV Paradasapp)
+        try {
+          const respTransp = await fetch("fuentes/Paradasapp.csv");
+          const textTransp = await respTransp.text();
+          transportePorIATA = parseTransporteCSV(textTransp);
+        } catch (e) {
+          console.warn("No se pudieron cargar las líneas de transporte público:", e);
+          transportePorIATA = {};
+        }
+
+        // 9) Paradas de transporte (GeoJSON paradasapp)
+        try {
+          const respParadas = await fetch("fuentes/paradasapp.geojson");
+          const gjParadas = await respParadas.json();
+          paradasFeatures = gjParadas.features || [];
+        } catch (e) {
+          console.warn("No se pudieron cargar las paradas de transporte:", e);
+          paradasFeatures = [];
+        }
 
 
     /* ============================================
