@@ -1410,6 +1410,7 @@
     let inversionesPorIATA = {};      // mapa IATA -> inversiones 2025–2027
     let transportePorIATA = {};       // mapa IATA -> transporte público (CSV)
     let paradasFeatures = [];         // paradas de transporte (GeoJSON)
+    let terminalesFeatures = [];      // ← NUEVA
     
     const selectEl = document.getElementById("airportSelect");
 
@@ -1807,67 +1808,128 @@ function formatMillions(valor) {
         /* ============================================
        F2. MAPA DE TRANSPORTE PÚBLICO
        ============================================ */
-    function updateTransporteMapForAirport(a) {
-      if (!mapTransporte) return;
+function updateTransporteMapForAirport(a) {
+  if (!mapTransporte) return;
 
-      if (transporteLayer) {
-        mapTransporte.removeLayer(transporteLayer);
-        transporteLayer = null;
-      }
+  // limpiar capa previa
+  if (transporteLayer) {
+    mapTransporte.removeLayer(transporteLayer);
+    transporteLayer = null;
+  }
 
-      const iata = a.IATA;
-      if (!iata) return;
+  const iataUpper = String(a.IATA || "").trim().toUpperCase();
+  if (!iataUpper) return;
 
-      // Filtrar paradas por IATA (propiedad IATA del GeoJSON)
-      const feats = (paradasFeatures || []).filter(f => {
-        const props = f.properties || {};
-        const code = props.IATA;
-        return String(code).toUpperCase() === String(iata).toUpperCase();
-      });
+  /* ================================================
+     1) Filtrar PARADAS por IATA (puntos)
+     ================================================ */
+  const featsParadas = (paradasFeatures || []).filter(f => {
+    const code = String(f.properties?.IATA || "").trim().toUpperCase();
+    return code === iataUpper;
+  });
 
-      if (feats.length) {
-        transporteLayer = L.geoJSON(feats, {
-          pointToLayer: (feature, latlng) => {
-            return L.circleMarker(latlng, {
+  const paradasLayer =
+    featsParadas.length > 0
+      ? L.geoJSON(featsParadas, {
+          pointToLayer: (feature, latlng) =>
+            L.circleMarker(latlng, {
               radius: 5,
               color: "#004b80",
               weight: 1,
               fillColor: "#2a5fa0",
               fillOpacity: 0.9
-            });
-          },
+            }),
           onEachFeature: (feature, layer) => {
-            const nombre = feature.properties && feature.properties.name ? feature.properties.name : "";
+            const nombre = feature.properties?.name || "";
             if (nombre) {
               layer.bindTooltip(nombre, {
-                permanent: true,
+                permanent: false,
                 direction: "top",
                 offset: [0, -4],
                 className: "psn-tooltip"
               });
             }
           }
-        }).addTo(mapTransporte);
+        })
+      : null;
 
-        const bounds = transporteLayer.getBounds();
-        if (bounds.isValid()) {
-          setTimeout(() => {
-            mapTransporte.invalidateSize();
-            mapTransporte.fitBounds(bounds, { padding: [5, 5] });
-          }, 0);
-          return;
-        }
-      }
+  /* ================================================
+     2) Filtrar TERMINALES por IATA (polígonos)
+     ================================================ */
+  const featsTerminales = (terminalesFeatures || []).filter(f => {
+    const code = String(f.properties?.iata || f.properties?.IATA || "")
+      .trim()
+      .toUpperCase();
+    return code === iataUpper;
+  });
 
-      // Si no hay paradas, centrar en el aeropuerto o vista general
-      const center = getAirportCenterLatLng(a) || [-34.6, -58.4];
-      const zoom   = getAirportCenterLatLng(a) ? 12 : 5;
+  const terminalesLayer =
+    featsTerminales.length > 0
+      ? L.geoJSON(featsTerminales, {
+          style: {
+            color: "#c1121f",
+            weight: 2,
+            fillColor: "#ffb3b3",
+            fillOpacity: 0.4
+          },
+          onEachFeature: (feature, layer) => {
+            const name =
+              feature.properties?.etiqueta ||
+              feature.properties?.tipo ||
+              "Terminal";
+            layer.bindTooltip(name, {
+              permanent: false,
+              direction: "center",
+              className: "terminal-label"
+            });
+          }
+        })
+      : null;
 
-      setTimeout(() => {
-        mapTransporte.invalidateSize();
-        mapTransporte.setView(center, zoom);
-      }, 0);
+  /* ================================================
+     3) Crear un LAYER GROUP combinado
+     ================================================ */
+  transporteLayer = L.layerGroup();
+
+  if (terminalesLayer) transporteLayer.addLayer(terminalesLayer);
+  if (paradasLayer) transporteLayer.addLayer(paradasLayer);
+
+  transporteLayer.addTo(mapTransporte);
+
+  /* ================================================
+     4) Calcular bounds combinados (terminal + paradas)
+     ================================================ */
+  let bounds = null;
+
+  if (terminalesLayer) {
+    const b = terminalesLayer.getBounds();
+    if (b.isValid()) bounds = b;
+  }
+
+  if (paradasLayer) {
+    const b = paradasLayer.getBounds();
+    if (b.isValid()) {
+      if (bounds) bounds.extend(b);
+      else bounds = b;
     }
+  }
+
+  /* ================================================
+     5) Aplicar zoom al conjunto
+     ================================================ */
+  if (bounds && bounds.isValid()) {
+    setTimeout(() => {
+      mapTransporte.invalidateSize();
+      mapTransporte.fitBounds(bounds, { padding: [10, 10] });
+    }, 0);
+  } else {
+    // fallback si no hay nada
+    const center = getAirportCenterLatLng(a) || [-34.6, -58.4];
+    mapTransporte.setView(center, 12);
+  }
+}
+
+
 
     /* ============================================
        G. PARSEO CSV DE INVERSIONES POR AEROPUERTO
@@ -2577,6 +2639,15 @@ if (transpBox) {
           console.warn("No se pudieron cargar las paradas de transporte:", e);
           paradasFeatures = [];
         }
+
+        // 10) Cargar terminales de pasajeros
+try {
+  const respTerm = await fetch("fuentes/terminalpax.geojson");
+  const gjTerm = await respTerm.json();
+  terminalesFeatures = gjTerm.features || [];
+} catch (e) {
+  console.warn("No se pudieron cargar las terminales:", e);
+}
 
         // Aeropuerto inicial (URL ?airport=IATA o el primero de la lista)
         const params = new URLSearchParams(window.location.search);
