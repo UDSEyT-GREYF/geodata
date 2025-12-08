@@ -1843,7 +1843,7 @@ function updateTransporteMapForAirport(a) {
             const nombre = feature.properties?.name || "";
             if (nombre) {
               layer.bindTooltip(nombre, {
-                permanent: false,
+                permanent: true,
                 direction: "top",
                 offset: [0, -4],
                 className: "psn-tooltip"
