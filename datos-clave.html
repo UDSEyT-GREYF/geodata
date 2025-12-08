@@ -688,7 +688,7 @@
     }
 
     .contact-title {
-      font-size: 0.95rem;
+      font-size: 0.8rem;
       font-weight: 700;
       color: #004b80;
       margin-bottom: 2px;
@@ -702,23 +702,26 @@
     }
 
     .contact-label {
-      font-size: 0.85rem;
+      font-size: 0.7rem;
       color: #555;
     }
 
-.contact-value {
+    .contact-value {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #004b80;
+      text-align: right;
+    }
 
-.contact-value-small {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #004b80;
-  text-align: right;
-  white-space: nowrap;        /* evita saltos de línea */
-  word-break: normal;         /* no corta palabras */
-  overflow: hidden;           /* evita desbordes raros */
-  text-overflow: ellipsis;    /* si algún día fuera muy largo, agrega "…" */
-  max-width: 100%;            /* ahora aprovecha todo el ancho disponible */
-}
+    .contact-value-small {
+      font-size: 0.70rem;
+      font-weight: 700;
+      color: #004b80;
+      text-align: right;
+      white-space: normal;     /* permite 2+ renglones si hace falta */
+      word-break: break-word;  /* corta si es muy largo */
+    }
+
 
 /* Tamaño más pequeño para las descripciones de obras dentro de la tabla */
 .inv-obras-cell {
@@ -1534,14 +1537,14 @@ function formatMillions(valor) {
           attribution: "© IGN Argentina - Argenmap"
         }
       ).addTo(mapUbicacion);
-    }
+
       // 4) Mapa de transporte público (paradas de colectivo)
       mapTransporte = L.map("mapTransporte").setView([-34.6, -58.4], 5);
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
         attribution: "&copy; OpenStreetMap contributors"
       }).addTo(mapTransporte);
-
+    }
     /* ============================================
        D. ACTUALIZACIÓN DE MAPA DEL PREDIO
        ============================================ */
@@ -2525,6 +2528,26 @@ function formatMillions(valor) {
           inversionesPorIATA = {};
         }
 
+        // 8) Líneas de transporte público (CSV Paradasapp)
+        try {
+          const respTransp = await fetch("fuentes/Paradasapp.csv");
+          const textTransp = await respTransp.text();
+          transportePorIATA = parseTransporteCSV(textTransp);
+        } catch (e) {
+          console.warn("No se pudieron cargar las líneas de transporte público:", e);
+          transportePorIATA = {};
+        }
+
+        // 9) Paradas de transporte (GeoJSON paradasapp)
+        try {
+          const respParadas = await fetch("fuentes/paradasapp.geojson");
+          const gjParadas = await respParadas.json();
+          paradasFeatures = gjParadas.features || [];
+        } catch (e) {
+          console.warn("No se pudieron cargar las paradas de transporte:", e);
+          paradasFeatures = [];
+        }
+
         // Aeropuerto inicial (URL ?airport=IATA o el primero de la lista)
         const params = new URLSearchParams(window.location.search);
         const fromUrl = params.get("airport");
@@ -2551,25 +2574,8 @@ function formatMillions(valor) {
         selectEl.innerHTML = "<option>Error al cargar datos</option>";
       }
     }
-        // 8) Líneas de transporte público (CSV Paradasapp)
-        try {
-          const respTransp = await fetch("fuentes/Paradasapp.csv");
-          const textTransp = await respTransp.text();
-          transportePorIATA = parseTransporteCSV(textTransp);
-        } catch (e) {
-          console.warn("No se pudieron cargar las líneas de transporte público:", e);
-          transportePorIATA = {};
-        }
 
-        // 9) Paradas de transporte (GeoJSON paradasapp)
-        try {
-          const respParadas = await fetch("fuentes/paradasapp.geojson");
-          const gjParadas = await respParadas.json();
-          paradasFeatures = gjParadas.features || [];
-        } catch (e) {
-          console.warn("No se pudieron cargar las paradas de transporte:", e);
-          paradasFeatures = [];
-        }
+ 
 
 
     /* ============================================
