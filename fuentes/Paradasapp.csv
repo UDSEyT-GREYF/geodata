@@ -1,1 +1,58 @@
-IATA;LINEA;ParadaAEP;8/33/34/37/45/160/166;En la terminal de pasajerosAFA;;AOL;;BHI;;BRC;72;En la terminal de pasajerosCNQ;;COC;;COR;25;En la terminal de pasajerosCPC;Expreso Colonia (interurbano);En la terminal de pasajerosCRD;;CTC;;EPA;53/182/252/320/326/386/634;En la vereda 30mts de la terminalEQS;;EZE;8/51/518/394;En la terminal de pasajerosFDO;710;En la terminal de pasajerosFMA;25;En la rotonda a 250mt de la terminalFTE;;GNR;;GPO;;IGR;;IRJ;;JNI;;JUJ;15 General Savio;A 200mts de la terminalLGS;;LPG;;LUQ;;MDQ;542;En la terminal de pasajerosMDZ;965/675/680;En la terminal de pasajerosNEC;;NQN;501 y Tren del Valle;A 350mts de la terminalPMQ;;PMY;;PRA;14 ramal A;En la terminal de pasajerosPSS;28;En la terminal de pasajerosRCQ;;RCU;;REL;Mar y Valle / 28 de Julio;RES;;RGA;;RGL;;RHD;;RLO;;ROS;115;En la terminal de pasajerosRSA;;RYO;;SDE;119;A 100mts de la terminalSFN;C;A 100mts de la terminalSLA;8A;A 300m de la terminalSST;;TDL;;TTG;;TUC;121;En la terminal de pasajerosUAQ;;USH;;VDM;;VLG;;VME;;
+IATA;LINEA;Parada
+AEP;8/33/34/37/45/160/166;En la terminal de pasajeros
+AFA;;
+AOL;;
+BHI;;
+BRC;72;En la terminal de pasajeros
+CNQ;;
+COC;;
+COR;25;En la terminal de pasajeros
+CPC;Expreso Colonia (interurbano);En la terminal de pasajeros
+CRD;;
+CTC;;
+EPA;53/182/252/320/326/386/634;En la vereda 30mts de la terminal
+EQS;;
+EZE;8/51/518/394;En la terminal de pasajeros
+FDO;710;En la terminal de pasajeros
+FMA;25;En la rotonda a 250mt de la terminal
+FTE;;
+GNR;;
+GPO;;
+IGR;;
+IRJ;;
+JNI;;
+JUJ;15 General Savio;A 200mts de la terminal
+LGS;;
+LPG;;
+LUQ;;
+MDQ;542;En la terminal de pasajeros
+MDZ;965/675/680;En la terminal de pasajeros
+NEC;;
+NQN;501 y Tren del Valle;A 350mts de la terminal
+PMQ;;
+PMY;;
+PRA;14 ramal A;En la terminal de pasajeros
+PSS;28;En la terminal de pasajeros
+RCQ;;
+RCU;;
+REL;Mar y Valle / 28 de Julio;
+RES;;
+RGA;;
+RGL;;
+RHD;;
+RLO;;
+ROS;115;En la terminal de pasajeros
+RSA;;
+RYO;;
+SDE;119;A 100mts de la terminal
+SFN;C;A 100mts de la terminal
+SLA;8A;A 300m de la terminal
+SST;;
+TDL;;
+TTG;;
+TUC;121;En la terminal de pasajeros
+UAQ;;
+USH;;
+VDM;;
+VLG;;
+VME;;
