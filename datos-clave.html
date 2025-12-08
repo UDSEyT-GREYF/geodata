@@ -2333,7 +2333,6 @@ function formatMillions(valor) {
         clean(a["Horario de operación"]) || "–";
 
             /* ----- TRANSPORTE PÚBLICO ----- */
-      const iataUpper = String(a.IATA || "").toUpperCase();
       const transpBox   = document.querySelector(".transporte-kpi");
       const transpLines = document.getElementById("transporteLineas");
       const transpData  = transportePorIATA[iataUpperTrans] || [];
