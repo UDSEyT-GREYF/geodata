@@ -1959,45 +1959,55 @@ function formatMillions(valor) {
       return result;
     }
 
-        /* ============================================
-       Helper: TRANSPORTE PÚBLICO (CSV Paradasapp)
-       ============================================ */
-    function parseTransporteCSV(text) {
-      const result = {};
-      if (!text) return result;
+/* ============================================
+   Helper: TRANSPORTE PÚBLICO (CSV Paradasapp)
+   Estructura esperada: IATA;LINEA;Parada
+   Una fila por aeropuerto (57 filas)
+   ============================================ */
+function parseTransporteCSV(text) {
+  const result = {};
+  if (!text) return result;
 
-      const lines = text.trim().split(/\r?\n/);
-      if (lines.length < 2) return result;
+  const lines = text.trim().split(/\r?\n/);
+  if (lines.length < 2) return result;
 
-      const headerLine = lines[0];
-      const sep = headerLine.indexOf(";") !== -1 ? ";" : ",";
-      const headers = headerLine.split(sep).map(h => h.trim().toUpperCase());
+  const headerLine = lines[0];
+  const sep = headerLine.indexOf(";") !== -1 ? ";" : ",";
+  const headers = headerLine.split(sep).map(h => h.trim().toUpperCase());
 
-      const idxIATA   = headers.indexOf("IATA");
-      const idxLINEA  = headers.indexOf("LINEA");
-      const idxPARADA = headers.indexOf("PARADAAEP"); // encabezado ParadaAEP
+  const idxIATA   = headers.indexOf("IATA");
+  const idxLINEA  = headers.indexOf("LINEA");
+  // Aceptar tanto "PARADA" como "PARADAAEP" por si cambia el encabezado
+  let idxPARADA   = headers.indexOf("PARADA");
+  if (idxPARADA === -1) {
+    idxPARADA = headers.indexOf("PARADAAEP");
+  }
 
-      if (idxIATA === -1) return result;
+  if (idxIATA === -1) return result;
 
-      for (let i = 1; i < lines.length; i++) {
-        const line = lines[i].trim();
-        if (!line) continue;
+  for (let i = 1; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (!line) continue;
 
-        const cols = line.split(sep);
-        const rawIata = (cols[idxIATA] || "").trim();
-        if (!rawIata) continue;
+    const cols = line.split(sep);
+    const rawIata = (cols[idxIATA] || "").trim();
+    if (!rawIata) continue;
 
-        const iata = rawIata.toUpperCase();
-        if (!result[iata]) result[iata] = [];
+    const iata = rawIata.toUpperCase();
 
-        const linea  = idxLINEA  !== -1 ? (cols[idxLINEA]  || "").trim() : "";
-        const parada = idxPARADA !== -1 ? (cols[idxPARADA] || "").trim() : "";
+    const linea  = idxLINEA  !== -1 ? (cols[idxLINEA]  || "").trim() : "";
+    const parada = idxPARADA !== -1 ? (cols[idxPARADA] || "").trim() : "";
 
-        result[iata].push({ LINEA: linea, ParadaAEP: parada });
-      }
+    // Guardamos un solo objeto por IATA
+    result[iata] = {
+      linea,
+      parada
+    };
+  }
 
-      return result;
-    }
+  return result;
+}
+
 
 
     /* ============================================
@@ -2332,29 +2342,50 @@ function formatMillions(valor) {
       document.getElementById("horarioOperacion").textContent =
         clean(a["Horario de operación"]) || "–";
 
-            /* ----- TRANSPORTE PÚBLICO ----- */
-      const transpBox   = document.querySelector(".transporte-kpi");
-      const transpLines = document.getElementById("transporteLineas");
-      const transpData  = transportePorIATA[iataUpper] || [];
+ /* ----- TRANSPORTE PÚBLICO ----- */
+const transpBox   = document.querySelector(".transporte-kpi");
+const transpLines = document.getElementById("transporteLineas");
+const transpInfo  = transportePorIATA[iataUpper] || null;
 
-      if (transpBox) {
-        if (transpData.length) {
-          transpBox.style.display = "flex";
+// ¿Hay info útil en el CSV? (línea o descripción de parada)
+const hasCSVInfo =
+  transpInfo &&
+  (clean(transpInfo.linea) !== "" || clean(transpInfo.parada) !== "");
 
-          if (transpLines) {
-            transpLines.innerHTML = transpData
-              .map((t, idx) => {
-                const linea  = t.LINEA ? `Línea ${t.LINEA}` : "";
-                const parada = t.ParadaAEP ? ` – ${t.ParadaAEP}` : "";
-                return `${idx + 1}) ${linea}${parada}`;
-              })
-              .join("<br>");
-          }
-        } else {
-          transpBox.style.display = "none";
-          if (transpLines) transpLines.textContent = "–";
+// ¿Hay paradas en el GeoJSON para este aeropuerto?
+const hasParadasGeoJSON = (paradasFeatures || []).some(f => {
+  const props = f.properties || {};
+  const code  = props.IATA || "";
+  return String(code).trim().toUpperCase() === String(iataUpper).trim().toUpperCase();
+});
+
+if (transpBox) {
+  // Mostrar la caja si hay info en CSV o paradas en el GeoJSON
+  if (hasCSVInfo || hasParadasGeoJSON) {
+    transpBox.style.display = "flex";
+
+    if (transpLines) {
+      if (hasCSVInfo) {
+        const partes = [];
+        if (clean(transpInfo.linea)) {
+          partes.push(`Líneas: ${transpInfo.linea}`);
         }
+        if (clean(transpInfo.parada)) {
+          partes.push(`Parada: ${transpInfo.parada}`);
+        }
+        transpLines.innerHTML = partes.join("<br>");
+      } else {
+        // No hay CSV pero sí paradas mapeadas
+        transpLines.textContent = "Paradas de colectivo registradas en el mapa.";
       }
+    }
+  } else {
+    // No hay transporte público registrado en ninguna fuente
+    transpBox.style.display = "none";
+    if (transpLines) transpLines.textContent = "–";
+  }
+}
+
 
       
       /* ----- CONTACTO ----- */
