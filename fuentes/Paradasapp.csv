@@ -1,5 +1,5 @@
 IATA;LINEA;Parada
-AEP;8/33/34/37/45/160/166;En la terminal de pasajeros
+AEP;8/33/34/37/45/160/166/Trambus;En la terminal de pasajeros
 AFA;571/572/574;en la Ruta Nac. 143 a 100mts de la terminal 
 AOL;;
 BHI;520;En la terminal de pasajeros
@@ -56,5 +56,6 @@ USH;C;en el acceso al aeropuerto, a 2000mts de la terminal
 VDM;;
 VLG;;
 VME;;
+
 
 
