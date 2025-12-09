@@ -1,8 +1,8 @@
 IATA;LINEA;Parada
 AEP;8/33/34/37/45/160/166;En la terminal de pasajeros
-AFA;;
+AFA;571/572/574;en la Ruta Nac. 143 a 100mts de la terminal 
 AOL;;
-BHI;;
+BHI;520;En la terminal de pasajeros
 BRC;72;En la terminal de pasajeros
 CNQ;;
 COC;;
@@ -56,3 +56,4 @@ USH;;
 VDM;;
 VLG;;
 VME;;
+
