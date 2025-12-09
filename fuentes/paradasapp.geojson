@@ -30,15 +30,7 @@
 { "type": "Feature", "properties": { "gid": 14, "name": "501 Indalo Sentido Centro", "IATA": "NQN" }, "geometry": { "type": "Point", "coordinates": [ -68.140474599999948, -38.955461599999978, 0.0 ] } },
 { "type": "Feature", "properties": { "gid": 16, "name": "Línea D - Sentido centro", "IATA": "LUQ" }, "geometry": { "type": "Point", "coordinates": [ -66.344128399999988, -33.274844599999938, 0.0 ] } },
 { "type": "Feature", "properties": { "gid": 17, "name": "Línea D - Sentido Norte", "IATA": "LUQ" }, "geometry": { "type": "Point", "coordinates": [ -66.343901599999981, -33.274412, 0.0 ] } },
-{ "type": "Feature", "properties": { "gid": 18, "name": "8V2", "IATA": "CRD" }, "geometry": { "type": "Point", "coordinates": [ -67.463920899999948, -45.794878, 0.0 ] } },
-{ "type": "Feature", "properties": { "gid": 19, "name": "8V2", "IATA": "CRD" }, "geometry": { "type": "Point", "coordinates": [ -67.465982699999984, -45.794742699999972, 0.0 ] } },
 { "type": "Feature", "properties": { "gid": 20, "name": "Aerobus - Línea Interurbana a Las Higueras ", "IATA": "RCU" }, "geometry": { "type": "Point", "coordinates": [ -64.286452299999951, -33.097341099999937, 0.0 ] } },
-{ "type": "Feature", "properties": { "gid": 21, "name": "19 y 22 - dirección este", "IATA": "UAQ" }, "geometry": { "type": "Point", "coordinates": [ -68.411791199999982, -31.592064299999947, 0.0 ] } },
-{ "type": "Feature", "properties": { "gid": 22, "name": "19 y 22 - dirección oeste (capital)", "IATA": "UAQ" }, "geometry": { "type": "Point", "coordinates": [ -68.411694599999976, -31.591886099999954, 0.0 ] } },
-{ "type": "Feature", "properties": { "gid": 23, "name": "19 y 22 - dirección oeste (capital)", "IATA": "UAQ" }, "geometry": { "type": "Point", "coordinates": [ -68.416910199999961, -31.588817499999948, 0.0 ] } },
-{ "type": "Feature", "properties": { "gid": 24, "name": "19 y 22 - dirección oeste (capital)", "IATA": "UAQ" }, "geometry": { "type": "Point", "coordinates": [ -68.438871499999948, -31.571600499999931, 0.0 ] } },
-{ "type": "Feature", "properties": { "gid": 25, "name": "19 y 22 - dirección oeste (capital)", "IATA": "UAQ" }, "geometry": { "type": "Point", "coordinates": [ -68.435573499999975, -31.573105399999974, 0.0 ] } },
-{ "type": "Feature", "properties": { "gid": 26, "name": "19 y 22 - dirección oeste (capital)", "IATA": "UAQ" }, "geometry": { "type": "Point", "coordinates": [ -68.44209, -31.570149199999946, 0.0 ] } },
 { "type": "Feature", "properties": { "gid": 27, "name": "322A Red Tulum", "IATA": "UAQ" }, "geometry": { "type": "Point", "coordinates": [ -68.423173320970349, -31.571090859121842, 0.0 ] } },
 { "type": "Feature", "properties": { "gid": 28, "name": "8/33/34/37/45/160/166", "IATA": "AEP" }, "geometry": { "type": "Point", "coordinates": [ -58.410684166418342, -34.557882199494152, 0.0 ] } },
 { "type": "Feature", "properties": { "gid": 39, "name": "53/182/252/320/326/386/634", "IATA": "EPA" }, "geometry": { "type": "Point", "coordinates": [ -58.599084094758645, -34.605830893095629, 0.0 ] } },
@@ -49,6 +41,12 @@
 { "type": "Feature", "properties": { "gid": 44, "name": "14 ramal A", "IATA": "PRA" }, "geometry": { "type": "Point", "coordinates": [ -60.484288808976714, -31.789456376566381, 0.0 ] } },
 { "type": "Feature", "properties": { "gid": 45, "name": "Mar y Valle / 28 de Julio", "IATA": "REL" }, "geometry": { "type": "Point", "coordinates": [ -65.294250604649847, -43.211914970009758, 0.0 ] } },
 { "type": "Feature", "properties": { "gid": 46, "name": "115", "IATA": "ROS" }, "geometry": { "type": "Point", "coordinates": [ -60.77988891779799, -32.916561302620515, 0.0 ] } },
-{ "type": "Feature", "properties": { "gid": 47, "name": "121", "IATA": "TUC" }, "geometry": { "type": "Point", "coordinates": [ -65.108610241261843, -26.835770746610677, 0.0 ] } }
+{ "type": "Feature", "properties": { "gid": 47, "name": "121", "IATA": "TUC" }, "geometry": { "type": "Point", "coordinates": [ -65.108610241261843, -26.835770746610677, 0.0 ] } },
+{ "type": "Feature", "properties": { "gid": 19, "name": "8", "IATA": "CRD" }, "geometry": { "type": "Point", "coordinates": [ -67.467801073904113, -45.790298987172001, 0.0 ] } },
+{ "type": "Feature", "properties": { "gid": 48, "name": "520", "IATA": "BHI" }, "geometry": { "type": "Point", "coordinates": [ -62.164119183593108, -38.71626770973841, 0.0 ] } },
+{ "type": "Feature", "properties": { "gid": 49, "name": "Aerobus ERSA", "IATA": "CNQ" }, "geometry": { "type": "Point", "coordinates": [ -58.758389912261492, -27.449259461544663, 0.0 ] } },
+{ "type": "Feature", "properties": { "gid": 50, "name": "Río Uruguay", "IATA": "IGR" }, "geometry": { "type": "Point", "coordinates": [ -54.47622242057254, -25.731167105956413, 0.0 ] } },
+{ "type": "Feature", "properties": { "gid": 51, "name": "2 Ay B/104", "IATA": "RES" }, "geometry": { "type": "Point", "coordinates": [ -59.023530915395604, -27.445746740566715, 0.0 ] } },
+{ "type": "Feature", "properties": { "gid": 52, "name": "CityBus Río Grande", "IATA": "RGA" }, "geometry": { "type": "Point", "coordinates": [ -67.749804514675787, -53.787073055402068, 0.0 ] } }
 ]
 }
