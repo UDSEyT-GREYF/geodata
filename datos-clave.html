@@ -1539,12 +1539,22 @@ function formatMillions(valor) {
         }
       ).addTo(mapUbicacion);
 
-      // 4) Mapa de transporte público (paradas de colectivo)
-      mapTransporte = L.map("mapTransporte").setView([-34.6, -58.4], 5);
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-        attribution: "&copy; OpenStreetMap contributors"
-      }).addTo(mapTransporte);
+// 4) Mapa de transporte público (paradas de colectivo)
+mapTransporte = L.map("mapTransporte").setView([-34.6, -58.4], 5);
+
+// Panes personalizados para controlar el orden de dibujo
+mapTransporte.createPane("pane_terminales");
+mapTransporte.getPane("pane_terminales").style.zIndex = 300;
+
+mapTransporte.createPane("pane_paradas");
+mapTransporte.getPane("pane_paradas").style.zIndex = 400;
+
+// Capa base (queda en el pane de tiles por defecto)
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 19,
+  attribution: "&copy; OpenStreetMap contributors"
+}).addTo(mapTransporte);
+
     }
     /* ============================================
        D. ACTUALIZACIÓN DE MAPA DEL PREDIO
@@ -1831,6 +1841,7 @@ function updateTransporteMapForAirport(a) {
   const paradasLayer =
     featsParadas.length > 0
       ? L.geoJSON(featsParadas, {
+          pane: "pane_paradas",
           pointToLayer: (feature, latlng) =>
             L.circleMarker(latlng, {
               radius: 5,
@@ -1866,6 +1877,7 @@ function updateTransporteMapForAirport(a) {
   const terminalesLayer =
     featsTerminales.length > 0
       ? L.geoJSON(featsTerminales, {
+          pane: "pane_terminales",
           style: {
             color: "#c1121f",
             weight: 2,
