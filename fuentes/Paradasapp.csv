@@ -4,11 +4,11 @@ AFA;571/572/574;en la Ruta Nac. 143 a 100mts de la terminal
 AOL;;
 BHI;520;En la terminal de pasajeros
 BRC;72;En la terminal de pasajeros
-CNQ;;
+CNQ;Aerobus ERSA;En la terminal de pasajeros
 COC;;
 COR;25;En la terminal de pasajeros
 CPC;Expreso Colonia (interurbano);En la terminal de pasajeros
-CRD;;
+CRD;8;En la terminal de pasajeros
 CTC;;
 EPA;53/182/252/320/326/386/634;En la vereda 30mts de la terminal
 EQS;;
@@ -18,13 +18,13 @@ FMA;25;En la rotonda a 250mt de la terminal
 FTE;;
 GNR;;
 GPO;;
-IGR;;
+IGR;Rio Uruguay;En la terminal de pasajeros
 IRJ;;
 JNI;;
 JUJ;15 General Savio;A 200mts de la terminal
 LGS;;
 LPG;;
-LUQ;;
+LUQ;D Transpuntano;Avenida de ingreso al aeropuerto
 MDQ;542;En la terminal de pasajeros
 MDZ;965/675/680;En la terminal de pasajeros
 NEC;;
@@ -35,9 +35,9 @@ PRA;14 ramal A;En la terminal de pasajeros
 PSS;28;En la terminal de pasajeros
 RCQ;;
 RCU;;
-REL;Mar y Valle / 28 de Julio;
-RES;;
-RGA;;
+REL;Mar y Valle / 28 de Julio;en la Ruta a 500mts de la terminal
+RES;2AyB/104;en la Ruta Nac. 11 a 2000mts de la terminal
+RGA;CityBus Río Grande;
 RGL;;
 RHD;;
 RLO;;
@@ -51,9 +51,10 @@ SST;;
 TDL;;
 TTG;;
 TUC;121;En la terminal de pasajeros
-UAQ;;
-USH;;
+UAQ;322 de RedTulum;En la terminal de pasajeros
+USH;C;en el acceso al aeropuerto, a 2000mts de la terminal
 VDM;;
 VLG;;
 VME;;
+
 
