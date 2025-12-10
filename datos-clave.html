@@ -764,6 +764,24 @@
       height: 100%;
     }
 
+    /* para abrir el mapa de paradas APP en una nueva ventana */
+    .map-expand-btn {
+  margin-top: 6px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid #2a5fa0;
+  background-color: #ffffff;
+  color: #2a5fa0;
+  font-size: 0.8rem;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.map-expand-btn:hover {
+  background-color: #2a5fa0;
+  color: #ffffff;
+}
+
     /* ==============================
        12. PANELES EMPLEO / SERVICIOS
        ============================== */
@@ -1262,9 +1280,18 @@
             </div>
             <div class="transporte-list" id="transporteLineas">–</div>
 
-            <div class="transporte-thumb">
-              <div id="mapTransporte" class="map-transporte"></div>
-            </div>
+<div class="transporte-thumb">
+  <div id="mapTransporte" class="map-transporte"></div>
+</div>
+
+<button
+  type="button"
+  class="map-expand-btn"
+  data-map="transporte"
+>
+  Abrir el mapa
+</button>
+
           </div>
 
           <!-- KPI Administrador del aeropuerto -->
@@ -2694,10 +2721,23 @@ try {
     /* ============================================
        J. INICIO (DOMContentLoaded)
        ============================================ */
-    document.addEventListener("DOMContentLoaded", () => {
-      initMap();
-      loadData();
+document.addEventListener("DOMContentLoaded", () => {
+  initMap();
+  loadData();
+
+  // Botones "Abrir el mapa" (por ahora sólo transporte)
+  document.querySelectorAll(".map-expand-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const iata = selectEl.value; // aeropuerto seleccionado
+      if (!iata) return;
+
+      const mapType = btn.dataset.map; // "transporte"
+      const url = `mapa_${mapType}.html?airport=${encodeURIComponent(iata)}`;
+      window.open(url, "_blank"); // abre en otra pestaña/ventana
     });
+  });
+});
+
   </script>
 </body>
 </html>
