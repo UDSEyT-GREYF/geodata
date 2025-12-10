@@ -1479,6 +1479,8 @@
       iconAnchor: [16, 16],
       tooltipAnchor:[0, -18]
     });
+// Multiplicador para estimar empleo indirecto a partir del empleo directo
+const EMP_IND_MULT = 5.8;
 
     /* ============================================
        B. HELPERS DE FORMATEO Y UTILIDADES
@@ -2237,42 +2239,7 @@ function parseTransporteCSV(text) {
   return result;
 }
 
-/* 11) Carga Empleo y poblacion en el area de influencia */
-function parseCensoCSV(text) {
-  const result = {};
-  if (!text) return result;
 
-  const lines = text.trim().split(/
-?
-/);
-  if (lines.length < 2) return result;
-
-  const headerLine = lines[0];
-  const sep = headerLine.indexOf(";") !== -1 ? ";" : ",";
-  const headers = headerLine.split(sep).map(h => h.trim().toUpperCase());
-
-  const idxIATA = headers.indexOf("IATA");
-  const idxPOB  = headers.indexOf("POBLACION");
-
-  if (idxIATA === -1 || idxPOB === -1) return result;
-
-  for (let i = 1; i < lines.length; i++) {
-    const line = lines[i].trim();
-    if (!line) continue;
-
-    const cols = line.split(sep);
-    const rawIata = (cols[idxIATA] || "").trim();
-    if (!rawIata) continue;
-
-    const iata = rawIata.toUpperCase();
-    const pobStr = (cols[idxPOB] || "").trim().replace(/\./g, "");
-    const pob = Number(pobStr);
-
-    result[iata] = isNaN(pob) ? null : pob;
-  }
-
-  return result;
-}
 
     /* ============================================
        H. RENDER PRINCIPAL DEL AEROPUERTO SELECCIONADO
@@ -2670,28 +2637,36 @@ if (transpBox) {
         clean(contacto["JefeCorreo"]) || "–";
 
       /* ----- EMPLEO Y POBLACIÓN ----- */
-      const emp = empleoPorIATA[iataUpper];
-      if (emp) {
-        document.getElementById("empleoDirecto").textContent =
-          safeVal(emp.directo);
-        document.getElementById("empleoIndirecto").textContent =
-          safeVal(emp.indirecto);
-      } else {
-        // Fallback a campos de la tabla principal si no hay JSON
-        document.getElementById("empleoDirecto").textContent =
-          safeVal(a["EmpleoDirecto2024"]);
-        document.getElementById("empleoIndirecto").textContent =
-          safeVal(a["EmpleoIndirecto2024"]);
+      /* ----- EMPLEO Y POBLACIÓN (desde Datos_aeropuertos.geojson) ----- */
+      const empDirRaw = a["EmpleoDirecto2024"];
+      const empDirNum = Number(
+        typeof empDirRaw === "string"
+          ? empDirRaw.replace(/\./g, "").replace(/,/g, ".")
+          : empDirRaw
+      );
+
+      const empIndNum = !isNaN(empDirNum) ? empDirNum * EMP_IND_MULT : null;
+
+      // Empleo directo aeronáutico/aeroportuario
+      document.getElementById("empleoDirecto").textContent =
+        !isNaN(empDirNum) && empDirNum !== null
+          ? formatNumber(empDirNum)
+          : "–";
+
+      // Empleo indirecto estimado = directo * 5.8
+      const empleoIndirectoEl = document.getElementById("empleoIndirecto");
+      if (empleoIndirectoEl) {
+        empleoIndirectoEl.textContent =
+          !isNaN(empIndNum) && empIndNum !== null
+            ? formatNumber(empIndNum)
+            : "–";
       }
 
-      const pob = poblacionPorIATA[iataUpper];
-      if (pob !== undefined && pob !== null) {
-        document.getElementById("poblacionInfluencia").textContent =
-          formatNumber(pob);
-      } else {
-        document.getElementById("poblacionInfluencia").textContent =
-          safeVal(a["Población del Área de Influencia (Censo 2022)"]);
-      }
+      // Población del área de influencia (Censo 2022)
+      const pobRaw = a["Población del Área de Influencia (Censo 2022)"];
+      document.getElementById("poblacionInfluencia").textContent =
+        safeVal(pobRaw);
+
 
       /* ----- SERVICIOS Y AYUDAS ----- */
       document.getElementById("radioayudas").textContent =
@@ -2871,34 +2846,7 @@ if (transpBox) {
           terminalesFeatures = [];
         }
 
-        // 11) Empleo directo e indirecto 2024 por aeropuerto
-        try {
-          const respEmp = await fetch("fuentes/Empleo2024.json");
-          const dataEmp = await respEmp.json();
-          empleoPorIATA = {};
 
-          (dataEmp || []).forEach(row => {
-            const iata = (row.IATA || row.iata || "").toUpperCase();
-            if (!iata) return;
-            empleoPorIATA[iata] = {
-              directo: row.directo,
-              indirecto: row.indirecto
-            };
-          });
-        } catch (e) {
-          console.warn("No se pudo cargar Empleo2024.json:", e);
-          empleoPorIATA = {};
-        }
-
-        // 12) Población Censo 2022 por aeropuerto
-        try {
-          const respCenso = await fetch("fuentes/Censo2022.csv");
-          const textCenso = await respCenso.text();
-          poblacionPorIATA = parseCensoCSV(textCenso);
-        } catch (e) {
-          console.warn("No se pudo cargar Censo2022.csv:", e);
-          poblacionPorIATA = {};
-        }
 
         // Aeropuerto inicial (URL ?airport=IATA o el primero de la lista)
         const params = new URLSearchParams(window.location.search);
