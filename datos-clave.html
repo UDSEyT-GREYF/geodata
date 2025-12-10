@@ -286,7 +286,7 @@
       border: 1px solid #d0d7e2;
       border-radius: 4px;
       padding: 6px 8px;
-      margin-bottom: 8px;
+      margin-bottom: 8px;  /* separación homogénea entre cajas */
     }
 
     .superficie-header-row {
@@ -370,25 +370,16 @@
       background-color: #f3f6fb;
     }
 
-    /* Centrar el encabezado "Obras" */
-    .kpi-table-inv th:nth-child(2) {
-      text-align: center !important;
-    }
+/* Centrar el encabezado "Obras" */
+.kpi-table-inv th:nth-child(2) {
+  text-align: center !important;
+}
 
-    /* Asegurar que la columna de obras también quede alineada a la izquierda */
-    .kpi-table-inv td:nth-child(2) {
-      text-align: left !important;
-    }
+/* Asegurar que la columna de obras también quede alineada a la izquierda */
+.kpi-table-inv td:nth-child(2) {
+  text-align: left !important;
+}
 
-    /* Tamaño más pequeño para las descripciones de obras dentro de la tabla */
-    .inv-obras-cell {
-      font-size: 0.72rem;
-      line-height: 1.25;
-      color: #444;
-      text-align: left !important;
-      vertical-align: top;
-      padding-left: 4px;
-    }
 
     /* Valores tipo "188 hectáreas" */
     .concesion-value-group {
@@ -431,29 +422,29 @@
     }
 
     /* KPI estilo caja para Servicios y Ayudas */
-    .servicio-kpi {
-      background: #ffffff;
-      border: 1px solid #d0d7e2;
-      border-radius: 4px;
-      padding: 6px 8px;
-      margin-bottom: 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
+.servicio-kpi {
+  background: #ffffff;
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  padding: 6px 8px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 
-    .servicio-label {
-      font-size: 0.85rem;
-      color: #555;
-    }
+.servicio-label {
+  font-size: 0.85rem;
+  color: #555;
+}
 
-    .servicio-value {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #2a5fa0;
-      line-height: 1.1;
-      white-space: nowrap;
-    }
+.servicio-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2a5fa0;
+  line-height: 1.1;
+  white-space: nowrap;
+}
 
     /* ==============================
        9. PANEL ÁREA DE MOVIMIENTO (PISTAS Y PLATAFORMAS)
@@ -684,7 +675,7 @@
       overflow: hidden;
     }
 
-    /* KPI de Contacto (Administración / Jefatura) */
+    /* KPI de Contacto (Administrador / Jefe) */
     .contact-kpi {
       background: #ffffff;
       border: 1px solid #d0d7e2;
@@ -727,10 +718,20 @@
       font-weight: 700;
       color: #004b80;
       text-align: right;
-      white-space: normal;
-      word-break: break-word;
+      white-space: normal;     /* permite 2+ renglones si hace falta */
+      word-break: break-word;  /* corta si es muy largo */
     }
 
+
+/* Tamaño más pequeño para las descripciones de obras dentro de la tabla */
+.inv-obras-cell {
+  font-size: 0.72rem;
+  line-height: 1.25;
+  color: #444;
+  text-align: left !important;   /* ← ahora queda alineado a la izquierda */
+  vertical-align: top;            /* ← mejora la estética cuando hay varias líneas */
+  padding-left: 4px;
+}
     /* KPI Transporte público */
     .transporte-kpi {
       background: #ffffff;
@@ -763,23 +764,23 @@
       height: 100%;
     }
 
-    /* Botón para abrir mapa de paradas APP en nueva ventana */
+    /* para abrir el mapa de paradas APP en una nueva ventana */
     .map-expand-btn {
-      margin-top: 6px;
-      padding: 4px 10px;
-      border-radius: 4px;
-      border: 1px solid #2a5fa0;
-      background-color: #ffffff;
-      color: #2a5fa0;
-      font-size: 0.8rem;
-      cursor: pointer;
-      align-self: flex-end;
-    }
+  margin-top: 6px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid #2a5fa0;
+  background-color: #ffffff;
+  color: #2a5fa0;
+  font-size: 0.8rem;
+  cursor: pointer;
+  align-self: flex-end;
+}
 
-    .map-expand-btn:hover {
-      background-color: #2a5fa0;
-      color: #ffffff;
-    }
+.map-expand-btn:hover {
+  background-color: #2a5fa0;
+  color: #ffffff;
+}
 
     /* ==============================
        12. PANELES EMPLEO / SERVICIOS
@@ -788,9 +789,10 @@
     .panel-servicios { grid-area: servicios; }
 
     .map-influencia {
-      width: 100%;
-      height: 230px;
-    }
+  width: 100%;
+  height: 230px;
+}
+
 
     /* ==============================
        13. FOOTER
@@ -1001,37 +1003,40 @@
             </div>
           </div>
 
-          <!-- KPI: Programación de inversiones 2025–2027 -->
-          <div class="superficie-kpi">
-            <div class="contact-title">Programación de inversiones 2025–2027</div>
+    <!-- KPI: Programación de inversiones 2025–2027 -->
+    <div class="superficie-kpi">
+<div class="contact-title">Programación de inversiones 2025–2027</div>
 
-            <table class="kpi-table-inv">
-              <thead>
-                <tr>
-                  <th>Año</th>
-                  <th>Obras</th>
-                  <th>Millones</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>2025</td>
-                  <td id="invObras2025" class="inv-obras-cell">–</td>
-                  <td id="inv2025">–</td>
-                </tr>
-                <tr>
-                  <td>2026</td>
-                  <td id="invObras2026" class="inv-obras-cell">–</td>
-                  <td id="inv2026">–</td>
-                </tr>
-                <tr>
-                  <td>2027</td>
-                  <td id="invObras2027" class="inv-obras-cell">–</td>
-                  <td id="inv2027">–</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+
+      <table class="kpi-table-inv">
+        <thead>
+          <tr>
+            <th>Año</th>
+            <th>Obras</th>
+            <th>Millones</th>
+          </tr>
+        </thead>
+        <tbody>
+<tr>
+  <td>2025</td>
+  <td id="invObras2025" class="inv-obras-cell">–</td>
+  <td id="inv2025">–</td>
+</tr>
+<tr>
+  <td>2026</td>
+  <td id="invObras2026" class="inv-obras-cell">–</td>
+  <td id="inv2026">–</td>
+</tr>
+<tr>
+  <td>2027</td>
+  <td id="invObras2027" class="inv-obras-cell">–</td>
+  <td id="inv2027">–</td>
+</tr>
+
+        </tbody>
+      </table>
+    </div>
+
 
         </div>
       </section>
@@ -1075,7 +1080,7 @@
               </div>
               <div class="terminal-badge" id="badgePsnTotal">–</div>
             </div>
-            
+
             <div class="mov-psn-list" style="margin-top:2px;">
               <div class="mov-item">
                 <span>Posiciones aeronaves comerciales</span>
@@ -1269,29 +1274,31 @@
             </div>
           </div>
 
-          <!-- KPI Transporte público -->
+                    <!-- KPI Transporte público -->
           <div class="transporte-kpi">
-            <div class="contact-title">Transporte público</div>
+<div class="contact-title">Transporte público</div>
+
 
             <div class="small-label" style="margin-top:4px;">
               Líneas de colectivo que llegan al aeropuerto
             </div>
             <div class="transporte-list" id="transporteLineas">–</div>
 
-            <div class="transporte-thumb">
-              <div id="mapTransporte" class="map-transporte"></div>
-            </div>
+<div class="transporte-thumb">
+  <div id="mapTransporte" class="map-transporte"></div>
+</div>
 
-            <button
-              type="button"
-              class="map-expand-btn"
-              data-map="transporte"
-            >
-              Abrir el mapa
-            </button>
+<button
+  type="button"
+  class="map-expand-btn"
+  data-map="transporte"
+>
+  Abrir el mapa
+</button>
+
           </div>
 
-          <!-- KPI Administración del aeropuerto -->
+          <!-- KPI Administrador del aeropuerto -->
           <div class="contact-kpi">
             <div class="contact-title">Administración del aeropuerto</div>
 
@@ -1339,42 +1346,41 @@
         </div>
       </section>
 
-      <!-- PANEL 5: IMPACTO TERRITORIAL (EMPLEO + ÁREA DE INFLUENCIA) -->
-      <section class="panel panel-empleo">
-        <div class="panel-header" id="hdrEmpleo">Impacto territorial del aeropuerto</div>
-        <div class="panel-body">
+<section class="panel panel-empleo">
+  <div class="panel-header" id="hdrEmpleo">Impacto territorial del aeropuerto</div>
+  <div class="panel-body">
 
-          <!-- KPI Empleo -->
-          <div class="superficie-kpi">
-            <div class="contact-title">Empleo vinculado al aeropuerto</div>
+    <!-- KPI Empleo -->
+    <div class="superficie-kpi">
+      <div class="contact-title">Empleo vinculado al aeropuerto</div>
 
-            <div class="ubi-row">
-              <span class="ubi-label">Empleo directo aeronáutico/aeroportuario</span>
-              <span class="ubi-chip" id="empleoDirecto">–</span>
-            </div>
+      <div class="ubi-row">
+        <span class="ubi-label">Empleo directo aeronáutico/aeroportuario</span>
+        <span class="ubi-chip" id="empleoDirecto">–</span>
+      </div>
 
-            <div class="ubi-row">
-              <span class="ubi-label">Empleo indirecto</span>
-              <span class="ubi-chip" id="empleoIndirecto">–</span>
-            </div>
-          </div>
+      <div class="ubi-row">
+        <span class="ubi-label">Empleo indirecto</span>
+        <span class="ubi-chip" id="empleoIndirecto">–</span>
+      </div>
+    </div>
 
-          <!-- KPI Área de influencia -->
-          <div class="superficie-kpi">
-            <div class="contact-title">Área de influencia aeroportuaria</div>
+    <!-- KPI Área de influencia -->
+    <div class="superficie-kpi">
+      <div class="contact-title">Área de influencia aeroportuaria</div>
 
-            <div class="ubi-row">
-              <span class="ubi-label">Población (Censo 2022)</span>
-              <span class="ubi-chip" id="poblacionInfluencia">–</span>
-            </div>
+      <div class="ubi-row">
+        <span class="ubi-label">Población (Censo 2022)</span>
+        <span class="ubi-chip" id="poblacionInfluencia">–</span>
+      </div>
 
-            <div class="superficie-thumb" style="margin-top:6px;">
-              <div id="mapInfluencia" class="map-influencia"></div>
-            </div>
-          </div>
+      <div class="superficie-thumb" style="margin-top:6px;">
+        <div id="mapInfluencia" class="map-influencia"></div>
+      </div>
+    </div>
 
-        </div>
-      </section>
+  </div>
+</section>
 
       <!-- PANEL 6: SERVICIOS Y AYUDAS -->
       <section class="panel panel-servicios">
@@ -1389,17 +1395,18 @@
           <div class="small-label" style="margin-top:6px;">AWOS</div>
           <div class="small-label" id="awos">–</div>
 
-          <!-- KPI: Operador de cargas -->
-          <div class="servicio-kpi">
-            <div class="servicio-label">Operador de cargas</div>
-            <div class="servicio-value" id="operadorCargas">–</div>
-          </div>
+<!-- KPI: Operador de cargas -->
+<div class="servicio-kpi">
+  <div class="servicio-label">Operador de cargas</div>
+  <div class="servicio-value" id="operadorCargas">–</div>
+</div>
 
-          <!-- KPI: Terminal de cargas -->
-          <div class="servicio-kpi">
-            <div class="servicio-label">Terminal de cargas (m²)</div>
-            <div class="servicio-value" id="terminalCargasM2">–</div>
-          </div>
+<!-- KPI: Terminal de cargas -->
+<div class="servicio-kpi">
+  <div class="servicio-label">Terminal de cargas (m²)</div>
+  <div class="servicio-value" id="terminalCargasM2">–</div>
+</div>
+
 
           <div class="small-label" style="margin-top:6px;">Aeroplantas</div>
           <div class="small-label" id="aeroplantas">–</div>
@@ -1447,23 +1454,24 @@
     let poligonos = [];
     let psnFeatures = [];
     let pistasFeatures = [];
+    let contactos = [];
     let contactosPorIATA = {};        // mapa IATA -> datos de contacto
     let inversionesPorIATA = {};      // mapa IATA -> inversiones 2025–2027
     let transportePorIATA = {};       // mapa IATA -> transporte público (CSV)
     let paradasFeatures = [];         // paradas de transporte (GeoJSON)
-    let terminalesFeatures = [];      // terminales de pasajeros (MultiPolygon)
-    let provinciasFeatures = [];      // provincias de Argentina (para mapa nacional)
+    let terminalesFeatures = [];      // ← NUEVA
+    let empleoPorIATA = {};       // IATA -> { directo, indirecto }
+    let poblacionPorIATA = {};    // IATA -> poblacion
 
-    let empleoPorIATA = {};           // IATA -> { directo, indirecto }
-    let poblacionPorIATA = {};        // IATA -> poblacion Censo 2022
 
     const selectEl = document.getElementById("airportSelect");
 
-    let map, mapMarker, poligonoLayer;                    // Mapa del predio
-    let mapPSN, psnLayer, pistasLayerPSN;                 // Mapa de PSN + pistas
-    let mapUbicacion, ubicacionMarker, provinciasLayer;   // Mapa ubicación nacional
-    let mapTransporte, transporteLayer;                   // Mapa transporte público
-    let mapInfluencia, tiemposLayer, influenciaLayer;     // Mapa tiempos de viaje / áreas
+    let map, mapMarker, poligonoLayer;
+    let mapPSN, psnLayer, pistasLayerPSN;
+    let mapUbicacion, ubicacionMarker, provinciasLayer;
+    let mapTransporte, transporteLayer;
+    let mapInfluencia, tiemposLayer, influenciaLayer;
+    let provinciasFeatures = [];
 
     const airportIcon = L.icon({
       iconUrl: "img/icons/AeropuertosSNA.png",
@@ -1495,14 +1503,13 @@
       return isNaN(n) ? 0 : n;
     }
 
-    function formatMillions(valor) {
-      if (!valor || isNaN(Number(valor))) return "–";
-      const millones = Number(valor) / 1_000_000;
-      return millones.toLocaleString("es-AR", {
-        minimumFractionDigits: 1,
-        maximumFractionDigits: 1
-      });
-    }
+function formatMillions(valor) {
+  if (!valor || isNaN(Number(valor))) return "–";
+  const millones = Number(valor) / 1_000_000;
+  return millones.toLocaleString("es-AR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+}
+
+
 
     function safeVal(v) {
       return (v !== null && v !== undefined && v !== "" && !isNaN(v))
@@ -1513,7 +1520,8 @@
     function splitField(str) {
       if (!str) return [];
       return str
-        .split(/[\n;]+| {2,}|\t+/)
+        .split(/[
+;]+| {2,}|	+/)
         .map(s => s.trim())
         .filter(Boolean);
     }
@@ -1521,7 +1529,6 @@
     function getAirportCenterLatLng(a) {
       const iata = a.IATA;
 
-      // Intentar con polígono del aeropuerto
       if (poligonos.length && iata) {
         const feats = poligonos.filter(f => {
           const props = f.properties || {};
@@ -1539,7 +1546,6 @@
         }
       }
 
-      // Fallback a Lat/Lon de la tabla
       let lat = a["Lat"] || a["LAT"];
       let lon = a["Lon"] || a["LON"] || a["Long"];
 
@@ -1551,178 +1557,7 @@
     }
 
     /* ============================================
-       C. PARSEO DE ARCHIVOS AUXILIARES (CSV/JSON)
-       ============================================ */
-
-    // Programación de inversiones 2025–2027
-    function parseInversionesCSV(text) {
-      const result = {};
-      if (!text) return result;
-
-      const lines = text.trim().split(/\r?\n/);
-      if (lines.length < 2) return result;
-
-      const headerLine = lines[0];
-      const sep = headerLine.indexOf(";") !== -1 ? ";" : ",";
-
-      const headers = headerLine.split(sep).map(h => h.trim());
-
-      const idxIATA = headers.findIndex(h =>
-        h.toUpperCase() === "IATA" ||
-        h.toUpperCase() === "COD_IATA" ||
-        h.toUpperCase() === "CODIGO_IATA"
-      );
-      const idx2025 = headers.findIndex(h => h.toUpperCase() === "A2025");
-      const idx2026 = headers.findIndex(h => h.toUpperCase() === "A2026");
-      const idx2027 = headers.findIndex(h => h.toUpperCase() === "A2027");
-      const idxObra = headers.findIndex(h => h.toUpperCase() === "OBRAWEB");
-
-      if (idxIATA === -1) {
-        console.warn("No se encontró columna IATA en Programacion_por_aeropuerto_aprobada2025_web.csv");
-        return result;
-      }
-
-      for (let i = 1; i < lines.length; i++) {
-        const line = lines[i].trim();
-        if (!line) continue;
-
-        const cols = line.split(sep);
-
-        const rawIata = (cols[idxIATA] || "").trim();
-        if (!rawIata) continue;
-
-        const iata = rawIata.toUpperCase();
-        if (!result[iata]) {
-          result[iata] = {
-            A2025: 0,
-            A2026: 0,
-            A2027: 0,
-            obras2025: [],
-            obras2026: [],
-            obras2027: []
-          };
-        }
-
-        const obraStr = idxObra !== -1 ? (cols[idxObra] || "").trim() : "";
-
-        if (idx2025 !== -1) {
-          const m2025 = parseMonto(cols[idx2025]);
-          if (m2025) {
-            result[iata].A2025 += m2025;
-            if (obraStr) result[iata].obras2025.push(obraStr);
-          }
-        }
-
-        if (idx2026 !== -1) {
-          const m2026 = parseMonto(cols[idx2026]);
-          if (m2026) {
-            result[iata].A2026 += m2026;
-            if (obraStr) result[iata].obras2026.push(obraStr);
-          }
-        }
-
-        if (idx2027 !== -1) {
-          const m2027 = parseMonto(cols[idx2027]);
-          if (m2027) {
-            result[iata].A2027 += m2027;
-            if (obraStr) result[iata].obras2027.push(obraStr);
-          }
-        }
-      }
-
-      // Eliminar duplicados de descripciones
-      Object.keys(result).forEach(iata => {
-        ["obras2025", "obras2026", "obras2027"].forEach(k => {
-          result[iata][k] = [...new Set(result[iata][k])];
-        });
-      });
-
-      return result;
-    }
-
-    // Transporte público (CSV Paradasapp)
-    // Estructura esperada: IATA;LINEA;Parada
-    function parseTransporteCSV(text) {
-      const result = {};
-      if (!text) return result;
-
-      const lines = text.trim().split(/\r?\n/);
-      if (lines.length < 2) return result;
-
-      const headerLine = lines[0];
-      const sep = headerLine.indexOf(";") !== -1 ? ";" : ",";
-      const headers = headerLine.split(sep).map(h => h.trim().toUpperCase());
-
-      const idxIATA   = headers.indexOf("IATA");
-      const idxLINEA  = headers.indexOf("LINEA");
-      // Aceptar tanto "PARADA" como variantes
-      let idxPARADA   = headers.indexOf("PARADA");
-      if (idxPARADA === -1) {
-        idxPARADA = headers.indexOf("PARADAAEP");
-      }
-
-      if (idxIATA === -1) return result;
-
-      for (let i = 1; i < lines.length; i++) {
-        const line = lines[i].trim();
-        if (!line) continue;
-
-        const cols = line.split(sep);
-        const rawIata = (cols[idxIATA] || "").trim();
-        if (!rawIata) continue;
-
-        const iata = rawIata.toUpperCase();
-
-        const linea  = idxLINEA  !== -1 ? (cols[idxLINEA]  || "").trim() : "";
-        const parada = idxPARADA !== -1 ? (cols[idxPARADA] || "").trim() : "";
-
-        result[iata] = {
-          linea,
-          parada
-        };
-      }
-
-      return result;
-    }
-
-    // Población Censo 2022 (CSV Censo2022)
-    // Estructura esperada: IATA;POBLACION
-    function parseCensoCSV(text) {
-      const result = {};
-      if (!text) return result;
-
-      const lines = text.trim().split(/\r?\n/);
-      if (lines.length < 2) return result;
-
-      const headerLine = lines[0];
-      const sep = headerLine.indexOf(";") !== -1 ? ";" : ",";
-      const headers = headerLine.split(sep).map(h => h.trim().toUpperCase());
-
-      const idxIATA = headers.indexOf("IATA");
-      const idxPOB  = headers.indexOf("POBLACION");
-
-      if (idxIATA === -1 || idxPOB === -1) return result;
-
-      for (let i = 1; i < lines.length; i++) {
-        const line = lines[i].trim();
-        if (!line) continue;
-
-        const cols = line.split(sep);
-        const rawIata = (cols[idxIATA] || "").trim();
-        if (!rawIata) continue;
-
-        const iata = rawIata.toUpperCase();
-        const pobStr = (cols[idxPOB] || "").trim().replace(/\./g, "");
-        const pob = Number(pobStr);
-
-        result[iata] = isNaN(pob) ? null : pob;
-      }
-
-      return result;
-    }
-
-    /* ============================================
-       D. INICIALIZACIÓN DE MAPAS LEAFLET
+       C. INICIALIZACIÓN DE MAPAS LEAFLET
        ============================================ */
     function initMap() {
       // 1) Mapa de predio
@@ -1758,21 +1593,21 @@
         }
       ).addTo(mapUbicacion);
 
-      // 4) Mapa de transporte público (paradas de colectivo)
-      mapTransporte = L.map("mapTransporte").setView([-34.6, -58.4], 5);
+// 4) Mapa de transporte público (paradas de colectivo)
+mapTransporte = L.map("mapTransporte").setView([-34.6, -58.4], 5);
 
-      // Panes personalizados para controlar el orden de dibujo
-      mapTransporte.createPane("pane_terminales");
-      mapTransporte.getPane("pane_terminales").style.zIndex = 300;
+// Panes personalizados para controlar el orden de dibujo
+mapTransporte.createPane("pane_terminales");
+mapTransporte.getPane("pane_terminales").style.zIndex = 300;
 
-      mapTransporte.createPane("pane_paradas");
-      mapTransporte.getPane("pane_paradas").style.zIndex = 400;
+mapTransporte.createPane("pane_paradas");
+mapTransporte.getPane("pane_paradas").style.zIndex = 400;
 
-      // Capa base (queda en el pane de tiles por defecto)
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-        attribution: "&copy; OpenStreetMap contributors"
-      }).addTo(mapTransporte);
+// Capa base (queda en el pane de tiles por defecto)
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 19,
+  attribution: "&copy; OpenStreetMap contributors"
+}).addTo(mapTransporte);
 
       // 5) Mapa de área de influencia / tiempos de viaje
       mapInfluencia = L.map("mapInfluencia").setView([-38, -64], 4);
@@ -1785,10 +1620,11 @@
           attribution: "© IGN Argentina - Argenmap"
         }
       ).addTo(mapInfluencia);
+
     }
 
     /* ============================================
-       E. MAPA DEL PREDIO CONCESIONADO
+       D. ACTUALIZACIÓN DE MAPA DEL PREDIO
        ============================================ */
     function updateMapForAirport(a) {
       if (!map) return;
@@ -1861,7 +1697,7 @@
     }
 
     /* ============================================
-       F. MAPA POSICIONES (PSN) + PISTAS
+       E. MAPA POSICIONES (PSN) + PISTAS
        ============================================ */
     function updatePSNMapForAirport(a) {
       if (!mapPSN) return;
@@ -1975,7 +1811,6 @@
       let lat = a["Lat"] || a["LAT"];
       let lon = a["Lon"] || a["LON"] || a["Long"];
 
-
       if (lat && lon && !isNaN(Number(lat)) && !isNaN(Number(lon))) {
         const latNum = Number(lat);
         const lonNum = Number(lon);
@@ -1993,12 +1828,11 @@
     }
 
     /* ============================================
-       G. MAPA DE UBICACIÓN NACIONAL
+       F. MAPA DE UBICACIÓN NACIONAL
        ============================================ */
     function updateUbicacionMapForAirport(a) {
       if (!mapUbicacion) return;
 
-      // Cargar provincias una sola vez
       if (!provinciasLayer && provinciasFeatures.length) {
         provinciasLayer = L.geoJSON(provinciasFeatures, {
           style: {
@@ -2018,7 +1852,6 @@
         }
       }
 
-      // Limpiar marcador previo
       if (ubicacionMarker) {
         mapUbicacion.removeLayer(ubicacionMarker);
         ubicacionMarker = null;
@@ -2049,184 +1882,400 @@
       }
     }
 
-    /* ============================================
-       H. MAPA DE TRANSPORTE PÚBLICO
+        /* ============================================
+       F2. MAPA DE TRANSPORTE PÚBLICO
        ============================================ */
-    function updateTransporteMapForAirport(a) {
-      if (!mapTransporte) return;
+function updateTransporteMapForAirport(a) {
+  if (!mapTransporte) return;
 
-      // Limpiar capa previa
-      if (transporteLayer) {
-        mapTransporte.removeLayer(transporteLayer);
-        transporteLayer = null;
-      }
+  // limpiar capa previa
+  if (transporteLayer) {
+    mapTransporte.removeLayer(transporteLayer);
+    transporteLayer = null;
+  }
 
-      const iataUpper = String(a.IATA || "").trim().toUpperCase();
-      if (!iataUpper) return;
+  const iataUpper = String(a.IATA || "").trim().toUpperCase();
+  if (!iataUpper) return;
 
-      // 1) Filtrar PARADAS por IATA (puntos)
-      const featsParadas = (paradasFeatures || []).filter(f => {
-        const code = String(f.properties?.IATA || "").trim().toUpperCase();
-        return code === iataUpper;
-      });
+  /* ================================================
+     1) Filtrar PARADAS por IATA (puntos)
+     ================================================ */
+  const featsParadas = (paradasFeatures || []).filter(f => {
+    const code = String(f.properties?.IATA || "").trim().toUpperCase();
+    return code === iataUpper;
+  });
 
-      const paradasLayer =
-        featsParadas.length > 0
-          ? L.geoJSON(featsParadas, {
-              pane: "pane_paradas",
-              pointToLayer: (feature, latlng) =>
-                L.circleMarker(latlng, {
-                  radius: 5,
-                  color: "#004b80",
-                  weight: 1,
-                  fillColor: "#2a5fa0",
-                  fillOpacity: 0.9
-                }),
-              onEachFeature: (feature, layer) => {
-                const nombre = feature.properties?.name || "";
-                if (nombre) {
-                  layer.bindTooltip(nombre, {
-                    permanent: true,
-                    direction: "top",
-                    offset: [0, -4],
-                    className: "psn-tooltip"
-                  });
-                }
-              }
-            })
-          : null;
+  const paradasLayer =
+    featsParadas.length > 0
+      ? L.geoJSON(featsParadas, {
+          pane: "pane_paradas",
+          pointToLayer: (feature, latlng) =>
+            L.circleMarker(latlng, {
+              radius: 5,
+              color: "#004b80",
+              weight: 1,
+              fillColor: "#2a5fa0",
+              fillOpacity: 0.9
+            }),
+          onEachFeature: (feature, layer) => {
+            const nombre = feature.properties?.name || "";
+            if (nombre) {
+              layer.bindTooltip(nombre, {
+                permanent: true,
+                direction: "top",
+                offset: [0, -4],
+                className: "psn-tooltip"
+              });
+            }
+          }
+        })
+      : null;
 
-      // 2) Filtrar TERMINALES por IATA (polígonos)
-      const featsTerminales = (terminalesFeatures || []).filter(f => {
-        const code = String(f.properties?.iata || f.properties?.IATA || "")
-          .trim()
-          .toUpperCase();
-        return code === iataUpper;
-      });
+  /* ================================================
+     2) Filtrar TERMINALES por IATA (polígonos)
+     ================================================ */
+  const featsTerminales = (terminalesFeatures || []).filter(f => {
+    const code = String(f.properties?.iata || f.properties?.IATA || "")
+      .trim()
+      .toUpperCase();
+    return code === iataUpper;
+  });
 
-      const terminalesLayer =
-        featsTerminales.length > 0
-          ? L.geoJSON(featsTerminales, {
-              pane: "pane_terminales",
-              style: {
-                color: "#b22222",      // borde más finito, rojo oscuro
-                weight: 1,
-                fillColor: "#ffdede",  // relleno más claro
-                fillOpacity: 0.25
-              },
-              onEachFeature: (feature, layer) => {
-                const name =
-                  feature.properties?.etiqueta ||
-                  feature.properties?.tipo ||
-                  "Terminal";
-                layer.bindTooltip(name, {
-                  permanent: false,
-                  direction: "center",
-                  className: "terminal-label"
-                });
-              }
-            })
-          : null;
-
-      // 3) Crear un LAYER GROUP combinado
-      transporteLayer = L.layerGroup();
-
-      if (terminalesLayer) transporteLayer.addLayer(terminalesLayer);
-      if (paradasLayer) transporteLayer.addLayer(paradasLayer);
-
-      transporteLayer.addTo(mapTransporte);
-
-      // 4) Calcular bounds combinados (terminal + paradas)
-      let bounds = null;
-
-      if (terminalesLayer) {
-        const b = terminalesLayer.getBounds();
-        if (b.isValid()) bounds = b;
-      }
-
-      if (paradasLayer) {
-        const b = paradasLayer.getBounds();
-        if (b.isValid()) {
-          if (bounds) bounds.extend(b);
-          else bounds = b;
-        }
-      }
-
-      // 5) Aplicar zoom al conjunto
-      if (bounds && bounds.isValid()) {
-        setTimeout(() => {
-          mapTransporte.invalidateSize();
-          mapTransporte.fitBounds(bounds, { padding: [10, 10] });
-        }, 0);
-      } else {
-        // fallback si no hay nada
-        const center = getAirportCenterLatLng(a) || [-34.6, -58.4];
-        mapTransporte.setView(center, 12);
-      }
-    }
-
-    /* ============================================
-       I. MAPA DE ÁREA DE INFLUENCIA / TIEMPOS DE VIAJE
-       ============================================ */
-    async function updateInfluenciaMapForAirport(a) {
-      if (!mapInfluencia) return;
-
-      // Limpiar capas anteriores
-      if (tiemposLayer) {
-        mapInfluencia.removeLayer(tiemposLayer);
-        tiemposLayer = null;
-      }
-      if (influenciaLayer) {
-        mapInfluencia.removeLayer(influenciaLayer);
-        influenciaLayer = null;
-      }
-
-      const center = getAirportCenterLatLng(a) || [-38, -64];
-      setTimeout(() => {
-        mapInfluencia.invalidateSize();
-        mapInfluencia.setView(center, center ? 7 : 4);
-      }, 0);
-
-      const iata = String(a.IATA || "").toUpperCase();
-      if (!iata) return;
-
-      // Archivos renombrados: img/Tiempos/Tiempos_AEP.geojson
-      const urlTiempos = `img/Tiempos/Tiempos_${iata}.geojson`;
-
-      try {
-        const resp = await fetch(urlTiempos);
-        if (!resp.ok) {
-          throw new Error("No se pudo cargar " + urlTiempos);
-        }
-
-        const gj = await resp.json();
-
-        tiemposLayer = L.geoJSON(gj, {
+  const terminalesLayer =
+    featsTerminales.length > 0
+      ? L.geoJSON(featsTerminales, {
+          pane: "pane_terminales",
           style: {
-            color: "#2563eb",
+            color: "#b22222",
             weight: 1,
-            fillColor: "#60a5fa",
+            fillColor: "#ffdede",
             fillOpacity: 0.25
+          },
+          onEachFeature: (feature, layer) => {
+            const name =
+              feature.properties?.etiqueta ||
+              feature.properties?.tipo ||
+              "Terminal";
+            layer.bindTooltip(name, {
+              permanent: false,
+              direction: "center",
+              className: "terminal-label"
+            });
+          }
+        })
+      : null;
+
+  /* ================================================
+     3) Crear un LAYER GROUP combinado
+     ================================================ */
+  transporteLayer = L.layerGroup();
+
+  if (terminalesLayer) transporteLayer.addLayer(terminalesLayer);
+  if (paradasLayer) transporteLayer.addLayer(paradasLayer);
+
+  transporteLayer.addTo(mapTransporte);
+
+  /* ================================================
+     4) Calcular bounds combinados (terminal + paradas)
+     ================================================ */
+  let bounds = null;
+
+  if (terminalesLayer) {
+    const b = terminalesLayer.getBounds();
+    if (b.isValid()) bounds = b;
+  }
+
+  if (paradasLayer) {
+    const b = paradasLayer.getBounds();
+    if (b.isValid()) {
+      if (bounds) bounds.extend(b);
+      else bounds = b;
+    }
+  }
+
+  /* ================================================
+     5) Aplicar zoom al conjunto
+     ================================================ */
+  if (bounds && bounds.isValid()) {
+    setTimeout(() => {
+      mapTransporte.invalidateSize();
+      mapTransporte.fitBounds(bounds, { padding: [10, 10] });
+    }, 0);
+  } else {
+    // fallback si no hay nada
+    const center = getAirportCenterLatLng(a) || [-34.6, -58.4];
+    mapTransporte.setView(center, 12);
+  }
+}
+
+/* ============================================
+   F3. MAPA DE ÁREA DE INFLUENCIA / TIEMPOS DE VIAJE
+   ============================================ */
+async function updateInfluenciaMapForAirport(a) {
+  if (!mapInfluencia) return;
+
+  // Limpiar capas previas
+  if (tiemposLayer) {
+    mapInfluencia.removeLayer(tiemposLayer);
+    tiemposLayer = null;
+  }
+  if (influenciaLayer) {
+    mapInfluencia.removeLayer(influenciaLayer);
+    influenciaLayer = null;
+  }
+
+  const iataUpper = String(a.IATA || "").trim().toUpperCase();
+  if (!iataUpper) return;
+
+  // 1) Cargar tiempos de viaje
+  const tiemposPath = `img/Tiempos/Tiempos_${iataUpper}.geojson`;
+
+  try {
+    const resp = await fetch(tiemposPath);
+    if (resp.ok) {
+      const gj = await resp.json();
+      if (gj && gj.features && gj.features.length) {
+        tiemposLayer = L.geoJSON(gj, {
+          style: (feature) => {
+            const t = feature.properties?.tiempo || feature.properties?.TIEMPO;
+            let color = "#2a5fa0";
+            if (t === 1 || t === "1h" || t === "0-60") {
+              color = "#1d4ed8";
+            } else if (t === 2 || t === "2h" || t === "60-120") {
+              color = "#60a5fa";
+            } else if (t === 3 || t === "3h" || t === "120-180") {
+              color = "#93c5fd";
+            }
+            return {
+              color,
+              weight: 1,
+              fillColor: color,
+              fillOpacity: 0.25
+            };
           }
         }).addTo(mapInfluencia);
-
-        const bounds = tiemposLayer.getBounds();
-        if (bounds.isValid()) {
-          setTimeout(() => {
-            mapInfluencia.invalidateSize();
-            mapInfluencia.fitBounds(bounds, { padding: [10, 10] });
-          }, 0);
-        }
-      } catch (e) {
-        console.warn("No se pudieron cargar los tiempos de viaje para", iata, e);
       }
-
-      // Futuro: cuando estén los GeoJSON de áreas de influencia,
-      // se podrá cargar aquí otra capa en "influenciaLayer".
     }
+  } catch (e) {
+    console.warn("No se pudo cargar tiempos de viaje para", iataUpper, e);
+  }
+
+  // 2) (Opcional futuro) Cargar áreas de influencia cuando estén disponibles
+  //    Por ahora queda como espacio reservado para incorporar esos GeoJSON.
+
+  // 3) Ajustar vista
+  let bounds = null;
+
+  if (tiemposLayer) {
+    const b = tiemposLayer.getBounds();
+    if (b.isValid()) bounds = b;
+  }
+
+  if (influenciaLayer) {
+    const b = influenciaLayer.getBounds();
+    if (b.isValid()) {
+      if (bounds) bounds.extend(b);
+      else bounds = b;
+    }
+  }
+
+  if (bounds && bounds.isValid()) {
+    setTimeout(() => {
+      mapInfluencia.invalidateSize();
+      mapInfluencia.fitBounds(bounds, { padding: [10, 10] });
+    }, 0);
+  } else {
+    const center = getAirportCenterLatLng(a) || [-38, -64];
+    setTimeout(() => {
+      mapInfluencia.invalidateSize();
+      mapInfluencia.setView(center, 7);
+    }, 0);
+  }
+}
+
 
     /* ============================================
-       J. RENDER PRINCIPAL DEL AEROPUERTO SELECCIONADO
+       G. PARSEO CSV DE INVERSIONES POR AEROPUERTO
+       ============================================ */
+    function parseInversionesCSV(text) {
+      const result = {};
+      if (!text) return result;
+
+      const lines = text.trim().split(/
+?
+/);
+      if (lines.length < 2) return result;
+
+      const headerLine = lines[0];
+      const sep = headerLine.indexOf(";") !== -1 ? ";" : ",";   // detecta ; o ,
+
+      const headers = headerLine.split(sep).map(h => h.trim());
+
+      // Columnas clave
+      const idxIATA = headers.findIndex(h =>
+        h.toUpperCase() === "IATA" ||
+        h.toUpperCase() === "COD_IATA" ||
+        h.toUpperCase() === "CODIGO_IATA"
+      );
+      const idx2025 = headers.findIndex(h => h.toUpperCase() === "A2025");
+      const idx2026 = headers.findIndex(h => h.toUpperCase() === "A2026");
+      const idx2027 = headers.findIndex(h => h.toUpperCase() === "A2027");
+      const idxObra = headers.findIndex(h => h.toUpperCase() === "OBRAWEB");
+
+      if (idxIATA === -1) {
+        console.warn("No se encontró columna IATA en Programacion_por_aeropuerto_aprobada2025_web.csv");
+        return result;
+      }
+
+      for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+
+        const cols = line.split(sep);
+
+        const rawIata = (cols[idxIATA] || "").trim();
+        if (!rawIata) continue;
+
+        const iata = rawIata.toUpperCase();
+        if (!result[iata]) {
+          result[iata] = {
+            A2025: 0,
+            A2026: 0,
+            A2027: 0,
+            obras2025: [],
+            obras2026: [],
+            obras2027: []
+          };
+        }
+
+        const obraStr = idxObra !== -1 ? (cols[idxObra] || "").trim() : "";
+
+        // Sumar por año
+        if (idx2025 !== -1) {
+          const m2025 = parseMonto(cols[idx2025]);
+          if (m2025) {
+            result[iata].A2025 += m2025;
+            if (obraStr) result[iata].obras2025.push(obraStr);
+          }
+        }
+
+        if (idx2026 !== -1) {
+          const m2026 = parseMonto(cols[idx2026]);
+          if (m2026) {
+            result[iata].A2026 += m2026;
+            if (obraStr) result[iata].obras2026.push(obraStr);
+          }
+        }
+
+        if (idx2027 !== -1) {
+          const m2027 = parseMonto(cols[idx2027]);
+          if (m2027) {
+            result[iata].A2027 += m2027;
+            if (obraStr) result[iata].obras2027.push(obraStr);
+          }
+        }
+      }
+
+      // Opcional: eliminar duplicados de descripciones
+      Object.keys(result).forEach(iata => {
+        ["obras2025", "obras2026", "obras2027"].forEach(k => {
+          result[iata][k] = [...new Set(result[iata][k])];
+        });
+      });
+
+      return result;
+    }
+
+/* ============================================
+   Helper: TRANSPORTE PÚBLICO (CSV Paradasapp)
+   Estructura esperada: IATA;LINEA;Parada
+   Una fila por aeropuerto (57 filas)
+   ============================================ */
+function parseTransporteCSV(text) {
+  const result = {};
+  if (!text) return result;
+
+  const lines = text.trim().split(/
+?
+/);
+  if (lines.length < 2) return result;
+
+  const headerLine = lines[0];
+  const sep = headerLine.indexOf(";") !== -1 ? ";" : ",";
+  const headers = headerLine.split(sep).map(h => h.trim().toUpperCase());
+
+  const idxIATA   = headers.indexOf("IATA");
+  const idxLINEA  = headers.indexOf("LINEA");
+  // Aceptar tanto "PARADA" como "PARADAAEP" por si cambia el encabezado
+  let idxPARADA   = headers.indexOf("PARADA");
+  if (idxPARADA === -1) {
+    idxPARADA = headers.indexOf("PARADAAEP");
+  }
+
+  if (idxIATA === -1) return result;
+
+  for (let i = 1; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (!line) continue;
+
+    const cols = line.split(sep);
+    const rawIata = (cols[idxIATA] || "").trim();
+    if (!rawIata) continue;
+
+    const iata = rawIata.toUpperCase();
+
+    const linea  = idxLINEA  !== -1 ? (cols[idxLINEA]  || "").trim() : "";
+    const parada = idxPARADA !== -1 ? (cols[idxPARADA] || "").trim() : "";
+
+    // Guardamos un solo objeto por IATA
+    result[iata] = {
+      linea,
+      parada
+    };
+  }
+
+  return result;
+}
+
+/* 11) Carga Empleo y poblacion en el area de influencia */
+function parseCensoCSV(text) {
+  const result = {};
+  if (!text) return result;
+
+  const lines = text.trim().split(/
+?
+/);
+  if (lines.length < 2) return result;
+
+  const headerLine = lines[0];
+  const sep = headerLine.indexOf(";") !== -1 ? ";" : ",";
+  const headers = headerLine.split(sep).map(h => h.trim().toUpperCase());
+
+  const idxIATA = headers.indexOf("IATA");
+  const idxPOB  = headers.indexOf("POBLACION");
+
+  if (idxIATA === -1 || idxPOB === -1) return result;
+
+  for (let i = 1; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (!line) continue;
+
+    const cols = line.split(sep);
+    const rawIata = (cols[idxIATA] || "").trim();
+    if (!rawIata) continue;
+
+    const iata = rawIata.toUpperCase();
+    const pobStr = (cols[idxPOB] || "").trim().replace(/\./g, "");
+    const pob = Number(pobStr);
+
+    result[iata] = isNaN(pob) ? null : pob;
+  }
+
+  return result;
+}
+
+    /* ============================================
+       H. RENDER PRINCIPAL DEL AEROPUERTO SELECCIONADO
        ============================================ */
     function renderAirport(iataCode) {
       const a = aeropuertos.find(x => x.IATA === iataCode);
@@ -2234,7 +2283,6 @@
 
       const nombre = clean(a["Aeropuerto"]) || clean(a["Nombre del Aeropuerto"]) || a.IATA;
       const tituloAeroSeccion = `${nombre} (${a.IATA})`;
-      const iataUpper = String(a.IATA || "").toUpperCase();
 
       // Encabezados de paneles
       document.getElementById("hdrSuperficie").innerHTML =
@@ -2297,7 +2345,7 @@
         clean(a["Habilitación"]) || "–";
 
       /* ----- INVERSIONES 2025–2027 (Programación financiera) ----- */
-      const inv = inversionesPorIATA[iataUpper] || null;
+      const inv = inversionesPorIATA[String(a.IATA).toUpperCase()] || null;
 
       const inv2025El      = document.getElementById("inv2025");
       const inv2026El      = document.getElementById("inv2026");
@@ -2307,10 +2355,12 @@
       const invObras2027El = document.getElementById("invObras2027");
 
       if (inv) {
+        // Montos en millones (ej.: 25,5 M)
         if (inv2025El) inv2025El.textContent = inv.A2025 ? formatMillions(inv.A2025) : "–";
         if (inv2026El) inv2026El.textContent = inv.A2026 ? formatMillions(inv.A2026) : "–";
         if (inv2027El) inv2027El.textContent = inv.A2027 ? formatMillions(inv.A2027) : "–";
 
+        // Descripciones por año, numeradas dentro de la celda
         if (invObras2025El) {
           if (inv.obras2025 && inv.obras2025.length) {
             invObras2025El.innerHTML = inv.obras2025
@@ -2349,11 +2399,14 @@
         if (invObras2027El) invObras2027El.textContent = "–";
       }
 
+
+
       /* ----- TERMINAL (m² + imagen) ----- */
       document.getElementById("terminalM2").textContent =
         safeVal(a["TerminalM2"]);
 
       const imgTerminal = document.getElementById("imgTerminal");
+      const iataUpper = String(a.IATA || "").toUpperCase();
       const terminalProp = clean(a["imagenAeropuerto"]);
       const terminalSrc = terminalProp || (iataUpper ? `img/Terminales/${iataUpper}_terminal.png` : "");
 
@@ -2448,8 +2501,8 @@
       const psnGenNum = Number(rawPsnGen);
       const hasPsnGen = rawPsnGen !== undefined && rawPsnGen !== "";
 
-      const psnComEl        = document.getElementById("psnCom");
-      const psnGenEl        = document.getElementById("psnGen");
+      const psnComEl       = document.getElementById("psnCom");
+      const psnGenEl       = document.getElementById("psnGen");
       const badgePsnTotalEl = document.getElementById("badgePsnTotal");
 
       if (psnComEl) {
@@ -2553,47 +2606,54 @@
       document.getElementById("horarioOperacion").textContent =
         clean(a["Horario de operación"]) || "–";
 
-      /* ----- TRANSPORTE PÚBLICO (KPI texto) ----- */
-      const transpBox   = document.querySelector(".transporte-kpi");
-      const transpLines = document.getElementById("transporteLineas");
-      const transpInfo  = transportePorIATA[iataUpper] || null;
+ /* ----- TRANSPORTE PÚBLICO ----- */
+const transpBox   = document.querySelector(".transporte-kpi");
+const transpLines = document.getElementById("transporteLineas");
+const transpInfo  = transportePorIATA[iataUpper] || null;
 
-      const hasCSVInfo =
-        transpInfo &&
-        (clean(transpInfo.linea) !== "" || clean(transpInfo.parada) !== "");
+// ¿Hay info útil en el CSV? (línea o descripción de parada)
+const hasCSVInfo =
+  transpInfo &&
+  (clean(transpInfo.linea) !== "" || clean(transpInfo.parada) !== "");
 
-      const hasParadasGeoJSON = (paradasFeatures || []).some(f => {
-        const props = f.properties || {};
-        const code  = props.IATA || "";
-        return String(code).trim().toUpperCase() === iataUpper;
-      });
+// ¿Hay paradas en el GeoJSON para este aeropuerto?
+const hasParadasGeoJSON = (paradasFeatures || []).some(f => {
+  const props = f.properties || {};
+  const code  = props.IATA || "";
+  return String(code).trim().toUpperCase() === String(iataUpper).trim().toUpperCase();
+});
 
-      if (transpBox) {
-        if (hasCSVInfo || hasParadasGeoJSON) {
-          transpBox.style.display = "flex";
+if (transpBox) {
+  // Mostrar la caja si hay info en CSV o paradas en el GeoJSON
+  if (hasCSVInfo || hasParadasGeoJSON) {
+    transpBox.style.display = "flex";
 
-          if (transpLines) {
-            if (hasCSVInfo) {
-              const partes = [];
-              if (clean(transpInfo.linea)) {
-                partes.push(`Líneas: ${transpInfo.linea}`);
-              }
-              if (clean(transpInfo.parada)) {
-                partes.push(`Parada: ${transpInfo.parada}`);
-              }
-              transpLines.innerHTML = partes.join("<br>");
-            } else {
-              transpLines.textContent = "Paradas de colectivo registradas en el mapa.";
-            }
-          }
-        } else {
-          transpBox.style.display = "none";
-          if (transpLines) transpLines.textContent = "–";
+    if (transpLines) {
+      if (hasCSVInfo) {
+        const partes = [];
+        if (clean(transpInfo.linea)) {
+          partes.push(`Líneas: ${transpInfo.linea}`);
         }
+        if (clean(transpInfo.parada)) {
+          partes.push(`Parada: ${transpInfo.parada}`);
+        }
+        transpLines.innerHTML = partes.join("<br>");
+      } else {
+        // No hay CSV pero sí paradas mapeadas
+        transpLines.textContent = "Paradas de colectivo registradas en el mapa.";
       }
+    }
+  } else {
+    // No hay transporte público registrado en ninguna fuente
+    transpBox.style.display = "none";
+    if (transpLines) transpLines.textContent = "–";
+  }
+}
+
+
 
       /* ----- CONTACTO ----- */
-      const contacto = contactosPorIATA[iataUpper] || {};
+      const contacto = contactosPorIATA[String(a.IATA).toUpperCase()] || {};
 
       document.getElementById("contactoAdminNombre").textContent =
         clean(contacto["Administrador"]) || "–";
@@ -2609,42 +2669,28 @@
       document.getElementById("contactoJefeCorreo").textContent =
         clean(contacto["JefeCorreo"]) || "–";
 
-      /* ----- IMPACTO TERRITORIAL: EMPLEO Y POBLACIÓN ----- */
-      const empleoDirectoEl   = document.getElementById("empleoDirecto");
-      const empleoIndirectoEl = document.getElementById("empleoIndirecto");
-      const poblacionEl       = document.getElementById("poblacionInfluencia");
-
-      const emp = empleoPorIATA[iataUpper] || {};
-      const empDir = (emp.directo !== undefined && emp.directo !== null && emp.directo !== "")
-        ? emp.directo
-        : a["EmpleoDirecto2024"];
-      const empInd = (emp.indirecto !== undefined && emp.indirecto !== null && emp.indirecto !== "")
-        ? emp.indirecto
-        : null;
-
-      if (empleoDirectoEl) {
-        empleoDirectoEl.textContent =
-          (empDir !== null && empDir !== undefined && !isNaN(Number(empDir)))
-            ? formatNumber(empDir)
-            : "–";
+      /* ----- EMPLEO Y POBLACIÓN ----- */
+      const emp = empleoPorIATA[iataUpper];
+      if (emp) {
+        document.getElementById("empleoDirecto").textContent =
+          safeVal(emp.directo);
+        document.getElementById("empleoIndirecto").textContent =
+          safeVal(emp.indirecto);
+      } else {
+        // Fallback a campos de la tabla principal si no hay JSON
+        document.getElementById("empleoDirecto").textContent =
+          safeVal(a["EmpleoDirecto2024"]);
+        document.getElementById("empleoIndirecto").textContent =
+          safeVal(a["EmpleoIndirecto2024"]);
       }
 
-      if (empleoIndirectoEl) {
-        empleoIndirectoEl.textContent =
-          (empInd !== null && empInd !== undefined && !isNaN(Number(empInd)))
-            ? formatNumber(empInd)
-            : "–";
-      }
-
-      const pob = (poblacionPorIATA[iataUpper] !== undefined)
-        ? poblacionPorIATA[iataUpper]
-        : a["Población del Área de Influencia (Censo 2022)"];
-
-      if (poblacionEl) {
-        poblacionEl.textContent =
-          (pob !== null && pob !== undefined && !isNaN(Number(pob)))
-            ? formatNumber(pob)
-            : "–";
+      const pob = poblacionPorIATA[iataUpper];
+      if (pob !== undefined && pob !== null) {
+        document.getElementById("poblacionInfluencia").textContent =
+          formatNumber(pob);
+      } else {
+        document.getElementById("poblacionInfluencia").textContent =
+          safeVal(a["Población del Área de Influencia (Censo 2022)"]);
       }
 
       /* ----- SERVICIOS Y AYUDAS ----- */
@@ -2664,7 +2710,7 @@
       const opCargasEl   = document.getElementById("operadorCargas");
       const termCargasEl = document.getElementById("terminalCargasM2");
 
-      const opCargasBox   = opCargasEl ? opCargasEl.closest(".servicio-kpi") : null;
+      const opCargasBox  = opCargasEl ? opCargasEl.closest(".servicio-kpi") : null;
       const termCargasBox = termCargasEl ? termCargasEl.closest(".servicio-kpi") : null;
 
       if (opCargasBox) {
@@ -2679,6 +2725,7 @@
         const hasTerm = a["TerminalCargasM2"] && a["TerminalCargasM2"] !== "0";
         termCargasBox.style.display = hasTerm ? "flex" : "none";
       }
+
 
       const aeroComb = [];
       if (a["Aeroplantas AV GAS"]) aeroComb.push(`AV GAS: ${a["Aeroplantas AV GAS"]}`);
@@ -2704,7 +2751,7 @@
     }
 
     /* ============================================
-       K. CARGA DE DATOS (GeoJSON + CSV + JSON)
+       I. CARGA DE DATOS (GeoJSON + CSV)
        ============================================ */
     async function loadData() {
       try {
@@ -2814,7 +2861,7 @@
           paradasFeatures = [];
         }
 
-        // 10) Terminales de pasajeros (polígonos)
+        // 10) Terminales de pasajeros
         try {
           const respTerm = await fetch("fuentes/terminalpax.geojson");
           const gjTerm = await respTerm.json();
@@ -2875,34 +2922,26 @@
         });
 
       } catch (err) {
-        console.error("Error cargando GeoJSON:", err);
+        console.error("Error cargando datos principales:", err);
         selectEl.innerHTML = "<option>Error al cargar datos</option>";
       }
     }
 
+
     /* ============================================
-       L. INICIO (DOMContentLoaded)
+       J. INICIO (DOMContentLoaded)
        ============================================ */
-    document.addEventListener("DOMContentLoaded", () => {
-      initMap();
-      loadData();
+document.addEventListener("DOMContentLoaded", () => {
+  initMap();
+  loadData();
 
-      // Botones "Abrir el mapa" (por ahora sólo transporte)
-      document.querySelectorAll(".map-expand-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const iata = selectEl.value; // aeropuerto seleccionado
-          if (!iata) return;
+  // Botones "Abrir el mapa" (por ahora sólo transporte)
+  document.querySelectorAll(".map-expand-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const iata = selectEl.value; // aeropuerto seleccionado
+      if (!iata) return;
 
-          const mapType = btn.dataset.map
-
-
-
-
-
-
-
-
-
+      const mapType = btn.dataset.map; // "transporte"
       const url = `mapa_${mapType}.html?airport=${encodeURIComponent(iata)}`;
       window.open(url, "_blank"); // abre en otra pestaña/ventana
     });
