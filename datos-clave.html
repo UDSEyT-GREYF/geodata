@@ -788,6 +788,12 @@
     .panel-empleo { grid-area: empleo; }
     .panel-servicios { grid-area: servicios; }
 
+    .map-influencia {
+  width: 100%;
+  height: 230px;
+}
+
+
     /* ==============================
        13. FOOTER
        ============================== */
@@ -1340,23 +1346,41 @@
         </div>
       </section>
 
-      <!-- PANEL 5: EMPLEO Y POBLACIÓN -->
-      <section class="panel panel-empleo">
-        <div class="panel-header" id="hdrEmpleo">Empleo y área de influencia</div>
-        <div class="panel-body">
-          <div class="small-label">Empleo directo 2024</div>
-          <div class="metric-row">
-            <span>Personas empleadas</span>
-            <span class="value" id="empleoDirecto">–</span>
-          </div>
+<section class="panel panel-empleo">
+  <div class="panel-header" id="hdrEmpleo">Impacto territorial del aeropuerto</div>
+  <div class="panel-body">
 
-          <div class="small-label" style="margin-top:6px;">Población del área de influencia (Censo 2022)</div>
-          <div class="metric-row">
-            <span>Población estimada</span>
-            <span class="value" id="poblacionInfluencia">–</span>
-          </div>
-        </div>
-      </section>
+    <!-- KPI Empleo -->
+    <div class="superficie-kpi">
+      <div class="contact-title">Empleo vinculado al aeropuerto</div>
+
+      <div class="ubi-row">
+        <span class="ubi-label">Empleo directo aeronáutico/aeroportuario</span>
+        <span class="ubi-chip" id="empleoDirecto">–</span>
+      </div>
+
+      <div class="ubi-row">
+        <span class="ubi-label">Empleo indirecto</span>
+        <span class="ubi-chip" id="empleoIndirecto">–</span>
+      </div>
+    </div>
+
+    <!-- KPI Área de influencia -->
+    <div class="superficie-kpi">
+      <div class="contact-title">Área de influencia aeroportuaria</div>
+
+      <div class="ubi-row">
+        <span class="ubi-label">Población (Censo 2022)</span>
+        <span class="ubi-chip" id="poblacionInfluencia">–</span>
+      </div>
+
+      <div class="superficie-thumb" style="margin-top:6px;">
+        <div id="mapInfluencia" class="map-influencia"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
       <!-- PANEL 6: SERVICIOS Y AYUDAS -->
       <section class="panel panel-servicios">
@@ -1436,6 +1460,9 @@
     let transportePorIATA = {};       // mapa IATA -> transporte público (CSV)
     let paradasFeatures = [];         // paradas de transporte (GeoJSON)
     let terminalesFeatures = [];      // ← NUEVA
+    let empleoPorIATA = {};       // IATA -> { directo, indirecto }
+    let poblacionPorIATA = {};    // IATA -> poblacion
+    
     
     const selectEl = document.getElementById("airportSelect");
 
@@ -1443,6 +1470,8 @@
     let mapPSN, psnLayer, pistasLayerPSN;
     let mapUbicacion, ubicacionMarker, provinciasLayer;
     let mapTransporte, transporteLayer;
+    let mapInfluencia, tiemposLayer, influenciaLayer;
+    let mapInfluencia, tiemposLayer, influenciaLayer;
     let provinciasFeatures = [];
 
     const airportIcon = L.icon({
@@ -1580,7 +1609,20 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: "&copy; OpenStreetMap contributors"
 }).addTo(mapTransporte);
 
+      // 5) Mapa de área de influencia / tiempos de viaje
+      mapInfluencia = L.map("mapInfluencia").setView([-38, -64], 4);
+
+      L.tileLayer(
+        "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG:3857@png/{z}/{x}/{-y}.png",
+        {
+          maxZoom: 14,
+          tms: true,
+          attribution: "© IGN Argentina - Argenmap"
+        }
+      ).addTo(mapInfluencia);
+      
     }
+    
     /* ============================================
        D. ACTUALIZACIÓN DE MAPA DEL PREDIO
        ============================================ */
@@ -2713,7 +2755,68 @@ try {
       }
     }
 
- 
+ /* 11) Carga Empleo y poblacion en el area de influencia */
+function parseCensoCSV(text) {
+  const result = {};
+  if (!text) return result;
+
+  const lines = text.trim().split(/\r?\n/);
+  if (lines.length < 2) return result;
+
+  const headerLine = lines[0];
+  const sep = headerLine.indexOf(";") !== -1 ? ";" : ",";
+  const headers = headerLine.split(sep).map(h => h.trim().toUpperCase());
+
+  const idxIATA = headers.indexOf("IATA");
+  const idxPOB  = headers.indexOf("POBLACION");
+
+  if (idxIATA === -1 || idxPOB === -1) return result;
+
+  for (let i = 1; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (!line) continue;
+
+    const cols = line.split(sep);
+    const rawIata = (cols[idxIATA] || "").trim();
+    if (!rawIata) continue;
+
+    const iata = rawIata.toUpperCase();
+    const pobStr = (cols[idxPOB] || "").trim().replace(/\./g, "");
+    const pob = Number(pobStr);
+
+    result[iata] = isNaN(pob) ? null : pob;
+  }
+
+  return result;
+}
+        // 12) Empleo directo e indirecto 2024 por aeropuerto
+        try {
+          const respEmp = await fetch("fuentes/Empleo2024.json");
+          const dataEmp = await respEmp.json();
+          empleoPorIATA = {};
+
+          (dataEmp || []).forEach(row => {
+            const iata = (row.IATA || row.iata || "").toUpperCase();
+            if (!iata) return;
+            empleoPorIATA[iata] = {
+              directo: row.directo,
+              indirecto: row.indirecto
+            };
+          });
+        } catch (e) {
+          console.warn("No se pudo cargar Empleo2024.json:", e);
+          empleoPorIATA = {};
+        }
+
+        // 11) Población Censo 2022 por aeropuerto
+        try {
+          const respCenso = await fetch("fuentes/Censo2022.csv");
+          const textCenso = await respCenso.text();
+          poblacionPorIATA = parseCensoCSV(textCenso);
+        } catch (e) {
+          console.warn("No se pudo cargar Censo2022.csv:", e);
+          poblacionPorIATA = {};
+        }
 
 
     /* ============================================
