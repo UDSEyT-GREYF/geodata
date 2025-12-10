@@ -2102,7 +2102,7 @@ async function updateInfluenciaMapForAirport(a) {
       const result = {};
       if (!text) return result;
 
-      const lines = text.trim().split(/?/);
+      const lines = text.trim().split(/\r?\n/);
       if (lines.length < 2) return result;
 
       const headerLine = lines[0];
@@ -2194,7 +2194,7 @@ function parseTransporteCSV(text) {
   const result = {};
   if (!text) return result;
 
-  const lines = text.trim().split(/?/);
+  const lines = text.trim().split(/\r?\n/);
   if (lines.length < 2) return result;
 
   const headerLine = lines[0];
