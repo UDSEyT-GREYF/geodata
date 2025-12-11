@@ -818,9 +818,10 @@ footer {
 /* Línea de resumen debajo del título del aeropuerto */
 #pageSubtitle {
   margin-top: 4px;
+  font-weight: 400;
   color: #555;
-  font-size: 0.83rem;
-  line-height: 1.4;
+  font-size: 0.73rem;
+  line-height: 1.0;
 }
 
 /* Ocultar los KPI de contactos en el panel de Ubicación */
