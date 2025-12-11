@@ -267,36 +267,47 @@ header.page-header {
 
 /* KPI de contactos en la banda superior: uno para Admin y otro para Jefatura */
 .kpi-card-contacto {
-  align-items: flex-start;
-  text-align: left;
-  min-width: 180px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;         /* centra texto */
+  padding: 6px 4px;
 }
 
-.kpi-contact-block {
+/* bloques internos: Administración / Jefatura */
+.kpi-card-contacto .kpi-contact-block {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  align-items: center;         /* centra columnas */
+  justify-content: center;
+}
+
+/* separador vertical entre bloques */
+.kpi-card-contacto .kpi-contact-sep {
+  width: 1px;
+  height: 70%;
+  background: #c0c7d4;
+  margin: 0 8px;
 }
 
 .kpi-contact-role {
-  font-size: 0.7rem;
-  text-transform: uppercase;
+  font-size: 0.75rem;
   font-weight: 700;
-  color: #555;
+  color: #004b80;
+  margin-bottom: 2px;
 }
 
 .kpi-contact-name {
   font-size: 0.78rem;
-  font-weight: 700;
-  color: #004b80;
+  font-weight: 600;
+  color: #333;
 }
 
 .kpi-contact-small {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: #555;
   line-height: 1.2;
-  white-space: normal;
-  word-break: break-word;
 }
 
 /* En pantallas muy chicas podés ocultar flechas si molestan */
