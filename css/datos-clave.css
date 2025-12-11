@@ -136,6 +136,8 @@ header.page-header {
   color: #555;
   font-size: 0.73rem;
   line-height: 1.1;
+  display: none;
+
 }
 
 /* Ocultar los KPI de contactos en el panel de Ubicación */
@@ -165,11 +167,28 @@ header.page-header {
    6. BANDA KPI SUPERIOR (RESUMEN RÁPIDO)
    ============================== */
 .kpi-strip {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  display: flex;
   gap: 8px;
   margin: 10px 0 18px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scroll-snap-type: x mandatory;
 }
+
+.kpi-strip::-webkit-scrollbar {
+  height: 6px;
+}
+
+.kpi-strip::-webkit-scrollbar-track {
+  background: #e4e7ec;
+  border-radius: 3px;
+}
+
+.kpi-strip::-webkit-scrollbar-thumb {
+  background: #b9c2d3;
+  border-radius: 3px;
+}
+
 .kpi-card {
   background: #ffffff;
   border-radius: 4px;
@@ -181,7 +200,10 @@ header.page-header {
   gap: 2px;
   font-size: 0.8rem;
   text-align: center;
+  min-width: 135px;       /* ← ancho mínimo para el carrusel */
+  scroll-snap-align: start;
 }
+
 .kpi-card img {
   width: 52px;
   height: 52px;
@@ -197,6 +219,46 @@ header.page-header {
 .kpi-label {
   color: #555;
   font-size: 0.78rem;
+}
+
+/* KPI de contactos en la banda superior */
+.kpi-card-contacto {
+  align-items: stretch;
+  text-align: left;
+  min-width: 210px; /* un poco más ancho porque tiene más texto */
+}
+
+.kpi-contact-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.kpi-contact-role {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #555;
+}
+
+.kpi-contact-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #004b80;
+}
+
+.kpi-contact-small {
+  font-size: 0.7rem;
+  color: #555;
+  line-height: 1.2;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.kpi-contact-sep {
+  height: 1px;
+  background: #d0d7e2;
+  margin: 4px 0;
 }
 
 /* ==============================
