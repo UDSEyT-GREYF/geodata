@@ -909,30 +909,6 @@ async function updateInfluenciaMapForAirport(a) {
         /* ----- CONTACTO ----- */
     const contacto = contactosPorIATA[String(a.IATA).toUpperCase()] || {};
     
-    // Línea de resumen en el encabezado: Administración / Jefatura
-const adminNombre = clean(contacto["Administrador"]) || "Sin dato";
-const adminTel    = clean(contacto["AdmTelef"]);
-const adminMail   = clean(contacto["AdmCorreo"]);
-
-const jefeNombre  = clean(contacto["JefeAeropuerto"] || contacto["Jefe de Aeropuerto"]) || "Sin dato";
-const jefeTel     = clean(contacto["JefeTelef"]);
-const jefeMail    = clean(contacto["JefeCorreo"]);
-
-const adminPartes = [];
-adminPartes.push(`Administración: ${adminNombre}`);
-if (adminTel)  adminPartes.push(`☎ ${adminTel}`);
-if (adminMail) adminPartes.push(`✉ ${adminMail}`);
-
-const jefePartes = [];
-jefePartes.push(`Jefatura: ${jefeNombre}`);
-if (jefeTel)  jefePartes.push(`☎ ${jefeTel}`);
-if (jefeMail) jefePartes.push(`✉ ${jefeMail}`);
-
-const subtitleEl = document.getElementById("pageSubtitle");
-if (subtitleEl) {
-  subtitleEl.textContent =
-    adminPartes.join(" · ") + "  |  " + jefePartes.join(" · ");
-}
 
     
     /* ----- KPI SUPERIOR ----- */
@@ -1283,6 +1259,36 @@ if (subtitleEl) {
       clean(contacto["JefeTelef"]) || "–";
     document.getElementById("contactoJefeCorreo").textContent =
       clean(contacto["JefeCorreo"]) || "–";
+
+    // KPI superior: Administración / Jefatura
+const adminNombre = clean(contacto["Administrador"]) || "Sin dato";
+const adminTel    = clean(contacto["AdmTelef"]);
+const adminMail   = clean(contacto["AdmCorreo"]);
+
+const jefeNombre  = clean(contacto["JefeAeropuerto"] || contacto["Jefe de Aeropuerto"]) || "Sin dato";
+const jefeTel     = clean(contacto["JefeTelef"]);
+const jefeMail    = clean(contacto["JefeCorreo"]);
+
+const adminContactoStr = [
+  adminTel ? `☎ ${adminTel}` : "",
+  adminMail ? `✉ ${adminMail}` : ""
+].filter(Boolean).join(" · ") || "–";
+
+const jefeContactoStr = [
+  jefeTel ? `☎ ${jefeTel}` : "",
+  jefeMail ? `✉ ${jefeMail}` : ""
+].filter(Boolean).join(" · ") || "–";
+
+const kpiAdminNombreEl   = document.getElementById("kpiAdminNombre");
+const kpiAdminContactoEl = document.getElementById("kpiAdminContacto");
+const kpiJefeNombreEl    = document.getElementById("kpiJefeNombre");
+const kpiJefeContactoEl  = document.getElementById("kpiJefeContacto");
+
+if (kpiAdminNombreEl)   kpiAdminNombreEl.textContent   = adminNombre;
+if (kpiAdminContactoEl) kpiAdminContactoEl.textContent = adminContactoStr;
+if (kpiJefeNombreEl)    kpiJefeNombreEl.textContent    = jefeNombre;
+if (kpiJefeContactoEl)  kpiJefeContactoEl.textContent  = jefeContactoStr;
+
 
     /* ----- EMPLEO Y POBLACIÓN (desde datos de aeropuertos) ----- */
     const empDirRaw = a["EmpleoDirecto2024"];
