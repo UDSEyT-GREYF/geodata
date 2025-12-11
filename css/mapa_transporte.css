@@ -1,0 +1,125 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #0b1224;
+  color: #e5e7eb;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  padding: 10px 16px;
+  background: #111827;
+  border-bottom: 1px solid #1f2937;
+}
+
+header h1 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+header p {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin-top: 2px;
+}
+
+.layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 8px 12px;
+  gap: 8px;
+}
+
+@media (min-width: 900px) {
+  .layout {
+    flex-direction: row;
+  }
+}
+
+.map-container {
+  flex: 2;
+  min-height: 60vh;
+}
+
+#mapBig {
+  width: 100%;
+  height: 80vh;
+  border-radius: 6px;
+  border: 1px solid #1f2937;
+}
+
+.sidebar {
+  flex: 1;
+  background: rgba(15,23,42,0.95);
+  border-radius: 6px;
+  border: 1px solid #1f2937;
+  padding: 8px 10px;
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar h2 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #bfdbfe;
+  margin-bottom: 4px;
+}
+
+.info-lineas {
+  max-height: 40vh;
+  overflow-y: auto;
+}
+
+.linea-item {
+  margin-bottom: 4px;
+  border-bottom: 1px dashed #374151;
+  padding-bottom: 4px;
+}
+
+.linea-item strong {
+  color: #f97316;
+}
+
+.badge-iata { /* por si lo reutilizas luego */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid #60a5fa;
+  font-size: 0.75rem;
+  color: #bfdbfe;
+  margin-left: 6px;
+}
+
+a.back-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #93c5fd;
+  text-decoration: none;
+}
+
+a.back-link:hover {
+  text-decoration: underline;
+}
+
+.psn-tooltip {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #333;
+  border-radius: 2px;
+  padding: 2px 2px;
+  font-size: 0.6rem;
+  color: #111;
+}
