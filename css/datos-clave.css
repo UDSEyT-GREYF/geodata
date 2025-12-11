@@ -813,4 +813,18 @@ footer {
   .kpi-strip {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+   /* Línea de contactos debajo del título del aeropuerto */
+.page-subline {
+  margin-top: 4px;
+  color: #555;
+  font-size: 0.83rem;
+  line-height: 1.4;
+}
+
+/* Ocultar los KPI de contacto del panel Ubicación */
+.contact-kpi {
+  display: none;
+}
+
 }
