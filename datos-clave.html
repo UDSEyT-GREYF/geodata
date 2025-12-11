@@ -73,59 +73,73 @@
       </div>
     </header>
 
-    <!-- ==========================
-         BANDA KPI SUPERIOR (RESUMEN)
-         ========================== -->
-    <section class="kpi-strip">
-      <div class="kpi-card">
-        <img src="img/icons/checkin.png" alt="Check-in">
-        <div class="kpi-value" id="kpiCheckin">–</div>
-        <div class="kpi-label">Mostradores</div>
+<!-- ==========================
+     BANDA KPI SUPERIOR (RESUMEN)
+     ========================== -->
+<div class="kpi-strip-wrapper">
+  <button class="kpi-arrow kpi-arrow-left" type="button" aria-label="Desplazar KPIs hacia la izquierda">‹</button>
+
+  <section class="kpi-strip">
+    <div class="kpi-card">
+      <img src="img/icons/checkin.png" alt="Check-in">
+      <div class="kpi-value" id="kpiCheckin">–</div>
+      <div class="kpi-label">Mostradores</div>
+    </div>
+    <div class="kpi-card">
+      <img src="img/icons/boarding.png" alt="Puertas de embarque">
+      <div class="kpi-value" id="kpiPuertas">–</div>
+      <div class="kpi-label">Puertas embarque</div>
+    </div>
+    <div class="kpi-card">
+      <img src="img/icons/baggage.png" alt="Cintas de equipaje">
+      <div class="kpi-value" id="kpiCintas">–</div>
+      <div class="kpi-label">Cintas equipaje</div>
+    </div>
+    <div class="kpi-card">
+      <img src="img/icons/PSN.png" alt="PSN">
+      <div class="kpi-value" id="kpiPSN">–</div>
+      <div class="kpi-label">PSN totales</div>
+    </div>
+    <div class="kpi-card">
+      <img src="img/icons/estacionamiento.png" alt="Estacionamiento">
+      <div class="kpi-value" id="kpiEstac">–</div>
+      <div class="kpi-label">Estacionamiento</div>
+    </div>
+    <div class="kpi-card">
+      <img src="img/icons/manga.png" alt="Mangas">
+      <div class="kpi-value" id="kpiMangas">–</div>
+      <div class="kpi-label">Mangas</div>
+    </div>
+    <div class="kpi-card">
+      <img src="img/icons/PSA.png" alt="PSA">
+      <div class="kpi-value" id="kpiPSA">–</div>
+      <div class="kpi-label">Puestos PSA</div>
+    </div>
+
+    <!-- NUEVO KPI: Administración -->
+    <div class="kpi-card kpi-card-contacto">
+      <div class="kpi-contact-block">
+        <div class="kpi-contact-role">Administración</div>
+        <div class="kpi-contact-name" id="kpiAdminNombre">–</div>
+        <div class="kpi-contact-small" id="kpiAdminContacto">–</div>
       </div>
-      <div class="kpi-card">
-        <img src="img/icons/boarding.png" alt="Puertas de embarque">
-        <div class="kpi-value" id="kpiPuertas">–</div>
-        <div class="kpi-label">Puertas embarque</div>
+    </div>
+
+    <!-- NUEVO KPI: Jefatura -->
+    <div class="kpi-card kpi-card-contacto">
+      <div class="kpi-contact-block">
+        <div class="kpi-contact-role">Jefatura</div>
+        <div class="kpi-contact-name" id="kpiJefeNombre">–</div>
+        <div class="kpi-contact-small" id="kpiJefeContacto">–</div>
       </div>
-      <div class="kpi-card">
-        <img src="img/icons/baggage.png" alt="Cintas de equipaje">
-        <div class="kpi-value" id="kpiCintas">–</div>
-        <div class="kpi-label">Cintas equipaje</div>
-      </div>
-      <div class="kpi-card">
-        <img src="img/icons/PSN.png" alt="PSN">
-        <div class="kpi-value" id="kpiPSN">–</div>
-        <div class="kpi-label">PSN totales</div>
-      </div>
-      <div class="kpi-card">
-        <img src="img/icons/estacionamiento.png" alt="Estacionamiento">
-        <div class="kpi-value" id="kpiEstac">–</div>
-        <div class="kpi-label">Estacionamiento</div>
-      </div>
-      <div class="kpi-card">
-        <img src="img/icons/manga.png" alt="Mangas">
-        <div class="kpi-value" id="kpiMangas">–</div>
-        <div class="kpi-label">Mangas</div>
-      </div>
-      <div class="kpi-card">
-        <img src="img/icons/PSA.png" alt="PSA">
-        <div class="kpi-value" id="kpiPSA">–</div>
-        <div class="kpi-label">Puestos PSA</div>
-      </div>
-      <div class="kpi-card kpi-card-contacto">
-  <div class="kpi-contact-block">
-    <div class="kpi-contact-role">Administración</div>
-    <div class="kpi-contact-name" id="kpiAdminNombre">–</div>
-    <div class="kpi-contact-small" id="kpiAdminContacto">–</div>
-  </div>
-  <div class="kpi-contact-sep"></div>
-  <div class="kpi-contact-block">
-    <div class="kpi-contact-role">Jefatura</div>
-    <div class="kpi-contact-name" id="kpiJefeNombre">–</div>
-    <div class="kpi-contact-small" id="kpiJefeContacto">–</div>
-  </div>
+    </div>
+
+  </section>
+
+  <button class="kpi-arrow kpi-arrow-right" type="button" aria-label="Desplazar KPIs hacia la derecha">›</button>
 </div>
-    </section>
+
+
 
     <!-- ==========================
          GRID PRINCIPAL DE PANELES
