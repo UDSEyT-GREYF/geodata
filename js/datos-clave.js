@@ -583,33 +583,34 @@
         const gj = await resp.json();
         if (gj && gj.features && gj.features.length) {
 tiemposLayer = L.geoJSON(gj, {
-  style: feature => {
-    const t = feature.properties?.tiempo || feature.properties?.TIEMPO;
+  style: (feature) => {
+    const props = feature.properties || {};
+    let to = props.ToBreak;
+
+    // Normalizamos número
+    to = (to !== undefined && to !== null) ? Number(to) : null;
+
     let color;
 
-    // Más fuerte cerca del aeropuerto, más claro al alejarse
-    if (t === 1 || t === "1h" || t === "0-60") {
-      // 0–1 h (más oscuro)
-      color = "#08306b";
-    } else if (t === 2 || t === "2h" || t === "60-120") {
-      // 1–2 h (intermedio)
-      color = "#2171b5";
-    } else if (t === 3 || t === "3h" || t === "120-180") {
-      // 2–3 h (más claro)
-      color = "#6baed6";
+    if (to === 60) {
+      color = "#08306b";   // azul muy oscuro (1h)
+    } else if (to === 120) {
+      color = "#2171b5";   // azul medio (2h)
+    } else if (to === 180) {
+      color = "#6baed6";   // azul claro (3h)
     } else {
-      // fallback genérico
-      color = "#9ecae1";
+      color = "#9ecae1";   // fallback si aparece otro tobreak
     }
 
     return {
-      color,            // borde
+      color,             // borde del polígono
       weight: 1,
-      fillColor: color, // relleno
-      fillOpacity: 0.35 // semitransparente para todos
+      fillColor: color,  // relleno igual al borde
+      fillOpacity: 0.35  // todos semitransparentes
     };
   }
 }).addTo(mapInfluencia);
+
 
         }
       }
