@@ -271,18 +271,43 @@ header.page-header {
   flex-direction: row;
   justify-content: center;
   align-items: flex-end;
-  text-align: center;         /* centra texto */
+  text-align: center;
   padding: 6px 4px;
-   gap: 2px;
+  gap: 4px;
 }
 
 /* bloques internos: Administración / Jefatura */
 .kpi-card-contacto .kpi-contact-block {
   display: flex;
   flex-direction: column;
-  align-items: center;         /* centra columnas */
+  align-items: center;
   justify-content: flex-end;
-   gap: 2px;
+  gap: 2px;
+}
+
+/* forzar orden visual: nombre arriba, contacto en el medio, rol abajo */
+.kpi-contact-name {
+  order: 1;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #2a5fa0;
+  line-height: 1.1;
+}
+
+.kpi-contact-small {
+  order: 2;
+  font-size: 0.7rem;
+  color: #555;
+  line-height: 1.2;
+}
+
+/* ETIQUETA (Administración / Jefatura) → como kpi-label, al fondo */
+.kpi-contact-role {
+  order: 3;
+  font-size: 0.78rem;
+  color: #555 !important;
+  margin-top: 3px;
+  font-weight: 400 !important;
 }
 
 /* separador vertical entre bloques */
@@ -290,27 +315,6 @@ header.page-header {
   width: 1px;
   height: 70%;
   background: #d0d7e2;
-}
-
-/* ETIQUETA (Administración / Jefatura) → como kpi-label */
-.kpi-contact-role {
-  font-size: 0.78rem;
-  color: #555;
-  margin-top: 3px;
-  font-weight: 400;     /* mismo peso que kpi-label */
-}
-
-.kpi-contact-name {
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: #2a5fa0;
-  line-height: 1.1;
-}
-
-.kpi-contact-small {
-  font-size: 0.7rem;
-  color: #555;
-  line-height: 1.2;
 }
 
 /* En pantallas muy chicas podés ocultar flechas si molestan */
