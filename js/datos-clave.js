@@ -1559,6 +1559,24 @@ if (kpiJefeContactoEl)  kpiJefeContactoEl.textContent  = jefeContactoStr;
         window.open(url, "_blank");
       });
     });
+
+// Flechas del carrusel de KPI
+const kpiStrip   = document.querySelector(".kpi-strip");
+const arrowLeft  = document.querySelector(".kpi-arrow-left");
+const arrowRight = document.querySelector(".kpi-arrow-right");
+
+if (kpiStrip && arrowLeft && arrowRight) {
+  const scrollAmount = 220; // píxeles por clic
+
+  arrowLeft.addEventListener("click", () => {
+    kpiStrip.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+  });
+
+  arrowRight.addEventListener("click", () => {
+    kpiStrip.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  });
+}
+
   });
 
 })();
