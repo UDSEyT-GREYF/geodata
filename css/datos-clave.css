@@ -270,9 +270,10 @@ header.page-header {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   text-align: center;         /* centra texto */
   padding: 6px 4px;
+   gap: 2px;
 }
 
 /* bloques internos: Administración / Jefatura */
@@ -280,28 +281,30 @@ header.page-header {
   display: flex;
   flex-direction: column;
   align-items: center;         /* centra columnas */
-  justify-content: center;
+  justify-content: flex-end;
+   gap: 2px;
 }
 
 /* separador vertical entre bloques */
 .kpi-card-contacto .kpi-contact-sep {
   width: 1px;
   height: 70%;
-  background: #c0c7d4;
-  margin: 0 8px;
+  background: #d0d7e2;
 }
 
+/* ETIQUETA (Administración / Jefatura) → como kpi-label */
 .kpi-contact-role {
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: #004b80;
-  margin-bottom: 2px;
+  font-size: 0.78rem;
+  color: #555;
+  margin-top: 3px;
+  font-weight: 400;     /* mismo peso que kpi-label */
 }
 
 .kpi-contact-name {
   font-size: 0.7rem;
   font-weight: 600;
-  color: #333;
+  color: #2a5fa0;
+  line-height: 1.1;
 }
 
 .kpi-contact-small {
