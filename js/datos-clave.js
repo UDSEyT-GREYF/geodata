@@ -903,9 +903,35 @@ async function updateInfluenciaMapForAirport(a) {
     // Título principal
     document.getElementById("pageTitle").textContent =
       `Aeropuerto de ${nombre} (${a.IATA})`;
-    document.getElementById("pageSubtitle").textContent =
-      `Sistema Nacional de Aeropuertos · Datos Clave ${a["Año"] || ""}`;
+   // document.getElementById("pageSubtitle").textContent = 
+    //  `Sistema Nacional de Aeropuertos · Datos Clave ${a["Año"] || ""}`;
 
+    // Línea de resumen en el encabezado: Administración / Jefatura
+const adminNombre = clean(contacto["Administrador"]) || "Sin dato";
+const adminTel    = clean(contacto["AdmTelef"]);
+const adminMail   = clean(contacto["AdmCorreo"]);
+
+const jefeNombre  = clean(contacto["JefeAeropuerto"] || contacto["Jefe de Aeropuerto"]) || "Sin dato";
+const jefeTel     = clean(contacto["JefeTelef"]);
+const jefeMail    = clean(contacto["JefeCorreo"]);
+
+const adminPartes = [];
+adminPartes.push(`Administración: ${adminNombre}`);
+if (adminTel)  adminPartes.push(`☎ ${adminTel}`);
+if (adminMail) adminPartes.push(`✉ ${adminMail}`);
+
+const jefePartes = [];
+jefePartes.push(`Jefatura: ${jefeNombre}`);
+if (jefeTel)  jefePartes.push(`☎ ${jefeTel}`);
+if (jefeMail) jefePartes.push(`✉ ${jefeMail}`);
+
+const subtitleEl = document.getElementById("pageSubtitle");
+if (subtitleEl) {
+  subtitleEl.textContent =
+    adminPartes.join(" · ") + "  |  " + jefePartes.join(" · ");
+}
+
+    
     /* ----- KPI SUPERIOR ----- */
     document.getElementById("kpiCheckin").textContent =
       safeVal(a["Mostradores Check in"]);
