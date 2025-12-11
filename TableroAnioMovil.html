@@ -5,53 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tablero Año Móvil – ORSNA GeoData</title>
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Segoe UI", Roboto, Arial, sans-serif;
-      background: #f5f5f5;
-      color: #333;
-    }
-
-    header {
-      background: #004b80;
-      color: #fff;
-      padding: 10px 16px;
-      font-size: 0.95rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-    }
-
-    header strong {
-      font-weight: 600;
-    }
-
-    #msg {
-      padding: 40px 20px;
-      max-width: 600px;
-      margin: 80px auto;
-      text-align: center;
-      font-size: 1.1rem;
-      line-height: 1.5;
-      color: #555;
-    }
-
-    .frame-wrap {
-      position: fixed;
-      top: 42px; /* altura del header */
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: #fafafa;
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: none;
-    }
-  </style>
+  <!-- CSS propio -->
+  <link rel="stylesheet" href="css/TableroAnioMovil.css">
 </head>
 
 <body>
@@ -78,14 +33,7 @@
     </iframe>
   </div>
 
-  <script>
-    // Cuando el iframe cargue ocultamos el mensaje
-    const iframe = document.getElementById('pbiFrame');
-    iframe.onload = () => {
-      iframe.style.display = 'block';
-      document.getElementById('msg').style.display = 'none';
-    };
-  </script>
-
+  <!-- JS propio -->
+  <script src="js/TableroAnioMovil.js"></script>
 </body>
 </html>
