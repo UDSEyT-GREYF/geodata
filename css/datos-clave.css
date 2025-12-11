@@ -164,31 +164,39 @@ header.page-header {
 }
 
 /* ==============================
-   6. BANDA KPI SUPERIOR (RESUMEN RÁPIDO)
+   6. BANDA KPI SUPERIOR (CARRUSEL)
    ============================== */
+
+/* Wrapper con flechas laterales */
+.kpi-strip-wrapper {
+  position: relative;
+  margin: 10px 0 18px;
+}
+
+/* Banda KPI como carrusel horizontal */
 .kpi-strip {
   display: flex;
   gap: 8px;
-  margin: 10px 0 18px;
   overflow-x: auto;
-  padding-bottom: 4px;
+  padding: 4px 24px 6px; /* espacio para que no tapen las flechas */
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
 
+/* Scrollbar del carrusel */
 .kpi-strip::-webkit-scrollbar {
   height: 6px;
 }
-
 .kpi-strip::-webkit-scrollbar-track {
   background: #e4e7ec;
   border-radius: 3px;
 }
-
 .kpi-strip::-webkit-scrollbar-thumb {
   background: #b9c2d3;
   border-radius: 3px;
 }
 
+/* Tarjetas KPI */
 .kpi-card {
   background: #ffffff;
   border-radius: 4px;
@@ -200,7 +208,7 @@ header.page-header {
   gap: 2px;
   font-size: 0.8rem;
   text-align: center;
-  min-width: 135px;       /* ← ancho mínimo para el carrusel */
+  min-width: 135px;
   scroll-snap-align: start;
 }
 
@@ -210,22 +218,58 @@ header.page-header {
   object-fit: contain;
   margin-bottom: 2px;
 }
+
 .kpi-value {
   font-size: 1.2rem;
   font-weight: 700;
   color: #2a5fa0;
   line-height: 1.1;
 }
+
 .kpi-label {
   color: #555;
   font-size: 0.78rem;
 }
 
-/* KPI de contactos en la banda superior */
+/* Flechas laterales del carrusel */
+.kpi-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #c0c7d4;
+  background-color: #ffffff;
+  color: #444;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.25);
+  z-index: 10;
+}
+
+.kpi-arrow-left {
+  left: 2px;
+}
+
+.kpi-arrow-right {
+  right: 2px;
+}
+
+.kpi-arrow:hover {
+  background-color: #2a5fa0;
+  color: #ffffff;
+  border-color: #2a5fa0;
+}
+
+/* KPI de contactos en la banda superior: uno para Admin y otro para Jefatura */
 .kpi-card-contacto {
-  align-items: stretch;
+  align-items: flex-start;
   text-align: left;
-  min-width: 210px; /* un poco más ancho porque tiene más texto */
+  min-width: 180px;
 }
 
 .kpi-contact-block {
@@ -255,11 +299,15 @@ header.page-header {
   word-break: break-word;
 }
 
-.kpi-contact-sep {
-  height: 1px;
-  background: #d0d7e2;
-  margin: 4px 0;
+/* En pantallas muy chicas podés ocultar flechas si molestan */
+@media (max-width: 600px) {
+  .kpi-arrow {
+    display: none;
+  }
 }
+
+
+
 
 /* ==============================
    7. GRID PRINCIPAL DE PANELES
