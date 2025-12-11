@@ -582,25 +582,35 @@
       if (resp.ok) {
         const gj = await resp.json();
         if (gj && gj.features && gj.features.length) {
-          tiemposLayer = L.geoJSON(gj, {
-            style: feature => {
-              const t = feature.properties?.tiempo || feature.properties?.TIEMPO;
-              let color = "#2a5fa0";
-              if (t === 1 || t === "1h" || t === "0-60") {
-                color = "#1d4ed8";
-              } else if (t === 2 || t === "2h" || t === "60-120") {
-                color = "#60a5fa";
-              } else if (t === 3 || t === "3h" || t === "120-180") {
-                color = "#93c5fd";
-              }
-              return {
-                color,
-                weight: 1,
-                fillColor: color,
-                fillOpacity: 0.25
-              };
-            }
-          }).addTo(mapInfluencia);
+tiemposLayer = L.geoJSON(gj, {
+  style: feature => {
+    const t = feature.properties?.tiempo || feature.properties?.TIEMPO;
+    let color;
+
+    // Más fuerte cerca del aeropuerto, más claro al alejarse
+    if (t === 1 || t === "1h" || t === "0-60") {
+      // 0–1 h (más oscuro)
+      color = "#08306b";
+    } else if (t === 2 || t === "2h" || t === "60-120") {
+      // 1–2 h (intermedio)
+      color = "#2171b5";
+    } else if (t === 3 || t === "3h" || t === "120-180") {
+      // 2–3 h (más claro)
+      color = "#6baed6";
+    } else {
+      // fallback genérico
+      color = "#9ecae1";
+    }
+
+    return {
+      color,            // borde
+      weight: 1,
+      fillColor: color, // relleno
+      fillOpacity: 0.35 // semitransparente para todos
+    };
+  }
+}).addTo(mapInfluencia);
+
         }
       }
     } catch (e) {
@@ -617,14 +627,15 @@
       });
 
       if (featsInfl.length) {
-        influenciaLayer = L.geoJSON(featsInfl, {
-          style: {
-            color: "#b91c1c",
-            weight: 2,
-            fillColor: "#fecaca",
-            fillOpacity: 0.25
-          }
-        }).addTo(mapInfluencia);
+influenciaLayer = L.geoJSON(featsInfl, {
+  style: {
+    color: "#004b80",      // borde azul
+    weight: 2,
+    fillColor: "#cfe8ff",  // relleno azul muy claro
+    fillOpacity: 0.25      // semitransparente
+  }
+}).addTo(mapInfluencia);
+
       }
     }
 
