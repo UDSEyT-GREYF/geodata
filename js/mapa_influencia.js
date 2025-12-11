@@ -26,7 +26,7 @@ function clean(text) {
 }
 
 /* =============================
-   MAPA
+   MAPA BASE
    ============================= */
 function initMapInfluencia() {
   mapInfluencia = L.map("map").setView([-38, -64], 4);
@@ -96,11 +96,11 @@ function updateInfluenciaMapForAirport(a) {
   const iataUpper = a.IATA ? String(a.IATA).trim().toUpperCase() : "";
   if (!iataUpper) return;
 
-  /* TIEMPOS */
+  /* ----------- 1) Anillos de tiempo ----------- */
   const tiemposPath = `img/Tiempos/Tiempos_${iataUpper}.geojson`;
 
   fetch(tiemposPath)
-    .then(resp => resp.ok ? resp.json() : null)
+    .then(resp => (resp.ok ? resp.json() : null))
     .then(gj => {
       if (!gj || !gj.features || !gj.features.length) {
         ajustarVista(a);
@@ -109,7 +109,8 @@ function updateInfluenciaMapForAirport(a) {
 
       tiemposLayer = L.geoJSON(gj, {
         style: (feature) => {
-          const to = Number((feature.properties || {}).ToBreak);
+          const props = feature.properties || {};
+          const to = Number(props.ToBreak);
           let color;
 
           if (to === 60) color = "#08306b";
@@ -128,28 +129,32 @@ function updateInfluenciaMapForAirport(a) {
 
       ajustarVista(a);
     })
-    .catch(() => ajustarVista(a));
+    .catch(() => {
+      console.warn("No se pudo cargar tiempos de viaje:", tiemposPath);
+      ajustarVista(a);
+    });
 
-  /* ÁREA DE INFLUENCIA */
+  /* ----------- 2) Área de influencia ----------- */
   if (Array.isArray(areasInfluenciaFeatures) && areasInfluenciaFeatures.length) {
     const featsInfl = areasInfluenciaFeatures.filter(f => {
-      const code = String((f.properties || {}).IATA || "").toUpperCase();
+      const props = f.properties || {};
+      const code = String(props.IATA || props.iata || "").toUpperCase();
       return code === iataUpper;
     });
 
     if (featsInfl.length) {
       influenciaLayer = L.geoJSON(featsInfl, {
         style: {
-          color: "#FFD700",      // borde amarillo
+          color: "#FFD700",       // borde amarillo
           weight: 2,
-          fillColor: "#FFD700",
-          fillOpacity: 0.0       // transparente
+          dashArray: "6 4",       // línea segmentada
+          fillOpacity: 0.0        // sin relleno
         }
       }).addTo(mapInfluencia);
     }
   }
 
-  /* MARKER */
+  /* ----------- 3) Punto del aeropuerto ----------- */
   const center = getAirportCenterLatLng(a);
   if (center) {
     influenciaMarker = L.marker(center, { icon: airportIcon }).addTo(mapInfluencia);
@@ -181,7 +186,9 @@ function ajustarVista(a) {
 
   if (influenciaLayer) {
     const b = influenciaLayer.getBounds();
-    if (b.isValid()) bounds = bounds ? bounds.extend(b) : b;
+    if (b.isValid()) {
+      bounds = bounds ? bounds.extend(b) : b;
+    }
   }
 
   if (influenciaMarker) {
@@ -224,7 +231,8 @@ async function loadDataAndRender() {
       const respPol = await fetch("fuentes/poligonos_aeropuertos.geojson");
       const gjPol = await respPol.json();
       aeropuertosPoligonos = gjPol.features || [];
-    } catch {
+    } catch (e) {
+      console.warn("No se pudieron cargar poligonos_aeropuertos.geojson:", e);
       aeropuertosPoligonos = [];
     }
 
@@ -232,7 +240,8 @@ async function loadDataAndRender() {
       const respInf = await fetch("fuentes/Areasinfluencia39.geojson");
       const gjInf = await respInf.json();
       areasInfluenciaFeatures = gjInf.features || [];
-    } catch {
+    } catch (e) {
+      console.warn("No se pudieron cargar Areasinfluencia39.geojson:", e);
       areasInfluenciaFeatures = [];
     }
 
