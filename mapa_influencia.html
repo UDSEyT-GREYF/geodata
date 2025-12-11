@@ -65,6 +65,7 @@
       flex: 1;
       width: 100%;
       height: calc(100vh - 50px);
+      position: relative; /* clave para que la leyenda se posicione sobre el mapa */
     }
 
     /* Leyenda */
@@ -79,6 +80,7 @@
       font-size: 0.8rem;
       color: #e5e7eb;
       box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      z-index: 1000; /* por encima de las capas de Leaflet */
     }
 
     .legend-title {
@@ -133,25 +135,26 @@
     <a href="datos-clave.html" class="back-link">← Volver a Datos clave</a>
   </header>
 
-  <div id="map"></div>
-
-  <div class="legend">
-    <div class="legend-title">Tiempos de viaje</div>
-    <div class="legend-item">
-      <span class="legend-color t1"></span>
-      <span>Hasta 1 h</span>
-    </div>
-    <div class="legend-item">
-      <span class="legend-color t2"></span>
-      <span>Entre 1 y 2 h</span>
-    </div>
-    <div class="legend-item">
-      <span class="legend-color t3"></span>
-      <span>Entre 2 y 3 h</span>
-    </div>
-    <div class="legend-item" style="margin-top:4px;">
-      <span class="legend-color ai"></span>
-      <span>Área de influencia aeroportuaria</span>
+  <!-- Ahora la leyenda está DENTRO del contenedor del mapa -->
+  <div id="map">
+    <div class="legend">
+      <div class="legend-title">Tiempos de viaje</div>
+      <div class="legend-item">
+        <span class="legend-color t1"></span>
+        <span>Hasta 1 h</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color t2"></span>
+        <span>Entre 1 y 2 h</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color t3"></span>
+        <span>Entre 2 y 3 h</span>
+      </div>
+      <div class="legend-item" style="margin-top:4px;">
+        <span class="legend-color ai"></span>
+        <span>Área de influencia aeroportuaria</span>
+      </div>
     </div>
   </div>
 
@@ -464,3 +467,4 @@
   </script>
 </body>
 </html>
+
