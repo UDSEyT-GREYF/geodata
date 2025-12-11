@@ -22,7 +22,9 @@
   let poblacionPorIATA = {};
   let provinciasFeatures = [];
   let areasInfluenciaFeatures = [];
+  let influenciaLegend = null;   // ← NUEVO
 
+  
   let selectEl = null;
 
   let map, mapMarker, poligonoLayer;
@@ -549,147 +551,197 @@
     }
   }
 
-  /* ============================================
-     F3. MAPA DE ÁREA DE INFLUENCIA / TIEMPOS DE VIAJE
-     ============================================ */
-  async function updateInfluenciaMapForAirport(a) {
-    if (!mapInfluencia) return;
+/* ============================================
+   F3. MAPA DE ÁREA DE INFLUENCIA / TIEMPOS DE VIAJE
+   ============================================ */
+async function updateInfluenciaMapForAirport(a) {
+  if (!mapInfluencia) return;
 
-    // Limpiar capas previas
-    if (tiemposLayer) {
-      mapInfluencia.removeLayer(tiemposLayer);
-      tiemposLayer = null;
-    }
-    if (influenciaLayer) {
-      mapInfluencia.removeLayer(influenciaLayer);
-      influenciaLayer = null;
-    }
-    if (influenciaMarker) {
-      mapInfluencia.removeLayer(influenciaMarker);
-      influenciaMarker = null;
-    }
-
-    const iataUpper = String(a.IATA || "").trim().toUpperCase();
-    if (!iataUpper) return;
-
-    const center = getAirportCenterLatLng(a) || [-38, -64];
-
-    // 1) Cargar tiempos de viaje específicos
-    const tiemposPath = `img/Tiempos/Tiempos_${iataUpper}.geojson`;
-
-    try {
-      const resp = await fetch(tiemposPath);
-      if (resp.ok) {
-        const gj = await resp.json();
-        if (gj && gj.features && gj.features.length) {
-tiemposLayer = L.geoJSON(gj, {
-  style: (feature) => {
-    const props = feature.properties || {};
-    let to = props.ToBreak;
-
-    // Normalizamos número
-    to = (to !== undefined && to !== null) ? Number(to) : null;
-
-    let color;
-
-    if (to === 60) {
-      color = "#08306b";   // azul muy oscuro (1h)
-    } else if (to === 120) {
-      color = "#2171b5";   // azul medio (2h)
-    } else if (to === 180) {
-      color = "#6baed6";   // azul claro (3h)
-    } else {
-      color = "#9ecae1";   // fallback si aparece otro tobreak
-    }
-
-    return {
-      color,             // borde del polígono
-      weight: 1,
-      fillColor: color,  // relleno igual al borde
-      fillOpacity: 0.35  // todos semitransparentes
-    };
+  // Limpiar capas previas
+  if (tiemposLayer) {
+    mapInfluencia.removeLayer(tiemposLayer);
+    tiemposLayer = null;
   }
-}).addTo(mapInfluencia);
+  if (influenciaLayer) {
+    mapInfluencia.removeLayer(influenciaLayer);
+    influenciaLayer = null;
+  }
+  if (influenciaMarker) {
+    mapInfluencia.removeLayer(influenciaMarker);
+    influenciaMarker = null;
+  }
 
+  // Limpiar leyenda previa si existe
+  if (influenciaLegend) {
+    mapInfluencia.removeControl(influenciaLegend);
+    influenciaLegend = null;
+  }
 
+  const iataUpper = String(a.IATA || "").trim().toUpperCase();
+  if (!iataUpper) return;
+
+  const center = getAirportCenterLatLng(a) || [-38, -64];
+
+  /* --------------------------------------------
+     1) Tiempos de viaje (anillos 1h / 2h / 3h)
+     -------------------------------------------- */
+  const tiemposPath = `img/Tiempos/Tiempos_${iataUpper}.geojson`;
+
+  try {
+    const resp = await fetch(tiemposPath);
+    if (resp.ok) {
+      const gj = await resp.json();
+      if (gj && gj.features && gj.features.length) {
+        tiemposLayer = L.geoJSON(gj, {
+          style: (feature) => {
+            const props = feature.properties || {};
+            // Tomamos ToBreak y lo forzamos a número
+            let to = props.ToBreak;
+
+            if (to === undefined || to === null || to === "") {
+              const alt =
+                props.ToBreak ??
+                props.tobreak ??
+                props.TOBREAK ??
+                props.to_break ??
+                props.TO_BREAK;
+              to = alt !== undefined && alt !== null ? Number(alt) : null;
+            } else {
+              to = Number(to);
+            }
+
+            let color;
+            if (to === 60) {
+              color = "#08306b";   // 1 hora (más oscuro)
+            } else if (to === 120) {
+              color = "#2171b5";   // 2 horas
+            } else if (to === 180) {
+              color = "#6baed6";   // 3 horas (más claro)
+            } else {
+              color = "#9ecae1";   // fallback por si aparece algún otro valor
+            }
+
+            return {
+              color: color,        // borde
+              weight: 1,
+              fillColor: color,    // mismo color en relleno
+              fillOpacity: 0.35    // todo semitransparente
+            };
+          }
+        }).addTo(mapInfluencia);
+      }
+    }
+  } catch (e) {
+    console.warn("No se pudo cargar tiempos de viaje para", iataUpper, e);
+  }
+
+  /* --------------------------------------------
+     2) Áreas de influencia (polígono azul)
+     -------------------------------------------- */
+  if (areasInfluenciaFeatures && areasInfluenciaFeatures.length) {
+    const featsInfl = areasInfluenciaFeatures.filter(f => {
+      const code = String(
+        f.properties?.IATA || f.properties?.iata || ""
+      ).trim().toUpperCase();
+      return code === iataUpper;
+    });
+
+    if (featsInfl.length) {
+      influenciaLayer = L.geoJSON(featsInfl, {
+        style: {
+          color: "#1d4ed8",   // azul para el borde (antes rojo oscuro)
+          weight: 2,
+          fillColor: "#bfdbfe",
+          fillOpacity: 0.25
         }
-      }
-    } catch (e) {
-      console.warn("No se pudo cargar tiempos de viaje para", iataUpper, e);
+      }).addTo(mapInfluencia);
     }
-
-    // 2) Áreas de influencia (polígonos generales filtrados)
-    if (areasInfluenciaFeatures && areasInfluenciaFeatures.length) {
-      const featsInfl = areasInfluenciaFeatures.filter(f => {
-        const code = String(
-          f.properties?.IATA || f.properties?.iata || ""
-        ).trim().toUpperCase();
-        return code === iataUpper;
-      });
-
-      if (featsInfl.length) {
-influenciaLayer = L.geoJSON(featsInfl, {
-  style: {
-    color: "#004b80",      // borde azul
-    weight: 2,
-    fillColor: "#cfe8ff",  // relleno azul muy claro
-    fillOpacity: 0.25      // semitransparente
   }
-}).addTo(mapInfluencia);
 
-      }
+  /* --------------------------------------------
+     3) Punto del aeropuerto (como en mapa de ubicación)
+     -------------------------------------------- */
+  if (center) {
+    influenciaMarker = L.marker(center, { icon: airportIcon }).addTo(mapInfluencia);
+
+    const iataLabel = a["IATA"] ? String(a["IATA"]).toUpperCase() : "";
+    if (iataLabel) {
+      influenciaMarker.bindTooltip(iataLabel, {
+        permanent: true,
+        direction: "top",
+        offset: [0, -4],
+        className: "psn-tooltip"
+      });
     }
+  }
 
-    // 3) Punto del aeropuerto
-    if (center) {
-      influenciaMarker = L.marker(center, { icon: airportIcon }).addTo(mapInfluencia);
+  /* --------------------------------------------
+     4) Ajustar vista combinando todo
+     -------------------------------------------- */
+  let bounds = null;
 
-      const iataLabel = a["IATA"] ? String(a["IATA"]).toUpperCase() : "";
-      if (iataLabel) {
-        influenciaMarker.bindTooltip(iataLabel, {
-          permanent: true,
-          direction: "top",
-          offset: [0, -4],
-          className: "psn-tooltip"
-        });
-      }
-    }
+  if (tiemposLayer) {
+    const b = tiemposLayer.getBounds();
+    if (b.isValid()) bounds = b;
+  }
 
-    // 4) Ajustar vista
-    let bounds = null;
-
-    if (tiemposLayer) {
-      const b = tiemposLayer.getBounds();
-      if (b.isValid()) bounds = b;
-    }
-
-    if (influenciaLayer) {
-      const b = influenciaLayer.getBounds();
-      if (b.isValid()) {
-        if (bounds) bounds.extend(b);
-        else bounds = b;
-      }
-    }
-
-    if (influenciaMarker) {
-      const mLatLng = influenciaMarker.getLatLng();
-      const b = L.latLngBounds(mLatLng, mLatLng);
+  if (influenciaLayer) {
+    const b = influenciaLayer.getBounds();
+    if (b.isValid()) {
       if (bounds) bounds.extend(b);
       else bounds = b;
     }
-
-    if (bounds && bounds.isValid()) {
-      setTimeout(() => {
-        mapInfluencia.invalidateSize();
-        mapInfluencia.fitBounds(bounds, { padding: [10, 10] });
-      }, 0);
-    } else {
-      setTimeout(() => {
-        mapInfluencia.invalidateSize();
-        mapInfluencia.setView(center, 7);
-      }, 0);
-    }
   }
+
+  if (influenciaMarker) {
+    const mLatLng = influenciaMarker.getLatLng();
+    const b = L.latLngBounds(mLatLng, mLatLng);
+    if (bounds) bounds.extend(b);
+    else bounds = b;
+  }
+
+  if (bounds && bounds.isValid()) {
+    setTimeout(() => {
+      mapInfluencia.invalidateSize();
+      mapInfluencia.fitBounds(bounds, { padding: [10, 10] });
+    }, 0);
+  } else {
+    setTimeout(() => {
+      mapInfluencia.invalidateSize();
+      mapInfluencia.setView(center, 7);
+    }, 0);
+  }
+
+  /* --------------------------------------------
+     5) Leyenda de los anillos (1h / 2h / 3h)
+     -------------------------------------------- */
+  influenciaLegend = L.control({ position: "bottomright" });
+
+  influenciaLegend.onAdd = function () {
+    const div = L.DomUtil.create("div", "info legend");
+
+    // Estilos inline para no tocar CSS si no querés
+    div.style.background = "rgba(255, 255, 255, 0.95)";
+    div.style.border = "1px solid #d0d7e2";
+    div.style.borderRadius = "4px";
+    div.style.padding = "4px 6px";
+    div.style.fontSize = "0.72rem";
+    div.style.lineHeight = "1.3";
+    div.style.color = "#111";
+
+    div.innerHTML = `
+      <div style="font-weight:600; margin-bottom:2px;">Tiempos de viaje</div>
+      <div><span style="display:inline-block;width:10px;height:10px;background:#08306b;margin-right:4px;border:1px solid #08306b;"></span>Hasta 1 h</div>
+      <div><span style="display:inline-block;width:10px;height:10px;background:#2171b5;margin-right:4px;border:1px solid #2171b5;"></span>Hasta 2 h</div>
+      <div><span style="display:inline-block;width:10px;height:10px;background:#6baed6;margin-right:4px;border:1px solid #6baed6;"></span>Hasta 3 h</div>
+    `;
+
+    return div;
+  };
+
+  influenciaLegend.addTo(mapInfluencia);
+}
+
 
   /* ============================================
      G. PARSEO CSV DE INVERSIONES POR AEROPUERTO
