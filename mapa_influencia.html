@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Mapa de área de influencia – GeoData ORSNA</title>
+  <title>Área de influencia aeroportuaria – GeoData ORSNA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Leaflet CSS -->
@@ -26,92 +26,91 @@
     }
 
     header {
-      padding: 10px 16px;
+      padding: 8px 14px;
       background: #111827;
       border-bottom: 1px solid #1f2937;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
     header h1 {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
       color: #f9fafb;
     }
 
     header p {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: #9ca3af;
       margin-top: 2px;
     }
 
-    .layout {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      padding: 8px 8px 12px;
-      gap: 8px;
-    }
-
-    @media (min-width: 900px) {
-      .layout {
-        flex-direction: row;
-      }
-    }
-
-    .map-container {
-      flex: 2;
-      min-height: 60vh;
-    }
-
-    #mapInfluenciaBig {
-      width: 100%;
-      height: 80vh;
-      border-radius: 6px;
-      border: 1px solid #1f2937;
-    }
-
-    .sidebar {
-      flex: 1;
-      background: rgba(15,23,42,0.95);
-      border-radius: 6px;
-      border: 1px solid #1f2937;
-      padding: 8px 10px;
-      font-size: 0.85rem;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .sidebar h2 {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #bfdbfe;
-      margin-bottom: 4px;
-    }
-
-    .sidebar p {
-      font-size: 0.82rem;
-      color: #e5e7eb;
-    }
-
-    .info-resumen {
-      margin-top: 4px;
-      padding-top: 4px;
-      border-top: 1px dashed #374151;
-      font-size: 0.8rem;
+    .subtitle {
+      font-size: 0.78rem;
       color: #9ca3af;
     }
 
-    a.back-link {
-      display: inline-block;
-      margin-top: 8px;
+    .back-link {
       font-size: 0.8rem;
       color: #93c5fd;
       text-decoration: none;
+      white-space: nowrap;
     }
-    a.back-link:hover {
-      text-decoration: underline;
+    .back-link:hover { text-decoration: underline; }
+
+    #map {
+      flex: 1;
+      width: 100%;
+      height: calc(100vh - 50px);
     }
 
+    /* Leyenda */
+    .legend {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      background: rgba(17, 24, 39, 0.95);
+      border: 1px solid #374151;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 0.8rem;
+      color: #e5e7eb;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    .legend-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #bfdbfe;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .legend-color {
+      width: 14px;
+      height: 14px;
+      border-radius: 2px;
+      border: 1px solid #000;
+      flex-shrink: 0;
+    }
+
+    .legend-color.t1 { background-color: #08306b; }
+    .legend-color.t2 { background-color: #2171b5; }
+    .legend-color.t3 { background-color: #6baed6; }
+    .legend-color.ai {
+      background-color: rgba(191, 219, 254, 0.6);
+      border-color: #1d4ed8;
+    }
+
+    /* Tooltip estilo PSN para etiqueta IATA */
     .psn-tooltip {
       background: rgba(255, 255, 255, 0.9);
       border: 1px solid #333;
@@ -120,41 +119,40 @@
       font-size: 0.6rem;
       color: #111;
     }
-
-    /* Leyenda Leaflet */
-    .legend {
-      line-height: 1.3;
-    }
   </style>
 </head>
 <body>
+
   <header>
-    <h1 id="mapTitle">Mapa de área de influencia</h1>
-    <p id="mapSubtitle">Tiempos de viaje y área de influencia aeroportuaria</p>
+    <div>
+      <h1 id="mapTitle">Área de influencia aeroportuaria</h1>
+      <p id="mapSubtitle" class="subtitle">
+        Anillos de tiempo de viaje por carretera y área de influencia aeroportuaria.
+      </p>
+    </div>
+    <a href="datos-clave.html" class="back-link">← Volver a Datos clave</a>
   </header>
 
-  <div class="layout">
-    <div class="map-container">
-      <div id="mapInfluenciaBig"></div>
+  <div id="map"></div>
+
+  <div class="legend">
+    <div class="legend-title">Tiempos de viaje</div>
+    <div class="legend-item">
+      <span class="legend-color t1"></span>
+      <span>Hasta 1 h</span>
     </div>
-
-    <aside class="sidebar">
-      <h2>Área de influencia y accesibilidad</h2>
-      <p id="infoAeropuerto">
-        Cargando información del aeropuerto…
-      </p>
-
-      <div class="info-resumen">
-        Este mapa muestra:
-        <ul style="margin-left:18px; margin-top:4px;">
-          <li>Anillos de tiempo de viaje (1, 2 y 3 horas) desde el aeropuerto.</li>
-          <li>El polígono de área de influencia aeroportuaria.</li>
-          <li>La ubicación puntual del aeropuerto.</li>
-        </ul>
-      </div>
-
-      <a href="datos-clave.html" class="back-link">← Volver a Datos clave</a>
-    </aside>
+    <div class="legend-item">
+      <span class="legend-color t2"></span>
+      <span>Entre 1 y 2 h</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-color t3"></span>
+      <span>Entre 2 y 3 h</span>
+    </div>
+    <div class="legend-item" style="margin-top:4px;">
+      <span class="legend-color ai"></span>
+      <span>Área de influencia aeroportuaria</span>
+    </div>
   </div>
 
   <!-- Leaflet JS -->
@@ -165,17 +163,22 @@
   </script>
 
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const IATA_PARAM = (urlParams.get("airport") || "").toUpperCase();
-
-    let mapInfluenciaBig;
-    let aeropuertos = [];
-    let areasInfluenciaFeatures = [];
+    /* =============================
+       VARIABLES GLOBALES
+       ============================= */
+    let mapInfluencia;
     let tiemposLayer = null;
     let influenciaLayer = null;
     let influenciaMarker = null;
-    let influenciaLegend = null;
 
+    let aeropuertos = [];           // props de Datos_aeropuertos.geojson
+    let aeropuertosPoligonos = [];  // polígonos de poligonos_aeropuertos.geojson
+    let areasInfluenciaFeatures = []; // polígonos de Areasinfluencia39.geojson
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const IATA_PARAM = (urlParams.get("airport") || "").toUpperCase();
+
+    // Icono de aeropuerto (igual que en datos-clave)
     const airportIcon = L.icon({
       iconUrl: "img/icons/AeropuertosSNA.png",
       iconSize: [32, 32],
@@ -188,115 +191,83 @@
       return String(text).trim();
     }
 
-    function getAirportCenterLatLng(aero) {
-      if (!aero) return null;
-      let lat = aero["Lat"] || aero["LAT"];
-      let lon = aero["Lon"] || aero["LON"] || aero["Long"];
+    /* =============================
+       MAPA BASE
+       ============================= */
+    function initMapInfluencia() {
+      mapInfluencia = L.map("map").setView([-38, -64], 4);
+
+      // Base IGN Argenmap, como en datos-clave
+      L.tileLayer(
+        "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG:3857@png/{z}/{x}/{-y}.png",
+        {
+          maxZoom: 14,
+          tms: true,
+          attribution: "© IGN Argentina - Argenmap"
+        }
+      ).addTo(mapInfluencia);
+    }
+
+    /* =============================
+       CENTRO DEL AEROPUERTO
+       (mismo criterio que en datos-clave)
+       ============================= */
+    function getAirportCenterLatLng(a) {
+      if (!a) return null;
+      const iataCode = a.IATA;
+
+      if (Array.isArray(aeropuertosPoligonos) && aeropuertosPoligonos.length) {
+        const feats = aeropuertosPoligonos.filter(f => {
+          const p = f.properties || {};
+          return String(p.IATA).toUpperCase() === String(iataCode).toUpperCase();
+        });
+
+        if (feats.length > 0) {
+          const layer = L.geoJSON(feats);
+          const bounds = layer.getBounds();
+          if (bounds.isValid()) {
+            const c = bounds.getCenter();
+            return [c.lat, c.lng];
+          }
+        }
+      }
+
+      // Fallback a Lat/Lon del GeoJSON de aeropuertos
+      let lat = a["Lat"] || a["LAT"];
+      let lon = a["Lon"] || a["LON"] || a["Long"];
 
       if (lat && lon && !isNaN(Number(lat)) && !isNaN(Number(lon))) {
         return [Number(lat), Number(lon)];
       }
+
       return null;
     }
 
-    function initInfluenciaMap() {
-      mapInfluenciaBig = L.map("mapInfluenciaBig").setView([-38, -64], 4);
-
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 18,
-        attribution: "&copy; OpenStreetMap contributors"
-      }).addTo(mapInfluenciaBig);
-    }
-
-    async function loadDataAndRender() {
-      if (!IATA_PARAM) {
-        document.getElementById("infoAeropuerto").textContent =
-          "No se indicó aeropuerto en la URL (?airport=IATA).";
-        return;
-      }
-
-      try {
-        // 1) Datos de aeropuertos
-        try {
-          const respA = await fetch("fuentes/Datos_aeropuertos.geojson");
-          const gjA = await respA.json();
-          aeropuertos = (gjA.features || []).map(f => f.properties || {});
-        } catch (e) {
-          console.warn("No se pudieron cargar Datos_aeropuertos.geojson:", e);
-          aeropuertos = [];
-        }
-
-        // 2) Áreas de influencia
-        try {
-          const respInf = await fetch("fuentes/Areasinfluencia39.geojson");
-          const gjInf = await respInf.json();
-          areasInfluenciaFeatures = gjInf.features || [];
-        } catch (e) {
-          console.warn("No se pudieron cargar Areasinfluencia39.geojson:", e);
-          areasInfluenciaFeatures = [];
-        }
-
-        // Buscar aeropuerto
-        const airport = aeropuertos.find(a =>
-          String(a.IATA || "").toUpperCase() === IATA_PARAM
-        );
-
-        const nombre = airport
-          ? (clean(airport["Aeropuerto"]) || clean(airport["Nombre del Aeropuerto"]) || IATA_PARAM)
-          : IATA_PARAM;
-
-        document.getElementById("mapTitle").textContent =
-          `Mapa de área de influencia – ${nombre} (${IATA_PARAM})`;
-
-        const infoEl = document.getElementById("infoAeropuerto");
-        if (airport) {
-          const loc = `${clean(airport["Localidad"])} · ${clean(airport["Provincia"])}`.replace(/^ · | · $/g, "");
-          const pob = airport["Población del Área de Influencia (Censo 2022)"];
-          infoEl.innerHTML = `
-            <strong>${nombre} (${IATA_PARAM})</strong><br>
-            ${loc || "Ubicación no disponible"}<br>
-            Población del área de influencia (Censo 2022): <strong>${pob ? pob.toLocaleString("es-AR") : "–"}</strong>
-          `;
-        } else {
-          infoEl.textContent = `No se encontraron datos del aeropuerto ${IATA_PARAM}.`;
-        }
-
-        // Render del mapa
-        renderInfluenciaForAirport(airport, IATA_PARAM);
-
-      } catch (err) {
-        console.error("Error cargando datos:", err);
-        document.getElementById("infoAeropuerto").textContent =
-          "Error al cargar los datos del aeropuerto.";
-      }
-    }
-
-    function renderInfluenciaForAirport(a, iataUpper) {
-      if (!mapInfluenciaBig) return;
+    /* =============================
+       ACTUALIZAR MAPA PARA UN AEROPUERTO
+       (copiado de la lógica del mapa chico)
+       ============================= */
+    function updateInfluenciaMapForAirport(a) {
+      if (!mapInfluencia) return;
 
       // Limpiar capas previas
       if (tiemposLayer) {
-        mapInfluenciaBig.removeLayer(tiemposLayer);
+        mapInfluencia.removeLayer(tiemposLayer);
         tiemposLayer = null;
       }
       if (influenciaLayer) {
-        mapInfluenciaBig.removeLayer(influenciaLayer);
+        mapInfluencia.removeLayer(influenciaLayer);
         influenciaLayer = null;
       }
       if (influenciaMarker) {
-        mapInfluenciaBig.removeLayer(influenciaMarker);
+        mapInfluencia.removeLayer(influenciaMarker);
         influenciaMarker = null;
       }
-      if (influenciaLegend) {
-        mapInfluenciaBig.removeControl(influenciaLegend);
-        influenciaLegend = null;
-      }
 
-      const center = getAirportCenterLatLng(a) || [-38, -64];
+      const iataUpper = a.IATA ? String(a.IATA).trim().toUpperCase() : "";
+      if (!iataUpper) return;
 
-      /* ----------------------------------------
-         1) Tiempos de viaje (anillos 1h / 2h / 3h)
-         ---------------------------------------- */
+      /* ----------- 1) Anillos de tiempo (Tiempos_XX.geojson) ----------- */
       const tiemposPath = `img/Tiempos/Tiempos_${iataUpper}.geojson`;
 
       fetch(tiemposPath)
@@ -305,80 +276,69 @@
           return resp.json();
         })
         .then(gj => {
-          if (!gj || !gj.features || !gj.features.length) return;
+          if (!gj || !gj.features || !gj.features.length) {
+            ajustarVista(a);
+            return;
+          }
 
           tiemposLayer = L.geoJSON(gj, {
             style: (feature) => {
               const props = feature.properties || {};
-              let to = props.ToBreak;
-
-              if (to === undefined || to === null || to === "") {
-                const alt =
-                  props.ToBreak ??
-                  props.tobreak ??
-                  props.TOBREAK ??
-                  props.to_break ??
-                  props.TO_BREAK;
-                to = alt !== undefined && alt !== null ? Number(alt) : null;
-              } else {
-                to = Number(to);
-              }
-
+              const to = Number(props.ToBreak);
               let color;
+
               if (to === 60) {
-                color = "#08306b";   // 1 hora (más oscuro)
+                color = "#08306b";      // hasta 1h – más oscuro
               } else if (to === 120) {
-                color = "#2171b5";   // 2 horas
+                color = "#2171b5";      // 1–2h
               } else if (to === 180) {
-                color = "#6baed6";   // 3 horas (más claro)
+                color = "#6baed6";      // 2–3h – más claro
               } else {
-                color = "#9ecae1";   // fallback
+                color = "#9ecae1";      // cualquier otro
               }
 
               return {
-                color: color,
+                color,
                 weight: 1,
                 fillColor: color,
-                fillOpacity: 0.35
+                fillOpacity: 0.35      // semitransparente
               };
             }
-          }).addTo(mapInfluenciaBig);
+          }).addTo(mapInfluencia);
 
-          ajustarVista(a, center);
+          ajustarVista(a);
         })
-        .catch(e => {
-          console.warn("No se pudo cargar Tiempos_", iataUpper, e);
-          ajustarVista(a, center);
+        .catch(() => {
+          console.warn("No se pudo cargar tiempos de viaje:", tiemposPath);
+          ajustarVista(a);
         });
 
-      /* ----------------------------------------
-         2) Área de influencia (polígono azul)
-         ---------------------------------------- */
-      const featsInfl = (areasInfluenciaFeatures || []).filter(f => {
-        const code = String(
-          f.properties?.IATA || f.properties?.iata || ""
-        ).trim().toUpperCase();
-        return code === iataUpper;
-      });
+      /* ----------- 2) Área de influencia (Areasinfluencia39.geojson) ----------- */
+      if (Array.isArray(areasInfluenciaFeatures) && areasInfluenciaFeatures.length) {
+        const featsInfl = areasInfluenciaFeatures.filter(f => {
+          const props = f.properties || {};
+          const code = String(props.IATA || props.iata || "").toUpperCase();
+          return code === iataUpper;
+        });
 
-      if (featsInfl.length) {
-        influenciaLayer = L.geoJSON(featsInfl, {
-          style: {
-            color: "#1d4ed8",   // azul borde
-            weight: 2,
-            fillColor: "#bfdbfe",
-            fillOpacity: 0.25
-          }
-        }).addTo(mapInfluenciaBig);
+        if (featsInfl.length) {
+          influenciaLayer = L.geoJSON(featsInfl, {
+            style: {
+              color: "#1d4ed8",        // azul para borde
+              weight: 2,
+              fillColor: "#bfdbfe",    // azul claro
+              fillOpacity: 0.25
+            }
+          }).addTo(mapInfluencia);
+        }
       }
 
-      /* ----------------------------------------
-         3) Punto del aeropuerto
-         ---------------------------------------- */
+      /* ----------- 3) Punto del aeropuerto (igual que en mapa chico) ----------- */
+      const center = getAirportCenterLatLng(a);
       if (center) {
-        influenciaMarker = L.marker(center, { icon: airportIcon }).addTo(mapInfluenciaBig);
+        influenciaMarker = L.marker(center, { icon: airportIcon }).addTo(mapInfluencia);
 
-        const iataLabel = a && a["IATA"] ? String(a["IATA"]).toUpperCase() : iataUpper;
+        const iataLabel = a["IATA"] ? String(a["IATA"]).toUpperCase() : "";
         if (iataLabel) {
           influenciaMarker.bindTooltip(iataLabel, {
             permanent: true,
@@ -388,38 +348,13 @@
           });
         }
       }
-
-      /* ----------------------------------------
-         4) Leyenda
-         ---------------------------------------- */
-      influenciaLegend = L.control({ position: "bottomright" });
-
-      influenciaLegend.onAdd = function () {
-        const div = L.DomUtil.create("div", "info legend");
-
-        div.style.background = "rgba(255, 255, 255, 0.95)";
-        div.style.border = "1px solid #d0d7e2";
-        div.style.borderRadius = "4px";
-        div.style.padding = "4px 6px";
-        div.style.fontSize = "0.72rem";
-        div.style.lineHeight = "1.3";
-        div.style.color = "#111";
-
-        div.innerHTML = `
-          <div style="font-weight:600; margin-bottom:2px;">Tiempos de viaje</div>
-          <div><span style="display:inline-block;width:10px;height:10px;background:#08306b;margin-right:4px;border:1px solid #08306b;"></span>Hasta 1 h</div>
-          <div><span style="display:inline-block;width:10px;height:10px;background:#2171b5;margin-right:4px;border:1px solid #2171b5;"></span>Hasta 2 h</div>
-          <div><span style="display:inline-block;width:10px;height:10px;background:#6baed6;margin-right:4px;border:1px solid #6baed6;"></span>Hasta 3 h</div>
-        `;
-
-        return div;
-      };
-
-      influenciaLegend.addTo(mapInfluenciaBig);
     }
 
-    function ajustarVista(a, center) {
-      if (!mapInfluenciaBig) return;
+    /* =============================
+       AJUSTAR VISTA
+       ============================= */
+    function ajustarVista(a) {
+      if (!mapInfluencia) return;
 
       let bounds = null;
 
@@ -437,27 +372,93 @@
       }
 
       if (influenciaMarker) {
-        const mLatLng = influenciaMarker.getLatLng();
-        const b = L.latLngBounds(mLatLng, mLatLng);
+        const m = influenciaMarker.getLatLng();
+        const b = L.latLngBounds(m, m);
         if (bounds) bounds.extend(b);
         else bounds = b;
       }
 
+      const fallbackCenter = getAirportCenterLatLng(a) || [-38, -64];
+
       if (bounds && bounds.isValid()) {
         setTimeout(() => {
-          mapInfluenciaBig.invalidateSize();
-          mapInfluenciaBig.fitBounds(bounds, { padding: [10, 10] });
+          mapInfluencia.invalidateSize();
+          mapInfluencia.fitBounds(bounds, { padding: [10, 10] });
         }, 0);
       } else {
         setTimeout(() => {
-          mapInfluenciaBig.invalidateSize();
-          mapInfluenciaBig.setView(center || [-38, -64], 7);
+          mapInfluencia.invalidateSize();
+          mapInfluencia.setView(fallbackCenter, 7);
         }, 0);
       }
     }
 
+    /* =============================
+       CARGA DE DATOS Y RENDER
+       ============================= */
+    async function loadDataAndRender() {
+      if (!IATA_PARAM) {
+        document.getElementById("mapSubtitle").textContent =
+          "No se indicó aeropuerto en la URL (?airport=IATA).";
+        return;
+      }
+
+      try {
+        // 1) Datos de aeropuertos (para nombre, año, Lat/Lon, etc.)
+        const respAero = await fetch("fuentes/Datos_aeropuertos.geojson");
+        const gjAero = await respAero.json();
+        aeropuertos = (gjAero.features || []).map(f => f.properties || {});
+
+        // 2) Polígonos de aeropuertos (para centro geométrico)
+        try {
+          const respPol = await fetch("fuentes/poligonos_aeropuertos.geojson");
+          const gjPol = await respPol.json();
+          aeropuertosPoligonos = gjPol.features || [];
+        } catch (e) {
+          console.warn("No se pudieron cargar poligonos_aeropuertos.geojson:", e);
+          aeropuertosPoligonos = [];
+        }
+
+        // 3) Áreas de influencia (Areasinfluencia39.geojson)
+        try {
+          const respInf = await fetch("fuentes/Areasinfluencia39.geojson");
+          const gjInf = await respInf.json();
+          areasInfluenciaFeatures = gjInf.features || [];
+        } catch (e) {
+          console.warn("No se pudieron cargar Areasinfluencia39.geojson:", e);
+          areasInfluenciaFeatures = [];
+        }
+
+        // Buscar aeropuerto por IATA
+        const a = aeropuertos.find(x => String(x.IATA).toUpperCase() === IATA_PARAM);
+        if (!a) {
+          document.getElementById("mapSubtitle").textContent =
+            `No se encontraron datos para el aeropuerto ${IATA_PARAM}.`;
+          return;
+        }
+
+        const nombre = clean(a["Aeropuerto"]) || clean(a["Nombre del Aeropuerto"]) || IATA_PARAM;
+        const anio = a["Año"] || "";
+
+        document.getElementById("mapTitle").textContent =
+          `Área de influencia – ${nombre} (${a.IATA})`;
+        document.getElementById("mapSubtitle").textContent =
+          `Tiempos de viaje por carretera y área de influencia aeroportuaria · Año ${anio}`;
+
+        updateInfluenciaMapForAirport(a);
+
+      } catch (err) {
+        console.error("Error cargando datos:", err);
+        document.getElementById("mapSubtitle").textContent =
+          "Error al cargar los datos del aeropuerto o del área de influencia.";
+      }
+    }
+
+    /* =============================
+       INICIO
+       ============================= */
     document.addEventListener("DOMContentLoaded", () => {
-      initInfluenciaMap();
+      initMapInfluencia();
       loadDataAndRender();
     });
   </script>
