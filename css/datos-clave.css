@@ -292,20 +292,20 @@ header.page-header {
 }
 
 .kpi-contact-role {
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: 0.7rem;
+  font-weight: 600;
   color: #004b80;
   margin-bottom: 2px;
 }
 
 .kpi-contact-name {
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: #333;
 }
 
 .kpi-contact-small {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: #555;
   line-height: 1.2;
 }
