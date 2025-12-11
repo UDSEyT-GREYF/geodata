@@ -649,10 +649,11 @@ async function updateInfluenciaMapForAirport(a) {
     if (featsInfl.length) {
       influenciaLayer = L.geoJSON(featsInfl, {
         style: {
-          color: "#1d4ed8",   // azul para el borde (antes rojo oscuro)
+          color: "#FFD700",     // borde amarillo
           weight: 2,
-          fillColor: "#bfdbfe",
-          fillOpacity: 0.25
+          /*fillColor: "#bfdbfe",*/
+          dashArray: "6 4",     // línea segmentada
+          fillOpacity: 0.0  // sin relleno
         }
       }).addTo(mapInfluencia);
     }
