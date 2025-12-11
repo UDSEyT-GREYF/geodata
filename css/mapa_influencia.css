@@ -91,9 +91,9 @@ header p {
 .legend-color.t2 { background-color: #2171b5; }
 .legend-color.t3 { background-color: #6baed6; }
 
-.legend-color.ai {
-  background: transparent;
-  border-color: #FFD700; /* borde amarillo */
+/* Icono SVG del área de influencia en la leyenda */
+.legend-line-ai {
+  flex-shrink: 0;
 }
 
 /* Tooltip estilo PSN */
