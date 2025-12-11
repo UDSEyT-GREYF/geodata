@@ -14,8 +14,13 @@ body {
   line-height: 1.5;
 }
 
-a { color: #0072bb; text-decoration: none; }
-a:hover { text-decoration: underline; }
+a {
+  color: #0072bb;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
 
 /* ==============================
    2. TOPBAR (PRESIDENCIA / GEODATA)
@@ -65,7 +70,10 @@ a:hover { text-decoration: underline; }
   background: linear-gradient(135deg, #00a3e0, #0072bb);
 }
 
-.brand-text { display: flex; flex-direction: column; }
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
 .brand-text span:first-child {
   font-size: 0.78rem;
   text-transform: uppercase;
@@ -121,6 +129,20 @@ header.page-header {
   font-size: 0.95rem;
 }
 
+/* Línea de resumen debajo del título del aeropuerto */
+#pageSubtitle {
+  margin-top: 4px;
+  font-weight: 400;
+  color: #555;
+  font-size: 0.73rem;
+  line-height: 1.1;
+}
+
+/* Ocultar los KPI de contactos en el panel de Ubicación */
+.panel-ubicacion .contact-kpi {
+  display: none !important;
+}
+
 .selector {
   display: flex;
   flex-direction: column;
@@ -128,7 +150,9 @@ header.page-header {
   gap: 4px;
   font-size: 0.9rem;
 }
-.selector label { color: #444; }
+.selector label {
+  color: #444;
+}
 .selector select {
   padding: 4px 8px;
   border-radius: 4px;
@@ -268,7 +292,7 @@ ul {
   border: 1px solid #d0d7e2;
   border-radius: 4px;
   padding: 6px 8px;
-  margin-bottom: 8px;  /* separación homogénea entre cajas */
+  margin-bottom: 8px;
 }
 
 .superficie-header-row {
@@ -528,7 +552,9 @@ ul {
 /* ==============================
    10. PANEL TERMINAL (RECORRIDO DEL PASAJERO)
    ============================== */
-.panel-terminal { grid-area: terminal; }
+.panel-terminal {
+  grid-area: terminal;
+}
 
 .terminal-body {
   display: flex;
@@ -611,7 +637,9 @@ ul {
 /* ==============================
    11. PANEL UBICACIÓN Y ACCESIBILIDAD
    ============================== */
-.panel-ubicacion { grid-area: ubicacion; }
+.panel-ubicacion {
+  grid-area: ubicacion;
+}
 
 .ubicacion-kpi {
   background: #ffffff;
@@ -699,8 +727,8 @@ ul {
   font-weight: 700;
   color: #004b80;
   text-align: right;
-  white-space: normal;     /* permite 2+ renglones si hace falta */
-  word-break: break-word;  /* corta si es muy largo */
+  white-space: normal;
+  word-break: break-word;
 }
 
 /* Tamaño más pequeño para las descripciones de obras dentro de la tabla */
@@ -708,8 +736,8 @@ ul {
   font-size: 0.72rem;
   line-height: 1.25;
   color: #444;
-  text-align: left !important;   /* ← ahora queda alineado a la izquierda */
-  vertical-align: top;            /* ← mejora la estética cuando hay varias líneas */
+  text-align: left !important;
+  vertical-align: top;
   padding-left: 4px;
 }
 
@@ -766,8 +794,12 @@ ul {
 /* ==============================
    12. PANELES EMPLEO / SERVICIOS
    ============================== */
-.panel-empleo { grid-area: empleo; }
-.panel-servicios { grid-area: servicios; }
+.panel-empleo {
+  grid-area: empleo;
+}
+.panel-servicios {
+  grid-area: servicios;
+}
 
 .map-influencia {
   width: 100%;
@@ -805,29 +837,17 @@ footer {
       "empleo"
       "servicios";
   }
+
   header.page-header {
     flex-direction: column;
     align-items: flex-start;
   }
-  .selector { align-items: flex-start; }
+
+  .selector {
+    align-items: flex-start;
+  }
+
   .kpi-strip {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
-   /* Línea de contactos debajo del título del aeropuerto */
-/* Línea de resumen debajo del título del aeropuerto */
-#pageSubtitle {
-  margin-top: 4px;
-  font-weight: 400;
-  color: #555;
-  font-size: 0.73rem;
-  line-height: 1.0;
-}
-
-/* Ocultar los KPI de contactos en el panel de Ubicación */
-.panel-ubicacion .contact-kpi {
-  display: none !important;
-}
-
-
 }
