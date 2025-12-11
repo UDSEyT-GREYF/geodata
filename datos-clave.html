@@ -1469,7 +1469,7 @@
     let map, mapMarker, poligonoLayer;
     let mapPSN, psnLayer, pistasLayerPSN;
     let mapUbicacion, ubicacionMarker, provinciasLayer;
-    let mapTransporte, transporteLayer;
+    let mapInfluencia, tiemposLayer, influenciaLayer, influenciaMarker;
     let mapInfluencia, tiemposLayer, influenciaLayer;
     let provinciasFeatures = [];
 
@@ -2013,20 +2013,28 @@ function updateTransporteMapForAirport(a) {
    F3. MAPA DE ÁREA DE INFLUENCIA / TIEMPOS DE VIAJE
    ============================================ */
 async function updateInfluenciaMapForAirport(a) {
-  if (!mapInfluencia) return;
+if (!mapInfluencia) return;
 
-  // Limpiar capas previas
-  if (tiemposLayer) {
-    mapInfluencia.removeLayer(tiemposLayer);
-    tiemposLayer = null;
-  }
-  if (influenciaLayer) {
-    mapInfluencia.removeLayer(influenciaLayer);
-    influenciaLayer = null;
-  }
+// Limpiar capas previas
+if (tiemposLayer) {
+  mapInfluencia.removeLayer(tiemposLayer);
+  tiemposLayer = null;
+}
+if (influenciaLayer) {
+  mapInfluencia.removeLayer(influenciaLayer);
+  influenciaLayer = null;
+}
+if (influenciaMarker) {
+  mapInfluencia.removeLayer(influenciaMarker);
+  influenciaMarker = null;
+}
 
-  const iataUpper = String(a.IATA || "").trim().toUpperCase();
-  if (!iataUpper) return;
+
+const iataUpper = String(a.IATA || "").trim().toUpperCase();
+if (!iataUpper) return;
+
+const center = getAirportCenterLatLng(a) || [-38, -64];
+
 
   // 1) Cargar tiempos de viaje
   const tiemposPath = `img/Tiempos/Tiempos_${iataUpper}.geojson`;
@@ -2061,37 +2069,78 @@ async function updateInfluenciaMapForAirport(a) {
     console.warn("No se pudo cargar tiempos de viaje para", iataUpper, e);
   }
 
-  // 2) (Opcional futuro) Cargar áreas de influencia cuando estén disponibles
-  //    Por ahora queda como espacio reservado para incorporar esos GeoJSON.
+// 2) Áreas de influencia (capa general filtrada por IATA)
+if (areasInfluenciaFeatures && areasInfluenciaFeatures.length) {
+  const featsInfl = areasInfluenciaFeatures.filter(f => {
+    const code = String(
+      f.properties?.IATA || f.properties?.iata || ""
+    ).trim().toUpperCase();
+    return code === iataUpper;
+  });
 
-  // 3) Ajustar vista
-  let bounds = null;
-
-  if (tiemposLayer) {
-    const b = tiemposLayer.getBounds();
-    if (b.isValid()) bounds = b;
+  if (featsInfl.length) {
+    influenciaLayer = L.geoJSON(featsInfl, {
+      style: {
+        color: "#b91c1c",
+        weight: 2,
+        fillColor: "#fecaca",
+        fillOpacity: 0.25
+      }
+    }).addTo(mapInfluencia);
   }
+}
 
-  if (influenciaLayer) {
-    const b = influenciaLayer.getBounds();
-    if (b.isValid()) {
-      if (bounds) bounds.extend(b);
-      else bounds = b;
-    }
-  }
+  // 3) Punto del aeropuerto (como en el mapa de ubicación)
+if (center) {
+  influenciaMarker = L.marker(center, { icon: airportIcon }).addTo(mapInfluencia);
 
-  if (bounds && bounds.isValid()) {
-    setTimeout(() => {
-      mapInfluencia.invalidateSize();
-      mapInfluencia.fitBounds(bounds, { padding: [10, 10] });
-    }, 0);
-  } else {
-    const center = getAirportCenterLatLng(a) || [-38, -64];
-    setTimeout(() => {
-      mapInfluencia.invalidateSize();
-      mapInfluencia.setView(center, 7);
-    }, 0);
+  const iataLabel = a["IATA"] ? String(a["IATA"]).toUpperCase() : "";
+  if (iataLabel) {
+    influenciaMarker.bindTooltip(iataLabel, {
+      permanent: true,
+      direction: "top",
+      offset: [0, -4],
+      className: "psn-tooltip"
+    });
   }
+}
+
+
+// 4) Ajustar vista combinando tiempos + áreas + punto
+let bounds = null;
+
+if (tiemposLayer) {
+  const b = tiemposLayer.getBounds();
+  if (b.isValid()) bounds = b;
+}
+
+if (influenciaLayer) {
+  const b = influenciaLayer.getBounds();
+  if (b.isValid()) {
+    if (bounds) bounds.extend(b);
+    else bounds = b;
+  }
+}
+
+if (influenciaMarker) {
+  const mLatLng = influenciaMarker.getLatLng();
+  const b = L.latLngBounds(mLatLng, mLatLng);
+  if (bounds) bounds.extend(b);
+  else bounds = b;
+}
+
+if (bounds && bounds.isValid()) {
+  setTimeout(() => {
+    mapInfluencia.invalidateSize();
+    mapInfluencia.fitBounds(bounds, { padding: [10, 10] });
+  }, 0);
+} else {
+  setTimeout(() => {
+    mapInfluencia.invalidateSize();
+    mapInfluencia.setView(center, 7);
+  }, 0);
+}
+
 }
 
 
@@ -2840,6 +2889,15 @@ if (transpBox) {
           console.warn("No se pudieron cargar las terminales:", e);
           terminalesFeatures = [];
         }
+// 11) Áreas de influencia (polígonos por aeropuerto con vuelos regulares)
+try {
+  const respAreas = await fetch("fuentes/Areasinfluencia39.geojson");
+  const gjAreas = await respAreas.json();
+  areasInfluenciaFeatures = gjAreas.features || [];
+} catch (e) {
+  console.warn("No se pudieron cargar las áreas de influencia:", e);
+  areasInfluenciaFeatures = [];
+}
 
 
 
