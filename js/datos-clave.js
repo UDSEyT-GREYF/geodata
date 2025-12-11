@@ -906,6 +906,9 @@ async function updateInfluenciaMapForAirport(a) {
    // document.getElementById("pageSubtitle").textContent = 
     //  `Sistema Nacional de Aeropuertos · Datos Clave ${a["Año"] || ""}`;
 
+        /* ----- CONTACTO ----- */
+    const contacto = contactosPorIATA[String(a.IATA).toUpperCase()] || {};
+    
     // Línea de resumen en el encabezado: Administración / Jefatura
 const adminNombre = clean(contacto["Administrador"]) || "Sin dato";
 const adminTel    = clean(contacto["AdmTelef"]);
@@ -1265,8 +1268,7 @@ if (subtitleEl) {
       }
     }
 
-    /* ----- CONTACTO ----- */
-    const contacto = contactosPorIATA[String(a.IATA).toUpperCase()] || {};
+
 
     document.getElementById("contactoAdminNombre").textContent =
       clean(contacto["Administrador"]) || "–";
