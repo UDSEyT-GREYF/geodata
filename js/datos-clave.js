@@ -908,8 +908,13 @@ function renderAirport(iataCode) {
     `Terminal de pasajeros <small>${tituloAeroSeccion}</small>`;
   document.getElementById("hdrUbicacion").innerHTML =
     `Ubicación y accesibilidad <small>${tituloAeroSeccion}</small>`;
-  document.getElementById("hdrEmpleo").innerHTML =
-    `Impacto territorial del aeropuerto <small>${tituloAeroSeccion}</small>`;
+  const hdrEmpleoEl = document.getElementById("hdrEmpleo");
+if (hdrEmpleoEl) {
+  const infoBtn = hdrEmpleoEl.querySelector("#btnInfoImpacto"); // conserva el botón si ya existe
+  hdrEmpleoEl.innerHTML = `Impacto territorial del aeropuerto <small>${tituloAeroSeccion}</small>`;
+  if (infoBtn) hdrEmpleoEl.appendChild(infoBtn); // lo vuelve a agregar al final del header
+}
+
   document.getElementById("hdrServicios").innerHTML =
     `Servicios y ayudas <small>${tituloAeroSeccion}</small>`;
 
