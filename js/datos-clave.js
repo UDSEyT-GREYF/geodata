@@ -1597,5 +1597,45 @@ if (kpiStrip && arrowLeft && arrowRight) {
 
   });
 
+// Modal "Aclaración metodológica" (Impacto económico)
+const btnInfoImpacto = document.getElementById("btnInfoImpacto");
+const modalImpacto = document.getElementById("modalImpacto");
+
+function openModal(modal){
+  if (!modal) return;
+  modal.classList.add("is-open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal(modal){
+  if (!modal) return;
+  modal.classList.remove("is-open");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+if (btnInfoImpacto && modalImpacto) {
+  btnInfoImpacto.addEventListener("click", () => openModal(modalImpacto));
+
+  // Cerrar con botones
+  modalImpacto.querySelectorAll("[data-close-modal]").forEach(el => {
+    el.addEventListener("click", () => closeModal(modalImpacto));
+  });
+
+  // Click afuera (overlay)
+  modalImpacto.addEventListener("click", (e) => {
+    if (e.target === modalImpacto) closeModal(modalImpacto);
+  });
+
+  // ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modalImpacto.classList.contains("is-open")) {
+      closeModal(modalImpacto);
+    }
+  });
+}
+
+  
 })();
 
