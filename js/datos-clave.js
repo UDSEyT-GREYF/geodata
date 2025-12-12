@@ -886,6 +886,12 @@ async function updateInfluenciaMapForAirport(a) {
     const nombre = clean(a["Aeropuerto"]) || clean(a["Nombre del Aeropuerto"]) || a.IATA;
     const tituloAeroSeccion = `${nombre} (${a.IATA})`;
 
+    // Nombre especial para AEP
+let nombreMostrar = nombre;
+if (a.IATA === "AEP") {
+  nombreMostrar = "Aeroparque Jorge Newbery";
+}
+
     // Encabezados
     document.getElementById("hdrSuperficie").innerHTML =
       `Explotación <small>${tituloAeroSeccion}</small>`;
@@ -901,8 +907,9 @@ async function updateInfluenciaMapForAirport(a) {
       `Servicios y ayudas <small>${tituloAeroSeccion}</small>`;
 
     // Título principal
-    document.getElementById("pageTitle").textContent =
-      `Aeropuerto de ${nombre} (${a.IATA})`;
+document.getElementById("pageTitle").textContent =
+  `${nombreMostrar} (${a.IATA})`;
+
    // document.getElementById("pageSubtitle").textContent = 
     //  `Sistema Nacional de Aeropuertos · Datos Clave ${a["Año"] || ""}`;
 
