@@ -1602,51 +1602,33 @@ if (kpiStrip && arrowLeft && arrowRight) {
 
   });
 
-// Modal Impacto (abrir/cerrar)
-const btnInfoImpacto = document.getElementById("btnInfoImpacto");
+// ===============================
+// MODAL: Aclaración metodológica
+// ===============================
+const btnInfo = document.getElementById("btnInfoImpacto");
 const modalImpacto = document.getElementById("modalImpacto");
 
-function openImpactoModal() {
-  if (!modalImpacto) return;
-  modalImpacto.classList.add("is-open");
-  modalImpacto.setAttribute("aria-hidden", "false");
+if (btnInfo && modalImpacto) {
 
-  const card = modalImpacto.querySelector(".modal-card");
-  if (card) card.focus();
-
-  // Evita scroll de fondo
-  document.documentElement.style.overflow = "hidden";
-  document.body.style.overflow = "hidden";
-}
-
-function closeImpactoModal() {
-  if (!modalImpacto) return;
-  modalImpacto.classList.remove("is-open");
-  modalImpacto.setAttribute("aria-hidden", "true");
-
-  document.documentElement.style.overflow = "";
-  document.body.style.overflow = "";
-
-  if (btnInfoImpacto) btnInfoImpacto.focus();
-}
-
-if (btnInfoImpacto && modalImpacto) {
-  btnInfoImpacto.addEventListener("click", openImpactoModal);
-
-  // Cerrar por botones con data-close-modal
-  modalImpacto.querySelectorAll("[data-close-modal]").forEach(el => {
-    el.addEventListener("click", closeImpactoModal);
+  // Abrir modal
+  btnInfo.addEventListener("click", () => {
+    modalImpacto.classList.add("is-open");
+    modalImpacto.setAttribute("aria-hidden", "false");
   });
 
-  // Cerrar clickeando el overlay (fuera de la tarjeta)
+  // Cerrar modal (botón X o botones con data-close-modal)
+  modalImpacto.querySelectorAll("[data-close-modal]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      modalImpacto.classList.remove("is-open");
+      modalImpacto.setAttribute("aria-hidden", "true");
+    });
+  });
+
+  // Cerrar clickeando el fondo
   modalImpacto.addEventListener("click", (e) => {
-    if (e.target === modalImpacto) closeImpactoModal();
-  });
-
-  // Cerrar con ESC
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modalImpacto.classList.contains("is-open")) {
-      closeImpactoModal();
+    if (e.target === modalImpacto) {
+      modalImpacto.classList.remove("is-open");
+      modalImpacto.setAttribute("aria-hidden", "true");
     }
   });
 }
