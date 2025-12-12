@@ -879,48 +879,42 @@ async function updateInfluenciaMapForAirport(a) {
   /* ============================================
      H. RENDER PRINCIPAL DEL AEROPUERTO SELECCIONADO
      ============================================ */
-  function renderAirport(iataCode) {
-    const a = aeropuertos.find(x => x.IATA === iataCode);
-    if (!a) return;
+function renderAirport(iataCode) {
+  const a = aeropuertos.find(x => x.IATA === iataCode);
+  if (!a) return;
 
-// ===============================
-// TÍTULO PRINCIPAL DEL AEROPUERTO
-// ===============================
-let tituloFinal = "";
+  const iata = String(a.IATA || "").toUpperCase();
+  const nombre = clean(a["Aeropuerto"]) || clean(a["Nombre del Aeropuerto"]) || iata;
+  const nombreOficial = clean(a["Nombre del Aeropuerto"]) || clean(a["Aeropuerto"]);
+  const tituloAeroSeccion = `${nombre} (${iata})`;
 
-// Nombre oficial largo (si existe)
-const nombreOficial =
-  clean(a["Nombre del Aeropuerto"]) ||
-  clean(a["Aeropuerto"]);
+  let tituloFinal = "";
+  if (iata === "AEP") {
+    tituloFinal = "Aeroparque Jorge Newbery (AEP)";
+  } else if (nombreOficial && nombre && nombre !== nombreOficial) {
+    tituloFinal = `${nombre} (${iata}) – ${nombreOficial}`;
+  } else {
+    tituloFinal = `${nombre} (${iata})`;
+  }
 
-// Casos especiales
-if (a.IATA === "AEP") {
-  // Aeroparque no lleva "Aeropuerto de"
-  tituloFinal = `Aeroparque Jorge Newbery (AEP)`;
-} else if (nombreOficial && nombre !== nombreOficial) {
-  // Caso general: Nombre corto + IATA + nombre oficial
-  tituloFinal = `${nombre} (${a.IATA}) – ${nombreOficial}`;
-} else {
-  // Fallback limpio
-  tituloFinal = `${nombre} (${a.IATA})`;
-}
+  document.getElementById("pageTitle").textContent = tituloFinal;
 
-document.getElementById("pageTitle").textContent = tituloFinal;
+  // Encabezados
+  document.getElementById("hdrSuperficie").innerHTML =
+    `Explotación <small>${tituloAeroSeccion}</small>`;
+  document.getElementById("hdrMovimiento").innerHTML =
+    `Área de movimiento <small>${tituloAeroSeccion}</small>`;
+  document.getElementById("hdrTerminal").innerHTML =
+    `Terminal de pasajeros <small>${tituloAeroSeccion}</small>`;
+  document.getElementById("hdrUbicacion").innerHTML =
+    `Ubicación y accesibilidad <small>${tituloAeroSeccion}</small>`;
+  document.getElementById("hdrEmpleo").innerHTML =
+    `Impacto territorial del aeropuerto <small>${tituloAeroSeccion}</small>`;
+  document.getElementById("hdrServicios").innerHTML =
+    `Servicios y ayudas <small>${tituloAeroSeccion}</small>`;
 
+  // ...seguís con el resto tal como lo tenés
 
-    // Encabezados
-    document.getElementById("hdrSuperficie").innerHTML =
-      `Explotación <small>${tituloAeroSeccion}</small>`;
-    document.getElementById("hdrMovimiento").innerHTML =
-      `Área de movimiento <small>${tituloAeroSeccion}</small>`;
-    document.getElementById("hdrTerminal").innerHTML =
-      `Terminal de pasajeros <small>${tituloAeroSeccion}</small>`;
-    document.getElementById("hdrUbicacion").innerHTML =
-      `Ubicación y accesibilidad <small>${tituloAeroSeccion}</small>`;
-    document.getElementById("hdrEmpleo").innerHTML =
-      `Impacto territorial del aeropuerto <small>${tituloAeroSeccion}</small>`;
-    document.getElementById("hdrServicios").innerHTML =
-      `Servicios y ayudas <small>${tituloAeroSeccion}</small>`;
 
     // Título principal
 
