@@ -1597,44 +1597,55 @@ if (kpiStrip && arrowLeft && arrowRight) {
 
   });
 
-// Modal "Aclaración metodológica" (Impacto económico)
+// Modal Impacto (abrir/cerrar)
 const btnInfoImpacto = document.getElementById("btnInfoImpacto");
 const modalImpacto = document.getElementById("modalImpacto");
 
-function openModal(modal){
-  if (!modal) return;
-  modal.classList.add("is-open");
-  modal.setAttribute("aria-hidden", "false");
+function openImpactoModal() {
+  if (!modalImpacto) return;
+  modalImpacto.classList.add("is-open");
+  modalImpacto.setAttribute("aria-hidden", "false");
+
+  const card = modalImpacto.querySelector(".modal-card");
+  if (card) card.focus();
+
+  // Evita scroll de fondo
+  document.documentElement.style.overflow = "hidden";
   document.body.style.overflow = "hidden";
 }
 
-function closeModal(modal){
-  if (!modal) return;
-  modal.classList.remove("is-open");
-  modal.setAttribute("aria-hidden", "true");
+function closeImpactoModal() {
+  if (!modalImpacto) return;
+  modalImpacto.classList.remove("is-open");
+  modalImpacto.setAttribute("aria-hidden", "true");
+
+  document.documentElement.style.overflow = "";
   document.body.style.overflow = "";
+
+  if (btnInfoImpacto) btnInfoImpacto.focus();
 }
 
 if (btnInfoImpacto && modalImpacto) {
-  btnInfoImpacto.addEventListener("click", () => openModal(modalImpacto));
+  btnInfoImpacto.addEventListener("click", openImpactoModal);
 
-  // Cerrar con botones
+  // Cerrar por botones con data-close-modal
   modalImpacto.querySelectorAll("[data-close-modal]").forEach(el => {
-    el.addEventListener("click", () => closeModal(modalImpacto));
+    el.addEventListener("click", closeImpactoModal);
   });
 
-  // Click afuera (overlay)
+  // Cerrar clickeando el overlay (fuera de la tarjeta)
   modalImpacto.addEventListener("click", (e) => {
-    if (e.target === modalImpacto) closeModal(modalImpacto);
+    if (e.target === modalImpacto) closeImpactoModal();
   });
 
-  // ESC
+  // Cerrar con ESC
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && modalImpacto.classList.contains("is-open")) {
-      closeModal(modalImpacto);
+      closeImpactoModal();
     }
   });
 }
+
 
   
 })();
