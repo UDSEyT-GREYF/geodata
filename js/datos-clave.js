@@ -1298,7 +1298,9 @@ if (kpiJefeContactoEl)  kpiJefeContactoEl.textContent  = jefeContactoStr;
         : empDirRaw
     );
 
-    const empIndNum = !isNaN(empDirNum) ? empDirNum * EMP_IND_MULT : null;
+const empIndNum = !isNaN(empDirNum)
+  ? Math.round(empDirNum * EMP_IND_MULT)
+  : null;
 
     document.getElementById("empleoDirecto").textContent =
       !isNaN(empDirNum) && empDirNum !== null
