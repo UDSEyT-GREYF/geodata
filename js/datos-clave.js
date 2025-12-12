@@ -883,14 +883,30 @@ async function updateInfluenciaMapForAirport(a) {
     const a = aeropuertos.find(x => x.IATA === iataCode);
     if (!a) return;
 
-    const nombre = clean(a["Aeropuerto"]) || clean(a["Nombre del Aeropuerto"]) || a.IATA;
-    const tituloAeroSeccion = `${nombre} (${a.IATA})`;
+// ===============================
+// TÍTULO PRINCIPAL DEL AEROPUERTO
+// ===============================
+let tituloFinal = "";
 
-    // Nombre especial para AEP
-let nombreMostrar = nombre;
+// Nombre oficial largo (si existe)
+const nombreOficial =
+  clean(a["Nombre del Aeropuerto"]) ||
+  clean(a["Aeropuerto"]);
+
+// Casos especiales
 if (a.IATA === "AEP") {
-  nombreMostrar = "Aeroparque Jorge Newbery";
+  // Aeroparque no lleva "Aeropuerto de"
+  tituloFinal = `Aeroparque Jorge Newbery (AEP)`;
+} else if (nombreOficial && nombre !== nombreOficial) {
+  // Caso general: Nombre corto + IATA + nombre oficial
+  tituloFinal = `${nombre} (${a.IATA}) – ${nombreOficial}`;
+} else {
+  // Fallback limpio
+  tituloFinal = `${nombre} (${a.IATA})`;
 }
+
+document.getElementById("pageTitle").textContent = tituloFinal;
+
 
     // Encabezados
     document.getElementById("hdrSuperficie").innerHTML =
@@ -907,8 +923,7 @@ if (a.IATA === "AEP") {
       `Servicios y ayudas <small>${tituloAeroSeccion}</small>`;
 
     // Título principal
-document.getElementById("pageTitle").textContent =
-  `${nombreMostrar} (${a.IATA})`;
+
 
    // document.getElementById("pageSubtitle").textContent = 
     //  `Sistema Nacional de Aeropuertos · Datos Clave ${a["Año"] || ""}`;
