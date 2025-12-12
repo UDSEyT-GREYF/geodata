@@ -566,6 +566,12 @@
         <div class="panel-header" id="hdrEmpleo">Impacto territorial del aeropuerto</div>
         <div class="panel-body">
 
+          <div class="panel-header" id="hdrEmpleo">Impacto económico
+          <button type="button" class="info-btn" id="btnInfoImpacto" aria-haspopup="dialog" aria-controls="modalImpacto">
+    i
+  </button>
+</div>
+
           <!-- KPI Empleo -->
           <div class="superficie-kpi">
             <div class="contact-title">Empleo vinculado al aeropuerto</div>
@@ -669,5 +675,40 @@
 
   <!-- JS propio -->
   <script src="js/datos-clave.js"></script>
+
+  <div class="modal-overlay" id="modalImpacto" role="dialog" aria-modal="true" aria-labelledby="modalImpactoTitle" aria-hidden="true">
+  <div class="modal-card" role="document">
+    <div class="modal-head">
+      <div class="modal-title" id="modalImpactoTitle">Aclaración metodológica</div>
+      <button type="button" class="modal-close" data-close-modal aria-label="Cerrar">×</button>
+    </div>
+
+    <div class="modal-body">
+      <p>
+        El transporte aerocomercial es un componente esencial de la economía e incide en el desarrollo y el bienestar de las poblaciones y los territorios. Por ello, la provisión de servicios aerocomerciales y la infraestructura aeroportuaria constituyen elementos de cohesión territorial que permiten generar oportunidades de atracción, retención y expansión de la actividad económica en el área de influencia de cada aeropuerto del país.
+      </p>
+      <p>
+        Los datos se estiman tomando como apoyo estudios elaborados por organismos internacionales y equipos académicos que han desarrollado y estandarizado una metodología común para medir los impactos económicos y sociales de la aviación, permitiendo la comparación entre distintos países y regiones del mundo. Organismos como el Airports Council International (ACI), la IATA, Oxford Economics y el Air Transport Action Group (ATAG) publican periódicamente informes que cuantifican los beneficios económicos del transporte aéreo en cada región.
+      </p>
+      <p>
+        Estas referencias constituyen la base técnica y conceptual para estimar los impactos directos, indirectos, inducidos y catalíticos de la actividad aeronáutica y aeroportuaria sobre la economía y el empleo, garantizando la coherencia con los estándares utilizados a nivel global.
+      </p>
+      <p>
+        En particular, el informe de IATA “El valor del transporte aéreo para Argentina” (2019) constituye una de las principales referencias para dimensionar la contribución del sector a la economía nacional.
+      </p>
+      <p>
+        Informes actuales de IATA (Argentina y otros países):
+        <a href="https://www.iata.org/en/publications/economics/reports/value-of-air-transport-country-reports/" target="_blank" rel="noopener">
+          ver publicaciones
+        </a>
+      </p>
+    </div>
+
+    <div class="modal-foot">
+      <button type="button" class="modal-ok" data-close-modal>Cerrar</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
