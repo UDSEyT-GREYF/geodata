@@ -561,55 +561,62 @@
         </div>
       </section>
 
-      <!-- PANEL 5: IMPACTO TERRITORIAL / EMPLEO -->
-      <section class="panel panel-empleo">
-        <div class="panel-header" id="hdrEmpleo">Impacto territorial del aeropuerto</div> 
-        <button type="button" class="info-btn" id="btnInfoImpacto" aria-haspopup="dialog" aria-controls="modalImpacto">
-    i
-  </button>
-       
-</div>
+<!-- PANEL 5: IMPACTO TERRITORIAL / EMPLEO -->
+<section class="panel panel-empleo">
 
-          <!-- KPI Empleo -->
-          <div class="superficie-kpi">
-            <div class="contact-title">Empleo vinculado al aeropuerto</div>
-
-            <div class="ubi-row">
-              <span class="ubi-label">Empleo directo aeronáutico/aeroportuario</span>
-              <span class="ubi-chip" id="empleoDirecto">–</span>
-            </div>
-
-            <div class="ubi-row">
-              <span class="ubi-label">Empleo indirecto</span>
-              <span class="ubi-chip" id="empleoIndirecto">–</span>
-            </div>
-          </div>
-
-          <!-- KPI Área de influencia -->
-<div class="superficie-kpi">
-  <div class="contact-title">Área de influencia aeroportuaria</div>
-
-  <div class="ubi-row">
-    <span class="ubi-label">Población (Censo 2022)</span>
-    <span class="ubi-chip" id="poblacionInfluencia">–</span>
+  <div class="panel-header" id="hdrEmpleo">
+    Impacto territorial del aeropuerto
+    <button
+      type="button"
+      class="info-btn"
+      id="btnInfoImpacto"
+      aria-haspopup="dialog"
+      aria-controls="modalImpacto"
+      aria-label="Ver aclaración metodológica"
+      title="Aclaración metodológica"
+    >
+      i
+    </button>
   </div>
 
-  <div class="superficie-thumb" style="margin-top:6px;">
-    <div id="mapInfluencia" class="map-influencia"></div>
+  <div class="panel-body">
+
+    <!-- KPI Empleo -->
+    <div class="superficie-kpi">
+      <div class="contact-title">Empleo vinculado al aeropuerto</div>
+
+      <div class="ubi-row">
+        <span class="ubi-label">Empleo directo aeronáutico/aeroportuario</span>
+        <span class="ubi-chip" id="empleoDirecto">–</span>
+      </div>
+
+      <div class="ubi-row">
+        <span class="ubi-label">Empleo indirecto</span>
+        <span class="ubi-chip" id="empleoIndirecto">–</span>
+      </div>
+    </div>
+
+    <!-- KPI Área de influencia -->
+    <div class="superficie-kpi">
+      <div class="contact-title">Área de influencia aeroportuaria</div>
+
+      <div class="ubi-row">
+        <span class="ubi-label">Población (Censo 2022)</span>
+        <span class="ubi-chip" id="poblacionInfluencia">–</span>
+      </div>
+
+      <div class="superficie-thumb" style="margin-top:6px;">
+        <div id="mapInfluencia" class="map-influencia"></div>
+      </div>
+
+      <button type="button" class="map-expand-btn" data-map="influencia">
+        Abrir el mapa
+      </button>
+    </div>
+
   </div>
+</section>
 
-  <!-- Botón para abrir el mapa de influencia en ventana aparte -->
-  <button
-    type="button"
-    class="map-expand-btn"
-    data-map="influencia">
-    Abrir el mapa
-  </button>
-</div>
-
-
-        </div>
-      </section>
 
       <!-- PANEL 6: SERVICIOS Y AYUDAS -->
       <section class="panel panel-servicios">
