@@ -982,24 +982,40 @@ footer {
 
 /* Botón "i" en el header del panel */
 .panel-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
+  position: relative;
+  background: #306fb0;
+  color: #fff;
+  padding: 6px 34px 6px 10px; /* deja espacio a la derecha para el botón */
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
 }
-.info-btn{
-  width:22px;
-  height:22px;
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,0.85);
-  background:rgba(255,255,255,0.12);
-  color:#fff;
-  font-weight:700;
-  font-size:0.85rem;
-  line-height:1;
-  cursor:pointer;
+
+/* Botón "i" fijo en la esquina superior derecha del header */
+.panel-header .info-btn{
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
-.info-btn:hover{ background:rgba(255,255,255,0.22); }
+
+.panel-header .info-btn:hover{
+  background: rgba(255,255,255,0.22);
+}
+
 
 /* Modal */
 .modal-overlay{
