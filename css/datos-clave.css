@@ -292,6 +292,22 @@ header.page-header {
   overflow-wrap: anywhere; /* emails/telefonos largos */
   word-break: break-word;
 }
+/* ORDEN CORRECTO DENTRO DEL KPI CONTACTO */
+.kpi-card.kpi-card-contacto .kpi-contact-name { order: 1; }
+.kpi-card.kpi-card-contacto .kpi-contact-small { order: 2; }
+.kpi-card.kpi-card-contacto .kpi-contact-role { order: 3; }
+
+/* COLOR DEL NOMBRE */
+.kpi-card.kpi-card-contacto .kpi-contact-name {
+  color: #2a5fa0;
+  font-weight: 700;
+}
+
+/* TELEFONO / CORREO MAS CHICO */
+.kpi-card.kpi-card-contacto .kpi-contact-small {
+  font-size: 0.62rem;
+  line-height: 1.15;
+}
 
 
 
