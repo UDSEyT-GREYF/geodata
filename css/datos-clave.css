@@ -266,63 +266,33 @@ header.page-header {
 }
 
 /* KPI de contactos en la banda superior: uno para Admin y otro para Jefatura */
-.kpi-card-contacto {
+/* Cada tarjeta de contacto: centrar contenido y evitar desbordes */
+.kpi-card.kpi-card-contacto {
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;     /* no end */
   text-align: center;
-  padding: 6px 4px;
-  gap: 4px;
+  overflow: hidden;        /* corta cualquier exceso */
 }
 
-/* bloques internos: Administración / Jefatura */
-.kpi-card-contacto .kpi-contact-block {
-  display: flex;
-  flex-direction: column;
+/* El bloque interno debe poder achicarse y envolver texto */
+.kpi-card.kpi-card-contacto .kpi-contact-block {
+  min-width: 0;            /* CLAVE: permite wrap dentro del contenedor */
+  max-width: 100%;
   align-items: center;
-  justify-content: flex-end;
-  gap: 2px;
+  text-align: center;
 }
 
-/* forzar orden visual: nombre arriba, contacto en el medio, rol abajo */
-.kpi-contact-name {
-  order: 1;
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: #2a5fa0;
-  line-height: 1.1;
+/* Textos: permitir saltos y evitar que empujen el ancho */
+.kpi-card.kpi-card-contacto .kpi-contact-name,
+.kpi-card.kpi-card-contacto .kpi-contact-small,
+.kpi-card.kpi-card-contacto .kpi-contact-role {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere; /* emails/telefonos largos */
+  word-break: break-word;
 }
 
-.kpi-contact-small {
-  order: 2;
-  font-size: 0.7rem;
-  color: #555;
-  line-height: 1.2;
-}
-
-/* ETIQUETA (Administración / Jefatura) → como kpi-label, al fondo */
-.kpi-contact-role {
-  order: 3;
-  font-size: 0.78rem;
-  color: #555 !important;
-  margin-top: 3px;
-  font-weight: 400 !important;
-}
-
-/* separador vertical entre bloques */
-.kpi-card-contacto .kpi-contact-sep {
-  width: 1px;
-  height: 70%;
-  background: #d0d7e2;
-}
-
-/* En pantallas muy chicas podés ocultar flechas si molestan */
-@media (max-width: 600px) {
-  .kpi-arrow {
-    display: none;
-  }
-}
 
 
 
