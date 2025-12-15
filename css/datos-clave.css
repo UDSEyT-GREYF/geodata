@@ -283,7 +283,13 @@ header.page-header {
   align-items: center;
   justify-content: flex-end;
   gap: 2px;
+
+  /* 🔽 CAMBIO CLAVE */
+  flex: 1;
+  min-width: 0;
+  text-align: center;
 }
+
 
 /* forzar orden visual: nombre arriba, contacto en el medio, rol abajo */
 .kpi-contact-name {
