@@ -308,6 +308,32 @@ header.page-header {
   font-size: 0.62rem;
   line-height: 1.15;
 }
+/* HACER QUE EL ORDEN FUNCIONE */
+.kpi-card.kpi-card-contacto .kpi-contact-block {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ETIQUETA INFERIOR (Administración / Jefatura) */
+.kpi-card.kpi-card-contacto .kpi-contact-role {
+  margin-top: 4px;
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+/* NOMBRE (VALOR PRINCIPAL DEL KPI) */
+.kpi-card.kpi-card-contacto .kpi-contact-name {
+  font-size: 0.9rem;
+  color: #2a5fa0;
+  font-weight: 700;
+}
+
+/* TELEFONO / CORREO (DETALLE) */
+.kpi-card.kpi-card-contacto .kpi-contact-small {
+  font-size: 0.62rem;
+  line-height: 1.15;
+}
 
 
 
