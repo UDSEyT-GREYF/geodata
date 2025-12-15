@@ -266,62 +266,46 @@ header.page-header {
 }
 
 /* KPI de contactos en la banda superior: uno para Admin y otro para Jefatura */
-.kpi-card-contacto {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-end;
+.kpi-card-contacto{
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr; /* Admin | separador | Jefatura */
+  align-items: end;
   text-align: center;
   padding: 6px 4px;
-  gap: 4px;
+  column-gap: 8px; /* o 6px si querés más compacto */
 }
 
+
 /* bloques internos: Administración / Jefatura */
-.kpi-card-contacto .kpi-contact-block {
+.kpi-card-contacto .kpi-contact-block{
+  min-width: 0;          /* clave para que no desborde */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
   gap: 2px;
-
-  /* 🔽 CAMBIO CLAVE */
-  flex: 1;
-  min-width: 0;
-  text-align: center;
 }
 
 
 /* forzar orden visual: nombre arriba, contacto en el medio, rol abajo */
-.kpi-contact-name {
-  order: 1;
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: #2a5fa0;
-  line-height: 1.1;
+.kpi-contact-name,
+.kpi-contact-small,
+.kpi-contact-role{
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;  /* corta emails/teléfonos largos */
+  word-break: break-word;
 }
 
-.kpi-contact-small {
-  order: 2;
-  font-size: 0.7rem;
-  color: #555;
-  line-height: 1.2;
-}
-
-/* ETIQUETA (Administración / Jefatura) → como kpi-label, al fondo */
-.kpi-contact-role {
-  order: 3;
-  font-size: 0.78rem;
-  color: #555 !important;
-  margin-top: 3px;
-  font-weight: 400 !important;
-}
 
 /* separador vertical entre bloques */
-.kpi-card-contacto .kpi-contact-sep {
+.kpi-card-contacto .kpi-contact-sep{
   width: 1px;
   height: 70%;
   background: #d0d7e2;
+  justify-self: center;
 }
+
 
 /* En pantallas muy chicas podés ocultar flechas si molestan */
 @media (max-width: 600px) {
