@@ -618,43 +618,54 @@
 </section>
 
 
-      <!-- PANEL 6: SERVICIOS Y AYUDAS -->
-      <section class="panel panel-servicios">
-        <div class="panel-header" id="hdrServicios">Servicios y ayudas</div>
-        <div class="panel-body">
-          <div class="small-label">Ayudas radioeléctricas</div>
-          <div class="small-label" id="radioayudas">–</div>
+<!-- PANEL 6 (TEMP): PASAJEROS (reemplaza Servicios y Ayudas) -->
+<section class="panel panel-servicios panel-pasajeros">
+  <div class="panel-header" id="hdrPasajeros">Pasajeros</div>
 
-          <div class="small-label" style="margin-top:6px;">Ayudas visuales</div>
-          <div class="small-label" id="ayudasVisuales">–</div>
+  <div class="panel-body">
+    <div class="superficie-kpi">
+      <div class="contact-title">Evolución mensual de pasajeros</div>
 
-          <div class="small-label" style="margin-top:6px;">AWOS</div>
-          <div class="small-label" id="awos">–</div>
-
-          <!-- KPI: Operador de cargas -->
-          <div class="servicio-kpi">
-            <div class="servicio-label">Operador de cargas</div>
-            <div class="servicio-value" id="operadorCargas">–</div>
-          </div>
-
-          <!-- KPI: Terminal de cargas -->
-          <div class="servicio-kpi">
-            <div class="servicio-label">Terminal de cargas (m²)</div>
-            <div class="servicio-value" id="terminalCargasM2">–</div>
-          </div>
-
-          <div class="small-label" style="margin-top:6px;">Aeroplantas</div>
-          <div class="small-label" id="aeroplantas">–</div>
-
-          <div class="small-label" style="margin-top:6px;">Clave de referencia de aeródromo</div>
-          <div class="small-label" id="claveRef">–</div>
-
-          <div class="small-label" style="margin-top:6px;">Categoría SEI normal</div>
-          <div class="small-label" id="categoriaSEI">–</div>
+      <div class="pax-controls">
+        <div class="pax-control">
+          <div class="small-label">Aeropuerto</div>
+          <select id="paxAirportSelect">
+            <option value="">Cargando…</option>
+          </select>
         </div>
-      </section>
 
-    </section>
+        <div class="pax-control">
+          <div class="small-label">Ámbito</div>
+          <select id="paxRegionSelect">
+            <option value="ambos">Ambos</option>
+            <option value="cabotaje">Cabotaje</option>
+            <option value="internacional">Internacional</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="pax-kpis">
+        <div class="servicio-kpi" style="margin-bottom:0;">
+          <div class="servicio-label">Último mes</div>
+          <div class="servicio-value" id="paxKpiLast">–</div>
+        </div>
+
+        <div class="servicio-kpi" style="margin-bottom:0;">
+          <div class="servicio-label">Var. interanual</div>
+          <div class="servicio-value" id="paxKpiYoY">–</div>
+        </div>
+      </div>
+
+      <div class="pax-chart-wrap">
+        <canvas id="paxChart" aria-label="Gráfico de pasajeros" role="img"></canvas>
+      </div>
+
+      <div class="small-label" id="paxChartNote" style="margin-top:4px;">
+        Fuente: ORSNA – Pasajeros comerciales por aeropuerto (mensual).
+      </div>
+    </div>
+  </div>
+</section>
   </main>
 
   <!-- ==========================
