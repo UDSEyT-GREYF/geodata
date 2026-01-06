@@ -21,6 +21,11 @@
   let terminalesFeatures = [];
   let provinciasFeatures = [];
   let areasInfluenciaFeatures = [];
+  // Pasajeros (CSV)
+  let paxRows = [];
+  let paxIndex = {}; // { IATA: { cabotaje: [{t, y}], internacional: [...] } }
+  let paxChart = null;
+  let isSyncingPaxSelect = false;
 
   // UI
   let selectEl = null;
@@ -60,6 +65,30 @@
     return String(text).trim();
   }
 
+  function parseEsNumber(raw) {
+    if (raw === null || raw === undefined) return null;
+    const s = String(raw).trim();
+    if (!s) return null;
+
+    // soporta "428,234" (miles) o "428234" o "428.234"
+    const normalized = s.replace(/\./g, "").replace(/,/g, "");
+    const n = Number(normalized);
+    return isNaN(n) ? null : n;
+  }
+
+  function parseISODate(raw) {
+    const s = clean(raw);
+    if (!s) return null;
+    const d = new Date(s);
+    return isNaN(d.getTime()) ? null : d;
+  }
+
+  function formatShortMonthYYYY(dateObj) {
+    if (!(dateObj instanceof Date) || isNaN(dateObj.getTime())) return "";
+    return dateObj.toLocaleDateString("es-AR", { year: "numeric", month: "short" });
+  }
+
+  
   function safeVal(v) {
     return (v !== null && v !== undefined && v !== "" && !isNaN(v))
       ? formatNumber(v)
@@ -820,6 +849,232 @@
     return result;
   }
 
+  async function loadPaxCSV() {
+    // Cambiá el nombre del archivo si el tuyo se llama distinto
+    const paxPath = "fuentes/tabla9_pasajeros.csv"; // <-- AJUSTAR a tu archivo real
+
+    try {
+      const resp = await fetch(paxPath);
+      if (!resp.ok) throw new Error(`HTTP ${resp.status} al leer ${paxPath}`);
+      const text = await resp.text();
+
+      // PapaParse ya está cargado por CDN
+      const parsed = Papa.parse(text, {
+        header: true,
+        dynamicTyping: false,
+        skipEmptyLines: true
+      });
+
+      paxRows = (parsed.data || []).map(r => ({
+        iata: String(r.iata || r.IATA || "").trim().toUpperCase(),
+        region: String(r.region || "").trim().toLowerCase(),     // "cabotaje" / "internacional"
+        fecha: parseISODate(r.fecha),
+        valor_pax: parseEsNumber(r.valor_pax ?? r.valor ?? r.valorPax ?? r.valor_pax_reales)
+      })).filter(r => r.iata && r.fecha && r.valor_pax !== null);
+
+      // indexar
+      paxIndex = {};
+      paxRows.forEach(r => {
+        if (!paxIndex[r.iata]) paxIndex[r.iata] = { cabotaje: [], internacional: [] };
+        if (r.region === "cabotaje") paxIndex[r.iata].cabotaje.push({ t: r.fecha, y: r.valor_pax });
+        if (r.region === "internacional") paxIndex[r.iata].internacional.push({ t: r.fecha, y: r.valor_pax });
+      });
+
+      // ordenar por fecha
+      Object.keys(paxIndex).forEach(iata => {
+        paxIndex[iata].cabotaje.sort((a, b) => a.t - b.t);
+        paxIndex[iata].internacional.sort((a, b) => a.t - b.t);
+      });
+
+      initPaxUI();
+    } catch (e) {
+      console.warn("No se pudo cargar el CSV de pasajeros:", e);
+      // si falla, dejamos el panel en "–" sin romper el resto
+      const sel = document.getElementById("paxAirportSelect");
+      if (sel) sel.innerHTML = "<option value=''>Sin datos</option>";
+    }
+  }
+
+  function initPaxUI() {
+    const paxAirportSelect = document.getElementById("paxAirportSelect");
+    const paxRegionSelect = document.getElementById("paxRegionSelect");
+
+    if (!paxAirportSelect || !paxRegionSelect) return;
+
+    // llenar selector con aeropuertos que existan en paxIndex
+    const iatas = Object.keys(paxIndex).sort((a, b) => a.localeCompare(b));
+
+    paxAirportSelect.innerHTML = "";
+    iatas.forEach(iata => {
+      const a = aeropuertos.find(x => String(x.IATA).toUpperCase() === iata);
+      const nombre = a ? (clean(a["Aeropuerto"]) || clean(a["Nombre del Aeropuerto"]) || iata) : iata;
+
+      const opt = document.createElement("option");
+      opt.value = iata;
+      opt.textContent = `${nombre} (${iata})`;
+      paxAirportSelect.appendChild(opt);
+    });
+
+    // listeners
+    paxAirportSelect.addEventListener("change", () => {
+      if (isSyncingPaxSelect) return;
+      updatePaxPanel(paxAirportSelect.value, paxRegionSelect.value);
+    });
+
+    paxRegionSelect.addEventListener("change", () => {
+      updatePaxPanel(paxAirportSelect.value, paxRegionSelect.value);
+    });
+  }
+
+  function buildPaxSeries(iata, regionMode) {
+    const entry = paxIndex[iata];
+    if (!entry) return { datasets: [], last: null, yoy: null };
+
+    const cab = entry.cabotaje || [];
+    const intl = entry.internacional || [];
+
+    const datasets = [];
+    if (regionMode === "cabotaje" || regionMode === "ambos") {
+      datasets.push({
+        label: "Cabotaje",
+        data: cab,
+        tension: 0.2,
+        pointRadius: 0
+      });
+    }
+    if (regionMode === "internacional" || regionMode === "ambos") {
+      datasets.push({
+        label: "Internacional",
+        data: intl,
+        tension: 0.2,
+        pointRadius: 0
+      });
+    }
+
+    // KPI último mes y yoy (sobre el agregado según regionMode)
+    const merged = mergeSeriesForKpis(cab, intl, regionMode);
+    const last = merged.length ? merged[merged.length - 1] : null;
+
+    let yoy = null;
+    if (merged.length >= 13) {
+      const lastDate = last.t;
+      const prevYear = merged.find(p => sameMonthYearShift(p.t, lastDate, 12));
+      if (prevYear && prevYear.y && last.y) {
+        yoy = (last.y / prevYear.y) - 1;
+      }
+    }
+
+    return { datasets, last, yoy };
+  }
+
+  function mergeSeriesForKpis(cab, intl, regionMode) {
+    // construye una serie mensual agregada por fecha (para KPI)
+    const map = new Map(); // key=YYYY-MM, value=sum
+    const pushArr = (arr) => {
+      arr.forEach(p => {
+        const k = `${p.t.getFullYear()}-${String(p.t.getMonth() + 1).padStart(2, "0")}`;
+        map.set(k, (map.get(k) || 0) + (p.y || 0));
+      });
+    };
+
+    if (regionMode === "cabotaje") pushArr(cab);
+    else if (regionMode === "internacional") pushArr(intl);
+    else { pushArr(cab); pushArr(intl); }
+
+    const merged = Array.from(map.entries()).map(([k, y]) => {
+      const [yy, mm] = k.split("-").map(Number);
+      return { t: new Date(yy, mm - 1, 1), y };
+    });
+
+    merged.sort((a, b) => a.t - b.t);
+    return merged;
+  }
+
+  function sameMonthYearShift(dCandidate, dRef, monthsBack) {
+    if (!(dCandidate instanceof Date) || !(dRef instanceof Date)) return false;
+    const ref = new Date(dRef.getFullYear(), dRef.getMonth() - monthsBack, 1);
+    return dCandidate.getFullYear() === ref.getFullYear() && dCandidate.getMonth() === ref.getMonth();
+  }
+
+  function updatePaxPanel(iata, regionMode) {
+    const kpiLastEl = document.getElementById("paxKpiLast");
+    const kpiYoYEl = document.getElementById("paxKpiYoY");
+
+    if (!iata) {
+      if (kpiLastEl) kpiLastEl.textContent = "–";
+      if (kpiYoYEl) kpiYoYEl.textContent = "–";
+      if (paxChart) { paxChart.destroy(); paxChart = null; }
+      return;
+    }
+
+    const { datasets, last, yoy } = buildPaxSeries(iata, regionMode);
+
+    if (kpiLastEl) {
+      if (last) {
+        kpiLastEl.textContent = `${formatNumber(last.y)} (${formatShortMonthYYYY(last.t)})`;
+      } else {
+        kpiLastEl.textContent = "–";
+      }
+    }
+
+    if (kpiYoYEl) {
+      if (typeof yoy === "number" && isFinite(yoy)) {
+        const pct = (yoy * 100);
+        kpiYoYEl.textContent = `${pct.toLocaleString("es-AR", { maximumFractionDigits: 1 })}%`;
+      } else {
+        kpiYoYEl.textContent = "–";
+      }
+    }
+
+    drawPaxChart(datasets);
+  }
+
+  function drawPaxChart(datasets) {
+    const canvas = document.getElementById("paxChart");
+    if (!canvas) return;
+
+    if (paxChart) {
+      paxChart.destroy();
+      paxChart = null;
+    }
+
+    if (!datasets || !datasets.length) return;
+
+    paxChart = new Chart(canvas, {
+      type: "line",
+      data: { datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        parsing: false,
+        plugins: {
+          legend: { display: true },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => {
+                const y = ctx.raw?.y ?? ctx.parsed?.y;
+                return `${ctx.dataset.label}: ${formatNumber(y)}`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            type: "time",
+            time: { unit: "month" },
+            ticks: { maxRotation: 0, autoSkip: true }
+          },
+          y: {
+            ticks: {
+              callback: (value) => formatNumber(value)
+            }
+          }
+        }
+      }
+    });
+  }
+
+  
   /* ============================================================
      H. RENDER PRINCIPAL (AEROPUERTO SELECCIONADO)
      ============================================================ */
