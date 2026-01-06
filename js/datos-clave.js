@@ -851,7 +851,7 @@
 
   async function loadPaxCSV() {
     // Cambiá el nombre del archivo si el tuyo se llama distinto
-    const paxPath = "fuentes/tabla9_pasajeros.csv"; // <-- AJUSTAR a tu archivo real
+    const paxPath = "pasajeros_aeropuerto_mensual.csv"; // <-- AJUSTAR a tu archivo real
 
     try {
       const resp = await fetch(paxPath);
@@ -1479,6 +1479,28 @@
     const pobRaw = a["Población del Área de Influencia (Censo 2022)"];
     if (poblacionEl) poblacionEl.textContent = safeVal(pobRaw);
 
+    // ---------- PASAJEROS ----------
+    // sincroniza selector del panel con el aeropuerto principal
+    const paxAirportSelect = document.getElementById("paxAirportSelect");
+    const paxRegionSelect = document.getElementById("paxRegionSelect");
+
+    if (paxAirportSelect && paxIndex && Object.keys(paxIndex).length) {
+      const exists = !!paxIndex[iata];
+      if (exists) {
+        isSyncingPaxSelect = true;
+        paxAirportSelect.value = iata;
+        isSyncingPaxSelect = false;
+
+        const regionMode = paxRegionSelect ? paxRegionSelect.value : "ambos";
+        updatePaxPanel(iata, regionMode);
+      } else {
+        // si ese aeropuerto no está en la serie (sin vuelos regulares), dejamos el panel en “–”
+        updatePaxPanel("", (paxRegionSelect ? paxRegionSelect.value : "ambos"));
+      }
+    }
+
+
+    
     /* ---------- SERVICIOS Y AYUDAS ---------- */
     const radioEl = document.getElementById("radioayudas");
     const ayudasEl = document.getElementById("ayudasVisuales");
@@ -1663,6 +1685,10 @@
         areasInfluenciaFeatures = [];
       }
 
+      // 12) Pasajeros (CSV)
+      await loadPaxCSV();
+
+      
       // Inicial (URL ?airport=)
       const params = new URLSearchParams(window.location.search);
       const fromUrl = params.get("airport");
