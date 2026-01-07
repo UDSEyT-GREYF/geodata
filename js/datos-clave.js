@@ -886,7 +886,7 @@
    */
   async function loadPaxCSV() {
     // IMPORTANTE: ajustá el nombre real del archivo en tu carpeta fuentes/
-    const paxPath = "fuentes/tabla9_pasajeros.csv"; // <-- AJUSTAR si tu archivo se llama distinto
+    const paxPath = "fuentes/pasajeros_aeropuerto_mensual.csv"; // <-- AJUSTAR si tu archivo se llama distinto
 
     try {
       const resp = await fetch(paxPath);
