@@ -25,7 +25,6 @@
   let paxRows = [];
   let paxIndex = {}; // { IATA: { cabotaje: [{t, y}], internacional: [...] } }
   let paxChart = null;
-  let isSyncingPaxSelect = false;
 
   // UI
   let selectEl = null;
@@ -896,24 +895,15 @@
   }
 
   function initPaxUI() {
-    const paxAirportSelect = document.getElementById("paxAirportSelect");
-    const paxRegionSelect = document.getElementById("paxRegionSelect");
+  const paxRegionSelect = document.getElementById("paxRegionSelect");
+  if (!paxRegionSelect) return;
 
-    if (!paxAirportSelect || !paxRegionSelect) return;
+  paxRegionSelect.addEventListener("change", () => {
+    const iata = (selectEl && selectEl.value) ? String(selectEl.value).toUpperCase() : "";
+    updatePaxPanel(iata, paxRegionSelect.value);
+  });
+}
 
-    // llenar selector con aeropuertos que existan en paxIndex
-    const iatas = Object.keys(paxIndex).sort((a, b) => a.localeCompare(b));
-
-    paxAirportSelect.innerHTML = "";
-    iatas.forEach(iata => {
-      const a = aeropuertos.find(x => String(x.IATA).toUpperCase() === iata);
-      const nombre = a ? (clean(a["Aeropuerto"]) || clean(a["Nombre del Aeropuerto"]) || iata) : iata;
-
-      const opt = document.createElement("option");
-      opt.value = iata;
-      opt.textContent = `${nombre} (${iata})`;
-      paxAirportSelect.appendChild(opt);
-    });
 
     // listeners
     paxAirportSelect.addEventListener("change", () => {
@@ -1481,8 +1471,9 @@
 
     // ---------- PASAJEROS ----------
     // sincroniza selector del panel con el aeropuerto principal
-    const paxAirportSelect = document.getElementById("paxAirportSelect");
     const paxRegionSelect = document.getElementById("paxRegionSelect");
+    const regionMode = paxRegionSelect ? paxRegionSelect.value : "ambos";
+    updatePaxPanel(iata, regionMode);
 
     if (paxAirportSelect && paxIndex && Object.keys(paxIndex).length) {
       const exists = !!paxIndex[iata];
