@@ -622,8 +622,18 @@
         <div class="panel-header" id="hdrPasajeros">Pasajeros comerciales</div>
 
         <div class="panel-body">
-          <div class="pasajeros-kpis">
 
+     
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:8px;">
+          <div class="small-label">Serie</div>
+          <select id="paxDatasetSelect" class="select" style="min-width:240px;">
+          <option value="cabotaje">Cabotaje</option>
+          <option value="internacional">Internacional</option>
+          <option value="total">Total (Cabotaje + Internacional)</option>
+         </select>
+       </div>
+          <div class="pasajeros-kpis">
+        
             <div class="pasajeros-kpi">
               <div class="small-label">Último mes disponible</div>
               <div class="kpi-value" id="paxUltimoValor">–</div>
