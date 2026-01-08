@@ -6,7 +6,7 @@
   "use strict";
 
   /* ============================================================
-     A. VARIABLES GLOBALES (DATA + UI + MAPAS)function formatPct(p)
+     A. VARIABLES GLOBALES (DATA + UI + MAPAS)
      ============================================================ */
 
   // Datos
@@ -1735,29 +1735,7 @@ if (prevYearRow && Number(prevYearRow.valor) > 0) {
     }
 
  
-      // Para evitar duplicados en cada render, marcamos en dataset del input
-      if (!yearFromEl.dataset.bound) {
-        const onSlide = () => {
-          const yf = Number(yearFromEl.value);
-          const yt = Number(yearToEl.value);
 
-          // Mantener coherencia (from <= to)
-          if (yf > yt) {
-            // empujamos el otro para no "cruzar"
-            yearToEl.value = String(yf);
-          }
-          yearLabelEl.textContent = `${yearFromEl.value}–${yearToEl.value}`;
-
-          // Re-render del panel con mismo iata/mode
-          renderPasajerosPanel(iataUpper, (mode || "cabotaje"));
-        };
-
-        yearFromEl.dataset.bound = "1";
-        yearToEl.dataset.bound = "1";
-        yearFromEl.addEventListener("input", onSlide);
-        yearToEl.addEventListener("input", onSlide);
-      }
-    }
 
 
     /* ---------- FOOTER ---------- */
