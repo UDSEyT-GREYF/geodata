@@ -617,57 +617,56 @@
   </div>
 </section>
 
-      <!-- PANEL 6: PASAJEROS (SERIE MENSUAL) -->
-      <section class="panel panel-pasajeros">
-        <div class="panel-header" id="hdrPasajeros">Pasajeros comerciales</div>
+<!-- PANEL 6: PASAJEROS (SERIE MENSUAL) -->
+<section class="panel panel-pasajeros">
+  <div class="panel-header" id="hdrPasajeros">Pasajeros comerciales</div>
 
-        <div class="panel-body">
+  <div class="panel-body">
 
-     
-        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:8px;">
-          <div class="small-label">Serie</div>
-          <select id="paxDatasetSelect" class="select" style="min-width:240px;">
-          <option value="cabotaje">Cabotaje</option>
-          <option value="internacional">Internacional</option>
-          <option value="total">Total (Cabotaje + Internacional)</option>
-         </select>
-       </div>
-          <div class="pasajeros-kpis">
-        
-            <div class="pasajeros-kpi">
-              <div class="small-label">Último mes disponible</div>
-              <div class="kpi-value" id="paxUltimoValor">–</div>
-              <div class="small-label" id="paxUltimoPeriodo">–</div>
-            </div>
+    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:8px;">
+      <div class="small-label">Serie</div>
+      <select id="paxDatasetSelect" class="select" style="min-width:240px;">
+        <option value="cabotaje">Cabotaje</option>
+        <option value="internacional">Internacional</option>
+        <option value="total">Total (Cabotaje + Internacional)</option>
+      </select>
+    </div>
 
-            <div class="pasajeros-kpi">
-              <div class="small-label">Variación interanual (mismo mes)</div>
-              <div class="kpi-value" id="paxVarYoY">–</div>
-              <div class="small-label" id="paxVarYoYDetalle">–</div>
-            </div>
+    <div class="pasajeros-kpis">
+      <div class="pasajeros-kpi">
+        <div class="small-label">Último mes disponible</div>
+        <div class="kpi-value" id="paxUltimoValor">–</div>
+        <div class="small-label" id="paxUltimoPeriodo">–</div>
+      </div>
 
-           <div class="pasajeros-kpi">
-            <div class="small-label">Variación acumulada (ene → último mes)</div>
-            <div class="kpi-value" id="paxVarYTD">–</div>
-            <div class="small-label" id="paxVarYTDDetalle">–</div>
-           </div>
+      <div class="pasajeros-kpi">
+        <div class="small-label">Variación interanual (mismo mes)</div>
+        <div class="kpi-value" id="paxVarYoY">–</div>
+        <div class="small-label" id="paxVarYoYDetalle">–</div>
+      </div>
 
-           
-          </div>
+      <div class="pasajeros-kpi">
+        <div class="small-label">Variación acumulada (ene → último mes)</div>
+        <div class="kpi-value" id="paxVarYTD">–</div>
+        <div class="small-label" id="paxVarYTDDetalle">–</div>
+      </div>
+    </div>
 
-          <div class="pasajeros-chart-wrap">
-            <svg
-              id="paxChartSvg"
-              class="pax-chart"
-              viewBox="0 0 800 240"
-              preserveAspectRatio="none"
-              aria-label="Serie mensual de pasajeros"
-            ></svg>
+    <div class="pasajeros-chart-wrap">
+      <svg
+        id="paxChartSvg"
+        class="pax-chart"
+        viewBox="0 0 800 240"
+        preserveAspectRatio="none"
+        aria-label="Serie mensual de pasajeros"
+      ></svg>
 
-            <div class="small-label pax-chart-note" id="paxChartNote">–</div>
-          </div>
-        </div>
-      </section>
+      <div class="small-label pax-chart-note" id="paxChartNote">–</div>
+    </div>
+
+  </div>
+</section>
+
 
       <!-- PANEL 7: SERVICIOS Y AYUDAS -->
       <section class="panel panel-servicios">
