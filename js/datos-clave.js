@@ -911,10 +911,18 @@
     return rows;
   }
 
-  function formatPct(p) {
-    if (p === null || p === undefined || isNaN(p)) return "–";
-    return `${p.toLocaleString("es-AR", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%`;
-  }
+function formatPct(p) {
+  if (p === null || p === undefined || isNaN(p)) return "–";
+
+  const sign = (p >= 0) ? "+" : "-";
+  const abs = Math.abs(p);
+
+  return `${sign}${abs.toLocaleString("es-AR", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1
+  })}%`;
+}
+
 
     // Datasets válidos del CSV
   const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
@@ -968,6 +976,9 @@ function renderPasajerosPanel(iataUpper, mode) {
     const elYoYDet = document.getElementById("paxVarYoYDetalle");
     const svg = document.getElementById("paxChartSvg");
     const note = document.getElementById("paxChartNote");
+    const elYTD = document.getElementById("paxVarYTD");
+    const elYTDDet = document.getElementById("paxVarYTDDetalle");
+
 
     if (!svg || !elUltVal || !elUltPer || !elYoY || !elYoYDet || !note) return;
 
@@ -979,8 +990,13 @@ function renderPasajerosPanel(iataUpper, mode) {
       elUltPer.textContent = "Sin datos";
       elYoY.textContent = "–";
       elYoYDet.textContent = "–";
+      
+      if (elYTD) elYTD.textContent = "–";
+      if (elYTDDet) elYTDDet.textContent = "–";
+      
       svg.innerHTML = "";
-      note.textContent = `No hay registros en fuentes/pasajeros_aeropuerto_mensual.csv para ${iataUpper} (${mode || "cabotaje"}).`;
+      note.textContent = `No hay datos para ${iataUpper} (${mode || "cabotaje"}).`;
+
       return;
     }
 
@@ -989,6 +1005,30 @@ function renderPasajerosPanel(iataUpper, mode) {
 
     elUltVal.textContent = formatNumber(last.valor);
     elUltPer.textContent = lastLabel;
+
+  // YTD: ene -> último mes disponible (año actual vs mismo período año anterior)
+const y = last.date.getFullYear();
+const lastMonthIdx = last.date.getMonth(); // 0-11
+
+const sumPeriod = (year) => {
+  return rows
+    .filter(r => r.date.getFullYear() === year && r.date.getMonth() <= lastMonthIdx)
+    .reduce((acc, r) => acc + (Number(r.valor) || 0), 0);
+};
+
+const ytdCur = sumPeriod(y);
+const ytdPrev = sumPeriod(y - 1);
+
+if (elYTD && elYTDDet) {
+  if (ytdPrev > 0) {
+    const ytdPct = ((ytdCur - ytdPrev) / ytdPrev) * 100;
+    elYTD.textContent = formatPct(ytdPct);
+    elYTDDet.textContent = `${formatNumber(Math.round(ytdPrev))} → ${formatNumber(Math.round(ytdCur))}`;
+  } else {
+    elYTD.textContent = "–";
+    elYTDDet.textContent = "No hay base del año anterior para el período acumulado.";
+  }
+}
 
     // YoY: buscar mismo mes del año anterior
     const lastY = last.date.getFullYear();
