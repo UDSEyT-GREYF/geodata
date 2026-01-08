@@ -21,6 +21,7 @@
   let terminalesFeatures = [];
   let provinciasFeatures = [];
   let areasInfluenciaFeatures = [];
+  let pasajerosMensualRows = [];
 
   // UI
   let selectEl = null;
@@ -819,6 +820,193 @@
 
     return result;
   }
+  /* ============================================================
+     G2. PARSEO CSV (PASAJEROS MENSUALES)
+     ============================================================ */
+
+  function parseFechaFlexible(raw) {
+    if (!raw) return null;
+
+    // 1/1/2001 o 01/01/2001
+    const m1 = String(raw).trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+    if (m1) {
+      const dd = Number(m1[1]);
+      const mm = Number(m1[2]);
+      const yyyy = Number(m1[3]);
+      return new Date(yyyy, mm - 1, dd);
+    }
+
+    // 2001-01-01
+    const m2 = String(raw).trim().match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+    if (m2) {
+      const yyyy = Number(m2[1]);
+      const mm = Number(m2[2]);
+      const dd = Number(m2[3]);
+      return new Date(yyyy, mm - 1, dd);
+    }
+
+    const d = new Date(raw);
+    return isNaN(d.getTime()) ? null : d;
+  }
+
+  function parsePasajerosMensualCSV(text) {
+    const rows = [];
+    if (!text) return rows;
+
+    const lines = text.trim().split(/\r?\n/);
+    if (lines.length < 2) return rows;
+
+    const headerLine = lines[0];
+
+    // Detectar separador: tab > ; > ,
+    let sep = ",";
+    if (headerLine.includes("\t")) sep = "\t";
+    else if (headerLine.includes(";")) sep = ";";
+
+    const headers = headerLine.split(sep).map(h => h.trim());
+
+    const idxIATA = headers.findIndex(h => h.toLowerCase() === "iata");
+    const idxFecha = headers.findIndex(h => h.toLowerCase() === "fecha");
+    const idxValorPax = headers.findIndex(h => h.toLowerCase() === "valor_pax");
+    const idxAnio = headers.findIndex(h => h.toLowerCase() === "anio");
+    const idxMes = headers.findIndex(h => h.toLowerCase() === "mes");
+    const idxMesNombre = headers.findIndex(h => h.toLowerCase() === "mes_nombre");
+
+    if (idxIATA === -1 || idxFecha === -1 || idxValorPax === -1) {
+      console.warn("CSV pasajeros: faltan columnas requeridas (iata/fecha/valor_pax).");
+      return rows;
+    }
+
+    for (let i = 1; i < lines.length; i++) {
+      const line = lines[i];
+      if (!line || !line.trim()) continue;
+
+      const cols = line.split(sep);
+
+      const iata = String(cols[idxIATA] || "").trim().toUpperCase();
+      if (!iata) continue;
+
+      const fechaRaw = (cols[idxFecha] || "").trim();
+      const date = parseFechaFlexible(fechaRaw);
+      if (!date) continue;
+
+      const vRaw = (cols[idxValorPax] || "").trim();
+      const valor = Number(vRaw);
+      if (isNaN(valor)) continue;
+
+      rows.push({
+        iata,
+        date,
+        valor,
+        anio: idxAnio !== -1 ? Number(cols[idxAnio]) : null,
+        mes: idxMes !== -1 ? Number(cols[idxMes]) : null,
+        mesNombre: idxMesNombre !== -1 ? String(cols[idxMesNombre] || "").trim() : ""
+      });
+    }
+
+    // Orden ascendente por fecha
+    rows.sort((a, b) => a.date - b.date);
+    return rows;
+  }
+
+  function formatPct(p) {
+    if (p === null || p === undefined || isNaN(p)) return "–";
+    return `${p.toLocaleString("es-AR", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%`;
+  }
+
+  function renderPasajerosPanel(iataUpper) {
+    const hdr = document.getElementById("hdrPasajeros");
+    const elUltVal = document.getElementById("paxUltimoValor");
+    const elUltPer = document.getElementById("paxUltimoPeriodo");
+    const elYoY = document.getElementById("paxVarYoY");
+    const elYoYDet = document.getElementById("paxVarYoYDetalle");
+    const svg = document.getElementById("paxChartSvg");
+    const note = document.getElementById("paxChartNote");
+
+    if (!svg || !elUltVal || !elUltPer || !elYoY || !elYoYDet || !note) return;
+
+    const rows = (pasajerosMensualRows || []).filter(r => r.iata === iataUpper);
+
+    if (!rows.length) {
+      elUltVal.textContent = "–";
+      elUltPer.textContent = "Sin datos";
+      elYoY.textContent = "–";
+      elYoYDet.textContent = "–";
+      svg.innerHTML = "";
+      note.textContent = `No hay registros en fuentes/pasajeros_aeropuerto_mensual.csv para ${iataUpper}.`;
+      return;
+    }
+
+    const last = rows[rows.length - 1];
+    const lastLabel = `${last.mesNombre || ""} ${last.anio || last.date.getFullYear()}`.trim() || last.date.toLocaleDateString("es-AR");
+
+    elUltVal.textContent = formatNumber(last.valor);
+    elUltPer.textContent = lastLabel;
+
+    // YoY: buscar mismo mes del año anterior
+    const lastY = last.date.getFullYear();
+    const lastM = last.date.getMonth(); // 0-11
+    const prevYearRow = rows.find(r => r.date.getFullYear() === (lastY - 1) && r.date.getMonth() === lastM);
+
+    if (prevYearRow) {
+      const yoy = ((last.valor - prevYearRow.valor) / prevYearRow.valor) * 100;
+      elYoY.textContent = formatPct(yoy);
+      elYoYDet.textContent = `${formatNumber(prevYearRow.valor)} → ${formatNumber(last.valor)}`;
+    } else {
+      elYoY.textContent = "–";
+      elYoYDet.textContent = "No hay base interanual para ese mes.";
+    }
+
+    // ===== SVG Chart (simple line) =====
+    const W = 800, H = 240;
+    const padL = 46, padR = 16, padT = 18, padB = 36;
+    const innerW = W - padL - padR;
+    const innerH = H - padT - padB;
+
+    const minV = Math.min(...rows.map(r => r.valor));
+    const maxV = Math.max(...rows.map(r => r.valor));
+    const vRange = Math.max(1, maxV - minV);
+
+    const x = (i) => padL + (innerW * (i / Math.max(1, rows.length - 1)));
+    const y = (v) => padT + innerH - (innerH * ((v - minV) / vRange));
+
+    // ejes y ticks
+    const yTicks = 4;
+    let grid = "";
+    for (let t = 0; t <= yTicks; t++) {
+      const vv = minV + (vRange * (t / yTicks));
+      const yy = y(vv);
+      grid += `
+        <line x1="${padL}" y1="${yy}" x2="${W - padR}" y2="${yy}" stroke="#e6eaf0" stroke-width="1"/>
+        <text x="${padL - 8}" y="${yy + 4}" text-anchor="end" font-size="10" fill="#666">${formatNumber(Math.round(vv))}</text>
+      `;
+    }
+
+    // ticks X por año (enero)
+    let xTicks = "";
+    rows.forEach((r, i) => {
+      if (r.date.getMonth() === 0) {
+        const xx = x(i);
+        xTicks += `
+          <line x1="${xx}" y1="${padT}" x2="${xx}" y2="${padT + innerH}" stroke="#f0f2f6" stroke-width="1"/>
+          <text x="${xx}" y="${H - 14}" text-anchor="middle" font-size="10" fill="#666">${r.date.getFullYear()}</text>
+        `;
+      }
+    });
+
+    const points = rows.map((r, i) => `${x(i)},${y(r.valor)}`).join(" ");
+
+    svg.innerHTML = `
+      <rect x="0" y="0" width="${W}" height="${H}" fill="#ffffff"/>
+      ${grid}
+      ${xTicks}
+      <line x1="${padL}" y1="${padT + innerH}" x2="${W - padR}" y2="${padT + innerH}" stroke="#cfd7e2" stroke-width="1"/>
+      <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT + innerH}" stroke="#cfd7e2" stroke-width="1"/>
+      <polyline fill="none" stroke="#2a5fa0" stroke-width="2" points="${points}"/>
+    `;
+
+    note.textContent = "Fuente: pasajeros_aeropuerto_mensual.csv (campo valor_pax).";
+  }
 
   /* ============================================================
      H. RENDER PRINCIPAL (AEROPUERTO SELECCIONADO)
@@ -851,6 +1039,7 @@
     const hdrTerminal = document.getElementById("hdrTerminal");
     const hdrUbicacion = document.getElementById("hdrUbicacion");
     const hdrServicios = document.getElementById("hdrServicios");
+    const hdrPasajeros = document.getElementById("hdrPasajeros");
     const hdrEmpleoEl = document.getElementById("hdrEmpleo");
 
     if (hdrSuperficie) hdrSuperficie.innerHTML = `Explotación <small>${tituloAeroSeccion}</small>`;
@@ -858,6 +1047,7 @@
     if (hdrTerminal) hdrTerminal.innerHTML = `Terminal de pasajeros <small>${tituloAeroSeccion}</small>`;
     if (hdrUbicacion) hdrUbicacion.innerHTML = `Ubicación y accesibilidad <small>${tituloAeroSeccion}</small>`;
     if (hdrServicios) hdrServicios.innerHTML = `Servicios y ayudas <small>${tituloAeroSeccion}</small>`;
+    if (hdrPasajeros) hdrPasajeros.innerHTML = `Pasajeros comerciales <small>${tituloAeroSeccion}</small>`;
 
     // hdrEmpleo conserva el botón "i" (btnInfoImpacto) si ya existe dentro del header
     if (hdrEmpleoEl) {
@@ -1263,6 +1453,9 @@
     if (claveRefEl) claveRefEl.textContent = clean(a["CLAVE DE REFERENCIA DE AERÓDROMO"]) || "–";
     if (categoriaEl) categoriaEl.textContent = clean(a["CATEGORÍA SEI NORMAL"]) || "–";
 
+     /* ---------- PASAJEROS (SERIE MENSUAL) ---------- */
+    renderPasajerosPanel(iata);
+
     /* ---------- FOOTER ---------- */
     const footerNoteEl = document.getElementById("footerNote");
     if (footerNoteEl) footerNoteEl.textContent = `Fuente: ORSNA – Datos básicos por aeropuerto · Año ${a["Año"] || ""}.`;
@@ -1406,6 +1599,16 @@
       } catch (e) {
         console.warn("No se pudieron cargar las áreas de influencia:", e);
         areasInfluenciaFeatures = [];
+      }
+
+      // 12) Pasajeros mensuales (CSV)
+      try {
+        const respPax = await fetch("fuentes/pasajeros_aeropuerto_mensual.csv");
+        const textPax = await respPax.text();
+        pasajerosMensualRows = parsePasajerosMensualCSV(textPax);
+      } catch (e) {
+        console.warn("No se pudieron cargar los pasajeros mensuales:", e);
+        pasajerosMensualRows = [];
       }
 
       // Inicial (URL ?airport=)
