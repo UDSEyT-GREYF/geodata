@@ -1,13 +1,11 @@
 // js/datos-clave.js
 // Lógica de "datos-clave.html" separada a archivo externo
-
 /* global L */
 
 (() => {
   "use strict";
 
   /* ============================================================
-     A. VARIABLES GLOBALES
      A. VARIABLES GLOBALES (DATA + UI + MAPAS)
      ============================================================ */
 
@@ -27,7 +25,6 @@
   // UI
   let selectEl = null;
 
-  // Mapas Leaflet
   // Leaflet maps & layers
   let map, mapMarker, poligonoLayer;
   let mapPSN, psnLayer, pistasLayerPSN;
@@ -50,7 +47,6 @@
   });
 
   /* ============================================================
-     B. HELPERS DE FORMATEO
      B. HELPERS DE FORMATEO / UTILIDADES
      ============================================================ */
 
@@ -102,9 +98,6 @@
     const iata = a.IATA;
 
     if (poligonos.length && iata) {
-      const feats = poligonos.filter(f =>
-        String(f.properties?.IATA || "").toUpperCase() === iata
-      );
       const feats = poligonos.filter(f => {
         const props = f.properties || {};
         const code = props.IATA || props.iata || props.iata_code;
@@ -112,8 +105,6 @@
       });
 
       if (feats.length) {
-        const tmp = L.geoJSON(feats).getBounds();
-        if (tmp.isValid()) return [tmp.getCenter().lat, tmp.getCenter().lng];
         const tempLayer = L.geoJSON(feats);
         const bounds = tempLayer.getBounds();
         if (bounds.isValid()) {
@@ -123,9 +114,6 @@
       }
     }
 
-    const lat = a.Lat || a.LAT;
-    const lon = a.Lon || a.LON || a.Long;
-    return (lat && lon) ? [Number(lat), Number(lon)] : null;
     const lat = a["Lat"] || a["LAT"];
     const lon = a["Lon"] || a["LON"] || a["Long"];
 
@@ -137,30 +125,24 @@
   }
 
   /* ============================================================
-     C. INICIALIZACIÓN DE MAPAS
      C. INICIALIZACIÓN DE MAPAS LEAFLET
      ============================================================ */
 
   function initMap() {
-    // Predio
     // 1) Mapa del predio
     map = L.map("mapPredio").setView([-34.6, -58.4], 5);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19
       maxZoom: 19,
       attribution: "&copy; OpenStreetMap contributors"
     }).addTo(map);
 
     mapMarker = L.marker([-34.6, -58.4]).addTo(map);
 
-    // PSN
     // 2) Mapa PSN (satélite)
     mapPSN = L.map("mapPSN").setView([-34.6, -58.4], 5);
     L.esri.basemapLayer("Imagery").addTo(mapPSN);
 
-    // Ubicación
-    mapUbicacion = L.map("mapUbicacion").setView([-38, -64], 4);
     // 3) Mapa ubicación
     const mapUbDiv = document.getElementById("mapUbicacion");
     if (mapUbDiv) mapUbDiv.style.height = "450px";
@@ -169,11 +151,9 @@
 
     L.tileLayer(
       "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG:3857@png/{z}/{x}/{-y}.png",
-      { tms: true, maxZoom: 14 }
       { maxZoom: 14, tms: true, attribution: "© IGN Argentina - Argenmap" }
     ).addTo(mapUbicacion);
 
-    // Transporte
     // 4) Mapa transporte
     mapTransporte = L.map("mapTransporte").setView([-34.6, -58.4], 5);
 
@@ -185,24 +165,20 @@
     mapTransporte.getPane("pane_paradas").style.zIndex = 400;
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19
       maxZoom: 19,
       attribution: "&copy; OpenStreetMap contributors"
     }).addTo(mapTransporte);
 
-    // Influencia
     // 5) Mapa influencia
     mapInfluencia = L.map("mapInfluencia").setView([-38, -64], 4);
 
     L.tileLayer(
       "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG:3857@png/{z}/{x}/{-y}.png",
-      { tms: true, maxZoom: 14 }
       { maxZoom: 14, tms: true, attribution: "© IGN Argentina - Argenmap" }
     ).addTo(mapInfluencia);
   }
 
   /* ============================================================
-     D. RENDER PRINCIPAL DEL AEROPUERTO
      D. MAPA DEL PREDIO (POLÍGONO O PUNTO)
      ============================================================ */
 
@@ -852,34 +828,11 @@
     const a = aeropuertos.find(x => x.IATA === iataCode);
     if (!a) return;
 
-    const iata = a.IATA.toUpperCase();
-    const nombre = clean(a.Aeropuerto) || clean(a["Nombre del Aeropuerto"]) || iata;
-    const nombreOficial = clean(a["Nombre del Aeropuerto"]);
-
-    const tituloFinal =
-      iata === "AEP"
-        ? "Aeroparque Jorge Newbery (AEP)"
-        : `${nombre} (${iata}) – ${nombreOficial || ""}`.trim();
-
-    document.getElementById("pageTitle").textContent = tituloFinal;
-
-    // Encabezados
-    const secciones = {
-      hdrSuperficie: "Explotación",
-      hdrMovimiento: "Área de movimiento",
-      hdrTerminal: "Terminal de pasajeros",
-      hdrUbicacion: "Ubicación y accesibilidad",
-      hdrServicios: "Servicios y ayudas",
-      hdrEmpleo: "Impacto territorial del aeropuerto"
-    };
     const iata = String(a.IATA || "").toUpperCase();
     const nombre = clean(a["Aeropuerto"]) || clean(a["Nombre del Aeropuerto"]) || iata;
     const nombreOficial = clean(a["Nombre del Aeropuerto"]) || clean(a["Aeropuerto"]);
     const tituloAeroSeccion = `${nombre} (${iata})`;
 
-    Object.entries(secciones).forEach(([id, label]) => {
-      const el = document.getElementById(id);
-      if (!el) return;
     // Título principal
     let tituloFinal = "";
     if (iata === "AEP") {
@@ -892,10 +845,6 @@
     const pageTitleEl = document.getElementById("pageTitle");
     if (pageTitleEl) pageTitleEl.textContent = tituloFinal;
 
-      const btn = el.querySelector("#btnInfoImpacto");
-      el.innerHTML = `${label} <small>${nombre} (${iata})</small>`;
-      if (btn) el.appendChild(btn);
-    });
     // Encabezados (respetando nombres/IDs)
     const hdrSuperficie = document.getElementById("hdrSuperficie");
     const hdrMovimiento = document.getElementById("hdrMovimiento");
@@ -904,14 +853,6 @@
     const hdrServicios = document.getElementById("hdrServicios");
     const hdrEmpleoEl = document.getElementById("hdrEmpleo");
 
-    /* ---------- KPI SUPERIOR ---------- */
-    document.getElementById("kpiCheckin").textContent = safeVal(a["Mostradores Check in"]);
-    document.getElementById("kpiPuertas").textContent = safeVal(a["PuertasEmbarqueTotal"]);
-    document.getElementById("kpiCintas").textContent = safeVal(a["CintasTotal"]);
-    document.getElementById("kpiPSN").textContent = safeVal(a["PSNTotal"]);
-    document.getElementById("kpiEstac").textContent = safeVal(a["Estacionamiento Vehicular"]);
-    document.getElementById("kpiMangas").textContent = safeVal(a["Mangas telescópicas"]);
-    document.getElementById("kpiPSA").textContent = safeVal(a["PSAScanTotal"]);
     if (hdrSuperficie) hdrSuperficie.innerHTML = `Explotación <small>${tituloAeroSeccion}</small>`;
     if (hdrMovimiento) hdrMovimiento.innerHTML = `Área de movimiento <small>${tituloAeroSeccion}</small>`;
     if (hdrTerminal) hdrTerminal.innerHTML = `Terminal de pasajeros <small>${tituloAeroSeccion}</small>`;
@@ -928,10 +869,6 @@
     /* ---------- CONTACTOS ---------- */
     const contacto = contactosPorIATA[iata] || {};
 
-    document.getElementById("kpiAdminNombre").textContent =
-      clean(contacto.Administrador) || "–";
-    document.getElementById("kpiAdminContacto").textContent =
-      [contacto.AdmTelef, contacto.AdmCorreo].filter(Boolean).join(" · ") || "–";
     // KPI superior: Administración / Jefatura
     const adminNombre = clean(contacto["Administrador"]) || "Sin dato";
     const adminTel = clean(contacto["AdmTelef"]);
@@ -1223,25 +1160,14 @@
     if (estacionamientoEl) estacionamientoEl.textContent = safeVal(a["Estacionamiento Vehicular"]);
     if (carritosEl) carritosEl.textContent = safeVal(a["Carritos porta equipajes"]);
 
-    document.getElementById("kpiJefeNombre").textContent =
-      clean(contacto.JefeAeropuerto || contacto["Jefe de Aeropuerto"]) || "–";
-    document.getElementById("kpiJefeContacto").textContent =
-      [contacto.JefeTelef, contacto.JefeCorreo].filter(Boolean).join(" · ") || "–";
     /* ---------- UBICACIÓN ---------- */
     const ubicacionTextEl = document.getElementById("ubicacionText");
     const distanciaCentroEl = document.getElementById("distanciaCentro");
     const horarioEl = document.getElementById("horarioOperacion");
 
-    /* ---------- EMPLEO ---------- */
-    const empDir = Number(String(a.EmpleoDirecto2024 || "").replace(/\./g, ""));
-    const empInd = !isNaN(empDir) ? Math.round(empDir * EMP_IND_MULT) : null;
     const loc = `${clean(a["Localidad"])} · ${clean(a["Provincia"])}`.replace(/^ · | · $/g, "");
     if (ubicacionTextEl) ubicacionTextEl.textContent = loc || "–";
 
-    document.getElementById("empleoDirecto").textContent =
-      !isNaN(empDir) ? formatNumber(empDir) : "–";
-    document.getElementById("empleoIndirecto").textContent =
-      empInd !== null ? formatNumber(empInd) : "–";
     const dist = a["Distancia al centro de la ciudad (km)"];
     if (distanciaCentroEl) distanciaCentroEl.textContent = dist ? `${formatNumber(dist)} km` : "–";
 
@@ -1350,21 +1276,10 @@
   }
 
   /* ============================================================
-     E. CARGA DE DATOS
      I. CARGA DE DATOS (GeoJSON + CSV)
      ============================================================ */
 
   async function loadData() {
-    const resp = await fetch("fuentes/Datos_aeropuertos.geojson");
-    const geojson = await resp.json();
-    aeropuertos = geojson.features.map(f => f.properties).filter(p => p.IATA);
-
-    selectEl.innerHTML = "";
-    aeropuertos.forEach(a => {
-      const opt = document.createElement("option");
-      opt.value = a.IATA;
-      opt.textContent = `${a.Aeropuerto || a.IATA} (${a.IATA})`;
-      selectEl.appendChild(opt);
     try {
       // 1) Datos principales
       const resp = await fetch("fuentes/Datos_aeropuertos.geojson");
@@ -1560,13 +1475,11 @@
       btn.addEventListener("click", close);
     });
 
-    renderAirport(aeropuertos[0].IATA);
     // cerrar clic fondo
     modalImpacto.addEventListener("click", (e) => {
       if (e.target === modalImpacto) close();
     });
 
-    selectEl.addEventListener("change", e => renderAirport(e.target.value));
     // cerrar con ESC
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && modalImpacto.classList.contains("is-open")) {
@@ -1576,7 +1489,6 @@
   }
 
   /* ============================================================
-     F. INICIO
      K. INICIO
      ============================================================ */
 
@@ -1587,41 +1499,23 @@
     initModalImpacto();
     loadData();
 
-    /* ---------- MODAL IMPACTO ---------- */
-    const btnInfo = document.getElementById("btnInfoImpacto");
-    const modalImpacto = document.getElementById("modalImpacto");
     // Botones "Abrir el mapa" (transporte / influencia)
     document.querySelectorAll(".map-expand-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const iata = selectEl ? selectEl.value : "";
         if (!iata) return;
 
-    if (btnInfo && modalImpacto) {
-      btnInfo.addEventListener("click", () => {
-        modalImpacto.classList.add("is-open");
-        modalImpacto.setAttribute("aria-hidden", "false");
         const mapType = btn.dataset.map; // "transporte" | "influencia"
         const url = `mapa_${mapType}.html?airport=${encodeURIComponent(iata)}`;
         window.open(url, "_blank");
       });
     });
 
-      modalImpacto.querySelectorAll("[data-close-modal]").forEach(btn => {
-        btn.addEventListener("click", () => {
-          modalImpacto.classList.remove("is-open");
-          modalImpacto.setAttribute("aria-hidden", "true");
-        });
-      });
     // Flechas del carrusel KPI
     const kpiStrip = document.querySelector(".kpi-strip");
     const arrowLeft = document.querySelector(".kpi-arrow-left");
     const arrowRight = document.querySelector(".kpi-arrow-right");
 
-      modalImpacto.addEventListener("click", e => {
-        if (e.target === modalImpacto) {
-          modalImpacto.classList.remove("is-open");
-          modalImpacto.setAttribute("aria-hidden", "true");
-        }
     if (kpiStrip && arrowLeft && arrowRight) {
       const scrollAmount = 220;
       arrowLeft.addEventListener("click", () => {
@@ -1633,3 +1527,4 @@
     }
   });
 
+})();
