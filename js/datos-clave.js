@@ -6,7 +6,7 @@
   "use strict";
 
   /* ============================================================
-     A. VARIABLES GLOBALES (DATA + UI + MAPAS)
+     A. VARIABLES GLOBALES (DATA + UI + MAPAS)function formatPct(p)
      ============================================================ */
 
   // Datos
@@ -916,7 +916,51 @@
     return `${p.toLocaleString("es-AR", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%`;
   }
 
-  function renderPasajerosPanel(iataUpper) {
+    // Datasets válidos del CSV
+  const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
+  const PAX_DATASET_INT = "pasajeros_comerciales_internacional_aeropuerto";
+
+  // Construye la serie según modo: cabotaje | internacional | total
+  function buildPaxSeries(iataUpper, mode) {
+    const rowsAll = (pasajerosMensualRows || []).filter(r => r.iata === iataUpper);
+    if (!rowsAll.length) return [];
+
+    if (mode === "cabotaje" || mode === "internacional") {
+      const target = (mode === "cabotaje") ? PAX_DATASET_CAB : PAX_DATASET_INT;
+      return rowsAll
+        .filter(r => r.dataset === target)
+        .sort((a, b) => a.date - b.date);
+    }
+
+    // mode === "total": sumar cabotaje + internacional por mes (YYYY-MM)
+    const acc = new Map();
+
+    for (const r of rowsAll) {
+      if (r.dataset !== PAX_DATASET_CAB && r.dataset !== PAX_DATASET_INT) continue;
+
+      const y = r.date.getFullYear();
+      const m = r.date.getMonth() + 1;
+      const key = `${y}-${String(m).padStart(2, "0")}`;
+
+      if (!acc.has(key)) {
+        acc.set(key, {
+          iata: iataUpper,
+          dataset: "total",
+          date: new Date(y, m - 1, 1),
+          valor: 0,
+          anio: y,
+          mes: m,
+          mesNombre: r.mesNombre || ""
+        });
+      }
+      acc.get(key).valor += r.valor;
+    }
+
+    return Array.from(acc.values()).sort((a, b) => a.date - b.date);
+  }
+
+  
+function renderPasajerosPanel(iataUpper, mode) {
     const hdr = document.getElementById("hdrPasajeros");
     const elUltVal = document.getElementById("paxUltimoValor");
     const elUltPer = document.getElementById("paxUltimoPeriodo");
@@ -927,7 +971,8 @@
 
     if (!svg || !elUltVal || !elUltPer || !elYoY || !elYoYDet || !note) return;
 
-    const rows = (pasajerosMensualRows || []).filter(r => r.iata === iataUpper);
+    const rows = buildPaxSeries(iataUpper, mode || "cabotaje");
+
 
     if (!rows.length) {
       elUltVal.textContent = "–";
@@ -935,7 +980,7 @@
       elYoY.textContent = "–";
       elYoYDet.textContent = "–";
       svg.innerHTML = "";
-      note.textContent = `No hay registros en fuentes/pasajeros_aeropuerto_mensual.csv para ${iataUpper}.`;
+      note.textContent = `No hay registros en fuentes/pasajeros_aeropuerto_mensual.csv para ${iataUpper} (${mode || "cabotaje"}).`;
       return;
     }
 
@@ -1007,7 +1052,12 @@
       <polyline fill="none" stroke="#2a5fa0" stroke-width="2" points="${points}"/>
     `;
 
-    note.textContent = "Elaborado por ORSNA con datos de SIAC ANAC";
+    const serieLabel =
+      (mode === "internacional") ? "Internacional" :
+      (mode === "total") ? "Total (Cabotaje + Internacional)" :
+      "Cabotaje";
+
+    note.textContent = `Elaborado por ORSNA con datos de SIAC ANAC – Serie: ${serieLabel}`;
   }
 
   /* ============================================================
@@ -1455,8 +1505,20 @@
     if (claveRefEl) claveRefEl.textContent = clean(a["CLAVE DE REFERENCIA DE AERÓDROMO"]) || "–";
     if (categoriaEl) categoriaEl.textContent = clean(a["CATEGORÍA SEI NORMAL"]) || "–";
 
-     /* ---------- PASAJEROS (SERIE MENSUAL) ---------- */
-    renderPasajerosPanel(iata);
+    /* ---------- PASAJEROS (SERIE MENSUAL) ---------- */
+    const paxSel = document.getElementById("paxDatasetSelect");
+    const paxMode = paxSel ? paxSel.value : "cabotaje";
+
+    renderPasajerosPanel(iata, paxMode);
+
+    // Evitar listeners duplicados cuando se re-renderiza el aeropuerto
+    if (paxSel && !paxSel.dataset.bound) {
+      paxSel.dataset.bound = "1";
+      paxSel.addEventListener("change", () => {
+        renderPasajerosPanel(iata, paxSel.value);
+      });
+    }
+
 
     /* ---------- FOOTER ---------- */
     const footerNoteEl = document.getElementById("footerNote");
