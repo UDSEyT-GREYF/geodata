@@ -988,42 +988,51 @@ function renderPasajerosPanel(iataUpper, mode) {
 
     if (!svg || !elUltVal || !elUltPer || !elYoY || !elYoYDet || !note) return;
 
-    const rows = buildPaxSeries(iataUpper, mode || "cabotaje");
+const rows = buildPaxSeries(iataUpper, mode || "cabotaje");
 
-    // Años disponibles reales en la serie
-    const minYear = Math.min(...rows.map(r => r.date.getFullYear()));
-    const maxYear = Math.max(...rows.map(r => r.date.getFullYear()));
+if (!rows.length) {
+  elUltVal.textContent = "–";
+  elUltPer.textContent = "Sin datos";
+  elYoY.textContent = "–";
+  elYoYDet.textContent = "–";
+  if (elYTD) elYTD.textContent = "–";
+  if (elYTDDet) elYTDDet.textContent = "–";
+  svg.innerHTML = "";
+  note.textContent = `No hay datos para ${iataUpper} (${mode || "cabotaje"}).`;
+  return;
+}
 
-    // Inicializar sliders (sin duplicar listeners)
-    if (yearFromEl && yearToEl && yearLabelEl) {
-      yearFromEl.min = String(minYear);
-      yearFromEl.max = String(maxYear);
-      yearToEl.min = String(minYear);
-      yearToEl.max = String(maxYear);
+// Años disponibles reales en la serie (recién acá)
+const minYear = Math.min(...rows.map(r => r.date.getFullYear()));
+const maxYear = Math.max(...rows.map(r => r.date.getFullYear()));
 
-      // Si el HTML trae valores fuera de rango, corregirlos
-      const curFrom = Math.max(minYear, Math.min(maxYear, Number(yearFromEl.value || minYear)));
-      const curTo = Math.max(minYear, Math.min(maxYear, Number(yearToEl.value || maxYear)));
+// Bind slider events (una sola vez, y siempre usando el mode actual del select)
+if (yearFromEl && yearToEl && yearLabelEl) {
+  if (!yearFromEl.dataset.bound) {
+    const getModeNow = () => {
+      const sel = document.getElementById("paxDatasetSelect");
+      return sel ? sel.value : (mode || "cabotaje");
+    };
 
-      yearFromEl.value = String(Math.min(curFrom, curTo));
-      yearToEl.value = String(Math.max(curFrom, curTo));
+    const onSlide = () => {
+      const yf = Number(yearFromEl.value);
+      const yt = Number(yearToEl.value);
+
+      // Mantener coherencia: from <= to
+      if (yf > yt) yearToEl.value = String(yf);
+
       yearLabelEl.textContent = `${yearFromEl.value}–${yearToEl.value}`;
-    }
 
-    if (!rows.length) {
-      elUltVal.textContent = "–";
-      elUltPer.textContent = "Sin datos";
-      elYoY.textContent = "–";
-      elYoYDet.textContent = "–";
-      
-      if (elYTD) elYTD.textContent = "–";
-      if (elYTDDet) elYTDDet.textContent = "–";
-      
-      svg.innerHTML = "";
-      note.textContent = `No hay datos para ${iataUpper} (${mode || "cabotaje"}).`;
+      // Re-render con el modo actual
+      renderPasajerosPanel(iataUpper, getModeNow());
+    };
 
-      return;
-    }
+    yearFromEl.dataset.bound = "1";
+    yearToEl.dataset.bound = "1";
+    yearFromEl.addEventListener("input", onSlide);
+    yearToEl.addEventListener("input", onSlide);
+  }
+}
 
       // Filtrado para el gráfico (KPIs quedan con la serie completa)
     let rowsChart = rows;
@@ -1163,7 +1172,7 @@ if (prevYearRow && Number(prevYearRow.valor) > 0) {
 
     // ticks X por año (enero)
     let xTicks = "";
-    rows.forEach((r, i) => {
+    rowsChart.forEach((r, i) => {
       if (r.date.getMonth() === 0) {
         const xx = x(i);
         xTicks += `
@@ -1725,10 +1734,7 @@ if (prevYearRow && Number(prevYearRow.valor) > 0) {
       });
     }
 
-        // Bind slider events (una sola vez)
-    if (yearFromEl && yearToEl && yearLabelEl) {
-      const bindKey = `bound_${iataUpper}_${mode || "cabotaje"}`;
-
+ 
       // Para evitar duplicados en cada render, marcamos en dataset del input
       if (!yearFromEl.dataset.bound) {
         const onSlide = () => {
