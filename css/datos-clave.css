@@ -348,7 +348,9 @@ header.page-header {
   grid-template-areas:
     "superficie terminal ubicacion"
     "movimiento terminal empleo"
+    "pasajeros pasajeros pasajeros"
     "servicios servicios servicios";
+
   gap: 12px;
   margin-top: 8px;
 }
@@ -937,6 +939,45 @@ ul {
 .panel-empleo {
   grid-area: empleo;
 }
+.panel-pasajeros {
+  grid-area: pasajeros;
+}
+
+/* Panel Pasajeros: KPIs + gráfico */
+.pasajeros-kpis{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.pasajeros-kpi{
+  flex:1 1 220px;
+  background:#ffffff;
+  border:1px solid #d0d7e2;
+  border-radius:4px;
+  padding:8px 10px;
+}
+
+.pasajeros-chart-wrap{
+  margin-top:8px;
+  background:#ffffff;
+  border:1px solid #d0d7e2;
+  border-radius:4px;
+  padding:8px 10px;
+}
+
+.pax-chart{
+  width:100%;
+  height:220px;
+  display:block;
+}
+
+.pax-chart-note{
+  margin-top:6px;
+  color:#666;
+  font-size:0.78rem;
+}
+
 .panel-servicios {
   grid-area: servicios;
 }
@@ -975,7 +1016,9 @@ footer {
       "terminal"
       "ubicacion"
       "empleo"
+      "pasajeros"
       "servicios";
+
   }
 
   header.page-header {
