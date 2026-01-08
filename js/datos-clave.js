@@ -1005,7 +1005,7 @@
       <polyline fill="none" stroke="#2a5fa0" stroke-width="2" points="${points}"/>
     `;
 
-    note.textContent = "Fuente: pasajeros_aeropuerto_mensual.csv (campo valor_pax).";
+    note.textContent = "Elaborado por ORSNA con datos de SIAC ANAC";
   }
 
   /* ============================================================
