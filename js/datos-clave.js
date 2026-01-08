@@ -946,17 +946,18 @@ function formatPct(p) {
     for (const r of rowsAll) {
       if (r.dataset !== PAX_DATASET_CAB && r.dataset !== PAX_DATASET_INT) continue;
 
-      const y = r.date.getFullYear();
-      const m = r.date.getMonth() + 1;
-      const key = `${y}-${String(m).padStart(2, "0")}`;
+const year = r.date.getFullYear();
+const m = r.date.getMonth() + 1;
+const key = `${year}-${String(m).padStart(2, "0")}`;
+
 
       if (!acc.has(key)) {
         acc.set(key, {
           iata: iataUpper,
           dataset: "total",
-          date: new Date(y, m - 1, 1),
-          valor: 0,
-          anio: y,
+        date: new Date(year, m - 1, 1),
+        valor: 0,
+        anio: year,
           mes: m,
           mesNombre: r.mesNombre || ""
         });
@@ -1007,7 +1008,7 @@ function renderPasajerosPanel(iataUpper, mode) {
     elUltPer.textContent = lastLabel;
 
   // YTD: ene -> último mes disponible (año actual vs mismo período año anterior)
-const y = last.date.getFullYear();
+const yearCur = last.date.getFullYear();
 const lastMonthIdx = last.date.getMonth(); // 0-11
 
 const sumPeriod = (year) => {
@@ -1016,8 +1017,8 @@ const sumPeriod = (year) => {
     .reduce((acc, r) => acc + (Number(r.valor) || 0), 0);
 };
 
-const ytdCur = sumPeriod(y);
-const ytdPrev = sumPeriod(y - 1);
+const ytdCur = sumPeriod(yearCur);
+const ytdPrev = sumPeriod(yearCur - 1);
 
 if (elYTD && elYTDDet) {
   if (ytdPrev > 0) {
@@ -1035,14 +1036,18 @@ if (elYTD && elYTDDet) {
     const lastM = last.date.getMonth(); // 0-11
     const prevYearRow = rows.find(r => r.date.getFullYear() === (lastY - 1) && r.date.getMonth() === lastM);
 
-    if (prevYearRow) {
-      const yoy = ((last.valor - prevYearRow.valor) / prevYearRow.valor) * 100;
-      elYoY.textContent = formatPct(yoy);
-      elYoYDet.textContent = `${formatNumber(prevYearRow.valor)} → ${formatNumber(last.valor)}`;
-    } else {
-      elYoY.textContent = "–";
-      elYoYDet.textContent = "No hay base interanual para ese mes.";
-    }
+if (prevYearRow && Number(prevYearRow.valor) > 0) {
+  const yoy = ((last.valor - prevYearRow.valor) / prevYearRow.valor) * 100;
+  elYoY.textContent = formatPct(yoy);
+  elYoYDet.textContent = `${formatNumber(prevYearRow.valor)} → ${formatNumber(last.valor)}`;
+} else if (prevYearRow) {
+  elYoY.textContent = "–";
+  elYoYDet.textContent = "La base interanual es 0 para ese mes.";
+} else {
+  elYoY.textContent = "–";
+  elYoYDet.textContent = "No hay base interanual para ese mes.";
+}
+
 
     // ===== SVG Chart (simple line) =====
     const W = 800, H = 240;
