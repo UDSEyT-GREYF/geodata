@@ -871,6 +871,7 @@
     const idxAnio = headers.findIndex(h => h.toLowerCase() === "anio");
     const idxMes = headers.findIndex(h => h.toLowerCase() === "mes");
     const idxMesNombre = headers.findIndex(h => h.toLowerCase() === "mes_nombre");
+    const idxDataset = headers.findIndex(h => h.toLowerCase() === "dataset");
 
     if (idxIATA === -1 || idxFecha === -1 || idxValorPax === -1) {
       console.warn("CSV pasajeros: faltan columnas requeridas (iata/fecha/valor_pax).");
@@ -896,6 +897,7 @@
 
       rows.push({
         iata,
+        dataset: idxDataset !== -1 ? String(cols[idxDataset] || "").trim() : "",
         date,
         valor,
         anio: idxAnio !== -1 ? Number(cols[idxAnio]) : null,
