@@ -979,12 +979,36 @@ function renderPasajerosPanel(iataUpper, mode) {
     const note = document.getElementById("paxChartNote");
     const elYTD = document.getElementById("paxVarYTD");
     const elYTDDet = document.getElementById("paxVarYTDDetalle");
+    // Controles rango de años + tooltip
+    const yearFromEl = document.getElementById("paxYearFrom");
+    const yearToEl = document.getElementById("paxYearTo");
+    const yearLabelEl = document.getElementById("paxYearLabel");
+    const tooltipEl = document.getElementById("paxTooltip");
 
 
     if (!svg || !elUltVal || !elUltPer || !elYoY || !elYoYDet || !note) return;
 
     const rows = buildPaxSeries(iataUpper, mode || "cabotaje");
 
+    // Años disponibles reales en la serie
+    const minYear = Math.min(...rows.map(r => r.date.getFullYear()));
+    const maxYear = Math.max(...rows.map(r => r.date.getFullYear()));
+
+    // Inicializar sliders (sin duplicar listeners)
+    if (yearFromEl && yearToEl && yearLabelEl) {
+      yearFromEl.min = String(minYear);
+      yearFromEl.max = String(maxYear);
+      yearToEl.min = String(minYear);
+      yearToEl.max = String(maxYear);
+
+      // Si el HTML trae valores fuera de rango, corregirlos
+      const curFrom = Math.max(minYear, Math.min(maxYear, Number(yearFromEl.value || minYear)));
+      const curTo = Math.max(minYear, Math.min(maxYear, Number(yearToEl.value || maxYear)));
+
+      yearFromEl.value = String(Math.min(curFrom, curTo));
+      yearToEl.value = String(Math.max(curFrom, curTo));
+      yearLabelEl.textContent = `${yearFromEl.value}–${yearToEl.value}`;
+    }
 
     if (!rows.length) {
       elUltVal.textContent = "–";
@@ -1001,6 +1025,25 @@ function renderPasajerosPanel(iataUpper, mode) {
       return;
     }
 
+      // Filtrado para el gráfico (KPIs quedan con la serie completa)
+    let rowsChart = rows;
+
+    if (yearFromEl && yearToEl) {
+      const yf = Number(yearFromEl.value);
+      const yt = Number(yearToEl.value);
+      const yMin = Math.min(yf, yt);
+      const yMax = Math.max(yf, yt);
+
+      rowsChart = rows.filter(r => {
+        const yy = r.date.getFullYear();
+        return yy >= yMin && yy <= yMax;
+      });
+    }
+
+    // Si el filtro deja vacío, caemos al total
+    if (!rowsChart.length) rowsChart = rows;
+
+  
     const last = rows[rows.length - 1];
     const lastLabel = `${last.mesNombre || ""} ${last.anio || last.date.getFullYear()}`.trim() || last.date.toLocaleDateString("es-AR");
 
@@ -1047,6 +1090,44 @@ if (prevYearRow && Number(prevYearRow.valor) > 0) {
   elYoY.textContent = "–";
   elYoYDet.textContent = "No hay base interanual para ese mes.";
 }
+    function niceStep(rawStep) {
+      // 1, 2, 5 * 10^n
+      const exp = Math.floor(Math.log10(rawStep));
+      const base = Math.pow(10, exp);
+      const frac = rawStep / base;
+
+      let niceFrac = 1;
+      if (frac <= 1) niceFrac = 1;
+      else if (frac <= 2) niceFrac = 2;
+      else if (frac <= 5) niceFrac = 5;
+      else niceFrac = 10;
+
+      return niceFrac * base;
+    }
+
+    function buildNiceScale(minVal, maxVal, ticks) {
+      if (!isFinite(minVal) || !isFinite(maxVal)) return null;
+      if (minVal === maxVal) {
+        // expandir un poco
+        const pad = Math.max(1, Math.round(minVal * 0.1));
+        minVal -= pad;
+        maxVal += pad;
+      }
+
+      const range = maxVal - minVal;
+      const rawStep = range / Math.max(1, ticks);
+      const step = niceStep(rawStep);
+
+      const niceMin = Math.floor(minVal / step) * step;
+      const niceMax = Math.ceil(maxVal / step) * step;
+
+      const values = [];
+      for (let v = niceMin; v <= niceMax + step * 0.5; v += step) {
+        values.push(v);
+      }
+
+      return { niceMin, niceMax, step, values };
+    }
 
 
     // ===== SVG Chart (simple line) =====
@@ -1055,24 +1136,30 @@ if (prevYearRow && Number(prevYearRow.valor) > 0) {
     const innerW = W - padL - padR;
     const innerH = H - padT - padB;
 
-    const minV = Math.min(...rows.map(r => r.valor));
-    const maxV = Math.max(...rows.map(r => r.valor));
+    const minVRaw = Math.min(...rowsChart.map(r => r.valor));
+    const maxVRaw = Math.max(...rowsChart.map(r => r.valor));
+
+    const yScale = buildNiceScale(minVRaw, maxVRaw, 4);
+    const minV = yScale ? yScale.niceMin : minVRaw;
+    const maxV = yScale ? yScale.niceMax : maxVRaw;
     const vRange = Math.max(1, maxV - minV);
 
-    const x = (i) => padL + (innerW * (i / Math.max(1, rows.length - 1)));
+
+    const x = (i) => padL + (innerW * (i / Math.max(1, rowsChart.length - 1)));
     const y = (v) => padT + innerH - (innerH * ((v - minV) / vRange));
 
     // ejes y ticks
-    const yTicks = 4;
     let grid = "";
-    for (let t = 0; t <= yTicks; t++) {
-      const vv = minV + (vRange * (t / yTicks));
+    const yTickValues = yScale ? yScale.values : [minV, minV + vRange*0.25, minV + vRange*0.5, minV + vRange*0.75, maxV];
+
+    yTickValues.forEach(vv => {
       const yy = y(vv);
       grid += `
         <line x1="${padL}" y1="${yy}" x2="${W - padR}" y2="${yy}" stroke="#e6eaf0" stroke-width="1"/>
         <text x="${padL - 8}" y="${yy + 4}" text-anchor="end" font-size="10" fill="#666">${formatNumber(Math.round(vv))}</text>
       `;
-    }
+    });
+
 
     // ticks X por año (enero)
     let xTicks = "";
@@ -1086,7 +1173,7 @@ if (prevYearRow && Number(prevYearRow.valor) > 0) {
       }
     });
 
-    const points = rows.map((r, i) => `${x(i)},${y(r.valor)}`).join(" ");
+    const points = rowsChart.map((r, i) => `${x(i)},${y(r.valor)}`).join(" ");
 
     svg.innerHTML = `
       <rect x="0" y="0" width="${W}" height="${H}" fill="#ffffff"/>
@@ -1097,6 +1184,80 @@ if (prevYearRow && Number(prevYearRow.valor) > 0) {
       <polyline fill="none" stroke="#2a5fa0" stroke-width="2" points="${points}"/>
     `;
 
+      // ===== Tooltip / hover =====
+    if (tooltipEl) {
+      // aseguramos estilo base (si el CSS no lo maneja todavía)
+      tooltipEl.style.position = "absolute";
+      tooltipEl.style.pointerEvents = "none";
+      tooltipEl.style.display = "none";
+    }
+
+    // Capturador (rect transparente)
+    const overlay = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    overlay.setAttribute("x", String(padL));
+    overlay.setAttribute("y", String(padT));
+    overlay.setAttribute("width", String(innerW));
+    overlay.setAttribute("height", String(innerH));
+    overlay.setAttribute("fill", "transparent");
+    overlay.style.cursor = "crosshair";
+
+    svg.appendChild(overlay);
+
+    const fmtMes = (d) => {
+      const mm = d.toLocaleString("es-AR", { month: "short" });
+      return `${mm} ${d.getFullYear()}`.replace(".", "");
+    };
+
+    const getSvgPoint = (evt) => {
+      const pt = svg.createSVGPoint();
+      pt.x = evt.clientX;
+      pt.y = evt.clientY;
+      const ctm = svg.getScreenCTM();
+      return ctm ? pt.matrixTransform(ctm.inverse()) : { x: 0, y: 0 };
+    };
+
+    const showTip = (evt) => {
+      if (!tooltipEl) return;
+
+      const p = getSvgPoint(evt);
+      const relX = Math.max(padL, Math.min(W - padR, p.x));
+
+      // índice aproximado (por proporción)
+      const t = (relX - padL) / innerW;
+      const idx = Math.round(t * Math.max(0, rowsChart.length - 1));
+      const i = Math.max(0, Math.min(rowsChart.length - 1, idx));
+      const r = rowsChart[i];
+
+      // Posición del punto
+      const px = x(i);
+      const py = y(r.valor);
+
+      // Contenido
+      const label = fmtMes(r.date);
+      const val = formatNumber(Math.round(r.valor));
+
+      tooltipEl.innerHTML = `<div style="font-weight:700;color:#002855;margin-bottom:2px;">${label}</div>
+                             <div style="font-size:0.9rem;color:#2a5fa0;font-weight:700;">${val}</div>`;
+
+      // ubicar tooltip respecto del contenedor .pasajeros-chart-wrap (position:relative)
+      const wrap = svg.closest(".pasajeros-chart-wrap");
+      const wrapRect = wrap ? wrap.getBoundingClientRect() : null;
+
+      // ubicamos cerca del mouse, pero sin salirnos
+      tooltipEl.style.display = "block";
+      tooltipEl.style.left = `${Math.min(760, Math.max(0, px))}px`;
+      tooltipEl.style.top = `${Math.max(0, py - 28)}px`;
+    };
+
+    const hideTip = () => {
+      if (!tooltipEl) return;
+      tooltipEl.style.display = "none";
+    };
+
+    overlay.addEventListener("mousemove", showTip);
+    overlay.addEventListener("mouseleave", hideTip);
+
+  
     const serieLabel =
       (mode === "internacional") ? "Internacional" :
       (mode === "total") ? "Total (Cabotaje + Internacional)" :
@@ -1562,6 +1723,34 @@ if (prevYearRow && Number(prevYearRow.valor) > 0) {
       paxSel.addEventListener("change", () => {
         renderPasajerosPanel(iata, paxSel.value);
       });
+    }
+
+        // Bind slider events (una sola vez)
+    if (yearFromEl && yearToEl && yearLabelEl) {
+      const bindKey = `bound_${iataUpper}_${mode || "cabotaje"}`;
+
+      // Para evitar duplicados en cada render, marcamos en dataset del input
+      if (!yearFromEl.dataset.bound) {
+        const onSlide = () => {
+          const yf = Number(yearFromEl.value);
+          const yt = Number(yearToEl.value);
+
+          // Mantener coherencia (from <= to)
+          if (yf > yt) {
+            // empujamos el otro para no "cruzar"
+            yearToEl.value = String(yf);
+          }
+          yearLabelEl.textContent = `${yearFromEl.value}–${yearToEl.value}`;
+
+          // Re-render del panel con mismo iata/mode
+          renderPasajerosPanel(iataUpper, (mode || "cabotaje"));
+        };
+
+        yearFromEl.dataset.bound = "1";
+        yearToEl.dataset.bound = "1";
+        yearFromEl.addEventListener("input", onSlide);
+        yearToEl.addEventListener("input", onSlide);
+      }
     }
 
 
