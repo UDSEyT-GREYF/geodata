@@ -1,763 +1,748 @@
-<!DOCTYPE html> 
+ <!DOCTYPE html> 
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Datos clave de aeropuertos – GeoData ORSNA</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Datos clave de aeropuertos – GeoData ORSNA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ==========================
-      LEAFLET CSS
-      ========================== -->
-<link
-rel="stylesheet"
-href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-crossorigin=""
-/>
+  <!-- ==========================
+       LEAFLET CSS
+       ========================== -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
 
-<!-- CSS propio -->
-<link rel="stylesheet" href="css/datos-clave.css">
+  <!-- CSS propio -->
+  <link rel="stylesheet" href="css/datos-clave.css">
 </head>
 
 <body>
-<!-- ==========================
-      TOPBAR
-      ========================== -->
-<div class="topbar">
-<div class="topbar-inner">
-<div>Presidencia de la Nación</div>
-<div><a href="index.html" style="color:#fff;text-decoration:none;">GeoData</a></div>
-</div>
-</div>
+  <!-- ==========================
+       TOPBAR
+       ========================== -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div>Presidencia de la Nación</div>
+      <div><a href="index.html" style="color:#fff;text-decoration:none;">GeoData</a></div>
+    </div>
+  </div>
+
+  <!-- ==========================
+       HEADER ORSNA
+       ========================== -->
+  <div class="gov-header">
+    <div class="gov-header-inner">
+      <div class="brand">
+        <div class="brand-logo"></div>
+        <div class="brand-text">
+          <span>Organismo Regulador del Sistema Nacional de Aeropuertos</span>
+          <span>ORSNA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================
+       BREADCRUMB
+       ========================== -->
+  <nav class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html">Inicio</a> › Datos clave por aeropuerto
+    </div>
+  </nav>
+
+  <!-- ==========================
+       CONTENIDO PRINCIPAL
+       ========================== -->
+  <main>
+    <!-- Encabezado general + selector de aeropuerto -->
+    <header class="page-header">
+      <div class="page-header-left">
+        <h1 id="pageTitle">Datos clave por aeropuerto</h1>
+        <p id="pageSubtitle"></p>
+      </div>
+
+      <div class="selector">
+        <label for="airportSelect">Seleccionar aeropuerto</label>
+        <select id="airportSelect">
+          <option value="">Cargando aeropuertos...</option>
+        </select>
+      </div>
+    </header>
 
 <!-- ==========================
-      HEADER ORSNA
-      ========================== -->
-<div class="gov-header">
-<div class="gov-header-inner">
-<div class="brand">
-<div class="brand-logo"></div>
-<div class="brand-text">
-<span>Organismo Regulador del Sistema Nacional de Aeropuertos</span>
-<span>ORSNA</span>
-</div>
-</div>
-</div>
-</div>
-
-<!-- ==========================
-      BREADCRUMB
-      ========================== -->
-<nav class="breadcrumb">
-<div class="breadcrumb-inner">
-<a href="index.html">Inicio</a> › Datos clave por aeropuerto
-</div>
-</nav>
-
-<!-- ==========================
-      CONTENIDO PRINCIPAL
-      ========================== -->
-<main>
-<!-- Encabezado general + selector de aeropuerto -->
-<header class="page-header">
-<div class="page-header-left">
-<h1 id="pageTitle">Datos clave por aeropuerto</h1>
-<p id="pageSubtitle"></p>
-</div>
-
-<div class="selector">
-<label for="airportSelect">Seleccionar aeropuerto</label>
-<select id="airportSelect">
-<option value="">Cargando aeropuertos...</option>
-</select>
-</div>
-</header>
-
-<!-- ==========================
-    BANDA KPI SUPERIOR (RESUMEN)
-    ========================== -->
+     BANDA KPI SUPERIOR (RESUMEN)
+     ========================== -->
 <div class="kpi-strip-wrapper">
-<button class="kpi-arrow kpi-arrow-left" type="button" aria-label="Desplazar KPIs hacia la izquierda">‹</button>
-
-<section class="kpi-strip">
-
-<!-- 1) KPI Administración -->
-<div class="kpi-card kpi-card-contacto">
-<div class="kpi-contact-block">
-<div class="kpi-contact-role">Administración</div>
-<div class="kpi-contact-name" id="kpiAdminNombre">–</div>
-<div class="kpi-contact-small" id="kpiAdminContacto">–</div>
-</div>
-</div>
-
-<!-- 2) KPI Jefatura -->
-<div class="kpi-card kpi-card-contacto">
-<div class="kpi-contact-block">
-<div class="kpi-contact-role">Jefatura</div>
-<div class="kpi-contact-name" id="kpiJefeNombre">–</div>
-<div class="kpi-contact-small" id="kpiJefeContacto">–</div>
-</div>
-</div>
-
-<!-- 3) KPI Check-in -->
-<div class="kpi-card">
-<img src="img/icons/checkin.png" alt="Check-in">
-<div class="kpi-value" id="kpiCheckin">–</div>
-<div class="kpi-label">Mostradores</div>
-</div>
-
-<!-- 4) KPI Puertas -->
-<div class="kpi-card">
-<img src="img/icons/boarding.png" alt="Puertas de embarque">
-<div class="kpi-value" id="kpiPuertas">–</div>
-<div class="kpi-label">Puertas embarque</div>
-</div>
-
-<!-- 5) KPI Cintas -->
-<div class="kpi-card">
-<img src="img/icons/baggage.png" alt="Cintas de equipaje">
-<div class="kpi-value" id="kpiCintas">–</div>
-<div class="kpi-label">Cintas equipaje</div>
-</div>
-
-<!-- 6) KPI PSN -->
-<div class="kpi-card">
-<img src="img/icons/PSN.png" alt="PSN">
-<div class="kpi-value" id="kpiPSN">–</div>
-<div class="kpi-label">PSN totales</div>
-</div>
-
-<!-- 7) KPI Estacionamiento -->
-<div class="kpi-card">
-<img src="img/icons/estacionamiento.png" alt="Estacionamiento">
-<div class="kpi-value" id="kpiEstac">–</div>
-<div class="kpi-label">Estacionamiento</div>
-</div>
-
-<!-- 8) KPI Mangas -->
-<div class="kpi-card">
-<img src="img/icons/manga.png" alt="Mangas">
-<div class="kpi-value" id="kpiMangas">–</div>
-<div class="kpi-label">Mangas</div>
-</div>
-
-<!-- 9) KPI PSA -->
-<div class="kpi-card">
-<img src="img/icons/PSA.png" alt="PSA">
-<div class="kpi-value" id="kpiPSA">–</div>
-<div class="kpi-label">Puestos PSA</div>
-</div>
-
-</section>
-
-<button class="kpi-arrow kpi-arrow-right" type="button" aria-label="Desplazar KPIs hacia la derecha">›</button>
-</div>
-
-
-<!-- ==========================
-        GRID PRINCIPAL DE PANELES
-        ========================== -->
-<section class="grid">
-
-<!-- PANEL 1: EXPLOTACIÓN / CONCESIÓN / INVERSIONES -->
-<section class="panel panel-superficie">
-<div class="panel-header" id="hdrSuperficie">Explotación</div>
-<div class="panel-body">
-
-<!-- KPI: Datos de concesión y habilitación -->
-<div class="superficie-kpi">
-<div class="concesion-row">
-<span class="concesion-label">Explotador</span>
-<span class="concesion-chip" id="explotador">–</span>
-</div>
-
-<div class="concesion-row">
-<span class="concesion-label">Superficie del predio</span>
-<span class="concesion-value-group">
-<span class="concesion-value" id="supPredio">–</span>
-<span class="concesion-unit">hectáreas</span>
-</span>
-</div>
-
-<div class="concesion-row">
-<span class="concesion-label">Superficie concesionada</span>
-<span class="concesion-value-group">
-<span class="concesion-value" id="supConcesionadaHa">–</span>
-<span class="concesion-unit">hectáreas</span>
-</span>
-</div>
-
-<div class="concesion-row">
-<span class="concesion-label">Áreas concesionadas</span>
-<span class="concesion-chip" id="areasConcesionadas">–</span>
-</div>
-
-<div class="concesion-row">
-<span class="concesion-label">Grupo de concesión</span>
-<span class="concesion-chip" id="grupo">–</span>
-</div>
-
-<div class="concesion-row">
-<span class="concesion-label">Concesionado hasta</span>
-<span class="concesion-chip" id="concesionHasta">–</span>
-</div>
-
-<div class="concesion-row">
-<span class="concesion-label">Códigos</span>
-<span class="concesion-chip" id="codigos">–</span>
-</div>
-
-<div class="concesion-row">
-<span class="concesion-label">Habilitación</span>
-<span class="concesion-chip" id="habilitacion">–</span>
-</div>
-</div>
-
-<!-- KPI: Mapa del predio concesionado -->
-<div class="superficie-kpi">
-<div class="superficie-label">
-<span>Mapa del predio</span>
-</div>
-<div class="superficie-thumb">
-<div id="mapPredio" class="map-predio"></div>
-</div>
-</div>
-
-<!-- KPI: Programación de inversiones 2025–2027 -->
-<div class="superficie-kpi">
-<div class="contact-title">Programación de inversiones 2025–2027</div>
-
-<table class="kpi-table-inv">
-<thead>
-<tr>
-<th>Año</th>
-<th>Obras</th>
-<th>Millones</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2025</td>
-<td id="invObras2025" class="inv-obras-cell">–</td>
-<td id="inv2025">–</td>
-</tr>
-<tr>
-<td>2026</td>
-<td id="invObras2026" class="inv-obras-cell">–</td>
-<td id="inv2026">–</td>
-</tr>
-<tr>
-<td>2027</td>
-<td id="invObras2027" class="inv-obras-cell">–</td>
-<td id="inv2027">–</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-</div>
-</section>
-
-<!-- PANEL 2: ÁREA DE MOVIMIENTO (PISTAS Y PSN) -->
-<section class="panel panel-movimiento">
-<div class="panel-header" id="hdrMovimiento">Área de movimiento</div>
-<div class="panel-body">
-
-<!-- KPI Pistas de aterrizaje -->
-<div class="superficie-kpi" style="padding:10px 8px;">
-<div class="terminal-item" style="border-bottom:none;">
-<div class="terminal-icon">
-<img src="img/icons/runway.png" alt="">
-</div>
-<div class="terminal-text">
-<div class="terminal-title">Pistas de aterrizaje</div>
-<div class="terminal-sub" id="pistasSubtitulo">
-Orientaciones y dimensiones
-</div>
-</div>
-<div class="terminal-badge" id="badgeCantPistas">–</div>
-</div>
-
-<div class="mov-runway-list" id="pistasDetalle" style="margin-top:8px;">
-<!-- Se completa desde JS -->
-</div>
-</div>
-
-<!-- KPI Posiciones en plataforma (PSN) -->
-<div class="superficie-kpi" style="padding:10px 8px;">
-<div class="terminal-item" style="border-bottom:none;">
-<div class="terminal-icon">
-<img src="img/icons/PSN.png" alt="" style="width:55px;">
-</div>
-<div class="terminal-text">
-<div class="terminal-title">Posiciones en plataforma</div>
-<div class="terminal-sub">
-Área destinada al estacionamiento de las aeronaves
-</div>
-</div>
-<div class="terminal-badge" id="badgePsnTotal">–</div>
-</div>
-
-<div class="mov-psn-list" style="margin-top:2px;">
-<div class="mov-item">
-<span>Posiciones aeronaves comerciales</span>
-<span class="mov-badge" id="psnCom">–</span>
-</div>
-<div class="mov-item">
-<span>Posiciones aviación general</span>
-<span class="mov-badge" id="psnGen">–</span>
-</div>
-</div>
-
-<div class="superficie-thumb" style="margin-top:6px;">
-<div id="mapPSN" class="map-psn"></div>
-</div>
-</div>
-
-</div>
-</section>
-
-<!-- PANEL 3: TERMINAL DE PASAJEROS (RECORRIDO) -->
-<section class="panel panel-terminal">
-<div class="panel-header" id="hdrTerminal">Terminal de pasajeros</div>
-<div class="panel-body terminal-body">
-
-<!-- KPI Terminal de pasajeros: superficie e imagen -->
-<div class="superficie-kpi">
-<div class="superficie-header-row">
-<div class="superficie-label">
-<span>Terminal de pasajeros</span>
-</div>
-<div class="superficie-value">
-<span id="terminalM2"></span>
-<span class="superficie-unit">m²</span>
-</div>
-</div>
-
-<div class="superficie-thumb">
-<img id="imgTerminal" alt="Imagen de la terminal del aeropuerto">
-</div>
-</div>
-
-<!-- KPI Llegada y check-in -->
-<div class="superficie-kpi">
-<div class="terminal-step-title">Llegada y check-in</div>
-
-<div class="terminal-item">
-<div class="terminal-icon"><img src="img/icons/checkin.png" alt=""></div>
-<div class="terminal-text">
-<div class="terminal-title">Mostradores de check-in</div>
-<div class="terminal-sub">Puestos habilitados para atención presencial</div>
-</div>
-<div class="terminal-badge" id="mostradoresCheckin">–</div>
-</div>
-
-<div class="terminal-item">
-<div class="terminal-icon"><img src="img/icons/kiosko.png" alt=""></div>
-<div class="terminal-text">
-<div class="terminal-title">Kioscos self check-in</div>
-<div class="terminal-sub">Equipos de autoatención</div>
-</div>
-<div class="terminal-badge" id="kioscosSelf">–</div>
-</div>
-</div>
-
-<!-- KPI Control de seguridad y fronterizo (PSA, Aduana, Migraciones) -->
-<div class="superficie-kpi">
-<div class="terminal-step-title">Control de seguridad y fronterizo</div>
-
-<!-- PSA -->
-<div class="terminal-item">
-<div class="terminal-icon"><img src="img/icons/PSA.png" alt=""></div>
-<div class="terminal-text">
-<div class="terminal-title">Puestos PSA</div>
-<div class="terminal-sub">Puestos de control de seguridad</div>
-</div>
-<div class="terminal-badge" id="psaBadgeProxy">–</div>
-</div>
-
-<!-- Detalle PSA Inter / Cabotaje -->
-<div class="terminal-sub" style="color:#555; font-size:0.78rem; margin-left:42px;">
-Internacional: <span id="psaInter">–</span> · Cabotaje: <span id="psaCabot">–</span>
-</div>
-
-<!-- Aduana -->
-<div class="terminal-item">
-<div class="terminal-icon"><img src="img/icons/Aduana.png" alt=""></div>
-<div class="terminal-text">
-<div class="terminal-title">Puestos de Aduanas</div>
-<div class="terminal-sub">Puestos de control aduanero</div>
-</div>
-<div class="terminal-badge" id="aduanaPuestos">–</div>
-</div>
-
-<!-- Migraciones -->
-<div class="terminal-item">
-<div class="terminal-icon"><img src="img/icons/migraciones.png" alt=""></div>
-<div class="terminal-text">
-<div class="terminal-title">Puestos de Migraciones</div>
-<div class="terminal-sub" id="migracionesDetalle">–</div>
-</div>
-<div class="terminal-badge" id="migracionesTotal">–</div>
-</div>
-</div>
-
-<!-- KPI Embarque -->
-<div class="superficie-kpi">
-<div class="terminal-step-title">Embarque</div>
-
-<div class="terminal-item">
-<div class="terminal-icon"><img src="img/icons/boarding.png" alt=""></div>
-<div class="terminal-text">
-<div class="terminal-title">Puertas de embarque</div>
-<div class="terminal-sub" id="puertasDetalle">–</div>
-</div>
-<div class="terminal-badge" id="puertasTotal">–</div>
-</div>
-
-<div class="terminal-item">
-<div class="terminal-icon"><img src="img/icons/manga.png" alt=""></div>
-<div class="terminal-text">
-<div class="terminal-title">Mangas telescópicas</div>
-<div class="terminal-sub">Conexión directa aeronave–terminal</div>
-</div>
-<div class="terminal-badge" id="mangas">–</div>
-</div>
-</div>
-
-<!-- KPI Arribo y equipaje -->
-<div class="superficie-kpi">
-<div class="terminal-step-title">Arribo y equipaje</div>
-
-<div class="terminal-item">
-<div class="terminal-icon"><img src="img/icons/baggage.png" alt=""></div>
-<div class="terminal-text">
-<div class="terminal-title">Cintas de equipaje</div>
-<div class="terminal-sub" id="cintasDetalle">–</div>
-</div>
-<div class="terminal-badge" id="cintasTotal">–</div>
-</div>
-
-<div class="terminal-item">
-<div class="terminal-icon"><img src="img/icons/Carrito.png" alt=""></div>
-<div class="terminal-text">
-<div class="terminal-title">Carritos porta equipajes</div>
-<div class="terminal-sub">Disponibles para el pasajero</div>
-</div>
-<div class="terminal-badge" id="carritos">–</div>
-</div>
-</div>
-
-<!-- KPI Apoyo al pasajero -->
-<div class="superficie-kpi">
-<div class="terminal-step-title">Apoyo al pasajero</div>
-
-<div class="terminal-item">
-<div class="terminal-icon"><img src="img/icons/estacionamiento.png" alt=""></div>
-<div class="terminal-text">
-<div class="terminal-title">Plazas de estacionamiento vehicular</div>
-<div class="terminal-sub">Capacidad total de estacionamiento</div>
-</div>
-<div class="terminal-badge" id="estacionamiento">–</div>
-</div>
-</div>
-
-<!-- elemento oculto para mantener compatibilidad con lógica previa -->
-<span id="terminalM2Dup" style="display:none;"></span>
-
-</div>
-</section>
-
-<!-- PANEL 4: UBICACIÓN Y ACCESIBILIDAD -->
-<section class="panel panel-ubicacion">
-<div class="panel-header" id="hdrUbicacion">Ubicación y accesibilidad</div>
-<div class="panel-body">
-
-<!-- KPI Ubicación básica y distancia al centro -->
-<div class="ubicacion-kpi">
-<div class="ubi-row">
-<span class="ubi-label">Ubicación</span>
-<span class="ubi-chip" id="ubicacionText">–</span>
-</div>
-
-<div class="ubi-row">
-<span class="ubi-label">Distancia al centro de la ciudad</span>
-<span class="ubi-chip" id="distanciaCentro">–</span>
-</div>
-
-<div class="ubi-row">
-<span class="ubi-label">Horario de operación</span>
-<span class="ubi-chip" id="horarioOperacion">–</span>
-</div>
-</div>
-
-<!-- MAPA UBICACIÓN (SUBE ARRIBA) -->
-<div class="ubicacion-map-wrapper">
-<div id="mapUbicacion" class="map-ubicacion"></div>
-</div>
-
-<!-- KPI Transporte público -->
-<div class="transporte-kpi">
-<div class="contact-title">Transporte público</div>
-
-<div class="small-label" style="margin-top:4px;">
-Líneas de colectivo que llegan al aeropuerto
-</div>
-<div class="transporte-list" id="transporteLineas">–</div>
-
-<div class="transporte-thumb">
-<div id="mapTransporte" class="map-transporte"></div>
-</div>
-
-<button
-type="button"
-class="map-expand-btn"
-data-map="transporte"
->
-Abrir el mapa
-</button>
-</div>
-
-<!-- KPI Administrador del aeropuerto -->
-<div class="contact-kpi">
-<div class="contact-title">Administración del aeropuerto</div>
-
-<div class="contact-row">
-<span class="contact-label">Nombre</span>
-<span class="contact-value" id="contactoAdminNombre">–</span>
-</div>
-
-<div class="contact-row">
-<span class="contact-label">Teléfono</span>
-<span class="contact-value-small" id="contactoAdminTel">–</span>
-</div>
-
-<div class="contact-row">
-<span class="contact-label">Correo</span>
-<span class="contact-value-small" id="contactoAdminCorreo">–</span>
-</div>
-</div>
-
-<!-- KPI Jefatura de aeropuerto -->
-<div class="contact-kpi">
-<div class="contact-title">Jefatura de aeropuerto</div>
-
-<div class="contact-row">
-<span class="contact-label">Nombre</span>
-<span class="contact-value" id="contactoJefeNombre">–</span>
-</div>
-
-<div class="contact-row">
-<span class="contact-label">Teléfono</span>
-<span class="contact-value-small" id="contactoJefeTel">–</span>
-</div>
-
-<div class="contact-row">
-<span class="contact-label">Correo</span>
-<span class="contact-value-small" id="contactoJefeCorreo">–</span>
-</div>
-</div>
-
-</div>
-</section>
+  <button class="kpi-arrow kpi-arrow-left" type="button" aria-label="Desplazar KPIs hacia la izquierda">‹</button>
+
+  <section class="kpi-strip">
+
+    <!-- 1) KPI Administración -->
+    <div class="kpi-card kpi-card-contacto">
+      <div class="kpi-contact-block">
+        <div class="kpi-contact-role">Administración</div>
+        <div class="kpi-contact-name" id="kpiAdminNombre">–</div>
+        <div class="kpi-contact-small" id="kpiAdminContacto">–</div>
+      </div>
+    </div>
+
+    <!-- 2) KPI Jefatura -->
+    <div class="kpi-card kpi-card-contacto">
+      <div class="kpi-contact-block">
+        <div class="kpi-contact-role">Jefatura</div>
+        <div class="kpi-contact-name" id="kpiJefeNombre">–</div>
+        <div class="kpi-contact-small" id="kpiJefeContacto">–</div>
+      </div>
+    </div>
+
+    <!-- 3) KPI Check-in -->
+    <div class="kpi-card">
+      <img src="img/icons/checkin.png" alt="Check-in">
+      <div class="kpi-value" id="kpiCheckin">–</div>
+      <div class="kpi-label">Mostradores</div>
+    </div>
+
+    <!-- 4) KPI Puertas -->
+    <div class="kpi-card">
+      <img src="img/icons/boarding.png" alt="Puertas de embarque">
+      <div class="kpi-value" id="kpiPuertas">–</div>
+      <div class="kpi-label">Puertas embarque</div>
+    </div>
+
+    <!-- 5) KPI Cintas -->
+    <div class="kpi-card">
+      <img src="img/icons/baggage.png" alt="Cintas de equipaje">
+      <div class="kpi-value" id="kpiCintas">–</div>
+      <div class="kpi-label">Cintas equipaje</div>
+    </div>
+
+    <!-- 6) KPI PSN -->
+    <div class="kpi-card">
+      <img src="img/icons/PSN.png" alt="PSN">
+      <div class="kpi-value" id="kpiPSN">–</div>
+      <div class="kpi-label">PSN totales</div>
+    </div>
+
+    <!-- 7) KPI Estacionamiento -->
+    <div class="kpi-card">
+      <img src="img/icons/estacionamiento.png" alt="Estacionamiento">
+      <div class="kpi-value" id="kpiEstac">–</div>
+      <div class="kpi-label">Estacionamiento</div>
+    </div>
+
+    <!-- 8) KPI Mangas -->
+    <div class="kpi-card">
+      <img src="img/icons/manga.png" alt="Mangas">
+      <div class="kpi-value" id="kpiMangas">–</div>
+      <div class="kpi-label">Mangas</div>
+    </div>
+
+    <!-- 9) KPI PSA -->
+    <div class="kpi-card">
+      <img src="img/icons/PSA.png" alt="PSA">
+      <div class="kpi-value" id="kpiPSA">–</div>
+      <div class="kpi-label">Puestos PSA</div>
+    </div>
+
+  </section>
+
+  <button class="kpi-arrow kpi-arrow-right" type="button" aria-label="Desplazar KPIs hacia la derecha">›</button>
+</div>
+
+
+    <!-- ==========================
+         GRID PRINCIPAL DE PANELES
+         ========================== -->
+    <section class="grid">
+
+      <!-- PANEL 1: EXPLOTACIÓN / CONCESIÓN / INVERSIONES -->
+      <section class="panel panel-superficie">
+        <div class="panel-header" id="hdrSuperficie">Explotación</div>
+        <div class="panel-body">
+
+          <!-- KPI: Datos de concesión y habilitación -->
+          <div class="superficie-kpi">
+            <div class="concesion-row">
+              <span class="concesion-label">Explotador</span>
+              <span class="concesion-chip" id="explotador">–</span>
+            </div>
+
+            <div class="concesion-row">
+              <span class="concesion-label">Superficie del predio</span>
+              <span class="concesion-value-group">
+                <span class="concesion-value" id="supPredio">–</span>
+                <span class="concesion-unit">hectáreas</span>
+              </span>
+            </div>
+
+            <div class="concesion-row">
+              <span class="concesion-label">Superficie concesionada</span>
+              <span class="concesion-value-group">
+                <span class="concesion-value" id="supConcesionadaHa">–</span>
+                <span class="concesion-unit">hectáreas</span>
+              </span>
+            </div>
+
+            <div class="concesion-row">
+              <span class="concesion-label">Áreas concesionadas</span>
+              <span class="concesion-chip" id="areasConcesionadas">–</span>
+            </div>
+
+            <div class="concesion-row">
+              <span class="concesion-label">Grupo de concesión</span>
+              <span class="concesion-chip" id="grupo">–</span>
+            </div>
+
+            <div class="concesion-row">
+              <span class="concesion-label">Concesionado hasta</span>
+              <span class="concesion-chip" id="concesionHasta">–</span>
+            </div>
+
+            <div class="concesion-row">
+              <span class="concesion-label">Códigos</span>
+              <span class="concesion-chip" id="codigos">–</span>
+            </div>
+
+            <div class="concesion-row">
+              <span class="concesion-label">Habilitación</span>
+              <span class="concesion-chip" id="habilitacion">–</span>
+            </div>
+          </div>
+
+          <!-- KPI: Mapa del predio concesionado -->
+          <div class="superficie-kpi">
+            <div class="superficie-label">
+              <span>Mapa del predio</span>
+            </div>
+            <div class="superficie-thumb">
+              <div id="mapPredio" class="map-predio"></div>
+            </div>
+          </div>
+
+          <!-- KPI: Programación de inversiones 2025–2027 -->
+          <div class="superficie-kpi">
+            <div class="contact-title">Programación de inversiones 2025–2027</div>
+
+            <table class="kpi-table-inv">
+              <thead>
+                <tr>
+                  <th>Año</th>
+                  <th>Obras</th>
+                  <th>Millones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2025</td>
+                  <td id="invObras2025" class="inv-obras-cell">–</td>
+                  <td id="inv2025">–</td>
+                </tr>
+                <tr>
+                  <td>2026</td>
+                  <td id="invObras2026" class="inv-obras-cell">–</td>
+                  <td id="inv2026">–</td>
+                </tr>
+                <tr>
+                  <td>2027</td>
+                  <td id="invObras2027" class="inv-obras-cell">–</td>
+                  <td id="inv2027">–</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- PANEL 2: ÁREA DE MOVIMIENTO (PISTAS Y PSN) -->
+      <section class="panel panel-movimiento">
+        <div class="panel-header" id="hdrMovimiento">Área de movimiento</div>
+        <div class="panel-body">
+
+          <!-- KPI Pistas de aterrizaje -->
+          <div class="superficie-kpi" style="padding:10px 8px;">
+            <div class="terminal-item" style="border-bottom:none;">
+              <div class="terminal-icon">
+                <img src="img/icons/runway.png" alt="">
+              </div>
+              <div class="terminal-text">
+                <div class="terminal-title">Pistas de aterrizaje</div>
+                <div class="terminal-sub" id="pistasSubtitulo">
+                  Orientaciones y dimensiones
+                </div>
+              </div>
+              <div class="terminal-badge" id="badgeCantPistas">–</div>
+            </div>
+
+            <div class="mov-runway-list" id="pistasDetalle" style="margin-top:8px;">
+              <!-- Se completa desde JS -->
+            </div>
+          </div>
+
+          <!-- KPI Posiciones en plataforma (PSN) -->
+          <div class="superficie-kpi" style="padding:10px 8px;">
+            <div class="terminal-item" style="border-bottom:none;">
+              <div class="terminal-icon">
+                <img src="img/icons/PSN.png" alt="" style="width:55px;">
+              </div>
+              <div class="terminal-text">
+                <div class="terminal-title">Posiciones en plataforma</div>
+                <div class="terminal-sub">
+                  Área destinada al estacionamiento de las aeronaves
+                </div>
+              </div>
+              <div class="terminal-badge" id="badgePsnTotal">–</div>
+            </div>
+
+            <div class="mov-psn-list" style="margin-top:2px;">
+              <div class="mov-item">
+                <span>Posiciones aeronaves comerciales</span>
+                <span class="mov-badge" id="psnCom">–</span>
+              </div>
+              <div class="mov-item">
+                <span>Posiciones aviación general</span>
+                <span class="mov-badge" id="psnGen">–</span>
+              </div>
+            </div>
+
+            <div class="superficie-thumb" style="margin-top:6px;">
+              <div id="mapPSN" class="map-psn"></div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- PANEL 3: TERMINAL DE PASAJEROS (RECORRIDO) -->
+      <section class="panel panel-terminal">
+        <div class="panel-header" id="hdrTerminal">Terminal de pasajeros</div>
+        <div class="panel-body terminal-body">
+
+          <!-- KPI Terminal de pasajeros: superficie e imagen -->
+          <div class="superficie-kpi">
+            <div class="superficie-header-row">
+              <div class="superficie-label">
+                <span>Terminal de pasajeros</span>
+              </div>
+              <div class="superficie-value">
+                <span id="terminalM2"></span>
+                <span class="superficie-unit">m²</span>
+              </div>
+            </div>
+
+            <div class="superficie-thumb">
+              <img id="imgTerminal" alt="Imagen de la terminal del aeropuerto">
+            </div>
+          </div>
+
+          <!-- KPI Llegada y check-in -->
+          <div class="superficie-kpi">
+            <div class="terminal-step-title">Llegada y check-in</div>
+
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/checkin.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Mostradores de check-in</div>
+                <div class="terminal-sub">Puestos habilitados para atención presencial</div>
+              </div>
+              <div class="terminal-badge" id="mostradoresCheckin">–</div>
+            </div>
+
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/kiosko.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Kioscos self check-in</div>
+                <div class="terminal-sub">Equipos de autoatención</div>
+              </div>
+              <div class="terminal-badge" id="kioscosSelf">–</div>
+            </div>
+          </div>
+
+          <!-- KPI Control de seguridad y fronterizo (PSA, Aduana, Migraciones) -->
+          <div class="superficie-kpi">
+            <div class="terminal-step-title">Control de seguridad y fronterizo</div>
+
+            <!-- PSA -->
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/PSA.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Puestos PSA</div>
+                <div class="terminal-sub">Puestos de control de seguridad</div>
+              </div>
+              <div class="terminal-badge" id="psaBadgeProxy">–</div>
+            </div>
+
+            <!-- Detalle PSA Inter / Cabotaje -->
+            <div class="terminal-sub" style="color:#555; font-size:0.78rem; margin-left:42px;">
+              Internacional: <span id="psaInter">–</span> · Cabotaje: <span id="psaCabot">–</span>
+            </div>
+
+            <!-- Aduana -->
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/Aduana.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Puestos de Aduanas</div>
+                <div class="terminal-sub">Puestos de control aduanero</div>
+              </div>
+              <div class="terminal-badge" id="aduanaPuestos">–</div>
+            </div>
+
+            <!-- Migraciones -->
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/migraciones.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Puestos de Migraciones</div>
+                <div class="terminal-sub" id="migracionesDetalle">–</div>
+              </div>
+              <div class="terminal-badge" id="migracionesTotal">–</div>
+            </div>
+          </div>
+
+          <!-- KPI Embarque -->
+          <div class="superficie-kpi">
+            <div class="terminal-step-title">Embarque</div>
+
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/boarding.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Puertas de embarque</div>
+                <div class="terminal-sub" id="puertasDetalle">–</div>
+              </div>
+              <div class="terminal-badge" id="puertasTotal">–</div>
+            </div>
+
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/manga.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Mangas telescópicas</div>
+                <div class="terminal-sub">Conexión directa aeronave–terminal</div>
+              </div>
+              <div class="terminal-badge" id="mangas">–</div>
+            </div>
+          </div>
+
+          <!-- KPI Arribo y equipaje -->
+          <div class="superficie-kpi">
+            <div class="terminal-step-title">Arribo y equipaje</div>
+
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/baggage.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Cintas de equipaje</div>
+                <div class="terminal-sub" id="cintasDetalle">–</div>
+              </div>
+              <div class="terminal-badge" id="cintasTotal">–</div>
+            </div>
+
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/Carrito.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Carritos porta equipajes</div>
+                <div class="terminal-sub">Disponibles para el pasajero</div>
+              </div>
+              <div class="terminal-badge" id="carritos">–</div>
+            </div>
+          </div>
+
+          <!-- KPI Apoyo al pasajero -->
+          <div class="superficie-kpi">
+            <div class="terminal-step-title">Apoyo al pasajero</div>
+
+            <div class="terminal-item">
+              <div class="terminal-icon"><img src="img/icons/estacionamiento.png" alt=""></div>
+              <div class="terminal-text">
+                <div class="terminal-title">Plazas de estacionamiento vehicular</div>
+                <div class="terminal-sub">Capacidad total de estacionamiento</div>
+              </div>
+              <div class="terminal-badge" id="estacionamiento">–</div>
+            </div>
+          </div>
+
+          <!-- elemento oculto para mantener compatibilidad con lógica previa -->
+          <span id="terminalM2Dup" style="display:none;"></span>
+
+        </div>
+      </section>
+
+      <!-- PANEL 4: UBICACIÓN Y ACCESIBILIDAD -->
+      <section class="panel panel-ubicacion">
+        <div class="panel-header" id="hdrUbicacion">Ubicación y accesibilidad</div>
+        <div class="panel-body">
+
+          <!-- KPI Ubicación básica y distancia al centro -->
+          <div class="ubicacion-kpi">
+            <div class="ubi-row">
+              <span class="ubi-label">Ubicación</span>
+              <span class="ubi-chip" id="ubicacionText">–</span>
+            </div>
+
+            <div class="ubi-row">
+              <span class="ubi-label">Distancia al centro de la ciudad</span>
+              <span class="ubi-chip" id="distanciaCentro">–</span>
+            </div>
+
+            <div class="ubi-row">
+              <span class="ubi-label">Horario de operación</span>
+              <span class="ubi-chip" id="horarioOperacion">–</span>
+            </div>
+          </div>
+
+    <!-- MAPA UBICACIÓN (SUBE ARRIBA) -->
+    <div class="ubicacion-map-wrapper">
+      <div id="mapUbicacion" class="map-ubicacion"></div>
+    </div>
+          
+          <!-- KPI Transporte público -->
+          <div class="transporte-kpi">
+            <div class="contact-title">Transporte público</div>
+
+            <div class="small-label" style="margin-top:4px;">
+              Líneas de colectivo que llegan al aeropuerto
+            </div>
+            <div class="transporte-list" id="transporteLineas">–</div>
+
+            <div class="transporte-thumb">
+              <div id="mapTransporte" class="map-transporte"></div>
+            </div>
+
+            <button
+              type="button"
+              class="map-expand-btn"
+              data-map="transporte"
+            >
+              Abrir el mapa
+            </button>
+          </div>
+
+          <!-- KPI Administrador del aeropuerto -->
+          <div class="contact-kpi">
+            <div class="contact-title">Administración del aeropuerto</div>
+
+            <div class="contact-row">
+              <span class="contact-label">Nombre</span>
+              <span class="contact-value" id="contactoAdminNombre">–</span>
+            </div>
+
+            <div class="contact-row">
+              <span class="contact-label">Teléfono</span>
+              <span class="contact-value-small" id="contactoAdminTel">–</span>
+            </div>
+
+            <div class="contact-row">
+              <span class="contact-label">Correo</span>
+              <span class="contact-value-small" id="contactoAdminCorreo">–</span>
+            </div>
+          </div>
+
+          <!-- KPI Jefatura de aeropuerto -->
+          <div class="contact-kpi">
+            <div class="contact-title">Jefatura de aeropuerto</div>
+
+            <div class="contact-row">
+              <span class="contact-label">Nombre</span>
+              <span class="contact-value" id="contactoJefeNombre">–</span>
+            </div>
+
+            <div class="contact-row">
+              <span class="contact-label">Teléfono</span>
+              <span class="contact-value-small" id="contactoJefeTel">–</span>
+            </div>
+
+            <div class="contact-row">
+              <span class="contact-label">Correo</span>
+              <span class="contact-value-small" id="contactoJefeCorreo">–</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
 
 <!-- PANEL 5: IMPACTO TERRITORIAL / EMPLEO -->
 <section class="panel panel-empleo">
 
-<div class="panel-header" id="hdrEmpleo">
-Impacto territorial del aeropuerto
-<button
-type="button"
-class="info-btn"
-id="btnInfoImpacto"
-aria-haspopup="dialog"
-aria-controls="modalImpacto"
-aria-label="Ver aclaración metodológica"
-title="Aclaración metodológica"
->
-i
-</button>
-</div>
+  <div class="panel-header" id="hdrEmpleo">
+    Impacto territorial del aeropuerto
+    <button
+      type="button"
+      class="info-btn"
+      id="btnInfoImpacto"
+      aria-haspopup="dialog"
+      aria-controls="modalImpacto"
+      aria-label="Ver aclaración metodológica"
+      title="Aclaración metodológica"
+    >
+      i
+    </button>
+  </div>
 
-<div class="panel-body">
+  <div class="panel-body">
 
-<!-- KPI Empleo -->
-<div class="superficie-kpi">
-<div class="contact-title">Empleo vinculado al aeropuerto</div>
+    <!-- KPI Empleo -->
+    <div class="superficie-kpi">
+      <div class="contact-title">Empleo vinculado al aeropuerto</div>
 
-<div class="ubi-row">
-<span class="ubi-label">Empleo directo aeronáutico/aeroportuario</span>
-<span class="ubi-chip" id="empleoDirecto">–</span>
-</div>
+      <div class="ubi-row">
+        <span class="ubi-label">Empleo directo aeronáutico/aeroportuario</span>
+        <span class="ubi-chip" id="empleoDirecto">–</span>
+      </div>
 
-<div class="ubi-row">
-<span class="ubi-label">Empleo indirecto</span>
-<span class="ubi-chip" id="empleoIndirecto">–</span>
-</div>
-</div>
+      <div class="ubi-row">
+        <span class="ubi-label">Empleo indirecto</span>
+        <span class="ubi-chip" id="empleoIndirecto">–</span>
+      </div>
+    </div>
 
-<!-- KPI Área de influencia -->
-<div class="superficie-kpi">
-<div class="contact-title">Área de influencia aeroportuaria</div>
+    <!-- KPI Área de influencia -->
+    <div class="superficie-kpi">
+      <div class="contact-title">Área de influencia aeroportuaria</div>
 
-<div class="ubi-row">
-<span class="ubi-label">Población (Censo 2022)</span>
-<span class="ubi-chip" id="poblacionInfluencia">–</span>
-</div>
+      <div class="ubi-row">
+        <span class="ubi-label">Población (Censo 2022)</span>
+        <span class="ubi-chip" id="poblacionInfluencia">–</span>
+      </div>
 
-<div class="superficie-thumb" style="margin-top:6px;">
-<div id="mapInfluencia" class="map-influencia"></div>
-</div>
+      <div class="superficie-thumb" style="margin-top:6px;">
+        <div id="mapInfluencia" class="map-influencia"></div>
+      </div>
 
-<button type="button" class="map-expand-btn" data-map="influencia">
-Abrir el mapa
-</button>
-</div>
+      <button type="button" class="map-expand-btn" data-map="influencia">
+        Abrir el mapa
+      </button>
+    </div>
 
-</div>
+  </div>
 </section>
 
 
-<!-- PANEL 6: SERVICIOS Y AYUDAS -->
-<section class="panel panel-servicios">
-<div class="panel-header" id="hdrServicios">Servicios y ayudas</div>
-<div class="panel-body">
-<div class="small-label">Ayudas radioeléctricas</div>
-<div class="small-label" id="radioayudas">–</div>
+      <!-- PANEL 6: SERVICIOS Y AYUDAS -->
+      <section class="panel panel-servicios">
+        <div class="panel-header" id="hdrServicios">Servicios y ayudas</div>
+        <div class="panel-body">
+          <div class="small-label">Ayudas radioeléctricas</div>
+          <div class="small-label" id="radioayudas">–</div>
 
-<div class="small-label" style="margin-top:6px;">Ayudas visuales</div>
-<div class="small-label" id="ayudasVisuales">–</div>
+          <div class="small-label" style="margin-top:6px;">Ayudas visuales</div>
+          <div class="small-label" id="ayudasVisuales">–</div>
 
-<div class="small-label" style="margin-top:6px;">AWOS</div>
-<div class="small-label" id="awos">–</div>
+          <div class="small-label" style="margin-top:6px;">AWOS</div>
+          <div class="small-label" id="awos">–</div>
 
-<!-- KPI: Operador de cargas -->
-<div class="servicio-kpi">
-<div class="servicio-label">Operador de cargas</div>
-<div class="servicio-value" id="operadorCargas">–</div>
-</div>
+          <!-- KPI: Operador de cargas -->
+          <div class="servicio-kpi">
+            <div class="servicio-label">Operador de cargas</div>
+            <div class="servicio-value" id="operadorCargas">–</div>
+          </div>
 
-<!-- KPI: Terminal de cargas -->
-<div class="servicio-kpi">
-<div class="servicio-label">Terminal de cargas (m²)</div>
-<div class="servicio-value" id="terminalCargasM2">–</div>
-</div>
+          <!-- KPI: Terminal de cargas -->
+          <div class="servicio-kpi">
+            <div class="servicio-label">Terminal de cargas (m²)</div>
+            <div class="servicio-value" id="terminalCargasM2">–</div>
+          </div>
 
-<div class="small-label" style="margin-top:6px;">Aeroplantas</div>
-<div class="small-label" id="aeroplantas">–</div>
+          <div class="small-label" style="margin-top:6px;">Aeroplantas</div>
+          <div class="small-label" id="aeroplantas">–</div>
 
-<div class="small-label" style="margin-top:6px;">Clave de referencia de aeródromo</div>
-<div class="small-label" id="claveRef">–</div>
+          <div class="small-label" style="margin-top:6px;">Clave de referencia de aeródromo</div>
+          <div class="small-label" id="claveRef">–</div>
 
-<div class="small-label" style="margin-top:6px;">Categoría SEI normal</div>
-<div class="small-label" id="categoriaSEI">–</div>
-</div>
-</section>
+          <div class="small-label" style="margin-top:6px;">Categoría SEI normal</div>
+          <div class="small-label" id="categoriaSEI">–</div>
+        </div>
+      </section>
 
-</section>
-</main>
-
-<!-- ==========================
-      FOOTER
-      ========================== -->
-<footer>
-<div class="footer-inner" id="footerNote">
-Fuente: ORSNA – Datos de la planilla básica por aeropuerto.
-</div>
-</footer>
+    </section>
+  </main>
 
   <!-- ==========================
-       SCRIPTS LEAFLET
+       FOOTER
        ========================== -->
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin="">
-  </script>
-
-  <!-- Esri Leaflet (para mapa satelital) -->
-  <script src="https://unpkg.com/esri-leaflet@3/dist/esri-leaflet.js" crossorigin=""></script>
-
-  <!-- JS propio -->
-  <script src="js/datos-clave.js"></script>
+  <footer>
+    <div class="footer-inner" id="footerNote">
+      Fuente: ORSNA – Datos de la planilla básica por aeropuerto.
+    </div>
+  </footer>
 
 <!-- Modal: Aclaración metodológica -->
 <div
-class="modal-overlay"
-id="modalImpacto"
-role="dialog"
-aria-modal="true"
-aria-labelledby="modalImpactoTitle"
-aria-hidden="true"
+  class="modal-overlay"
+  id="modalImpacto"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modalImpactoTitle"
+  aria-hidden="true"
 >
-<div class="modal-card" role="document" tabindex="-1">
-<div class="modal-head">
-<div class="modal-title" id="modalImpactoTitle">Aclaración metodológica</div>
-<button type="button" class="modal-close" data-close-modal aria-label="Cerrar">×</button>
-</div>
+  <div class="modal-card" role="document" tabindex="-1">
+    <div class="modal-head">
+      <div class="modal-title" id="modalImpactoTitle">Aclaración metodológica</div>
+      <button type="button" class="modal-close" data-close-modal aria-label="Cerrar">×</button>
+    </div>
 
-<div class="modal-body">
-<p>
-<strong>
-El transporte aerocomercial es un componente esencial de la economía
-y un factor clave del desarrollo territorial.
-</strong>
-</p>
+    <div class="modal-body">
+      <p>
+        <strong>
+          El transporte aerocomercial es un componente esencial de la economía
+          y un factor clave del desarrollo territorial.
+        </strong>
+      </p>
 
-<p>
-La provisión de servicios aerocomerciales y la infraestructura aeroportuaria
-constituyen <strong>elementos de cohesión territorial</strong> que permiten
-generar oportunidades de <strong>atracción, retención y expansión de la
-actividad económica</strong> en el área de influencia de cada aeropuerto
-del país.
-</p>
+      <p>
+        La provisión de servicios aerocomerciales y la infraestructura aeroportuaria
+        constituyen <strong>elementos de cohesión territorial</strong> que permiten
+        generar oportunidades de <strong>atracción, retención y expansión de la
+        actividad económica</strong> en el área de influencia de cada aeropuerto
+        del país.
+      </p>
 
-<p>
-Los datos presentados se estiman tomando como referencia
-<strong>estudios elaborados por organismos internacionales y equipos académicos</strong>
-que han desarrollado y estandarizado una metodología común para medir
-los impactos económicos y sociales de la aviación, permitiendo la
-comparación entre distintos países y regiones del mundo.
-</p>
+      <p>
+        Los datos presentados se estiman tomando como referencia
+        <strong>estudios elaborados por organismos internacionales y equipos académicos</strong>
+        que han desarrollado y estandarizado una metodología común para medir
+        los impactos económicos y sociales de la aviación, permitiendo la
+        comparación entre distintos países y regiones del mundo.
+      </p>
 
-<p>
-Entre los principales organismos de referencia se destacan:
-<strong>Airports Council International (ACI), IATA, Oxford Economics
-y el Air Transport Action Group (ATAG)</strong>,
-que publican periódicamente informes sobre los beneficios económicos
-del transporte aéreo.
-</p>
+      <p>
+        Entre los principales organismos de referencia se destacan:
+        <strong>Airports Council International (ACI), IATA, Oxford Economics
+        y el Air Transport Action Group (ATAG)</strong>,
+        que publican periódicamente informes sobre los beneficios económicos
+        del transporte aéreo.
+      </p>
 
-<p>
-Estas referencias constituyen la <strong>base técnica y conceptual</strong>
-para estimar los impactos <strong>directos, indirectos, inducidos y
-catalíticos</strong> de la actividad aeronáutica y aeroportuaria
-sobre la economía y el empleo, en línea con los
-<strong>estándares internacionales</strong>.
-</p>
+      <p>
+        Estas referencias constituyen la <strong>base técnica y conceptual</strong>
+        para estimar los impactos <strong>directos, indirectos, inducidos y
+        catalíticos</strong> de la actividad aeronáutica y aeroportuaria
+        sobre la economía y el empleo, en línea con los
+        <strong>estándares internacionales</strong>.
+      </p>
 
-<p>
-En particular, el informe de IATA
-<strong>“El valor del transporte aéreo para Argentina” (2019)</strong>
-constituye una de las principales referencias para dimensionar la
-contribución del sector a la economía nacional.
-</p>
+      <p>
+        En particular, el informe de IATA
+        <strong>“El valor del transporte aéreo para Argentina” (2019)</strong>
+        constituye una de las principales referencias para dimensionar la
+        contribución del sector a la economía nacional.
+      </p>
 
-<p>
-Los informes actuales elaborados por IATA para Argentina y otros países
-pueden consultarse en:
-<br>
-<a href="https://www.iata.org/en/publications/economics/reports/value-of-air-transport-country-reports/"
-target="_blank" rel="noopener">
-https://www.iata.org/en/publications/economics/reports/value-of-air-transport-country-reports/
-</a>
-</p>
-</div>
+      <p>
+        Los informes actuales elaborados por IATA para Argentina y otros países
+        pueden consultarse en:
+        <br>
+        <a href="https://www.iata.org/en/publications/economics/reports/value-of-air-transport-country-reports/"
+           target="_blank" rel="noopener">
+          https://www.iata.org/en/publications/economics/reports/value-of-air-transport-country-reports/
+        </a>
+      </p>
+    </div>
 
-<div class="modal-actions">
-<button type="button" class="modal-btn" data-close-modal>Cerrar</button>
-</div>
-</div>
+    <div class="modal-actions">
+      <button type="button" class="modal-btn" data-close-modal>Cerrar</button>
+    </div>
+  </div>
 </div>
 
   
