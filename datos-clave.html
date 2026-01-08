@@ -661,6 +661,17 @@
         aria-label="Serie mensual de pasajeros"
       ></svg>
 
+     <div class="pax-controls">
+  <div class="small-label">Rango de años</div>
+  <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+    <input id="paxYearFrom" type="range" min="2001" max="2025" value="2001">
+    <input id="paxYearTo" type="range" min="2001" max="2025" value="2025">
+    <div class="small-label" id="paxYearLabel">2001–2025</div>
+  </div>
+</div>
+
+<div id="paxTooltip" class="pax-tooltip" style="display:none;"></div>
+
       <div class="small-label pax-chart-note" id="paxChartNote">–</div>
     </div>
 
