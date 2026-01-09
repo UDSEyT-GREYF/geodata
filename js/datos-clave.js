@@ -22,6 +22,7 @@
   let provinciasFeatures = [];
   let areasInfluenciaFeatures = [];
   let pasajerosMensualRows = [];
+  let currentIATA = "";
 
   // UI
   let selectEl = null;
@@ -1014,18 +1015,28 @@ if (yearFromEl && yearToEl && yearLabelEl) {
       return sel ? sel.value : (mode || "cabotaje");
     };
 
-    const onSlide = () => {
-      const yf = Number(yearFromEl.value);
-      const yt = Number(yearToEl.value);
+const getIataNow = () => {
+  // Lee el aeropuerto actualmente seleccionado (no el capturado al bindear)
+  const selA = document.getElementById("airportSelect");
+  return selA ? String(selA.value || "").toUpperCase() : String(iataUpper || "").toUpperCase();
+};
 
-      // Mantener coherencia: from <= to
-      if (yf > yt) yearToEl.value = String(yf);
+const onSlide = () => {
+  const yf = Number(yearFromEl.value);
+  const yt = Number(yearToEl.value);
 
-      yearLabelEl.textContent = `${yearFromEl.value}–${yearToEl.value}`;
+  // Mantener coherencia: from <= to
+  if (yf > yt) yearToEl.value = String(yf);
 
-      // Re-render con el modo actual
-      renderPasajerosPanel(iataUpper, getModeNow());
-    };
+  yearLabelEl.textContent = `${yearFromEl.value}–${yearToEl.value}`;
+
+  // Modo actual (select serie)
+  const selMode = document.getElementById("paxDatasetSelect");
+  const modeNow = selMode ? selMode.value : (mode || "cabotaje");
+
+  // Clave: re-render con el IATA actual, no el de la primera vez
+renderPasajerosPanel(currentIATA || getIataNow(), modeNow);
+};
 
     yearFromEl.dataset.bound = "1";
     yearToEl.dataset.bound = "1";
@@ -1280,6 +1291,7 @@ if (prevYearRow && Number(prevYearRow.valor) > 0) {
      ============================================================ */
 
   function renderAirport(iataCode) {
+    currentIATA = String(iataCode || "").toUpperCase();   // <-- AGREGAR ACÁ (1ra línea útil)
     const a = aeropuertos.find(x => x.IATA === iataCode);
     if (!a) return;
 
