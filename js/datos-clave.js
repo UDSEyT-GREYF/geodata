@@ -1152,7 +1152,7 @@ if (prevYearRow && Number(prevYearRow.valor) > 0) {
 
     // ===== SVG Chart (simple line) =====
     const W = 800, H = 240;
-    const padL = 46, padR = 16, padT = 18, padB = 36;
+    const padL = 78, padR = 16, padT = 18, padB = 36;
     const innerW = W - padL - padR;
     const innerH = H - padT - padB;
 
