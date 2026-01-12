@@ -1181,17 +1181,33 @@ if (prevYearRow && Number(prevYearRow.valor) > 0) {
     });
 
 
-    // ticks X por año (enero)
-    let xTicks = "";
-    rowsChart.forEach((r, i) => {
-      if (r.date.getMonth() === 0) {
-        const xx = x(i);
-        xTicks += `
-          <line x1="${xx}" y1="${padT}" x2="${xx}" y2="${padT + innerH}" stroke="#f0f2f6" stroke-width="1"/>
-          <text x="${xx}" y="${H - 14}" text-anchor="middle" font-size="10" fill="#666">${r.date.getFullYear()}</text>
-        `;
-      }
-    });
+// ticks X por año (línea en enero + etiqueta centrada en el "bloque" anual)
+let xTicks = "";
+
+// 1) índices donde empieza un año (enero)
+const janIdx = [];
+rowsChart.forEach((r, i) => {
+  if (r.date.getMonth() === 0) janIdx.push(i);
+});
+
+// 2) dibujar líneas y etiquetas centradas entre enero actual y el siguiente enero
+for (let k = 0; k < janIdx.length; k++) {
+  const i0 = janIdx[k];
+  const i1 = (k + 1 < janIdx.length) ? janIdx[k + 1] : (rowsChart.length - 1);
+
+  const x0 = x(i0);            // enero (inicio)
+  const x1 = x(i1);            // próximo enero (o fin)
+  const xMid = (x0 + x1) / 2;  // centro del bloque anual
+
+  // línea vertical en enero
+  xTicks += `
+    <line x1="${x0}" y1="${padT}" x2="${x0}" y2="${padT + innerH}" stroke="#f0f2f6" stroke-width="1"/>
+    <text x="${xMid}" y="${H - 14}" text-anchor="middle" font-size="10" fill="#666">
+      ${rowsChart[i0].date.getFullYear()}
+    </text>
+  `;
+}
+
 
     const points = rowsChart.map((r, i) => `${x(i)},${y(r.valor)}`).join(" ");
 
