@@ -1415,6 +1415,7 @@ function renderPasajerosPanel(iataUpper) {
     currentIATA = String(iataCode || "").toUpperCase();
 
     const iata = String(a.IATA || "").toUpperCase();
+    currentIATA = iata;
     const nombre = clean(a["Aeropuerto"]) || clean(a["Nombre del Aeropuerto"]) || iata;
     const nombreOficial = clean(a["Nombre del Aeropuerto"]) || clean(a["Aeropuerto"]);
     const tituloAeroSeccion = `${nombre} (${iata})`;
