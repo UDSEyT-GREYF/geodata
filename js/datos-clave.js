@@ -1187,6 +1187,16 @@ function renderPasajerosPanel(iataUpper) {
   const maxYear = Math.max(...all.map(r => r.date.getFullYear()));
 
   if (yearFromEl && yearToEl && yearLabelEl) {
+    
+    // Si cambió el aeropuerto, reseteo el rango por defecto
+const prevIata = yearFromEl.dataset.iata || "";
+if (prevIata !== iataUpper) {
+  yearFromEl.value = String(minYear);
+  yearToEl.value = String(maxYear);
+  yearFromEl.dataset.iata = iataUpper;
+  yearToEl.dataset.iata = iataUpper;
+}
+
     // set defaults si están vacíos o fuera de rango
     if (!yearFromEl.value) yearFromEl.value = String(minYear);
     if (!yearToEl.value) yearToEl.value = String(maxYear);
@@ -1203,7 +1213,7 @@ function renderPasajerosPanel(iataUpper) {
         const yt = Number(yearToEl.value);
         if (yf > yt) yearToEl.value = String(yf);
         yearLabelEl.textContent = `${yearFromEl.value}–${yearToEl.value}`;
-        renderPasajerosPanel(iataUpper);
+        renderPasajerosPanel(currentIATA || iataUpper);
       };
       yearFromEl.dataset.bound = "1";
       yearToEl.dataset.bound = "1";
