@@ -623,34 +623,81 @@
 
   <div class="panel-body">
 
-    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:8px;">
-      <div class="small-label">Serie</div>
-      <select id="paxDatasetSelect" class="select" style="min-width:240px;">
-        <option value="cabotaje">Cabotaje</option>
-        <option value="internacional">Internacional</option>
-        <option value="total">Total (Cabotaje + Internacional)</option>
-      </select>
+
+
+<div class="pasajeros-kpis pax-kpis-3">
+
+  <!-- TOTAL -->
+  <div class="pax-group">
+    <div class="pax-group-title">Total</div>
+
+    <div class="pasajeros-kpi">
+      <div class="small-label">Último mes disponible</div>
+      <div class="kpi-value" id="paxTotUltimoValor">–</div>
+      <div class="small-label" id="paxTotUltimoPeriodo">–</div>
     </div>
 
-    <div class="pasajeros-kpis">
-      <div class="pasajeros-kpi">
-        <div class="small-label">Último mes disponible</div>
-        <div class="kpi-value" id="paxUltimoValor">–</div>
-        <div class="small-label" id="paxUltimoPeriodo">–</div>
-      </div>
-
-      <div class="pasajeros-kpi">
-        <div class="small-label">Variación interanual (mismo mes)</div>
-        <div class="kpi-value" id="paxVarYoY">–</div>
-        <div class="small-label" id="paxVarYoYDetalle">–</div>
-      </div>
-
-      <div class="pasajeros-kpi">
-        <div class="small-label">Variación acumulada (ene → último mes)</div>
-        <div class="kpi-value" id="paxVarYTD">–</div>
-        <div class="small-label" id="paxVarYTDDetalle">–</div>
-      </div>
+    <div class="pasajeros-kpi">
+      <div class="small-label">Variación interanual (mismo mes)</div>
+      <div class="kpi-value" id="paxTotVarYoY">–</div>
+      <div class="small-label" id="paxTotVarYoYDetalle">–</div>
     </div>
+
+    <div class="pasajeros-kpi">
+      <div class="small-label">Variación acumulada (ene → último mes)</div>
+      <div class="kpi-value" id="paxTotVarYTD">–</div>
+      <div class="small-label" id="paxTotVarYTDDetalle">–</div>
+    </div>
+  </div>
+
+  <!-- CABOTAJE -->
+  <div class="pax-group">
+    <div class="pax-group-title">Cabotaje</div>
+
+    <div class="pasajeros-kpi">
+      <div class="small-label">Último mes disponible</div>
+      <div class="kpi-value" id="paxCabUltimoValor">–</div>
+      <div class="small-label" id="paxCabUltimoPeriodo">–</div>
+    </div>
+
+    <div class="pasajeros-kpi">
+      <div class="small-label">Variación interanual (mismo mes)</div>
+      <div class="kpi-value" id="paxCabVarYoY">–</div>
+      <div class="small-label" id="paxCabVarYoYDetalle">–</div>
+    </div>
+
+    <div class="pasajeros-kpi">
+      <div class="small-label">Variación acumulada (ene → último mes)</div>
+      <div class="kpi-value" id="paxCabVarYTD">–</div>
+      <div class="small-label" id="paxCabVarYTDDetalle">–</div>
+    </div>
+  </div>
+
+  <!-- INTERNACIONAL -->
+  <div class="pax-group">
+    <div class="pax-group-title">Internacional</div>
+
+    <div class="pasajeros-kpi">
+      <div class="small-label">Último mes disponible</div>
+      <div class="kpi-value" id="paxIntUltimoValor">–</div>
+      <div class="small-label" id="paxIntUltimoPeriodo">–</div>
+    </div>
+
+    <div class="pasajeros-kpi">
+      <div class="small-label">Variación interanual (mismo mes)</div>
+      <div class="kpi-value" id="paxIntVarYoY">–</div>
+      <div class="small-label" id="paxIntVarYoYDetalle">–</div>
+    </div>
+
+    <div class="pasajeros-kpi">
+      <div class="small-label">Variación acumulada (ene → último mes)</div>
+      <div class="kpi-value" id="paxIntVarYTD">–</div>
+      <div class="small-label" id="paxIntVarYTDDetalle">–</div>
+    </div>
+  </div>
+
+</div>
+
 
     <div class="pasajeros-chart-wrap">
       <svg
