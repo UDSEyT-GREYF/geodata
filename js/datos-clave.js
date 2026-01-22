@@ -1025,72 +1025,84 @@ const key = `${year}-${String(m).padStart(2, "0")}`;
   return { ultimoValor, ultimoPeriodo, yoy, yoyDet, ytd, ytdDet };
 }
  
-function renderPasajerosPanel(iataUpper) {
+function renderPasajerosPanel(iataUpper, mode) {
+  // Guardar el aeropuerto “activo” para que los sliders no vuelvan al primero
+  currentIATA = String(iataUpper || "").toUpperCase();
+
+  const hdr = document.getElementById("hdrPasajeros");
+  const elUltVal = document.getElementById("paxUltimoValor");
+  const elUltPer = document.getElementById("paxUltimoPeriodo");
+  const elYoY = document.getElementById("paxVarYoY");
+  const elYoYDet = document.getElementById("paxVarYoYDetalle");
   const svg = document.getElementById("paxChartSvg");
   const note = document.getElementById("paxChartNote");
+  const elYTD = document.getElementById("paxVarYTD");
+  const elYTDDet = document.getElementById("paxVarYTDDetalle");
 
+  // Controles rango de años + tooltip
   const yearFromEl = document.getElementById("paxYearFrom");
   const yearToEl = document.getElementById("paxYearTo");
   const yearLabelEl = document.getElementById("paxYearLabel");
-
   const tooltipEl = document.getElementById("paxTooltip");
 
-  if (!svg || !note) return;
+  if (!svg || !elUltVal || !elUltPer || !elYoY || !elYoYDet || !note) return;
 
-  const renderIATA = String(iataUpper || "").trim().toUpperCase();
-  iataUpper = renderIATA;
+  // Modo actual (si no viene por parámetro, lo toma del selector)
+  const selModeEl = document.getElementById("paxDatasetSelect");
+  const modeNow = mode || (selModeEl ? selModeEl.value : "cabotaje");
 
-  const rowsCab = buildPaxSeries(iataUpper, "cabotaje");
-  const rowsInt = buildPaxSeries(iataUpper, "internacional");
-  const rowsTot = buildPaxSeries(iataUpper, "total");
+  const rows = buildPaxSeries(currentIATA, modeNow);
 
-  if (!rowsCab.length && !rowsInt.length && !rowsTot.length) {
+  if (!rows.length) {
+    elUltVal.textContent = "–";
+    elUltPer.textContent = "Sin datos";
+    elYoY.textContent = "–";
+    elYoYDet.textContent = "–";
+    if (elYTD) elYTD.textContent = "–";
+    if (elYTDDet) elYTDDet.textContent = "–";
     svg.innerHTML = "";
-    note.textContent = `No hay datos para ${iataUpper}.`;
+    note.textContent = `No hay datos para ${currentIATA} (${modeNow}).`;
     return;
   }
 
-  // Base temporal del gráfico
-  const base = rowsTot.length ? rowsTot : (rowsCab.length ? rowsCab : rowsInt);
-
   // Años disponibles reales
-  const minYear = Math.min(...base.map(r => r.date.getFullYear()));
-  const maxYear = Math.max(...base.map(r => r.date.getFullYear()));
+  const minYear = Math.min(...rows.map(r => r.date.getFullYear()));
+  const maxYear = Math.max(...rows.map(r => r.date.getFullYear()));
 
-  // Init sliders una sola vez (y actualizar límites si cambia el aeropuerto)
+  // ====== Sliders: setear rangos SIEMPRE y reinicializar al cambiar de aeropuerto ======
   if (yearFromEl && yearToEl && yearLabelEl) {
     yearFromEl.min = String(minYear);
     yearFromEl.max = String(maxYear);
     yearToEl.min = String(minYear);
     yearToEl.max = String(maxYear);
 
-    // Si el valor actual quedó fuera de rango, lo corregimos
-    if (Number(yearFromEl.value || minYear) < minYear) yearFromEl.value = String(minYear);
-    if (Number(yearToEl.value || maxYear) > maxYear) yearToEl.value = String(maxYear);
-
-    // Primera vez: setear rango completo
-    if (!yearFromEl.dataset.init) {
+    // Si cambió el aeropuerto, resetear a rango completo
+    if (yearFromEl.dataset.iata !== currentIATA) {
       yearFromEl.value = String(minYear);
       yearToEl.value = String(maxYear);
-      yearFromEl.dataset.init = "1";
-      yearToEl.dataset.init = "1";
+      yearFromEl.dataset.iata = currentIATA;
+      yearToEl.dataset.iata = currentIATA;
     }
 
+    // Etiqueta
     yearLabelEl.textContent = `${yearFromEl.value}–${yearToEl.value}`;
 
-    // Bind listeners una sola vez
+    // Bind listeners una sola vez (y siempre renderizando el currentIATA real)
     if (!yearFromEl.dataset.bound) {
-      const getIataNow = () => {
-        const selA = document.getElementById("airportSelect");
-        return selA ? String(selA.value || "").trim().toUpperCase() : String(currentIATA || "").toUpperCase();
-      };
-
       const onSlide = () => {
         const yf = Number(yearFromEl.value);
         const yt = Number(yearToEl.value);
+
+        // Mantener coherencia: from <= to
         if (yf > yt) yearToEl.value = String(yf);
+
         yearLabelEl.textContent = `${yearFromEl.value}–${yearToEl.value}`;
-        renderPasajerosPanel(getIataNow());
+
+        const sel = document.getElementById("paxDatasetSelect");
+        const m = sel ? sel.value : modeNow;
+
+        // IMPORTANTÍSIMO: re-render del aeropuerto activo, no el primero
+        renderPasajerosPanel(currentIATA, m);
       };
 
       yearFromEl.dataset.bound = "1";
@@ -1100,56 +1112,128 @@ function renderPasajerosPanel(iataUpper) {
     }
   }
 
-  // Filtrado rango años (para el gráfico)
-  let yMin = minYear, yMax = maxYear;
+  // ====== Filtrar SOLO el gráfico por rango de años (KPIs con serie completa) ======
+  let rowsChart = rows;
+
   if (yearFromEl && yearToEl) {
     const yf = Number(yearFromEl.value);
     const yt = Number(yearToEl.value);
-    yMin = Math.min(yf, yt);
-    yMax = Math.max(yf, yt);
+    const yMin = Math.min(yf, yt);
+    const yMax = Math.max(yf, yt);
+
+    rowsChart = rows.filter(r => {
+      const yy = r.date.getFullYear();
+      return yy >= yMin && yy <= yMax;
+    });
   }
 
-  const inYearRange = (r) => {
-    const yy = r.date.getFullYear();
-    return yy >= yMin && yy <= yMax;
+  // Si el filtro deja vacío, caemos al total
+  if (!rowsChart.length) rowsChart = rows;
+
+  // ====== KPI último mes ======
+  const last = rows[rows.length - 1];
+  const lastLabel =
+    `${last.mesNombre || ""} ${last.anio || last.date.getFullYear()}`.trim() ||
+    last.date.toLocaleDateString("es-AR");
+
+  elUltVal.textContent = formatNumber(last.valor);
+  elUltPer.textContent = lastLabel;
+
+  // ====== KPI YTD (ene->último mes disponible) ======
+  const yearCur = last.date.getFullYear();
+  const lastMonthIdx = last.date.getMonth(); // 0-11
+
+  const sumPeriod = (year) => {
+    return rows
+      .filter(r => r.date.getFullYear() === year && r.date.getMonth() <= lastMonthIdx)
+      .reduce((acc, r) => acc + (Number(r.valor) || 0), 0);
   };
 
-  const baseChart = base.filter(inYearRange);
-  if (!baseChart.length) {
-    svg.innerHTML = "";
-    note.textContent = `No hay datos en el rango ${yMin}–${yMax} para ${iataUpper}.`;
-    return;
+  const ytdCur = sumPeriod(yearCur);
+  const ytdPrev = sumPeriod(yearCur - 1);
+
+  if (elYTD && elYTDDet) {
+    if (ytdPrev > 0) {
+      const ytdPct = ((ytdCur - ytdPrev) / ytdPrev) * 100;
+      elYTD.textContent = formatPct(ytdPct);
+      elYTDDet.textContent = `${formatNumber(Math.round(ytdPrev))} → ${formatNumber(Math.round(ytdCur))}`;
+    } else {
+      elYTD.textContent = "–";
+      elYTDDet.textContent = "No hay base del año anterior para el período acumulado.";
+    }
   }
 
-  const keyOf = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
-  const mapTot = new Map(rowsTot.map(r => [keyOf(r.date), r.valor]));
-  const mapCab = new Map(rowsCab.map(r => [keyOf(r.date), r.valor]));
-  const mapInt = new Map(rowsInt.map(r => [keyOf(r.date), r.valor]));
+  // ====== KPI YoY (mismo mes año anterior) ======
+  const lastY = last.date.getFullYear();
+  const lastM = last.date.getMonth(); // 0-11
+  const prevYearRow = rows.find(r => r.date.getFullYear() === (lastY - 1) && r.date.getMonth() === lastM);
 
-  const valuesAll = [];
-  for (const r of baseChart) {
-    const k = keyOf(r.date);
-    if (mapTot.has(k)) valuesAll.push(Number(mapTot.get(k)) || 0);
-    if (mapCab.has(k)) valuesAll.push(Number(mapCab.get(k)) || 0);
-    if (mapInt.has(k)) valuesAll.push(Number(mapInt.get(k)) || 0);
+  if (prevYearRow && Number(prevYearRow.valor) > 0) {
+    const yoy = ((last.valor - prevYearRow.valor) / prevYearRow.valor) * 100;
+    elYoY.textContent = formatPct(yoy);
+    elYoYDet.textContent = `${formatNumber(prevYearRow.valor)} → ${formatNumber(last.valor)}`;
+  } else if (prevYearRow) {
+    elYoY.textContent = "–";
+    elYoYDet.textContent = "La base interanual es 0 para ese mes.";
+  } else {
+    elYoY.textContent = "–";
+    elYoYDet.textContent = "No hay base interanual para ese mes.";
   }
 
-  const minVRaw = Math.min(...valuesAll);
-  const maxVRaw = Math.max(...valuesAll);
+  // ===== Helpers escala “linda” =====
+  function niceStep(rawStep) {
+    const exp = Math.floor(Math.log10(rawStep));
+    const base = Math.pow(10, exp);
+    const frac = rawStep / base;
 
+    let niceFrac = 1;
+    if (frac <= 1) niceFrac = 1;
+    else if (frac <= 2) niceFrac = 2;
+    else if (frac <= 5) niceFrac = 5;
+    else niceFrac = 10;
+
+    return niceFrac * base;
+  }
+
+  function buildNiceScale(minVal, maxVal, ticks) {
+    if (!isFinite(minVal) || !isFinite(maxVal)) return null;
+    if (minVal === maxVal) {
+      const pad = Math.max(1, Math.round(minVal * 0.1));
+      minVal -= pad;
+      maxVal += pad;
+    }
+
+    const range = maxVal - minVal;
+    const rawStep = range / Math.max(1, ticks);
+    const step = niceStep(rawStep);
+
+    const niceMin = Math.floor(minVal / step) * step;
+    const niceMax = Math.ceil(maxVal / step) * step;
+
+    const values = [];
+    for (let v = niceMin; v <= niceMax + step * 0.5; v += step) values.push(v);
+
+    return { niceMin, niceMax, step, values };
+  }
+
+  // ===== SVG Chart (línea simple) =====
   const W = 800, H = 240;
-  const padL = 58, padR = 16, padT = 18, padB = 36;
+  const padL = 56, padR = 16, padT = 18, padB = 36; // padL 56 para que no se corten los números
   const innerW = W - padL - padR;
   const innerH = H - padT - padB;
+
+  const minVRaw = Math.min(...rowsChart.map(r => r.valor));
+  const maxVRaw = Math.max(...rowsChart.map(r => r.valor));
 
   const yScale = buildNiceScale(minVRaw, maxVRaw, 4);
   const minV = yScale ? yScale.niceMin : minVRaw;
   const maxV = yScale ? yScale.niceMax : maxVRaw;
   const vRange = Math.max(1, maxV - minV);
 
-  const x = (i) => padL + (innerW * (i / Math.max(1, baseChart.length - 1)));
+  const x = (i) => padL + (innerW * (i / Math.max(1, rowsChart.length - 1)));
   const y = (v) => padT + innerH - (innerH * ((v - minV) / vRange));
 
+  // Ejes y ticks Y
   let grid = "";
   const yTickValues = yScale ? yScale.values : [minV, minV + vRange*0.25, minV + vRange*0.5, minV + vRange*0.75, maxV];
 
@@ -1157,49 +1241,32 @@ function renderPasajerosPanel(iataUpper) {
     const yy = y(vv);
     grid += `
       <line x1="${padL}" y1="${yy}" x2="${W - padR}" y2="${yy}" stroke="#e6eaf0" stroke-width="1"/>
-      <text x="${padL - 8}" y="${yy + 4}" text-anchor="end" font-size="10" fill="#666">${formatNumber(Math.round(vv))}</text>
+      <text x="${padL - 10}" y="${yy + 4}" text-anchor="end" font-size="10" fill="#666">${formatNumber(Math.round(vv))}</text>
     `;
   });
 
-  // Años: etiqueta centrada dentro de su “celda” anual
+  // Ticks X por año (enero) - etiqueta centrada en su “celda” anual (aprox.)
   let xTicks = "";
-  const janIdx = [];
-  baseChart.forEach((r, i) => { if (r.date.getMonth() === 0) janIdx.push(i); });
+  for (let i = 0; i < rowsChart.length; i++) {
+    const r = rowsChart[i];
+    if (r.date.getMonth() === 0) {
+      const xxLine = x(i);
 
-  for (let k = 0; k < janIdx.length; k++) {
-    const i0 = janIdx[k];
-    const i1 = (k + 1 < janIdx.length) ? janIdx[k + 1] : (baseChart.length - 1);
+      // buscar el próximo enero para estimar el “ancho del año”
+      let j = i + 1;
+      while (j < rowsChart.length && rowsChart[j].date.getMonth() !== 0) j++;
 
-    const x0 = x(i0);
-    const x1 = x(i1);
-    const xMid = (x0 + x1) / 2;
+      const xxNext = (j < rowsChart.length) ? x(j) : (W - padR);
+      const xxMid = (xxLine + xxNext) / 2;
 
-    xTicks += `
-      <line x1="${x0}" y1="${padT}" x2="${x0}" y2="${padT + innerH}" stroke="#f0f2f6" stroke-width="1"/>
-      <text x="${xMid}" y="${H - 14}" text-anchor="middle" font-size="10" fill="#666">
-        ${baseChart[i0].date.getFullYear()}
-      </text>
-    `;
+      xTicks += `
+        <line x1="${xxLine}" y1="${padT}" x2="${xxLine}" y2="${padT + innerH}" stroke="#f0f2f6" stroke-width="1"/>
+        <text x="${xxMid}" y="${H - 14}" text-anchor="middle" font-size="10" fill="#666">${r.date.getFullYear()}</text>
+      `;
+    }
   }
 
-  const makePoints = (mapSerie) => {
-    const pts = [];
-    baseChart.forEach((r, i) => {
-      const k = keyOf(r.date);
-      if (!mapSerie.has(k)) return;
-      const v = Number(mapSerie.get(k));
-      if (!isFinite(v)) return;
-      pts.push(`${x(i)},${y(v)}`);
-    });
-    return pts.join(" ");
-  };
-
-  const ptsTot = rowsTot.length ? makePoints(mapTot) : "";
-  const ptsCab = rowsCab.length ? makePoints(mapCab) : "";
-  const ptsInt = rowsInt.length ? makePoints(mapInt) : "";
-
-  // Evita que un render viejo “pise” al nuevo aeropuerto
-  if (String(currentIATA || "").toUpperCase() !== renderIATA) return;
+  const points = rowsChart.map((r, i) => `${x(i)},${y(r.valor)}`).join(" ");
 
   svg.innerHTML = `
     <rect x="0" y="0" width="${W}" height="${H}" fill="#ffffff"/>
@@ -1207,21 +1274,79 @@ function renderPasajerosPanel(iataUpper) {
     ${xTicks}
     <line x1="${padL}" y1="${padT + innerH}" x2="${W - padR}" y2="${padT + innerH}" stroke="#cfd7e2" stroke-width="1"/>
     <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT + innerH}" stroke="#cfd7e2" stroke-width="1"/>
-
-    ${ptsTot ? `<polyline fill="none" stroke="#2a5fa0" stroke-width="2.2" points="${ptsTot}"/>` : ""}
-    ${ptsCab ? `<polyline fill="none" stroke="#0b7285" stroke-width="1.8" points="${ptsCab}"/>` : ""}
-    ${ptsInt ? `<polyline fill="none" stroke="#b02a37" stroke-width="1.8" points="${ptsInt}" stroke-dasharray="5 4"/>` : ""}
+    <polyline fill="none" stroke="#2a5fa0" stroke-width="2" points="${points}"/>
   `;
 
-  // Tooltip básico (opcional)
+  // ===== Tooltip / hover =====
   if (tooltipEl) {
     tooltipEl.style.position = "absolute";
     tooltipEl.style.pointerEvents = "none";
     tooltipEl.style.display = "none";
   }
 
-  note.textContent = `Elaborado por ORSNA con datos de SIAC ANAC – Series: Total / Cabotaje / Internacional`;
+  const overlay = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  overlay.setAttribute("x", String(padL));
+  overlay.setAttribute("y", String(padT));
+  overlay.setAttribute("width", String(innerW));
+  overlay.setAttribute("height", String(innerH));
+  overlay.setAttribute("fill", "transparent");
+  overlay.style.cursor = "crosshair";
+  svg.appendChild(overlay);
+
+  const fmtMes = (d) => {
+    const mm = d.toLocaleString("es-AR", { month: "short" });
+    return `${mm} ${d.getFullYear()}`.replace(".", "");
+  };
+
+  const getSvgPoint = (evt) => {
+    const pt = svg.createSVGPoint();
+    pt.x = evt.clientX;
+    pt.y = evt.clientY;
+    const ctm = svg.getScreenCTM();
+    return ctm ? pt.matrixTransform(ctm.inverse()) : { x: 0, y: 0 };
+  };
+
+  const showTip = (evt) => {
+    if (!tooltipEl) return;
+
+    const p = getSvgPoint(evt);
+    const relX = Math.max(padL, Math.min(W - padR, p.x));
+
+    const t = (relX - padL) / innerW;
+    const idx = Math.round(t * Math.max(0, rowsChart.length - 1));
+    const i = Math.max(0, Math.min(rowsChart.length - 1, idx));
+    const r = rowsChart[i];
+
+    const px = x(i);
+    const py = y(r.valor);
+
+    const label = fmtMes(r.date);
+    const val = formatNumber(Math.round(r.valor));
+
+    tooltipEl.innerHTML = `<div style="font-weight:700;color:#002855;margin-bottom:2px;">${label}</div>
+                           <div style="font-size:0.9rem;color:#2a5fa0;font-weight:700;">${val}</div>`;
+
+    tooltipEl.style.display = "block";
+    tooltipEl.style.left = `${Math.min(760, Math.max(0, px))}px`;
+    tooltipEl.style.top = `${Math.max(0, py - 28)}px`;
+  };
+
+  const hideTip = () => {
+    if (!tooltipEl) return;
+    tooltipEl.style.display = "none";
+  };
+
+  overlay.addEventListener("mousemove", showTip);
+  overlay.addEventListener("mouseleave", hideTip);
+
+  const serieLabel =
+    (modeNow === "internacional") ? "Internacional" :
+    (modeNow === "total") ? "Total (Cabotaje + Internacional)" :
+    "Cabotaje";
+
+  note.textContent = `Elaborado por ORSNA con datos de SIAC ANAC – Serie: ${serieLabel}`;
 }
+
 
 
 
