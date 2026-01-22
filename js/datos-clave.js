@@ -969,7 +969,62 @@ const key = `${year}-${String(m).padStart(2, "0")}`;
     return Array.from(acc.values()).sort((a, b) => a.date - b.date);
   }
 
-  
+ function calcPaxKPIs(rows){
+  if (!rows || !rows.length) {
+    return {
+      ultimoValor: "–",
+      ultimoPeriodo: "Sin datos",
+      yoy: "–",
+      yoyDet: "–",
+      ytd: "–",
+      ytdDet: "–"
+    };
+  }
+
+  const last = rows[rows.length - 1];
+
+  const ultimoValor = formatNumber(Math.round(last.valor));
+  const ultimoPeriodo = last.date
+    ? last.date.toLocaleString("es-AR", { month: "long", year: "numeric" })
+    : "–";
+
+  // YoY
+  const lastY = last.date.getFullYear();
+  const lastM = last.date.getMonth();
+  const prevYearRow = rows.find(r => r.date.getFullYear() === (lastY - 1) && r.date.getMonth() === lastM);
+
+  let yoy = "–", yoyDet = "–";
+  if (prevYearRow && Number(prevYearRow.valor) > 0) {
+    const yoyPct = ((last.valor - prevYearRow.valor) / prevYearRow.valor) * 100;
+    yoy = formatPct(yoyPct);
+    yoyDet = `${formatNumber(prevYearRow.valor)} → ${formatNumber(last.valor)}`;
+  } else if (prevYearRow) {
+    yoyDet = "La base interanual es 0 para ese mes.";
+  } else {
+    yoyDet = "No hay base interanual para ese mes.";
+  }
+
+  // YTD (ene → último mes) contra mismo período del año anterior
+  const ytdCur = rows
+    .filter(r => r.date.getFullYear() === lastY && r.date.getMonth() <= lastM)
+    .reduce((s, r) => s + (Number(r.valor) || 0), 0);
+
+  const ytdPrev = rows
+    .filter(r => r.date.getFullYear() === (lastY - 1) && r.date.getMonth() <= lastM)
+    .reduce((s, r) => s + (Number(r.valor) || 0), 0);
+
+  let ytd = "–", ytdDet = "–";
+  if (ytdPrev > 0) {
+    const ytdPct = ((ytdCur - ytdPrev) / ytdPrev) * 100;
+    ytd = formatPct(ytdPct);
+    ytdDet = `${formatNumber(Math.round(ytdPrev))} → ${formatNumber(Math.round(ytdCur))}`;
+  } else {
+    ytdDet = "No hay base del año anterior para el período acumulado.";
+  }
+
+  return { ultimoValor, ultimoPeriodo, yoy, yoyDet, ytd, ytdDet };
+}
+ 
 function renderPasajerosPanel(iataUpper, mode) {
     const hdr = document.getElementById("hdrPasajeros");
     const elUltVal = document.getElementById("paxUltimoValor");
@@ -989,8 +1044,49 @@ function renderPasajerosPanel(iataUpper, mode) {
 
     if (!svg || !elUltVal || !elUltPer || !elYoY || !elYoYDet || !note) return;
 
-const rows = buildPaxSeries(iataUpper, mode || "cabotaje");
+const rowsCab = buildPaxSeries(iataUpper, "cabotaje");
+const rowsInt = buildPaxSeries(iataUpper, "internacional");
+const rowsTot = buildPaxSeries(iataUpper, "total");
 
+// si no hay nada en ninguna, corto
+if (!rowsCab.length && !rowsInt.length && !rowsTot.length) {
+  svg.innerHTML = "";
+  note.textContent = `No hay datos para ${iataUpper}.`;
+  return;
+}
+
+
+// KPIs por grupo
+const kTot = calcPaxKPIs(rowsTot);
+const kCab = calcPaxKPIs(rowsCab);
+const kInt = calcPaxKPIs(rowsInt);
+
+// TOTAL
+const setIf = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
+setIf("paxTotUltimoValor", kTot.ultimoValor);
+setIf("paxTotUltimoPeriodo", kTot.ultimoPeriodo);
+setIf("paxTotVarYoY", kTot.yoy);
+setIf("paxTotVarYoYDetalle", kTot.yoyDet);
+setIf("paxTotVarYTD", kTot.ytd);
+setIf("paxTotVarYTDDetalle", kTot.ytdDet);
+
+// CAB
+setIf("paxCabUltimoValor", kCab.ultimoValor);
+setIf("paxCabUltimoPeriodo", kCab.ultimoPeriodo);
+setIf("paxCabVarYoY", kCab.yoy);
+setIf("paxCabVarYoYDetalle", kCab.yoyDet);
+setIf("paxCabVarYTD", kCab.ytd);
+setIf("paxCabVarYTDDetalle", kCab.ytdDet);
+
+// INT
+setIf("paxIntUltimoValor", kInt.ultimoValor);
+setIf("paxIntUltimoPeriodo", kInt.ultimoPeriodo);
+setIf("paxIntVarYoY", kInt.yoy);
+setIf("paxIntVarYoYDetalle", kInt.yoyDet);
+setIf("paxIntVarYTD", kInt.ytd);
+setIf("paxIntVarYTDDetalle", kInt.ytdDet);
+
+  
 if (!rows.length) {
   elUltVal.textContent = "–";
   elUltPer.textContent = "Sin datos";
@@ -1031,12 +1127,8 @@ const onSlide = () => {
   yearLabelEl.textContent = `${yearFromEl.value}–${yearToEl.value}`;
 
   // Modo actual (select serie)
-  const selMode = document.getElementById("paxDatasetSelect");
-  const modeNow = selMode ? selMode.value : (mode || "cabotaje");
+renderPasajerosPanel(currentIATA || getIataNow());
 
-  // Clave: re-render con el IATA actual, no el de la primera vez
-renderPasajerosPanel(currentIATA || getIataNow(), modeNow);
-};
 
     yearFromEl.dataset.bound = "1";
     yearToEl.dataset.bound = "1";
@@ -1046,7 +1138,11 @@ renderPasajerosPanel(currentIATA || getIataNow(), modeNow);
 }
 
       // Filtrado para el gráfico (KPIs quedan con la serie completa)
-    let rowsChart = rows;
+// base X: total (si existe), si no cabotaje, si no internacional
+let base = rowsTot.length ? rowsTot : (rowsCab.length ? rowsCab : rowsInt);
+
+// rango años (usar base)
+let rowsBase = base;
 
     if (yearFromEl && yearToEl) {
       const yf = Number(yearFromEl.value);
@@ -1060,6 +1156,14 @@ renderPasajerosPanel(currentIATA || getIataNow(), modeNow);
       });
     }
 
+const keyOf = (d) => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`;
+
+const mapTot = new Map(rowsTot.map(r => [keyOf(r.date), r.valor]));
+const mapCab = new Map(rowsCab.map(r => [keyOf(r.date), r.valor]));
+const mapInt = new Map(rowsInt.map(r => [keyOf(r.date), r.valor]));
+
+
+  
     // Si el filtro deja vacío, caemos al total
     if (!rowsChart.length) rowsChart = rows;
 
@@ -1749,18 +1853,8 @@ for (let k = 0; k < janIdx.length; k++) {
     if (categoriaEl) categoriaEl.textContent = clean(a["CATEGORÍA SEI NORMAL"]) || "–";
 
     /* ---------- PASAJEROS (SERIE MENSUAL) ---------- */
-    const paxSel = document.getElementById("paxDatasetSelect");
-    const paxMode = paxSel ? paxSel.value : "cabotaje";
-
-    renderPasajerosPanel(iata, paxMode);
-
-    // Evitar listeners duplicados cuando se re-renderiza el aeropuerto
-    if (paxSel && !paxSel.dataset.bound) {
-      paxSel.dataset.bound = "1";
-      paxSel.addEventListener("change", () => {
-        renderPasajerosPanel(iata, paxSel.value);
-      });
-    }
+renderPasajerosPanel(iata);
+}
 
  
 
