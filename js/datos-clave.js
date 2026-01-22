@@ -1043,6 +1043,11 @@ function renderPasajerosPanel(iataUpper, mode) {
 
 
     if (!svg || !elUltVal || !elUltPer || !elYoY || !elYoYDet || !note) return;
+  // Snapshot del IATA con el que arranca este render
+  const renderIATA = String(iataUpper || "").toUpperCase();
+
+  // Si por algún motivo nos llamaron con un IATA viejo, normalizamos
+  iataUpper = renderIATA;
 
 const rowsCab = buildPaxSeries(iataUpper, "cabotaje");
 const rowsInt = buildPaxSeries(iataUpper, "internacional");
@@ -1104,31 +1109,40 @@ const minYear = Math.min(...rows.map(r => r.date.getFullYear()));
 const maxYear = Math.max(...rows.map(r => r.date.getFullYear()));
 
 // Bind slider events (una sola vez, y siempre usando el mode actual del select)
+
 if (yearFromEl && yearToEl && yearLabelEl) {
   if (!yearFromEl.dataset.bound) {
-    const getModeNow = () => {
-      const sel = document.getElementById("paxDatasetSelect");
-      return sel ? sel.value : (mode || "cabotaje");
+
+    const getIataNow = () => {
+      const selA = document.getElementById("airportSelect");
+      return selA ? String(selA.value || "").trim().toUpperCase() : String(currentIATA || "").toUpperCase();
     };
 
-const getIataNow = () => {
-  // Lee el aeropuerto actualmente seleccionado (no el capturado al bindear)
-  const selA = document.getElementById("airportSelect");
-  return selA ? String(selA.value || "").toUpperCase() : String(iataUpper || "").toUpperCase();
-};
+    const onSlide = () => {
+      const yf = Number(yearFromEl.value);
+      const yt = Number(yearToEl.value);
 
-const onSlide = () => {
-  const yf = Number(yearFromEl.value);
-  const yt = Number(yearToEl.value);
+      // Mantener coherencia: from <= to
+      if (yf > yt) yearToEl.value = String(yf);
 
-  // Mantener coherencia: from <= to
-  if (yf > yt) yearToEl.value = String(yf);
+      yearLabelEl.textContent = `${yearFromEl.value}–${yearToEl.value}`;
 
-  yearLabelEl.textContent = `${yearFromEl.value}–${yearToEl.value}`;
+      // IMPORTANTÍSIMO: re-render con el IATA ACTUAL, no el capturado
+      const iataNow = getIataNow();
+      renderPasajerosPanel(iataNow);
+    };
 
-  // Modo actual (select serie)
-renderPasajerosPanel(currentIATA || getIataNow());
+    // Marcar como “bindeado” antes de agregar listeners (evita dobles binds)
+    yearFromEl.dataset.bound = "1";
+    yearToEl.dataset.bound = "1";
 
+    yearFromEl.addEventListener("input", onSlide);
+    yearToEl.addEventListener("input", onSlide);
+  }
+}
+
+
+  
 
     yearFromEl.dataset.bound = "1";
     yearToEl.dataset.bound = "1";
@@ -1314,6 +1328,9 @@ for (let k = 0; k < janIdx.length; k++) {
 
 
     const points = rowsChart.map((r, i) => `${x(i)},${y(r.valor)}`).join(" ");
+
+// Si mientras calculábamos cambió el aeropuerto, abortar para no pisar el render nuevo
+if (String(currentIATA || "").toUpperCase() !== renderIATA) return;
 
     svg.innerHTML = `
       <rect x="0" y="0" width="${W}" height="${H}" fill="#ffffff"/>
