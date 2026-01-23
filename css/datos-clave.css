@@ -960,6 +960,9 @@ ul {
 
 .pasajeros-chart-wrap{
   position: relative; /* CLAVE para ubicar tooltip dentro */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   height: 320px;       /* probá 240–320 según tu diseño */
   margin-top:8px;
   background:#ffffff;
@@ -976,6 +979,8 @@ ul {
 
 /* Canvas: ocupa el 100% del contenedor */
 #paxChartCanvas{
+   flex: 1 1 auto;
+  min-height: 180px;      /* asegura que no quede demasiado chico */
   width: 100% !important;
   height: 100% !important;
   display: block;
@@ -989,6 +994,8 @@ ul {
 
 /* === Pasajeros: controles del gráfico (sliders) === */
 .pax-controls{
+   flex: 0 0 auto;
+  padding-top: 4px;
   display:flex;
   gap:10px;
   align-items:center;
@@ -1000,6 +1007,8 @@ ul {
 }
 .pax-controls input[type="range"]{
   width: 180px;
+   flex: 1 1 240px;        /* que crezcan y hagan wrap si hace falta */
+  min-width: 220px;
 }
 
 
