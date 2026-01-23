@@ -1056,12 +1056,14 @@ const key = `${year}-${String(m).padStart(2, "0")}`;
 }
  
 function renderPasajerosPanel(iataUpper) {
-const canvas = document.getElementById("paxChartCanvas");
-if (!canvas || !note) return;
+  const canvas = document.getElementById("paxChartCanvas");
+  const note = document.getElementById("paxChartNote");
 
-const yearFromEl = document.getElementById("paxYearFrom");
-const yearToEl = document.getElementById("paxYearTo");
-const yearLabelEl = document.getElementById("paxYearLabel");
+  const yearFromEl = document.getElementById("paxYearFrom");
+  const yearToEl = document.getElementById("paxYearTo");
+  const yearLabelEl = document.getElementById("paxYearLabel");
+
+  if (!canvas || !note) return;
 
 
   // --- Helpers KPIs ---
