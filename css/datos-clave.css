@@ -963,7 +963,7 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-height: 420px;       /* probá 240–320 según tu diseño */
+  height: 420px;       /* probá 240–320 según tu diseño */
   margin-top:8px;
   background:#ffffff;
   border:1px solid #d0d7e2;
