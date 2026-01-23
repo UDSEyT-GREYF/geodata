@@ -1335,7 +1335,7 @@ if (prevIata !== iataUpper) {
   }
 
   note.textContent = `Elaborado por ORSNA con datos de SIAC ANAC`;
-
+}
 
 
 
