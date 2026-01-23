@@ -26,6 +26,7 @@
 
   // UI
   let selectEl = null;
+  let paxChart = null;
 
   // Leaflet maps & layers
   let map, mapMarker, poligonoLayer;
@@ -1055,14 +1056,13 @@ const key = `${year}-${String(m).padStart(2, "0")}`;
 }
  
 function renderPasajerosPanel(iataUpper) {
-  const svg = document.getElementById("paxChartSvg");
-  const note = document.getElementById("paxChartNote");
-  const yearFromEl = document.getElementById("paxYearFrom");
-  const yearToEl = document.getElementById("paxYearTo");
-  const yearLabelEl = document.getElementById("paxYearLabel");
-  const tooltipEl = document.getElementById("paxTooltip");
+const canvas = document.getElementById("paxChartCanvas");
+if (!canvas || !note) return;
 
-  if (!svg || !note) return;
+const yearFromEl = document.getElementById("paxYearFrom");
+const yearToEl = document.getElementById("paxYearTo");
+const yearLabelEl = document.getElementById("paxYearLabel");
+
 
   // --- Helpers KPIs ---
   const seriesCab = buildPaxSeries(iataUpper, "cabotaje");
@@ -1084,7 +1084,10 @@ function renderPasajerosPanel(iataUpper) {
       setTxt(ids.ytdDet, "–");
     });
 
-    svg.innerHTML = "";
+if (paxChart) {
+  paxChart.destroy();
+  paxChart = null;
+}
     note.textContent = `No hay datos de pasajeros para ${iataUpper}.`;
     return;
   }
@@ -1186,6 +1189,14 @@ function renderPasajerosPanel(iataUpper) {
   const minYear = Math.min(...all.map(r => r.date.getFullYear()));
   const maxYear = Math.max(...all.map(r => r.date.getFullYear()));
 
+  // agregado para que los sliders se ajusten al dataset real
+if (yearFromEl && yearToEl) {
+  yearFromEl.min = String(minYear);
+  yearFromEl.max = String(maxYear);
+  yearToEl.min = String(minYear);
+  yearToEl.max = String(maxYear);
+}
+  
   if (yearFromEl && yearToEl && yearLabelEl) {
     
     // Si cambió el aeropuerto, reseteo el rango por defecto
@@ -1237,177 +1248,94 @@ if (prevIata !== iataUpper) {
   }
   if (!rowsChart.length) rowsChart = all;
 
-  // --- Chart ---
-  const W = 800, H = 240;
-  const padL = 56, padR = 16, padT = 18, padB = 36; // padL más grande (mejor lectura)
-  const innerW = W - padL - padR;
-  const innerH = H - padT - padB;
-
-  const values = [];
-  rowsChart.forEach(r => {
-    if (r.tot !== null) values.push(r.tot);
-    if (r.cab !== null) values.push(r.cab);
-    if (r.intl !== null) values.push(r.intl);
+  // --- Chart (Chart.js) ---
+  const labels = rowsChart.map(r => {
+    const y = r.date.getFullYear();
+    const m = String(r.date.getMonth() + 1).padStart(2, "0");
+    return `${y}-${m}`;
   });
 
-  const minVRaw = Math.min(...values);
-  const maxVRaw = Math.max(...values);
+  const dataTot = rowsChart.map(r => r.tot);
+  const dataCab = rowsChart.map(r => r.cab);
+  const dataInt = rowsChart.map(r => r.intl);
 
-  function niceStep(rawStep) {
-    const exp = Math.floor(Math.log10(rawStep));
-    const base = Math.pow(10, exp);
-    const frac = rawStep / base;
-    let niceFrac = 1;
-    if (frac <= 1) niceFrac = 1;
-    else if (frac <= 2) niceFrac = 2;
-    else if (frac <= 5) niceFrac = 5;
-    else niceFrac = 10;
-    return niceFrac * base;
+  const ctx = canvas.getContext("2d");
+
+  if (!paxChart) {
+    paxChart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels,
+        datasets: [
+          {
+            label: "Total",
+            data: dataTot,
+            borderColor: "#2a5fa0",
+            borderWidth: 2,
+            pointRadius: 0,
+            spanGaps: true,
+            tension: 0.15
+          },
+          {
+            label: "Cabotaje",
+            data: dataCab,
+            borderColor: "#2e7d32",
+            borderWidth: 2,
+            pointRadius: 0,
+            spanGaps: true,
+            tension: 0.15
+          },
+          {
+            label: "Internacional",
+            data: dataInt,
+            borderColor: "#ef6c00",
+            borderWidth: 2,
+            pointRadius: 0,
+            spanGaps: true,
+            tension: 0.15
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        plugins: {
+          legend: { display: true, position: "top" },
+          tooltip: {
+            callbacks: {
+              title: (items) => {
+                const [yy, mm] = (items[0]?.label || "").split("-");
+                const d = new Date(Number(yy), Number(mm) - 1, 1);
+                const mes = d.toLocaleString("es-AR", { month: "short" }).replace(".", "");
+                return `${mes} ${yy}`;
+              },
+              label: (item) => `${item.dataset.label}: ${formatNumber(item.parsed.y || 0)}`
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: { maxTicksLimit: 12 }
+          },
+          y: {
+            ticks: {
+              callback: (v) => formatNumber(v)
+            }
+          }
+        }
+      }
+    });
+  } else {
+    paxChart.data.labels = labels;
+    paxChart.data.datasets[0].data = dataTot;
+    paxChart.data.datasets[1].data = dataCab;
+    paxChart.data.datasets[2].data = dataInt;
+    paxChart.update();
   }
 
-  function buildNiceScale(minVal, maxVal, ticks) {
-    if (!isFinite(minVal) || !isFinite(maxVal)) return null;
-    if (minVal === maxVal) {
-      const pad = Math.max(1, Math.round(minVal * 0.1));
-      minVal -= pad;
-      maxVal += pad;
-    }
-    const range = maxVal - minVal;
-    const rawStep = range / Math.max(1, ticks);
-    const step = niceStep(rawStep);
-    const niceMin = Math.floor(minVal / step) * step;
-    const niceMax = Math.ceil(maxVal / step) * step;
+  note.textContent = `Elaborado por ORSNA con datos de SIAC ANAC`;
 
-    const vals = [];
-    for (let v = niceMin; v <= niceMax + step * 0.5; v += step) vals.push(v);
-    return { niceMin, niceMax, values: vals };
-  }
-
-  const yScale = buildNiceScale(minVRaw, maxVRaw, 4);
-  const minV = yScale ? yScale.niceMin : minVRaw;
-  const maxV = yScale ? yScale.niceMax : maxVRaw;
-  const vRange = Math.max(1, maxV - minV);
-
-  const x = (i) => padL + (innerW * (i / Math.max(1, rowsChart.length - 1)));
-  const y = (v) => padT + innerH - (innerH * ((v - minV) / vRange));
-
-  let grid = "";
-  const yTickValues = yScale ? yScale.values : [minV, minV + vRange*0.25, minV + vRange*0.5, minV + vRange*0.75, maxV];
-
-  yTickValues.forEach(vv => {
-    const yy = y(vv);
-    grid += `
-      <line x1="${padL}" y1="${yy}" x2="${W - padR}" y2="${yy}" stroke="#e6eaf0" stroke-width="1"/>
-      <text x="${padL - 8}" y="${yy + 4}" text-anchor="end" font-size="10" fill="#666">${formatNumber(Math.round(vv))}</text>
-    `;
-  });
-
-  // ticks X: centrados en el año (promedio de posiciones del año)
-  let xTicks = "";
-  const byYear = new Map();
-  rowsChart.forEach((r, i) => {
-    const yy = r.date.getFullYear();
-    if (!byYear.has(yy)) byYear.set(yy, []);
-    byYear.get(yy).push(i);
-  });
-  Array.from(byYear.entries()).forEach(([yy, idxs]) => {
-    const midIdx = idxs[Math.floor(idxs.length / 2)];
-    const xx = x(midIdx);
-    xTicks += `
-      <line x1="${xx}" y1="${padT}" x2="${xx}" y2="${padT + innerH}" stroke="#f0f2f6" stroke-width="1"/>
-      <text x="${xx}" y="${H - 14}" text-anchor="middle" font-size="10" fill="#666">${yy}</text>
-    `;
-  });
-
-  const mkPoints = (field) =>
-    rowsChart
-      .map((r, i) => (r[field] === null ? null : `${x(i)},${y(r[field])}`))
-      .filter(Boolean)
-      .join(" ");
-
-  const ptsTot = mkPoints("tot");
-  const ptsCab = mkPoints("cab");
-  const ptsInt = mkPoints("intl");
-
-  svg.innerHTML = `
-    <rect x="0" y="0" width="${W}" height="${H}" fill="#ffffff"/>
-    ${grid}
-    ${xTicks}
-    <line x1="${padL}" y1="${padT + innerH}" x2="${W - padR}" y2="${padT + innerH}" stroke="#cfd7e2" stroke-width="1"/>
-    <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT + innerH}" stroke="#cfd7e2" stroke-width="1"/>
-
-    <polyline fill="none" stroke="#2a5fa0" stroke-width="2" points="${ptsTot}"/>
-    <polyline fill="none" stroke="#2e7d32" stroke-width="2" points="${ptsCab}"/>
-    <polyline fill="none" stroke="#ef6c00" stroke-width="2" points="${ptsInt}"/>
-  `;
-
-  // Tooltip (opcional; si existe en tu HTML)
-  if (tooltipEl) {
-    tooltipEl.style.position = "absolute";
-    tooltipEl.style.pointerEvents = "none";
-    tooltipEl.style.display = "none";
-  }
-
-  const overlay = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-  overlay.setAttribute("x", String(padL));
-  overlay.setAttribute("y", String(padT));
-  overlay.setAttribute("width", String(innerW));
-  overlay.setAttribute("height", String(innerH));
-  overlay.setAttribute("fill", "transparent");
-  overlay.style.cursor = "crosshair";
-  svg.appendChild(overlay);
-
-  const fmtMes = (d) => {
-    const mm = d.toLocaleString("es-AR", { month: "short" });
-    return `${mm} ${d.getFullYear()}`.replace(".", "");
-  };
-
-  const getSvgPoint = (evt) => {
-    const pt = svg.createSVGPoint();
-    pt.x = evt.clientX;
-    pt.y = evt.clientY;
-    const ctm = svg.getScreenCTM();
-    return ctm ? pt.matrixTransform(ctm.inverse()) : { x: 0, y: 0 };
-  };
-
-  const showTip = (evt) => {
-    if (!tooltipEl) return;
-
-    const p = getSvgPoint(evt);
-    const relX = Math.max(padL, Math.min(W - padR, p.x));
-    const t = (relX - padL) / innerW;
-    const idx = Math.round(t * Math.max(0, rowsChart.length - 1));
-    const i = Math.max(0, Math.min(rowsChart.length - 1, idx));
-    const r = rowsChart[i];
-
-    const label = fmtMes(r.date);
-
-    const tot = (r.tot === null) ? "–" : formatNumber(Math.round(r.tot));
-    const cab = (r.cab === null) ? "–" : formatNumber(Math.round(r.cab));
-    const intl = (r.intl === null) ? "–" : formatNumber(Math.round(r.intl));
-
-    tooltipEl.innerHTML = `
-      <div style="font-weight:700;color:#002855;margin-bottom:2px;">${label}</div>
-      <div style="font-size:0.9rem;color:#2a5fa0;font-weight:700;">Total: ${tot}</div>
-      <div style="font-size:0.9rem;color:#2e7d32;font-weight:700;">Cab.: ${cab}</div>
-      <div style="font-size:0.9rem;color:#ef6c00;font-weight:700;">Int.: ${intl}</div>
-    `;
-
-    const px = x(i);
-    const py = padT + 10;
-
-    tooltipEl.style.display = "block";
-    tooltipEl.style.left = `${Math.min(760, Math.max(0, px))}px`;
-    tooltipEl.style.top = `${Math.max(0, py)}px`;
-  };
-
-  const hideTip = () => { if (tooltipEl) tooltipEl.style.display = "none"; };
-
-  overlay.addEventListener("mousemove", showTip);
-  overlay.addEventListener("mouseleave", hideTip);
-
-  note.textContent = `Elaborado por ORSNA con datos de SIAC ANAC – Series: Total (azul), Cabotaje (verde), Internacional (naranja)`;
-}
 
 
 
