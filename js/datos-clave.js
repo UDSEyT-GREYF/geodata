@@ -1220,19 +1220,36 @@ if (prevIata !== iataUpper) {
 
     yearLabelEl.textContent = `${yearFromEl.value}–${yearToEl.value}`;
 
-    if (!yearFromEl.dataset.bound) {
-      const onSlide = () => {
-        const yf = Number(yearFromEl.value);
-        const yt = Number(yearToEl.value);
-        if (yf > yt) yearToEl.value = String(yf);
-        yearLabelEl.textContent = `${yearFromEl.value}–${yearToEl.value}`;
-        renderPasajerosPanel(currentIATA || iataUpper);
-      };
-      yearFromEl.dataset.bound = "1";
-      yearToEl.dataset.bound = "1";
-      yearFromEl.addEventListener("input", onSlide);
-      yearToEl.addEventListener("input", onSlide);
-    }
+// NUEVO: set inicial de "Desde" y "Hasta"
+const fromValEl = document.getElementById("paxYearFromVal");
+const toValEl   = document.getElementById("paxYearToVal");
+if (fromValEl) fromValEl.textContent = yearFromEl.value;
+if (toValEl)   toValEl.textContent   = yearToEl.value;
+    
+if (!yearFromEl.dataset.bound) {
+  const onSlide = () => {
+    const yf = Number(yearFromEl.value);
+    const yt = Number(yearToEl.value);
+
+    if (yf > yt) yearToEl.value = String(yf);
+
+    yearLabelEl.textContent = `${yearFromEl.value}–${yearToEl.value}`;
+
+    // NUEVO: actualizar los numeritos "Desde" y "Hasta"
+    const fromValEl = document.getElementById("paxYearFromVal");
+    const toValEl   = document.getElementById("paxYearToVal");
+    if (fromValEl) fromValEl.textContent = yearFromEl.value;
+    if (toValEl)   toValEl.textContent   = yearToEl.value;
+
+    renderPasajerosPanel(currentIATA || iataUpper);
+  };
+
+  yearFromEl.dataset.bound = "1";
+  yearToEl.dataset.bound = "1";
+  yearFromEl.addEventListener("input", onSlide);
+  yearToEl.addEventListener("input", onSlide);
+}
+
   }
 
   // filtrar por rango de años para el chart
