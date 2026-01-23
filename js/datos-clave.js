@@ -1272,7 +1272,7 @@ if (prevIata !== iataUpper) {
           {
             label: "Total",
             data: dataTot,
-            borderColor: "#2a5fa0",
+            borderColor: "#0f44bf",
             borderWidth: 2,
             pointRadius: 0,
             spanGaps: true,
@@ -1281,7 +1281,7 @@ if (prevIata !== iataUpper) {
           {
             label: "Cabotaje",
             data: dataCab,
-            borderColor: "#2e7d32",
+            borderColor: "#73acdf",
             borderWidth: 2,
             pointRadius: 0,
             spanGaps: true,
@@ -1290,7 +1290,7 @@ if (prevIata !== iataUpper) {
           {
             label: "Internacional",
             data: dataInt,
-            borderColor: "#ef6c00",
+            borderColor: "#16c41e",
             borderWidth: 2,
             pointRadius: 0,
             spanGaps: true,
