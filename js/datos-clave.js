@@ -1320,11 +1320,14 @@ if (prevIata !== iataUpper) {
           x: {
             ticks: { maxTicksLimit: 12 }
           },
-          y: {
-            ticks: {
-              callback: (v) => formatNumber(v)
-            }
-          }
+y: {
+  beginAtZero: true,
+  grace: "5%",              // agrega margen superior
+  ticks: {
+    callback: (v) => formatNumber(v),
+    maxTicksLimit: 6
+  }
+}
         }
       }
     });
