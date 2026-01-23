@@ -699,31 +699,21 @@
 </div>
 
 
-    <div class="pasajeros-chart-wrap">
-      <svg
-        id="paxChartSvg"
-        class="pax-chart"
-        viewBox="0 0 800 240"
-        preserveAspectRatio="none"
-        aria-label="Serie mensual de pasajeros"
-      ></svg>
+<div class="pasajeros-chart-wrap">
+  <canvas id="paxChartCanvas" class="pax-chart" aria-label="Serie mensual de pasajeros"></canvas>
 
-     <div class="pax-controls">
-  <div class="small-label">Rango de años</div>
-  <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-    <input id="paxYearFrom" type="range" min="2001" max="2025" value="2001">
-    <input id="paxYearTo" type="range" min="2001" max="2025" value="2025">
-    <div class="small-label" id="paxYearLabel">2001–2025</div>
-  </div>
-</div>
-
-<div id="paxTooltip" class="pax-tooltip">
-  <div class="tt-title" id="paxTTTitle">–</div>
-  <div class="tt-row" id="paxTTValue">–</div>
-</div>
-
-      <div class="small-label pax-chart-note" id="paxChartNote">–</div>
+  <div class="pax-controls">
+    <div class="small-label">Rango de años</div>
+    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+      <input id="paxYearFrom" type="range" min="2001" max="2025" value="2001">
+      <input id="paxYearTo" type="range" min="2001" max="2025" value="2025">
+      <div class="small-label" id="paxYearLabel">2001–2025</div>
     </div>
+  </div>
+
+  <div class="small-label pax-chart-note" id="paxChartNote">–</div>
+</div>
+
 
   </div>
 </section>
@@ -868,6 +858,9 @@
 
   <!-- Esri Leaflet (para mapa satelital) -->
   <script src="https://unpkg.com/esri-leaflet@3/dist/esri-leaflet.js" crossorigin=""></script>
+ 
+ <!-- Chart.js (antes de tu JS) -->
+ <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 
   <!-- JS propio -->
   <script src="js/datos-clave.js"></script>
