@@ -703,6 +703,29 @@
   <canvas id="paxChartCanvas" class="pax-chart" aria-label="Serie mensual de pasajeros"></canvas>
 
   <div class="pax-controls">
+    <div class="small-label pax-range-title">Rango de años</div>
+
+    <div class="pax-range-row">
+      <label class="pax-range-label" for="paxYearFrom">Desde</label>
+      <input id="paxYearFrom" type="range" min="2001" max="2025" value="2001">
+      <span class="small-label pax-range-value" id="paxYearFromVal">2001</span>
+    </div>
+
+    <div class="pax-range-row">
+      <label class="pax-range-label" for="paxYearTo">Hasta</label>
+      <input id="paxYearTo" type="range" min="2001" max="2025" value="2025">
+      <span class="small-label pax-range-value" id="paxYearToVal">2025</span>
+    </div>
+
+    <div class="small-label pax-range-summary" id="paxYearLabel">2001–2025</div>
+  </div>
+
+  <div class="small-label pax-chart-note" id="paxChartNote">–</div>
+</div>
+>
+  <canvas id="paxChartCanvas" class="pax-chart" aria-label="Serie mensual de pasajeros"></canvas>
+
+  <div class="pax-controls">
     <div class="small-label">Rango de años</div>
     <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
       <input id="paxYearFrom" type="range" min="2001" max="2025" value="2001">
