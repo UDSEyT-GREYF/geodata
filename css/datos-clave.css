@@ -962,8 +962,8 @@ ul {
   position: relative; /* CLAVE para ubicar tooltip dentro */
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  height: 360px;       /* probá 240–320 según tu diseño */
+  gap: 10px;
+  height: 420px;       /* probá 240–320 según tu diseño */
   margin-top:8px;
   background:#ffffff;
   border:1px solid #d0d7e2;
@@ -980,7 +980,7 @@ ul {
 /* Canvas: ocupa el 100% del contenedor */
 #paxChartCanvas{
    flex: 1 1 auto;
-  min-height: 240px;      /* asegura que no quede demasiado chico */
+  min-height: 260px;      /* asegura que no quede demasiado chico */
   width: 100% !important;
   height: 100% !important;
   display: block;
@@ -998,7 +998,7 @@ ul {
   padding-top: 4px;
   display:grid;
   grid-template-columns: auto 1fr auto;
-  gap:12px;
+  gap:6px;
   align-items:center;
   flex-wrap:wrap;
   margin-top:8px;
@@ -1016,19 +1016,54 @@ ul {
 }
 /* texto 2001–2025 */
 #paxYearLabel{
+  font-size: 12px;
+  color: #555;
   white-space: nowrap;
   text-align: right;
   min-width: 90px;
 }
 
 .pax-tooltip .tt-title{
-  font-weight:700;
-  color:#002855;
+  font-size: 12px;
+  font-weight:600;
+  color:#444;
   margin-bottom:2px;
 }
 .pax-tooltip .tt-row{
+   display: grid;
+  grid-template-columns: 50px 1fr 56px;
+  gap: 10px;
+  align-items: center;
   color:#333;
 }
+
+
+.pax-range-label{
+  font-size: 12px;
+  color: #555;
+  white-space: nowrap;
+}
+
+.pax-range-value{
+  font-size: 12px;
+  color: #555;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.pax-range-summary{
+  font-size: 12px;
+  color: #666;
+}
+
+/* Nota dentro del panel */
+.pax-footnote{
+  font-size: 11px;
+  color: #666;
+  padding-top: 4px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
 
 .panel-servicios {
   grid-area: servicios;
