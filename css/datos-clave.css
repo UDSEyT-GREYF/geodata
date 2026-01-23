@@ -960,7 +960,7 @@ ul {
 
 .pasajeros-chart-wrap{
   position: relative; /* CLAVE para ubicar tooltip dentro */
-  height: 260px;       /* probá 240–320 según tu diseño */
+  height: 320px;       /* probá 240–320 según tu diseño */
   margin-top:8px;
   background:#ffffff;
   border:1px solid #d0d7e2;
