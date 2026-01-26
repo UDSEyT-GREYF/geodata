@@ -1245,6 +1245,9 @@ if (paxChart) {
 canvas._paxAll = all;       // cache de la serie completa
 canvas._paxIATA = iataUpper;
 
+  // PERF: onSlide dispara renderPasajerosPanel() en cada input.
+// Si vuelve a “colgarse”, reemplazar por throttle (requestAnimationFrame) y update liviano.
+
   // Rango de años: inicialización slider (si existe)
   const minYear = Math.min(...all.map(r => r.date.getFullYear()));
   const maxYear = Math.max(...all.map(r => r.date.getFullYear()));
@@ -1278,6 +1281,7 @@ if (prevIata !== iataUpper) {
 
     yearLabelEl.textContent = `${yearFromEl.value}–${yearToEl.value}`;
 
+    
 // NUEVO: set inicial de "Desde" y "Hasta"
 const fromValEl = document.getElementById("paxYearFromVal");
 const toValEl   = document.getElementById("paxYearToVal");
@@ -1309,7 +1313,11 @@ if (!yearFromEl.dataset.bound) {
 }
 
   }
-
+// =========================================================================
+// FIX Chart.js — NO TOCAR SIN REVISAR
+// - maintainAspectRatio:false es clave para que el chart respete el alto del contenedor
+// - Si el gráfico vuelve a “gigante”, revisar CSS (pasajeros-chart-wrap / paxChartCanvas)
+// =========================================================================
   // filtrar por rango de años para el chart
   let rowsChart = all;
   if (yearFromEl && yearToEl) {
