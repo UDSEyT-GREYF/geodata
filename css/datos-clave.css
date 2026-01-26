@@ -1002,7 +1002,6 @@ ul {
 }
 
 .pax-range-row{
-  reduce: none; /* (línea inocua si la dejás, podés borrarla) */
   display: grid;
   grid-template-columns: 52px 1fr 44px;
   gap: 10px;
@@ -1270,7 +1269,6 @@ footer {
 /* =========================
    PATRONES – layout interno
    ========================= */
-
 .pax-group-patterns{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1290,20 +1288,10 @@ footer {
   flex-direction: column;
 }
 
-/* Área del gráfico mini: altura controlada */
-.pax-mini-chart-area{
-  flex: 1 1 auto;
-  min-height: 140px;
+
+/* Patrones: debajo de los KPIs y a todo el ancho */
+.pax-kpis-4 > .pax-group-patterns{
+  grid-column: 1 / -1;   /* ocupa las 4 columnas */
 }
 
-/* Canvas mini ocupa el área */
-.pax-mini-canvas{
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-/* Patrones debajo de los KPIs */
-.pax-group-patterns{
-  grid-column: 1 / span 2;  /* ocupa 2 columnas */
-  grid-row: 2;              /* fuerza segunda fila del grid */
-}
+
