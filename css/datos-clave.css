@@ -1077,16 +1077,6 @@ ul {
   .pax-kpis-4{ grid-template-columns: 1fr; }
 }
 
-/* Mini charts dentro de la 4ª columna */
-.pax-group-patterns .pax-mini{
-  border: 1px solid #e6eaf0;
-  border-radius: 10px;
-  padding: 10px;
-  background: #fff;
-  margin-bottom: 10px;
-}
-.pax-group-patterns .pax-mini:last-child{ margin-bottom: 0; }
-
 .pax-mini-title{ margin-bottom: 6px; }
 
 /* Mini charts: SIEMPRE con “caja” de altura fija */
