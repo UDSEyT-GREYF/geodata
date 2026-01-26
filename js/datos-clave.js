@@ -1090,6 +1090,7 @@ function schedulePaxChartUpdate(iataUpper) {
   // Si todavía no existe el chart o no hay cache, caemos al render completo
   if (!paxChart || !canvas._paxAll || canvas._paxIATA !== iataUpper) {
     renderPasajerosPanel(iataUpper);
+    renderPaxPatterns(iataUpper); // <-- acá
     return;
   }
 
@@ -1249,6 +1250,8 @@ if (paxChart) {
   const all = Array.from(mapByKey.values()).sort((a, b) => a.date - b.date);
 canvas._paxAll = all;       // cache de la serie completa
 canvas._paxIATA = iataUpper;
+canvas._paxPatternsDoneFor = ""; // fuerza recalcular patrones cuando corresponda
+
 
   // PERF: onSlide dispara renderPasajerosPanel() en cada input.
 // Si vuelve a “colgarse”, reemplazar por throttle (requestAnimationFrame) y update liviano.
@@ -1426,37 +1429,43 @@ y: {
     paxChart.data.datasets[2].data = dataInt;
     paxChart.update();
   }
-renderPaxPatterns(iataUpper, all);
+  
+// PERF: Patrones se renderiza por aeropuerto (no por slider) para evitar cuelgues
+// renderPaxPatterns(iataUpper, all);
 
   note.textContent = `Elaborado por ORSNA con datos de SIAC ANAC`;
 }
 
 // -------NUEVA FUNCION------------
-function renderPaxPatterns(iataUpper, allRows) {
-  // 1) PERFIL SEMANAL: placeholder (requiere datos diarios)
-  const weekNote = document.getElementById("paxWeekNote");
-  if (weekNote) {
-    weekNote.textContent = "Requiere datos diarios (no disponible con serie mensual).";
-  }
-  // Si algún día cargás pax diarios, acá se reemplaza y se dibuja paxWeekChart.
+function renderPaxPatterns(iataUpper) {
+  const paxMainCanvas = document.getElementById("paxChartCanvas");
+  if (!paxMainCanvas) return;
 
-  // 2) ESTACIONALIDAD MENSUAL (promedio por mes del año) excluyendo 2020–2022
+  // Necesitamos que renderPasajerosPanel haya cacheado la serie "all"
+  if (!paxMainCanvas._paxAll || paxMainCanvas._paxIATA !== iataUpper) return;
+
+  // Evitar recalcular si ya se hizo para este aeropuerto
+  if (paxMainCanvas._paxPatternsDoneFor === iataUpper) return;
+  paxMainCanvas._paxPatternsDoneFor = iataUpper;
+
+  const allRows = paxMainCanvas._paxAll;
+
+  // ===== Estacionalidad mensual: por ahora simple (promedio por mes) =====
   const seasonCanvas = document.getElementById("paxSeasonChart");
   if (!seasonCanvas) return;
 
-  // Filtrar años: excluir 2020, 2021, 2022
-  const rows = (allRows || []).filter(r => {
+  // Excluir 2020-2022
+  const rows = allRows.filter(r => {
     const y = r.date.getFullYear();
     return y < 2020 || y > 2022;
   });
 
-  // Agrupar por mes (0-11) y promediar Total
   const sum = Array(12).fill(0);
   const cnt = Array(12).fill(0);
 
   for (const r of rows) {
-    const m = r.date.getMonth(); // 0-11
-    const v = Number(r.tot || 0);
+    const m = r.date.getMonth(); // 0..11
+    const v = Number(r.tot || 0); // total mensual
     sum[m] += v;
     cnt[m] += 1;
   }
@@ -1471,17 +1480,14 @@ function renderPaxPatterns(iataUpper, allRows) {
       type: "bar",
       data: {
         labels,
-        datasets: [{
-          label: "Promedio mensual",
-          data
-        }]
+        datasets: [{ label: "Promedio mensual", data }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        animation: false,
         plugins: { legend: { display: false } },
         scales: {
-          x: { ticks: { maxRotation: 0, minRotation: 0 } },
           y: {
             beginAtZero: true,
             ticks: { callback: (v) => formatNumber(v), maxTicksLimit: 3 }
@@ -1492,9 +1498,10 @@ function renderPaxPatterns(iataUpper, allRows) {
   } else {
     paxSeasonChart.data.labels = labels;
     paxSeasonChart.data.datasets[0].data = data;
-    paxSeasonChart.update();
+    paxSeasonChart.update("none");
   }
 }
+
 
 
 
