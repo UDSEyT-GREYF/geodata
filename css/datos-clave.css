@@ -1096,6 +1096,11 @@ ul {
   display: block;
 }
 
+/* Permite que un grupo ocupe 2 columnas */
+.pax-span-2{
+  grid-column: span 2;
+}
+
 
 /* ==============================
    13. FOOTER
