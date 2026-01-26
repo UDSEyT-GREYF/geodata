@@ -27,6 +27,9 @@
   // UI
   let selectEl = null;
   let paxChart = null;
+  let paxWeekChart = null;
+  let paxSeasonChart = null;
+
 
   // Leaflet maps & layers
   let map, mapMarker, poligonoLayer;
@@ -1054,7 +1057,9 @@ const key = `${year}-${String(m).padStart(2, "0")}`;
 
   return { ultimoValor, ultimoPeriodo, yoy, yoyDet, ytd, ytdDet };
 }
- 
+  
+ // ------Función que define el panel de pasajeros.
+  
 function renderPasajerosPanel(iataUpper) {
   const canvas = document.getElementById("paxChartCanvas");
   const note = document.getElementById("paxChartNote");
@@ -1421,11 +1426,75 @@ y: {
     paxChart.data.datasets[2].data = dataInt;
     paxChart.update();
   }
+renderPaxPatterns(iataUpper, all);
 
   note.textContent = `Elaborado por ORSNA con datos de SIAC ANAC`;
 }
 
+// -------NUEVA FUNCION------------
+function renderPaxPatterns(iataUpper, allRows) {
+  // 1) PERFIL SEMANAL: placeholder (requiere datos diarios)
+  const weekNote = document.getElementById("paxWeekNote");
+  if (weekNote) {
+    weekNote.textContent = "Requiere datos diarios (no disponible con serie mensual).";
+  }
+  // Si algún día cargás pax diarios, acá se reemplaza y se dibuja paxWeekChart.
 
+  // 2) ESTACIONALIDAD MENSUAL (promedio por mes del año) excluyendo 2020–2022
+  const seasonCanvas = document.getElementById("paxSeasonChart");
+  if (!seasonCanvas) return;
+
+  // Filtrar años: excluir 2020, 2021, 2022
+  const rows = (allRows || []).filter(r => {
+    const y = r.date.getFullYear();
+    return y < 2020 || y > 2022;
+  });
+
+  // Agrupar por mes (0-11) y promediar Total
+  const sum = Array(12).fill(0);
+  const cnt = Array(12).fill(0);
+
+  for (const r of rows) {
+    const m = r.date.getMonth(); // 0-11
+    const v = Number(r.tot || 0);
+    sum[m] += v;
+    cnt[m] += 1;
+  }
+
+  const labels = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+  const data = labels.map((_, i) => (cnt[i] ? sum[i] / cnt[i] : 0));
+
+  const ctx = seasonCanvas.getContext("2d");
+
+  if (!paxSeasonChart) {
+    paxSeasonChart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels,
+        datasets: [{
+          label: "Promedio mensual",
+          data
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { maxRotation: 0, minRotation: 0 } },
+          y: {
+            beginAtZero: true,
+            ticks: { callback: (v) => formatNumber(v), maxTicksLimit: 3 }
+          }
+        }
+      }
+    });
+  } else {
+    paxSeasonChart.data.labels = labels;
+    paxSeasonChart.data.datasets[0].data = data;
+    paxSeasonChart.update();
+  }
+}
 
 
 
