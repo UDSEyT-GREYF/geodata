@@ -1090,11 +1090,27 @@ ul {
 
 .pax-mini-title{ margin-bottom: 6px; }
 
-.pax-mini-canvas{
-  width: 100%;
-  height: 140px;      /* importante: alto fijo para que no se desmadre */
+/* Mini charts: SIEMPRE con “caja” de altura fija */
+.pax-mini-chart-area{
+  position: relative;
+  height: 140px;     /* ajustá 120–170 según gusto */
+  max-height: 160px;
+}
+
+/* Canvas ocupa la caja y no crece infinito */
+.pax-mini-chart-area canvas{
+  width: 100% !important;
+  height: 100% !important;
   display: block;
 }
+
+/* Importante: NO le pongas height fija al canvas sin contenedor */
+.pax-mini-canvas{
+  width: 100%;
+  display: block;
+  /* NO height acá */
+}
+
 
 /* Permite que un grupo ocupe 2 columnas */
 .pax-span-2{
