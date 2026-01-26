@@ -625,7 +625,7 @@
 
 
 
-<div class="pasajeros-kpis pax-kpis-3">
+<div class="pasajeros-kpis pax-kpis-4">
 
   <!-- TOTAL -->
   <div class="pax-group">
@@ -693,6 +693,22 @@
       <div class="small-label">Variación acumulada (ene → último mes)</div>
       <div class="kpi-value" id="paxIntVarYTD">–</div>
       <div class="small-label" id="paxIntVarYTDDetalle">–</div>
+    </div>
+  </div>
+ 
+  <!-- PATRONES -->
+  <div class="pax-group pax-group-patterns">
+    <div class="pax-group-title">Patrones</div>
+
+    <div class="pax-mini">
+      <div class="small-label pax-mini-title">Perfil semanal (sin 2020–2022)</div>
+      <canvas id="paxWeekChart" class="pax-mini-canvas" aria-label="Perfil semanal"></canvas>
+      <div class="small-label" id="paxWeekNote">Requiere datos diarios (no disponible con serie mensual).</div>
+    </div>
+
+    <div class="pax-mini">
+      <div class="small-label pax-mini-title">Estacionalidad mensual (sin 2020–2022)</div>
+      <canvas id="paxSeasonChart" class="pax-mini-canvas" aria-label="Estacionalidad mensual"></canvas>
     </div>
   </div>
 
