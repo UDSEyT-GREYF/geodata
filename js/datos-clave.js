@@ -1064,7 +1064,63 @@ function renderPasajerosPanel(iataUpper) {
   const yearLabelEl = document.getElementById("paxYearLabel");
 
   if (!canvas || !note) return;
+  
+// ----- “scheduler” (throttle)----
+let paxUpdateRAF = 0;
 
+function schedulePaxChartUpdate(iataUpper) {
+  if (paxUpdateRAF) cancelAnimationFrame(paxUpdateRAF);
+
+  paxUpdateRAF = requestAnimationFrame(() => {
+    paxUpdateRAF = 0;
+    updatePaxChartRangeOnly(iataUpper); // actualización liviana
+  });
+}
+
+// ----- actualización “liviana” del chart (sin recalcular series)-----
+  function updatePaxChartRangeOnly(iataUpper) {
+  const canvas = document.getElementById("paxChartCanvas");
+  if (!canvas) return;
+
+  // Si todavía no existe el chart o no hay cache, caemos al render completo
+  if (!paxChart || !canvas._paxAll || canvas._paxIATA !== iataUpper) {
+    renderPasajerosPanel(iataUpper);
+    return;
+  }
+
+  const yearFromEl = document.getElementById("paxYearFrom");
+  const yearToEl   = document.getElementById("paxYearTo");
+  const all = canvas._paxAll;
+
+  // Repetimos SOLO el filtrado por años (liviano)
+  let rowsChart = all;
+  if (yearFromEl && yearToEl) {
+    const yf = Number(yearFromEl.value);
+    const yt = Number(yearToEl.value);
+    const yMin = Math.min(yf, yt);
+    const yMax = Math.max(yf, yt);
+
+    rowsChart = all.filter(r => {
+      const yy = r.date.getFullYear();
+      return yy >= yMin && yy <= yMax;
+    });
+    if (!rowsChart.length) rowsChart = all;
+  }
+
+  const labels = rowsChart.map(r => {
+    const y = r.date.getFullYear();
+    const m = String(r.date.getMonth() + 1).padStart(2, "0");
+    return `${y}-${m}`;
+  });
+
+  paxChart.data.labels = labels;
+  paxChart.data.datasets[0].data = rowsChart.map(r => r.tot);
+  paxChart.data.datasets[1].data = rowsChart.map(r => r.cab);
+  paxChart.data.datasets[2].data = rowsChart.map(r => r.intl);
+
+  // Actualizar sin animación para máxima fluidez
+  paxChart.update("none");
+}
 
   // --- Helpers KPIs ---
   const seriesCab = buildPaxSeries(iataUpper, "cabotaje");
@@ -1186,6 +1242,8 @@ if (paxChart) {
   addSeriesToMap(seriesInt, "intl");
 
   const all = Array.from(mapByKey.values()).sort((a, b) => a.date - b.date);
+canvas._paxAll = all;       // cache de la serie completa
+canvas._paxIATA = iataUpper;
 
   // Rango de años: inicialización slider (si existe)
   const minYear = Math.min(...all.map(r => r.date.getFullYear()));
@@ -1241,7 +1299,7 @@ if (!yearFromEl.dataset.bound) {
     if (fromValEl) fromValEl.textContent = yearFromEl.value;
     if (toValEl)   toValEl.textContent   = yearToEl.value;
 
-    renderPasajerosPanel(currentIATA || iataUpper);
+    schedulePaxChartUpdate(currentIATA || iataUpper);
   };
 
   yearFromEl.dataset.bound = "1";
@@ -2094,4 +2152,6 @@ renderPasajerosPanel(iata);
     }
   });
 
+
+  
 })();
