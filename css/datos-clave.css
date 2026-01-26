@@ -1284,4 +1284,9 @@ footer {
   grid-column: 1 / -1;   /* ocupa las 4 columnas */
 }
 
+/* Ocultar título general "Patrones" */
+.pax-group-patterns > .pax-group-title{
+  display: none;
+}
+
 
