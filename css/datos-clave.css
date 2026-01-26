@@ -958,58 +958,47 @@ ul {
   padding:8px 10px;
 }
 
+/* ===== PASAJEROS: wrapper gráfico + controles ===== */
 .pasajeros-chart-wrap{
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-height: 420px;   /* en lugar de height fijo */
   margin-top: 8px;
   background: #ffffff;
   border: 1px solid #d0d7e2;
   border-radius: 4px;
-  padding: 8px 10px;
+  padding: 10px;
 }
 
-
-.pax-chart{
-  width:100%;
-  /* height:220px;*/
-  display:block;
+/* Área del gráfico con altura controlada (evita “1 metro”) */
+.pax-chart-area{
+  position: relative;
+  height: 320px;      /* ajustá a 280–360 según gusto */
+  max-height: 360px;
 }
 
-/* Canvas: ocupa el 100% del contenedor */
+/* Canvas ocupa el 100% del área */
+.pax-chart-area canvas,
 #paxChartCanvas{
-   flex: 1 1 auto;
-  min-height: 260px;      /* asegura que no quede demasiado chico */
   width: 100% !important;
+  height: 100% !important;
   display: block;
 }
 
-.pax-chart-note{
-  margin-top:6px;
-  color:#666;
-  font-size:0.78rem;
-}
-
-/* === Pasajeros: controles del gráfico (sliders) === */
+/* Controles: compactos, sin “dos renglones raros” */
 .pax-controls{
-  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   gap: 6px;
-  margin-top: 6px;
-  padding-top: 6px;
+  margin-top: 0;
+  padding-top: 0;
 }
 
-.pax-range-title{
-  margin-bottom: 2px;
-}
-
-/* cada fila: "Desde/Hasta" + slider + valor */
 .pax-range-row{
+  reduce: none; /* (línea inocua si la dejás, podés borrarla) */
   display: grid;
-  grid-template-columns: 54px 1fr 44px;
+  grid-template-columns: 52px 1fr 44px;
   gap: 10px;
   align-items: center;
 }
@@ -1019,35 +1008,16 @@ ul {
   min-width: 0;
 }
 
-.pax-range-label{
-  font-size: 12px;
-  color: #555;
-  white-space: nowrap;
-}
-
-.pax-range-value{
-  font-size: 12px;
-  color: #555;
-  text-align: right;
-  white-space: nowrap;
-}
-
-.pax-range-summary{
-  font-size: 12px;
-  color: #666;
-}
-
-.panel-pasajeros .panel-body{
-  align-items: stretch;
-}
-
-/* Nota dentro del panel */
-.pax-footnote{
-  font-size: 11px;
-  color: #666;
-  padding-top: 4px;
+/* Nota “Elaborado por ORSNA”: alineada y con aire */
+.pax-chart-note{
+  margin-top: 2px;
+  padding-top: 6px;
   border-top: 1px solid rgba(0,0,0,0.06);
+  color: #666;
+  font-size: 0.78rem;
+  text-align: right;
 }
+
 
 
 .panel-servicios {
