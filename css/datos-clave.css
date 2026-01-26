@@ -957,7 +957,12 @@ ul {
   border-radius:4px;
   padding:8px 10px;
 }
-
+/* ==========================================================================
+   FIX Chart.js (Pasajeros) — NO TOCAR SIN REVISAR
+   - Evita que el canvas crezca “infinito” dentro de flex.
+   - El alto del gráfico se controla por min-height del wrapper + flex del canvas.
+   - No reintroducir: height:100% en el canvas, ni height fijo gigante en wrapper
+   ========================================================================== */
 /* ===== PASAJEROS: wrapper gráfico + controles ===== */
 .pasajeros-chart-wrap{
   position: relative;
@@ -977,7 +982,8 @@ ul {
   height: 320px;      /* ajustá a 280–360 según gusto */
   max-height: 360px;
 }
-
+/* FIX: El canvas va en flex y con min-height; NO poner height:100% !important aquí,
+   porque puede disparar el “metro de alto” si el contenedor se estira. */
 /* Canvas ocupa el 100% del área */
 .pax-chart-area canvas,
 #paxChartCanvas{
