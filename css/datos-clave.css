@@ -1267,3 +1267,38 @@ footer {
   background:#2a5fa0;
   color:#fff;
 } 
+/* =========================
+   PATRONES – layout interno
+   ========================= */
+
+.pax-group-patterns{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* El título ocupa todo el ancho */
+.pax-group-patterns > .pax-group-title{
+  grid-column: 1 / -1;
+}
+
+/* Cada patrón ocupa una columna */
+.pax-group-patterns > .pax-mini{
+  margin-bottom: 0;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Área del gráfico mini: altura controlada */
+.pax-mini-chart-area{
+  flex: 1 1 auto;
+  min-height: 140px;
+}
+
+/* Canvas mini ocupa el área */
+.pax-mini-canvas{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
