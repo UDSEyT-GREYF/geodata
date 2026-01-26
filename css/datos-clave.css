@@ -1302,3 +1302,8 @@ footer {
   height: 100%;
   display: block;
 }
+/* Patrones debajo de los KPIs */
+.pax-group-patterns{
+  grid-column: 1 / span 2;  /* ocupa 2 columnas */
+  grid-row: 2;              /* fuerza segunda fila del grid */
+}
