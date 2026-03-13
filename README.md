@@ -1,14 +1,10 @@
-# Geodata Project
+# Proyecto de geodatos  - Geodata Project
+Este proyecto se dedica al análisis y la visualización de datos geoespaciales mediante paneles y mapas interactivos. Su objetivo es proporcionar visualizaciones detalladas que transmitan fácilmente información sobre patrones y tendencias geográficas.
 
-This project is dedicated to the analysis and visualization of geospatial data through interactive dashboards and maps. Our aim is to provide insightful visualizations that can easily convey information about geographic patterns and trends.
+This project is dedicated to the analysis and visualization of geospatial data through interactive dashboards and maps. Its aim is to provide insightful visualizations that can easily convey information about geographic patterns and trends.
 
-## Features
-- Interactive Dashboards
-- Dynamic Map Visualizations
-- User-Friendly Interfaces
+## Características - Features
+- Paneles interactivos - Interactive Dashboards
+- Visualizaciones de mapas dinámicos- Dynamic Map Visualizations
+- Interfaces fáciles de usar - User-Friendly Interfaces
 
-## Installation
-Follow the instructions below to set up the project locally.
-
-## Contributing
-We welcome contributions from the community! Please check our guidelines for more information.
