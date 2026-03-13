@@ -1,0 +1,27 @@
+# System Files
+*.DS_Store
+*.bak
+*.log
+
+# Temporary Files
+*.tmp
+*.temp
+
+# IDE Configuration
+.idea/
+.vscode/
+
+# Environment Variables
+.env
+
+# Cache Files
+.cache/
+*.cache
+
+# Logs
+*.log
+
+# Sensitive Data
+*.pem
+*.key
+*.crt
