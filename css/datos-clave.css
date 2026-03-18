@@ -992,28 +992,168 @@ ul {
   display: block;
 }
 
-/* Controles: compactos, sin “dos renglones raros” */
+/* Controles: compactos */
 .pax-controls{
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-top: 0;
-  padding-top: 0;
-}
-
-.pax-range-row{
-  display: grid;
-  grid-template-columns: 52px 1fr 44px;
-  gap: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 8px;
+  margin-top: 0;
+  padding-top: 4px;
 }
 
-.pax-controls input[type="range"]{
-  width: 100%;
-  min-width: 0;
+/* ---- Botones rápidos ---- */
+.pax-quick-btns{
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
 }
 
-/* Nota “Elaborado por ORSNA”: alineada y con aire */
+.pax-btn{
+  padding: 3px 9px;
+  font-size: 0.78rem;
+  font-family: inherit;
+  border: 1px solid #c0c8d8;
+  border-radius: 3px;
+  background: #f5f7fa;
+  color: #444;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  line-height: 1.4;
+}
+
+.pax-btn:hover{
+  background: #e0e8f5;
+  border-color: #0f44bf;
+  color: #0f44bf;
+}
+
+.pax-btn.pax-btn-active{
+  background: #0f44bf;
+  border-color: #0f44bf;
+  color: #fff;
+}
+
+/* ---- Selector de fecha personalizada ---- */
+.pax-date-range{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.pax-date-field{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pax-range-label{
+  font-size: 0.78rem;
+  color: #666;
+  white-space: nowrap;
+}
+
+.pax-month-sel{
+  font-size: 0.8rem;
+  font-family: inherit;
+  border: 1px solid #c0c8d8;
+  border-radius: 3px;
+  padding: 2px 4px;
+  background: #f9fafc;
+  color: #333;
+  cursor: pointer;
+}
+
+.pax-year-input{
+  width: 58px;
+  font-size: 0.8rem;
+  font-family: inherit;
+  border: 1px solid #c0c8d8;
+  border-radius: 3px;
+  padding: 2px 4px;
+  background: #f9fafc;
+  color: #333;
+  text-align: center;
+  -moz-appearance: textfield;
+}
+
+.pax-year-input::-webkit-outer-spin-button,
+.pax-year-input::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.pax-date-sep{
+  font-size: 0.85rem;
+  color: #888;
+  padding: 0 2px;
+}
+
+/* ---- Minimap ---- */
+.pax-minimap-wrap{
+  position: relative;
+  height: 52px;
+  margin-top: 2px;
+  border: 1px solid #d0d7e2;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #f9fafc;
+  cursor: crosshair;
+  user-select: none;
+}
+
+.pax-minimap-canvas{
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.pax-minimap-overlay{
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+}
+
+.pax-mm-shade{
+  position: absolute;
+  top: 0; bottom: 0;
+  background: rgba(240,243,250,0.75);
+  pointer-events: none;
+}
+
+.pax-mm-handle{
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 6px;
+  background: #0f44bf;
+  cursor: ew-resize;
+  z-index: 2;
+  transform: translateX(-50%);
+  transition: background 0.1s;
+}
+
+.pax-mm-handle:hover{
+  background: #1a5ce0;
+}
+
+.pax-mm-window{
+  position: absolute;
+  top: 0; bottom: 0;
+  background: rgba(15,68,191,0.07);
+  border-left: 1px solid rgba(15,68,191,0.25);
+  border-right: 1px solid rgba(15,68,191,0.25);
+  cursor: grab;
+  z-index: 1;
+}
+
+.pax-mm-window:active{
+  cursor: grabbing;
+}
+
+/* Nota "Elaborado por ORSNA": alineada y con aire */
 .pax-chart-note{
   margin-top: 2px;
   padding-top: 6px;
@@ -1288,5 +1428,7 @@ footer {
 .pax-group-patterns > .pax-group-title{
   display: none;
 }
+
+
 
 
