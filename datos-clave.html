@@ -1,4 +1,4 @@
- <!DOCTYPE html> 
+<!DOCTYPE html> 
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -724,22 +724,57 @@
   <canvas id="paxChartCanvas" class="pax-chart" aria-label="Serie mensual de pasajeros"></canvas>
 </div>
 
-  <div class="pax-controls" aria-label="Filtro por rango de años">
-    <div class="small-label pax-range-title">Rango de años</div>
+<!-- Minimap interactivo -->
+<div class="pax-minimap-wrap" id="paxMinimapWrap" role="presentation">
+  <canvas id="paxMinimapCanvas" class="pax-minimap-canvas" aria-hidden="true"></canvas>
+  <div class="pax-minimap-overlay">
+    <div class="pax-mm-shade" id="paxMmShadeL"></div>
+    <div class="pax-mm-handle" id="paxMmHandleL" title="Arrastrar inicio"></div>
+    <div class="pax-mm-window" id="paxMmWindow"></div>
+    <div class="pax-mm-handle" id="paxMmHandleR" title="Arrastrar fin"></div>
+    <div class="pax-mm-shade" id="paxMmShadeR"></div>
+  </div>
+</div>
 
-    <div class="pax-range-row">
-      <label class="pax-range-label" for="paxYearFrom">Desde</label>
-      <input id="paxYearFrom" type="range" min="2001" max="2025" value="2001">
-      <span class="small-label pax-range-value" id="paxYearFromVal">2001</span>
+  <div class="pax-controls" aria-label="Selector de período">
+
+    <!-- Botones rápidos -->
+    <div class="pax-quick-btns" role="group" aria-label="Períodos rápidos">
+      <button class="pax-btn" data-range="1m">1m</button>
+      <button class="pax-btn" data-range="3m">3m</button>
+      <button class="pax-btn" data-range="6m">6m</button>
+      <button class="pax-btn" data-range="ytd">YTD</button>
+      <button class="pax-btn" data-range="1y">1a</button>
+      <button class="pax-btn pax-btn-active" data-range="all">Todo</button>
     </div>
 
-    <div class="pax-range-row">
-      <label class="pax-range-label" for="paxYearTo">Hasta</label>
-      <input id="paxYearTo" type="range" min="2001" max="2025" value="2025">
-      <span class="small-label pax-range-value" id="paxYearToVal">2025</span>
+    <!-- Selector de fecha personalizada -->
+    <div class="pax-date-range">
+      <div class="pax-date-field">
+        <label class="small-label pax-range-label" for="paxMonthFrom">Desde</label>
+        <select id="paxMonthFrom" class="pax-month-sel" aria-label="Mes inicio">
+          <option value="1">Ene</option><option value="2">Feb</option><option value="3">Mar</option>
+          <option value="4">Abr</option><option value="5">May</option><option value="6">Jun</option>
+          <option value="7">Jul</option><option value="8">Ago</option><option value="9">Sep</option>
+          <option value="10">Oct</option><option value="11">Nov</option><option value="12">Dic</option>
+        </select>
+        <input id="paxYearFrom" type="number" class="pax-year-input" min="2001" max="2026" value="2001" aria-label="Año inicio">
+      </div>
+      <span class="pax-date-sep">—</span>
+      <div class="pax-date-field">
+        <label class="small-label pax-range-label" for="paxMonthTo">Hasta</label>
+        <select id="paxMonthTo" class="pax-month-sel" aria-label="Mes fin">
+          <option value="1">Ene</option><option value="2">Feb</option><option value="3">Mar</option>
+          <option value="4">Abr</option><option value="5">May</option><option value="6">Jun</option>
+          <option value="7">Jul</option><option value="8">Ago</option><option value="9">Sep</option>
+          <option value="10">Oct</option><option value="11">Nov</option><option value="12">Dic</option>
+        </select>
+        <input id="paxYearTo" type="number" class="pax-year-input" min="2001" max="2026" value="2026" aria-label="Año fin">
+      </div>
     </div>
 
-    <div class="small-label pax-range-summary" id="paxYearLabel">2001–2025</div>
+    <!-- Indicador de rango seleccionado -->
+    <div class="small-label pax-range-summary" id="paxYearLabel">Ene 2001 — Dic 2025</div>
   </div>
 
   <div class="small-label pax-chart-note" id="paxChartNote">–</div>
