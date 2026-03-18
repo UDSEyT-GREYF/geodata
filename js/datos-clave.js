@@ -31,6 +31,12 @@
   let paxWeekChart = null;
   let paxSeasonChart = null;
 
+  // Pasajeros filter state (module-level to avoid closure issues)
+  let paxAllData = null;          // Full dataset for current airport { date, tot, cab, intl }[]
+  let paxPeriodMin = null;        // { year, month } – earliest data point
+  let paxPeriodMax = null;        // { year, month } – latest data point
+  const PAX_MESES_ABBR = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+
 
   // Leaflet maps & layers
   let map, mapMarker, poligonoLayer;
@@ -1059,6 +1065,363 @@ const key = `${year}-${String(m).padStart(2, "0")}`;
   return { ultimoValor, ultimoPeriodo, yoy, yoyDet, ytd, ytdDet };
 }
   
+  // ===================================================================
+  // PASAJEROS – FUNCIONES DE FILTRADO (nivel módulo, sin problemas de closure)
+  // ===================================================================
+
+  /**
+   * Filtra el gráfico principal de pasajeros al rango indicado.
+   * Usa paxAllData (datos completos del aeropuerto) y actualiza paxChart.
+   */
+  function filterPasajerosChart(startYear, startMonth, endYear, endMonth) {
+    if (!paxChart || !paxAllData || !paxAllData.length) return;
+
+    const fromKey = startYear * 12 + (startMonth - 1);
+    const toKey   = endYear   * 12 + (endMonth   - 1);
+
+    let rowsChart = paxAllData.filter(r => {
+      const k = r.date.getFullYear() * 12 + r.date.getMonth();
+      return k >= fromKey && k <= toKey;
+    });
+    if (!rowsChart.length) rowsChart = paxAllData;
+
+    const labels = rowsChart.map(r => {
+      const y = r.date.getFullYear();
+      const m = String(r.date.getMonth() + 1).padStart(2, "0");
+      return `${y}-${m}`;
+    });
+
+    paxChart.data.labels = labels;
+    paxChart.data.datasets[0].data = rowsChart.map(r => r.tot);
+    paxChart.data.datasets[1].data = rowsChart.map(r => r.cab);
+    paxChart.data.datasets[2].data = rowsChart.map(r => r.intl);
+    paxChart.update("none");
+  }
+
+  /** Actualiza el overlay del minimap según el rango seleccionado. */
+  function updatePaxMinimapOverlayGlobal(fromYear, fromMonth, toYear, toMonth) {
+    const all = paxAllData;
+    if (!all || !all.length) return;
+
+    const shadeL  = document.getElementById("paxMmShadeL");
+    const handleL = document.getElementById("paxMmHandleL");
+    const mmWin   = document.getElementById("paxMmWindow");
+    const handleR = document.getElementById("paxMmHandleR");
+    const shadeR  = document.getElementById("paxMmShadeR");
+    if (!shadeL) return;
+
+    const total   = all.length;
+    const fromKey = fromYear * 12 + (fromMonth - 1);
+    const toKey   = toYear   * 12 + (toMonth   - 1);
+
+    let fromIdx = 0;
+    for (let i = 0; i < total; i++) {
+      if (all[i].date.getFullYear() * 12 + all[i].date.getMonth() >= fromKey) { fromIdx = i; break; }
+    }
+    let toIdx = total - 1;
+    for (let i = total - 1; i >= 0; i--) {
+      if (all[i].date.getFullYear() * 12 + all[i].date.getMonth() <= toKey) { toIdx = i; break; }
+    }
+
+    const leftPct  = total > 1 ? (fromIdx / (total - 1)) * 100 : 0;
+    const rightPct = total > 1 ? (toIdx   / (total - 1)) * 100 : 100;
+
+    shadeL.style.left  = "0";
+    shadeL.style.width = leftPct + "%";
+    handleL.style.left = leftPct + "%";
+    mmWin.style.left   = leftPct + "%";
+    mmWin.style.width  = Math.max(0, rightPct - leftPct) + "%";
+    handleR.style.left = rightPct + "%";
+    shadeR.style.left  = rightPct + "%";
+    shadeR.style.width = (100 - rightPct) + "%";
+  }
+
+  /** Lee los valores actuales de los inputs de rango. */
+  function readPaxRangeInputsGlobal() {
+    const minY = paxPeriodMin ? paxPeriodMin.year  : 2001;
+    const minM = paxPeriodMin ? paxPeriodMin.month : 1;
+    const maxY = paxPeriodMax ? paxPeriodMax.year  : 2026;
+    const maxM = paxPeriodMax ? paxPeriodMax.month : 12;
+    return {
+      fromYear:  Number(document.getElementById("paxYearFrom")?.value  || minY),
+      fromMonth: Number(document.getElementById("paxMonthFrom")?.value || minM),
+      toYear:    Number(document.getElementById("paxYearTo")?.value    || maxY),
+      toMonth:   Number(document.getElementById("paxMonthTo")?.value   || maxM)
+    };
+  }
+
+  /**
+   * Aplica un rango: clampea al rango disponible, actualiza inputs, etiqueta,
+   * overlay del minimap y filtra el gráfico.
+   */
+  function applyPaxRangeGlobal(fromYear, fromMonth, toYear, toMonth) {
+    const minY = paxPeriodMin ? paxPeriodMin.year  : 2001;
+    const minM = paxPeriodMin ? paxPeriodMin.month : 1;
+    const maxY = paxPeriodMax ? paxPeriodMax.year  : 2026;
+    const maxM = paxPeriodMax ? paxPeriodMax.month : 12;
+
+    const dataFromKey = minY * 12 + (minM - 1);
+    const dataToKey   = maxY * 12 + (maxM - 1);
+    const cFromKey = Math.max(dataFromKey, Math.min(dataToKey, fromYear * 12 + (fromMonth - 1)));
+    const cToKey   = Math.max(dataFromKey, Math.min(dataToKey, toYear   * 12 + (toMonth   - 1)));
+    const cFY = Math.floor(cFromKey / 12);
+    const cFM = (cFromKey % 12) + 1;
+    const cTY = Math.floor(cToKey  / 12);
+    const cTM = (cToKey  % 12) + 1;
+
+    const mfEl    = document.getElementById("paxMonthFrom");
+    const yfEl    = document.getElementById("paxYearFrom");
+    const mtEl    = document.getElementById("paxMonthTo");
+    const ytEl    = document.getElementById("paxYearTo");
+    const labelEl = document.getElementById("paxYearLabel");
+
+    if (mfEl)    mfEl.value    = String(cFM);
+    if (yfEl)    yfEl.value    = String(cFY);
+    if (mtEl)    mtEl.value    = String(cTM);
+    if (ytEl)    ytEl.value    = String(cTY);
+    if (labelEl) labelEl.textContent =
+      PAX_MESES_ABBR[cFM - 1] + " " + cFY + " — " + PAX_MESES_ABBR[cTM - 1] + " " + cTY;
+
+    updatePaxMinimapOverlayGlobal(cFY, cFM, cTY, cTM);
+    filterPasajerosChart(cFY, cFM, cTY, cTM);
+  }
+
+  /** Aplica un período rápido (botón 1m/3m/6m/ytd/1y/all). */
+  function applyPaxQuickRangeGlobal(range) {
+    if (!paxAllData || !paxAllData.length) return;
+
+    const lastDate  = paxAllData[paxAllData.length - 1].date;
+    const lastYear  = lastDate.getFullYear();
+    const lastMonth = lastDate.getMonth() + 1;
+    let fromYear, fromMonth;
+
+    switch (range) {
+      case "1m":
+        fromYear = lastYear; fromMonth = lastMonth;
+        break;
+      case "3m": {
+        const d = new Date(lastYear, lastDate.getMonth() - 2, 1);
+        fromYear = d.getFullYear(); fromMonth = d.getMonth() + 1;
+        break;
+      }
+      case "6m": {
+        const d = new Date(lastYear, lastDate.getMonth() - 5, 1);
+        fromYear = d.getFullYear(); fromMonth = d.getMonth() + 1;
+        break;
+      }
+      case "ytd":
+        fromYear = lastYear; fromMonth = 1;
+        break;
+      case "1y": {
+        const d = new Date(lastYear, lastDate.getMonth() - 11, 1);
+        fromYear = d.getFullYear(); fromMonth = d.getMonth() + 1;
+        break;
+      }
+      default: // "all"
+        fromYear  = paxPeriodMin ? paxPeriodMin.year  : 2001;
+        fromMonth = paxPeriodMin ? paxPeriodMin.month : 1;
+    }
+
+    applyPaxRangeGlobal(fromYear, fromMonth, lastYear, lastMonth);
+    document.querySelectorAll(".pax-btn").forEach(btn =>
+      btn.classList.toggle("pax-btn-active", btn.dataset.range === range)
+    );
+  }
+
+  /** Configura los event listeners de controles (ejecutar una sola vez). */
+  function initPaxControls() {
+    const marker = document.getElementById("paxYearFrom");
+    if (!marker || marker.dataset.globalBound) return;
+    marker.dataset.globalBound = "1";
+
+    // Botones rápidos de período
+    document.querySelectorAll(".pax-btn").forEach(btn => {
+      btn.addEventListener("click", () => applyPaxQuickRangeGlobal(btn.dataset.range));
+    });
+
+    // Inputs de fecha (mes y año inicio/fin)
+    const onDateChange = () => {
+      const r = readPaxRangeInputsGlobal();
+      const fromKey = r.fromYear * 12 + (r.fromMonth - 1);
+      const toKey   = r.toYear   * 12 + (r.toMonth   - 1);
+      let fY = r.fromYear, fM = r.fromMonth, tY = r.toYear, tM = r.toMonth;
+      if (fromKey > toKey) { tY = fY; tM = fM; }
+      applyPaxRangeGlobal(fY, fM, tY, tM);
+      document.querySelectorAll(".pax-btn").forEach(b => b.classList.remove("pax-btn-active"));
+    };
+    ["paxMonthFrom", "paxYearFrom", "paxMonthTo", "paxYearTo"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("change", onDateChange);
+    });
+
+    // Minimap interactivo
+    initMinimapDrag();
+  }
+
+  /** Configura el arrastre interactivo del minimap (mouse y touch). */
+  function initMinimapDrag() {
+    const wrap = document.getElementById("paxMinimapWrap");
+    if (!wrap || wrap._minimapDragBound) return;
+    wrap._minimapDragBound = true;
+
+    const handleL = document.getElementById("paxMmHandleL");
+    const handleR = document.getElementById("paxMmHandleR");
+    const mmWin   = document.getElementById("paxMmWindow");
+    if (!handleL || !handleR || !mmWin) return;
+
+    let dragMode = null;
+    let panStartClientX = 0;
+    let panStartFromIdx = 0;
+    let panStartToIdx   = 0;
+
+    function xToIdx(clientX) {
+      const rect = wrap.getBoundingClientRect();
+      const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      const total = (paxAllData || []).length;
+      return Math.round(pct * Math.max(0, total - 1));
+    }
+
+    function idxToDate(idx) {
+      const all = paxAllData;
+      if (!all || !all.length) return { year: 2001, month: 1 };
+      const r = all[Math.max(0, Math.min(all.length - 1, idx))];
+      return { year: r.date.getFullYear(), month: r.date.getMonth() + 1 };
+    }
+
+    function getCurrentIdxs() {
+      const all = paxAllData;
+      if (!all || !all.length) return { fi: 0, ti: 0 };
+      const r = readPaxRangeInputsGlobal();
+      const fKey = r.fromYear * 12 + (r.fromMonth - 1);
+      const tKey = r.toYear   * 12 + (r.toMonth   - 1);
+      let fi = 0, ti = all.length - 1;
+      for (let i = 0; i < all.length; i++) {
+        if (all[i].date.getFullYear() * 12 + all[i].date.getMonth() >= fKey) { fi = i; break; }
+      }
+      for (let i = all.length - 1; i >= 0; i--) {
+        if (all[i].date.getFullYear() * 12 + all[i].date.getMonth() <= tKey) { ti = i; break; }
+      }
+      return { fi, ti };
+    }
+
+    function onMove(e) {
+      if (!dragMode) return;
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const idx = xToIdx(clientX);
+      const { fi, ti } = getCurrentIdxs();
+      const all = paxAllData || [];
+
+      if (dragMode === "left") {
+        const cIdx = Math.min(idx, ti);
+        applyPaxRangeGlobal(idxToDate(cIdx).year, idxToDate(cIdx).month, idxToDate(ti).year, idxToDate(ti).month);
+      } else if (dragMode === "right") {
+        const cIdx = Math.max(idx, fi);
+        applyPaxRangeGlobal(idxToDate(fi).year, idxToDate(fi).month, idxToDate(cIdx).year, idxToDate(cIdx).month);
+      } else if (dragMode === "pan") {
+        const span   = panStartToIdx - panStartFromIdx;
+        const deltaI = xToIdx(clientX) - xToIdx(panStartClientX);
+        const newFi  = Math.max(0, Math.min(all.length - 1 - span, panStartFromIdx + deltaI));
+        const newTi  = Math.min(all.length - 1, newFi + span);
+        applyPaxRangeGlobal(idxToDate(newFi).year, idxToDate(newFi).month,
+                            idxToDate(newTi).year, idxToDate(newTi).month);
+      }
+      document.querySelectorAll(".pax-btn").forEach(b => b.classList.remove("pax-btn-active"));
+    }
+
+    function onUp() {
+      dragMode = null;
+      document.removeEventListener("mousemove", onMove);
+      document.removeEventListener("touchmove", onMove);
+    }
+
+    handleL.addEventListener("mousedown", e => {
+      e.preventDefault(); dragMode = "left";
+      document.addEventListener("mousemove", onMove);
+      document.addEventListener("mouseup", onUp, { once: true });
+    });
+    handleL.addEventListener("touchstart", e => {
+      e.preventDefault(); dragMode = "left";
+      panStartClientX = e.touches[0].clientX;
+      document.addEventListener("touchmove", onMove, { passive: false });
+      document.addEventListener("touchend", onUp, { once: true });
+    }, { passive: false });
+
+    handleR.addEventListener("mousedown", e => {
+      e.preventDefault(); dragMode = "right";
+      document.addEventListener("mousemove", onMove);
+      document.addEventListener("mouseup", onUp, { once: true });
+    });
+    handleR.addEventListener("touchstart", e => {
+      e.preventDefault(); dragMode = "right";
+      panStartClientX = e.touches[0].clientX;
+      document.addEventListener("touchmove", onMove, { passive: false });
+      document.addEventListener("touchend", onUp, { once: true });
+    }, { passive: false });
+
+    mmWin.addEventListener("mousedown", e => {
+      e.preventDefault(); dragMode = "pan";
+      panStartClientX = e.clientX;
+      const ci = getCurrentIdxs();
+      panStartFromIdx = ci.fi; panStartToIdx = ci.ti;
+      document.addEventListener("mousemove", onMove);
+      document.addEventListener("mouseup", onUp, { once: true });
+    });
+    mmWin.addEventListener("touchstart", e => {
+      e.preventDefault(); dragMode = "pan";
+      panStartClientX = e.touches[0].clientX;
+      const ci = getCurrentIdxs();
+      panStartFromIdx = ci.fi; panStartToIdx = ci.ti;
+      document.addEventListener("touchmove", onMove, { passive: false });
+      document.addEventListener("touchend", onUp, { once: true });
+    }, { passive: false });
+  }
+
+  /** Renderiza (o actualiza) el minimap con la serie total completa del aeropuerto. */
+  function renderPaxMinimapGlobal() {
+    const all = paxAllData;
+    if (!all || !all.length) return;
+    const mmCanvas = document.getElementById("paxMinimapCanvas");
+    if (!mmCanvas) return;
+
+    const labels = all.map(r => {
+      const y = r.date.getFullYear();
+      const m = String(r.date.getMonth() + 1).padStart(2, "0");
+      return `${y}-${m}`;
+    });
+    const data = all.map(r => r.tot || 0);
+
+    if (paxMinimapChart) {
+      paxMinimapChart.data.labels = labels;
+      paxMinimapChart.data.datasets[0].data = data;
+      paxMinimapChart.update("none");
+    } else {
+      paxMinimapChart = new Chart(mmCanvas.getContext("2d"), {
+        type: "line",
+        data: {
+          labels,
+          datasets: [{
+            data,
+            borderColor: "#0f44bf",
+            borderWidth: 1.5,
+            pointRadius: 0,
+            fill: true,
+            backgroundColor: "rgba(15,68,191,0.08)",
+            tension: 0.15
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: false,
+          plugins: { legend: { display: false }, tooltip: { enabled: false } },
+          scales: { x: { display: false }, y: { display: false, beginAtZero: true } },
+          events: []
+        }
+      });
+    }
+  }
+
+
  // ------Función que define el panel de pasajeros.
   
 function renderPasajerosPanel(iataUpper) {
@@ -1070,61 +1433,6 @@ function renderPasajerosPanel(iataUpper) {
   const yearLabelEl = document.getElementById("paxYearLabel");
 
   if (!canvas || !note) return;
-  
-// ----- “scheduler” (throttle)----
-let paxUpdateRAF = 0;
-
-function schedulePaxChartUpdate(iataUpper) {
-  if (paxUpdateRAF) cancelAnimationFrame(paxUpdateRAF);
-
-  paxUpdateRAF = requestAnimationFrame(() => {
-    paxUpdateRAF = 0;
-    updatePaxChartRangeOnly(iataUpper); // actualización liviana
-  });
-}
-
-// ----- actualización liviana del chart (sin recalcular series)-----
-  function updatePaxChartRangeOnly(iataUpper) {
-  const canvas = document.getElementById("paxChartCanvas");
-  if (!canvas) return;
-
-  // Si todavía no existe el chart o no hay cache, caemos al render completo
-  if (!paxChart || !canvas._paxAll || canvas._paxIATA !== iataUpper) {
-    renderPasajerosPanel(iataUpper);
-    renderPaxPatterns(iataUpper);
-    return;
-  }
-
-  const all = canvas._paxAll;
-
-  // Filtrado por mes+año (liviano)
-  const mf = Number(document.getElementById("paxMonthFrom")?.value || 1);
-  const yf = Number(document.getElementById("paxYearFrom")?.value || all[0].date.getFullYear());
-  const mt = Number(document.getElementById("paxMonthTo")?.value || 12);
-  const yt = Number(document.getElementById("paxYearTo")?.value || all[all.length - 1].date.getFullYear());
-  const fromKey = yf * 12 + (mf - 1);
-  const toKey   = yt * 12 + (mt - 1);
-
-  let rowsChart = all.filter(r => {
-    const k = r.date.getFullYear() * 12 + r.date.getMonth();
-    return k >= fromKey && k <= toKey;
-  });
-  if (!rowsChart.length) rowsChart = all;
-
-  const labels = rowsChart.map(r => {
-    const y = r.date.getFullYear();
-    const m = String(r.date.getMonth() + 1).padStart(2, "0");
-    return `${y}-${m}`;
-  });
-
-  paxChart.data.labels = labels;
-  paxChart.data.datasets[0].data = rowsChart.map(r => r.tot);
-  paxChart.data.datasets[1].data = rowsChart.map(r => r.cab);
-  paxChart.data.datasets[2].data = rowsChart.map(r => r.intl);
-
-  // Actualizar sin animación para máxima fluidez
-  paxChart.update("none");
-}
 
   // --- Helpers KPIs ---
   const seriesCab = buildPaxSeries(iataUpper, "cabotaje");
@@ -1251,302 +1559,35 @@ canvas._paxIATA = iataUpper;
 canvas._paxPatternsDoneFor = ""; // fuerza recalcular patrones cuando corresponda
 
 
-  // PERF: onSlide dispara renderPasajerosPanel() en cada input.
-// Si vuelve a “colgarse”, reemplazar por throttle (requestAnimationFrame) y update liviano.
-
-  // ---- Inicialización de controles de período ----
-  const PAX_MESES = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
-
-  const minYear  = all[0].date.getFullYear();
-  const minMonth = all[0].date.getMonth() + 1;          // 1-based
-  const maxYear  = all[all.length - 1].date.getFullYear();
-  const maxMonth = all[all.length - 1].date.getMonth() + 1; // 1-based
-
-  // Actualiza el overlay del minimap según el rango seleccionado
-  function updatePaxMinimapOverlay(fromYear, fromMonth, toYear, toMonth) {
-    const shadeL  = document.getElementById("paxMmShadeL");
-    const handleL = document.getElementById("paxMmHandleL");
-    const mmWin   = document.getElementById("paxMmWindow");
-    const handleR = document.getElementById("paxMmHandleR");
-    const shadeR  = document.getElementById("paxMmShadeR");
-    if (!shadeL || !all.length) return;
-
-    const total   = all.length;
-    const fromKey = fromYear * 12 + (fromMonth - 1);
-    const toKey   = toYear  * 12 + (toMonth  - 1);
-
-    let fromIdx = 0;
-    for (let i = 0; i < total; i++) {
-      if (all[i].date.getFullYear() * 12 + all[i].date.getMonth() >= fromKey) { fromIdx = i; break; }
-    }
-    let toIdx = total - 1;
-    for (let i = total - 1; i >= 0; i--) {
-      if (all[i].date.getFullYear() * 12 + all[i].date.getMonth() <= toKey) { toIdx = i; break; }
-    }
-
-    const leftPct  = total > 1 ? (fromIdx / (total - 1)) * 100 : 0;
-    const rightPct = total > 1 ? (toIdx   / (total - 1)) * 100 : 100;
-
-    shadeL.style.left  = "0";
-    shadeL.style.width = leftPct + "%";
-    handleL.style.left = leftPct + "%";
-    mmWin.style.left   = leftPct + "%";
-    mmWin.style.width  = Math.max(0, rightPct - leftPct) + "%";
-    handleR.style.left = rightPct + "%";
-    shadeR.style.left  = rightPct + "%";
-    shadeR.style.width = (100 - rightPct) + "%";
-  }
-
-  // Lee el rango actual desde los inputs
-  function readPaxRangeInputs() {
-    return {
-      fromYear:  Number(document.getElementById("paxYearFrom")?.value  || minYear),
-      fromMonth: Number(document.getElementById("paxMonthFrom")?.value || minMonth),
-      toYear:    Number(document.getElementById("paxYearTo")?.value    || maxYear),
-      toMonth:   Number(document.getElementById("paxMonthTo")?.value   || maxMonth)
-    };
-  }
-
-  // Aplica un rango: actualiza inputs, label, minimap overlay y dispara actualización del chart
-  function applyPaxRange(fromYear, fromMonth, toYear, toMonth) {
-    // Clamp al rango disponible en el dataset
-    const dataFromKey = minYear * 12 + (minMonth - 1);
-    const dataToKey   = maxYear * 12 + (maxMonth - 1);
-    const cFromKey = Math.max(dataFromKey, Math.min(dataToKey, fromYear * 12 + (fromMonth - 1)));
-    const cToKey   = Math.max(dataFromKey, Math.min(dataToKey, toYear   * 12 + (toMonth   - 1)));
-    const cFY = Math.floor(cFromKey / 12);
-    const cFM = (cFromKey % 12) + 1;
-    const cTY = Math.floor(cToKey  / 12);
-    const cTM = (cToKey  % 12) + 1;
-
-    const mfEl = document.getElementById("paxMonthFrom");
-    const yfEl = document.getElementById("paxYearFrom");
-    const mtEl = document.getElementById("paxMonthTo");
-    const ytEl = document.getElementById("paxYearTo");
-    const labelEl = document.getElementById("paxYearLabel");
-
-    if (mfEl) mfEl.value = String(cFM);
-    if (yfEl) yfEl.value = String(cFY);
-    if (mtEl) mtEl.value = String(cTM);
-    if (ytEl) ytEl.value = String(cTY);
-    if (labelEl) labelEl.textContent = PAX_MESES[cFM - 1] + " " + cFY + " — " + PAX_MESES[cTM - 1] + " " + cTY;
-
-    updatePaxMinimapOverlay(cFY, cFM, cTY, cTM);
-    schedulePaxChartUpdate(currentIATA || iataUpper);
-  }
-
-  // Aplica un período rápido (botón)
-  function applyPaxQuickRange(range) {
-    const lastDate  = all[all.length - 1].date;
-    const lastYear  = lastDate.getFullYear();
-    const lastMonth = lastDate.getMonth() + 1;
-    let fromYear, fromMonth;
-    switch (range) {
-      case "1m":
-        fromYear = lastYear; fromMonth = lastMonth;
-        break;
-      case "3m": {
-        const d = new Date(lastYear, lastDate.getMonth() - 2, 1);
-        fromYear = d.getFullYear(); fromMonth = d.getMonth() + 1;
-        break;
-      }
-      case "6m": {
-        const d = new Date(lastYear, lastDate.getMonth() - 5, 1);
-        fromYear = d.getFullYear(); fromMonth = d.getMonth() + 1;
-        break;
-      }
-      case "ytd":
-        fromYear = lastYear; fromMonth = 1;
-        break;
-      case "1y": {
-        const d = new Date(lastYear, lastDate.getMonth() - 11, 1);
-        fromYear = d.getFullYear(); fromMonth = d.getMonth() + 1;
-        break;
-      }
-      default: // "all"
-        fromYear = minYear; fromMonth = minMonth;
-    }
-    applyPaxRange(fromYear, fromMonth, lastYear, lastMonth);
-    document.querySelectorAll(".pax-btn").forEach(btn =>
-      btn.classList.toggle("pax-btn-active", btn.dataset.range === range)
-    );
-  }
-
-  // Renderiza el minimap (fondo con la serie completa)
-  function renderPaxMinimap() {
-    const mmCanvas = document.getElementById("paxMinimapCanvas");
-    if (!mmCanvas) return;
-    const labels = all.map(r => {
-      const y = r.date.getFullYear();
-      const m = String(r.date.getMonth() + 1).padStart(2, "0");
-      return `${y}-${m}`;
-    });
-    const data = all.map(r => r.tot || 0);
-    if (paxMinimapChart) {
-      paxMinimapChart.data.labels = labels;
-      paxMinimapChart.data.datasets[0].data = data;
-      paxMinimapChart.update("none");
-    } else {
-      paxMinimapChart = new Chart(mmCanvas.getContext("2d"), {
-        type: "line",
-        data: {
-          labels,
-          datasets: [{
-            data,
-            borderColor: "#0f44bf",
-            borderWidth: 1.5,
-            pointRadius: 0,
-            fill: true,
-            backgroundColor: "rgba(15,68,191,0.08)",
-            tension: 0.15
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          animation: false,
-          plugins: { legend: { display: false }, tooltip: { enabled: false } },
-          scales: { x: { display: false }, y: { display: false, beginAtZero: true } },
-          events: []
-        }
-      });
-    }
-  }
-
-  // Configura la interacción de arrastre en el minimap (una sola vez)
-  function setupMinimapDrag() {
-    const wrap = document.getElementById("paxMinimapWrap");
-    if (!wrap || wrap._minimapDragBound) return;
-    wrap._minimapDragBound = true;
-
-    const handleL = document.getElementById("paxMmHandleL");
-    const handleR = document.getElementById("paxMmHandleR");
-    const mmWin   = document.getElementById("paxMmWindow");
-    let dragMode = null;
-    let panStartClientX = 0;
-    let panStartFromIdx = 0;
-    let panStartToIdx   = 0;
-
-    function xToIdx(clientX) {
-      const rect = wrap.getBoundingClientRect();
-      const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-      return Math.round(pct * (all.length - 1));
-    }
-
-    function idxToDate(idx) {
-      const r = all[Math.max(0, Math.min(all.length - 1, idx))];
-      return { year: r.date.getFullYear(), month: r.date.getMonth() + 1 };
-    }
-
-    function getCurrentIdxs() {
-      const { fromYear, fromMonth, toYear, toMonth } = readPaxRangeInputs();
-      const fKey = fromYear * 12 + (fromMonth - 1);
-      const tKey = toYear  * 12 + (toMonth  - 1);
-      let fi = 0, ti = all.length - 1;
-      for (let i = 0; i < all.length; i++) {
-        if (all[i].date.getFullYear() * 12 + all[i].date.getMonth() >= fKey) { fi = i; break; }
-      }
-      for (let i = all.length - 1; i >= 0; i--) {
-        if (all[i].date.getFullYear() * 12 + all[i].date.getMonth() <= tKey) { ti = i; break; }
-      }
-      return { fi, ti };
-    }
-
-    function onMove(e) {
-      if (!dragMode) return;
-      const idx = xToIdx(e.clientX);
-      const { fi, ti } = getCurrentIdxs();
-      if (dragMode === "left") {
-        const cIdx = Math.min(idx, ti);
-        const f = idxToDate(cIdx);
-        const t = idxToDate(ti);
-        applyPaxRange(f.year, f.month, t.year, t.month);
-      } else if (dragMode === "right") {
-        const cIdx = Math.max(idx, fi);
-        const f = idxToDate(fi);
-        const t = idxToDate(cIdx);
-        applyPaxRange(f.year, f.month, t.year, t.month);
-      } else if (dragMode === "pan") {
-        const span    = panStartToIdx - panStartFromIdx;
-        const deltaI  = xToIdx(e.clientX) - xToIdx(panStartClientX);
-        let newFi = Math.max(0, Math.min(all.length - 1 - span, panStartFromIdx + deltaI));
-        let newTi = Math.min(all.length - 1, newFi + span);
-        const f = idxToDate(newFi);
-        const t = idxToDate(newTi);
-        applyPaxRange(f.year, f.month, t.year, t.month);
-      }
-      // Quitar activo de botones al arrastrar manualmente
-      document.querySelectorAll(".pax-btn").forEach(b => b.classList.remove("pax-btn-active"));
-    }
-
-    function onUp() {
-      dragMode = null;
-      document.removeEventListener("mousemove", onMove);
-    }
-
-    handleL.addEventListener("mousedown", e => {
-      e.preventDefault(); dragMode = "left";
-      document.addEventListener("mousemove", onMove);
-      document.addEventListener("mouseup", onUp, { once: true });
-    });
-    handleR.addEventListener("mousedown", e => {
-      e.preventDefault(); dragMode = "right";
-      document.addEventListener("mousemove", onMove);
-      document.addEventListener("mouseup", onUp, { once: true });
-    });
-    mmWin.addEventListener("mousedown", e => {
-      e.preventDefault(); dragMode = "pan";
-      panStartClientX = e.clientX;
-      const ci = getCurrentIdxs();
-      panStartFromIdx = ci.fi; panStartToIdx = ci.ti;
-      document.addEventListener("mousemove", onMove);
-      document.addEventListener("mouseup", onUp, { once: true });
-    });
-  }
-
-  // Configurar event listeners de controles (solo una vez, guardado por paxYearFrom.dataset.bound)
-  if (yearFromEl && !yearFromEl.dataset.bound) {
-    yearFromEl.dataset.bound = "1";
-
-    // Botones rápidos
-    document.querySelectorAll(".pax-btn").forEach(btn =>
-      btn.addEventListener("click", () => applyPaxQuickRange(btn.dataset.range))
-    );
-
-    // Cambio en inputs de fecha
-    const onDateChange = () => {
-      const r = readPaxRangeInputs();
-      const fromKey = r.fromYear * 12 + (r.fromMonth - 1);
-      const toKey   = r.toYear  * 12 + (r.toMonth  - 1);
-      let fY = r.fromYear, fM = r.fromMonth, tY = r.toYear, tM = r.toMonth;
-      if (fromKey > toKey) { tY = fY; tM = fM; }
-      applyPaxRange(fY, fM, tY, tM);
-      document.querySelectorAll(".pax-btn").forEach(b => b.classList.remove("pax-btn-active"));
-    };
-    ["paxMonthFrom","paxYearFrom","paxMonthTo","paxYearTo"].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.addEventListener("change", onDateChange);
-    });
-  }
+  // ---- Almacenar datos del aeropuerto en variables de módulo ----
+  paxAllData    = all;
+  paxPeriodMin  = { year: all[0].date.getFullYear(), month: all[0].date.getMonth() + 1 };
+  paxPeriodMax  = { year: all[all.length - 1].date.getFullYear(), month: all[all.length - 1].date.getMonth() + 1 };
 
   // Reset de rango al cambiar de aeropuerto
   const prevIata = yearFromEl?.dataset.iata || "";
   if (prevIata !== iataUpper) {
-    applyPaxRange(minYear, minMonth, maxYear, maxMonth);
+    applyPaxRangeGlobal(paxPeriodMin.year, paxPeriodMin.month, paxPeriodMax.year, paxPeriodMax.month);
     document.querySelectorAll(".pax-btn").forEach(b =>
       b.classList.toggle("pax-btn-active", b.dataset.range === "all")
     );
     if (yearFromEl) yearFromEl.dataset.iata = iataUpper;
   } else {
     // Solo actualiza label y overlay sin cambiar los valores
-    const r = readPaxRangeInputs();
+    const r = readPaxRangeInputsGlobal();
     const labelEl = document.getElementById("paxYearLabel");
-    if (labelEl) labelEl.textContent = PAX_MESES[r.fromMonth - 1] + " " + r.fromYear + " — " + PAX_MESES[r.toMonth - 1] + " " + r.toYear;
-    updatePaxMinimapOverlay(r.fromYear, r.fromMonth, r.toYear, r.toMonth);
+    if (labelEl) labelEl.textContent =
+      PAX_MESES_ABBR[r.fromMonth - 1] + " " + r.fromYear + " — " +
+      PAX_MESES_ABBR[r.toMonth  - 1] + " " + r.toYear;
+    updatePaxMinimapOverlayGlobal(r.fromYear, r.fromMonth, r.toYear, r.toMonth);
   }
 
-  renderPaxMinimap();
-  setupMinimapDrag();
+  // Configurar event listeners globales (solo una vez)
+  initPaxControls();
+
+  // Renderizar minimap
+  renderPaxMinimapGlobal();
+
 
 // =========================================================================
 // FIX Chart.js — NO TOCAR SIN REVISAR
@@ -1554,7 +1595,7 @@ canvas._paxPatternsDoneFor = ""; // fuerza recalcular patrones cuando correspond
 // - Si el gráfico vuelve a "gigante", revisar CSS (pasajeros-chart-wrap / paxChartCanvas)
 // =========================================================================
   // filtrar por rango de mes+año para el chart
-  const _paxR = readPaxRangeInputs();
+  const _paxR = readPaxRangeInputsGlobal();
   const _paxFromKey = _paxR.fromYear * 12 + (_paxR.fromMonth - 1);
   const _paxToKey   = _paxR.toYear   * 12 + (_paxR.toMonth   - 1);
   let rowsChart = all.filter(row => {
