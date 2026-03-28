@@ -1428,3 +1428,190 @@ footer {
 .pax-group-patterns > .pax-group-title{
   display: none;
 }
+
+/* =========================
+   TOP 10 YoY – Ranking
+   ========================= */
+
+.pax-ranking-section {
+  margin: 14px 0 6px 0;
+  border-top: 1px solid #e0e6f0;
+  padding-top: 12px;
+}
+
+.pax-ranking-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 700px) {
+  .pax-ranking-cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pax-ranking-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #1a3a6e;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---- Top 10 list ---- */
+.pax-top10-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pax-top10-loading,
+.pax-ranking-loading {
+  font-size: 0.8rem;
+  color: #888;
+  font-style: italic;
+}
+
+.pax-top10-item {
+  display: grid;
+  grid-template-columns: 18px 32px 1fr 14px 52px 80px auto;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  background: #f8fafc;
+  border: 1px solid #e5eaf3;
+  font-size: 0.78rem;
+  transition: background 0.15s;
+}
+
+.pax-top10-item:hover {
+  background: #eef2fb;
+}
+
+/* Resaltado si es el aeropuerto actual */
+.pax-top10-item.pax-ranking-current {
+  background: #e8effc;
+  border-color: #0f44bf;
+  font-weight: 600;
+}
+
+.pax-top10-pos {
+  color: #888;
+  font-size: 0.72rem;
+  text-align: right;
+}
+
+.pax-top10-iata {
+  font-weight: 700;
+  color: #1a3a6e;
+  font-size: 0.78rem;
+}
+
+.pax-top10-nombre {
+  color: #444;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.75rem;
+}
+
+.pax-ranking-arrow {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.pax-ranking-arrow-up    { color: #1a7a3e; }
+.pax-ranking-arrow-down  { color: #b31a1a; }
+.pax-ranking-arrow-flat  { color: #888; }
+
+.pax-top10-pct {
+  font-weight: 600;
+  text-align: right;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.pax-ranking-bar-wrap {
+  height: 6px;
+  background: #e5eaf3;
+  border-radius: 3px;
+  overflow: hidden;
+  min-width: 40px;
+}
+
+.pax-ranking-bar {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.pax-ranking-bar-pos { background: #1a7a3e; }
+.pax-ranking-bar-neg { background: #b31a1a; }
+
+.pax-top10-vol {
+  color: #777;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  text-align: right;
+}
+
+/* ---- Tu Ranking ---- */
+.pax-tu-ranking {
+  font-size: 0.8rem;
+}
+
+.pax-tu-ranking-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  background: #f8fafc;
+  border: 1px solid #e5eaf3;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.pax-tu-ranking-label {
+  color: #666;
+  flex: 1 1 auto;
+  min-width: 120px;
+}
+
+.pax-tu-ranking-pos {
+  color: #1a3a6e;
+  white-space: nowrap;
+}
+
+.pax-tu-ranking-pos strong {
+  font-size: 1rem;
+}
+
+.pax-tu-ranking-sub {
+  color: #999;
+  font-size: 0.7rem;
+}
+
+.pax-tu-ranking-pct {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pax-tu-ranking-contexto {
+  font-size: 0.75rem;
+  color: #555;
+  margin: 2px 0 8px 0;
+  line-height: 1.5;
+}
+
+.pax-tu-ranking-contexto strong {
+  color: #1a3a6e;
+}
