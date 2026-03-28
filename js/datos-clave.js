@@ -1777,6 +1777,17 @@ function renderPaxPatterns(iataUpper) {
    * Compara los últimos 12 meses vs. los 12 meses anteriores (total cab+intl).
    * Retorna array de { iata, nombre, varYoY, ultimos12, anteriores12 } ordenado por varYoY desc.
    */
+
+  // Umbral (%) para considerar una variación significativa (↑ o ↓) vs. estable (→)
+  const PAX_VARIATION_THRESHOLD = 2;
+
+  /** Devuelve { arrow, arrowClass } según el % de variación */
+  function getArrowIndicator(pct) {
+    if (pct > PAX_VARIATION_THRESHOLD)  return { arrow: "↑", arrowClass: "pax-ranking-arrow-up" };
+    if (pct < -PAX_VARIATION_THRESHOLD) return { arrow: "↓", arrowClass: "pax-ranking-arrow-down" };
+    return { arrow: "→", arrowClass: "pax-ranking-arrow-flat" };
+  }
+
   function calcularVariacionYoYPorAeropuerto() {
     if (!pasajerosMensualRows || !pasajerosMensualRows.length) return [];
 
@@ -1784,6 +1795,8 @@ function renderPaxPatterns(iataUpper) {
     const rows = pasajerosMensualRows.filter(
       r => r.dataset === PAX_DATASET_CAB || r.dataset === PAX_DATASET_INT
     );
+
+    if (!rows.length) return [];
 
     // Fecha máxima del dataset
     const maxDate = rows.reduce((max, r) => (r.date > max ? r.date : max), rows[0].date);
@@ -1886,8 +1899,7 @@ function renderPaxPatterns(iataUpper) {
     listEl.innerHTML = top10.map((a, idx) => {
       const esCurrent = a.iata === iataActual;
       const pct = a.varYoY;
-      const arrow = pct > 2 ? "↑" : pct < -2 ? "↓" : "→";
-      const arrowClass = pct > 2 ? "pax-ranking-arrow-up" : pct < -2 ? "pax-ranking-arrow-down" : "pax-ranking-arrow-flat";
+      const { arrow, arrowClass } = getArrowIndicator(pct);
       const barW = Math.round((Math.abs(pct) / maxAbs) * 100);
       const barClass = pct >= 0 ? "pax-ranking-bar-pos" : "pax-ranking-bar-neg";
 
@@ -1926,8 +1938,7 @@ function renderPaxPatterns(iataUpper) {
     if (posAnual >= 0 && datoCurrent) {
       const pos = posAnual + 1;
       const pct = datoCurrent.varYoY;
-      const arrow = pct > 2 ? "↑" : pct < -2 ? "↓" : "→";
-      const arrowClass = pct > 2 ? "pax-ranking-arrow-up" : pct < -2 ? "pax-ranking-arrow-down" : "pax-ranking-arrow-flat";
+      const { arrow, arrowClass } = getArrowIndicator(pct);
 
       // Contexto: aeropuerto anterior y siguiente en el ranking
       const prevAero = posAnual > 0 ? todosOrdenados[posAnual - 1] : null;
@@ -1935,9 +1946,12 @@ function renderPaxPatterns(iataUpper) {
 
       let contexto = "";
       if (prevAero && nextAero) {
-        contexto = `Creció más que <strong>${nextAero.iata}</strong> (${formatPct(nextAero.varYoY)}) pero menos que <strong>${prevAero.iata}</strong> (${formatPct(prevAero.varYoY)}).`;
+        const verbo = pct >= 0 ? "varió más que" : "decreció menos que";
+        contexto = `Este aeropuerto ${verbo} <strong>${nextAero.iata}</strong> (${formatPct(nextAero.varYoY)}) pero menos que <strong>${prevAero.iata}</strong> (${formatPct(prevAero.varYoY)}).`;
       } else if (!prevAero && nextAero) {
-        contexto = `Es el aeropuerto con mayor variación positiva del sistema.`;
+        contexto = pct >= 0
+          ? `Es el aeropuerto con mayor variación positiva del sistema.`
+          : `Es el aeropuerto con mayor caída del sistema.`;
       } else if (prevAero && !nextAero) {
         contexto = `Es el aeropuerto con menor variación del sistema.`;
       }
