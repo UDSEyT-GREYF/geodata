@@ -911,6 +911,11 @@ ul {
   height: 100%;
 }
 
+.map-influencia {
+  width: 100%;
+  height: 100%;
+}
+
 /* para abrir el mapa de paradas APP en una nueva ventana */
 .map-expand-btn {
   margin-top: 6px;
@@ -947,11 +952,26 @@ ul {
 }
 
 .pasajeros-kpi{
-  flex:1 1 220px;
+  flex: 0 0 auto;
   background:#ffffff;
   border:1px solid #d0d7e2;
   border-radius:4px;
-  padding:8px 10px;
+  padding:6px 8px;
+  min-height:auto;
+}
+
+.pax-group .pasajeros-kpi{
+  flex: 0 0 auto;
+}
+
+.pax-group .pasajeros-kpi .kpi-value{
+  font-size: 1.05rem;
+  line-height: 1.05;
+}
+
+.pax-group .pasajeros-kpi .small-label{
+  font-size: 0.68rem;
+  line-height: 1.15;
 }
 /* ==========================================================================
    FIX Chart.js (Pasajeros) — NO TOCAR SIN REVISAR
@@ -1198,19 +1218,23 @@ ul {
   display: block;
 }
 
+.pax-kpis-3,
 .pax-kpis-4 {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
+  align-items: start;
 }
 
 @media (max-width: 1400px) {
+  .pax-kpis-3,
   .pax-kpis-4 {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 800px) {
+  .pax-kpis-3,
   .pax-kpis-4 {
     grid-template-columns: 1fr;
   }
