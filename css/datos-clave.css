@@ -943,6 +943,9 @@ ul {
 .panel-pasajeros {
   grid-area: pasajeros;
 }
+.panel-servicios {
+  grid-area: servicios;
+}
 
 /* Panel Pasajeros: KPIs + gráfico */
 .pasajeros-kpis{
@@ -1582,4 +1585,282 @@ footer {
 
 .pax-tu-ranking-contexto strong {
   color: #1a3a6e;
+}
+
+
+/* ==============================
+   12B. PASAJEROS – MEJORAS VISUALES
+   ============================== */
+.pax-group-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pax-group-dot,
+.pax-comp-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex: 0 0 10px;
+}
+
+.pax-dot-total { background: #0f44bf; }
+.pax-dot-cab,
+.pax-comp-dot-cab { background: #73acdf; }
+.pax-dot-int,
+.pax-comp-dot-int { background: #16c41e; }
+
+.pax-group .pasajeros-kpi {
+  position: relative;
+  border-radius: 8px;
+  padding: 9px 10px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pax-group .pasajeros-kpi:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.pax-group .pasajeros-kpi:nth-child(2) {
+  border-top: 3px solid #0f44bf;
+}
+
+.pax-group .pasajeros-kpi:nth-child(3),
+.pax-group .pasajeros-kpi:nth-child(4) {
+  border-top: 3px solid #d9e2f2;
+}
+
+.pax-group .pasajeros-kpi.trend-pos {
+  border-top-color: #1a7a3e;
+  background: linear-gradient(180deg, rgba(26,122,62,0.06) 0%, #ffffff 100%);
+}
+
+.pax-group .pasajeros-kpi.trend-neg {
+  border-top-color: #b31a1a;
+  background: linear-gradient(180deg, rgba(179,26,26,0.06) 0%, #ffffff 100%);
+}
+
+.pax-group .pasajeros-kpi.trend-neutral {
+  border-top-color: #aab7c8;
+}
+
+.pax-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pax-delta::before {
+  content: attr(data-trend-symbol);
+  font-size: 0.82rem;
+  line-height: 1;
+}
+
+.pax-delta.is-pos { color: #1a7a3e; }
+.pax-delta.is-neg { color: #b31a1a; }
+.pax-delta.is-neutral { color: #667085; }
+
+.pax-mini-composition .pax-mini-chart-area-donut {
+  height: 165px;
+}
+
+.pax-comp-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.pax-comp-stat {
+  border: 1px solid #e3e8f1;
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: grid;
+  grid-template-columns: 10px 1fr auto;
+  gap: 6px;
+  align-items: center;
+  background: #f8fafc;
+}
+
+.pax-comp-label {
+  color: #555;
+  font-size: 0.74rem;
+}
+
+.pax-comp-stat strong {
+  color: #1a3a6e;
+  font-size: 0.92rem;
+}
+
+/* ==============================
+   12C. SERVICIOS Y AYUDAS – NUEVO DISEÑO
+   ============================== */
+.servicios-body {
+  gap: 10px;
+}
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+@media (max-width: 1000px) {
+  .servicios-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.servicios-card {
+  border: 1px solid #d0d7e2;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #fbfcfe 0%, #ffffff 100%);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 100%;
+}
+
+.servicios-card-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1a3a6e;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e5eaf3;
+}
+
+.servicios-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.servicios-item-stack {
+  flex-direction: column;
+}
+
+.servicios-item-label,
+.servicios-ficha-label {
+  font-size: 0.76rem;
+  color: #667085;
+}
+
+.servicios-item-value {
+  font-size: 0.84rem;
+  color: #0f172a;
+  font-weight: 600;
+  text-align: right;
+}
+
+.servicios-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.servicios-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #cfe0f6;
+  background: #eef5ff;
+  color: #1a3a6e;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.servicios-chip-empty {
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+  color: #6b7280;
+}
+
+.servicios-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 84px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  border: 1px solid #d0d7e2;
+}
+
+.servicios-badge.is-active {
+  background: #eaf8ef;
+  color: #1a7a3e;
+  border-color: #b7e0c1;
+}
+
+.servicios-badge.is-muted {
+  background: #f3f4f6;
+  color: #6b7280;
+  border-color: #e5e7eb;
+}
+
+.servicios-metric-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.servicio-kpi-soft {
+  margin-bottom: 0;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.servicio-value-text {
+  font-size: 0.98rem;
+  white-space: normal;
+}
+
+.servicio-value-inline {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.servicio-unit {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.servicios-fuel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.servicios-fuel-pill,
+.servicios-ficha {
+  border: 1px solid #e5eaf3;
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.servicios-fuel-label {
+  display: block;
+  font-size: 0.72rem;
+  color: #667085;
+  margin-bottom: 2px;
+}
+
+.servicios-fuel-value,
+.servicios-ficha-value {
+  color: #1a3a6e;
+  font-size: 0.96rem;
+  font-weight: 700;
 }
