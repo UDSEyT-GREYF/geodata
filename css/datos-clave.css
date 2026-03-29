@@ -335,10 +335,6 @@ header.page-header {
   line-height: 1.15;
 }
 
-
-
-
-
 /* ==============================
    7. GRID PRINCIPAL DE PANELES
    ============================== */
@@ -959,7 +955,7 @@ ul {
 }
 /* ==========================================================================
    FIX Chart.js (Pasajeros) — NO TOCAR SIN REVISAR
-   - Evita que el canvas crezca “infinito” dentro de flex.
+   - Evita que el canvas crezca "infinito" dentro de flex.
    - El alto del gráfico se controla por min-height del wrapper + flex del canvas.
    - No reintroducir: height:100% en el canvas, ni height fijo gigante en wrapper
    ========================================================================== */
@@ -976,14 +972,14 @@ ul {
   padding: 10px;
 }
 
-/* Área del gráfico con altura controlada (evita “1 metro”) */
+/* Área del gráfico con altura controlada (evita "1 metro") */
 .pax-chart-area{
   position: relative;
   height: 320px;      /* ajustá a 280–360 según gusto */
   max-height: 360px;
 }
 /* FIX: El canvas va en flex y con min-height; NO poner height:100% !important aquí,
-   porque puede disparar el “metro de alto” si el contenedor se estira. */
+   porque puede disparar el "metro de alto" si el contenedor se estira. */
 /* Canvas ocupa el 100% del área */
 .pax-chart-area canvas,
 #paxChartCanvas{
@@ -998,433 +994,568 @@ ul {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px;
-  margin-top: 0;
-  padding-top: 4px;
+  gap: 10px;
+  font-size: 0.8rem;
 }
 
-/* ---- Botones rápidos ---- */
 .pax-quick-btns{
   display: flex;
   gap: 4px;
-  flex-shrink: 0;
+  flex-wrap: wrap;
 }
 
 .pax-btn{
-  padding: 3px 9px;
-  font-size: 0.78rem;
-  font-family: inherit;
-  border: 1px solid #c0c8d8;
-  border-radius: 3px;
-  background: #f5f7fa;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid #c0c7d4;
+  background-color: #ffffff;
   color: #444;
+  font-weight: 600;
+  font-size: 0.8rem;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
-  line-height: 1.4;
+  transition: all 0.2s;
 }
 
-.pax-btn:hover{
-  background: #e0e8f5;
-  border-color: #0f44bf;
-  color: #0f44bf;
+.pax-btn:hover {
+  background-color: #eef2fb;
+  border-color: #2a5fa0;
 }
 
-.pax-btn.pax-btn-active{
-  background: #0f44bf;
-  border-color: #0f44bf;
-  color: #fff;
+.pax-btn-active {
+  background-color: #2a5fa0;
+  color: #ffffff;
+  border-color: #2a5fa0;
 }
 
-/* ---- Selector de fecha personalizada ---- */
-.pax-date-range{
+.pax-date-range {
   display: flex;
   align-items: center;
-  gap: 6px;
-  flex-shrink: 0;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-.pax-date-field{
+.pax-date-field {
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.pax-range-label{
-  font-size: 0.78rem;
+.pax-month-sel,
+.pax-year-input {
+  padding: 4px 6px;
+  border-radius: 4px;
+  border: 1px solid #c0c7d4;
+  font-size: 0.8rem;
+}
+
+.pax-year-input {
+  width: 60px;
+}
+
+.pax-date-sep {
+  color: #999;
+  font-weight: bold;
+}
+
+.pax-range-label {
   color: #666;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.pax-range-summary {
+  color: #666;
+  font-weight: 600;
   white-space: nowrap;
 }
 
-.pax-month-sel{
-  font-size: 0.8rem;
-  font-family: inherit;
-  border: 1px solid #c0c8d8;
-  border-radius: 3px;
-  padding: 2px 4px;
-  background: #f9fafc;
-  color: #333;
-  cursor: pointer;
+.pax-chart-note {
+  color: #999;
+  font-style: italic;
 }
 
-.pax-year-input{
-  width: 58px;
-  font-size: 0.8rem;
-  font-family: inherit;
-  border: 1px solid #c0c8d8;
-  border-radius: 3px;
-  padding: 2px 4px;
-  background: #f9fafc;
-  color: #333;
-  text-align: center;
-  -moz-appearance: textfield;
-}
-
-.pax-year-input::-webkit-outer-spin-button,
-.pax-year-input::-webkit-inner-spin-button{
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.pax-date-sep{
-  font-size: 0.85rem;
-  color: #888;
-  padding: 0 2px;
-}
-
-/* ---- Minimap ---- */
+/* Minimap */
 .pax-minimap-wrap{
   position: relative;
-  height: 52px;
-  margin-top: 2px;
+  height: 60px;
+  background: #ffffff;
   border: 1px solid #d0d7e2;
-  border-radius: 3px;
+  border-radius: 4px;
   overflow: hidden;
-  background: #f9fafc;
-  cursor: crosshair;
-  user-select: none;
+  margin-top: 2px;
 }
 
-.pax-minimap-canvas{
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  width: 100% !important;
-  height: 100% !important;
+.pax-minimap-canvas {
+  width: 100%;
+  height: 100%;
   display: block;
 }
 
-.pax-minimap-overlay{
+.pax-minimap-overlay {
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: col-resize;
 }
 
-.pax-mm-shade{
+.pax-mm-shade {
   position: absolute;
-  top: 0; bottom: 0;
-  background: rgba(240,243,250,0.75);
-  pointer-events: none;
-}
-
-.pax-mm-handle{
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 6px;
-  background: #0f44bf;
-  cursor: ew-resize;
-  z-index: 2;
-  transform: translateX(-50%);
-  transition: background 0.1s;
-}
-
-.pax-mm-handle:hover{
-  background: #1a5ce0;
-}
-
-.pax-mm-window{
-  position: absolute;
-  top: 0; bottom: 0;
-  background: rgba(15,68,191,0.07);
-  border-left: 1px solid rgba(15,68,191,0.25);
-  border-right: 1px solid rgba(15,68,191,0.25);
-  cursor: grab;
+  top: 0;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
   z-index: 1;
 }
 
-.pax-mm-window:active{
-  cursor: grabbing;
+.pax-mm-shade:first-child {
+  left: 0;
 }
 
-/* Nota "Elaborado por ORSNA": alineada y con aire */
-.pax-chart-note{
-  margin-top: 2px;
-  padding-top: 6px;
-  border-top: 1px solid rgba(0,0,0,0.06);
-  color: #666;
-  font-size: 0.78rem;
-  text-align: right;
+.pax-mm-shade:last-child {
+  right: 0;
 }
 
-
-
-.panel-servicios {
-  grid-area: servicios;
+.pax-mm-handle {
+  position: absolute;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: #2a5fa0;
+  cursor: col-resize;
+  z-index: 3;
 }
 
-.map-influencia {
-  width: 100%;
-  height: 230px;
+.pax-mm-handle:hover {
+  background: #1a3a6e;
 }
 
-/* ===== Pasajeros: KPIs por grupo (Total/Cabotaje/Internacional) ===== */
-.pax-kpis-3{
-  display: grid;
-  grid-template-columns: repeat(3, minmax(240px, 1fr));
-  gap: 12px;
+.pax-mm-window {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: rgba(42, 95, 160, 0.2);
+  border-left: 1px solid #2a5fa0;
+  border-right: 1px solid #2a5fa0;
+  z-index: 2;
 }
 
-@media (max-width: 980px){
-  .pax-kpis-3{ grid-template-columns: 1fr; }
+/* KPI grupos */
+.pax-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.pax-group{
-  border: 1px solid #e6eaf0;
-  border-radius: 10px;
-  padding: 10px;
-  background: #fff;
-}
-
-.pax-group-title{
+.pax-group-title {
+  font-size: 0.8rem;
   font-weight: 700;
-  color: #002855;
-  margin-bottom: 8px;
-  font-size: 0.95rem;
+  color: #004b80;
+  text-transform: uppercase;
 }
 
-/* Opcional: compactar un poco las tarjetas internas */
-.pax-group .pasajeros-kpi{
-  margin-bottom: 8px;
-}
-.pax-group .pasajeros-kpi:last-child{
-  margin-bottom: 0;
-}
-
-.pax-kpis-4{
+.pax-group-patterns {
+  grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: repeat(4, minmax(220px, 1fr));
-  gap: 12px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
-@media (max-width: 1100px){
-  .pax-kpis-4{ grid-template-columns: 1fr; }
+@media (max-width: 800px) {
+  .pax-group-patterns {
+    grid-template-columns: 1fr;
+  }
 }
 
-.pax-mini-title{ margin-bottom: 6px; }
+.pax-group-patterns > .pax-group-title{
+  display: none;
+}
 
-/* Mini charts: SIEMPRE con “caja” de altura fija */
-.pax-mini-chart-area{
+.pax-mini {
+  background: #ffffff;
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pax-mini-title {
+  color: #666;
+  font-weight: 600;
+}
+
+.pax-mini-chart-area {
   position: relative;
-  height: 140px;     /* ajustá 120–170 según gusto */
-  max-height: 160px;
+  height: 120px;
+  margin-bottom: 4px;
 }
 
-/* Canvas ocupa la caja y no crece infinito */
-.pax-mini-chart-area canvas{
+.pax-mini-canvas {
   width: 100% !important;
   height: 100% !important;
   display: block;
 }
 
-/* Importante: NO le pongas height fija al canvas sin contenedor */
-.pax-mini-canvas{
-  width: 100%;
-  display: block;
-  /* NO height acá */
+.pax-kpis-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
 }
 
-
-/* Permite que un grupo ocupe 2 columnas */
-.pax-span-2{
-  grid-column: span 2;
+@media (max-width: 1400px) {
+  .pax-kpis-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-
-/* ==============================
-   13. FOOTER
-   ============================== */
-footer {
-  border-top: 1px solid #dde2e6;
-  background-color: #ffffff;
-  margin-top: 24px;
-  font-size: 0.83rem;
-  color: #555;
-}
-.footer-inner {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 12px 16px;
-  text-align: right;
-}
-
-/* ==============================
-   14. RESPONSIVE
-   ============================== */
-@media (max-width: 900px) {
-  .grid {
+@media (max-width: 800px) {
+  .pax-kpis-4 {
     grid-template-columns: 1fr;
-    grid-template-areas:
-      "superficie"
-      "movimiento"
-      "terminal"
-      "ubicacion"
-      "empleo"
-      "pasajeros"
-      "servicios";
-
-  }
-
-  header.page-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .selector {
-    align-items: flex-start;
-  }
-
-  .kpi-strip {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-/* Botón "i" en el header del panel */
-.panel-header{
-  position: relative;
+.pax-span-2 {
+  grid-column: 1 / -1;
+}
+
+/* ==============================
+   13. MODAL
+   ============================== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal-overlay[aria-hidden="false"] {
+  display: flex;
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-head {
   background: #306fb0;
   color: #fff;
-  padding: 6px 34px 6px 10px; /* deja espacio a la derecha para el botón */
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-transform: uppercase;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #dde2e6;
 }
 
-/* Botón "i" fijo en la esquina superior derecha del header */
-.panel-header .info-btn{
-  position: absolute;
-  top: 50%;
-  right: 8px;
-  transform: translateY(-50%);
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.85);
-  background: rgba(255,255,255,0.12);
+.modal-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.modal-close {
+  background: none;
+  border: none;
   color: #fff;
-  font-weight: 700;
-  font-size: 0.85rem;
-  line-height: 1;
+  font-size: 1.5rem;
   cursor: pointer;
-  display: inline-flex;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.panel-header .info-btn:hover{
-  background: rgba(255,255,255,0.22);
+.modal-close:hover {
+  opacity: 0.8;
 }
 
+.modal-body {
+  padding: 16px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #333;
+}
 
-/* Modal */
-.modal-overlay{
-  position:fixed;
-  inset:0;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:16px;
-  background:rgba(0,0,0,0.45);
-  z-index:9999;
+.modal-body p {
+  margin-bottom: 12px;
 }
-.modal-overlay.is-open{ display:flex; }
 
-.modal-card{
-  width:min(760px, 100%);
-  background:#fff;
-  border-radius:8px;
-  border:1px solid #d0d7e2;
-  overflow:hidden;
-  box-shadow:0 10px 30px rgba(0,0,0,0.25);
-  outline:none;
+.modal-body strong {
+  color: #004b80;
 }
-.modal-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  padding:10px 12px;
-  background:#f3f6fb;
-  border-bottom:1px solid #d0d7e2;
+
+.modal-body a {
+  color: #0072bb;
 }
-.modal-title{ font-weight:700; color:#002855; }
-.modal-close{
-  border:none;
-  background:transparent;
-  font-size:1.4rem;
-  cursor:pointer;
-  color:#002855;
+
+.modal-body a:hover {
+  text-decoration: underline;
 }
-.modal-body{
-  padding:12px;
-  font-size:0.9rem;
-  color:#333;
-  line-height:1.45;
+
+.modal-actions {
+  padding: 12px 16px;
+  border-top: 1px solid #dde2e6;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
 }
-.modal-body p{ margin:0 0 10px; }
-.modal-actions{
-  padding:10px 12px;
-  border-top:1px solid #d0d7e2;
-  display:flex;
-  justify-content:flex-end;
+
+.modal-btn {
+  padding: 6px 16px;
+  border-radius: 4px;
+  border: 1px solid #c0c7d4;
+  background-color: #ffffff;
+  color: #444;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
 }
-.modal-btn{
-  padding:6px 10px;
-  border-radius:4px;
-  border:1px solid #2a5fa0;
-  background:#fff;
-  color:#2a5fa0;
-  cursor:pointer;
+
+.modal-btn:hover {
+  background-color: #306fb0;
+  color: #fff;
+  border-color: #306fb0;
 }
-.modal-btn:hover{
-  background:#2a5fa0;
-  color:#fff;
-} 
+
+/* ==============================
+   14. FOOTER
+   ============================== */
+footer {
+  background-color: #f5f5f5;
+  border-top: 1px solid #dde2e6;
+  padding: 12px 16px;
+  text-align: center;
+}
+
+.footer-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* ==============================
+   15. INFO BUTTON
+   ============================== */
+.info-btn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-left: 6px;
+  transition: all 0.2s;
+}
+
+.info-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: #fff;
+}
+
 /* =========================
-   PATRONES – layout interno
+   TOP 10 YoY – Ranking
    ========================= */
-.pax-group-patterns{
+
+.pax-ranking-section {
+  margin: 14px 0 6px 0;
+  border-top: 1px solid #e0e6f0;
+  padding-top: 12px;
+}
+
+.pax-ranking-cols {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 16px;
+  align-items: start;
 }
 
-/* El título ocupa todo el ancho */
-.pax-group-patterns > .pax-group-title{
-  grid-column: 1 / -1;
+@media (max-width: 700px) {
+  .pax-ranking-cols {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* Cada patrón ocupa una columna */
-.pax-group-patterns > .pax-mini{
-  margin-bottom: 0;
-  min-height: 220px;
+.pax-ranking-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #1a3a6e;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---- Top 10 list ---- */
+.pax-top10-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
+  gap: 3px;
 }
 
-
-/* Patrones: debajo de los KPIs y a todo el ancho */
-.pax-kpis-4 > .pax-group-patterns{
-  grid-column: 1 / -1;   /* ocupa las 4 columnas */
+.pax-top10-loading,
+.pax-ranking-loading {
+  font-size: 0.8rem;
+  color: #888;
+  font-style: italic;
 }
 
-/* Ocultar título general "Patrones" */
-.pax-group-patterns > .pax-group-title{
-  display: none;
+.pax-top10-item {
+  display: grid;
+  grid-template-columns: 18px 32px 1fr 14px 52px 80px auto;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  background: #f8fafc;
+  border: 1px solid #e5eaf3;
+  font-size: 0.78rem;
+  transition: background 0.15s;
+}
+
+.pax-top10-item:hover {
+  background: #eef2fb;
+}
+
+/* Resaltado si es el aeropuerto actual */
+.pax-top10-item.pax-ranking-current {
+  background: #e8effc;
+  border-color: #0f44bf;
+  font-weight: 600;
+}
+
+.pax-top10-pos {
+  color: #888;
+  font-size: 0.72rem;
+  text-align: right;
+}
+
+.pax-top10-iata {
+  font-weight: 700;
+  color: #1a3a6e;
+  font-size: 0.78rem;
+}
+
+.pax-top10-nombre {
+  color: #444;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.75rem;
+}
+
+.pax-ranking-arrow {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.pax-ranking-arrow-up    { color: #1a7a3e; }
+.pax-ranking-arrow-down  { color: #b31a1a; }
+.pax-ranking-arrow-flat  { color: #888; }
+
+.pax-top10-pct {
+  font-weight: 600;
+  text-align: right;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.pax-ranking-bar-wrap {
+  height: 6px;
+  background: #e5eaf3;
+  border-radius: 3px;
+  overflow: hidden;
+  min-width: 40px;
+}
+
+.pax-ranking-bar {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.pax-ranking-bar-pos { background: #1a7a3e; }
+.pax-ranking-bar-neg { background: #b31a1a; }
+
+.pax-top10-vol {
+  color: #777;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  text-align: right;
+}
+
+/* ---- Tu Ranking ---- */
+.pax-tu-ranking {
+  font-size: 0.8rem;
+}
+
+.pax-tu-ranking-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  background: #f8fafc;
+  border: 1px solid #e5eaf3;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.pax-tu-ranking-label {
+  color: #666;
+  flex: 1 1 auto;
+  min-width: 120px;
+}
+
+.pax-tu-ranking-pos {
+  color: #1a3a6e;
+  white-space: nowrap;
+}
+
+.pax-tu-ranking-pos strong {
+  font-size: 1rem;
+}
+
+.pax-tu-ranking-sub {
+  color: #999;
+  font-size: 0.7rem;
+}
+
+.pax-tu-ranking-pct {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pax-tu-ranking-contexto {
+  font-size: 0.75rem;
+  color: #555;
+  margin: 2px 0 8px 0;
+  line-height: 1.5;
+}
+
+.pax-tu-ranking-contexto strong {
+  color: #1a3a6e;
 }
