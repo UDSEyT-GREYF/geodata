@@ -731,24 +731,40 @@
 
 </div>
 
-<!-- TOP 10 YoY y Ranking del aeropuerto actual -->
+<!-- TOP 10 y ranking del aeropuerto actual, separados por segmento -->
 <div class="pax-ranking-section" id="paxRankingSection">
 
-  <div class="pax-ranking-cols">
+  <div class="pax-ranking-cols pax-ranking-cols-split">
 
-    <!-- Top 10: Mayor variación YoY -->
-    <div class="pax-top10-container">
-      <div class="pax-ranking-title">Top 10: Mayor variación en últimos 12 meses</div>
-      <ol class="pax-top10-list" id="paxTop10List">
-        <li class="pax-top10-loading">Calculando…</li>
-      </ol>
+    <div class="pax-ranking-stack">
+      <div class="pax-top10-container">
+        <div class="pax-ranking-title"><span class="pax-group-dot pax-dot-cab"></span>Top 10 · Cabotaje · mayor variación en últimos 12 meses</div>
+        <ol class="pax-top10-list" id="paxTop10CabList">
+          <li class="pax-top10-loading">Calculando…</li>
+        </ol>
+      </div>
+
+      <div class="pax-top10-container">
+        <div class="pax-ranking-title"><span class="pax-group-dot pax-dot-int"></span>Top 10 · Internacional · mayor variación en últimos 12 meses</div>
+        <ol class="pax-top10-list" id="paxTop10IntList">
+          <li class="pax-top10-loading">Calculando…</li>
+        </ol>
+      </div>
     </div>
 
-    <!-- Ranking del aeropuerto actual -->
-    <div class="pax-tu-ranking" id="paxTuRanking">
-      <div class="pax-ranking-title">Posición del aeropuerto</div>
-      <div id="paxTuRankingContent">
-        <p class="pax-ranking-loading">Calculando…</p>
+    <div class="pax-ranking-stack">
+      <div class="pax-tu-ranking" id="paxTuRankingCab">
+        <div class="pax-ranking-title"><span class="pax-group-dot pax-dot-cab"></span>Posición del aeropuerto · cabotaje</div>
+        <div id="paxTuRankingCabContent">
+          <p class="pax-ranking-loading">Calculando…</p>
+        </div>
+      </div>
+
+      <div class="pax-tu-ranking" id="paxTuRankingInt">
+        <div class="pax-ranking-title"><span class="pax-group-dot pax-dot-int"></span>Posición del aeropuerto · internacional</div>
+        <div id="paxTuRankingIntContent">
+          <p class="pax-ranking-loading">Calculando…</p>
+        </div>
       </div>
     </div>
 
