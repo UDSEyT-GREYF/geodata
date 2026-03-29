@@ -1417,6 +1417,25 @@ footer {
   align-items: start;
 }
 
+.pax-ranking-cols-split {
+  align-items: stretch;
+}
+
+.pax-ranking-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pax-top10-container,
+.pax-tu-ranking {
+  background: #ffffff;
+  border: 1px solid #e5eaf3;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
 @media (max-width: 700px) {
   .pax-ranking-cols {
     grid-template-columns: 1fr;
@@ -1585,6 +1604,12 @@ footer {
 
 .pax-tu-ranking-contexto strong {
   color: #1a3a6e;
+}
+
+.pax-tu-ranking-meta {
+  font-size: 0.72rem;
+  color: #667085;
+  margin-top: 4px;
 }
 
 
