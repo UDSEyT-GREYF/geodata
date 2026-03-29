@@ -1418,13 +1418,15 @@ footer {
 }
 
 .pax-ranking-cols-split {
-  align-items: stretch;
+  align-items: start;
 }
 
+.pax-ranking-segment,
 .pax-ranking-stack {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  min-width: 0;
 }
 
 .pax-top10-container,
