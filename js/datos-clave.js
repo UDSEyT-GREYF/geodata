@@ -936,6 +936,47 @@ function formatPct(p) {
 }
 
 
+function setPaxDeltaVisual(el) {
+  if (!el) return;
+  const text = String(el.textContent || "").trim();
+  const card = el.closest(".pasajeros-kpi");
+  el.classList.remove("pax-delta", "is-pos", "is-neg", "is-neutral");
+  delete el.dataset.trendSymbol;
+  if (card) card.classList.remove("trend-pos", "trend-neg", "trend-neutral");
+
+  if (!text || text === "–") return;
+
+  let cls = "is-neutral";
+  let symbol = "•";
+  if (text.startsWith("+")) {
+    cls = "is-pos";
+    symbol = "▲";
+  } else if (text.startsWith("-")) {
+    cls = "is-neg";
+    symbol = "▼";
+  }
+
+  el.classList.add("pax-delta", cls);
+  el.dataset.trendSymbol = symbol;
+  if (card) card.classList.add(cls.replace("is", "trend"));
+}
+
+function setText(el, value, fallback = "–") {
+  if (!el) return;
+  el.textContent = (value !== null && value !== undefined && String(value).trim() !== "") ? String(value) : fallback;
+}
+
+function setChipList(containerEl, values) {
+  if (!containerEl) return;
+  const items = (values || []).filter(Boolean);
+  if (!items.length) {
+    containerEl.innerHTML = '<span class="servicios-chip servicios-chip-empty">Sin datos</span>';
+    return;
+  }
+  containerEl.innerHTML = items.map(v => `<span class="servicios-chip">${v}</span>`).join("");
+}
+
+
     // Datasets válidos del CSV
   const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
   const PAX_DATASET_INT = "pasajeros_comerciales_internacional_aeropuerto";
@@ -1480,6 +1521,8 @@ if (paxChart) {
       if (elYoYDet) elYoYDet.textContent = "–";
       if (elYTD) elYTD.textContent = "–";
       if (elYTDDet) elYTDDet.textContent = "–";
+      setPaxDeltaVisual(elYoY);
+      setPaxDeltaVisual(elYTD);
       return;
     }
 
@@ -1528,6 +1571,9 @@ if (paxChart) {
         elYTDDet.textContent = "No hay base del año anterior para el acumulado.";
       }
     }
+
+    setPaxDeltaVisual(elYoY);
+    setPaxDeltaVisual(elYTD);
   }
 
   // KPIs: Total / Cabotaje / Internacional
@@ -1704,20 +1750,79 @@ function renderPaxPatterns(iataUpper) {
   const paxMainCanvas = document.getElementById("paxChartCanvas");
   if (!paxMainCanvas) return;
 
-  // Necesitamos que renderPasajerosPanel haya cacheado la serie "all"
   if (!paxMainCanvas._paxAll || paxMainCanvas._paxIATA !== iataUpper) return;
-
-  // Evitar recalcular si ya se hizo para este aeropuerto
   if (paxMainCanvas._paxPatternsDoneFor === iataUpper) return;
   paxMainCanvas._paxPatternsDoneFor = iataUpper;
 
   const allRows = paxMainCanvas._paxAll;
 
-  // ===== Estacionalidad mensual: por ahora simple (promedio por mes) =====
+  // ===== Composición cabotaje/internacional: últimos 12 meses =====
+  const compCanvas = document.getElementById("paxWeekChart");
+  const compNote = document.getElementById("paxWeekNote");
+  const compCabEl = document.getElementById("paxCompCabShare");
+  const compIntEl = document.getElementById("paxCompIntShare");
+
+  if (compCanvas) {
+    const rows12 = allRows.slice(-12);
+    const cab12 = rows12.reduce((acc, r) => acc + (Number(r.cab) || 0), 0);
+    const int12 = rows12.reduce((acc, r) => acc + (Number(r.intl) || 0), 0);
+    const tot12 = cab12 + int12;
+    const cabPct = tot12 > 0 ? (cab12 / tot12) * 100 : 0;
+    const intPct = tot12 > 0 ? (int12 / tot12) * 100 : 0;
+
+    if (compCabEl) compCabEl.textContent = tot12 > 0 ? formatPct(cabPct) : "–";
+    if (compIntEl) compIntEl.textContent = tot12 > 0 ? formatPct(intPct) : "–";
+    if (compNote) {
+      compNote.textContent = tot12 > 0
+        ? `${formatNumber(Math.round(tot12))} pasajeros acumulados en los últimos 12 meses.`
+        : "No hay base suficiente para estimar la composición reciente.";
+    }
+
+    const compCtx = compCanvas.getContext("2d");
+    if (!paxWeekChart) {
+      paxWeekChart = new Chart(compCtx, {
+        type: "doughnut",
+        data: {
+          labels: ["Cabotaje", "Internacional"],
+          datasets: [{
+            data: [cab12, int12],
+            backgroundColor: ["#73acdf", "#16c41e"],
+            borderWidth: 0,
+            hoverOffset: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: false,
+          cutout: "62%",
+          plugins: {
+            legend: {
+              position: "bottom",
+              labels: { boxWidth: 10, usePointStyle: true, pointStyle: "circle" }
+            },
+            tooltip: {
+              callbacks: {
+                label: (item) => {
+                  const value = Number(item.parsed || 0);
+                  const pct = tot12 > 0 ? (value / tot12) * 100 : 0;
+                  return `${item.label}: ${formatNumber(Math.round(value))} (${formatPct(pct)})`;
+                }
+              }
+            }
+          }
+        }
+      });
+    } else {
+      paxWeekChart.data.datasets[0].data = [cab12, int12];
+      paxWeekChart.update("none");
+    }
+  }
+
+  // ===== Estacionalidad mensual: promedio por mes, excluyendo 2020-2022 =====
   const seasonCanvas = document.getElementById("paxSeasonChart");
   if (!seasonCanvas) return;
 
-  // Excluir 2020-2022
   const rows = allRows.filter(r => {
     const y = r.date.getFullYear();
     return y < 2020 || y > 2022;
@@ -1725,10 +1830,9 @@ function renderPaxPatterns(iataUpper) {
 
   const sum = Array(12).fill(0);
   const cnt = Array(12).fill(0);
-
   for (const r of rows) {
-    const m = r.date.getMonth(); // 0..11
-    const v = Number(r.tot || 0); // total mensual
+    const m = r.date.getMonth();
+    const v = Number(r.tot || 0);
     sum[m] += v;
     cnt[m] += 1;
   }
@@ -1737,7 +1841,6 @@ function renderPaxPatterns(iataUpper) {
   const data = labels.map((_, i) => (cnt[i] ? sum[i] / cnt[i] : 0));
 
   const ctx = seasonCanvas.getContext("2d");
-
   if (!paxSeasonChart) {
     paxSeasonChart = new Chart(ctx, {
       type: "bar",
@@ -2294,43 +2397,46 @@ function renderPaxRanking(iataUpper) {
     if (poblacionEl) poblacionEl.textContent = safeVal(pobRaw);
 
     /* ---------- SERVICIOS Y AYUDAS ---------- */
-    const radioEl = document.getElementById("radioayudas");
+    const radioChipsEl = document.getElementById("radioayudasChips");
     const ayudasEl = document.getElementById("ayudasVisuales");
     const awosEl = document.getElementById("awos");
 
-    if (radioEl) radioEl.textContent = clean(a["Radioayudas"]) || "–";
-    if (ayudasEl) ayudasEl.textContent = clean(a["Ayudas visuales"]) || "–";
-    if (awosEl) awosEl.textContent = clean(a["AWOS"]) || "–";
+    const radioRaw = clean(a["Radioayudas"]);
+    const radioItems = splitField(radioRaw.replace(/,/g, ";"));
+    setChipList(radioChipsEl, radioItems);
+    setText(ayudasEl, clean(a["Ayudas visuales"]), "Sin dato");
 
-    // Cargas (con ocultamiento si no hay datos)
+    if (awosEl) {
+      const awosVal = clean(a["AWOS"]) || "Sin dato";
+      awosEl.textContent = awosVal;
+      const awosNorm = awosVal.toLowerCase();
+      const isActive = awosVal !== "Sin dato" && !/^no/.test(awosNorm) && awosNorm !== "n/a";
+      awosEl.classList.toggle("is-active", isActive);
+      awosEl.classList.toggle("is-muted", !isActive);
+    }
+
     const operadorCargasEl = document.getElementById("operadorCargas");
     const terminalCargasM2El = document.getElementById("terminalCargasM2");
+    const terminalCargasUnitEl = document.getElementById("terminalCargasUnit");
 
-    if (operadorCargasEl) operadorCargasEl.textContent = clean(a["OperadorCargas"]) || "–";
-    if (terminalCargasM2El) terminalCargasM2El.textContent = safeVal(a["TerminalCargasM2"]);
+    const operadorCargasVal = clean(a["OperadorCargas"]);
+    setText(operadorCargasEl, operadorCargasVal || "No registra", "No registra");
 
-    const opCargasBox = operadorCargasEl ? operadorCargasEl.closest(".servicio-kpi") : null;
-    const termCargasBox = terminalCargasM2El ? terminalCargasM2El.closest(".servicio-kpi") : null;
+    const termRaw = a["TerminalCargasM2"];
+    const termText = safeVal(termRaw);
+    const hasTerm = termText !== "–" && termText !== "0";
+    if (terminalCargasM2El) terminalCargasM2El.textContent = hasTerm ? termText : "No registra";
+    if (terminalCargasUnitEl) terminalCargasUnitEl.style.display = hasTerm ? "inline" : "none";
 
-    if (opCargasBox) opCargasBox.style.display = clean(a["OperadorCargas"]) ? "flex" : "none";
-    if (termCargasBox) {
-      const hasTerm = a["TerminalCargasM2"] && a["TerminalCargasM2"] !== "0";
-      termCargasBox.style.display = hasTerm ? "flex" : "none";
-    }
-
-    // Aeroplantas
-    const aeroEl = document.getElementById("aeroplantas");
-    if (aeroEl) {
-      const aeroComb = [];
-      if (a["Aeroplantas AV GAS"]) aeroComb.push(`AV GAS: ${a["Aeroplantas AV GAS"]}`);
-      if (a["Aeroplantas JP1"]) aeroComb.push(`JP1: ${a["Aeroplantas JP1"]}`);
-      aeroEl.textContent = aeroComb.length ? aeroComb.join(" · ") : "–";
-    }
+    const avgasEl = document.getElementById("aeroplantaAvgas");
+    const jp1El = document.getElementById("aeroplantaJp1");
+    setText(avgasEl, clean(a["Aeroplantas AV GAS"]) || "No", "No");
+    setText(jp1El, clean(a["Aeroplantas JP1"]) || "No", "No");
 
     const claveRefEl = document.getElementById("claveRef");
     const categoriaEl = document.getElementById("categoriaSEI");
-    if (claveRefEl) claveRefEl.textContent = clean(a["CLAVE DE REFERENCIA DE AERÓDROMO"]) || "–";
-    if (categoriaEl) categoriaEl.textContent = clean(a["CATEGORÍA SEI NORMAL"]) || "–";
+    setText(claveRefEl, clean(a["CLAVE DE REFERENCIA DE AERÓDROMO"]), "–");
+    setText(categoriaEl, clean(a["CATEGORÍA SEI NORMAL"]), "–");
 
     /* ---------- PASAJEROS (SERIE MENSUAL) ---------- */
 renderPasajerosPanel(iata);
