@@ -487,6 +487,12 @@ ul {
   object-fit: contain;
 }
 
+/* Mapa de área de influencia aeroportuaria */
+.map-influencia {
+  width: 100%;
+  min-height: 280px;
+}
+
 /* Tabla de inversiones dentro del KPI */
 .kpi-table-inv {
   width: 100%;
@@ -952,6 +958,10 @@ ul {
   border:1px solid #d0d7e2;
   border-radius:4px;
   padding:8px 10px;
+}
+
+.pasajeros-kpi .kpi-value {
+  font-size: 0.95rem;
 }
 /* ==========================================================================
    FIX Chart.js (Pasajeros) — NO TOCAR SIN REVISAR

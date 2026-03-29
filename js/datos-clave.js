@@ -1765,7 +1765,137 @@ function renderPaxPatterns(iataUpper) {
   }
 }
 
+  /* ============================================================
+     G.bis. TOP 10 YoY (últimos 12 meses) + Posición del aeropuerto
+     ============================================================ */
 
+  function renderTop10YoY(currentIataUpper) {
+    const listEl = document.getElementById("paxTop10List");
+    const rankingEl = document.getElementById("paxTuRankingContent");
+    if (!listEl || !rankingEl) return;
+
+    const YOY_INCREASE_THRESHOLD = 0.5;
+    const YOY_DECREASE_THRESHOLD = -0.5;
+
+    if (!pasajerosMensualRows || !pasajerosMensualRows.length) {
+      listEl.innerHTML = '<li class="pax-top10-loading">Sin datos disponibles.</li>';
+      rankingEl.innerHTML = '<p class="pax-ranking-loading">Sin datos disponibles.</p>';
+      return;
+    }
+
+    // Calcular total mensual (cab+int) por IATA usando buildPaxSeries
+    const iataSet = [...new Set(pasajerosMensualRows.map(r => r.iata))];
+
+    const yoyByIata = [];
+
+    for (const iata of iataSet) {
+      const series = buildPaxSeries(iata, "total");
+      if (!series.length) continue;
+
+      const last = series[series.length - 1];
+      const lastY = last.date.getFullYear();
+      const lastM = last.date.getMonth();
+
+      // Sumar últimos 12 meses
+      const lastKey = lastY * 12 + lastM;
+      const sum12 = series
+        .filter(r => {
+          const k = r.date.getFullYear() * 12 + r.date.getMonth();
+          return k > lastKey - 12 && k <= lastKey;
+        })
+        .reduce((s, r) => s + (Number(r.valor) || 0), 0);
+
+      // Sumar los 12 meses anteriores a esos
+      const sum12prev = series
+        .filter(r => {
+          const k = r.date.getFullYear() * 12 + r.date.getMonth();
+          return k > lastKey - 24 && k <= lastKey - 12;
+        })
+        .reduce((s, r) => s + (Number(r.valor) || 0), 0);
+
+      if (!sum12prev) continue;
+
+      const pct = ((sum12 - sum12prev) / sum12prev) * 100;
+
+      // Obtener nombre del aeropuerto
+      const aero = aeropuertos.find(x => x.IATA === iata);
+      const nombre = aero
+        ? (clean(aero["Aeropuerto"]) || clean(aero["Nombre del Aeropuerto"]) || iata)
+        : iata;
+
+      yoyByIata.push({ iata, nombre, pct, vol: sum12 });
+    }
+
+    // Ordenar descendente por variación
+    yoyByIata.sort((a, b) => b.pct - a.pct);
+
+    const top10 = yoyByIata.slice(0, 10);
+
+    if (!top10.length) {
+      listEl.innerHTML = '<li class="pax-top10-loading">Sin datos suficientes para calcular.</li>';
+      rankingEl.innerHTML = '<p class="pax-ranking-loading">Sin datos suficientes para calcular.</p>';
+      return;
+    }
+
+    const maxAbsPct = Math.max(...top10.map(x => Math.abs(x.pct)), 0.01);
+
+    // Ranking completo del aeropuerto actual
+    const rankPos = yoyByIata.findIndex(x => x.iata === currentIataUpper);
+    const totalWithData = yoyByIata.length;
+
+    // ---- Render Top 10 ----
+    listEl.innerHTML = "";
+    top10.forEach((item, idx) => {
+      const pos = idx + 1;
+      const isCurrent = item.iata === currentIataUpper;
+      const arrow = item.pct > YOY_INCREASE_THRESHOLD ? "▲" : item.pct < YOY_DECREASE_THRESHOLD ? "▼" : "●";
+      const arrowClass = item.pct > YOY_INCREASE_THRESHOLD
+        ? "pax-ranking-arrow-up"
+        : item.pct < YOY_DECREASE_THRESHOLD
+          ? "pax-ranking-arrow-down"
+          : "pax-ranking-arrow-flat";
+      const barW = Math.round((Math.abs(item.pct) / maxAbsPct) * 100);
+      const barClass = item.pct >= 0 ? "pax-ranking-bar-pos" : "pax-ranking-bar-neg";
+      const li = document.createElement("li");
+      li.className = "pax-top10-item" + (isCurrent ? " pax-ranking-current" : "");
+      li.innerHTML = `
+        <span class="pax-top10-pos">${pos}</span>
+        <span class="pax-top10-iata">${item.iata}</span>
+        <span class="pax-top10-nombre" title="${item.nombre}">${item.nombre}</span>
+        <span class="pax-ranking-arrow ${arrowClass}">${arrow}</span>
+        <span class="pax-top10-pct">${formatPct(item.pct)}</span>
+        <div class="pax-ranking-bar-wrap"><div class="pax-ranking-bar ${barClass}" style="width:${barW}%"></div></div>
+        <span class="pax-top10-vol">${formatNumber(Math.round(item.vol))}</span>
+      `;
+      listEl.appendChild(li);
+    });
+
+    // ---- Render Posición del aeropuerto ----
+    if (rankPos === -1) {
+      rankingEl.innerHTML = '<p class="pax-ranking-loading">Sin datos para este aeropuerto.</p>';
+      return;
+    }
+    const curEntry = yoyByIata[rankPos];
+    const pos = rankPos + 1;
+    const arrow = curEntry.pct > YOY_INCREASE_THRESHOLD ? "▲" : curEntry.pct < YOY_DECREASE_THRESHOLD ? "▼" : "●";
+    const arrowClass = curEntry.pct > YOY_INCREASE_THRESHOLD
+      ? "pax-ranking-arrow-up"
+      : curEntry.pct < YOY_DECREASE_THRESHOLD
+        ? "pax-ranking-arrow-down"
+        : "pax-ranking-arrow-flat";
+
+    rankingEl.innerHTML = `
+      <div class="pax-tu-ranking-row">
+        <span class="pax-tu-ranking-label">Variación 12 meses</span>
+        <span class="pax-tu-ranking-pct ${arrowClass}">${arrow} ${formatPct(curEntry.pct)}</span>
+      </div>
+      <div class="pax-tu-ranking-row">
+        <span class="pax-tu-ranking-label">Posición entre aeropuertos con datos</span>
+        <span class="pax-tu-ranking-pos"><strong>${pos}</strong> / ${totalWithData}</span>
+      </div>
+      <div class="pax-tu-ranking-sub">Ordenado por variación porcentual en últimos 12 meses vs 12 meses anteriores.</div>
+    `;
+  }
 
 
   /* ============================================================
@@ -2219,6 +2349,7 @@ function renderPaxPatterns(iataUpper) {
 
     /* ---------- PASAJEROS (SERIE MENSUAL) ---------- */
 renderPasajerosPanel(iata);
+renderTop10YoY(iata);
 
 
  
