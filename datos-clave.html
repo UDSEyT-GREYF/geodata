@@ -630,7 +630,7 @@
 
   <!-- TOTAL -->
   <div class="pax-group">
-    <div class="pax-group-title">Total</div>
+    <div class="pax-group-title"><span class="pax-group-dot pax-dot-total"></span>Total</div>
 
     <div class="pasajeros-kpi">
       <div class="small-label">Último mes disponible</div>
@@ -653,7 +653,7 @@
 
   <!-- CABOTAJE -->
   <div class="pax-group">
-    <div class="pax-group-title">Cabotaje</div>
+    <div class="pax-group-title"><span class="pax-group-dot pax-dot-cab"></span>Cabotaje</div>
 
     <div class="pasajeros-kpi">
       <div class="small-label">Último mes disponible</div>
@@ -676,7 +676,7 @@
 
   <!-- INTERNACIONAL -->
   <div class="pax-group">
-    <div class="pax-group-title">Internacional</div>
+    <div class="pax-group-title"><span class="pax-group-dot pax-dot-int"></span>Internacional</div>
 
     <div class="pasajeros-kpi">
       <div class="small-label">Último mes disponible</div>
@@ -701,12 +701,24 @@
  <div class="pax-group pax-group-patterns pax-span-2">
     <!--<div class="pax-group-title">Patrones</div> oculto -->
 
-    <div class="pax-mini">
-      <div class="small-label pax-mini-title">Perfil semanal (sin 2020–2022)</div>
-     <div class="pax-mini-chart-area">
-      <canvas id="paxWeekChart" class="pax-mini-canvas" aria-label="Perfil semanal"></canvas>
-     </div>
-      <div class="small-label" id="paxWeekNote">Requiere datos diarios (no disponible con serie mensual).</div>
+    <div class="pax-mini pax-mini-composition">
+      <div class="small-label pax-mini-title">Composición del tráfico (últimos 12 meses)</div>
+      <div class="pax-mini-chart-area pax-mini-chart-area-donut">
+        <canvas id="paxWeekChart" class="pax-mini-canvas" aria-label="Composición del tráfico"></canvas>
+      </div>
+      <div class="pax-comp-stats">
+        <div class="pax-comp-stat">
+          <span class="pax-comp-dot pax-comp-dot-cab"></span>
+          <span class="pax-comp-label">Cabotaje</span>
+          <strong id="paxCompCabShare">–</strong>
+        </div>
+        <div class="pax-comp-stat">
+          <span class="pax-comp-dot pax-comp-dot-int"></span>
+          <span class="pax-comp-label">Internacional</span>
+          <strong id="paxCompIntShare">–</strong>
+        </div>
+      </div>
+      <div class="small-label" id="paxWeekNote">–</div>
     </div>
 
     <div class="pax-mini">
@@ -734,7 +746,7 @@
 
     <!-- Ranking del aeropuerto actual -->
     <div class="pax-tu-ranking" id="paxTuRanking">
-      <div class="pax-ranking-title">Posición del aeropuerto (con vuelos regulares)</div>
+      <div class="pax-ranking-title">Posición del aeropuerto</div>
       <div id="paxTuRankingContent">
         <p class="pax-ranking-loading">Calculando…</p>
       </div>
@@ -813,36 +825,75 @@
       <!-- PANEL 7: SERVICIOS Y AYUDAS -->
       <section class="panel panel-servicios">
         <div class="panel-header" id="hdrServicios">Servicios y ayudas</div>
-        <div class="panel-body">
-          <div class="small-label">Ayudas radioeléctricas</div>
-          <div class="small-label" id="radioayudas">–</div>
+        <div class="panel-body servicios-body">
+          <div class="servicios-grid">
 
-          <div class="small-label" style="margin-top:6px;">Ayudas visuales</div>
-          <div class="small-label" id="ayudasVisuales">–</div>
+            <div class="servicios-card">
+              <div class="servicios-card-title">Navegación y operación</div>
 
-          <div class="small-label" style="margin-top:6px;">AWOS</div>
-          <div class="small-label" id="awos">–</div>
+              <div class="servicios-item servicios-item-stack">
+                <div class="servicios-item-label">Ayudas radioeléctricas</div>
+                <div class="servicios-chip-list" id="radioayudasChips">
+                  <span class="servicios-chip servicios-chip-empty">Sin datos</span>
+                </div>
+              </div>
 
-          <!-- KPI: Operador de cargas -->
-          <div class="servicio-kpi">
-            <div class="servicio-label">Operador de cargas</div>
-            <div class="servicio-value" id="operadorCargas">–</div>
+              <div class="servicios-item">
+                <span class="servicios-item-label">Ayudas visuales</span>
+                <span class="servicios-item-value" id="ayudasVisuales">–</span>
+              </div>
+
+              <div class="servicios-item">
+                <span class="servicios-item-label">AWOS</span>
+                <span class="servicios-badge is-muted" id="awos">Sin dato</span>
+              </div>
+            </div>
+
+            <div class="servicios-card">
+              <div class="servicios-card-title">Combustible y cargas</div>
+
+              <div class="servicios-metric-grid">
+                <div class="servicio-kpi servicio-kpi-soft">
+                  <div class="servicio-label">Operador de cargas</div>
+                  <div class="servicio-value servicio-value-text" id="operadorCargas">No registra</div>
+                </div>
+
+                <div class="servicio-kpi servicio-kpi-soft">
+                  <div class="servicio-label">Terminal de cargas</div>
+                  <div class="servicio-value servicio-value-inline">
+                    <span id="terminalCargasM2">No registra</span>
+                    <span class="servicio-unit" id="terminalCargasUnit">m²</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="servicios-fuel-grid">
+                <div class="servicios-fuel-pill">
+                  <span class="servicios-fuel-label">AVGAS</span>
+                  <strong class="servicios-fuel-value" id="aeroplantaAvgas">–</strong>
+                </div>
+                <div class="servicios-fuel-pill">
+                  <span class="servicios-fuel-label">JP1</span>
+                  <strong class="servicios-fuel-value" id="aeroplantaJp1">–</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="servicios-card">
+              <div class="servicios-card-title">Seguridad y referencia</div>
+
+              <div class="servicios-ficha">
+                <div class="servicios-ficha-label">Clave de referencia de aeródromo</div>
+                <div class="servicios-ficha-value" id="claveRef">–</div>
+              </div>
+
+              <div class="servicios-ficha">
+                <div class="servicios-ficha-label">Categoría SEI normal</div>
+                <div class="servicios-ficha-value" id="categoriaSEI">–</div>
+              </div>
+            </div>
+
           </div>
-
-          <!-- KPI: Terminal de cargas -->
-          <div class="servicio-kpi">
-            <div class="servicio-label">Terminal de cargas (m²)</div>
-            <div class="servicio-value" id="terminalCargasM2">–</div>
-          </div>
-
-          <div class="small-label" style="margin-top:6px;">Aeroplantas</div>
-          <div class="small-label" id="aeroplantas">–</div>
-
-          <div class="small-label" style="margin-top:6px;">Clave de referencia de aeródromo</div>
-          <div class="small-label" id="claveRef">–</div>
-
-          <div class="small-label" style="margin-top:6px;">Categoría SEI normal</div>
-          <div class="small-label" id="categoriaSEI">–</div>
         </div>
       </section>
 
