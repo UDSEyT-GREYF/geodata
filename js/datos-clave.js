@@ -1765,6 +1765,121 @@ function renderPaxPatterns(iataUpper) {
   }
 }
 
+function computePaxRankingData() {
+  const iatas = [...new Set((pasajerosMensualRows || []).map(r => String(r.iata || '').trim().toUpperCase()).filter(Boolean))];
+  const ranking = [];
+
+  for (const iata of iatas) {
+    const seriesTot = buildPaxSeries(iata, "total");
+    if (!seriesTot || seriesTot.length < 24) continue;
+
+    const last12 = seriesTot.slice(-12);
+    const prev12 = seriesTot.slice(-24, -12);
+    if (last12.length < 12 || prev12.length < 12) continue;
+
+    const sumLast12 = last12.reduce((acc, r) => acc + (Number(r.valor) || 0), 0);
+    const sumPrev12 = prev12.reduce((acc, r) => acc + (Number(r.valor) || 0), 0);
+    if (!sumPrev12 || sumPrev12 <= 0) continue;
+
+    const pct = ((sumLast12 - sumPrev12) / sumPrev12) * 100;
+    const delta = sumLast12 - sumPrev12;
+    const airportMeta = (aeropuertos || []).find(a => String(a.IATA || '').toUpperCase() === iata) || {};
+    const nombre = clean(airportMeta["Aeropuerto"]) || clean(airportMeta["Nombre del Aeropuerto"]) || iata;
+
+    ranking.push({
+      iata,
+      nombre,
+      pct,
+      delta,
+      sumLast12,
+      sumPrev12,
+      lastDate: last12[last12.length - 1]?.date || null
+    });
+  }
+
+  ranking.sort((a, b) => {
+    if (b.pct !== a.pct) return b.pct - a.pct;
+    if (b.delta !== a.delta) return b.delta - a.delta;
+    return a.iata.localeCompare(b.iata);
+  });
+
+  ranking.forEach((r, idx) => {
+    r.rank = idx + 1;
+  });
+
+  return ranking;
+}
+
+function renderPaxRanking(iataUpper) {
+  const listEl = document.getElementById("paxTop10List");
+  const currentEl = document.getElementById("paxTuRankingContent");
+  if (!listEl || !currentEl) return;
+
+  const ranking = computePaxRankingData();
+  if (!ranking.length) {
+    listEl.innerHTML = '<li class="pax-top10-loading">No hay base comparable suficiente.</li>';
+    currentEl.innerHTML = '<p class="pax-ranking-loading">No hay ranking comparable suficiente.</p>';
+    return;
+  }
+
+  const top10 = ranking.slice(0, 10);
+  const maxAbsPct = Math.max(...top10.map(r => Math.abs(r.pct)), 1);
+
+  function arrowClass(pct) {
+    if (pct > 0.0001) return 'pax-ranking-arrow-up';
+    if (pct < -0.0001) return 'pax-ranking-arrow-down';
+    return 'pax-ranking-arrow-flat';
+  }
+
+  function arrowChar(pct) {
+    if (pct > 0.0001) return '↑';
+    if (pct < -0.0001) return '↓';
+    return '→';
+  }
+
+  listEl.innerHTML = top10.map(r => {
+    const width = Math.max(4, Math.round((Math.abs(r.pct) / maxAbsPct) * 100));
+    const barCls = r.pct >= 0 ? 'pax-ranking-bar-pos' : 'pax-ranking-bar-neg';
+    const currentCls = r.iata === iataUpper ? ' pax-ranking-current' : '';
+    return `
+      <li class="pax-top10-item${currentCls}">
+        <span class="pax-top10-pos">${r.rank}</span>
+        <span class="pax-top10-iata">${r.iata}</span>
+        <span class="pax-top10-nombre" title="${r.nombre}">${r.nombre}</span>
+        <span class="pax-ranking-arrow ${arrowClass(r.pct)}">${arrowChar(r.pct)}</span>
+        <span class="pax-top10-pct">${formatPct(r.pct)}</span>
+        <span class="pax-ranking-bar-wrap"><span class="pax-ranking-bar ${barCls}" style="width:${width}%"></span></span>
+        <span class="pax-top10-vol">${formatNumber(Math.round(r.sumLast12))}</span>
+      </li>`;
+  }).join('');
+
+  const current = ranking.find(r => r.iata === iataUpper);
+  if (!current) {
+    currentEl.innerHTML = '<p class="pax-ranking-loading">El aeropuerto actual no tiene base comparable suficiente.</p>';
+    return;
+  }
+
+  const monthLabel = current.lastDate
+    ? current.lastDate.toLocaleString("es-AR", { month: "short", year: "numeric" }).replace('.', '')
+    : 'último dato';
+
+  currentEl.innerHTML = `
+    <div class="pax-tu-ranking-row">
+      <span class="pax-tu-ranking-label">Ubicación en el ranking</span>
+      <span class="pax-tu-ranking-pos"><strong>#${current.rank}</strong> / ${ranking.length}</span>
+    </div>
+    <div class="pax-tu-ranking-row">
+      <span class="pax-tu-ranking-label">Variación acumulada últimos 12 meses</span>
+      <span class="pax-tu-ranking-pct">${formatPct(current.pct)}</span>
+      <span class="pax-tu-ranking-sub">${formatNumber(Math.round(current.sumPrev12))} → ${formatNumber(Math.round(current.sumLast12))}</span>
+    </div>
+    <div class="pax-tu-ranking-contexto">
+      Ranking calculado con la serie <strong>total</strong> de pasajeros, comparando los <strong>12 últimos meses disponibles</strong> contra los <strong>12 meses previos</strong> para cada aeropuerto.
+      Último dato considerado: <strong>${monthLabel}</strong>.
+    </div>`;
+}
+
+
 
 
 
@@ -2219,11 +2334,8 @@ function renderPaxPatterns(iataUpper) {
 
     /* ---------- PASAJEROS (SERIE MENSUAL) ---------- */
 renderPasajerosPanel(iata);
-
-
- 
-
-
+    renderPaxPatterns(iata);
+    renderPaxRanking(iata);
 
     /* ---------- FOOTER ---------- */
     const footerNoteEl = document.getElementById("footerNote");
