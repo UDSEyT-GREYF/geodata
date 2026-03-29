@@ -1,11 +1,1561 @@
-.map-ubicacion {
-  /* existing styles */
+/* ==============================
+   1. RESETEO BÁSICO Y TIPOGRAFÍA
+   ============================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.map-influencia {
-  min-height: 280px;
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.5;
 }
 
-.pasajeros-kpi .kpi-value {
+a {
+  color: #0072bb;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* ==============================
+   2. TOPBAR (PRESIDENCIA / GEODATA)
+   ============================== */
+.topbar {
+  background-color: #002855;
+  color: #fff;
+  font-size: 0.85rem;
+  padding: 4px 16px;
+}
+.topbar-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ==============================
+   3. HEADER ORSNA
+   ============================== */
+.gov-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #dde2e6;
+}
+.gov-header-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00a3e0, #0072bb);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+.brand-text span:first-child {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  color: #6c757d;
+}
+.brand-text span:last-child {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #002855;
+}
+
+/* ==============================
+   4. BREADCRUMB
+   ============================== */
+.breadcrumb {
+  background-color: #EEF2F7;
+  border-bottom: 1px solid #dde2e6;
+  font-size: 0.85rem;
+}
+.breadcrumb-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 8px 16px;
+  color: #6c757d;
+}
+
+/* ==============================
+   5. LAYOUT PRINCIPAL
+   ============================== */
+main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+header.page-header {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.page-header-left h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #002855;
+}
+.page-header-left p {
+  margin-top: 4px;
+  color: #555;
   font-size: 0.95rem;
+}
+
+/* Línea de resumen debajo del título del aeropuerto */
+#pageSubtitle {
+  margin-top: 4px;
+  font-weight: 400;
+  color: #555;
+  font-size: 0.73rem;
+  line-height: 1.1;
+  display: none;
+
+}
+
+/* Ocultar los KPI de contactos en el panel de Ubicación */
+.panel-ubicacion .contact-kpi {
+  display: none !important;
+}
+
+.selector {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  font-size: 0.9rem;
+}
+.selector label {
+  color: #444;
+}
+.selector select {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #c0c7d4;
+  font-size: 0.9rem;
+  min-width: 220px;
+}
+
+/* ==============================
+   6. BANDA KPI SUPERIOR (CARRUSEL)
+   ============================== */
+
+/* Wrapper con flechas laterales */
+.kpi-strip-wrapper {
+  position: relative;
+  margin: 10px 0 18px;
+}
+
+/* Banda KPI como carrusel horizontal */
+.kpi-strip {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 24px 6px; /* espacio para que no tapen las flechas */
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar del carrusel */
+.kpi-strip::-webkit-scrollbar {
+  height: 6px;
+}
+.kpi-strip::-webkit-scrollbar-track {
+  background: #e4e7ec;
+  border-radius: 3px;
+}
+.kpi-strip::-webkit-scrollbar-thumb {
+  background: #b9c2d3;
+  border-radius: 3px;
+}
+
+/* Tarjetas KPI */
+.kpi-card {
+  background: #ffffff;
+  border-radius: 4px;
+  border: 1px solid #d0d7e2;
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.8rem;
+  text-align: center;
+  min-width: 135px;
+  scroll-snap-align: start;
+}
+
+.kpi-card img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  margin-bottom: 2px;
+}
+
+.kpi-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2a5fa0;
+  line-height: 1.1;
+}
+
+.kpi-label {
+  color: #555;
+  font-size: 0.78rem;
+}
+
+/* Flechas laterales del carrusel */
+.kpi-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #c0c7d4;
+  background-color: #ffffff;
+  color: #444;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.25);
+  z-index: 10;
+}
+
+.kpi-arrow-left {
+  left: 2px;
+}
+
+.kpi-arrow-right {
+  right: 2px;
+}
+
+.kpi-arrow:hover {
+  background-color: #2a5fa0;
+  color: #ffffff;
+  border-color: #2a5fa0;
+}
+
+/* KPI de contactos en la banda superior: uno para Admin y otro para Jefatura */
+/* Cada tarjeta de contacto: centrar contenido y evitar desbordes */
+.kpi-card.kpi-card-contacto {
+  display: flex;
+  justify-content: center;
+  align-items: center;     /* no end */
+  text-align: center;
+  overflow: hidden;        /* corta cualquier exceso */
+}
+
+/* El bloque interno debe poder achicarse y envolver texto */
+.kpi-card.kpi-card-contacto .kpi-contact-block {
+  min-width: 0;            /* CLAVE: permite wrap dentro del contenedor */
+  max-width: 100%;
+  align-items: center;
+  text-align: center;
+}
+
+/* Textos: permitir saltos y evitar que empujen el ancho */
+.kpi-card.kpi-card-contacto .kpi-contact-name,
+.kpi-card.kpi-card-contacto .kpi-contact-small,
+.kpi-card.kpi-card-contacto .kpi-contact-role {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere; /* emails/telefonos largos */
+  word-break: break-word;
+}
+/* ORDEN CORRECTO DENTRO DEL KPI CONTACTO */
+.kpi-card.kpi-card-contacto .kpi-contact-name { order: 1; }
+.kpi-card.kpi-card-contacto .kpi-contact-small { order: 2; }
+.kpi-card.kpi-card-contacto .kpi-contact-role { order: 3; }
+
+/* COLOR DEL NOMBRE */
+.kpi-card.kpi-card-contacto .kpi-contact-name {
+  color: #2a5fa0;
+  font-weight: 700;
+}
+
+/* TELEFONO / CORREO MAS CHICO */
+.kpi-card.kpi-card-contacto .kpi-contact-small {
+  font-size: 0.62rem;
+  line-height: 1.15;
+}
+/* HACER QUE EL ORDEN FUNCIONE */
+.kpi-card.kpi-card-contacto .kpi-contact-block {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ETIQUETA INFERIOR (Administración / Jefatura) */
+.kpi-card.kpi-card-contacto .kpi-contact-role {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+/* NOMBRE (VALOR PRINCIPAL DEL KPI) */
+.kpi-card.kpi-card-contacto .kpi-contact-name {
+  font-size: 0.9rem;
+  color: #2a5fa0;
+  font-weight: 700;
+}
+
+/* TELEFONO / CORREO (DETALLE) */
+.kpi-card.kpi-card-contacto .kpi-contact-small {
+  font-size: 0.62rem;
+  line-height: 1.15;
+}
+
+/* ==============================
+   7. GRID PRINCIPAL DE PANELES
+   ============================== */
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr;
+  grid-template-areas:
+    "superficie terminal ubicacion"
+    "movimiento terminal empleo"
+    "pasajeros pasajeros pasajeros"
+    "servicios servicios servicios";
+
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.panel {
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #d0d7e2;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  background: #306fb0;
+  color: #fff;
+  padding: 6px 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.panel-body {
+  padding: 8px 10px 10px;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+.metric-row .value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2a5fa0;
+}
+
+.small-label {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+ul {
+  padding-left: 18px;
+  font-size: 0.88rem;
+}
+
+.subpanel-title {
+  margin-top: 4px;
+  font-weight: 600;
+  color: #2a5fa0;
+  font-size: 0.9rem;
+}
+
+/* ==============================
+   8. PANEL EXPLOTACIÓN (CONCESIÓN, MAPA, INVERSIONES)
+   ============================== */
+.panel-superficie {
+  grid-area: superficie;
+}
+
+.panel-superficie .panel-body {
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Caja KPI reutilizable para explotación, terminal, etc. */
+.superficie-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  padding: 6px 8px;
+  margin-bottom: 8px;
+}
+
+.superficie-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.superficie-label {
+  font-size: 0.9rem;
+  color: #444;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.superficie-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #004b80;
+  white-space: nowrap;
+}
+
+.superficie-unit {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #004b80;
+  margin-left: 3px;
+}
+
+.superficie-thumb {
+  width: 100%;
+  height: 230px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #ffffff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mapa Leaflet del predio */
+.map-predio {
+  width: 100%;
+  height: 100%;
+}
+
+/* Imagen de terminal dentro de la caja */
+.superficie-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Tabla de inversiones dentro del KPI */
+.kpi-table-inv {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4px;
+  font-size: 0.75rem;
+}
+
+.kpi-table-inv th,
+.kpi-table-inv td {
+  border-bottom: 1px solid #d0d7e2;
+  padding: 4px 6px;
+  text-align: right;
+  font-size: 0.75rem;
+}
+
+.kpi-table-inv th:first-child,
+.kpi-table-inv td:first-child {
+  text-align: left;
+}
+
+.kpi-table-inv thead th {
+  font-weight: 600;
+  color: #444;
+  background-color: #f3f6fb;
+}
+
+/* Centrar el encabezado "Obras" */
+.kpi-table-inv th:nth-child(2) {
+  text-align: center !important;
+}
+
+/* Asegurar que la columna de obras también quede alineada a la izquierda */
+.kpi-table-inv td:nth-child(2) {
+  text-align: left !important;
+}
+
+/* Valores tipo "188 hectáreas" */
+.concesion-value-group {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.concesion-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #004b80;
+  white-space: nowrap;
+}
+
+.concesion-unit {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #004b80;
+}
+
+.concesion-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.concesion-label {
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.concesion-chip {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #004b80;
+  white-space: normal;
+  text-align: right;
+}
+
+/* KPI estilo caja para Servicios y Ayudas */
+.servicio-kpi {
+  background: #ffffff;
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  padding: 6px 8px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.servicio-label {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.servicio-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2a5fa0;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+/* ==============================
+   9. PANEL ÁREA DE MOVIMIENTO (PISTAS Y PLATAFORMAS)
+   ============================== */
+.panel-movimiento {
+  grid-area: movimiento;
+}
+
+.kpi-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+.mov-runway-list {
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: #555;
+}
+
+.mov-runway-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 2px 0;
+}
+
+.mov-runway-orient {
+  font-weight: 700;
+  color: #004b80;
+  white-space: nowrap;
+  font-size: 0.95rem;
+}
+
+.mov-runway-info {
+  flex: 1;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+}
+
+.runway-chip {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #b3b3b3;
+  color: #ffffff;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.mov-runway-mat {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.mov-psn-list {
+  margin-top: 6px;
+}
+
+.mov-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.mov-badge {
+  background: #6b2f82;
+  color: #fff;
+  font-weight: 700;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+.map-psn {
+  width: 100%;
+  height: 220px;
+}
+
+.psn-tooltip {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #333;
+  border-radius: 2px;
+  padding: 2px 2px;
+  font-size: 0.5rem;
+  color: #111;
+}
+
+/* ==============================
+   10. PANEL TERMINAL (RECORRIDO DEL PASAJERO)
+   ============================== */
+.panel-terminal {
+  grid-area: terminal;
+}
+
+.terminal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.terminal-step-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #2a5fa0;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.terminal-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px dashed #d0d7e2;
+}
+
+.terminal-item:last-child {
+  border-bottom: none;
+}
+
+.terminal-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+/* Iconos más grandes SOLO en Área de movimiento (Pistas + PSN) */
+.panel-movimiento .terminal-icon img {
+  width: 48px;
+  height: 48px;
+}
+
+.terminal-text {
+  flex: 1;
+}
+
+.terminal-title {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.terminal-sub {
+  font-size: 0.78rem;
+  color: #777;
+}
+
+.panel-header small {
+  font-size: 0.7rem;
+  font-weight: 300;
+  opacity: 0.85;
+  margin-left: 4px;
+}
+
+.terminal-badge {
+  min-width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #6b2f82;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.terminal-separator {
+  border-top: 1px solid #e0e7f0;
+  margin: 4px 0;
+}
+
+/* ==============================
+   11. PANEL UBICACIÓN Y ACCESIBILIDAD
+   ============================== */
+.panel-ubicacion {
+  grid-area: ubicacion;
+}
+
+.ubicacion-kpi {
+  background: #ffffff;
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  padding: 6px 8px;
+  margin-bottom: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ubi-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.ubi-label {
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.ubi-chip {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #004b80;
+  white-space: normal;
+  text-align: right;
+}
+
+.ubicacion-map-wrapper {
+  margin-top: 2px;
+}
+
+.map-ubicacion {
+  width: 100%;
+  height: 450px !important;
+  border-radius: 4px;
+  border: 1px solid #d0d7e2;
+  overflow: hidden;
+}
+
+/* KPI de Contacto (Administrador / Jefe) */
+.contact-kpi {
+  background: #ffffff;
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.contact-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #004b80;
+  margin-bottom: 2px;
+}
+
+.contact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-label {
+  font-size: 0.7rem;
+  color: #555;
+}
+
+.contact-value {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #004b80;
+  text-align: right;
+}
+
+.contact-value-small {
+  font-size: 0.70rem;
+  font-weight: 700;
+  color: #004b80;
+  text-align: right;
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* Tamaño más pequeño para las descripciones de obras dentro de la tabla */
+.inv-obras-cell {
+  font-size: 0.72rem;
+  line-height: 1.25;
+  color: #444;
+  text-align: left !important;
+  vertical-align: top;
+  padding-left: 4px;
+}
+
+/* KPI Transporte público */
+.transporte-kpi {
+  background: #ffffff;
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  padding: 6px 8px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.transporte-list {
+  font-size: 0.78rem;
+  color: #555;
+  line-height: 1.3;
+}
+
+.transporte-thumb {
+  margin-top: 4px;
+  width: 100%;
+  height: 200px;
+  border-radius: 4px;
+  border: 1px solid #d0d7e2;
+  overflow: hidden;
+}
+
+.map-transporte {
+  width: 100%;
+  height: 100%;
+}
+
+/* para abrir el mapa de paradas APP en una nueva ventana */
+.map-expand-btn {
+  margin-top: 6px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid #2a5fa0;
+  background-color: #ffffff;
+  color: #2a5fa0;
+  font-size: 0.8rem;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.map-expand-btn:hover {
+  background-color: #2a5fa0;
+  color: #ffffff;
+}
+
+/* ==============================
+   12. PANELES EMPLEO / SERVICIOS
+   ============================== */
+.panel-empleo {
+  grid-area: empleo;
+}
+.panel-pasajeros {
+  grid-area: pasajeros;
+}
+
+/* Panel Pasajeros: KPIs + gráfico */
+.pasajeros-kpis{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.pasajeros-kpi{
+  flex:1 1 220px;
+  background:#ffffff;
+  border:1px solid #d0d7e2;
+  border-radius:4px;
+  padding:8px 10px;
+}
+/* ==========================================================================
+   FIX Chart.js (Pasajeros) — NO TOCAR SIN REVISAR
+   - Evita que el canvas crezca "infinito" dentro de flex.
+   - El alto del gráfico se controla por min-height del wrapper + flex del canvas.
+   - No reintroducir: height:100% en el canvas, ni height fijo gigante en wrapper
+   ========================================================================== */
+/* ===== PASAJEROS: wrapper gráfico + controles ===== */
+.pasajeros-chart-wrap{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+  background: #ffffff;
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+/* Área del gráfico con altura controlada (evita "1 metro") */
+.pax-chart-area{
+  position: relative;
+  height: 320px;      /* ajustá a 280–360 según gusto */
+  max-height: 360px;
+}
+/* FIX: El canvas va en flex y con min-height; NO poner height:100% !important aquí,
+   porque puede disparar el "metro de alto" si el contenedor se estira. */
+/* Canvas ocupa el 100% del área */
+.pax-chart-area canvas,
+#paxChartCanvas{
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Controles: compactos */
+.pax-controls{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+}
+
+.pax-quick-btns{
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.pax-btn{
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid #c0c7d4;
+  background-color: #ffffff;
+  color: #444;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pax-btn:hover {
+  background-color: #eef2fb;
+  border-color: #2a5fa0;
+}
+
+.pax-btn-active {
+  background-color: #2a5fa0;
+  color: #ffffff;
+  border-color: #2a5fa0;
+}
+
+.pax-date-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pax-date-field {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pax-month-sel,
+.pax-year-input {
+  padding: 4px 6px;
+  border-radius: 4px;
+  border: 1px solid #c0c7d4;
+  font-size: 0.8rem;
+}
+
+.pax-year-input {
+  width: 60px;
+}
+
+.pax-date-sep {
+  color: #999;
+  font-weight: bold;
+}
+
+.pax-range-label {
+  color: #666;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.pax-range-summary {
+  color: #666;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pax-chart-note {
+  color: #999;
+  font-style: italic;
+}
+
+/* Minimap */
+.pax-minimap-wrap{
+  position: relative;
+  height: 60px;
+  background: #ffffff;
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 2px;
+}
+
+.pax-minimap-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.pax-minimap-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: col-resize;
+}
+
+.pax-mm-shade {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.pax-mm-shade:first-child {
+  left: 0;
+}
+
+.pax-mm-shade:last-child {
+  right: 0;
+}
+
+.pax-mm-handle {
+  position: absolute;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: #2a5fa0;
+  cursor: col-resize;
+  z-index: 3;
+}
+
+.pax-mm-handle:hover {
+  background: #1a3a6e;
+}
+
+.pax-mm-window {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: rgba(42, 95, 160, 0.2);
+  border-left: 1px solid #2a5fa0;
+  border-right: 1px solid #2a5fa0;
+  z-index: 2;
+}
+
+/* KPI grupos */
+.pax-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pax-group-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #004b80;
+  text-transform: uppercase;
+}
+
+.pax-group-patterns {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+@media (max-width: 800px) {
+  .pax-group-patterns {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pax-group-patterns > .pax-group-title{
+  display: none;
+}
+
+.pax-mini {
+  background: #ffffff;
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pax-mini-title {
+  color: #666;
+  font-weight: 600;
+}
+
+.pax-mini-chart-area {
+  position: relative;
+  height: 120px;
+  margin-bottom: 4px;
+}
+
+.pax-mini-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.pax-kpis-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+@media (max-width: 1400px) {
+  .pax-kpis-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .pax-kpis-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pax-span-2 {
+  grid-column: 1 / -1;
+}
+
+/* ==============================
+   13. MODAL
+   ============================== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal-overlay[aria-hidden="false"] {
+  display: flex;
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-head {
+  background: #306fb0;
+  color: #fff;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #dde2e6;
+}
+
+.modal-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  opacity: 0.8;
+}
+
+.modal-body {
+  padding: 16px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.modal-body p {
+  margin-bottom: 12px;
+}
+
+.modal-body strong {
+  color: #004b80;
+}
+
+.modal-body a {
+  color: #0072bb;
+}
+
+.modal-body a:hover {
+  text-decoration: underline;
+}
+
+.modal-actions {
+  padding: 12px 16px;
+  border-top: 1px solid #dde2e6;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.modal-btn {
+  padding: 6px 16px;
+  border-radius: 4px;
+  border: 1px solid #c0c7d4;
+  background-color: #ffffff;
+  color: #444;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.modal-btn:hover {
+  background-color: #306fb0;
+  color: #fff;
+  border-color: #306fb0;
+}
+
+/* ==============================
+   14. FOOTER
+   ============================== */
+footer {
+  background-color: #f5f5f5;
+  border-top: 1px solid #dde2e6;
+  padding: 12px 16px;
+  text-align: center;
+}
+
+.footer-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* ==============================
+   15. INFO BUTTON
+   ============================== */
+.info-btn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-left: 6px;
+  transition: all 0.2s;
+}
+
+.info-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: #fff;
+}
+
+/* =========================
+   TOP 10 YoY – Ranking
+   ========================= */
+
+.pax-ranking-section {
+  margin: 14px 0 6px 0;
+  border-top: 1px solid #e0e6f0;
+  padding-top: 12px;
+}
+
+.pax-ranking-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 700px) {
+  .pax-ranking-cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pax-ranking-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #1a3a6e;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---- Top 10 list ---- */
+.pax-top10-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pax-top10-loading,
+.pax-ranking-loading {
+  font-size: 0.8rem;
+  color: #888;
+  font-style: italic;
+}
+
+.pax-top10-item {
+  display: grid;
+  grid-template-columns: 18px 32px 1fr 14px 52px 80px auto;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  background: #f8fafc;
+  border: 1px solid #e5eaf3;
+  font-size: 0.78rem;
+  transition: background 0.15s;
+}
+
+.pax-top10-item:hover {
+  background: #eef2fb;
+}
+
+/* Resaltado si es el aeropuerto actual */
+.pax-top10-item.pax-ranking-current {
+  background: #e8effc;
+  border-color: #0f44bf;
+  font-weight: 600;
+}
+
+.pax-top10-pos {
+  color: #888;
+  font-size: 0.72rem;
+  text-align: right;
+}
+
+.pax-top10-iata {
+  font-weight: 700;
+  color: #1a3a6e;
+  font-size: 0.78rem;
+}
+
+.pax-top10-nombre {
+  color: #444;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.75rem;
+}
+
+.pax-ranking-arrow {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.pax-ranking-arrow-up    { color: #1a7a3e; }
+.pax-ranking-arrow-down  { color: #b31a1a; }
+.pax-ranking-arrow-flat  { color: #888; }
+
+.pax-top10-pct {
+  font-weight: 600;
+  text-align: right;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.pax-ranking-bar-wrap {
+  height: 6px;
+  background: #e5eaf3;
+  border-radius: 3px;
+  overflow: hidden;
+  min-width: 40px;
+}
+
+.pax-ranking-bar {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.pax-ranking-bar-pos { background: #1a7a3e; }
+.pax-ranking-bar-neg { background: #b31a1a; }
+
+.pax-top10-vol {
+  color: #777;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  text-align: right;
+}
+
+/* ---- Tu Ranking ---- */
+.pax-tu-ranking {
+  font-size: 0.8rem;
+}
+
+.pax-tu-ranking-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  background: #f8fafc;
+  border: 1px solid #e5eaf3;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.pax-tu-ranking-label {
+  color: #666;
+  flex: 1 1 auto;
+  min-width: 120px;
+}
+
+.pax-tu-ranking-pos {
+  color: #1a3a6e;
+  white-space: nowrap;
+}
+
+.pax-tu-ranking-pos strong {
+  font-size: 1rem;
+}
+
+.pax-tu-ranking-sub {
+  color: #999;
+  font-size: 0.7rem;
+}
+
+.pax-tu-ranking-pct {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pax-tu-ranking-contexto {
+  font-size: 0.75rem;
+  color: #555;
+  margin: 2px 0 8px 0;
+  line-height: 1.5;
+}
+
+.pax-tu-ranking-contexto strong {
+  color: #1a3a6e;
 }
