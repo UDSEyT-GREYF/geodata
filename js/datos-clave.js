@@ -935,6 +935,11 @@ function formatPct(p) {
   })}%`;
 }
 
+function formatPctShare(p) {
+  if (p === null || p === undefined || isNaN(p)) return "–";
+  return `${Math.round(Number(p)).toLocaleString("es-AR")}%`;
+}
+
 
 function setPaxDeltaVisual(el) {
   if (!el) return;
@@ -1770,56 +1775,56 @@ function renderPaxPatterns(iataUpper) {
     const cabPct = tot12 > 0 ? (cab12 / tot12) * 100 : 0;
     const intPct = tot12 > 0 ? (int12 / tot12) * 100 : 0;
 
-    if (compCabEl) compCabEl.textContent = tot12 > 0 ? formatPct(cabPct) : "–";
-    if (compIntEl) compIntEl.textContent = tot12 > 0 ? formatPct(intPct) : "–";
+    if (compCabEl) compCabEl.textContent = tot12 > 0 ? formatPctShare(cabPct) : "–";
+    if (compIntEl) compIntEl.textContent = tot12 > 0 ? formatPctShare(intPct) : "–";
     if (compNote) {
       compNote.textContent = tot12 > 0
         ? `${formatNumber(Math.round(tot12))} pasajeros acumulados en los últimos 12 meses.`
         : "No hay base suficiente para estimar la composición reciente.";
     }
 
+    if (paxWeekChart) {
+      paxWeekChart.destroy();
+      paxWeekChart = null;
+    }
+
     const compCtx = compCanvas.getContext("2d");
-    if (!paxWeekChart) {
-      paxWeekChart = new Chart(compCtx, {
-        type: "doughnut",
-        data: {
-          labels: ["Cabotaje", "Internacional"],
-          datasets: [{
-            data: [cab12, int12],
-            backgroundColor: ["#73acdf", "#16c41e"],
-            borderWidth: 0,
-            hoverOffset: 4
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          animation: false,
-          cutout: "62%",
-          plugins: {
-            legend: {
-              position: "bottom",
-              labels: { boxWidth: 10, usePointStyle: true, pointStyle: "circle" }
-            },
-            tooltip: {
-              callbacks: {
-                label: (item) => {
-                  const value = Number(item.parsed || 0);
-                  const pct = tot12 > 0 ? (value / tot12) * 100 : 0;
-                  return `${item.label}: ${formatNumber(Math.round(value))} (${formatPct(pct)})`;
-                }
+    paxWeekChart = new Chart(compCtx, {
+      type: "doughnut",
+      data: {
+        labels: ["Cabotaje", "Internacional"],
+        datasets: [{
+          data: [cab12, int12],
+          backgroundColor: ["#73acdf", "#16c41e"],
+          borderWidth: 0,
+          hoverOffset: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: false,
+        cutout: "62%",
+        plugins: {
+          legend: {
+            position: "bottom",
+            labels: { boxWidth: 10, usePointStyle: true, pointStyle: "circle" }
+          },
+          tooltip: {
+            callbacks: {
+              label: (item) => {
+                const value = Number(item.parsed || 0);
+                const pct = tot12 > 0 ? (value / tot12) * 100 : 0;
+                return `${item.label}: ${formatNumber(Math.round(value))} (${formatPctShare(pct)})`;
               }
             }
           }
         }
-      });
-    } else {
-      paxWeekChart.data.datasets[0].data = [cab12, int12];
-      paxWeekChart.update("none");
-    }
+      }
+    });
   }
 
-  // ===== Estacionalidad mensual: promedio por mes, excluyendo 2020-2022 =====
+  // ===== Estacionalidad mensual: promedio por mes y por segmento, excluyendo 2020-2022 =====
   const seasonCanvas = document.getElementById("paxSeasonChart");
   if (!seasonCanvas) return;
 
@@ -1828,44 +1833,90 @@ function renderPaxPatterns(iataUpper) {
     return y < 2020 || y > 2022;
   });
 
-  const sum = Array(12).fill(0);
-  const cnt = Array(12).fill(0);
+  const labels = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+  const cabSum = Array(12).fill(0);
+  const cabCnt = Array(12).fill(0);
+  const intSum = Array(12).fill(0);
+  const intCnt = Array(12).fill(0);
+
   for (const r of rows) {
     const m = r.date.getMonth();
-    const v = Number(r.tot || 0);
-    sum[m] += v;
-    cnt[m] += 1;
+
+    if (r.cab !== null && r.cab !== undefined && !isNaN(Number(r.cab))) {
+      cabSum[m] += Number(r.cab);
+      cabCnt[m] += 1;
+    }
+
+    if (r.intl !== null && r.intl !== undefined && !isNaN(Number(r.intl))) {
+      intSum[m] += Number(r.intl);
+      intCnt[m] += 1;
+    }
   }
 
-  const labels = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
-  const data = labels.map((_, i) => (cnt[i] ? sum[i] / cnt[i] : 0));
+  const dataCab = labels.map((_, i) => (cabCnt[i] ? cabSum[i] / cabCnt[i] : null));
+  const dataInt = labels.map((_, i) => (intCnt[i] ? intSum[i] / intCnt[i] : null));
+
+  if (paxSeasonChart) {
+    paxSeasonChart.destroy();
+    paxSeasonChart = null;
+  }
 
   const ctx = seasonCanvas.getContext("2d");
-  if (!paxSeasonChart) {
-    paxSeasonChart = new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels,
-        datasets: [{ label: "Promedio mensual", data }]
+  paxSeasonChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels,
+      datasets: [
+        {
+          label: "Cabotaje",
+          data: dataCab,
+          backgroundColor: "#73acdf",
+          borderRadius: 4,
+          barPercentage: 0.9,
+          categoryPercentage: 0.7
+        },
+        {
+          label: "Internacional",
+          data: dataInt,
+          backgroundColor: "#16c41e",
+          borderRadius: 4,
+          barPercentage: 0.9,
+          categoryPercentage: 0.7
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: false,
+      interaction: { mode: "index", intersect: false },
+      plugins: {
+        legend: {
+          display: true,
+          position: "bottom",
+          labels: { boxWidth: 10, usePointStyle: true, pointStyle: "circle" }
+        },
+        tooltip: {
+          callbacks: {
+            label: (item) => `${item.dataset.label}: ${formatNumber(Math.round(item.parsed.y || 0))}`
+          }
+        }
       },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        animation: false,
-        plugins: { legend: { display: false } },
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: { callback: (v) => formatNumber(v), maxTicksLimit: 3 }
+      scales: {
+        x: {
+          grid: { display: false }
+        },
+        y: {
+          beginAtZero: true,
+          grace: "8%",
+          ticks: {
+            callback: (v) => formatNumber(Math.round(v)),
+            maxTicksLimit: 4
           }
         }
       }
-    });
-  } else {
-    paxSeasonChart.data.labels = labels;
-    paxSeasonChart.data.datasets[0].data = data;
-    paxSeasonChart.update("none");
-  }
+    }
+  });
 }
 
 
