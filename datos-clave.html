@@ -706,18 +706,25 @@
       <div class="pax-mini-chart-area pax-mini-chart-area-donut pax-mini-chart-area-donut-clean">
         <canvas id="paxWeekChart" class="pax-mini-canvas" aria-label="Composición del tráfico"></canvas>
       </div>
+      <div class="pax-donut-legend" id="paxDonutLegend" aria-label="Leyenda composición del tráfico"></div>
     </div>
 
     <div class="pax-patterns-rightcol">
       <div class="pax-mini">
-        <div class="small-label pax-mini-title">Estacionalidad mensual (sin 2020–2022)</div>
-        <div class="pax-mini-chart-area">
+        <div class="pax-mini-head">
+          <div class="small-label pax-mini-title">Estacionalidad mensual (sin 2020–2022)</div>
+          <div class="pax-inline-legend" id="paxSeasonLegend" aria-label="Leyenda estacionalidad mensual"></div>
+        </div>
+        <div class="pax-mini-chart-area pax-mini-chart-area-season">
          <canvas id="paxSeasonChart" class="pax-mini-canvas" aria-label="Estacionalidad mensual"></canvas>
         </div>
       </div>
 
       <div class="pax-mini">
-        <div class="small-label pax-mini-title">Pasajeros por año</div>
+        <div class="pax-mini-head">
+          <div class="small-label pax-mini-title">Pasajeros por año</div>
+          <div class="pax-inline-legend" id="paxAnnualLegend" aria-label="Leyenda pasajeros por año"></div>
+        </div>
         <div class="pax-mini-chart-area pax-mini-chart-area-yearly">
          <canvas id="paxAnnualChart" class="pax-mini-canvas" aria-label="Pasajeros por año"></canvas>
         </div>
