@@ -1469,6 +1469,19 @@ const key = `${year}-${String(m).padStart(2, "0")}`;
   }
 
 
+  function renderPaxInlineLegend(containerId, items) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+
+    el.innerHTML = (items || []).map(item => `
+      <span class="pax-inline-legend-item">
+        <span class="pax-inline-legend-swatch" style="background:${item.color};"></span>
+        <span>${item.label}</span>
+      </span>
+    `).join("");
+  }
+
+
  // ------Función que define el panel de pasajeros.
   
 function renderPasajerosPanel(iataUpper) {
@@ -1876,6 +1889,11 @@ function renderPaxPatterns(iataUpper) {
   const dataCab = labels.map((_, i) => (cabCnt[i] ? cabSum[i] / cabCnt[i] : null));
   const dataInt = labels.map((_, i) => (intCnt[i] ? intSum[i] / intCnt[i] : null));
 
+  renderPaxInlineLegend("paxSeasonLegend", [
+    { label: "Cabotaje", color: "#73acdf" },
+    { label: "Internacional", color: "#16c41e" }
+  ]);
+
   if (paxSeasonChart) {
     paxSeasonChart.destroy();
     paxSeasonChart = null;
@@ -1912,9 +1930,7 @@ function renderPaxPatterns(iataUpper) {
       interaction: { mode: "index", intersect: false },
       plugins: {
         legend: {
-          display: true,
-          position: "bottom",
-          labels: { boxWidth: 10, usePointStyle: true, pointStyle: "circle" }
+          display: false
         },
         tooltip: {
           callbacks: {
@@ -1956,6 +1972,11 @@ function renderPaxPatterns(iataUpper) {
   const annualCab = annualLabels.map(y => annualMap.get(Number(y)).cab || 0);
   const annualInt = annualLabels.map(y => annualMap.get(Number(y)).intl || 0);
 
+  renderPaxInlineLegend("paxAnnualLegend", [
+    { label: "Cabotaje", color: "#73acdf" },
+    { label: "Internacional", color: "#16c41e" }
+  ]);
+
   if (paxAnnualChart) {
     paxAnnualChart.destroy();
     paxAnnualChart = null;
@@ -1990,9 +2011,7 @@ function renderPaxPatterns(iataUpper) {
       interaction: { mode: "index", intersect: false },
       plugins: {
         legend: {
-          display: true,
-          position: "bottom",
-          labels: { boxWidth: 10, usePointStyle: true, pointStyle: "circle" }
+          display: false
         },
         tooltip: {
           callbacks: {
