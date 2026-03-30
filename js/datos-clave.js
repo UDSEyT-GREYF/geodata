@@ -1798,6 +1798,11 @@ function renderPaxPatterns(iataUpper) {
     const cabPct = tot12 > 0 ? (cab12 / tot12) * 100 : 0;
     const intPct = tot12 > 0 ? (int12 / tot12) * 100 : 0;
 
+    renderPaxInlineLegend("paxDonutLegend", [
+      { label: `Cabotaje ${Math.round(cabPct)}%`, color: "#73acdf" },
+      { label: `Internacional ${Math.round(intPct)}%`, color: "#16c41e" }
+    ]);
+
     if (paxWeekChart) {
       paxWeekChart.destroy();
       paxWeekChart = null;
@@ -1821,28 +1826,7 @@ function renderPaxPatterns(iataUpper) {
         animation: false,
         cutout: "62%",
         plugins: {
-          legend: {
-            position: "bottom",
-            labels: {
-              boxWidth: 10,
-              usePointStyle: true,
-              pointStyle: "circle",
-              padding: 14,
-              generateLabels(chart) {
-                const base = Chart.defaults.plugins.legend.labels.generateLabels(chart);
-                const values = chart.data.datasets?.[0]?.data || [];
-                const total = values.reduce((acc, v) => acc + (Number(v) || 0), 0);
-                return base.map((item, idx) => {
-                  const value = Number(values[idx] || 0);
-                  const pct = total > 0 ? Math.round((value / total) * 100) : 0;
-                  return {
-                    ...item,
-                    text: `${chart.data.labels[idx]} ${pct}%`
-                  };
-                });
-              }
-            }
-          },
+          legend: { display: false },
           tooltip: {
             callbacks: {
               label: (item) => {
