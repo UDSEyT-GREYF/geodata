@@ -1303,11 +1303,9 @@ ul {
   align-items: start;
 }
 
-@media (max-width: 1400px) {
-  .pax-kpis-3,
-  .pax-kpis-4 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.pax-kpis-3 > .pax-group,
+.pax-kpis-4 > .pax-group {
+  min-width: 0;
 }
 
 @media (max-width: 800px) {
