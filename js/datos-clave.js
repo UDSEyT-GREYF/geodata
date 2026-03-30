@@ -30,6 +30,7 @@
   let paxMinimapChart = null;
   let paxWeekChart = null;
   let paxSeasonChart = null;
+  let paxAnnualChart = null;
 
   // Pasajeros filter state (module-level to avoid closure issues)
   let paxAllData = null;          // Full dataset for current airport { date, tot, cab, intl }[]
@@ -1504,6 +1505,18 @@ if (paxChart) {
   paxChart.destroy();
   paxChart = null;
 }
+if (paxWeekChart) {
+  paxWeekChart.destroy();
+  paxWeekChart = null;
+}
+if (paxSeasonChart) {
+  paxSeasonChart.destroy();
+  paxSeasonChart = null;
+}
+if (paxAnnualChart) {
+  paxAnnualChart.destroy();
+  paxAnnualChart = null;
+}
     note.textContent = `No hay datos de pasajeros para ${iataUpper}.`;
     return;
   }
@@ -1763,9 +1776,6 @@ function renderPaxPatterns(iataUpper) {
 
   // ===== Composición cabotaje/internacional: últimos 12 meses =====
   const compCanvas = document.getElementById("paxWeekChart");
-  const compNote = document.getElementById("paxWeekNote");
-  const compCabEl = document.getElementById("paxCompCabShare");
-  const compIntEl = document.getElementById("paxCompIntShare");
 
   if (compCanvas) {
     const rows12 = allRows.slice(-12);
@@ -1774,14 +1784,6 @@ function renderPaxPatterns(iataUpper) {
     const tot12 = cab12 + int12;
     const cabPct = tot12 > 0 ? (cab12 / tot12) * 100 : 0;
     const intPct = tot12 > 0 ? (int12 / tot12) * 100 : 0;
-
-    if (compCabEl) compCabEl.textContent = tot12 > 0 ? formatPctShare(cabPct) : "–";
-    if (compIntEl) compIntEl.textContent = tot12 > 0 ? formatPctShare(intPct) : "–";
-    if (compNote) {
-      compNote.textContent = tot12 > 0
-        ? `${formatNumber(Math.round(tot12))} pasajeros acumulados en los últimos 12 meses.`
-        : "No hay base suficiente para estimar la composición reciente.";
-    }
 
     if (paxWeekChart) {
       paxWeekChart.destroy();
@@ -1808,14 +1810,32 @@ function renderPaxPatterns(iataUpper) {
         plugins: {
           legend: {
             position: "bottom",
-            labels: { boxWidth: 10, usePointStyle: true, pointStyle: "circle" }
+            labels: {
+              boxWidth: 10,
+              usePointStyle: true,
+              pointStyle: "circle",
+              padding: 14,
+              generateLabels(chart) {
+                const base = Chart.defaults.plugins.legend.labels.generateLabels(chart);
+                const values = chart.data.datasets?.[0]?.data || [];
+                const total = values.reduce((acc, v) => acc + (Number(v) || 0), 0);
+                return base.map((item, idx) => {
+                  const value = Number(values[idx] || 0);
+                  const pct = total > 0 ? Math.round((value / total) * 100) : 0;
+                  return {
+                    ...item,
+                    text: `${chart.data.labels[idx]} ${pct}%`
+                  };
+                });
+              }
+            }
           },
           tooltip: {
             callbacks: {
               label: (item) => {
                 const value = Number(item.parsed || 0);
-                const pct = tot12 > 0 ? (value / tot12) * 100 : 0;
-                return `${item.label}: ${formatNumber(Math.round(value))} (${formatPctShare(pct)})`;
+                const pct = tot12 > 0 ? Math.round((value / tot12) * 100) : 0;
+                return `${item.label}: ${formatNumber(Math.round(value))} (${pct}%)`;
               }
             }
           }
@@ -1907,6 +1927,91 @@ function renderPaxPatterns(iataUpper) {
           grid: { display: false }
         },
         y: {
+          beginAtZero: true,
+          grace: "8%",
+          ticks: {
+            callback: (v) => formatNumber(Math.round(v)),
+            maxTicksLimit: 4
+          }
+        }
+      }
+    }
+  });
+
+  // ===== Pasajeros por año: barras apiladas Cabotaje + Internacional =====
+  const annualCanvas = document.getElementById("paxAnnualChart");
+  if (!annualCanvas) return;
+
+  const annualMap = new Map();
+  for (const r of rows) {
+    const year = r.date.getFullYear();
+    if (!annualMap.has(year)) {
+      annualMap.set(year, { cab: 0, intl: 0 });
+    }
+    annualMap.get(year).cab += Number(r.cab || 0);
+    annualMap.get(year).intl += Number(r.intl || 0);
+  }
+
+  const annualLabels = Array.from(annualMap.keys()).sort((a, b) => a - b).map(String);
+  const annualCab = annualLabels.map(y => annualMap.get(Number(y)).cab || 0);
+  const annualInt = annualLabels.map(y => annualMap.get(Number(y)).intl || 0);
+
+  if (paxAnnualChart) {
+    paxAnnualChart.destroy();
+    paxAnnualChart = null;
+  }
+
+  const annualCtx = annualCanvas.getContext("2d");
+  paxAnnualChart = new Chart(annualCtx, {
+    type: "bar",
+    data: {
+      labels: annualLabels,
+      datasets: [
+        {
+          label: "Cabotaje",
+          data: annualCab,
+          backgroundColor: "#73acdf",
+          borderRadius: 4,
+          stack: "total"
+        },
+        {
+          label: "Internacional",
+          data: annualInt,
+          backgroundColor: "#16c41e",
+          borderRadius: 4,
+          stack: "total"
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: false,
+      interaction: { mode: "index", intersect: false },
+      plugins: {
+        legend: {
+          display: true,
+          position: "bottom",
+          labels: { boxWidth: 10, usePointStyle: true, pointStyle: "circle" }
+        },
+        tooltip: {
+          callbacks: {
+            label: (item) => `${item.dataset.label}: ${formatNumber(Math.round(item.parsed.y || 0))}`,
+            footer: (items) => {
+              const total = items.reduce((acc, item) => acc + Number(item.parsed.y || 0), 0);
+              return `Total: ${formatNumber(Math.round(total))}`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          grid: { display: false },
+          ticks: { maxRotation: 0, minRotation: 0 }
+        },
+        y: {
+          stacked: true,
           beginAtZero: true,
           grace: "8%",
           ticks: {
