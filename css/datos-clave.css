@@ -1959,25 +1959,23 @@ footer {
 
 
 /* ==============================
-   16. COMPACTACIÓN MAPAS PREDIO / PSN
+   11B. MAPAS – CABECERAS + BOTONES INLINE
    ============================== */
-.map-card-head {
+.map-kpi-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 4px;
 }
 
-.map-card-head-subtle {
+.map-kpi-head-tight {
   margin-top: 2px;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
-.map-card-title {
-  color: #555;
-  font-weight: 600;
-  line-height: 1.1;
+.map-kpi-title {
+  margin-bottom: 0;
 }
 
 .map-expand-btn-inline {
@@ -1985,85 +1983,68 @@ footer {
   align-self: auto;
   white-space: nowrap;
   padding: 3px 9px;
-  font-size: 0.74rem;
   line-height: 1.1;
 }
 
-.superficie-kpi-map {
+.superficie-kpi-map .superficie-thumb-compact {
+  height: 210px;
+}
+
+.transporte-thumb-compact {
+  margin-top: 2px;
+}
+
+.transporte-subtitle {
+  margin-top: 0 !important;
+}
+
+/* ==============================
+   9B. ÁREA DE MOVIMIENTO – COMPACTAR ESPACIOS
+   ============================== */
+.panel-movimiento .superficie-kpi {
   gap: 4px;
-}
-
-.superficie-thumb-map {
-  height: 205px;
-}
-
-.superficie-thumb-map-psn {
-  height: 190px;
-}
-
-.panel-movimiento .superficie-kpi-mov {
-  padding: 6px 8px;
-  gap: 3px;
   margin-bottom: 6px;
 }
 
-.panel-movimiento .terminal-item-compact {
-  padding: 1px 0;
+.panel-movimiento .terminal-item {
   gap: 8px;
+  padding: 2px 0;
 }
 
-.panel-movimiento .terminal-item-no-border {
-  border-bottom: none;
-}
-
-.panel-movimiento .terminal-item-compact .terminal-text {
-  line-height: 1.15;
-}
-
-.panel-movimiento .terminal-item-compact .terminal-title {
-  line-height: 1.05;
-}
-
-.panel-movimiento .terminal-item-compact .terminal-sub {
+.panel-movimiento .terminal-text {
   line-height: 1.1;
-  margin-top: 1px;
 }
 
-.mov-runway-list-compact {
-  margin-top: 1px;
+.panel-movimiento .terminal-title {
+  line-height: 1.1;
+  margin-bottom: 1px;
+}
+
+.panel-movimiento .terminal-sub {
+  line-height: 1.1;
+}
+
+.panel-movimiento .mov-runway-list {
+  margin-top: 2px !important;
 }
 
 .panel-movimiento .mov-runway-row {
   padding: 1px 0;
 }
 
-.mov-psn-list-compact {
-  margin-top: 0;
+.panel-movimiento .mov-psn-list {
+  margin-top: 0 !important;
 }
 
 .panel-movimiento .mov-item {
   margin-bottom: 2px;
 }
 
-.panel-movimiento .mov-item:last-child {
-  margin-bottom: 0;
+.panel-movimiento .superficie-thumb-psn {
+  height: 195px;
 }
 
-.panel-movimiento .mov-badge,
-.panel-movimiento .terminal-badge {
-  width: 30px;
-  height: 30px;
-  min-width: 30px;
-  font-size: 0.92rem;
-}
-
-@media (max-width: 700px) {
-  .map-card-head {
-    flex-wrap: wrap;
-    align-items: flex-start;
-  }
-
-  .map-expand-btn-inline {
-    margin-left: auto;
-  }
+.panel-movimiento .compact-kpi {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
 }
