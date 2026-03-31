@@ -2861,15 +2861,17 @@ renderPasajerosPanel(iata);
     initModalImpacto();
     loadData();
 
-    // Botones "Abrir el mapa" (transporte / influencia)
+    // Botones "Abrir el mapa" (predio / psn / transporte / influencia)
     document.querySelectorAll(".map-expand-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const iata = selectEl ? selectEl.value : "";
         if (!iata) return;
 
-        const mapType = btn.dataset.map; // "transporte" | "influencia"
-        const url = `mapa_${mapType}.html?airport=${encodeURIComponent(iata)}`;
-        window.open(url, "_blank");
+        const mapFile = btn.dataset.mapFile;
+        const mapType = btn.dataset.map;
+        const targetFile = mapFile || `mapa_${mapType}.html`;
+        const url = `${targetFile}?airport=${encodeURIComponent(iata)}`;
+        window.open(url, "_blank", "noopener,noreferrer,width=1280,height=860");
       });
     });
 
