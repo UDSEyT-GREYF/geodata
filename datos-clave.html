@@ -393,13 +393,9 @@
               <div class="terminal-text">
                 <div class="terminal-title">Puestos PSA</div>
                 <div class="terminal-sub">Puestos de control de seguridad</div>
+                <div class="terminal-sub terminal-sub-detail">Internacional: <span id="psaInter">–</span> · Cabotaje: <span id="psaCabot">–</span></div>
               </div>
               <div class="terminal-badge" id="psaBadgeProxy">–</div>
-            </div>
-
-            <!-- Detalle PSA Inter / Cabotaje -->
-            <div class="terminal-sub" style="color:#555; font-size:0.78rem; margin-left:42px;">
-              Internacional: <span id="psaInter">–</span> · Cabotaje: <span id="psaCabot">–</span>
             </div>
 
             <!-- Aduana -->
@@ -621,20 +617,26 @@
 
     <!-- KPI Área de influencia -->
     <div class="superficie-kpi">
-      <div class="contact-title">Área de influencia aeroportuaria</div>
+      <div class="map-kpi-head map-kpi-head-impacto">
+        <div class="contact-title map-kpi-title">Área de influencia aeroportuaria</div>
+        <button
+          type="button"
+          class="map-expand-btn map-expand-btn-inline"
+          data-map="influencia"
+          data-map-file="mapa_influencia.html"
+        >
+          Abrir el mapa
+        </button>
+      </div>
 
       <div class="ubi-row">
         <span class="ubi-label">Población (Censo 2022)</span>
         <span class="ubi-chip" id="poblacionInfluencia">–</span>
       </div>
 
-      <div class="superficie-thumb" style="margin-top:6px;">
+      <div class="superficie-thumb superficie-thumb-impacto" style="margin-top:4px;">
         <div id="mapInfluencia" class="map-influencia"></div>
       </div>
-
-      <button type="button" class="map-expand-btn" data-map="influencia" data-map-file="mapa_influencia.html">
-        Abrir el mapa
-      </button>
     </div>
 
   </div>
