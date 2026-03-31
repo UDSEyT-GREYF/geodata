@@ -1956,3 +1956,114 @@ footer {
     flex-wrap: wrap;
   }
 }
+
+
+/* ==============================
+   16. COMPACTACIÓN MAPAS PREDIO / PSN
+   ============================== */
+.map-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.map-card-head-subtle {
+  margin-top: 2px;
+  margin-bottom: 4px;
+}
+
+.map-card-title {
+  color: #555;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.map-expand-btn-inline {
+  margin-top: 0;
+  align-self: auto;
+  white-space: nowrap;
+  padding: 3px 9px;
+  font-size: 0.74rem;
+  line-height: 1.1;
+}
+
+.superficie-kpi-map {
+  gap: 4px;
+}
+
+.superficie-thumb-map {
+  height: 205px;
+}
+
+.superficie-thumb-map-psn {
+  height: 190px;
+}
+
+.panel-movimiento .superficie-kpi-mov {
+  padding: 6px 8px;
+  gap: 3px;
+  margin-bottom: 6px;
+}
+
+.panel-movimiento .terminal-item-compact {
+  padding: 1px 0;
+  gap: 8px;
+}
+
+.panel-movimiento .terminal-item-no-border {
+  border-bottom: none;
+}
+
+.panel-movimiento .terminal-item-compact .terminal-text {
+  line-height: 1.15;
+}
+
+.panel-movimiento .terminal-item-compact .terminal-title {
+  line-height: 1.05;
+}
+
+.panel-movimiento .terminal-item-compact .terminal-sub {
+  line-height: 1.1;
+  margin-top: 1px;
+}
+
+.mov-runway-list-compact {
+  margin-top: 1px;
+}
+
+.panel-movimiento .mov-runway-row {
+  padding: 1px 0;
+}
+
+.mov-psn-list-compact {
+  margin-top: 0;
+}
+
+.panel-movimiento .mov-item {
+  margin-bottom: 2px;
+}
+
+.panel-movimiento .mov-item:last-child {
+  margin-bottom: 0;
+}
+
+.panel-movimiento .mov-badge,
+.panel-movimiento .terminal-badge {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 700px) {
+  .map-card-head {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .map-expand-btn-inline {
+    margin-left: auto;
+  }
+}
