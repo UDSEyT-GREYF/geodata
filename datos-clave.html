@@ -215,11 +215,16 @@
           </div>
 
           <!-- KPI: Mapa del predio concesionado -->
-          <div class="superficie-kpi">
-            <div class="superficie-label">
-              <span>Mapa del predio</span>
+          <div class="superficie-kpi superficie-kpi-map">
+            <div class="map-card-head">
+              <div class="superficie-label">
+                <span>Mapa del predio</span>
+              </div>
+              <button type="button" class="map-expand-btn map-expand-btn-inline" data-map="predio">
+                Abrir el mapa
+              </button>
             </div>
-            <div class="superficie-thumb">
+            <div class="superficie-thumb superficie-thumb-map">
               <div id="mapPredio" class="map-predio"></div>
             </div>
           </div>
@@ -265,8 +270,8 @@
         <div class="panel-body">
 
           <!-- KPI Pistas de aterrizaje -->
-          <div class="superficie-kpi" style="padding:10px 8px;">
-            <div class="terminal-item" style="border-bottom:none;">
+          <div class="superficie-kpi superficie-kpi-mov">
+            <div class="terminal-item terminal-item-compact terminal-item-no-border">
               <div class="terminal-icon">
                 <img src="img/icons/runway.png" alt="">
               </div>
@@ -279,14 +284,14 @@
               <div class="terminal-badge" id="badgeCantPistas">–</div>
             </div>
 
-            <div class="mov-runway-list" id="pistasDetalle" style="margin-top:8px;">
+            <div class="mov-runway-list mov-runway-list-compact" id="pistasDetalle">
               <!-- Se completa desde JS -->
             </div>
           </div>
 
           <!-- KPI Posiciones en plataforma (PSN) -->
-          <div class="superficie-kpi" style="padding:10px 8px;">
-            <div class="terminal-item" style="border-bottom:none;">
+          <div class="superficie-kpi superficie-kpi-mov superficie-kpi-psn">
+            <div class="terminal-item terminal-item-compact terminal-item-no-border">
               <div class="terminal-icon">
                 <img src="img/icons/PSN.png" alt="" style="width:55px;">
               </div>
@@ -299,7 +304,7 @@
               <div class="terminal-badge" id="badgePsnTotal">–</div>
             </div>
 
-            <div class="mov-psn-list" style="margin-top:2px;">
+            <div class="mov-psn-list mov-psn-list-compact">
               <div class="mov-item">
                 <span>Posiciones aeronaves comerciales</span>
                 <span class="mov-badge" id="psnCom">–</span>
@@ -310,7 +315,14 @@
               </div>
             </div>
 
-            <div class="superficie-thumb" style="margin-top:6px;">
+            <div class="map-card-head map-card-head-subtle">
+              <div class="small-label map-card-title">Mapa de posiciones en plataforma</div>
+              <button type="button" class="map-expand-btn map-expand-btn-inline" data-map="psn">
+                Abrir el mapa
+              </button>
+            </div>
+
+            <div class="superficie-thumb superficie-thumb-map superficie-thumb-map-psn">
               <div id="mapPSN" class="map-psn"></div>
             </div>
           </div>
