@@ -216,15 +216,18 @@
 
           <!-- KPI: Mapa del predio concesionado -->
           <div class="superficie-kpi superficie-kpi-map">
-            <div class="map-card-head">
-              <div class="superficie-label">
-                <span>Mapa del predio</span>
-              </div>
-              <button type="button" class="map-expand-btn map-expand-btn-inline" data-map="predio">
+            <div class="map-kpi-head">
+              <div class="contact-title map-kpi-title">Mapa del predio</div>
+              <button
+                type="button"
+                class="map-expand-btn map-expand-btn-inline"
+                data-map="predio"
+                data-map-file="mapa_predio.html"
+              >
                 Abrir el mapa
               </button>
             </div>
-            <div class="superficie-thumb superficie-thumb-map">
+            <div class="superficie-thumb superficie-thumb-compact">
               <div id="mapPredio" class="map-predio"></div>
             </div>
           </div>
@@ -270,8 +273,8 @@
         <div class="panel-body">
 
           <!-- KPI Pistas de aterrizaje -->
-          <div class="superficie-kpi superficie-kpi-mov">
-            <div class="terminal-item terminal-item-compact terminal-item-no-border">
+          <div class="superficie-kpi" style="padding:10px 8px;">
+            <div class="terminal-item" style="border-bottom:none;">
               <div class="terminal-icon">
                 <img src="img/icons/runway.png" alt="">
               </div>
@@ -284,14 +287,14 @@
               <div class="terminal-badge" id="badgeCantPistas">–</div>
             </div>
 
-            <div class="mov-runway-list mov-runway-list-compact" id="pistasDetalle">
+            <div class="mov-runway-list" id="pistasDetalle" style="margin-top:8px;">
               <!-- Se completa desde JS -->
             </div>
           </div>
 
           <!-- KPI Posiciones en plataforma (PSN) -->
-          <div class="superficie-kpi superficie-kpi-mov superficie-kpi-psn">
-            <div class="terminal-item terminal-item-compact terminal-item-no-border">
+          <div class="superficie-kpi superficie-kpi-mov compact-kpi" style="padding:8px 8px;">
+            <div class="terminal-item terminal-item-compact" style="border-bottom:none;">
               <div class="terminal-icon">
                 <img src="img/icons/PSN.png" alt="" style="width:55px;">
               </div>
@@ -304,7 +307,7 @@
               <div class="terminal-badge" id="badgePsnTotal">–</div>
             </div>
 
-            <div class="mov-psn-list mov-psn-list-compact">
+            <div class="mov-psn-list" style="margin-top:0;">
               <div class="mov-item">
                 <span>Posiciones aeronaves comerciales</span>
                 <span class="mov-badge" id="psnCom">–</span>
@@ -315,14 +318,19 @@
               </div>
             </div>
 
-            <div class="map-card-head map-card-head-subtle">
-              <div class="small-label map-card-title">Mapa de posiciones en plataforma</div>
-              <button type="button" class="map-expand-btn map-expand-btn-inline" data-map="psn">
+            <div class="map-kpi-head map-kpi-head-tight">
+              <div class="contact-title map-kpi-title">Mapa de posiciones y pistas</div>
+              <button
+                type="button"
+                class="map-expand-btn map-expand-btn-inline"
+                data-map="psn"
+                data-map-file="mapa_psn.html"
+              >
                 Abrir el mapa
               </button>
             </div>
 
-            <div class="superficie-thumb superficie-thumb-map superficie-thumb-map-psn">
+            <div class="superficie-thumb superficie-thumb-psn" style="margin-top:2px;">
               <div id="mapPSN" class="map-psn"></div>
             </div>
           </div>
@@ -511,24 +519,26 @@
           
           <!-- KPI Transporte público -->
           <div class="transporte-kpi">
-            <div class="contact-title">Transporte público</div>
+            <div class="map-kpi-head map-kpi-head-transport">
+              <div class="contact-title">Transporte público</div>
+              <button
+                type="button"
+                class="map-expand-btn map-expand-btn-inline"
+                data-map="transporte"
+                data-map-file="mapa_transporte.html"
+              >
+                Abrir el mapa
+              </button>
+            </div>
 
-            <div class="small-label" style="margin-top:4px;">
+            <div class="small-label transporte-subtitle">
               Líneas de colectivo que llegan al aeropuerto
             </div>
             <div class="transporte-list" id="transporteLineas">–</div>
 
-            <div class="transporte-thumb">
+            <div class="transporte-thumb transporte-thumb-compact">
               <div id="mapTransporte" class="map-transporte"></div>
             </div>
-
-            <button
-              type="button"
-              class="map-expand-btn"
-              data-map="transporte"
-            >
-              Abrir el mapa
-            </button>
           </div>
 
           <!-- KPI Administrador del aeropuerto -->
@@ -622,7 +632,7 @@
         <div id="mapInfluencia" class="map-influencia"></div>
       </div>
 
-      <button type="button" class="map-expand-btn" data-map="influencia">
+      <button type="button" class="map-expand-btn" data-map="influencia" data-map-file="mapa_influencia.html">
         Abrir el mapa
       </button>
     </div>
