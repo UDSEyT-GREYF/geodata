@@ -746,6 +746,10 @@ ul {
   font-size: 0.78rem;
   color: #777;
 }
+.terminal-sub-detail {
+  color: #555;
+  margin-top: 2px;
+}
 
 .panel-header small {
   font-size: 0.7rem;
@@ -1996,6 +2000,14 @@ footer {
 
 .transporte-subtitle {
   margin-top: 0 !important;
+}
+
+.map-kpi-head-impacto {
+  margin-bottom: 2px;
+}
+
+.superficie-thumb-impacto {
+  height: 225px;
 }
 
 /* ==============================
