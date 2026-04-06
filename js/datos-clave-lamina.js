@@ -474,12 +474,14 @@
 
     // LÍNEA 475-476: Cambiar esto:
 const nombreBase = clean(firstNonEmpty(a, ["Aeropuerto", "Nombre del Aeropuerto", "IATA"]));
-const nombreOficial = clean(firstNonEmpty(a, ["Nombre del Aeropuerto", "Aeropuerto", "IATA"]));
 
 let nombreVisible = nombreBase;
 if (iata === "AEP") {
   nombreVisible = "Aeroparque Jorge Newbery";
 }
+
+setText("sheetTitle", "Datos clave por aeropuerto");
+setText("airportName", `${nombreVisible} (${iata})`);
 
 setText("sheetTitle", "Datos clave del aeropuerto");
 setText("airportName", `${nombreVisible} (${iata})`);
