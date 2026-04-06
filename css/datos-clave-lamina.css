@@ -106,10 +106,16 @@ body {
 }
 
 .sheet-year {
-  font-size: 14px;
-  color: #f7f8fa;
-  align-self: flex-end;
-  order: 3;
+    min-width: 88px;
+    text-align: center;
+    background: #0b3a6f;
+    color: #fff;
+    font-weight: 700;
+    padding: 9px 10px;
+    border-radius: 0;
+    font-size: 1.35rem;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25);
+    align-self: flex-end;
 }
 
 .triptych-grid {
