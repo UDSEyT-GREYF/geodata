@@ -81,31 +81,35 @@ body {
 
 .sheet-header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 10px;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1.5rem;
 }
-.sheet-header h1 {
+
+.sheet-title-main {
+  font-size: 14px;
+  font-weight: 600;
+  color: #5f6972;
   margin: 0;
-  text-align: center;
-  width: 100%;
-  color: var(--blue-dark);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 3.05rem;
-  line-height: 1.05;
-  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  order: 1;
 }
-.sheet-year {
-  min-width: 88px;
-  text-align: center;
-  background: var(--blue-dark);
-  color: #fff;
+
+.sheet-airport-name {
+  font-size: 28px;
   font-weight: 700;
-  padding: 9px 10px;
-  border-radius: 0;
-  font-size: 1.35rem;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.25);
+  color: #0b3a6f;
+  margin: 0;
+  line-height: 1.1;
+  order: 2;
+}
+
+.sheet-year {
+  font-size: 14px;
+  color: #5f6972;
+  align-self: flex-end;
+  order: 3;
 }
 
 .triptych-grid {
