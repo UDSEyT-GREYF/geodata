@@ -479,12 +479,7 @@ if (iata === "AEP") {
 }
 setText("sheetTitle", `Aeropuerto de ${nombre} (${iata}) – Datos clave del aeropuerto`);
 
-// POR ESTO:
-const nombre = clean(firstNonEmpty(a, ["Aeropuerto", "Nombre del Aeropuerto", "IATA"]));
-const esAeroparque = iata === "AEP";
-const nombreFinal = esAeroparque ? "Aeroparque" : `Aeropuerto de ${nombre}`;
-setText("sheetTitle", `${nombreFinal} (${iata}) – Datos clave del aeropuerto`);
-    
+   
 
     setText("sumSupPredio", safeValue(firstNonEmpty(a, ["SupPredioHa"])));
     setText("sumTerminal", safeValue(firstNonEmpty(a, ["TerminalM2"])));
