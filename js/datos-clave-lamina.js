@@ -473,11 +473,16 @@
     currentIATA = iata;
 
     // LÍNEA 475-476: Cambiar esto:
-let nombre = clean(firstNonEmpty(a, ["Aeropuerto", "Nombre del Aeropuerto", "IATA"]));
+const nombreBase = clean(firstNonEmpty(a, ["Aeropuerto", "Nombre del Aeropuerto", "IATA"]));
+const nombreOficial = clean(firstNonEmpty(a, ["Nombre del Aeropuerto", "Aeropuerto", "IATA"]));
+
+let nombreVisible = nombreBase;
 if (iata === "AEP") {
-  nombre = "Aeroparque";
+  nombreVisible = "Aeroparque Jorge Newbery";
 }
-setText("sheetTitle", `Aeropuerto de ${nombre} (${iata}) – Datos clave del aeropuerto`);
+
+setText("sheetTitle", "Datos clave del aeropuerto");
+setText("airportName", `${nombreVisible} (${iata})`);
 
    
 
