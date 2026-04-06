@@ -593,9 +593,9 @@ setText("sheetTitle", `Aeropuerto de ${nombre} (${iata}) – Datos clave del aer
         select.innerHTML = "";
         aeropuertos.forEach(a => {
           const opt = document.createElement("option");
-          const nombre = clean(firstNonEmpty(a, ["Aeropuerto", "Nombre del Aeropuerto", "IATA"]));
+          const airportName = clean(firstNonEmpty(a, ["Aeropuerto", "Nombre del Aeropuerto", "IATA"]));
           opt.value = clean(a.IATA).toUpperCase();
-          opt.textContent = `${nombre} (${clean(a.IATA).toUpperCase()})`;
+          opt.textContent = `${airportName} (${clean(a.IATA).toUpperCase()})`;
           select.appendChild(opt);
         });
       }
