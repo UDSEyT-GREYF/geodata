@@ -550,7 +550,7 @@ body {
   margin-bottom: 10px;
 }
 .flight-value {
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: var(--blue-dark);
   font-weight: 700;
   line-height: 1;
