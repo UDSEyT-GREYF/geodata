@@ -480,9 +480,6 @@ if (iata === "AEP") {
   nombreVisible = "Aeroparque Jorge Newbery";
 }
 
-setText("sheetTitle", "Datos clave por aeropuerto");
-setText("airportName", `${nombreVisible} (${iata})`);
-
 setText("sheetTitle", "Datos clave del aeropuerto");
 setText("airportName", `${nombreVisible} (${iata})`);
 
