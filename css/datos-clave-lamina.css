@@ -473,7 +473,7 @@ body {
 }
 .story-item {
   display: grid;
-  grid-template-columns: 30px 1fr 52px;
+  grid-template-columns: 30px 1fr 42px;
   gap: 8px;
   align-items: center;
   padding: 7px 0;
@@ -498,8 +498,8 @@ body {
   margin-top: 3px;
 }
 .story-badge {
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: var(--purple);
   color: #fff;
@@ -511,8 +511,9 @@ body {
   justify-self: end;
 }
 .story-badge[data-wide="1"] {
-  width: 58px;
-  font-size: 1.15rem;
+  width: 46px;
+  height: 36px;
+  font-size: 0.95rem;
 }
 .story-item-transport {
   grid-template-columns: 30px 1fr;
