@@ -721,13 +721,13 @@ function parseRutasCSV(text) {
       topAirlines: Array.from(airlineMap.entries())
         .map(([name, volume]) => ({ name, volume }))
         .sort((a, b) => b.volume - a.volume)
-        .slice(0, 3),
+        .slice(0, 5),
       topDestinationsIntl: Array.from(destMapIntl.values())
         .sort((a, b) => b.volume - a.volume)
-        .slice(0, 4),
+        .slice(0, 5),
       topDestinationsCab: Array.from(destMapCab.values())
         .sort((a, b) => b.volume - a.volume)
-        .slice(0, 4),
+        .slice(0, 5),
       hasInternational: destMapIntl.size > 0
     };
   }
