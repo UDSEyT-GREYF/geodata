@@ -470,7 +470,10 @@ body {
   background: radial-gradient(circle at 30% 25%, #138ee8 0%, #1176cf 48%, #0f5eb7 100%);
   color: #fff;
   border-radius: 999px;
-  min-height: 122px;
+  min-height: 110px;
+  width: 100%;
+  max-width: 430px;
+  justify-self: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
