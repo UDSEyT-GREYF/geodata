@@ -401,7 +401,38 @@ body {
   object-fit: contain;
   margin-top: 2px;
 }
+.movement-extra-kpi {
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  background: #fff;
+  padding: 8px 10px;
+  margin-top: 2px;
+}
 
+.movement-extra-kpi .movement-extra-grid {
+  margin-top: 0;
+}
+
+.movement-extra-kpi .extra-kpi {
+  border-top: none;
+  padding-top: 0;
+}
+
+.movement-extra-kpi .extra-kpi-aids {
+  border: none;
+  border-top: none;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+  align-items: flex-start;
+}
+
+.movement-extra-kpi .extra-kpi-aids img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  margin-top: 2px;
+}
 .aids-kpi-stack {
   display: grid;
   gap: 8px;
