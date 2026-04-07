@@ -269,7 +269,7 @@ body {
 }
 .runway-core { min-width: 0; }
 .runway-orient {
-  font-size: 3rem;
+  font-size: 1rem;
   line-height: 1;
   color: var(--blue-dark);
   font-weight: 700;
