@@ -184,7 +184,7 @@ body {
   margin: 4px 4px 8px;
 }
 .mini-kpi-label {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #646f7c;
   line-height: 1.12;
   margin-bottom: 7px;
@@ -445,7 +445,7 @@ body {
 
 .passengers-caption,
 .flights-caption {
-  font-size: 0.94rem;
+  font-size: 0.9rem;
   color: #616c77;
   margin-bottom: 8px;
 }
