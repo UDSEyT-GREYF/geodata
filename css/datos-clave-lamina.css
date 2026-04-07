@@ -367,7 +367,7 @@ body {
   margin-top: 2px;
 }
 .extra-kpi-value {
-  font-size: 1.15rem;
+  font-size: 1rem;
   color: var(--blue-dark);
   font-weight: 700;
   line-height: 1.08;
