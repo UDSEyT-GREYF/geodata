@@ -467,20 +467,20 @@ body {
   object-fit: contain;
 }
 .passengers-hero-pill {
-  background: radial-gradient(circle at 30% 25%, #138ee8 0%, #1176cf 48%, #0f5eb7 100%);
-  color: #fff;
-  border-radius: 999px;
-  min-height: 110px;
-  width: 100%;
-  max-width: 430px;
-  justify-self: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 10px 20px;
-  box-shadow: 0 6px 18px rgba(31, 92, 160, 0.18);
+  background: radial-gradient(circle at 30% 25%, #138ee8 0%, #1176cf 48%, #0f5eb7 100%); /* Fondo con degradado radial: simula un brillo que nace cerca del ángulo superior izquierdo y se oscurece hacia los bordes. */
+  color: #fff; /* Hace blanco el color del texto y de elementos textuales internos, salvo que alguno tenga otro color propio. */
+  border-radius: 999px; /* Redondea al máximo las esquinas para formar una “pastilla”/óvalo. */
+  min-height: 100px; /* Define una altura mínima: aunque el contenido sea poco, la pastilla no baja de 100 px. */
+  width: 100%; /* Hace que intente ocupar todo el ancho disponible dentro de su celda o contenedor. */
+  max-width: 410px; /* Limita ese crecimiento: aunque haya mucho espacio, no pasa de 410 px de ancho. */
+  justify-self: center; /* Si el padre es grid, centra horizontalmente este bloque dentro de su celda. */
+  display: flex; /* Convierte la caja en contenedor flex para ordenar cómodamente su contenido interno. */
+  flex-direction: column; /* Apila los elementos hijos en vertical, uno debajo del otro. */
+  justify-content: center; /* Centra verticalmente el conjunto de hijos dentro de la pastilla. */
+  align-items: center; /* Centra horizontalmente los hijos dentro de la pastilla. */
+  text-align: center; /* Centra el texto dentro de cada elemento textual. */
+  padding: 5px 10px; /* Agrega espacio interno: 10 px arriba/abajo y 20 px izquierda/derecha. */
+  box-shadow: 0 6px 18px rgba(31, 92, 160, 0.18); /* Sombra externa suave: 0 desplazamiento horizontal, 6 px vertical, 18 px de difuminado, azul con transparencia. */
 }
 .passengers-total {
   font-size: 2rem;
