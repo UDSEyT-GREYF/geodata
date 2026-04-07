@@ -685,8 +685,8 @@ body {
   align-items: center;
 }
 .airlines-count-pill {
-  width: 58px;
-  height: 58px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: var(--purple);
   color: #fff;
