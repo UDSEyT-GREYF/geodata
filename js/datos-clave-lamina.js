@@ -599,7 +599,7 @@ return {
     .sort((a, b) => b.volume - a.volume)
     .slice(0, 4)
 };
-
+}
   function renderFlights(iata) {
     const stats = getFlightsStats(iata);
     setText("vuelosAnuales", stats.total ? formatNumber(Math.round(stats.total)) : "–");
