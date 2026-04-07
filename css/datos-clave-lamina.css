@@ -396,7 +396,7 @@ body {
   gap: 1px;
 }
 .aids-kpi-value {
-  font-size: 0.84rem;
+  font-size: 0.7rem;
   line-height: 1.18;
   color: var(--blue-dark);
   font-weight: 700;
