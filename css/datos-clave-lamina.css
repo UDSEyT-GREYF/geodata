@@ -385,6 +385,53 @@ body {
   grid-column: 1 / span 2;
 }
 .extra-kpi-aids {
+  border: 1px solid #d0d7e2;
+  border-top: 1px solid #d0d7e2; /* pisa la línea superior heredada */
+  border-radius: 4px;
+  background: #fff;
+  padding: 8px 10px;
+  padding-top: 8px;
+  align-items: flex-start;
+}
+
+.extra-kpi-aids img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  margin-top: 2px;
+}
+
+.aids-kpi-stack {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+}
+
+.aids-kpi-item {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.aids-kpi-item + .aids-kpi-item {
+  border-top: 1px dashed #d9dee5;
+  padding-top: 8px;
+}
+
+.aids-kpi-value {
+  font-size: 0.92rem;
+  line-height: 1.15;
+  font-weight: 700;
+  color: var(--blue-dark);
+}
+
+.aids-kpi-name {
+  font-size: 0.74rem;
+  line-height: 1.1;
+  color: #707c86;
+  margin-top: 2px;
+}
+.extra-kpi-aids {
   align-items: start;
 }
 .aids-kpi-stack {
