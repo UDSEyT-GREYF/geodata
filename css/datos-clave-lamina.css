@@ -263,7 +263,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   font-weight: 700;
   flex: 0 0 54px;
 }
@@ -426,7 +426,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.45rem;
+  font-size: 1.3rem;
   font-weight: 700;
   justify-self: end;
 }
