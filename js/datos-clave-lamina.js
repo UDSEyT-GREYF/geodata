@@ -472,19 +472,42 @@
     if (!a) return;
     currentIATA = iata;
 
-    // LÍNEA 475-476: Cambiar esto:
-const nombreBase = clean(firstNonEmpty(a, ["Aeropuerto", "Nombre del Aeropuerto", "IATA"]));
+const ciudadBase = clean(firstNonEmpty(a, [
+  "Ciudad",
+  "Localidad",
+  "Municipio",
+  "Ciudad / Localidad",
+  "Aeropuerto"
+]));
 
-let nombreVisible = nombreBase;
+const nombreOficialBase = clean(firstNonEmpty(a, [
+  "Nombre del Aeropuerto",
+  "Aeropuerto",
+  "Denominacion"
+]));
+
+let ciudad = ciudadBase;
+let nombreOficial = nombreOficialBase;
+
+// Ajuste puntual para AEP si no viniera bien desagregado en la tabla
 if (iata === "AEP") {
-  nombreVisible = "Aeroparque Jorge Newbery";
+  ciudad = ciudad || "Buenos Aires";
+  nombreOficial = "Aeroparque Jorge Newbery";
 }
 
-setText("sheetTitle", "Datos clave del aeropuerto");
-setText("airportName", `${nombreVisible} (${iata})`);
+let tituloFinal = "";
+if (ciudad && nombreOficial && ciudad !== nombreOficial) {
+  tituloFinal = `Aeropuerto de ${ciudad} – ${nombreOficial} (${iata})`;
+} else if (ciudad) {
+  tituloFinal = `Aeropuerto de ${ciudad} (${iata})`;
+} else if (nombreOficial) {
+  tituloFinal = `${nombreOficial} (${iata})`;
+} else {
+  tituloFinal = `Aeropuerto (${iata})`;
+}
 
-   
-
+setText("sheetTitle", "Datos clave por aeropuerto");
+setText("airportName", tituloFinal);
     setText("sumSupPredio", safeValue(firstNonEmpty(a, ["SupPredioHa"])));
     setText("sumTerminal", safeValue(firstNonEmpty(a, ["TerminalM2"])));
     setText("sumSupConcesionada", safeValue(firstNonEmpty(a, ["SupConcesionadaHa"])) + " ha");
