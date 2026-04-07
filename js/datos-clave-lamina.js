@@ -846,14 +846,11 @@ const nombreOficialBase = clean(firstNonEmpty(a, [
 let ciudad = ciudadBase;
 let nombreOficial = nombreOficialBase;
 
-// Ajuste puntual para AEP si no viniera bien desagregado en la tabla
-if (iata === "AEP") {
-  ciudad = ciudad || "Buenos Aires";
-  nombreOficial = "Aeroparque Jorge Newbery";
-}
-
 let tituloFinal = "";
-if (ciudad && nombreOficial && ciudad !== nombreOficial) {
+
+if (iata === "AEP") {
+  tituloFinal = "Aeroparque Jorge Newbery (AEP)";
+} else if (ciudad && nombreOficial && ciudad !== nombreOficial) {
   tituloFinal = `Aeropuerto de ${ciudad} – ${nombreOficial} (${iata})`;
 } else if (ciudad) {
   tituloFinal = `Aeropuerto de ${ciudad} (${iata})`;
