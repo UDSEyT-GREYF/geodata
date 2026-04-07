@@ -1,0 +1,920 @@
+:root {
+  --blue: #306fb0;
+  --blue-dark: #2a5fa0;
+  --blue-soft: #eef2f7;
+  --line: #d0d7e2;
+  --text: #333;
+  --text-dark: #002855;
+  --muted: #555;
+  --purple: #6b2f82;
+  --bg: #f5f5f5;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.lamina-toolbar {
+  max-width: 1540px;
+  margin: 16px auto 10px;
+  padding: 0 14px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+.toolbar-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+.toolbar-subtitle {
+  font-size: 0.84rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.toolbar-label {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.toolbar-select,
+.toolbar-btn {
+  height: 38px;
+  border-radius: 7px;
+  border: 1px solid #c4cfdd;
+  background: #fff;
+  padding: 0 12px;
+  font-size: 0.95rem;
+}
+.toolbar-select { min-width: 240px; }
+.toolbar-btn {
+  color: var(--text-dark);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sheet-wrap {
+  max-width: 1540px;
+  margin: 0 auto 18px;
+  padding: 0 14px 20px;
+}
+.sheet-a4 {
+  width: 1496px;
+  min-height: 794px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #d7dee8;
+  box-shadow: 0 10px 26px rgba(33, 45, 68, 0.12);
+  padding: 10px 12px 10px;
+}
+
+.sheet-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "kicker year"
+    "name   year";
+  column-gap: 18px;
+  row-gap: 6px;
+  align-items: start;
+  margin-bottom: 1rem;
+}
+
+.sheet-title-main {
+  grid-area: kicker;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #6c757d;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.15;
+}
+
+.sheet-airport-name {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #002855;
+  margin: 0;
+  line-height: 1.08;
+  order: 2;
+}
+
+.sheet-year {
+  grid-area: year;
+  min-width: 88px;
+  text-align: center;
+  background: #306fb0;
+  color: #fff;
+  font-weight: 700;
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 1;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25);
+  align-self: start;
+  justify-self: end;
+}
+
+.triptych-grid {
+  display: grid;
+  grid-template-columns: 1.01fr 0.78fr 1.79fr;
+  gap: 10px;
+}
+.triptych-col {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.col-header,
+.section-title {
+  background: #306fb0;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.col-header {
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+.section-title {
+  padding: 6px 10px;
+  margin: -8px -8px 8px -8px;
+  border-radius: 4px 4px 0 0;
+}
+.section-card {
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.section-superficie { min-height: 352px; }
+.section-movimiento { min-height: 324px; }
+.story-card { min-height: 612px; }
+.section-passengers { min-height: 410px; }
+.section-flights { min-height: 136px; }
+.section-routes { min-height: 190px; }
+
+.surface-top-kpis {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 4px 4px 8px;
+}
+.mini-kpi-label {
+  font-size: 0.9rem;
+  color: #646f7c;
+  line-height: 1.12;
+  margin-bottom: 7px;
+}
+.mini-kpi-value {
+  color: var(--blue-dark);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.mini-kpi-value span:first-child {
+  font-size: 1.5rem;
+}
+.surface-visual-row {
+  display: grid;
+  grid-template-columns: 1fr 1.12fr;
+  gap: 8px;
+  align-items: stretch;
+}
+.predio-map-frame,
+.terminal-photo-frame {
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  background: #f9fafc;
+  min-height: 130px;
+  overflow: hidden;
+}
+.predio-map { width: 100%; height: 100%; min-height: 130px; }
+.terminal-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.terminal-photo-frame img.is-hidden { display: none; }
+.surface-bottom-grid {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+.surface-info-row {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+  font-size: 0.83rem;
+  line-height: 1.2;
+}
+.surface-info-row span {
+  color: #757d87;
+}
+.surface-info-row strong {
+  color: var(--blue-dark);
+  text-align: right;
+  font-weight: 700;
+}
+
+.movement-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.movement-box {
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  background: #fff;
+  padding: 10px 10px 8px;
+}
+.movement-box-head {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+.movement-box-icon img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+.movement-box-title {
+  font-size: 0.98rem;
+  color: #4d5661;
+  line-height: 1.05;
+}
+.movement-box-sub {
+  font-size: 0.78rem;
+  color: #6b7580;
+  line-height: 1.2;
+  margin-top: 3px;
+}
+.movement-runway-list {
+  display: grid;
+  gap: 7px;
+  margin-top: 10px;
+}
+.movement-runway-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 8px;
+  align-items: center;
+}
+.movement-runway-name {
+  font-size: 0.94rem;
+  color: #004b80;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.runway-size-chip {
+  background: #b5b6b8;
+  color: #fff;
+  padding: 7px 12px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1;
+  min-width: 112px;
+  text-align: center;
+  border-radius: 3px;
+}
+.runway-mat {
+  font-size: 0.88rem;
+  color: #626f7b;
+  white-space: nowrap;
+}
+.movement-positions-grid {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+.movement-position-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: #444;
+  font-size: 0.9rem;
+}
+.movement-badge {
+  min-width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--purple);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.movement-badge-large {
+  min-width: 42px;
+  width: 42px;
+  height: 42px;
+  font-size: 1.15rem;
+  justify-self: end;
+}
+.movement-badge[data-wide="1"] {
+  min-width: 54px;
+  padding: 0 8px;
+  border-radius: 999px;
+}
+.movement-extra-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 2px;
+}
+.extra-kpi {
+  border-top: 1px dashed #d9dee5;
+  padding-top: 8px;
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 8px;
+  align-items: start;
+}
+.extra-kpi img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  margin-top: 2px;
+}
+.extra-kpi-value {
+  font-size: 1.15rem;
+  color: var(--blue-dark);
+  font-weight: 700;
+  line-height: 1.08;
+}
+.extra-kpi-value-small {
+  font-size: 0.86rem;
+  line-height: 1.24;
+  white-space: normal;
+}
+.extra-kpi-value-stack {
+  color: #4a5561;
+  font-weight: 600;
+}
+.extra-kpi-meta {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--blue-dark);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 2px;
+}
+.extra-kpi-label {
+  font-size: 0.76rem;
+  color: #707c86;
+  margin-top: 2px;
+}
+.extra-kpi-wide {
+  grid-column: 1 / span 2;
+}
+
+.story-card {
+  gap: 8px;
+}
+.story-block {
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  background: #fff;
+  padding: 7px 8px;
+}
+.story-block-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #2a5fa0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.story-item {
+  display: grid;
+  grid-template-columns: 30px 1fr 52px;
+  gap: 8px;
+  align-items: center;
+  padding: 7px 0;
+}
+.story-item + .story-item {
+  border-top: 1px dashed #d4dbe5;
+}
+.story-icon img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+.story-name {
+  font-size: 0.9rem;
+  color: #444;
+  line-height: 1.06;
+}
+.story-sub {
+  font-size: 0.78rem;
+  color: #777;
+  line-height: 1.2;
+  margin-top: 3px;
+}
+.story-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--purple);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  justify-self: end;
+}
+.story-badge[data-wide="1"] {
+  width: 58px;
+  font-size: 1.15rem;
+}
+.story-item-transport {
+  grid-template-columns: 30px 1fr;
+}
+.story-sub-transport {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2d3440;
+}
+
+.passengers-caption,
+.flights-caption {
+  font-size: 0.9rem;
+  color: #616c77;
+  margin-bottom: 8px;
+}
+.passengers-top-row {
+  display: grid;
+  grid-template-columns: 116px 1fr 164px;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.passengers-icon-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.passengers-icon-block img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+}
+.passengers-hero-pill {
+  background: radial-gradient(circle at 30% 25%, #138ee8 0%, #1176cf 48%, #0f5eb7 100%); /* Fondo con degradado radial: simula un brillo que nace cerca del ángulo superior izquierdo y se oscurece hacia los bordes. */
+  color: #fff; /* Hace blanco el color del texto y de elementos textuales internos, salvo que alguno tenga otro color propio. */
+  border-radius: 999px; /* Redondea al máximo las esquinas para formar una “pastilla”/óvalo. */
+  min-height: 100px; /* Define una altura mínima: aunque el contenido sea poco, la pastilla no baja de 100 px. */
+  width: 100%; /* Hace que intente ocupar todo el ancho disponible dentro de su celda o contenedor. */
+  max-width: 410px; /* Limita ese crecimiento: aunque haya mucho espacio, no pasa de 410 px de ancho. */
+  justify-self: center; /* Si el padre es grid, centra horizontalmente este bloque dentro de su celda. */
+  display: flex; /* Convierte la caja en contenedor flex para ordenar cómodamente su contenido interno. */
+  flex-direction: column; /* Apila los elementos hijos en vertical, uno debajo del otro. */
+  justify-content: center; /* Centra verticalmente el conjunto de hijos dentro de la pastilla. */
+  align-items: center; /* Centra horizontalmente los hijos dentro de la pastilla. */
+  text-align: center; /* Centra el texto dentro de cada elemento textual. */
+  padding: 5px 10px; /* Agrega espacio interno: 10 px arriba/abajo y 20 px izquierda/derecha. */
+  box-shadow: 0 6px 18px rgba(31, 92, 160, 0.18); /* Sombra externa suave: 0 desplazamiento horizontal, 6 px vertical, 18 px de difuminado, azul con transparencia. */
+}
+.passengers-total {
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 700;
+}
+.passengers-line {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+.passengers-side-column {
+  display: grid;
+  gap: 10px;
+}
+.passenger-side-kpi {
+  background: #306fb0;
+  color: #fff;
+  border-radius: 4px;
+  padding: 10px 12px;
+  min-height: 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.passenger-side-value {
+  font-size: 1.1rem;
+  line-height: 1;
+  font-weight: 700;
+}
+.passenger-side-label {
+  font-size: 1rem;
+  opacity: .98;
+}
+.history-title {
+  font-size: 1rem;
+  color: #616c77;
+  margin: 10px 0 5px;
+}
+.history-chart {
+  width: 100%;
+  height: 260px;
+  display: block;
+}
+.history-note {
+  font-size: 0.76rem;
+  color: #79838e;
+  margin-top: 4px;
+}
+
+.flights-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.flight-card {
+  text-align: center;
+}
+.flight-label {
+  background: linear-gradient(180deg, #f8f8f8 0%, #ececec 100%);
+  border-top: 10px solid var(--blue-dark);
+  border-radius: 4px;
+  padding: 9px 8px 7px;
+  color: #8c7b5f;
+  font-size: 1rem;
+  box-shadow: 0 6px 9px rgba(0,0,0,.12);
+  margin-bottom: 10px;
+}
+.flight-value {
+  font-size: 2rem;
+  color: var(--blue-dark);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.routes-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.5fr;
+  gap: 14px;
+}
+.routes-right {
+  border-left: 1px dashed #cfd8e4;
+  padding-left: 14px;
+}
+.routes-subtitle {
+  font-size: 1rem;
+  color: #6b7178;
+  margin-bottom: 8px;
+}
+.airlines-summary {
+  display: grid;
+  grid-template-columns: 74px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+.airlines-count-pill {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--purple);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.airlines-list {
+  white-space: pre-line;
+  font-size: 1rem;
+  color: var(--blue-dark);
+  line-height: 1.25;
+  font-weight: 600;
+}
+.destinations-list {
+  display: grid;
+  gap: 8px;
+}
+.destination-item {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+.destination-pill {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #0c7bd8;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.destination-text {
+  font-size: 0.98rem;
+  color: #6a7179;
+  line-height: 1.2;
+}
+.destination-text strong {
+  color: #5f6972;
+  font-weight: 600;
+}
+
+.sheet-footer {
+  margin-top: 8px;
+  border-top: 1px solid #e1e7ee;
+  padding-top: 6px;
+  color: #7b8792;
+  font-size: 0.78rem;
+  text-align: right;
+}
+
+.leaflet-container {
+  background: #f5f7fa;
+  font: inherit;
+}
+.leaflet-control-container { display: none; }
+.leaflet-tile {
+  filter: grayscale(1) brightness(1.12) contrast(0.9);
+  opacity: .42 !important;
+}
+
+@media print {
+  @page { size: A4 landscape; margin: 6mm; }
+  body { background: #fff; }
+  .no-print { display: none !important; }
+  .sheet-wrap { max-width: none; margin: 0; padding: 0; }
+  .sheet-a4 {
+    width: 100%;
+    min-height: auto;
+    margin: 0;
+    box-shadow: none;
+    border: none;
+    padding: 6px;
+  }
+}
+
+
+
+/* =========================================================
+   AJUSTES COLUMNA DERECHA | PASAJEROS / VUELOS / RUTAS
+   ========================================================= */
+
+.section-passengers {
+  min-height: 388px;
+}
+
+.passengers-top-row {
+  grid-template-columns: 82px 1fr 128px;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.passengers-icon-block img {
+  width: 68px;
+  height: 68px;
+}
+
+.passengers-hero-pill {
+  min-height: 82px;
+  max-width: 370px;
+  padding: 4px 16px;
+}
+
+.passengers-total {
+  font-size: 1.9rem;
+  line-height: 1;
+}
+
+.passengers-line {
+  font-size: 0.78rem;
+  line-height: 1.08;
+}
+
+.passengers-side-column {
+  gap: 8px;
+}
+
+.passenger-side-kpi {
+  padding: 8px 10px;
+  min-height: 44px;
+}
+
+.passenger-side-value {
+  font-size: 1rem;
+}
+
+.passenger-side-label {
+  font-size: 0.78rem;
+  line-height: 1.05;
+}
+
+.history-title {
+  font-size: 0.9rem;
+  margin: 8px 0 4px;
+}
+
+.history-chart {
+  height: 236px;
+}
+
+.history-note {
+  font-size: 0.70rem;
+  margin-top: 2px;
+}
+
+.section-flights {
+  min-height: 118px;
+}
+
+.flights-wrap {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.flights-icon-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flights-icon-block img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.flights-grid {
+  gap: 10px;
+}
+
+.flight-label {
+  border-top-width: 8px;
+  padding: 7px 7px 6px;
+  font-size: 0.86rem;
+  margin-bottom: 8px;
+}
+
+.flight-value {
+  font-size: 1.6rem;
+}
+
+.section-routes {
+  min-height: 176px;
+}
+
+.routes-grid {
+  grid-template-columns: 0.95fr 1.7fr;
+  gap: 12px;
+}
+
+.routes-right {
+  padding-left: 12px;
+}
+
+.routes-subtitle {
+  font-size: 0.90rem;
+  margin-bottom: 6px;
+}
+
+.airlines-summary {
+  grid-template-columns: 46px 1fr;
+  gap: 10px;
+  align-items: start;
+}
+
+.airlines-count-pill {
+  width: 38px;
+  height: 38px;
+  font-size: 1rem;
+  align-self: start;
+}
+
+.airlines-list {
+  display: grid;
+  gap: 8px;
+  white-space: normal;
+  font-size: 0.9rem;
+  color: #6a7179;
+  line-height: 1.15;
+  font-weight: 400;
+}
+
+.airline-item {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 8px;
+  align-items: center;
+}
+
+.airline-logo-wrap {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.airline-logo {
+  max-width: 92px;
+  max-height: 26px;
+  object-fit: contain;
+  display: block;
+}
+
+.airline-name-fallback {
+  font-size: 0.80rem;
+  color: var(--blue-dark);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.airline-volume {
+  font-size: 0.82rem;
+  color: #6a7179;
+  line-height: 1.12;
+}
+
+.airline-empty {
+  font-size: 0.86rem;
+  color: #6a7179;
+}
+
+.destinations-list {
+  display: block;
+}
+
+.destinations-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.destinations-column {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+}
+
+.destinations-column-title {
+  font-size: 0.76rem;
+  color: #6b7178;
+  font-weight: 700;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.destination-item {
+  grid-template-columns: 42px 1fr;
+  gap: 8px;
+}
+
+.destination-pill {
+  width: 38px;
+  height: 38px;
+  font-size: 0.92rem;
+}
+
+.destination-text {
+  font-size: 0.84rem;
+  line-height: 1.14;
+}
+
+.destination-text strong {
+  color: #5f6972;
+  font-weight: 600;
+}
