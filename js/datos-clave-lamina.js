@@ -241,6 +241,20 @@ function parseRutasCSV(text) {
       destIata = parts[1] || "";
     }
 
+    const volume = parseNumber(firstNonEmpty(r, [
+      "totalpasajeros",
+      "pasajeros",
+      "valor_pax",
+      "valor",
+      "cantidad",
+      "vuelos",
+      "cantidad_vuelos",
+      "movimientos",
+      "frecuencias",
+      "total_vuelos",
+      "totalvuelos"
+    ]));
+
     return {
       iata: clean(firstNonEmpty(r, [
         "iata",
@@ -252,6 +266,7 @@ function parseRutasCSV(text) {
       airline: clean(firstNonEmpty(r, [
         "aerolinea",
         "aerolinea_nombre",
+        "aerolinea_nombre_1",
         "linea_aerea",
         "airline",
         "compania"
@@ -271,22 +286,13 @@ function parseRutasCSV(text) {
         "aeropuerto_destino"
       ]) || destIata),
 
-      flights: parseNumber(firstNonEmpty(r, [
-        "vuelos",
-        "cantidad_vuelos",
-        "movimientos",
-        "frecuencias",
-        "valor",
-        "cantidad",
-        "total_vuelos",
-        "totalvuelos"
-      ])),
+      volume,
 
       year: Number.isFinite(yearNum)
         ? Number(yearNum)
         : (date ? date.getFullYear() : 2025)
     };
-  }).filter(r => r.iata && Number.isFinite(r.flights));
+  }).filter(r => r.iata && Number.isFinite(r.volume));
 }
 
   function buildPaxSeries(iataUpper, mode) {
