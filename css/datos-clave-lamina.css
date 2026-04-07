@@ -305,13 +305,13 @@ body {
   border-radius: 3px;
 }
 .runway-mat {
-  font-size: 1rem;
+  font-size: 0.92rem;
   color: #626f7b;
   text-transform: lowercase;
 }
 .movement-positions-title {
-  font-size: 1.05rem;
-  color: #676f79;
+  font-size: 0.9rem;
+  color: #444;
 }
 .movement-positions-grid {
   display: grid;
