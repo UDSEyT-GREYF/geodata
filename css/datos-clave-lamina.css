@@ -609,7 +609,7 @@ body {
   color: #fff;
   border-radius: 4px;
   padding: 10px 12px;
-  min-height: 56px;
+  min-height: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -620,7 +620,7 @@ body {
   font-weight: 700;
 }
 .passenger-side-label {
-  font-size: 1rem;
+  font-size: 0.9rem;
   opacity: .98;
 }
 .history-title {
