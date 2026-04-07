@@ -1,22 +1,29 @@
-Pack inicial de logos descargados.
+Segunda tanda preparada para integración.
 
 Incluye:
-- AerolineasArgentinas.jpg
-- JetSMART.webp
-- CopaAirlines.jpg
-- LATAM.webp
-- LATAMPeru.webp
-- LATAMEcuador.webp
-- Iberia.webp
-- AmericanAirlines.jpg
-- Avianca.jpg
-- AviancaCostaRica.jpg
-- AirEuropa.webp
-- KLM.jpg
-- SKY.webp
+- alias y nombres estandarizados para logos ya descargados
+- copias útiles para filiales que comparten marca (LATAM Perú / Ecuador, Avianca Costa Rica)
+- lista de pendientes para una tanda futura
 
-Fuente principal de los archivos descargados: páginas de Logowik identificadas por búsqueda web.
-
-Nota:
-- LATAM Perú y LATAM Ecuador usan aquí el mismo logo LATAM como base.
-- Avianca Costa Rica usa aquí el mismo logo Avianca como base.
+Pendientes sugeridos para próxima tanda:
+Gol Transportes Aéreos
+Delta Air Lines
+United Airlines
+Lufthansa
+Aeroméxico
+Air France
+Boliviana de Aviacion
+Turkish Airlines
+Arajet
+British Airways
+Ethiopian Airlines
+Emirates Airline
+Air Canada
+Swiss International Air Lines
+Azul Linhas Aéreas Brasileiras
+Andes Líneas Aéreas
+LADE - Líneas Aéreas Del Estado
+American Jet
+TAM Linhas Aéreas
+Amaszonas
+ITA Airways
