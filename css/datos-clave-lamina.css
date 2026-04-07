@@ -601,15 +601,15 @@ body {
   align-items: center;
 }
 .airlines-count-pill {
-  width: 58px;
-  height: 58px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   background: var(--purple);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1.25rem;
   font-weight: 700;
 }
 .airlines-list {
@@ -820,7 +820,7 @@ body {
 .airlines-count-pill {
   width: 38px;
   height: 38px;
-  font-size: 1rem;
+  font-size: 1.25rem;
   align-self: start;
 }
 
