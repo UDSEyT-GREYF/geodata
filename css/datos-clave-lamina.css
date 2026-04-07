@@ -769,3 +769,243 @@ body {
   }
 }
 
+/* =========================================================
+   COMPACTACIÓN SUTIL Y ELEGANTE | PEGAR AL FINAL DEL CSS
+   ========================================================= */
+
+/* --- TERMINAL DE PASAJEROS --- */
+.story-card {
+  gap: 6px;
+}
+
+.story-block {
+  padding: 6px 7px;
+}
+
+.story-block-title {
+  font-size: 0.78rem;
+  margin-bottom: 4px;
+  letter-spacing: 0.03em;
+}
+
+.story-item {
+  grid-template-columns: 26px 1fr 38px;
+  gap: 6px;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.story-icon img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.story-item .story-text {
+  min-width: 0;
+}
+
+.story-name {
+  font-size: 0.84rem;
+  line-height: 1.05;
+}
+
+.story-sub {
+  font-size: 0.72rem;
+  line-height: 1.12;
+  margin-top: 1px;
+}
+
+.story-badge {
+  width: 32px;
+  height: 32px;
+  font-size: 0.88rem;
+}
+
+.story-badge[data-wide="1"] {
+  width: 42px;
+  height: 32px;
+  font-size: 0.82rem;
+}
+
+.story-item-transport {
+  grid-template-columns: 26px 1fr;
+  gap: 6px;
+  align-items: start;
+}
+
+.story-sub-transport {
+  font-size: 0.80rem;
+  line-height: 1.14;
+  font-weight: 700;
+  color: var(--blue-dark);
+  margin-top: 1px;
+}
+
+/* detalle denso en bloques largos */
+#psaDetalle,
+#migracionesDetalle,
+#puertasDetalle,
+#cintasDetalle {
+  font-size: 0.70rem;
+  line-height: 1.10;
+  letter-spacing: -0.01em;
+}
+
+/* --- ÁREA DE MOVIMIENTO --- */
+.movement-wrap {
+  gap: 8px;
+}
+
+.movement-box {
+  padding: 8px 8px 7px;
+}
+
+.movement-box-head {
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  gap: 8px;
+}
+
+.movement-box-icon img {
+  width: 38px;
+  height: 38px;
+}
+
+.movement-box-title {
+  font-size: 0.92rem;
+  line-height: 1.03;
+}
+
+.movement-box-sub {
+  font-size: 0.72rem;
+  line-height: 1.12;
+  margin-top: 1px;
+}
+
+.movement-runway-list {
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.movement-runway-row {
+  gap: 6px;
+}
+
+.movement-runway-name {
+  font-size: 0.88rem;
+  line-height: 1.08;
+}
+
+.runway-size-chip {
+  min-width: 100px;
+  padding: 6px 10px;
+  font-size: 0.84rem;
+}
+
+.runway-mat {
+  font-size: 0.80rem;
+}
+
+.movement-positions-grid {
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.movement-position-row {
+  font-size: 0.84rem;
+  line-height: 1.08;
+}
+
+.movement-badge {
+  min-width: 30px;
+  width: 30px;
+  height: 30px;
+  font-size: 0.68rem;
+}
+
+.movement-badge-large {
+  min-width: 36px;
+  width: 36px;
+  height: 36px;
+  font-size: 0.82rem;
+}
+
+.movement-badge[data-wide="1"] {
+  min-width: 46px;
+  padding: 0 7px;
+}
+
+.movement-extra-kpi {
+  padding: 6px 8px;
+}
+
+.movement-extra-kpi .movement-extra-grid {
+  gap: 6px;
+}
+
+.movement-extra-kpi .extra-kpi {
+  grid-template-columns: 26px 1fr;
+  gap: 6px;
+}
+
+.movement-extra-kpi .extra-kpi img,
+.movement-extra-kpi .extra-kpi-aids img {
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+}
+
+.movement-extra-kpi .extra-kpi-value {
+  font-size: 0.90rem;
+  line-height: 1.05;
+}
+
+.movement-extra-kpi .extra-kpi-label,
+.movement-extra-kpi .aids-kpi-name {
+  font-size: 0.68rem;
+  line-height: 1.05;
+}
+
+.movement-extra-kpi .aids-kpi-stack {
+  gap: 4px;
+}
+
+.movement-extra-kpi .aids-kpi-item + .aids-kpi-item {
+  padding-top: 5px;
+}
+
+.movement-extra-kpi .aids-kpi-value {
+  font-size: 0.68rem;
+  line-height: 1.12;
+}
+
+/* --- EXPLOTACIÓN / INFRAESTRUCTURA --- */
+.surface-top-kpis {
+  gap: 10px;
+  margin: 2px 2px 6px;
+}
+
+.mini-kpi-label {
+  font-size: 0.82rem;
+  margin-bottom: 4px;
+}
+
+.mini-kpi-value {
+  font-size: 0.96rem;
+}
+
+.mini-kpi-value span:first-child {
+  font-size: 1.34rem;
+}
+
+.surface-bottom-grid {
+  margin-top: 8px;
+  gap: 4px;
+}
+
+.surface-info-row {
+  grid-template-columns: 136px minmax(0, 1fr);
+  gap: 8px;
+  font-size: 0.80rem;
+  line-height: 1.16;
+}
