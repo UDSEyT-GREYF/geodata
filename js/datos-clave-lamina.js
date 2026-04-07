@@ -92,15 +92,21 @@
   }
 
   function parseFechaFlexible(raw) {
-    if (!raw) return null;
-    const s = String(raw).trim();
-    let m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
-    if (m) return new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1]));
-    m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
-    if (m) return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
-    const d = new Date(s);
-    return Number.isNaN(d.getTime()) ? null : d;
-  }
+  if (!raw) return null;
+  const s = String(raw).trim();
+
+  let m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (m) return new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1]));
+
+  m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+  if (m) return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+
+  m = s.match(/^(\d{4})-(\d{1,2})$/);
+  if (m) return new Date(Number(m[1]), Number(m[2]) - 1, 1);
+
+  const d = new Date(s);
+  return Number.isNaN(d.getTime()) ? null : d;
+}
 
   function parseTransporteCSV(text) {
     const rows = parseCSV(text);
@@ -125,35 +131,102 @@
     })).filter(r => r.iata && r.date && Number.isFinite(r.valor)).sort((a, b) => a.date - b.date);
   }
 
-  function parseVuelosCSV(text) {
-    return parseCSV(text).map(r => {
-      const date = parseFechaFlexible(firstNonEmpty(r, ["fecha"]));
-      const yearNum = parseNumber(firstNonEmpty(r, ["anio", "ano", "year"]));
-      return {
-        iata: clean(firstNonEmpty(r, ["iata", "aeropuerto_iata", "airport_iata", "origen_iata"])) .toUpperCase(),
-        year: Number.isFinite(yearNum) ? Number(yearNum) : (date ? date.getFullYear() : null),
-        valor: parseNumber(firstNonEmpty(r, [
-          "vuelos", "cantidad_vuelos", "vuelos_totales", "movimientos", "movimientos_totales",
-          "valor_vuelos", "valor_movimientos", "valor", "cantidad", "total_vuelos"
-        ]))
-      };
-    }).filter(r => r.iata && Number.isFinite(r.valor));
-  }
+function parseVuelosCSV(text) {
+  return parseCSV(text).map(r => {
+    const date = parseFechaFlexible(firstNonEmpty(r, ["fecha", "anomes", "año_mes"]));
+    const yearNum = parseNumber(firstNonEmpty(r, ["anio", "ano", "year", "año"]));
 
-  function parseRutasCSV(text) {
-    return parseCSV(text).map(r => {
-      const date = parseFechaFlexible(firstNonEmpty(r, ["fecha"]));
-      const yearNum = parseNumber(firstNonEmpty(r, ["anio", "ano", "year"]));
-      return {
-        iata: clean(firstNonEmpty(r, ["iata", "aeropuerto_iata", "airport_iata", "origen_iata"])) .toUpperCase(),
-        airline: clean(firstNonEmpty(r, ["aerolinea", "linea_aerea", "airline", "compania"])),
-        destinationCode: clean(firstNonEmpty(r, ["destino_iata", "iata_destino", "destination_iata", "ruta_destino_iata"])) .toUpperCase(),
-        destinationName: clean(firstNonEmpty(r, ["destino_nombre", "destino", "destination_name", "aeropuerto_destino"])),
-        flights: parseNumber(firstNonEmpty(r, ["vuelos", "cantidad_vuelos", "movimientos", "frecuencias", "valor", "cantidad"])),
-        year: Number.isFinite(yearNum) ? Number(yearNum) : (date ? date.getFullYear() : null)
-      };
-    }).filter(r => r.iata && Number.isFinite(r.flights));
-  }
+    return {
+      iata: clean(firstNonEmpty(r, [
+        "iata",
+        "aeropuerto_iata",
+        "airport_iata",
+        "origen_iata"
+      ])).toUpperCase(),
+
+      year: Number.isFinite(yearNum)
+        ? Number(yearNum)
+        : (date ? date.getFullYear() : 2025),
+
+      valor: parseNumber(firstNonEmpty(r, [
+        "vuelos",
+        "cantidad_vuelos",
+        "vuelos_totales",
+        "movimientos",
+        "movimientos_totales",
+        "valor_vuelos",
+        "valor_movimientos",
+        "valor",
+        "cantidad",
+        "total_vuelos",
+        "totalvuelos"
+      ]))
+    };
+  }).filter(r => r.iata && Number.isFinite(r.valor));
+}
+
+function parseRutasCSV(text) {
+  return parseCSV(text).map(r => {
+    const date = parseFechaFlexible(firstNonEmpty(r, ["fecha", "anomes", "año_mes"]));
+    const yearNum = parseNumber(firstNonEmpty(r, ["anio", "ano", "year", "año"]));
+
+    const cityPair = clean(firstNonEmpty(r, ["citypair_iata"])).toUpperCase();
+    let originIata = "";
+    let destIata = "";
+
+    if (cityPair.includes("-")) {
+      const parts = cityPair.split("-").map(s => s.trim());
+      originIata = parts[0] || "";
+      destIata = parts[1] || "";
+    }
+
+    return {
+      iata: clean(firstNonEmpty(r, [
+        "iata",
+        "aeropuerto_iata",
+        "airport_iata",
+        "origen_iata"
+      ]) || originIata).toUpperCase(),
+
+      airline: clean(firstNonEmpty(r, [
+        "aerolinea",
+        "aerolinea_nombre",
+        "linea_aerea",
+        "airline",
+        "compania"
+      ])),
+
+      destinationCode: clean(firstNonEmpty(r, [
+        "destino_iata",
+        "iata_destino",
+        "destination_iata",
+        "ruta_destino_iata"
+      ]) || destIata).toUpperCase(),
+
+      destinationName: clean(firstNonEmpty(r, [
+        "destino_nombre",
+        "destino",
+        "destination_name",
+        "aeropuerto_destino"
+      ]) || destIata),
+
+      flights: parseNumber(firstNonEmpty(r, [
+        "vuelos",
+        "cantidad_vuelos",
+        "movimientos",
+        "frecuencias",
+        "valor",
+        "cantidad",
+        "total_vuelos",
+        "totalvuelos"
+      ])),
+
+      year: Number.isFinite(yearNum)
+        ? Number(yearNum)
+        : (date ? date.getFullYear() : 2025)
+    };
+  }).filter(r => r.iata && Number.isFinite(r.flights));
+}
 
   function buildPaxSeries(iataUpper, mode) {
     const rowsAll = pasajerosMensualRows.filter(r => r.iata === iataUpper);
