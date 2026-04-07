@@ -633,32 +633,4 @@ body {
     padding: 6px;
   }
 }
-.sheet-header {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-}
 
-.sheet-title-main {
-  font-size: 14px;
-  font-weight: 600;
-  color: #5f6972;
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-}
-
-.sheet-airport-name {
-  font-size: 28px;
-  font-weight: 700;
-  color: #0066cc;
-  margin: 0;
-  line-height: 1.1;
-}
-
-.sheet-year {
-  font-size: 14px;
-  color: #666;
-  align-self: flex-end;
-}
