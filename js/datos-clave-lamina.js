@@ -577,22 +577,28 @@ function parseRutasCSV(text) {
     const airlineMap = new Map();
     const destMap = new Map();
 
-    rows.forEach(r => {
-      const airline = r.airline || "Sin dato";
-      airlineMap.set(airline, (airlineMap.get(airline) || 0) + r.flights);
-      const code = r.destinationCode || "—";
-      const name = r.destinationName || code || "Sin dato";
-      const key = `${code}|${name}`;
-      if (!destMap.has(key)) destMap.set(key, { code, name, flights: 0 });
-      destMap.get(key).flights += r.flights;
-    });
+rows.forEach(r => {
+  const airline = r.airline || "Sin dato";
+  airlineMap.set(airline, (airlineMap.get(airline) || 0) + r.volume);
 
-    return {
-      airlinesCount: airlineMap.size,
-      topAirlines: Array.from(airlineMap.entries()).map(([name, flights]) => ({ name, flights })).sort((a, b) => b.flights - a.flights).slice(0, 3),
-      topDestinations: Array.from(destMap.values()).sort((a, b) => b.flights - a.flights).slice(0, 4)
-    };
-  }
+  const code = r.destinationCode || "—";
+  const name = r.destinationName || code || "Sin dato";
+  const key = `${code}|${name}`;
+
+  if (!destMap.has(key)) destMap.set(key, { code, name, volume: 0 });
+  destMap.get(key).volume += r.volume;
+});
+
+return {
+  airlinesCount: airlineMap.size,
+  topAirlines: Array.from(airlineMap.entries())
+    .map(([name, volume]) => ({ name, volume }))
+    .sort((a, b) => b.volume - a.volume)
+    .slice(0, 3),
+  topDestinations: Array.from(destMap.values())
+    .sort((a, b) => b.volume - a.volume)
+    .slice(0, 4)
+};
 
   function renderFlights(iata) {
     const stats = getFlightsStats(iata);
@@ -607,9 +613,9 @@ function parseRutasCSV(text) {
 
     const airlinesEl = q("topAirlinesList");
     if (airlinesEl) {
-      airlinesEl.textContent = topAirlines.length
-        ? topAirlines.map(a => `${a.name} · ${formatNumber(Math.round(a.flights))} vuelos`).join("\n")
-        : "Sin datos";
+airlinesEl.textContent = topAirlines.length
+  ? topAirlines.map(a => `${a.name} · ${formatNumber(Math.round(a.volume))} pasajeros`).join("\n")
+  : "Sin datos";
     }
 
     const destEl = q("topDestinationsList");
@@ -618,8 +624,7 @@ function parseRutasCSV(text) {
         ? topDestinations.map(d => `
           <div class="destination-item">
             <div class="destination-pill">${clean(d.code) || "—"}</div>
-            <div class="destination-text"><strong>${clean(d.name) || clean(d.code) || "Sin dato"}</strong><br>${formatNumber(Math.round(d.flights))} vuelos</div>
-          </div>
+            <div class="destination-text"><strong>${clean(d.name) || clean(d.code) || "Sin dato"}</strong><br>${formatNumber(Math.round(d.volume))} pasajeros</div>          </div>
         `).join("")
         : "<div class=\"destination-text\">Sin datos</div>";
     }
