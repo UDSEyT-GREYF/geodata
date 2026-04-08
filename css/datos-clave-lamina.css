@@ -558,8 +558,11 @@ body {
 .flights-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 10px;
+  width: 100%;
 }
+
+
 .flight-card {
   text-align: center;
 }
@@ -761,8 +764,8 @@ body {
 
 .flights-wrap {
   display: grid;
-  grid-template-columns: 72px 1fr;
-  gap: 10px;
+  grid-template-columns: 120px 1fr;
+  gap: 14px;
   align-items: center;
 }
 
@@ -778,9 +781,6 @@ body {
   object-fit: contain;
 }
 
-.flights-grid {
-  gap: 10px;
-}
 
 
 
