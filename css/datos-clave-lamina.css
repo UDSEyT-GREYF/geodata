@@ -1014,7 +1014,6 @@ body {
   font-weight: 700;
 }
 .movement-box-runways .movement-box-head,
-.movement-box-positions .movement-box-head {
   display: grid;
   grid-template-columns: 42px minmax(0, 1fr) auto;
   grid-template-areas:
@@ -1026,7 +1025,6 @@ body {
 }
 
 .movement-box-runways .movement-box-text,
-.movement-box-positions .movement-box-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1035,7 +1033,6 @@ body {
 }
 
 .movement-box-runways .movement-box-title,
-.movement-box-positions .movement-box-title {
   grid-area: title;
   font-size: 0.82rem;
   font-weight: 600;
@@ -1047,18 +1044,15 @@ body {
 }
 
 .movement-box-runways .movement-box-sub,
-.movement-box-positions .movement-box-sub {
   grid-area: sub;
   margin-top: 0;
 }
 
 .movement-box-runways .movement-box-icon,
-.movement-box-positions .movement-box-icon {
   grid-area: icon;
 }
 
 .movement-box-runways .movement-badge-large,
-.movement-box-positions .movement-badge-large {
   grid-area: badge;
   justify-self: end;
   align-self: center;
@@ -1165,4 +1159,57 @@ body {
   line-height: 1.2;
   color: #777;
   padding-left: 0px;
+}
+
+/* =========================================
+   FIX | PLATAFORMA COMERCIAL
+   ========================================= */
+
+.movement-box-positions .movement-box-head {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.movement-box-positions .movement-box-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  min-width: 0;
+}
+
+.movement-box-positions .movement-box-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #2a5fa0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.movement-box-positions .movement-box-sub {
+  font-size: 0.78rem;
+  color: #444;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.movement-box-positions .movement-box-icon {
+  align-self: center;
+}
+
+.movement-box-positions .movement-badge-large {
+  justify-self: end;
+  align-self: center;
+}
+
+.movement-position-detail {
+  margin-top: 1px;
+  font-size: 0.72rem;
+  line-height: 1.05;
+  color: #777;
+  padding-left: 0;
 }
