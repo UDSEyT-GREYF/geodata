@@ -616,14 +616,7 @@ function renderRunways(runways) {
   `).join("");
 }
 
-    listEl.innerHTML = runways.map((runway, idx) => `
-      <div class="movement-runway-row">
-        <span class="movement-runway-name">Pista ${escapeHtml(runway.orientation || `#${idx + 1}`)}</span>
-        <span class="runway-size-chip">${escapeHtml(runway.dimension || "–")}</span>
-        <span class="runway-mat">${escapeHtml(runway.material || "–")}</span>
-      </div>
-    `).join("");
-  }
+
 
   function renderAnnualChart(series, currentYear) {
     const svg = q("paxHistoryChart");
