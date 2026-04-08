@@ -414,8 +414,9 @@ body {
   color: #2a5fa0;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  margin-bottom: 2px;
-  margin-top: 2px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  line-height: 1; /* compacta la altura del renglón */
 }
 .story-item {
   display: grid;
