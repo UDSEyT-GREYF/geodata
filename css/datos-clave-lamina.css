@@ -1440,3 +1440,82 @@ body {
   color: #6a7179;
   line-height: 1.08;
 }
+/* =========================================
+   AEROLÍNEAS | contador independiente y lista debajo
+   ========================================= */
+
+.routes-left {
+  position: relative;
+  display: block;
+}
+
+.routes-left .routes-subtitle {
+  display: block;
+  margin: 0 46px 10px 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #2a5fa0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+}
+
+.routes-left .airlines-summary {
+  display: block !important;
+  padding-top: 2px;
+}
+
+.airlines-count-pill {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  width: 34px;
+  height: 34px;
+  font-size: 1.1rem;
+  z-index: 2;
+}
+
+.airlines-list {
+  display: grid;
+  gap: 8px;
+  white-space: normal;
+  width: 100%;
+  margin-top: 2px;
+}
+
+.airline-item {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  min-height: 32px;
+}
+
+.airline-logo-wrap {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.airline-logo {
+  max-width: 106px;
+  max-height: 32px;
+  object-fit: contain;
+  display: block;
+}
+
+.airline-name-fallback {
+  font-size: 0.84rem;
+  color: var(--blue-dark);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.airline-volume {
+  font-size: 0.82rem;
+  color: #6a7179;
+  line-height: 1.08;
+  white-space: nowrap;
+}
