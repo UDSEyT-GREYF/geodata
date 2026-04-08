@@ -1159,9 +1159,9 @@ body {
 }
 
 .movement-position-detail {
-  margin-top: 3px;
+  margin-top: 1px;
   font-size: 0.70rem;
-  line-height: 1.1;
+  line-height: 1;
   color: #6f7680;
   padding-left: 46px;
 }
