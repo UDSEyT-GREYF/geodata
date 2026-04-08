@@ -1058,3 +1058,98 @@ body {
   justify-self: end;
   align-self: center;
 }
+/* =========================================
+   ÁREA DE MOVIMIENTO | PISTAS estilo original
+   ========================================= */
+
+.movement-box-runways {
+  padding: 8px 10px 8px;
+}
+
+.movement-box-title-inline {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #2a5fa0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.movement-runways-head {
+  display: grid;
+  grid-template-columns: 96px 1fr 56px 126px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.movement-runways-col {
+  font-size: 0.72rem;
+  color: #7a8088;
+  line-height: 1.05;
+}
+
+.movement-runways-col-label {
+  grid-column: 2;
+}
+
+.movement-runways-col-length {
+  grid-column: 4;
+  text-align: center;
+}
+
+.movement-runway-list {
+  display: grid;
+  gap: 6px;
+  margin-top: 0;
+}
+
+.movement-runway-card {
+  display: grid;
+  grid-template-columns: 44px 1fr 48px 126px;
+  gap: 8px;
+  align-items: center;
+}
+
+.movement-runway-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--purple);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.movement-runway-orientation {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #4b79bd;
+  line-height: 1;
+}
+
+.movement-runway-plane {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.movement-runway-plane img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.movement-runway-length {
+  background: #b7b7b9;
+  color: #fff;
+  border-radius: 3px;
+  padding: 7px 10px;
+  text-align: center;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1;
+}
