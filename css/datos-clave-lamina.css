@@ -322,8 +322,8 @@ body {
   font-size: 0.9rem;
 }
 .movement-badge {
-  min-width: 44px;
-  height: 44px;
+  min-width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: var(--purple);
   color: #fff;
@@ -337,7 +337,7 @@ body {
   min-width: 42px;
   width: 42px;
   height: 42px;
-  font-size: 1.15rem;
+  font-size: 1rem;
   justify-self: end;
 }
 .movement-badge[data-wide="1"] {
@@ -349,7 +349,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
-  margin-top: 2px;
+  margin-top: 1px;
 }
 .extra-kpi {
   border-top: 1px dashed #d9dee5;
