@@ -14,7 +14,8 @@
   let mapPredio = null;
   let predioLayer = null;
   let predioMarker = null;
-
+  let iataWorldIndex = {};
+  
   const YEAR_REF = 2025;
   const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
   const PAX_DATASET_INT = "pasajeros_comerciales_internacional_aeropuerto";
@@ -785,35 +786,41 @@ function renderRunways(runways) {
     const destEl = q("topDestinationsList");
     if (!destEl) return;
 
-    const renderDestList = list =>
-      list.length
-        ? list.map(d => `
-            <div class="destination-item">
-              <div class="destination-pill">${escapeHtml(clean(d.code) || "—")}</div>
-              <div class="destination-text">
-                <strong>${escapeHtml(clean(d.name) || clean(d.code) || "Sin dato")}</strong><br>${formatNumber(Math.round(d.volume))} pasajeros
-              </div>
+const renderDestList = (list, isInternational = false) =>
+  list.length
+    ? list.map(d => {
+        const label = getDestinationLabel(d.code, isInternational);
+
+        return `
+          <div class="destination-item">
+            <div class="destination-pill">${escapeHtml(clean(d.code) || "—")}</div>
+            <div class="destination-text">
+              <strong>${escapeHtml(label.ciudad || clean(d.code) || "Sin dato")}</strong>
+              ${label.pais ? `<span class="destination-meta">${escapeHtml(label.pais)}</span>` : ""}
+              <span class="destination-volume">${formatNumber(Math.round(d.volume))} pasajeros</span>
             </div>
-          `).join("")
-        : '<div class="destination-text">Sin datos</div>';
+          </div>
+        `;
+      }).join("")
+    : '<div class="destination-text">Sin datos</div>';
 
     if (hasInternational) {
       destEl.innerHTML = `
         <div class="destinations-columns">
           <div class="destinations-column">
             <div class="destinations-column-title">Internacionales</div>
-            ${renderDestList(topDestinationsIntl)}
-          </div>
+        ${renderDestList(topDestinationsIntl, true)}
+    </div>
           <div class="destinations-column">
             <div class="destinations-column-title">Cabotaje</div>
-            ${renderDestList(topDestinationsCab)}
+            ${renderDestList(topDestinationsCab, false)}
           </div>
         </div>
       `;
     } else {
       destEl.innerHTML = `
         <div class="destinations-column">
-          ${renderDestList(topDestinationsCab)}
+          ${renderDestList(topDestinationsCab, false)}
         </div>
       `;
     }
@@ -984,7 +991,8 @@ setText("psnDetalleCompacto", `Comerciales ${psnComTxt} - Av. General ${psnGenTx
         fetch("fuentes/Paradasapp.csv").catch(() => null),
         fetch("fuentes/pasajeros_aeropuerto_mensual.csv").catch(() => null),
         fetch("fuentes/vuelos.csv").catch(() => null),
-        fetch("fuentes/rutasaereas.csv").catch(() => null)
+        fetch("fuentes/rutasaereas.csv").catch(() => null),
+        fetch("fuentes/ListadoIATAmundo.csv").catch(() => null)
       ]);
 
       const geojson = await airportsResp.json();
@@ -1000,7 +1008,9 @@ setText("psnDetalleCompacto", `Comerciales ${psnComTxt} - Av. General ${psnGenTx
       if (paxResp && paxResp.ok) pasajerosMensualRows = parsePasajerosMensualCSV(await readTextSmart(paxResp));
       if (vuelosResp && vuelosResp.ok) vuelosRows = parseVuelosCSV(await readTextSmart(vuelosResp));
       if (rutasResp && rutasResp.ok) rutasRows = parseRutasCSV(await readTextSmart(rutasResp));
-
+      if (iataWorldResp && iataWorldResp.ok) {
+        iataWorldIndex = parseIATAMundoCSV(await readTextSmart(iataWorldResp));
+      }
       if (select) {
         select.innerHTML = "";
         aeropuertos.forEach(a => {
@@ -1028,7 +1038,35 @@ setText("psnDetalleCompacto", `Comerciales ${psnComTxt} - Av. General ${psnGenTx
       if (select) select.innerHTML = "<option>Error al cargar datos</option>";
     }
   }
+function parseIATAMundoCSV(text) {
+  const rows = parseCSV(text);
+  const result = {};
 
+  rows.forEach(r => {
+    const iata = clean(firstNonEmpty(r, ["iata"])).toUpperCase();
+    if (!iata) return;
+
+    result[iata] = {
+      ciudad: clean(firstNonEmpty(r, ["ciudad", "city"])),
+      pais: clean(firstNonEmpty(r, ["pais", "país", "country"]))
+    };
+  });
+
+  return result;
+}
+
+  function getDestinationLabel(code, isInternational) {
+  const key = clean(code).toUpperCase();
+  const meta = iataWorldIndex[key] || {};
+
+  const ciudad = clean(meta.ciudad) || key;
+  const pais = clean(meta.pais);
+
+  return {
+    ciudad,
+    pais: isInternational ? pais : ""
+  };
+}
   function initExport() {
     q("btnPrint")?.addEventListener("click", () => window.print());
 
