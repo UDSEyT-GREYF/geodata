@@ -960,8 +960,8 @@ body {
 }
 
 .movement-extra-kpi .extra-kpi-label {
-  font-size: 0.68rem;
-  line-height: 1.05;
+  font-size: 0.78rem;
+  line-height: 1.2;
   color: #707c86;
   margin-top: 2px;
 }
@@ -1208,7 +1208,7 @@ body {
 
 .movement-position-detail {
   margin-top: 1px;
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   line-height: 1.05;
   color: #777;
   padding-left: 0;
