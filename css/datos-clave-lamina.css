@@ -1154,3 +1154,14 @@ body {
   font-weight: 700;
   line-height: 1;
 }
+.movement-box-positions .movement-box-sub {
+  margin-top: 1px;
+}
+
+.movement-position-detail {
+  margin-top: 3px;
+  font-size: 0.70rem;
+  line-height: 1.1;
+  color: #6f7680;
+  padding-left: 46px;
+}
