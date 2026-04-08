@@ -795,8 +795,9 @@ const renderDestList = (list, isInternational = false) =>
           <div class="destination-item">
             <div class="destination-pill">${escapeHtml(clean(d.code) || "—")}</div>
             <div class="destination-text">
-              <strong>${escapeHtml(label.ciudad || clean(d.code) || "Sin dato")}</strong>
-              ${label.pais ? `<span class="destination-meta">${escapeHtml(label.pais)}</span>` : ""}
+              <div class="destination-title-line">
+                <strong>${escapeHtml(label.ciudad || clean(d.code) || "Sin dato")}</strong>${label.pais ? `<span class="destination-meta"> · ${escapeHtml(label.pais)}</span>` : ""}
+              </div>
               <span class="destination-volume">${formatNumber(Math.round(d.volume))} pasajeros</span>
             </div>
           </div>
