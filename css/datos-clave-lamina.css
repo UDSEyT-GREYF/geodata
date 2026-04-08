@@ -1012,19 +1012,49 @@ body {
   line-height: 1.12;
   font-weight: 700;
 }
-.movement-box-runways .movement-box-title {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #2a5fa0;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  line-height: 1.1;
+.movement-box-runways .movement-box-head,
+.movement-box-positions .movement-box-head {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  grid-template-areas:
+    "title title title"
+    "icon  sub   badge";
+  column-gap: 8px;
+  row-gap: 6px;
+  align-items: center;
 }
-.movement-box .movement-box-title {
+
+.movement-box-runways .movement-box-text,
+.movement-box-positions .movement-box-text {
+  display: contents;
+}
+
+.movement-box-runways .movement-box-title,
+.movement-box-positions .movement-box-title {
+  grid-area: title;
   font-size: 0.82rem;
   font-weight: 600;
   color: #2a5fa0;
   text-transform: uppercase;
   letter-spacing: 0.03em;
   line-height: 1.1;
+  margin: 0 0 2px 0;
+}
+
+.movement-box-runways .movement-box-sub,
+.movement-box-positions .movement-box-sub {
+  grid-area: sub;
+  margin-top: 0;
+}
+
+.movement-box-runways .movement-box-icon,
+.movement-box-positions .movement-box-icon {
+  grid-area: icon;
+}
+
+.movement-box-runways .movement-badge-large,
+.movement-box-positions .movement-badge-large {
+  grid-area: badge;
+  justify-self: end;
+  align-self: center;
 }
