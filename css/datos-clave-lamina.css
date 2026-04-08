@@ -565,16 +565,16 @@ body {
 }
 .flight-label {
   background: linear-gradient(180deg, #f8f8f8 0%, #ececec 100%);
-  border-top: 10px solid var(--blue-dark);
+  border-top: 8px solid var(--blue-dark);
   border-radius: 4px;
-  padding: 9px 8px 7px;
+  padding: 7px 7px 6px;
   color: #8c7b5f;
-  font-size: 1rem;
+  font-size: 0.86rem;
   box-shadow: 0 6px 9px rgba(0,0,0,.12);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .flight-value {
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: var(--blue-dark);
   font-weight: 700;
   line-height: 1;
@@ -782,16 +782,7 @@ body {
   gap: 10px;
 }
 
-.flight-label {
-  border-top-width: 8px;
-  padding: 7px 7px 6px;
-  font-size: 0.86rem;
-  margin-bottom: 8px;
-}
 
-.flight-value {
-  font-size: 1.6rem;
-}
 
 .section-routes {
   min-height: 176px;
