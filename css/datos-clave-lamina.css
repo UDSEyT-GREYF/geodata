@@ -414,8 +414,8 @@ body {
   color: #2a5fa0;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  margin-bottom: 4px;
-  margin-top: 5px;
+  margin-bottom: 2px;
+  margin-top: 2px;
 }
 .story-item {
   display: grid;
