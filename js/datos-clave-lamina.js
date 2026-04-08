@@ -985,7 +985,7 @@ setText("psnDetalleCompacto", `Comerciales ${psnComTxt} - Av. General ${psnGenTx
   async function loadData() {
     const select = q("airportSelect");
     try {
-      const [airportsResp, polygonsResp, transpResp, paxResp, vuelosResp, rutasResp] = await Promise.all([
+      const [airportsResp, polygonsResp, transpResp, paxResp, vuelosResp, rutasResp, iataWorldResp] = await Promise.all([
         fetch("fuentes/Datos_aeropuertos.geojson"),
         fetch("fuentes/poligonos_aeropuertos.geojson").catch(() => null),
         fetch("fuentes/Paradasapp.csv").catch(() => null),
