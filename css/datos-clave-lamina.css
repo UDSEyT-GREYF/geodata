@@ -1250,3 +1250,70 @@ body {
   align-self: start;
   margin-top: 0;
 }
+/* =========================================
+   PRINCIPALES AEROLÍNEAS Y RUTAS 2025
+   Contador independiente del listado
+   ========================================= */
+
+.routes-left {
+  position: relative;
+  display: block;
+}
+
+.routes-left .routes-subtitle {
+  margin: 0 44px 6px 0; /* deja solo el espacio necesario para que no pise el círculo */
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #2a5fa0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+}
+
+.routes-left .airlines-summary {
+  display: block;
+}
+
+.airlines-count-pill {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  width: 34px;
+  height: 34px;
+  font-size: 1.1rem;
+  z-index: 2;
+}
+
+.airlines-list {
+  display: grid;
+  gap: 6px;
+  white-space: normal;
+}
+
+.airline-item {
+  display: grid;
+  grid-template-columns: 88px 1fr; /* más aire para logo */
+  gap: 8px;
+  align-items: center;
+}
+
+.airline-logo-wrap {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.airline-logo {
+  max-width: 86px;
+  max-height: 28px;
+  object-fit: contain;
+  display: block;
+}
+
+.airline-volume {
+  font-size: 0.8rem;
+  color: #6a7179;
+  line-height: 1.08;
+}
