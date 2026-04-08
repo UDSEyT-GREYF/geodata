@@ -920,7 +920,7 @@ setBadgeNumber("badgePsnTotal", psnTotal ? formatNumber(psnTotal) : "–");
 
 const psnComTxt = formatNumber(psnCom);
 const psnGenTxt = formatNumber(psnGen);
-setText("psnDetalleCompacto", `Comerciales ${psnComTxt} - Av. General ${psnGenTxt})`;
+setText("psnDetalleCompacto", `Comerciales ${psnComTxt} - Av. General ${psnGenTxt}`);
     
     setText("mangasValorBottom", safeValue(firstNonEmpty(a, ["Mangas telescópicas"])));
 
