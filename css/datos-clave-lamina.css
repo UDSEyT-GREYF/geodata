@@ -320,6 +320,7 @@ body {
   gap: 10px;
   color: #444;
   font-size: 0.9rem;
+  line-height: 1;
 }
 .movement-badge {
   min-width: 34px;
