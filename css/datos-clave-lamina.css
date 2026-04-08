@@ -1317,3 +1317,36 @@ body {
   color: #6a7179;
   line-height: 1.08;
 }
+.movement-kpi-title {
+  margin-bottom: 4px;
+}
+
+.movement-box-positions .movement-box-head {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.movement-box-positions .movement-box-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  min-width: 0;
+}
+
+.movement-box-positions .movement-box-sub {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #444;
+  line-height: 1.05;
+}
+
+.movement-position-detail {
+  margin-top: 0;
+  padding-left: 0;
+  font-size: 0.70rem;
+  line-height: 1.05;
+  color: #777;
+}
