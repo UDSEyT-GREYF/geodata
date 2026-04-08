@@ -310,8 +310,8 @@ body {
 }
 .movement-positions-grid {
   display: grid;
-  gap: 8px;
-  margin-top: 10px;
+  gap: 4px;
+  margin-top: 6px;
 }
 .movement-position-row {
   display: flex;
