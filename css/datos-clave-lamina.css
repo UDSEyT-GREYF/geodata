@@ -334,10 +334,10 @@ body {
   font-weight: 700;
 }
 .movement-badge-large {
-  min-width: 34px;
-  width: 34px;
-  height: 34px;
-  font-size: 1rem;
+  min-width: 44px;
+  width: 44px;
+  height: 44px;
+  font-size: 1.3rem;
   justify-self: end;
 }
 .movement-badge[data-wide="1"] {
