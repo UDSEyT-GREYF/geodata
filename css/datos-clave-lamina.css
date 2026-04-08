@@ -958,8 +958,8 @@ body {
 
 .movement-extra-kpi .extra-kpi img,
 .movement-extra-kpi .extra-kpi-aids img {
-  width: 22px;
-  height: 22px;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
   margin-top: 1px;
 }
