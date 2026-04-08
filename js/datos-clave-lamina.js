@@ -586,14 +586,35 @@ function parseRutasCSV(text) {
     })).filter(item => item.orientation || item.dimension || item.material);
   }
 
-  function renderRunways(runways) {
-    const listEl = q("runwaysList");
-    if (!listEl) return;
+function renderRunways(runways) {
+  const listEl = q("runwaysList");
+  if (!listEl) return;
 
-    if (!runways.length) {
-      listEl.innerHTML = '<div class="movement-runway-row"><span class="movement-runway-name">Sin información de pistas</span><span></span><span></span></div>';
-      return;
-    }
+  if (!runways.length) {
+    listEl.innerHTML = `
+      <div class="movement-runway-card">
+        <div class="movement-runway-badge">–</div>
+        <div class="movement-runway-orientation">Sin dato</div>
+        <div class="movement-runway-plane">
+          <img src="img/icons/runway.png" alt="Pista">
+        </div>
+        <div class="movement-runway-length">–</div>
+      </div>
+    `;
+    return;
+  }
+
+  listEl.innerHTML = runways.map((runway, idx) => `
+    <div class="movement-runway-card">
+      <div class="movement-runway-badge">${idx + 1}</div>
+      <div class="movement-runway-orientation">${escapeHtml(runway.orientation || "–")}</div>
+      <div class="movement-runway-plane">
+        <img src="img/icons/runway.png" alt="Pista">
+      </div>
+      <div class="movement-runway-length">${escapeHtml(runway.dimension || "–")}</div>
+    </div>
+  `).join("");
+}
 
     listEl.innerHTML = runways.map((runway, idx) => `
       <div class="movement-runway-row">
