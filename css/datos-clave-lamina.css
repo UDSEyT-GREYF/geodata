@@ -1328,6 +1328,18 @@ body {
   align-items: center;
 }
 
+.movement-box-positions .movement-box-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.movement-box-positions .movement-box-icon img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
 .movement-box-positions .movement-box-text {
   display: flex;
   flex-direction: column;
