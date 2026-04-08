@@ -1409,3 +1409,32 @@ body {
   line-height: 1.08;
   white-space: nowrap;
 }
+/* =========================================
+   DESTINOS | ciudad y país
+   ========================================= */
+
+.destination-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  font-size: 0.84rem;
+  color: #6a7179;
+  line-height: 1.12;
+}
+
+.destination-text strong {
+  color: #5f6972;
+  font-weight: 600;
+}
+
+.destination-meta {
+  font-size: 0.74rem;
+  color: #7a838c;
+  line-height: 1.05;
+}
+
+.destination-volume {
+  font-size: 0.8rem;
+  color: #6a7179;
+  line-height: 1.08;
+}
