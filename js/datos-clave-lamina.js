@@ -912,12 +912,16 @@ setText("airportName", tituloFinal);
     setBadgeNumber("badgeCantPistas", runwayCount ? formatNumber(runwayCount) : "–");
     renderRunways(runways);
 
-    const psnCom = (parseNumber(firstNonEmpty(a, ["PSNRemotasC"], 0)) || 0) + (parseNumber(firstNonEmpty(a, ["PSNRemotasC_1"], 0)) || 0);
-    const psnGen = parseNumber(firstNonEmpty(a, ["PSN_C"], 0)) || 0;
-    const psnTotal = psnCom + psnGen;
-    setBadgeNumber("badgePsnTotal", psnTotal ? formatNumber(psnTotal) : "–");
-    setBadgeNumber("psnComercial", psnCom ? formatNumber(psnCom) : "–");
-    setBadgeNumber("psnGeneral", psnGen ? formatNumber(psnGen) : "–");
+const psnCom = (parseNumber(firstNonEmpty(a, ["PSNRemotasC"], 0)) || 0) + (parseNumber(firstNonEmpty(a, ["PSNRemotasC_1"], 0)) || 0);
+const psnGen = parseNumber(firstNonEmpty(a, ["PSN_C"], 0)) || 0;
+const psnTotal = psnCom + psnGen;
+
+setBadgeNumber("badgePsnTotal", psnTotal ? formatNumber(psnTotal) : "–");
+
+const psnComTxt = formatNumber(psnCom);
+const psnGenTxt = formatNumber(psnGen);
+setText("psnDetalleCompacto", `Comerciales (${psnComTxt}) - Av. General (${psnGenTxt})`);
+    
     setText("mangasValorBottom", safeValue(firstNonEmpty(a, ["Mangas telescópicas"])));
 
     setText("horarioOperacion", clean(firstNonEmpty(a, ["Horario de operación", "Horario de operacion"])) || "–");
