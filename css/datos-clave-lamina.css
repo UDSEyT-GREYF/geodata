@@ -1362,3 +1362,20 @@ body {
   line-height: 1.05;
   color: #777;
 }
+.movement-extra-grid .extra-kpi {
+  border-top: none;
+  padding-top: 0;
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 8px;
+  align-items: start;
+}
+.movement-extra-grid .extra-kpi-aids {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 8px;
+  align-items: start;
+  border-top: 1px dashed #d9dee5;
+  padding-top: 6px;
+}
