@@ -270,9 +270,9 @@ body {
   line-height: 1.05;
 }
 .movement-box-sub {
-  font-size: 0.78rem;
-  color: #6b7580;
-  line-height: 1.2;
+  font-size: 0.9rem;
+  color: #444;
+  line-height: 1.6;
   margin-top: 0px;
 }
 .movement-runway-list {
