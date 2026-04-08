@@ -273,7 +273,7 @@ body {
   font-size: 0.78rem;
   color: #6b7580;
   line-height: 1.2;
-  margin-top: 3px;
+  margin-top: 0px;
 }
 .movement-runway-list {
   display: grid;
@@ -1011,4 +1011,20 @@ body {
   font-size: 0.68rem;
   line-height: 1.12;
   font-weight: 700;
+}
+.movement-box-runways .movement-box-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #2a5fa0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+}
+.movement-box .movement-box-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #2a5fa0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
 }
