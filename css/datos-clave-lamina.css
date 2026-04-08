@@ -840,7 +840,7 @@ body {
   align-items: center;
 }
 
-.airline-logo-wrap {
+ {
   height: 30px;
   display: flex;
   align-items: center;
@@ -1299,7 +1299,7 @@ body {
   min-height: 32px;
 }
 
-.airline-logo-wrap {
+ {
   height: 32px;
   display: flex;
   align-items: center;
@@ -1385,7 +1385,7 @@ body {
 }
 
 .airline-logo-wrap {
-  height: 28px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
