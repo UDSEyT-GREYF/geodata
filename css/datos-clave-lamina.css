@@ -1362,5 +1362,50 @@ body {
   line-height: 1.05;
   color: #777;
 }
-  gap: 6px;
 
+/* =========================================
+   PRINCIPALES AEROLÍNEAS | mejor orden
+   ========================================= */
+
+.airlines-list {
+  display: grid;
+  gap: 7px;
+  white-space: normal;
+  width: 100%;
+}
+
+.airline-item {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  min-height: 28px;
+}
+
+.airline-logo-wrap {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.airline-logo {
+  max-width: 92px;
+  max-height: 28px;
+  object-fit: contain;
+  display: block;
+}
+
+.airline-name-fallback {
+  font-size: 0.82rem;
+  color: var(--blue-dark);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.airline-volume {
+  font-size: 0.8rem;
+  color: #6a7179;
+  line-height: 1.08;
+  white-space: nowrap;
+}
