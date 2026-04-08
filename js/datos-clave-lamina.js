@@ -917,7 +917,6 @@ setText("airportName", tituloFinal);
     const runways = buildRunways(orientRaw, dimsRaw, matRaw);
     const runwayCount = runways.length;
     setBadgeNumber("badgeCantPistas", runwayCount ? formatNumber(runwayCount) : "–");
-    setText("pistasSubtitulo", runwayCount ? (runwayCount === 1 ? "1 pista registrada" : `${formatNumber(runwayCount)} pistas registradas`) : "Sin información de pistas");
     renderRunways(runways);
 
     const psnCom = (parseNumber(firstNonEmpty(a, ["PSNRemotasC"], 0)) || 0) + (parseNumber(firstNonEmpty(a, ["PSNRemotasC_1"], 0)) || 0);
