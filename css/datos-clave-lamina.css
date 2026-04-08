@@ -773,7 +773,7 @@ body {
 }
 
 .flights-icon-block img {
-  width: 60px;
+  width: 150px;
   height: 60px;
   object-fit: contain;
 }
@@ -861,7 +861,7 @@ body {
 
 .airline-logo {
   max-width: 82px;
-  max-height: 22px;
+  max-height: 30px;
   object-fit: contain;
   display: block;
 }
