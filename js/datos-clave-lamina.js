@@ -663,7 +663,7 @@ if (terminalFeats.length) {
   if (bounds.isValid()) {
     setTimeout(() => {
       mapPredio.invalidateSize();
-      mapPredio.fitBounds(bounds, { padding: [1, 1] });
+      mapPredio.fitBounds(bounds, { padding: [0, 0] });
     }, 0);
     return;
   }
