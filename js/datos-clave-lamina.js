@@ -678,7 +678,15 @@ function renderAnnualChart(passengerSeries, flightSeries, currentYear) {
     const yy = yFlt(v);
     rightAxis += `<text x="${W - padR + 8}" y="${yy + 4}" text-anchor="start" font-size="10" fill="#7a838c">${formatNumber(Math.round(v))}</text>`;
   });
+const leftAxisLabel = `
+  <text x="16" y="${padT + innerH / 2}" transform="rotate(-90 16 ${padT + innerH / 2})"
+        text-anchor="middle" font-size="10" fill="#6f7985">Pasajeros</text>
+`;
 
+const rightAxisLabel = `
+  <text x="${W - 12}" y="${padT + innerH / 2}" transform="rotate(90 ${W - 12} ${padT + innerH / 2})"
+        text-anchor="middle" font-size="10" fill="#7a838c">Movimientos</text>
+`;
   let xLabels = "";
   passengerSeries.forEach((d, i) => {
     const xx = x(i);
@@ -691,18 +699,28 @@ function renderAnnualChart(passengerSeries, flightSeries, currentYear) {
   const paxPoints = passengerSeries.map((d, i) => `${x(i)},${yPax(d.valor)}`).join(" ");
   const paxArea = `${padL},${padT + innerH} ${paxPoints} ${x(passengerSeries.length - 1)},${padT + innerH}`;
 
-  const flightPoints = years
-    .filter(y => fltMap.has(y))
-    .map(y => {
-      const i = years.indexOf(y);
-      return `${x(i)},${yFlt(fltMap.get(y))}`;
-    })
-    .join(" ");
+const flightBarsData = years
+  .filter(y => fltMap.has(y))
+  .map(y => {
+    const i = years.indexOf(y);
+    const value = fltMap.get(y);
+    return {
+      x: x(i),
+      y: yFlt(value),
+      value,
+      year: y
+    };
+  });
 
-  let flightLine = "";
-  if (flightPoints) {
-    flightLine = `<polyline points="${flightPoints}" fill="none" stroke="#7c8794" stroke-width="2.2"></polyline>`;
-  }
+const flightBarWidth = Math.max(6, Math.min(14, innerW / Math.max(1, years.length) * 0.42));
+
+let flightBars = "";
+if (flightBarsData.length) {
+  flightBars = flightBarsData.map(p => {
+    const barHeight = (padT + innerH) - p.y;
+    return `<rect x="${p.x - flightBarWidth / 2}" y="${p.y}" width="${flightBarWidth}" height="${barHeight}" rx="1.5" fill="#8b96a3" opacity="0.55"></rect>`;
+  }).join("");
+}
 
   let markers = "";
   passengerSeries.forEach((d, i) => {
@@ -726,11 +744,13 @@ function renderAnnualChart(passengerSeries, flightSeries, currentYear) {
     ${xLabels}
     <line x1="${padL}" y1="${padT + innerH}" x2="${W - padR}" y2="${padT + innerH}" stroke="#d1d8e2" stroke-width="1"></line>
     <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT + innerH}" stroke="#d1d8e2" stroke-width="1"></line>
-    <polygon points="${paxArea}" fill="#d7e6f8" opacity="0.70"></polygon>
-    <polyline points="${paxPoints}" fill="none" stroke="#4b86c5" stroke-width="3"></polyline>
-    ${rightAxis}
-    ${flightLine}
-    ${markers}
+${leftAxisLabel}
+${rightAxisLabel}
+${rightAxis}
+${flightBars}
+<polygon points="${paxArea}" fill="#d7e6f8" opacity="0.70"></polygon>
+<polyline points="${paxPoints}" fill="none" stroke="#4b86c5" stroke-width="3"></polyline>
+${markers}
   `;
 
   if (note) note.textContent = "Fuente: elaborado por ORSNA con datos de SIAC ANAC.";
