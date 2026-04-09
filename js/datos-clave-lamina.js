@@ -5,7 +5,6 @@
   let aeropuertos = [];
   let poligonos = [];
   let pasajerosMensualRows = [];
-  let pasajerosMensualRows
   let vuelosRows = [];
   let rutasRows = [];
   let transportePorIATA = {};
