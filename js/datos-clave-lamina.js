@@ -609,40 +609,41 @@ function updatePredioMap(a) {
   const pistaFeats = pistasFeatures.filter(f => featureMatchesIATA(f, iata));
   const terminalFeats = terminalesFeatures.filter(f => featureMatchesIATA(f, iata));
 
-  if (predioFeats.length) {
-predioLayer = L.geoJSON(predioFeats, {
-  pane: "panePredio",
-  style: {
-    color: "#8cd100",
-    weight: 2.4,
-    fillColor: "#b8e26b",
-    fillOpacity: 0.10
-  }
-}).addTo(mapPredio);
-  }
+if (predioFeats.length) {
+  predioLayer = L.geoJSON(predioFeats, {
+    pane: "panePredio",
+    style: {
+      color: "#8cd100",
+      weight: 2.4,
+      fillColor: "#b8e26b",
+      fillOpacity: 0.10
+    }
+  }).addTo(mapPredio);
+}
 
-pistasLayer = L.geoJSON(pistaFeats, {
-  pane: "panePistas",
-  style: {
-    color: "#6a7280",
-    weight: 1,
-    fillColor: "#7b848f",
-    fillOpacity: 0.60
-  }
-}).addTo(mapPredio);
-  }
+if (pistaFeats.length) {
+  pistasLayer = L.geoJSON(pistaFeats, {
+    pane: "panePistas",
+    style: {
+      color: "#6a7280",
+      weight: 1,
+      fillColor: "#7b848f",
+      fillOpacity: 0.60
+    }
+  }).addTo(mapPredio);
+}
 
-  if (terminalFeats.length) {
-terminalesLayer = L.geoJSON(terminalFeats, {
-  pane: "paneTerminales",
-  style: {
-    color: "#2a5fa0",
-    weight: 1.2,
-    fillColor: "#4b86c5",
-    fillOpacity: 0.30
-  }
-}).addTo(mapPredio);
-  }
+if (terminalFeats.length) {
+  terminalesLayer = L.geoJSON(terminalFeats, {
+    pane: "paneTerminales",
+    style: {
+      color: "#2a5fa0",
+      weight: 1.2,
+      fillColor: "#4b86c5",
+      fillOpacity: 0.30
+    }
+  }).addTo(mapPredio);
+}
 
   const boundsGroup = L.featureGroup(
     [predioLayer, pistasLayer, terminalesLayer].filter(Boolean)
@@ -902,31 +903,73 @@ function getFlightsStats(iata) {
 function getRoutesSummary(iata) {
   const selected = clean(iata).toUpperCase();
 
-  /* Busca el aeropuerto seleccionado en cualquiera de los dos extremos del CityPair */
   const rowsAll = rutasRows.filter(r =>
     r.endpointA === selected || r.endpointB === selected
   );
-const airlinesArray = Array.from(airlineMap.entries())
-  .map(([name, volume]) => ({ name, volume }))
-  .filter(d => d.volume >= MIN_PAX_TO_SHOW)
-  .sort((a, b) => b.volume - a.volume);
 
-const intlArray = Array.from(destMapIntl.values())
-  .filter(d => d.volume >= MIN_PAX_TO_SHOW)
-  .sort((a, b) => b.volume - a.volume);
-
-const cabArray = Array.from(destMapCab.values())
-  .filter(d => d.volume >= MIN_PAX_TO_SHOW)
-  .sort((a, b) => b.volume - a.volume);
   if (!rowsAll.length) {
-return {
-  airlinesCount: airlinesArray.length,
-  topAirlines: airlinesArray.slice(0, 5),
-  topDestinationsIntl: intlArray.slice(0, 5),
-  topDestinationsCab: cabArray.slice(0, 5),
-  hasInternational: intlArray.length > 0
-};
+    return {
+      airlinesCount: 0,
+      topAirlines: [],
+      topDestinationsIntl: [],
+      topDestinationsCab: [],
+      hasInternational: false
+    };
   }
+
+  let rows = rowsAll;
+  const yearRows = rowsAll.filter(r => r.year === YEAR_REF);
+  if (yearRows.length) rows = yearRows;
+
+  const airlineMap = new Map();
+  const destMapIntl = new Map();
+  const destMapCab = new Map();
+
+  rows.forEach(r => {
+    const airline = r.airline || "Sin dato";
+    airlineMap.set(airline, (airlineMap.get(airline) || 0) + r.volume);
+
+    const otherCodeRaw = (r.endpointA === selected) ? r.endpointB : r.endpointA;
+    if (!otherCodeRaw || otherCodeRaw === selected) return;
+
+    const destinationCode = getEquivalentDestinationCode(selected, otherCodeRaw);
+    if (!destinationCode || destinationCode === selected) return;
+
+    const isCabotaje = domesticIATAs.has(otherCodeRaw);
+    const targetMap = isCabotaje ? destMapCab : destMapIntl;
+    const key = destinationCode;
+
+    if (!targetMap.has(key)) {
+      targetMap.set(key, {
+        code: destinationCode,
+        volume: 0
+      });
+    }
+
+    targetMap.get(key).volume += r.volume;
+  });
+
+  const airlinesArray = Array.from(airlineMap.entries())
+    .map(([name, volume]) => ({ name, volume }))
+    .filter(d => d.volume >= MIN_PAX_TO_SHOW)
+    .sort((a, b) => b.volume - a.volume);
+
+  const intlArray = Array.from(destMapIntl.values())
+    .filter(d => d.volume >= MIN_PAX_TO_SHOW)
+    .sort((a, b) => b.volume - a.volume);
+
+  const cabArray = Array.from(destMapCab.values())
+    .filter(d => d.volume >= MIN_PAX_TO_SHOW)
+    .sort((a, b) => b.volume - a.volume);
+
+  return {
+    airlinesCount: airlinesArray.length,
+    topAirlines: airlinesArray.slice(0, 5),
+    topDestinationsIntl: intlArray.slice(0, 5),
+    topDestinationsCab: cabArray.slice(0, 5),
+    hasInternational: intlArray.length > 0
+  };
+}
 
   let rows = rowsAll;
   const yearRows = rowsAll.filter(r => r.year === YEAR_REF);
@@ -1262,8 +1305,8 @@ setText("psnDetalleCompacto", `Comerciales ${psnComTxt} - Av. General ${psnGenTx
   pistasFeatures = gj.features || [];
 }
       if (terminalesResp && terminalesResp.ok) {
+if (terminalesResp && terminalesResp.ok) {
   const gj = await terminalesResp.json();
-  terminalesResp.json();
   terminalesFeatures = gj.features || [];
 }
       if (transpResp && transpResp.ok) transportePorIATA = parseTransporteCSV(await readTextSmart(transpResp));
