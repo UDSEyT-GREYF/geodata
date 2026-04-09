@@ -729,7 +729,7 @@ function renderAnnualChart(passengerSeries, flightSeries, currentYear) {
     rightAxis += `<text x="${W - padR + 8}" y="${yy + 4}" text-anchor="start" font-size="10" fill="#7a838c">${formatNumber(Math.round(v))}</text>`;
   });
 const leftAxisLabel = `
-  <text x="16" y="${padT + innerH / 2}" transform="rotate(-90 16 ${padT + innerH / 2})"
+  <text x="10" y="${padT + innerH / 2}" transform="rotate(-90 10 ${padT + innerH / 2})"
         text-anchor="middle" font-size="10" fill="#6f7985">Pasajeros</text>
 `;
 
