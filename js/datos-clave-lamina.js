@@ -917,6 +917,59 @@ function getRoutesSummary(iata) {
     };
   }
 
+  let rows = rowsAll;
+  const yearRows = rowsAll.filter(r => r.year === YEAR_REF);
+  if (yearRows.length) rows = yearRows;
+
+  const airlineMap = new Map();
+  const destMapIntl = new Map();
+  const destMapCab = new Map();
+
+  rows.forEach(r => {
+    const airline = r.airline || "Sin dato";
+    airlineMap.set(airline, (airlineMap.get(airline) || 0) + r.volume);
+
+    const otherCodeRaw = (r.endpointA === selected) ? r.endpointB : r.endpointA;
+    if (!otherCodeRaw || otherCodeRaw === selected) return;
+
+    const destinationCode = getEquivalentDestinationCode(selected, otherCodeRaw);
+    if (!destinationCode || destinationCode === selected) return;
+
+    const isCabotaje = domesticIATAs.has(otherCodeRaw);
+    const targetMap = isCabotaje ? destMapCab : destMapIntl;
+    const key = destinationCode;
+
+    if (!targetMap.has(key)) {
+      targetMap.set(key, {
+        code: destinationCode,
+        volume: 0
+      });
+    }
+
+    targetMap.get(key).volume += r.volume;
+  });
+
+  const airlinesArray = Array.from(airlineMap.entries())
+    .map(([name, volume]) => ({ name, volume }))
+    .filter(d => d.volume >= MIN_PAX_TO_SHOW)
+    .sort((a, b) => b.volume - a.volume);
+
+  const intlArray = Array.from(destMapIntl.values())
+    .filter(d => d.volume >= MIN_PAX_TO_SHOW)
+    .sort((a, b) => b.volume - a.volume);
+
+  const cabArray = Array.from(destMapCab.values())
+    .filter(d => d.volume >= MIN_PAX_TO_SHOW)
+    .sort((a, b) => b.volume - a.volume);
+
+  return {
+    airlinesCount: airlinesArray.length,
+    topAirlines: airlinesArray.slice(0, 5),
+    topDestinationsIntl: intlArray.slice(0, 5),
+    topDestinationsCab: cabArray.slice(0, 5),
+    hasInternational: intlArray.length > 0
+  };
+}
   
 
   function renderFlights(iata) {
@@ -1187,19 +1240,17 @@ setText("psnDetalleCompacto", `Comerciales ${psnComTxt} - Av. General ${psnGenTx
         const gj = await polygonsResp.json();
         poligonos = gj.features || [];
       }
-              if (pistasResp && pistasResp.ok) {
-  const gj = await pistasResp.json();
-  pistasFeatures = gj.features || [];
-}
-if (pistasResp && pistasResp.ok) {
-  const gj = await pistasResp.json();
-  pistasFeatures = gj.features || [];
-}
 
-if (terminalesResp && terminalesResp.ok) {
-  const gj = await terminalesResp.json();
-  terminalesFeatures = gj.features || [];
-}
+      if (pistasResp && pistasResp.ok) {
+        const gj = await pistasResp.json();
+        pistasFeatures = gj.features || [];
+      }
+
+      if (terminalesResp && terminalesResp.ok) {
+        const gj = await terminalesResp.json();
+        terminalesFeatures = gj.features || [];
+      }
+
       if (transpResp && transpResp.ok) transportePorIATA = parseTransporteCSV(await readTextSmart(transpResp));
       if (paxResp && paxResp.ok) pasajerosMensualRows = parsePasajerosMensualCSV(await readTextSmart(paxResp));
       if (movimientosResp && movimientosResp.ok) movimientosMensualRows = parseMovimientosMensualCSV(await readTextSmart(movimientosResp));
@@ -1214,7 +1265,8 @@ if (terminalesResp && terminalesResp.ok) {
         select.innerHTML = "";
         aeropuertos.forEach(a => {
           const opt = document.createElement("option");
-          const airportName = clean(firstNonEmpty(a, ["Aeropuerto", "Nombre del Aeropuerto", "IATA"]));          opt.value = clean(a.IATA).toUpperCase();
+          const airportName = clean(firstNonEmpty(a, ["Aeropuerto", "Nombre del Aeropuerto", "IATA"]));
+            opt.value = clean(a.IATA).toUpperCase();
           opt.textContent = `${airportName} (${clean(a.IATA).toUpperCase()})`;
           select.appendChild(opt);
         });
