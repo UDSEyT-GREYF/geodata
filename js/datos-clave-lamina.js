@@ -917,120 +917,7 @@ function getRoutesSummary(iata) {
     };
   }
 
-  let rows = rowsAll;
-  const yearRows = rowsAll.filter(r => r.year === YEAR_REF);
-  if (yearRows.length) rows = yearRows;
-
-  const airlineMap = new Map();
-  const destMapIntl = new Map();
-  const destMapCab = new Map();
-
-  rows.forEach(r => {
-    const airline = r.airline || "Sin dato";
-    airlineMap.set(airline, (airlineMap.get(airline) || 0) + r.volume);
-
-    const otherCodeRaw = (r.endpointA === selected) ? r.endpointB : r.endpointA;
-    if (!otherCodeRaw || otherCodeRaw === selected) return;
-
-    const destinationCode = getEquivalentDestinationCode(selected, otherCodeRaw);
-    if (!destinationCode || destinationCode === selected) return;
-
-    const isCabotaje = domesticIATAs.has(otherCodeRaw);
-    const targetMap = isCabotaje ? destMapCab : destMapIntl;
-    const key = destinationCode;
-
-    if (!targetMap.has(key)) {
-      targetMap.set(key, {
-        code: destinationCode,
-        volume: 0
-      });
-    }
-
-    targetMap.get(key).volume += r.volume;
-  });
-
-  const airlinesArray = Array.from(airlineMap.entries())
-    .map(([name, volume]) => ({ name, volume }))
-    .filter(d => d.volume >= MIN_PAX_TO_SHOW)
-    .sort((a, b) => b.volume - a.volume);
-
-  const intlArray = Array.from(destMapIntl.values())
-    .filter(d => d.volume >= MIN_PAX_TO_SHOW)
-    .sort((a, b) => b.volume - a.volume);
-
-  const cabArray = Array.from(destMapCab.values())
-    .filter(d => d.volume >= MIN_PAX_TO_SHOW)
-    .sort((a, b) => b.volume - a.volume);
-
-  return {
-    airlinesCount: airlinesArray.length,
-    topAirlines: airlinesArray.slice(0, 5),
-    topDestinationsIntl: intlArray.slice(0, 5),
-    topDestinationsCab: cabArray.slice(0, 5),
-    hasInternational: intlArray.length > 0
-  };
-}
-
-  let rows = rowsAll;
-  const yearRows = rowsAll.filter(r => r.year === YEAR_REF);
-  if (yearRows.length) rows = yearRows;
-
-  const airlineMap = new Map();
-  const destMapIntl = new Map();
-  const destMapCab = new Map();
-
-  rows.forEach(r => {
-    const airline = r.airline || "Sin dato";
-    airlineMap.set(airline, (airlineMap.get(airline) || 0) + r.volume);
-
-    /* El destino es el extremo opuesto al aeropuerto seleccionado */
-const otherCodeRaw = (r.endpointA === selected) ? r.endpointB : r.endpointA;
-
-/* Si la ruta apunta al mismo aeropuerto seleccionado, no la mostramos */
-if (!otherCodeRaw || otherCodeRaw === selected) return;
-
-/* AEP/EZE se consolidan solo como destino */
-const destinationCode = getEquivalentDestinationCode(selected, otherCodeRaw);
-
-/* Seguridad extra: si después de transformar siguiera coincidiendo, no mostrar */
-if (!destinationCode || destinationCode === selected) return;
-
-/* La clasificación cabotaje/internacional se hace con el código real, antes de consolidar */
-const isCabotaje = domesticIATAs.has(otherCodeRaw);
-
-const targetMap = isCabotaje ? destMapCab : destMapIntl;
-const key = destinationCode;
-
-if (!targetMap.has(key)) {
-  targetMap.set(key, {
-    code: destinationCode,
-    volume: 0
-  });
-}
-
-targetMap.get(key).volume += r.volume;
-
- });
-
-  return {
-    airlinesCount: airlineMap.size,
-
-    topAirlines: Array.from(airlineMap.entries())
-      .map(([name, volume]) => ({ name, volume }))
-      .sort((a, b) => b.volume - a.volume)
-      .slice(0, 5),
-
-    topDestinationsIntl: Array.from(destMapIntl.values())
-      .sort((a, b) => b.volume - a.volume)
-      .slice(0, 5),
-
-    topDestinationsCab: Array.from(destMapCab.values())
-      .sort((a, b) => b.volume - a.volume)
-      .slice(0, 5),
-
-    hasInternational: destMapIntl.size > 0
-  };
-}
+  
 
   function renderFlights(iata) {
     const stats = getFlightsStats(iata);
@@ -1304,7 +1191,11 @@ setText("psnDetalleCompacto", `Comerciales ${psnComTxt} - Av. General ${psnGenTx
   const gj = await pistasResp.json();
   pistasFeatures = gj.features || [];
 }
-      if (terminalesResp && terminalesResp.ok) {
+if (pistasResp && pistasResp.ok) {
+  const gj = await pistasResp.json();
+  pistasFeatures = gj.features || [];
+}
+
 if (terminalesResp && terminalesResp.ok) {
   const gj = await terminalesResp.json();
   terminalesFeatures = gj.features || [];
