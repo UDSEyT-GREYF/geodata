@@ -5,6 +5,7 @@
   let aeropuertos = [];
   let poligonos = [];
   let pasajerosMensualRows = [];
+  let pasajerosMensualRows
   let vuelosRows = [];
   let rutasRows = [];
   let transportePorIATA = {};
@@ -334,6 +335,15 @@ function extractYearFlexible(row) {
     })).filter(r => r.iata && r.date && Number.isFinite(r.valor)).sort((a, b) => a.date - b.date);
   }
 
+function parseMovimientosMensualCSV(text) {
+  return parseCSV(text).map(r => ({
+    iata: clean(firstNonEmpty(r, ["iata"])).toUpperCase(),
+    dataset: clean(firstNonEmpty(r, ["dataset"])),
+    date: parseFechaFlexible(firstNonEmpty(r, ["fecha"])),
+    valor: parseNumber(firstNonEmpty(r, ["valor_movimientos", "valor", "movimientos"]))
+  })).filter(r => r.iata && r.date && Number.isFinite(r.valor)).sort((a, b) => a.date - b.date);
+}
+  
 function parseVuelosCSV(text) {
   return parseCSV(text).map(r => {
     const year = extractYearFlexible(r);
@@ -439,18 +449,40 @@ function parseRutasCSV(text) {
     });
     return Array.from(acc.values()).sort((a, b) => a.date - b.date);
   }
-function annualFlightTotals(iata) {
-  const rowsAll = vuelosRows.filter(r => r.iata === iata);
+
+function buildMovSeries(iataUpper, mode = "total") {
+  const rowsAll = movimientosMensualRows.filter(r => r.iata === iataUpper);
   if (!rowsAll.length) return [];
 
+  if (mode === "cabotaje" || mode === "internacional") {
+    const target = mode === "cabotaje"
+      ? "movimientos_comerciales_cabotaje_aeropuerto"
+      : "movimientos_comerciales_internacional_aeropuerto";
+
+    return rowsAll
+      .filter(r => r.dataset === target)
+      .sort((a, b) => a.date - b.date);
+  }
+
   const acc = new Map();
+
   rowsAll.forEach(r => {
-    acc.set(r.year, (acc.get(r.year) || 0) + (Number(r.valor) || 0));
+    const year = r.date.getFullYear();
+    const month = r.date.getMonth() + 1;
+    const key = `${year}-${String(month).padStart(2, "0")}`;
+
+    if (!acc.has(key)) {
+      acc.set(key, { date: new Date(year, month - 1, 1), valor: 0 });
+    }
+
+    acc.get(key).valor += Number(r.valor) || 0;
   });
 
-  return Array.from(acc.entries())
-    .map(([year, valor]) => ({ year, valor }))
-    .sort((a, b) => a.year - b.year);
+  return Array.from(acc.values()).sort((a, b) => a.date - b.date);
+}
+  
+function annualMovementTotals(iata) {
+  return annualTotals(buildMovSeries(iata, "total"));
 }
   function annualTotals(rows) {
     const acc = new Map();
@@ -774,19 +806,35 @@ ${markers}
   if (note) note.textContent = "Fuente: elaborado por ORSNA con datos de SIAC ANAC.";
 }
 
-  function getFlightsStats(iata) {
-    const rowsAll = vuelosRows.filter(r => r.iata === iata);
-    if (!rowsAll.length) return { total: null, weekly: null, daily: null };
-    let rows = rowsAll;
-    const yearRows = rowsAll.filter(r => r.year === YEAR_REF);
-    if (yearRows.length) rows = yearRows;
-    const total = rows.reduce((acc, r) => acc + (Number(r.valor) || 0), 0);
+function getFlightsStats(iata) {
+  const movSeries = buildMovSeries(iata, "total");
+
+  if (movSeries.length) {
+    const total = sumYear(movSeries, YEAR_REF);
+    const daysInYear = (YEAR_REF % 4 === 0 && (YEAR_REF % 100 !== 0 || YEAR_REF % 400 === 0)) ? 366 : 365;
+    const weeksInYear = daysInYear / 7;
+
     return {
-      total,
-      weekly: total ? Math.round(total / 52) : null,
-      daily: total ? Math.round(total / 365) : null
+      total: total || null,
+      weekly: total ? Math.round(total / weeksInYear) : null,
+      daily: total ? Math.round(total / daysInYear) : null
     };
   }
+
+  const rowsAll = vuelosRows.filter(r => r.iata === iata);
+  if (!rowsAll.length) return { total: null, weekly: null, daily: null };
+
+  let rows = rowsAll;
+  const yearRows = rowsAll.filter(r => r.year === YEAR_REF);
+  if (yearRows.length) rows = yearRows;
+
+  const total = rows.reduce((acc, r) => acc + (Number(r.valor) || 0), 0);
+  return {
+    total,
+    weekly: total ? Math.round(total / 52) : null,
+    daily: total ? Math.round(total / 365) : null
+  };
+}
 
 function getRoutesSummary(iata) {
   const selected = clean(iata).toUpperCase();
@@ -967,7 +1015,7 @@ setText("paxPromDiario", total ? formatNumber(Math.round(total / daysInYear)) : 
 
 renderAnnualChart(
   annualTotals(totalSeries),
-  annualFlightTotals(iata),
+  annualMovementTotals(iata),
   YEAR_REF
 );
 }
@@ -1113,11 +1161,12 @@ setText("psnDetalleCompacto", `Comerciales ${psnComTxt} - Av. General ${psnGenTx
   async function loadData() {
     const select = q("airportSelect");
     try {
-      const [airportsResp, polygonsResp, transpResp, paxResp, vuelosResp, rutasResp, iataWorldResp] = await Promise.all([
+      const [airportsResp, polygonsResp, transpResp, paxResp, movimientosResp, vuelosResp, rutasResp, iataWorldResp] = await Promise.all([
         fetch("fuentes/Datos_aeropuertos.geojson"),
         fetch("fuentes/poligonos_aeropuertos.geojson").catch(() => null),
         fetch("fuentes/Paradasapp.csv").catch(() => null),
         fetch("fuentes/pasajeros_aeropuerto_mensual.csv").catch(() => null),
+        fetch("fuentes/movimientos_aeropuerto_mensual.csv").catch(() => null),
         fetch("fuentes/vuelos.csv").catch(() => null),
         fetch("fuentes/rutasaereas.csv").catch(() => null),
         fetch("fuentes/ListadoIATAmundo.csv").catch(() => null)
@@ -1134,6 +1183,7 @@ setText("psnDetalleCompacto", `Comerciales ${psnComTxt} - Av. General ${psnGenTx
       }
       if (transpResp && transpResp.ok) transportePorIATA = parseTransporteCSV(await readTextSmart(transpResp));
       if (paxResp && paxResp.ok) pasajerosMensualRows = parsePasajerosMensualCSV(await readTextSmart(paxResp));
+      if (movimientosResp && movimientosResp.ok) movimientosMensualRows = parseMovimientosMensualCSV(await readTextSmart(movimientosResp));
       if (vuelosResp && vuelosResp.ok) vuelosRows = parseVuelosCSV(await readTextSmart(vuelosResp));
       if (rutasResp && rutasResp.ok) rutasRows = parseRutasCSV(await readTextSmart(rutasResp));
       if (iataWorldResp && iataWorldResp.ok) {
