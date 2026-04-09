@@ -1500,7 +1500,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-top: 4px;
+  margin-top: 1px;
 }
 
 .airline-logo {
