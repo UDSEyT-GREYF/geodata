@@ -15,7 +15,14 @@
   let predioLayer = null;
   let predioMarker = null;
   let iataWorldIndex = {};
-  
+  const DEST_OVERRIDES = {
+  BUE: { ciudad: "Buenos Aires", pais: "Argentina" },
+  GRU: { ciudad: "São Paulo", pais: "Brasil" },
+  GIG: { ciudad: "Río de Janeiro", pais: "Brasil" },
+  FLN: { ciudad: "Florianópolis", pais: "Brasil" },
+  LIM: { ciudad: "Lima", pais: "Perú" },
+  SCL: { ciudad: "Santiago", pais: "Chile" }
+};
   const YEAR_REF = 2025;
   const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
   const PAX_DATASET_INT = "pasajeros_comerciales_internacional_aeropuerto";
@@ -1081,12 +1088,15 @@ function getDestinationLabel(code, isInternational) {
   const key = clean(code).toUpperCase();
 
   if (DEST_OVERRIDES[key]) {
-    return DEST_OVERRIDES[key];
+    return {
+      ciudad: DEST_OVERRIDES[key].ciudad,
+      pais: isInternational ? DEST_OVERRIDES[key].pais : ""
+    };
   }
 
   const meta = iataWorldIndex[key] || {};
   const ciudad = clean(meta.ciudad) || key;
-  const pais = normalizeCountry(meta.pais);
+  const pais = clean(meta.pais);
 
   return {
     ciudad,
