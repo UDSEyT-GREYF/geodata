@@ -290,6 +290,27 @@
   return Number.isNaN(d.getTime()) ? null : d;
 }
 
+function extractYearFlexible(row) {
+  const directYear = parseNumber(firstNonEmpty(row, [
+    "anio", "ano", "year", "año"
+  ]));
+  if (Number.isFinite(directYear)) return Number(directYear);
+
+  const candidates = [
+    firstNonEmpty(row, ["fecha"]),
+    firstNonEmpty(row, ["anomes", "año_mes", "periodo_id", "mes_ano"])
+  ].filter(Boolean);
+
+  for (const raw of candidates) {
+    const d = parseFechaFlexible(raw);
+    if (d && !Number.isNaN(d.getTime())) return d.getFullYear();
+
+    const m = String(raw).match(/^(\d{4})/);
+    if (m) return Number(m[1]);
+  }
+
+  return NaN;
+}
   function parseTransporteCSV(text) {
     const rows = parseCSV(text);
     const result = {};
@@ -315,8 +336,7 @@
 
 function parseVuelosCSV(text) {
   return parseCSV(text).map(r => {
-    const date = parseFechaFlexible(firstNonEmpty(r, ["fecha", "anomes", "año_mes"]));
-    const yearNum = parseNumber(firstNonEmpty(r, ["anio", "ano", "year", "año"]));
+    const year = extractYearFlexible(r);
 
     return {
       iata: clean(firstNonEmpty(r, [
@@ -326,9 +346,7 @@ function parseVuelosCSV(text) {
         "origen_iata"
       ])).toUpperCase(),
 
-      year: Number.isFinite(yearNum)
-        ? Number(yearNum)
-        : (date ? date.getFullYear() : 2025),
+      year,
 
       valor: parseNumber(firstNonEmpty(r, [
         "vuelos",
@@ -344,7 +362,7 @@ function parseVuelosCSV(text) {
         "totalvuelos"
       ]))
     };
-  }).filter(r => r.iata && Number.isFinite(r.valor));
+  }).filter(r => r.iata && Number.isFinite(r.year) && Number.isFinite(r.valor));
 }
 
 function parseRutasCSV(text) {
