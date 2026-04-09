@@ -16,7 +16,7 @@
   let predioMarker = null;
   let iataWorldIndex = {};
   const DEST_OVERRIDES = {
-  BUE: { ciudad: "Buenos Aires", pais: "Argentina" },
+  BUE: { ciudad: "Buenos Aires AEP+EZE", pais: "Argentina" },
   GRU: { ciudad: "São Paulo", pais: "Brasil" },
   GIG: { ciudad: "Río de Janeiro", pais: "Brasil" },
   FLN: { ciudad: "Florianópolis", pais: "Brasil" },
