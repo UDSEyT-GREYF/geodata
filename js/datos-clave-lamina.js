@@ -19,7 +19,6 @@
   let pistasLayer = null;
   let terminalesLayer = null;
   let predioMarker = null;
-  let predioMarker = null;
   let iataWorldIndex = {};
   const DEST_OVERRIDES = {
   BUE: { ciudad: "Buenos Aires AEP+EZE", pais: "Argentina" },
@@ -502,36 +501,37 @@ function annualMovementTotals(iata) {
     return rows.filter(r => r.date.getFullYear() === year).reduce((acc, r) => acc + (Number(r.valor) || 0), 0);
   }
 
-  function initPredioMap() {
-    const el = q("mapPredio");
-    if (!el || typeof L === "undefined" || mapPredio) return;
+function initPredioMap() {
+  const el = q("mapPredio");
+  if (!el || typeof L === "undefined" || mapPredio) return;
 
-    mapPredio = L.map(el, {
-      zoomControl: false,
-      attributionControl: false,
-      dragging: false,
-      scrollWheelZoom: false,
-      doubleClickZoom: false,
-      boxZoom: false,
-      keyboard: false,
-      tap: false,
-      touchZoom: false
-    }).setView([-34.6, -58.4], 5);
+  mapPredio = L.map(el, {
+    zoomControl: false,
+    attributionControl: false,
+    dragging: false,
+    scrollWheelZoom: false,
+    doubleClickZoom: false,
+    boxZoom: false,
+    keyboard: false,
+    tap: false,
+    touchZoom: false
+  }).setView([-34.6, -58.4], 5);
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 18,
-      crossOrigin: true,
-      opacity: 0.45
-    }).addTo(mapPredio);
-  }
-mapPredio.createPane("panePredio");
-mapPredio.getPane("panePredio").style.zIndex = 410;
+  mapPredio.createPane("panePredio");
+  mapPredio.getPane("panePredio").style.zIndex = 410;
 
-mapPredio.createPane("panePistas");
-mapPredio.getPane("panePistas").style.zIndex = 420;
+  mapPredio.createPane("panePistas");
+  mapPredio.getPane("panePistas").style.zIndex = 420;
 
-mapPredio.createPane("paneTerminales");
-mapPredio.getPane("paneTerminales").style.zIndex = 430;
+  mapPredio.createPane("paneTerminales");
+  mapPredio.getPane("paneTerminales").style.zIndex = 430;
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 18,
+    crossOrigin: true,
+    opacity: 0.45
+  }).addTo(mapPredio);
+}
   
   function getEquivalentDestinationCode(selectedIata, otherCode) {
   const sel = clean(selectedIata).toUpperCase();
@@ -1247,23 +1247,24 @@ setText("psnDetalleCompacto", `Comerciales ${psnComTxt} - Av. General ${psnGenTx
         const gj = await polygonsResp.json();
         poligonos = gj.features || [];
       }
+              if (pistasResp && pistasResp.ok) {
+  const gj = await pistasResp.json();
+  pistasFeatures = gj.features || [];
+}
+      if (terminalesResp && terminalesResp.ok) {
+  const gj = await terminalesResp.json();
+  terminalesResp.json();
+  terminalesFeatures = gj.features || [];
+}
       if (transpResp && transpResp.ok) transportePorIATA = parseTransporteCSV(await readTextSmart(transpResp));
       if (paxResp && paxResp.ok) pasajerosMensualRows = parsePasajerosMensualCSV(await readTextSmart(paxResp));
       if (movimientosResp && movimientosResp.ok) movimientosMensualRows = parseMovimientosMensualCSV(await readTextSmart(movimientosResp));
       if (vuelosResp && vuelosResp.ok) vuelosRows = parseVuelosCSV(await readTextSmart(vuelosResp));
       if (rutasResp && rutasResp.ok) rutasRows = parseRutasCSV(await readTextSmart(rutasResp));
+      
       if (iataWorldResp && iataWorldResp.ok) {
         iataWorldIndex = parseIATAMundoCSV(await readTextSmart(iataWorldResp));
-        if (pistasResp && pistasResp.ok) {
-  const gj = await pistasResp.json();
-  pistasFeatures = gj.features || [];
-}
 
-if (terminalesResp && terminalesResp.ok) {
-  const gj = await terminalesResp.json();
-  terminalesResp.json();
-  terminalesFeatures = gj.features || [];
-}
       }
       if (select) {
         select.innerHTML = "";
