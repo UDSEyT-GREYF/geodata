@@ -541,7 +541,7 @@ function initPredioMap() {                         // Declara una función que i
     opacity: 0.50                                 // Hace la base semitransparente para que no compita tanto con polígonos, pistas y terminales.
   }).addTo(mapPredio);                            // Agrega esa capa base al mapa recién creado.
 }
-}
+
   
   function getEquivalentDestinationCode(selectedIata, otherCode) {
   const sel = clean(selectedIata).toUpperCase();
