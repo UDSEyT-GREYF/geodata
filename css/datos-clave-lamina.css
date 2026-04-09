@@ -1246,7 +1246,7 @@ body {
 
 .airlines-count-pill {
   grid-area: count;
-  justify-self: end;
+  justify-self: start;
   align-self: start;
   margin-top: 0;
 }
@@ -1275,7 +1275,7 @@ body {
 }
 
 .airlines-count-pill {
-  position: center;
+  position: absolute;
   top: 0;
   right: 0;
   margin: 0;
@@ -1470,7 +1470,7 @@ body {
 }
 
 .airlines-count-pill {
-  position: center;
+  position: absolute;
   top: 0;
   right: 0;
   margin: 0;
