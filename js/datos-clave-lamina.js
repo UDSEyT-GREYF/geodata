@@ -734,23 +734,31 @@ function getRoutesSummary(iata) {
     airlineMap.set(airline, (airlineMap.get(airline) || 0) + r.volume);
 
     /* El destino es el extremo opuesto al aeropuerto seleccionado */
-    const otherCodeRaw = (r.endpointA === selected) ? r.endpointB : r.endpointA;
+const otherCodeRaw = (r.endpointA === selected) ? r.endpointB : r.endpointA;
 
-    /* AEP/EZE se consolidan solo como destino */
-    const destinationCode = getEquivalentDestinationCode(selected, otherCodeRaw);
+/* Si la ruta apunta al mismo aeropuerto seleccionado, no la mostramos */
+if (!otherCodeRaw || otherCodeRaw === selected) return;
 
-    /* La clasificación cabotaje/internacional se hace con el código real, antes de consolidar */
-    const isCabotaje = domesticIATAs.has(otherCodeRaw);
+/* AEP/EZE se consolidan solo como destino */
+const destinationCode = getEquivalentDestinationCode(selected, otherCodeRaw);
 
-    const targetMap = isCabotaje ? destMapCab : destMapIntl;
-    const key = destinationCode;
+/* Seguridad extra: si después de transformar siguiera coincidiendo, no mostrar */
+if (!destinationCode || destinationCode === selected) return;
 
-    if (!targetMap.has(key)) {
-      targetMap.set(key, {
-        code: destinationCode,
-        volume: 0
-      });
-    }
+/* La clasificación cabotaje/internacional se hace con el código real, antes de consolidar */
+const isCabotaje = domesticIATAs.has(otherCodeRaw);
+
+const targetMap = isCabotaje ? destMapCab : destMapIntl;
+const key = destinationCode;
+
+if (!targetMap.has(key)) {
+  targetMap.set(key, {
+    code: destinationCode,
+    volume: 0
+  });
+}
+
+targetMap.get(key).volume += r.volume;
 
     targetMap.get(key).volume += r.volume;
   });
