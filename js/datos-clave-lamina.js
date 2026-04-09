@@ -4,6 +4,8 @@
 
   let aeropuertos = [];
   let poligonos = [];
+  let pistasFeatures = [];
+  let terminalesFeatures = [];
   let pasajerosMensualRows = [];
   let movimientosMensualRows = [];
   let vuelosRows = [];
@@ -14,6 +16,9 @@
 
   let mapPredio = null;
   let predioLayer = null;
+  let pistasLayer = null;
+  let terminalesLayer = null;
+  let predioMarker = null;
   let predioMarker = null;
   let iataWorldIndex = {};
   const DEST_OVERRIDES = {
@@ -519,7 +524,15 @@ function annualMovementTotals(iata) {
       opacity: 0.45
     }).addTo(mapPredio);
   }
+mapPredio.createPane("panePredio");
+mapPredio.getPane("panePredio").style.zIndex = 410;
 
+mapPredio.createPane("panePistas");
+mapPredio.getPane("panePistas").style.zIndex = 420;
+
+mapPredio.createPane("paneTerminales");
+mapPredio.getPane("paneTerminales").style.zIndex = 430;
+  
   function getEquivalentDestinationCode(selectedIata, otherCode) {
   const sel = clean(selectedIata).toUpperCase();
   const other = clean(otherCode).toUpperCase();
@@ -557,55 +570,106 @@ function annualMovementTotals(iata) {
     return null;
   }
 
-  function updatePredioMap(a) {
-    if (!mapPredio) return;
-    if (predioLayer) {
-      mapPredio.removeLayer(predioLayer);
-      predioLayer = null;
-    }
-    if (predioMarker) {
-      mapPredio.removeLayer(predioMarker);
-      predioMarker = null;
-    }
+  function featureMatchesIATA(feature, iata) {
+  const p = feature?.properties || {};
+  const code = clean(
+    p.IATA ||
+    p.iata ||
+    p.iata_code ||
+    p.iata_cod ||
+    p.codigo_iata
+  ).toUpperCase();
 
-    const iata = clean(a.IATA).toUpperCase();
-    const feats = poligonos.filter(f => {
-      const p = f.properties || {};
-      const code = clean(p.IATA || p.iata || p.iata_code).toUpperCase();
-      return code === iata;
-    });
+  return code === clean(iata).toUpperCase();
+}
+  
+function updatePredioMap(a) {
+  if (!mapPredio) return;
 
-    if (feats.length) {
-      predioLayer = L.geoJSON(feats, {
-        style: {
-          color: "#8cd100",
-          weight: 2,
-          fillColor: "#b8e26b",
-          fillOpacity: 0.18
-        }
-      }).addTo(mapPredio);
-      const bounds = predioLayer.getBounds();
-      if (bounds.isValid()) {
-        setTimeout(() => {
-          mapPredio.invalidateSize();
-          mapPredio.fitBounds(bounds, { padding: [10, 10] });
-        }, 0);
-      }
-      return;
-    }
-
-    const center = getAirportCenterLatLng(a);
-    if (center) {
-      predioMarker = L.circleMarker(center, {
-        radius: 6,
-        color: "#6aa84f",
-        weight: 2,
-        fillColor: "#8cd100",
-        fillOpacity: 0.8
-      }).addTo(mapPredio);
-      mapPredio.setView(center, 12);
-    }
+  if (predioLayer) {
+    mapPredio.removeLayer(predioLayer);
+    predioLayer = null;
   }
+  if (pistasLayer) {
+    mapPredio.removeLayer(pistasLayer);
+    pistasLayer = null;
+  }
+  if (terminalesLayer) {
+    mapPredio.removeLayer(terminalesLayer);
+    terminalesLayer = null;
+  }
+  if (predioMarker) {
+    mapPredio.removeLayer(predioMarker);
+    predioMarker = null;
+  }
+
+  const iata = clean(a.IATA).toUpperCase();
+
+  const predioFeats = poligonos.filter(f => featureMatchesIATA(f, iata));
+  const pistaFeats = pistasFeatures.filter(f => featureMatchesIATA(f, iata));
+  const terminalFeats = terminalesFeatures.filter(f => featureMatchesIATA(f, iata));
+
+  if (predioFeats.length) {
+    predioLayer = L.geoJSON(predioFeats, {
+      pane: "panePredio",
+      style: {
+        color: "#8cd100",
+        weight: 2,
+        fillColor: "#b8e26b",
+        fillOpacity: 0.18
+      }
+    }).addTo(mapPredio);
+  }
+
+  if (pistaFeats.length) {
+    pistasLayer = L.geoJSON(pistaFeats, {
+      pane: "panePistas",
+      style: {
+        color: "#5f6670",
+        weight: 1.2,
+        fillColor: "#7b848f",
+        fillOpacity: 0.75
+      }
+    }).addTo(mapPredio);
+  }
+
+  if (terminalFeats.length) {
+    terminalesLayer = L.geoJSON(terminalFeats, {
+      pane: "paneTerminales",
+      style: {
+        color: "#2a5fa0",
+        weight: 1.4,
+        fillColor: "#4b86c5",
+        fillOpacity: 0.45
+      }
+    }).addTo(mapPredio);
+  }
+
+  const boundsGroup = L.featureGroup(
+    [predioLayer, pistasLayer, terminalesLayer].filter(Boolean)
+  );
+
+  const bounds = boundsGroup.getBounds();
+  if (bounds.isValid()) {
+    setTimeout(() => {
+      mapPredio.invalidateSize();
+      mapPredio.fitBounds(bounds, { padding: [10, 10] });
+    }, 0);
+    return;
+  }
+
+  const center = getAirportCenterLatLng(a);
+  if (center) {
+    predioMarker = L.circleMarker(center, {
+      radius: 6,
+      color: "#6aa84f",
+      weight: 2,
+      fillColor: "#8cd100",
+      fillOpacity: 0.8
+    }).addTo(mapPredio);
+    mapPredio.setView(center, 12);
+  }
+}
 
   function setText(id, value) {
     const el = q(id);
@@ -1161,9 +1225,11 @@ setText("psnDetalleCompacto", `Comerciales ${psnComTxt} - Av. General ${psnGenTx
   async function loadData() {
     const select = q("airportSelect");
     try {
-      const [airportsResp, polygonsResp, transpResp, paxResp, movimientosResp, vuelosResp, rutasResp, iataWorldResp] = await Promise.all([
+      const [airportsResp, polygonsResp, pistasResp, terminalesResp, transpResp, paxResp, movimientosResp, vuelosResp, rutasResp, iataWorldResp] = await Promise.all([
         fetch("fuentes/Datos_aeropuertos.geojson"),
         fetch("fuentes/poligonos_aeropuertos.geojson").catch(() => null),
+        fetch("fuentes/pistas.geojson").catch(() => null),
+        fetch("fuentes/terminalpax.geojson").catch(() => null),
         fetch("fuentes/Paradasapp.csv").catch(() => null),
         fetch("fuentes/pasajeros_aeropuerto_mensual.csv").catch(() => null),
         fetch("fuentes/movimientos_aeropuerto_mensual.csv").catch(() => null),
@@ -1188,6 +1254,16 @@ setText("psnDetalleCompacto", `Comerciales ${psnComTxt} - Av. General ${psnGenTx
       if (rutasResp && rutasResp.ok) rutasRows = parseRutasCSV(await readTextSmart(rutasResp));
       if (iataWorldResp && iataWorldResp.ok) {
         iataWorldIndex = parseIATAMundoCSV(await readTextSmart(iataWorldResp));
+        if (pistasResp && pistasResp.ok) {
+  const gj = await pistasResp.json();
+  pistasFeatures = gj.features || [];
+}
+
+if (terminalesResp && terminalesResp.ok) {
+  const gj = await terminalesResp.json();
+  terminalesResp.json();
+  terminalesFeatures = gj.features || [];
+}
       }
       if (select) {
         select.innerHTML = "";
