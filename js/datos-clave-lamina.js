@@ -501,36 +501,46 @@ function annualMovementTotals(iata) {
     return rows.filter(r => r.date.getFullYear() === year).reduce((acc, r) => acc + (Number(r.valor) || 0), 0);
   }
 
-function initPredioMap() {
-  const el = q("mapPredio");
-  if (!el || typeof L === "undefined" || mapPredio) return;
+function initPredioMap() {                         // Declara una función que inicializa el mapa Leaflet del predio aeroportuario.
+  const el = q("mapPredio");                      // Busca en el HTML el elemento con id="mapPredio" y lo guarda en la variable el.
+  if (!el || typeof L === "undefined" || mapPredio) return; 
+                                                   // Corta la ejecución si:
+                                                   // 1) no existe ese contenedor en el DOM,
+                                                   // 2) Leaflet no está cargado (L undefined),
+                                                   // 3) el mapa ya fue creado antes (evita inicializarlo dos veces).
 
-  mapPredio = L.map(el, {
-    zoomControl: false,
-    attributionControl: false,
-    dragging: false,
-    scrollWheelZoom: false,
-    doubleClickZoom: false,
-    boxZoom: false,
-    keyboard: false,
-    tap: false,
-    touchZoom: false
-  }).setView([-34.6, -58.4], 5);
+  mapPredio = L.map(el, {                         // Crea una nueva instancia de mapa Leaflet dentro del elemento el y la guarda en mapPredio.
+    zoomControl: false,                           // Oculta los botones + / - de zoom.
+    attributionControl: false,                    // Oculta la atribución típica del mapa (créditos en esquina).
+    dragging: false,                              // Impide arrastrar el mapa con mouse o touch.
+    scrollWheelZoom: false,                       // Impide hacer zoom con la rueda del mouse.
+    doubleClickZoom: false,                       // Impide hacer zoom con doble clic.
+    boxZoom: false,                               // Impide usar zoom por recuadro.
+    keyboard: false,                              // Impide interacción por teclado.
+    tap: false,                                   // Desactiva eventos táctiles tipo "tap" en dispositivos compatibles.
+    touchZoom: false                              // Impide hacer zoom con gesto táctil.
+  }).setView([-34.6, -58.4], 5);                  // Define una vista inicial provisional: centro en esas coordenadas y nivel de zoom 5.
+                                                   // Luego suele ser reemplazada por fitBounds o setView al aeropuerto real.
 
-  mapPredio.createPane("panePredio");
-  mapPredio.getPane("panePredio").style.zIndex = 410;
+  mapPredio.createPane("panePredio");             // Crea un pane (capa visual separada) llamado panePredio.
+  mapPredio.getPane("panePredio").style.zIndex = 410; 
+                                                   // Le asigna orden de apilamiento 410: se dibuja por encima de panes con z-index menor.
 
-  mapPredio.createPane("panePistas");
-  mapPredio.getPane("panePistas").style.zIndex = 420;
+  mapPredio.createPane("panePistas");             // Crea otro pane específico para las pistas.
+  mapPredio.getPane("panePistas").style.zIndex = 420; 
+                                                   // Le da prioridad visual sobre panePredio, porque 420 > 410.
 
-  mapPredio.createPane("paneTerminales");
-  mapPredio.getPane("paneTerminales").style.zIndex = 430;
+  mapPredio.createPane("paneTerminales");         // Crea un tercer pane para las terminales.
+  mapPredio.getPane("paneTerminales").style.zIndex = 430; 
+                                                   // Lo pone por encima de predio y pistas, porque 430 es el mayor de los tres.
 
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 18,
-    crossOrigin: true,
-    opacity: 0.30
-  }).addTo(mapPredio);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { 
+                                                   // Define la capa base raster de OpenStreetMap.
+    maxZoom: 18,                                  // Establece el nivel máximo de zoom permitido para esa capa base.
+    crossOrigin: true,                            // Habilita CORS; sirve sobre todo para exportación/canvas y evitar problemas con recursos externos.
+    opacity: 0.50                                 // Hace la base semitransparente para que no compita tanto con polígonos, pistas y terminales.
+  }).addTo(mapPredio);                            // Agrega esa capa base al mapa recién creado.
+}
 }
   
   function getEquivalentDestinationCode(selectedIata, otherCode) {
@@ -653,7 +663,7 @@ if (terminalFeats.length) {
   if (bounds.isValid()) {
     setTimeout(() => {
       mapPredio.invalidateSize();
-      mapPredio.fitBounds(bounds, { padding: [10, 10] });
+      mapPredio.fitBounds(bounds, { padding: [1, 1] });
     }, 0);
     return;
   }
