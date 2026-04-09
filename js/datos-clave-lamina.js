@@ -31,7 +31,7 @@
   const YEAR_REF = 2025;
   const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
   const PAX_DATASET_INT = "pasajeros_comerciales_internacional_aeropuerto";
-
+  const MIN_PAX_TO_SHOW = 100;
   const q = id => document.getElementById(id);
 
   function clean(v) {
@@ -906,15 +906,26 @@ function getRoutesSummary(iata) {
   const rowsAll = rutasRows.filter(r =>
     r.endpointA === selected || r.endpointB === selected
   );
+const airlinesArray = Array.from(airlineMap.entries())
+  .map(([name, volume]) => ({ name, volume }))
+  .filter(d => d.volume >= MIN_PAX_TO_SHOW)
+  .sort((a, b) => b.volume - a.volume);
 
+const intlArray = Array.from(destMapIntl.values())
+  .filter(d => d.volume >= MIN_PAX_TO_SHOW)
+  .sort((a, b) => b.volume - a.volume);
+
+const cabArray = Array.from(destMapCab.values())
+  .filter(d => d.volume >= MIN_PAX_TO_SHOW)
+  .sort((a, b) => b.volume - a.volume);
   if (!rowsAll.length) {
-    return {
-      airlinesCount: null,
-      topAirlines: [],
-      topDestinationsIntl: [],
-      topDestinationsCab: [],
-      hasInternational: false
-    };
+return {
+  airlinesCount: airlinesArray.length,
+  topAirlines: airlinesArray.slice(0, 5),
+  topDestinationsIntl: intlArray.slice(0, 5),
+  topDestinationsCab: cabArray.slice(0, 5),
+  hasInternational: intlArray.length > 0
+};
   }
 
   let rows = rowsAll;
