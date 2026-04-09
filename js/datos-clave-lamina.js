@@ -421,7 +421,19 @@ function parseRutasCSV(text) {
     });
     return Array.from(acc.values()).sort((a, b) => a.date - b.date);
   }
+function annualFlightTotals(iata) {
+  const rowsAll = vuelosRows.filter(r => r.iata === iata);
+  if (!rowsAll.length) return [];
 
+  const acc = new Map();
+  rowsAll.forEach(r => {
+    acc.set(r.year, (acc.get(r.year) || 0) + (Number(r.valor) || 0));
+  });
+
+  return Array.from(acc.entries())
+    .map(([year, valor]) => ({ year, valor }))
+    .sort((a, b) => a.year - b.year);
+}
   function annualTotals(rows) {
     const acc = new Map();
     rows.forEach(r => {
@@ -625,25 +637,53 @@ function renderRunways(runways) {
 
 
 
-  function renderAnnualChart(series, currentYear) {
-    const svg = q("paxHistoryChart");
-    const note = q("paxHistoryNote");
-    if (!svg) return;
-    if (!series.length) {
-      svg.innerHTML = "";
-      if (note) note.textContent = "No hay datos históricos de pasajeros.";
-      return;
-    }
+function renderAnnualChart(passengerSeries, flightSeries, currentYear) {
+const svg = q("paxHistoryChart");
+const note = q("paxHistoryNote");
+if (!svg) return;
+if (!passengerSeries.length) {
+  svg.innerHTML = "";
+  if (note) note.textContent = "No hay datos históricos de pasajeros.";
+  return;
+}
 
-    const W = 820, H = 260;
-    const padL = 66, padR = 42, padT = 18, padB = 34;
-    const innerW = W - padL - padR;
-    const innerH = H - padT - padB;
-    const maxV = Math.max(...series.map(s => s.valor), 1);
-    const scale = buildNiceScale(maxV, 4);
-    const x = i => padL + (innerW * i / Math.max(1, series.length - 1));
-    const y = v => padT + innerH - (innerH * (v / scale.niceMax));
+const W = 820, H = 260;
+const padL = 66, padR = 56, padT = 18, padB = 34;
+const innerW = W - padL - padR;
+const innerH = H - padT - padB;
 
+const years = passengerSeries.map(s => s.year);
+const paxMap = new Map(passengerSeries.map(d => [d.year, d.valor]));
+const fltMap = new Map((flightSeries || []).map(d => [d.year, d.valor]));
+
+const paxMax = Math.max(...passengerSeries.map(s => s.valor), 1);
+const fltMax = Math.max(...(flightSeries || [{ valor: 1 }]).map(s => s.valor), 1);
+
+const paxScale = buildNiceScale(paxMax, 4);
+const fltScale = buildNiceScale(fltMax, 4);
+
+const x = i => padL + (innerW * i / Math.max(1, years.length - 1));
+const yPax = v => padT + innerH - (innerH * (v / paxScale.niceMax));
+const yFlt = v => padT + innerH - (innerH * (v / fltScale.niceMax));
+
+  let rightAxis = "";
+fltScale.values.forEach(v => {
+  const yy = yFlt(v);
+  rightAxis += `<text x="${W - padR + 8}" y="${yy + 4}" text-anchor="start" font-size="10" fill="#7a838c">${formatNumber(Math.round(v))}</text>`;
+});
+
+const flightPoints = years
+  .filter(y => fltMap.has(y))
+  .map(y => {
+    const i = years.indexOf(y);
+    return `${x(i)},${yFlt(fltMap.get(y))}`;
+  })
+  .join(" ");
+
+let flightLine = "";
+if (flightPoints) {
+  flightLine = `<polyline points="${flightPoints}" fill="none" stroke="#7c8794" stroke-width="2.2"></polyline>`;
+}
     let grid = "";
     scale.values.forEach(v => {
       const yy = y(v);
@@ -683,6 +723,8 @@ function renderRunways(runways) {
       <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT + innerH}" stroke="#d1d8e2" stroke-width="1"></line>
       <polygon points="${area}" fill="#d7e6f8" opacity="0.70"></polygon>
       <polyline points="${points}" fill="none" stroke="#4b86c5" stroke-width="3"></polyline>
+      ${rightAxis}
+      ${flightLine}
       ${markers}
     `;
 
@@ -875,11 +917,18 @@ const renderDestList = (list, isInternational = false) =>
     setText("paxTotal2025", total ? formatNumber(Math.round(total)) : "–");
     setText("paxCab2025", cab ? formatNumber(Math.round(cab)) : "–");
     setText("paxInt2025", intl ? formatNumber(Math.round(intl)) : "–");
-    setText("paxPromSemanal", total ? formatNumber(Math.round(total / 52)) : "–");
-    setText("paxPromDiario", total ? formatNumber(Math.round(total / 365)) : "–");
+const daysInYear = (YEAR_REF % 4 === 0 && (YEAR_REF % 100 !== 0 || YEAR_REF % 400 === 0)) ? 366 : 365;
+const weeksInYear = daysInYear / 7;
 
-    renderAnnualChart(annualTotals(totalSeries), YEAR_REF);
-  }
+setText("paxPromSemanal", total ? formatNumber(Math.round(total / weeksInYear)) : "–");
+setText("paxPromDiario", total ? formatNumber(Math.round(total / daysInYear)) : "–");
+
+renderAnnualChart(
+  annualTotals(totalSeries),
+  annualFlightTotals(iata),
+  YEAR_REF
+);
+}
 
   function renderAirport(iataCode) {
     const iata = clean(iataCode).toUpperCase();
