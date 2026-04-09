@@ -1597,3 +1597,35 @@ body {
   color: #5f6d7d;
   margin-top: 2px;
 }
+.explotacion-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 12px;
+  margin-top: 6px;
+}
+
+.explotacion-meta-col {
+  display: grid;
+  gap: 4px;
+}
+
+.explotacion-meta-row {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 6px;
+  align-items: start;
+}
+
+.explotacion-meta-label {
+  font-size: 0.68rem;
+  line-height: 1.05;
+  color: #7a838c;
+}
+
+.explotacion-meta-value {
+  font-size: 0.74rem;
+  line-height: 1.12;
+  color: var(--blue-dark);
+  font-weight: 600;
+  text-align: right;
+}
