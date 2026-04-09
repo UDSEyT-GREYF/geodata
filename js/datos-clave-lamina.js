@@ -346,13 +346,13 @@ function parseRutasCSV(text) {
     const yearNum = parseNumber(firstNonEmpty(r, ["anio", "ano", "year", "año"]));
 
     const cityPair = clean(firstNonEmpty(r, ["citypair_iata"])).toUpperCase();
-    let originIata = "";
-    let destIata = "";
+    let endpointA = "";
+    let endpointB = "";
 
     if (cityPair.includes("-")) {
       const parts = cityPair.split("-").map(s => s.trim());
-      originIata = parts[0] || "";
-      destIata = parts[1] || "";
+      endpointA = parts[0] || "";
+      endpointB = parts[1] || "";
     }
 
     const volume = parseNumber(firstNonEmpty(r, [
@@ -370,12 +370,9 @@ function parseRutasCSV(text) {
     ]));
 
     return {
-      iata: clean(firstNonEmpty(r, [
-        "iata",
-        "aeropuerto_iata",
-        "airport_iata",
-        "origen_iata"
-      ]) || originIata).toUpperCase(),
+      cityPair,
+      endpointA,
+      endpointB,
 
       airline: clean(firstNonEmpty(r, [
         "aerolinea",
@@ -386,27 +383,17 @@ function parseRutasCSV(text) {
         "compania"
       ])),
 
-      destinationCode: clean(firstNonEmpty(r, [
-        "destino_iata",
-        "iata_destino",
-        "destination_iata",
-        "ruta_destino_iata"
-      ]) || destIata).toUpperCase(),
-
-      destinationName: clean(firstNonEmpty(r, [
-        "destino_nombre",
-        "destino",
-        "destination_name",
-        "aeropuerto_destino"
-      ]) || destIata),
-
       volume,
 
       year: Number.isFinite(yearNum)
         ? Number(yearNum)
         : (date ? date.getFullYear() : 2025)
     };
-  }).filter(r => r.iata && Number.isFinite(r.volume));
+  }).filter(r =>
+    r.endpointA &&
+    r.endpointB &&
+    Number.isFinite(r.volume)
+  );
 }
 
   function buildPaxSeries(iataUpper, mode) {
@@ -464,6 +451,18 @@ function parseRutasCSV(text) {
     }).addTo(mapPredio);
   }
 
+  function getEquivalentDestinationCode(selectedIata, otherCode) {
+  const sel = clean(selectedIata).toUpperCase();
+  const other = clean(otherCode).toUpperCase();
+
+  const selectedIsBA = sel === "AEP" || sel === "EZE";
+  const otherIsBA = other === "AEP" || other === "EZE";
+
+  /* Solo consolida AEP/EZE como destino, nunca como origen */
+  if (!selectedIsBA && otherIsBA) return "BUE";
+
+  return other;
+}
   function getAirportCenterLatLng(a) {
     const iata = clean(a.IATA).toUpperCase();
     if (poligonos.length && iata) {
@@ -697,55 +696,77 @@ function renderRunways(runways) {
     };
   }
 
-  function getRoutesSummary(iata) {
-    const rowsAll = rutasRows.filter(r => r.iata === iata);
-    if (!rowsAll.length) {
-      return {
-        airlinesCount: null,
-        topAirlines: [],
-        topDestinationsIntl: [],
-        topDestinationsCab: [],
-        hasInternational: false
-      };
-    }
+function getRoutesSummary(iata) {
+  const selected = clean(iata).toUpperCase();
 
-    let rows = rowsAll;
-    const yearRows = rowsAll.filter(r => r.year === YEAR_REF);
-    if (yearRows.length) rows = yearRows;
+  /* Busca el aeropuerto seleccionado en cualquiera de los dos extremos del CityPair */
+  const rowsAll = rutasRows.filter(r =>
+    r.endpointA === selected || r.endpointB === selected
+  );
 
-    const airlineMap = new Map();
-    const destMapIntl = new Map();
-    const destMapCab = new Map();
-
-    rows.forEach(r => {
-      const airline = r.airline || "Sin dato";
-      airlineMap.set(airline, (airlineMap.get(airline) || 0) + r.volume);
-
-      const code = r.destinationCode || "—";
-      const name = r.destinationName || code || "Sin dato";
-      const key = `${code}|${name}`;
-      const isCabotaje = domesticIATAs.has(code);
-      const targetMap = isCabotaje ? destMapCab : destMapIntl;
-
-      if (!targetMap.has(key)) targetMap.set(key, { code, name, volume: 0 });
-      targetMap.get(key).volume += r.volume;
-    });
-
+  if (!rowsAll.length) {
     return {
-      airlinesCount: airlineMap.size,
-      topAirlines: Array.from(airlineMap.entries())
-        .map(([name, volume]) => ({ name, volume }))
-        .sort((a, b) => b.volume - a.volume)
-        .slice(0, 5),
-      topDestinationsIntl: Array.from(destMapIntl.values())
-        .sort((a, b) => b.volume - a.volume)
-        .slice(0, 5),
-      topDestinationsCab: Array.from(destMapCab.values())
-        .sort((a, b) => b.volume - a.volume)
-        .slice(0, 5),
-      hasInternational: destMapIntl.size > 0
+      airlinesCount: null,
+      topAirlines: [],
+      topDestinationsIntl: [],
+      topDestinationsCab: [],
+      hasInternational: false
     };
   }
+
+  let rows = rowsAll;
+  const yearRows = rowsAll.filter(r => r.year === YEAR_REF);
+  if (yearRows.length) rows = yearRows;
+
+  const airlineMap = new Map();
+  const destMapIntl = new Map();
+  const destMapCab = new Map();
+
+  rows.forEach(r => {
+    const airline = r.airline || "Sin dato";
+    airlineMap.set(airline, (airlineMap.get(airline) || 0) + r.volume);
+
+    /* El destino es el extremo opuesto al aeropuerto seleccionado */
+    const otherCodeRaw = (r.endpointA === selected) ? r.endpointB : r.endpointA;
+
+    /* AEP/EZE se consolidan solo como destino */
+    const destinationCode = getEquivalentDestinationCode(selected, otherCodeRaw);
+
+    /* La clasificación cabotaje/internacional se hace con el código real, antes de consolidar */
+    const isCabotaje = domesticIATAs.has(otherCodeRaw);
+
+    const targetMap = isCabotaje ? destMapCab : destMapIntl;
+    const key = destinationCode;
+
+    if (!targetMap.has(key)) {
+      targetMap.set(key, {
+        code: destinationCode,
+        volume: 0
+      });
+    }
+
+    targetMap.get(key).volume += r.volume;
+  });
+
+  return {
+    airlinesCount: airlineMap.size,
+
+    topAirlines: Array.from(airlineMap.entries())
+      .map(([name, volume]) => ({ name, volume }))
+      .sort((a, b) => b.volume - a.volume)
+      .slice(0, 5),
+
+    topDestinationsIntl: Array.from(destMapIntl.values())
+      .sort((a, b) => b.volume - a.volume)
+      .slice(0, 5),
+
+    topDestinationsCab: Array.from(destMapCab.values())
+      .sort((a, b) => b.volume - a.volume)
+      .slice(0, 5),
+
+    hasInternational: destMapIntl.size > 0
+  };
+}
 
   function renderFlights(iata) {
     const stats = getFlightsStats(iata);
@@ -1056,12 +1077,16 @@ function parseIATAMundoCSV(text) {
   return result;
 }
 
-  function getDestinationLabel(code, isInternational) {
+function getDestinationLabel(code, isInternational) {
   const key = clean(code).toUpperCase();
-  const meta = iataWorldIndex[key] || {};
 
+  if (DEST_OVERRIDES[key]) {
+    return DEST_OVERRIDES[key];
+  }
+
+  const meta = iataWorldIndex[key] || {};
   const ciudad = clean(meta.ciudad) || key;
-  const pais = clean(meta.pais);
+  const pais = normalizeCountry(meta.pais);
 
   return {
     ciudad,
