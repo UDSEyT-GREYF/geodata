@@ -638,98 +638,103 @@ function renderRunways(runways) {
 
 
 function renderAnnualChart(passengerSeries, flightSeries, currentYear) {
-const svg = q("paxHistoryChart");
-const note = q("paxHistoryNote");
-if (!svg) return;
-if (!passengerSeries.length) {
-  svg.innerHTML = "";
-  if (note) note.textContent = "No hay datos históricos de pasajeros.";
-  return;
-}
+  const svg = q("paxHistoryChart");
+  const note = q("paxHistoryNote");
+  if (!svg) return;
 
-const W = 820, H = 260;
-const padL = 66, padR = 56, padT = 18, padB = 34;
-const innerW = W - padL - padR;
-const innerH = H - padT - padB;
+  if (!passengerSeries.length) {
+    svg.innerHTML = "";
+    if (note) note.textContent = "No hay datos históricos de pasajeros.";
+    return;
+  }
 
-const years = passengerSeries.map(s => s.year);
-const paxMap = new Map(passengerSeries.map(d => [d.year, d.valor]));
-const fltMap = new Map((flightSeries || []).map(d => [d.year, d.valor]));
+  const W = 820, H = 260;
+  const padL = 66, padR = 56, padT = 18, padB = 34;
+  const innerW = W - padL - padR;
+  const innerH = H - padT - padB;
 
-const paxMax = Math.max(...passengerSeries.map(s => s.valor), 1);
-const fltMax = Math.max(...(flightSeries || [{ valor: 1 }]).map(s => s.valor), 1);
+  const years = passengerSeries.map(s => s.year);
+  const fltMap = new Map((flightSeries || []).map(d => [d.year, d.valor]));
 
-const paxScale = buildNiceScale(paxMax, 4);
-const fltScale = buildNiceScale(fltMax, 4);
+  const paxMax = Math.max(...passengerSeries.map(s => s.valor), 1);
+  const fltMax = Math.max(...(flightSeries?.length ? flightSeries : [{ valor: 1 }]).map(s => s.valor), 1);
 
-const x = i => padL + (innerW * i / Math.max(1, years.length - 1));
-const yPax = v => padT + innerH - (innerH * (v / paxScale.niceMax));
-const yFlt = v => padT + innerH - (innerH * (v / fltScale.niceMax));
+  const paxScale = buildNiceScale(paxMax, 4);
+  const fltScale = buildNiceScale(fltMax, 4);
+
+  const x = i => padL + (innerW * i / Math.max(1, years.length - 1));
+  const yPax = v => padT + innerH - (innerH * (v / paxScale.niceMax));
+  const yFlt = v => padT + innerH - (innerH * (v / fltScale.niceMax));
+
+  let grid = "";
+  paxScale.values.forEach(v => {
+    const yy = yPax(v);
+    grid += `<line x1="${padL}" y1="${yy}" x2="${W - padR}" y2="${yy}" stroke="#e4e8ee" stroke-width="1"></line>`;
+    grid += `<text x="${padL - 8}" y="${yy + 4}" text-anchor="end" font-size="10" fill="#6f7985">${formatNumber(Math.round(v))}</text>`;
+  });
 
   let rightAxis = "";
-fltScale.values.forEach(v => {
-  const yy = yFlt(v);
-  rightAxis += `<text x="${W - padR + 8}" y="${yy + 4}" text-anchor="start" font-size="10" fill="#7a838c">${formatNumber(Math.round(v))}</text>`;
-});
+  fltScale.values.forEach(v => {
+    const yy = yFlt(v);
+    rightAxis += `<text x="${W - padR + 8}" y="${yy + 4}" text-anchor="start" font-size="10" fill="#7a838c">${formatNumber(Math.round(v))}</text>`;
+  });
 
-const flightPoints = years
-  .filter(y => fltMap.has(y))
-  .map(y => {
-    const i = years.indexOf(y);
-    return `${x(i)},${yFlt(fltMap.get(y))}`;
-  })
-  .join(" ");
+  let xLabels = "";
+  passengerSeries.forEach((d, i) => {
+    const xx = x(i);
+    xLabels += `<text x="${xx}" y="${H - 12}" text-anchor="middle" font-size="10" fill="#6f7985">${d.year}</text>`;
+    if (i > 0 && i < passengerSeries.length - 1) {
+      xLabels += `<line x1="${xx}" y1="${padT}" x2="${xx}" y2="${padT + innerH}" stroke="#f1f4f7" stroke-width="1"></line>`;
+    }
+  });
 
-let flightLine = "";
-if (flightPoints) {
-  flightLine = `<polyline points="${flightPoints}" fill="none" stroke="#7c8794" stroke-width="2.2"></polyline>`;
-}
-    let grid = "";
-    scale.values.forEach(v => {
-      const yy = y(v);
-      grid += `<line x1="${padL}" y1="${yy}" x2="${W - padR}" y2="${yy}" stroke="#e4e8ee" stroke-width="1"></line>`;
-      grid += `<text x="${padL - 8}" y="${yy + 4}" text-anchor="end" font-size="10" fill="#6f7985">${formatNumber(Math.round(v))}</text>`;
-    });
+  const paxPoints = passengerSeries.map((d, i) => `${x(i)},${yPax(d.valor)}`).join(" ");
+  const paxArea = `${padL},${padT + innerH} ${paxPoints} ${x(passengerSeries.length - 1)},${padT + innerH}`;
 
-    let xLabels = "";
-    series.forEach((d, i) => {
-      const xx = x(i);
-      xLabels += `<text x="${xx}" y="${H - 12}" text-anchor="middle" font-size="10" fill="#6f7985">${d.year}</text>`;
-      if (i > 0 && i < series.length - 1) xLabels += `<line x1="${xx}" y1="${padT}" x2="${xx}" y2="${padT + innerH}" stroke="#f1f4f7" stroke-width="1"></line>`;
-    });
+  const flightPoints = years
+    .filter(y => fltMap.has(y))
+    .map(y => {
+      const i = years.indexOf(y);
+      return `${x(i)},${yFlt(fltMap.get(y))}`;
+    })
+    .join(" ");
 
-    const points = series.map((d, i) => `${x(i)},${y(d.valor)}`).join(" ");
-    const area = `${padL},${padT + innerH} ${points} ${x(series.length - 1)},${padT + innerH}`;
-
-    let markers = "";
-    series.forEach((d, i) => {
-      const xx = x(i);
-      const yy = y(d.valor);
-      const isCurrent = d.year === currentYear;
-      const isLast = i === series.length - 1;
-      markers += `<circle cx="${xx}" cy="${yy}" r="${isCurrent ? 4.3 : 3.2}" fill="${isCurrent ? "#ef8a27" : "#4b86c5"}"></circle>`;
-      if (isCurrent || isLast) {
-        const labelX = isLast ? Math.min(xx - 4, W - padR - 2) : xx;
-        const anchor = isLast ? "end" : "middle";
-        markers += `<text x="${labelX}" y="${yy - 8}" text-anchor="${anchor}" font-size="10" fill="#4f5965">${formatNumber(Math.round(d.valor))}</text>`;
-      }
-    });
-
-    svg.innerHTML = `
-      <rect x="0" y="0" width="${W}" height="${H}" fill="#ffffff"></rect>
-      ${grid}
-      ${xLabels}
-      <line x1="${padL}" y1="${padT + innerH}" x2="${W - padR}" y2="${padT + innerH}" stroke="#d1d8e2" stroke-width="1"></line>
-      <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT + innerH}" stroke="#d1d8e2" stroke-width="1"></line>
-      <polygon points="${area}" fill="#d7e6f8" opacity="0.70"></polygon>
-      <polyline points="${points}" fill="none" stroke="#4b86c5" stroke-width="3"></polyline>
-      ${rightAxis}
-      ${flightLine}
-      ${markers}
-    `;
-
-    if (note) note.textContent = "Fuente: elaborado por ORSNA con datos de SIAC ANAC.";
+  let flightLine = "";
+  if (flightPoints) {
+    flightLine = `<polyline points="${flightPoints}" fill="none" stroke="#7c8794" stroke-width="2.2"></polyline>`;
   }
+
+  let markers = "";
+  passengerSeries.forEach((d, i) => {
+    const xx = x(i);
+    const yy = yPax(d.valor);
+    const isCurrent = d.year === currentYear;
+    const isLast = i === passengerSeries.length - 1;
+
+    markers += `<circle cx="${xx}" cy="${yy}" r="${isCurrent ? 4.3 : 3.2}" fill="${isCurrent ? "#ef8a27" : "#4b86c5"}"></circle>`;
+
+    if (isCurrent || isLast) {
+      const labelX = isLast ? Math.min(xx - 4, W - padR - 2) : xx;
+      const anchor = isLast ? "end" : "middle";
+      markers += `<text x="${labelX}" y="${yy - 8}" text-anchor="${anchor}" font-size="10" fill="#4f5965">${formatNumber(Math.round(d.valor))}</text>`;
+    }
+  });
+
+  svg.innerHTML = `
+    <rect x="0" y="0" width="${W}" height="${H}" fill="#ffffff"></rect>
+    ${grid}
+    ${xLabels}
+    <line x1="${padL}" y1="${padT + innerH}" x2="${W - padR}" y2="${padT + innerH}" stroke="#d1d8e2" stroke-width="1"></line>
+    <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT + innerH}" stroke="#d1d8e2" stroke-width="1"></line>
+    <polygon points="${paxArea}" fill="#d7e6f8" opacity="0.70"></polygon>
+    <polyline points="${paxPoints}" fill="none" stroke="#4b86c5" stroke-width="3"></polyline>
+    ${rightAxis}
+    ${flightLine}
+    ${markers}
+  `;
+
+  if (note) note.textContent = "Fuente: elaborado por ORSNA con datos de SIAC ANAC.";
+}
 
   function getFlightsStats(iata) {
     const rowsAll = vuelosRows.filter(r => r.iata === iata);
@@ -802,8 +807,7 @@ if (!targetMap.has(key)) {
 
 targetMap.get(key).volume += r.volume;
 
-    targetMap.get(key).volume += r.volume;
-  });
+ });
 
   return {
     airlinesCount: airlineMap.size,
