@@ -529,7 +529,7 @@ function initPredioMap() {
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 18,
     crossOrigin: true,
-    opacity: 0.45
+    opacity: 0.30
   }).addTo(mapPredio);
 }
   
@@ -610,39 +610,38 @@ function updatePredioMap(a) {
   const terminalFeats = terminalesFeatures.filter(f => featureMatchesIATA(f, iata));
 
   if (predioFeats.length) {
-    predioLayer = L.geoJSON(predioFeats, {
-      pane: "panePredio",
-      style: {
-        color: "#8cd100",
-        weight: 2,
-        fillColor: "#b8e26b",
-        fillOpacity: 0.18
-      }
-    }).addTo(mapPredio);
+predioLayer = L.geoJSON(predioFeats, {
+  pane: "panePredio",
+  style: {
+    color: "#8cd100",
+    weight: 2.4,
+    fillColor: "#b8e26b",
+    fillOpacity: 0.10
+  }
+}).addTo(mapPredio);
   }
 
-  if (pistaFeats.length) {
-    pistasLayer = L.geoJSON(pistaFeats, {
-      pane: "panePistas",
-      style: {
-        color: "#5f6670",
-        weight: 1.2,
-        fillColor: "#7b848f",
-        fillOpacity: 0.75
-      }
-    }).addTo(mapPredio);
+pistasLayer = L.geoJSON(pistaFeats, {
+  pane: "panePistas",
+  style: {
+    color: "#6a7280",
+    weight: 1,
+    fillColor: "#7b848f",
+    fillOpacity: 0.60
+  }
+}).addTo(mapPredio);
   }
 
   if (terminalFeats.length) {
-    terminalesLayer = L.geoJSON(terminalFeats, {
-      pane: "paneTerminales",
-      style: {
-        color: "#2a5fa0",
-        weight: 1.4,
-        fillColor: "#4b86c5",
-        fillOpacity: 0.45
-      }
-    }).addTo(mapPredio);
+terminalesLayer = L.geoJSON(terminalFeats, {
+  pane: "paneTerminales",
+  style: {
+    color: "#2a5fa0",
+    weight: 1.2,
+    fillColor: "#4b86c5",
+    fillOpacity: 0.30
+  }
+}).addTo(mapPredio);
   }
 
   const boundsGroup = L.featureGroup(
