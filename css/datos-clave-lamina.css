@@ -1629,3 +1629,52 @@ body {
   font-weight: 600;
   text-align: right;
 }
+.movement-box-sub,
+.movement-position-detail,
+.extra-kpi-label,
+.aids-kpi-name {
+  font-size: 0.68rem;
+  line-height: 1.05;
+  color: #7a838c;
+  font-weight: 500;
+}
+
+.movement-position-detail {
+  margin-top: 1px;
+}
+
+.story-block-title,
+.movement-kpi-title {
+  letter-spacing: 0.03em;
+}
+.airline-item {
+  display: grid;
+  grid-template-columns: 118px 1fr;
+  gap: 14px;
+  align-items: center;
+  min-height: 34px;
+}
+
+.airline-logo-wrap {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.airline-logo {
+  max-width: 110px;
+  max-height: 30px;
+  object-fit: contain;
+  display: block;
+}
+
+.airline-volume {
+  min-width: 108px;
+  text-align: right;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  line-height: 1.05;
+  color: #6a7179;
+  font-variant-numeric: tabular-nums;
+}
