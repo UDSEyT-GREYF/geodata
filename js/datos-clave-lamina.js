@@ -1111,18 +1111,33 @@ setText("psnDetalleCompacto", `Comerciales ${psnComTxt} - Av. General ${psnGenTx
         });
       }
 
-      const params = new URLSearchParams(window.location.search);
-      const initial = clean(params.get("airport")).toUpperCase() || clean(aeropuertos[0]?.IATA).toUpperCase();
-      if (select) select.value = initial;
-      renderAirport(initial);
+const params = new URLSearchParams(window.location.search);
+const initial = clean(params.get("airport")).toUpperCase() || clean(aeropuertos[0]?.IATA).toUpperCase();
 
-      select?.addEventListener("change", e => {
-        const value = clean(e.target.value).toUpperCase();
-        renderAirport(value);
-        const url = new URL(window.location.href);
-        url.searchParams.set("airport", value);
-        window.history.replaceState({}, "", url);
-      });
+select?.addEventListener("change", e => {
+  const value = clean(e.target.value).toUpperCase();
+  try {
+    renderAirport(value);
+    const url = new URL(window.location.href);
+    url.searchParams.set("airport", value);
+    window.history.replaceState({}, "", url);
+  } catch (err) {
+    console.error("Error al cambiar de aeropuerto:", err);
+  }
+});
+
+if (select) select.value = initial;
+
+try {
+  renderAirport(initial);
+} catch (err) {
+  console.error("Error al renderizar aeropuerto inicial:", err);
+}
+
+
+
+
+      
     } catch (err) {
       console.error(err);
       if (select) select.innerHTML = "<option>Error al cargar datos</option>";
