@@ -124,9 +124,6 @@ body {
   letter-spacing: inherit;
   white-space: nowrap;
 }
-.sheet-year {
-  display: none;
-}
 
 .triptych-grid {
   display: grid;
@@ -541,30 +538,13 @@ body {
   font-size: 1rem;
   opacity: .98;
 }
-.history-title {
-  font-size: 1rem;
-  color: #616c77;
-  margin: 10px 0 5px;
-}
 
-.history-title-passengers {
-  color: #4b86c5;  /* Color de la línea de pasajeros */
-  font-weight: 600;
-}
 
-.history-title-aircraft {
-  color: #6b8db8;  /* Color de las columnas de aeronaves */
-  font-weight: 600;
-}
+
 .history-chart {
   width: 100%;
   height: 260px;
   display: block;
-}
-.history-note {
-  font-size: 0.76rem;
-  color: #79838e;
-  margin-top: 4px;
 }
 
 .flights-grid {
@@ -1183,105 +1163,8 @@ body {
   color: #777;
   padding-left: 0;
 }
-/* =========================================
-   PRINCIPALES AEROLÍNEAS Y RUTAS 2025
-   Ajuste del título y del contador
-   ========================================= */
 
-.routes-left {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-areas:
-    "title count"
-    "list  list";
-  column-gap: 8px;
-  row-gap: 6px;
-  align-items: start;
-}
 
-.routes-left .routes-subtitle {
-  grid-area: title;
-  margin: 0;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #2a5fa0;
-  text-transform: uppercase;
-  letter-spacing: 1.5em;
-  line-height: 1.1;
-}
-
-.routes-left .airlines-summary {
-  display: contents;
-}
-
-.airlines-count-pill {
-  grid-area: count;
-  justify-self: start;
-  align-self: start;
-  margin-top: 0;
-}
-/* =========================================
-   PRINCIPALES AEROLÍNEAS Y RUTAS 2025
-   Contador independiente del listado
-   ========================================= */
-
-.routes-left {
-  position: relative;
-  display: block;
-}
-
-.routes-left .routes-subtitle {
-  margin: 0 44px 10px 0; /* más aire debajo del título */
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #2a5fa0;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  line-height: 1.1;
-}
-
-.routes-left .airlines-summary {
-  display: block;
-}
-
-.airlines-count-pill {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  width: 34px;
-  height: 34px;
-  font-size: 1.1rem;
-  z-index: 2;
-}
-
-.airlines-list {
-  display: grid;
-  gap: 10px;
-  white-space: normal;
-}
-
-.airline-item {
-  display: grid;
-  grid-template-columns: 110px 1fr; /* más aire para logo */
-  gap: 12px;
-  align-items: center;
-  min-height: 32px;
-}
-
-.airline-logo {
-  max-width: 104px;
-  max-height: 32px;
-  object-fit: contain;
-  display: block;
-}
-
-.airline-volume {
-  font-size: 0.82rem;
-  color: #6a7179;
-  line-height: 1.08;
-    white-space: nowrap;
-}
 .movement-kpi-title {
   margin-bottom: 4px;
 }
@@ -1329,52 +1212,6 @@ body {
 }
 
 /* =========================================
-   PRINCIPALES AEROLÍNEAS | mejor orden
-   ========================================= */
-
-.airlines-list {
-  display: grid;
-  gap: 10px;
-  white-space: normal;
-  width: 100%;
-}
-
-.airline-item {
-  display: grid;
-  grid-template-columns: 96px minmax(0, 1fr);
-  gap: 10px;
-  align-items: center;
-  min-height: 28px;
-}
-
-.airline-logo-wrap {
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.airline-logo {
-  max-width: 104px;
-  max-height: 32px;
-  object-fit: contain;
-  display: block;
-}
-
-.airline-name-fallback {
-  font-size: 0.82rem;
-  color: var(--blue-dark);
-  font-weight: 700;
-  line-height: 1.05;
-}
-
-.airline-volume {
-  font-size: 0.8rem;
-  color: #6a7179;
-  line-height: 1.08;
-  white-space: nowrap;
-}
-/* =========================================
    DESTINOS | ciudad y país en una línea
    ========================================= */
 
@@ -1408,7 +1245,7 @@ body {
   line-height: 1.08;
   margin-top: 1px;
 }/* =========================================
-   AEROLÍNEAS | contador independiente y lista debajo
+   AEROLÍNEAS | contador independiente y lista debajo OK
    ========================================= */
 
 .routes-left {
@@ -1680,10 +1517,7 @@ body {
   word-break: break-word;
   overflow-wrap: anywhere;
 }
-#predioCodigos {
-  white-space: normal;
-  word-break: break-word;
-}
+
 .movement-box-sub,
 .movement-position-detail,
 .extra-kpi-label,
