@@ -12,9 +12,10 @@
   let rutasRows = [];
   let transportePorIATA = {};
   let domesticIATAs = new Set();
-  let currentIATA = "";
+let currentIATA = "";
+let laminaBooted = false;
 
-  let mapPredio = null;
+let mapPredio = null;
   let predioLayer = null;
   let pistasLayer = null;
   let terminalesLayer = null;
@@ -1515,9 +1516,17 @@ function getDestinationLabel(code, isInternational) {
     });
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    initPredioMap();
-    initExport();
-    loadData();
-  });
+function bootLamina() {
+  if (laminaBooted) return;
+  if (!q("sheetA4")) return;
+
+  laminaBooted = true;
+
+  initPredioMap();
+  initExport();
+  loadData();
+}
+
+document.addEventListener("DOMContentLoaded", bootLamina);
+document.addEventListener("report:partials-ready", bootLamina);
 })();
