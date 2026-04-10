@@ -1111,7 +1111,7 @@ function renderPassengerMixDonut(cab, intl) {
   const cabPct = (cabVal / total) * 100;
   const intlPct = (intlVal / total) * 100;
 
-  const r = 22;
+  const r = 24;
   const cx = 40;
   const cy = 40;
   const stroke = 8;
