@@ -1071,7 +1071,98 @@ const renderDestList = (list, isInternational = false) =>
       `;
     }
   }
+function ensurePassengerMixDonutHost() {
+  const pill = document.querySelector(".passengers-hero-pill");
+  if (!pill) return null;
 
+  let host = pill.querySelector(".passenger-split-donut");
+  if (!host) {
+    host = document.createElement("div");
+    host.className = "passenger-split-donut";
+    pill.appendChild(host);
+  }
+  return host;
+}
+
+function formatPct1(n) {
+  return Number(n).toLocaleString("es-AR", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1
+  });
+}
+
+function renderPassengerMixDonut(cab, intl) {
+  const host = ensurePassengerMixDonutHost();
+  if (!host) return;
+
+  const cabVal = Number(cab) || 0;
+  const intlVal = Number(intl) || 0;
+  const total = cabVal + intlVal;
+
+  if (!total) {
+    host.style.display = "none";
+    host.innerHTML = "";
+    host.removeAttribute("title");
+    return;
+  }
+
+  host.style.display = "flex";
+
+  const cabPct = (cabVal / total) * 100;
+  const intlPct = (intlVal / total) * 100;
+
+  const r = 26;
+  const cx = 40;
+  const cy = 40;
+  const stroke = 10;
+  const circ = 2 * Math.PI * r;
+
+  const cabLen = circ * (cabPct / 100);
+  const intlLen = circ * (intlPct / 100);
+
+  const cabPctRound = Math.round(cabPct);
+  const intlPctRound = Math.round(intlPct);
+
+  host.title = `Cabotaje ${formatPct1(cabPct)}% · Internacional ${formatPct1(intlPct)}%`;
+
+  host.innerHTML = `
+    <svg viewBox="0 0 80 80" aria-hidden="true">
+      <circle
+        cx="${cx}" cy="${cy}" r="${r}"
+        fill="none"
+        stroke="rgba(255,255,255,0.18)"
+        stroke-width="${stroke}">
+      </circle>
+
+      <g transform="rotate(-90 ${cx} ${cy})">
+        <circle
+          cx="${cx}" cy="${cy}" r="${r}"
+          fill="none"
+          stroke="#7BE495"
+          stroke-width="${stroke}"
+          stroke-linecap="butt"
+          stroke-dasharray="${cabLen} ${circ - cabLen}"
+          stroke-dashoffset="0">
+        </circle>
+
+        <circle
+          cx="${cx}" cy="${cy}" r="${r}"
+          fill="none"
+          stroke="#FFD166"
+          stroke-width="${stroke}"
+          stroke-linecap="butt"
+          stroke-dasharray="${intlLen} ${circ - intlLen}"
+          stroke-dashoffset="${-cabLen}">
+        </circle>
+      </g>
+    </svg>
+
+    <div class="passenger-split-donut-label">
+      <strong>${cabPctRound}/${intlPctRound}</strong>
+      <span>CAB · INT</span>
+    </div>
+  `;
+}
   function renderPassengers(iata) {
     const totalSeries = buildPaxSeries(iata, "total");
     const cabSeries = buildPaxSeries(iata, "cabotaje");
@@ -1081,9 +1172,11 @@ const renderDestList = (list, isInternational = false) =>
     const cab = sumYear(cabSeries, YEAR_REF);
     const intl = sumYear(intSeries, YEAR_REF);
 
-    setText("paxTotal2025", total ? formatNumber(Math.round(total)) : "–");
-    setText("paxCab2025", cab ? formatNumber(Math.round(cab)) : "–");
-    setText("paxInt2025", intl ? formatNumber(Math.round(intl)) : "–");
+setText("paxTotal2025", total ? formatNumber(Math.round(total)) : "–");
+setText("paxCab2025", cab ? formatNumber(Math.round(cab)) : "–");
+setText("paxInt2025", intl ? formatNumber(Math.round(intl)) : "–");
+
+renderPassengerMixDonut(cab, intl);
 const daysInYear = (YEAR_REF % 4 === 0 && (YEAR_REF % 100 !== 0 || YEAR_REF % 400 === 0)) ? 366 : 365;
 const weeksInYear = daysInYear / 7;
 
