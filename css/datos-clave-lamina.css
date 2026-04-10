@@ -1580,8 +1580,8 @@ body {
   right: 14px;
   top: 50%;
   transform: translateY(-50%);
-  width: 64px;
-  height: 64px;
+  width: 68px;
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1606,7 +1606,7 @@ body {
 }
 
 .passenger-split-donut-label strong {
-  font-size: 0.74rem;
+  font-size: 0.66rem;
   line-height: 1;
   font-weight: 700;
   color: #ffffff;
