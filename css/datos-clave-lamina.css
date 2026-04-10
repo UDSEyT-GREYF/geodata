@@ -142,7 +142,7 @@ body {
 }
 .col-header,
 .section-title {
-  background: #306fb0;
+  background: #6b8db8;
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.03em;
@@ -293,7 +293,7 @@ body {
   line-height: 1.1;
 }
 .runway-size-chip {
-  background: #b5b6b8;
+  background: #6b8db8;
   color: #fff;
   padding: 7px 12px;
   font-size: 0.92rem;
