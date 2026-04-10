@@ -1650,7 +1650,13 @@ body {
   font-weight: 600;
   white-space: nowrap;
 }
+.passengers-breakdown-item:first-child {
+  color: #75AADB;   /* Cabotaje */
+}
 
+.passengers-breakdown-item:last-child {
+  color: #3ED104;   /* Internacional */
+}
 .passenger-side-kpi {
   background: #f4f7fb;
   color: var(--blue-dark);
