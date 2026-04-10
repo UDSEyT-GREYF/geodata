@@ -1559,6 +1559,7 @@ body {
    ========================================= */
 
 .passengers-hero-pill {
+  position: relative;
   background: linear-gradient(135deg, #1d86de 0%, #1567bd 100%);
   color: #fff;
   border-radius: 999px;
@@ -1570,10 +1571,55 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 8px 18px;
+  padding: 8px 106px 8px 18px;
   box-shadow: 0 6px 16px rgba(31, 92, 160, 0.16);
+  overflow: visible;
+}
+.passenger-split-donut {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 74px;
+  height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.passenger-split-donut svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.passenger-split-donut-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.passenger-split-donut-label strong {
+  font-size: 0.82rem;
+  line-height: 1;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.passenger-split-donut-label span {
+  font-size: 0.50rem;
+  line-height: 1.05;
+  font-weight: 700;
+  color: rgba(255,255,255,0.92);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
 .passengers-kpi-kicker {
   font-size: 0.68rem;
   font-weight: 600;
