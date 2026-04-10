@@ -1,0 +1,148 @@
+:root {
+  --cover-main: #234B6B;
+  --cover-dark: #17344A;
+  --cover-soft: #E8EFF4;
+  --cover-accent: #AFC3D3;
+}
+
+.report-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+#coverMount,
+#laminaMount {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.report-cover-page {
+  width: 794px;
+  min-height: 1123px;
+  background: #fff;
+  border: 1px solid #d7dee8;
+  box-shadow: 0 10px 26px rgba(33, 45, 68, 0.12);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.report-cover-topbar {
+  height: 22px;
+  background: var(--cover-main);
+}
+
+.report-cover-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 28px 38px 0;
+}
+
+.report-cover-org {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6c757d;
+  line-height: 1.2;
+  max-width: 62%;
+}
+
+.report-cover-year {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--cover-main);
+  line-height: 1;
+}
+
+.report-cover-body {
+  padding: 78px 52px 40px;
+}
+
+.report-cover-airport {
+  font-size: 2.1rem;
+  line-height: 1.06;
+  font-weight: 700;
+  color: var(--cover-dark);
+  text-transform: uppercase;
+  white-space: pre-line;
+  max-width: 88%;
+}
+
+.report-cover-title {
+  margin-top: 18px;
+  font-size: 1rem;
+  line-height: 1.24;
+  font-weight: 600;
+  color: var(--cover-main);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  max-width: 76%;
+}
+
+.report-cover-mosaic {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 220px 220px;
+  gap: 8px;
+  padding: 0 22px 22px;
+}
+
+.report-cover-mosaic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: var(--cover-soft);
+  border-radius: 2px;
+}
+
+.report-cover-mosaic img.is-hidden {
+  visibility: hidden;
+}
+
+@media (max-width: 1100px) {
+  .report-cover-page {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .report-cover-body {
+    padding: 48px 28px 24px;
+  }
+
+  .report-cover-airport {
+    font-size: 1.65rem;
+    max-width: 100%;
+  }
+
+  .report-cover-title {
+    max-width: 100%;
+  }
+
+  .report-cover-mosaic {
+    grid-template-rows: 170px 170px;
+    padding: 0 16px 16px;
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+
+  .report-stack {
+    gap: 0;
+  }
+
+  .report-cover-page {
+    box-shadow: none;
+    border: none;
+    margin: 0;
+    page-break-after: always;
+  }
+}
