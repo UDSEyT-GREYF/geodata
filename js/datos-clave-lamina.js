@@ -1235,10 +1235,23 @@ setText("airportName", tituloFinal);
     setText("sumTerminal", safeValue(firstNonEmpty(a, ["TerminalM2"])));
     setText("sumSupConcesionada", formatAreaHectares(firstNonEmpty(a, ["SupConcesionadaHa"])));
 
-    setText("predioExplotador", clean(firstNonEmpty(a, ["Explotador"])) || "–");
-    setText("predioAreasConcesionadas", clean(firstNonEmpty(a, ["AreasConcesionadas", "Áreas concesionadas"])) || "–");
-    setText("predioGrupoConcesion", clean(firstNonEmpty(a, ["Grupo", "GrupoConcesion"])) || "–");
-    setText("predioConcesionHasta", clean(firstNonEmpty(a, ["ConcesionHasta", "Concesionado hasta"])) || "–");
+setText("predioExplotador", clean(firstNonEmpty(a, ["Explotador"])) || "–");
+
+setText(
+  "predioSupAreasConcesionadas",
+  formatAreaHectares(firstNonEmpty(a, ["SupConcesionadaHa", "Superficie concesionada"]))
+);
+
+setText(
+  "predioAreasConcesionadas",
+  clean(firstNonEmpty(a, ["AreasConcesionadas", "Áreas concesionadas"])) || "–"
+);
+
+const concesionHastaRaw = clean(firstNonEmpty(a, ["ConcesionHasta", "Concesionado hasta"]));
+const concesionHastaYear = (concesionHastaRaw.match(/\b(19|20)\d{2}\b/) || [])[0] || concesionHastaRaw || "–";
+setText("predioConcesionHasta", concesionHastaYear);
+
+setText("predioGrupoConcesion", clean(firstNonEmpty(a, ["Grupo", "GrupoConcesion"])) || "–");
 
     const codigos = [];
     const oaci = clean(firstNonEmpty(a, ["OACI"]));
