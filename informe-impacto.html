@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Informe de impacto por aeropuerto – ORSNA</title>
 
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
   <link rel="stylesheet" href="css/datos-clave-lamina.css?v=triptico8">
-  <link rel="stylesheet" href="css/portada-informe.css?v=triptico8">
   <link rel="stylesheet" href="css/informe-impacto.css?v=triptico8">
 </head>
 <body>
@@ -21,8 +21,9 @@
       <select id="airportSelect" class="toolbar-select">
         <option value="">Cargando aeropuertos...</option>
       </select>
-      <button id="btnExportPng" class="toolbar-btn" type="button">Exportar PNG</button>
-      <button id="btnPrint" class="toolbar-btn" type="button">Imprimir</button>
+
+      <button id="btnExportReportPng" class="toolbar-btn" type="button">Exportar PNG</button>
+      <button id="btnPrintReport" class="toolbar-btn" type="button">Imprimir</button>
     </div>
   </div>
 
