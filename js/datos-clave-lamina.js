@@ -1138,7 +1138,7 @@ function renderPassengerMixDonut(cab, intl) {
         <circle
           cx="${cx}" cy="${cy}" r="${r}"
           fill="none"
-          stroke="#6FD08C"
+          stroke="#75AADB"
           stroke-width="${stroke}"
           stroke-linecap="butt"
           stroke-dasharray="${cabLen} ${circ - cabLen}"
@@ -1148,7 +1148,7 @@ function renderPassengerMixDonut(cab, intl) {
         <circle
           cx="${cx}" cy="${cy}" r="${r}"
           fill="none"
-          stroke="#F2C14E"
+          stroke="#3ED104"
           stroke-width="${stroke}"
           stroke-linecap="butt"
           stroke-dasharray="${intlLen} ${circ - intlLen}"
