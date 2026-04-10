@@ -8,6 +8,15 @@
   --muted: #555;
   --purple: #6b2f82;
   --bg: #f5f5f5;
+  
+  --chart-passengers: #2A6FB0;
+  --chart-passengers-dark: #1E5A94;
+  --chart-aircraft: #C6923A;
+  --chart-aircraft-fill: rgba(198, 146, 58, 0.34);
+  --chart-grid: #E4EAF1;
+  --chart-axis: #C9D3DF;
+  --chart-label: #6F7D8C;
+  --chart-note: #7A838C;
 }
 
 * { box-sizing: border-box; }
@@ -757,15 +766,16 @@ body {
 .history-title {
   font-size: 0.9rem;
   margin: 8px 0 4px;
+  color: var(--chart-label);
 }
 
 .history-title-passengers {
-  color: #4b86c5;
+  color: var(--chart-passengers);
   font-weight: 600;
 }
 
 .history-title-aircraft {
-  color: #6b8db8;
+  color: var(--chart-aircraft);
   font-weight: 600;
 }
 
@@ -776,6 +786,7 @@ body {
 .history-note {
   font-size: 0.70rem;
   margin-top: 2px;
+  color: var(--chart-note);
 }
 
 .section-flights {
