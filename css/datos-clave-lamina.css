@@ -115,13 +115,14 @@ body {
   line-height: 1.02;
 }
 .sheet-title-year-inline {
-  display: inline-block;
+  display: inline;
   margin-left: 8px;
-  font-size: 1.02rem;
-  font-weight: 700;
-  color: var(--blue);
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
   white-space: nowrap;
-  vertical-align: baseline;
 }
 .sheet-year {
   display: none;
