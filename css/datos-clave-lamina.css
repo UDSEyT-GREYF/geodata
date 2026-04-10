@@ -547,6 +547,16 @@ body {
   color: #616c77;
   margin: 10px 0 5px;
 }
+
+.history-title-passengers {
+  color: #4b86c5;  /* Color de la línea de pasajeros */
+  font-weight: 600;
+}
+
+.history-title-aircraft {
+  color: #8b96a3;  /* Color de las columnas de aeronaves */
+  font-weight: 600;
+}
 .history-chart {
   width: 100%;
   height: 260px;
@@ -747,6 +757,16 @@ body {
 .history-title {
   font-size: 0.9rem;
   margin: 8px 0 4px;
+}
+
+.history-title-passengers {
+  color: #4b86c5;
+  font-weight: 600;
+}
+
+.history-title-aircraft {
+  color: #8b96a3;
+  font-weight: 600;
 }
 
 .history-chart {
