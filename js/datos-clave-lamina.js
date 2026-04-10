@@ -1111,10 +1111,10 @@ function renderPassengerMixDonut(cab, intl) {
   const cabPct = (cabVal / total) * 100;
   const intlPct = (intlVal / total) * 100;
 
-  const r = 26;
+  const r = 22;
   const cx = 40;
   const cy = 40;
-  const stroke = 10;
+  const stroke = 8;
   const circ = 2 * Math.PI * r;
 
   const cabLen = circ * (cabPct / 100);
@@ -1130,7 +1130,7 @@ function renderPassengerMixDonut(cab, intl) {
       <circle
         cx="${cx}" cy="${cy}" r="${r}"
         fill="none"
-        stroke="rgba(255,255,255,0.18)"
+        stroke="rgba(255,255,255,0.12)"
         stroke-width="${stroke}">
       </circle>
 
@@ -1138,7 +1138,7 @@ function renderPassengerMixDonut(cab, intl) {
         <circle
           cx="${cx}" cy="${cy}" r="${r}"
           fill="none"
-          stroke="#7BE495"
+          stroke="#6FD08C"
           stroke-width="${stroke}"
           stroke-linecap="butt"
           stroke-dasharray="${cabLen} ${circ - cabLen}"
@@ -1148,7 +1148,7 @@ function renderPassengerMixDonut(cab, intl) {
         <circle
           cx="${cx}" cy="${cy}" r="${r}"
           fill="none"
-          stroke="#FFD166"
+          stroke="#F2C14E"
           stroke-width="${stroke}"
           stroke-linecap="butt"
           stroke-dasharray="${intlLen} ${circ - intlLen}"
