@@ -1598,15 +1598,34 @@ body {
   margin-top: 2px;
 }
 .explotacion-meta-grid {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px 12px;
+  column-gap: 12px;
+  row-gap: 0;
   margin-top: 6px;
+  padding-top: 6px;
 }
-
+.explotacion-meta-grid::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px dashed rgba(48, 111, 176, 0.18);
+}
+.explotacion-meta-grid::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-6px);
+  border-left: 1px dashed rgba(48, 111, 176, 0.14);
+}
 .explotacion-meta-col {
   display: grid;
-  gap: 4px;
+  gap: 0;
 }
 
 .explotacion-meta-row {
@@ -1614,8 +1633,11 @@ body {
   grid-template-columns: 96px minmax(0, 1fr);
   gap: 6px;
   align-items: start;
+  padding: 3px 0;
 }
-
+.explotacion-meta-row + .explotacion-meta-row {
+  border-top: 1px dashed rgba(48, 111, 176, 0.14);
+}
 .explotacion-meta-label {
   font-size: 0.68rem;
   line-height: 1.05;
@@ -1628,6 +1650,11 @@ body {
   color: var(--blue-dark);
   font-weight: 600;
   text-align: right;
+  white-space: nowrap;
+}
+#predioCodigos {
+  white-space: normal;
+  word-break: break-word;
 }
 .movement-box-sub,
 .movement-position-detail,
