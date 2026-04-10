@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informe de impacto por aeropuerto – ORSNA</title>
+
+  <link rel="stylesheet" href="css/datos-clave-lamina.css?v=triptico8">
+  <link rel="stylesheet" href="css/portada-informe.css?v=triptico8">
+  <link rel="stylesheet" href="css/informe-impacto.css?v=triptico8">
+</head>
+<body>
+  <div class="lamina-toolbar no-print">
+    <div class="toolbar-left">
+      <div class="toolbar-title">Informe de impacto por aeropuerto</div>
+      <div class="toolbar-subtitle">Portada + lámina de datos clave</div>
+    </div>
+
+    <div class="toolbar-actions">
+      <label class="toolbar-label" for="airportSelect">Aeropuerto</label>
+      <select id="airportSelect" class="toolbar-select">
+        <option value="">Cargando aeropuertos...</option>
+      </select>
+      <button id="btnExportPng" class="toolbar-btn" type="button">Exportar PNG</button>
+      <button id="btnPrint" class="toolbar-btn" type="button">Imprimir</button>
+    </div>
+  </div>
+
+  <main class="sheet-wrap">
+    <div id="reportStack" class="report-stack">
+      <div id="coverMount"></div>
+      <div id="laminaMount"></div>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+  <script src="js/informe-impacto.js?v=triptico8"></script>
+  <script src="js/portada-informe.js?v=triptico8"></script>
+  <script src="js/datos-clave-lamina.js?v=triptico8"></script>
+</body>
+</html>
