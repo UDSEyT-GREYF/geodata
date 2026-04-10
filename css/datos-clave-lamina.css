@@ -1741,8 +1741,8 @@ body {
 }
 #predioExplotador,
 #predioCodigos,
-#predioAreasConcesionadas,
-#predioGrupoConcesion {
+#predioGrupoConcesion,
+#predioAreasConcesionadas {
   white-space: normal;
   word-break: break-word;
   overflow-wrap: anywhere;
@@ -1760,7 +1760,36 @@ body {
   color: #7a838c;
   font-weight: 500;
 }
+.explotacion-meta-row-stack {
+  align-items: start;
+}
 
+.explotacion-meta-value-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+#predioSupAreasConcesionadas {
+  font-size: 0.74rem;
+  line-height: 1.08;
+  color: var(--blue-dark);
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.explotacion-meta-detail {
+  font-size: 0.66rem;
+  line-height: 1.12;
+  color: #6a7179;
+  text-align: right;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+}
 .movement-position-detail {
   margin-top: 1px;
 }
