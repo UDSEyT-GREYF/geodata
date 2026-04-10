@@ -1571,17 +1571,17 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 8px 106px 8px 18px;
+  padding: 8px 92px 8px 18px;
   box-shadow: 0 6px 16px rgba(31, 92, 160, 0.16);
   overflow: visible;
 }
 .passenger-split-donut {
   position: absolute;
-  right: 12px;
+  right: 14px;
   top: 50%;
   transform: translateY(-50%);
-  width: 74px;
-  height: 74px;
+  width: 64px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1606,7 +1606,7 @@ body {
 }
 
 .passenger-split-donut-label strong {
-  font-size: 0.82rem;
+  font-size: 0.74rem;
   line-height: 1;
   font-weight: 700;
   color: #ffffff;
@@ -1614,6 +1614,7 @@ body {
 
 .passenger-split-donut-label span {
   font-size: 0.50rem;
+  display: none;
   line-height: 1.05;
   font-weight: 700;
   color: rgba(255,255,255,0.92);
