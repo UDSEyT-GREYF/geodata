@@ -33,7 +33,20 @@
   const PAX_DATASET_INT = "pasajeros_comerciales_internacional_aeropuerto";
   const MIN_PAX_TO_SHOW = 100;
   const q = id => document.getElementById(id);
+const CHART_COLORS = {
+  passengersLine: "#2A6FB0",
+  passengersLineDark: "#1E5A94",
+  passengersArea: "#DCE9F7",
 
+  aircraftBar: "#C6923A",
+  aircraftBarFill: "rgba(198, 146, 58, 0.34)",
+
+  grid: "#E4EAF1",
+  axis: "#C9D3DF",
+  label: "#6F7D8C",
+  note: "#7A838C",
+  value: "#5C6670"
+};
   function clean(v) {
     return v === null || v === undefined ? "" : String(v).trim();
   }
@@ -793,31 +806,30 @@ function renderAnnualChart(passengerSeries, flightSeries, currentYear) {
   let grid = "";
   paxScale.values.forEach(v => {
     const yy = yPax(v);
-    grid += `<line x1="${padL}" y1="${yy}" x2="${W - padR}" y2="${yy}" stroke="#e4e8ee" stroke-width="1"></line>`;
-    grid += `<text x="${padL - 8}" y="${yy + 4}" text-anchor="end" font-size="10" fill="#6f7985">${formatNumber(Math.round(v))}</text>`;
+    grid += `<line x1="${padL}" y1="${yy}" x2="${W - padR}" y2="${yy}" stroke="${CHART_COLORS.grid}" stroke-width="1"></line>`;
+    grid += `<text x="${padL - 8}" y="${yy + 4}" text-anchor="end" font-size="10" fill="${CHART_COLORS.label}">${formatNumber(Math.round(v))}</text>`;
   });
 
   let rightAxis = "";
   fltScale.values.forEach(v => {
     const yy = yFlt(v);
-    rightAxis += `<text x="${W - padR + 8}" y="${yy + 4}" text-anchor="start" font-size="10" fill="#7a838c">${formatNumber(Math.round(v))}</text>`;
-  });
+    rightAxis += `<text x="${W - padR + 8}" y="${yy + 4}" text-anchor="start" font-size="10" fill="${CHART_COLORS.label}">${formatNumber(Math.round(v))}</text>`;  });
 const leftAxisLabel = `
   <text x="10" y="${padT + innerH / 2}" transform="rotate(-90 10 ${padT + innerH / 2})"
-        text-anchor="middle" font-size="10" fill="#6f7985">Pasajeros</text>
+        text-anchor="middle" font-size="10" fill="#7a838c">Pasajeros</text>
 `;
 
 const rightAxisLabel = `
   <text x="${W - 12}" y="${padT + innerH / 2}" transform="rotate(90 ${W - 12} ${padT + innerH / 2})"
-        text-anchor="middle" font-size="10" fill="#7a838c">Movimientos</text>
+        text-anchor="middle" font-size="10" fill="${CHART_COLORS.label}">Movimientos</text>
 `;
   let xLabels = "";
   passengerSeries.forEach((d, i) => {
     const xx = x(i);
-    xLabels += `<text x="${xx}" y="${H - 12}" text-anchor="middle" font-size="10" fill="#6f7985">${d.year}</text>`;
-    if (i > 0 && i < passengerSeries.length - 1) {
-      xLabels += `<line x1="${xx}" y1="${padT}" x2="${xx}" y2="${padT + innerH}" stroke="#f1f4f7" stroke-width="1"></line>`;
-    }
+xLabels += `<text x="${xx}" y="${H - 12}" text-anchor="middle" font-size="10" fill="${CHART_COLORS.label}">${d.year}</text>`;
+if (i > 0 && i < passengerSeries.length - 1) {
+  xLabels += `<line x1="${xx}" y1="${padT}" x2="${xx}" y2="${padT + innerH}" stroke="${CHART_COLORS.grid}" stroke-width="1"></line>`;
+}
   });
 
   const paxPoints = passengerSeries.map((d, i) => `${x(i)},${yPax(d.valor)}`).join(" ");
@@ -842,8 +854,7 @@ let flightBars = "";
 if (flightBarsData.length) {
   flightBars = flightBarsData.map(p => {
     const barHeight = (padT + innerH) - p.y;
-    return `<rect x="${p.x - flightBarWidth / 2}" y="${p.y}" width="${flightBarWidth}" height="${barHeight}" rx="1.5" fill="#8b96a3" opacity="0.55"></rect>`;
-  }).join("");
+    return `<rect x="${p.x - flightBarWidth / 2}" y="${p.y}" width="${flightBarWidth}" height="${barHeight}" rx="1.5" fill="${CHART_COLORS.aircraftBarFill}" stroke="${CHART_COLORS.aircraftBar}" stroke-width="1"></rect>`;  }).join("");
 }
 
   let markers = "";
@@ -853,12 +864,11 @@ if (flightBarsData.length) {
     const isCurrent = d.year === currentYear;
     const isLast = i === passengerSeries.length - 1;
 
-    markers += `<circle cx="${xx}" cy="${yy}" r="${isCurrent ? 4.3 : 3.2}" fill="${isCurrent ? "#ef8a27" : "#4b86c5"}"></circle>`;
-
+    markers += `<circle cx="${xx}" cy="${yy}" r="${isCurrent ? 4.3 : 3.2}" fill="${isCurrent ? CHART_COLORS.passengersLineDark : CHART_COLORS.passengersLine}"></circle>`;
     if (isCurrent || isLast) {
       const labelX = isLast ? Math.min(xx - 4, W - padR - 2) : xx;
       const anchor = isLast ? "end" : "middle";
-      markers += `<text x="${labelX}" y="${yy - 8}" text-anchor="${anchor}" font-size="10" fill="#4f5965">${formatNumber(Math.round(d.valor))}</text>`;
+      markers += `<text x="${labelX}" y="${yy - 8}" text-anchor="${anchor}" font-size="10" fill="${CHART_COLORS.value}">${formatNumber(Math.round(d.valor))}</text>`;
     }
   });
 
@@ -866,14 +876,14 @@ if (flightBarsData.length) {
     <rect x="0" y="0" width="${W}" height="${H}" fill="#ffffff"></rect>
     ${grid}
     ${xLabels}
-    <line x1="${padL}" y1="${padT + innerH}" x2="${W - padR}" y2="${padT + innerH}" stroke="#d1d8e2" stroke-width="1"></line>
-    <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT + innerH}" stroke="#d1d8e2" stroke-width="1"></line>
+    <line x1="${padL}" y1="${padT + innerH}" x2="${W - padR}" y2="${padT + innerH}" stroke="${CHART_COLORS.axis}" stroke-width="1"></line>
+    <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT + innerH}" stroke="${CHART_COLORS.axis}" stroke-width="1"></line>
 ${leftAxisLabel}
 ${rightAxisLabel}
 ${rightAxis}
 ${flightBars}
-<polygon points="${paxArea}" fill="#d7e6f8" opacity="0.70"></polygon>
-<polyline points="${paxPoints}" fill="none" stroke="#4b86c5" stroke-width="3"></polyline>
+<polygon points="${paxArea}" fill="${CHART_COLORS.passengersArea}" opacity="0.72"></polygon>
+<polyline points="${paxPoints}" fill="none" stroke="${CHART_COLORS.passengersLine}" stroke-width="3"></polyline>
 ${markers}
   `;
 
