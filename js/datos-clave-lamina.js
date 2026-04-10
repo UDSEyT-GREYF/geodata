@@ -1253,22 +1253,42 @@ setText("predioConcesionHasta", concesionHastaYear);
 
 setText("predioGrupoConcesion", clean(firstNonEmpty(a, ["Grupo", "GrupoConcesion"])) || "–");
 
-    const codigos = [];
-    const oaci = clean(firstNonEmpty(a, ["OACI"]));
-    const anac = clean(firstNonEmpty(a, ["ANAC"]));
-    if (oaci) codigos.push(`OACI: ${oaci}`);
-    if (anac) codigos.push(`ANAC: ${anac}`);
-    if (iata) codigos.push(`IATA: ${iata}`);
-    setText("predioCodigos", codigos.length ? codigos.join(" · ") : "–");
-    setText("predioHabilitacion", clean(firstNonEmpty(a, ["Habilitación", "Habilitacion"])) || "–");
+const codigosEl = q("predioCodigos");
+const oaci = clean(firstNonEmpty(a, ["OACI"]));
+const anac = clean(firstNonEmpty(a, ["ANAC"]));
 
-    loadImageWithFallback(q("imgTerminal"), [
-      clean(firstNonEmpty(a, ["imagenAeropuerto"])),
-      `img/Terminales/${iata}_terminal.png`,
-      `img/Terminales/${iata}.png`,
-      `img/Terminales/${iata}.jpg`,
-      `img/Terminales/${iata}.jpeg`
-    ]);
+if (codigosEl) {
+  if (oaci || anac || iata) {
+    codigosEl.innerHTML = `
+      <div class="predio-codes">
+        <div class="predio-code-row">
+          <span class="predio-code-label">OACI</span>
+          <span class="predio-code-value">${escapeHtml(oaci || "–")}</span>
+        </div>
+        <div class="predio-code-row">
+          <span class="predio-code-label">ANAC</span>
+          <span class="predio-code-value">${escapeHtml(anac || "–")}</span>
+        </div>
+        <div class="predio-code-row">
+          <span class="predio-code-label">IATA</span>
+          <span class="predio-code-value">${escapeHtml(iata || "–")}</span>
+        </div>
+      </div>
+    `;
+  } else {
+    codigosEl.textContent = "–";
+  }
+}
+
+setText("predioHabilitacion", clean(firstNonEmpty(a, ["Habilitación", "Habilitacion"])) || "–");
+
+loadImageWithFallback(q("imgTerminal"), [
+  clean(firstNonEmpty(a, ["imagenAeropuerto"])),
+  `img/Terminales/${iata}_terminal.png`,
+  `img/Terminales/${iata}.png`,
+  `img/Terminales/${iata}.jpg`,
+  `img/Terminales/${iata}.jpeg`
+]);
 
     const orientRaw = clean(firstNonEmpty(a, ["PistaOrientacion"]));
     const dimsRaw = clean(firstNonEmpty(a, ["Dimensiones"]));
