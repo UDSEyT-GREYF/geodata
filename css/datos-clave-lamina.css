@@ -1661,7 +1661,7 @@ body {
 
 .explotacion-meta-row {
   display: grid;
-  grid-template-columns: 92px minmax(0, 1fr);
+  grid-template-columns: 98px minmax(0, 1fr);
   gap: 6px;
   align-items: start;
   padding: 3px 0;
@@ -1677,16 +1677,22 @@ body {
 
 .explotacion-meta-value {
   font-size: 0.74rem;
-  line-height: 1.12;
+  line-height: 1.16;
   color: var(--blue-dark);
   font-weight: 600;
   text-align: right;
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  min-width: 0;
 }
 #predioExplotador,
-#predioCodigos {
+#predioCodigos,
+#predioAreasConcesionadas,
+#predioGrupoConcesion {
   white-space: normal;
   word-break: break-word;
+  overflow-wrap: anywhere;
 }
 #predioCodigos {
   white-space: normal;
