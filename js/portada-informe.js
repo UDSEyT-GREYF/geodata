@@ -97,18 +97,30 @@
     tryNext();
   }
 
-  function formatCoverAirportName(a, iata) {
-    const official = clean(firstNonEmpty(a, [
-      "Nombre del Aeropuerto",
-      "Aeropuerto",
-      "Denominacion"
-    ]));
+function formatCoverAirportName(a, iata) {
+  const ciudad = clean(firstNonEmpty(a, [
+    "Ciudad",
+    "Localidad",
+    "Municipio",
+    "Ciudad / Localidad"
+  ]));
 
-    if (iata === "AEP") return "AEROPARQUE JORGE NEWBERY";
-    if (official) return official.toUpperCase();
+  const official = clean(firstNonEmpty(a, [
+    "Nombre del Aeropuerto",
+    "Aeropuerto",
+    "Denominacion"
+  ]));
 
-    return `AEROPUERTO ${iata}`;
+  if (iata === "AEP") return "AEROPARQUE\nJORGE NEWBERY";
+
+  if (official && ciudad && official.toLowerCase() !== ciudad.toLowerCase()) {
+    return official.toUpperCase();
   }
+
+  if (official) return official.toUpperCase();
+
+  return `AEROPUERTO ${iata}`;
+}
 
   function renderCover(iata) {
     const code = clean(iata).toUpperCase();
@@ -117,9 +129,10 @@
     const airport = coverIndex.get(code);
     if (!airport) return false;
 
-    setText("coverYear", String(YEAR_REF));
-    setText("coverAirportName", formatCoverAirportName(airport, code));
-    setText("coverReportTitle", "INFORME DE IMPACTO SOCIOECONÓMICO Y TERRITORIAL");
+setText("coverYear", String(YEAR_REF));
+setText("coverAirportName", formatCoverAirportName(airport, code));
+setText("coverAirportIATA", code);
+setText("coverReportTitle", "SOCIOECONÓMICO Y TERRITORIAL");
 
     loadImageWithFallback(q("coverImg1"), [`img/Portadas/portada1(${code}).png`]);
     loadImageWithFallback(q("coverImg2"), [`img/Portadas/portada2(${code}).png`]);
