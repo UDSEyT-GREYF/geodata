@@ -1651,11 +1651,11 @@ body {
   white-space: nowrap;
 }
 .passengers-breakdown-item:first-child {
-  color: #75AADB;   /* Cabotaje */
+  color: #c7e4ff;   /* Cabotaje */
 }
 
 .passengers-breakdown-item:last-child {
-  color: #3ED104;   /* Internacional */
+  color: #d5f76d;   /* Internacional */
 }
 .passenger-side-kpi {
   background: #f4f7fb;
