@@ -1228,8 +1228,7 @@ if (iata === "AEP") {
 }
 
 setText("sheetTitle", "Datos clave por aeropuerto");
-setText("airportName", tituloFinal);
-
+q("airportName").innerHTML = `${escapeHtml(tituloFinal)} <span class="sheet-title-year-inline">${YEAR_REF}</span>`;
     const supPredioRaw = firstNonEmpty(a, ["SupPredioHa", "SupPredio"]);
     setText("sumSupPredio", safeValue(supPredioRaw));
     setText("sumTerminal", safeValue(firstNonEmpty(a, ["TerminalM2"])));
