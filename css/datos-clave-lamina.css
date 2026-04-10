@@ -86,56 +86,45 @@ body {
   background: #fff;
   border: 1px solid #d7dee8;
   box-shadow: 0 10px 26px rgba(33, 45, 68, 0.12);
-  padding: 10px 12px 10px;
+  padding: 8px 12px 10px;
 }
 
 .sheet-header {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-rows: auto auto;
-  grid-template-areas:
-    "kicker year"
-    "name   year";
-  column-gap: 18px;
-  row-gap: 6px;
-  align-items: start;
-  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: flex-start;
+  margin-bottom: 8px;
 }
 
 .sheet-title-main {
-  grid-area: kicker;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 600;
   color: #6c757d;
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  line-height: 1.15;
+  line-height: 1.05;
 }
 
 .sheet-airport-name {
-  font-size: 1.8rem;
+  font-size: 1.62rem;
   font-weight: 600;
   color: #002855;
   margin: 0;
-  line-height: 1.08;
-  order: 2;
+  line-height: 1.02;
 }
-
-.sheet-year {
-  grid-area: year;
-  min-width: 112px;
-  text-align: center;
-  background: #306fb0;
-  color: #fff;
+.sheet-title-year-inline {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 1.02rem;
   font-weight: 700;
-  padding: 14px 16px;
-  border-radius: 4px;
-  font-size: 1.3rem;
-  line-height: 1;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25);
-  align-self: start;
-  justify-self: end;
+  color: var(--blue);
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+.sheet-year {
+  display: none;
 }
 
 .triptych-grid {
