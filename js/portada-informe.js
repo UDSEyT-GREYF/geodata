@@ -16,7 +16,15 @@
     USH: { main: "#40627A", dark: "#2C4658", soft: "#E8EEF2", accent: "#AFC0CC" },
     BRC: { main: "#355A73", dark: "#233C4E", soft: "#E7EEF3", accent: "#A9BDCB" },
     IGR: { main: "#46633F", dark: "#2F452B", soft: "#EBF1E8", accent: "#B8C8B1" },
-    REL: { main: "#5A6470", dark: "#3E4650", soft: "#ECEFF2", accent: "#BDC5CD" }
+    REL: { main: "#5A6470", dark: "#3E4650", soft: "#ECEFF2", accent: "#BDC5CD" },
+    PMY: { main: "#4E687A", dark: "#364856", soft: "#EAF0F4", accent: "#B7C6CF" },
+    NQN: { main: "#6B5B47", dark: "#4B4032", soft: "#F2EEE8", accent: "#C8BCA9" },
+    SLA: { main: "#6F5C3B", dark: "#4E402A", soft: "#F3F0E7", accent: "#D1C3A8" },
+    TUC: { main: "#7A613F", dark: "#563A27", soft: "#F5EFE7", accent: "#D5C1A9" },
+    CRD: { main: "#4A6270", dark: "#33444E", soft: "#ECF1F4", accent: "#B5C2C9" },
+    JUJ: { main: "#7A6542", dark: "#58462D", soft: "#F4EFE6", accent: "#D2C1A8" },
+    FTE: { main: "#54697A", dark: "#394956", soft: "#EDF2F5", accent: "#BAC6CF" },
+    RGL: { main: "#526371", dark: "#36424C", soft: "#EDF1F4", accent: "#BBC4CC" }
   };
 
   const COVER_THEMES = [
@@ -97,30 +105,60 @@
     tryNext();
   }
 
-function formatCoverAirportName(a, iata) {
-  const ciudad = clean(firstNonEmpty(a, [
-    "Ciudad",
-    "Localidad",
-    "Municipio",
-    "Ciudad / Localidad"
-  ]));
+  function buildCoverAirportType(a, iata) {
+    const code = clean(iata).toUpperCase();
+    const official = clean(firstNonEmpty(a, [
+      "Nombre del Aeropuerto",
+      "Aeropuerto",
+      "Denominacion"
+    ])).toUpperCase();
 
-  const official = clean(firstNonEmpty(a, [
-    "Nombre del Aeropuerto",
-    "Aeropuerto",
-    "Denominacion"
-  ]));
+    const habilitacion = clean(firstNonEmpty(a, [
+      "Habilitación",
+      "Habilitacion"
+    ])).toUpperCase();
 
-  if (iata === "AEP") return "AEROPARQUE\nJORGE NEWBERY";
+    if (code === "AEP" || official.includes("AEROPARQUE")) return "AEROPARQUE";
+    if (official.includes("AERÓDROMO") || official.includes("AERODROMO")) return "AERÓDROMO";
+    if (
+      official.includes("AEROPUERTO INTERNACIONAL") ||
+      official.includes("INTERNACIONAL") ||
+      habilitacion.includes("INTERNACIONAL")
+    ) {
+      return "AEROPUERTO INTERNACIONAL";
+    }
 
-  if (official && ciudad && official.toLowerCase() !== ciudad.toLowerCase()) {
-    return official.toUpperCase();
+    return "AEROPUERTO";
   }
 
-  if (official) return official.toUpperCase();
+  function buildCoverAirportName(a, iata) {
+    const code = clean(iata).toUpperCase();
+    const city = clean(firstNonEmpty(a, [
+      "Ciudad",
+      "Localidad",
+      "Municipio",
+      "Ciudad / Localidad"
+    ]));
 
-  return `AEROPUERTO ${iata}`;
-}
+    let official = clean(firstNonEmpty(a, [
+      "Nombre del Aeropuerto",
+      "Aeropuerto",
+      "Denominacion"
+    ]));
+
+    if (code === "AEP") return "JORGE NEWBERY";
+
+    official = official
+      .replace(/^Aeropuerto Internacional\s+/i, "")
+      .replace(/^Aeropuerto\s+/i, "")
+      .replace(/^Aeródromo\s+/i, "")
+      .replace(/^Aerodromo\s+/i, "")
+      .replace(/^Aeroparque\s+/i, "")
+      .trim();
+
+    const name = (official || city || `Aeropuerto ${code}`).toUpperCase();
+    return name;
+  }
 
   function renderCover(iata) {
     const code = clean(iata).toUpperCase();
@@ -129,15 +167,41 @@ function formatCoverAirportName(a, iata) {
     const airport = coverIndex.get(code);
     if (!airport) return false;
 
-setText("coverYear", String(YEAR_REF));
-setText("coverAirportName", formatCoverAirportName(airport, code));
-setText("coverAirportIATA", code);
-setText("coverReportTitle", "SOCIOECONÓMICO Y TERRITORIAL");
+    setText("coverKicker", "Informe de impacto");
+    setText("coverTitleLine1", "SOCIOECONÓMICO");
+    setText("coverTitleLine2", "Y TERRITORIAL");
+    setText("coverYear", String(YEAR_REF));
+    setText("coverAirportType", buildCoverAirportType(airport, code));
+    setText("coverAirportName", buildCoverAirportName(airport, code));
+    setText("coverAirportIATA", code);
 
-    loadImageWithFallback(q("coverImg1"), [`img/Portadas/portada1(${code}).png`]);
-    loadImageWithFallback(q("coverImg2"), [`img/Portadas/portada2(${code}).png`]);
-    loadImageWithFallback(q("coverImg3"), [`img/Portadas/portada3(${code}).png`]);
-    loadImageWithFallback(q("coverImg4"), [`img/Portadas/portada4(${code}).png`]);
+    loadImageWithFallback(q("coverImg1"), [
+      `img/Portadas/portada1(${code}).png`,
+      `img/Portadas/portada1(${code}).jpg`,
+      `img/Portadas/portada1(${code}).jpeg`,
+      `img/portadas/portada1(${code}).png`
+    ]);
+
+    loadImageWithFallback(q("coverImg2"), [
+      `img/Portadas/portada2(${code}).png`,
+      `img/Portadas/portada2(${code}).jpg`,
+      `img/Portadas/portada2(${code}).jpeg`,
+      `img/portadas/portada2(${code}).png`
+    ]);
+
+    loadImageWithFallback(q("coverImg3"), [
+      `img/Portadas/portada3(${code}).png`,
+      `img/Portadas/portada3(${code}).jpg`,
+      `img/Portadas/portada3(${code}).jpeg`,
+      `img/portadas/portada3(${code}).png`
+    ]);
+
+    loadImageWithFallback(q("coverImg4"), [
+      `img/Portadas/portada4(${code}).png`,
+      `img/Portadas/portada4(${code}).jpg`,
+      `img/Portadas/portada4(${code}).jpeg`,
+      `img/portadas/portada4(${code}).png`
+    ]);
 
     applyCoverTheme(code);
     return true;
@@ -148,7 +212,9 @@ setText("coverReportTitle", "SOCIOECONÓMICO Y TERRITORIAL");
     if (!resp.ok) throw new Error("No se pudo cargar Datos_aeropuertos.geojson");
 
     const geojson = await resp.json();
-    coverData = (geojson.features || []).map(f => f.properties || {}).filter(p => clean(p.IATA));
+    coverData = (geojson.features || [])
+      .map(f => f.properties || {})
+      .filter(p => clean(p.IATA));
 
     coverIndex = new Map(
       coverData.map(a => [clean(a.IATA).toUpperCase(), a])
@@ -164,8 +230,9 @@ setText("coverReportTitle", "SOCIOECONÓMICO Y TERRITORIAL");
 
   function bindCoverSelect() {
     const select = q("airportSelect");
-    if (!select) return;
+    if (!select || select.dataset.coverBound === "1") return;
 
+    select.dataset.coverBound = "1";
     select.addEventListener("change", () => {
       syncCoverFromSelect();
     });
@@ -193,5 +260,6 @@ setText("coverReportTitle", "SOCIOECONÓMICO Y TERRITORIAL");
     }
   }
 
+  document.addEventListener("DOMContentLoaded", bootCover);
   document.addEventListener("report:partials-ready", bootCover);
 })();
