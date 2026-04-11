@@ -1,64 +1,760 @@
 {
-"type": "FeatureCollection",
-"name": "Datos_aeropuertos_contactos",
-"features": [
-{ "type": "Feature", "properties": { "IATA": "IATA", "Administrador": "Administrador", "AdmTelef": "AdmTelef", "AdmCorreo": "AdmCorreo", "JefeAeropuerto": "Jefe de Aeropuerto", "JefeTelef": "JefeTelef", "JefeCorreo": "JefeCorreo" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "AEP", "Administrador": "Javier ASCHIERI", "AdmTelef": "(011) 54803003", "AdmCorreo": "jaschieri@aeropuertosargentina.com", "JefeAeropuerto": "German Esteban AIRALDO KELLER", "JefeTelef": "(011) 45141620 / 1569015994 / 1549705117", "JefeCorreo": "gairaldo@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "BHI", "Administrador": "Sra. Carolina Hernández", "AdmTelef": "(0291) 4860312", "AdmCorreo": "carolina.hernandez@abbsa.com.ar", "JefeAeropuerto": "Carlos Alberto Millán", "JefeTelef": "(0291) 486-1760 / 0319 - (0291)154-460-264", "JefeCorreo": "cmillan@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "BRC", "Administrador": "Victor MEDO", "AdmTelef": "(02944) 405016", "AdmCorreo": "vmedo@aeropuertosargentina.com", "JefeAeropuerto": "José Enrique DIRIBARNE", "JefeTelef": "(0294) 4405029 / 4405030 / 154415610", "JefeCorreo": "jdiribarne@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "CTC", "Administrador": "Carlos Freyre", "AdmTelef": "(03833) 45-3683 /834 INT 204", "AdmCorreo": "cfreyre@aeropuertosargentina.com", "JefeAeropuerto": "Egle del Valle LUJAN", "JefeTelef": "(0383) 4453684 / 4453686", "JefeCorreo": "elujan@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "CPC", "Administrador": "Sr. Director General de Aeropuertos y Aerodromos Ariel Rivera", "AdmTelef": "(02972) 428388", "AdmCorreo": "arivera@neuquen.gov.ar", "JefeAeropuerto": "Cristián Millante HASSLER", "JefeTelef": "(02972) 428-398 / 388 - (011) 152-622-456/152-642-258", "JefeCorreo": "mhassler@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "CRD", "Administrador": "Leonardo ZARZA", "AdmTelef": "(0297) 454-8190 /8391", "AdmCorreo": "lzarza@aeropuertosargentina.com", "JefeAeropuerto": "Juan Pedro COSTA", "JefeTelef": "(0297) 4548093", "JefeCorreo": "jcosta@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "COC", "Administrador": "Gabriel DI LAURO", "AdmTelef": "(0345) 4251603", "AdmCorreo": "aeropuerto@concordia.gob.ar", "JefeAeropuerto": "Suboficial Principal ALDAVE Hector Orlando", "JefeTelef": "(0345) 425-1001 / 154-280-019", "JefeCorreo": "haldave@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "COR", "Administrador": "Juan Manuel ABUIN", "AdmTelef": "(0351) 475-0874 /877 /871 /886 /881", "AdmCorreo": "jmabuin@aeropuertosargentina.com", "JefeAeropuerto": "Gustavo BUSTOS", "JefeTelef": "(0351) 4753843 / 4751456", "JefeCorreo": "gbustos@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "CNQ", "Administrador": "Martín López", "AdmTelef": "(0379) 445 8684 y (0379) 468 3653", "AdmCorreo": "direccionaeroportuaria@corrientes.gob.ar mlopez@corrientes.gob.ar", "JefeAeropuerto": "Ramón Sanchez", "JefeTelef": "(0379) 421 0752 y (0379) 496 3405", "JefeCorreo": "rsanchez@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "FTE", "Administrador": "Sergio NATALI", "AdmTelef": "(02902) 491220 / 30", "AdmCorreo": "administradorfte@londonsupply.net", "JefeAeropuerto": "Miguel Ángel CASCO", "JefeTelef": "(02902) 491937 / 491912 / 492051", "JefeCorreo": "mcasco@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "EPA", "Administrador": "Gustavo GIRALDA", "AdmTelef": "(11)- 4843-9608", "AdmCorreo": "ggiralda@aeropuertosargentina.com", "JefeAeropuerto": "Alejandro ROGERO", "JefeTelef": "(11)59434654", "JefeCorreo": null }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "RYO", "Administrador": "Sr. Juan CARRIVALE", "AdmTelef": "(02902) 15626205", "AdmCorreo": "jcarrivale@yahoo.com.ar", "JefeAeropuerto": "Sergio Eduardo ALVAREZ", "JefeTelef": "(02902) 15216746 / 1526422452", "JefeCorreo": null }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "EQS", "Administrador": "Miguel VIEYRA", "AdmTelef": "(02945) 45-1676 /769", "AdmCorreo": "mvieyra@aeropuertosargentina.com", "JefeAeropuerto": "Luis Alberto CAVERO", "JefeTelef": "294553-1621", "JefeCorreo": "lcavero@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "EZE", "Administrador": "LUCAS CECHET", "AdmTelef": "(011) 5480-2541", "AdmCorreo": "lcechet@aeropuertosargentina.com", "JefeAeropuerto": "Domingo COVELLA", "JefeTelef": "(011) 5480 2500", "JefeCorreo": "dcovella@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "FMA", "Administrador": "ALEJANDRO KRATOCHVIL", "AdmTelef": "(03717) 450-521 /463", "AdmCorreo": "akratochvil@aeropuertosargentina.com", "JefeAeropuerto": "Víctor Hugo ORTEGA", "JefeTelef": "(0370) 4450521 / 154220762", "JefeCorreo": "vortega@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "GPO", "Administrador": "EDUARDO ECHEVERRÍA", "AdmTelef": "(02302) 433-393", "AdmCorreo": "eecheverria@aeropuertosargentina.com", "JefeAeropuerto": "Carlos Hugo ROLDAN", "JefeTelef": "(02302) 436622 / 15574170 / 15412835", "JefeCorreo": "croldan@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "GNR", "Administrador": "Hugo TINTI", "AdmTelef": "(0298) 4422582 / 154567405", "AdmCorreo": "contacto@aeroroca.com.ar", "JefeAeropuerto": "Hugo TINTI", "JefeTelef": "(0298) 442-2582/2522 - (0298) 154-567-405", "JefeCorreo": "htinti@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "IGR", "Administrador": "SERGIO PEREZ", "AdmTelef": "(03757) 42-2013 /1996", "AdmCorreo": "saperez@aeropuertosargentina.com", "JefeAeropuerto": "Carlos Alberto BERTINO", "JefeTelef": "(03757) 420997 / 420595 / 15530280 / 15500155", "JefeCorreo": "cbertino@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "JUJ", "Administrador": "Miguel BRAVO", "AdmTelef": "(0388) 4911-104 /113", "AdmCorreo": "mbravo@aeropuertosargentina.com", "JefeAeropuerto": "José Luis SUBIRATS", "JefeTelef": "(0388) 4911101 / 155705046", "JefeCorreo": null }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "JNI", "Administrador": "Dr. Juan MUCCIOLO", "AdmTelef": "(0236) 443-3385", "AdmCorreo": null, "JefeAeropuerto": "Sr. José Luis VITA", "JefeTelef": "(02362) 433-385/444-489 -(0236) 154593879", "JefeCorreo": "jvita@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "LPG", "Administrador": "Sr. Carlos MORINAGA", "AdmTelef": "(0221) 4860528 / 4862177", "AdmCorreo": "aerocontacto@aeronautica.gov.ar", "JefeAeropuerto": "Suboficial My.ORSATTI, Guillermo Antonio", "JefeTelef": "(0221) 486-1568/0809 - (0221) 155-184-7686", "JefeCorreo": "gorsatti@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "IRJ", "Administrador": "Dante SIMONE", "AdmTelef": "(03822) 46-1919 /2160", "AdmCorreo": "dsimone@aeropuertosargentina.com", "JefeAeropuerto": "Walther Tomás DE LA FUENTE", "JefeTelef": "(0380) 4439211 / 4420292 / 154626823", "JefeCorreo": "wtdelafuente@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "LGS", "Administrador": "Francisco SAMBRANO", "AdmTelef": "(02604) 470-128 /098", "AdmCorreo": "fsambrano@aeropuertosargentina.com", "JefeAeropuerto": "Roque Alberto VÁZQUEZ", "JefeTelef": "(0260) 4471265 / 154306895 / 154698175", "JefeCorreo": "ravazquez@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "MDQ", "Administrador": "Germán MAZZUCHIN", "AdmTelef": "(0223) 4785-811 /817 /879", "AdmCorreo": "gmazzuchin@aeropuertosargentina.com", "JefeAeropuerto": "Carlos Andrés FERRO", "JefeTelef": "(0223) 4783990 / 4780744 / 155364285 / 154060631", "JefeCorreo": "cferro@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "MDZ", "Administrador": "Claudio GONZALEZ", "AdmTelef": "(0261) 5206000 int 102 Fax 201", "AdmCorreo": "cgonzalez@aeropuertosargentina.com", "JefeAeropuerto": "Juan Alejandro BARRIONUEVO", "JefeTelef": "(0261) 4487483 / 4488840 / 156830962 / 155636167", "JefeCorreo": "jbarrionuevo@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "RLO", "Administrador": null, "AdmTelef": null, "AdmCorreo": null, "JefeAeropuerto": null, "JefeTelef": null, "JefeCorreo": null }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "NEC", "Administrador": "Dirección Provincial de Aeronavegación Oficial - Prov. de Buenos Aires", "AdmTelef": "(02262) 15496577", "AdmCorreo": "alfredocoronel61@yahoo.com.ar (jefe de aeropuerto)", "JefeAeropuerto": "Sr. CORONEL Alfredo", "JefeTelef": "(02262) 42-2473 / (02262) 154-96-577", "JefeCorreo": "alfredocoronel61@yahoo.com.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "NQN", "Administrador": "Abuin Marchetti, Juan Manuel", "AdmTelef": "(0299) 444-0448 / 0525 /0277", "AdmCorreo": "jmabuin@aeropuertosargentina.com", "JefeAeropuerto": "Juan Humberto PRATTIS", "JefeTelef": "(0299) 4440544", "JefeCorreo": "jpratis@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "PRA", "Administrador": "Veronica MURADOR", "AdmTelef": "(0343) 4261-672 /658", "AdmCorreo": "vmurador@aeropuertosargentina.com", "JefeAeropuerto": "Ricardo Ramón COIZ", "JefeTelef": "(0343) 4364773 int: 67310 / 155046797", "JefeCorreo": "rcoiz@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "AOL", "Administrador": "Sr. Jorge Antonio MOLINA", "AdmTelef": "(03772) 422222 / 425528", "AdmCorreo": "aerodeloslibres@anac.gov.ar", "JefeAeropuerto": "Jorge Antonio MOLINA", "JefeTelef": "( 03772) 422-222/425-528 - 156-34-618", "JefeCorreo": "aerodelolibres@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "PMQ", "Administrador": null, "AdmTelef": null, "AdmCorreo": null, "JefeAeropuerto": "Roberto Tomás Alonso", "JefeTelef": "02963 15-40-4518", "JefeCorreo": "talonso@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "PSS", "Administrador": "Carlos DALOIA", "AdmTelef": "(0376) 445-7413/4", "AdmCorreo": "cdaloia@aeropuertosargentina.com", "JefeAeropuerto": "Luis CHEMES", "JefeTelef": "(0376) 4451699 / 4452004 / 154414067", "JefeCorreo": "lchemes@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "PMY", "Administrador": "Arnaldo PASIAN", "AdmTelef": "(0280) 4456-774/765", "AdmCorreo": "apasian@aeropuertosargentina.com", "JefeAeropuerto": "Antonio RODRIGUEZ", "JefeTelef": "(0280) 4451287 int. 205 / 154591440", "JefeCorreo": "aorodriguez@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "RCQ", "Administrador": "Paulo CHACON", "AdmTelef": "(03482) 422-787/729", "AdmCorreo": "pchacon@aeropuertosargentina.com", "JefeAeropuerto": "Osvaldo Mario MARTÍNEZ", "JefeTelef": "(03482) 487524 / 15687919", "JefeCorreo": "omartinez@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "RES", "Administrador": "Ileana Guerrero", "AdmTelef": "0362-4446009/0362-4446014/0362-4628071", "AdmCorreo": "iguerrero@aeropuertosargentina.com", "JefeAeropuerto": "Miguel Perez", "JefeTelef": "(0362) 154737006", "JefeCorreo": "mperez@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "RCU", "Administrador": "Rolando DIAZ", "AdmTelef": "(0358) 4970798 / 4970004 Fax 201", "AdmCorreo": "rdiaz@aeropuertosargentina.com", "JefeAeropuerto": "Héctor Alejandro GALETTO", "JefeTelef": "(0358) 4979645 / 154828627", "JefeCorreo": "hagaletto@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "RGL", "Administrador": "GERMÁN MAZZUCHIN", "AdmTelef": "(02966) 442-340 /344", "AdmCorreo": "gmazzuchin@aeropuertosargentina.com", "JefeAeropuerto": "Rubén Horacio ERBES", "JefeTelef": "(02966) 442486 / 442044 / (011) 1538985220", "JefeCorreo": "rerbes@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "RGA", "Administrador": "SEBASTIÁN NOVARA", "AdmTelef": "(02964) 42-0699 /1612", "AdmCorreo": "snovara@aeropuertosargentina.com", "JefeAeropuerto": "Juan Carlos MONTES DE OCA", "JefeTelef": "(02964) 431017 / 15403299", "JefeCorreo": "jmontesdeoca@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "ROS", "Administrador": "Cdor. Matias GALINDEZ", "AdmTelef": "(0341) 4513200 int 1102", "AdmCorreo": "mgalindez@airosario.gob.ar", "JefeAeropuerto": "Vanesa LAFERRIERE", "JefeTelef": "(0341) 480-7482 / 15-635-1237", "JefeCorreo": "vlaferriere@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "SLA", "Administrador": "Federico DURAND", "AdmTelef": "(0387) 4247-463/ 356", "AdmCorreo": "fdurand@aeropuertosargentina.com", "JefeAeropuerto": "Paulino Gerardo VERA", "JefeTelef": "(0387) 4375111 / 4375113 / 154530376 / 155827002", "JefeCorreo": "pvera@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "FDO", "Administrador": "MARTÍN DUFAUR", "AdmTelef": "(011) 4714-7857 /860", "AdmCorreo": "mdufaur@aeropuertosargentina.com", "JefeAeropuerto": "Carlos Santiago TORIELLI", "JefeTelef": "(011) 45800264 / 1569610518 / 1535558013", "JefeCorreo": "ctorielli@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "UAQ", "Administrador": "Miguel CERUTTI", "AdmTelef": "(0264) 425-4133 /4134", "AdmCorreo": "mcerutti@aeropuertosargentina.com", "JefeAeropuerto": "Marcelo Claudio VILLÁN", "JefeTelef": "(0264) 4250400 / 4250399 / 4251727 / 154980997 / 155145510", "JefeCorreo": "mvillan@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "LUQ", "Administrador": "Luis BERÓN", "AdmTelef": "(0266)442-2427/2457", "AdmCorreo": "lberon@aeropuertosargentina.com", "JefeAeropuerto": "José Omar BLANCO", "JefeTelef": "(0266) 4436269 / 154792783", "JefeCorreo": "jblanco@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "AFA", "Administrador": "DAVID MERINO", "AdmTelef": "(02627) 427-103 /253", "AdmCorreo": "dmerino@aeropuertosargentina.com", "JefeAeropuerto": "Leonardo MEDINA", "JefeTelef": "(0260) 4421693", "JefeCorreo": "lmedina@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "SFN", "Administrador": "Cdor. Santiago AMÉZAGA", "AdmTelef": "(0342) 4995064 / 155132799", "AdmCorreo": "dalgiavedoni@santafe.gov.ar", "JefeAeropuerto": "Alejo Gustavo CARLEN", "JefeTelef": "(0342) 499-5065/5223", "JefeCorreo": "acarlen@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "RSA", "Administrador": "Victor GORDILLO", "AdmTelef": "(02954) 434-490 /690", "AdmCorreo": "vgordillo@aeropuertosargentina.com", "JefeAeropuerto": "Jorge Alberto VETORELLO", "JefeTelef": "(02954) 433814 / 15688162", "JefeCorreo": "jvettorello@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "SST", "Administrador": "Dn. Prudencio Felipe ISON", "AdmTelef": "(02246) 433000 / 430949", "AdmCorreo": null, "JefeAeropuerto": "Sr.Eduardo Fabian CARRIZO", "JefeTelef": "(02246) 421- 463 / (02257) 156-66-698", "JefeCorreo": "fcarrizo@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "SDE", "Administrador": "LEANDRO VERA", "AdmTelef": "(0385) 434-3654", "AdmCorreo": "lvera@aeropuertosargentina.com", "JefeAeropuerto": "Omar Eduardo LUCATELLI", "JefeTelef": "(0385) 4343736 / 4340710 / 154712203 / 155167830", "JefeCorreo": "elucatelli@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "TDL", "Administrador": "Dn. Mario VELOZ", "AdmTelef": "(0249) 154621917 / 4440043", "AdmCorreo": "mveloz@anac.gov.ar", "JefeAeropuerto": "Mario VELOZ", "JefeTelef": "(0249) 444-00043 / 154-621-917", "JefeCorreo": "mveloz@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "TTG", "Administrador": "Sr. Mauricio Pedro Javier Barbieri", "AdmTelef": "(03873) 15669305", "AdmCorreo": "barbierimauriciop@hotmail.com", "JefeAeropuerto": "Daniel Angel PEÑARANDA", "JefeTelef": "(03875) 422-958 / 155-037-68", "JefeCorreo": "dpeniaranda@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "RHD", "Administrador": "ERNESTO MIRANDE", "AdmTelef": "(03858) 427-247/248", "AdmCorreo": "emirande@aeropuertosargentina.com", "JefeAeropuerto": "Eugenio FONTANA VERNI", "JefeTelef": "(03858) 427-247/248", "JefeCorreo": "efontana@aeropuertosargentina.com" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "REL", "Administrador": "Agustin Oller", "AdmTelef": "(0280) 4433443 / 4433666", "AdmCorreo": "aoller@londonsupply.net", "JefeAeropuerto": "Ulises LITTERIO", "JefeTelef": "(0280) 442-1347 - 154-617-189 / 154-592-860", "JefeCorreo": "ulitterio@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "TUC", "Administrador": "NICOLÁS TERÁN", "AdmTelef": "(0381) 426-5072 /4906", "AdmCorreo": "nteran@aeropuertosargentina.com", "JefeAeropuerto": "Marcelo Noe PERSIA", "JefeTelef": "(0381) 4260636 / 156339097 / 156336027", "JefeCorreo": "npersia@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "USH", "Administrador": "Rubén Manmana", "AdmTelef": "(02901) 431232", "AdmCorreo": "rmanmana@londonsupply.net", "JefeAeropuerto": "Juan MILESI", "JefeTelef": "(02901) 1554844984", "JefeCorreo": "jmilesi@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "VDM", "Administrador": "Pedro José SUAREZ", "AdmTelef": "(02920) 425311 / 423276", "AdmCorreo": "pjsuarez@aeropuertosargentina.com", "JefeAeropuerto": "Marcelo Fabián CASTRONOVO", "JefeTelef": "(02920) 424416", "JefeCorreo": "mcastronovo@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "VLG", "Administrador": "Sr. Hernán Espíndola", "AdmTelef": "(02255) 474412 / +549(2266) 419612", "AdmCorreo": null, "JefeAeropuerto": "Hernán Espíndola", "JefeTelef": "(02255) 478-067 / +549(2266) 419612", "JefeCorreo": "hespindola@anac.gob.ar" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "VME", "Administrador": "Jorge RUIZ PRINGLES", "AdmTelef": "(02657) 423021 / 423026", "AdmCorreo": "jruiz@aeropuertosargentina.com", "JefeAeropuerto": null, "JefeTelef": null, "JefeCorreo": null }, "geometry": null }
-]
+  "type": "FeatureCollection",
+  "name": "Datos_aeropuertos_contactos",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "IATA",
+        "Administrador": "Administrador",
+        "AdmTelef": "AdmTelef",
+        "AdmCorreo": "AdmCorreo",
+        "JefeAeropuerto": "Jefe de Aeropuerto",
+        "JefeTelef": "JefeTelef",
+        "JefeCorreo": "JefeCorreo"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "AEP",
+        "Administrador": "Javier ASCHIERI",
+        "AdmTelef": "(011) 54803003",
+        "AdmCorreo": "jaschieri@aeropuertosargentina.com",
+        "JefeAeropuerto": "German Esteban AIRALDO KELLER",
+        "JefeTelef": "(011) 45141620 / 1569015994 / 1549705117",
+        "JefeCorreo": "gairaldo@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "BHI",
+        "Administrador": "Sra. Carolina Hernández",
+        "AdmTelef": "(0291) 4860312",
+        "AdmCorreo": "carolina.hernandez@abbsa.com.ar",
+        "JefeAeropuerto": "Carlos Alberto Millán",
+        "JefeTelef": "(0291) 486-1760 / 0319 - (0291)154-460-264",
+        "JefeCorreo": "cmillan@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "BRC",
+        "Administrador": "Victor MEDO",
+        "AdmTelef": "(02944) 405016",
+        "AdmCorreo": "vmedo@aeropuertosargentina.com",
+        "JefeAeropuerto": "José Enrique DIRIBARNE",
+        "JefeTelef": "(0294) 4405029 / 4405030 / 154415610",
+        "JefeCorreo": "jdiribarne@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "CTC",
+        "Administrador": "Carlos Freyre",
+        "AdmTelef": "(03833) 45-3683 /834 INT 204",
+        "AdmCorreo": "cfreyre@aeropuertosargentina.com",
+        "JefeAeropuerto": "Egle del Valle LUJAN",
+        "JefeTelef": "(0383) 4453684 / 4453686",
+        "JefeCorreo": "elujan@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "CPC",
+        "Administrador": "Sr. Director General de Aeropuertos y Aerodromos Ariel Rivera",
+        "AdmTelef": "(02972) 428388",
+        "AdmCorreo": "arivera@neuquen.gov.ar",
+        "JefeAeropuerto": "Cristián Millante HASSLER",
+        "JefeTelef": "(02972) 428-398 / 388 - (011) 152-622-456/152-642-258",
+        "JefeCorreo": "mhassler@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "CRD",
+        "Administrador": "Leonardo ZARZA",
+        "AdmTelef": "(0297) 454-8190 /8391",
+        "AdmCorreo": "lzarza@aeropuertosargentina.com",
+        "JefeAeropuerto": "Juan Pedro COSTA",
+        "JefeTelef": "(0297) 4548093",
+        "JefeCorreo": "jcosta@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "COC",
+        "Administrador": "Gabriel DI LAURO",
+        "AdmTelef": "(0345) 4251603",
+        "AdmCorreo": "aeropuerto@concordia.gob.ar",
+        "JefeAeropuerto": "Suboficial Principal ALDAVE Hector Orlando",
+        "JefeTelef": "(0345) 425-1001 / 154-280-019",
+        "JefeCorreo": "haldave@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "COR",
+        "Administrador": "Juan Manuel ABUIN",
+        "AdmTelef": "(0351) 475-0874 /877 /871 /886 /881",
+        "AdmCorreo": "jmabuin@aeropuertosargentina.com",
+        "JefeAeropuerto": "Gustavo BUSTOS",
+        "JefeTelef": "(0351) 4753843 / 4751456",
+        "JefeCorreo": "gbustos@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "CNQ",
+        "Administrador": "Martín López",
+        "AdmTelef": "(0379) 445 8684 y (0379) 468 3653",
+        "AdmCorreo": "direccionaeroportuaria@corrientes.gob.ar mlopez@corrientes.gob.ar",
+        "JefeAeropuerto": "Ramón Sanchez",
+        "JefeTelef": "(0379) 421 0752 y (0379) 496 3405",
+        "JefeCorreo": "rsanchez@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "FTE",
+        "Administrador": "Sergio NATALI",
+        "AdmTelef": "(02902) 491220 / 30",
+        "AdmCorreo": "administradorfte@londonsupply.net",
+        "JefeAeropuerto": "Miguel Ángel CASCO",
+        "JefeTelef": "(02902) 491937 / 491912 / 492051",
+        "JefeCorreo": "mcasco@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "EPA",
+        "Administrador": "Gustavo GIRALDA",
+        "AdmTelef": "(11)- 4843-9608",
+        "AdmCorreo": "ggiralda@aeropuertosargentina.com",
+        "JefeAeropuerto": "Alejandro ROGERO",
+        "JefeTelef": "(11)59434654",
+        "JefeCorreo": null
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "RYO",
+        "Administrador": "Sr. Juan CARRIVALE",
+        "AdmTelef": "(02902) 15626205",
+        "AdmCorreo": "jcarrivale@yahoo.com.ar",
+        "JefeAeropuerto": "Sergio Eduardo ALVAREZ",
+        "JefeTelef": "(02902) 15216746 / 1526422452",
+        "JefeCorreo": null
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "EQS",
+        "Administrador": "Miguel VIEYRA",
+        "AdmTelef": "(02945) 45-1676 /769",
+        "AdmCorreo": "mvieyra@aeropuertosargentina.com",
+        "JefeAeropuerto": "Luis Alberto CAVERO",
+        "JefeTelef": "294553-1621",
+        "JefeCorreo": "lcavero@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "EZE",
+        "Administrador": "LUCAS CECHET",
+        "AdmTelef": "(011) 5480-2541",
+        "AdmCorreo": "lcechet@aeropuertosargentina.com",
+        "JefeAeropuerto": "Domingo COVELLA",
+        "JefeTelef": "(011) 5480 2500",
+        "JefeCorreo": "dcovella@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "FMA",
+        "Administrador": "ALEJANDRO KRATOCHVIL",
+        "AdmTelef": "(03717) 450-521 /463",
+        "AdmCorreo": "akratochvil@aeropuertosargentina.com",
+        "JefeAeropuerto": "Víctor Hugo ORTEGA",
+        "JefeTelef": "(0370) 4450521 / 154220762",
+        "JefeCorreo": "vortega@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "GPO",
+        "Administrador": "EDUARDO ECHEVERRÍA",
+        "AdmTelef": "(02302) 433-393",
+        "AdmCorreo": "eecheverria@aeropuertosargentina.com",
+        "JefeAeropuerto": "Carlos Hugo ROLDAN",
+        "JefeTelef": "(02302) 436622 / 15574170 / 15412835",
+        "JefeCorreo": "croldan@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "GNR",
+        "Administrador": "Hugo TINTI",
+        "AdmTelef": "(0298) 4422582 / 154567405",
+        "AdmCorreo": "contacto@aeroroca.com.ar",
+        "JefeAeropuerto": "Hugo TINTI",
+        "JefeTelef": "(0298) 442-2582/2522 - (0298) 154-567-405",
+        "JefeCorreo": "htinti@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "IGR",
+        "Administrador": "SERGIO PEREZ",
+        "AdmTelef": "(03757) 42-2013 /1996",
+        "AdmCorreo": "saperez@aeropuertosargentina.com",
+        "JefeAeropuerto": "Carlos Alberto BERTINO",
+        "JefeTelef": "(03757) 420997 / 420595 / 15530280 / 15500155",
+        "JefeCorreo": "cbertino@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "JUJ",
+        "Administrador": "Miguel BRAVO",
+        "AdmTelef": "(0388) 4911-104 /113",
+        "AdmCorreo": "mbravo@aeropuertosargentina.com",
+        "JefeAeropuerto": "José Luis SUBIRATS",
+        "JefeTelef": "(0388) 4911101 / 155705046",
+        "JefeCorreo": null
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "JNI",
+        "Administrador": "Dr. Juan MUCCIOLO",
+        "AdmTelef": "(0236) 443-3385",
+        "AdmCorreo": null,
+        "JefeAeropuerto": "Sr. José Luis VITA",
+        "JefeTelef": "(02362) 433-385/444-489 -(0236) 154593879",
+        "JefeCorreo": "jvita@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "LPG",
+        "Administrador": "Sr. Carlos MORINAGA",
+        "AdmTelef": "(0221) 4860528 / 4862177",
+        "AdmCorreo": "aerocontacto@aeronautica.gov.ar",
+        "JefeAeropuerto": "Suboficial My.ORSATTI, Guillermo Antonio",
+        "JefeTelef": "(0221) 486-1568/0809 - (0221) 155-184-7686",
+        "JefeCorreo": "gorsatti@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "IRJ",
+        "Administrador": "Dante SIMONE",
+        "AdmTelef": "(03822) 46-1919 /2160",
+        "AdmCorreo": "dsimone@aeropuertosargentina.com",
+        "JefeAeropuerto": "Walther Tomás DE LA FUENTE",
+        "JefeTelef": "(0380) 4439211 / 4420292 / 154626823",
+        "JefeCorreo": "wtdelafuente@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "LGS",
+        "Administrador": "Francisco SAMBRANO",
+        "AdmTelef": "(02604) 470-128 /098",
+        "AdmCorreo": "fsambrano@aeropuertosargentina.com",
+        "JefeAeropuerto": "Roque Alberto VÁZQUEZ",
+        "JefeTelef": "(0260) 4471265 / 154306895 / 154698175",
+        "JefeCorreo": "ravazquez@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "MDQ",
+        "Administrador": "Germán MAZZUCHIN",
+        "AdmTelef": "(0223) 4785-811 /817 /879",
+        "AdmCorreo": "gmazzuchin@aeropuertosargentina.com",
+        "JefeAeropuerto": "Carlos Andrés FERRO",
+        "JefeTelef": "(0223) 4783990 / 4780744 / 155364285 / 154060631",
+        "JefeCorreo": "cferro@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "MDZ",
+        "Administrador": "Claudio GONZALEZ",
+        "AdmTelef": "(0261) 5206000 int 102 Fax 201",
+        "AdmCorreo": "cgonzalez@aeropuertosargentina.com",
+        "JefeAeropuerto": "Juan Alejandro BARRIONUEVO",
+        "JefeTelef": "(0261) 4487483 / 4488840 / 156830962 / 155636167",
+        "JefeCorreo": "jbarrionuevo@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "RLO",
+        "Administrador": null,
+        "AdmTelef": null,
+        "AdmCorreo": null,
+        "JefeAeropuerto": null,
+        "JefeTelef": null,
+        "JefeCorreo": null
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "NEC",
+        "Administrador": "Dirección Provincial de Aeronavegación Oficial - Prov. de Buenos Aires",
+        "AdmTelef": "(02262) 15496577",
+        "AdmCorreo": "alfredocoronel61@yahoo.com.ar (jefe de aeropuerto)",
+        "JefeAeropuerto": "Sr. CORONEL Alfredo",
+        "JefeTelef": "(02262) 42-2473 / (02262) 154-96-577",
+        "JefeCorreo": "alfredocoronel61@yahoo.com.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "NQN",
+        "Administrador": "Abuin Marchetti, Juan Manuel",
+        "AdmTelef": "(0299) 444-0448 / 0525 /0277",
+        "AdmCorreo": "jmabuin@aeropuertosargentina.com",
+        "JefeAeropuerto": "Juan Humberto PRATTIS",
+        "JefeTelef": "(0299) 4440544",
+        "JefeCorreo": "jpratis@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "PRA",
+        "Administrador": "Veronica MURADOR",
+        "AdmTelef": "(0343) 4261-672 /658",
+        "AdmCorreo": "vmurador@aeropuertosargentina.com",
+        "JefeAeropuerto": "Ricardo Ramón COIZ",
+        "JefeTelef": "(0343) 4364773 int: 67310 / 155046797",
+        "JefeCorreo": "rcoiz@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "AOL",
+        "Administrador": "Sr. Jorge Antonio MOLINA",
+        "AdmTelef": "(03772) 422222 / 425528",
+        "AdmCorreo": "aerodeloslibres@anac.gov.ar",
+        "JefeAeropuerto": "Jorge Antonio MOLINA",
+        "JefeTelef": "( 03772) 422-222/425-528 - 156-34-618",
+        "JefeCorreo": "aerodelolibres@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "PMQ",
+        "Administrador": null,
+        "AdmTelef": null,
+        "AdmCorreo": null,
+        "JefeAeropuerto": "Roberto Tomás Alonso",
+        "JefeTelef": "02963 15-40-4518",
+        "JefeCorreo": "talonso@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "PSS",
+        "Administrador": "Carlos DALOIA",
+        "AdmTelef": "(0376) 445-7413/4",
+        "AdmCorreo": "cdaloia@aeropuertosargentina.com",
+        "JefeAeropuerto": "Luis CHEMES",
+        "JefeTelef": "(0376) 4451699 / 4452004 / 154414067",
+        "JefeCorreo": "lchemes@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "PMY",
+        "Administrador": "Arnaldo PASIAN",
+        "AdmTelef": "(0280) 4456-774/765",
+        "AdmCorreo": "apasian@aeropuertosargentina.com",
+        "JefeAeropuerto": "Antonio RODRIGUEZ",
+        "JefeTelef": "(0280) 4451287 int. 205 / 154591440",
+        "JefeCorreo": "aorodriguez@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "RCQ",
+        "Administrador": "Paulo CHACON",
+        "AdmTelef": "(03482) 422-787/729",
+        "AdmCorreo": "pchacon@aeropuertosargentina.com",
+        "JefeAeropuerto": "Osvaldo Mario MARTÍNEZ",
+        "JefeTelef": "(03482) 487524 / 15687919",
+        "JefeCorreo": "omartinez@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "RES",
+        "Administrador": "Ileana Guerrero",
+        "AdmTelef": "0362-4446009/0362-4446014/0362-4628071",
+        "AdmCorreo": "iguerrero@aeropuertosargentina.com",
+        "JefeAeropuerto": "Miguel Perez",
+        "JefeTelef": "(0362) 154737006",
+        "JefeCorreo": "mperez@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "RCU",
+        "Administrador": "Rolando DIAZ",
+        "AdmTelef": "(0358) 4970798 / 4970004 Fax 201",
+        "AdmCorreo": "rdiaz@aeropuertosargentina.com",
+        "JefeAeropuerto": "Héctor Alejandro GALETTO",
+        "JefeTelef": "(0358) 4979645 / 154828627",
+        "JefeCorreo": "hagaletto@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "RGL",
+        "Administrador": "GERMÁN MAZZUCHIN",
+        "AdmTelef": "(02966) 442-340 /344",
+        "AdmCorreo": "gmazzuchin@aeropuertosargentina.com",
+        "JefeAeropuerto": "Rubén Horacio ERBES",
+        "JefeTelef": "(02966) 442486 / 442044 / (011) 1538985220",
+        "JefeCorreo": "rerbes@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "RGA",
+        "Administrador": "SEBASTIÁN NOVARA",
+        "AdmTelef": "(02964) 42-0699 /1612",
+        "AdmCorreo": "snovara@aeropuertosargentina.com",
+        "JefeAeropuerto": "Juan Carlos MONTES DE OCA",
+        "JefeTelef": "(02964) 431017 / 15403299",
+        "JefeCorreo": "jmontesdeoca@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "ROS",
+        "Administrador": "Cdor. Matias GALINDEZ",
+        "AdmTelef": "(0341) 4513200 int 1102",
+        "AdmCorreo": "mgalindez@airosario.gob.ar",
+        "JefeAeropuerto": "Vanesa LAFERRIERE",
+        "JefeTelef": "(0341) 480-7482 / 15-635-1237",
+        "JefeCorreo": "vlaferriere@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "SLA",
+        "Administrador": "Federico DURAND",
+        "AdmTelef": "(0387) 4247-463/ 356",
+        "AdmCorreo": "fdurand@aeropuertosargentina.com",
+        "JefeAeropuerto": "Paulino Gerardo VERA",
+        "JefeTelef": "(0387) 4375111 / 4375113 / 154530376 / 155827002",
+        "JefeCorreo": "pvera@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "FDO",
+        "Administrador": "MARTÍN DUFAUR",
+        "AdmTelef": "(011) 4714-7857 /860",
+        "AdmCorreo": "mdufaur@aeropuertosargentina.com",
+        "JefeAeropuerto": "Carlos Santiago TORIELLI",
+        "JefeTelef": "(011) 45800264 / 1569610518 / 1535558013",
+        "JefeCorreo": "ctorielli@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "UAQ",
+        "Administrador": "Miguel CERUTTI",
+        "AdmTelef": "(0264) 425-4133 /4134",
+        "AdmCorreo": "mcerutti@aeropuertosargentina.com",
+        "JefeAeropuerto": "Marcelo Claudio VILLÁN",
+        "JefeTelef": "(0264) 4250400 / 4250399 / 4251727 / 154980997 / 155145510",
+        "JefeCorreo": "mvillan@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "LUQ",
+        "Administrador": "Luis BERÓN",
+        "AdmTelef": "(0266)442-2427/2457",
+        "AdmCorreo": "lberon@aeropuertosargentina.com",
+        "JefeAeropuerto": "José Omar BLANCO",
+        "JefeTelef": "(0266) 4436269 / 154792783",
+        "JefeCorreo": "jblanco@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "AFA",
+        "Administrador": "DAVID MERINO",
+        "AdmTelef": "(02627) 427-103 /253",
+        "AdmCorreo": "dmerino@aeropuertosargentina.com",
+        "JefeAeropuerto": "Leonardo MEDINA",
+        "JefeTelef": "(0260) 4421693",
+        "JefeCorreo": "lmedina@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "SFN",
+        "Administrador": "Cdor. Santiago AMÉZAGA",
+        "AdmTelef": "(0342) 4995064 / 155132799",
+        "AdmCorreo": "dalgiavedoni@santafe.gov.ar",
+        "JefeAeropuerto": "Alejo Gustavo CARLEN",
+        "JefeTelef": "(0342) 499-5065/5223",
+        "JefeCorreo": "acarlen@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "RSA",
+        "Administrador": "Victor GORDILLO",
+        "AdmTelef": "(02954) 434-490 /690",
+        "AdmCorreo": "vgordillo@aeropuertosargentina.com",
+        "JefeAeropuerto": "Jorge Alberto VETORELLO",
+        "JefeTelef": "(02954) 433814 / 15688162",
+        "JefeCorreo": "jvettorello@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "SST",
+        "Administrador": "Dn. Prudencio Felipe ISON",
+        "AdmTelef": "(02246) 433000 / 430949",
+        "AdmCorreo": null,
+        "JefeAeropuerto": "Sr.Eduardo Fabian CARRIZO",
+        "JefeTelef": "(02246) 421- 463 / (02257) 156-66-698",
+        "JefeCorreo": "fcarrizo@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "SDE",
+        "Administrador": "LEANDRO VERA",
+        "AdmTelef": "(0385) 434-3654",
+        "AdmCorreo": "lvera@aeropuertosargentina.com",
+        "JefeAeropuerto": "Omar Eduardo LUCATELLI",
+        "JefeTelef": "(0385) 4343736 / 4340710 / 154712203 / 155167830",
+        "JefeCorreo": "elucatelli@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "TDL",
+        "Administrador": "Dn. Mario VELOZ",
+        "AdmTelef": "(0249) 154621917 / 4440043",
+        "AdmCorreo": "mveloz@anac.gov.ar",
+        "JefeAeropuerto": "Mario VELOZ",
+        "JefeTelef": "(0249) 444-00043 / 154-621-917",
+        "JefeCorreo": "mveloz@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "TTG",
+        "Administrador": "Sr. Mauricio Pedro Javier Barbieri",
+        "AdmTelef": "(03873) 15669305",
+        "AdmCorreo": "barbierimauriciop@hotmail.com",
+        "JefeAeropuerto": "Daniel Angel PEÑARANDA",
+        "JefeTelef": "(03875) 422-958 / 155-037-68",
+        "JefeCorreo": "dpeniaranda@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "RHD",
+        "Administrador": "ERNESTO MIRANDE",
+        "AdmTelef": "(03858) 427-247/248",
+        "AdmCorreo": "emirande@aeropuertosargentina.com",
+        "JefeAeropuerto": "Eugenio FONTANA VERNI",
+        "JefeTelef": "(03858) 427-247/248",
+        "JefeCorreo": "efontana@aeropuertosargentina.com"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "REL",
+        "Administrador": "Agustin Oller",
+        "AdmTelef": "(0280) 4433443 / 4433666",
+        "AdmCorreo": "aoller@londonsupply.net",
+        "JefeAeropuerto": "Ulises LITTERIO",
+        "JefeTelef": "(0280) 442-1347 - 154-617-189 / 154-592-860",
+        "JefeCorreo": "ulitterio@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "TUC",
+        "Administrador": "NICOLÁS TERÁN",
+        "AdmTelef": "(0381) 426-5072 /4906",
+        "AdmCorreo": "nteran@aeropuertosargentina.com",
+        "JefeAeropuerto": "Marcelo Noe PERSIA",
+        "JefeTelef": "(0381) 4260636 / 156339097 / 156336027",
+        "JefeCorreo": "npersia@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "USH",
+        "Administrador": "Rubén Manmana",
+        "AdmTelef": "(02901) 431232",
+        "AdmCorreo": "rmanmana@londonsupply.net",
+        "JefeAeropuerto": "Juan MILESI",
+        "JefeTelef": "(02901) 1554844984",
+        "JefeCorreo": "jmilesi@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "VDM",
+        "Administrador": "Pedro José SUAREZ",
+        "AdmTelef": "(02920) 425311 / 423276",
+        "AdmCorreo": "pjsuarez@aeropuertosargentina.com",
+        "JefeAeropuerto": "Marcelo Fabián CASTRONOVO",
+        "JefeTelef": "(02920) 424416",
+        "JefeCorreo": "mcastronovo@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "VLG",
+        "Administrador": "Sr. Hernán Espíndola",
+        "AdmTelef": "(02255) 474412 / +549(2266) 419612",
+        "AdmCorreo": null,
+        "JefeAeropuerto": "Hernán Espíndola",
+        "JefeTelef": "(02255) 478-067 / +549(2266) 419612",
+        "JefeCorreo": "hespindola@anac.gob.ar"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "IATA": "VME",
+        "Administrador": "Jorge RUIZ PRINGLES",
+        "AdmTelef": "(02657) 423021 / 423026",
+        "AdmCorreo": "jruiz@aeropuertosargentina.com",
+        "JefeAeropuerto": null,
+        "JefeTelef": null,
+        "JefeCorreo": null
+      },
+      "geometry": null
+    }
+  ]
 }
