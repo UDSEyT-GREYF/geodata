@@ -121,10 +121,17 @@
   width: 100mm;
   text-align: right;
   color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .report-cover-kicker {
-  font-size: 4.8mm;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #ffffff !important;
+  font-size: 4.8mm !important;
   line-height: 1.05;
   text-transform: uppercase;
   font-weight: 500;
@@ -134,11 +141,13 @@
 .report-cover-report-title {
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   gap: 1mm;
   font-size: 7mm;
   line-height: 1.08;
   text-transform: uppercase;
   font-weight: 500;
+  color: #ffffff;
 }
 
 .report-cover-year {
