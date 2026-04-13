@@ -23,6 +23,12 @@ async function loadText(url) {
     if (mount) mount.innerHTML = html;
   }
 
+async function mountSummaryPartial() {
+  const html = await loadText("partials/resumen-ejecutivo.html");
+  const mount = q("summaryMount");
+  if (mount) mount.innerHTML = html;
+}
+  
   async function mountLaminaFromCurrentHtml() {
     const html = await loadText("datos-clave-lamina.html");
     const parser = new DOMParser();
@@ -78,6 +84,7 @@ async function loadText(url) {
     try {
       initReportExport();
       await mountCoverPartial();
+      await mountSummaryPartial();
       await mountLaminaFromCurrentHtml();
 
       document.dispatchEvent(new CustomEvent("report:partials-ready"));
