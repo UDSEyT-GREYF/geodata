@@ -211,52 +211,58 @@
     return candidate.toUpperCase();
   }
 
-  function renderCover(iata) {
-    const code = clean(iata).toUpperCase();
-    if (!code) return false;
+function renderCover(iata) {
+  const code = clean(iata).toUpperCase();
+  if (!code) return false;
 
-    const airport = coverIndex.get(code);
-    if (!airport) return false;
+  const airport = coverIndex.get(code);
+  if (!airport) return false;
 
-    setText("coverAirportType", identity.type);
-    setText("coverAirportName", identity.name);
-    setText("coverAirportIATA", code);
-    setText("coverKicker", "INFORME DE IMPACTO");
-    setText("coverTitleLine1", "SOCIOECONÓMICO Y");
-    setText("coverTitleLine2", "TERRITORIAL");
-    setText("coverYear", String(YEAR_REF));
+  const identity = {
+    type: buildCoverAirportType(airport, code),
+    name: buildCoverAirportName(airport, code)
+  };
 
-    loadImageWithFallback(q("coverImg1"), [
-      `img/Portadas/portada1(${code}).png`,
-      `img/Portadas/portada1(${code}).jpg`,
-      `img/Portadas/portada1(${code}).jpeg`,
-      `img/portadas/portada1(${code}).png`
-    ]);
+  setText("coverAirportType", identity.type);
+  setText("coverAirportName", identity.name);
+  setText("coverAirportIATA", code);
 
-    loadImageWithFallback(q("coverImg2"), [
-      `img/Portadas/portada2(${code}).png`,
-      `img/Portadas/portada2(${code}).jpg`,
-      `img/Portadas/portada2(${code}).jpeg`,
-      `img/portadas/portada2(${code}).png`
-    ]);
+  setText("coverKicker", "INFORME DE IMPACTO");
+  setText("coverTitleLine1", "SOCIOECONÓMICO Y");
+  setText("coverTitleLine2", "TERRITORIAL");
+  setText("coverYear", String(YEAR_REF));
 
-    loadImageWithFallback(q("coverImg3"), [
-      `img/Portadas/portada3(${code}).png`,
-      `img/Portadas/portada3(${code}).jpg`,
-      `img/Portadas/portada3(${code}).jpeg`,
-      `img/portadas/portada3(${code}).png`
-    ]);
+  loadImageWithFallback(q("coverImg1"), [
+    `img/Portadas/portada1(${code}).png`,
+    `img/Portadas/portada1(${code}).jpg`,
+    `img/Portadas/portada1(${code}).jpeg`,
+    `img/portadas/portada1(${code}).png`
+  ]);
 
-    loadImageWithFallback(q("coverImg4"), [
-      `img/Portadas/portada4(${code}).png`,
-      `img/Portadas/portada4(${code}).jpg`,
-      `img/Portadas/portada4(${code}).jpeg`,
-      `img/portadas/portada4(${code}).png`
-    ]);
+  loadImageWithFallback(q("coverImg2"), [
+    `img/Portadas/portada2(${code}).png`,
+    `img/Portadas/portada2(${code}).jpg`,
+    `img/Portadas/portada2(${code}).jpeg`,
+    `img/portadas/portada2(${code}).png`
+  ]);
 
-    applyCoverTheme(code);
-    return true;
-  }
+  loadImageWithFallback(q("coverImg3"), [
+    `img/Portadas/portada3(${code}).png`,
+    `img/Portadas/portada3(${code}).jpg`,
+    `img/Portadas/portada3(${code}).jpeg`,
+    `img/portadas/portada3(${code}).png`
+  ]);
+
+  loadImageWithFallback(q("coverImg4"), [
+    `img/Portadas/portada4(${code}).png`,
+    `img/Portadas/portada4(${code}).jpg`,
+    `img/Portadas/portada4(${code}).jpeg`,
+    `img/portadas/portada4(${code}).png`
+  ]);
+
+  applyCoverTheme(code);
+  return true;
+}
 
   async function loadAirportData() {
     const resp = await fetch("fuentes/Datos_aeropuertos.geojson");
