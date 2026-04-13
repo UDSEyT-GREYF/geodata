@@ -14,37 +14,7 @@
   height: 297mm;
   margin: 0 auto;
   display: grid;
-  grid-template-rows: 12mm 42mm 120mm 1fr;
-  background: #ffffff;
-  color: var(--cover-dark);
-  overflow: hidden;
-  page-break-after: always;
-  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.12);
-  border: 1px solid rgba(0, 40, 85, 0.10);
-}
-
-.report-cover-topband {
-  background: var(--cover-main);
-}
-
-
-.report-cover-page,
-.report-cover-page * {
-  box-sizing: border-box;
-}
-
-.report-cover-page {
-  --cover-main: #234b6b;
-  --cover-dark: #17344a;
-  --cover-soft: #ddeaf2;
-  --cover-accent: #b8cdd8;
-
-  width: 210mm;
-  min-height: 297mm;
-  height: 297mm;
-  margin: 0 auto;
-  display: grid;
-  grid-template-rows: 12mm 42mm 120mm 1fr;
+  grid-template-rows: 12mm 78mm 120mm 1fr;
   background: #ffffff;
   color: var(--cover-dark);
   overflow: hidden;
@@ -58,14 +28,13 @@
   background: var(--cover-main);
 }
 
-.report-cover-header {
+.report-cover-hero {
+  background: #ffffff;
   display: grid;
   grid-template-columns: 42% 58%;
   align-items: start;
   gap: 6mm;
-  padding: 8mm 10mm 6mm;
-  background: linear-gradient(180deg, #edf4f8 0%, #e5eef4 100%);
-  border-bottom: 1px solid rgba(0, 40, 85, 0.08);
+  padding: 10mm 10mm 8mm;
 }
 
 .report-cover-logo {
@@ -79,21 +48,20 @@
 .report-cover-airport-header {
   text-align: right;
   color: #1f3f73;
-  padding-left: 6mm;
   align-self: start;
 }
 
 .report-cover-airport-type {
-  font-size: 5.4mm;
-  line-height: 1.1;
+  font-size: 5.2mm;
+  line-height: 1.12;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-weight: 500;
 }
 
 .report-cover-airport-name {
-  margin-top: 3mm;
-  font-size: 5.9mm;
+  margin-top: 3.5mm;
+  font-size: 5.7mm;
   line-height: 1.16;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -150,124 +118,34 @@
 }
 
 .report-cover-report-block {
-  width: 96mm;
+  width: 100mm;
   text-align: right;
   color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
 }
 
 .report-cover-kicker {
-  display: block;
   font-size: 4.8mm;
   line-height: 1.05;
   text-transform: uppercase;
   font-weight: 500;
   margin-bottom: 3mm;
-  color: #ffffff;
 }
 
 .report-cover-report-title {
   display: flex;
   flex-direction: column;
   gap: 1mm;
-  font-size: 7.1mm;
+  font-size: 7mm;
   line-height: 1.08;
   text-transform: uppercase;
   font-weight: 500;
-  color: #ffffff;
 }
 
 .report-cover-year {
-  display: block;
   margin-top: 4mm;
   font-size: 6.2mm;
   line-height: 1;
   font-weight: 500;
-  color: #ffffff;
-}
-
-@page {
-  size: A4 portrait;
-  margin: 0;
-}
-
-@media print {
-  .report-cover-page {
-    width: 210mm;
-    min-height: 297mm;
-    height: 297mm;
-    margin: 0;
-    box-shadow: none;
-    border: 0;
-  }
-}
-
-.report-cover-mosaic {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 0;
-  background: var(--cover-main);
-}
-
-.report-cover-mosaic-item {
-  position: relative;
-  overflow: hidden;
-  background:
-    linear-gradient(135deg, var(--cover-accent) 0%, var(--cover-soft) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-}
-
-.report-cover-mosaic-item img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-}
-
-.report-cover-mosaic-item img.is-hidden {
-  display: none;
-}
-
-.report-cover-bottomband {
-  background: var(--cover-main);
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding: 12mm 10mm 9mm;
-}
-
-.report-cover-report-block {
-  width: 88mm;
-  text-align: right;
-  color: #ffffff;
-}
-
-.report-cover-kicker {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 6.5mm;
-  line-height: 1.15;
-  text-transform: uppercase;
-  margin-bottom: 4mm;
-}
-
-.report-cover-report-title {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5mm;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 7.5mm;
-  line-height: 1.15;
-  text-transform: uppercase;
-}
-
-.report-cover-year {
-  margin-top: 6mm;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 7mm;
-  line-height: 1;
 }
 
 @page {
