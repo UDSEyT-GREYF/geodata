@@ -218,8 +218,8 @@
     const airport = coverIndex.get(code);
     if (!airport) return false;
 
-    setText("coverAirportType", buildCoverAirportType(airport, code));
-    setText("coverAirportName", buildCoverAirportName(airport, code));
+    setText("coverAirportType", identity.type);
+    setText("coverAirportName", identity.name);
     setText("coverAirportIATA", code);
     setText("coverKicker", "INFORME DE IMPACTO");
     setText("coverTitleLine1", "SOCIOECONÓMICO Y");
