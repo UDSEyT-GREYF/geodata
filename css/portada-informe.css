@@ -151,10 +151,14 @@
 }
 
 .report-cover-year {
-  margin-top: 4mm;
-  font-size: 6.2mm;
-  line-height: 1;
-  font-weight: 500;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #ffffff !important;
+  font-size: 6.2mm !important;
+  line-height: 1 !important;
+  font-weight: 500 !important;
+  margin: 4mm 0 0 0 !important;
 }
 
 @page {
