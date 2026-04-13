@@ -118,13 +118,11 @@
   padding: 0 22px 22px;
 }
 
-.report-cover-mosaic img {
+.report-cover-mosaic-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   display: block;
-  background: var(--cover-soft);
-  border-radius: 2px;
+  object-fit: cover;
 }
 
 .report-cover-mosaic img.is-hidden {
