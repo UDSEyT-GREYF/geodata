@@ -3,13 +3,19 @@
 
   const q = id => document.getElementById(id);
 
-  async function loadText(url) {
-    const resp = await fetch(url);
-    if (!resp.ok) {
-      throw new Error(`No se pudo cargar ${url}`);
-    }
-    return resp.text();
+async function loadText(url) {
+  const sep = url.includes("?") ? "&" : "?";
+  const cacheBust = `v=impacto4-${Date.now()}`;
+
+  const resp = await fetch(`${url}${sep}${cacheBust}`, {
+    cache: "no-store"
+  });
+
+  if (!resp.ok) {
+    throw new Error(`No se pudo cargar ${url}`);
   }
+  return resp.text();
+}
 
   async function mountCoverPartial() {
     const html = await loadText("partials/portada-informe.html");
