@@ -171,4 +171,44 @@
     box-shadow: none;
     border: 0;
   }
+  .report-cover-report-block {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  justify-content: flex-start !important;
+  width: 100mm !important;
+  text-align: right !important;
+  color: #ffffff !important;
+}
+
+.report-cover-report-title {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  gap: 1mm !important;
+  color: #ffffff !important;
+}
+
+#coverKicker {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #ffffff !important;
+  font-size: 4.8mm !important;
+  line-height: 1.05 !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  margin: 0 0 3mm 0 !important;
+}
+
+#coverYear {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #ffffff !important;
+  font-size: 6.2mm !important;
+  line-height: 1 !important;
+  font-weight: 500 !important;
+  margin: 4mm 0 0 0 !important;
+}
 }
