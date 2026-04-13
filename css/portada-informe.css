@@ -39,7 +39,7 @@
 
 .report-cover-logo {
   display: block;
-  width: 62mm;
+  width: 72mm;
   height: auto;
   object-fit: contain;
   align-self: start;
@@ -52,7 +52,7 @@
 }
 
 .report-cover-airport-type {
-  font-size: 5.2mm;
+  font-size: 10mm;
   line-height: 1.12;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -61,7 +61,7 @@
 
 .report-cover-airport-name {
   margin-top: 3.5mm;
-  font-size: 5.7mm;
+  font-size: 10mm;
   line-height: 1.16;
   letter-spacing: 0.02em;
   text-transform: uppercase;
