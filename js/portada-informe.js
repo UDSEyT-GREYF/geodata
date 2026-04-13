@@ -47,7 +47,7 @@
     RCU: { main: "#73624D", dark: "#514534", soft: "#F0E9DE", accent: "#D1C2AE" },
     RCQ: { main: "#6C6148", dark: "#4C4332", soft: "#EFE9DD", accent: "#CEC0A9" },
     RDS: { main: "#5E6B74", dark: "#414B52", soft: "#E6EBEE", accent: "#C8D0D5" },
-    REL: { main: "#5A6470", dark: "#3E4650", soft: "#E4E8ED", accent: "#C6CFD7" },
+    REL: { main: "#3790fa", dark: "#536780", soft: "#a7bad1", accent: "#C6CFD7" },
     RES: { main: "#597148", dark: "#3E5032", soft: "#E4ECD9", accent: "#C4D3B7" },
     RGA: { main: "#58707B", dark: "#3B4D56", soft: "#E3EBF0", accent: "#C0CED6" },
     RGL: { main: "#526371", dark: "#36424C", soft: "#E3E8EE", accent: "#C3CCD5" },
