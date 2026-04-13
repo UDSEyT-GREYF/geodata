@@ -164,52 +164,35 @@
       .trim();
   }
 
-  function buildCoverAirportType(a, iata) {
-    const code = clean(iata).toUpperCase();
-    const official = clean(firstNonEmpty(a, [
-      "Nombre del Aeropuerto",
-      "Aeropuerto",
-      "Denominacion"
-    ])).toUpperCase();
+function buildCoverAirportType(a, iata) {
+  const code = clean(iata).toUpperCase();
 
-    const habilitacion = clean(firstNonEmpty(a, [
-      "Habilitación",
-      "Habilitacion"
-    ])).toUpperCase();
+  const ciudad = clean(firstNonEmpty(a, [
+    "Ciudad",
+    "Localidad",
+    "Municipio",
+    "Ciudad / Localidad",
+    "Aeropuerto"
+  ]));
 
-    if (code === "AEP" || official.includes("AEROPARQUE")) return "AEROPARQUE";
-    if (official.includes("AERÓDROMO") || official.includes("AERODROMO")) return "AERÓDROMO";
-    if (
-      official.includes("AEROPUERTO INTERNACIONAL") ||
-      official.includes("INTERNACIONAL") ||
-      habilitacion.includes("INTERNACIONAL")
-    ) {
-      return "AEROPUERTO INTERNACIONAL";
-    }
+  if (code === "AEP") return "Aeroparque";
+  if (ciudad) return `Aeropuerto de ${ciudad}`;
+  return "Aeropuerto";
+}
 
-    return "AEROPUERTO";
-  }
+function buildCoverAirportName(a, iata) {
+  const code = clean(iata).toUpperCase();
 
-  function buildCoverAirportName(a, iata) {
-    const code = clean(iata).toUpperCase();
-    const city = clean(firstNonEmpty(a, [
-      "Ciudad",
-      "Localidad",
-      "Municipio",
-      "Ciudad / Localidad"
-    ]));
+  if (code === "AEP") return "Jorge Newbery";
 
-    if (code === "AEP") return "JORGE NEWBERY";
+  const nombreOficial = normalizeAirportName(firstNonEmpty(a, [
+    "Nombre del Aeropuerto",
+    "Aeropuerto",
+    "Denominacion"
+  ]));
 
-    const official = normalizeAirportName(firstNonEmpty(a, [
-      "Nombre del Aeropuerto",
-      "Aeropuerto",
-      "Denominacion"
-    ]));
-
-    const candidate = official || city || `Aeropuerto ${code}`;
-    return candidate.toUpperCase();
-  }
+  return nombreOficial || "–";
+}
 
 function renderCover(iata) {
   const code = clean(iata).toUpperCase();
