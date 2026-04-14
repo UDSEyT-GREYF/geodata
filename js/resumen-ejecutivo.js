@@ -545,11 +545,11 @@ function getDepartamentosText(iata) {
 </p>
 
       <p>
-        La evaluación del papel del transporte aerocomercial en el desarrollo territorial requiere considerar tanto sus impactos positivos como los efectos adversos que puede tener sobre las desigualdades regionales. Este análisis constituye un insumo relevante para el diseño de políticas orientadas a fortalecer su aporte al desarrollo local, regional y nacional.
+        La evaluación del papel del transporte aerocomercial en el desarrollo territorial requiere considerar tanto <strong>sus impactos positivos como los efectos adversos que puede tener sobre las desigualdades regionales</strong>. Este análisis constituye un insumo relevante para el diseño de políticas orientadas a fortalecer su aporte al desarrollo local, regional y nacional.
       </p>
 
       <p>
-        Los beneficios socioeconómicos del transporte aéreo están vinculados, por un lado, a la dinámica propia de las actividades aerocomerciales y aeroportuarias —facturación, salarios, utilidades, impuestos, etc.— y, por otro, a la conectividad aérea, que constituye un factor estratégico para el crecimiento y desarrollo de los mercados en el largo plazo, al facilitar el comercio, promover la inversión y estimular el turismo.
+        <strong>Los beneficios socioeconómicos del transporte aéreo están vinculados, por un lado, a la dinámica propia de las actividades aerocomerciales y aeroportuarias</strong> —facturación, salarios, utilidades, impuestos, etc.— <strong>y, por otro, a la conectividad aérea</strong>, que constituye un factor estratégico para el crecimiento y desarrollo de los mercados en el largo plazo, al facilitar el comercio, promover la inversión y estimular el turismo.
       </p>
 
       <p>
