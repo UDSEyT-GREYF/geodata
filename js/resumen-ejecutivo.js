@@ -303,6 +303,12 @@ function parseGentiliciosCSV(text) {
     return `${items.slice(0, -1).join(", ")} y ${items[items.length - 1]}`;
   }
 
+  function toTitleCaseWords(text) {
+  return clean(text)
+    .toLowerCase()
+    .replace(/\b([a-záéíóúñ])/g, s => s.toUpperCase());
+}
+  
   function getDeptoName(props) {
     return clean(firstNonEmpty(props, [
       "departamento",
@@ -335,61 +341,93 @@ function parseGentiliciosCSV(text) {
   }
 
 function getDepartamentosText(iata) {
-  const features = getDeptosFeaturesByIATA(iata);
-  if (!features.length) return "definidos en su área de influencia";
+  const code = clean(iata).toUpperCase();
+  const features = getDeptosFeaturesByIATA(code);
+
+  if (!features.length) return "los departamentos del área de influencia aeroportuaria";
 
   const groups = new Map();
 
   features.forEach(f => {
     const p = f.properties || {};
     const depto = getDeptoName(p);
-    const provincia = getProvinciaName(p) || "";
-    const key = normalizeKey(provincia || "sin-provincia");
+    const provinciaRaw = getProvinciaName(p);
+    const provincia = toTitleCaseWords(provinciaRaw);
+    const groupKey = normalizeKey(provincia || "sin-provincia");
 
-    if (!groups.has(key)) {
-      groups.set(key, {
+    if (!groups.has(groupKey)) {
+      groups.set(groupKey, {
         provincia,
-        gentilicio: clean(gentiliciosMap.get(key) || ""),
+        gentilicio: clean(gentiliciosMap.get(groupKey) || ""),
         deptos: []
       });
     }
 
-    if (depto) groups.get(key).deptos.push(depto);
+    if (depto) groups.get(groupKey).deptos.push(depto);
   });
 
-  const provinceFragments = Array.from(groups.values()).map(group => {
-    const deptosUnique = [...new Set(group.deptos)].filter(Boolean);
-    const deptosTxt = joinListEs(deptosUnique);
+  const orderedGroups = Array.from(groups.values()).map(group => ({
+    ...group,
+    deptos: [...new Set(group.deptos)]
+      .filter(Boolean)
+      .sort((a, b) => a.localeCompare(b, "es"))
+  }));
+
+  // Caso especial AEP:
+  // no enumerar comunas de CABA; mostrar "la Ciudad de Buenos Aires"
+  if (code === "AEP") {
+    const parts = [];
+
+    orderedGroups.forEach(group => {
+      const provKey = normalizeKey(group.provincia);
+      const deptosTxt = joinListEs(group.deptos);
+
+      if (provKey === normalizeKey("Ciudad de Buenos Aires")) {
+        parts.push("la Ciudad de Buenos Aires");
+        return;
+      }
+
+      if (!deptosTxt) return;
+
+      if (provKey === normalizeKey("Buenos Aires")) {
+        parts.push(`los departamentos bonaerenses de ${deptosTxt}`);
+        return;
+      }
+
+      parts.push(`de la provincia de ${group.provincia}: ${deptosTxt}`);
+    });
+
+    return parts.length
+      ? joinListEs(parts)
+      : "la Ciudad de Buenos Aires";
+  }
+
+  // Resto de aeropuertos
+  const provinceFragments = orderedGroups.map(group => {
+    const deptosTxt = joinListEs(group.deptos);
     const gentilicio = clean(group.gentilicio);
     const provincia = clean(group.provincia);
 
     if (!deptosTxt) {
-      if (gentilicio) return gentilicio;
-      if (provincia) return `de la provincia de ${provincia}`;
-      return "definidos en su área de influencia";
+      if (gentilicio) return `los departamentos ${gentilicio}`;
+      if (provincia) return `los departamentos de la provincia de ${provincia}`;
+      return "los departamentos del área de influencia aeroportuaria";
     }
 
     if (gentilicio) {
-      return `${gentilicio} de ${deptosTxt}`;
+      return `los departamentos ${gentilicio} de ${deptosTxt}`;
     }
 
     if (provincia) {
-      return `de la provincia de ${provincia}: ${deptosTxt}`;
+      return `los departamentos de la provincia de ${provincia}: ${deptosTxt}`;
     }
 
-    return deptosTxt;
+    return `los departamentos ${deptosTxt}`;
   });
 
-  if (!provinceFragments.length) return "definidos en su área de influencia";
-
-  if (provinceFragments.length === 1) {
-    return provinceFragments[0];
-  }
-
-  if (provinceFragments.length === 2) {
-    return `${provinceFragments[0]}, y ${provinceFragments[1]}`;
-  }
-
+  if (!provinceFragments.length) return "los departamentos del área de influencia aeroportuaria";
+  if (provinceFragments.length === 1) return provinceFragments[0];
+  if (provinceFragments.length === 2) return `${provinceFragments[0]}, y ${provinceFragments[1]}`;
   return `${provinceFragments.slice(0, -1).join("; ")}, y ${provinceFragments[provinceFragments.length - 1]}`;
 }
 
@@ -541,7 +579,7 @@ function getDepartamentosText(iata) {
       </p>
 
 <p>
-  El presente informe de Impacto socioeconómico y territorial ${YEAR_REF} del <strong>${escapeHtml(airportDisplay)}</strong>, caracteriza y cuantifica el aporte económico y laboral generado por los servicios aeronáuticos y aeroportuarios en el área de influencia, definida como el espacio geográfico sobre el cual el aeropuerto ejerce un poder de atracción y define el universo de potenciales pasajeros. En el caso del <strong>${escapeHtml(airportAreaLabel)}</strong>, incluye los departamentos ${escapeHtml(departamentos)}, y benefició a <strong>${escapeHtml(poblacion2022)}</strong> habitantes (Censo 2022).
+  El presente informe de Impacto socioeconómico y territorial ${YEAR_REF} del <strong>${escapeHtml(airportDisplay)}</strong>, caracteriza y cuantifica el aporte económico y laboral generado por los servicios aeronáuticos y aeroportuarios en el área de influencia, definida como el espacio geográfico sobre el cual el aeropuerto ejerce un poder de atracción y define el universo de potenciales pasajeros. En el caso del <strong>${escapeHtml(airportAreaLabel)}</strong>, incluye ${escapeHtml(departamentos)}, y benefició a <strong>${escapeHtml(poblacion2022)}</strong> habitantes (Censo 2022).
 </p>
 
       <p>
