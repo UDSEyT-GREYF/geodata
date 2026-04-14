@@ -8,7 +8,7 @@
                 "Provincia": "CIUDAD DE BUENOS AIRES",
                 "Departamento": "Comuna 1",
                 "Poblacion 2022": "223.282",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -18,7 +18,7 @@
                 "Provincia": "CIUDAD DE BUENOS AIRES",
                 "Departamento": "Comuna 2",
                 "Poblacion 2022": "158.368",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -28,7 +28,7 @@
                 "Provincia": "CIUDAD DE BUENOS AIRES",
                 "Departamento": "Comuna 3",
                 "Poblacion 2022": "195.462",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -38,7 +38,7 @@
                 "Provincia": "CIUDAD DE BUENOS AIRES",
                 "Departamento": "Comuna 4",
                 "Poblacion 2022": "230.945",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -48,7 +48,7 @@
                 "Provincia": "CIUDAD DE BUENOS AIRES",
                 "Departamento": "Comuna 5",
                 "Poblacion 2022": "193.859",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -58,7 +58,7 @@
                 "Provincia": "CIUDAD DE BUENOS AIRES",
                 "Departamento": "Comuna 6",
                 "Poblacion 2022": "203.784",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -68,7 +68,7 @@
                 "Provincia": "CIUDAD DE BUENOS AIRES",
                 "Departamento": "Comuna 7",
                 "Poblacion 2022": "216.832",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -78,7 +78,7 @@
                 "Provincia": "CIUDAD DE BUENOS AIRES",
                 "Departamento": "Comuna 8",
                 "Poblacion 2022": "204.842",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -88,7 +88,7 @@
                 "Provincia": "CIUDAD DE BUENOS AIRES",
                 "Departamento": "Comuna 9",
                 "Poblacion 2022": "169.538",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -98,7 +98,7 @@
                 "Provincia": "CIUDAD DE BUENOS AIRES",
                 "Departamento": "Comuna 10",
                 "Poblacion 2022": "171.797",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -108,7 +108,7 @@
                 "Provincia": "CIUDAD DE BUENOS AIRES",
                 "Departamento": "Comuna 11",
                 "Poblacion 2022": "203.491",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -118,7 +118,7 @@
                 "Provincia": "CIUDAD DE BUENOS AIRES",
                 "Departamento": "Comuna 12",
                 "Poblacion 2022": "236.294",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -128,7 +128,7 @@
                 "Provincia": "CIUDAD DE BUENOS AIRES",
                 "Departamento": "Comuna 13",
                 "Poblacion 2022": "265.199",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -138,7 +138,7 @@
                 "Provincia": "CIUDAD DE BUENOS AIRES",
                 "Departamento": "Comuna 14",
                 "Poblacion 2022": "249.016",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -148,7 +148,7 @@
                 "Provincia": "CIUDAD DE BUENOS AIRES",
                 "Departamento": "Comuna 15",
                 "Poblacion 2022": "197.903",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -158,7 +158,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Almirante Brown",
                 "Poblacion 2022": "585.852",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -168,7 +168,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Avellaneda",
                 "Poblacion 2022": "370.939",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -178,7 +178,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Berazategui",
                 "Poblacion 2022": "360.582",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -188,7 +188,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Esteban Echeverria",
                 "Poblacion 2022": "339.030",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -198,7 +198,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Ezeiza",
                 "Poblacion 2022": "203.283",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -208,7 +208,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Florencio Varela",
                 "Poblacion 2022": "497.818",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -218,7 +218,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "General San Martin",
                 "Poblacion 2022": "450.335",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -228,7 +228,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Hurlingham",
                 "Poblacion 2022": "187.122",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -238,7 +238,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Ituzaingo",
                 "Poblacion 2022": "179.788",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -248,7 +248,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Jose C. Paz",
                 "Poblacion 2022": "323.918",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -258,7 +258,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "La Matanza",
                 "Poblacion 2022": "1.837.774",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -268,7 +268,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Lanus",
                 "Poblacion 2022": "462.051",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -278,7 +278,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Lomas de Zamora",
                 "Poblacion 2022": "694.330",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -288,7 +288,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Malvinas Argentinas",
                 "Poblacion 2022": "351.788",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -298,7 +298,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Merlo",
                 "Poblacion 2022": "580.806",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -308,7 +308,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Moreno",
                 "Poblacion 2022": "574.374",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -318,7 +318,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Moron",
                 "Poblacion 2022": "334.178",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -328,7 +328,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Quilmes",
                 "Poblacion 2022": "636.026",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -338,7 +338,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "San Fernando",
                 "Poblacion 2022": "172.524",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -348,7 +348,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "San Isidro",
                 "Poblacion 2022": "298.777",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -358,7 +358,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "San Miguel",
                 "Poblacion 2022": "326.215",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -368,7 +368,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Tigre",
                 "Poblacion 2022": "447.785",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -378,7 +378,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Tres de Febrero",
                 "Poblacion 2022": "366.377",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -388,7 +388,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Vicente Lopez",
                 "Poblacion 2022": "283.510",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -398,7 +398,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Adolfo Alsina",
                 "Poblacion 2022": "17.666",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -408,7 +408,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Adolfo Gonzales Chaves",
                 "Poblacion 2022": "12.954",
-                "Area_aeroportuaria": "BHI"
+                "IATA": "BHI"
             },
             "geometry": null
         },
@@ -418,7 +418,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Alberti",
                 "Poblacion 2022": "12.726",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -428,7 +428,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Arrecifes",
                 "Poblacion 2022": "32.405",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -438,7 +438,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Ayacucho",
                 "Poblacion 2022": "22.136",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -448,7 +448,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Azul",
                 "Poblacion 2022": "75.396",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -458,7 +458,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Bahia Blanca",
                 "Poblacion 2022": "335.190",
-                "Area_aeroportuaria": "BHI"
+                "IATA": "BHI"
             },
             "geometry": null
         },
@@ -468,7 +468,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Balcarce",
                 "Poblacion 2022": "51.736",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -478,7 +478,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Baradero",
                 "Poblacion 2022": "38.526",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -488,7 +488,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Benito Juarez",
                 "Poblacion 2022": "22.558",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -498,7 +498,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Berisso",
                 "Poblacion 2022": "101.263",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -508,7 +508,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Bolivar",
                 "Poblacion 2022": "38.119",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -518,7 +518,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Bragado",
                 "Poblacion 2022": "44.972",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -528,7 +528,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Brandsen",
                 "Poblacion 2022": "33.026",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -538,7 +538,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Campana",
                 "Poblacion 2022": "110.726",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -548,7 +548,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Ca�uelas",
                 "Poblacion 2022": "71.149",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -558,7 +558,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Capitan Sarmiento",
                 "Poblacion 2022": "15.906",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -568,7 +568,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Carlos Casares",
                 "Poblacion 2022": "23.204",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -578,7 +578,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Carlos Tejedor",
                 "Poblacion 2022": "13.148",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -588,7 +588,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Carmen de Areco",
                 "Poblacion 2022": "17.386",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -598,7 +598,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Castelli",
                 "Poblacion 2022": "10.517",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -608,7 +608,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Chacabuco",
                 "Poblacion 2022": "53.157",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -618,7 +618,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Chascomus",
                 "Poblacion 2022": "42.914",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -628,7 +628,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Chivilcoy",
                 "Poblacion 2022": "70.765",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -638,7 +638,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Colon",
                 "Poblacion 2022": "27.356",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -648,7 +648,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Coronel de Marina Leonardo Rosales",
                 "Poblacion 2022": "70.407",
-                "Area_aeroportuaria": "BHI"
+                "IATA": "BHI"
             },
             "geometry": null
         },
@@ -658,7 +658,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Coronel Dorrego",
                 "Poblacion 2022": "16.227",
-                "Area_aeroportuaria": "BHI"
+                "IATA": "BHI"
             },
             "geometry": null
         },
@@ -668,7 +668,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Coronel Pringles",
                 "Poblacion 2022": "24.249",
-                "Area_aeroportuaria": "BHI"
+                "IATA": "BHI"
             },
             "geometry": null
         },
@@ -678,7 +678,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Coronel Suarez",
                 "Poblacion 2022": "42.676",
-                "Area_aeroportuaria": "BHI"
+                "IATA": "BHI"
             },
             "geometry": null
         },
@@ -688,7 +688,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Daireaux",
                 "Poblacion 2022": "19.149",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -698,7 +698,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Dolores",
                 "Poblacion 2022": "31.606",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -708,7 +708,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Ensenada",
                 "Poblacion 2022": "64.406",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -718,7 +718,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Escobar",
                 "Poblacion 2022": "256.449",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -728,7 +728,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Exaltacion de la Cruz",
                 "Poblacion 2022": "39.347",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -738,7 +738,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Florentino Ameghino",
                 "Poblacion 2022": "9.785",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -748,7 +748,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "General Alvarado",
                 "Poblacion 2022": "45.597",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -758,7 +758,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "General Alvear",
                 "Poblacion 2022": "12.941",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -768,7 +768,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "General Arenales",
                 "Poblacion 2022": "16.050",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -778,7 +778,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "General Belgrano",
                 "Poblacion 2022": "21.251",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -788,7 +788,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "General Guido",
                 "Poblacion 2022": "3.226",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -798,7 +798,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "General Juan Madariaga",
                 "Poblacion 2022": "23.019",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -808,7 +808,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "General La Madrid",
                 "Poblacion 2022": "11.666",
-                "Area_aeroportuaria": "BHI"
+                "IATA": "BHI"
             },
             "geometry": null
         },
@@ -818,7 +818,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "General Las Heras",
                 "Poblacion 2022": "17.572",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -828,7 +828,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "General Lavalle",
                 "Poblacion 2022": "4.949",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -838,7 +838,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "General Paz",
                 "Poblacion 2022": "14.230",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -848,7 +848,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "General Pinto",
                 "Poblacion 2022": "12.223",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -858,7 +858,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "General Pueyrredon",
                 "Poblacion 2022": "682.605",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -868,7 +868,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "General Rodriguez",
                 "Poblacion 2022": "143.211",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -878,7 +878,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "General Viamonte",
                 "Poblacion 2022": "20.068",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -888,7 +888,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "General Villegas",
                 "Poblacion 2022": "33.679",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -898,7 +898,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Guamini",
                 "Poblacion 2022": "12.005",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -908,7 +908,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Hipolito Yrigoyen",
                 "Poblacion 2022": "10.539",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -918,7 +918,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Junin",
                 "Poblacion 2022": "101.762",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -928,7 +928,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "La Costa",
                 "Poblacion 2022": "102.836",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -938,7 +938,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "La Plata",
                 "Poblacion 2022": "772.618",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -948,7 +948,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Laprida",
                 "Poblacion 2022": "11.726",
-                "Area_aeroportuaria": "BHI"
+                "IATA": "BHI"
             },
             "geometry": null
         },
@@ -958,7 +958,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Las Flores",
                 "Poblacion 2022": "26.651",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -968,7 +968,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Leandro N. Alem",
                 "Poblacion 2022": "17.587",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -978,7 +978,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Lezama",
                 "Poblacion 2022": "6.231",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -988,7 +988,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Lincoln",
                 "Poblacion 2022": "44.974",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -998,7 +998,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Loberia",
                 "Poblacion 2022": "18.234",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -1008,7 +1008,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Lobos",
                 "Poblacion 2022": "41.717",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -1018,7 +1018,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Lujan",
                 "Poblacion 2022": "111.365",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -1028,7 +1028,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Magdalena",
                 "Poblacion 2022": "26.734",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -1038,7 +1038,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Maipu",
                 "Poblacion 2022": "11.517",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -1048,7 +1048,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Mar Chiquita",
                 "Poblacion 2022": "33.284",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -1058,7 +1058,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Marcos Paz",
                 "Poblacion 2022": "67.154",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -1068,7 +1068,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Mercedes",
                 "Poblacion 2022": "73.477",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -1078,7 +1078,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Monte",
                 "Poblacion 2022": "24.481",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -1088,7 +1088,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Monte Hermoso",
                 "Poblacion 2022": "8.821",
-                "Area_aeroportuaria": "BHI"
+                "IATA": "BHI"
             },
             "geometry": null
         },
@@ -1098,7 +1098,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Navarro",
                 "Poblacion 2022": "20.383",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -1108,7 +1108,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Necochea",
                 "Poblacion 2022": "104.977",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -1118,7 +1118,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "9 de Julio",
                 "Poblacion 2022": "52.941",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -1128,7 +1128,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Olavarria",
                 "Poblacion 2022": "126.328",
-                "Area_aeroportuaria": "BHI"
+                "IATA": "BHI"
             },
             "geometry": null
         },
@@ -1138,7 +1138,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Patagones",
                 "Poblacion 2022": "37.811",
-                "Area_aeroportuaria": "VDM"
+                "IATA": "VDM"
             },
             "geometry": null
         },
@@ -1148,7 +1148,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Pehuajo",
                 "Poblacion 2022": "42.561",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -1158,7 +1158,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Pellegrini",
                 "Poblacion 2022": "6.948",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -1168,7 +1168,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Pergamino",
                 "Poblacion 2022": "114.052",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -1178,7 +1178,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Pila",
                 "Poblacion 2022": "4.609",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -1188,7 +1188,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Pilar",
                 "Poblacion 2022": "395.072",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -1198,7 +1198,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Pinamar",
                 "Poblacion 2022": "40.259",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -1208,7 +1208,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Presidente Peron",
                 "Poblacion 2022": "102.128",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -1218,7 +1218,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Puan",
                 "Poblacion 2022": "16.427",
-                "Area_aeroportuaria": "BHI"
+                "IATA": "BHI"
             },
             "geometry": null
         },
@@ -1228,7 +1228,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Punta Indio",
                 "Poblacion 2022": "12.419",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -1238,7 +1238,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Ramallo",
                 "Poblacion 2022": "39.116",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -1248,7 +1248,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Rauch",
                 "Poblacion 2022": "17.234",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -1258,7 +1258,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Rivadavia",
                 "Poblacion 2022": "19.844",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -1268,7 +1268,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Rojas",
                 "Poblacion 2022": "25.290",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -1278,7 +1278,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Roque Perez",
                 "Poblacion 2022": "14.032",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -1288,7 +1288,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Saavedra",
                 "Poblacion 2022": "22.846",
-                "Area_aeroportuaria": "BHI"
+                "IATA": "BHI"
             },
             "geometry": null
         },
@@ -1298,7 +1298,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Saladillo",
                 "Poblacion 2022": "35.669",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -1308,7 +1308,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Salliquelo",
                 "Poblacion 2022": "9.941",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -1318,7 +1318,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Salto",
                 "Poblacion 2022": "40.157",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -1328,7 +1328,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "San Andres de Giles",
                 "Poblacion 2022": "26.474",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -1338,7 +1338,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "San Antonio de Areco",
                 "Poblacion 2022": "26.671",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -1348,7 +1348,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "San Cayetano",
                 "Poblacion 2022": "9.611",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -1358,7 +1358,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "San Nicolas",
                 "Poblacion 2022": "165.375",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -1368,7 +1368,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "San Pedro",
                 "Poblacion 2022": "69.616",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -1378,7 +1378,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "San Vicente",
                 "Poblacion 2022": "98.977",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -1388,7 +1388,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Suipacha",
                 "Poblacion 2022": "11.867",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -1398,7 +1398,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Tandil",
                 "Poblacion 2022": "150.162",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -1408,7 +1408,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Tapalque",
                 "Poblacion 2022": "10.901",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -1418,7 +1418,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Tordillo",
                 "Poblacion 2022": "2.672",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -1428,7 +1428,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Tornquist",
                 "Poblacion 2022": "14.669",
-                "Area_aeroportuaria": "BHI"
+                "IATA": "BHI"
             },
             "geometry": null
         },
@@ -1438,7 +1438,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Trenque Lauquen",
                 "Poblacion 2022": "48.423",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -1448,7 +1448,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Tres Arroyos",
                 "Poblacion 2022": "62.835",
-                "Area_aeroportuaria": "BHI"
+                "IATA": "BHI"
             },
             "geometry": null
         },
@@ -1458,7 +1458,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Tres Lomas",
                 "Poblacion 2022": "8.825",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -1468,7 +1468,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "25 de Mayo",
                 "Poblacion 2022": "36.676",
-                "Area_aeroportuaria": "EZE"
+                "IATA": "EZE"
             },
             "geometry": null
         },
@@ -1478,7 +1478,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Villa Gesell",
                 "Poblacion 2022": "38.614",
-                "Area_aeroportuaria": "MDQ"
+                "IATA": "MDQ"
             },
             "geometry": null
         },
@@ -1488,7 +1488,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Villarino",
                 "Poblacion 2022": "33.170",
-                "Area_aeroportuaria": "BHI"
+                "IATA": "BHI"
             },
             "geometry": null
         },
@@ -1498,7 +1498,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "Zarate",
                 "Poblacion 2022": "132.087",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -1508,7 +1508,7 @@
                 "Provincia": "CATAMARCA",
                 "Departamento": "Ambato",
                 "Poblacion 2022": "5.027",
-                "Area_aeroportuaria": "CTC"
+                "IATA": "CTC"
             },
             "geometry": null
         },
@@ -1518,7 +1518,7 @@
                 "Provincia": "CATAMARCA",
                 "Departamento": "Ancasti",
                 "Poblacion 2022": "3.294",
-                "Area_aeroportuaria": "CTC"
+                "IATA": "CTC"
             },
             "geometry": null
         },
@@ -1528,7 +1528,7 @@
                 "Provincia": "CATAMARCA",
                 "Departamento": "Andalgala",
                 "Poblacion 2022": "19.364",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -1538,7 +1538,7 @@
                 "Provincia": "CATAMARCA",
                 "Departamento": "Antofagasta de la Sierra",
                 "Poblacion 2022": "2.008",
-                "Area_aeroportuaria": "SLA"
+                "IATA": "SLA"
             },
             "geometry": null
         },
@@ -1548,7 +1548,7 @@
                 "Provincia": "CATAMARCA",
                 "Departamento": "Belen",
                 "Poblacion 2022": "30.736",
-                "Area_aeroportuaria": "IRJ"
+                "IATA": "IRJ"
             },
             "geometry": null
         },
@@ -1558,7 +1558,7 @@
                 "Provincia": "CATAMARCA",
                 "Departamento": "Capayan",
                 "Poblacion 2022": "19.740",
-                "Area_aeroportuaria": "CTC"
+                "IATA": "CTC"
             },
             "geometry": null
         },
@@ -1568,7 +1568,7 @@
                 "Provincia": "CATAMARCA",
                 "Departamento": "Capital",
                 "Poblacion 2022": "188.489",
-                "Area_aeroportuaria": "CTC"
+                "IATA": "CTC"
             },
             "geometry": null
         },
@@ -1578,7 +1578,7 @@
                 "Provincia": "CATAMARCA",
                 "Departamento": "El Alto",
                 "Poblacion 2022": "4.251",
-                "Area_aeroportuaria": "CTC"
+                "IATA": "CTC"
             },
             "geometry": null
         },
@@ -1588,7 +1588,7 @@
                 "Provincia": "CATAMARCA",
                 "Departamento": "Fray Mamerto Esquiu",
                 "Poblacion 2022": "14.565",
-                "Area_aeroportuaria": "CTC"
+                "IATA": "CTC"
             },
             "geometry": null
         },
@@ -1598,7 +1598,7 @@
                 "Provincia": "CATAMARCA",
                 "Departamento": "La Paz",
                 "Poblacion 2022": "25.796",
-                "Area_aeroportuaria": "CTC"
+                "IATA": "CTC"
             },
             "geometry": null
         },
@@ -1608,7 +1608,7 @@
                 "Provincia": "CATAMARCA",
                 "Departamento": "Paclin",
                 "Poblacion 2022": "4.764",
-                "Area_aeroportuaria": "CTC"
+                "IATA": "CTC"
             },
             "geometry": null
         },
@@ -1618,7 +1618,7 @@
                 "Provincia": "CATAMARCA",
                 "Departamento": "Poman",
                 "Poblacion 2022": "11.845",
-                "Area_aeroportuaria": "IRJ"
+                "IATA": "IRJ"
             },
             "geometry": null
         },
@@ -1628,7 +1628,7 @@
                 "Provincia": "CATAMARCA",
                 "Departamento": "Santa Maria",
                 "Poblacion 2022": "27.186",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -1638,7 +1638,7 @@
                 "Provincia": "CATAMARCA",
                 "Departamento": "Santa Rosa",
                 "Poblacion 2022": "13.383",
-                "Area_aeroportuaria": "CTC"
+                "IATA": "CTC"
             },
             "geometry": null
         },
@@ -1648,7 +1648,7 @@
                 "Provincia": "CATAMARCA",
                 "Departamento": "Tinogasta",
                 "Poblacion 2022": "25.198",
-                "Area_aeroportuaria": "IRJ"
+                "IATA": "IRJ"
             },
             "geometry": null
         },
@@ -1658,7 +1658,7 @@
                 "Provincia": "CATAMARCA",
                 "Departamento": "Valle Viejo",
                 "Poblacion 2022": "33.910",
-                "Area_aeroportuaria": "CTC"
+                "IATA": "CTC"
             },
             "geometry": null
         },
@@ -1668,7 +1668,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "Almirante Brown",
                 "Poblacion 2022": "38.408",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1678,7 +1678,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "Bermejo",
                 "Poblacion 2022": "28.354",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1688,7 +1688,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "Chacabuco",
                 "Poblacion 2022": "34.674",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1698,7 +1698,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "Comandante Fernandez",
                 "Poblacion 2022": "102.086",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1708,7 +1708,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "12 de Octubre",
                 "Poblacion 2022": "23.794",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1718,7 +1718,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "2 de Abril",
                 "Poblacion 2022": "9.336",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1728,7 +1728,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "Fray Justo Santa Maria de Oro",
                 "Poblacion 2022": "10.673",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1738,7 +1738,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "General Belgrano",
                 "Poblacion 2022": "12.822",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1748,7 +1748,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "General Donovan",
                 "Poblacion 2022": "15.515",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1758,7 +1758,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "General G�emes",
                 "Poblacion 2022": "68.341",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1768,7 +1768,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "Independencia",
                 "Poblacion 2022": "22.168",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1778,7 +1778,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "Libertad",
                 "Poblacion 2022": "13.839",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1788,7 +1788,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "Libertador General San Martin",
                 "Poblacion 2022": "65.588",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1798,7 +1798,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "Maipu",
                 "Poblacion 2022": "26.486",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1808,7 +1808,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "Mayor Luis J. Fontana",
                 "Poblacion 2022": "61.561",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1818,7 +1818,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "9 de Julio",
                 "Poblacion 2022": "30.630",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1828,7 +1828,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "O'Higgins",
                 "Poblacion 2022": "22.069",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1838,7 +1838,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "Presidencia de la Plaza",
                 "Poblacion 2022": "14.003",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1848,7 +1848,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "1� de Mayo",
                 "Poblacion 2022": "14.484",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1858,7 +1858,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "Quitilipi",
                 "Poblacion 2022": "32.605",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1868,7 +1868,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "San Fernando",
                 "Poblacion 2022": "423.380",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1878,7 +1878,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "San Lorenzo",
                 "Poblacion 2022": "16.235",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1888,7 +1888,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "Sargento Cabral",
                 "Poblacion 2022": "18.788",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1898,7 +1898,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "Tapenaga",
                 "Poblacion 2022": "4.166",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1908,7 +1908,7 @@
                 "Provincia": "CHACO",
                 "Departamento": "25 de Mayo",
                 "Poblacion 2022": "32.958",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -1918,7 +1918,7 @@
                 "Provincia": "CHUBUT",
                 "Departamento": "Biedma",
                 "Poblacion 2022": "106.436",
-                "Area_aeroportuaria": "PMY"
+                "IATA": "PMY"
             },
             "geometry": null
         },
@@ -1928,7 +1928,7 @@
                 "Provincia": "CHUBUT",
                 "Departamento": "Cushamen",
                 "Poblacion 2022": "28.183",
-                "Area_aeroportuaria": "EQS"
+                "IATA": "EQS"
             },
             "geometry": null
         },
@@ -1938,7 +1938,7 @@
                 "Provincia": "CHUBUT",
                 "Departamento": "Escalante",
                 "Poblacion 2022": "219.235",
-                "Area_aeroportuaria": "CRD"
+                "IATA": "CRD"
             },
             "geometry": null
         },
@@ -1948,7 +1948,7 @@
                 "Provincia": "CHUBUT",
                 "Departamento": "Florentino Ameghino",
                 "Poblacion 2022": "1.796",
-                "Area_aeroportuaria": "REL"
+                "IATA": "REL"
             },
             "geometry": null
         },
@@ -1958,7 +1958,7 @@
                 "Provincia": "CHUBUT",
                 "Departamento": "Futaleufu",
                 "Poblacion 2022": "50.892",
-                "Area_aeroportuaria": "EQS"
+                "IATA": "EQS"
             },
             "geometry": null
         },
@@ -1968,7 +1968,7 @@
                 "Provincia": "CHUBUT",
                 "Departamento": "Gaiman",
                 "Poblacion 2022": "12.711",
-                "Area_aeroportuaria": "REL"
+                "IATA": "REL"
             },
             "geometry": null
         },
@@ -1978,7 +1978,7 @@
                 "Provincia": "CHUBUT",
                 "Departamento": "Gastre",
                 "Poblacion 2022": "1.327",
-                "Area_aeroportuaria": "EQS"
+                "IATA": "EQS"
             },
             "geometry": null
         },
@@ -1988,7 +1988,7 @@
                 "Provincia": "CHUBUT",
                 "Departamento": "Langui�eo",
                 "Poblacion 2022": "2.955",
-                "Area_aeroportuaria": "EQS"
+                "IATA": "EQS"
             },
             "geometry": null
         },
@@ -1998,7 +1998,7 @@
                 "Provincia": "CHUBUT",
                 "Departamento": "Martires",
                 "Poblacion 2022": "757",
-                "Area_aeroportuaria": "REL"
+                "IATA": "REL"
             },
             "geometry": null
         },
@@ -2008,7 +2008,7 @@
                 "Provincia": "CHUBUT",
                 "Departamento": "Paso de Indios",
                 "Poblacion 2022": "1.882",
-                "Area_aeroportuaria": "EQS"
+                "IATA": "EQS"
             },
             "geometry": null
         },
@@ -2018,7 +2018,7 @@
                 "Provincia": "CHUBUT",
                 "Departamento": "Rawson",
                 "Poblacion 2022": "148.019",
-                "Area_aeroportuaria": "REL"
+                "IATA": "REL"
             },
             "geometry": null
         },
@@ -2028,7 +2028,7 @@
                 "Provincia": "CHUBUT",
                 "Departamento": "Rio Senguer",
                 "Poblacion 2022": "6.538",
-                "Area_aeroportuaria": "CRD"
+                "IATA": "CRD"
             },
             "geometry": null
         },
@@ -2038,7 +2038,7 @@
                 "Provincia": "CHUBUT",
                 "Departamento": "Sarmiento",
                 "Poblacion 2022": "14.698",
-                "Area_aeroportuaria": "CRD"
+                "IATA": "CRD"
             },
             "geometry": null
         },
@@ -2048,7 +2048,7 @@
                 "Provincia": "CHUBUT",
                 "Departamento": "Tehuelches",
                 "Poblacion 2022": "6.010",
-                "Area_aeroportuaria": "EQS"
+                "IATA": "EQS"
             },
             "geometry": null
         },
@@ -2058,7 +2058,7 @@
                 "Provincia": "CHUBUT",
                 "Departamento": "Telsen",
                 "Poblacion 2022": "1.681",
-                "Area_aeroportuaria": "REL"
+                "IATA": "REL"
             },
             "geometry": null
         },
@@ -2068,7 +2068,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Calamuchita",
                 "Poblacion 2022": "79.591",
-                "Area_aeroportuaria": "COR"
+                "IATA": "COR"
             },
             "geometry": null
         },
@@ -2078,7 +2078,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Capital",
                 "Poblacion 2022": "1.565.112",
-                "Area_aeroportuaria": "COR"
+                "IATA": "COR"
             },
             "geometry": null
         },
@@ -2088,7 +2088,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Colon",
                 "Poblacion 2022": "303.120",
-                "Area_aeroportuaria": "COR"
+                "IATA": "COR"
             },
             "geometry": null
         },
@@ -2098,7 +2098,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Cruz del Eje",
                 "Poblacion 2022": "69.214",
-                "Area_aeroportuaria": "COR"
+                "IATA": "COR"
             },
             "geometry": null
         },
@@ -2108,7 +2108,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "General Roca",
                 "Poblacion 2022": "36.873",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -2118,7 +2118,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "General San Martin",
                 "Poblacion 2022": "162.306",
-                "Area_aeroportuaria": "COR"
+                "IATA": "COR"
             },
             "geometry": null
         },
@@ -2128,7 +2128,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Ischilin",
                 "Poblacion 2022": "36.726",
-                "Area_aeroportuaria": "COR"
+                "IATA": "COR"
             },
             "geometry": null
         },
@@ -2138,7 +2138,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Juarez Celman",
                 "Poblacion 2022": "75.307",
-                "Area_aeroportuaria": "RCU"
+                "IATA": "RCU"
             },
             "geometry": null
         },
@@ -2148,7 +2148,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Marcos Juarez",
                 "Poblacion 2022": "113.635",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -2158,7 +2158,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Minas",
                 "Poblacion 2022": "4.892",
-                "Area_aeroportuaria": "COR"
+                "IATA": "COR"
             },
             "geometry": null
         },
@@ -2168,7 +2168,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Pocho",
                 "Poblacion 2022": "5.420",
-                "Area_aeroportuaria": "COR"
+                "IATA": "COR"
             },
             "geometry": null
         },
@@ -2178,7 +2178,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Presidente Roque Saenz Pe�a",
                 "Poblacion 2022": "39.221",
-                "Area_aeroportuaria": "RCU"
+                "IATA": "RCU"
             },
             "geometry": null
         },
@@ -2188,7 +2188,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Punilla",
                 "Poblacion 2022": "226.947",
-                "Area_aeroportuaria": "COR"
+                "IATA": "COR"
             },
             "geometry": null
         },
@@ -2198,7 +2198,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Rio Cuarto",
                 "Poblacion 2022": "292.293",
-                "Area_aeroportuaria": "RCU"
+                "IATA": "RCU"
             },
             "geometry": null
         },
@@ -2208,7 +2208,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Rio Primero",
                 "Poblacion 2022": "59.898",
-                "Area_aeroportuaria": "COR"
+                "IATA": "COR"
             },
             "geometry": null
         },
@@ -2218,7 +2218,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Rio Seco",
                 "Poblacion 2022": "15.778",
-                "Area_aeroportuaria": "COR"
+                "IATA": "COR"
             },
             "geometry": null
         },
@@ -2228,7 +2228,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Rio Segundo",
                 "Poblacion 2022": "117.618",
-                "Area_aeroportuaria": "COR"
+                "IATA": "COR"
             },
             "geometry": null
         },
@@ -2238,7 +2238,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "San Alberto",
                 "Poblacion 2022": "44.116",
-                "Area_aeroportuaria": "COR"
+                "IATA": "COR"
             },
             "geometry": null
         },
@@ -2248,7 +2248,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "San Javier",
                 "Poblacion 2022": "64.462",
-                "Area_aeroportuaria": "LUQ"
+                "IATA": "LUQ"
             },
             "geometry": null
         },
@@ -2258,7 +2258,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "San Justo",
                 "Poblacion 2022": "234.466",
-                "Area_aeroportuaria": "COR"
+                "IATA": "COR"
             },
             "geometry": null
         },
@@ -2268,7 +2268,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Santa Maria",
                 "Poblacion 2022": "147.357",
-                "Area_aeroportuaria": "COR"
+                "IATA": "COR"
             },
             "geometry": null
         },
@@ -2278,7 +2278,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Sobremonte",
                 "Poblacion 2022": "4.648",
-                "Area_aeroportuaria": "COR"
+                "IATA": "COR"
             },
             "geometry": null
         },
@@ -2288,7 +2288,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Tercero Arriba",
                 "Poblacion 2022": "124.592",
-                "Area_aeroportuaria": "COR"
+                "IATA": "COR"
             },
             "geometry": null
         },
@@ -2298,7 +2298,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Totoral",
                 "Poblacion 2022": "22.680",
-                "Area_aeroportuaria": "COR"
+                "IATA": "COR"
             },
             "geometry": null
         },
@@ -2308,7 +2308,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Tulumba",
                 "Poblacion 2022": "14.340",
-                "Area_aeroportuaria": "COR"
+                "IATA": "COR"
             },
             "geometry": null
         },
@@ -2318,7 +2318,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "Union",
                 "Poblacion 2022": "118.372",
-                "Area_aeroportuaria": "RCU"
+                "IATA": "RCU"
             },
             "geometry": null
         },
@@ -2328,7 +2328,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "Bella Vista",
                 "Poblacion 2022": "44.913",
-                "Area_aeroportuaria": "CNQ"
+                "IATA": "CNQ"
             },
             "geometry": null
         },
@@ -2338,7 +2338,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "Beron de Astrada",
                 "Poblacion 2022": "2.824",
-                "Area_aeroportuaria": "CNQ"
+                "IATA": "CNQ"
             },
             "geometry": null
         },
@@ -2348,7 +2348,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "Capital",
                 "Poblacion 2022": "432.192",
-                "Area_aeroportuaria": "CNQ"
+                "IATA": "CNQ"
             },
             "geometry": null
         },
@@ -2358,7 +2358,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "Concepcion",
                 "Poblacion 2022": "25.823",
-                "Area_aeroportuaria": "CNQ"
+                "IATA": "CNQ"
             },
             "geometry": null
         },
@@ -2368,7 +2368,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "Curuzu Cuatia",
                 "Poblacion 2022": "51.616",
-                "Area_aeroportuaria": "CNQ"
+                "IATA": "CNQ"
             },
             "geometry": null
         },
@@ -2378,7 +2378,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "Empedrado",
                 "Poblacion 2022": "18.017",
-                "Area_aeroportuaria": "CNQ"
+                "IATA": "CNQ"
             },
             "geometry": null
         },
@@ -2388,7 +2388,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "Esquina",
                 "Poblacion 2022": "37.040",
-                "Area_aeroportuaria": "PRA"
+                "IATA": "PRA"
             },
             "geometry": null
         },
@@ -2398,7 +2398,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "General Alvear",
                 "Poblacion 2022": "9.130",
-                "Area_aeroportuaria": "PSS"
+                "IATA": "PSS"
             },
             "geometry": null
         },
@@ -2408,7 +2408,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "General Paz",
                 "Poblacion 2022": "16.730",
-                "Area_aeroportuaria": "CNQ"
+                "IATA": "CNQ"
             },
             "geometry": null
         },
@@ -2418,7 +2418,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "Goya",
                 "Poblacion 2022": "106.458",
-                "Area_aeroportuaria": "CNQ"
+                "IATA": "CNQ"
             },
             "geometry": null
         },
@@ -2428,7 +2428,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "Itati",
                 "Poblacion 2022": "12.068",
-                "Area_aeroportuaria": "CNQ"
+                "IATA": "CNQ"
             },
             "geometry": null
         },
@@ -2438,7 +2438,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "Ituzaingo",
                 "Poblacion 2022": "38.787",
-                "Area_aeroportuaria": "PSS"
+                "IATA": "PSS"
             },
             "geometry": null
         },
@@ -2448,7 +2448,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "Lavalle",
                 "Poblacion 2022": "38.664",
-                "Area_aeroportuaria": "CNQ"
+                "IATA": "CNQ"
             },
             "geometry": null
         },
@@ -2458,7 +2458,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "Mburucuya",
                 "Poblacion 2022": "11.767",
-                "Area_aeroportuaria": "CNQ"
+                "IATA": "CNQ"
             },
             "geometry": null
         },
@@ -2468,7 +2468,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "Mercedes",
                 "Poblacion 2022": "49.200",
-                "Area_aeroportuaria": "CNQ"
+                "IATA": "CNQ"
             },
             "geometry": null
         },
@@ -2478,7 +2478,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "Monte Caseros",
                 "Poblacion 2022": "44.878",
-                "Area_aeroportuaria": "PRA"
+                "IATA": "PRA"
             },
             "geometry": null
         },
@@ -2488,7 +2488,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "Paso de los Libres",
                 "Poblacion 2022": "57.121",
-                "Area_aeroportuaria": "PSS"
+                "IATA": "PSS"
             },
             "geometry": null
         },
@@ -2498,7 +2498,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "Saladas",
                 "Poblacion 2022": "27.752",
-                "Area_aeroportuaria": "CNQ"
+                "IATA": "CNQ"
             },
             "geometry": null
         },
@@ -2508,7 +2508,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "San Cosme",
                 "Poblacion 2022": "19.350",
-                "Area_aeroportuaria": "CNQ"
+                "IATA": "CNQ"
             },
             "geometry": null
         },
@@ -2518,7 +2518,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "San Luis del Palmar",
                 "Poblacion 2022": "21.039",
-                "Area_aeroportuaria": "CNQ"
+                "IATA": "CNQ"
             },
             "geometry": null
         },
@@ -2528,7 +2528,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "San Martin",
                 "Poblacion 2022": "15.192",
-                "Area_aeroportuaria": "PSS"
+                "IATA": "PSS"
             },
             "geometry": null
         },
@@ -2538,7 +2538,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "San Miguel",
                 "Poblacion 2022": "12.476",
-                "Area_aeroportuaria": "CNQ"
+                "IATA": "CNQ"
             },
             "geometry": null
         },
@@ -2548,7 +2548,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "San Roque",
                 "Poblacion 2022": "22.309",
-                "Area_aeroportuaria": "CNQ"
+                "IATA": "CNQ"
             },
             "geometry": null
         },
@@ -2558,7 +2558,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "Santo Tome",
                 "Poblacion 2022": "71.796",
-                "Area_aeroportuaria": "PSS"
+                "IATA": "PSS"
             },
             "geometry": null
         },
@@ -2568,7 +2568,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "Sauce",
                 "Poblacion 2022": "10.411",
-                "Area_aeroportuaria": "PRA"
+                "IATA": "PRA"
             },
             "geometry": null
         },
@@ -2578,7 +2578,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "Colon",
                 "Poblacion 2022": "75.091",
-                "Area_aeroportuaria": "PRA"
+                "IATA": "PRA"
             },
             "geometry": null
         },
@@ -2588,7 +2588,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "Concordia",
                 "Poblacion 2022": "199.634",
-                "Area_aeroportuaria": "PRA"
+                "IATA": "PRA"
             },
             "geometry": null
         },
@@ -2598,7 +2598,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "Diamante",
                 "Poblacion 2022": "54.121",
-                "Area_aeroportuaria": "PRA"
+                "IATA": "PRA"
             },
             "geometry": null
         },
@@ -2608,7 +2608,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "Federacion",
                 "Poblacion 2022": "79.449",
-                "Area_aeroportuaria": "PRA"
+                "IATA": "PRA"
             },
             "geometry": null
         },
@@ -2618,7 +2618,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "Federal",
                 "Poblacion 2022": "29.569",
-                "Area_aeroportuaria": "PRA"
+                "IATA": "PRA"
             },
             "geometry": null
         },
@@ -2628,7 +2628,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "Feliciano",
                 "Poblacion 2022": "16.597",
-                "Area_aeroportuaria": "PRA"
+                "IATA": "PRA"
             },
             "geometry": null
         },
@@ -2638,7 +2638,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "Gualeguay",
                 "Poblacion 2022": "57.865",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -2648,7 +2648,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "Gualeguaychu",
                 "Poblacion 2022": "126.765",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -2658,7 +2658,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "Islas del Ibicuy",
                 "Poblacion 2022": "14.075",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -2668,7 +2668,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "La Paz",
                 "Poblacion 2022": "74.872",
-                "Area_aeroportuaria": "PRA"
+                "IATA": "PRA"
             },
             "geometry": null
         },
@@ -2678,7 +2678,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "Nogoya",
                 "Poblacion 2022": "42.371",
-                "Area_aeroportuaria": "PRA"
+                "IATA": "PRA"
             },
             "geometry": null
         },
@@ -2688,7 +2688,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "Parana",
                 "Poblacion 2022": "391.962",
-                "Area_aeroportuaria": "PRA"
+                "IATA": "PRA"
             },
             "geometry": null
         },
@@ -2698,7 +2698,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "San Salvador",
                 "Poblacion 2022": "20.816",
-                "Area_aeroportuaria": "PRA"
+                "IATA": "PRA"
             },
             "geometry": null
         },
@@ -2708,7 +2708,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "Tala",
                 "Poblacion 2022": "30.840",
-                "Area_aeroportuaria": "PRA"
+                "IATA": "PRA"
             },
             "geometry": null
         },
@@ -2718,7 +2718,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "Uruguay",
                 "Poblacion 2022": "116.430",
-                "Area_aeroportuaria": "AEP"
+                "IATA": "AEP"
             },
             "geometry": null
         },
@@ -2728,7 +2728,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "Victoria",
                 "Poblacion 2022": "40.777",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -2738,7 +2738,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "Villaguay",
                 "Poblacion 2022": "55.192",
-                "Area_aeroportuaria": "PRA"
+                "IATA": "PRA"
             },
             "geometry": null
         },
@@ -2748,7 +2748,7 @@
                 "Provincia": "FORMOSA",
                 "Departamento": "Bermejo",
                 "Poblacion 2022": "15.385",
-                "Area_aeroportuaria": "FMA"
+                "IATA": "FMA"
             },
             "geometry": null
         },
@@ -2758,7 +2758,7 @@
                 "Provincia": "FORMOSA",
                 "Departamento": "Formosa",
                 "Poblacion 2022": "271.112",
-                "Area_aeroportuaria": "FMA"
+                "IATA": "FMA"
             },
             "geometry": null
         },
@@ -2768,7 +2768,7 @@
                 "Provincia": "FORMOSA",
                 "Departamento": "Laishi",
                 "Poblacion 2022": "19.363",
-                "Area_aeroportuaria": "FMA"
+                "IATA": "FMA"
             },
             "geometry": null
         },
@@ -2778,7 +2778,7 @@
                 "Provincia": "FORMOSA",
                 "Departamento": "Matacos",
                 "Poblacion 2022": "16.994",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -2788,7 +2788,7 @@
                 "Provincia": "FORMOSA",
                 "Departamento": "Pati�o",
                 "Poblacion 2022": "80.718",
-                "Area_aeroportuaria": "FMA"
+                "IATA": "FMA"
             },
             "geometry": null
         },
@@ -2798,7 +2798,7 @@
                 "Provincia": "FORMOSA",
                 "Departamento": "Pilagas",
                 "Poblacion 2022": "18.875",
-                "Area_aeroportuaria": "FMA"
+                "IATA": "FMA"
             },
             "geometry": null
         },
@@ -2808,7 +2808,7 @@
                 "Provincia": "FORMOSA",
                 "Departamento": "Pilcomayo",
                 "Poblacion 2022": "93.774",
-                "Area_aeroportuaria": "FMA"
+                "IATA": "FMA"
             },
             "geometry": null
         },
@@ -2818,7 +2818,7 @@
                 "Provincia": "FORMOSA",
                 "Departamento": "Pirane",
                 "Poblacion 2022": "72.053",
-                "Area_aeroportuaria": "FMA"
+                "IATA": "FMA"
             },
             "geometry": null
         },
@@ -2828,7 +2828,7 @@
                 "Provincia": "FORMOSA",
                 "Departamento": "Ramon Lista",
                 "Poblacion 2022": "17.767",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -2838,7 +2838,7 @@
                 "Provincia": "JUJUY",
                 "Departamento": "Cochinoca",
                 "Poblacion 2022": "14.599",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -2848,7 +2848,7 @@
                 "Provincia": "JUJUY",
                 "Departamento": "Doctor Manuel Belgrano",
                 "Poblacion 2022": "315.491",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -2858,7 +2858,7 @@
                 "Provincia": "JUJUY",
                 "Departamento": "El Carmen",
                 "Poblacion 2022": "119.076",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -2868,7 +2868,7 @@
                 "Provincia": "JUJUY",
                 "Departamento": "Humahuaca",
                 "Poblacion 2022": "19.520",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -2878,7 +2878,7 @@
                 "Provincia": "JUJUY",
                 "Departamento": "Ledesma",
                 "Poblacion 2022": "93.007",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -2888,7 +2888,7 @@
                 "Provincia": "JUJUY",
                 "Departamento": "Palpala",
                 "Poblacion 2022": "65.531",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -2898,7 +2898,7 @@
                 "Provincia": "JUJUY",
                 "Departamento": "Rinconada",
                 "Poblacion 2022": "1.765",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -2908,7 +2908,7 @@
                 "Provincia": "JUJUY",
                 "Departamento": "San Antonio",
                 "Poblacion 2022": "6.641",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -2918,7 +2918,7 @@
                 "Provincia": "JUJUY",
                 "Departamento": "San Pedro",
                 "Poblacion 2022": "87.758",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -2928,7 +2928,7 @@
                 "Provincia": "JUJUY",
                 "Departamento": "Santa Barbara",
                 "Poblacion 2022": "20.465",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -2938,7 +2938,7 @@
                 "Provincia": "JUJUY",
                 "Departamento": "Santa Catalina",
                 "Poblacion 2022": "2.213",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -2948,7 +2948,7 @@
                 "Provincia": "JUJUY",
                 "Departamento": "Susques",
                 "Poblacion 2022": "3.980",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -2958,7 +2958,7 @@
                 "Provincia": "JUJUY",
                 "Departamento": "Tilcara",
                 "Poblacion 2022": "14.841",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -2968,7 +2968,7 @@
                 "Provincia": "JUJUY",
                 "Departamento": "Tumbaya",
                 "Poblacion 2022": "5.393",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -2978,7 +2978,7 @@
                 "Provincia": "JUJUY",
                 "Departamento": "Valle Grande",
                 "Poblacion 2022": "2.406",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -2988,7 +2988,7 @@
                 "Provincia": "JUJUY",
                 "Departamento": "Yavi",
                 "Poblacion 2022": "25.269",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -2998,7 +2998,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Atreuco",
                 "Poblacion 2022": "11.319",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3008,7 +3008,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Caleu Caleu",
                 "Poblacion 2022": "2.625",
-                "Area_aeroportuaria": "BHI"
+                "IATA": "BHI"
             },
             "geometry": null
         },
@@ -3018,7 +3018,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Capital",
                 "Poblacion 2022": "120.473",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3028,7 +3028,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Catrilo",
                 "Poblacion 2022": "8.287",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3038,7 +3038,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Chalileo",
                 "Poblacion 2022": "2.911",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3048,7 +3048,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Chapaleufu",
                 "Poblacion 2022": "12.500",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3058,7 +3058,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Chical Co",
                 "Poblacion 2022": "1.491",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3068,7 +3068,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Conhelo",
                 "Poblacion 2022": "15.390",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3078,7 +3078,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Curaco",
                 "Poblacion 2022": "1.165",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3088,7 +3088,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Guatrache",
                 "Poblacion 2022": "9.834",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3098,7 +3098,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Hucal",
                 "Poblacion 2022": "7.914",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3108,7 +3108,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Lihuel Calel",
                 "Poblacion 2022": "437",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3118,7 +3118,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Limay Mahuida",
                 "Poblacion 2022": "420",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3128,7 +3128,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Loventue",
                 "Poblacion 2022": "9.400",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3138,7 +3138,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Maraco",
                 "Poblacion 2022": "70.156",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3148,7 +3148,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Puelen",
                 "Poblacion 2022": "12.035",
-                "Area_aeroportuaria": "NQN"
+                "IATA": "NQN"
             },
             "geometry": null
         },
@@ -3158,7 +3158,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Quemu Quemu",
                 "Poblacion 2022": "8.566",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3168,7 +3168,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Rancul",
                 "Poblacion 2022": "11.161",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3178,7 +3178,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Realico",
                 "Poblacion 2022": "17.700",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3188,7 +3188,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Toay",
                 "Poblacion 2022": "18.387",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3198,7 +3198,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Trenel",
                 "Poblacion 2022": "5.788",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3208,7 +3208,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "Utracan",
                 "Poblacion 2022": "18.063",
-                "Area_aeroportuaria": "RSA"
+                "IATA": "RSA"
             },
             "geometry": null
         },
@@ -3218,7 +3218,7 @@
                 "Provincia": "LA RIOJA",
                 "Departamento": "Arauco",
                 "Poblacion 2022": "16.625",
-                "Area_aeroportuaria": "IRJ"
+                "IATA": "IRJ"
             },
             "geometry": null
         },
@@ -3228,7 +3228,7 @@
                 "Provincia": "LA RIOJA",
                 "Departamento": "General angel V. Pe�aloza",
                 "Poblacion 2022": "3.175",
-                "Area_aeroportuaria": "IRJ"
+                "IATA": "IRJ"
             },
             "geometry": null
         },
@@ -3238,7 +3238,7 @@
                 "Provincia": "LA RIOJA",
                 "Departamento": "Capital",
                 "Poblacion 2022": "212.225",
-                "Area_aeroportuaria": "IRJ"
+                "IATA": "IRJ"
             },
             "geometry": null
         },
@@ -3248,7 +3248,7 @@
                 "Provincia": "LA RIOJA",
                 "Departamento": "Castro Barros",
                 "Poblacion 2022": "4.841",
-                "Area_aeroportuaria": "IRJ"
+                "IATA": "IRJ"
             },
             "geometry": null
         },
@@ -3258,7 +3258,7 @@
                 "Provincia": "LA RIOJA",
                 "Departamento": "Chamical",
                 "Poblacion 2022": "15.762",
-                "Area_aeroportuaria": "IRJ"
+                "IATA": "IRJ"
             },
             "geometry": null
         },
@@ -3268,7 +3268,7 @@
                 "Provincia": "LA RIOJA",
                 "Departamento": "Chilecito",
                 "Poblacion 2022": "60.175",
-                "Area_aeroportuaria": "IRJ"
+                "IATA": "IRJ"
             },
             "geometry": null
         },
@@ -3278,7 +3278,7 @@
                 "Provincia": "LA RIOJA",
                 "Departamento": "Famatina",
                 "Poblacion 2022": "6.961",
-                "Area_aeroportuaria": "IRJ"
+                "IATA": "IRJ"
             },
             "geometry": null
         },
@@ -3288,7 +3288,7 @@
                 "Provincia": "LA RIOJA",
                 "Departamento": "General Belgrano",
                 "Poblacion 2022": "7.649",
-                "Area_aeroportuaria": "IRJ"
+                "IATA": "IRJ"
             },
             "geometry": null
         },
@@ -3298,7 +3298,7 @@
                 "Provincia": "LA RIOJA",
                 "Departamento": "General Felipe Varela",
                 "Poblacion 2022": "11.406",
-                "Area_aeroportuaria": "IRJ"
+                "IATA": "IRJ"
             },
             "geometry": null
         },
@@ -3308,7 +3308,7 @@
                 "Provincia": "LA RIOJA",
                 "Departamento": "General Juan F. Quiroga",
                 "Poblacion 2022": "3.828",
-                "Area_aeroportuaria": "IRJ"
+                "IATA": "IRJ"
             },
             "geometry": null
         },
@@ -3318,7 +3318,7 @@
                 "Provincia": "LA RIOJA",
                 "Departamento": "General Lamadrid",
                 "Poblacion 2022": "1.876",
-                "Area_aeroportuaria": "IRJ"
+                "IATA": "IRJ"
             },
             "geometry": null
         },
@@ -3328,7 +3328,7 @@
                 "Provincia": "LA RIOJA",
                 "Departamento": "General Ortiz de Ocampo",
                 "Poblacion 2022": "7.360",
-                "Area_aeroportuaria": "IRJ"
+                "IATA": "IRJ"
             },
             "geometry": null
         },
@@ -3338,7 +3338,7 @@
                 "Provincia": "LA RIOJA",
                 "Departamento": "General San Martin",
                 "Poblacion 2022": "5.028",
-                "Area_aeroportuaria": "LUQ"
+                "IATA": "LUQ"
             },
             "geometry": null
         },
@@ -3348,7 +3348,7 @@
                 "Provincia": "LA RIOJA",
                 "Departamento": "Independencia",
                 "Poblacion 2022": "2.405",
-                "Area_aeroportuaria": "IRJ"
+                "IATA": "IRJ"
             },
             "geometry": null
         },
@@ -3358,7 +3358,7 @@
                 "Provincia": "LA RIOJA",
                 "Departamento": "Rosario Vera Pe�aloza",
                 "Poblacion 2022": "15.441",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -3368,7 +3368,7 @@
                 "Provincia": "LA RIOJA",
                 "Departamento": "San Blas de los Sauces",
                 "Poblacion 2022": "4.317",
-                "Area_aeroportuaria": "IRJ"
+                "IATA": "IRJ"
             },
             "geometry": null
         },
@@ -3378,7 +3378,7 @@
                 "Provincia": "LA RIOJA",
                 "Departamento": "Sanagasta",
                 "Poblacion 2022": "2.847",
-                "Area_aeroportuaria": "IRJ"
+                "IATA": "IRJ"
             },
             "geometry": null
         },
@@ -3388,7 +3388,7 @@
                 "Provincia": "LA RIOJA",
                 "Departamento": "Vinchina",
                 "Poblacion 2022": "2.686",
-                "Area_aeroportuaria": "IRJ"
+                "IATA": "IRJ"
             },
             "geometry": null
         },
@@ -3398,7 +3398,7 @@
                 "Provincia": "MENDOZA",
                 "Departamento": "Capital",
                 "Poblacion 2022": "122.840",
-                "Area_aeroportuaria": "MDZ"
+                "IATA": "MDZ"
             },
             "geometry": null
         },
@@ -3408,7 +3408,7 @@
                 "Provincia": "MENDOZA",
                 "Departamento": "General Alvear",
                 "Poblacion 2022": "50.209",
-                "Area_aeroportuaria": "AFA"
+                "IATA": "AFA"
             },
             "geometry": null
         },
@@ -3418,7 +3418,7 @@
                 "Provincia": "MENDOZA",
                 "Departamento": "Godoy Cruz",
                 "Poblacion 2022": "195.183",
-                "Area_aeroportuaria": "MDZ"
+                "IATA": "MDZ"
             },
             "geometry": null
         },
@@ -3428,7 +3428,7 @@
                 "Provincia": "MENDOZA",
                 "Departamento": "Guaymallen",
                 "Poblacion 2022": "321.371",
-                "Area_aeroportuaria": "MDZ"
+                "IATA": "MDZ"
             },
             "geometry": null
         },
@@ -3438,7 +3438,7 @@
                 "Provincia": "MENDOZA",
                 "Departamento": "Junin",
                 "Poblacion 2022": "45.673",
-                "Area_aeroportuaria": "MDZ"
+                "IATA": "MDZ"
             },
             "geometry": null
         },
@@ -3448,7 +3448,7 @@
                 "Provincia": "MENDOZA",
                 "Departamento": "La Paz",
                 "Poblacion 2022": "12.020",
-                "Area_aeroportuaria": "LUQ"
+                "IATA": "LUQ"
             },
             "geometry": null
         },
@@ -3458,7 +3458,7 @@
                 "Provincia": "MENDOZA",
                 "Departamento": "Las Heras",
                 "Poblacion 2022": "228.525",
-                "Area_aeroportuaria": "MDZ"
+                "IATA": "MDZ"
             },
             "geometry": null
         },
@@ -3468,7 +3468,7 @@
                 "Provincia": "MENDOZA",
                 "Departamento": "Lavalle",
                 "Poblacion 2022": "47.529",
-                "Area_aeroportuaria": "MDZ"
+                "IATA": "MDZ"
             },
             "geometry": null
         },
@@ -3478,7 +3478,7 @@
                 "Provincia": "MENDOZA",
                 "Departamento": "Lujan de Cuyo",
                 "Poblacion 2022": "172.109",
-                "Area_aeroportuaria": "MDZ"
+                "IATA": "MDZ"
             },
             "geometry": null
         },
@@ -3488,7 +3488,7 @@
                 "Provincia": "MENDOZA",
                 "Departamento": "Maipu",
                 "Poblacion 2022": "214.412",
-                "Area_aeroportuaria": "MDZ"
+                "IATA": "MDZ"
             },
             "geometry": null
         },
@@ -3498,7 +3498,7 @@
                 "Provincia": "MENDOZA",
                 "Departamento": "Malarg�e",
                 "Poblacion 2022": "33.107",
-                "Area_aeroportuaria": "AFA"
+                "IATA": "AFA"
             },
             "geometry": null
         },
@@ -3508,7 +3508,7 @@
                 "Provincia": "MENDOZA",
                 "Departamento": "Rivadavia",
                 "Poblacion 2022": "63.473",
-                "Area_aeroportuaria": "MDZ"
+                "IATA": "MDZ"
             },
             "geometry": null
         },
@@ -3518,7 +3518,7 @@
                 "Provincia": "MENDOZA",
                 "Departamento": "San Carlos",
                 "Poblacion 2022": "40.024",
-                "Area_aeroportuaria": "MDZ"
+                "IATA": "MDZ"
             },
             "geometry": null
         },
@@ -3528,7 +3528,7 @@
                 "Provincia": "MENDOZA",
                 "Departamento": "San Martin",
                 "Poblacion 2022": "138.429",
-                "Area_aeroportuaria": "MDZ"
+                "IATA": "MDZ"
             },
             "geometry": null
         },
@@ -3538,7 +3538,7 @@
                 "Provincia": "MENDOZA",
                 "Departamento": "San Rafael",
                 "Poblacion 2022": "210.478",
-                "Area_aeroportuaria": "AFA"
+                "IATA": "AFA"
             },
             "geometry": null
         },
@@ -3548,7 +3548,7 @@
                 "Provincia": "MENDOZA",
                 "Departamento": "Santa Rosa",
                 "Poblacion 2022": "19.410",
-                "Area_aeroportuaria": "MDZ"
+                "IATA": "MDZ"
             },
             "geometry": null
         },
@@ -3558,7 +3558,7 @@
                 "Provincia": "MENDOZA",
                 "Departamento": "Tunuyan",
                 "Poblacion 2022": "58.780",
-                "Area_aeroportuaria": "MDZ"
+                "IATA": "MDZ"
             },
             "geometry": null
         },
@@ -3568,7 +3568,7 @@
                 "Provincia": "MENDOZA",
                 "Departamento": "Tupungato",
                 "Poblacion 2022": "40.961",
-                "Area_aeroportuaria": "MDZ"
+                "IATA": "MDZ"
             },
             "geometry": null
         },
@@ -3578,7 +3578,7 @@
                 "Provincia": "MISIONES",
                 "Departamento": "Apostoles",
                 "Poblacion 2022": "51.169",
-                "Area_aeroportuaria": "PSS"
+                "IATA": "PSS"
             },
             "geometry": null
         },
@@ -3588,7 +3588,7 @@
                 "Provincia": "MISIONES",
                 "Departamento": "Cainguas",
                 "Poblacion 2022": "59.569",
-                "Area_aeroportuaria": "PSS"
+                "IATA": "PSS"
             },
             "geometry": null
         },
@@ -3598,7 +3598,7 @@
                 "Provincia": "MISIONES",
                 "Departamento": "Candelaria",
                 "Poblacion 2022": "35.710",
-                "Area_aeroportuaria": "PSS"
+                "IATA": "PSS"
             },
             "geometry": null
         },
@@ -3608,7 +3608,7 @@
                 "Provincia": "MISIONES",
                 "Departamento": "Capital",
                 "Poblacion 2022": "393.612",
-                "Area_aeroportuaria": "PSS"
+                "IATA": "PSS"
             },
             "geometry": null
         },
@@ -3618,7 +3618,7 @@
                 "Provincia": "MISIONES",
                 "Departamento": "Concepcion",
                 "Poblacion 2022": "10.139",
-                "Area_aeroportuaria": "PSS"
+                "IATA": "PSS"
             },
             "geometry": null
         },
@@ -3628,7 +3628,7 @@
                 "Provincia": "MISIONES",
                 "Departamento": "Eldorado",
                 "Poblacion 2022": "91.824",
-                "Area_aeroportuaria": "IGR"
+                "IATA": "IGR"
             },
             "geometry": null
         },
@@ -3638,7 +3638,7 @@
                 "Provincia": "MISIONES",
                 "Departamento": "General Manuel Belgrano",
                 "Poblacion 2022": "46.724",
-                "Area_aeroportuaria": "IGR"
+                "IATA": "IGR"
             },
             "geometry": null
         },
@@ -3648,7 +3648,7 @@
                 "Provincia": "MISIONES",
                 "Departamento": "Guarani",
                 "Poblacion 2022": "77.150",
-                "Area_aeroportuaria": "PSS"
+                "IATA": "PSS"
             },
             "geometry": null
         },
@@ -3658,7 +3658,7 @@
                 "Provincia": "MISIONES",
                 "Departamento": "Iguazu",
                 "Poblacion 2022": "99.013",
-                "Area_aeroportuaria": "IGR"
+                "IATA": "IGR"
             },
             "geometry": null
         },
@@ -3668,7 +3668,7 @@
                 "Provincia": "MISIONES",
                 "Departamento": "Leandro N. Alem",
                 "Poblacion 2022": "50.322",
-                "Area_aeroportuaria": "PSS"
+                "IATA": "PSS"
             },
             "geometry": null
         },
@@ -3678,7 +3678,7 @@
                 "Provincia": "MISIONES",
                 "Departamento": "Libertador General San Martin",
                 "Poblacion 2022": "52.503",
-                "Area_aeroportuaria": "PSS"
+                "IATA": "PSS"
             },
             "geometry": null
         },
@@ -3688,7 +3688,7 @@
                 "Provincia": "MISIONES",
                 "Departamento": "Montecarlo",
                 "Poblacion 2022": "38.317",
-                "Area_aeroportuaria": "IGR"
+                "IATA": "IGR"
             },
             "geometry": null
         },
@@ -3698,7 +3698,7 @@
                 "Provincia": "MISIONES",
                 "Departamento": "Obera",
                 "Poblacion 2022": "121.990",
-                "Area_aeroportuaria": "PSS"
+                "IATA": "PSS"
             },
             "geometry": null
         },
@@ -3708,7 +3708,7 @@
                 "Provincia": "MISIONES",
                 "Departamento": "San Ignacio",
                 "Poblacion 2022": "63.990",
-                "Area_aeroportuaria": "PSS"
+                "IATA": "PSS"
             },
             "geometry": null
         },
@@ -3718,7 +3718,7 @@
                 "Provincia": "MISIONES",
                 "Departamento": "San Javier",
                 "Poblacion 2022": "23.357",
-                "Area_aeroportuaria": "PSS"
+                "IATA": "PSS"
             },
             "geometry": null
         },
@@ -3728,7 +3728,7 @@
                 "Provincia": "MISIONES",
                 "Departamento": "San Pedro",
                 "Poblacion 2022": "35.088",
-                "Area_aeroportuaria": "IGR"
+                "IATA": "IGR"
             },
             "geometry": null
         },
@@ -3738,7 +3738,7 @@
                 "Provincia": "MISIONES",
                 "Departamento": "25 de Mayo",
                 "Poblacion 2022": "30.483",
-                "Area_aeroportuaria": "PSS"
+                "IATA": "PSS"
             },
             "geometry": null
         },
@@ -3748,7 +3748,7 @@
                 "Provincia": "NEUQUEN",
                 "Departamento": "Alumine",
                 "Poblacion 2022": "10.529",
-                "Area_aeroportuaria": "CPC"
+                "IATA": "CPC"
             },
             "geometry": null
         },
@@ -3758,7 +3758,7 @@
                 "Provincia": "NEUQUEN",
                 "Departamento": "A�elo",
                 "Poblacion 2022": "17.893",
-                "Area_aeroportuaria": "NQN"
+                "IATA": "NQN"
             },
             "geometry": null
         },
@@ -3768,7 +3768,7 @@
                 "Provincia": "NEUQUEN",
                 "Departamento": "Catan Lil",
                 "Poblacion 2022": "2.588",
-                "Area_aeroportuaria": "CPC"
+                "IATA": "CPC"
             },
             "geometry": null
         },
@@ -3778,7 +3778,7 @@
                 "Provincia": "NEUQUEN",
                 "Departamento": "Chos Malal",
                 "Poblacion 2022": "18.553",
-                "Area_aeroportuaria": "NQN"
+                "IATA": "NQN"
             },
             "geometry": null
         },
@@ -3788,7 +3788,7 @@
                 "Provincia": "NEUQUEN",
                 "Departamento": "Collon Cura",
                 "Poblacion 2022": "4.781",
-                "Area_aeroportuaria": "CPC"
+                "IATA": "CPC"
             },
             "geometry": null
         },
@@ -3798,7 +3798,7 @@
                 "Provincia": "NEUQUEN",
                 "Departamento": "Confluencia",
                 "Poblacion 2022": "481.462",
-                "Area_aeroportuaria": "NQN"
+                "IATA": "NQN"
             },
             "geometry": null
         },
@@ -3808,7 +3808,7 @@
                 "Provincia": "NEUQUEN",
                 "Departamento": "Huiliches",
                 "Poblacion 2022": "20.081",
-                "Area_aeroportuaria": "CPC"
+                "IATA": "CPC"
             },
             "geometry": null
         },
@@ -3818,7 +3818,7 @@
                 "Provincia": "NEUQUEN",
                 "Departamento": "Lacar",
                 "Poblacion 2022": "39.870",
-                "Area_aeroportuaria": "CPC"
+                "IATA": "CPC"
             },
             "geometry": null
         },
@@ -3828,7 +3828,7 @@
                 "Provincia": "NEUQUEN",
                 "Departamento": "Loncopue",
                 "Poblacion 2022": "7.763",
-                "Area_aeroportuaria": "NQN"
+                "IATA": "NQN"
             },
             "geometry": null
         },
@@ -3838,7 +3838,7 @@
                 "Provincia": "NEUQUEN",
                 "Departamento": "Los Lagos",
                 "Poblacion 2022": "15.552",
-                "Area_aeroportuaria": "BRC"
+                "IATA": "BRC"
             },
             "geometry": null
         },
@@ -3848,7 +3848,7 @@
                 "Provincia": "NEUQUEN",
                 "Departamento": "Minas",
                 "Poblacion 2022": "9.299",
-                "Area_aeroportuaria": "NQN"
+                "IATA": "NQN"
             },
             "geometry": null
         },
@@ -3858,7 +3858,7 @@
                 "Provincia": "NEUQUEN",
                 "Departamento": "�orquin",
                 "Poblacion 2022": "5.700",
-                "Area_aeroportuaria": "NQN"
+                "IATA": "NQN"
             },
             "geometry": null
         },
@@ -3868,7 +3868,7 @@
                 "Provincia": "NEUQUEN",
                 "Departamento": "Pehuenches",
                 "Poblacion 2022": "33.545",
-                "Area_aeroportuaria": "NQN"
+                "IATA": "NQN"
             },
             "geometry": null
         },
@@ -3878,7 +3878,7 @@
                 "Provincia": "NEUQUEN",
                 "Departamento": "Picun Leufu",
                 "Poblacion 2022": "5.102",
-                "Area_aeroportuaria": "NQN"
+                "IATA": "NQN"
             },
             "geometry": null
         },
@@ -3888,7 +3888,7 @@
                 "Provincia": "NEUQUEN",
                 "Departamento": "Picunches",
                 "Poblacion 2022": "8.552",
-                "Area_aeroportuaria": "NQN"
+                "IATA": "NQN"
             },
             "geometry": null
         },
@@ -3898,7 +3898,7 @@
                 "Provincia": "NEUQUEN",
                 "Departamento": "Zapala",
                 "Poblacion 2022": "45.320",
-                "Area_aeroportuaria": "NQN"
+                "IATA": "NQN"
             },
             "geometry": null
         },
@@ -3908,7 +3908,7 @@
                 "Provincia": "RIO NEGRO",
                 "Departamento": "Adolfo Alsina",
                 "Poblacion 2022": "65.273",
-                "Area_aeroportuaria": "VDM"
+                "IATA": "VDM"
             },
             "geometry": null
         },
@@ -3918,7 +3918,7 @@
                 "Provincia": "RIO NEGRO",
                 "Departamento": "Avellaneda",
                 "Poblacion 2022": "41.847",
-                "Area_aeroportuaria": "NQN"
+                "IATA": "NQN"
             },
             "geometry": null
         },
@@ -3928,7 +3928,7 @@
                 "Provincia": "RIO NEGRO",
                 "Departamento": "Bariloche",
                 "Poblacion 2022": "164.065",
-                "Area_aeroportuaria": "BRC"
+                "IATA": "BRC"
             },
             "geometry": null
         },
@@ -3938,7 +3938,7 @@
                 "Provincia": "RIO NEGRO",
                 "Departamento": "Conesa",
                 "Poblacion 2022": "7.414",
-                "Area_aeroportuaria": "VDM"
+                "IATA": "VDM"
             },
             "geometry": null
         },
@@ -3948,7 +3948,7 @@
                 "Provincia": "RIO NEGRO",
                 "Departamento": "El Cuy",
                 "Poblacion 2022": "6.698",
-                "Area_aeroportuaria": "NQN"
+                "IATA": "NQN"
             },
             "geometry": null
         },
@@ -3958,7 +3958,7 @@
                 "Provincia": "RIO NEGRO",
                 "Departamento": "General Roca",
                 "Poblacion 2022": "388.129",
-                "Area_aeroportuaria": "NQN"
+                "IATA": "NQN"
             },
             "geometry": null
         },
@@ -3968,7 +3968,7 @@
                 "Provincia": "RIO NEGRO",
                 "Departamento": "9 de Julio",
                 "Poblacion 2022": "3.654",
-                "Area_aeroportuaria": "PMY"
+                "IATA": "PMY"
             },
             "geometry": null
         },
@@ -3978,7 +3978,7 @@
                 "Provincia": "RIO NEGRO",
                 "Departamento": "�orquinco",
                 "Poblacion 2022": "1.480",
-                "Area_aeroportuaria": "BRC"
+                "IATA": "BRC"
             },
             "geometry": null
         },
@@ -3988,7 +3988,7 @@
                 "Provincia": "RIO NEGRO",
                 "Departamento": "Pichi Mahuida",
                 "Poblacion 2022": "17.012",
-                "Area_aeroportuaria": "BHI"
+                "IATA": "BHI"
             },
             "geometry": null
         },
@@ -3998,7 +3998,7 @@
                 "Provincia": "RIO NEGRO",
                 "Departamento": "Pilcaniyeu",
                 "Poblacion 2022": "9.567",
-                "Area_aeroportuaria": "BRC"
+                "IATA": "BRC"
             },
             "geometry": null
         },
@@ -4008,7 +4008,7 @@
                 "Provincia": "RIO NEGRO",
                 "Departamento": "San Antonio",
                 "Poblacion 2022": "36.588",
-                "Area_aeroportuaria": "PMY"
+                "IATA": "PMY"
             },
             "geometry": null
         },
@@ -4018,7 +4018,7 @@
                 "Provincia": "RIO NEGRO",
                 "Departamento": "Valcheta",
                 "Poblacion 2022": "4.493",
-                "Area_aeroportuaria": "PMY"
+                "IATA": "PMY"
             },
             "geometry": null
         },
@@ -4028,7 +4028,7 @@
                 "Provincia": "RIO NEGRO",
                 "Departamento": "25 de Mayo",
                 "Poblacion 2022": "15.847",
-                "Area_aeroportuaria": "BRC"
+                "IATA": "BRC"
             },
             "geometry": null
         },
@@ -4038,7 +4038,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "Anta",
                 "Poblacion 2022": "68.543",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -4048,7 +4048,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "Cachi",
                 "Poblacion 2022": "9.039",
-                "Area_aeroportuaria": "SLA"
+                "IATA": "SLA"
             },
             "geometry": null
         },
@@ -4058,7 +4058,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "Cafayate",
                 "Poblacion 2022": "17.992",
-                "Area_aeroportuaria": "SLA"
+                "IATA": "SLA"
             },
             "geometry": null
         },
@@ -4068,7 +4068,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "Capital",
                 "Poblacion 2022": "627.107",
-                "Area_aeroportuaria": "SLA"
+                "IATA": "SLA"
             },
             "geometry": null
         },
@@ -4078,7 +4078,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "Cerrillos",
                 "Poblacion 2022": "56.287",
-                "Area_aeroportuaria": "SLA"
+                "IATA": "SLA"
             },
             "geometry": null
         },
@@ -4088,7 +4088,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "Chicoana",
                 "Poblacion 2022": "24.913",
-                "Area_aeroportuaria": "SLA"
+                "IATA": "SLA"
             },
             "geometry": null
         },
@@ -4098,7 +4098,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "General G�emes",
                 "Poblacion 2022": "56.948",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -4108,7 +4108,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "General Jose de San Martin",
                 "Poblacion 2022": "178.367",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -4118,7 +4118,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "Guachipas",
                 "Poblacion 2022": "3.757",
-                "Area_aeroportuaria": "SLA"
+                "IATA": "SLA"
             },
             "geometry": null
         },
@@ -4128,7 +4128,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "Iruya",
                 "Poblacion 2022": "5.526",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -4138,7 +4138,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "La Caldera",
                 "Poblacion 2022": "12.458",
-                "Area_aeroportuaria": "SLA"
+                "IATA": "SLA"
             },
             "geometry": null
         },
@@ -4148,7 +4148,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "La Candelaria",
                 "Poblacion 2022": "7.289",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -4158,7 +4158,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "La Poma",
                 "Poblacion 2022": "1.799",
-                "Area_aeroportuaria": "SLA"
+                "IATA": "SLA"
             },
             "geometry": null
         },
@@ -4168,7 +4168,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "La Vi�a",
                 "Poblacion 2022": "8.879",
-                "Area_aeroportuaria": "SLA"
+                "IATA": "SLA"
             },
             "geometry": null
         },
@@ -4178,7 +4178,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "Los Andes",
                 "Poblacion 2022": "7.912",
-                "Area_aeroportuaria": "SLA"
+                "IATA": "SLA"
             },
             "geometry": null
         },
@@ -4188,7 +4188,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "Metan",
                 "Poblacion 2022": "47.395",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -4198,7 +4198,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "Molinos",
                 "Poblacion 2022": "5.835",
-                "Area_aeroportuaria": "SLA"
+                "IATA": "SLA"
             },
             "geometry": null
         },
@@ -4208,7 +4208,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "Oran",
                 "Poblacion 2022": "160.314",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -4218,7 +4218,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "Rivadavia",
                 "Poblacion 2022": "37.873",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -4228,7 +4228,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "Rosario de la Frontera",
                 "Poblacion 2022": "34.497",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -4238,7 +4238,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "Rosario de Lerma",
                 "Poblacion 2022": "51.183",
-                "Area_aeroportuaria": "SLA"
+                "IATA": "SLA"
             },
             "geometry": null
         },
@@ -4248,7 +4248,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "San Carlos",
                 "Poblacion 2022": "7.751",
-                "Area_aeroportuaria": "SLA"
+                "IATA": "SLA"
             },
             "geometry": null
         },
@@ -4258,7 +4258,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "Santa Victoria",
                 "Poblacion 2022": "9.008",
-                "Area_aeroportuaria": "JUJ"
+                "IATA": "JUJ"
             },
             "geometry": null
         },
@@ -4268,7 +4268,7 @@
                 "Provincia": "SAN JUAN",
                 "Departamento": "Albardon",
                 "Poblacion 2022": "31.229",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -4278,7 +4278,7 @@
                 "Provincia": "SAN JUAN",
                 "Departamento": "Angaco",
                 "Poblacion 2022": "10.149",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -4288,7 +4288,7 @@
                 "Provincia": "SAN JUAN",
                 "Departamento": "Calingasta",
                 "Poblacion 2022": "10.985",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -4298,7 +4298,7 @@
                 "Provincia": "SAN JUAN",
                 "Departamento": "Capital",
                 "Poblacion 2022": "113.773",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -4308,7 +4308,7 @@
                 "Provincia": "SAN JUAN",
                 "Departamento": "Caucete",
                 "Poblacion 2022": "44.814",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -4318,7 +4318,7 @@
                 "Provincia": "SAN JUAN",
                 "Departamento": "Chimbas",
                 "Poblacion 2022": "105.181",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -4328,7 +4328,7 @@
                 "Provincia": "SAN JUAN",
                 "Departamento": "Iglesia",
                 "Poblacion 2022": "8.763",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -4338,7 +4338,7 @@
                 "Provincia": "SAN JUAN",
                 "Departamento": "Jachal",
                 "Poblacion 2022": "25.462",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -4348,7 +4348,7 @@
                 "Provincia": "SAN JUAN",
                 "Departamento": "9 de Julio",
                 "Poblacion 2022": "12.092",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -4358,7 +4358,7 @@
                 "Provincia": "SAN JUAN",
                 "Departamento": "Pocito",
                 "Poblacion 2022": "74.478",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -4368,7 +4368,7 @@
                 "Provincia": "SAN JUAN",
                 "Departamento": "Rawson",
                 "Poblacion 2022": "136.177",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -4378,7 +4378,7 @@
                 "Provincia": "SAN JUAN",
                 "Departamento": "Rivadavia",
                 "Poblacion 2022": "99.373",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -4388,7 +4388,7 @@
                 "Provincia": "SAN JUAN",
                 "Departamento": "San Martin",
                 "Poblacion 2022": "14.910",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -4398,7 +4398,7 @@
                 "Provincia": "SAN JUAN",
                 "Departamento": "Santa Lucia",
                 "Poblacion 2022": "60.919",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -4408,7 +4408,7 @@
                 "Provincia": "SAN JUAN",
                 "Departamento": "Sarmiento",
                 "Poblacion 2022": "27.293",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -4418,7 +4418,7 @@
                 "Provincia": "SAN JUAN",
                 "Departamento": "Ullum",
                 "Poblacion 2022": "6.463",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -4428,7 +4428,7 @@
                 "Provincia": "SAN JUAN",
                 "Departamento": "Valle Fertil",
                 "Poblacion 2022": "8.823",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -4438,7 +4438,7 @@
                 "Provincia": "SAN JUAN",
                 "Departamento": "25 de Mayo",
                 "Poblacion 2022": "20.842",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -4448,7 +4448,7 @@
                 "Provincia": "SAN JUAN",
                 "Departamento": "Zonda",
                 "Poblacion 2022": "6.508",
-                "Area_aeroportuaria": "UAQ"
+                "IATA": "UAQ"
             },
             "geometry": null
         },
@@ -4458,7 +4458,7 @@
                 "Provincia": "SAN LUIS",
                 "Departamento": "Ayacucho",
                 "Poblacion 2022": "23.955",
-                "Area_aeroportuaria": "LUQ"
+                "IATA": "LUQ"
             },
             "geometry": null
         },
@@ -4468,7 +4468,7 @@
                 "Provincia": "SAN LUIS",
                 "Departamento": "Belgrano",
                 "Poblacion 2022": "5.412",
-                "Area_aeroportuaria": "LUQ"
+                "IATA": "LUQ"
             },
             "geometry": null
         },
@@ -4478,7 +4478,7 @@
                 "Provincia": "SAN LUIS",
                 "Departamento": "Chacabuco",
                 "Poblacion 2022": "25.432",
-                "Area_aeroportuaria": "LUQ"
+                "IATA": "LUQ"
             },
             "geometry": null
         },
@@ -4488,7 +4488,7 @@
                 "Provincia": "SAN LUIS",
                 "Departamento": "Coronel Pringles",
                 "Poblacion 2022": "16.024",
-                "Area_aeroportuaria": "LUQ"
+                "IATA": "LUQ"
             },
             "geometry": null
         },
@@ -4498,7 +4498,7 @@
                 "Provincia": "SAN LUIS",
                 "Departamento": "General Pedernera",
                 "Poblacion 2022": "150.038",
-                "Area_aeroportuaria": "LUQ"
+                "IATA": "LUQ"
             },
             "geometry": null
         },
@@ -4508,7 +4508,7 @@
                 "Provincia": "SAN LUIS",
                 "Departamento": "Gobernador Dupuy",
                 "Poblacion 2022": "14.202",
-                "Area_aeroportuaria": "LUQ"
+                "IATA": "LUQ"
             },
             "geometry": null
         },
@@ -4518,7 +4518,7 @@
                 "Provincia": "SAN LUIS",
                 "Departamento": "Juan Martin de Pueyrredon",
                 "Poblacion 2022": "260.295",
-                "Area_aeroportuaria": "LUQ"
+                "IATA": "LUQ"
             },
             "geometry": null
         },
@@ -4528,7 +4528,7 @@
                 "Provincia": "SAN LUIS",
                 "Departamento": "Junin",
                 "Poblacion 2022": "40.930",
-                "Area_aeroportuaria": "LUQ"
+                "IATA": "LUQ"
             },
             "geometry": null
         },
@@ -4538,7 +4538,7 @@
                 "Provincia": "SAN LUIS",
                 "Departamento": "Libertador General San Martin",
                 "Poblacion 2022": "4.617",
-                "Area_aeroportuaria": "LUQ"
+                "IATA": "LUQ"
             },
             "geometry": null
         },
@@ -4548,7 +4548,7 @@
                 "Provincia": "SANTA CRUZ",
                 "Departamento": "Corpen Aike",
                 "Poblacion 2022": "15.027",
-                "Area_aeroportuaria": "RGL"
+                "IATA": "RGL"
             },
             "geometry": null
         },
@@ -4558,7 +4558,7 @@
                 "Provincia": "SANTA CRUZ",
                 "Departamento": "Deseado",
                 "Poblacion 2022": "126.179",
-                "Area_aeroportuaria": "CRD"
+                "IATA": "CRD"
             },
             "geometry": null
         },
@@ -4568,7 +4568,7 @@
                 "Provincia": "SANTA CRUZ",
                 "Departamento": "G�er Aike",
                 "Poblacion 2022": "135.511",
-                "Area_aeroportuaria": "RGL"
+                "IATA": "RGL"
             },
             "geometry": null
         },
@@ -4578,7 +4578,7 @@
                 "Provincia": "SANTA CRUZ",
                 "Departamento": "Lago Argentino",
                 "Poblacion 2022": "25.403",
-                "Area_aeroportuaria": "FTE"
+                "IATA": "FTE"
             },
             "geometry": null
         },
@@ -4588,7 +4588,7 @@
                 "Provincia": "SANTA CRUZ",
                 "Departamento": "Lago Buenos Aires",
                 "Poblacion 2022": "12.618",
-                "Area_aeroportuaria": "CRD"
+                "IATA": "CRD"
             },
             "geometry": null
         },
@@ -4598,7 +4598,7 @@
                 "Provincia": "SANTA CRUZ",
                 "Departamento": "Magallanes",
                 "Poblacion 2022": "12.752",
-                "Area_aeroportuaria": "RGL"
+                "IATA": "RGL"
             },
             "geometry": null
         },
@@ -4608,7 +4608,7 @@
                 "Provincia": "SANTA CRUZ",
                 "Departamento": "Rio Chico",
                 "Poblacion 2022": "5.983",
-                "Area_aeroportuaria": "FTE"
+                "IATA": "FTE"
             },
             "geometry": null
         },
@@ -4618,7 +4618,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "Belgrano",
                 "Poblacion 2022": "48.955",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -4628,7 +4628,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "Caseros",
                 "Poblacion 2022": "88.276",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -4638,7 +4638,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "Castellanos",
                 "Poblacion 2022": "193.675",
-                "Area_aeroportuaria": "SFN"
+                "IATA": "SFN"
             },
             "geometry": null
         },
@@ -4648,7 +4648,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "Constitucion",
                 "Poblacion 2022": "94.068",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -4658,7 +4658,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "Garay",
                 "Poblacion 2022": "24.931",
-                "Area_aeroportuaria": "SFN"
+                "IATA": "SFN"
             },
             "geometry": null
         },
@@ -4668,7 +4668,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "General Lopez",
                 "Poblacion 2022": "205.389",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -4678,7 +4678,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "General Obligado",
                 "Poblacion 2022": "198.212",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -4688,7 +4688,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "Iriondo",
                 "Poblacion 2022": "74.924",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -4698,7 +4698,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "La Capital",
                 "Poblacion 2022": "573.448",
-                "Area_aeroportuaria": "SFN"
+                "IATA": "SFN"
             },
             "geometry": null
         },
@@ -4708,7 +4708,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "Las Colonias",
                 "Poblacion 2022": "117.080",
-                "Area_aeroportuaria": "SFN"
+                "IATA": "SFN"
             },
             "geometry": null
         },
@@ -4718,7 +4718,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "9 de Julio",
                 "Poblacion 2022": "31.435",
-                "Area_aeroportuaria": "SFN"
+                "IATA": "SFN"
             },
             "geometry": null
         },
@@ -4728,7 +4728,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "Rosario",
                 "Poblacion 2022": "1.342.619",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -4738,7 +4738,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "San Cristobal",
                 "Poblacion 2022": "72.716",
-                "Area_aeroportuaria": "SFN"
+                "IATA": "SFN"
             },
             "geometry": null
         },
@@ -4748,7 +4748,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "San Javier",
                 "Poblacion 2022": "34.030",
-                "Area_aeroportuaria": "SFN"
+                "IATA": "SFN"
             },
             "geometry": null
         },
@@ -4758,7 +4758,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "San Jeronimo",
                 "Poblacion 2022": "84.920",
-                "Area_aeroportuaria": "SFN"
+                "IATA": "SFN"
             },
             "geometry": null
         },
@@ -4768,7 +4768,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "San Justo",
                 "Poblacion 2022": "47.240",
-                "Area_aeroportuaria": "SFN"
+                "IATA": "SFN"
             },
             "geometry": null
         },
@@ -4778,7 +4778,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "San Lorenzo",
                 "Poblacion 2022": "197.327",
-                "Area_aeroportuaria": "ROS"
+                "IATA": "ROS"
             },
             "geometry": null
         },
@@ -4788,7 +4788,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "San Martin",
                 "Poblacion 2022": "70.029",
-                "Area_aeroportuaria": "SFN"
+                "IATA": "SFN"
             },
             "geometry": null
         },
@@ -4798,7 +4798,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "Vera",
                 "Poblacion 2022": "57.248",
-                "Area_aeroportuaria": "RES"
+                "IATA": "RES"
             },
             "geometry": null
         },
@@ -4808,7 +4808,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Aguirre",
                 "Poblacion 2022": "8.808",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -4818,7 +4818,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Alberdi",
                 "Poblacion 2022": "19.954",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -4828,7 +4828,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Atamisqui",
                 "Poblacion 2022": "14.692",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -4838,7 +4838,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Avellaneda",
                 "Poblacion 2022": "25.025",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -4848,7 +4848,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Banda",
                 "Poblacion 2022": "169.862",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -4858,7 +4858,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Belgrano",
                 "Poblacion 2022": "10.662",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -4868,7 +4868,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Capital",
                 "Poblacion 2022": "329.084",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -4878,7 +4878,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Choya",
                 "Poblacion 2022": "43.653",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -4888,7 +4888,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Copo",
                 "Poblacion 2022": "35.669",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -4898,7 +4898,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Figueroa",
                 "Poblacion 2022": "20.063",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -4908,7 +4908,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "General Taboada",
                 "Poblacion 2022": "45.752",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -4918,7 +4918,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Guasayan",
                 "Poblacion 2022": "8.775",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -4928,7 +4928,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Jimenez",
                 "Poblacion 2022": "18.567",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -4938,7 +4938,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Juan Felipe Ibarra",
                 "Poblacion 2022": "20.459",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -4948,7 +4948,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Loreto",
                 "Poblacion 2022": "23.966",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -4958,7 +4958,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Mitre",
                 "Poblacion 2022": "1.437",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -4968,7 +4968,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Moreno",
                 "Poblacion 2022": "40.023",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -4978,7 +4978,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Ojo de Agua",
                 "Poblacion 2022": "14.976",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -4988,7 +4988,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Pellegrini",
                 "Poblacion 2022": "26.653",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -4998,7 +4998,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Quebrachos",
                 "Poblacion 2022": "11.339",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -5008,7 +5008,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Rio Hondo",
                 "Poblacion 2022": "66.836",
-                "Area_aeroportuaria": "RHD"
+                "IATA": "RHD"
             },
             "geometry": null
         },
@@ -5018,7 +5018,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Rivadavia",
                 "Poblacion 2022": "5.287",
-                "Area_aeroportuaria": "SFN"
+                "IATA": "SFN"
             },
             "geometry": null
         },
@@ -5028,7 +5028,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Robles",
                 "Poblacion 2022": "53.221",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -5038,7 +5038,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Salavina",
                 "Poblacion 2022": "12.744",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -5048,7 +5048,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "San Martin",
                 "Poblacion 2022": "11.626",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -5058,7 +5058,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Sarmiento",
                 "Poblacion 2022": "5.049",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -5068,7 +5068,7 @@
                 "Provincia": "SANTIAGO DEL ESTERO",
                 "Departamento": "Silipica",
                 "Poblacion 2022": "9.846",
-                "Area_aeroportuaria": "SDE"
+                "IATA": "SDE"
             },
             "geometry": null
         },
@@ -5078,7 +5078,7 @@
                 "Provincia": "TIERRA DEL FUEGO",
                 "Departamento": "Antartida Argentina e Islas del Atlantico Sur",
                 "Poblacion 2022": "130",
-                "Area_aeroportuaria": "USH"
+                "IATA": "USH"
             },
             "geometry": null
         },
@@ -5088,7 +5088,7 @@
                 "Provincia": "TIERRA DEL FUEGO",
                 "Departamento": "Antartida Argentina",
                 "Poblacion 2022": "",
-                "Area_aeroportuaria": "USH"
+                "IATA": "USH"
             },
             "geometry": null
         },
@@ -5098,7 +5098,7 @@
                 "Provincia": "TIERRA DEL FUEGO",
                 "Departamento": "Islas del Atlantico Sur",
                 "Poblacion 2022": "0",
-                "Area_aeroportuaria": "USH"
+                "IATA": "USH"
             },
             "geometry": null
         },
@@ -5108,7 +5108,7 @@
                 "Provincia": "TIERRA DEL FUEGO",
                 "Departamento": "Rio Grande",
                 "Poblacion 2022": "98.017",
-                "Area_aeroportuaria": "RGA"
+                "IATA": "RGA"
             },
             "geometry": null
         },
@@ -5118,7 +5118,7 @@
                 "Provincia": "TIERRA DEL FUEGO",
                 "Departamento": "Tolhuin",
                 "Poblacion 2022": "9.879",
-                "Area_aeroportuaria": "RGA"
+                "IATA": "RGA"
             },
             "geometry": null
         },
@@ -5128,7 +5128,7 @@
                 "Provincia": "TIERRA DEL FUEGO",
                 "Departamento": "Ushuaia",
                 "Poblacion 2022": "82.615",
-                "Area_aeroportuaria": "USH"
+                "IATA": "USH"
             },
             "geometry": null
         },
@@ -5138,7 +5138,7 @@
                 "Provincia": "TUCUMAN",
                 "Departamento": "Burruyacu",
                 "Poblacion 2022": "43.727",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -5148,7 +5148,7 @@
                 "Provincia": "TUCUMAN",
                 "Departamento": "Capital",
                 "Poblacion 2022": "584.798",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -5158,7 +5158,7 @@
                 "Provincia": "TUCUMAN",
                 "Departamento": "Chicligasta",
                 "Poblacion 2022": "92.085",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -5168,7 +5168,7 @@
                 "Provincia": "TUCUMAN",
                 "Departamento": "Cruz Alta",
                 "Poblacion 2022": "226.150",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -5178,7 +5178,7 @@
                 "Provincia": "TUCUMAN",
                 "Departamento": "Famailla",
                 "Poblacion 2022": "41.816",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -5188,7 +5188,7 @@
                 "Provincia": "TUCUMAN",
                 "Departamento": "Graneros",
                 "Poblacion 2022": "14.866",
-                "Area_aeroportuaria": "RHD"
+                "IATA": "RHD"
             },
             "geometry": null
         },
@@ -5198,7 +5198,7 @@
                 "Provincia": "TUCUMAN",
                 "Departamento": "Juan Bautista Alberdi",
                 "Poblacion 2022": "34.189",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -5208,7 +5208,7 @@
                 "Provincia": "TUCUMAN",
                 "Departamento": "La Cocha",
                 "Poblacion 2022": "21.000",
-                "Area_aeroportuaria": "CTC"
+                "IATA": "CTC"
             },
             "geometry": null
         },
@@ -5218,7 +5218,7 @@
                 "Provincia": "TUCUMAN",
                 "Departamento": "Leales",
                 "Poblacion 2022": "64.732",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -5228,7 +5228,7 @@
                 "Provincia": "TUCUMAN",
                 "Departamento": "Lules",
                 "Poblacion 2022": "89.622",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -5238,7 +5238,7 @@
                 "Provincia": "TUCUMAN",
                 "Departamento": "Monteros",
                 "Poblacion 2022": "77.198",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -5248,7 +5248,7 @@
                 "Provincia": "TUCUMAN",
                 "Departamento": "Rio Chico",
                 "Poblacion 2022": "64.146",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -5258,7 +5258,7 @@
                 "Provincia": "TUCUMAN",
                 "Departamento": "Simoca",
                 "Poblacion 2022": "35.051",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -5268,7 +5268,7 @@
                 "Provincia": "TUCUMAN",
                 "Departamento": "Tafi del Valle",
                 "Poblacion 2022": "20.091",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -5278,7 +5278,7 @@
                 "Provincia": "TUCUMAN",
                 "Departamento": "Tafi Viejo",
                 "Poblacion 2022": "169.363",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -5288,7 +5288,7 @@
                 "Provincia": "TUCUMAN",
                 "Departamento": "Trancas",
                 "Poblacion 2022": "22.478",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -5298,7 +5298,7 @@
                 "Provincia": "TUCUMAN",
                 "Departamento": "Yerba Buena",
                 "Poblacion 2022": "101.874",
-                "Area_aeroportuaria": "TUC"
+                "IATA": "TUC"
             },
             "geometry": null
         },
@@ -5308,7 +5308,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "CONCORDIA",
                 "Poblacion 2022": "199.634",
-                "Area_aeroportuaria": "COC"
+                "IATA": "COC"
             },
             "geometry": null
         },
@@ -5318,7 +5318,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "FEDERAL",
                 "Poblacion 2022": "29.569",
-                "Area_aeroportuaria": "COC"
+                "IATA": "COC"
             },
             "geometry": null
         },
@@ -5328,7 +5328,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "GUALEGUAYCHU",
                 "Poblacion 2022": "126.765",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -5338,7 +5338,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "ISLAS DEL IBICUY",
                 "Poblacion 2022": "14.075",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -5348,7 +5348,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "URUGUAY",
                 "Poblacion 2022": "116.430",
-                "Area_aeroportuaria": "COC"
+                "IATA": "COC"
             },
             "geometry": null
         },
@@ -5358,7 +5358,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "ROJAS",
                 "Poblacion 2022": "25.290",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -5368,7 +5368,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "ESCOBAR",
                 "Poblacion 2022": "256.449",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -5378,7 +5378,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "JOSE C. PAZ",
                 "Poblacion 2022": "323.918",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -5388,7 +5388,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "SAN ANTONIO DE ARECO",
                 "Poblacion 2022": "26.671",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -5398,7 +5398,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "MORENO",
                 "Poblacion 2022": "574.374",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -5408,7 +5408,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "TANDIL",
                 "Poblacion 2022": "150.162",
-                "Area_aeroportuaria": "TDL"
+                "IATA": "TDL"
             },
             "geometry": null
         },
@@ -5418,7 +5418,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "ADOLFO GONZALES CHAVES",
                 "Poblacion 2022": "12.954",
-                "Area_aeroportuaria": "TDL"
+                "IATA": "TDL"
             },
             "geometry": null
         },
@@ -5428,7 +5428,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "VILLA GESELL",
                 "Poblacion 2022": "38.614",
-                "Area_aeroportuaria": "VLG"
+                "IATA": "VLG"
             },
             "geometry": null
         },
@@ -5438,7 +5438,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "PINAMAR",
                 "Poblacion 2022": "40.259",
-                "Area_aeroportuaria": "VLG"
+                "IATA": "VLG"
             },
             "geometry": null
         },
@@ -5448,7 +5448,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "GENERAL LAVALLE",
                 "Poblacion 2022": "4.949",
-                "Area_aeroportuaria": "SST"
+                "IATA": "SST"
             },
             "geometry": null
         },
@@ -5458,7 +5458,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "LA COSTA",
                 "Poblacion 2022": "102.836",
-                "Area_aeroportuaria": "SST"
+                "IATA": "SST"
             },
             "geometry": null
         },
@@ -5468,7 +5468,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "MAGDALENA",
                 "Poblacion 2022": "26.734",
-                "Area_aeroportuaria": "LPG"
+                "IATA": "LPG"
             },
             "geometry": null
         },
@@ -5478,7 +5478,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "VICENTE LOPEZ",
                 "Poblacion 2022": "283.510",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -5488,7 +5488,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "GENERAL PAZ",
                 "Poblacion 2022": "14.230",
-                "Area_aeroportuaria": "LPG"
+                "IATA": "LPG"
             },
             "geometry": null
         },
@@ -5498,7 +5498,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "GENERAL JUAN MADARIAGA",
                 "Poblacion 2022": "23.019",
-                "Area_aeroportuaria": "VLG"
+                "IATA": "VLG"
             },
             "geometry": null
         },
@@ -5508,7 +5508,7 @@
                 "Provincia": "SAN LUIS",
                 "Departamento": "GOBERNADOR DUPUY",
                 "Poblacion 2022": "14.202",
-                "Area_aeroportuaria": "GPO"
+                "IATA": "GPO"
             },
             "geometry": null
         },
@@ -5518,7 +5518,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "RAUCH",
                 "Poblacion 2022": "17.234",
-                "Area_aeroportuaria": "TDL"
+                "IATA": "TDL"
             },
             "geometry": null
         },
@@ -5528,7 +5528,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "MONTE CASEROS",
                 "Poblacion 2022": "44.878",
-                "Area_aeroportuaria": "AOL"
+                "IATA": "AOL"
             },
             "geometry": null
         },
@@ -5538,7 +5538,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "GENERAL PINTO",
                 "Poblacion 2022": "12.223",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -5548,7 +5548,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "SAN CAYETANO",
                 "Poblacion 2022": "9.611",
-                "Area_aeroportuaria": "NEC"
+                "IATA": "NEC"
             },
             "geometry": null
         },
@@ -5558,7 +5558,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "TRES ARROYOS",
                 "Poblacion 2022": "62.835",
-                "Area_aeroportuaria": "NEC"
+                "IATA": "NEC"
             },
             "geometry": null
         },
@@ -5568,7 +5568,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "NECOCHEA",
                 "Poblacion 2022": "104.977",
-                "Area_aeroportuaria": "NEC"
+                "IATA": "NEC"
             },
             "geometry": null
         },
@@ -5578,7 +5578,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "LEZAMA",
                 "Poblacion 2022": "6.231",
-                "Area_aeroportuaria": "LPG"
+                "IATA": "LPG"
             },
             "geometry": null
         },
@@ -5588,7 +5588,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "CHASCOMUS",
                 "Poblacion 2022": "42.914",
-                "Area_aeroportuaria": "LPG"
+                "IATA": "LPG"
             },
             "geometry": null
         },
@@ -5598,7 +5598,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "PUNTA INDIO",
                 "Poblacion 2022": "12.419",
-                "Area_aeroportuaria": "LPG"
+                "IATA": "LPG"
             },
             "geometry": null
         },
@@ -5608,7 +5608,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "CAMPANA",
                 "Poblacion 2022": "110.726",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -5618,7 +5618,7 @@
                 "Provincia": "RIO NEGRO",
                 "Departamento": "9 DE JULIO",
                 "Poblacion 2022": "3.654",
-                "Area_aeroportuaria": "GNR"
+                "IATA": "GNR"
             },
             "geometry": null
         },
@@ -5628,7 +5628,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "9 DE JULIO",
                 "Poblacion 2022": "31.435",
-                "Area_aeroportuaria": "RCQ"
+                "IATA": "RCQ"
             },
             "geometry": null
         },
@@ -5638,7 +5638,7 @@
                 "Provincia": "CHUBUT",
                 "Departamento": "RIO SENGUER",
                 "Poblacion 2022": "6.538",
-                "Area_aeroportuaria": "PMQ"
+                "IATA": "PMQ"
             },
             "geometry": null
         },
@@ -5648,7 +5648,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "GENERAL VILLEGAS",
                 "Poblacion 2022": "33.679",
-                "Area_aeroportuaria": "GPO"
+                "IATA": "GPO"
             },
             "geometry": null
         },
@@ -5658,7 +5658,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "GENERAL ROCA",
                 "Poblacion 2022": "36.873",
-                "Area_aeroportuaria": "GPO"
+                "IATA": "GPO"
             },
             "geometry": null
         },
@@ -5668,7 +5668,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "SAN JAVIER",
                 "Poblacion 2022": "34.030",
-                "Area_aeroportuaria": "RCQ"
+                "IATA": "RCQ"
             },
             "geometry": null
         },
@@ -5678,7 +5678,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "GENERAL OBLIGADO",
                 "Poblacion 2022": "198.212",
-                "Area_aeroportuaria": "RCQ"
+                "IATA": "RCQ"
             },
             "geometry": null
         },
@@ -5688,7 +5688,7 @@
                 "Provincia": "SANTA FE",
                 "Departamento": "VERA",
                 "Poblacion 2022": "57.248",
-                "Area_aeroportuaria": "RCQ"
+                "IATA": "RCQ"
             },
             "geometry": null
         },
@@ -5698,7 +5698,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "CHAPALEUFU",
                 "Poblacion 2022": "12.500",
-                "Area_aeroportuaria": "GPO"
+                "IATA": "GPO"
             },
             "geometry": null
         },
@@ -5708,7 +5708,7 @@
                 "Provincia": "FORMOSA",
                 "Departamento": "MATACOS",
                 "Poblacion 2022": "16.994",
-                "Area_aeroportuaria": "TTG"
+                "IATA": "TTG"
             },
             "geometry": null
         },
@@ -5718,7 +5718,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "ORAN",
                 "Poblacion 2022": "160.314",
-                "Area_aeroportuaria": "TTG"
+                "IATA": "TTG"
             },
             "geometry": null
         },
@@ -5728,7 +5728,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "PERGAMINO",
                 "Poblacion 2022": "114.052",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -5738,7 +5738,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "REALICO",
                 "Poblacion 2022": "17.700",
-                "Area_aeroportuaria": "GPO"
+                "IATA": "GPO"
             },
             "geometry": null
         },
@@ -5748,7 +5748,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "MARACO",
                 "Poblacion 2022": "70.156",
-                "Area_aeroportuaria": "GPO"
+                "IATA": "GPO"
             },
             "geometry": null
         },
@@ -5758,7 +5758,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "TRENEL",
                 "Poblacion 2022": "5.788",
-                "Area_aeroportuaria": "GPO"
+                "IATA": "GPO"
             },
             "geometry": null
         },
@@ -5768,7 +5768,7 @@
                 "Provincia": "SANTA CRUZ",
                 "Departamento": "LAGO BUENOS AIRES",
                 "Poblacion 2022": "12.618",
-                "Area_aeroportuaria": "PMQ"
+                "IATA": "PMQ"
             },
             "geometry": null
         },
@@ -5778,7 +5778,7 @@
                 "Provincia": "MENDOZA",
                 "Departamento": "MALARGÜE",
                 "Poblacion 2022": "33.107",
-                "Area_aeroportuaria": "LGS"
+                "IATA": "LGS"
             },
             "geometry": null
         },
@@ -5788,7 +5788,7 @@
                 "Provincia": "RIO NEGRO",
                 "Departamento": "AVELLANEDA",
                 "Poblacion 2022": "41.847",
-                "Area_aeroportuaria": "GNR"
+                "IATA": "GNR"
             },
             "geometry": null
         },
@@ -5798,7 +5798,7 @@
                 "Provincia": "RIO NEGRO",
                 "Departamento": "GENERAL ROCA",
                 "Poblacion 2022": "388.129",
-                "Area_aeroportuaria": "GNR"
+                "IATA": "GNR"
             },
             "geometry": null
         },
@@ -5808,7 +5808,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "TIGRE",
                 "Poblacion 2022": "447.785",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -5818,7 +5818,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "GENERAL VIAMONTE",
                 "Poblacion 2022": "20.068",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -5828,7 +5828,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "COLON",
                 "Poblacion 2022": "75.091",
-                "Area_aeroportuaria": "COC"
+                "IATA": "COC"
             },
             "geometry": null
         },
@@ -5838,7 +5838,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "VILLAGUAY",
                 "Poblacion 2022": "55.192",
-                "Area_aeroportuaria": "COC"
+                "IATA": "COC"
             },
             "geometry": null
         },
@@ -5848,7 +5848,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "CASTELLI",
                 "Poblacion 2022": "10.517",
-                "Area_aeroportuaria": "SST"
+                "IATA": "SST"
             },
             "geometry": null
         },
@@ -5858,7 +5858,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "SAN SALVADOR",
                 "Poblacion 2022": "20.816",
-                "Area_aeroportuaria": "COC"
+                "IATA": "COC"
             },
             "geometry": null
         },
@@ -5868,7 +5868,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "FEDERACION",
                 "Poblacion 2022": "79.449",
-                "Area_aeroportuaria": "COC"
+                "IATA": "COC"
             },
             "geometry": null
         },
@@ -5878,7 +5878,7 @@
                 "Provincia": "ENTRE RIOS",
                 "Departamento": "FELICIANO",
                 "Poblacion 2022": "16.597",
-                "Area_aeroportuaria": "COC"
+                "IATA": "COC"
             },
             "geometry": null
         },
@@ -5888,7 +5888,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "CHACABUCO",
                 "Poblacion 2022": "53.157",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -5898,7 +5898,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "BRANDSEN",
                 "Poblacion 2022": "33.026",
-                "Area_aeroportuaria": "LPG"
+                "IATA": "LPG"
             },
             "geometry": null
         },
@@ -5908,7 +5908,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "SAN ANDRES DE GILES",
                 "Poblacion 2022": "26.474",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -5918,7 +5918,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "JUNIN",
                 "Poblacion 2022": "101.762",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -5928,7 +5928,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "CARLOS CASARES",
                 "Poblacion 2022": "23.204",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -5938,7 +5938,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "CHIVILCOY",
                 "Poblacion 2022": "70.765",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -5948,7 +5948,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "ALBERTI",
                 "Poblacion 2022": "12.726",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -5958,7 +5958,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "BRAGADO",
                 "Poblacion 2022": "44.972",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -5968,7 +5968,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "CARLOS TEJEDOR",
                 "Poblacion 2022": "13.148",
-                "Area_aeroportuaria": "GPO"
+                "IATA": "GPO"
             },
             "geometry": null
         },
@@ -5978,7 +5978,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "25 DE MAYO",
                 "Poblacion 2022": "36.676",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -5988,7 +5988,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "9 DE JULIO",
                 "Poblacion 2022": "52.941",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -5998,7 +5998,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "PEHUAJO",
                 "Poblacion 2022": "42.561",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -6008,7 +6008,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "OLAVARRIA",
                 "Poblacion 2022": "126.328",
-                "Area_aeroportuaria": "TDL"
+                "IATA": "TDL"
             },
             "geometry": null
         },
@@ -6018,7 +6018,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "ARRECIFES",
                 "Poblacion 2022": "32.405",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -6028,7 +6028,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "CAPITAN SARMIENTO",
                 "Poblacion 2022": "15.906",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -6038,7 +6038,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "TAPALQUE",
                 "Poblacion 2022": "10.901",
-                "Area_aeroportuaria": "TDL"
+                "IATA": "TDL"
             },
             "geometry": null
         },
@@ -6048,7 +6048,7 @@
                 "Provincia": "FORMOSA",
                 "Departamento": "RAMON LISTA",
                 "Poblacion 2022": "17.767",
-                "Area_aeroportuaria": "TTG"
+                "IATA": "TTG"
             },
             "geometry": null
         },
@@ -6058,7 +6058,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "CARMEN DE ARECO",
                 "Poblacion 2022": "17.386",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -6068,7 +6068,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "SALTO",
                 "Poblacion 2022": "40.157",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -6078,7 +6078,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "EXALTACION DE LA CRUZ",
                 "Poblacion 2022": "39.347",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -6088,7 +6088,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "SAN MIGUEL",
                 "Poblacion 2022": "326.215",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -6098,7 +6098,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "MERCEDES",
                 "Poblacion 2022": "73.477",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -6108,7 +6108,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "PILAR",
                 "Poblacion 2022": "395.072",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -6118,7 +6118,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "LUJAN",
                 "Poblacion 2022": "111.365",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -6128,7 +6128,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "HURLINGHAM",
                 "Poblacion 2022": "187.122",
-                "Area_aeroportuaria": "EPA"
+                "IATA": "EPA"
             },
             "geometry": null
         },
@@ -6138,7 +6138,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "MALVINAS ARGENTINAS",
                 "Poblacion 2022": "351.788",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -6148,7 +6148,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "AYACUCHO",
                 "Poblacion 2022": "22.136",
-                "Area_aeroportuaria": "TDL"
+                "IATA": "TDL"
             },
             "geometry": null
         },
@@ -6158,7 +6158,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "GENERAL SAN MARTIN",
                 "Poblacion 2022": "450.335",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -6168,7 +6168,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "LINCOLN",
                 "Poblacion 2022": "44.974",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -6178,7 +6178,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "ENSENADA",
                 "Poblacion 2022": "64.406",
-                "Area_aeroportuaria": "LPG"
+                "IATA": "LPG"
             },
             "geometry": null
         },
@@ -6188,7 +6188,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "LAPRIDA",
                 "Poblacion 2022": "11.726",
-                "Area_aeroportuaria": "TDL"
+                "IATA": "TDL"
             },
             "geometry": null
         },
@@ -6198,7 +6198,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "SAN ISIDRO",
                 "Poblacion 2022": "298.777",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -6208,7 +6208,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "BENITO JUAREZ",
                 "Poblacion 2022": "22.558",
-                "Area_aeroportuaria": "TDL"
+                "IATA": "TDL"
             },
             "geometry": null
         },
@@ -6218,7 +6218,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "COLON",
                 "Poblacion 2022": "27.356",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -6228,7 +6228,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "GENERAL RODRIGUEZ",
                 "Poblacion 2022": "143.211",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -6238,7 +6238,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "SUIPACHA",
                 "Poblacion 2022": "11.867",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -6248,7 +6248,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "TRES DE FEBRERO",
                 "Poblacion 2022": "366.377",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -6258,7 +6258,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "PILA",
                 "Poblacion 2022": "4.609",
-                "Area_aeroportuaria": "TDL"
+                "IATA": "TDL"
             },
             "geometry": null
         },
@@ -6268,7 +6268,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "BOLIVAR",
                 "Poblacion 2022": "38.119",
-                "Area_aeroportuaria": "TDL"
+                "IATA": "TDL"
             },
             "geometry": null
         },
@@ -6278,7 +6278,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "HIPOLITO YRIGOYEN",
                 "Poblacion 2022": "10.539",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -6288,7 +6288,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "DOLORES",
                 "Poblacion 2022": "31.606",
-                "Area_aeroportuaria": "SST"
+                "IATA": "SST"
             },
             "geometry": null
         },
@@ -6298,7 +6298,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "AZUL",
                 "Poblacion 2022": "75.396",
-                "Area_aeroportuaria": "TDL"
+                "IATA": "TDL"
             },
             "geometry": null
         },
@@ -6308,7 +6308,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "DAIREAUX",
                 "Poblacion 2022": "19.149",
-                "Area_aeroportuaria": "TDL"
+                "IATA": "TDL"
             },
             "geometry": null
         },
@@ -6318,7 +6318,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "LOBERIA",
                 "Poblacion 2022": "18.234",
-                "Area_aeroportuaria": "NEC"
+                "IATA": "NEC"
             },
             "geometry": null
         },
@@ -6328,7 +6328,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "BERISSO",
                 "Poblacion 2022": "101.263",
-                "Area_aeroportuaria": "LPG"
+                "IATA": "LPG"
             },
             "geometry": null
         },
@@ -6338,7 +6338,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "TORDILLO",
                 "Poblacion 2022": "2.672",
-                "Area_aeroportuaria": "SST"
+                "IATA": "SST"
             },
             "geometry": null
         },
@@ -6348,7 +6348,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "ZARATE",
                 "Poblacion 2022": "132.087",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -6358,7 +6358,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "RANCUL",
                 "Poblacion 2022": "11.161",
-                "Area_aeroportuaria": "GPO"
+                "IATA": "GPO"
             },
             "geometry": null
         },
@@ -6368,7 +6368,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "CONHELO",
                 "Poblacion 2022": "15.390",
-                "Area_aeroportuaria": "GPO"
+                "IATA": "GPO"
             },
             "geometry": null
         },
@@ -6378,7 +6378,7 @@
                 "Provincia": "CORDOBA",
                 "Departamento": "SAN JAVIER",
                 "Poblacion 2022": "64.462",
-                "Area_aeroportuaria": "RLO"
+                "IATA": "RLO"
             },
             "geometry": null
         },
@@ -6388,7 +6388,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "LEANDRO N. ALEM",
                 "Poblacion 2022": "17.587",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -6398,7 +6398,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "GENERAL ARENALES",
                 "Poblacion 2022": "16.050",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -6408,7 +6408,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "RIVADAVIA",
                 "Poblacion 2022": "19.844",
-                "Area_aeroportuaria": "GPO"
+                "IATA": "GPO"
             },
             "geometry": null
         },
@@ -6418,7 +6418,7 @@
                 "Provincia": "SAN LUIS",
                 "Departamento": "JUNIN",
                 "Poblacion 2022": "40.930",
-                "Area_aeroportuaria": "RLO"
+                "IATA": "RLO"
             },
             "geometry": null
         },
@@ -6428,7 +6428,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "BARADERO",
                 "Poblacion 2022": "38.526",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -6438,7 +6438,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "GENERAL JOSE DE SAN MARTIN",
                 "Poblacion 2022": "178.367",
-                "Area_aeroportuaria": "TTG"
+                "IATA": "TTG"
             },
             "geometry": null
         },
@@ -6448,7 +6448,7 @@
                 "Provincia": "SALTA",
                 "Departamento": "RIVADAVIA",
                 "Poblacion 2022": "37.873",
-                "Area_aeroportuaria": "TTG"
+                "IATA": "TTG"
             },
             "geometry": null
         },
@@ -6458,7 +6458,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "FLORENTINO AMEGHINO",
                 "Poblacion 2022": "9.785",
-                "Area_aeroportuaria": "JNI"
+                "IATA": "JNI"
             },
             "geometry": null
         },
@@ -6468,7 +6468,7 @@
                 "Provincia": "LA PAMPA",
                 "Departamento": "QUEMU QUEMU",
                 "Poblacion 2022": "8.566",
-                "Area_aeroportuaria": "GPO"
+                "IATA": "GPO"
             },
             "geometry": null
         },
@@ -6478,7 +6478,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "SAUCE",
                 "Poblacion 2022": "10.411",
-                "Area_aeroportuaria": "AOL"
+                "IATA": "AOL"
             },
             "geometry": null
         },
@@ -6488,7 +6488,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "SAN MARTIN",
                 "Poblacion 2022": "15.192",
-                "Area_aeroportuaria": "AOL"
+                "IATA": "AOL"
             },
             "geometry": null
         },
@@ -6498,7 +6498,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "PASO DE LOS LIBRES",
                 "Poblacion 2022": "57.121",
-                "Area_aeroportuaria": "AOL"
+                "IATA": "AOL"
             },
             "geometry": null
         },
@@ -6508,7 +6508,7 @@
                 "Provincia": "SAN LUIS",
                 "Departamento": "LIBERTADOR GENERAL SAN MARTIN",
                 "Poblacion 2022": "4.617",
-                "Area_aeroportuaria": "RLO"
+                "IATA": "RLO"
             },
             "geometry": null
         },
@@ -6518,7 +6518,7 @@
                 "Provincia": "SAN LUIS",
                 "Departamento": "CHACABUCO",
                 "Poblacion 2022": "25.432",
-                "Area_aeroportuaria": "RLO"
+                "IATA": "RLO"
             },
             "geometry": null
         },
@@ -6528,7 +6528,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "CURUZU CUATIA",
                 "Poblacion 2022": "51.616",
-                "Area_aeroportuaria": "AOL"
+                "IATA": "AOL"
             },
             "geometry": null
         },
@@ -6538,7 +6538,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "SAN FERNANDO",
                 "Poblacion 2022": "172.524",
-                "Area_aeroportuaria": "FDO"
+                "IATA": "FDO"
             },
             "geometry": null
         },
@@ -6548,7 +6548,7 @@
                 "Provincia": "BUENOS AIRES",
                 "Departamento": "LA PLATA",
                 "Poblacion 2022": "772.618",
-                "Area_aeroportuaria": "LPG"
+                "IATA": "LPG"
             },
             "geometry": null
         },
@@ -6558,7 +6558,7 @@
                 "Provincia": "CORRIENTES",
                 "Departamento": "MERCEDES",
                 "Poblacion 2022": "49.200",
-                "Area_aeroportuaria": "AOL"
+                "IATA": "AOL"
             },
             "geometry": null
         }
