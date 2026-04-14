@@ -248,7 +248,7 @@ function parseGentiliciosCSV(text) {
   function getAirportCity(a, iata) {
     const code = clean(iata).toUpperCase();
 
-    if (code === "AEP") return "Aeroparque";
+    if (code === "AEP") return "Aeroparque Jorge Newbery";
 
     const ciudad = clean(firstNonEmpty(a, [
       "Ciudad",
@@ -270,7 +270,7 @@ function parseGentiliciosCSV(text) {
   function buildAirportDisplay(a, iata) {
     const code = clean(iata).toUpperCase();
 
-    if (code === "AEP") return "Aeroparque";
+    if (code === "AEP") return "Aeroparque Jorge Newbery";
 
     const ciudad = getAirportCity(a, iata);
     return ciudad ? `Aeropuerto de ${ciudad}` : `Aeropuerto ${code}`;
