@@ -84,7 +84,7 @@
   height: 100%;
   border: 1px solid #d7dee8;
   overflow: hidden;
-  background: #f5f7fa;
+  background: #ffffff;
 }
 
 .summary-figure img {
@@ -99,7 +99,9 @@
 }
 
 .summary-figure-main img {
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center center;
+  background: #ffffff;
 }
 
 .summary-figure img.is-hidden {
