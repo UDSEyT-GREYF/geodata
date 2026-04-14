@@ -546,7 +546,7 @@
             "type": "Feature",
             "properties": {
                 "Provincia": "BUENOS AIRES",
-                "Departamento": "Ca�uelas",
+                "Departamento": "Cañuelas",
                 "Poblacion 2022": "71.149",
                 "IATA": "EZE"
             },
@@ -1756,7 +1756,7 @@
             "type": "Feature",
             "properties": {
                 "Provincia": "CHACO",
-                "Departamento": "General G�emes",
+                "Departamento": "General Gñemes",
                 "Poblacion 2022": "68.341",
                 "IATA": "RES"
             },
@@ -1846,7 +1846,7 @@
             "type": "Feature",
             "properties": {
                 "Provincia": "CHACO",
-                "Departamento": "1� de Mayo",
+                "Departamento": "1ñ de Mayo",
                 "Poblacion 2022": "14.484",
                 "IATA": "RES"
             },
@@ -1986,7 +1986,7 @@
             "type": "Feature",
             "properties": {
                 "Provincia": "CHUBUT",
-                "Departamento": "Langui�eo",
+                "Departamento": "Languiñeo",
                 "Poblacion 2022": "2.955",
                 "IATA": "EQS"
             },
@@ -2176,7 +2176,7 @@
             "type": "Feature",
             "properties": {
                 "Provincia": "CORDOBA",
-                "Departamento": "Presidente Roque Saenz Pe�a",
+                "Departamento": "Presidente Roque Saenz Peña",
                 "Poblacion 2022": "39.221",
                 "IATA": "RCU"
             },
@@ -2786,7 +2786,7 @@
             "type": "Feature",
             "properties": {
                 "Provincia": "FORMOSA",
-                "Departamento": "Pati�o",
+                "Departamento": "Patiño",
                 "Poblacion 2022": "80.718",
                 "IATA": "FMA"
             },
@@ -3226,7 +3226,7 @@
             "type": "Feature",
             "properties": {
                 "Provincia": "LA RIOJA",
-                "Departamento": "General angel V. Pe�aloza",
+                "Departamento": "General angel V. Peñaloza",
                 "Poblacion 2022": "3.175",
                 "IATA": "IRJ"
             },
@@ -3356,7 +3356,7 @@
             "type": "Feature",
             "properties": {
                 "Provincia": "LA RIOJA",
-                "Departamento": "Rosario Vera Pe�aloza",
+                "Departamento": "Rosario Vera Peñaloza",
                 "Poblacion 2022": "15.441",
                 "IATA": "UAQ"
             },
@@ -3496,7 +3496,7 @@
             "type": "Feature",
             "properties": {
                 "Provincia": "MENDOZA",
-                "Departamento": "Malarg�e",
+                "Departamento": "Malargñe",
                 "Poblacion 2022": "33.107",
                 "IATA": "AFA"
             },
@@ -3756,7 +3756,7 @@
             "type": "Feature",
             "properties": {
                 "Provincia": "NEUQUEN",
-                "Departamento": "A�elo",
+                "Departamento": "Añelo",
                 "Poblacion 2022": "17.893",
                 "IATA": "NQN"
             },
@@ -3856,7 +3856,7 @@
             "type": "Feature",
             "properties": {
                 "Provincia": "NEUQUEN",
-                "Departamento": "�orquin",
+                "Departamento": "ñorquin",
                 "Poblacion 2022": "5.700",
                 "IATA": "NQN"
             },
@@ -3976,7 +3976,7 @@
             "type": "Feature",
             "properties": {
                 "Provincia": "RIO NEGRO",
-                "Departamento": "�orquinco",
+                "Departamento": "ñorquinco",
                 "Poblacion 2022": "1.480",
                 "IATA": "BRC"
             },
@@ -4096,7 +4096,7 @@
             "type": "Feature",
             "properties": {
                 "Provincia": "SALTA",
-                "Departamento": "General G�emes",
+                "Departamento": "General Gñemes",
                 "Poblacion 2022": "56.948",
                 "IATA": "JUJ"
             },
@@ -4166,7 +4166,7 @@
             "type": "Feature",
             "properties": {
                 "Provincia": "SALTA",
-                "Departamento": "La Vi�a",
+                "Departamento": "La Viña",
                 "Poblacion 2022": "8.879",
                 "IATA": "SLA"
             },
@@ -4566,7 +4566,7 @@
             "type": "Feature",
             "properties": {
                 "Provincia": "SANTA CRUZ",
-                "Departamento": "G�er Aike",
+                "Departamento": "Gñer Aike",
                 "Poblacion 2022": "135.511",
                 "IATA": "RGL"
             },
