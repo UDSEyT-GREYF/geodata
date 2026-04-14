@@ -184,35 +184,36 @@
     });
   }
 
-  function parseGentiliciosCSV(text) {
-    const rows = parseCSV(text);
+function parseGentiliciosCSV(text) {
+  const rows = parseCSV(text);
 
-    rows.forEach(row => {
-      const provincia = clean(firstNonEmpty(row, [
-        "provincia",
-        "Provincia",
-        "PROVINCIA",
-        "jurisdiccion",
-        "Jurisdicción",
-        "Jurisdiccion",
-        "nombre_provincia",
-        "NombreProvincia"
-      ]));
+  rows.forEach(row => {
+    const provincia = clean(firstNonEmpty(row, [
+      "provincia",
+      "Provincia",
+      "PROVINCIA",
+      "jurisdiccion",
+      "Jurisdicción",
+      "Jurisdiccion",
+      "nombre_provincia",
+      "NombreProvincia"
+    ]));
 
-      const gentilicio = clean(firstNonEmpty(row, [
-        "gentilicio",
-        "Gentilicio",
-        "GENTILICIO",
-        "gentilicio_masc",
-        "gentilicio_plural",
-        "GentilicioPlural"
-      ]));
+    const gentilicio = clean(firstNonEmpty(row, [
+      "gentilicio_plural",
+      "GentilicioPlural",
+      "gentilicio_pl",
+      "GentilicioPl",
+      "gentilicio",
+      "Gentilicio",
+      "GENTILICIO"
+    ]));
 
-      if (provincia && gentilicio) {
-        gentiliciosMap.set(normalizeKey(provincia), gentilicio);
-      }
-    });
-  }
+    if (provincia && gentilicio) {
+      gentiliciosMap.set(normalizeKey(provincia), gentilicio);
+    }
+  });
+}
 
   function getSelectedIATA() {
     const select = q("airportSelect");
@@ -333,48 +334,55 @@
     ]));
   }
 
-  function getDepartamentosText(iata) {
-    const features = getDeptosFeaturesByIATA(iata);
-    if (!features.length) return "los departamentos definidos en su área de influencia";
+function getDepartamentosText(iata) {
+  const features = getDeptosFeaturesByIATA(iata);
+  if (!features.length) return "definidos en su área de influencia";
 
-    const groups = new Map();
+  const groups = new Map();
 
-    features.forEach(f => {
-      const p = f.properties || {};
-      const depto = getDeptoName(p);
-      const provincia = getProvinciaName(p) || "la provincia correspondiente";
-      const key = normalizeKey(provincia);
+  features.forEach(f => {
+    const p = f.properties || {};
+    const depto = getDeptoName(p);
+    const provincia = getProvinciaName(p) || "";
+    const key = normalizeKey(provincia || "sin-provincia");
 
-      if (!groups.has(key)) {
-        groups.set(key, {
-          provincia,
-          gentilicio: gentiliciosMap.get(key) || "",
-          deptos: []
-        });
-      }
+    if (!groups.has(key)) {
+      groups.set(key, {
+        provincia,
+        gentilicio: gentiliciosMap.get(key) || "",
+        deptos: []
+      });
+    }
 
-      if (depto) groups.get(key).deptos.push(depto);
-    });
+    if (depto) groups.get(key).deptos.push(depto);
+  });
 
-    const fragments = Array.from(groups.values()).map(group => {
-      const deptosUnique = [...new Set(group.deptos)].filter(Boolean);
-      const deptosTxt = joinListEs(deptosUnique);
+  const fragments = Array.from(groups.values()).map(group => {
+    const deptosUnique = [...new Set(group.deptos)].filter(Boolean);
+    const deptosTxt = joinListEs(deptosUnique);
 
-      if (!deptosTxt) {
-        return group.gentilicio
-          ? `los departamentos de territorio ${group.gentilicio}`
-          : `los departamentos de la provincia de ${group.provincia}`;
-      }
+    const gentilicio = clean(group.gentilicio);
+    const provincia = clean(group.provincia);
 
-      if (group.gentilicio) {
-        return `${deptosTxt}, en territorio ${group.gentilicio}`;
-      }
+    if (!deptosTxt) {
+      if (gentilicio) return `${gentilicio}`;
+      if (provincia) return `de la provincia de ${provincia}`;
+      return "definidos en su área de influencia";
+    }
 
-      return `${deptosTxt}, en la provincia de ${group.provincia}`;
-    });
+    if (gentilicio) {
+      return `${gentilicio} de ${deptosTxt}`;
+    }
 
-    return fragments.length ? joinListEs(fragments) : "los departamentos definidos en su área de influencia";
-  }
+    if (provincia) {
+      return `de la provincia de ${provincia}: ${deptosTxt}`;
+    }
+
+    return deptosTxt;
+  });
+
+  return fragments.length ? joinListEs(fragments) : "definidos en su área de influencia";
+}
 
   function parsePaxSiacGeojson(geojson) {
     return (geojson.features || []).map(f => {
@@ -489,7 +497,7 @@
 
   function buildNarrative(a, impact, iata) {
     const airportDisplay = buildAirportDisplay(a, iata);
-    const cityLabel = getAirportCity(a, iata);
+    const airportAreaLabel = airportDisplay;
     const departamentos = getDepartamentosText(iata);
 
     const poblacion2022 = formatNumber(firstNonEmpty(a, [
@@ -523,9 +531,9 @@
         El transporte aerocomercial es un componente esencial de la economía e incide en el desarrollo y el bienestar de las poblaciones y los territorios. En este sentido, los servicios aerocomerciales y la infraestructura aeroportuaria cumplen un papel central en la cohesión territorial, al generar condiciones para la atracción, retención y expansión de la actividad económica.
       </p>
 
-      <p>
-        El presente informe de Impacto socioeconómico y territorial ${YEAR_REF} del <strong>${escapeHtml(airportDisplay)}</strong>, caracteriza y cuantifica el aporte económico y laboral generado por los servicios aeronáuticos y aeroportuarios en el área de influencia, definida como el espacio geográfico sobre el cual el aeropuerto ejerce un poder de atracción y define el universo de potenciales pasajeros. En el caso de <strong>${escapeHtml(cityLabel)}</strong>, incluye los departamentos de <strong>${escapeHtml(departamentos)}</strong>, y beneficia a <strong>${escapeHtml(poblacion2022)}</strong> habitantes (Censo 2022).
-      </p>
+<p>
+  El presente informe de Impacto socioeconómico y territorial ${YEAR_REF} del <strong>${escapeHtml(airportDisplay)}</strong>, caracteriza y cuantifica el aporte económico y laboral generado por los servicios aeronáuticos y aeroportuarios en el área de influencia, definida como el espacio geográfico sobre el cual el aeropuerto ejerce un poder de atracción y define el universo de potenciales pasajeros. En el caso del <strong>${escapeHtml(airportAreaLabel)}</strong>, incluye los departamentos <strong>${escapeHtml(departamentos)}</strong>, y benefició a <strong>${escapeHtml(poblacion2022)}</strong> habitantes (Censo 2022).
+</p>
 
       <p>
         La evaluación del papel del transporte aerocomercial en el desarrollo territorial requiere considerar tanto sus impactos positivos como los efectos adversos que puede tener sobre las desigualdades regionales. Este análisis constituye un insumo relevante para el diseño de políticas orientadas a fortalecer su aporte al desarrollo local, regional y nacional.
@@ -539,9 +547,9 @@
         En ${YEAR_REF}, el <strong>${escapeHtml(airportDisplay)}</strong> registró <strong>${escapeHtml(formatNumber(pasajeros2025))}</strong> pasajeros, lo que representó una variación de <strong>${escapeHtml(formatPercent(variacionPct))}</strong> respecto del año anterior. Además, el aeropuerto contabilizó <strong>${escapeHtml(formatNumber(movimientos2025))}</strong> movimientos de aeronaves.
       </p>
 
-      <p>
-        En ${YEAR_REF}, el impacto socioeconómico y territorial positivo generado por el <strong>${escapeHtml(airportDisplay)}</strong> en su área de influencia ascendió a <strong>${escapeHtml(impactoPositivo)}</strong> y posibilitó la creación de <strong>${escapeHtml(empleoTotal)}</strong> puestos de trabajo. Este resultado reúne los impactos directos, indirectos, inducidos y catalíticos positivos de la aviación, integrados por un Producto Bruto Aeroportuario de <strong>${escapeHtml(pba)}</strong>, un aporte del turismo receptivo de <strong>${escapeHtml(turismoReceptivo)}</strong> y beneficios económicos para los pasajeros por <strong>${escapeHtml(beneficiosPax)}</strong>. Por su parte, el turismo emisivo representó un impacto negativo de <strong>${escapeHtml(turismoEmisivo)}</strong>, asociado a gastos realizados fuera del área de influencia, en otras regiones del país y del exterior. En consecuencia, el saldo neto de impactos del transporte aéreo en el área de influencia aeroportuaria fue de <strong>${escapeHtml(saldoImpacto)}</strong>.
-      </p>
+<p>
+  En ${YEAR_REF}, el impacto socioeconómico y territorial positivo generado por el <strong>${escapeHtml(airportDisplay)}</strong> en su área de influencia ascendió a <strong>${escapeHtml(impactoPositivo)}</strong> y posibilitó la creación de <strong>${escapeHtml(empleoTotal)}</strong> puestos de trabajo. Este resultado reúne los impactos directos, indirectos, inducidos y catalíticos positivos de la aviación, integrados por un Producto Bruto Aeroportuario de <strong>${escapeHtml(pba)}</strong>, un aporte del turismo receptivo de <strong>${escapeHtml(turismoReceptivo)}</strong> y beneficios económicos para los pasajeros por <strong>${escapeHtml(beneficiosPax)}</strong>. Por su parte, el turismo emisivo representó un impacto negativo de <strong>${escapeHtml(turismoEmisivo)}</strong>, asociado a gastos realizados fuera del área de influencia, en otras regiones del país y del exterior. En consecuencia, el saldo neto de impactos del transporte aéreo en el área de influencia aeroportuaria fue de <strong>${escapeHtml(saldoImpacto)}</strong>.
+</p>
     `;
   }
 
