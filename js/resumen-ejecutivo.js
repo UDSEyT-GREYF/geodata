@@ -541,7 +541,7 @@ function getDepartamentosText(iata) {
       </p>
 
 <p>
-  El presente informe de Impacto socioeconómico y territorial ${YEAR_REF} del <strong>${escapeHtml(airportDisplay)}</strong>, caracteriza y cuantifica el aporte económico y laboral generado por los servicios aeronáuticos y aeroportuarios en el área de influencia, definida como el espacio geográfico sobre el cual el aeropuerto ejerce un poder de atracción y define el universo de potenciales pasajeros. En el caso del <strong>${escapeHtml(airportAreaLabel)}</strong>, incluye los departamentos <strong>${escapeHtml(departamentos)}</strong>, y benefició a <strong>${escapeHtml(poblacion2022)}</strong> habitantes (Censo 2022).
+  El presente informe de Impacto socioeconómico y territorial ${YEAR_REF} del <strong>${escapeHtml(airportDisplay)}</strong>, caracteriza y cuantifica el aporte económico y laboral generado por los servicios aeronáuticos y aeroportuarios en el área de influencia, definida como el espacio geográfico sobre el cual el aeropuerto ejerce un poder de atracción y define el universo de potenciales pasajeros. En el caso del <strong>${escapeHtml(airportAreaLabel)}</strong>, incluye los departamentos ${escapeHtml(departamentos)}, y benefició a <strong>${escapeHtml(poblacion2022)}</strong> habitantes (Censo 2022).
 </p>
 
       <p>
