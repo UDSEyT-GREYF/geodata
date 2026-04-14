@@ -349,7 +349,7 @@ function getDepartamentosText(iata) {
     if (!groups.has(key)) {
       groups.set(key, {
         provincia,
-        gentilicio: gentiliciosMap.get(key) || "",
+        gentilicio: clean(gentiliciosMap.get(key) || ""),
         deptos: []
       });
     }
@@ -357,15 +357,14 @@ function getDepartamentosText(iata) {
     if (depto) groups.get(key).deptos.push(depto);
   });
 
-  const fragments = Array.from(groups.values()).map(group => {
+  const provinceFragments = Array.from(groups.values()).map(group => {
     const deptosUnique = [...new Set(group.deptos)].filter(Boolean);
     const deptosTxt = joinListEs(deptosUnique);
-
     const gentilicio = clean(group.gentilicio);
     const provincia = clean(group.provincia);
 
     if (!deptosTxt) {
-      if (gentilicio) return `${gentilicio}`;
+      if (gentilicio) return gentilicio;
       if (provincia) return `de la provincia de ${provincia}`;
       return "definidos en su área de influencia";
     }
@@ -381,7 +380,17 @@ function getDepartamentosText(iata) {
     return deptosTxt;
   });
 
-  return fragments.length ? joinListEs(fragments) : "definidos en su área de influencia";
+  if (!provinceFragments.length) return "definidos en su área de influencia";
+
+  if (provinceFragments.length === 1) {
+    return provinceFragments[0];
+  }
+
+  if (provinceFragments.length === 2) {
+    return `${provinceFragments[0]}, y ${provinceFragments[1]}`;
+  }
+
+  return `${provinceFragments.slice(0, -1).join("; ")}, y ${provinceFragments[provinceFragments.length - 1]}`;
 }
 
   function parsePaxSiacGeojson(geojson) {
