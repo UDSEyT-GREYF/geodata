@@ -1,1 +1,121 @@
+.summary-page,
+.summary-page * {
+  box-sizing: border-box;
+}
 
+.summary-page {
+  width: 210mm;
+  min-height: 297mm;
+  height: 297mm;
+  margin: 0 auto;
+  background: #ffffff;
+  color: #1f2f3d;
+  border: 1px solid rgba(0, 40, 85, 0.10);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.12);
+  page-break-after: always;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+.summary-inner {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr 68mm;
+  padding: 14mm 14mm 12mm;
+}
+
+.summary-header {
+  margin-bottom: 6mm;
+}
+
+.summary-kicker {
+  font-size: 4.2mm;
+  line-height: 1.15;
+  font-weight: 500;
+  color: #355A73;
+  text-transform: none;
+  margin-bottom: 2mm;
+}
+
+.summary-airport-line {
+  font-size: 5.4mm;
+  line-height: 1.15;
+  font-weight: 500;
+  color: #17344A;
+  margin-bottom: 4mm;
+}
+
+.summary-title {
+  font-size: 6.2mm;
+  line-height: 1.05;
+  font-weight: 700;
+  color: #17344A;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.summary-content {
+  min-height: 0;
+}
+
+.summary-text {
+  font-size: 3.85mm;
+  line-height: 1.45;
+  color: #22313d;
+  text-align: justify;
+}
+
+.summary-text p {
+  margin: 0 0 4mm;
+}
+
+.summary-text strong {
+  font-weight: 700;
+  color: #17344A;
+}
+
+.summary-figures {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 6mm;
+  align-items: stretch;
+  margin-top: 5mm;
+}
+
+.summary-figure {
+  margin: 0;
+  border: 1px solid #d7dee8;
+  overflow: hidden;
+  background: #f5f7fa;
+}
+
+.summary-figure img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.summary-figure-concept img {
+  object-fit: contain;
+  background: #ffffff;
+}
+
+.summary-figure img.is-hidden {
+  display: none;
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  .summary-page {
+    width: 210mm;
+    min-height: 297mm;
+    height: 297mm;
+    margin: 0;
+    border: 0;
+    box-shadow: none;
+  }
+}
