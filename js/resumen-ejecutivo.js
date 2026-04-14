@@ -7,16 +7,30 @@
   let summaryBooted = false;
   let airportsData = [];
   let impactData = [];
+  let deptosData = [];
   let paxRows = [];
   let movRows = [];
 
   const AIRPORTS_URL = "fuentes/Datos_aeropuertos.geojson";
+  const DEPTOS_URL = "fuentes/Areasinfluencia55deptos.geojson";
+
+  // Estos archivos deben quedar expuestos en geodata/data/ al momento del deploy
   const IMPACT_URL = "data/ResumenImpacto2025.geojson";
-  const PAX_URL = "fuentes/pasajeros_aeropuerto_mensual.csv";
-  const MOV_URL = "fuentes/movimientos_aeropuerto_mensual.csv";
+  const PAX_SIAC_URL = "data/4paxxaeropuerto2021a2025SIACANAC.geojson";
+  const PAX_ALT_URL = "data/4paxxaeropuerto2021a2025SinSIIAC.geojson";
+  const MOV_SIAC_URL = "data/4movxaeropuerto2021a2025SIACANAC.geojson";
+  const MOV_ALT_URL = "data/4movxaeropuerto2021a2025SinSIIAC.geojson";
+
+  const ALT_IATAS = new Set([
+    "RLO", "AOL", "COC", "GNR", "JNI", "LPG", "NEC",
+    "PMQ", "RYO", "SST", "TDL", "TTG", "VLG"
+  ]);
 
   const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
   const PAX_DATASET_INT = "pasajeros_comerciales_internacional_aeropuerto";
+
+  const MOV_DATASET_CAB = "movimientos_comerciales_cabotaje_aeropuerto";
+  const MOV_DATASET_INT = "movimientos_comerciales_internacional_aeropuerto";
 
   function clean(v) {
     return v === null || v === undefined ? "" : String(v).trim();
@@ -33,6 +47,20 @@
   function setHTML(id, value) {
     const el = q(id);
     if (el) el.innerHTML = value;
+  }
+
+  function setText(id, value) {
+    const el = q(id);
+    if (el) el.textContent = value ?? "";
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
   }
 
   function parseNumber(v) {
@@ -65,6 +93,9 @@
       const parts = s.split(".");
       const dec = parts.pop();
       s = parts.join("") + "." + dec;
+    } else if (dotCount === 1) {
+      const decimals = s.length - s.indexOf(".") - 1;
+      if (decimals === 3) s = s.replace(".", "");
     }
 
     const n = Number(s);
@@ -109,50 +140,10 @@
     return Number.isNaN(d.getTime()) ? null : d;
   }
 
-  function detectSep(headerLine) {
-    if (headerLine.includes("\t")) return "\t";
-    if (headerLine.includes(";")) return ";";
-    return ",";
-  }
-
-  function parseCSV(text) {
-    if (!text) return [];
-    const lines = text.trim().split(/\r?\n/).filter(Boolean);
-    if (lines.length < 2) return [];
-    const sep = detectSep(lines[0]);
-    const headers = lines[0].split(sep).map(h => clean(h).toLowerCase());
-
-    return lines.slice(1).map(line => {
-      const cols = line.split(sep);
-      const row = {};
-      headers.forEach((h, i) => { row[h] = cols[i] ?? ""; });
-      return row;
-    });
-  }
-
-  function parsePasajerosMensualCSV(text) {
-    return parseCSV(text).map(r => ({
-      iata: clean(r["iata"]).toUpperCase(),
-      dataset: clean(r["dataset"]),
-      date: parseFechaFlexible(r["fecha"]),
-      valor: parseNumber(r["valor_pax"] || r["valor"] || r["pasajeros"])
-    })).filter(r => r.iata && r.date && Number.isFinite(r.valor));
-  }
-
-  function parseMovimientosMensualCSV(text) {
-    return parseCSV(text).map(r => ({
-      iata: clean(r["iata"]).toUpperCase(),
-      dataset: clean(r["dataset"]),
-      date: parseFechaFlexible(r["fecha"]),
-      valor: parseNumber(r["valor_movimientos"] || r["valor"] || r["movimientos"])
-    })).filter(r => r.iata && r.date && Number.isFinite(r.valor));
-  }
-
-  async function readTextSmart(response) {
-    const buffer = await response.arrayBuffer();
-    let text = new TextDecoder("utf-8").decode(buffer);
-    if (text.includes("�")) text = new TextDecoder("windows-1252").decode(buffer);
-    return text;
+  async function fetchJSON(url) {
+    const resp = await fetch(url, { cache: "no-store" });
+    if (!resp.ok) throw new Error(`No se pudo cargar ${url}`);
+    return resp.json();
   }
 
   function getSelectedIATA() {
@@ -167,7 +158,27 @@
     return clean(airportsData[0]?.IATA).toUpperCase();
   }
 
+  function normalizeAirportName(raw) {
+    return clean(raw)
+      .replace(/\s+/g, " ")
+      .replace(/\s*\/\s*/g, " / ")
+      .split(" / ")[0]
+      .replace(/^Aeropuerto Internacional\s+/i, "")
+      .replace(/^Aeropuerto\s+/i, "")
+      .replace(/^Aeródromo\s+/i, "")
+      .replace(/^Aerodromo\s+/i, "")
+      .replace(/^Aeroparque\s+/i, "")
+      .trim();
+  }
+
+  function getAirportRecord(iata) {
+    const code = clean(iata).toUpperCase();
+    return airportsData.find(a => clean(a.IATA).toUpperCase() === code) || null;
+  }
+
   function buildAirportDisplay(a, iata) {
+    const code = clean(iata).toUpperCase();
+
     const ciudad = clean(firstNonEmpty(a, [
       "Ciudad",
       "Localidad",
@@ -176,17 +187,19 @@
       "Aeropuerto"
     ]));
 
-    const nombre = clean(firstNonEmpty(a, [
+    const nombreOficial = normalizeAirportName(firstNonEmpty(a, [
       "Nombre del Aeropuerto",
       "Aeropuerto",
       "Denominacion"
     ]));
 
-    if (iata === "AEP") return "Aeroparque Jorge Newbery";
-    if (ciudad && nombre && ciudad !== nombre) return `Aeropuerto de ${ciudad} – ${nombre}`;
+    if (code === "AEP") return "Aeroparque Jorge Newbery";
+    if (ciudad && nombreOficial && ciudad !== nombreOficial) {
+      return `Aeropuerto de ${ciudad} – ${nombreOficial}`;
+    }
     if (ciudad) return `Aeropuerto de ${ciudad}`;
-    if (nombre) return nombre;
-    return `Aeropuerto ${iata}`;
+    if (nombreOficial) return nombreOficial;
+    return `Aeropuerto ${code}`;
   }
 
   function buildAirportLine(a, iata) {
@@ -194,28 +207,187 @@
   }
 
   function getImpactRecord(iata) {
-    return impactData.find(f => clean(f?.properties?.IATA).toUpperCase() === iata)?.properties || null;
+    const code = clean(iata).toUpperCase();
+    return impactData.find(f => clean(f?.properties?.IATA).toUpperCase() === code)?.properties || null;
   }
 
-  function sumYear(rows, iata, year, datasets = null) {
+  function getDeptosRecord(iata) {
+    const code = clean(iata).toUpperCase();
+
+    const matches = deptosData.filter(f => {
+      const p = f?.properties || {};
+      return clean(
+        p.IATA || p.iata || p.codigo_iata || p.Codigo_IATA
+      ).toUpperCase() === code;
+    });
+
+    return matches;
+  }
+
+  function joinListEs(items) {
+    if (!items.length) return "";
+    if (items.length === 1) return items[0];
+    if (items.length === 2) return `${items[0]} y ${items[1]}`;
+    return `${items.slice(0, -1).join(", ")} y ${items[items.length - 1]}`;
+  }
+
+  function getDepartamentosText(iata) {
+    const matches = getDeptosRecord(iata);
+    if (!matches.length) return "los departamentos definidos en su área de influencia";
+
+    for (const f of matches) {
+      const p = f.properties || {};
+      const direct = clean(firstNonEmpty(p, [
+        "nombres_departamentos",
+        "Nombres_departamentos",
+        "nombresDeptos",
+        "NombresDeptos",
+        "departamentos",
+        "Departamentos",
+        "nombre_departamentos",
+        "Nombre_departamentos"
+      ]));
+      if (direct) return direct;
+    }
+
+    const deptoNames = matches
+      .map(f => {
+        const p = f.properties || {};
+        return clean(firstNonEmpty(p, [
+          "departamento",
+          "Departamento",
+          "departamento_nombre",
+          "Departamento_nombre",
+          "depto",
+          "Depto",
+          "depto_nombre",
+          "Depto_nombre",
+          "nombre",
+          "Nombre",
+          "name",
+          "NAME"
+        ]));
+      })
+      .filter(Boolean);
+
+    const unique = [...new Set(deptoNames)];
+    return unique.length ? joinListEs(unique) : "los departamentos definidos en su área de influencia";
+  }
+
+  function parsePaxSiacGeojson(geojson) {
+    return (geojson.features || []).map(f => {
+      const p = f.properties || {};
+      return {
+        iata: clean(p.iata || p.IATA).toUpperCase(),
+        dataset: clean(p.dataset),
+        date: parseFechaFlexible(p.fecha),
+        year: Number(p.anio),
+        month: Number(p.mes),
+        valor: parseNumber(p.valor_pax ?? p.valor)
+      };
+    }).filter(r =>
+      r.iata &&
+      r.date &&
+      Number.isFinite(r.valor) &&
+      (r.dataset === PAX_DATASET_CAB || r.dataset === PAX_DATASET_INT)
+    );
+  }
+
+  function parseMovSiacGeojson(geojson) {
+    return (geojson.features || []).map(f => {
+      const p = f.properties || {};
+      return {
+        iata: clean(p.iata || p.IATA).toUpperCase(),
+        dataset: clean(p.dataset),
+        date: parseFechaFlexible(p.fecha),
+        year: Number(p.anio),
+        month: Number(p.mes),
+        valor: parseNumber(p.valor_movimientos ?? p.valor)
+      };
+    }).filter(r =>
+      r.iata &&
+      r.date &&
+      Number.isFinite(r.valor) &&
+      (r.dataset === MOV_DATASET_CAB || r.dataset === MOV_DATASET_INT)
+    );
+  }
+
+  function parseWideMonthlyGeojson(geojson, iataSet, datasetName) {
+    const monthMap = {
+      ene: 1, feb: 2, mar: 3, abr: 4, may: 5, jun: 6,
+      jul: 7, ago: 8, sep: 9, set: 9, oct: 10, nov: 11, dic: 12
+    };
+
+    const rows = [];
+
+    (geojson.features || []).forEach(f => {
+      const p = f.properties || {};
+      const year = Number(p["Año"] || p["Anio"] || p["anio"] || p["year"]);
+      const mesTxt = clean(p["Mes"] || p["mes"]).toLowerCase();
+      const month = monthMap[mesTxt];
+
+      if (!Number.isFinite(year) || !Number.isFinite(month)) return;
+
+      iataSet.forEach(iata => {
+        const raw = p[iata];
+        if (raw === undefined || raw === null || raw === "") return;
+
+        const valor = parseNumber(raw);
+        if (!Number.isFinite(valor)) return;
+
+        rows.push({
+          iata,
+          dataset: datasetName,
+          date: new Date(year, month - 1, 1),
+          year,
+          month,
+          valor
+        });
+      });
+    });
+
+    return rows;
+  }
+
+  function getYearTotal(rows, iata, year) {
+    const code = clean(iata).toUpperCase();
     return rows
-      .filter(r =>
-        r.iata === iata &&
-        r.date.getFullYear() === year &&
-        (!datasets || datasets.includes(r.dataset))
-      )
+      .filter(r => r.iata === code && r.year === year)
       .reduce((acc, r) => acc + (Number(r.valor) || 0), 0);
+  }
+
+  function loadImageWithFallback(imgEl, candidates) {
+    if (!imgEl) return;
+
+    const list = candidates.filter(Boolean);
+    let idx = 0;
+
+    const markEmpty = (isEmpty) => {
+      if (!imgEl.parentElement) return;
+      imgEl.parentElement.classList.toggle("is-empty", !!isEmpty);
+    };
+
+    const tryNext = () => {
+      if (idx >= list.length) {
+        imgEl.classList.add("is-hidden");
+        markEmpty(true);
+        return;
+      }
+
+      imgEl.src = list[idx++];
+      imgEl.onerror = tryNext;
+      imgEl.onload = () => {
+        imgEl.classList.remove("is-hidden");
+        markEmpty(false);
+      };
+    };
+
+    tryNext();
   }
 
   function buildNarrative(a, impact, iata) {
     const nombreAeropuerto = buildAirportDisplay(a, iata);
-    const departamentos = clean(firstNonEmpty(a, [
-      "Departamentos",
-      "DepartamentosAreaInfluencia",
-      "NombresDepartamentos",
-      "Área de influencia",
-      "Area de influencia"
-    ])) || "los departamentos definidos en su área de influencia";
+    const departamentos = getDepartamentosText(iata);
 
     const poblacion2022 = formatNumber(firstNonEmpty(a, [
       "Población del Área de Influencia (Censo 2022)",
@@ -223,16 +395,15 @@
       "Poblacion 2022"
     ]));
 
-    const pasajeros2025 =
-      sumYear(paxRows, iata, 2025, [PAX_DATASET_CAB, PAX_DATASET_INT]);
-
-    const pasajeros2024 =
-      sumYear(paxRows, iata, 2024, [PAX_DATASET_CAB, PAX_DATASET_INT]);
+    const pasajeros2025 = getYearTotal(paxRows, iata, 2025);
+    const pasajeros2024 = getYearTotal(paxRows, iata, 2024);
 
     const variacionPct =
-      pasajeros2024 > 0 ? ((pasajeros2025 - pasajeros2024) / pasajeros2024) * 100 : NaN;
+      pasajeros2024 > 0
+        ? ((pasajeros2025 - pasajeros2024) / pasajeros2024) * 100
+        : NaN;
 
-    const movimientos2025 = sumYear(movRows, iata, 2025, null);
+    const movimientos2025 = getYearTotal(movRows, iata, 2025);
 
     const impactoPositivo = formatUSD(impact["Impacto económico positivo"]);
     const empleoTotal = formatNumber(impact["EmpleoAeroTotal2025"]);
@@ -250,7 +421,7 @@
       </p>
 
       <p>
-        El presente informe de Impacto socioeconómico y territorial ${YEAR_REF} del <strong>${nombreAeropuerto}</strong>, caracteriza y cuantifica el aporte económico y laboral generado por los servicios aeronáuticos y aeroportuarios en el área de influencia, definida como el espacio geográfico sobre el cual el aeropuerto ejerce un poder de atracción y define el universo de potenciales pasajeros. En el caso de <strong>${nombreAeropuerto}</strong>, incluye los departamentos de <strong>${departamentos}</strong>, y beneficia a <strong>${poblacion2022}</strong> habitantes (Censo 2022).
+        El presente informe de Impacto socioeconómico y territorial ${YEAR_REF} del <strong>${escapeHtml(nombreAeropuerto)}</strong>, caracteriza y cuantifica el aporte económico y laboral generado por los servicios aeronáuticos y aeroportuarios en el área de influencia, definida como el espacio geográfico sobre el cual el aeropuerto ejerce un poder de atracción y define el universo de potenciales pasajeros. En el caso de <strong>${escapeHtml(nombreAeropuerto)}</strong>, incluye los departamentos de <strong>${escapeHtml(departamentos)}</strong>, y beneficia a <strong>${escapeHtml(poblacion2022)}</strong> habitantes (Censo 2022).
       </p>
 
       <p>
@@ -262,38 +433,20 @@
       </p>
 
       <p>
-        En ${YEAR_REF}, el <strong>${nombreAeropuerto}</strong> registró <strong>${formatNumber(pasajeros2025)}</strong> pasajeros, lo que representó una variación de <strong>${formatPercent(variacionPct)}</strong> respecto del año anterior. Además, el aeropuerto contabilizó <strong>${formatNumber(movimientos2025)}</strong> movimientos de aeronaves.
+        En ${YEAR_REF}, el <strong>${escapeHtml(nombreAeropuerto)}</strong> registró <strong>${escapeHtml(formatNumber(pasajeros2025))}</strong> pasajeros, lo que representó una variación de <strong>${escapeHtml(formatPercent(variacionPct))}</strong> respecto del año anterior. Además, el aeropuerto contabilizó <strong>${escapeHtml(formatNumber(movimientos2025))}</strong> movimientos de aeronaves.
       </p>
 
       <p>
-        En ${YEAR_REF}, el impacto socioeconómico y territorial positivo generado por el Aeropuerto de <strong>${nombreAeropuerto}</strong> en su área de influencia ascendió a <strong>${impactoPositivo}</strong> y posibilitó la creación de <strong>${empleoTotal}</strong> puestos de trabajo. Este resultado reúne los impactos directos, indirectos, inducidos y catalíticos positivos de la aviación, integrados por un Producto Bruto Aeroportuario de <strong>${pba}</strong>, un aporte del turismo receptivo de <strong>${turismoReceptivo}</strong> y beneficios económicos para los pasajeros por <strong>${beneficiosPax}</strong>. Por su parte, el turismo emisivo representó un impacto negativo de <strong>${turismoEmisivo}</strong>, asociado a gastos realizados fuera del área de influencia, en otras regiones del país y del exterior. En consecuencia, el saldo neto de impactos del transporte aéreo en el área de influencia aeroportuaria fue de <strong>${saldoImpacto}</strong>.
+        En ${YEAR_REF}, el impacto socioeconómico y territorial positivo generado por el Aeropuerto de <strong>${escapeHtml(nombreAeropuerto)}</strong> en su área de influencia ascendió a <strong>${escapeHtml(impactoPositivo)}</strong> y posibilitó la creación de <strong>${escapeHtml(empleoTotal)}</strong> puestos de trabajo. Este resultado reúne los impactos directos, indirectos, inducidos y catalíticos positivos de la aviación, integrados por un Producto Bruto Aeroportuario de <strong>${escapeHtml(pba)}</strong>, un aporte del turismo receptivo de <strong>${escapeHtml(turismoReceptivo)}</strong> y beneficios económicos para los pasajeros por <strong>${escapeHtml(beneficiosPax)}</strong>. Por su parte, el turismo emisivo representó un impacto negativo de <strong>${escapeHtml(turismoEmisivo)}</strong>, asociado a gastos realizados fuera del área de influencia, en otras regiones del país y del exterior. En consecuencia, el saldo neto de impactos del transporte aéreo en el área de influencia aeroportuaria fue de <strong>${escapeHtml(saldoImpacto)}</strong>.
       </p>
     `;
-  }
-
-  function loadImageWithFallback(imgEl, candidates) {
-    if (!imgEl) return;
-    const list = candidates.filter(Boolean);
-    let idx = 0;
-
-    const tryNext = () => {
-      if (idx >= list.length) {
-        imgEl.classList.add("is-hidden");
-        return;
-      }
-      imgEl.src = list[idx++];
-      imgEl.onerror = tryNext;
-      imgEl.onload = () => imgEl.classList.remove("is-hidden");
-    };
-
-    tryNext();
   }
 
   function renderSummary(iata) {
     const code = clean(iata).toUpperCase();
     if (!code) return false;
 
-    const airport = airportsData.find(a => clean(a.IATA).toUpperCase() === code);
+    const airport = getAirportRecord(code);
     const impact = getImpactRecord(code);
 
     if (!airport || !impact) {
@@ -301,7 +454,7 @@
       return false;
     }
 
-    setHTML("summaryAirportLine", buildAirportLine(airport, code));
+    setText("summaryAirportLine", buildAirportLine(airport, code));
     setHTML("summaryText", buildNarrative(airport, impact, code));
 
     loadImageWithFallback(q("summaryImgAirport"), [
@@ -315,26 +468,54 @@
   }
 
   async function loadData() {
-    const [airportsResp, impactResp, paxResp, movResp] = await Promise.all([
-      fetch(AIRPORTS_URL),
-      fetch(IMPACT_URL),
-      fetch(PAX_URL).catch(() => null),
-      fetch(MOV_URL).catch(() => null)
+    const [
+      airportsGeo,
+      impactGeo,
+      deptosGeo,
+      paxSiacGeo,
+      paxAltGeo,
+      movSiacGeo,
+      movAltGeo
+    ] = await Promise.all([
+      fetchJSON(AIRPORTS_URL),
+      fetchJSON(IMPACT_URL),
+      fetchJSON(DEPTOS_URL),
+      fetchJSON(PAX_SIAC_URL),
+      fetchJSON(PAX_ALT_URL),
+      fetchJSON(MOV_SIAC_URL),
+      fetchJSON(MOV_ALT_URL)
     ]);
 
-    const airportsGeo = await airportsResp.json();
-    airportsData = (airportsGeo.features || []).map(f => f.properties || {}).filter(p => clean(p.IATA));
+    airportsData = (airportsGeo.features || [])
+      .map(f => f.properties || {})
+      .filter(p => clean(p.IATA));
 
-    const impactGeo = await impactResp.json();
     impactData = impactGeo.features || [];
+    deptosData = deptosGeo.features || [];
 
-    if (paxResp && paxResp.ok) {
-      paxRows = parsePasajerosMensualCSV(await readTextSmart(paxResp));
-    }
+    const paxSiacRows = parsePaxSiacGeojson(paxSiacGeo);
+    const paxAltRows = parseWideMonthlyGeojson(
+      paxAltGeo,
+      ALT_IATAS,
+      "pasajeros_totales_aeropuerto"
+    );
 
-    if (movResp && movResp.ok) {
-      movRows = parseMovimientosMensualCSV(await readTextSmart(movResp));
-    }
+    paxRows = [
+      ...paxSiacRows.filter(r => !ALT_IATAS.has(r.iata)),
+      ...paxAltRows
+    ];
+
+    const movSiacRows = parseMovSiacGeojson(movSiacGeo);
+    const movAltRows = parseWideMonthlyGeojson(
+      movAltGeo,
+      ALT_IATAS,
+      "movimientos_totales_aeropuerto"
+    );
+
+    movRows = [
+      ...movSiacRows.filter(r => !ALT_IATAS.has(r.iata)),
+      ...movAltRows
+    ];
   }
 
   function bindSelector() {
@@ -358,7 +539,10 @@
       renderSummary(getSelectedIATA());
     } catch (err) {
       console.error("No se pudo inicializar el resumen ejecutivo.", err);
-      setHTML("summaryText", "<p>No se pudieron cargar los datos del resumen ejecutivo.</p>");
+      setHTML(
+        "summaryText",
+        "<p>No se pudieron cargar los datos del resumen ejecutivo. Verifica que los archivos JSON estén expuestos en <strong>geodata/data/</strong> al momento del deploy.</p>"
+      );
     }
   }
 
