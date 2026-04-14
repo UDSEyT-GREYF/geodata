@@ -19,25 +19,24 @@
 .summary-inner {
   height: 100%;
   display: grid;
-  grid-template-rows: auto 1fr 68mm;
-  padding: 14mm 14mm 12mm;
+  grid-template-rows: auto 1fr 64mm;
+  padding: 12mm 14mm 12mm;
 }
 
 .summary-header {
-  margin-bottom: 6mm;
+  margin-bottom: 5mm;
 }
 
 .summary-kicker {
-  font-size: 4.2mm;
-  line-height: 1.15;
+  font-size: 4mm;
+  line-height: 1.12;
   font-weight: 500;
   color: #355A73;
-  text-transform: none;
   margin-bottom: 2mm;
 }
 
 .summary-airport-line {
-  font-size: 5.4mm;
+  font-size: 5mm;
   line-height: 1.15;
   font-weight: 500;
   color: #17344A;
@@ -45,7 +44,7 @@
 }
 
 .summary-title {
-  font-size: 6.2mm;
+  font-size: 6mm;
   line-height: 1.05;
   font-weight: 700;
   color: #17344A;
@@ -58,14 +57,14 @@
 }
 
 .summary-text {
-  font-size: 3.85mm;
-  line-height: 1.45;
+  font-size: 3.55mm;
+  line-height: 1.38;
   color: #22313d;
   text-align: justify;
 }
 
 .summary-text p {
-  margin: 0 0 4mm;
+  margin: 0 0 3.2mm;
 }
 
 .summary-text strong {
@@ -75,10 +74,10 @@
 
 .summary-figures {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1.22fr 0.78fr;
   gap: 6mm;
   align-items: stretch;
-  margin-top: 5mm;
+  margin-top: 4mm;
 }
 
 .summary-figure {
@@ -92,16 +91,25 @@
   width: 100%;
   height: 100%;
   display: block;
+}
+
+.summary-figure-main img {
   object-fit: cover;
 }
 
 .summary-figure-concept img {
   object-fit: contain;
   background: #ffffff;
+  padding: 3mm;
 }
 
 .summary-figure img.is-hidden {
   display: none;
+}
+
+.summary-figure.is-empty {
+  background:
+    linear-gradient(135deg, #eef3f8 0%, #f7f9fb 100%);
 }
 
 @page {
