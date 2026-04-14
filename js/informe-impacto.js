@@ -3,19 +3,19 @@
 
   const q = id => document.getElementById(id);
 
-async function loadText(url) {
-  const sep = url.includes("?") ? "&" : "?";
-  const cacheBust = `v=impacto4-${Date.now()}`;
+  async function loadText(url) {
+    const sep = url.includes("?") ? "&" : "?";
+    const cacheBust = `v=impacto6-${Date.now()}`;
 
-  const resp = await fetch(`${url}${sep}${cacheBust}`, {
-    cache: "no-store"
-  });
+    const resp = await fetch(`${url}${sep}${cacheBust}`, {
+      cache: "no-store"
+    });
 
-  if (!resp.ok) {
-    throw new Error(`No se pudo cargar ${url}`);
+    if (!resp.ok) {
+      throw new Error(`No se pudo cargar ${url}`);
+    }
+    return resp.text();
   }
-  return resp.text();
-}
 
   async function mountCoverPartial() {
     const html = await loadText("partials/portada-informe.html");
@@ -23,12 +23,12 @@ async function loadText(url) {
     if (mount) mount.innerHTML = html;
   }
 
-async function mountSummaryPartial() {
-  const html = await loadText("partials/resumen-ejecutivo.html");
-  const mount = q("summaryMount");
-  if (mount) mount.innerHTML = html;
-}
-  
+  async function mountSummaryPartial() {
+    const html = await loadText("partials/resumen-ejecutivo.html");
+    const mount = q("summaryMount");
+    if (mount) mount.innerHTML = html;
+  }
+
   async function mountLaminaFromCurrentHtml() {
     const html = await loadText("datos-clave-lamina.html");
     const parser = new DOMParser();
@@ -83,6 +83,7 @@ async function mountSummaryPartial() {
   async function bootReport() {
     try {
       initReportExport();
+
       await mountCoverPartial();
       await mountSummaryPartial();
       await mountLaminaFromCurrentHtml();
