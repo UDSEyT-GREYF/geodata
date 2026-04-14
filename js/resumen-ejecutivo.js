@@ -526,7 +526,7 @@ function getDepartamentosText(iata) {
     const movimientos2025 = getYearTotal(movRows, iata, 2025);
 
     const impactoPositivo = formatUSD(impact["Impacto económico positivo"]);
-    const empleoTotal = formatNumber(impact["EmpleoAeroTotal2025"]);
+    const empleoTotal = formatNumber(impact["EmpleoAeropTotal2025"]);
     const pba = formatUSD(impact["PBA 2025 USD"]);
     const turismoReceptivo = formatUSD(impact["Saldo del Turismo Receptivo (USD)2023"]);
     const beneficiosPax = formatUSD(impact["Beneficios al pax 2025 (USD)"]);
