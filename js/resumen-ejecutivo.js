@@ -10,11 +10,13 @@
   let deptosData = [];
   let paxRows = [];
   let movRows = [];
+  let gentiliciosMap = new Map();
 
   const AIRPORTS_URL = "fuentes/Datos_aeropuertos.geojson";
   const DEPTOS_URL = "fuentes/Areasinfluencia55deptos.geojson";
+  const GENTILICIOS_URL = "fuentes/gentilicios.csv";
 
-  // Estos archivos deben quedar expuestos en geodata/data/ al momento del deploy
+  // Estos archivos deben existir publicados dentro de geodata/data/
   const IMPACT_URL = "data/ResumenImpacto2025.geojson";
   const PAX_SIAC_URL = "data/4paxxaeropuerto2021a2025SIACANAC.geojson";
   const PAX_ALT_URL = "data/4paxxaeropuerto2021a2025SinSIIAC.geojson";
@@ -34,6 +36,13 @@
 
   function clean(v) {
     return v === null || v === undefined ? "" : String(v).trim();
+  }
+
+  function normalizeKey(v) {
+    return clean(v)
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
   }
 
   function firstNonEmpty(obj, keys, fallback = "") {
@@ -146,6 +155,65 @@
     return resp.json();
   }
 
+  async function fetchText(url) {
+    const resp = await fetch(url, { cache: "no-store" });
+    if (!resp.ok) throw new Error(`No se pudo cargar ${url}`);
+    return resp.text();
+  }
+
+  function detectSep(headerLine) {
+    if (headerLine.includes("\t")) return "\t";
+    if (headerLine.includes(";")) return ";";
+    return ",";
+  }
+
+  function parseCSV(text) {
+    if (!text) return [];
+    const lines = text.trim().split(/\r?\n/).filter(Boolean);
+    if (lines.length < 2) return [];
+    const sep = detectSep(lines[0]);
+    const headers = lines[0].split(sep).map(h => clean(h));
+
+    return lines.slice(1).map(line => {
+      const cols = line.split(sep);
+      const row = {};
+      headers.forEach((h, i) => {
+        row[h] = cols[i] ?? "";
+      });
+      return row;
+    });
+  }
+
+  function parseGentiliciosCSV(text) {
+    const rows = parseCSV(text);
+
+    rows.forEach(row => {
+      const provincia = clean(firstNonEmpty(row, [
+        "provincia",
+        "Provincia",
+        "PROVINCIA",
+        "jurisdiccion",
+        "Jurisdicción",
+        "Jurisdiccion",
+        "nombre_provincia",
+        "NombreProvincia"
+      ]));
+
+      const gentilicio = clean(firstNonEmpty(row, [
+        "gentilicio",
+        "Gentilicio",
+        "GENTILICIO",
+        "gentilicio_masc",
+        "gentilicio_plural",
+        "GentilicioPlural"
+      ]));
+
+      if (provincia && gentilicio) {
+        gentiliciosMap.set(normalizeKey(provincia), gentilicio);
+      }
+    });
+  }
+
   function getSelectedIATA() {
     const select = q("airportSelect");
     const fromSelect = clean(select?.value).toUpperCase();
@@ -176,8 +244,10 @@
     return airportsData.find(a => clean(a.IATA).toUpperCase() === code) || null;
   }
 
-  function buildAirportDisplay(a, iata) {
+  function getAirportCity(a, iata) {
     const code = clean(iata).toUpperCase();
+
+    if (code === "AEP") return "Aeroparque";
 
     const ciudad = clean(firstNonEmpty(a, [
       "Ciudad",
@@ -187,19 +257,22 @@
       "Aeropuerto"
     ]));
 
-    const nombreOficial = normalizeAirportName(firstNonEmpty(a, [
+    if (ciudad) return ciudad;
+
+    return normalizeAirportName(firstNonEmpty(a, [
       "Nombre del Aeropuerto",
       "Aeropuerto",
       "Denominacion"
-    ]));
+    ])) || code;
+  }
 
-    if (code === "AEP") return "Aeroparque Jorge Newbery";
-    if (ciudad && nombreOficial && ciudad !== nombreOficial) {
-      return `Aeropuerto de ${ciudad} – ${nombreOficial}`;
-    }
-    if (ciudad) return `Aeropuerto de ${ciudad}`;
-    if (nombreOficial) return nombreOficial;
-    return `Aeropuerto ${code}`;
+  function buildAirportDisplay(a, iata) {
+    const code = clean(iata).toUpperCase();
+
+    if (code === "AEP") return "Aeroparque";
+
+    const ciudad = getAirportCity(a, iata);
+    return ciudad ? `Aeropuerto de ${ciudad}` : `Aeropuerto ${code}`;
   }
 
   function buildAirportLine(a, iata) {
@@ -211,17 +284,15 @@
     return impactData.find(f => clean(f?.properties?.IATA).toUpperCase() === code)?.properties || null;
   }
 
-  function getDeptosRecord(iata) {
+  function getDeptosFeaturesByIATA(iata) {
     const code = clean(iata).toUpperCase();
 
-    const matches = deptosData.filter(f => {
+    return deptosData.filter(f => {
       const p = f?.properties || {};
       return clean(
         p.IATA || p.iata || p.codigo_iata || p.Codigo_IATA
       ).toUpperCase() === code;
     });
-
-    return matches;
   }
 
   function joinListEs(items) {
@@ -231,47 +302,78 @@
     return `${items.slice(0, -1).join(", ")} y ${items[items.length - 1]}`;
   }
 
+  function getDeptoName(props) {
+    return clean(firstNonEmpty(props, [
+      "departamento",
+      "Departamento",
+      "departamento_nombre",
+      "Departamento_nombre",
+      "depto",
+      "Depto",
+      "depto_nombre",
+      "Depto_nombre",
+      "nombre",
+      "Nombre",
+      "name",
+      "NAME"
+    ]));
+  }
+
+  function getProvinciaName(props) {
+    return clean(firstNonEmpty(props, [
+      "provincia",
+      "Provincia",
+      "provincia_nombre",
+      "Provincia_nombre",
+      "jurisdiccion",
+      "Jurisdicción",
+      "Jurisdiccion",
+      "prov",
+      "Prov"
+    ]));
+  }
+
   function getDepartamentosText(iata) {
-    const matches = getDeptosRecord(iata);
-    if (!matches.length) return "los departamentos definidos en su área de influencia";
+    const features = getDeptosFeaturesByIATA(iata);
+    if (!features.length) return "los departamentos definidos en su área de influencia";
 
-    for (const f of matches) {
+    const groups = new Map();
+
+    features.forEach(f => {
       const p = f.properties || {};
-      const direct = clean(firstNonEmpty(p, [
-        "nombres_departamentos",
-        "Nombres_departamentos",
-        "nombresDeptos",
-        "NombresDeptos",
-        "departamentos",
-        "Departamentos",
-        "nombre_departamentos",
-        "Nombre_departamentos"
-      ]));
-      if (direct) return direct;
-    }
+      const depto = getDeptoName(p);
+      const provincia = getProvinciaName(p) || "la provincia correspondiente";
+      const key = normalizeKey(provincia);
 
-    const deptoNames = matches
-      .map(f => {
-        const p = f.properties || {};
-        return clean(firstNonEmpty(p, [
-          "departamento",
-          "Departamento",
-          "departamento_nombre",
-          "Departamento_nombre",
-          "depto",
-          "Depto",
-          "depto_nombre",
-          "Depto_nombre",
-          "nombre",
-          "Nombre",
-          "name",
-          "NAME"
-        ]));
-      })
-      .filter(Boolean);
+      if (!groups.has(key)) {
+        groups.set(key, {
+          provincia,
+          gentilicio: gentiliciosMap.get(key) || "",
+          deptos: []
+        });
+      }
 
-    const unique = [...new Set(deptoNames)];
-    return unique.length ? joinListEs(unique) : "los departamentos definidos en su área de influencia";
+      if (depto) groups.get(key).deptos.push(depto);
+    });
+
+    const fragments = Array.from(groups.values()).map(group => {
+      const deptosUnique = [...new Set(group.deptos)].filter(Boolean);
+      const deptosTxt = joinListEs(deptosUnique);
+
+      if (!deptosTxt) {
+        return group.gentilicio
+          ? `los departamentos de territorio ${group.gentilicio}`
+          : `los departamentos de la provincia de ${group.provincia}`;
+      }
+
+      if (group.gentilicio) {
+        return `${deptosTxt}, en territorio ${group.gentilicio}`;
+      }
+
+      return `${deptosTxt}, en la provincia de ${group.provincia}`;
+    });
+
+    return fragments.length ? joinListEs(fragments) : "los departamentos definidos en su área de influencia";
   }
 
   function parsePaxSiacGeojson(geojson) {
@@ -386,7 +488,8 @@
   }
 
   function buildNarrative(a, impact, iata) {
-    const nombreAeropuerto = buildAirportDisplay(a, iata);
+    const airportDisplay = buildAirportDisplay(a, iata);
+    const cityLabel = getAirportCity(a, iata);
     const departamentos = getDepartamentosText(iata);
 
     const poblacion2022 = formatNumber(firstNonEmpty(a, [
@@ -421,7 +524,7 @@
       </p>
 
       <p>
-        El presente informe de Impacto socioeconómico y territorial ${YEAR_REF} del <strong>${escapeHtml(nombreAeropuerto)}</strong>, caracteriza y cuantifica el aporte económico y laboral generado por los servicios aeronáuticos y aeroportuarios en el área de influencia, definida como el espacio geográfico sobre el cual el aeropuerto ejerce un poder de atracción y define el universo de potenciales pasajeros. En el caso de <strong>${escapeHtml(nombreAeropuerto)}</strong>, incluye los departamentos de <strong>${escapeHtml(departamentos)}</strong>, y beneficia a <strong>${escapeHtml(poblacion2022)}</strong> habitantes (Censo 2022).
+        El presente informe de Impacto socioeconómico y territorial ${YEAR_REF} del <strong>${escapeHtml(airportDisplay)}</strong>, caracteriza y cuantifica el aporte económico y laboral generado por los servicios aeronáuticos y aeroportuarios en el área de influencia, definida como el espacio geográfico sobre el cual el aeropuerto ejerce un poder de atracción y define el universo de potenciales pasajeros. En el caso de <strong>${escapeHtml(cityLabel)}</strong>, incluye los departamentos de <strong>${escapeHtml(departamentos)}</strong>, y beneficia a <strong>${escapeHtml(poblacion2022)}</strong> habitantes (Censo 2022).
       </p>
 
       <p>
@@ -433,11 +536,11 @@
       </p>
 
       <p>
-        En ${YEAR_REF}, el <strong>${escapeHtml(nombreAeropuerto)}</strong> registró <strong>${escapeHtml(formatNumber(pasajeros2025))}</strong> pasajeros, lo que representó una variación de <strong>${escapeHtml(formatPercent(variacionPct))}</strong> respecto del año anterior. Además, el aeropuerto contabilizó <strong>${escapeHtml(formatNumber(movimientos2025))}</strong> movimientos de aeronaves.
+        En ${YEAR_REF}, el <strong>${escapeHtml(airportDisplay)}</strong> registró <strong>${escapeHtml(formatNumber(pasajeros2025))}</strong> pasajeros, lo que representó una variación de <strong>${escapeHtml(formatPercent(variacionPct))}</strong> respecto del año anterior. Además, el aeropuerto contabilizó <strong>${escapeHtml(formatNumber(movimientos2025))}</strong> movimientos de aeronaves.
       </p>
 
       <p>
-        En ${YEAR_REF}, el impacto socioeconómico y territorial positivo generado por el Aeropuerto de <strong>${escapeHtml(nombreAeropuerto)}</strong> en su área de influencia ascendió a <strong>${escapeHtml(impactoPositivo)}</strong> y posibilitó la creación de <strong>${escapeHtml(empleoTotal)}</strong> puestos de trabajo. Este resultado reúne los impactos directos, indirectos, inducidos y catalíticos positivos de la aviación, integrados por un Producto Bruto Aeroportuario de <strong>${escapeHtml(pba)}</strong>, un aporte del turismo receptivo de <strong>${escapeHtml(turismoReceptivo)}</strong> y beneficios económicos para los pasajeros por <strong>${escapeHtml(beneficiosPax)}</strong>. Por su parte, el turismo emisivo representó un impacto negativo de <strong>${escapeHtml(turismoEmisivo)}</strong>, asociado a gastos realizados fuera del área de influencia, en otras regiones del país y del exterior. En consecuencia, el saldo neto de impactos del transporte aéreo en el área de influencia aeroportuaria fue de <strong>${escapeHtml(saldoImpacto)}</strong>.
+        En ${YEAR_REF}, el impacto socioeconómico y territorial positivo generado por el <strong>${escapeHtml(airportDisplay)}</strong> en su área de influencia ascendió a <strong>${escapeHtml(impactoPositivo)}</strong> y posibilitó la creación de <strong>${escapeHtml(empleoTotal)}</strong> puestos de trabajo. Este resultado reúne los impactos directos, indirectos, inducidos y catalíticos positivos de la aviación, integrados por un Producto Bruto Aeroportuario de <strong>${escapeHtml(pba)}</strong>, un aporte del turismo receptivo de <strong>${escapeHtml(turismoReceptivo)}</strong> y beneficios económicos para los pasajeros por <strong>${escapeHtml(beneficiosPax)}</strong>. Por su parte, el turismo emisivo representó un impacto negativo de <strong>${escapeHtml(turismoEmisivo)}</strong>, asociado a gastos realizados fuera del área de influencia, en otras regiones del país y del exterior. En consecuencia, el saldo neto de impactos del transporte aéreo en el área de influencia aeroportuaria fue de <strong>${escapeHtml(saldoImpacto)}</strong>.
       </p>
     `;
   }
@@ -475,7 +578,8 @@
       paxSiacGeo,
       paxAltGeo,
       movSiacGeo,
-      movAltGeo
+      movAltGeo,
+      gentiliciosCsv
     ] = await Promise.all([
       fetchJSON(AIRPORTS_URL),
       fetchJSON(IMPACT_URL),
@@ -483,7 +587,8 @@
       fetchJSON(PAX_SIAC_URL),
       fetchJSON(PAX_ALT_URL),
       fetchJSON(MOV_SIAC_URL),
-      fetchJSON(MOV_ALT_URL)
+      fetchJSON(MOV_ALT_URL),
+      fetchText(GENTILICIOS_URL).catch(() => "")
     ]);
 
     airportsData = (airportsGeo.features || [])
@@ -492,6 +597,8 @@
 
     impactData = impactGeo.features || [];
     deptosData = deptosGeo.features || [];
+
+    if (gentiliciosCsv) parseGentiliciosCSV(gentiliciosCsv);
 
     const paxSiacRows = parsePaxSiacGeojson(paxSiacGeo);
     const paxAltRows = parseWideMonthlyGeojson(
@@ -541,7 +648,7 @@
       console.error("No se pudo inicializar el resumen ejecutivo.", err);
       setHTML(
         "summaryText",
-        "<p>No se pudieron cargar los datos del resumen ejecutivo. Verifica que los archivos JSON estén expuestos en <strong>geodata/data/</strong> al momento del deploy.</p>"
+        "<p>No se pudieron cargar los datos del resumen ejecutivo. Verifica que los archivos JSON estén expuestos en <strong>geodata/data/</strong> y que existan <strong>fuentes/Areasinfluencia55deptos.geojson</strong> y <strong>fuentes/gentilicios.csv</strong>.</p>"
       );
     }
   }
