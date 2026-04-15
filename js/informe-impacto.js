@@ -43,42 +43,70 @@
     if (mount) mount.innerHTML = sheet.outerHTML;
   }
 
-  function initReportExport() {
-    q("btnPrintReport")?.addEventListener("click", () => {
-      window.print();
-    });
+function initReportExport() {
+  q("btnPrintReport")?.addEventListener("click", () => {
+    window.print();
+  });
 
-    q("btnExportReportPng")?.addEventListener("click", async () => {
-      const button = q("btnExportReportPng");
-      const target = q("reportStack");
-      const airport = q("airportSelect")?.value || "aeropuerto";
+  q("btnExportReportPng")?.addEventListener("click", async () => {
+    const button = q("btnExportReportPng");
+    const airport = q("airportSelect")?.value || "aeropuerto";
 
-      if (!target || typeof html2canvas === "undefined") return;
+    if (typeof html2canvas === "undefined" || typeof window.jspdf === "undefined") {
+      console.error("Faltan html2canvas o jsPDF.");
+      return;
+    }
 
-      const prev = button.textContent;
-      button.disabled = true;
-      button.textContent = "Exportando...";
+    const { jsPDF } = window.jspdf;
 
-      try {
-        const canvas = await html2canvas(target, {
+    const pages = [
+      document.querySelector("#coverMount .report-cover-page"),
+      document.querySelector("#summaryMount .summary-page"),
+      document.querySelector("#laminaMount #sheetA4")
+    ].filter(Boolean);
+
+    if (!pages.length) return;
+
+    const prev = button.textContent;
+    button.disabled = true;
+    button.textContent = "Exportando PDF...";
+
+    try {
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: "a4",
+        compress: true
+      });
+
+      for (let i = 0; i < pages.length; i++) {
+        const pageEl = pages[i];
+
+        const canvas = await html2canvas(pageEl, {
           backgroundColor: "#ffffff",
           scale: 2,
           useCORS: true,
           logging: false
         });
 
-        const link = document.createElement("a");
-        link.href = canvas.toDataURL("image/png");
-        link.download = `informe-impacto-${airport}.png`;
-        link.click();
-      } catch (err) {
-        console.error("No se pudo exportar el informe.", err);
-      } finally {
-        button.disabled = false;
-        button.textContent = prev;
+        const imgData = canvas.toDataURL("image/jpeg", 0.95);
+
+        const pdfW = 210;
+        const pdfH = 297;
+
+        if (i > 0) pdf.addPage();
+        pdf.addImage(imgData, "JPEG", 0, 0, pdfW, pdfH);
       }
-    });
-  }
+
+      pdf.save(`informe-impacto-${airport}.pdf`);
+    } catch (err) {
+      console.error("No se pudo exportar el informe en PDF.", err);
+    } finally {
+      button.disabled = false;
+      button.textContent = prev;
+    }
+  });
+}
 
   async function bootReport() {
     try {
