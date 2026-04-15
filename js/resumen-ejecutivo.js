@@ -344,7 +344,7 @@ function getDepartamentosText(iata) {
   const code = clean(iata).toUpperCase();
   const features = getDeptosFeaturesByIATA(code);
 
-  if (!features.length) return "los departamentos del área de influencia aeroportuaria";
+  if (!features.length) return "los distritos del área de influencia aeroportuaria";
 
   const groups = new Map();
 
@@ -353,82 +353,47 @@ function getDepartamentosText(iata) {
     const depto = getDeptoName(p);
     const provinciaRaw = getProvinciaName(p);
     const provincia = toTitleCaseWords(provinciaRaw);
-    const groupKey = normalizeKey(provincia || "sin-provincia");
+    const key = normalizeKey(provincia || "sin-provincia");
 
-    if (!groups.has(groupKey)) {
-      groups.set(groupKey, {
+    if (!groups.has(key)) {
+      groups.set(key, {
         provincia,
-        gentilicio: clean(gentiliciosMap.get(groupKey) || ""),
-        deptos: []
+        deptos: new Set()
       });
     }
 
-    if (depto) groups.get(groupKey).deptos.push(depto);
+    if (depto) {
+      groups.get(key).deptos.add(clean(depto));
+    }
   });
 
-  const orderedGroups = Array.from(groups.values()).map(group => ({
-    ...group,
-    deptos: [...new Set(group.deptos)]
-      .filter(Boolean)
-      .sort((a, b) => a.localeCompare(b, "es"))
-  }));
-
-  // Caso especial AEP:
-  // no enumerar comunas de CABA; mostrar "la Ciudad de Buenos Aires"
-  if (code === "AEP") {
-    const parts = [];
-
-    orderedGroups.forEach(group => {
-      const provKey = normalizeKey(group.provincia);
-      const deptosTxt = joinListEs(group.deptos);
-
-      if (provKey === normalizeKey("Ciudad de Buenos Aires")) {
-        parts.push("la Ciudad de Buenos Aires");
-        return;
-      }
-
-      if (!deptosTxt) return;
-
-      if (provKey === normalizeKey("Buenos Aires")) {
-        parts.push(`los departamentos bonaerenses de ${deptosTxt}`);
-        return;
-      }
-
-      parts.push(`de la provincia de ${group.provincia}: ${deptosTxt}`);
-    });
-
-    return parts.length
-      ? joinListEs(parts)
-      : "la Ciudad de Buenos Aires";
-  }
-
-  // Resto de aeropuertos
-  const provinceFragments = orderedGroups.map(group => {
-    const deptosTxt = joinListEs(group.deptos);
-    const gentilicio = clean(group.gentilicio);
+  const fragments = Array.from(groups.values()).map(group => {
     const provincia = clean(group.provincia);
+    const provKey = normalizeKey(provincia);
+    const count = group.deptos.size;
 
-    if (!deptosTxt) {
-      if (gentilicio) return `los departamentos ${gentilicio}`;
-      if (provincia) return `los departamentos de la provincia de ${provincia}`;
-      return "los departamentos del área de influencia aeroportuaria";
+    // CABA siempre cuenta como un único distrito
+    if (provKey === normalizeKey("Ciudad de Buenos Aires")) {
+      return "la Ciudad de Buenos Aires";
     }
 
-    if (gentilicio) {
-      return `los departamentos ${gentilicio} de ${deptosTxt}`;
+    // Buenos Aires con adjetivo
+    if (provKey === normalizeKey("Buenos Aires")) {
+      return count === 1
+        ? "1 departamento bonaerense"
+        : `${count} departamentos bonaerenses`;
     }
 
-    if (provincia) {
-      return `los departamentos de la provincia de ${provincia}: ${deptosTxt}`;
-    }
-
-    return `los departamentos ${deptosTxt}`;
+    // Resto de provincias
+    return count === 1
+      ? `1 departamento de la provincia de ${provincia}`
+      : `${count} departamentos de la provincia de ${provincia}`;
   });
 
-  if (!provinceFragments.length) return "los departamentos del área de influencia aeroportuaria";
-  if (provinceFragments.length === 1) return provinceFragments[0];
-  if (provinceFragments.length === 2) return `${provinceFragments[0]}, y ${provinceFragments[1]}`;
-  return `${provinceFragments.slice(0, -1).join("; ")}, y ${provinceFragments[provinceFragments.length - 1]}`;
+if (!fragments.length) return "los distritos del área de influencia aeroportuaria";
+if (fragments.length === 1) return fragments[0];
+if (fragments.length === 2) return `${fragments[0]} y ${fragments[1]}`;
+return `${fragments.slice(0, -1).join(", ")}, y ${fragments[fragments.length - 1]}`;
 }
 
   function parsePaxSiacGeojson(geojson) {
