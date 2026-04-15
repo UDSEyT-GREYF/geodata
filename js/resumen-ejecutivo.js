@@ -540,11 +540,11 @@ return `${fragments.slice(0, -1).join(", ")}, y ${fragments[fragments.length - 1
 
     return `
       <p>
-        El transporte aerocomercial es un componente esencial de la economía e incide en el desarrollo y el bienestar de las poblaciones y los territorios. En este sentido, los servicios aerocomerciales y la infraestructura aeroportuaria cumplen un papel central en la cohesión territorial, al generar condiciones para la atracción, retención y expansión de la actividad económica.
+        <strong>El transporte aerocomercial es un componente esencial de la economía e incide en el desarrollo y el bienestar de las poblaciones y los territorios</strong>. En este sentido, los servicios aerocomerciales y la infraestructura aeroportuaria cumplen un papel central en la cohesión territorial, al generar condiciones para la atracción, retención y expansión de la actividad económica.
       </p>
 
 <p>
-  El presente informe de Impacto socioeconómico y territorial ${YEAR_REF} del <strong>${escapeHtml(airportDisplay)}</strong>, caracteriza y cuantifica el aporte económico y laboral generado por los servicios aeronáuticos y aeroportuarios en el área de influencia, definida como el espacio geográfico sobre el cual el aeropuerto ejerce un poder de atracción y define el universo de potenciales pasajeros. En el caso del <strong>${escapeHtml(airportAreaLabel)}</strong>, incluye ${escapeHtml(departamentos)}, y benefició a <strong>${escapeHtml(poblacion2022)}</strong> habitantes (Censo 2022).
+  El presente informe de Impacto socioeconómico y territorial ${YEAR_REF} del <strong>${escapeHtml(airportDisplay)}</strong>, caracteriza y cuantifica el aporte económico y laboral generado por los servicios aeronáuticos y aeroportuarios en <strong>el área de influencia, definida como el espacio geográfico sobre el cual el aeropuerto ejerce un poder de atracción y define el universo de potenciales pasajeros</strong>. En el caso del <strong>${escapeHtml(airportAreaLabel)}</strong>, incluye ${escapeHtml(departamentos)}, y benefició a <strong>${escapeHtml(poblacion2022)}</strong> habitantes (Censo 2022).
 </p>
 
       <p>
