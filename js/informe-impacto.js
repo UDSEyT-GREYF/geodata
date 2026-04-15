@@ -60,10 +60,19 @@ function initReportExport() {
     const { jsPDF } = window.jspdf;
 
     const pages = [
-      document.querySelector("#coverMount .report-cover-page"),
-      document.querySelector("#summaryMount .summary-page"),
-      document.querySelector("#laminaMount #sheetA4")
-    ].filter(Boolean);
+      {
+        el: document.querySelector("#coverMount .report-cover-page"),
+        orientation: "portrait"
+      },
+      {
+        el: document.querySelector("#summaryMount .summary-page"),
+        orientation: "portrait"
+      },
+      {
+        el: document.querySelector("#laminaMount #sheetA4"),
+        orientation: "landscape"
+      }
+    ].filter(p => p.el);
 
     if (!pages.length) return;
 
@@ -72,15 +81,21 @@ function initReportExport() {
     button.textContent = "Exportando PDF...";
 
     try {
+      const firstOrientation = pages[0].orientation;
       const pdf = new jsPDF({
-        orientation: "portrait",
+        orientation: firstOrientation,
         unit: "mm",
         format: "a4",
         compress: true
       });
 
       for (let i = 0; i < pages.length; i++) {
-        const pageEl = pages[i];
+        const page = pages[i];
+        const pageEl = page.el;
+        const isLandscape = page.orientation === "landscape";
+
+        const pageW = isLandscape ? 297 : 210;
+        const pageH = isLandscape ? 210 : 297;
 
         const canvas = await html2canvas(pageEl, {
           backgroundColor: "#ffffff",
@@ -91,11 +106,28 @@ function initReportExport() {
 
         const imgData = canvas.toDataURL("image/jpeg", 0.95);
 
-        const pdfW = 210;
-        const pdfH = 297;
+        const imgRatio = canvas.width / canvas.height;
+        const pageRatio = pageW / pageH;
 
-        if (i > 0) pdf.addPage();
-        pdf.addImage(imgData, "JPEG", 0, 0, pdfW, pdfH);
+        let renderW;
+        let renderH;
+
+        if (imgRatio > pageRatio) {
+          renderW = pageW;
+          renderH = pageW / imgRatio;
+        } else {
+          renderH = pageH;
+          renderW = pageH * imgRatio;
+        }
+
+        const x = (pageW - renderW) / 2;
+        const y = (pageH - renderH) / 2;
+
+        if (i > 0) {
+          pdf.addPage("a4", page.orientation);
+        }
+
+        pdf.addImage(imgData, "JPEG", x, y, renderW, renderH);
       }
 
       pdf.save(`informe-impacto-${airport}.pdf`);
