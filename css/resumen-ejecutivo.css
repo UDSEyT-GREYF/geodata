@@ -18,9 +18,9 @@
 
 .summary-inner {
   height: 100%;
-  display: grid;
-  grid-template-rows: auto 1fr 82mm;
-  padding: 12mm 14mm 10mm;
+  display: flex;
+  flex-direction: column;
+  padding: 12mm 10mm 8mm;
 }
 
 .summary-header {
@@ -75,14 +75,16 @@
 .summary-figures {
   display: block;
   margin-top: 4mm;
-  width: 100%;
+  width: calc(100% + 12mm);
+  margin-left: -6mm;
+  margin-right: -6mm;
 }
 
 .summary-figure {
   margin: 0;
   width: 100%;
-  height: 100%;
-  border: 1px solid #d7dee8;
+  height: 96mm;
+  border: 0;
   overflow: hidden;
   background: #ffffff;
 }
@@ -95,12 +97,12 @@
 
 .summary-figure-main {
   width: 100%;
-  height: 100%;
+  height: 96mm;
 }
 
 .summary-figure-main img {
   object-fit: contain;
-  object-position: center center;
+  object-position: center top;
   background: #ffffff;
 }
 
