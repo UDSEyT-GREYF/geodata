@@ -1,0 +1,9199 @@
+OACI;Ciudad;Pais
+AGAF;Bila;SB
+AGAR;Arona;SB
+AGAT;Atoifi;SB
+AGBA;Barakoma;SB
+AGBT;Batuna Mission Station;SB
+AGEV;Liangia;SB
+AGGA;Auki;SB
+AGGB;Anua;SB
+AGGC;Choiseul Bay;SB
+AGGE;Ballalae;SB
+AGGF;Fera Island;SB
+AGGH;Honiara;SB
+AGGI;Mbambanakira;SB
+AGGJ;Avu Avu;SB
+AGGK;Kirakira;SB
+AGGL;Santa Cruz/Graciosa Bay/Luova;SB
+AGGM;Munda;SB
+AGGN;Gizo;SB
+AGGO;Stirling Island;SB
+AGGP;Parasi;SB
+AGGR;Rennell Island;SB
+AGGS;Sege;SB
+AGGT;Santa Ana Island;SB
+AGGU;Marau;SB
+AGGV;Suavanao;SB
+AGGY;Yandina;SB
+AGIN;Veravaulo;SB
+AGKG;Kagau Island;SB
+AGKU;Kolombangara Island;SB
+AGKW;Kwailabesi;SB
+AGLM;Lomlom;SB
+AGNA;Star Harbor;SB
+AGOB;Manaoba;SB
+AGOK;Gatokae;SB
+AGRC;Ringi Cove;SB
+AGRM;Ramata;SB
+AGTI;Tulaghi Island;SB
+AGVH;Viru;SB
+ANYN;Yaren District;NR
+AYAA;;PG
+AYAB;Ambulua;PG
+AYAC;Akwom;PG
+AYAD;Sindeni;PG
+AYAE;Aue;PG
+AYAF;Afore;PG
+AYAG;Agaun;PG
+AYAH;Ali;PG
+AYAI;Aitape;PG
+AYAJ;Ambua Lodge - Tari;PG
+AYAK;Aiambak;PG
+AYAM;Amanab;PG
+AYAN;Andekombe;PG
+AYAO;Aiome;PG
+AYAQ;;PG
+AYAT;Ambunti;PG
+AYAU;Arou;PG
+AYAV;;PG
+AYAW;Awaba;PG
+AYAX;Aseki;PG
+AYAY;Aiyura Valley;PG
+AYAZ;Asimba;PG
+AYBA;Baimuru;PG
+AYBC;Bambu;PG
+AYBD;Bodinumu;PG
+AYBE;Boure;PG
+AYBF;Bamu;PG
+AYBG;;PG
+AYBH;Bensbach;PG
+AYBI;Bewani;PG
+AYBJ;Bank;PG
+AYBK;Buka Island;PG
+AYBL;Bialla, Matalilu, Ewase;PG
+AYBM;Balimo;PG
+AYBN;Baina;PG
+AYBO;Bomai;PG
+AYBP;Bapi;PG
+AYBQ;Biangabip;PG
+AYBR;Biaru;PG
+AYBS;Begesin;PG
+AYBT;Batri;PG
+AYBU;Bulolo;PG
+AYBY;Wuyabo;PG
+AYBZ;Biniguni;PG
+AYCB;Chungribu;PG
+AYCG;Cape Gloucester;PG
+AYCH;Kundiawa;PG
+AYCS;Samarai Island;PG
+AYDB;Debepare;PG
+AYDE;Derim;PG
+AYDI;Bundi;PG
+AYDK;Munduku;PG
+AYDL;Kondobol;PG
+AYDN;Dinangat;PG
+AYDO;Castori Islets;PG
+AYDR;Dorobisoro;PG
+AYDU;Daru;PG
+AYEA;Gunim;PG
+AYEB;Embessa;PG
+AYED;Yellow River Mission;PG
+AYEE;Emirau Island;PG
+AYEF;Efogi;PG
+AYEH;Morehead;PG
+AYEL;Eliptamin;PG
+AYEN;Engati;PG
+AYEO;Emo Mission;PG
+AYER;Erume;PG
+AYET;Bosset;PG
+AYEV;Erave;PG
+AYEW;Siwea;PG
+AYFA;Fane Mission;PG
+AYFF;;PG
+AYFI;Buki;PG
+AYFR;Frieda River;PG
+AYFU;Fuma;PG
+AYGA;Goronka;PG
+AYGC;Gewoia;PG
+AYGF;Guari;PG
+AYGG;Au;PG
+AYGI;Garaina;PG
+AYGJ;Woodlark (Muyua) Island;PG
+AYGL;Gonaili;PG
+AYGN;Gurney;PG
+AYGP;Gusap;PG
+AYGR;Popondetta;PG
+AYGS;Gasuke;PG
+AYGT;Gasmata Island;PG
+AYGU;Anguganak;PG
+AYGV;Green River;PG
+AYGX;Gora;PG
+AYHB;Habi;PG
+AYHE;Heiweni;PG
+AYHF;Bainyik;PG
+AYHH;Honinabi;PG
+AYHK;Kimbe;PG
+AYHO;Haivaro;PG
+AYHU;Hawabango;PG
+AYIA;Nissan Island;PG
+AYID;Indagen;PG
+AYII;Imane;PG
+AYIM;Kungim;PG
+AYIO;Imonda;PG
+AYIQ;Kieta;PG
+AYIW;Wasua;PG
+AYIX;Garove Island;PG
+AYIY;Miyanmin;PG
+AYJO;Yongai;PG
+AYJS;Josephstaal;PG
+AYKA;Losuia;PG
+AYKB;;PG
+AYKC;Kandrian;PG
+AYKD;Hoieti;PG
+AYKG;Kopiago;PG
+AYKH;Kamulai Mission;PG
+AYKI;Kiunga;PG
+AYKJ;Kanainj;PG
+AYKK;Kikori;PG
+AYKM;Kerema;PG
+AYKO;Kokoda;PG
+AYKQ;Kagi;PG
+AYKR;Kar Kar Island;PG
+AYKT;Kaintiba;PG
+AYKU;Kuri;PG
+AYKV;Kavieng;PG
+AYKW;Kawito;PG
+AYKY;Londolovit;PG
+AYLB;Lab Lab Mission;PG
+AYLG;Denglagu Mission;PG
+AYLI;Kibuli;PG
+AYLL;Linga Linga;PG
+AYLN;;PG
+AYLO;Lowai;PG
+AYLP;Leron Plains;PG
+AYLS;Lese;PG
+AYLT;;PG
+AYLU;Lumi;PG
+AYLX;Long Island;PG
+AYMA;Manari;PG
+AYMB;Morobe;PG
+AYMC;Menyamya;PG
+AYMD;Madang;PG
+AYMH;Mount Hagen;PG
+AYMI;Mindik;PG
+AYMJ;Makini;PG
+AYML;Mougulu;PG
+AYMN;Mendi;PG
+AYMO;Manus Island;PG
+AYMP;Malalaua;PG
+AYMQ;Malam;PG
+AYMR;Moro;PG
+AYMS;Misima Island;PG
+AYMV;Babase Island;PG
+AYMW;Marawaka;PG
+AYMZ;Tatau Island;PG
+AYNA;Gwarawon;PG
+AYNB;Kanabea;PG
+AYNC;Nadunumu;PG
+AYND;Aua Island;PG
+AYNE;Negarbo;PG
+AYNI;Nuguria Island;PG
+AYNJ;Namudi;PG
+AYNM;Kasonombe;PG
+AYNN;Kandep;PG
+AYNO;Namane;PG
+AYNS;Bunsil - Umboi Island;PG
+AYNU;Nuku;PG
+AYNX;Namatanai;PG
+AYNY;Nambaiyufa;PG
+AYNZ;Lae;PG
+AYOB;Obo;PG
+AYOE;Konge;PG
+AYOF;Okao;PG
+AYOG;;PG
+AYOJ;Oksapmin;PG
+AYOK;Komako;PG
+AYOL;Kol;PG
+AYOM;Omora;PG
+AYOO;Komo;PG
+AYOP;Kosipe Mission;PG
+AYOQ;Komaio;PG
+AYOV;Olsobip;PG
+AYOW;Koroba;PG
+AYPB;Paiela;PG
+AYPC;Pangoa;PG
+AYPD;Pindiu;PG
+AYPE;April River;PG
+AYPG;Pangia;PG
+AYPJ;Pimaga;PG
+AYPO;Mapoda;PG
+AYPQ;Pumani;PG
+AYPY;Port Moresby;PG
+AYQA;Amboin;PG
+AYQL;Tumolbil;PG
+AYQO;Sopu;PG
+AYQQ;Onange Mission;PG
+AYQS;Sialum;PG
+AYRA;Kira;PG
+AYRE;Rabaraba;PG
+AYRG;;PG
+AYRI;Karimui;PG
+AYRK;Yule Island;PG
+AYRM;Maramuni;PG
+AYRO;Kakoro;PG
+AYSA;;PG
+AYSD;Saidor;PG
+AYSE;Simberi Island;PG
+AYSF;Safia;PG
+AYSG;Sila Mission;PG
+AYSH;Sabah;PG
+AYSJ;Simbai;PG
+AYSK;Sengapi;PG
+AYSL;Sehulea;PG
+AYSO;Selbang;PG
+AYSP;Sapmanga;PG
+AYSS;Sasereme;PG
+AYSU;Suki;PG
+AYSV;Sauren;PG
+AYSW;Satwag;PG
+AYSX;Masa;PG
+AYTA;Tari;PG
+AYTB;Tabubil;PG
+AYTE;Telefomin;PG
+AYTF;Tetebedi;PG
+AYTG;Sudest Island;PG
+AYTH;Tifalmin;PG
+AYTI;Tapini;PG
+AYTK;Kokopo;PG
+AYTN;Tekin;PG
+AYTO;Kamberatoro Mission;PG
+AYTP;Teptep;PG
+AYTR;Tarabo;PG
+AYTS;Tsewi;PG
+AYTT;Tarakbits;PG
+AYTU;Tufi;PG
+AYTV;Timbunke;PG
+AYTW;Tawa;PG
+AYTY;Terapo Mission;PG
+AYTZ;Tekadu;PG
+AYUC;Umba;PG
+AYUE;Uroubi;PG
+AYUI;Buin;PG
+AYUM;Aumo;PG
+AYUP;Gulgubip;PG
+AYUR;Upiara;PG
+AYUY;;PG
+AYUZ;Uvol;PG
+AYVL;Talasea;PG
+AYVM;Torembi;PG
+AYVN;Vanimo;PG
+AYVO;Tonu;PG
+AYVW;Wuvulu Island;PG
+AYWB;Wabo;PG
+AYWC;Wantoat;PG
+AYWD;Wapenamanda;PG
+AYWF;Wavoi Falls;PG
+AYWG;Wanigela;PG
+AYWH;Wanuma;PG
+AYWJ;Wapolu;PG
+AYWK;Wewak;PG
+AYWO;Wonenara;PG
+AYWQ;Wakunai;PG
+AYWS;Wasu;PG
+AYWT;Fatima Mission;PG
+AYWU;Wau;PG
+AYXE;Yeva;PG
+AYXI;Sim;PG
+AYXO;Tol;PG
+AYXP;Wipim;PG
+AYXW;Weam;PG
+AYYE;Yalumet;PG
+AYYK;;PG
+AYYL;Tinboli;PG
+AYYM;;PG
+AYYO;;PG
+AYYP;;PG
+AYYR;Yasuru;PG
+AYZA;Zenag;PG
+AYZI;Silur Mission;PG
+AYZN;Sissano;PG
+AYZS;Ossima;PG
+BGAA;Aasiaat;GL
+BGBW;Narsarsuaq;GL
+BGCH;Qasigiannguit;GL
+BGCO;Neerlerit Inaat;GL
+BGGH;Nuuk;GL
+BGJN;Ilulissat;GL
+BGKK;Kulusuk;GL
+BGMQ;Maniitsoq;GL
+BGPT;Paamiut;GL
+BGQQ;Qaanaaq;GL
+BGSF;Kangerlussuaq;GL
+BGSG;Sermiligaaq;GL
+BGSI;Siorapaluk;GL
+BGSO;Saarloq;GL
+BGSQ;Saqqaq;GL
+BGSS;Sisimiut;GL
+BGST;Saattut;GL
+BGSV;Savissivik;GL
+BGTA;Tasiusaq;GL
+BGTL;Pituffik;GL
+BGTN;Tiniteqilaaq;GL
+BGTQ;Tasiusak;GL
+BGUK;Upernavik;GL
+BGUM;Uummannaq;GL
+BGUQ;Uummannaq;GL
+BGUT;Ukkusissat;GL
+BIAR;Akureyri;IS
+BIBA;Bakki;IS
+BIBD;Bildudalur;IS
+BIBF;Borgarfjörður eystri;IS
+BIBK;Bakkafjörður;IS
+BIBL;Blönduós;IS
+BIBR;Búðardalur;IS
+BIBV;Breiðdalsvík;IS
+BIDV;Djúpivogur;IS
+BIEG;Egilsstaðir;IS
+BIFF;Fáskrúðsfjörður;IS
+BIFM;Fagurhólsmýri;IS
+BIGF;Grundarfjörður;IS
+BIGJ;Gjögur;IS
+BIGR;Grímsey;IS
+BIHK;Hólmavík;IS
+BIHN;Höfn;IS
+BIHU;Húsavík;IS
+BIIS;Ísafjörður;IS
+BIKF;Reykjavík;IS
+BIKP;Kópasker;IS
+BIKR;Sauðárkrókur;IS
+BINF;Norðfjörður;IS
+BIOF;Ólafsfjörður;IS
+BIPA;Patreksfjörður;IS
+BIRE;Reykhólar;IS
+BIRF;Rif;IS
+BIRG;Raufarhöfn;IS
+BIRK;Reykjavík;IS
+BIRL;Myvatn;IS
+BISI;Siglufjörður;IS
+BIST;Stykkishólmur;IS
+BITE;Þingeyri;IS
+BITN;Þórshöfn;IS
+BIVM;Vestmannaeyjar;IS
+BIVO;Vopnafjörður;IS
+BKPR;Prishtina;XK
+CBBC;Bella Bella;CA
+CCAA;Hồ Chí Minh;VN
+CYAB;Arctic Bay;CA
+CYAC;Cat Lake;CA
+CYAD;La Grande-3;CA
+CYAG;Fort Frances;CA
+CYAH;La Grande-4;CA
+CYAL;Alert Bay;CA
+CYAM;Sault Ste Marie;CA
+CYAQ;Kasabonika;CA
+CYAS;Kangirsuk;CA
+CYAT;Attawapiskat;CA
+CYAV;Winnipeg/Saint Andrews;CA
+CYAW;Halifax;CA
+CYAX;Lac du Bonnet;CA
+CYAY;St. Anthony;CA
+CYAZ;Tofino;CA
+CYBA;Banff;CA
+CYBB;Kugaaruk;CA
+CYBC;Baie-Comeau;CA
+CYBD;Bella Coola;CA
+CYBE;Uranium City;CA
+CYBF;Bonnyville;CA
+CYBG;La Baie;CA
+CYBK;Baker Lake;CA
+CYBL;Campbell River;CA
+CYBQ;Tadoule Lake;CA
+CYBR;Brandon;CA
+CYBT;Brochet;CA
+CYBV;Berens River;CA
+CYBX;Blanc-Sablon;CA
+CYCA;Cartwright;CA
+CYCB;Cambridge Bay;CA
+CYCC;Cornwall;CA
+CYCD;Nanaimo;CA
+CYCE;Huron Park;CA
+CYCG;Castlegar;CA
+CYCH;Miramichi;CA
+CYCK;Chatham-Kent;CA
+CYCL;Charlo;CA
+CYCN;Cochrane;CA
+CYCO;Kugluktuk;CA
+CYCQ;Chetwynd;CA
+CYCR;Cross Lake;CA
+CYCS;Chesterfield Inlet;CA
+CYCT;Coronation;CA
+CYCW;Chilliwack;CA
+CYCY;Clyde River;CA
+CYCZ;Fairmont Hot Springs;CA
+CYDA;Dawson City;CA
+CYDB;Burwash Landing;CA
+CYDF;Deer Lake;CA
+CYDL;Dease Lake;CA
+CYDM;Ross River;CA
+CYDN;Dauphin;CA
+CYDO;Dolbeau-Saint-Felicien;CA
+CYDP;Nain;CA
+CYDQ;Dawson Creek;CA
+CYEG;Edmonton;CA
+CYEK;Arviat;CA
+CYEL;Elliot Lake;CA
+CYEM;Sheguiandah;CA
+CYEN;Estevan;CA
+CYER;Fort Severn;CA
+CYET;Edson;CA
+CYEU;Eureka;CA
+CYEV;Inuvik;CA
+CYEY;Amos;CA
+CYFA;Fort Albany;CA
+CYFB;Iqaluit;CA
+CYFC;Fredericton;CA
+CYFE;Forestville;CA
+CYFH;Fort Hope;CA
+CYFJ;La Macaza;CA
+CYFO;Flin Flon;CA
+CYFR;Fort Resolution;CA
+CYFS;Fort Simpson;CA
+CYFT;Makkovik;CA
+CYGB;Texada;CA
+CYGH;Fort Good Hope;CA
+CYGK;Kingston;CA
+CYGL;La Grande Rivière;CA
+CYGM;Gimli;CA
+CYGO;Gods Lake Narrows;CA
+CYGP;Gaspé;CA
+CYGQ;Geraldton;CA
+CYGR;Les Îles-de-la-Madeleine;CA
+CYGT;Igloolik;CA
+CYGV;Havre-Saint-Pierre;CA
+CYGW;Kuujjuarapik;CA
+CYGX;Gillam;CA
+CYGZ;Grise Fiord;CA
+CYHA;Quaqtaq;CA
+CYHB;Hudson Bay;CA
+CYHC;Vancouver;CA
+CYHD;Dryden;CA
+CYHE;Hope;CA
+CYHF;Hearst;CA
+CYHH;Nemiscau;CA
+CYHI;Ulukhaktok;CA
+CYHK;Gjoa Haven;CA
+CYHM;Hamilton;CA
+CYHN;Hornepayne;CA
+CYHO;Hopedale;CA
+CYHP;Poplar Hill;CA
+CYHR;Chevery;CA
+CYHT;Haines Junction;CA
+CYHU;Montréal;CA
+CYHY;Hay River;CA
+CYHZ;Halifax;CA
+CYIB;Atikokan;CA
+CYID;Digby;CA
+CYIF;St-Augustin;CA
+CYIK;Ivujivik;CA
+CYIO;Pond Inlet;CA
+CYIV;Island Lake;CA
+CYJA;Jasper;CA
+CYJF;Fort Liard;CA
+CYJN;St Jean;CA
+CYJT;Stephenville;CA
+CYKA;Kamloops;CA
+CYKC;Collins Bay;CA
+CYKD;Aklavik;CA
+CYKF;Breslau;CA
+CYKG;Kangiqsujuaq;CA
+CYKJ;Key Lake;CA
+CYKL;Schefferville;CA
+CYKM;Kincardine;CA
+CYKO;Akulivik;CA
+CYKP;Ogoki Post;CA
+CYKQ;Waskaganish;CA
+CYKX;Kirkland Lake;CA
+CYKY;Kindersley;CA
+CYLA;Aupaluk;CA
+CYLB;Lac La Biche;CA
+CYLC;Kimmirut;CA
+CYLD;Chapleau;CA
+CYLH;Lansdowne House;CA
+CYLJ;Meadow Lake;CA
+CYLK;Lutselk'e;CA
+CYLL;Lloydminster;CA
+CYLQ;La Tuque;CA
+CYLR;Leaf Rapids;CA
+CYLS;Barrie;CA
+CYLT;Alert;CA
+CYLU;Kangiqsualujjuaq;CA
+CYLW;Kelowna;CA
+CYMA;Mayo;CA
+CYME;Matane;CA
+CYMG;Manitouwadge;CA
+CYMH;Mary's Harbour;CA
+CYMJ;Moose Jaw;CA
+CYML;Charlevoix;CA
+CYMM;Fort McMurray;CA
+CYMO;Moosonee;CA
+CYMT;Chibougamau;CA
+CYMU;Umiujaq;CA
+CYMW;Messines;CA
+CYMX;Montréal;CA
+CYNA;Natashquan;CA
+CYNC;Wemindji;CA
+CYND;Gatineau;CA
+CYNE;Norway House;CA
+CYNH;Hudson's Hope;CA
+CYNJ;Langley;CA
+CYNL;Points North Landing;CA
+CYNM;Matagami;CA
+CYNR;Fort Mackay;CA
+CYOA;Ekati;CA
+CYOC;Old Crow;CA
+CYOD;Cold Lake;CA
+CYOH;Oxford House;CA
+CYOJ;High Level;CA
+CYOO;Oshawa;CA
+CYOP;Rainbow Lake;CA
+CYOS;Owen Sound;CA
+CYOW;Ottawa;CA
+CYPA;Prince Albert;CA
+CYPC;Paulatuk;CA
+CYPD;Port Hawkesbury;CA
+CYPE;Peace River;CA
+CYPG;Portage la Prairie;CA
+CYPH;Inukjuak;CA
+CYPK;Pitt Meadows;CA
+CYPL;Pickle Lake;CA
+CYPM;Pikangikum;CA
+CYPN;Port-Menier;CA
+CYPO;Peawanuck;CA
+CYPQ;Peterborough;CA
+CYPR;Prince Rupert;CA
+CYPW;Powell River;CA
+CYPX;Puvirnituq;CA
+CYPY;Fort Chipewyan;CA
+CYPZ;Burns Lake;CA
+CYQA;Gravenhurst;CA
+CYQB;Quebec;CA
+CYQD;The Pas;CA
+CYQF;Springbrook;CA
+CYQG;Windsor;CA
+CYQH;Watson Lake;CA
+CYQI;Yarmouth;CA
+CYQK;Kenora;CA
+CYQL;Lethbridge;CA
+CYQM;Moncton;CA
+CYQN;Nakina;CA
+CYQQ;Comox;CA
+CYQR;Regina;CA
+CYQS;St Thomas;CA
+CYQT;Thunder Bay;CA
+CYQU;Grande Prairie;CA
+CYQV;Yorkton;CA
+CYQW;North Battleford;CA
+CYQX;Gander;CA
+CYQY;Sydney;CA
+CYQZ;Quesnel;CA
+CYRA;Gamètì;CA
+CYRB;Resolute Bay;CA
+CYRI;Rivière-du-Loup;CA
+CYRJ;Roberval;CA
+CYRL;Red Lake;CA
+CYRM;Rocky Mountain House;CA
+CYRO;Ottawa;CA
+CYRQ;Trois-Rivières;CA
+CYRS;Red Sucker Lake;CA
+CYRT;Rankin Inlet;CA
+CYRV;Revelstoke;CA
+CYSB;Sudbury;CA
+CYSC;Sherbrooke;CA
+CYSD;Ralston;CA
+CYSE;Squamish;CA
+CYSF;Stony Rapids;CA
+CYSH;Smiths Falls;CA
+CYSJ;Saint John;CA
+CYSK;Sanikiluaq;CA
+CYSL;Saint-Léonard;CA
+CYSM;Fort Smith;CA
+CYSN;Niagara-on-the-Lake;CA
+CYSP;Marathon;CA
+CYST;St. Theresa Point;CA
+CYSU;Slemon Park;CA
+CYSY;Sachs Harbour;CA
+CYTA;Pembroke;CA
+CYTE;Kinngait;CA
+CYTF;Alma;CA
+CYTH;Thompson;CA
+CYTL;Big Trout Lake;CA
+CYTQ;Tasiujaq;CA
+CYTR;Trenton;CA
+CYTS;Timmins;CA
+CYTZ;Toronto;CA
+CYUB;Tuktoyaktuk;CA
+CYUL;Montréal;CA
+CYUT;Repulse Bay;CA
+CYUX;Sanirajak;CA
+CYUY;Rouyn-Noranda;CA
+CYVB;Bonaventure;CA
+CYVC;La Ronge;CA
+CYVG;Vermilion;CA
+CYVK;Vernon;CA
+CYVL;Colville Lake;CA
+CYVM;Qikiqtarjuaq;CA
+CYVO;Val-d'Or;CA
+CYVP;Kuujjuaq;CA
+CYVQ;Norman Wells;CA
+CYVR;Vancouver;CA
+CYVT;Buffalo Narrows;CA
+CYVV;Wiarton;CA
+CYVZ;Deer Lake;CA
+CYWA;Petawawa;CA
+CYWE;Wekweètì;CA
+CYWG;Winnipeg;CA
+CYWH;Victoria;CA
+CYWJ;Déline;CA
+CYWK;Wabush;CA
+CYWL;Williams Lake;CA
+CYWP;Webequie;CA
+CYWY;Wrigley;CA
+CYXC;Cranbrook;CA
+CYXE;Saskatoon;CA
+CYXH;Medicine Hat;CA
+CYXJ;Fort Saint John;CA
+CYXK;Rimouski;CA
+CYXL;Sioux Lookout;CA
+CYXN;Whale Cove;CA
+CYXP;Pangnirtung;CA
+CYXQ;Beaver Creek;CA
+CYXR;Earlton;CA
+CYXS;Prince George;CA
+CYXT;Terrace;CA
+CYXU;London;CA
+CYXX;Abbotsford;CA
+CYXY;Whitehorse;CA
+CYXZ;Wawa;CA
+CYYB;North Bay;CA
+CYYC;Calgary;CA
+CYYD;Smithers;CA
+CYYE;Fort Nelson;CA
+CYYF;Penticton;CA
+CYYG;Charlottetown;CA
+CYYH;Taloyoak;CA
+CYYJ;Victoria;CA
+CYYL;Lynn Lake;CA
+CYYM;Cowley;CA
+CYYN;Swift Current;CA
+CYYQ;Churchill;CA
+CYYR;Goose Bay;CA
+CYYT;St. John's;CA
+CYYU;Kapuskasing;CA
+CYYW;Armstrong;CA
+CYYY;Mont-Joli;CA
+CYYZ;Toronto;CA
+CYZE;Gore Bay;CA
+CYZF;Yellowknife;CA
+CYZG;Salluit;CA
+CYZH;Slave Lake;CA
+CYZP;Sandspit;CA
+CYZR;Sarnia;CA
+CYZS;Coral Harbour;CA
+CYZT;Port Hardy;CA
+CYZU;Whitecourt;CA
+CYZV;Sept-Îles;CA
+CYZW;Teslin;CA
+CYZX;Greenwood;CA
+CZAC;York Landing;CA
+CZAM;Salmon Arm;CA
+CZBA;Burlington;CA
+CZBB;Delta;CA
+CZBD;Ilford;CA
+CZBF;South Tetagouche;CA
+CZBM;Bromont;CA
+CZEE;Kelsey;CA
+CZEM;Eastmain River;CA
+CZFA;Faro;CA
+CZFD;Fond-du-Lac;CA
+CZFG;Pukatawagan;CA
+CZFM;Fort Mcpherson;CA
+CZFN;Tulita;CA
+CZGF;Grand Forks;CA
+CZGI;Gods River;CA
+CZGR;Little Grand Rapids;CA
+CZHP;High Prairie;CA
+CZJG;Jenpeg;CA
+CZJN;Swan River;CA
+CZKE;Kashechewan;CA
+CZLQ;Thicket Portage;CA
+CZMD;Muskrat Dam;CA
+CZML;108 Mile;CA
+CZMN;Pikwitonei;CA
+CZMT;Masset;CA
+CZNG;Poplar River;CA
+CZNL;Nelson;CA
+CZPB;Sachigo Lake;CA
+CZPC;Pincher Creek;CA
+CZPO;Pinehouse Lake;CA
+CZRJ;Round Lake;CA
+CZSJ;Sandy Lake;CA
+CZSN;South Indian Lake;CA
+CZST;Stewart;CA
+CZSW;Prince Rupert;CA
+CZTA;Bloodvein River;CA
+CZTM;Shamattawa;CA
+CZUC;Ignace;CA
+CZUM;Churchill Falls;CA
+CZVL;Edmonton;CA
+CZWH;Lac Brochet;CA
+CZWL;Wollaston Lake;CA
+DAAB;Blida;DZ
+DAAD;Ouled Sidi Brahim;DZ
+DAAE;Béjaïa;DZ
+DAAG;Algiers;DZ
+DAAJ;Djanet;DZ
+DAAK;Boufarik;DZ
+DAAM;Telerghma;DZ
+DAAN;Reggane;DZ
+DAAP;Illizi;DZ
+DAAQ;Ain Oussera;DZ
+DAAS;Sétif;DZ
+DAAT;Tamanrasset;DZ
+DAAV;Tahir;DZ
+DAAW;Bordj Omar Driss;DZ
+DAAX;Chéraga;DZ
+DAAY;Mecheria;DZ
+DAAZ;Relizane;DZ
+DABB;Annaba;DZ
+DABC;Constantine;DZ
+DABS;Tébessi;DZ
+DABT;Batna;DZ
+DAFH;Hassi R'Mel;DZ
+DAFI;Djelfa;DZ
+DAOB;Tiaret;DZ
+DAOC;Béchar;DZ
+DAOE;Bousfer;DZ
+DAOF;Tindouf;DZ
+DAOI;Chlef;DZ
+DAOL;Tafraoui;DZ
+DAON;Zenata;DZ
+DAOO;Es-Sénia;DZ
+DAOR;Béchar;DZ
+DAOS;Sidi Bel Abbès;DZ
+DAOV;Ghriss;DZ
+DAOY;El Bayadh;DZ
+DATG;In Guezzam;DZ
+DATM;Bordj Badji Mokhtar;DZ
+DAUA;Adrar;DZ
+DAUB;Biskra;DZ
+DAUE;El Menia;DZ
+DAUG;El Atteuf;DZ
+DAUH;Hassi Messaoud;DZ
+DAUI;In Salah;DZ
+DAUK;Touggourt;DZ
+DAUL;Laghouat;DZ
+DAUO;Guemar;DZ
+DAUT;Timimoun;DZ
+DAUU;Ouargla;DZ
+DAUZ;In Aménas;DZ
+DBBB;Cotonou;BJ
+DBBC;Bohicon;BJ
+DBBD;Djougou;BJ
+DBBK;Kandi;BJ
+DBBN;Natitingou;BJ
+DBBO;Porga;BJ
+DBBP;Parakou;BJ
+DBBR;Bembereke;BJ
+DBBS;Savé;BJ
+DFCA;Kaya;BF
+DFCB;Barsalogho;BF
+DFCC;Ouahigouya;BF
+DFCD;Didyr;BF
+DFCG;Kongoussi;BF
+DFCJ;Djibo;BF
+DFCK;Koudougou;BF
+DFCL;Leo;BF
+DFCP;Po;BF
+DFCR;Poura;BF
+DFCS;Seguenega;BF
+DFEA;Boulsa;BF
+DFEB;Bogande;BF
+DFED;Diapaga;BF
+DFEE;Dori;BF
+DFEF;Fada N'gourma;BF
+DFEG;Gorom-Gorom;BF
+DFEL;Kantchari;BF
+DFEM;Tambao;BF
+DFEP;Pama;BF
+DFER;Arly;BF
+DFES;Sebba;BF
+DFET;Tenkodogo;BF
+DFEZ;Zabré;BF
+DFFD;Ouagadougou;BF
+DFOA;Dano;BF
+DFOB;Banfora;BF
+DFOD;Dedougou;BF
+DFOG;Gaoua;BF
+DFOH;Houndé;BF
+DFON;Nouna;BF
+DFOO;Bobo Dioulasso;BF
+DFOR;Orodara;BF
+DFOT;Tougan;BF
+DFOU;Diebougou;BF
+DFOY;Aribinda;BF
+DGAA;Accra;GH
+DGAH;Ho;GH
+DGLE;Tamale;GH
+DGLN;Navrongo;GH
+DGLW;Wa;GH
+DGLY;Yendi;GH
+DGSI;Kumasi;GH
+DGSN;Sunyani;GH
+DGTK;Sekondi-Takoradi;GH
+DIAO;Aboisso;CI
+DIAP;Abidjan;CI
+DIAU;Abengourou;CI
+DIBC;Bocanda;CI
+DIBI;Boundiali;CI
+DIBK;Bouaké;CI
+DIBN;Bouna;CI
+DIBU;Bondoukou;CI
+DIDB;Dabou;CI
+DIDK;Dimbokro;CI
+DIDL;;CI
+DIGA;Gagnoa;CI
+DIGL;Guiglo;CI
+DIGN;Grand-Béréby;CI
+DIKO;Korhogo;CI
+DIMN;;CI
+DIOD;Odienne;CI
+DIOF;Ouango Fitini;CI
+DISG;Séguéla;CI
+DISP;;CI
+DISS;Sassandra;CI
+DITB;Tabou;CI
+DITM;Touba;CI
+DIYO;Yamoussoukro;CI
+DMDM;Kanguwol;NG
+DNAA;Abuja;NG
+DNAI;Uyo;NG
+DNAK;Akure;NG
+DNAN;Umuleri;NG
+DNAS;Asaba;NG
+DNBA;Bauchi;NG
+DNBB;Bayaluga;NG
+DNBC;Bauchi;NG
+DNBE;Benin;NG
+DNBI;Bida;NG
+DNBK;Birinin Kebbi;NG
+DNCA;Calabar;NG
+DNDS;Dutse;NG
+DNEK;Eket;NG
+DNEN;Enegu;NG
+DNES;Escravos;NG
+DNFB;Finima;NG
+DNFD;Forçados;NG
+DNGO;Gombe;NG
+DNGU;Gusau;NG
+DNIB;Ibadan;NG
+DNIL;Ilorin;NG
+DNIM;Owerri;NG
+DNJA;Jalingo;NG
+DNJO;Jos;NG
+DNKA;Kaduna;NG
+DNKN;Kano;NG
+DNKT;Katsina;NG
+DNMA;Maiduguri;NG
+DNMK;Makurdi;NG
+DNMM;Lagos;NG
+DNMN;Minna;NG
+DNPM;Port Harcourt;NG
+DNPO;Port Harcourt;NG
+DNSO;Sokoto;NG
+DNSU;Okpe;NG
+DNYO;Yola;NG
+DNZA;Zaria;NG
+DRRA;Tessaoua;NE
+DRRC;Dogondoutchi;NE
+DRRD;Dosso;NE
+DRRE;Tera;NE
+DRRG;Gaya;NE
+DRRL;Tillabery;NE
+DRRM;Maradi;NE
+DRRN;Niamey;NE
+DRRP;La Tapoa;NE
+DRRT;Tahoua;NE
+DRRU;Ouallam;NE
+DRZA;Agadez;NE
+DRZD;Dirkou;NE
+DRZF;Diffa;NE
+DRZG;Goure;NE
+DRZI;Iferouane;NE
+DRZL;Arlit;NE
+DRZM;Maine-Soroa;NE
+DRZR;Zinder;NE
+DTKA;Tabarka;TN
+DTMB;Monastir;TN
+DTNH;Enfidha;TN
+DTTA;Tunis;TN
+DTTB;Borj Challouf;TN
+DTTF;Gafsa;TN
+DTTG;Gabès;TN
+DTTJ;Mellita;TN
+DTTR;El Borma;TN
+DTTX;Sfax;TN
+DTTZ;Tozeur;TN
+DXAK;Atakpamé;TG
+DXDP;Dapaong;TG
+DXKP;Anié;TG
+DXMG;Mango;TG
+DXNG;Niamtougou;TG
+DXSK;Sokodé;TG
+DXXX;Lomé;TG
+EBAM;Mont-de-l'Enclus;BE
+EBAR;Arlon;BE
+EBAS;Schilde;BE
+EBAV;Hannut;BE
+EBAW;Antwerp;BE
+EBBR;Zaventem;BE
+EBBT;Brasschaat;BE
+EBCF;Cerfontaine;BE
+EBCI;Charleroi;BE
+EBDT;Diest;BE
+EBGB;Grimbergen;BE
+EBGG;Geraardsbergen;BE
+EBHN;Hoevenen;BE
+EBKH;Balen;BE
+EBKT;Wevelgem;BE
+EBLE;Leopoldsburg;BE
+EBLG;Grâce-Hollogne;BE
+EBMB;Steenokkerzeel;BE
+EBNM;Namur;BE
+EBOS;Oostende;BE
+EBSG;Saint Ghislain;BE
+EBSH;Saint Hubert;BE
+EBSP;Spa;BE
+EBTN;Tienen;BE
+EBTX;Verviers;BE
+EBTY;Péruwelz;BE
+EBZH;Hasselt;BE
+EBZR;Zoersel;BE
+EBZW;Genk;BE
+EDAC;Nobitz;DE
+EDAH;Zirchow;DE
+EDAQ;Landsberg;DE
+EDAS;Finsterwalde;DE
+EDAU;Riesa;DE
+EDAX;Lärz;DE
+EDAY;Strausberg;DE
+EDBC;Hecklingen;DE
+EDBH;Barth;DE
+EDBN;Trollenhagen;DE
+EDCG;Dreschvitz;DE
+EDCK;Köthen (Anhalt);DE
+EDCP;Peenemünde;DE
+EDDB;Berlin;DE
+EDDC;Dresden;DE
+EDDE;Erfurt;DE
+EDDF;Frankfurt am Main;DE
+EDDG;Greven;DE
+EDDH;Hamburg;DE
+EDDK;Köln (Cologne);DE
+EDDL;Düsseldorf;DE
+EDDM;Munich;DE
+EDDN;Nuremberg;DE
+EDDP;Schkeuditz;DE
+EDDR;Saarbrücken;DE
+EDDS;Stuttgart;DE
+EDDV;Hannover;DE
+EDDW;Bremen;DE
+EDEL;Langenlonsheim;DE
+EDEP;Heppenheim;DE
+EDFA;Wehrheim;DE
+EDFE;Egelsbach;DE
+EDFH;Frankfurt am Main (Lautzenhausen);DE
+EDFK;Bad Kissingen;DE
+EDFM;Mannheim;DE
+EDFP;Ober-Mörlen;DE
+EDFQ;Allendorf (Eder);DE
+EDFZ;Mainz;DE
+EDGE;Hörselberg-Hainich;DE
+EDGS;Burbach;DE
+EDGZ;Weinheim;DE
+EDHB;Grube;DE
+EDHE;Heist;DE
+EDHI;Hamburg;DE
+EDHK;Kiel;DE
+EDHL;Lübeck;DE
+EDHN;Neumünster;DE
+EDHO;Tornesch;DE
+EDJA;Memmingen;DE
+EDKA;Aachen;DE
+EDKS;Iserlohn;DE
+EDKV;Dahlhem;DE
+EDLD;Hünxe;DE
+EDLE;Essen;DE
+EDLI;Bielefeld;DE
+EDLN;Mönchengladbach;DE
+EDLP;Büren;DE
+EDLS;Stadtlohn;DE
+EDLU;;DE
+EDLV;Weeze;DE
+EDLW;Dortmund;DE
+EDMA;Augsburg;DE
+EDMN;Tussenhausen;DE
+EDMO;Weßling;DE
+EDMS;Atting;DE
+EDNY;Friedrichshafen;DE
+EDPH;Büchenbach;DE
+EDQA;Bamberg;DE
+EDQD;Bindlach;DE
+EDQE;Ebermannstadt;DE
+EDQG;Giebelstadt;DE
+EDQM;Hof;DE
+EDRB;Bitburg;DE
+EDRH;Hoppstädten;DE
+EDRN;Nannhausen;DE
+EDRT;Föhren;DE
+EDRY;Speyer;DE
+EDRZ;Zweibrücken;DE
+EDSB;Rheinmünster;DE
+EDSD;Sindelfingen;DE
+EDSF;Rickenbach;DE
+EDSM;Müllheim;DE
+EDSP;Ammerbuch;DE
+EDSX;Aspach;DE
+EDTA;Wutöschingen;DE
+EDTB;Baden-Baden;DE
+EDTF;Freiburg im Breisgau;DE
+EDTL;Lahr/Schwarzwald;DE
+EDUG;Gransee;DE
+EDUP;;DE
+EDVA;Bad Gandersheim;DE
+EDVE;Braunschweig;DE
+EDVK;Calden;DE
+EDVQ;Gifhorn;DE
+EDWE;Emden;DE
+EDWG;Wangerooge;DE
+EDWI;Wilhelmshaven;DE
+EDWJ;Juist;DE
+EDWL;Langeoog;DE
+EDWO;Osnabrück;DE
+EDWR;Borkum;DE
+EDWS;Norddeich;DE
+EDWU;Cloppenburg;DE
+EDWY;Norderney;DE
+EDWZ;Baltrum;DE
+EDXA;Bramsche;DE
+EDXB;Oesterdeichstrich;DE
+EDXF;Flensburg;DE
+EDXH;Helgoland;DE
+EDXJ;Husum;DE
+EDXO;Sankt Peter-Ording;DE
+EDXP;Harlesiel;DE
+EDXS;Zeven;DE
+EDXW;Sylt;DE
+EDXY;Wyk auf Föhr;DE
+EEAA;Antsla;EE
+EECL;Tallinn;EE
+EEEI;Keila;EE
+EEHA;Humala;EE
+EEJI;Jõhvi;EE
+EEKA;Kärdla;EE
+EEKE;Kuressaare;EE
+EEKI;Karksi;EE
+EEKU;Saareküla;EE
+EELM;Tartu;EE
+EELU;Saare;EE
+EENA;Narva;EE
+EEPU;Pärnu;EE
+EERA;Rapla;EE
+EERD;Riidaja;EE
+EERE;Rakvere;EE
+EERI;Suurküla;EE
+EERU;Ringsu;EE
+EESE;Salme;EE
+EETN;Tallinn;EE
+EETU;Reola;EE
+EEVI;Viljandi;EE
+EEVO;Vormsi Island;EE
+EEVP;Vihterpalu;EE
+EEVU;Varstu;EE
+EFET;Enontekio;FI
+EFHA;Jämsä;FI
+EFHK;Helsinki (Vantaa);FI
+EFHV;Hyvinkää;FI
+EFIT;Kitee;FI
+EFIV;Ivalo;FI
+EFJO;Joensuu;FI
+EFJY;Jyväskylän Maalaiskunta;FI
+EFKA;Kauhava;FI
+EFKE;Kemi / Tornio;FI
+EFKI;Kajaani;FI
+EFKJ;Kauhajoki;FI
+EFKK;Kokkola / Kruunupyy;FI
+EFKS;Kuusamo;FI
+EFKT;Kittilä;FI
+EFKU;Kuopio / Siilinjärvi;FI
+EFLP;Lappeenranta;FI
+EFMA;Mariehamn;FI
+EFMI;Mikkeli;FI
+EFOU;Oulu / Oulunsalo;FI
+EFPO;Pori;FI
+EFRO;Rovaniemi;FI
+EFSA;Savonlinna;FI
+EFSI;Seinäjoki / Ilmajoki;FI
+EFSO;Sodankyla;FI
+EFTP;Tampere / Pirkkala;FI
+EFTU;Turku;FI
+EFUT;Utti / Valkeala;FI
+EFVA;Vaasa;FI
+EFVR;Varkaus / Joroinen;FI
+EFYL;Ylivieska;FI
+EGAA;Belfast;GB
+EGAB;Enniskillen, Fermanagh and Omagh;GB
+EGAC;Belfast;GB
+EGAE;Derry;GB
+EGBB;Birmingham, West Midlands;GB
+EGBE;Coventry, West Midlands;GB
+EGBJ;Staverton;GB
+EGBK;Northampton, Northamptonshire;GB
+EGBN;Nottingham;GB
+EGBP;Cirencester, Gloucestershire;GB
+EGCC;Manchester, Greater Manchester;GB
+EGCJ;Selby, North Yorkshire;GB
+EGCM;Tadcaster, North Yorkshire;GB
+EGDJ;Pewsey, Wiltshire;GB
+EGDY;Yeovil, Somerset;GB
+EGEC;Campbeltown;GB
+EGED;Eday;GB
+EGEF;Fair Isle;GB
+EGEH;Whalsay, Shetlands;GB
+EGEI;Ashaig;GB
+EGEN;North Ronaldsay;GB
+EGEO;North Connel;GB
+EGEP;Papa Westray;GB
+EGER;Stronsay;GB
+EGES;Sanday;GB
+EGET;Lerwick, Shetland Islands;GB
+EGEW;Westray;GB
+EGFE;Haverfordwest;GB
+EGFF;Cardiff;GB
+EGFH;Swansea;GB
+EGGD;Bristol;GB
+EGGP;Liverpool;GB
+EGGW;Luton, Bedfordshire;GB
+EGHC;Land's End, Cornwall;GB
+EGHE;St. Mary's, Isles of Scilly;GB
+EGHH;Bournemouth;GB
+EGHI;Southampton;GB
+EGHJ;Bembridge, Isle of Wight;GB
+EGHK;Penzance, Cornwall;GB
+EGHL;Alton, Hampshire;GB
+EGHQ;Newquay;GB
+EGHR;Chichester, West Sussex;GB
+EGJA;Saint Anne;GG
+EGJB;Saint Peter Port;GG
+EGJJ;St. Peter;JE
+EGKA;Brighton, East Sussex;GB
+EGKB;London;GB
+EGKK;London;GB
+EGKR;Redhill, Surrey;GB
+EGLC;London;GB
+EGLF;Farnborough, Hampshire;GB
+EGLK;Camberley, Surrey;GB
+EGLL;London;GB
+EGLW;London;GB
+EGMC;Southend-on-Sea, Essex;GB
+EGMD;Romney Marsh, Kent;GB
+EGMF;Sittingbourne, Kent;GB
+EGNC;Carlisle, Cumbria;GB
+EGNH;Blackpool;GB
+EGNJ;Grimsby, Lincolnshire;GB
+EGNL;Barrow-in-Furness;GB
+EGNM;Leeds, West Yorkshire;GB
+EGNO;Warton;GB
+EGNR;Broughton;GB
+EGNS;Castletown;IM
+EGNT;Newcastle upon Tyne, Tyne and Wear;GB
+EGNV;Darlington, Durham;GB
+EGNX;Nottingham;GB
+EGOV;Angelsey;GB
+EGPA;Orkney Islands;GB
+EGPB;Lerwick, Shetland;GB
+EGPC;Wick;GB
+EGPD;Aberdeen;GB
+EGPE;Inverness;GB
+EGPF;Glasgow;GB
+EGPH;Edinburgh;GB
+EGPI;Isle of Islay, Argyll and Bute;GB
+EGPK;Prestwick, South Ayrshire;GB
+EGPL;Balivanich;GB
+EGPN;Dundee;GB
+EGPO;Stornoway, Western Isles;GB
+EGPR;Eoligarry;GB
+EGPT;Perth;GB
+EGPU;Balemartine;GB
+EGPW;Baltasound, Shetland Islands;GB
+EGQL;Leuchars, Fife;GB
+EGQS;Lossiemouth;GB
+EGSC;Cambridge, Cambridgeshire;GB
+EGSH;Norwich, Norfolk;GB
+EGSQ;Clacton-on-Sea, Essex;GB
+EGSS;London;GB
+EGSU;Duxford;GB
+EGSV;Old Buckenham, Norfolk;GB
+EGTB;Marlow, Buckinghamshire;GB
+EGTE;Exeter, Devon;GB
+EGTK;Kidlington, Oxfordshire;GB
+EGTO;Rochester, Kent;GB
+EGUB;Wallingford, Oxfordshire;GB
+EGUL;Brandon, Suffolk;GB
+EGUN;Bury Saint Edmunds, Suffolk;GB
+EGVA;Fairford, Gloucestershire;GB
+EGVN;Carterton, Oxfordshire;GB
+EGVO;Hook, Hampshire;GB
+EGWN;Halton, Buckinghamshire;GB
+EGWU;London;GB
+EGXC;Lincoln, Lincolnshire;GB
+EGXH;Bury Saint Edmunds, Suffolk;GB
+EGXW;Lincoln, Lincolnshire;GB
+EGYM;King's Lynn, Norfolk;GB
+EGYP;Mount Pleasant;FK
+EGZL;;GB
+EHAL;Ballum;NL
+EHAM;Amsterdam;NL
+EHBD;Weert;NL
+EHBK;Maastricht;NL
+EHDL;Arnhem;NL
+EHDR;Drachten;NL
+EHDV;;NL
+EHEH;Eindhoven;NL
+EHGG;Groningen;NL
+EHGR;Rijen;NL
+EHKD;Den Helder;NL
+EHLE;Lelystad;NL
+EHLW;Leeuwarden;NL
+EHMC;Uddel;NL
+EHMM;Middenmeer;NL
+EHRD;Rotterdam;NL
+EHSE;Hoeven;NL
+EHTE;Deventer;NL
+EHTS;Midsland;NL
+EHTW;Enschede;NL
+EHVK;Uden;NL
+EHWO;Hoogerheide;NL
+EIAB;Abbeyshrule;IE
+EIAH;Dublin;IE
+EIBB;Fingal;IE
+EIBN;Bantry;IE
+EIBR;Birr;IE
+EIBT;Belmullet;IE
+EICA;Inverin;IE
+EICK;Cork;IE
+EICL;Clonbullogue;IE
+EICM;Galway;IE
+EICN;Limerick;IE
+EIDG;Staffordstown;IE
+EIDL;Donegal;IE
+EIDW;Dublin;IE
+EIFR;Ballyshannon;IE
+EIHH;Navan;IE
+EIIM;Inis Mór;IE
+EIIR;Inis Oírr;IE
+EIKK;Kilkenny;IE
+EIKN;Charlestown;IE
+EIKY;Farranfore;IE
+EILT;Letterkenny;IE
+EIMN;Inis Meáin;IE
+EINN;Shannon;IE
+EISG;Sligo;IE
+EIWF;Waterford;IE
+EIWT;Leixlip;IE
+EKAH;Aarhus;DK
+EKBI;Billund;DK
+EKCH;Copenhagen;DK
+EKEB;Esbjerg;DK
+EKKA;Karup;DK
+EKLS;Læsø;DK
+EKMB;Rødby;DK
+EKOD;Odense;DK
+EKRB;Rønne;DK
+EKRK;Roskilde;DK
+EKRN;Rønne;DK
+EKSB;Sønderborg;DK
+EKSN;Sindal;DK
+EKSP;Vojens;DK
+EKSV;Skive;DK
+EKTS;Thisted;DK
+EKVG;Vágar;FO
+EKVJ;Skjern;DK
+EKYT;Aalborg;DK
+ELLX;Luxembourg;LU
+ELLZ;Luxembourg;LU
+ENAL;Ålesund;NO
+ENAN;Andenes;NO
+ENAT;Alta;NO
+ENBL;Førde;NO
+ENBN;Brønnøy;NO
+ENBO;Bodø;NO
+ENBR;Bergen;NO
+ENBS;Båtsfjord;NO
+ENBV;Berlevåg;NO
+ENCN;Kjevik;NO
+ENDU;Målselv;NO
+ENEV;Evenes;NO
+ENFL;Florø;NO
+ENGM;Oslo (Gardermoen);NO
+ENHA;Hamar;NO
+ENHD;Karmøy;NO
+ENHF;Hammerfest;NO
+ENHK;Hasvik;NO
+ENHV;Honningsvåg;NO
+ENKB;Kvernberget;NO
+ENKL;Klanten flyplass;NO
+ENKR;Kirkenes;NO
+ENLK;Leknes;NO
+ENMH;Mehamn;NO
+ENML;Årø;NO
+ENMS;Mosjøen;NO
+ENNA;Lakselv;NO
+ENNM;Namsos;NO
+ENNO;Notodden;NO
+ENOL;Ørland;NO
+ENOV;Ørsta;NO
+ENQE;;NO
+ENQO;;NO
+ENRA;Mo i Rana;NO
+ENRM;Rørvik;NO
+ENRO;Røros;NO
+ENRS;Røst;NO
+ENRY;Oslo;NO
+ENSB;Longyearbyen;NO
+ENSD;Sandane;NO
+ENSG;Sogndal;NO
+ENSH;Svolvær;NO
+ENSK;Hadsel;NO
+ENSN;Geiteryggen;NO
+ENSO;Leirvik;NO
+ENSR;Sørkjosen;NO
+ENSS;Vardø;NO
+ENST;Alstahaug;NO
+ENTC;Tromsø;NO
+ENTO;Torp;NO
+ENVA;Trondheim;NO
+ENVD;Vadsø;NO
+ENZV;Stavanger;NO
+EPAR;Wola Korzeniecka;PL
+EPBA;Bielsko-Biała;PL
+EPBB;Babięta;PL
+EPBC;Warsaw;PL
+EPBD;Bydgoszcz;PL
+EPBE;Kałduny;PL
+EPBG;Gołubie;PL
+EPBK;Białystok;PL
+EPBO;Borsk;PL
+EPBY;Bydgoszcz;PL
+EPCD;Królewskie;PL
+EPCE;Siemirowice;PL
+EPDA;Darłowo;PL
+EPDE;Dęblin;PL
+EPEL;Elbląg;PL
+EPGD;Gdańsk;PL
+EPGE;Giże;PL
+EPGI;Grudziądz;PL
+EPKA;Kielce;PL
+EPKK;Balice;PL
+EPKN;Kamień Śląski;PL
+EPKT;Katowice;PL
+EPLB;Lublin;PL
+EPLL;Łódź;PL
+EPLY;Leźnica Wielka;PL
+EPMO;Nowy Dwór Mazowiecki;PL
+EPMY;Nowogródek Pomorski;PL
+EPPG;Kąkolewo;PL
+EPPO;Poznań;PL
+EPRA;Radom;PL
+EPRU;Rudniki;PL
+EPRZ;Jasionka;PL
+EPSC;Glewice;PL
+EPSD;Szczecin;PL
+EPSK;Krępa Słupska;PL
+EPSN;;PL
+EPSY;Szymany;PL
+EPWA;Warsaw;PL
+EPWR;Wrocław;PL
+EPZG;Nowe Kramsko;PL
+ESCF;Linköping;SE
+ESCM;Uppsala;SE
+ESDF;Ronneby;SE
+ESEB;Borås;SE
+ESED;Sundsvall;SE
+ESEG;Gällivare;SE
+ESEK;Kiruna;SE
+ESEL;Linköping;SE
+ESEM;Lund;SE
+ESEN;Trollhättan;SE
+ESES;Luleå;SE
+ESET;Torsby;SE
+ESEU;Uddevalla;SE
+ESEV;Visby;SE
+ESEW;;SE
+ESEY;Lycksele;SE
+ESFA;Hässleholm;SE
+ESFR;Råda;SE
+ESFS;Sandvik;SE
+ESGA;Uddevalla;SE
+ESGC;Ålleberg;SE
+ESGD;Tidaholm;SE
+ESGE;Borås;SE
+ESGF;Falkenberg;SE
+ESGG;Göteborg;SE
+ESGH;Herrljunga;SE
+ESGI;Alingsås;SE
+ESGJ;Jönköping;SE
+ESGK;Falköping;SE
+ESGL;Lidköping;SE
+ESGM;Öresten;SE
+ESGN;Götene;SE
+ESGO;Vårgårda;SE
+ESGP;Göteborg;SE
+ESGR;Skövde;SE
+ESGS;Strömstad;SE
+ESGT;Trollhättan;SE
+ESGU;Uddevalla;SE
+ESGV;Varberg;SE
+ESGY;Säffle;SE
+ESHB;Göteborg;SE
+ESHC;Stockholm;SE
+ESHD;Stockholm;SE
+ESHG;Stockholm;SE
+ESHI;Kristianstad;SE
+ESHJ;Jönköping;SE
+ESHK;Solna;SE
+ESHL;Flemingsberg;SE
+ESHM;Kungälv;SE
+ESKK;Karlskoga;SE
+ESKM;Mora;SE
+ESKN;Nyköping;SE
+ESME;Eslöv;SE
+ESMK;Kristianstad;SE
+ESML;Härslöv;SE
+ESMO;Oskarshamn;SE
+ESMQ;Kalmar;SE
+ESMS;Malmö;SE
+ESMT;Halmstad;SE
+ESMU;Älmhult;SE
+ESMV;;SE
+ESMX;Växjö;SE
+ESMY;Smålandsstenar;SE
+ESMZ;Ölanda;SE
+ESNA;Hallviken;SE
+ESND;Sveg;SE
+ESNG;Gällivare;SE
+ESNH;Hudiksvall;SE
+ESNK;Nyland;SE
+ESNL;Lycksele;SE
+ESNM;;SE
+ESNN;Sundsvall/ Härnösand;SE
+ESNO;Örnsköldsvik;SE
+ESNP;Piteå;SE
+ESNQ;Kiruna;SE
+ESNR;;SE
+ESNS;Skellefteå;SE
+ESNU;Umeå;SE
+ESNV;Vilhelmina;SE
+ESNX;Arvidsjaur;SE
+ESNY;Söderhamn;SE
+ESNZ;Östersund;SE
+ESOE;Örebro;SE
+ESOH;Råda;SE
+ESOK;Karlstad;SE
+ESOW;Stockholm / Västerås;SE
+ESPA;Luleå;SE
+ESQO;;SE
+ESSA;Stockholm;SE
+ESSB;Stockholm;SE
+ESSD;Borlange;SE
+ESSF;Hultsfred;SE
+ESSG;Ludvika;SE
+ESSK;Gävle / Sandviken;SE
+ESSL;Linköping;SE
+ESSP;Norrköping;SE
+ESST;Torsby;SE
+ESSU;Eskilstuna;SE
+ESSV;Visby;SE
+ESSW;Västervik;SE
+ESTA;Ängelholm;SE
+ESUD;Storuman;SE
+ESUE;Idre;SE
+ESUP;Pajala;SE
+ESUT;Hemavan;SE
+ESVK;Katrineholm;SE
+ESVL;Enköping;SE
+ESVM;Malung;SE
+ESVQ;Köping;SE
+ESVS;Siljansnäs;SE
+ETAD;Trier;DE
+ETAR;Ramstein-Miesenbach;DE
+ETEB;Ansbach;DE
+ETED;Kaiserslautern;DE
+ETHA;Altenstadt;DE
+ETHB;Bückeburg;DE
+ETHC;Celle;DE
+ETHE;;DE
+ETHF;Fritzlar;DE
+ETHL;Laupheim;DE
+ETHN;Niederstetten;DE
+ETHS;Faßberg;DE
+ETIC;Grafenwöhr;DE
+ETIH;Hohenfels;DE
+ETIK;Illesheim;DE
+ETMN;Wurster Nordseeküste;DE
+ETND;Diepholz;DE
+ETNG;Geilenkirchen;DE
+ETNH;Hohn;DE
+ETNL;Laage;DE
+ETNN;Nörvenich;DE
+ETNS;Jagel;DE
+ETNT;Wittmund;DE
+ETNW;;DE
+ETOU;Wiesbaden;DE
+ETSB;Alflen;DE
+ETSH;Holzdorf;DE
+ETSI;Manching;DE
+ETSL;Graben;DE
+ETSN;Neuburg an der Donau;DE
+ETWM;;DE
+EVAD;Ādaži;LV
+EVAP;Jelgava;LV
+EVCA;Cesis;LV
+EVGA;Lielvarde;LV
+EVHB;Nākotne;LV
+EVJC;Nākotne;LV
+EVLA;Liepāja;LV
+EVLI;Limbaži;LV
+EVLU;Ludza;LV
+EVPA;Ikshkile;LV
+EVRA;Riga;LV
+EVRS;Riga;LV
+EVSM;Lielvārde;LV
+EVVA;Ventspils;LV
+EYBI;Biržai;LT
+EYDR;Druskininkai;LT
+EYIG;;LT
+EYKA;Kaunas;LT
+EYKL;Klaipėda;LT
+EYKS;Kaunas;LT
+EYKT;Kartena;LT
+EYMA;Tirkšliai / Mažeikiai;LT
+EYMM;Sasnava;LT
+EYPA;Palanga;LT
+EYPP;Panevėžys;LT
+EYSA;Šiauliai;LT
+EYVI;Vilnius;LT
+FAAB;Alexander Bay;ZA
+FAAE;Aberdeen;ZA
+FAAF;Struisbaai;ZA
+FAAG;Aggeneys;ZA
+FAAL;Alldays;ZA
+FAAM;Amsterdam;ZA
+FAAN;Aliwal North;ZA
+FAAP;Primindia;ZA
+FAAR;Arathusa;ZA
+FAAS;Ashton;ZA
+FABB;Brakpan;ZA
+FABE;Bisho;ZA
+FABL;Bloemfontain;ZA
+FABU;Bultfontein;ZA
+FABW;Beaufort West;ZA
+FACD;Cradock;ZA
+FACN;Carnarvon;ZA
+FACO;;ZA
+FACT;Cape Town;ZA
+FACW;Clanwilliam;ZA
+FADK;Mubatuba;ZA
+FADQ;Phinda;ZA
+FAEL;East London;ZA
+FAEM;Empangeni;ZA
+FAEO;Ermelo;ZA
+FAER;Ellisras;ZA
+FAFB;Ficksburg;ZA
+FAGC;Midrand;ZA
+FAGG;George;ZA
+FAGI;Giyani;ZA
+FAGM;Johannesburg;ZA
+FAGR;Graaff-Reinet;ZA
+FAGT;Grahamstown;ZA
+FAGY;Greytown;ZA
+FAHA;Virginia;ZA
+FAHG;Heidelburg;ZA
+FAHL;Hluhluwe;ZA
+FAHR;Harrismith;ZA
+FAHS;Hoedspruit;ZA
+FAHV;Gariepdam;ZA
+FAKD;Klerksdorp;ZA
+FAKM;Kimberley;ZA
+FAKN;Mpumalanga;ZA
+FAKP;Komatipoort;ZA
+FAKR;Krugersdorp;ZA
+FAKS;Kroonstad;ZA
+FAKU;Kuruman;ZA
+FAKZ;Kleinsee;ZA
+FALA;Johannesburg;ZA
+FALC;Lime Acres;ZA
+FALD;Londolozi;ZA
+FALE;Durban;ZA
+FALI;Lichtenburg;ZA
+FALM;Louis Trichardt Southwest;ZA
+FALO;Louis Trichardt;ZA
+FALW;Langebaanweg;ZA
+FALY;Ladysmith;ZA
+FAMB;Middelburg;ZA
+FAMD;Malamala;ZA
+FAMG;Margate;ZA
+FAMI;Marble Hall;ZA
+FAMJ;Amerspoort;ZA
+FAMM;Mafeking;ZA
+FAMN;Malelane;ZA
+FAMO;Mossel Bay;ZA
+FAMS;Silveroaks;ZA
+FAMU;Mkuze;ZA
+FANC;Newcastle;ZA
+FANG;Ngala;ZA
+FANS;Nelspruit;ZA
+FANY;Modimolle;ZA
+FAOB;Overberg;ZA
+FAOH;Oudtshoorn;ZA
+FAOR;Johannesburg;ZA
+FAPA;Port Alfred;ZA
+FAPE;Gqeberha (Port Elizabeth);ZA
+FAPF;Piet Retief;ZA
+FAPG;Plettenberg Bay;ZA
+FAPH;Phalaborwa;ZA
+FAPI;Polokwane;ZA
+FAPJ;Port St Johns;ZA
+FAPK;Prieska;ZA
+FAPL;Pongola;ZA
+FAPM;Pietermaritzburg;ZA
+FAPN;Pilanesberg;ZA
+FAPP;Polokwane;ZA
+FAPS;Potchefstroom;ZA
+FAPY;Parys;ZA
+FAQT;Queenstown;ZA
+FARB;Richards Bay;ZA
+FARG;Rustenburg;ZA
+FARI;Reivilo;ZA
+FARS;Robertson;ZA
+FASB;Springbok;ZA
+FASC;Secunda;ZA
+FASD;Saldanha-Vredenburg;ZA
+FASH;Stellenbosch;ZA
+FASI;Del Fouche;ZA
+FASK;Pretoria;ZA
+FASS;Sishen;ZA
+FASX;Swellendam;ZA
+FASY;Hiltonia;ZA
+FASZ;Skukuza;ZA
+FATF;Beeshoek;ZA
+FATH;Thohoyandou;ZA
+FATN;Homeward;ZA
+FATP;Bloemfontein;ZA
+FATT;Standerton;ZA
+FATZ;Tzaneen;ZA
+FAUL;Ulundi;ZA
+FAUP;Upington;ZA
+FAUS;Ulusaba;ZA
+FAUT;Mthatha;ZA
+FAVB;Vyrburg;ZA
+FAVG;Durban;ZA
+FAVM;Alldays;ZA
+FAVR;Vredendal;ZA
+FAVV;Vereeniging;ZA
+FAVW;Victoria West;ZA
+FAVY;Vryheid;ZA
+FAWB;Pretoria;ZA
+FAWI;Witbank;ZA
+FAWK;Pretoria;ZA
+FAWM;Welkom;ZA
+FAWN;Durbanville;ZA
+FAYP;Cape Town;ZA
+FAZR;Zeerust;ZA
+FBCO;Camp Okavango;BW
+FBGM;Gumare;BW
+FBGZ;Ghanzi;BW
+FBJW;Jwaneng;BW
+FBKE;Kasane;BW
+FBKG;Kang;BW
+FBKR;Khwai River Lodge;BW
+FBKY;Kanye;BW
+FBLO;Lobatse;BW
+FBMA;Rasesa;BW
+FBMG;Machaneng;BW
+FBMM;Makalamabedi;BW
+FBMN;Maun;BW
+FBNN;Nokaneng;BW
+FBNT;Nata;BW
+FBOR;Orapa;BW
+FBPA;Pandamatenga;BW
+FBPM;Francistown;BW
+FBPT;;BW
+FBPY;Palapye;BW
+FBSK;Gaborone;BW
+FBSN;Sowa;BW
+FBSP;Selebi Phikwe;BW
+FBSV;Savuti;BW
+FBSW;Shakawe;BW
+FBTL;Tuli Lodge;BW
+FBTS;Tshabong;BW
+FBXB;Xaxaba;BW
+FBXG;;BW
+FBXX;Xudum;BW
+FCBB;Brazzaville;CG
+FCBD;Djambala;CG
+FCBK;Kindamba;CG
+FCBL;Lague;CG
+FCBM;Mouyondzi;CG
+FCBS;Sibiti;CG
+FCBY;Nkayi;CG
+FCBZ;Zanaga;CG
+FCMM;Mossendjo;CG
+FCOB;Boundji;CG
+FCOD;Oyo;CG
+FCOE;Ewo;CG
+FCOG;Gamboma;CG
+FCOI;Impfondo;CG
+FCOK;Kelle;CG
+FCOM;Makoua;CG
+FCOO;Owando;CG
+FCOS;Souanke;CG
+FCOT;Betou;CG
+FCOU;;CG
+FCPA;Makabana;CG
+FCPD;Dolisie;CG
+FCPP;Pointe Noire;CG
+FDBT;Big Bend;SZ
+FDKB;Kubuta B;SZ
+FDMH;Mhlume;SZ
+FDMS;Manzini;SZ
+FDNG;Ngonini;SZ
+FDNH;Nhlangano;SZ
+FDNS;Nsoko;SZ
+FDSK;Mpaka;SZ
+FDSM;Simunye;SZ
+FDST;Siteki;SZ
+FDTM;Tambankulu;SZ
+FDTS;Tshaneni;SZ
+FDUB;Big Bend;SZ
+FEFA;Alindao;CF
+FEFB;Obo;CF
+FEFC;Carnot;CF
+FEFE;Mobaye Mbanga;CF
+FEFF;Bangui;CF
+FEFG;Bangassou;CF
+FEFI;Birao;CF
+FEFK;Kembé;CF
+FEFM;Bambari;CF
+FEFN;N'Délé;CF
+FEFO;Bouar;CF
+FEFP;Paoua;CF
+FEFQ;Kaga-Bandoro;CF
+FEFR;Bria;CF
+FEFS;Bossangoa;CF
+FEFT;Berbérati;CF
+FEFU;Sibut;CF
+FEFW;Ouadda;CF
+FEFY;Yalinga;CF
+FEFZ;Zemio;CF
+FEGC;Bocaranga;CF
+FEGE;Mboki;CF
+FEGF;Batangafo;CF
+FEGG;Gamboula;CF
+FEGL;Melle;CF
+FEGM;Bakouma;CF
+FEGO;Ouanda Djallé;CF
+FEGR;Rafaï;CF
+FEGU;Bouca;CF
+FEGZ;Bozoum;CF
+FGBT;Bata;GQ
+FGMY;Mengomeyén;GQ
+FGSL;Malabo;GQ
+FHAW;Cat Hill;SH
+FHSH;Longwood;SH
+FIMP;Plaine Magnien;MU
+FIMR;Port Mathurin;MU
+FKAB;Banyo;CM
+FKKB;Kribi;CM
+FKKC;Tiko;CM
+FKKD;Douala;CM
+FKKE;Eseka;CM
+FKKF;Mamfe;CM
+FKKG;Bali;CM
+FKKH;Kaélé;CM
+FKKI;Batouri;CM
+FKKJ;Yagoua;CM
+FKKL;Maroua;CM
+FKKM;Foumban;CM
+FKKN;N'Gaoundéré;CM
+FKKO;Bertoua;CM
+FKKR;Garoua;CM
+FKKS;Dschang;CM
+FKKU;Bafoussam;CM
+FKKV;Bamenda;CM
+FKKW;Ebolowa;CM
+FKKY;Yaoundé;CM
+FKYS;Yaoundé;CM
+FLAA;;ZM
+FLAB;Kakumbi;ZM
+FLAI;Mkushi;ZM
+FLAM;Chama;ZM
+FLBA;Mbala;ZM
+FLBW;Nabwalya;ZM
+FLCC;Chocha;ZM
+FLCF;Chifunda;ZM
+FLCG;Chilongolo;ZM
+FLCP;Chipata;ZM
+FLCU;Chunga;ZM
+FLEB;Mofu;ZM
+FLEC;Luano;ZM
+FLEE;Chidulka;ZM
+FLEF;Chiwanangala;ZM
+FLEG;Kanshela;ZM
+FLEH;Kapu;ZM
+FLHN;Livingstone;ZM
+FLKE;Chingola;ZM
+FLKK;Lusaka;ZM
+FLKL;Kalabo;ZM
+FLKO;Kaoma;ZM
+FLKS;Kasama;ZM
+FLKW;Kabwe;ZM
+FLKY;Kasaba Bay;ZM
+FLKZ;Nansolo;ZM
+FLLA;Luanshya;ZM
+FLLC;Lusaka;ZM
+FLLK;Lukulu;ZM
+FLLV;Bwanda;ZM
+FLMA;Mansa;ZM
+FLMB;Maamba;ZM
+FLMF;Mfuwe;ZM
+FLMG;Mongu;ZM
+FLNA;Ngoma;ZM
+FLND;Ndola;ZM
+FLSK;Ndola;ZM
+FLSN;Senanga;ZM
+FLSO;Kitwe;ZM
+FLSS;Sesheke;ZM
+FLSW;Solwesi;ZM
+FLZB;Zambezi;ZM
+FMCH;Moroni;KM
+FMCI;Fomboni;KM
+FMCV;Ouani;KM
+FMCZ;Dzaoudzi;YT
+FMEE;Sainte-Marie;RE
+FMEP;Saint-Pierre;RE
+FMFE;Moramanga;MG
+FMMA;Arivonimamo;MG
+FMMB;;MG
+FMMC;Malaimbandy;MG
+FMME;Antsirabe;MG
+FMMG;Antsalova;MG
+FMMH;Mahanoro;MG
+FMMI;Antananarivo;MG
+FMMJ;Ambohijanahary;MG
+FMMK;Ankavandra;MG
+FMML;Belo sur Tsiribihina;MG
+FMMN;Miandrivazo;MG
+FMMO;Maintirano;MG
+FMMP;Amparafaravola;MG
+FMMQ;Ilaka;MG
+FMMR;Morafenobe;MG
+FMMS;Vohilava;MG
+FMMT;Toamasina;MG
+FMMU;Tambohorano;MG
+FMMV;Morondava;MG
+FMMX;Tsiroanomandidy;MG
+FMMY;Vatomandry;MG
+FMMZ;Ambatondrazaka;MG
+FMNA;Antisiranana;MG
+FMNC;Mananara Nord;MG
+FMND;;MG
+FMNE;;MG
+FMNF;Befandriana;MG
+FMNG;Port Bergé;MG
+FMNH;Antsirabe;MG
+FMNK;;MG
+FMNL;Analalava;MG
+FMNM;Mahajanga;MG
+FMNN;Nosy Be;MG
+FMNO;Soalala;MG
+FMNP;Mampikony;MG
+FMNQ;Besalampy;MG
+FMNR;Maroantsetra;MG
+FMNS;Sambava;MG
+FMNT;Tsaratanana;MG
+FMNV;Vohemar;MG
+FMNW;Antsohihy;MG
+FMNX;Mandritsara;MG
+FMSA;Ambalavao;MG
+FMSB;Beroroha;MG
+FMSC;Mandabe;MG
+FMSD;Tôlanaro;MG
+FMSE;Betroka;MG
+FMSF;Fianarantsoa;MG
+FMSG;Farafangana;MG
+FMSI;Ihosy;MG
+FMSJ;Manja;MG
+FMSK;Manakara;MG
+FMSL;Bekily;MG
+FMSM;Mananjary;MG
+FMSN;Tanandava;MG
+FMSR;Morombe;MG
+FMST;Toliara;MG
+FMSU;Vangaindrano;MG
+FMSV;Betioky;MG
+FMSY;Ampanihy;MG
+FMSZ;Ankazoabo;MG
+FNAM;Ambriz;AO
+FNBC;Mbanza Congo;AO
+FNBG;Benguela;AO
+FNBJ;Luanda (Ícolo e Bengo);AO
+FNBL;Lumbala N'guimbo;AO
+FNCA;Cabinda;AO
+FNCB;Camembe;AO
+FNCC;Cacolo;AO
+FNCF;Cafunfo;AO
+FNCH;Chitato;AO
+FNCM;Camabatela;AO
+FNCP;Capanda;AO
+FNCT;Catumbela;AO
+FNCU;Calulo;AO
+FNCV;Cuito Cuanavale;AO
+FNCX;Camaxilo;AO
+FNCZ;Cazombo;AO
+FNDB;Damba;AO
+FNDU;Chitato;AO
+FNGI;Ngiva;AO
+FNHU;Huambo;AO
+FNJM;Jamba;AO
+FNKU;Kuito;AO
+FNLB;Lobito;AO
+FNLK;Lucapa;AO
+FNLM;Lumbala;AO
+FNLU;Luanda;AO
+FNLZ;Luzamba;AO
+FNMA;Malanje;AO
+FNME;Menongue;AO
+FNMO;Moçâmedes;AO
+FNMQ;Maquela do Zombo;AO
+FNNG;Negage;AO
+FNNL;Huambo;AO
+FNPA;Port Amboim;AO
+FNPB;Sanza Pombo;AO
+FNSA;Saurimo;AO
+FNSO;Soyo;AO
+FNSU;Sumbe;AO
+FNTE;Techamutete;AO
+FNTO;Toto;AO
+FNUA;Luau;AO
+FNUB;Lubango;AO
+FNUE;Luena;AO
+FNUG;Uige;AO
+FNWK;Waco Kungo;AO
+FNXA;Xangongo;AO
+FNZE;N'zeto;AO
+FNZG;Nzagi;AO
+FOGA;Akieni;GA
+FOGB;Booue;GA
+FOGE;Ndende;GA
+FOGF;Fougamou;GA
+FOGG;M'Bigou;GA
+FOGI;Moabi;GA
+FOGJ;N'Djolé;GA
+FOGK;Koulamoutou;GA
+FOGM;Mouila;GA
+FOGO;Oyem;GA
+FOGQ;Okondja;GA
+FOGR;Lambarene;GA
+FOGV;Minvoul;GA
+FOGW;Wonga Wongué Presidential Reserve;GA
+FOGX;Gamba;GA
+FOOB;Bitam;GA
+FOOD;Moanda;GA
+FOOE;Mekambo;GA
+FOOG;Port Gentil;GA
+FOOH;Omboue;GA
+FOOI;Iguela;GA
+FOOK;Makokou;GA
+FOOL;Libreville;GA
+FOOM;Mitzic;GA
+FOON;Franceville;GA
+FOOR;Lastourville;GA
+FOOS;Sette Cama;GA
+FOOT;Tchibanga;GA
+FOOY;Mayumba;GA
+FPPR;São Tomé & Príncipe;ST
+FPST;São Tomé;ST
+FQAG;Angoche;MZ
+FQBI;Bilene;MZ
+FQBR;Beira;MZ
+FQCB;Cuamba;MZ
+FQCH;Chimoio;MZ
+FQIA;Inhaca;MZ
+FQIB;Ibo;MZ
+FQIN;Inhambane;MZ
+FQLC;Lichinga;MZ
+FQLU;Lumbo;MZ
+FQMA;Maputo;MZ
+FQMD;Mueda;MZ
+FQMP;Mocímboa da Praia;MZ
+FQMR;Marrupa;MZ
+FQNC;Nacala;MZ
+FQNP;Nampula;MZ
+FQPB;Pemba;MZ
+FQPO;Ponta do Ouro;MZ
+FQQL;Quelimane;MZ
+FQSG;Songo;MZ
+FQTT;Tete;MZ
+FQUG;Ulongwe;MZ
+FQVL;Vilanculo;MZ
+FQXA;Xai-Xai;MZ
+FSAL;Alphonse Island;SC
+FSAS;Assumption Island;SC
+FSDA;D'Arros Island;SC
+FSDR;Desroches Island;SC
+FSFA;Farquhar Group;SC
+FSIA;Mahe Island;SC
+FSMA;Marie-Louise Island;SC
+FSPL;Platte Island;SC
+FSPP;Praslin Island;SC
+FSSB;Bird Island;SC
+FSSD;Denis Island;SC
+FSSF;Frégate Island;SC
+FSSR;Remire Island;SC
+FTTA;Sarh;TD
+FTTB;Bongor;TD
+FTTC;Abeche;TD
+FTTD;Moundou;TD
+FTTE;Biltine;TD
+FTTF;Fada;TD
+FTTG;Goz-Beida;TD
+FTTH;Lai;TD
+FTTI;Ati;TD
+FTTJ;N'Djamena;TD
+FTTK;Bokoro;TD
+FTTL;Bol;TD
+FTTM;Mongo;TD
+FTTN;Am Timan;TD
+FTTP;Pala;TD
+FTTR;Zouar;TD
+FTTS;Bousso;TD
+FTTU;Mao;TD
+FTTY;Faya-Largeau;TD
+FTTZ;Bardai Zougra;TD
+FVCD;Chirundu;ZW
+FVCH;Chipinge;ZW
+FVCN;;ZW
+FVCP;Harare;ZW
+FVCZ;Chiredzi;ZW
+FVFA;Victoria Falls;ZW
+FVFG;Fothergill Island;ZW
+FVGG;Gache Gache;ZW
+FVGR;Mutare;ZW
+FVJN;Bulawayo;ZW
+FVKB;Kariba;ZW
+FVKK;Kwekwe;ZW
+FVMA;Marondera;ZW
+FVMD;;ZW
+FVME;Masuwe;ZW
+FVMH;Gonarezhou National Park;ZW
+FVMI;Mubayira;ZW
+FVML;Mlibizi;ZW
+FVMT;Mutoko;ZW
+FVMU;Mutare;ZW
+FVMV;Masvingo;ZW
+FVOT;;ZW
+FVRF;Hurungwe;ZW
+FVSH;Zvishavane;ZW
+FVTD;Tinfields;ZW
+FVTL;Gweru;ZW
+FVWN;Gwayi River Farms;ZW
+FVWT;Hwange;ZW
+FWCC;Chintheche;MW
+FWCD;;MW
+FWCL;Blantyre;MW
+FWCM;Club Makokola;MW
+FWCS;Ntchisi;MW
+FWCT;Chitipa;MW
+FWDW;Dwangwa;MW
+FWKA;Karonga;MW
+FWKG;Kasungu;MW
+FWKI;Lumbadzi;MW
+FWLE;Lilongwe;MW
+FWLK;Likoma Island;MW
+FWLP;Lifupa;MW
+FWMC;Mchinji;MW
+FWMY;Monkey Bay;MW
+FWSJ;Nsanje;MW
+FWSM;Salima;MW
+FWSU;Nchalo;MW
+FWUU;Mzuzu;MW
+FWZA;Zomba;MW
+FXLK;Lebakeng;LS
+FXLR;Leribe;LS
+FXLS;Lesobeng;LS
+FXMA;Matsaile;LS
+FXMF;Mafeteng;LS
+FXMK;Mokhotlong;LS
+FXMM;Mazenod;LS
+FXMU;Foso;LS
+FXNK;Nkaus;LS
+FXPG;Pelaneng;LS
+FXQG;Quthing;LS
+FXQN;Qacha's Nek;LS
+FXSH;Sehonghong;LS
+FXSK;Sekakes;LS
+FXSM;Semonkong;LS
+FXSS;Seshutes;LS
+FXTA;Thaba-Tseka;LS
+FXTK;Tlokoeng;LS
+FYAA;Ai-Ais;NA
+FYAR;Arandis;NA
+FYAS;Aus;NA
+FYBC;Bethanien;NA
+FYEN;Eenhana;NA
+FYGB;Gobabis;NA
+FYGF;Grootfontein;NA
+FYHI;Halali;NA
+FYHV;Otjinhungwa;NA
+FYKA;Karibib;NA
+FYKB;Karasburg;NA
+FYKJ;Kamanjab;NA
+FYKM;Mpacha;NA
+FYKT;Keetmanshoop;NA
+FYKX;Khorixas;NA
+FYLS;Muneambuanas;NA
+FYLZ;Luderitz;NA
+FYME;Mount Etjo Safari Lodge;NA
+FYMG;Midgard;NA
+FYML;Mariental;NA
+FYMO;Mokuti Lodge;NA
+FYNA;Namutoni;NA
+FYNG;Ombika;NA
+FYOA;Ondangwa;NA
+FYOE;Omega;NA
+FYOG;Oranjemund;NA
+FYOJ;Outjo;NA
+FYOO;Okaukuejo;NA
+FYOP;Opuwa;NA
+FYOS;Oshakati;NA
+FYOW;Otjiwarongo;NA
+FYRC;Ruacana;NA
+FYRH;Rehoboth;NA
+FYRU;Rundu;NA
+FYSA;Rosh Pinah;NA
+FYSM;Swakopmund;NA
+FYSS;Sesriem;NA
+FYTE;Terrace Bay;NA
+FYTF;Twyfelfontein;NA
+FYTK;Tsumkwe;NA
+FYTM;Tsumeb;NA
+FYUS;Uis;NA
+FYWB;Rooikop;NA
+FYWE;Windhoek;NA
+FYWH;Windhoek;NA
+FZAA;Kinshasa;CD
+FZAB;N'dolo;CD
+FZAD;Celo Zongo;CD
+FZAG;Muanda;CD
+FZAH;Tshela;CD
+FZAJ;Boma;CD
+FZAL;Luozi;CD
+FZAM;Matadi;CD
+FZAN;Inga;CD
+FZAP;Lukala;CD
+FZAR;N'Kolo-Fuma;CD
+FZAW;Kwilu-Ngongo;CD
+FZAY;Mvula Sanda;CD
+FZBA;Inongo;CD
+FZBB;Bongimba;CD
+FZBD;Oshwe;CD
+FZBE;Beno;CD
+FZBF;Bonkita;CD
+FZBI;Nioki;CD
+FZBJ;Mushie;CD
+FZBK;Boshwe;CD
+FZBL;Djokele;CD
+FZBN;Malebo;CD
+FZBO;Bandundu;CD
+FZBQ;Bindja;CD
+FZBS;Semendwa;CD
+FZBT;Kiri;CD
+FZBU;Ipeke;CD
+FZBV;Kempili;CD
+FZBW;Basengele;CD
+FZCA;Kikwit;CD
+FZCB;Idiofa;CD
+FZCD;Vanga;CD
+FZCF;Kahemba;CD
+FZCI;Banga;CD
+FZCK;Kajiji;CD
+FZCP;Popokabaka;CD
+FZCR;Busala;CD
+FZCU;Ito;CD
+FZCV;Masi Manimba;CD
+FZCW;Kikongo Sur Wamba;CD
+FZCY;Yuki;CD
+FZDA;Malanga;CD
+FZDE;Tono;CD
+FZDF;Nzamba;CD
+FZDG;Nyanga;CD
+FZDJ;Mutena;CD
+FZDK;Kipata Katika;CD
+FZDN;Mongo Wa Kenda;CD
+FZDO;Moanza;CD
+FZDP;Mukedi;CD
+FZDQ;Mazelele;CD
+FZDR;Bokela;CD
+FZDS;Yasa Bongo;CD
+FZEA;Mbandaka;CD
+FZEI;Ingende;CD
+FZEM;Yembe Moke;CD
+FZEN;Basankusu;CD
+FZEO;Beongo;CD
+FZEP;Mentole;CD
+FZER;Kodoro;CD
+FZFA;Libenge;CD
+FZFC;Engengele;CD
+FZFD;Gbadolite;CD
+FZFE;Abumumbazi;CD
+FZFH;Mokaria-Yamoleka;CD
+FZFJ;Goyongo;CD
+FZFK;Gemena;CD
+FZFP;Kotakoli;CD
+FZFQ;Mpaka;CD
+FZFR;Mombongo;CD
+FZFS;Karawa;CD
+FZFT;Tandala;CD
+FZFU;Bumba;CD
+FZFW;Gwaka;CD
+FZGA;Lisala;CD
+FZGC;Bolila;CD
+FZGE;Binga;CD
+FZGF;Bokungu;CD
+FZGI;Yalingimba;CD
+FZGN;Boende;CD
+FZGT;Boteka;CD
+FZGV;Ikela;CD
+FZIA;;CD
+FZIC;Kisangani;CD
+FZIR;Yangambi;CD
+FZIZ;Lokutu;CD
+FZJB;Doko;CD
+FZJC;Dungu;CD
+FZJD;Doruma;CD
+FZJF;Aba;CD
+FZJH;Isiro;CD
+FZJI;Watsa;CD
+FZJK;Faradje;CD
+FZJN;Luniemu;CD
+FZJR;Kere Kere;CD
+FZKA;Bunia;CD
+FZKB;Bambili-Dingila;CD
+FZKF;Kilomines;CD
+FZKI;Yedi;CD
+FZKJ;Buta;CD
+FZKN;Aketi;CD
+FZMA;Kamakombe;CD
+FZMC;Mulungu;CD
+FZMD;Nzovu;CD
+FZMP;Kimano Ii;CD
+FZMW;Shabunda;CD
+FZNA;Goma;CD
+FZNB;Katale;CD
+FZNC;Rutshuru;CD
+FZNF;Lubero;CD
+FZNI;Ishasha;CD
+FZNP;Beni;CD
+FZNQ;Obaye;CD
+FZNR;Rwindi;CD
+FZNS;Beni;CD
+FZOA;Kindu;CD
+FZOB;Tingi-Tingi;CD
+FZOC;Kalima;CD
+FZOD;Kalima;CD
+FZOE;Kampene;CD
+FZOF;Kiapupe;CD
+FZOG;Lulingu Tshionka;CD
+FZOH;Moga;CD
+FZOJ;Obokote;CD
+FZOK;Kasongo;CD
+FZOO;Kailo;CD
+FZOP;Punia;CD
+FZOQ;Punia-Basenge;CD
+FZOR;Saulia;CD
+FZOS;Kasese;CD
+FZOT;Phibraki;CD
+FZPB;Kamituga;CD
+FZPC;Lugushwa;CD
+FZQA;Lubumbashi;CD
+FZQC;Pweto;CD
+FZQF;Fungurume;CD
+FZQG;Kasenga;CD
+FZQH;Katwe;CD
+FZQJ;Mwadingusha;CD
+FZQM;Kolwezi;CD
+FZQN;Mutshatsha;CD
+FZQP;Kisenge;CD
+FZQU;Lubudi;CD
+FZQV;Mitwaba;CD
+FZRA;Manono;CD
+FZRB;Moba;CD
+FZRC;Mukoy;CD
+FZRE;Bukena;CD
+FZRF;Kalemie;CD
+FZRJ;Pepa;CD
+FZRK;Kansimba;CD
+FZRL;Lusinga;CD
+FZRM;Kabalo;CD
+FZRN;Nyunzu;CD
+FZRO;Katemesha;CD
+FZRQ;Kongolo;CD
+FZSA;Lumwe;CD
+FZSB;Kamina;CD
+FZSD;Sandoa;CD
+FZSI;Dilolo;CD
+FZSJ;Kasaji;CD
+FZSK;Kapanga;CD
+FZTK;Kaniama;CD
+FZTL;Luena;CD
+FZTS;Kasese;CD
+FZUA;Kananga;CD
+FZUG;Luiza;CD
+FZUH;Moma;CD
+FZUI;Mboi;CD
+FZUK;Tshikapa;CD
+FZUM;Mutoto;CD
+FZUN;Luebo;CD
+FZUO;Musese;CD
+FZUP;Diboko;CD
+FZUS;Tshikaji;CD
+FZUV;Kalonda;CD
+FZVA;Lodja;CD
+FZVC;Kole Sur Lukenie;CD
+FZVD;Dingele;CD
+FZVE;Lomela;CD
+FZVG;Katako'kombe;CD
+FZVH;Shongamba;CD
+FZVI;Lusambo;CD
+FZVJ;Tshumbe;CD
+FZVK;Lukombe-Batwa;CD
+FZVM;Mweka;CD
+FZVN;Wembo-Nyama;CD
+FZVO;Bena-Dibele;CD
+FZVP;Dikungu;CD
+FZVR;Basongo;CD
+FZVS;Ilebo;CD
+FZVT;Dekese;CD
+FZVU;Idumbe;CD
+FZWA;Mbuji Mayi;CD
+FZWB;Bibanga;CD
+FZWE;Mwene-Ditu;CD
+FZWF;Kipushi;CD
+FZWI;Kashia;CD
+FZWL;Munkamba;CD
+FZWS;Lubao;CD
+FZWT;Kabinda;CD
+GAAO;Ansongo;ML
+GABD;Bandiagara;ML
+GABF;Bafoulabé;ML
+GABG;Bougouni;ML
+GABR;Bourem;ML
+GABS;Bamako;ML
+GADZ;Douentza;ML
+GAGM;Goundam;ML
+GAGO;;ML
+GAKA;Kenieba;ML
+GAKD;;ML
+GAKL;Kidal;ML
+GAKN;Kolokani;ML
+GAKO;Koutiala;ML
+GAKT;Kita;ML
+GAMB;Sévaré;ML
+GAMK;Menaka;ML
+GANF;Niafunke;ML
+GANK;Nara;ML
+GANR;Nioro du Sahel;ML
+GASK;Sikasso;ML
+GATB;Timbuktu;ML
+GATS;;ML
+GAYE;Yélimané;ML
+GBYD;Yundum;GM
+GCDC;Santa Cruz de Tenerife;ES
+GCFV;El Matorral;ES
+GCGM;Alajero, La Gomera Island;ES
+GCGO;La Gomera Island;ES
+GCHG;Las Palmas de Gran Canaria;ES
+GCHI;El Hierro Island;ES
+GCHU;Santa Cruz de Tenerife;ES
+GCLA;Sta Cruz de la Palma, La Palma Island;ES
+GCLB;Gran Canaria Island;ES
+GCLG;Icod de los Vinos;ES
+GCLP;Gran Canaria Island;ES
+GCMP;ESA Special Station;ES
+GCPU;La Palma;ES
+GCRR;San Bartolomé;ES
+GCTS;Tenerife;ES
+GCXM;;ES
+GCXO;Tenerife;ES
+GECE;Ceuta;ES
+GECT;Ceuta;ES
+GEHM;Melilla;ES
+GEML;Melilla;ES
+GFBO;Bo;SL
+GFGK;Gbangbatok;SL
+GFHA;Freetown;SL
+GFKB;Kabala;SL
+GFKE;Kenema;SL
+GFLL;Freetown (Lungi-Town);SL
+GFYE;Yengema;SL
+GGBU;Bubaque;GW
+GGCF;Cufar;GW
+GGOV;Bissau;GW
+GLBU;Buchanan;LR
+GLCP;Harper;LR
+GLGE;Greenville;LR
+GLLB;Buchanan;LR
+GLMR;Monrovia;LR
+GLNA;Nimba;LR
+GLRB;Monrovia;LR
+GLST;Sasstown;LR
+GLTN;Zwedru;LR
+GLVA;Voinjama;LR
+GMAA;Inezgane;MA
+GMAD;Agadir (Temsia);MA
+GMAG;Guelmim;MA
+GMAT;Tan Tan;MA
+GMAZ;Zagora;MA
+GMFA;Beni Malek;MA
+GMFB;Bouarfa;MA
+GMFF;Saïss;MA
+GMFI;Ifran;MA
+GMFK;Errachidia;MA
+GMFM;Meknes;MA
+GMFO;Ahl Angad;MA
+GMFZ;Taza;MA
+GMMA;Smara;EH
+GMMB;Ben Slimane;MA
+GMMD;Oulad Yaich;MA
+GMME;Rabat;MA
+GMMH;Dakhla;EH
+GMMI;Essaouira;MA
+GMML;El Aaiún;EH
+GMMN;Casablanca;MA
+GMMO;Taroudant;MA
+GMMW;Al Aaroui;MA
+GMMX;Marrakech;MA
+GMMZ;Ouarzazate;MA
+GMSL;Sidi Slimane;MA
+GMTA;Al Hoceima;MA
+GMTN;Tétouan;MA
+GMTT;Tangier;MA
+GOBD;Dakar;SN
+GOGG;Ziguinchor;SN
+GOGK;Kolda;SN
+GOGS;Cap Skirring;SN
+GOOG;Linguère;SN
+GOOK;Kaolack;SN
+GOOY;Dakar;SN
+GOSM;Ouro Sogui;SN
+GOSP;Podor;SN
+GOSR;Richard Toll;SN
+GOSS;Saint Louis;SN
+GOTB;Bakel;SN
+GOTK;Kédougou;SN
+GOTS;Simenti;SN
+GOTT;Tambacounda;SN
+GQNA;Aioun El Atrouss;MR
+GQNB;Boutilimit;MR
+GQNC;Tichitt;MR
+GQND;Tidjikja;MR
+GQNE;Boghe;MR
+GQNF;Kiffa;MR
+GQNH;Timbedra;MR
+GQNI;Néma;MR
+GQNJ;Akjoujt;MR
+GQNK;Kaédi;MR
+GQNL;Moudjeria;MR
+GQNM;Timbreda;MR
+GQNO;Nouakchott;MR
+GQNS;Sélibaby;MR
+GQNT;Tamchakett;MR
+GQPA;Atar;MR
+GQPF;Fderik;MR
+GQPP;Nouadhibou;MR
+GQPT;Bir Moghrein;MR
+GQPZ;Zouérate;MR
+GUBE;Beyla;GN
+GUCY;Conakry;GN
+GUFA;Fria;GN
+GUFH;Faranah;GN
+GUGO;Banankoro;GN
+GUKR;Port Kamsar;GN
+GUKU;Kissidougou;GN
+GULB;Labé;GN
+GUMA;Macenta;GN
+GUNZ;Nzérékoré;GN
+GUOK;Boké;GN
+GUSA;Sangarédi;GN
+GUSB;Koundara;GN
+GUSI;Siguiri;GN
+GVAC;Espargos;CV
+GVAN;Ponta do Sol;CV
+GVBA;Rabil;CV
+GVMA;Vila do Maio;CV
+GVMT;Vila do Mosteiros;CV
+GVNP;Praia;CV
+GVSF;São Filipe;CV
+GVSN;Preguiça;CV
+GVSV;São Pedro;CV
+GXUD;Kankan;GN
+HAAB;Addis Ababa;ET
+HAAD;Adaba;ET
+HAAL;Addis Ababa;ET
+HAAM;Arba Minch;ET
+HAAX;Axum;ET
+HABC;Baco;ET
+HABD;Bahir Dar;ET
+HABE;Beica;ET
+HADC;Dessie;ET
+HADD;Dembidollo;ET
+HADM;Debre Markos;ET
+HADO;Dodola;ET
+HADR;Dire Dawa;ET
+HADT;Debre Tabor;ET
+HAFN;Fincha;ET
+HAGB;Goba;ET
+HAGH;Ghinnir;ET
+HAGM;Gambela;ET
+HAGN;Azezo;ET
+HAGO;Gode;ET
+HAGR;Gore;ET
+HAHM;Debre Zeyit;ET
+HAHU;Akwi;ET
+HAJJ;Jijiga;ET
+HAJM;Jimma;ET
+HAKD;Kebri Dahar;ET
+HAKL;Kelafo;ET
+HALA;Hawassa;ET
+HALL;Girany Amba;ET
+HAMA;Mekane Selam;ET
+HAMJ;Maji;ET
+HAMK;Mekele;ET
+HAMM;Metema;ET
+HAMN;Mendi;ET
+HAMR;Omo National Park;ET
+HAMT;Mizan Teferi;ET
+HANG;Negele Borana;ET
+HANJ;Nejo;ET
+HANK;Nekemte;ET
+HAPW;Pawe;ET
+HASD;Soddu;ET
+HASK;Shakiso;ET
+HASL;Shilavo;ET
+HASM;Semera;ET
+HASO;Asosa;ET
+HATP;Tippi;ET
+HAWR;Warder;ET
+HBBA;Bujumbura;BI
+HBBE;Gitega;BI
+HBBK;Gihohi;BI
+HBBO;Kirundo;BI
+HCAD;Adado;SO
+HCBA;Hafun;SO
+HCBG;Hafun;SO
+HCMA;Alula;SO
+HCMB;Baidoa;SO
+HCMC;Candala;SO
+HCMD;Baardheere;SO
+HCME;Eyl;SO
+HCMF;Bosaso;SO
+HCMG;Gardo;SO
+HCMH;Hargeisa;SO
+HCMI;Berbera;SO
+HCMJ;Luuq;SO
+HCMK;Kismayo;SO
+HCMM;Mogadishu;SO
+HCMN;Beledweyne;SO
+HCMO;Hobyo;SO
+HCMR;Galcaio;SO
+HCMS;Iskushuban;SO
+HCMU;Erigavo;SO
+HCMV;Burao;SO
+HDAM;Djibouti City;DJ
+HDAS;Ali-Sabieh;DJ
+HDCH;Chabelley;DJ
+HDDK;Dikhil;DJ
+HDHE;Herkale;DJ
+HDMO;Moucha Island;DJ
+HDOB;Obock;DJ
+HDTJ;Tadjoura;DJ
+HEAL;El Alamein;EG
+HEAR;El Arish;EG
+HEAT;Asyut;EG
+HEAX;Alexandria;EG
+HEBL;Abu Simbel;EG
+HEBR;Berenice Troglodytica;EG
+HECA;Cairo;EG
+HECW;Cairo;EG
+HEDK;Dakhla Oases;EG
+HEGN;Hurghada;EG
+HEGO;El Gouna;EG
+HEGR;El Jora;EG
+HEKG;Kharja Oases;EG
+HELX;Luxor;EG
+HEMA;Marsa Alam;EG
+HEMM;Marsa Matruh;EG
+HEOC;6th of October;EG
+HEOW;Sharq El Owainat;EG
+HEPS;Port Said;EG
+HESC;Saint Catherine;EG
+HESG;Suhaj;EG
+HESH;Sharm El Sheikh;EG
+HESN;Aswan;EG
+HESX;Al Jiza;EG
+HETB;Taba;EG
+HETR;At Tur;EG
+HHAG;Agordat;ER
+HHAS;Asmara;ER
+HHMS;Massawa;ER
+HHSB;Assab;ER
+HHTS;Tessenei;ER
+HJJJ;Juba;SS
+HKAM;Amboseli National Park;KE
+HKBR;Bura;KE
+HKEL;Eldoret;KE
+HKEM;Embu;KE
+HKES;Eliye Springs;KE
+HKFG;Kalokol;KE
+HKGA;Garissa;KE
+HKGT;Garba Tula;KE
+HKHB;Homa Bay;KE
+HKHO;Hola;KE
+HKIS;Isiolo;KE
+HKJK;Nairobi;KE
+HKKE;Keekorok;KE
+HKKG;Kakamega;KE
+HKKI;Kisumu;KE
+HKKL;Kilaguni;KE
+HKKM;Kakuma;KE
+HKKR;Kericho;KE
+HKKS;Kisii;KE
+HKKT;Kitale;KE
+HKLG;Lokitaung;KE
+HKLK;Lokichogio;KE
+HKLO;Lodwar;KE
+HKLU;Lamu;KE
+HKLY;Loyengalani;KE
+HKMA;Mandera;KE
+HKMB;Marsabit;KE
+HKMI;Maralal;KE
+HKMK;Meru-Kinna;KE
+HKML;Malindi;KE
+HKMO;Mombasa;KE
+HKMS;Masai Mara;KE
+HKMU;Makindu;KE
+HKMY;Moyale (Lower);KE
+HKNI;Nyeri;KE
+HKNK;Nakuru;KE
+HKNL;Nanyuki;KE
+HKNO;Narok;KE
+HKNV;Naivasha;KE
+HKNW;Nairobi;KE
+HKNY;Nanyuki;KE
+HKOL;Oropoi;KE
+HKRE;Nairobi;KE
+HKSB;Samburu;KE
+HKUK;Ukunda;KE
+HKVO;Voi;KE
+HKWJ;Wajir;KE
+HLGD;Sirt;LY
+HLGT;Ghat;LY
+HLJF;;LY
+HLKF;Kufra;LY
+HLLB;Benina;LY
+HLLM;Tripoli;LY
+HLLQ;Al Albraq;LY
+HLLS;Sabha;LY
+HLMB;Marsa al Brega;LY
+HLMS;Misrata;LY
+HLNF;Ras Lanuf;LY
+HLNR;Nafurah 1;LY
+HLON;;LY
+HLTD;Ghadames;LY
+HLUB;Ubari;LY
+HLWN;;LY
+HLZN;Zintan;LY
+HLZW;Zuwarah;LY
+HRYG;Gisenyi;RW
+HRYI;Butare;RW
+HRYR;Kigali;RW
+HRYU;Ruhengeri;RW
+HRZA;Kamembe;RW
+HSAT;Atbara;SD
+HSCG;Carthago;SD
+HSDB;Al Dabbah;SD
+HSDL;Dilling;SD
+HSDN;Dongola;SD
+HSDZ;Ad Damazin;SD
+HSFS;El Fasher;SD
+HSGG;Dinder;SD
+HSGN;Geneina;SD
+HSHG;Heglig Oilfield;SD
+HSKA;Kassala;SD
+HSKG;Khashm El Girba;SD
+HSKN;Sifeiya;SD
+HSLI;Kadugli;SD
+HSMN;Merowe;SD
+HSMR;Merowe;SD
+HSND;Shendi;SD
+HSNH;En Nahud;SD
+HSNN;Nyala;SD
+HSNW;New Halfa;SD
+HSOB;El-Obeid;SD
+HSPN;Port Sudan;SD
+HSRJ;Raga;SS
+HSRN;Renk;SS
+HSSK;Khartoum;SD
+HSSP;Port Sudan;SD
+HSSW;Wadi Halfa;SD
+HSTO;Tong;SS
+HSZA;Zalingei;SD
+HTAR;Arusha;TZ
+HTBU;Bukoba;TZ
+HTDA;Dar es Salaam;TZ
+HTDO;Dodoma;TZ
+HTGE;Chato District;TZ
+HTGR;Grumeti Game Reserve;TZ
+HTGW;Mbeya;TZ
+HTIR;Nduli;TZ
+HTKA;Kigoma;TZ
+HTKI;Kilwa Masoko;TZ
+HTKJ;Arusha;TZ
+HTLI;Lindi;TZ
+HTLM;Lake Manyara National Park;TZ
+HTMA;Kilindoni;TZ
+HTMB;Mbeya;TZ
+HTMD;Mwadui;TZ
+HTMI;Masasi;TZ
+HTMP;Mpanda;TZ
+HTMS;Moshi;TZ
+HTMT;Mtwara;TZ
+HTMU;Musoma;TZ
+HTMW;Mwanza;TZ
+HTNA;Nachingwea;TZ
+HTNJ;Njombe;TZ
+HTNR;Ngara;TZ
+HTPE;Chake Chake;TZ
+HTSN;Seronera;TZ
+HTSO;Songea;TZ
+HTSU;Sumbawanga;TZ
+HTSY;Shinyanga;TZ
+HTTB;Tabora;TZ
+HTTG;Tanga;TZ
+HTZA;Zanzibar;TZ
+HUAJ;Adjumani;UG
+HUAR;Arua;UG
+HUBU;Bundibugyo;UG
+HUEN;Kampala;UG
+HUGG;Bujenje;UG
+HUGU;Gulu;UG
+HUJI;Jinja;UG
+HUKS;Kasese;UG
+HUMA;Mbarara;UG
+HUMI;Masindi;UG
+HUPA;Pakuba;UG
+HUSO;Soroti;UG
+HUTO;Tororo;UG
+HYRN;Nemba;RW
+JZRO;;ZZ
+KAAF;Apalachicola;US
+KABE;Allentown;US
+KABI;Abilene;US
+KABQ;Albuquerque;US
+KABR;Aberdeen;US
+KABY;Albany;US
+KACB;Bellaire;US
+KACK;Nantucket;US
+KACT;Waco;US
+KACV;Arcata/Eureka;US
+KACY;Atlantic City;US
+KADG;Adrian;US
+KADH;Ada;US
+KADM;Ardmore;US
+KADS;Dallas;US
+KADW;Camp Springs;US
+KAEL;Albert Lea;US
+KAEX;Alexandria;US
+KAFF;Colorado Springs;US
+KAFJ;Washington;US
+KAFN;Jaffrey;US
+KAFO;Afton;US
+KAFW;Fort Worth;US
+KAGC;Pittsburgh;US
+KAGO;Magnolia;US
+KAGS;Augusta;US
+KAHC;Herlong;US
+KAHH;Amery;US
+KAHN;Athens;US
+KAIA;Alliance;US
+KAID;Anderson;US
+KAIK;Aiken;US
+KAIO;Atlantic;US
+KAIV;Aliceville;US
+KAIZ;Kaiser Lake Ozark;US
+KAKO;Akron;US
+KAKR;Akron;US
+KALB;Albany;US
+KALI;Alice;US
+KALM;Alamogordo;US
+KALN;Alton/St Louis;US
+KALO;Waterloo;US
+KALS;Alamosa;US
+KALW;Walla Walla;US
+KALX;Alexander City;US
+KAMA;Amarillo;US
+KAMN;Alma;US
+KAMW;Ames;US
+KANB;Anniston;US
+KAND;Anderson;US
+KANK;Salida;US
+KANP;Annapolis;US
+KANQ;Angola;US
+KANW;Ainsworth;US
+KANY;Anthony;US
+KAOH;Lima;US
+KAOO;Altoona;US
+KAPA;Denver;US
+KAPC;Napa;US
+KAPF;Naples;US
+KAPG;Aberdeen;US
+KAPH;Bowling Green;US
+KAPN;Alpena;US
+KAPT;Jasper;US
+KAPV;Apple Valley;US
+KARA;New Iberia;US
+KARB;Ann Arbor;US
+KARG;Walnut Ridge;US
+KARM;Wharton;US
+KARR;Chicago/Aurora;US
+KART;Watertown;US
+KARV;Woodruff;US
+KARW;Beaufort;US
+KASE;Aspen;US
+KASG;Springdale;US
+KASH;Nashua;US
+KASL;Marshall;US
+KASN;Talladega;US
+KAST;Astoria;US
+KASX;Ashland;US
+KASY;Ashley;US
+KATL;Atlanta;US
+KATS;Artesia;US
+KATW;Appleton;US
+KATY;Watertown;US
+KAUG;Augusta;US
+KAUM;Austin;US
+KAUN;Auburn;US
+KAUO;Auburn;US
+KAUS;Austin;US
+KAUW;Wausau;US
+KAVL;Asheville;US
+KAVO;Avon Park;US
+KAVP;Wilkes-Barre/Scranton;US
+KAVQ;Marana;US
+KAVX;Avalon;US
+KAWM;West Memphis;US
+KAXA;Algona;US
+KAXN;Alexandria;US
+KAXS;Altus;US
+KAXV;Wapakoneta;US
+KAXX;Angel Fire;US
+KAYS;Waycross;US
+KAZO;Kalamazoo;US
+KBAB;Beale Air Force Base;US
+KBAD;Bossier City;US
+KBAF;Westfield;US
+KBAK;Columbus;US
+KBAM;Battle Mountain;US
+KBAZ;New Braunfels;US
+KBBB;Benson;US
+KBBD;Brady;US
+KBBG;Branson;US
+KBBP;Bennettsville;US
+KBBW;Broken Bow;US
+KBCB;Blacksburg;US
+KBCE;Bryce Canyon;US
+KBCT;Boca Raton;US
+KBDE;Baudette;US
+KBDG;Blanding;US
+KBDH;Willmar;US
+KBDL;Hartford;US
+KBDR;Bridgeport;US
+KBDU;Boulder;US
+KBEC;Wichita;US
+KBED;Bedford;US
+KBEH;Benton Harbor;US
+KBFD;Bradford;US
+KBFF;Scottsbluff;US
+KBFI;Seattle;US
+KBFL;Bakersfield;US
+KBFM;Mobile;US
+KBFR;Bedford;US
+KBFZ;Albertville;US
+KBGD;Borger;US
+KBGE;Bainbridge;US
+KBGM;Binghamton;US
+KBGR;Bangor;US
+KBHB;Bar Harbor;US
+KBHM;Birmingham;US
+KBID;Block Island;US
+KBIE;Beatrice;US
+KBIF;Fort Bliss/El Paso;US
+KBIH;Bishop;US
+KBIL;Billings;US
+KBIS;Bismarck;US
+KBIX;Biloxi;US
+KBJC;Denver;US
+KBJI;Bemidji;US
+KBJJ;Wooster;US
+KBKD;Breckenridge;US
+KBKE;Baker City;US
+KBKF;Aurora;US
+KBKL;Cleveland;US
+KBKN;Blackwell;US
+KBKT;Blackstone;US
+KBKW;Beaver;US
+KBKX;Brookings;US
+KBLF;Bluefield;US
+KBLH;Blythe;US
+KBLI;Bellingham;US
+KBLM;Belmar/Farmingdale;US
+KBLU;Emigrant Gap;US
+KBLV;Belleville;US
+KBMC;Brigham City;US
+KBMG;Bloomington;US
+KBMI;Bloomington/Normal;US
+KBML;Berlin;US
+KBMT;Beaumont;US
+KBNA;Nashville;US
+KBNG;Banning;US
+KBNL;Barnwell;US
+KBNO;Burns;US
+KBNW;Boone;US
+KBOI;Boise;US
+KBOK;Brookings;US
+KBOS;Boston;US
+KBOW;Bartow;US
+KBPG;Big Spring;US
+KBPI;Big Piney;US
+KBPK;Mountain Home;US
+KBPT;Beaumont/Port Arthur;US
+KBQK;Brunswick;US
+KBRD;Brainerd;US
+KBRL;Burlington;US
+KBRO;Brownsville;US
+KBRY;Bardstown;US
+KBTF;Bountiful;US
+KBTL;Battle Creek;US
+KBTM;Butte;US
+KBTN;Britton;US
+KBTP;Butler;US
+KBTR;Baton Rouge;US
+KBTV;South Burlington;US
+KBTY;Beatty;US
+KBUB;Burwell;US
+KBUF;Buffalo;US
+KBUM;Butler;US
+KBUR;Burbank;US
+KBVI;Beaver Falls;US
+KBVO;Bartlesville;US
+KBVS;Burlington;US
+KBVX;Batesville;US
+KBVY;Beverly / Danvers;US
+KBWC;Brawley;US
+KBWD;Brownwood;US
+KBWG;Bowling Green;US
+KBWI;Baltimore;US
+KBWP;Wahpeton;US
+KBXA;Bogalusa;US
+KBXK;Buckeye;US
+KBXM;Brunswick;US
+KBYG;Buffalo;US
+KBYH;Blytheville;US
+KBYI;Burley;US
+KBYS;Fort Irwin/Barstow;US
+KBYY;Bay City;US
+KBZN;Bozeman;US
+KCAD;Cadillac;US
+KCAE;Columbia;US
+KCAG;Craig;US
+KCAK;Akron;US
+KCAO;Clayton;US
+KCAR;Caribou;US
+KCBE;Wiley Ford;US
+KCBF;Council Bluffs;US
+KCBK;Colby;US
+KCBM;Columbus;US
+KCCB;Upland;US
+KCCR;Concord;US
+KCCY;Charles City;US
+KCDA;Lyndonville;US
+KCDC;Cedar City;US
+KCDH;Camden;US
+KCDK;Cedar Key;US
+KCDN;Camden;US
+KCDR;Chadron;US
+KCDS;Childress;US
+KCDW;Caldwell;US
+KCEA;Wichita;US
+KCEC;Crescent City;US
+KCEU;Clemson;US
+KCEV;Connersville;US
+KCEW;Crestview;US
+KCEY;Murray;US
+KCEZ;Cortez;US
+KCFD;Bryan;US
+KCFS;Caro;US
+KCFT;Clifton;US
+KCFV;Coffeyville;US
+KCGE;Cambridge;US
+KCGF;Cleveland;US
+KCGI;Cape Girardeau;US
+KCGS;College Park;US
+KCGZ;Casa Grande;US
+KCHA;Chattanooga;US
+KCHK;Chickasha;US
+KCHO;Charlottesville;US
+KCHS;Charleston;US
+KCIC;Chico;US
+KCID;Cedar Rapids;US
+KCIN;Carroll;US
+KCIR;Cairo;US
+KCIU;Kincheloe;US
+KCKA;Cherokee;US
+KCKB;Bridgeport;US
+KCKC;Grand Marais;US
+KCKM;Clarksdale;US
+KCKN;Crookston;US
+KCKV;Clarksville;US
+KCLE;Cleveland;US
+KCLI;Clintonville;US
+KCLK;Clinton;US
+KCLL;College Station;US
+KCLM;Port Angeles;US
+KCLR;Calipatria;US
+KCLS;Chehalis;US
+KCLT;Charlotte;US
+KCLW;Clearwater;US
+KCMH;Columbus;US
+KCMI;Savoy;US
+KCMX;Hancock;US
+KCMY;Sparta;US
+KCNH;Claremont;US
+KCNK;Concordia;US
+KCNM;Carlsbad;US
+KCNO;Chino;US
+KCNU;Chanute;US
+KCNW;Waco;US
+KCNY;Moab;US
+KCOD;Cody;US
+KCOE;Coeur d'Alene;US
+KCOF;Cocoa Beach;US
+KCOI;Merritt Island;US
+KCOM;Coleman;US
+KCON;Concord;US
+KCOS;Colorado Springs;US
+KCOT;Cotulla;US
+KCOU;Columbia;US
+KCPM;Compton;US
+KCPR;Casper;US
+KCPS;Cahokia/St Louis;US
+KCQW;Cheraw;US
+KCRE;North Myrtle Beach;US
+KCRG;Jacksonville;US
+KCRP;Corpus Christi;US
+KCRQ;Carlsbad;US
+KCRS;Corsicana;US
+KCRT;Crossett;US
+KCRW;Charleston;US
+KCRX;Corinth;US
+KCSG;Columbus;US
+KCSM;Clinton;US
+KCSQ;Creston;US
+KCSV;Crossville;US
+KCTB;Cut Bank;US
+KCTY;Cross City;US
+KCTZ;Clinton;US
+KCUB;Columbia;US
+KCUH;Cushing;US
+KCVG;Cincinnati / Covington;US
+KCVH;Hollister;US
+KCVK;Ash Flat;US
+KCVN;Clovis;US
+KCVO;Corvallis;US
+KCVS;Clovis;US
+KCWA;Mosinee;US
+KCWC;Wichita Falls;US
+KCWF;Lake Charles;US
+KCWI;Clinton;US
+KCXL;Calexico;US
+KCXO;Houston;US
+KCXP;Carson City;US
+KCXY;Harrisburg;US
+KCYS;Cheyenne;US
+KCZK;Cascade Locks;US
+KCZT;Carrizo Springs;US
+KDAA;Fort Belvoir;US
+KDAB;Daytona Beach;US
+KDAG;Daggett;US
+KDAL;Dallas;US
+KDAN;Danville;US
+KDAY;Dayton;US
+KDBN;Dublin;US
+KDBQ;Dubuque;US
+KDCA;Washington;US
+KDCU;Decatur;US
+KDDC;Dodge City;US
+KDEC;Decatur;US
+KDEH;Decorah;US
+KDEN;Denver;US
+KDFI;Defiance;US
+KDFW;Dallas-Fort Worth;US
+KDGL;Douglas;US
+KDGW;Douglas;US
+KDHN;Dothan;US
+KDHT;Dalhart;US
+KDIK;Dickinson;US
+KDKK;Dunkirk;US
+KDLC;Dillon;US
+KDLF;Del Rio;US
+KDLH;Duluth;US
+KDLN;Dillon;US
+KDLS;Dallesport / The Dalles;US
+KDMA;Tucson;US
+KDMN;Deming;US
+KDMO;Sedalia;US
+KDNL;Augusta;US
+KDNN;Dalton;US
+KDNS;Denison;US
+KDNV;Danville;US
+KDOV;Dover;US
+KDPA;Chicago/West Chicago;US
+KDPG;Dugway Proving Ground;US
+KDRA;Mercury;US
+KDRI;DeRidder;US
+KDRM;Drummond Island;US
+KDRO;Durango;US
+KDRT;Del Rio;US
+KDSM;Des Moines;US
+KDSV;Dansville;US
+KDTA;Delta;US
+KDTL;Detroit Lakes;US
+KDTN;Shreveport;US
+KDTS;Destin;US
+KDTW;Detroit;US
+KDUA;Durant;US
+KDUC;Duncan;US
+KDUG;Douglas Bisbee;US
+KDUJ;Dubois;US
+KDVL;Devils Lake;US
+KDVN;Davenport;US
+KDVO;Novato;US
+KDVP;Slayton;US
+KDVT;Phoenix;US
+KDWH;Houston;US
+KDXR;Danbury;US
+KDYL;Doylestown;US
+KDYS;Abilene;US
+KEAN;Wheatland;US
+KEAR;Kearney;US
+KEAT;Wenatchee;US
+KEAU;Eau Claire;US
+KEBS;Webster City;US
+KECG;Elizabeth City;US
+KECP;Panama City Beach;US
+KECS;Newcastle;US
+KEDE;Edenton;US
+KEDN;Enterprise;US
+KEDW;Edwards;US
+KEED;Needles;US
+KEEN;Keene;US
+KEFD;Houston;US
+KEFK;Newport;US
+KEFW;Jefferson;US
+KEGE;Eagle;US
+KEGI;Crestview;US
+KEGV;Eagle River;US
+KEKA;Eureka;US
+KEKM;Elkhart;US
+KEKN;Elkins;US
+KEKO;Elko;US
+KEKX;Elizabethtown;US
+KELA;Eagle Lake;US
+KELD;El Dorado;US
+KELK;Elk City;US
+KELM;Elmira/Corning;US
+KELN;Ellensburg;US
+KELO;Ely;US
+KELP;El Paso;US
+KELY;Ely;US
+KELZ;Wellsville;US
+KEMM;Kemmerer;US
+KEMP;Emporia;US
+KEMT;El Monte;US
+KEND;Enid;US
+KENL;Centralia;US
+KENV;Wendover;US
+KENW;Kenosha;US
+KEOK;Keokuk;US
+KEOS;Neosho;US
+KEPH;Ephrata;US
+KEQA;El Dorado;US
+KERI;Erie;US
+KERR;Errol;US
+KERV;Kerrville;US
+KESC;Escanaba;US
+KESF;Alexandria;US
+KESN;Easton;US
+KEST;Estherville;US
+KESW;Easton;US
+KETB;West Bend;US
+KETN;Eastland;US
+KEUF;Eufaula;US
+KEUG;Eugene;US
+KEVM;Eveleth;US
+KEVV;Evansville;US
+KEVW;Evanston;US
+KEWB;New Bedford;US
+KEWK;Newton;US
+KEWN;New Bern;US
+KEWR;Newark;US
+KEYW;Key West;US
+KFAF;Newport News (Fort Eustis);US
+KFAM;Farmington;US
+KFAR;Fargo;US
+KFAT;Fresno;US
+KFAY;Fayetteville;US
+KFBG;Fort Bragg;US
+KFBL;Faribault;US
+KFBR;Fort Bridger;US
+KFBY;Fairbury;US
+KFCH;Fresno;US
+KFCI;North Chesterfield;US
+KFCM;Minneapolis;US
+KFCS;Fort Carson;US
+KFCY;Forrest City;US
+KFDK;Frederick;US
+KFDR;Frederick;US
+KFDY;Findlay;US
+KFEP;Freeport;US
+KFET;Fremont;US
+KFFA;Kill Devil Hills;US
+KFFL;Fairfield;US
+KFFM;Fergus Falls;US
+KFFO;Dayton;US
+KFFT;Frankfort;US
+KFFZ;Mesa;US
+KFHR;Friday Harbor;US
+KFHU;Fort Huachuca / Sierra Vista;US
+KFKL;Franklin;US
+KFKN;Franklin;US
+KFLD;Fond du Lac;US
+KFLG;Flagstaff;US
+KFLL;Fort Lauderdale;US
+KFLO;Florence;US
+KFLP;Flippin;US
+KFLV;Fort Leavenworth;US
+KFLX;Fallon;US
+KFME;Fort Meade(Odenton);US
+KFMH;Falmouth;US
+KFMN;Farmington;US
+KFMY;Fort Myers;US
+KFNL;Loveland;US
+KFNT;Flint;US
+KFOD;Fort Dodge;US
+KFOE;Topeka;US
+KFOK;Westhampton Beach;US
+KFOM;Fillmore;US
+KFPR;Fort Pierce;US
+KFRG;Farmingdale;US
+KFRH;French Lick;US
+KFRI;Fort Riley (Junction City);US
+KFRM;Fairmont;US
+KFRR;Front Royal;US
+KFSD;Sioux Falls;US
+KFSI;Fort Sill;US
+KFSK;Fort Scott;US
+KFSM;Fort Smith;US
+KFST;Fort Stockton;US
+KFSU;Fort Sumner;US
+KFSW;Fort Madison;US
+KFTK;Fort Knox;US
+KFTW;Fort Worth;US
+KFTY;Atlanta;US
+KFUL;Fullerton;US
+KFVE;Frenchville;US
+KFWA;Fort Wayne;US
+KFXE;Fort Lauderdale;US
+KFXY;Forest City;US
+KFYM;Fayetteville;US
+KFYV;Fayetteville;US
+KGAB;Gabbs;US
+KGAD;Gadsden;US
+KGAG;Gage;US
+KGAI;Gaithersburg;US
+KGBD;Great Bend;US
+KGBG;Galesburg;US
+KGBR;Great Barrington;US
+KGCC;Gillette;US
+KGCD;John Day;US
+KGCK;Garden City;US
+KGCN;Grand Canyon - Tusayan;US
+KGCY;Greeneville;US
+KGDM;Gardner;US
+KGDV;Glendive;US
+KGDW;Gladwin;US
+KGED;Georgetown;US
+KGEG;Spokane;US
+KGEY;Greybull;US
+KGFD;Greenfield;US
+KGFK;Grand Forks;US
+KGFL;Glens Falls;US
+KGGE;Georgetown;US
+KGGG;Longview;US
+KGGW;Glasgow;US
+KGHM;Centerville;US
+KGIC;Grangeville;US
+KGIF;Winter Haven;US
+KGJT;Grand Junction;US
+KGKJ;Meadville;US
+KGKT;Sevierville;US
+KGLD;Goodland;US
+KGLE;Gainesville;US
+KGLH;Greenville;US
+KGLR;Gaylord;US
+KGLS;Galveston;US
+KGLW;Glasgow;US
+KGMU;Greenville;US
+KGNG;Gooding;US
+KGNT;Grants;US
+KGNV;Gainesville;US
+KGOK;Guthrie;US
+KGON;Groton;US
+KGPI;Kalispell;US
+KGPT;Gulfport;US
+KGPZ;Grand Rapids;US
+KGQQ;Galion;US
+KGRB;Green Bay;US
+KGRD;Greenwood;US
+KGRE;Greenville;US
+KGRF;Fort Lewis/Tacoma;US
+KGRI;Grand Island;US
+KGRK;Fort Cavazos;US
+KGRN;Gordon;US
+KGRR;Grand Rapids;US
+KGSB;Goldsboro;US
+KGSH;Goshen;US
+KGSO;Greensboro;US
+KGSP;Greer;US
+KGTF;Great Falls;US
+KGTG;Grantsburg;US
+KGTR;Columbus/W Point/Starkville;US
+KGUC;Gunnison;US
+KGUP;Gallup;US
+KGUS;Peru;US
+KGUY;Guymon;US
+KGVE;Gordonsville;US
+KGVL;Gainesville;US
+KGVT;Greenville;US
+KGWO;Greenwood;US
+KGWS;Glenwood Springs;US
+KGXY;Greeley;US
+KGYH;Greenville;US
+KGYI;Denison;US
+KGYR;Goodyear;US
+KHAB;Hamilton;US
+KHAF;Half Moon Bay;US
+KHAI;Three Rivers;US
+KHAO;Hamilton;US
+KHBG;Hattiesburg;US
+KHBR;Hobart;US
+KHDE;Holdrege;US
+KHDN;Hayden;US
+KHEE;West Helena;US
+KHEF;Manassas;US
+KHEZ;Natchez;US
+KHFD;Hartford;US
+KHFF;Hoffman;US
+KHGR;Hagerstown;US
+KHHR;Hawthorne;US
+KHHW;Hugo;US
+KHIB;Hibbing;US
+KHIE;Whitefield;US
+KHIF;Ogden;US
+KHII;Lake Havasu City;US
+KHIO;Portland;US
+KHKA;Blytheville;US
+KHKS;Jackson;US
+KHKY;Hickory;US
+KHLB;Batesville;US
+KHLC;Hill City;US
+KHLG;Wheeling;US
+KHLN;Helena;US
+KHLR;Fort Cavazos (Killeen);US
+KHMN;Alamogordo;US
+KHMT;Hemet;US
+KHNB;Huntingburg;US
+KHND;Las Vegas;US
+KHOB;Hobbs;US
+KHON;Huron;US
+KHOP;Fort Campbell;US
+KHOT;Hot Springs;US
+KHOU;Houston;US
+KHPN;White Plains;US
+KHPT;Hampton;US
+KHPY;Baytown;US
+KHQM;Hoquiam;US
+KHRI;Hermiston;US
+KHRL;Harlingen;US
+KHRO;Harrison;US
+KHSB;Harrisburg;US
+KHSE;Hatteras;US
+KHSI;Hastings;US
+KHSP;Hot Springs;US
+KHST;Homestead;US
+KHSV;Huntsville;US
+KHTH;Hawthorne;US
+KHTL;Houghton Lake;US
+KHTS;Huntington;US
+KHTW;South Point;US
+KHUA;Redstone Arsnl Huntsville;US
+KHUL;Houlton;US
+KHUM;Houma;US
+KHUT;Hutchinson;US
+KHVE;Hanksville;US
+KHVN;New Haven;US
+KHVR;Havre;US
+KHVS;Hartsville;US
+KHWD;Hayward;US
+KHWO;Hollywood;US
+KHWV;Shirley;US
+KHXD;Hilton Head Island;US
+KHYA;Hyannis;US
+KHYR;Hayward;US
+KHYS;Hays;US
+KHZL;Hazleton;US
+KHZY;Ashtabula;US
+KIAB;Wichita;US
+KIAD;Dulles;US
+KIAG;Niagara Falls;US
+KIAH;Houston;US
+KICL;Clarinda;US
+KICT;Wichita;US
+KIDA;Idaho Falls;US
+KIDG;Ida Grove;US
+KIDI;Indiana;US
+KIDP;Independence;US
+KIEN;Pine Ridge;US
+KIFA;Iowa Falls;US
+KIFP;Bullhead City;US
+KIGM;Kingman;US
+KIJX;Jacksonville;US
+KIKK;Kankakee;US
+KILE;Killeen;US
+KILG;Wilmington;US
+KILM;Wilmington;US
+KILN;Wilmington;US
+KIML;Imperial;US
+KIMM;Immokalee;US
+KIMS;Madison;US
+KIMT;Kingsford;US
+KIND;Indianapolis;US
+KINK;Wink;US
+KINL;International Falls;US
+KINS;Indian Springs;US
+KINT;Winston Salem;US
+KINW;Winslow;US
+KIOW;Iowa City;US
+KIPL;Imperial;US
+KIPT;Williamsport;US
+KIRK;Kirksville;US
+KIRS;Sturgis;US
+KISM;Orlando;US
+KISO;Kinston;US
+KISP;Islip;US
+KISQ;Manistique;US
+KISW;Wisconsin Rapids;US
+KITH;Ithaca;US
+KIWA;Mesa;US
+KIWD;Ironwood;US
+KIWI;Wiscasset;US
+KIWS;Houston;US
+KIXD;New Century;US
+KIYK;Inyokern;US
+KIZA;Santa Ynez;US
+KIZG;Fryeburg;US
+KJAC;Jackson;US
+KJAN;Jackson;US
+KJAS;Jasper;US
+KJAX;Jacksonville;US
+KJBR;Jonesboro;US
+KJCT;Junction;US
+KJDN;Jordan;US
+KJEF;Jefferson City;US
+KJFK;New York;US
+KJHW;Jamestown;US
+KJKA;Gulf Shores;US
+KJLN;Joplin;US
+KJMS;Jamestown;US
+KJOT;Joliet;US
+KJPX;East Hampton;US
+KJQF;Concord;US
+KJSO;Jacksonville;US
+KJST;Johnstown;US
+KJVL;Janesville;US
+KJXN;Jackson;US
+KKIC;King City;US
+KKLS;Kelso;US
+KKNB;Kanab;US
+KLAA;Lamar;US
+KLAF;West Lafayette;US
+KLAL;Lakeland;US
+KLAM;Los Alamos;US
+KLAN;Lansing;US
+KLAR;Laramie;US
+KLAS;Las Vegas;US
+KLAW;Lawton;US
+KLAX;Los Angeles;US
+KLBB;Lubbock;US
+KLBE;Latrobe;US
+KLBF;North Platte;US
+KLBL;Liberal;US
+KLBT;Lumberton;US
+KLBX;Angleton;US
+KLCH;Lake Charles;US
+KLCI;Laconia / Gilford;US
+KLCK;Columbus;US
+KLCQ;Lake City;US
+KLDJ;Linden;US
+KLDM;Ludington;US
+KLEB;Lebanon;US
+KLEE;Leesburg;US
+KLEM;Lemmon;US
+KLEW;Auburn/Lewiston;US
+KLEX;Lexington;US
+KLFI;Hampton;US
+KLFK;Lufkin;US
+KLFT;Lafayette;US
+KLGA;New York;US
+KLGB;Long Beach;US
+KLGC;LaGrange;US
+KLGD;La Grande;US
+KLGF;Yuma Proving Ground(Yuma);US
+KLGU;Logan;US
+KLHV;Lock Haven;US
+KLHW;Hinesville;US
+KLHZ;Louisburg;US
+KLIC;Limon;US
+KLIT;Little Rock;US
+KLKP;Lake Placid;US
+KLKU;Louisa;US
+KLKV;Lakeview;US
+KLLJ;Challis;US
+KLMS;Louisville;US
+KLMT;Klamath Falls;US
+KLNA;West Palm Beach;US
+KLND;Lander;US
+KLNK;Lincoln;US
+KLNN;Willoughby;US
+KLNP;Wise;US
+KLNR;Spring Green;US
+KLNS;Lancaster;US
+KLOL;Lovelock;US
+KLOM;Philadelphia;US
+KLOT;Chicago/Romeoville;US
+KLOU;Louisville;US
+KLOZ;London;US
+KLPC;Lompoc;US
+KLQK;Pickens;US
+KLRD;Laredo;US
+KLRF;Jacksonville;US
+KLRJ;Le Mars;US
+KLRU;Las Cruces;US
+KLSB;Lordsburg;US
+KLSE;La Crosse;US
+KLSF;Fort Benning;US
+KLSK;Lusk;US
+KLSN;Los Banos;US
+KLSV;Las Vegas;US
+KLTS;Altus;US
+KLUF;Glendale;US
+KLUK;Cincinnati;US
+KLUL;Laurel;US
+KLVK;Livermore;US
+KLVL;Lawrenceville;US
+KLVM;Livingston;US
+KLVS;Las Vegas;US
+KLWB;Lewisburg;US
+KLWC;Lawrence;US
+KLWL;Wells;US
+KLWM;Lawrence;US
+KLWS;Lewiston;US
+KLWT;Lewistown;US
+KLWV;Lawrenceville;US
+KLXN;Lexington;US
+KLXV;Leadville;US
+KLYH;Lynchburg;US
+KLYO;Lyons;US
+KLZU;Lawrenceville;US
+KMAC;Macon;US
+KMAE;Madera;US
+KMAF;Midland;US
+KMAW;Malden;US
+KMBG;Mobridge;US
+KMBL;Manistee;US
+KMBO;Madison;US
+KMBS;Freeland;US
+KMBY;Moberly;US
+KMCB;McComb;US
+KMCC;Sacramento;US
+KMCD;Mackinac Island;US
+KMCE;Merced;US
+KMCF;Tampa;US
+KMCI;Kansas City;US
+KMCK;McCook;US
+KMCN;Macon;US
+KMCO;Orlando;US
+KMCW;Mason City;US
+KMDD;Midland;US
+KMDH;Murphysboro;US
+KMDS;Madison;US
+KMDT;Harrisburg;US
+KMDW;Chicago;US
+KMDZ;Medford;US
+KMEB;Maxton;US
+KMEI;Meridian;US
+KMEM;Memphis;US
+KMER;Merced;US
+KMEV;Minden;US
+KMFD;Mansfield;US
+KMFE;McAllen;US
+KMFI;Marshfield;US
+KMFR;Medford;US
+KMFV;Melfa;US
+KMGC;Michigan City;US
+KMGE;Marietta;US
+KMGJ;Montgomery;US
+KMGM;Montgomery;US
+KMGR;Moultrie;US
+KMGW;Morgantown;US
+KMGY;Dayton;US
+KMHE;Mitchell;US
+KMHK;Manhattan;US
+KMHL;Marshall;US
+KMHR;Sacramento;US
+KMHT;Manchester;US
+KMHV;Mojave;US
+KMIA;Miami;US
+KMIB;Minot;US
+KMIC;Minneapolis;US
+KMIE;Muncie;US
+KMIO;Miami;US
+KMIT;Shafter;US
+KMIV;Millville;US
+KMIW;Marshalltown;US
+KMJQ;Jackson;US
+KMJX;Toms River;US
+KMKC;Kansas City;US
+KMKE;Milwaukee;US
+KMKG;Muskegon;US
+KMKL;Jackson;US
+KMKO;Muskogee;US
+KMKT;Mankato;US
+KMKY;Marco Island;US
+KMLB;Melbourne;US
+KMLC;Mc Alester;US
+KMLD;Malad City;US
+KMLE;Omaha;US
+KMLF;Milford;US
+KMLI;Moline;US
+KMLJ;Milledgeville;US
+KMLS;Miles City;US
+KMLT;Millinocket;US
+KMLU;Monroe;US
+KMMH;Mammoth Lakes;US
+KMMI;Athens;US
+KMML;Marshall;US
+KMMS;Marks;US
+KMMT;Eastover;US
+KMMU;Morristown;US
+KMNM;Menominee;US
+KMNN;Marion;US
+KMOB;Mobile;US
+KMOD;Modesto;US
+KMOP;Mount Pleasant;US
+KMOR;Morristown;US
+KMOT;Minot;US
+KMOX;Morris;US
+KMPI;Mariposa;US
+KMPJ;Morrilton;US
+KMPO;Mount Pocono;US
+KMPR;Mc Pherson;US
+KMPV;Barre/Montpelier;US
+KMPZ;Mount Pleasant;US
+KMQB;Macomb;US
+KMQI;Manteo;US
+KMQS;Coatesville;US
+KMQW;Mc Rae;US
+KMQY;Smyrna;US
+KMRB;Martinsburg;US
+KMRC;Columbia/Mount Pleasant;US
+KMRF;Marfa;US
+KMRN;Morganton;US
+KMRY;Monterey;US
+KMSL;Muscle Shoals;US
+KMSN;Madison;US
+KMSO;Missoula;US
+KMSP;Minneapolis;US
+KMSS;Massena;US
+KMSV;Monticello;US
+KMSY;New Orleans;US
+KMTC;Mount Clemens;US
+KMTH;Marathon;US
+KMTJ;Montrose;US
+KMTN;Baltimore;US
+KMTO;Mattoon;US
+KMTP;Montauk;US
+KMTW;Manitowoc;US
+KMUI;Fort Indiantown Gap(Annville);US
+KMUL;Moultrie;US
+KMUO;Mountain Home;US
+KMUT;Muscatine;US
+KMVC;Monroeville;US
+KMVE;Montevideo;US
+KMVL;Morrisville;US
+KMVN;Mount Vernon;US
+KMVY;Martha's Vineyard;US
+KMWA;Marion;US
+KMWC;Milwaukee;US
+KMWH;Moses Lake;US
+KMWL;Mineral Wells;US
+KMWM;Windom;US
+KMWO;Middletown;US
+KMXA;Manila;US
+KMXF;Montgomery;US
+KMXO;Monticello;US
+KMYF;San Diego;US
+KMYL;McCall;US
+KMYR;Myrtle Beach;US
+KMYV;Marysville;US
+KMZJ;Marana;US
+KMZZ;Marion;US
+KNBG;New Orleans;US
+KNBJ;Foley;US
+KNDV;Washington;US
+KNDY;Dahlgren;US
+KNEL;Lakehurst;US
+KNEN;Jacksonville;US
+KNEW;New Orleans;US
+KNFL;Fallon;US
+KNFW;Fort Worth;US
+KNGP;Corpus Christi;US
+KNGU;Norfolk;US
+KNGW;Corpus Christi;US
+KNHK;Patuxent River;US
+KNIP;Jacksonville;US
+KNJK;El Centro;US
+KNKX;San Diego;US
+KNLC;Lemoore;US
+KNPA;Pensacola;US
+KNQA;Millington;US
+KNQI;Kingsville;US
+KNQX;Key West;US
+KNRB;Jacksonville;US
+KNRS;Imperial Beach;US
+KNSE;Milton;US
+KNTD;Point Mugu;US
+KNTU;Virginia Beach;US
+KNUQ;Mountain View;US
+KNUW;Oak Harbor;US
+KNVD;Nevada;US
+KNYG;Quantico;US
+KNYL;Yuma;US
+KNZY;San Diego;US
+KOAJ;Richlands;US
+KOAK;Oakland;US
+KOAR;Marina;US
+KOBE;Okeechobee;US
+KOCF;Ocala;US
+KOCH;Nacogdoches;US
+KOCW;Washington;US
+KOEO;Osceola;US
+KOFF;Omaha;US
+KOFK;Norfolk;US
+KOGA;Ogallala;US
+KOGB;Orangeburg;US
+KOGD;Ogden;US
+KOGS;Ogdensburg;US
+KOIC;Norwich;US
+KOJC;Olathe;US
+KOKB;Oceanside;US
+KOKC;Oklahoma City;US
+KOKH;Oak Harbor;US
+KOKK;Kokomo;US
+KOKM;Okmulgee;US
+KOKS;Oshkosh;US
+KOKV;Winchester;US
+KOLD;Old Town;US
+KOLE;Olean;US
+KOLF;Wolf Point;US
+KOLM;Olympia;US
+KOLS;Nogales;US
+KOLU;Columbus;US
+KOLV;Olive Branch;US
+KOLY;Olney-Noble;US
+KOMA;Omaha;US
+KOMK;Omak;US
+KONA;Winona;US
+KONL;O'Neill;US
+KONM;Socorro;US
+KONO;Oregon;US
+KONP;Newport;US
+KONT;Ontario;US
+KONY;Olney;US
+KOOA;Cedar;US
+KOPF;Miami;US
+KOPL;Opelousas;US
+KOQU;North Kingstown;US
+KORD;Chicago;US
+KORF;Norfolk;US
+KORH;Worcester;US
+KORL;Orlando;US
+KORS;Eastsound;US
+KOSA;Mount Pleasant;US
+KOSC;Oscoda;US
+KOSH;Oshkosh;US
+KOSU;Columbus;US
+KOSX;Kosciusko;US
+KOTG;Worthington;US
+KOTH;North Bend;US
+KOTM;Ottumwa;US
+KOUN;Norman;US
+KOVE;Oroville;US
+KOWA;Owatonna;US
+KOWB;Owensboro;US
+KOWD;Norwood;US
+KOWK;Norridgewock;US
+KOXB;Ocean City;US
+KOXC;Oxford;US
+KOXD;Oxford;US
+KOXR;Oxnard;US
+KOYM;St Marys;US
+KOZA;Ozona;US
+KOZR;Fort Rucker/Ozark;US
+KPAE;Everett;US
+KPAH;Paducah;US
+KPAM;Panama City;US
+KPAN;Payson;US
+KPAO;Palo Alto;US
+KPBF;Pine Bluff;US
+KPBG;Plattsburgh;US
+KPBI;West Palm Beach;US
+KPBX;Pikeville;US
+KPDC;Prairie Du Chien;US
+KPDK;Atlanta;US
+KPDT;Pendleton;US
+KPDX;Portland;US
+KPEQ;Pecos;US
+KPFC;Pacific City;US
+KPGA;Page;US
+KPGD;Punta Gorda;US
+KPGR;Paragould;US
+KPGV;Greenville;US
+KPHD;New Philadelphia;US
+KPHF;Newport News;US
+KPHH;Andrews;US
+KPHK;Pahokee;US
+KPHL;Philadelphia;US
+KPHN;Port Huron;US
+KPHP;Philip;US
+KPHT;Paris;US
+KPHX;Phoenix;US
+KPIA;Peoria;US
+KPIB;Moselle;US
+KPIE;Pinellas Park;US
+KPIH;Pocatello;US
+KPIM;Pine Mountain;US
+KPIR;Pierre;US
+KPIT;Pittsburgh;US
+KPKB;Parkersburg (Williamstown);US
+KPKD;Park Rapids;US
+KPKF;Park Falls;US
+KPLK;Branson / Hollister;US
+KPLN;Pellston;US
+KPLR;Pell City;US
+KPMB;Pembina;US
+KPMD;Palmdale;US
+KPMH;Portsmouth;US
+KPMP;Pompano Beach;US
+KPNA;Pinedale;US
+KPNC;Ponca City;US
+KPNE;Philadelphia;US
+KPNN;Princeton;US
+KPNS;Pensacola;US
+KPOB;Fort Bragg;US
+KPOC;La Verne;US
+KPOE;Fort Polk;US
+KPOF;Poplar Bluff;US
+KPOH;Pocahontas;US
+KPOU;Poughkeepsie;US
+KPOY;Powell;US
+KPPA;Pampa;US
+KPPF;Parsons;US
+KPPO;La Porte;US
+KPQI;Presque Isle;US
+KPQL;Pascagoula;US
+KPRB;Paso Robles;US
+KPRC;Prescott;US
+KPRO;Perry;US
+KPRX;Paris;US
+KPSB;Philipsburg;US
+KPSC;Pasco;US
+KPSF;Pittsfield;US
+KPSK;Dublin;US
+KPSM;Portsmouth;US
+KPSN;Palestine;US
+KPSO;Pagosa Springs;US
+KPSP;Palm Springs;US
+KPSX;Palacios;US
+KPTB;Petersburg;US
+KPTK;Pontiac;US
+KPTN;Patterson;US
+KPTS;Pittsburg;US
+KPTT;Pratt;US
+KPTV;Porterville;US
+KPTW;Pottstown;US
+KPUB;Pueblo;US
+KPUC;Price;US
+KPUW;Pullman;US
+KPVC;Provincetown;US
+KPVD;Warwick;US
+KPVF;Placerville;US
+KPVG;Chesapeake;US
+KPVU;Provo;US
+KPVW;Plainview;US
+KPWA;Oklahoma City;US
+KPWD;Plentywood;US
+KPWM;Portland;US
+KPWT;Bremerton;US
+KPYM;Plymouth;US
+KRAC;Racine;US
+KRAL;Riverside;US
+KRAP;Rapid City;US
+KRBD;Dallas;US
+KRBG;Roseburg;US
+KRBL;Red Bluff;US
+KRBW;Walterboro;US
+KRCA;Rapid City;US
+KRCK;Rockdale;US
+KRCR;Rochester;US
+KRCT;Reed City;US
+KRDD;Redding;US
+KRDG;Reading;US
+KRDM;Redmond;US
+KRDR;Grand Forks;US
+KRDU;Raleigh/Durham;US
+KREO;Rome;US
+KRFD;Chicago/Rockford;US
+KRFG;Refugio;US
+KRHI;Rhinelander;US
+KRHV;San Jose;US
+KRIC;Richmond;US
+KRID;Richmond;US
+KRIF;Richfield;US
+KRIL;Rifle;US
+KRIR;Riverside;US
+KRIV;Riverside;US
+KRIW;Riverton;US
+KRKD;Rockland;US
+KRKP;Rockport;US
+KRKR;Poteau;US
+KRKS;Rock Springs;US
+KRKW;Rockwood;US
+KRLD;Richland;US
+KRME;Rome;US
+KRMG;Rome;US
+KRMN;Fredericksburg;US
+KRNC;Mc Minnville;US
+KRND;Universal City;US
+KRNH;New Richmond;US
+KRNO;Reno;US
+KRNT;Renton;US
+KROA;Roanoke;US
+KROC;Rochester;US
+KROG;Rogers;US
+KROW;Roswell;US
+KROX;Roseau;US
+KRPD;Rice Lake;US
+KRPX;Roundup;US
+KRQB;Big Rapids;US
+KRRL;Merrill;US
+KRRT;Warroad;US
+KRSL;Russell;US
+KRSN;Ruston;US
+KRST;Rochester;US
+KRSW;Fort Myers;US
+KRTN;Raton;US
+KRUQ;Salisbury;US
+KRUT;Rutland;US
+KRVL;Reedsville;US
+KRVS;Tulsa;US
+KRWF;Redwood Falls;US
+KRWI;Rocky Mount;US
+KRWL;Rawlins;US
+KRXE;Rexburg;US
+KRZL;Rensselaer;US
+KSAA;Saratoga;US
+KSAC;Sacramento;US
+KSAD;Safford;US
+KSAF;Santa Fe;US
+KSAN;San Diego;US
+KSAR;Sparta;US
+KSAS;Salton City;US
+KSAT;San Antonio;US
+KSAV;Savannah;US
+KSAW;Gwinn;US
+KSBA;Santa Barbara;US
+KSBD;San Bernardino;US
+KSBM;Sheboygan;US
+KSBN;South Bend;US
+KSBP;San Luis Obispo;US
+KSBS;Steamboat Springs;US
+KSBX;Shelby;US
+KSBY;Salisbury;US
+KSCB;Scribner;US
+KSCH;Schenectady;US
+KSCK;Stockton;US
+KSDF;Louisville;US
+KSDL;Scottsdale;US
+KSDM;San Diego;US
+KSDY;Sidney;US
+KSEA;Seattle;US
+KSEE;San Diego/El Cajon;US
+KSEF;Sebring;US
+KSEG;Selinsgrove;US
+KSEM;Selma;US
+KSEP;Stephenville;US
+KSER;Seymour;US
+KSEZ;Sedona;US
+KSFB;Orlando;US
+KSFF;Spokane;US
+KSFM;Sanford;US
+KSFO;San Francisco;US
+KSFZ;Pawtucket;US
+KSGF;Springfield;US
+KSGH;Springfield;US
+KSGJ;St Augustine;US
+KSGR;Houston;US
+KSGT;Stuttgart;US
+KSGU;St George;US
+KSHD;Weyers Cave;US
+KSHN;Shelton;US
+KSHR;Sheridan;US
+KSHV;Shreveport;US
+KSIK;Sikeston;US
+KSIV;Sullivan;US
+KSIY;Montague;US
+KSJC;San Jose;US
+KSJN;St Johns;US
+KSJT;San Angelo;US
+KSKA;Spokane;US
+KSKF;San Antonio;US
+KSKX;Taos;US
+KSLB;Storm Lake;US
+KSLC;Salt Lake City;US
+KSLE;Salem;US
+KSLG;Siloam Springs;US
+KSLK;Saranac Lake;US
+KSLN;Salina;US
+KSLO;Salem;US
+KSLR;Sulphur Springs;US
+KSMD;Fort Wayne;US
+KSME;Somerset;US
+KSMF;Sacramento;US
+KSMN;Salmon;US
+KSMO;Santa Monica;US
+KSMS;Sumter;US
+KSMX;Santa Maria;US
+KSNA;Santa Ana;US
+KSNK;Snyder;US
+KSNL;Shawnee;US
+KSNS;Salinas;US
+KSNY;Sidney;US
+KSOP;Carthage;US
+KSOW;Show Low;US
+KSPA;Spartanburg;US
+KSPF;Spearfish;US
+KSPG;St Petersburg;US
+KSPI;Springfield;US
+KSPS;Wichita Falls;US
+KSPW;Spencer;US
+KSQI;Rock Falls;US
+KSQL;San Carlos;US
+KSRC;Searcy;US
+KSRQ;Sarasota/Bradenton;US
+KSRR;Alto;US
+KSSC;Sumter;US
+KSSF;San Antonio;US
+KSSI;St Simons Island;US
+KSTC;Saint Cloud;US
+KSTE;Stevens Point;US
+KSTJ;St Joseph;US
+KSTK;Sterling;US
+KSTL;St Louis;US
+KSTP;Saint Paul;US
+KSTS;Santa Rosa;US
+KSUA;Stuart;US
+KSUD;Stroud;US
+KSUE;Sturgeon Bay;US
+KSUN;Hailey;US
+KSUS;St Louis;US
+KSUU;Fairfield;US
+KSUW;Superior;US
+KSUX;Sioux City;US
+KSVC;Silver City;US
+KSVE;Susanville;US
+KSVH;Statesville;US
+KSVN;Savannah;US
+KSVR;Salt Lake City;US
+KSWF;Newburgh;US
+KSWO;Stillwater;US
+KSWW;Sweetwater;US
+KSYI;Shelbyville;US
+KSYN;Dennison;US
+KSYR;Syracuse;US
+KSYV;Sylvester;US
+KSZL;Knob Noster;US
+KSZN;Santa Cruz Island;US
+KSZP;Santa Paula;US
+KTAD;Trinidad;US
+KTBN;Fort Leonard Wood;US
+KTBR;Statesboro;US
+KTCC;Tucumcari;US
+KTCL;Tuscaloosa;US
+KTCM;Tacoma;US
+KTCS;Truth or Consequences;US
+KTDO;Toledo;US
+KTDW;Amarillo;US
+KTDZ;Toledo;US
+KTEB;Teterboro;US
+KTEX;Telluride;US
+KTHA;Tullahoma;US
+KTHM;Thompson Falls;US
+KTHV;Thomasville;US
+KTIK;Oklahoma City;US
+KTIW;Tacoma;US
+KTIX;Titusville;US
+KTKX;Kennett;US
+KTLH;Tallahassee;US
+KTLR;Tulare;US
+KTMA;Tifton;US
+KTMB;Miami;US
+KTMK;Tillamook;US
+KTNP;Twentynine Palms;US
+KTNT;Miami;US
+KTNU;Newton;US
+KTNX;Tonopah;US
+KTOA;Torrance;US
+KTOC;Toccoa;US
+KTOI;Troy;US
+KTOL;Toledo;US
+KTOP;Topeka;US
+KTOR;Torrington;US
+KTPA;Tampa;US
+KTPF;Tampa;US
+KTPH;Tonopah;US
+KTPL;Temple;US
+KTRI;Blountville;US
+KTRK;Truckee;US
+KTRL;Terrell;US
+KTRM;Palm Springs;US
+KTRX;Trenton;US
+KTSP;Tehachapi;US
+KTTD;Portland;US
+KTTN;Ewing Township;US
+KTUL;Tulsa;US
+KTUP;Tupelo;US
+KTUS;Tucson;US
+KTVC;Traverse City;US
+KTVF;Thief River Falls;US
+KTVI;Thomasville;US
+KTVL;South Lake Tahoe;US
+KTWF;Twin Falls;US
+KTXK;Texarkana;US
+KTYL;Taylor;US
+KTYR;Tyler;US
+KTYS;Alcoa;US
+KUBS;Columbus;US
+KUCY;Union City;US
+KUDD;Bermuda Dunes;US
+KUES;Waukesha;US
+KUGN;Chicago/Waukegan;US
+KUIL;Quillayute;US
+KUIN;Quincy;US
+KUKF;North Wilkesboro;US
+KUKI;Ukiah;US
+KUKT;Quakertown;US
+KULM;New Ulm;US
+KUNI;Albany;US
+KUNU;Juneau;US
+KUNV;State College;US
+KUOS;Sewanee;US
+KUOX;Oxford;US
+KUTA;Tunica;US
+KUTS;Huntsville;US
+KUUU;Newport;US
+KUVA;Uvalde;US
+KUZA;Rock Hill;US
+KVAD;Valdosta;US
+KVAY;Lumberton;US
+KVBG;Lompoc;US
+KVBT;Bentonville;US
+KVCT;Victoria;US
+KVCV;Victorville;US
+KVDI;Vidalia;US
+KVEL;Vernal;US
+KVGT;Las Vegas;US
+KVHN;Van Horn;US
+KVIH;Vichy;US
+KVIS;Visalia;US
+KVJI;Abingdon;US
+KVKS;Vicksburg;US
+KVLA;Vandalia;US
+KVLD;Valdosta;US
+KVNC;Venice;US
+KVNY;Van Nuys;US
+KVOK;Camp Douglas;US
+KVPS;Valparaiso;US
+KVPZ;Valparaiso;US
+KVQQ;Jacksonville;US
+KVRB;Vero Beach;US
+KVSF;North Springfield;US
+KVTN;Valentine;US
+KVYS;Peru;US
+KWAL;Wallops Island;US
+KWAY;Waynesburg;US
+KWBW;Wilkes-Barre;US
+KWDG;Enid;US
+KWDR;Winder;US
+KWEA;Weatherford;US
+KWHP;Pacoima;US
+KWJF;Lancaster;US
+KWLD;Winfield / Arkansas City;US
+KWLW;Willows;US
+KWMC;Winnemucca;US
+KWRB;Warner Robins;US
+KWRI;Wrightstown;US
+KWRL;Worland;US
+KWST;Westerly;US
+KWVI;Watsonville;US
+KWVL;Waterville;US
+KWWD;Wildwood;US
+KWWR;Woodward;US
+KWYS;West Yellowstone;US
+KXNA;Fayetteville/Springdale/Rogers;US
+KXWA;Williston;US
+KYIP;Detroit;US
+KYKM;Yakima;US
+KYKN;Yankton;US
+KYNG;Youngstown/Warren;US
+KZPH;Zephyrhills;US
+KZZV;Zanesville;US
+LAKU;Kukës;AL
+LATI;Rinas;AL
+LBAM;Gabrovo;BG
+LBBA;Bahovitsa;BG
+LBBB;Belchinski Bani;BG
+LBBG;Burgas;BG
+LBBL;Blagoevo;BG
+LBBO;Bohot;BG
+LBBQ;Byala;BG
+LBBR;Pernik;BG
+LBBZ;Bazan;BG
+LBDA;Daskal-Atanasovo;BG
+LBDB;Dolna Banya;BG
+LBDM;Dve Mogili;BG
+LBDR;Draganovtsi;BG
+LBGI;Gorski Izvor;BG
+LBGO;Gorna Oryahovitsa;BG
+LBGR;Grivitsa;BG
+LBHT;Ihtiman;BG
+LBKJ;Kaynardzha;BG
+LBLS;Lesnovo;BG
+LBMO;Montana;BG
+LBPD;Plovdiv;BG
+LBPG;Graf Ignatievo;BG
+LBPR;Primorsko;BG
+LBRD;Erden;BG
+LBRS;Shtraklevo;BG
+LBSF;Sofia;BG
+LBSZ;Stara Zagora;BG
+LBWB;Balchik;BG
+LBWC;Tihina;BG
+LBWN;Varna;BG
+LCEN;Tymbou (Kirklar);CY
+LCGK;Lefkoniko (Geçitkale);CY
+LCLK;Larnaca;CY
+LCNC;Lakatamia;CY
+LCPH;Paphos;CY
+LCRA;Akrotiri;CY
+LCRE;Dhekelia Sovereign Base Area;CY
+LDDU;Čilipi;HR
+LDLO;Mali Lošinj;HR
+LDOB;Vukovar;HR
+LDOC;Osijek;HR
+LDOR;Slavonski;HR
+LDOS;Klisa;HR
+LDOV;Vinkovci;HR
+LDPL;Pula;HR
+LDPM;Medulin;HR
+LDPN;Unije Island;HR
+LDPV;Vrsar;HR
+LDRG;Soboli;HR
+LDRI;Omišalj;HR
+LDRO;Otočac;HR
+LDSB;Gornji Humac;HR
+LDSF;Split;HR
+LDSH;Hvar Island;HR
+LDSP;Kaštel Štafilić;HR
+LDSS;Sinj;HR
+LDVA;Varaždin;HR
+LDVC;Čakovec;HR
+LDVD;Daruvar;HR
+LDVK;Koprivnica;HR
+LDVR;Daruvar;HR
+LDZA;Velika Gorica;HR
+LDZB;Busevec;HR
+LDZD;Zemunik Donji (Zadar);HR
+LDZE;Zvekovac;HR
+LEAB;Albacete;ES
+LEAL;Alicante;ES
+LEAM;Almería;ES
+LEAS;Ranón;ES
+LEBA;Córdoba;ES
+LEBB;Bilbao;ES
+LEBG;Burgos;ES
+LEBL;Barcelona;ES
+LEBZ;Badajoz;ES
+LECH;Castellón de la Plana;ES
+LECO;Culleredo;ES
+LECU;Madrid;ES
+LEDA;Lleida;ES
+LEGE;Girona;ES
+LEGP;;ES
+LEGR;Granada;ES
+LEGT;Getafe;ES
+LEHC;Monflorite/Alcalá del Obispo;ES
+LEIB;Ibiza (Eivissa);ES
+LEJR;Jerez de la Frontera;ES
+LELC;San Javier;ES
+LELI;Almendralejo;ES
+LELN;La Virgen Del Camino;ES
+LEMD;Madrid;ES
+LEMG;Málaga;ES
+LEMH;Mahón (Maó);ES
+LEMI;Corvera;ES
+LEMO;Morón;ES
+LEPA;Palma de Mallorca;ES
+LEPP;Pamplona;ES
+LERL;Ciudad Real;ES
+LERP;Herrera de Pisuerga;ES
+LERS;Reus;ES
+LERT;Rota;ES
+LESA;Salamanca;ES
+LESB;Marratxí;ES
+LESL;Sant Lluis;ES
+LESO;Hondarribia;ES
+LEST;Santiago de Compostela;ES
+LESU;La Seu d'Urgell Pyrenees and Andorra;ES
+LETL;Teruel;ES
+LETO;Madrid;ES
+LEVC;Valencia;ES
+LEVD;Valladolid;ES
+LEVS;;ES
+LEVT;Alava;ES
+LEVX;Vigo;ES
+LEXJ;Santander;ES
+LEZG;Zaragoza;ES
+LEZL;Sevilla;ES
+LFAB;Saint-Aubin-sur-Scie;FR
+LFAC;Calais;FR
+LFAD;Margny-lès-Compiègne;FR
+LFAE;Eu;FR
+LFAQ;Albert;FR
+LFAT;Le Touquet-Paris-Plage;FR
+LFAY;Amiens;FR
+LFBA;Agen;FR
+LFBD;Bordeaux;FR
+LFBE;Bergerac;FR
+LFBG;Cognac/Châteaubernard;FR
+LFBH;La Rochelle;FR
+LFBI;Poitiers/Biard;FR
+LFBK;Lépaud, Creuse;FR
+LFBL;Limoges/Bellegarde;FR
+LFBN;Niort/Souché;FR
+LFBO;Toulouse/Blagnac;FR
+LFBP;Pau/Pyrénées (Uzein);FR
+LFBT;Tarbes/Lourdes/Pyrénées;FR
+LFBU;Angoulême;FR
+LFBX;Périgueux/Bassillac;FR
+LFBZ;Biarritz;FR
+LFCC;Cahors;FR
+LFCI;Albi;FR
+LFCK;Castres;FR
+LFCQ;Graulhet/Montdragon;FR
+LFCR;Rodez/Marcillac;FR
+LFCY;Royan/Médis;FR
+LFDG;Gaillac;FR
+LFDH;Auch;FR
+LFDN;Rochefort/Saint-Agnant;FR
+LFEY;Île d'Yeu;FR
+LFGA;Colmar;FR
+LFGJ;Dole;FR
+LFHM;Megève;FR
+LFHO;Lanas, Ardèche;FR
+LFHP;Chaspuzac, Haute-Loire;FR
+LFHS;Bourg/Ceyzériat;FR
+LFHU;Huez, Isère;FR
+LFHV;Frontenas, Rhône;FR
+LFHY;Toulon-sur-Allier;FR
+LFJL;Goin;FR
+LFJR;Angers;FR
+LFKB;Bastia;FR
+LFKC;Calvi;FR
+LFKF;Figari;FR
+LFKG;GHISONACCIA;FR
+LFKJ;Ajaccio;FR
+LFKO;Propriano;FR
+LFKS;Solenzara;FR
+LFKX;Les Allues;FR
+LFLA;Auxerre;FR
+LFLB;Chambéry;FR
+LFLC;Clermont-Ferrand;FR
+LFLD;Bourges;FR
+LFLE;Barby;FR
+LFLG;Le Versoud, Isère;FR
+LFLH;Châlon sur Saône;FR
+LFLJ;Saint-Bon;FR
+LFLL;Colombier-Saugnieu, Rhône;FR
+LFLN;L'Hôpital-le-Mercier, Saône-et-Loire;FR
+LFLO;Saint-Léger-sur-Roanne;FR
+LFLP;Annecy;FR
+LFLS;Grenoble;FR
+LFLU;Chabeuil, Drôme;FR
+LFLV;Charmeil, Allier;FR
+LFLW;Aurillac;FR
+LFLX;Châteauroux;FR
+LFLY;Chassieu, Lyon;FR
+LFMA;Aix en Provence;FR
+LFMD;Cannes;FR
+LFMH;Andrézieux-Bouthéon, Loire;FR
+LFMI;Istres, Bouches-du-Rhône;FR
+LFMK;Carcassonne;FR
+LFML;Marignane, Bouches-du-Rhône;FR
+LFMN;Nice, Alpes-Maritimes;FR
+LFMP;Perpignan/Rivesaltes;FR
+LFMQ;Le Castellet, Var;FR
+LFMR;Saint-Pons, Alpes-de-Haute-Provence;FR
+LFMT;Montpellier/Méditerranée;FR
+LFMU;Béziers;FR
+LFMV;Avignon;FR
+LFNA;Tallard, Hautes-Alpes;FR
+LFNB;Mende/Brénoux;FR
+LFNC;Saint-Crépin, Hautes-Alpes;FR
+LFOB;Beauvais;FR
+LFOE;Fauville, Eure;FR
+LFOH;Le Havre;FR
+LFOI;Buigny-Saint-Maclou;FR
+LFOK;Chalons en Champagne;FR
+LFOO;Les Sables-d'Olonne;FR
+LFOP;Boos;FR
+LFOQ;Blois;FR
+LFOT;Tours, Indre-et-Loire;FR
+LFOU;Cholet;FR
+LFOV;Laval, Mayenne;FR
+LFOZ;Saint-Denis-de-l'Hôtel, Loiret;FR
+LFPB;Paris;FR
+LFPC;Creil;FR
+LFPF;Beynes, Yvelines;FR
+LFPG;Paris (Roissy-en-France, Val-d'Oise);FR
+LFPK;Pommeuse, Seine-et-Marne;FR
+LFPL;Lognes, Seine-et-Marne;FR
+LFPN;Toussus-le-Noble, Yvelines;FR
+LFPO;Paris (Orly, Val-de-Marne);FR
+LFPX;Chavenay, Yvelines;FR
+LFQG;Marzy, Nièvre;FR
+LFQM;Besançon;FR
+LFQQ;Lesquin;FR
+LFQT;Merville, Nord;FR
+LFQV;Charleville-Mézières;FR
+LFRB;Brest;FR
+LFRC;Cherbourg;FR
+LFRD;Dinard;FR
+LFRE;La Baule-Escoublac;FR
+LFRF;Bréville-sur-Mer, Manche;FR
+LFRG;Deauville;FR
+LFRH;Lorient/Lann/Bihoué;FR
+LFRI;La Roche-sur-Yon;FR
+LFRJ;Landivisiau;FR
+LFRK;Caen;FR
+LFRM;Le Mans, Sarthe;FR
+LFRN;Saint-Jacques-de-la-Lande, Ille-et-Vilaine;FR
+LFRO;Lannion;FR
+LFRQ;Quimper/Pluguffan;FR
+LFRS;Nantes;FR
+LFRT;Trémuson, Côtes-d'Armor;FR
+LFRU;Morlaix/Ploujean;FR
+LFRV;Vannes/Meucon;FR
+LFRZ;Saint-Nazaire/Montoir;FR
+LFSB;Bâle / Mulhouse;FR
+LFSD;Dijon;FR
+LFSG;Épinal;FR
+LFSL;Brive;FR
+LFSN;Tomblaine, Meurthe-et-Moselle;FR
+LFST;Strasbourg;FR
+LFTA;La Tranche-sur-Mer;FR
+LFTH;Hyères, Var;FR
+LFTW;Nîmes/Garons;FR
+LFTZ;Saint-Tropez;FR
+LFVM;Miquelon;PM
+LFVP;Saint-Pierre;PM
+LGAD;Andravida;GR
+LGAG;Agrinion;GR
+LGAL;Alexandroupolis;GR
+LGAV;Spata-Artemida;GR
+LGBL;Nea Anchialos;GR
+LGEL;Elefsina;GR
+LGHI;Chios Island;GR
+LGIK;Ikaria Island;GR
+LGIO;Ioannina;GR
+LGIR;Heraklion;GR
+LGKA;Argos Orestiko;GR
+LGKC;Kithira Island;GR
+LGKF;Kefallinia Island;GR
+LGKJ;Kastelorizo Island;GR
+LGKL;Kalamata;GR
+LGKM;Amygdaleonas;GR
+LGKN;Marathon;GR
+LGKO;Kos Island;GR
+LGKP;Karpathos Island;GR
+LGKR;Kerkyra (Corfu);GR
+LGKS;Kasos Island;GR
+LGKV;Kavala;GR
+LGKY;Kalymnos Island;GR
+LGKZ;Kozani;GR
+LGLE;Leros Island;GR
+LGLM;Limnos Island;GR
+LGLR;Larissa;GR
+LGMG;Megara;GR
+LGMK;Mykonos;GR
+LGML;Milos Island;GR
+LGMO;Molos;GR
+LGMT;Mytilene;GR
+LGNX;Naxos;GR
+LGPA;Paros;GR
+LGPL;Astypalaia Island;GR
+LGPZ;Preveza;GR
+LGRP;Rhodes;GR
+LGRX;Patras;GR
+LGSA;Souda;GR
+LGSK;Skiathos;GR
+LGSM;Samos Island;GR
+LGSO;Syros Island;GR
+LGSR;Santorini Island;GR
+LGST;Crete Island;GR
+LGSY;Skiros Island;GR
+LGTS;Thessaloniki;GR
+LGZA;Zakynthos;GR
+LHBP;Budapest;HU
+LHDC;Debrecen;HU
+LHGD;Gödöllő;HU
+LHGR;Gyúró;HU
+LHGU;Győrújbarát;HU
+LHGY;Gyöngyös;HU
+LHHH;Budapest;HU
+LHHK;Hajmáskér;HU
+LHHM;Hódmezővásárhely;HU
+LHHO;Hajdúszoboszló;HU
+LHJK;Jakabszállás;HU
+LHKA;Kalocsa;HU
+LHKC;Kecel;HU
+LHKD;Kecskéd;HU
+LHKE;Kecskemét;HU
+LHPL;;HU
+LHPP;Pécs;HU
+LHSM;Sármellék;HU
+LHZA;Zalaegerszeg;HU
+LHZK;Zalakaros;HU
+LIAA;Terni;IT
+LIAD;Rome;IT
+LIAF;Foligno (PG);IT
+LIAG;Gubbio (PG);IT
+LIAJ;Ostia Antica (RM);IT
+LIAL;Città di Castello (PG);IT
+LIAO;Castelvecchio Pascoli (LU);IT
+LIAP;L'Aquila;IT
+LIAQ;Aquino;IT
+LIAR;Fubara;IT
+LIAT;Capannoli (PI);IT
+LIAU;Capua;IT
+LIAY;Monte San Giovanni Campano (FR);IT
+LIBA;San Giovanni Rotondo (FG);IT
+LIBC;Isola di Capo Rizzuto (KR);IT
+LIBD;Bari;IT
+LIBF;Foggia (FG);IT
+LIBG;Grottaglie;IT
+LIBN;Galatina (LE);IT
+LIBP;Pescara;IT
+LIBR;Brindisi;IT
+LICA;Lamezia Terme (CZ);IT
+LICB;Comiso;IT
+LICC;Catania;IT
+LICD;Lampedusa;IT
+LICG;Pantelleria (TP);IT
+LICJ;Palermo;IT
+LICN;Calatabiano (CT);IT
+LICR;Reggio Calabria;IT
+LICT;Trapani (TP);IT
+LICZ;Sigonella (CT);IT
+LIDB;Belluno (BL);IT
+LIDC;Loreo (RO);IT
+LIDR;Ravenna (RA);IT
+LIDV;Ferrara (FE);IT
+LIEA;Alghero;IT
+LIED;Decimomannu;IT
+LIEE;Cagliari;IT
+LIEO;Olbia (SS);IT
+LIER;Oristano;IT
+LIET;Arbatax;IT
+LIKD;Torraccia;SM
+LILI;Vercelli (VC);IT
+LILN;Venegono Superiore (VA);IT
+LIMC;Ferno (VA);IT
+LIME;Orio al Serio (BG);IT
+LIMF;Caselle Torinese (TO);IT
+LIMG;Villanova d'Albenga (SV);IT
+LIMJ;Genova (GE);IT
+LIML;Segrate (MI);IT
+LIMP;Parma (PR);IT
+LIMW;Saint-Christophe (AO);IT
+LIMZ;Levaldigi (CN);IT
+LION;Bagnoli di Sopra (PD);IT
+LIPA;Aviano (PN);IT
+LIPB;Bolzano (BZ);IT
+LIPD;Campoformido (UD);IT
+LIPE;Bologna;IT
+LIPH;Treviso (TV);IT
+LIPK;Forlì (FC);IT
+LIPO;Montichiari (BS);IT
+LIPQ;Ronchi dei Legionari (GO);IT
+LIPR;Rimini (RN);IT
+LIPX;Caselle (VR);IT
+LIPY;Falconara Marittima (AN);IT
+LIPZ;Venezia (VE);IT
+LIQL;Capannori (LU);IT
+LIQS;Ampugnano (SI);IT
+LIRA;Rome;IT
+LIRF;Rome;IT
+LIRH;Frosinone;IT
+LIRI;Salerno;IT
+LIRJ;Campo nell'Elba (LI);IT
+LIRN;Napoli;IT
+LIRP;Pisa (PI);IT
+LIRQ;Firenze (FI);IT
+LIRS;Grosseto (GR);IT
+LIRZ;Perugia (PG);IT
+LJLJ;Zgornji Brnik;SI
+LJMB;Orehova Vas;SI
+LJPZ;Sečovlje;SI
+LKBA;Břeclav;CZ
+LKBE;Benešov;CZ
+LKBO;Bohuňovice;CZ
+LKBR;Broumov;CZ
+LKBU;Bubovice;CZ
+LKCB;Cheb;CZ
+LKCE;Česká Lípa;CZ
+LKCH;Otvice;CZ
+LKCM;Medlánky;CZ
+LKCR;Chrudim;CZ
+LKCS;České Budějovice;CZ
+LKCT;Chotěboř;CZ
+LKCU;Chomutov;CZ
+LKCV;Chotusice;CZ
+LKDK;Dvůr Králové nad Labem;CZ
+LKER;Erpužice;CZ
+LKFR;Frýdlant;CZ
+LKHB;Havlíčkův Brod;CZ
+LKHC;Holovousy;CZ
+LKHD;Hodkovice nad Mohelkou;CZ
+LKHK;Hradec Králové;CZ
+LKHN;Hranice;CZ
+LKHS;Hluboká nad Vltavou;CZ
+LKHV;Hořovice;CZ
+LKJA;Jaroměř;CZ
+LKJC;Jičín;CZ
+LKJH;Jindřichův Hradec;CZ
+LKJI;Jihlava;CZ
+LKKA;Křižanov;CZ
+LKKB;Prague;CZ
+LKKL;Kladno;CZ
+LKKM;Kroměříž;CZ
+LKKO;Kolín;CZ
+LKKR;Krnov;CZ
+LKKT;Klatovy;CZ
+LKKU;Uherské Hradiště;CZ
+LKKV;Karlovy Vary;CZ
+LKKY;Svatobořice;CZ
+LKLB;Liberec;CZ
+LKLN;Plzen;CZ
+LKLT;Letňany;CZ
+LKLU;Luhačovice;CZ
+LKMB;Mladá Boleslav;CZ
+LKMH;Mnichovo Hradiště;CZ
+LKMI;Mikulovice;CZ
+LKMK;Moravská Třebová;CZ
+LKMO;Most;CZ
+LKMT;Mošnov;CZ
+LKNA;Sedlec;CZ
+LKNM;Nové Město nad Metují;CZ
+LKOL;Olomouc;CZ
+LKPA;Polička;CZ
+LKPC;Panensky Tynec;CZ
+LKPD;Pardubice;CZ
+LKPI;Přibyslav;CZ
+LKPL;Letkov;CZ
+LKPM;Drásov;CZ
+LKPO;Přerov;CZ
+LKPR;Prague;CZ
+LKPS;Plasy;CZ
+LKRA;Raná;CZ
+LKRK;Rakovnik;CZ
+LKRO;Roudnice nad Labem;CZ
+LKRY;Rokycany;CZ
+LKSA;Staňkov;CZ
+LKSB;Mostkovice;CZ
+LKSK;Skuteč;CZ
+LKSN;Slaný;CZ
+LKSO;Soběslav;CZ
+LKSR;Prachatice;CZ
+LKST;Strakonice;CZ
+LKSU;Nový Malín;CZ
+LKSZ;Sazená;CZ
+LKTA;Tábor;CZ
+LKTB;Brno;CZ
+LKTC;Prague;CZ
+LKTD;Tachov;CZ
+LKTH;;CZ
+LKTO;Toužim;CZ
+LKUL;Usti Nad Labem;CZ
+LKUO;Ústí nad Orlicí;CZ
+LKVL;Vlašim;CZ
+LKVM;Vysoké Mýto;CZ
+LKVO;Vodochody;CZ
+LKVP;Velke Porici;CZ
+LKVR;Lánov;CZ
+LKVY;Vyskov;CZ
+LKZA;Dolní Benešov;CZ
+LKZB;Zbraslavice;CZ
+LKZD;Žatec;CZ
+LKZL;Otrokovice;CZ
+LKZM;Žamberk;CZ
+LKZN;Znojmo;CZ
+LLBG;Tel Aviv;IL
+LLBO;Habonim;IL
+LLBS;Beersheba;IL
+LLEK;Rehovot;IL
+LLER;Eilat;IL
+LLES;Ein Shemer;IL
+LLEY;Sapir;IL
+LLFK;Katzrin;IL
+LLHA;Haifa;IL
+LLHB;Beersheba;IL
+LLHS;Hatzor;IL
+LLHZ;Herzliya;IL
+LLIB;Rosh Pina;IL
+LLKS;Kiryat Shmona;IL
+LLMG;Afula;IL
+LLMR;Mitzpe Ramon;IL
+LLMZ;Masada;IL
+LLNV;Beersheba;IL
+LLOV;Eilat;IL
+LLRD;Haifa;IL
+LLRM;Beersheba;IL
+LLRS;Rishon Lezion;IL
+LLTN;Tnuvot;IL
+LLYT;Yotvata;IL
+LMMG;Gozo;MT
+LMML;Valletta;MT
+LNMC;Fontvieille;MC
+LOAA;Ottenschlag;AT
+LOAB;Dobersberg;AT
+LOAD;Ober-Grafendorf;AT
+LOAE;Eisenstadt;AT
+LOAF;Baden;AT
+LOAG;Krems an der Donau;AT
+LOAH;Horn;AT
+LOAI;Wiener Neustadt;AT
+LOAK;Krems;AT
+LOAL;Pöchlarn-Wörth;AT
+LOAM;Vienna;AT
+LOAN;Wiener Neustadt;AT
+LOAP;Waidhofen an der Ybbs;AT
+LOAS;Hundsheim;AT
+LOAU;Stockerau;AT
+LOAV;Bad Vöslau;AT
+LOGF;Fürstenfeld;AT
+LOGG;Punitz;AT
+LOGL;Göriach;AT
+LOGM;Mariazell;AT
+LOGO;Niederöblarn;AT
+LOGP;Pinkafeld;AT
+LOGT;Timmersdorf;AT
+LOGW;Weiz;AT
+LOIH;Hohenems;AT
+LOIJ;Sankt Johann in Tirol;AT
+LOIK;Langkampfen;AT
+LOIR;Reutte;AT
+LOIT;Sankt Johann In Tirol;AT
+LOJD;Dornbirn;AT
+LOKF;Feldkirchen in Kärnten;AT
+LOKG;Ferlach;AT
+LOKH;Micheldorf;AT
+LOKL;Lengberg;AT
+LOKM;Mayerhofen;AT
+LOKN;Nötsch im Gailtal;AT
+LOKW;Wolfsberg;AT
+LOLC;Scharnstein;AT
+LOLE;Pupping;AT
+LOLF;Freistadt;AT
+LOLG;Sankt Georgen am Ybbsfelde;AT
+LOLH;Hofkirchen;AT
+LOLK;Kirchheim im Innkreis;AT
+LOLM;Micheldorf;AT
+LOLO;Linz;AT
+LOLS;Suben;AT
+LOLT;Seitenstetten;AT
+LOLU;Laakirchen;AT
+LOLW;Wels;AT
+LOMR;Fresach;AT
+LOSM;Mauterndorf;AT
+LOWG;Feldkirchen bei Graz;AT
+LOWI;Innsbruck;AT
+LOWK;Klagenfurt am Wörthersee;AT
+LOWL;Linz;AT
+LOWS;Salzburg;AT
+LOWW;Vienna;AT
+LOWZ;Zell am See;AT
+LOXA;Aigen im Ennstal;AT
+LOXN;Wiener Neustadt;AT
+LOXT;Tulln an der Donau;AT
+LOXZ;Zeltweg;AT
+LPAF;Alfragide;PT
+LPAG;Albergaria-a-Velha;PT
+LPAR;Vila Franca de Xira;PT
+LPAS;Amadora;PT
+LPAV;Aveiro;PT
+LPAZ;Vila do Porto;PT
+LPBA;Portimão;PT
+LPBG;Bragança;PT
+LPBH;Braga;PT
+LPBJ;Beja;PT
+LPBR;Braga;PT
+LPCB;Castelo Branco;PT
+LPCC;Funchal;PT
+LPCD;Santa Comba Dão;PT
+LPCH;Chaves;PT
+LPCI;Coimbra;PT
+LPCL;Covilhã;PT
+LPCO;Coimbra;PT
+LPCR;Corvo;PT
+LPCS;Cascais;PT
+LPCV;Coimba;PT
+LPDA;Porto;PT
+LPEM;Alfragida;PT
+LPER;Évora;PT
+LPFL;Santa Cruz das Flores;PT
+LPFR;Faro;PT
+LPGR;Santa Cruz da Graciosa;PT
+LPHR;Horta;PT
+LPJF;Leiria;PT
+LPLA;Praia da Vitória;PT
+LPMA;Funchal;PT
+LPMO;Mora;PT
+LPMR;;PT
+LPPD;Ponta Delgada;PT
+LPPI;Pico Island;PT
+LPPM;Portimão;PT
+LPPR;Porto;PT
+LPPS;Vila Baleira;PT
+LPPT;Lisbon;PT
+LPSC;Torres Vedras;PT
+LPSD;Sardoal;PT
+LPSE;Seia;PT
+LPSI;Sines;PT
+LPSJ;Velas;PT
+LPSM;Lisbon;PT
+LPSO;Ponte de Sor;PT
+LPSR;Santarém;PT
+LPSS;Santa Maria da Feira;PT
+LPTT;Viseu;PT
+LPVC;Viana do Castelo;PT
+LPVL;Maia;PT
+LPVR;Vila Real;PT
+LPVZ;Viseu;PT
+LPXR;Vila Franca de Xira;PT
+LQBI;Bihać;BA
+LQBK;Mahovljani;BA
+LQBZ;Zalužani;BA
+LQCG;Bašigovci;BA
+LQJL;Rainci Gornji;BA
+LQLV;Livno;BA
+LQMO;Mostar;BA
+LQPD;Prijedor;BA
+LQSA;Sarajevo;BA
+LQTZ;Dubrave Gornje;BA
+LQVI;Visoko;BA
+LRAR;Arad;RO
+LRBA;Comana;RO
+LRBC;Bacău;RO
+LRBH;Bucharest;RO
+LRBM;Tăuții-Măgherăuș;RO
+LRBO;Boboc;RO
+LRBS;Bucharest;RO
+LRBV;Brașov (Ghimbav);RO
+LRCB;Șiria;RO
+LRCC;Oituz;RO
+LRCD;Cisnădie;RO
+LRCK;Mihail Kogălniceanu;RO
+LRCL;Cluj-Napoca;RO
+LRCS;Caransebeş;RO
+LRCT;Câmpia Turzii;RO
+LRCV;Craiova;RO
+LRCX;Brașov;RO
+LRFT;Borcea;RO
+LRIA;Iaşi;RO
+LRIC;Ianca;RO
+LRIS;;RO
+LRMA;Ghimbav;RO
+LRMC;Năvodari;RO
+LRMM;Baia Mare;RO
+LRMS;Târgu Mureș;RO
+LROD;Oradea;RO
+LROP;Otopeni;RO
+LRPH;Ploiești;RO
+LRPT;Pitești;RO
+LRPW;Strejnicu;RO
+LRSB;Sibiu;RO
+LRSM;Satu Mare;RO
+LRSP;Sânpetru;RO
+LRSU;;RO
+LRSV;Suceava;RO
+LRTC;Mihail Kogălniceanu;RO
+LRTM;Recea;RO
+LRTR;Timişoara;RO
+LRTZ;Tuzla;RO
+LRWG;Bucharest;RO
+LSGB;Bex;CH
+LSGC;La Chaux-de-Fonds;CH
+LSGE;Ecuvillens;CH
+LSGG;Geneva;CH
+LSGK;Saanen;CH
+LSGL;Lausanne;CH
+LSGN;Boudry;CH
+LSGP;La Côte;CH
+LSGR;Reichenbach im Kandertal;CH
+LSGS;Sion;CH
+LSGT;Epagny;CH
+LSGY;Yverdon-les-Bains;CH
+LSMA;Alpnach;CH
+LSMD;Zurich;CH
+LSME;Emmen;CH
+LSMP;Payerne;CH
+LSPA;Amlikon;CH
+LSPG;Sarnen;CH
+LSPH;Winterthur;CH
+LSPL;Bleienbach;CH
+LSPM;Quinto;CH
+LSPN;Triengen;CH
+LSPU;Münster;CH
+LSPV;Wangen;CH
+LSTA;Raron;CH
+LSTO;Môtiers;CH
+LSTS;Sankt Stephan;CH
+LSTZ;Zweisimmen;CH
+LSVD;Plateau nördlich Planurahütte;CH
+LSVP;Firnplateau;CH
+LSVV;Sattel;CH
+LSXB;Balzers;LI
+LSYI;Oberer Firnrand;CH
+LSYK;West of Mutthorn hut;CH
+LSYR;Grat südlich Gipfel;CH
+LSYX;Firnrand;CH
+LSZA;Agno;CH
+LSZB;Bern;CH
+LSZC;Buochs;CH
+LSZE;Bad Ragaz;CH
+LSZF;Lupfig;CH
+LSZG;Grenchen;CH
+LSZH;Zurich;CH
+LSZI;Schupfart;CH
+LSZK;Fehraltorf;CH
+LSZL;Locarno;CH
+LSZM;Mollis;CH
+LSZN;Hausen am Albis;CH
+LSZO;Neudorf;CH
+LSZQ;Bressaucourt;CH
+LSZR;St. Gallen;CH
+LSZS;Samedan;CH
+LSZT;Lommis;CH
+LSZU;Buttwil;CH
+LSZW;Thun;CH
+LSZX;Schänis;CH
+LTAC;Ankara;TR
+LTAD;Ankara;TR
+LTAF;Seyhan;TR
+LTAG;Sarıçam;TR
+LTAH;Afyonkarahisar;TR
+LTAI;Antalya;TR
+LTAJ;Gaziantep;TR
+LTAL;Kastamonu;TR
+LTAN;Konya;TR
+LTAP;Amasya;TR
+LTAR;Sivas;TR
+LTAS;Zonguldak;TR
+LTAT;Malatya;TR
+LTAU;Kayseri;TR
+LTAW;Tokat;TR
+LTAY;Denizli;TR
+LTAZ;Nevşehir;TR
+LTBA;Bakırköy, Istanbul;TR
+LTBD;Aydın;TR
+LTBE;Bursa;TR
+LTBF;Balıkesir;TR
+LTBG;Bandırma;TR
+LTBH;Çanakkale;TR
+LTBI;Eskişehir;TR
+LTBJ;Gaziemir;TR
+LTBO;Uşak;TR
+LTBQ;Kartepe;TR
+LTBR;Yenişehir;TR
+LTBS;Dalaman;TR
+LTBU;Çorlu;TR
+LTBV;Bodrum;TR
+LTBY;Eskişehir;TR
+LTBZ;Altıntaş;TR
+LTCA;Elazığ;TR
+LTCB;Ordu;TR
+LTCC;Diyarbakır;TR
+LTCD;Erzincan;TR
+LTCE;Erzurum;TR
+LTCF;Kars;TR
+LTCG;Trabzon;TR
+LTCI;Van;TR
+LTCJ;Batman;TR
+LTCK;Muş;TR
+LTCL;Siirt;TR
+LTCM;Sinop;TR
+LTCN;Kahramanmaraş;TR
+LTCO;Ağrı;TR
+LTCP;Adıyaman;TR
+LTCR;Mardin;TR
+LTCS;Şanlıurfa;TR
+LTCT;Iğdır;TR
+LTCU;Bingöl;TR
+LTCV;Şırnak;TR
+LTCW;Hakkari;TR
+LTDA;Antakya;TR
+LTDB;Tarsus;TR
+LTFB;Selçuk;TR
+LTFC;Isparta;TR
+LTFD;Edremit;TR
+LTFE;Bodrum;TR
+LTFG;Gazipaşa;TR
+LTFH;Samsun;TR
+LTFJ;Pendik, Istanbul;TR
+LTFK;Gökçeada;TR
+LTFM;Arnavutköy, Istanbul;TR
+LTFO;Rize;TR
+LTON;İstiklal;TR
+LUBL;Bălți;MD
+LUBM;Mărculeşti;MD
+LUCH;Cahul;MD
+LUKK;Chişinău;MD
+LWOH;Ohrid;MK
+LWSK;Ilinden;MK
+LWST;Štip;MK
+LXGB;Gibraltar;GI
+LYBE;Belgrade;RS
+LYBR;Berane;ME
+LYBS;Budva;ME
+LYBT;Zemun;RS
+LYKV;Kraljevo;RS
+LYNI;Niš;RS
+LYNK;Nikšić;ME
+LYPG;Podgorica;ME
+LYPO;Podgorica;ME
+LYTV;Tivat;ME
+LYUZ;Stapari;RS
+LZBD;Bidovce;SK
+LZDB;Dubnica nad Váhom;SK
+LZDN;Zvolen;SK
+LZDU;Dunajská Streda;SK
+LZDV;Dubová;SK
+LZHL;Holič;SK
+LZIB;Bratislava;SK
+LZJS;Dúbrava;SK
+LZKC;Kamenica nad Cirochou;SK
+LZKZ;Košice;SK
+LZLU;Lučenec;SK
+LZMA;Martin;SK
+LZMC;Kuchyňa;SK
+LZNI;Nitra;SK
+LZNZ;Nové Zámky;SK
+LZOC;Očová;SK
+LZPE;Prievidza;SK
+LZPP;Piešťany;SK
+LZPT;Partizánske;SK
+LZPW;Prešov;SK
+LZRU;Ružomberok;SK
+LZRY;Ražňany;SK
+LZSE;Hlboké;SK
+LZSK;Svidník;SK
+LZSL;Sliač;SK
+LZSV;Spišská Nová Ves;SK
+LZSY;Šurany;SK
+LZTN;Trenčín;SK
+LZTR;Boleráz;SK
+LZTT;Poprad;SK
+LZZI;Dolný Hričov;SK
+MBAC;Big Ambergris Cay;TC
+MBGT;Cockburn Town;TC
+MBMC;Middle Caicos;TC
+MBNC;North Caicos;TC
+MBPI;Pine Cay;TC
+MBPV;Providenciales;TC
+MBSC;South Caicos;TC
+MBSY;Salt Cay;TC
+MDAB;Arroyo Barril;DO
+MDBH;Barahona;DO
+MDCR;Cabo Rojo;DO
+MDCY;Samana;DO
+MDCZ;Costanza;DO
+MDJB;La Isabela;DO
+MDLR;La Romana;DO
+MDPC;Punta Cana;DO
+MDPP;Puerto Plata;DO
+MDSD;Santo Domingo;DO
+MDST;Santiago;DO
+MGCB;Coban;GT
+MGCR;Carmelita;GT
+MGCT;Coatepeque;GT
+MGGT;Guatemala City;GT
+MGHT;Huehuetenango;GT
+MGPB;Puerto Barrios;GT
+MGPG;Playa Grande;GT
+MGPP;Poptún;GT
+MGQC;Santa Cruz del Quiché;GT
+MGQZ;Quezaltenango;GT
+MGRB;Rubelsanto;GT
+MGRD;Rio Dulce;GT
+MGRT;Retalhuleu;GT
+MGSJ;Puerto San José;GT
+MHAH;Ahuas;HN
+MHCS;Coyoles;HN
+MHEA;Olanchito;HN
+MHGE;El Aguacate;HN
+MHIR;Iriona;HN
+MHJU;Jutigalpa;HN
+MHLC;La Ceiba;HN
+MHLE;La Esperanza;HN
+MHLM;San Pedro Sula;HN
+MHNJ;Guanaja;HN
+MHPC;Palacios;HN
+MHPL;Puerto Lempira;HN
+MHPR;Palmerola;HN
+MHRO;Coxen Hole;HN
+MHTE;Tela;HN
+MHTG;Tegucigalpa;HN
+MHTJ;Trujillo;HN
+MHUL;Sulaco;HN
+MHUT;Utila Island;HN
+MHYR;Yoro;HN
+MKBS;Boscobel;JM
+MKJP;Kingston;JM
+MKJS;Montego Bay;JM
+MKKJ;Ken Jones;JM
+MKNG;Negril;JM
+MKTP;Tinson Pen;JM
+MMAA;Acapulco;MX
+MMAN;Monterrey;MX
+MMAS;Aguascalientes;MX
+MMBT;Huatulco;MX
+MMCA;Cananea;MX
+MMCB;Temixco;MX
+MMCC;Ciudad Acuña;MX
+MMCE;Ciudad del Carmen;MX
+MMCG;Nuevo Casas Grandes;MX
+MMCL;Culiacán;MX
+MMCM;Chetumal;MX
+MMCN;Ciudad Obregón;MX
+MMCO;Comitán;MX
+MMCP;Campeche;MX
+MMCS;Ciudad Juárez;MX
+MMCT;Tinúm;MX
+MMCU;Chihuahua;MX
+MMCV;Ciudad Victoria;MX
+MMCY;Celaya;MX
+MMCZ;Cozumel;MX
+MMDM;Ciudad Mante;MX
+MMDO;Durango;MX
+MMEP;Tepic;MX
+MMES;Ensenada;MX
+MMGL;Guadalajara;MX
+MMGM;Guaymas;MX
+MMGR;San Quintín;MX
+MMHC;Tehuacán;MX
+MMHO;Hermosillo;MX
+MMIA;Colima;MX
+MMIM;Isla Mujeres;MX
+MMIO;Saltillo;MX
+MMIT;Ixtepec;MX
+MMJA;Emiliano Zapata;MX
+MMJC;Atizapán de Zaragoza;MX
+MMLC;Lázaro Cárdenas;MX
+MMLM;Los Mochis;MX
+MMLO;Silao;MX
+MMLP;La Paz;MX
+MMLT;Loreto;MX
+MMMA;Matamoros;MX
+MMMD;Mérida;MX
+MMMG;Mulege;MX
+MMML;Mexicali;MX
+MMMM;Morelia;MX
+MMMT;Cosoleacaque;MX
+MMMV;Monclova;MX
+MMMX;Ciudad de México;MX
+MMMY;Monterrey;MX
+MMMZ;Mazatlàn;MX
+MMNG;Nogales;MX
+MMNL;Nuevo Laredo;MX
+MMOX;Oaxaca;MX
+MMPA;Poza Rica;MX
+MMPB;Puebla;MX
+MMPE;Puerto Peñasco;MX
+MMPG;Piedras Negras;MX
+MMPL;La Ribera;MX
+MMPN;Uruapan;MX
+MMPQ;Palenque;MX
+MMPR;Puerto Vallarta;MX
+MMPS;Puerto Escondido;MX
+MMQT;Querétaro;MX
+MMRX;Reynosa;MX
+MMSD;San José del Cabo;MX
+MMSF;Mexicali;MX
+MMSM;Mexico City;MX
+MMSP;San Luis Potosí;MX
+MMSZ;Salina Cruz;MX
+MMTC;Torreón;MX
+MMTG;Tuxtla Gutiérrez;MX
+MMTJ;Tijuana;MX
+MMTL;Tulum;MX
+MMTM;Tampico;MX
+MMTN;Tamuín;MX
+MMTO;Toluca;MX
+MMTP;Tapachula;MX
+MMTU;Tulum;MX
+MMUN;Cancún;MX
+MMVA;Villahermosa;MX
+MMVR;Veracruz;MX
+MMZC;Zacatecas;MX
+MMZH;Ixtapa;MX
+MMZM;Zamora;MX
+MMZO;Manzanillo;MX
+MNBL;Bluefields;NI
+MNBZ;Bonanza;NI
+MNCE;Tola;NI
+MNCI;Corn Island;NI
+MNLL;Malacataya;NI
+MNMG;Managua;NI
+MNPC;Puerto Cabezas;NI
+MNRT;La Rosita;NI
+MNSC;San Carlos;NI
+MNSI;Siuna;NI
+MNWP;Waspam;NI
+MPBO;Isla Colón;PA
+MPCE;Chitré;PA
+MPCH;Changuinola;PA
+MPDA;David;PA
+MPEJ;Colón;PA
+MPJE;Jaqué;PA
+MPMG;Albrook;PA
+MPOA;Puerto Obaldía;PA
+MPSA;Santiago;PA
+MPSM;Río Hato;PA
+MPTO;Tocumen;PA
+MPVR;El Porvenir;PA
+MPWN;San Blas;PA
+MRAN;La Fortuna;CR
+MRBA;Punta Arenas;CR
+MRBC;Pococi;CR
+MRBT;Tortuguero;CR
+MRCC;Corredores;CR
+MRCH;Puntarenas;CR
+MRCR;Carrillo;CR
+MRDK;Puntarenas;CR
+MRGF;Golfito;CR
+MRGP;Pococi;CR
+MRIA;Nandayure;CR
+MRLB;Liberia;CR
+MRLC;Los Chiles;CR
+MRLM;Puerto Limon;CR
+MRMJ;Cañas;CR
+MRNC;Nicoya/Guanacate;CR
+MRNS;Nicoya;CR
+MROC;San José (Alajuela);CR
+MRPJ;Puerto Jimenez;CR
+MRPM;Palmar Sur;CR
+MRPV;San Jose;CR
+MRQP;Quepos;CR
+MRRF;Rio Frio / Progreso;CR
+MRSI;Pérez Zeledón;CR
+MRSV;Coto Brus;CR
+MRTM;Tamarindo;CR
+MRTR;Nicoya;CR
+MRUP;Upala;CR
+MSLP;San Salvador (San Luis Talpa);SV
+MSSS;San Salvador;SV
+MTCA;Les Cayes;HT
+MTCH;Cap Haitien;HT
+MTJA;Jacmel;HT
+MTJE;Carrefour Sanon;HT
+MTPP;Port-au-Prince;HT
+MTPX;Port-de-Paix;HT
+MUBA;Baracoa;CU
+MUBR;Cayo Santa Maria;CU
+MUBY;Bayamo;CU
+MUCA;Ciro Redondo;CU
+MUCC;Cayo Coco;CU
+MUCF;Cienfuegos;CU
+MUCL;Cayo Largo del Sur;CU
+MUCM;Camaguey;CU
+MUCU;Santiago;CU
+MUGM;Guantanamo Bay Naval Station;CU
+MUGT;Guantánamo;CU
+MUHA;Havana;CU
+MUHG;Holguin;CU
+MUKW;Santa Marta;CU
+MULM;Pinar del Rio;CU
+MUMO;Moa;CU
+MUMZ;Manzanillo;CU
+MUNG;Nueva Gerona;CU
+MUPB;Havana;CU
+MUSC;Santa Clara;CU
+MUSJ;Sandino;CU
+MUSN;Isla de la Juventud;CU
+MUSS;Sancti Spiritus;CU
+MUTD;Trinidad;CU
+MUVR;Matanzas;CU
+MUVT;Las Tunas;CU
+MWCB;West End;KY
+MWCL;Blossom Village;KY
+MWCR;George Town;KY
+MYAB;Mangrove Cay;BS
+MYAF;Andros Town;BS
+MYAK;Andros;BS
+MYAM;Marsh Harbour;BS
+MYAN;Andros Island;BS
+MYAO;Moore's Island;BS
+MYAP;Spring Point;BS
+MYAS;Sandy Point;BS
+MYAT;Treasure Cay;BS
+MYAW;Walkers Cay;BS
+MYAX;;BS
+MYBC;Chub Cay;BS
+MYBG;Bullocks Harbour;BS
+MYBO;Ocean Cay;BS
+MYBS;South Bimini;BS
+MYBW;Big Whale Cay;BS
+MYBX;Little Whale Cay;BS
+MYCA;Arthur's Town;BS
+MYCB;Cat Island;BS
+MYCC;North Cat Cay;BS
+MYCI;Colonel Hill;BS
+MYCP;Pitts Town;BS
+MYCS;Cay Sal;BS
+MYCZ;Andros Town;BS
+MYEB;Black Point;BS
+MYEF;Moss Town;BS
+MYEH;North Eleuthera;BS
+MYEM;Governor's Harbour;BS
+MYEN;Normans Cay;BS
+MYER;Rock Sound;BS
+MYES;Staniel Cay;BS
+MYGD;Deep Water Cay;BS
+MYGF;Freeport;BS
+MYGW;West End;BS
+MYIG;Matthew Town;BS
+MYLD;Deadman's Cay;BS
+MYLM;Galliot Cay;BS
+MYLS;Stella Maris;BS
+MYMM;Abraham Bay Settlement;BS
+MYNN;Nassau;BS
+MYRD;Duncan Town;BS
+MYRP;Port Nelson;BS
+MYSM;San Salvador;BS
+MYTC;Hog Cay;BS
+MZBZ;Belize City;BZ
+MZPL;Placencia;BZ
+NCAI;Aitutaki;CK
+NCAT;Atiu Island;CK
+NCMG;Mangaia Island;CK
+NCMH;Manihiki Island;CK
+NCMK;Mauke Island;CK
+NCMN;Manuae;CK
+NCMR;Mitiaro Island;CK
+NCPK;Pukapuka Atoll;CK
+NCPY;Penrhyn Island;CK
+NCRG;Avarua;CK
+NFCI;Cicia;FJ
+NFCS;Castaway Island;FJ
+NFFN;Nadi;FJ
+NFFO;Malolo Lailai Island;FJ
+NFFR;Rabi Island;FJ
+NFKD;Vunisea;FJ
+NFMA;Mana Island;FJ
+NFMO;Moala;FJ
+NFNA;Nausori;FJ
+NFNB;Bureta;FJ
+NFND;Nanuku Auberge Resort;FJ
+NFNG;Ngau;FJ
+NFNH;Laucala Island;FJ
+NFNK;Lakeba Island;FJ
+NFNL;Labasa;FJ
+NFNM;Matei;FJ
+NFNO;Koro Island;FJ
+NFNR;Rotuma;FJ
+NFNS;Savusavu;FJ
+NFNW;Wakaya Island;FJ
+NFOL;Ono-i-Lau;FJ
+NFSW;Yasawa Island;FJ
+NFTE;Eua Island;TO
+NFTF;Nuku'alofa;TO
+NFTL;Lifuka;TO
+NFTO;Angaha, Niuafo'ou Island;TO
+NFTP;Niuatoputapu;TO
+NFTV;Vava'u Island;TO
+NFVB;Vanua Balavu;FJ
+NFVL;Vatulele;FJ
+NGAB;Abaiang;KI
+NGBR;Beru;KI
+NGFU;Funafuti;TV
+NGKT;Kuria;KI
+NGMA;Maiana;KI
+NGMK;Marakei;KI
+NGMN;Makin Island;KI
+NGNU;Nikunau;KI
+NGON;Onotoa;KI
+NGTA;Tarawa;KI
+NGTB;Abemama;KI
+NGTE;;KI
+NGTM;Tamana Island;KI
+NGTO;Nonouti;KI
+NGTR;Arorae Island;KI
+NGTS;Tabiteuea South;KI
+NGTU;Butaritari;KI
+NGUK;Buariki;KI
+NIUE;Alofi;NU
+NLWF;Futuna Island;WF
+NLWW;Wallis Island;WF
+NSAS;Ofu;AS
+NSAU;Asau;WS
+NSFA;Apia;WS
+NSFI;Apia;WS
+NSFQ;Fitiuta Village;AS
+NSMA;Maota;WS
+NSTU;Pago Pago;AS
+NTAA;Papeete;PF
+NTAM;Rimatara Island;PF
+NTAR;;PF
+NTAT;;PF
+NTAV;;PF
+NTGA;Anaa;PF
+NTGB;Fangatau;PF
+NTGC;Tuherahera;PF
+NTGD;Apataki;PF
+NTGE;Reao;PF
+NTGF;;PF
+NTGG;Nengonengo Atoll;PF
+NTGH;Hikueru;PF
+NTGI;;PF
+NTGJ;;PF
+NTGK;Raitahiti;PF
+NTGM;Makemo;PF
+NTGN;Napuka Island;PF
+NTGO;Tatakoto;PF
+NTGP;;PF
+NTGQ;Pukaruha;PF
+NTGR;Aratika Atoll;PF
+NTGT;;PF
+NTGU;;PF
+NTGV;;PF
+NTGW;Nukutavake;PF
+NTGY;Tureia;PF
+NTHE;Ahe Atoll;PF
+NTKA;Kauehi;PF
+NTKF;Faaite;PF
+NTKH;Fakahina;PF
+NTKK;;PF
+NTKM;Takume;PF
+NTKN;Naiu Atoll;PF
+NTKO;Raroia;PF
+NTKR;;PF
+NTKT;Katiu;PF
+NTMD;Nuku Hiva;PF
+NTMN;Hiva Oa Island;PF
+NTMP;Ua Pou;PF
+NTMU;Ua Huka;PF
+NTTB;Motu Mute;PF
+NTTE;Tetiaroa;PF
+NTTG;;PF
+NTTH;Fare;PF
+NTTM;Moorea-Maiao;PF
+NTTO;Otepa;PF
+NTTP;;PF
+NTTR;Uturoa;PF
+NTTU;Tupai Atoll;PF
+NTTX;Moruroa Atoll;PF
+NTUV;Vahitahi;PF
+NVSA;Ablow;VU
+NVSC;Sola;VU
+NVSD;Loh/Linua;VU
+NVSE;Emae Island;VU
+NVSF;Craig Cove;VU
+NVSG;Longana;VU
+NVSH;Pentecost Island;VU
+NVSI;Paama Island;VU
+NVSL;Lamap;VU
+NVSM;Lamen Bay;VU
+NVSN;Maewo Island;VU
+NVSO;Lonorore;VU
+NVSP;Norsup;VU
+NVSQ;Gaua Island;VU
+NVSR;Redcliffe;VU
+NVSS;Luganville;VU
+NVST;Tongoa Island;VU
+NVSU;Ambrym Island;VU
+NVSV;Epi Island;VU
+NVSW;Walaha;VU
+NVSX;Malekula Island;VU
+NVSZ;Olpoi;VU
+NVVA;Anatom Island;VU
+NVVB;Aniwa;VU
+NVVD;Dillon's Bay;VU
+NVVF;Futuna Island;VU
+NVVI;Ipota;VU
+NVVV;Port Vila;VU
+NVVW;Tanna Island;VU
+NWWA;Tiga;NC
+NWWC;Waala;NC
+NWWD;Koné;NC
+NWWE;Île des Pins;NC
+NWWK;Koumac;NC
+NWWL;Lifou;NC
+NWWM;Nouméa;NC
+NWWP;Malabou;NC
+NWWQ;Népoui;NC
+NWWR;Maré;NC
+NWWU;Touho;NC
+NWWV;Ouvéa;NC
+NWWW;Nouméa (La Tontouta);NC
+NZAA;Auckland;NZ
+NZAH;Taharoa;NZ
+NZAL;Wellington;NZ
+NZAN;Anama;NZ
+NZAP;Taupo;NZ
+NZAR;Manurewa;NZ
+NZAS;Ashburton;NZ
+NZAW;Aukland;NZ
+NZBA;Balclutha;NZ
+NZBC;Aukland;NZ
+NZBW;Christchurch;NZ
+NZCB;Centre Bush;NZ
+NZCG;Taupo;NZ
+NZCH;Christchurch;NZ
+NZCI;Te One;NZ
+NZCS;;NZ
+NZCW;Cromwell;NZ
+NZCX;Coromandel;NZ
+NZDA;Dargaville;NZ
+NZDC;Dunedin;NZ
+NZDH;Dunedin;NZ
+NZDN;Dunedin;NZ
+NZDV;;NZ
+NZES;;NZ
+NZEV;Eves Valley;NZ
+NZFE;Fenside;NZ
+NZFF;;NZ
+NZGB;Claris;NZ
+NZGM;;NZ
+NZGS;Gisborne;NZ
+NZGT;Glentanner Station;NZ
+NZHK;;NZ
+NZHN;Hamilton;NZ
+NZKE;Waiheke Island;NZ
+NZKI;;NZ
+NZKK;Kerikeri;NZ
+NZKO;Kaikohe;NZ
+NZKT;Awanui;NZ
+NZLX;Alexandra;NZ
+NZMA;;NZ
+NZMC;;NZ
+NZMF;;NZ
+NZMK;;NZ
+NZMO;;NZ
+NZMS;Masterton;NZ
+NZNE;Dairy Flat;NZ
+NZNP;New Plymouth;NZ
+NZNR;Napier;NZ
+NZNS;Nelson;NZ
+NZNV;Invercargill;NZ
+NZOH;;NZ
+NZOU;;NZ
+NZPM;Palmerston North;NZ
+NZPN;Koromiko;NZ
+NZPP;;NZ
+NZQN;Queenstown;NZ
+NZRA;Raglan;NZ
+NZRC;Oban;NZ
+NZRO;Rotorua;NZ
+NZRT;Rangiora;NZ
+NZSF;Springfield;NZ
+NZTG;Tauranga;NZ
+NZTH;;NZ
+NZTK;;NZ
+NZTO;Tokoroa;NZ
+NZTU;;NZ
+NZUK;Twitzel;NZ
+NZWB;Blenheim;NZ
+NZWF;Wanaka;NZ
+NZWK;;NZ
+NZWN;Wellington;NZ
+NZWO;Wairoa;NZ
+NZWP;;NZ
+NZWR;Whangarei;NZ
+NZWS;Westport;NZ
+NZWT;Whitianga;NZ
+NZWU;Wanganui;NZ
+NZWV;;NZ
+NZYP;;NZ
+OAAK;Andkhoy;AF
+OABN;Bamyan;AF
+OABT;Lashkar Gah;AF
+OACC;Chaghcharan;AF
+OADS;Sardeh Band;AF
+OADY;Reg;AF
+OADZ;Darwaz;AF
+OAEM;Ishkashim;AF
+OAFR;Farah;AF
+OAFZ;Fayzabad;AF
+OAGN;Ghazni;AF
+OAGZ;Gardez;AF
+OAHN;Khwahan;AF
+OAHR;Guzara;AF
+OAIX;Bagram;AF
+OAJL;Jalalabad;AF
+OAKB;Kabul;AF
+OAKN;Khvoshab;AF
+OAKS;Khost;AF
+OALG;;AF
+OAMK;Muqur;AF
+OAMN;Maymana;AF
+OAMS;Mazar-i-Sharif;AF
+OANL;Nili;AF
+OANZ;;AF
+OAOG;Urgun;AF
+OAPJ;Panjab;AF
+OAQA;Qalat;AF
+OAQN;Qala-i-Naw;AF
+OARG;Orūzgān;AF
+OARZ;Skazar;AF
+OASA;Sharana;AF
+OASD;Shindand;AF
+OASG;Sheberghan;AF
+OASH;Baraki Barak;AF
+OASL;Khost;AF
+OASN;Shiveh;AF
+OATD;Kara Tapa;AF
+OATN;Tarinkot;AF
+OATQ;Taleqan;AF
+OATW;Taywarah;AF
+OAUZ;Kunduz;AF
+OAYQ;Yangi Qaleh;AF
+OAYW;Yawan;AF
+OAZI;Lashkar Gah;AF
+OAZJ;Zaranj;AF
+OBBI;Manama;BH
+OBBS;Sitrah;BH
+OBKH;Zallaq;BH
+OEAB;Abha;SA
+OEAH;Hofuf;SA
+OEAO;Al Ula;SA
+OEBA;Al-Baha;SA
+OEBH;Bisha;SA
+OEDF;Ad Dammam;SA
+OEDR;Dhahran;SA
+OEGN;Jizan;SA
+OEGS;Buraidah;SA
+OEGT;Gurayat;SA
+OEHL;Ha'il;SA
+OEJN;Jeddah;SA
+OEKK;King Khaled Military City;SA
+OEKM;Khamis Mushait;SA
+OEMA;Medina;SA
+OENG;Najran;SA
+OENN;Sharma;SA
+OEPA;Qaisumah;SA
+OEPS;Al Kharj;SA
+OERF;Rafha;SA
+OERK;Riyadh;SA
+OERR;Arar;SA
+OERY;Riyadh;SA
+OESH;Sharurah;SA
+OESK;Al-Jawf;SA
+OESL;As-Sulayyil;SA
+OETB;Tabuk;SA
+OETF;Ta’if;SA
+OETR;Turaif;SA
+OEWD;Wadi Al Dawasir;SA
+OEWJ;Al Wajh;SA
+OEYN;Yanbu;SA
+OEZL;Zilfi;SA
+OIAA;Abadan;IR
+OIAD;Dezful;IR
+OIAG;Aghajari;IR
+OIAH;Gachsaran;IR
+OIAJ;Omidiyeh;IR
+OIAM;Mahshahr;IR
+OIAW;Ahvaz;IR
+OIBA;Abu Musa;IR
+OIBB;Bushehr;IR
+OIBH;;IR
+OIBJ;Jam;IR
+OIBK;Kish Island;IR
+OIBL;Bandar Lengeh;IR
+OIBP;Khiyaroo;IR
+OIBQ;Khark;IR
+OIBS;Siri;IR
+OIBV;Lavan Airport;IR
+OICC;Kermanshah;IR
+OICI;Ilam;IR
+OICK;;IR
+OICS;;IR
+OIFE;Hesa;IR
+OIFK;Kashan;IR
+OIFM;Isfahan;IR
+OIFS;Shahrekord;IR
+OIGG;Rasht;IR
+OIHH;Hamadan;IR
+OIHR;Araak;IR
+OIHS;Amirabad;IR
+OIIE;Tehran;IR
+OIII;Tehran;IR
+OIIK;Qazvin;IR
+OIIP;Karaj;IR
+OIIS;Semnan;IR
+OIKB;Bandar Abbas;IR
+OIKJ;Jiroft;IR
+OIKK;Kerman;IR
+OIKM;Bam;IR
+OIKP;Bandar Abbas;IR
+OIKQ;Dayrestan;IR
+OIKR;Rafsanjan;IR
+OIKY;Sirjan;IR
+OIMB;Birjand;IR
+OIMC;Sarakhs;IR
+OIMJ;Shahrud;IR
+OIMM;Mashhad;IR
+OIMN;Bojnord;IR
+OIMS;Sabzevar;IR
+OIMT;Tabas;IR
+OINE;Kalaleh;IR
+OING;Gorgan;IR
+OINJ;Amol;IR
+OINN;Nowshahr;IR
+OINR;Ramsar;IR
+OINZ;Sari;IR
+OISF;Fasa;IR
+OISJ;Jahrom;IR
+OISL;Lar;IR
+OISR;Lamerd;IR
+OISS;Shiraz;IR
+OISY;Yasuj;IR
+OITH;Khaneh;IR
+OITK;Khoy;IR
+OITL;Ardabil;IR
+OITM;Maragheh;IR
+OITP;Parsabad;IR
+OITR;Urmia;IR
+OITT;Tabriz;IR
+OITU;Showt;IR
+OITZ;Zanjan;IR
+OIYY;Yazd;IR
+OIZB;Zabol;IR
+OIZC;Konarak;IR
+OIZH;Zahedan;IR
+OIZI;Iranshahr;IR
+OIZJ;Bandar-e-Jask;IR
+OJAI;Amman;JO
+OJAM;Amman;JO
+OJAQ;Aqaba;JO
+OJMF;Mafraq;JO
+OKAJ;Ahmed Al Jaber AB;KW
+OKKK;Kuwait City;KW
+OLBA;Beirut;LB
+OLKA;Tripoli;LB
+OMAA;Abu Dhabi;AE
+OMAB;;AE
+OMAD;Abu Dhabi;AE
+OMAF;Al Futaisi;AE
+OMAJ;Jebel Dhanna;AE
+OMAL;Al Ain;AE
+OMAM;;AE
+OMAQ;Qarnayn Island;AE
+OMAR;Arzanah Island;AE
+OMAS;Das Island;AE
+OMAW;Abu Dhabi;AE
+OMAZ;Zirku Island;AE
+OMBY;Sir Bani Yas;AE
+OMDB;Dubai;AE
+OMDL;Delma Island;AE
+OMDM;Dubai;AE
+OMDW;Jebel Ali;AE
+OMFJ;Fujairah;AE
+OMRJ;;AE
+OMRK;Ras Al Khaimah;AE
+OMRS;Al Duhaisah;AE
+OMSJ;Sharjah;AE
+OOBR;Buraimi;OM
+OOFD;Fahud;OM
+OOGB;Ghaba;OM
+OOKB;Khasab;OM
+OOLK;Lekhwair;OM
+OOMA;Masirah;OM
+OOMS;Muscat;OM
+OOMX;Marmul;OM
+OOSA;Salalah;OM
+OOSH;Sohar;OM
+OOTH;Thumrait;OM
+OPBN;Bannu;PK
+OPBW;Bahawalpur;PK
+OPCH;Chitral;PK
+OPCL;Chilas;PK
+OPDB;Dalbandin;PK
+OPDG;Dera Ghazi Khan;PK
+OPDI;Dera Ismael Khan;PK
+OPFA;Faisalabad;PK
+OPGD;Gurandani;PK
+OPGT;Gilgit;PK
+OPGW;Gwadar;PK
+OPIS;Attock;PK
+OPJA;Jacobabad;PK
+OPKC;Karachi;PK
+OPKD;Hyderabad;PK
+OPKH;Khuzdar;PK
+OPKT;Kohat;PK
+OPLA;Lahore;PK
+OPLL;Loralai;PK
+OPMA;Mangla;PK
+OPMF;Muzaffarabad;PK
+OPMI;Mianwali;PK
+OPMJ;Moenjodaro;PK
+OPMP;Sindhri;PK
+OPMT;Multan;PK
+OPNH;Nawabashah;PK
+OPOR;Ormara Raik;PK
+OPPC;Parachinar;PK
+OPPG;Panjgur;PK
+OPPI;Pasni;PK
+OPPS;Peshawar;PK
+OPQT;Quetta;PK
+OPRK;Rahim Yar Khan;PK
+OPRT;Rawalakot;PK
+OPSB;Sibi;PK
+OPSD;Skardu;PK
+OPSK;Mirpur Khas;PK
+OPSN;Sehwan Sharif;PK
+OPSR;Sargodha;PK
+OPSS;Saidu Sharif;PK
+OPST;Sialkot;PK
+OPSU;Sui;PK
+OPSW;Sawan Gas Field;PK
+OPTA;Tarbela;PK
+OPTH;Badin;PK
+OPTU;Turbat;PK
+OPWN;Waana;PK
+OPZB;Fort Sandeman;PK
+ORAA;Hīt;IQ
+ORAT;Al Habbaniyah;IQ
+ORBB;Bamarni;IQ
+ORBI;Baghdad;IQ
+ORBM;Mosul;IQ
+ORER;Arbil;IQ
+ORKK;Kirkuk;IQ
+ORMM;Basra;IQ
+ORNI;Najaf;IQ
+ORSU;Sulaymaniyah;IQ
+OSAP;Aleppo;SY
+OSDI;Damascus;SY
+OSDZ;Deir ez-Zor;SY
+OSKL;Qamishly;SY
+OSLK;Latakia;SY
+OSPR;Tadmur;SY
+OTBD;Doha;QA
+OTBH;Ar Rayyan;QA
+OTHH;Doha;QA
+OYAA;Aden;YE
+OYAT;Ataq;YE
+OYBN;Beihan;YE
+OYGD;Al Ghaydah;YE
+OYKM;Kamaran;YE
+OYMB;Marib;YE
+OYMS;Mukayras;YE
+OYQN;Qishn;YE
+OYRN;Riyan;YE
+OYSH;Sa'dah;YE
+OYSN;Sanaa;YE
+OYSQ;Mori;YE
+OYSY;Seiyun;YE
+OYTZ;Ta'izz;YE
+PAAK;Atka;US
+PAAL;Cold Bay;US
+PAAP;Port Alexander;US
+PAAQ;Palmer;US
+PAAT;Attu;US
+PABA;Barter Island;US
+PABE;Bethel;US
+PABG;Beluga;US
+PABI;Delta Junction Ft Greely;US
+PABL;Buckland;US
+PABM;Big Mountain;US
+PABR;Utqiaġvik;US
+PABT;Bettles;US
+PACD;Cold Bay;US
+PACE;Central;US
+PACI;Chalkyitsik;US
+PACK;Chefornak;US
+PACM;Scammon Bay;US
+PACR;Circle;US
+PACS;Cape Sarichef;US
+PACV;Cordova;US
+PACX;Coldfoot;US
+PACY;Yakataga;US
+PACZ;Cape Romanzof;US
+PADE;Deering;US
+PADG;Red Dog;US
+PADK;Adak;US
+PADL;Dillingham;US
+PADM;Marshall;US
+PADQ;Kodiak;US
+PADU;Unalaska;US
+PADY;Kongiganak;US
+PAED;Anchorage;US
+PAEE;Eek;US
+PAEG;Eagle;US
+PAEH;Cape Newenham;US
+PAEI;Fairbanks;US
+PAEL;Elfin Cove;US
+PAEM;Emmonak;US
+PAEN;Kenai;US
+PAEW;Mertarvik;US
+PAFA;Fairbanks;US
+PAFB;Fairbanks;US
+PAFE;Kake;US
+PAFM;Ambler;US
+PAFR;Fort Richardson;US
+PAFS;Nikolai;US
+PAGA;Galena;US
+PAGB;Galbraith Lake;US
+PAGG;Kwigillingok;US
+PAGH;Shungnak;US
+PAGK;Gulkana;US
+PAGL;Golovin;US
+PAGM;Gambell;US
+PAGN;Angoon;US
+PAGQ;Big Lake;US
+PAGS;Gustavus;US
+PAGT;Nightmute;US
+PAGY;Skagway;US
+PAGZ;Granite Mountain;US
+PAHC;Holy Cross;US
+PAHL;Huslia;US
+PAHN;Haines;US
+PAHO;Homer;US
+PAHP;Hooper Bay;US
+PAHU;Hughes;US
+PAHX;Shageluk;US
+PAHY;Hydaburg;US
+PAIG;Igiugig;US
+PAII;Egegik;US
+PAIK;Kiana;US
+PAIL;Iliamna;US
+PAIM;Utopia Creek;US
+PAIN;Denali Park;US
+PAIW;Wales;US
+PAJN;Juneau;US
+PAJZ;Koliganek;US
+PAKD;Kodiak;US
+PAKF;False Pass;US
+PAKH;Akhiok;US
+PAKI;Kipnuk;US
+PAKK;Koyuk;US
+PAKL;Kulik Lake;US
+PAKN;King Salmon;US
+PAKO;Nikolski;US
+PAKP;Anaktuvuk Pass;US
+PAKT;Ketchikan;US
+PAKU;Kuparuk;US
+PAKV;Kaltag;US
+PAKW;Klawock;US
+PAKY;Karluk;US
+PALB;Larsen Bay;US
+PALG;Kalskag;US
+PALJ;Port Alsworth;US
+PALN;Point Lonely;US
+PALR;Chandalar Lake;US
+PALU;Cape Lisburne;US
+PAMB;Manokotak;US
+PAMC;McGrath;US
+PAMD;Middleton Island;US
+PAMH;Minchumina;US
+PAMK;St Michael;US
+PAML;Manley Hot Springs;US
+PAMM;Metlakatla;US
+PAMO;Mountain Village;US
+PAMR;Anchorage;US
+PAMX;Mccarthy;US
+PAMY;Mekoryuk;US
+PANA;Napakiak;US
+PANC;Anchorage;US
+PANI;Aniak;US
+PANN;Nenana;US
+PANO;Nondalton;US
+PANR;Funter Bay;US
+PANT;Metlakatla;US
+PANU;Nulato;US
+PANV;Anvik;US
+PANW;New Stuyahok;US
+PAOB;Kobuk;US
+PAOC;Portage Creek;US
+PAOH;Hoonah;US
+PAOM;Nome;US
+PAOO;Toksook Bay;US
+PAOR;Northway;US
+PAOT;Kotzebue;US
+PAOU;Nelson Lagoon;US
+PAPB;St George;US
+PAPC;Port Clarence;US
+PAPE;Perryville;US
+PAPG;Petersburg;US
+PAPH;Port Heiden;US
+PAPK;Napaskiak;US
+PAPM;Platinum;US
+PAPN;Pilot Point;US
+PAPO;Point Hope;US
+PAPR;Prospect Creek;US
+PAQH;Quinhagak;US
+PAQT;Nuiqsut;US
+PARC;Arctic Village;US
+PARS;Russian Mission;US
+PARY;Ruby;US
+PASA;Savoonga;US
+PASC;Deadhorse;US
+PASD;Sand Point;US
+PASH;Shishmaref;US
+PASI;Sitka;US
+PASK;Selawik;US
+PASL;Sleetmute;US
+PASM;St Mary's;US
+PASN;St Paul Island;US
+PASO;Seldovia;US
+PASP;Sheep Mountain;US
+PAST;Cantwell;US
+PASV;Sparrevohn;US
+PASW;Skwentna;US
+PASX;Soldotna;US
+PASY;Shemya;US
+PATA;Tanana;US
+PATC;Tin City;US
+PATE;Teller;US
+PATG;Togiak Village;US
+PATK;Talkeetna;US
+PATL;Takotna;US
+PATQ;Atqasuk;US
+PAUM;Umiat;US
+PAUN;Unalakleet;US
+PAUO;Willow;US
+PAVA;Chevak;US
+PAVC;King Cove;US
+PAVD;Valdez;US
+PAVE;Venetie;US
+PAVL;Kivalina;US
+PAWB;Beaver;US
+PAWD;Seward;US
+PAWG;Wrangell;US
+PAWI;Wainwright;US
+PAWM;White Mountain;US
+PAWN;Noatak;US
+PAWS;Wasilla;US
+PAYA;Yakutat;US
+PCIS;Abariringa;KI
+PFAK;Akiak;US
+PFAL;Allakaket;US
+PFCB;Chenega;US
+PFCL;Clarks Point;US
+PFEL;Elim;US
+PFKA;Kasigluk;US
+PFKK;Kokhanok;US
+PFKO;Kotlik;US
+PFKT;Brevig Mission;US
+PFKU;Koyukuk;US
+PFKW;Kwethluk;US
+PFNO;Noorvik;US
+PFSH;Shaktoolik;US
+PFTO;Tok;US
+PFWS;South Naknek;US
+PFYU;Fort Yukon;US
+PGRO;Rota Island;MP
+PGSN;I Fadang, Saipan;MP
+PGUA;Yigo;GU
+PGUM;Hagåtña;GU
+PGWT;Tinian Island;MP
+PHBK;Kekaha;US
+PHDH;Mokuleia;US
+PHHI;Wahiawa;US
+PHHN;Hana;US
+PHIK;Honolulu;US
+PHJH;Lahaina;US
+PHJR;Kapolei;US
+PHKO;Kailua-Kona;US
+PHLI;Lihue;US
+PHLU;Kalaupapa;US
+PHMK;Kaunakakai;US
+PHMU;Waimea (Kamuela);US
+PHNG;Kaneohe;US
+PHNL;Honolulu, Oahu;US
+PHNY;Lanai City;US
+PHOG;Kahului;US
+PHPA;Hanapepe;US
+PHSF;Waimea (Kamuela);US
+PHTO;Hilo;US
+PHUP;Hawi;US
+PKMA;Eniwetok Atoll;MH
+PKMJ;Majuro Atoll;MH
+PKRO;Roi-Namur;MH
+PKWA;Kwajalein;MH
+PLCH;Kiritimati;KI
+PLFA;Tabuaeran Island;KI
+PLPA;Palmyra Island Atoll;UM
+PLWN;Teraina;KI
+PMDY;Sand Island;UM
+PPIZ;Point Lay;US
+PTKK;Weno Island;FM
+PTPN;Pohnpei Island;FM
+PTRO;Babelthuap Island;PW
+PTSA;Okat;FM
+PTYA;Yap Island;FM
+PWAK;Wake Island;UM
+RCAY;Kaohsiung (Gangshan);TW
+RCBS;Shang-I;TW
+RCCM;Qimei;TW
+RCDC;Pingtung;TW
+RCFG;Matsu (Nangan);TW
+RCFN;Taitung City;TW
+RCGI;Lüdao;TW
+RCKH;Kaohsiung (Xiaogang);TW
+RCKU;Shuishang;TW
+RCKW;Hengchun;TW
+RCLM;Kaohsiung (Cijin - Pratas Island);TW
+RCLY;Orchid Island;TW
+RCMQ;Taichung (Qingshui);TW
+RCMT;Matsu (Beigan);TW
+RCNN;Tainan (Rende);TW
+RCPO;Hsinchu City;TW
+RCQC;Huxi;TW
+RCSS;Taipei (Songshan);TW
+RCTP;Taoyuan;TW
+RCWA;Wang'an;TW
+RCYU;Hualien City;TW
+RJAA;Narita;JP
+RJAF;Matsumoto;JP
+RJAH;Omitama;JP
+RJAM;Ogasawara;JP
+RJAW;Ogasawara;JP
+RJBB;Osaka;JP
+RJBD;Shirahama;JP
+RJBE;Kobe;JP
+RJBH;Hiroshima;JP
+RJBT;Toyooka;JP
+RJCB;Obihiro;JP
+RJCC;Sapporo;JP
+RJCH;Hakodate;JP
+RJCK;Kushiro;JP
+RJCM;Ōzora;JP
+RJCN;Nakashibetsu;JP
+RJCO;Sapporo;JP
+RJCR;Rebun;JP
+RJCW;Wakkanai;JP
+RJDA;Amakusa;JP
+RJDB;Iki;JP
+RJDC;Ube;JP
+RJDT;Tsushima;JP
+RJDU;Nagasaki;JP
+RJEB;Monbetsu;JP
+RJEC;Higashikagura;JP
+RJEO;Okushiri Island;JP
+RJER;Rishiri;JP
+RJFC;Yakushima;JP
+RJFE;Goto;JP
+RJFF;Fukuoka;JP
+RJFG;Tanegashima;JP
+RJFK;Kagoshima;JP
+RJFM;Miyazaki;JP
+RJFO;Oita;JP
+RJFR;Kitakyushu;JP
+RJFS;Saga;JP
+RJFT;Kumamoto;JP
+RJFU;Nagasaki;JP
+RJGG;Tokoname;JP
+RJKA;Amami;JP
+RJKB;Wadomari;JP
+RJKI;Kikai;JP
+RJKN;Amagi;JP
+RJNA;Nagoya;JP
+RJNF;Fukui;JP
+RJNK;Kanazawa;JP
+RJNO;Okinoshima;JP
+RJNS;Makinohara / Shimada;JP
+RJNT;Toyama;JP
+RJNW;Wajima;JP
+RJOA;Hiroshima;JP
+RJOB;Okayama;JP
+RJOC;Izumo;JP
+RJOH;Yonago;JP
+RJOI;Iwakuni;JP
+RJOK;Nankoku;JP
+RJOM;Matsuyama;JP
+RJOO;Osaka;JP
+RJOR;Tottori;JP
+RJOS;Tokushima;JP
+RJOT;Takamatsu;JP
+RJOW;Masuda;JP
+RJSA;Aomori;JP
+RJSC;Higashine;JP
+RJSD;Sado;JP
+RJSF;Sukagawa;JP
+RJSH;Hachinohe;JP
+RJSI;Hanamaki;JP
+RJSK;Akita;JP
+RJSM;Misawa;JP
+RJSN;Niigata;JP
+RJSR;Kitaakita;JP
+RJSS;Natori;JP
+RJSY;Shonai;JP
+RJTA;Ayase / Yamato;JP
+RJTH;Hachijojima;JP
+RJTO;Izu Oshima;JP
+RJTQ;Miyakejima;JP
+RJTT;Tokyo;JP
+RJTY;Fussa;JP
+RKJB;Muan (Piseo-ri);KR
+RKJJ;Gwangju;KR
+RKJK;Gunsan;KR
+RKJU;Jeonju;KR
+RKJY;Yeosu;KR
+RKNN;Gangneung;KR
+RKNW;Wonju;KR
+RKNY;Gonghang-ro;KR
+RKPC;Jeju City;KR
+RKPD;Jeju Island;KR
+RKPE;Jinhae;KR
+RKPK;Busan;KR
+RKPS;Sacheon;KR
+RKPU;Ulsan;KR
+RKSI;Seoul;KR
+RKSO;Pyeongtaek;KR
+RKSS;Seoul;KR
+RKSW;Suwon;KR
+RKTH;Pohang;KR
+RKTI;Gimseang-ro;KR
+RKTL;Bongsan-ri, Uljin;KR
+RKTN;Daegu;KR
+RKTP;Seosan;KR
+RKTU;Cheongju;KR
+RKTY;Yecheon-ri;KR
+ROAH;Naha;JP
+RODN;Okinawa;JP
+ROIG;Ishigaki;JP
+ROKJ;Kumejima;JP
+ROKR;Zamami;JP
+ROMD;Minamidaito;JP
+ROMY;Miyakojima;JP
+RORA;Aguni;JP
+RORE;Ie;JP
+RORH;Taketomi;JP
+RORK;Kitadaitōjima;JP
+RORS;Miyakojima;JP
+RORT;Tarama;JP
+RORY;Yoron;JP
+ROYN;Yonaguni;JP
+RPEN;El Nido;PH
+RPLB;Olongapo;PH
+RPLC;Mabalacat;PH
+RPLE;Balesin;PH
+RPLG;Mansalay;PH
+RPLH;Lal-lo;PH
+RPLI;Laoag City;PH
+RPLJ;Jomalig;PH
+RPLK;Legazpi;PH
+RPLL;Manila (Pasay);PH
+RPLM;Tanay;PH
+RPLN;Palanan;PH
+RPLO;Cuyo;PH
+RPLQ;Capas;PH
+RPLR;Rosales;PH
+RPLS;Cavite;PH
+RPLT;Itbayat;PH
+RPLU;Lubang;PH
+RPLV;Santa Rosa;PH
+RPLW;Poro Point (San Fernando);PH
+RPLX;Corregidor;PH
+RPLY;Perez;PH
+RPLZ;Sorsogon;PH
+RPMA;Surallah;PH
+RPMC;Datu Odin Sinsuat;PH
+RPMD;Davao;PH
+RPME;Butuan;PH
+RPMF;Bislig;PH
+RPMG;Dipolog;PH
+RPMH;Mambajao;PH
+RPMI;Balo-i;PH
+RPMJ;Jolo;PH
+RPMM;Malabang;PH
+RPMN;Bongao;PH
+RPMO;Ozamiz;PH
+RPMP;Pagadian;PH
+RPMQ;Mati;PH
+RPMR;General Santos;PH
+RPMS;Surigao City;PH
+RPMU;Mapun;PH
+RPMV;Ipil;PH
+RPMW;Tandag;PH
+RPMY;Laguindingan;PH
+RPMZ;Zamboanga;PH
+RPNS;Del Carmen;PH
+RPSD;Taytay;PH
+RPSP;Panglao;PH
+RPSV;San Vicente;PH
+RPUB;Baguio;PH
+RPUD;Daet;PH
+RPUH;San Jose;PH
+RPUM;Mamburao;PH
+RPUN;Naga;PH
+RPUO;Basco;PH
+RPUR;Baler;PH
+RPUS;San Fernando;PH
+RPUT;Tuguegarao City;PH
+RPUV;Virac;PH
+RPUW;Gasan;PH
+RPUY;Cauayan City;PH
+RPVA;Tacloban City;PH
+RPVB;Bacolod City;PH
+RPVC;Calbayog City;PH
+RPVD;Dumaguete City;PH
+RPVE;Caticlan;PH
+RPVF;Catarman;PH
+RPVI;Cabatuan;PH
+RPVJ;Masbate;PH
+RPVK;Kalibo;PH
+RPVM;Lapu-Lapu City;PH
+RPVO;Ormoc City;PH
+RPVP;Puerto Princesa;PH
+RPVR;Roxas City;PH
+RPVS;San Jose;PH
+RPVU;Tablas Island;PH
+RPVV;Coron;PH
+SAAC;Concordia;AR
+SAAG;Gualeguaychu;AR
+SAAI;Veronica;AR
+SAAK;Isla Martin Garcia;AR
+SAAP;Parana;AR
+SAAR;Rosario;AR
+SAAV;Santa Fe;AR
+SABE;Buenos Aires;AR
+SACC;La Cumbre;AR
+SACO;Cordoba;AR
+SADL;La Plata;AR
+SADP;El Palomar;AR
+SAEZ;Buenos Aires (Ezeiza);AR
+SAFR;Rafaela;AR
+SAFS;Sunchales;AR
+SAHC;Chos Malal;AR
+SAHR;General Roca;AR
+SAHS;Rincon de los Sauces;AR
+SAHZ;Zapala;AR
+SAME;Mendoza;AR
+SAMM;Malargue;AR
+SAMR;San Rafael;AR
+SANC;Catamarca;AR
+SANE;Santiago del Estero;AR
+SANL;La Rioja;AR
+SANR;Termas de Río Hondo;AR
+SANT;San Miguel de Tucumán;AR
+SANU;San Juan;AR
+SANW;Ceres;AR
+SAOC;Rio Cuarto;AR
+SAOD;Villa Dolores;AR
+SAOR;Villa Mercedes;AR
+SAOS;Merlo;AR
+SAOU;San Luis;AR
+SARC;Corrientes;AR
+SARE;Resistencia;AR
+SARF;Formosa;AR
+SARI;Puerto Iguazu;AR
+SARL;Paso de los Libres;AR
+SARM;Monte Caseros;AR
+SARP;Posadas;AR
+SARS;Presidencia Roque Sáenz Peña;AR
+SASA;Salta;AR
+SASJ;San Salvador de Jujuy;AR
+SASO;Orán;AR
+SAST;Tartagal;AR
+SATC;Clorinda;AR
+SATD;El Dorado;AR
+SATG;Goya;AR
+SATI;Bernardo de Irigoyen;AR
+SATK;Las Lomitas;AR
+SATM;Mercedes;AR
+SATR;Reconquista;AR
+SATU;Curuzu Cuatia;AR
+SAVB;El Bolsón;AR
+SAVC;Comodoro Rivadavia;AR
+SAVD;El Maitén;AR
+SAVE;Esquel;AR
+SAVH;Las Heras;AR
+SAVJ;Ingeniero Jacobacci;AR
+SAVM;Sarmiento;AR
+SAVN;San Antonio Oeste;AR
+SAVQ;Maquinchao;AR
+SAVR;Alto Rio Senguerr;AR
+SAVS;Sierra Grande;AR
+SAVT;Rawson;AR
+SAVV;Viedma / Carmen de Patagones;AR
+SAVY;Puerto Madryn;AR
+SAWD;Puerto Deseado;AR
+SAWE;Rio Grande;AR
+SAWG;Rio Gallegos;AR
+SAWH;Ushuaia;AR
+SAWJ;San Julian;AR
+SAWM;Rio Mayo;AR
+SAWP;Perito Moreno;AR
+SAWR;Gobernador Gregores;AR
+SAWS;Chubut;AR
+SAWT;Rio Turbio;AR
+SAWU;Puerto Santa Cruz;AR
+SAZB;Bahía Blanca;AR
+SAZC;Coronel Suarez;AR
+SAZF;Olavarria;AR
+SAZG;General Pico;AR
+SAZH;Tres Arroyos;AR
+SAZL;Santa Teresita;AR
+SAZM;Mar del Plata;AR
+SAZN;Neuquen;AR
+SAZO;Necochea;AR
+SAZP;Pehuajó;AR
+SAZR;Santa Rosa;AR
+SAZS;San Carlos de Bariloche;AR
+SAZT;Tandil;AR
+SAZV;Villa Gesell;AR
+SAZW;Cutral-Co;AR
+SAZY;Chapelco/San Martin de los Andes;AR
+SBAA;Conceição do Araguaia;BR
+SBAC;Aracati;BR
+SBAE;Bauru;BR
+SBAF;Rio de Janeiro;BR
+SBAN;Anápolis;BR
+SBAQ;Araraquara;BR
+SBAR;Aracaju;BR
+SBAT;Alta Floresta;BR
+SBAU;Araçatuba;BR
+SBAX;Araxá;BR
+SBBE;Belém;BR
+SBBG;Bagé;BR
+SBBH;Belo Horizonte;BR
+SBBI;Curitiba;BR
+SBBP;Bragança Paulista;BR
+SBBR;Brasília;BR
+SBBU;Bauru;BR
+SBBV;Boa Vista;BR
+SBBW;Barra do Garças;BR
+SBCA;Cascavel;BR
+SBCB;Cabo Frio;BR
+SBCD;Caçador;BR
+SBCF;Belo Horizonte;BR
+SBCG;Campo Grande;BR
+SBCH;Chapecó;BR
+SBCI;Carolina;BR
+SBCJ;Parauapebas;BR
+SBCN;Caldas Novas;BR
+SBCP;Campos dos Goytacazes;BR
+SBCR;Corumbá;BR
+SBCT;Curitiba;BR
+SBCX;Caxias Do Sul;BR
+SBCY;Cuiabá;BR
+SBCZ;Cruzeiro Do Sul;BR
+SBDB;Bonito;BR
+SBDN;Presidente Prudente;BR
+SBEG;Manaus;BR
+SBEK;Jacareacanga;BR
+SBFI;Foz do Iguaçu;BR
+SBFL;Florianópolis;BR
+SBFN;Fernando de Noronha;BR
+SBFZ;Fortaleza;BR
+SBGL;Rio De Janeiro;BR
+SBGM;Guajará-Mirim;BR
+SBGO;Goiânia;BR
+SBGR;São Paulo;BR
+SBGV;Governador Valadares;BR
+SBGW;Guaratinguetá;BR
+SBHT;Altamira;BR
+SBIC;Itacoatiara;BR
+SBIH;Itaituba;BR
+SBIL;Ilhéus;BR
+SBIP;Ipatinga;BR
+SBIT;Itumbiara;BR
+SBIZ;Imperatriz;BR
+SBJA;Jaguaruna;BR
+SBJE;Cruz;BR
+SBJF;Juiz de Fora;BR
+SBJH;São Roque;BR
+SBJP;João Pessoa;BR
+SBJR;Rio De Janeiro;BR
+SBJU;Juazeiro do Norte;BR
+SBJV;Joinville;BR
+SBKG;Campina Grande;BR
+SBKP;Campinas;BR
+SBLE;Lençóis;BR
+SBLJ;Lages;BR
+SBLO;Londrina;BR
+SBLP;Bom Jesus da Lapa;BR
+SBMA;Marabá;BR
+SBMD;Almeirim;BR
+SBME;Macaé;BR
+SBMG;Maringá;BR
+SBMK;Montes Claros;BR
+SBML;Marília;BR
+SBMN;Manaus;BR
+SBMO;Maceió;BR
+SBMQ;Macapá;BR
+SBMS;Mossoró;BR
+SBMY;Manicoré;BR
+SBNF;Navegantes;BR
+SBNM;Santo Ângelo;BR
+SBNT;Natal;BR
+SBOI;Oiapoque;BR
+SBPA;Porto Alegre;BR
+SBPB;Parnaíba;BR
+SBPC;Poços De Caldas;BR
+SBPF;Passo Fundo;BR
+SBPG;Ponta Grossa;BR
+SBPJ;Palmas;BR
+SBPK;Pelotas;BR
+SBPL;Petrolina;BR
+SBPP;Ponta Porã;BR
+SBPS;Porto Seguro;BR
+SBPV;Porto Velho;BR
+SBRB;Rio Branco;BR
+SBRD;Rondonópolis;BR
+SBRF;Recife;BR
+SBRJ;Rio de Janeiro;BR
+SBRP;Ribeirão Preto;BR
+SBSI;Sinop;BR
+SBSJ;São José Dos Campos;BR
+SBSL;São Luís;BR
+SBSM;Santa Maria;BR
+SBSN;Santarém;BR
+SBSP;São Paulo;BR
+SBSR;São José do Rio Preto;BR
+SBST;Guarujá;BR
+SBSV;Salvador;BR
+SBTB;Oriximiná;BR
+SBTC;Una;BR
+SBTD;Toledo;BR
+SBTE;Teresina;BR
+SBTF;Tefé;BR
+SBTG;Três Lagoas;BR
+SBTK;Tarauacá;BR
+SBTT;Tabatinga;BR
+SBTU;Tucuruí;BR
+SBUA;São Gabriel da Cachoeira;BR
+SBUF;Paulo Afonso;BR
+SBUG;Uruguaiana;BR
+SBUL;Uberlândia;BR
+SBUR;Uberaba;BR
+SBVC;Vitória da Conquista;BR
+SBVG;Varginha;BR
+SBVH;Vilhena;BR
+SBVT;Vitória;BR
+SBYA;São Gabriel da Cachoeira;BR
+SBZM;Juiz de Fora;BR
+SCAC;Ancud;CL
+SCAN;Los Andes;CL
+SCAP;Palena;CL
+SCAR;Arica;CL
+SCAS;Puerto Aysén;CL
+SCAT;Copiapo;CL
+SCBA;Balmaceda;CL
+SCBE;Tocopilla;CL
+SCCC;Chile Chico;CL
+SCCF;Calama;CL
+SCCH;Chillan;CL
+SCCI;Punta Arenas;CL
+SCCV;Curacaví;CL
+SCCY;Coyhaique;CL
+SCDA;Iquique;CL
+SCEL;Santiago;CL
+SCES;El Salvador;CL
+SCFA;Antofagasta;CL
+SCFM;Porvenir;CL
+SCFR;Frutillar;CL
+SCFT;Futaleufu;CL
+SCGC;Union Glacier;AQ
+SCGE;Los Angeles;CL
+SCGZ;Puerto Williams;CL
+SCHR;Cochrane;CL
+SCIE;Concepcion;CL
+SCIP;Isla De Pascua;CL
+SCJK;Osorno;CL
+SCJO;Osorno;CL
+SCKP;Pica;CL
+SCLL;Vallenar;CL
+SCNL;Villa Cerro Castillo;CL
+SCNT;Puerto Natales;CL
+SCOP;Osorno;CL
+SCOV;Ovalle;CL
+SCPC;Pucon;CL
+SCPM;Pichilemu;CL
+SCPN;Chaiten;CL
+SCPO;Quinta de Tilcoco;CL
+SCPQ;Dalcahue;CL
+SCPR;Purranque;CL
+SCPT;Santa Cruz;CL
+SCPU;Peulla;CL
+SCPV;Puerto Varas;CL
+SCPW;Peumo;CL
+SCPY;Cerro Castillo;CL
+SCPZ;Patriot Hills Base Camp;AQ
+SCQP;Temuco;CL
+SCRA;Chañaral;CL
+SCRD;Viña Del Mar;CL
+SCRG;Rancagua;CL
+SCRM;Villa Las Estrellas;AQ
+SCSB;Cerro Sombrero;CL
+SCSE;La Serena-Coquimbo;CL
+SCSF;San Felipe;CL
+SCSS;Porvenir;CL
+SCST;Castro;CL
+SCTC;Temuco;CL
+SCTE;Puerto Montt;CL
+SCTL;Talca;CL
+SCTN;Chaitén;CL
+SCTO;Victoria;CL
+SCTT;Taltal;CL
+SCVD;Valdivia;CL
+SCVM;Viña del Mar;CL
+SDAM;Campinas;BR
+SDCG;São Paulo De Olivença;BR
+SDCO;Sorocaba;BR
+SDJL;Jales;BR
+SDOU;Ourinhos;BR
+SDOW;Ourilândia do Norte;BR
+SDRS;Resende;BR
+SDSC;São Carlos;BR
+SDUB;Ubatuba;BR
+SDUN;Itaperuna;BR
+SDVG;Votuporanga;BR
+SEAA;Aguayo;EC
+SEAB;Mar Abierto;EC
+SEAC;Acado;EC
+SEAD;Paandin;EC
+SEAH;Achuentza;EC
+SEAJ;Valencia;EC
+SEAK;Macuma;EC
+SEAL;Guayaquil;EC
+SEAM;Ambato;EC
+SEAN;La Esperanza;EC
+SEAO;Samborondón;EC
+SEAP;Manta;EC
+SEAQ;Engunga;EC
+SEAT;Achuar;EC
+SEAU;Morona Santiago;EC
+SEAW;Sharamentza;EC
+SEAX;Mashumarentza;EC
+SEAY;Ayangue;EC
+SEAZ;Valencia;EC
+SECO;Coca;EC
+SECU;Cuenca;EC
+SEGS;Isla Baltra;EC
+SEGU;Guayaquil;EC
+SEII;Puerto Villamil;EC
+SEJD;Ahuano;EC
+SEJI;Jipijapa;EC
+SEKM;Fumisa;EC
+SEMA;Macará;EC
+SEMC;Macas;EC
+SEMK;Maki;EC
+SEMT;Manta;EC
+SENL;Lago Agrio;EC
+SEPT;Puerto Putumayo;EC
+SEPV;Portoviejo;EC
+SEQM;Quito;EC
+SERO;Santa Rosa;EC
+SESA;Salinas;EC
+SESC;Sucúa;EC
+SESM;Shell Mera;EC
+SEST;Puerto Baquerizo Moreno;EC
+SESV;Bahía de Caraquez;EC
+SETH;Taisha;EC
+SETI;Tiputini;EC
+SETN;Tachina;EC
+SETR;Tarapoa;EC
+SETU;Tulcán;EC
+SEZA;Pampantza;EC
+SEZB;Lérida;EC
+SEZD;Puerto Cayo;EC
+SEZE;Tzapapentza;EC
+SEZI;Imatiño;EC
+SEZK;Karakam;EC
+SEZM;Tamantza;EC
+SEZN;Tzapino;EC
+SEZR;Surikentza;EC
+SFAL;Stanley;FK
+SGAS;Asunción;PY
+SGAY;Ayolas;PY
+SGBN;Bahía Negra;PY
+SGCO;Concepción;PY
+SGEN;Encarnación;PY
+SGES;Ciudad del Este;PY
+SGFI;Filadelfia;PY
+SGME;Mariscal Estigarribia;PY
+SGOL;Fuerte Olimpo;PY
+SGPI;Pilar;PY
+SGPJ;Pedro Juan Caballero;PY
+SHAB;Puchuncavi;CL
+SHAC;Santiago;CL
+SHAG;Magallanes;CL
+SHAL;Isla de Maipo;CL
+SHAP;Santiago;CL
+SHAT;Puerto Montt;CL
+SHAU;Coltauco;CL
+SHAV;Zapallar;CL
+SHJN;Arica;CL
+SHJO;Santiago;CL
+SHTC;Santiago;CL
+SHTL;Concepcion;CL
+SHVE;Lo Barnechea;CL
+SHVI;Villarrica;CL
+SHVN;Santiago;CL
+SHWT;Santiago;CL
+SHYA;Pirque;CL
+SILC;Lucas do Rio Verde;BR
+SIMK;Franca;BR
+SIZX;Juara;BR
+SJNP;Novo Progresso;BR
+SJOY;Palmeira;BR
+SKAC;Araracuara;CO
+SKAD;Acandí;CO
+SKAG;Aguachica;CO
+SKAM;Amalfi;CO
+SKAP;Apiay;CO
+SKAR;Armenia;CO
+SKAS;Puerto Asís;CO
+SKAT;Arauquita;CO
+SKBC;El Banco;CO
+SKBG;Bucaramanga;CO
+SKBM;Barranco Minas;CO
+SKBO;Bogota;CO
+SKBQ;Barranquilla;CO
+SKBS;Bahía Solano;CO
+SKBU;Buenaventura;CO
+SKCA;Acandí;CO
+SKCC;Cúcuta;CO
+SKCD;Condoto;CO
+SKCG;Cartagena;CO
+SKCI;Puerto López;CO
+SKCL;Cali;CO
+SKCM;Cimitarra;CO
+SKCN;Cravo Norte;CO
+SKCO;Tumaco;CO
+SKCP;Bahía Solano;CO
+SKCR;Carurú;CO
+SKCU;Caucasia;CO
+SKCV;Coveñas;CO
+SKCZ;Corozal;CO
+SKEB;El Bagre;CO
+SKEH;El Charco;CO
+SKEJ;Barrancabermeja;CO
+SKFL;Florencia;CO
+SKGA;;CO
+SKGI;Girardot;CO
+SKGO;Cartago;CO
+SKGP;Guapi;CO
+SKHA;Chaparral;CO
+SKHC;Hato Corozal;CO
+SKIB;Ibagué;CO
+SKIG;Chigorodó;CO
+SKIM;La Primavera;CO
+SKIP;Ipiales;CO
+SKJU;Juradó;CO
+SKLC;Carepa;CO
+SKLG;Puerto Leguízamo;CO
+SKLM;La Mina-Maicao;CO
+SKLP;La Pedrera;CO
+SKLT;Leticia;CO
+SKMB;Timbiqui;CO
+SKMD;Medellín;CO
+SKMF;Miraflores;CO
+SKMG;Magangué;CO
+SKML;Montelíbano;CO
+SKMP;Santa Cruz de Mompóx;CO
+SKMR;Montería;CO
+SKMU;Mitú;CO
+SKMZ;Manizales;CO
+SKNA;La Macarena;CO
+SKNC;Necocli;CO
+SKNQ;Nuquí;CO
+SKNV;Neiva;CO
+SKOC;Ocaña;CO
+SKOE;Orocue;CO
+SKOT;Remedios;CO
+SKPA;Paipa;CO
+SKPC;Puerto Carreño;CO
+SKPD;Puerto Inírida;CO
+SKPE;Pereira;CO
+SKPI;Pitalito;CO
+SKPL;Plato;CO
+SKPN;Armenia;CO
+SKPP;Popayán;CO
+SKPQ;La Dorada;CO
+SKPR;Puerto Berrio;CO
+SKPS;Chachagüí;CO
+SKPV;Providencia;CO
+SKPZ;Paz De Ariporo;CO
+SKQU;Mariquita;CO
+SKRA;Tarapacá;CO
+SKRG;Medellín;CO
+SKRH;Riohacha;CO
+SKRU;Sabana de Torres;CO
+SKSA;Saravena;CO
+SKSJ;San José Del Guaviare;CO
+SKSL;Santa Rosalia;CO
+SKSM;Santa Marta;CO
+SKSO;Sogamoso;CO
+SKSP;San Andrés;CO
+SKSV;San Vicente Del Caguán;CO
+SKTA;Tauramena;CO
+SKTB;Tibú;CO
+SKTD;Trinidad;CO
+SKTL;Santiago de Tolú;CO
+SKTM;Tame;CO
+SKTQ;Tres Esquinas;CO
+SKTU;Turbo;CO
+SKUB;La Uribe;CO
+SKUC;Arauca;CO
+SKUI;Quibdó;CO
+SKUL;Tuluá;CO
+SKUR;Urrao;CO
+SKVG;Villa Garzón;CO
+SKVL;Puerto Boyacá;CO
+SKVP;Valledupar;CO
+SKVV;Villavicencio;CO
+SKYA;San Vicente Del Caguán;CO
+SKYP;Yopal;CO
+SLAG;El Bañado;BO
+SLAP;Apolo;BO
+SLAS;Ascensión de Guarayos;BO
+SLBJ;Bermejo;BO
+SLCA;Camiri;BO
+SLCB;Cochabamba;BO
+SLCO;Cobija;BO
+SLCP;Concepción;BO
+SLET;Santa Cruz;BO
+SLGY;Guayaramerín;BO
+SLHI;Chimore;BO
+SLHJ;Itenes;BO
+SLJE;San José de Chiquitos;BO
+SLJO;San Joaquín;BO
+SLJV;San Javier;BO
+SLLP;La Paz / El Alto;BO
+SLMG;Magdalena;BO
+SLOR;Oruro;BO
+SLPO;Potosí;BO
+SLPR;Puerto Rico/Manuripi;BO
+SLPS;Puerto Suárez;BO
+SLRA;San Ramón / Mamoré;BO
+SLRB;Roboré;BO
+SLRI;Riberalta;BO
+SLRQ;Rurrenabaque;BO
+SLRY;Reyes;BO
+SLSA;Santa Ana del Yacuma;BO
+SLSB;San Borja;BO
+SLSI;San Ignacio de Velasco;BO
+SLSM;San Ignacio de Moxos;BO
+SLSR;Santa Rosa;BO
+SLSU;Sucre;BO
+SLTI;San Matías;BO
+SLTJ;Tarija;BO
+SLTR;Trinidad;BO
+SLUY;Quijarro;BO
+SLVG;Vallegrande;BO
+SLVM;Villamontes;BO
+SLVR;Santa Cruz;BO
+SLYA;Yacuíba;BO
+SMBN;Albina;SR
+SMCA;Awaradam;SR
+SMCO;Totness;SR
+SMDA;Drietabbetje;SR
+SMDO;Aurora;SR
+SMEG;Kwatta;SR
+SMJP;Zandery;SR
+SMMO;Moengo;SR
+SMNI;Nieuw Nickerie;SR
+SMPA;Paloemeu;SR
+SMST;Stoelmanseiland;SR
+SMTP;Kasikasima;SR
+SMWA;Wageningen;SR
+SMWS;Washabo;SR
+SMZO;Paramaribo;SR
+SNAI;Jateí;BR
+SNAL;Arapiraca;BR
+SNAR;Almenara;BR
+SNBC;Barra do Corda;BR
+SNBL;Unaí;BR
+SNBR;Barreiras;BR
+SNBS;Balsas;BR
+SNBU;Funilândia;BR
+SNBX;Barra;BR
+SNCP;Correia Pinto;BR
+SNDC;Redenção;BR
+SNDN;Salvador;BR
+SNDT;Diamantina;BR
+SNDV;Divinópolis;BR
+SNED;Canavieiras;BR
+SNFX;São Félix do Xingu;BR
+SNGA;Guarapari;BR
+SNGD;Guadalupe;BR
+SNGI;Guanambi;BR
+SNGM;São Félix do Xingu;BR
+SNGN;Garanhuns;BR
+SNHA;São Luís;BR
+SNHS;Serra Talhada;BR
+SNIC;Irecê;BR
+SNIU;Ipiaú;BR
+SNJB;Jacobina;BR
+SNJD;Chapadão do Céu;BR
+SNJK;Jequié;BR
+SNJN;Januária;BR
+SNJR;São João Del Rei;BR
+SNKE;Morada Nova de Minas;BR
+SNKI;Cachoeiro do Itapemirim;BR
+SNLB;Lábrea;BR
+SNLO;São Lourenço;BR
+SNMA;Monte Alegre;BR
+SNMU;Mucuri;BR
+SNMX;São Mateus;BR
+SNMZ;Porto de Moz;BR
+SNNU;Nanuque;BR
+SNOU;Feijó;BR
+SNOX;Oriximiná;BR
+SNPC;Picos;BR
+SNPD;Patos de Minas;BR
+SNPX;Pirapora;BR
+SNQG;Floriano;BR
+SNRD;Prado;BR
+SNRU;Caruaru;BR
+SNSW;Soure;BR
+SNTF;Teixeira de Freitas;BR
+SNTI;Óbidos;BR
+SNTO;Teófilo Otoni;BR
+SNVB;Valença;BR
+SNVS;Breves;BR
+SNWC;Camocim;BR
+SNYA;Almeirim;BR
+SNYE;Pinheiro;BR
+SNZA;Pouso Alegre;BR
+SNZW;Ituberá;BR
+SOCA;Matoury;GF
+SOGS;Grand-Santi;GF
+SOOA;Maripasoula;GF
+SOOG;Saint-Georges-de-l'Oyapock;GF
+SOOM;Saint-Laurent-du-Maroni;GF
+SOOR;Régina;GF
+SOOS;Saül;GF
+SPAR;Fortaleza;PE
+SPAY;Atalaya;PE
+SPBB;Moyobamba;PE
+SPBL;Bolognesi;PE
+SPBR;Iberia;PE
+SPCL;Pucallpa;PE
+SPDR;Corrientes;PE
+SPEO;Chimbote;PE
+SPGL;;PE
+SPGM;Tingo Maria;PE
+SPHI;Chiclayo;PE
+SPHO;Ayacucho;PE
+SPHY;Andahuaylas;PE
+SPHZ;Anta;PE
+SPIL;Quince Mil;PE
+SPJA;Rioja;PE
+SPJC;Lima;PE
+SPJE;Jaén;PE
+SPJI;Juanjuí;PE
+SPJJ;Jauja;PE
+SPJL;Juliaca;PE
+SPJN;San Juan de Marcona;PE
+SPJR;Cajamarca;PE
+SPLN;Rodriguez de Mendoza;PE
+SPLO;Ilo;PE
+SPME;Tumbes;PE
+SPMF;Mazamari;PE
+SPMS;Yurimaguas;PE
+SPNC;Huánuco;PE
+SPOA;Plaza Saposoa;PE
+SPPY;Chachapoyas;PE
+SPQT;Iquitos;PE
+SPQU;Arequipa;PE
+SPRU;Trujillo;PE
+SPSO;Pisco;PE
+SPST;Tarapoto;PE
+SPSY;Shiringayoc;PE
+SPTN;Tacna;PE
+SPTU;Puerto Maldonado;PE
+SPUR;Piura;PE
+SPYL;Talara;PE
+SPZA;Nazca;PE
+SPZO;Cusco;PE
+SSAP;Apucarana;BR
+SSBL;Blumenau;BR
+SSCK;Concórdia;BR
+SSCL;Cassilândia;BR
+SSCN;Canela;BR
+SSCP;Cornélio Procópio;BR
+SSCT;Cianorte;BR
+SSDO;Porto Seguro;BR
+SSER;Erechim;BR
+SSFB;Francisco Beltrão;BR
+SSGY;Guaíra;BR
+SSHZ;Horizontina;BR
+SSIJ;Ijuí;BR
+SSIQ;Itaqui;BR
+SSJA;Joaçaba;BR
+SSKM;Campo Mourão;BR
+SSKW;Cacoal;BR
+SSLN;Lontras;BR
+SSLT;Alegrete;BR
+SSOE;São Miguel do Oeste;BR
+SSOG;Arapongas;BR
+SSOM;Bela Vista de Goiás;BR
+SSOU;Aripuanã;BR
+SSPB;Ribas do Rio Pardo;BR
+SSPG;Paranaguá;BR
+SSPI;Paranavaí;BR
+SSPM;Porto Murtinho;BR
+SSPN;Paranaíba;BR
+SSRU;São Lourenço Do Sul;BR
+SSSC;Santa Cruz do Sul;BR
+SSUM;Umuarama;BR
+SSUV;União da Vitória;BR
+SSVI;Videira;BR
+SSVP;Conceição da Barra;BR
+SSXH;Brumado;BR
+SSYA;São Luiz do Norte;BR
+SSZR;Santa Rosa;BR
+SSZW;Limeira Do Oeste;BR
+SUAG;Artigas;UY
+SUBU;Bella Union;UY
+SUCA;Colonia del Sacramento;UY
+SUDU;Durazno;UY
+SULS;Punta del Este;UY
+SUMO;Melo;UY
+SUMU;Ciudad de la Costa;UY
+SUPU;Paysandú;UY
+SURV;Rivera;UY
+SUSO;Salto;UY
+SUTB;Tacuarembo;UY
+SUTR;Treinta y Tres;UY
+SUVO;Vichadero;UY
+SVAA;;VE
+SVAC;Acarigua;VE
+SVAN;Anaco;VE
+SVAT;San Fernando de Atabapo;VE
+SVBC;Barcelona;VE
+SVBI;Barinas;VE
+SVBM;Barquisimeto;VE
+SVBS;Maracay;VE
+SVCB;Ciudad Bolivar;VE
+SVCD;;VE
+SVCG;Casigua El Cubo;VE
+SVCL;Guarico;VE
+SVCN;Canaima;VE
+SVCP;Carúpano;VE
+SVCR;Coro;VE
+SVCU;;VE
+SVED;Bolivar;VE
+SVEZ;;VE
+SVGD;Guasdualito;VE
+SVGI;;VE
+SVGU;Guanare;VE
+SVHG;Higuerote;VE
+SVIC;;VE
+SVIE;Isla de Coche;VE
+SVJC;Paraguaná;VE
+SVKA;Kavanayén;VE
+SVKM;Kamarata;VE
+SVLF;;VE
+SVLP;Luepa;VE
+SVMA;Maripa;VE
+SVMC;Maracaibo;VE
+SVMD;Mérida;VE
+SVMG;Isla Margarita;VE
+SVMI;Maiquetía;VE
+SVMN;Mene Grande;VE
+SVMP;Ocumare del Tuy;VE
+SVMT;Maturín;VE
+SVNH;;VE
+SVOD;Valencia;VE
+SVON;Cabimas;VE
+SVPA;Puerto Ayacucho;VE
+SVPC;Puerto Cabello;VE
+SVPE;Capure;VE
+SVPM;San Cristóbal;VE
+SVPP;Puerto Paez;VE
+SVPR;Puerto Ordaz-Ciudad Guayana;VE
+SVPT;Palmarito;VE
+SVQS;San Fernando de Apure;VE
+SVRS;Gran Roque Island;VE
+SVSA;;VE
+SVSB;Santa Bárbara;VE
+SVSE;Santa Elena de Uairén;VE
+SVSO;Santo Domingo;VE
+SVSP;San Felipe;VE
+SVSR;San Fernando de Apure;VE
+SVST;El Tigre;VE
+SVSZ;San Carlos del Zulia;VE
+SVTC;Tucupita;VE
+SVTM;;VE
+SVUM;Urimán;VE
+SVUP;Upata;VE
+SVUQ;Uonquén;VE
+SVUY;;VE
+SVVA;Valencia;VE
+SVVG;El Vigía;VE
+SVVL;Valera;VE
+SVVP;;VE
+SVWX;;VE
+SWBC;Barcelos;BR
+SWBR;Borba;BR
+SWCA;Carauari;BR
+SWCQ;Costa Marques;BR
+SWDM;Diamantino;BR
+SWDN;Dianópolis;BR
+SWEI;Eirunepé;BR
+SWEK;Canarana;BR
+SWFX;São Félix Do Araguaia;BR
+SWGI;Gurupi;BR
+SWGN;Araguaína;BR
+SWHP;Água Boa;BR
+SWHT;Humaitá;BR
+SWII;Santo Antônio do Içá;BR
+SWIY;Cristalândia;BR
+SWJI;Baixa Grande do Ribeiro;BR
+SWJN;Juína;BR
+SWJU;Dueré;BR
+SWJW;Jataí;BR
+SWKC;Cáceres;BR
+SWKO;Coari;BR
+SWKT;Catalão;BR
+SWLB;Lábrea;BR
+SWLC;Rio Verde;BR
+SWMW;Maués;BR
+SWNA;Novo Aripuanã;BR
+SWNK;Boca do Acre;BR
+SWNQ;Niquelândia;BR
+SWNS;Anápolis;BR
+SWOB;Fonte Boa;BR
+SWPI;Parintins;BR
+SWPM;Pimenta Bueno;BR
+SWPQ;Porto Alegre do Norte;BR
+SWRA;Nova Monte Verde;BR
+SWRD;Alto Garças;BR
+SWSI;Jacareacanga;BR
+SWSN;Pontes e Lacerda;BR
+SWST;Votorantim;BR
+SWTP;Santa Isabel Do Rio Negro;BR
+SWTS;Tangará da Serra;BR
+SWTU;Sapezal;BR
+SWUA;São Miguel do Araguaia;BR
+SWVB;Porto Belo;BR
+SWVC;Vila Rica;BR
+SWXM;Matupá;BR
+SWXV;Nova Xavantina;BR
+SYAG;Anna Regina;GY
+SYAH;Aishalton;GY
+SYAL;Albion;GY
+SYAN;Annai;GY
+SYAP;Apoteri;GY
+SYAW;Awaruwaunau;GY
+SYBG;Banagara Island;GY
+SYBR;Baramita;GY
+SYBT;Bartica;GY
+SYCJ;Georgetown;GY
+SYIB;Imbaimadai;GY
+SYKA;Kaieteur Falls;GY
+SYKK;Kurukabaru;GY
+SYKM;Kamarang;GY
+SYKR;Karanambo;GY
+SYKS;Karasabai;GY
+SYKT;Kato;GY
+SYKW;Kwakwani;GY
+SYKZ;Konawaruk;GY
+SYLP;Lumid Pau;GY
+SYLT;Lethem;GY
+SYMB;Mabaruma;GY
+SYMD;Mahdia;GY
+SYMK;Maikwak;GY
+SYMM;Monkey Mountain;GY
+SYMR;Matthews Ridge;GY
+SYOR;Orinduik;GY
+SYPM;Paramakatoi;GY
+SYPR;Paruima;GY
+SYSC;Sand Creek;GY
+TAPA;Osbourn;AG
+TAPH;Codrington;AG
+TAPT;Coco Point;AG
+TBPB;Bridgetown;BB
+TBPO;;BB
+TDCF;Canefield;DM
+TDPD;Marigot;DM
+TFFA;Grande Anse;GP
+TFFB;Basse-Terre;GP
+TFFC;St-François;GP
+TFFF;Fort-de-France;MQ
+TFFG;Grand Case;MF
+TFFJ;Gustavia;BL
+TFFM;Grand-Bourg;GP
+TFFR;Pointe-à-Pitre;GP
+TFFS;Les Saintes;GP
+TGPY;Saint George's;GD
+TGPZ;Carriacou Island;GD
+TIST;Charlotte Amalie;VI
+TISX;Christiansted;VI
+TJAB;Arecibo;PR
+TJBQ;Aguadilla;PR
+TJCP;Culebra;PR
+TJIG;San Juan;PR
+TJMZ;Mayaguez;PR
+TJPS;Ponce;PR
+TJRV;Ceiba;PR
+TJSJ;San Juan;PR
+TJVQ;Vieques;PR
+TKPK;Basseterre;KN
+TKPN;Charlestown;KN
+TLPC;Castries;LC
+TLPL;Vieux Fort;LC
+TNCA;Oranjestad;AW
+TNCB;Kralendijk;BQ
+TNCC;Willemstad;CW
+TNCE;Oranjestad;BQ
+TNCM;Sint Maarten;SX
+TNCS;Zion's Hill;BQ
+TQPF;The Valley;AI
+TRPG;Gerald's Park;MS
+TTCP;Scarborough;TT
+TTPP;Port of Spain;TT
+TUPA;Anegada;VG
+TUPJ;Beef Island;VG
+TUPW;Spanish Town;VG
+TVSA;Kingstown;VC
+TVSB;Bequia;VC
+TVSC;Canouan;VC
+TVSM;Lovell;VC
+TVSU;Union Island;VC
+TXKF;Hamilton;BM
+UAAA;Almaty;KZ
+UAAH;Balkhash;KZ
+UAAL;Usharal;KZ
+UAAR;Boralday;KZ
+UACC;Astana;KZ
+UACK;Kokshetau;KZ
+UACP;Petropavl;KZ
+UADD;Taraz;KZ
+UAII;Shymkent;KZ
+UAIT;Turkıstan;KZ
+UAKD;Zhezkazgan;KZ
+UAKK;Karaganda;KZ
+UAOL;Baikonur;KZ
+UAON;Töretam;KZ
+UAOO;Kyzylorda;KZ
+UARR;Uralsk;KZ
+UASB;Ekibastuz;KZ
+UASK;Ust-Kamenogorsk (Oskemen);KZ
+UASP;Pavlodar;KZ
+UASS;Semey;KZ
+UATA;Aralsk;KZ
+UATE;Aktau;KZ
+UATG;Atyrau;KZ
+UATT;Aktobe;KZ
+UAUR;Arkalyk;KZ
+UAUU;Kostanay;KZ
+UBBB;Baku;AZ
+UBBC;Çilov;AZ
+UBBF;Fuzuli;AZ
+UBBG;Ganja;AZ
+UBBH;Khachmaz;AZ
+UBBI;Sumqayit;AZ
+UBBL;Lankaran;AZ
+UBBM;Hajigabul;AZ
+UBBN;Nakhchivan;AZ
+UBBP;Pirallahı;AZ
+UBBQ;Gabala;AZ
+UBBS;Khojaly;AZ
+UBBY;Zaqatala;AZ
+UBEE;Yevlakh;AZ
+UBEI;Shaki;AZ
+UBEN;Naftalan;AZ
+UBEY;Agjabedi;AZ
+UBLL;Lökbatan;AZ
+UBTT;Zabrat;AZ
+UCFB;Batken;KG
+UCFD;Jalal-Abad;KG
+UCFK;Karakol;KG
+UCFL;Tamchy;KG
+UCFM;Bishkek;KG
+UCFO;Osh;KG
+UCFR;Isfana;KG
+UDCK;Kapan;AM
+UDSG;Gyumri;AM
+UDYZ;Yerevan;AM
+UEBB;Batagay;RU
+UEBS;Batagay-Alyta;RU
+UEBT;Ust-Kuyga;RU
+UECT;Talakan Oil Field;RU
+UEEA;Aldan;RU
+UEEE;Yakutsk;RU
+UELL;Neryungri;RU
+UEMA;Khonuu;RU
+UEMH;Khandyga;RU
+UEMM;Magan;RU
+UEMO;Olyokminsk;RU
+UEMT;Ust-Nera;RU
+UEMU;Ust-Maya;RU
+UENI;Verkhnevilyuisk;RU
+UENN;Nyurba;RU
+UENS;Suntar;RU
+UENW;Vilyuisk;RU
+UERL;Lensk;RU
+UERO;Olenyok;RU
+UERP;Yakutia;RU
+UERR;Mirny;RU
+UERS;Saskylakh;RU
+UESG;Belaya Gora;RU
+UESK;Srednekolymsk;RU
+UESO;Chokurdah;RU
+UESS;Cherskiy;RU
+UEST;Tiksi;RU
+UESU;Zyryanka;RU
+UEVV;Zhigansk;RU
+UGAM;Ambrolauri;GE
+UGGT;Telavi;GE
+UGKO;Kopitnari;GE
+UGSA;Natakhtari;GE
+UGSB;Batumi;GE
+UGSS;Sukhumi;GE
+UGTB;Tbilisi;GE
+UHBB;Blagoveschensk;RU
+UHBP;Ekimchan;RU
+UHBW;Tynda;RU
+UHHH;Khabarovsk;RU
+UHHO;Troitskoye;RU
+UHKG;Sovetskaya Gavan;RU
+UHKK;Komsomolsk-on-Amur;RU
+UHKM;Sovetskaya Gavan;RU
+UHMA;Anadyr;RU
+UHMD;Chukotka;RU
+UHMI;Mys Shmidta;RU
+UHMK;Keperveem;RU
+UHML;Lavrentiya;RU
+UHMM;Magadan;RU
+UHMN;Omolon;RU
+UHMO;Markovo;RU
+UHMP;Apapelgino;RU
+UHMR;Beringovsky;RU
+UHMS;Seymchan;RU
+UHMW;Evensk;RU
+UHNB;Bogorodskoye;RU
+UHNN;Nikolayevsk-na-Amure Airport;RU
+UHOO;Okhotsk;RU
+UHPA;Ust-Pakhachi;RU
+UHPD;Ossora;RU
+UHPK;Ust'-Kamchatsk (Krutoberegovo);RU
+UHPP;Petropavlovsk-Kamchatsky;RU
+UHSB;Kurilsk;RU
+UHSH;Okha;RU
+UHSI;Kurilsk;RU
+UHSK;Shakhtyorsk;RU
+UHSM;Yuzhno-Kurilsk;RU
+UHSN;Nogliki;RU
+UHSO;Tymovskoye;RU
+UHSS;Yuzhno-Sakhalinsk;RU
+UHTG;Amgu;RU
+UHWP;Plastun;RU
+UHWW;Artyom;RU
+UIAA;Chita;RU
+UIBB;Bratsk;RU
+UIBS;Ust-Ilimsk;RU
+UIII;Irkutsk;RU
+UIKB;Bodaybo;RU
+UIKE;Erbogachen;RU
+UIKK;Kirensk;RU
+UITT;Ust-Kut;RU
+UIUU;Ulan Ude;RU
+UKBB;Boryspil;UA
+UKCK;Kramatorsk;UA
+UKCM;Mariupol;UA
+UKDB;Berdyansk;UA
+UKDD;Dnipro;UA
+UKDE;Zaporizhia;UA
+UKDR;Kryvyi Rih;UA
+UKFB;Sevastopol;UA
+UKFF;Simferopol;UA
+UKFK;Kerch;UA
+UKFP;Sevastopol;UA
+UKHH;Kharkiv;UA
+UKHP;Poltava;UA
+UKHS;Sumy;UA
+UKKA;Kacha;UA
+UKKE;Cherkasy;UA
+UKKG;Kirovograd;UA
+UKKK;Kyiv;UA
+UKKV;Zhytomyr;UA
+UKLC;Lutsk;UA
+UKLH;Khmelnytskyi;UA
+UKLI;Ivano-Frankivsk;UA
+UKLL;Lviv;UA
+UKLN;Chernivtsi;UA
+UKLR;Rivne;UA
+UKLT;Ternopil;UA
+UKLU;Uzhhorod;UA
+UKMN;Koson';UA
+UKOH;Kherson;UA
+UKON;Nikolayev;UA
+UKOO;Odessa;UA
+UKWW;Vinnitsa;UA
+ULAA;Archangelsk;RU
+ULAL;Leshukonskoye;RU
+ULAM;Naryan Mar;RU
+ULDD;Amderma;RU
+ULDW;Varandey;RU
+ULER;Kharuta;RU
+ULKK;Kotlas;RU
+ULLI;St. Petersburg;RU
+ULMM;Murmansk;RU
+ULOO;Pskov;RU
+ULPB;Petrozavodsk;RU
+ULSY;Gatchina;RU
+ULWC;Cherepovets;RU
+ULWU;Velikiy Ustyug;RU
+ULWW;Vologda;RU
+UMBB;Brest;BY
+UMGG;Gomel;BY
+UMII;Vitebsk;BY
+UMKK;Kaliningrad;RU
+UMLI;Minsk;BY
+UMMG;Hrodna;BY
+UMMS;Minsk;BY
+UMOO;Mogilev;BY
+UNAA;Abakan;RU
+UNBB;Barnaul;RU
+UNBG;Gorno-Altaysk;RU
+UNEE;Kemerovo;RU
+UNII;Yeniseysk;RU
+UNIP;Bor;RU
+UNIT;Tura;RU
+UNKL;Krasnoyarsk;RU
+UNKS;Achinsk;RU
+UNKY;Kyzyl;RU
+UNNT;Novosibirsk;RU
+UNOO;Omsk;RU
+UNSS;Strezhevoy;RU
+UNTT;Tomsk;RU
+UNWW;Novokuznetsk;RU
+UODD;Dikson;RU
+UODS;Khatanga;RU
+UOHH;Khatanga;RU
+UOII;Igarka;RU
+UOOO;Norilsk;RU
+UOTT;Turukhansk;RU
+URKA;Krasnyi Kurgan;RU
+URKG;Gelendzhik;RU
+URKK;Krasnodar;RU
+URMG;Grozny;RU
+URML;Makhachkala;RU
+URMM;Mineralnyye Vody;RU
+URMN;Nalchik;RU
+URMO;Beslan;RU
+URMS;Sunzha;RU
+URMT;Stavropol;RU
+URRP;Rostov-on-Don;RU
+URRT;Taganrog;RU
+URSS;Sochi;RU
+URWA;Astrakhan;RU
+URWI;Elista;RU
+URWW;Volgograd;RU
+USCC;Chelyabinsk;RU
+USCM;Magnitogorsk;RU
+USDA;Sabetta;RU
+USDB;Bovanenkovo;RU
+USDD;Salekhard;RU
+USDK;Mys Kamennyi;RU
+USDP;Krasnoselkup;RU
+USDS;Tarko-Sale;RU
+USDU;Urengoy;RU
+USHH;Khanty-Mansiysk;RU
+USHI;;RU
+USHK;Kondinskoye;RU
+USHL;Lugovoy;RU
+USHN;Nyagan;RU
+USHQ;;RU
+USHS;Sovetskiy;RU
+USHU;Uray;RU
+USII;Izhevsk;RU
+USKK;Kirov;RU
+USMM;Nadym;RU
+USMU;Novy Urengoy;RU
+USNN;Nizhnevartovsk;RU
+USPP;Perm;RU
+USRK;Kogalym;RU
+USRN;Nefteyugansk;RU
+USRO;Noyabrsk;RU
+USRR;Surgut;RU
+USSS;Yekaterinburg;RU
+USTO;Tobolsk;RU
+USTR;Tyumen;RU
+USUU;Kurgan;RU
+UTAA;Ashgabat;TM
+UTAE;Kerki;TM
+UTAK;Turkmenbashi;TM
+UTAM;Mary;TM
+UTAT;Daşoguz;TM
+UTAV;Türkmenabat;TM
+UTDD;Dushanbe;TJ
+UTDK;Kulyab;TJ
+UTDL;Khujand;TJ
+UTDT;Kurgan-Tyube;TJ
+UTFF;Fergana;UZ
+UTFN;Namangan;UZ
+UTNM;Muynak;UZ
+UTNN;Nukus;UZ
+UTNU;Urgench;UZ
+UTSA;Navoi;UZ
+UTSB;Bukhara;UZ
+UTSK;Karshi;UZ
+UTSN;Zarafshan;UZ
+UTSS;Samarkand;UZ
+UTST;Termez;UZ
+UTTP;Tashkent;UZ
+UTTT;Tashkent;UZ
+UTTZ;Zaamin;UZ
+UUBA;Kostroma;RU
+UUBC;Kaluga;RU
+UUBI;Ivanovo;RU
+UUBK;Rybinsk;RU
+UUBP;Bryansk;RU
+UUBS;Smolensk;RU
+UUBW;Moscow;RU
+UUDD;Moscow;RU
+UUDL;Tunoshna;RU
+UUEE;Moscow;RU
+UUEM;Tver;RU
+UUMB;Kubinka;RU
+UUMO;Moscow;RU
+UUMU;Moscow;RU
+UUOB;Belgorod;RU
+UUOK;Kursk;RU
+UUOL;Lipetsk;RU
+UUOO;Voronezh;RU
+UUOT;Tambov;RU
+UUWW;Moscow;RU
+UUYH;Ukhta;RU
+UUYI;Inta;RU
+UUYP;Pechora;RU
+UUYS;Usinsk;RU
+UUYW;Vorkuta;RU
+UUYX;Ust-Tsylma;RU
+UUYY;Syktyvkar;RU
+UWGG;Nizhny Novgorod;RU
+UWKB;Bugulma;RU
+UWKD;Kazan;RU
+UWKE;Nizhnekamsk;RU
+UWKJ;Yoshkar-Ola;RU
+UWKS;Cheboksary;RU
+UWLL;Ulyanovsk;RU
+UWLW;Cherdakly;RU
+UWOO;Orenburg;RU
+UWOR;Orsk;RU
+UWPP;Penza;RU
+UWPS;Saransk;RU
+UWSB;Balakovo;RU
+UWSG;Saratov;RU
+UWUB;Beloretsk;RU
+UWUK;Kzyl-Yar;RU
+UWUU;Ufa;RU
+UWWS;Samara;RU
+UWWW;Samara;RU
+VAAH;Ahmedabad;IN
+VAAK;Akola;IN
+VAAM;Amravati;IN
+VAAU;Aurangabad;IN
+VAAV;Aamby Valley City;IN
+VABB;Mumbai;IN
+VABJ;Bhuj;IN
+VABO;Vadodara;IN
+VABP;Bhopal;IN
+VABV;Bhavnagar;IN
+VADN;Daman;IN
+VADU;Diu;IN
+VAGD;Gondia;IN
+VAGN;;IN
+VAHS;Rajkot;IN
+VAID;Indore;IN
+VAJB;Jabalpur;IN
+VAJL;Jalgaon;IN
+VAJM;Jamnagar;IN
+VAKE;Kandla;IN
+VAKP;Kolhapur;IN
+VAKS;Keshod;IN
+VALT;Latur;IN
+VANM;Navi Mumbai;IN
+VANP;Nagpur;IN
+VANR;Nashik;IN
+VAOZ;Nasik;IN
+VAPO;Pune;IN
+VAPR;Porbandar;IN
+VARG;;IN
+VARK;Rajkot;IN
+VASD;Kakadi;IN
+VASL;Solapur;IN
+VASU;Surat;IN
+VAUD;Udaipur;IN
+VCBI;Colombo;LK
+VCCA;Anuradhapura;LK
+VCCB;Batticaloa;LK
+VCCC;Colombo;LK
+VCCG;Ampara;LK
+VCCH;Polonnaruwa Town;LK
+VCCJ;Jaffna;LK
+VCCK;Galle;LK
+VCCN;Kalutara;LK
+VCCS;Sigiriya;LK
+VCCT;Trincomalee;LK
+VCCW;Weerawila;LK
+VCRI;Mattala;LK
+VDBG;Battambang;KH
+VDKC;Kompong Cham;KH
+VDKH;Kampong Chhnang;KH
+VDKK;Krong Khemara Phoumin;KH
+VDMK;Sen Monorom;KH
+VDPP;Phnom Penh (Pou Senchey);KH
+VDRK;Ratanakiri;KH
+VDSA;Siem Reap;KH
+VDST;Stung Treng;KH
+VDSV;Preah Sihanouk;KH
+VDTI;Phnom Penh (Boeng Khyang);KH
+VEAB;Allahabad;IN
+VEAN;;IN
+VEAP;Ambikapur;IN
+VEAT;Agartala;IN
+VEAY;Faizabad;IN
+VEBA;Kolkata;IN
+VEBD;Siliguri;IN
+VEBG;Balurghat;IN
+VEBI;Shillong;IN
+VEBK;;IN
+VEBL;Bhusugaon;IN
+VEBN;Varanasi;IN
+VEBP;Berhampur (Brahmapur);IN
+VEBS;Bhubaneswar;IN
+VEBT;Patna;IN
+VEBU;Bilaspur;IN
+VECA;Chabua;IN
+VECC;Kolkata;IN
+VECK;;IN
+VECO;Cooch Behar;IN
+VEDB;;IN
+VEDG;Durgapur;IN
+VEDH;Darbhanga;IN
+VEDO;Deoghar;IN
+VEDX;;IN
+VEDZ;Daporijo;IN
+VEGK;Gorakhpur;IN
+VEGT;Guwahati;IN
+VEGY;Gaya;IN
+VEHK;Sambalpur;IN
+VEHX;Jalpaiguri;IN
+VEIM;Imphal;IN
+VEJH;;IN
+VEJP;Jeypore;IN
+VEJR;Jagdalpur;IN
+VEJS;Jamshedpur;IN
+VEJT;Jorhat;IN
+VEKG;Kishanganj;IN
+VEKH;;IN
+VEKI;Kushinagar;IN
+VEKJ;Gopinathapur;IN
+VEKM;Manik Bhandar;IN
+VEKR;Kailashahar;IN
+VEKU;Silchar;IN
+VEKW;Khowai;IN
+VELP;Aizawl (Lengpui);IN
+VELR;Lilabari;IN
+VEMH;Malda;IN
+VEMN;Dibrugarh;IN
+VEMR;Dimapur;IN
+VEMZ;Muzaffarpur;IN
+VEPG;Pasighat;IN
+VEPT;Patna;IN
+VEPY;Pakyong;IN
+VERC;Ranchi;IN
+VERK;Rourkela;IN
+VERU;Rupsi;IN
+VETJ;Tezu;IN
+VETZ;;IN
+VEUK;;IN
+VEZO;Ziro;IN
+VGBR;Barisal;BD
+VGCB;Cox's Bazar;BD
+VGCM;Comilla;BD
+VGEG;Chattogram (Chittagong);BD
+VGHS;Dhaka;BD
+VGIS;Ishurdi;BD
+VGJR;Jashore (Jessore);BD
+VGLM;Lalmonirhat;BD
+VGRJ;Rajshahi;BD
+VGSD;Saidpur;BD
+VGSG;Thakurgaon;BD
+VGSH;Shamshernagar;BD
+VGSY;Sylhet;BD
+VGTJ;Dhaka;BD
+VHHH;Hong Kong;HK
+VHSK;Islands;HK
+VHSS;Central and Western;HK
+VIAG;Agra;IN
+VIAR;Amritsar;IN
+VIAX;Adampur;IN
+VIBK;Bikaner;IN
+VIBR;Bhuntar;IN
+VIBT;;IN
+VIBY;Bareilly;IN
+VICG;Chandigarh;IN
+VIDD;New Delhi;IN
+VIDN;Dehradun (Jauligrant);IN
+VIDP;New Delhi;IN
+VIDX;Ghaziabad;IN
+VIGG;Kangra;IN
+VIGR;Gwalior;IN
+VIHR;Hisar;IN
+VIJO;Jodhpur;IN
+VIJP;Jaipur;IN
+VIJR;;IN
+VIJU;Jammu;IN
+VIKA;Kanpur;IN
+VIKG;Ajmer (Kishangarh);IN
+VIKO;Kota;IN
+VILD;;IN
+VILH;Leh;IN
+VILK;Lucknow;IN
+VIND;;IN
+VIPK;Pathankot;IN
+VIPT;Pantnagar;IN
+VISM;Jubbarhatti;IN
+VISR;Srinagar;IN
+VLAP;Attopeu;LA
+VLHS;Huay Xai;LA
+VLLB;Luang Phabang;LA
+VLLN;Luang Namtha;LA
+VLOS;Oudomsay;LA
+VLPS;Pakse;LA
+VLSB;Sainyabuli;LA
+VLSK;;LA
+VLSN;;LA
+VLSV;Salavan;LA
+VLTK;Thakhek;LA
+VLVT;Vientiane;LA
+VLXK;Xieng Khouang;LA
+VMMC;Nossa Senhora do Carmo;MO
+VNBG;Bajhang;NP
+VNBJ;Bhojpur;NP
+VNBL;Baglung;NP
+VNBP;Bharatpur;NP
+VNBR;Bajura;NP
+VNBT;Baitadi;NP
+VNBW;Siddharthanagar (Bhairahawa);NP
+VNCG;Bhadrapur;NP
+VNDG;Dang;NP
+VNDH;Dhangarhi;NP
+VNDL;Darchula;NP
+VNDP;Dolpa;NP
+VNDT;Silgadi Doti;NP
+VNGK;Gorkha;NP
+VNJI;Jiri;NP
+VNJL;Jumla;NP
+VNJP;Janakpur;NP
+VNJS;Jomsom;NP
+VNKT;Kathmandu;NP
+VNLD;Lamidanda;NP
+VNLK;Lukla;NP
+VNLT;Langtang;NP
+VNMA;Ngawal;NP
+VNMG;Meghauli;NP
+VNMN;Mahendranagar;NP
+VNNG;Nepalgunj;NP
+VNPK;Pokhara;NP
+VNPL;Phaplu;NP
+VNRB;Rajbiraj;NP
+VNRC;Ramechhap;NP
+VNRP;Rolpa;NP
+VNRT;Rumjatar;NP
+VNSB;Namche Bazaar;NP
+VNSI;Simara;NP
+VNSK;Surkhet;NP
+VNSR;Sanfebagar;NP
+VNST;Simikot;NP
+VNTJ;Taplejung;NP
+VNTP;Tikapur;NP
+VNTR;Tumling Tar;NP
+VNVT;Biratnagar;NP
+VOAT;Agatti;IN
+VOBI;Bellary;IN
+VOBL;Bangalore;IN
+VOBM;Belgaum;IN
+VOBR;Bidar;IN
+VOBZ;Gannavaram;IN
+VOCB;Coimbatore;IN
+VOCI;Kochi;IN
+VOCL;Calicut;IN
+VOCP;Kadapa;IN
+VOCX;IAF Camp;IN
+VOGA;Mopa;IN
+VOGB;Kalaburagi;IN
+VOGO;Vasco da Gama;IN
+VOHB;Hubli;IN
+VOHS;Hyderabad;IN
+VOHY;Hyderabad;IN
+VOJV;Toranagallu;IN
+VOKN;Kannur;IN
+VOKU;Orvakal;IN
+VOMD;Madurai;IN
+VOML;Mangalore;IN
+VOMM;Chennai;IN
+VOMY;Mysore;IN
+VONV;Neyveli;IN
+VOPB;Port Blair;IN
+VOPC;Puducherry (Pondicherry);IN
+VOPN;Puttaparthi;IN
+VORG;Ramagundam;IN
+VORY;Madhurapudi;IN
+VOSH;Shimoga;IN
+VOSM;Salem;IN
+VOSR;Chipi;IN
+VOTJ;Thanjavur;IN
+VOTK;Vagaikulam;IN
+VOTP;Tirupati;IN
+VOTR;Tiruchirappalli;IN
+VOTV;Thiruvananthapuram;IN
+VOVZ;Visakhapatnam;IN
+VOWA;Warangal;IN
+VQBT;Jakar;BT
+VQGP;Gelephu;BT
+VQPR;Paro;BT
+VQTY;Yongphulla;BT
+VREI;Ifuru Island;MV
+VRMD;Baa Atoll;MV
+VRMG;Gan;MV
+VRMH;Haa Dhaalu Atoll;MV
+VRMK;Kadhdhoo;MV
+VRMM;Malé;MV
+VRMO;Huvadhu Atoll;MV
+VRMT;Huvadhu Atoll;MV
+VRMU;Kudahuvadhoo;MV
+VRMV;Maamigili;MV
+VRNT;Thimarafushi;MV
+VTBC;Khao Wua;TH
+VTBD;Bangkok;TH
+VTBE;Mueang Saraburi;TH
+VTBH;;TH
+VTBK;Nakhon Pathom;TH
+VTBL;Lop Buri;TH
+VTBO;Laem Ngop;TH
+VTBP;Mueang Prachuap Khiri Khan;TH
+VTBS;Bangkok;TH
+VTBT;Bang Phra;TH
+VTBU;Rayong;TH
+VTBV;Mueang Trat;TH
+VTBW;Watthana Nakhon;TH
+VTCC;Chiang Mai;TH
+VTCH;Mae Hong Son;TH
+VTCL;;TH
+VTCM;Ban Thi;TH
+VTCN;;TH
+VTCO;;TH
+VTCP;;TH
+VTCY;;TH
+VTPB;;TH
+VTPH;Hua Hin;TH
+VTPI;;TH
+VTPL;Lom Sak;TH
+VTPM;;TH
+VTPN;;TH
+VTPO;;TH
+VTPP;Phitsanulok;TH
+VTPR;Photharam;TH
+VTPT;;TH
+VTPU;Uttaradit;TH
+VTPY;;TH
+VTSA;;TH
+VTSB;Surat Thani;TH
+VTSC;;TH
+VTSE;Chumphon;TH
+VTSF;Nakhon Si Thammarat;TH
+VTSG;Krabi;TH
+VTSH;;TH
+VTSK;;TH
+VTSM;Na Thon (Ko Samui Island);TH
+VTSN;Nakhon Si Thammarat;TH
+VTSP;Phuket;TH
+VTSR;Ranong;TH
+VTSS;Hat Yai;TH
+VTST;Trang;TH
+VTUD;Udon Thani;TH
+VTUI;;TH
+VTUJ;Surin;TH
+VTUK;Khon Kaen;TH
+VTUL;;TH
+VTUN;Nakhon Ratchasima;TH
+VTUO;Buriram;TH
+VTUQ;Chaloem Phra Kiat;TH
+VTUR;;TH
+VTUU;Ubon Ratchathani;TH
+VTUV;Roi Et;TH
+VTUW;Nakhon Phanom;TH
+VVBM;Buon Ma Thuot;VN
+VVCA;Tam Nghĩa;VN
+VVCI;Haiphong (Hai An);VN
+VVCM;Ca Mau City;VN
+VVCR;Cam Ranh;VN
+VVCS;Con Dao;VN
+VVCT;Can Tho;VN
+VVDB;Dien Bien Phu;VN
+VVDH;Dong Hoi;VN
+VVDL;Da Lat;VN
+VVDN;Da Nang;VN
+VVNB;Hanoi (Soc Son);VN
+VVNM;Da Nang;VN
+VVNS;Mai Son;VN
+VVPB;Huế;VN
+VVPC;Quy Nohn;VN
+VVPK;Pleiku;VN
+VVPQ;Phu Quoc Island;VN
+VVPR;Phan Rang;VN
+VVRG;Rach Gia;VN
+VVTH;Tuy Hoa;VN
+VVTS;Ho Chi Minh City;VN
+VVTX;Thanh Hóa;VN
+VVVD;Van Don;VN
+VVVH;Vinh;VN
+VVVT;Vũng Tàu;VN
+VYAN;Aeng;MM
+VYBG;Nyaung U;MM
+VYBM;Banmaw;MM
+VYBP;Bokpyinn;MM
+VYCZ;Mandalay;MM
+VYDW;Dawei;MM
+VYGG;Gangaw;MM
+VYGW;Gwa;MM
+VYHH;Kalaw Township;MM
+VYHL;Hommalinn;MM
+VYHN;Tilin;MM
+VYKG;Kengtung;MM
+VYKI;Kanti;MM
+VYKL;Kalemyo;MM
+VYKP;Kyaukpyu;MM
+VYKT;Kawthoung;MM
+VYKU;Kyauktu;MM
+VYLK;Loikaw;MM
+VYLS;Lashio;MM
+VYMD;Mandalay;MM
+VYME;Mkeik;MM
+VYMK;Myitkyina;MM
+VYMM;Mawlamyine;MM
+VYMN;Manaung;MM
+VYMO;;MM
+VYMS;Mong Hsat;MM
+VYMT;Mong Tong;MM
+VYMW;Magway;MM
+VYMY;Monywar;MM
+VYNS;Namsang;MM
+VYNT;Pyinmana;MM
+VYPA;Hpa-N;MM
+VYPK;Pauk;MM
+VYPN;Pathein;MM
+VYPP;Pa Pun;MM
+VYPT;Putao;MM
+VYPU;Pakhokku;MM
+VYPY;Pye;MM
+VYSW;Sittwe;MM
+VYTD;Thandwe;MM
+VYTL;Tachileik;MM
+VYYE;Ye;MM
+VYYY;Yangon;MM
+WAAA;Ujung Pandang;ID
+WABB;Biak;ID
+WABD;Moanamani;ID
+WABI;Nabire;ID
+WABO;Serui;ID
+WABS;Sinak;ID
+WADB;Palibelo, Bima;ID
+WADD;Kuta, Badung;ID
+WADE;Gerokgak, Buleleng;ID
+WADL;Mataram (Pujut, Lombok Tengah);ID
+WADS;Sumbawa Besar;ID
+WADU;Lunyuk;ID
+WADY;Rogojampi, Banyuwangi;ID
+WAEE;Sango;ID
+WAEG;Galela-Celebes Island;ID
+WAEK;Kao-Celebes Island;ID
+WAEL;Labuha-Halmahera Island;ID
+WAEM;Pekaulang;ID
+WAES;Sanana;ID
+WAFB;Toraja;ID
+WAFD;Palopo;ID
+WAFF;Palu;ID
+WAFJ;Mamuju;ID
+WAFN;;ID
+WAFO;Morowali;ID
+WAFU;Tojo Una-Una;ID
+WAFW;Luwok;ID
+WAFY;Buol-Celebes Island;ID
+WAGB;Muara Teweh;ID
+WAGF;Seruyan;ID
+WAGG;Palangkaraya;ID
+WAGI;Pangkalanbun;ID
+WAGS;Sampit;ID
+WAHH;Yogyakarta;ID
+WAHI;Yogyakarta;ID
+WAHL;Cilacap;ID
+WAHP;Purwokerto-Java Island;ID
+WAHQ;Surakarta;ID
+WAHS;Semarang;ID
+WAHU;Karimunjawa;ID
+WAJB;Bokondini;ID
+WAJC;Dabra;ID
+WAJI;Sarmi;ID
+WAJJ;Sentani;ID
+WAJL;Lereh-Papua Island;ID
+WAJO;Oksibil;ID
+WAJS;Senggeh;ID
+WAJY;Borme;ID
+WAKD;Mindiptana-Papua Island;ID
+WAKE;Bade;ID
+WAKK;Merauke;ID
+WAKM;Kamur;ID
+WAKO;Okaba;ID
+WAKP;Kepi;ID
+WAKQ;Senggo-Papua Island;ID
+WAKT;Tanah Merah;ID
+WALC;Bontang-Borneo Island;ID
+WALE;Melak-Borneo Island;ID
+WALJ;Datadawai-Borneo Island;ID
+WALK;Nusantara;ID
+WALL;Balikpapan;ID
+WALS;Samarinda;ID
+WALT;Santan-Borneo Island;ID
+WALW;Miau Baru;ID
+WAMG;Gorontalo-Celebes Island;ID
+WAMH;Tabukan Utara, Sangihe Islands;ID
+WAMI;Lolak;ID
+WAMJ;Gebe Island;ID
+WAMM;Manado;ID
+WAMN;Karakelong Island;ID
+WAMP;Morowali;ID
+WAMS;Miangas;ID
+WAOC;Batu Licin;ID
+WAOK;Stagen;ID
+WAON;Tanta-Tabalong;ID
+WAOO;Landasan Ulin;ID
+WAPA;Amahai;ID
+WAPC;Bandanaira;ID
+WAPD;Dobo-Warmar Island;ID
+WAPF;Langgur;ID
+WAPG;Namrole;ID
+WAPI;Saumlaki-Yamdena Island;ID
+WAPK;Maikoor Island;ID
+WAPN;Namniwel;ID
+WAPP;Ambon;ID
+WAPR;Namlea;ID
+WAPS;Saumlaki-Yamdena Island;ID
+WAPT;Tikong-Taliabu Island;ID
+WAPV;Wahai;ID
+WAQA;Nunukan-Nunukan Island;ID
+WAQC;Maratua;ID
+WAQJ;Long Bawan;ID
+WAQL;Long Apung-Borneo Island;ID
+WAQQ;Tarakan;ID
+WAQT;Tanjung Redeb - Borneo Island;ID
+WARA;Malang;ID
+WARC;Blora;ID
+WARD;Kediri;ID
+WARE;Jember;ID
+WARP;Sapeken;ID
+WARR;Surabaya;ID
+WART;Sumenep;ID
+WARW;Bawean;ID
+WASA;Ayawasi;ID
+WASC;Ransiki-Papua Island;ID
+WASF;Fakfak;ID
+WASI;Inanwatan;ID
+WASK;Kaimana;ID
+WASN;Waisai;ID
+WASO;Babo;ID
+WASS;Sorong;ID
+WAST;Atinjoe;ID
+WASU;Kambuaya-Papua Island;ID
+WATA;Atambua;ID
+WATC;Waioti;ID
+WATE;Ende;ID
+WATG;Satar Tacik, Manggarai;ID
+WATK;Radamata;ID
+WATL;Tiwatobi;ID
+WATM;Kabola;ID
+WATO;Labuan Bajo, Manggarai Barat;ID
+WATQ;Pur-Pura;ID
+WATR;Ba'a - Rote Island;ID
+WATS;Sabu-Sawu Island;ID
+WATT;Kupang;ID
+WATU;Waingapu-Sumba Island;ID
+WATW;Lewoleba;ID
+WAUU;Manokwari;ID
+WAVA;Mulia-Papua Island;ID
+WAVD;Dekai;ID
+WAVV;Wamena;ID
+WAWB;Bau Bau;ID
+WAWD;Wangi-wangi Island;ID
+WAWH;Benteng;ID
+WAWP;Kolaka;ID
+WAWR;Raha;ID
+WAWS;Soroako;ID
+WAWW;Kendari;ID
+WAYE;Enarotali;ID
+WBAK;Seria;BN
+WBGB;Bintulu;MY
+WBGC;Belaga;MY
+WBGD;Long Semado;MY
+WBGF;Long Datih;MY
+WBGG;Kuching;MY
+WBGI;Long Seridan;MY
+WBGJ;Limbang;MY
+WBGK;Mukah;MY
+WBGL;Long Akah;MY
+WBGM;Marudi;MY
+WBGN;Sematan;MY
+WBGP;Kapit;MY
+WBGQ;Bakalalan;MY
+WBGR;Miri;MY
+WBGS;Sibu;MY
+WBGU;Long Sukang;MY
+WBGW;Lawas;MY
+WBGZ;Bario;MY
+WBKA;Semporna;MY
+WBKD;Lahad Datu;MY
+WBKE;Telupid;MY
+WBKG;Keningau;MY
+WBKH;Sahabat;MY
+WBKK;Kota Kinabalu;MY
+WBKL;Labuan;MY
+WBKM;Tomanggong;MY
+WBKN;Long Miau;MY
+WBKO;Sepulot;MY
+WBKP;Pamol;MY
+WBKR;Ranau;MY
+WBKS;Sandakan;MY
+WBKT;Kudat;MY
+WBKW;Tawau;MY
+WBMU;Mulu;MY
+WBSB;Bandar Seri Begawan;BN
+WBTM;Belawai;MY
+WIBB;Pekanbaru;ID
+WIBD;Dumai;ID
+WIBJ;Rengat-Sumatra Island;ID
+WIBS;Bengkalis-Sumatra Island;ID
+WICA;Kertajati;ID
+WICC;Bandung;ID
+WICD;Cirebon-Java Island;ID
+WICM;Tasikmalaya-Java Island;ID
+WICN;Cijulang;ID
+WIDD;Batam;ID
+WIDL;Bukit Padi;ID
+WIDN;Tanjung Pinang-Bintan Island;ID
+WIDS;Pasirkuning-Singkep Island;ID
+WIEE;Padang (Katapiang);ID
+WIGG;Bengkulu;ID
+WIHH;Jakarta;ID
+WIHP;Jakarta;ID
+WIII;Jakarta;ID
+WIJJ;Jambi;ID
+WIKK;Pangkal Pinang;ID
+WIKT;Tanjung Pandan;ID
+WILL;Bandar Lampung;ID
+WILP;Krui;ID
+WIMA;Lhok Seumawe-Sumatra Island;ID
+WIMB;Gunungsitoli;ID
+WIME;Padang Sidempuan;ID
+WIMF;Mandailing;ID
+WIMI;Singkil;ID
+WIMK;Medan;ID
+WIMM;Beringin;ID
+WIMN;Siborong-Borong;ID
+WIMO;Pulau-Pulau Batu;ID
+WIMP;Parapat-Sumatra Island;ID
+WIMS;Sibolga (Pinangsori);ID
+WIOD;Singkawang;ID
+WIOG;Nanga Pinoh-Borneo Island;ID
+WIOH;Paloh;ID
+WIOK;Ketapang;ID
+WIOO;Pontianak;ID
+WIOP;Putussibau-Borneo Island;ID
+WIOS;Sintang;ID
+WIPB;Lubuk Linggau;ID
+WIPP;Palembang;ID
+WIPQ;Talang Gudang-Sumatra Island;ID
+WIPY;Bentayan;ID
+WIRR;Tangerang-Java Island;ID
+WITC;Kuala Pesisir;ID
+WITK;Takengon;ID
+WITL;Lhok Sukon-Sumatra Island;ID
+WITN;Sabang;ID
+WITO;Blangpidie;ID
+WITT;Banda Aceh;ID
+WMAN;Taman Negara;MY
+WMAU;Mersing;MY
+WMBA;Sitiawan;MY
+WMBI;Taiping;MY
+WMBT;Tioman Island;MY
+WMKA;Alor Satar;MY
+WMKB;Butterworth;MY
+WMKC;Kota Baharu;MY
+WMKD;Kuantan;MY
+WMKE;Kerteh;MY
+WMKI;Ipoh;MY
+WMKJ;Johor Bahru;MY
+WMKK;Sepang;MY
+WMKL;Langkawi;MY
+WMKM;Malacca;MY
+WMKN;Kuala Terengganu;MY
+WMKP;Penang;MY
+WMPA;Pangkor Island;MY
+WMPR;Redang;MY
+WMSA;Subang;MY
+WPAT;Vila;TL
+WPDB;Suai;TL
+WPDL;Dili;TL
+WPEC;Baucau;TL
+WPMN;Maliana;TL
+WPOC;Oecussi-Ambeno;TL
+WPVQ;Viqueque;TL
+WRJV;Yigi;ID
+WRLH;Tanah Grogot;ID
+WSAP;Paya Lebar;SG
+WSAT;Western Water Catchment;SG
+WSSL;Seletar;SG
+WSSS;Singapore;SG
+XXXX;Serik;TR
+YABA;Albany;AU
+YABI;Abingdon Downs;AU
+YADG;Aldinga;AU
+YAGD;;AU
+YALA;Marla;AU
+YALX;;AU
+YAMB;;AU
+YAMC;;AU
+YAMK;Andamooka;AU
+YAMT;;AU
+YANG;;AU
+YANK;;AU
+YAPH;Alpha;AU
+YARA;Ararat;AU
+YARG;;AU
+YARK;;AU
+YARM;Armidale;AU
+YARY;Tanbar;AU
+YATN;Atherton;AU
+YAUR;Aurukun;AU
+YAUV;Auvergne Station;AU
+YAYE;Yulara;AU
+YAYR;Ayr;AU
+YBAB;Baralaba;AU
+YBAD;;AU
+YBAF;Brisbane;AU
+YBAR;Barcaldine;AU
+YBAS;Alice Springs;AU
+YBAU;Badu Island;AU
+YBAW;;AU
+YBBN;Brisbane;AU
+YBBT;Wedderburn;AU
+YBCG;Gold Coast;AU
+YBCK;Blackall;AU
+YBCS;Cairns;AU
+YBCV;Charleville;AU
+YBDF;;AU
+YBDG;;AU
+YBDV;;AU
+YBEB;Pumululu National Park;AU
+YBEE;;AU
+YBEO;;AU
+YBGD;;AU
+YBGO;Balgo;AU
+YBGR;Bridgewater On Loddon;AU
+YBHI;Broken Hill;AU
+YBHM;Hamilton Island;AU
+YBIE;Bedourie;AU
+YBIR;;AU
+YBIU;;AU
+YBKE;;AU
+YBKT;;AU
+YBLA;Benalla;AU
+YBLC;;AU
+YBLL;;AU
+YBLN;Busselton;AU
+YBLT;;AU
+YBMA;Mount Isa;AU
+YBMI;;AU
+YBMK;Mackay;AU
+YBMY;Barunga;AU
+YBNA;Ballina;AU
+YBNS;Bairnsdale;AU
+YBOA;;AU
+YBOC;;AU
+YBOI;Boigu Island;AU
+YBOK;;AU
+YBOM;;AU
+YBOU;;AU
+YBPI;;AU
+YBPN;Proserpine;AU
+YBRK;Rockhampton;AU
+YBRL;;AU
+YBRM;Broome;AU
+YBRN;;AU
+YBRW;;AU
+YBRY;;AU
+YBSU;Maroochydore;AU
+YBTH;Bathurst;AU
+YBTI;Wurrumiyanga;AU
+YBTL;Townsville;AU
+YBTR;;AU
+YBUD;Bundaberg;AU
+YBUN;;AU
+YBWN;Bowen;AU
+YBWP;Weipa;AU
+YBWW;Toowoomba;AU
+YBWX;;AU
+YBYS;Wunaamin Miliwundi Ranges;AU
+YCAG;;AU
+YCAH;;AU
+YCAR;Carnarvon;AU
+YCAS;;AU
+YCBA;;AU
+YCBB;;AU
+YCBP;Coober Pedy;AU
+YCBR;;AU
+YCCA;Chinchilla;AU
+YCCT;;AU
+YCCY;Cloncurry;AU
+YCDO;;AU
+YCDR;Caloundra;AU
+YCDU;;AU
+YCEE;;AU
+YCFD;;AU
+YCFS;Coffs Harbour;AU
+YCGO;Chillagoe;AU
+YCHK;Christmas Creek Mine;AU
+YCHT;;AU
+YCIN;Derby;AU
+YCKI;;AU
+YCKN;;AU
+YCMT;;AU
+YCMU;;AU
+YCMW;;AU
+YCNF;;AU
+YCNK;;AU
+YCNM;;AU
+YCOD;Cordillo Downs;AU
+YCOE;Coen;AU
+YCOI;Collie;AU
+YCOM;Cooma;AU
+YCOO;;AU
+YCOR;;AU
+YCRG;;AU
+YCRY;;AU
+YCSV;;AU
+YCTM;;AU
+YCUA;;AU
+YCUE;;AU
+YCWA;Coondewanna;AU
+YCWI;;AU
+YCWL;;AU
+YCWR;;AU
+YCWY;Coolawanyah Station;AU
+YDAY;;AU
+YDBI;;AU
+YDBR;Maramie;AU
+YDBY;Derby;AU
+YDGA;;AU
+YDIX;New Dixie;AU
+YDKI;Dunk Island;AU
+YDLK;Dulkaninna;AU
+YDLQ;Deniliquin;AU
+YDLT;;AU
+YDLV;;AU
+YDMG;;AU
+YDNI;Darnley Island;AU
+YDOR;Dorunda Outstation;AU
+YDPD;;AU
+YDPO;Devonport;AU
+YDRA;Port Denison;AU
+YDRD;Drysdale River;AU
+YDRH;;AU
+YDRI;;AU
+YDVR;Kaltukatjara;AU
+YDYS;;AU
+YECH;;AU
+YECL;;AU
+YEDA;Etadunna;AU
+YEEB;Eneabba;AU
+YELD;Elcho Island;AU
+YEML;Emerald;AU
+YERN;;AU
+YESE;Elrose Mine;AU
+YESP;Esperance;AU
+YEVD;;AU
+YEXM;Exmouth;AU
+YFBS;Forbes;AU
+YFDF;Cloudbreak Village;AU
+YFIL;;AU
+YFLI;Whitemark;AU
+YFLO;;AU
+YFNE;Finke;AU
+YFRT;;AU
+YFRV;Oombulgurri;AU
+YFST;;AU
+YFTZ;;AU
+YGAM;Gamboola;AU
+YGAY;Gayndah;AU
+YGBI;;AU
+YGDH;;AU
+YGDI;;AU
+YGDN;Gordon Downs;AU
+YGDS;;AU
+YGEL;Moonyoonooka;AU
+YGFN;Grafton;AU
+YGIA;Ginbata;AU
+YGIB;Gibb;AU
+YGKL;Great Keppel Island;AU
+YGLA;Gladstone;AU
+YGLB;;AU
+YGLE;;AU
+YGLI;Glen Innes;AU
+YGLN;Collie;AU
+YGLO;;AU
+YGNV;;AU
+YGON;Mount Gordon Mine;AU
+YGPT;Pirlangimpi;AU
+YGSC;Gascoyne Junction;AU
+YGTE;Groote Eylandt;AU
+YGTH;Griffith;AU
+YGTN;Georgetown;AU
+YGTO;George Town;AU
+YGYM;;AU
+YHAW;Hawker;AU
+YHAY;;AU
+YHBA;Hervey Bay;AU
+YHBR;;AU
+YHBY;Ghan;AU
+YHDY;;AU
+YHHY;Highbury;AU
+YHID;Horn;AU
+YHIL;Hillside;AU
+YHLC;;AU
+YHMB;Hermannsburg (Ntaria);AU
+YHML;;AU
+YHOO;Lajamanu;AU
+YHOT;Mount Hotham;AU
+YHPN;;AU
+YHSM;;AU
+YHTL;Shelburne;AU
+YHUG;Hughenden;AU
+YIDK;Indulkana;AU
+YIFL;;AU
+YIFY;;AU
+YIGM;;AU
+YIKM;Inkerman;AU
+YINJ;Injune;AU
+YINN;;AU
+YINW;Inverway;AU
+YISF;;AU
+YIVL;Inverell;AU
+YJAB;;AU
+YJBO;Boisdale;AU
+YJDA;Jundah;AU
+YJLC;;AU
+YJNB;Jurien Bay;AU
+YKAL;Kalumburu;AU
+YKAR;Karara;AU
+YKBL;Kambalda West;AU
+YKBR;Kalbarri;AU
+YKBY;;AU
+YKCA;Petermann;AU
+YKCS;Petermann;AU
+YKER;;AU
+YKII;;AU
+YKKG;;AU
+YKLA;Maramie;AU
+YKLB;Koolburra;AU
+YKMB;;AU
+YKML;;AU
+YKMP;;AU
+YKNG;;AU
+YKOW;Kowanyama;AU
+YKPR;Kalpower;AU
+YKRY;;AU
+YKSC;;AU
+YKUB;Kubin Island;AU
+YLAH;;AU
+YLEC;;AU
+YLEO;Leonora;AU
+YLEV;;AU
+YLFD;Lakefield;AU
+YLGU;Baines;AU
+YLHI;Lord Howe Island;AU
+YLHR;Lockhart River;AU
+YLHS;Lyndhurst;AU
+YLIN;Lindeman Island;AU
+YLIS;Lismore;AU
+YLKN;Alpurrurulam;AU
+YLLE;;AU
+YLMQ;City of Lake Macquarie;AU
+YLND;Lakeland Downs;AU
+YLOK;Lock;AU
+YLOR;;AU
+YLOV;Lotus Vale;AU
+YLRA;;AU
+YLRD;;AU
+YLRE;Longreach;AU
+YLRS;Laura Station;AU
+YLST;;AU
+YLTN;Laverton;AU
+YLTT;Lady Elliot Island;AU
+YLTV;Morwell;AU
+YLZI;;AU
+YMAA;Mabuiag Island;AU
+YMAE;Murray Island;AU
+YMAV;Lara;AU
+YMAY;East Albury;AU
+YMBA;Mareeba;AU
+YMBL;;AU
+YMCO;;AU
+YMCR;;AU
+YMCT;;AU
+YMDG;Mudgee;AU
+YMDI;Eighty Mile Beach;AU
+YMDS;;AU
+YMEK;;AU
+YMEN;Essendon Fields;AU
+YMER;Merimbula;AU
+YMEU;Merluna;AU
+YMGB;Milingimbi Island;AU
+YMGD;Maningrida;AU
+YMGN;Mount Gunson;AU
+YMGR;;AU
+YMGT;;AU
+YMGV;Musgrave;AU
+YMHB;Hobart (Cambridge);AU
+YMHO;Wunaamin Miliwundi Ranges;AU
+YMHU;McArthur River Mine;AU
+YMIA;Mildura;AU
+YMIN;;AU
+YMIP;Mitchell Plateau;AU
+YMIR;Miranda Downs;AU
+YMIT;;AU
+YMJM;;AU
+YMLS;;AU
+YMLT;Launceston (Western Junction);AU
+YMMB;Melbourne;AU
+YMMI;Murrin Murrin;AU
+YMML;Melbourne;AU
+YMMU;;AU
+YMND;;AU
+YMNE;;AU
+YMNK;;AU
+YMNS;;AU
+YMNY;;AU
+YMOG;;AU
+YMOO;;AU
+YMOR;Moree;AU
+YMOT;Moreton;AU
+YMPA;;AU
+YMQA;Marqua;AU
+YMRB;Moranbah;AU
+YMRE;;AU
+YMRO;Moora;AU
+YMRW;;AU
+YMRY;Moruya;AU
+YMSF;;AU
+YMTB;;AU
+YMTG;Mount Gambier;AU
+YMTI;;AU
+YMTO;;AU
+YMUC;Muccan Station;AU
+YMUG;Mungeranie;AU
+YMUK;Mulka;AU
+YMUP;;AU
+YMWA;;AU
+YMWT;Moolawatana Station;AU
+YMWX;Marion Downs;AU
+YMYB;Maryborough;AU
+YMYR;;AU
+YMYT;;AU
+YNAP;;AU
+YNAR;Narrandera;AU
+YNBR;Narrabri;AU
+YNGU;;AU
+YNPE;Bamaga;AU
+YNRC;;AU
+YNRG;Narrogin;AU
+YNRV;;AU
+YNSH;;AU
+YNSM;Norseman;AU
+YNTN;Normanton;AU
+YNUB;;AU
+YNUL;;AU
+YNUM;;AU
+YNWN;Newman;AU
+YNYN;;AU
+YOEN;;AU
+YOKH;Oakden Hills;AU
+YOLA;Colac Otway Shire;AU
+YOLD;Olympic Dam;AU
+YOLW;;AU
+YOOD;;AU
+YOOM;Moomba;AU
+YORB;;AU
+YORC;Orchid Beach;AU
+YORG;Orange;AU
+YORV;Ord River;AU
+YOSB;;AU
+YOUY;Ouyen;AU
+YPAD;Adelaide;AU
+YPAG;;AU
+YPAM;;AU
+YPAS;Packsaddle;AU
+YPBO;Paraburdoo;AU
+YPCC;West Island;CC
+YPDI;;AU
+YPDN;Darwin;AU
+YPDO;Pardoo;AU
+YPGV;Nhulunbuy;AU
+YPIR;;AU
+YPJT;Perth;AU
+YPKA;Karratha;AU
+YPKG;Broadwood;AU
+YPKS;Parkes;AU
+YPKU;Kununurra;AU
+YPLC;Port Lincoln;AU
+YPLM;Exmouth;AU
+YPMH;Mount Eba;AU
+YPMP;Pormpuraaw;AU
+YPMQ;Port Macquarie;AU
+YPOD;;AU
+YPOK;;AU
+YPPD;Port Hedland;AU
+YPPH;Perth;AU
+YPSH;Ironstone;AU
+YPTN;;AU
+YPWR;Woomera;AU
+YPXM;Flying Fish Cove;CX
+YQDI;;AU
+YQLP;;AU
+YQNS;;AU
+YREN;;AU
+YRMD;;AU
+YRNG;;AU
+YROB;;AU
+YROE;Roebourne;AU
+YROI;Robinvale;AU
+YROM;Roma;AU
+YRRB;Roper Bar;AU
+YRSB;;AU
+YRTI;;AU
+YRTP;Yagoonya;AU
+YRYH;;AU
+YSAN;Sandstone;AU
+YSBK;Sydney;AU
+YSCB;Canberra;AU
+YSCN;Cobbitty;AU
+YSCO;;AU
+YSCR;;AU
+YSDU;Dubbo;AU
+YSEN;;AU
+YSGE;;AU
+YSGT;Singleton;AU
+YSGW;;AU
+YSHG;Shay Gap;AU
+YSHK;Denham;AU
+YSHR;Shute Harbour;AU
+YSHT;;AU
+YSII;Saibai Island;AU
+YSMB;Gosford;AU
+YSMI;;AU
+YSMP;;AU
+YSMR;Strathmore;AU
+YSNF;Burnt Pine;NF
+YSNW;Nowra Hill;AU
+YSOL;Karijini National Park;AU
+YSPE;;AU
+YSPK;;AU
+YSPT;;AU
+YSPV;;AU
+YSRI;Richmond;AU
+YSRN;;AU
+YSSY;Sydney (Mascot);AU
+YSTH;;AU
+YSTI;Stephens Island;AU
+YSTW;Tamworth;AU
+YSWG;Forest Hill;AU
+YSWH;;AU
+YSWL;;AU
+YTAA;;AU
+YTAB;;AU
+YTAM;;AU
+YTBR;;AU
+YTDR;;AU
+YTEE;Trepell;AU
+YTEF;;AU
+YTEM;Temora;AU
+YTGA;;AU
+YTGM;Thargomindah;AU
+YTGT;The Granites Gold Mine;AU
+YTHD;Drysdale River;AU
+YTHY;;AU
+YTIB;;AU
+YTKY;Turkey Creek;AU
+YTMO;Phosphate Hill;AU
+YTMP;Tom Price;AU
+YTMU;Tumut;AU
+YTMY;Tobermorey;AU
+YTNG;Biloela;AU
+YTNK;Tennant Creek;AU
+YTOC;;AU
+YTRE;Taree;AU
+YTST;Anjo Peninsula;AU
+YTWB;Toowoomba;AU
+YUDA;Undara;AU
+YUNY;;AU
+YUSL;Useless Loop;AU
+YVRD;Victoria River;AU
+YVRS;;AU
+YWAL;Eighty Mile Beach;AU
+YWAV;;AU
+YWBL;;AU
+YWBS;Sue Islet;AU
+YWCA;;AU
+YWCH;;AU
+YWCK;;AU
+YWDG;Windarling Mine;AU
+YWDH;Windorah;AU
+YWDL;Wondoola;AU
+YWGT;Laceby;AU
+YWHA;Whyalla;AU
+YWIR;Wirraminna;AU
+YWIT;;AU
+YWKB;;AU
+YWLG;;AU
+YWLM;Williamtown;AU
+YWLU;;AU
+YWMP;Wrotham Park;AU
+YWND;;AU
+YWOR;;AU
+YWSL;Sale;AU
+YWSN;;AU
+YWTL;;AU
+YWTN;;AU
+YWTO;Wentworth;AU
+YWUD;;AU
+YWWA;;AU
+YWWG;;AU
+YWWI;Woodie Woodie;AU
+YWWL;West Wyalong;AU
+YWYM;;AU
+YWYY;Burnie;AU
+YYAL;Yalgoo;AU
+YYKI;Yorke Island;AU
+YYLR;;AU
+YYMI;Yam Island;AU
+YYND;;AU
+YYNG;;AU
+YYOR;;AU
+YYTA;Yalata Mission;AU
+ZBAA;Beijing;CN
+ZBAD;Beijing;CN
+ZBAL;Bayanhot;CN
+ZBAR;Badanjilin;CN
+ZBBB;Beijing;CN
+ZBCD;Chengde;CN
+ZBCF;Chifeng;CN
+ZBCZ;Changzhi;CN
+ZBDH;Qinhuangdao (Changli);CN
+ZBDS;Ordos;CN
+ZBDT;Datong;CN
+ZBEN;Ejin Banner;CN
+ZBER;Erenhot;CN
+ZBES;Arxan;CN
+ZBHD;Handan;CN
+ZBHH;Hohhot;CN
+ZBHZ;Holingol;CN
+ZBLA;Hailar;CN
+ZBLF;Linfen (Yaodu);CN
+ZBLL;Lüliang;CN
+ZBMV;Bayannur;CN
+ZBMZ;Manzhouli;CN
+ZBOW;Baotou;CN
+ZBSG;Shuozhou;CN
+ZBSJ;Shijiazhuang;CN
+ZBSN;Tangshan (Fengrun);CN
+ZBTJ;Tianjin;CN
+ZBTL;Tongliao;CN
+ZBUH;Wuhai;CN
+ZBUL;Ulanhot;CN
+ZBXH;Xilinhot;CN
+ZBXT;Xingtai;CN
+ZBXZ;Xinzhou;CN
+ZBYC;Yuncheng (Yanhu);CN
+ZBYN;Taiyuan;CN
+ZBYZ;Bavannur;CN
+ZBZJ;Zhangjiakou;CN
+ZBZL;Zhalantun;CN
+ZGBH;Beihai (Yinhai);CN
+ZGBS;Baise (Tianyang);CN
+ZGCD;Changde (Dingcheng);CN
+ZGCJ;Huaihua;CN
+ZGCZ;Chenzhou;CN
+ZGDY;Zhangjiajie (Yongding);CN
+ZGFS;Foshan (Nanhai);CN
+ZGGG;Guangzhou (Huadu);CN
+ZGHA;Changsha (Changsha);CN
+ZGHC;Hechi (Jinchengjiang);CN
+ZGHY;Hengyang;CN
+ZGHZ;Huizhou (Pingtan);CN
+ZGKL;Guilin (Lingui);CN
+ZGLG;Yongzhou;CN
+ZGMX;Meizhou (Meixian);CN
+ZGNN;Nanning (Jiangnan);CN
+ZGOW;Jieyang (Rongcheng);CN
+ZGSD;Zhuhai (Jinwan);CN
+ZGSG;Shaoguan;CN
+ZGSY;Shaoyang (Wugang);CN
+ZGSZ;Shenzhen (Bao'an);CN
+ZGWZ;Tangbu;CN
+ZGXN;Meizhou (Xingning);CN
+ZGXX;Xiangxi;CN
+ZGYL;Yùlín;CN
+ZGYY;Yueyang (Yueyanglou);CN
+ZGZH;Liuzhou (Liujiang);CN
+ZGZJ;Zhanjiang;CN
+ZHAY;Anyang;CN
+ZHCC;Zhengzhou;CN
+ZHEC;Ezhou;CN
+ZHES;Enshi (Enshi);CN
+ZHGH;Xiangyang (Laohekou);CN
+ZHHH;Wuhan (Huangpi);CN
+ZHJZ;Jingzhou (Shashi);CN
+ZHLY;Luoyang (Laocheng);CN
+ZHNY;Nanyang (Wancheng);CN
+ZHQQ;Anyang;CN
+ZHSN;Shennongjia (Hongping);CN
+ZHSY;Shiyan (Maojian);CN
+ZHXF;Xiangyang (Xiangzhou);CN
+ZHXY;Xinyang;CN
+ZHYC;Yichang (Xiaoting);CN
+ZJHK;Haikou (Meilan);CN
+ZJQH;Qionghai (Basuo);CN
+ZJSY;Sanya (Tianya);CN
+ZKHM;Hoemun-ri;KP
+ZKPY;Pyongyang;KP
+ZKSD;Sŏndŏng-ni;KP
+ZKSE;Samjiyŏn;KP
+ZKUJ;Uiju;KP
+ZKWS;Wonsan;KP
+ZLAK;Ankang (Hanbin);CN
+ZLDH;Dunhuang;CN
+ZLDL;Delingha;CN
+ZLGL;Golog (Maqên);CN
+ZLGM;Golmud;CN
+ZLGY;Guyuan (Yuanzhou);CN
+ZLHB;Haibei (Qilian);CN
+ZLHX;Mengnai;CN
+ZLHZ;Hanzhong (Chenggu);CN
+ZLIC;Yinchuan;CN
+ZLJC;Jinchang;CN
+ZLJQ;Jiayuguan;CN
+ZLLL;Lanzhou (Yongdeng);CN
+ZLLN;Longnan (Cheng);CN
+ZLQY;Qingyang (Xifeng);CN
+ZLSN;Xi'an (Baqiao);CN
+ZLTS;Tianshui (Maiji);CN
+ZLXH;Gannan (Xiahe);CN
+ZLXN;Haidong (Huzhu Tu Autonomous County);CN
+ZLXY;Xianyang (Weicheng);CN
+ZLYA;Yan'an (Baota);CN
+ZLYL;Yulin;CN
+ZLYS;Yushu (Batang);CN
+ZLZW;Zhongwei (Shapotou);CN
+ZLZY;Zhangye (Ganzhou);CN
+ZMAH;Arvaikheer;MN
+ZMAT;Altai;MN
+ZMBH;Bayankhongor;MN
+ZMBN;Bulgan;MN
+ZMBR;Khankhongor;MN
+ZMBS;Bulgan;MN
+ZMBU;;MN
+ZMCD;;MN
+ZMCK;Ulaanbaatar (Sergelen);MN
+ZMDN;Uliastai;MN
+ZMDZ;Dalanzadgad;MN
+ZMHG;Hatgal;MN
+ZMHH;;MN
+ZMHU;Khujirt;MN
+ZMKD;Khovd;MN
+ZMMG;Mandalgobi;MN
+ZMMN;Mörön;MN
+ZMTG;Tsetserleg;MN
+ZMTL;Tosontsengel;MN
+ZMUB;Ulaanbaatar;MN
+ZMUG;Ulaangom;MN
+ZMUH;Öndörkhaan;MN
+ZMUL;Ölgii;MN
+ZPBS;Baoshan (Longyang);CN
+ZPCW;Lincang (Cangyuan);CN
+ZPDL;Dali (Xiaguan);CN
+ZPDQ;Diqing (Shangri-La);CN
+ZPJH;Jinghong (Gasa);CN
+ZPJM;Pu'er (Lancang);CN
+ZPLC;Lincang;CN
+ZPLJ;Lijiang (Gucheng);CN
+ZPMS;Dehong (Mangshi);CN
+ZPNL;Ninglang;CN
+ZPPP;Kunming;CN
+ZPSM;Pu'er;CN
+ZPTC;Baoshan (Tengchong);CN
+ZPWS;Wenshan;CN
+ZPYM;Chuxiong (Yuanmou);CN
+ZPZT;Zhaotong (Zhaoyang);CN
+ZSAM;Xiamen;CN
+ZSAQ;Anqing;CN
+ZSBA;Bengbu;CN
+ZSBB;Bengbu;CN
+ZSBO;Bozhou;CN
+ZSCG;Changzhou;CN
+ZSCN;Nanchang;CN
+ZSDL;Zhenjiang;CN
+ZSDY;Dongying (Kenli);CN
+ZSFY;Yingzhou, Fuyang;CN
+ZSFZ;Fuzhou (Changle);CN
+ZSGS;Ji'an;CN
+ZSGZ;Ganzhou;CN
+ZSHC;Hangzhou;CN
+ZSHZ;Heze (Dingtao);CN
+ZSJD;Jingdezhen;CN
+ZSJG;Jining;CN
+ZSJH;Chizhou;CN
+ZSJJ;Jiujiang;CN
+ZSJN;Jinan (Licheng);CN
+ZSJU;Quzhou (Kezheng);CN
+ZSJX;Xiuzhou, Hangzhou;CN
+ZSLG;Lianyungang;CN
+ZSLI;Lishui (Liandu);CN
+ZSLO;Longyan (Liancheng);CN
+ZSLQ;Taizhou (Luqiao);CN
+ZSLY;Linyi (Hedong);CN
+ZSNB;Ningbo;CN
+ZSNJ;Nanjing;CN
+ZSNT;Nantong (Tongzhou);CN
+ZSOF;Hefei;CN
+ZSPD;Shanghai (Pudong);CN
+ZSQD;Qingdao (Jiaozhou);CN
+ZSQZ;Quanzhou;CN
+ZSRG;Rugao (Nantong);CN
+ZSRJ;Ganzhou;CN
+ZSRZ;Rizhao (Donggang);CN
+ZSSH;Huai'an;CN
+ZSSM;Sanming (Sha);CN
+ZSSR;Shangrao (Hengfeng);CN
+ZSSS;Shanghai (Minhang);CN
+ZSSZ;Suzhou;CN
+ZSTX;Huangshan;CN
+ZSWA;Wuhu;CN
+ZSWF;Weifang (Kuiwen);CN
+ZSWH;Weihai;CN
+ZSWX;Wuxi;CN
+ZSWY;Wuyishan;CN
+ZSWZ;Wenzhou (Longwan);CN
+ZSXZ;Xuzhou;CN
+ZSYA;Yangzhou;CN
+ZSYC;Yichun;CN
+ZSYN;Yancheng (Tinghu);CN
+ZSYT;Yantai;CN
+ZSYW;Jinhua (Yiwu);CN
+ZSZS;Zhoushan;CN
+ZUAL;Shiquanhe;CN
+ZUAS;Anshun (Xixiu);CN
+ZUBD;Bangda;CN
+ZUBJ;Bijie;CN
+ZUBZ;Bazhong (Enyang);CN
+ZUCK;Chongqing;CN
+ZUDA;Dazhou (Dachuan);CN
+ZUDC;Garzê (Daocheng);CN
+ZUDJ;Tongren;CN
+ZUDR;Xigazê (Dingri);CN
+ZUDX;Dazhou (Daxian);CN
+ZUDZ;Dazu;CN
+ZUGH;Deyang (Guanghan);CN
+ZUGU;Guangyuan (Lizhou);CN
+ZUGY;Guiyang (Nanming);CN
+ZUGZ;Garzê (Garzê);CN
+ZUHY;Ngawa (Hongyuan);CN
+ZUJZ;Ngawa (Songpan);CN
+ZUKD;Garzê (Kangding);CN
+ZUKJ;Kaili  (Huangping);CN
+ZULA;Nanchong (Langzhong);CN
+ZULB;Qiannan (Libo);CN
+ZULP;Liangping;CN
+ZULS;Shannan (Gonggar);CN
+ZULZ;Luzhou (Yunlong);CN
+ZUMT;Zunyi;CN
+ZUMY;Mianyang (Fucheng);CN
+ZUNC;Nanchong (Gaoping);CN
+ZUNP;Liping;CN
+ZUNZ;Nyingchi (Mainling);CN
+ZUPL;Burang Town;CN
+ZUPS;Liupanshui (Zhongshan);CN
+ZUQJ;Qianjiang;CN
+ZURK;Xigazê (Samzhubzê);CN
+ZUSH;Shannan;CN
+ZUTF;Chengdu (Jianyang);CN
+ZUTR;Tongren (Daxing);CN
+ZUUU;Chengdu (Shuangliu);CN
+ZUWL;Wulong;CN
+ZUWS;Wushan;CN
+ZUWX;Wanzhou;CN
+ZUXC;Liangshan (Xichang);CN
+ZUYB;Yibin (Cuiping);CN
+ZUYI;Xingyi;CN
+ZUZH;Panzhihua (Renhe);CN
+ZUZY;Zunyi;CN
+ZWAK;Aksu (Onsu);CN
+ZWAL;Aral;CN
+ZWAT;Altay;CN
+ZWBL;Bole;CN
+ZWCM;Qiemo;CN
+ZWFY;Fuyun;CN
+ZWHJ;Hejing;CN
+ZWHM;Hami;CN
+ZWHZ;Shihezi;CN
+ZWKC;Kuqa;CN
+ZWKL;Korla;CN
+ZWKM;Karamay;CN
+ZWKN;Burqin;CN
+ZWNL;Xinyuan;CN
+ZWQT;Qitai;CN
+ZWRQ;Ruoqiang Town;CN
+ZWSC;Shache;CN
+ZWSH;Kashgar;CN
+ZWSS;Shanshan;CN
+ZWTC;Tacheng;CN
+ZWTK;Tashikuergan;CN
+ZWTL;Turpan;CN
+ZWTN;Hotan;CN
+ZWTS;Tumxuk;CN
+ZWWW;Ürümqi;CN
+ZWYN;Ili (Yining / Ghulja);CN
+ZWYT;Hotan (Yutian);CN
+ZWZS;Zhaosu;CN
+ZYAS;Anshan;CN
+ZYBA;Baicheng;CN
+ZYBS;Baishan;CN
+ZYCC;Changchun;CN
+ZYCH;Dalian (Changhai);CN
+ZYCY;Shuangta, Chaoyang;CN
+ZYDD;Dandong (Zhenxing);CN
+ZYDQ;Daqing;CN
+ZYDU;Heihe;CN
+ZYFY;Fuyuan;CN
+ZYHB;Harbin;CN
+ZYHE;Heihe;CN
+ZYJD;Jiagedaqi;CN
+ZYJL;Jilin;CN
+ZYJM;Jiamusi;CN
+ZYJS;Jiansanjiang;CN
+ZYJX;Jixi;CN
+ZYJZ;Jinzhou (Linghai);CN
+ZYLD;Yichun;CN
+ZYMD;Mudanjiang;CN
+ZYMH;Mohe;CN
+ZYQQ;Qiqihar;CN
+ZYSD;Suifenhe;CN
+ZYSQ;Qian Gorlos Mongol Autonomous County;CN
+ZYTL;Dalian (Ganjingzi);CN
+ZYTN;Tonghua;CN
+ZYTX;Hunnan, Shenyang;CN
+ZYXC;Huludao (Xingcheng);CN
+ZYYC;Yichun;CN
+ZYYJ;Yanji;CN
+ZYYK;Yingkou (Laobian);CN
+ZYYY;Dadong, Shenyang;CN
