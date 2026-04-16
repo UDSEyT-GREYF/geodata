@@ -220,30 +220,44 @@
     return lines;
   }
 
-  function drawRichParagraph(pdf, lines, x, y, options = {}) {
-    const fontSize = options.fontSize || 10;
-    const lineHeight = options.lineHeight || 4.5;
-    const color = options.color || [34, 49, 61];
+function drawRichParagraph(pdf, lines, x, y, maxWidth, options = {}) {
+  const fontSize = options.fontSize || 10;
+  const lineHeight = options.lineHeight || 4.5;
+  const color = options.color || [34, 49, 61];
 
-    pdf.setFontSize(fontSize);
-    pdf.setTextColor(...color);
+  pdf.setFontSize(fontSize);
+  pdf.setTextColor(...color);
 
-    let cursorY = y;
+  let cursorY = y;
 
-    lines.forEach(line => {
-      let cursorX = x;
+  lines.forEach((line, lineIndex) => {
+    const isLastLine = lineIndex === lines.length - 1;
 
-      line.forEach(token => {
-        pdf.setFont("helvetica", token.bold ? "bold" : "normal");
-        pdf.text(token.text, cursorX, cursorY);
+    const lineWidth = line.reduce((acc, token) => acc + token.width, 0);
+    const spaceTokens = line.filter(token => token.text === " ");
+    const justify = !isLastLine && spaceTokens.length > 0;
+
+    const extraSpaceTotal = justify ? Math.max(0, maxWidth - lineWidth) : 0;
+    const extraPerSpace = justify ? (extraSpaceTotal / spaceTokens.length) : 0;
+
+    let cursorX = x;
+
+    line.forEach(token => {
+      pdf.setFont("helvetica", token.bold ? "bold" : "normal");
+      pdf.text(token.text, cursorX, cursorY);
+
+      if (token.text === " " && justify) {
+        cursorX += token.width + extraPerSpace;
+      } else {
         cursorX += token.width;
-      });
-
-      cursorY += lineHeight;
+      }
     });
 
-    return cursorY;
-  }
+    cursorY += lineHeight;
+  });
+
+  return cursorY;
+}
 
 async function addSummaryNativePage(pdf, useCurrentPage = false) {
   const pageEl = document.querySelector("#summaryMount .summary-page");
@@ -301,7 +315,7 @@ async function addSummaryNativePage(pdf, useCurrentPage = false) {
 
     if (estimatedBottom > maxTextBottom) break;
 
-    y = drawRichParagraph(pdf, lines, marginL, y, {
+    y = drawRichParagraph(pdf, lines, marginL, y, textW, {
       fontSize,
       lineHeight,
       color: [34, 49, 61]
