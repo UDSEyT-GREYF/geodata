@@ -2872,7 +2872,7 @@ AñoMes;CityPair_IATA;Aerolinea Nombre;Av. General;Comercial;TotalPasajeros
 2025-08;AEP - AFA;Aerolíneas Argentinas;;4696;4696
 2025-08;AEP - ASU;Aerolíneas Argentinas;;10335;10335
 2025-08;AEP - ASU;Amaszonas;;2662;2662
-2025-08;AEP - ASU;Chief of Staff, United States Air Force;11;;11
+2025-08;AEP - ASU;Chief of Staff United States Air Force;11;;11
 2025-08;AEP - ASU;JetSMART Airlines;;7221;7221
 2025-08;AEP - BHI;Aerolíneas Argentinas;;16796;16796
 2025-08;AEP - BHI;JetSMART Airlines;;102;102
@@ -3289,7 +3289,7 @@ AñoMes;CityPair_IATA;Aerolinea Nombre;Av. General;Comercial;TotalPasajeros
 2025-09;AEP - BPS;Aerolíneas Argentinas;;2031;2031
 2025-09;AEP - BRC;Aerolíneas Argentinas;;60154;60154
 2025-09;AEP - BRC;Andes Líneas Aéreas;;92;92
-2025-09;AEP - BRC;Chief of Staff, United States Air Force;11;;11
+2025-09;AEP - BRC;Chief of Staff United States Air Force;11;;11
 2025-09;AEP - BRC;Flybondi;;15106;15106
 2025-09;AEP - BRC;Fuerza Aérea Argentina;115;;115
 2025-09;AEP - BRC;JetSMART Airlines;;30688;30688
@@ -3440,7 +3440,7 @@ AñoMes;CityPair_IATA;Aerolinea Nombre;Av. General;Comercial;TotalPasajeros
 2025-09;BRC - MDZ;JetSMART Airlines;;2081;2081
 2025-09;BRC - MVD;Aerolíneas Argentinas;;607;607
 2025-09;BRC - MVD;JetSMART Airlines;;370;370
-2025-09;BRC - PFN;Chief of Staff, United States Air Force;19;;19
+2025-09;BRC - PFN;Chief of Staff United States Air Force;19;;19
 2025-09;BRC - PRA;Andes Líneas Aéreas;;360;360
 2025-09;BRC - RES;Andes Líneas Aéreas;;1087;1087
 2025-09;BRC - ROS;Aerolíneas Argentinas;;2225;2225
