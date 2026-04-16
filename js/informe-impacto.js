@@ -245,84 +245,96 @@
     return cursorY;
   }
 
-  async function addSummaryNativePage(pdf, useCurrentPage = false) {
-    const pageEl = document.querySelector("#summaryMount .summary-page");
-    if (!pageEl) return;
+async function addSummaryNativePage(pdf, useCurrentPage = false) {
+  const pageEl = document.querySelector("#summaryMount .summary-page");
+  if (!pageEl) return;
 
-    const kicker = pageEl.querySelector(".summary-kicker")?.textContent?.trim() || "";
-    const airportLine = q("summaryAirportLine")?.textContent?.trim() || "";
-    const title = pageEl.querySelector(".summary-title")?.textContent?.trim() || "RESUMEN EJECUTIVO";
-    const paragraphEls = Array.from(pageEl.querySelectorAll("#summaryText p"));
-    const summaryImg = await imageElementToData(q("summaryImgAirport"));
+  const kicker = pageEl.querySelector(".summary-kicker")?.textContent?.trim() || "";
+  const airportLine = q("summaryAirportLine")?.textContent?.trim() || "";
+  const title = pageEl.querySelector(".summary-title")?.textContent?.trim() || "RESUMEN EJECUTIVO";
+  const paragraphEls = Array.from(pageEl.querySelectorAll("#summaryText p"));
+  const summaryImg = await imageElementToData(q("summaryImgAirport"));
 
-    if (!useCurrentPage) {
-      pdf.addPage("a4", "portrait");
-    }
-
-    const pageW = 210;
-    const marginL = 10;
-    const marginR = 10;
-    const textW = pageW - marginL - marginR;
-
-    let y = 13;
-
-    pdf.setTextColor(53, 90, 115);
-    pdf.setFont("helvetica", "normal");
-    pdf.setFontSize(10.2);
-    pdf.text(kicker, marginL, y);
-    y += 7.5;
-
-    pdf.setTextColor(23, 52, 74);
-    pdf.setFont("helvetica", "bold");
-    pdf.setFontSize(13.4);
-    pdf.text(airportLine, marginL, y);
-    y += 9;
-
-    pdf.setFont("helvetica", "bold");
-    pdf.setFontSize(17);
-    pdf.text(title, marginL, y);
-    y += 9;
-
-    const fontSize = 9.6;
-    const lineHeight = 4.15;
-    const paraGap = 1.9;
-    const maxTextBottom = 205;
-
-    pdf.setTextColor(34, 49, 61);
-
-    for (const p of paragraphEls) {
-      const lines = buildRichParagraphLines(pdf, p, textW, { fontSize });
-      const estimatedBottom = y + (lines.length * lineHeight);
-
-      if (estimatedBottom > maxTextBottom) break;
-
-      y = drawRichParagraph(pdf, lines, marginL, y, {
-        fontSize,
-        lineHeight,
-        color: [34, 49, 61]
-      });
-
-      y += paraGap;
-    }
-
-    if (summaryImg) {
-      const boxX = 10;
-      const boxY = 210;
-      const boxW = 190;
-      const boxH = 74;
-
-      const fit = fitIntoBox(summaryImg.width, summaryImg.height, boxW, boxH);
-
-      pdf.addImage(
-        summaryImg.dataUrl,
-        "PNG",
-        boxX + fit.x,
-        boxY + fit.y,
-        fit.w,
-        fit.h
-      );
-    }
+  if (!useCurrentPage) {
+    pdf.addPage("a4", "portrait");
   }
+
+  const pageW = 210;
+  const pageH = 297;
+  const marginL = 10;
+  const marginR = 10;
+  const bottomMargin = 10;
+  const textW = pageW - marginL - marginR;
+
+  let y = 13;
+
+  pdf.setTextColor(53, 90, 115);
+  pdf.setFont("helvetica", "normal");
+  pdf.setFontSize(10.2);
+  pdf.text(kicker, marginL, y);
+  y += 7.5;
+
+  pdf.setTextColor(23, 52, 74);
+  pdf.setFont("helvetica", "bold");
+  pdf.setFontSize(13.4);
+  pdf.text(airportLine, marginL, y);
+  y += 9;
+
+  pdf.setFont("helvetica", "bold");
+  pdf.setFontSize(17);
+  pdf.text(title, marginL, y);
+  y += 9;
+
+  const fontSize = 9.6;
+  const lineHeight = 4.15;
+  const paraGap = 1.9;
+
+  // Reservamos al menos un bloque razonable para la imagen
+  const minImageBlock = 78;
+  const maxTextBottom = pageH - bottomMargin - minImageBlock - 4;
+
+  pdf.setTextColor(34, 49, 61);
+
+  for (const p of paragraphEls) {
+    const lines = buildRichParagraphLines(pdf, p, textW, { fontSize });
+    const estimatedBottom = y + (lines.length * lineHeight);
+
+    if (estimatedBottom > maxTextBottom) break;
+
+    y = drawRichParagraph(pdf, lines, marginL, y, {
+      fontSize,
+      lineHeight,
+      color: [34, 49, 61]
+    });
+
+    y += paraGap;
+  }
+
+  if (summaryImg) {
+    // La imagen arranca apenas debajo del texto y ocupa todo el resto útil
+    const gapAfterText = 4;
+    const boxX = 8;
+    const boxW = 194;
+    const boxY = y + gapAfterText;
+    const boxH = Math.max(60, pageH - bottomMargin - boxY);
+
+    const fit = fitIntoBox(summaryImg.width, summaryImg.height, boxW, boxH);
+
+    // Importante: la alineamos arriba, no centrada verticalmente,
+    // para evitar la gran franja vacía entre texto e imagen
+    const imgX = boxX + ((boxW - fit.w) / 2);
+    const imgY = boxY;
+
+    pdf.addImage(
+      summaryImg.dataUrl,
+      "PNG",
+      imgX,
+      imgY,
+      fit.w,
+      fit.h
+    );
+  }
+}
 
   function initReportExport() {
     q("btnPrintReport")?.addEventListener("click", () => {
