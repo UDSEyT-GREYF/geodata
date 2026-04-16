@@ -43,6 +43,179 @@
     if (mount) mount.innerHTML = sheet.outerHTML;
   }
 
+ function fitIntoBox(srcW, srcH, boxW, boxH) {
+  const srcRatio = srcW / srcH;
+  const boxRatio = boxW / boxH;
+
+  let w;
+  let h;
+
+  if (srcRatio > boxRatio) {
+    w = boxW;
+    h = boxW / srcRatio;
+  } else {
+    h = boxH;
+    w = boxH * srcRatio;
+  }
+
+  return {
+    w,
+    h,
+    x: (boxW - w) / 2,
+    y: (boxH - h) / 2
+  };
+}
+
+async function waitForImage(imgEl) {
+  if (!imgEl || !imgEl.src) return;
+
+  if (imgEl.complete && imgEl.naturalWidth > 0) return;
+
+  await new Promise((resolve) => {
+    const done = () => resolve();
+    imgEl.addEventListener("load", done, { once: true });
+    imgEl.addEventListener("error", done, { once: true });
+  });
+}
+
+async function imageElementToData(imgEl) {
+  if (!imgEl || !imgEl.src || imgEl.classList.contains("is-hidden")) return null;
+
+  await waitForImage(imgEl);
+
+  const w = imgEl.naturalWidth || imgEl.width;
+  const h = imgEl.naturalHeight || imgEl.height;
+  if (!w || !h) return null;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+
+  const ctx = canvas.getContext("2d");
+  ctx.drawImage(imgEl, 0, 0, w, h);
+
+  return {
+    dataUrl: canvas.toDataURL("image/png"),
+    width: w,
+    height: h
+  };
+}
+
+async function rasterizeElement(el, scale = 2) {
+  if (!el) return null;
+
+  const canvas = await html2canvas(el, {
+    backgroundColor: "#ffffff",
+    scale,
+    useCORS: true,
+    logging: false
+  });
+
+  return {
+    dataUrl: canvas.toDataURL("image/jpeg", 0.95),
+    width: canvas.width,
+    height: canvas.height
+  };
+}
+
+function addRasterPage(pdf, raster, orientation = "portrait", isFirst = false) {
+  if (!raster) return;
+
+  const pageW = orientation === "landscape" ? 297 : 210;
+  const pageH = orientation === "landscape" ? 210 : 297;
+
+  if (!isFirst) {
+    pdf.addPage("a4", orientation);
+  }
+
+  const fit = fitIntoBox(raster.width, raster.height, pageW, pageH);
+  pdf.addImage(
+    raster.dataUrl,
+    "JPEG",
+    fit.x,
+    fit.y,
+    fit.w,
+    fit.h
+  );
+}
+
+async function addSummaryNativePage(pdf) {
+  const pageEl = document.querySelector("#summaryMount .summary-page");
+  if (!pageEl) return;
+
+  const kicker = pageEl.querySelector(".summary-kicker")?.textContent?.trim() || "";
+  const airportLine = q("summaryAirportLine")?.textContent?.trim() || "";
+  const title = pageEl.querySelector(".summary-title")?.textContent?.trim() || "RESUMEN EJECUTIVO";
+  const paragraphs = Array.from(pageEl.querySelectorAll("#summaryText p"))
+    .map(p => p.textContent.trim())
+    .filter(Boolean);
+
+  const summaryImg = await imageElementToData(q("summaryImgAirport"));
+
+  pdf.addPage("a4", "portrait");
+
+  const pageW = 210;
+  const pageH = 297;
+  const marginL = 10;
+  const marginR = 10;
+  const textW = pageW - marginL - marginR;
+
+  let y = 14;
+
+  pdf.setTextColor(53, 90, 115);
+  pdf.setFont("helvetica", "normal");
+  pdf.setFontSize(10.5);
+  pdf.text(kicker, marginL, y);
+  y += 8;
+
+  pdf.setTextColor(23, 52, 74);
+  pdf.setFont("helvetica", "bold");
+  pdf.setFontSize(14);
+  pdf.text(airportLine, marginL, y);
+  y += 10;
+
+  pdf.setFont("helvetica", "bold");
+  pdf.setFontSize(18);
+  pdf.text(title, marginL, y);
+  y += 10;
+
+  pdf.setTextColor(34, 49, 61);
+  pdf.setFont("helvetica", "normal");
+  pdf.setFontSize(10);
+  const lineH = 4.5;
+
+  const maxTextBottom = 208;
+
+  for (const paragraph of paragraphs) {
+    const lines = pdf.splitTextToSize(paragraph, textW);
+
+    if (y + (lines.length * lineH) > maxTextBottom) {
+      break;
+    }
+
+    pdf.text(lines, marginL, y);
+    y += (lines.length * lineH) + 3;
+  }
+
+  if (summaryImg) {
+    const boxX = 10;
+    const boxY = 214;
+    const boxW = 190;
+    const boxH = 70;
+
+    const fit = fitIntoBox(summaryImg.width, summaryImg.height, boxW, boxH);
+
+    pdf.addImage(
+      summaryImg.dataUrl,
+      "PNG",
+      boxX + fit.x,
+      boxY + fit.y,
+      fit.w,
+      fit.h
+    );
+  }
+} 
+
 function initReportExport() {
   q("btnPrintReport")?.addEventListener("click", () => {
     window.print();
@@ -59,75 +232,34 @@ function initReportExport() {
 
     const { jsPDF } = window.jspdf;
 
-    const pages = [
-      {
-        el: document.querySelector("#coverMount .report-cover-page"),
-        orientation: "portrait"
-      },
-      {
-        el: document.querySelector("#summaryMount .summary-page"),
-        orientation: "portrait"
-      },
-      {
-        el: document.querySelector("#laminaMount #sheetA4"),
-        orientation: "landscape"
-      }
-    ].filter(p => p.el);
-
-    if (!pages.length) return;
+    const coverEl = document.querySelector("#coverMount .report-cover-page");
+    const laminaEl = document.querySelector("#laminaMount #sheetA4");
 
     const prev = button.textContent;
     button.disabled = true;
     button.textContent = "Exportando PDF...";
 
     try {
-      const firstOrientation = pages[0].orientation;
       const pdf = new jsPDF({
-        orientation: firstOrientation,
+        orientation: "portrait",
         unit: "mm",
         format: "a4",
         compress: true
       });
 
-      for (let i = 0; i < pages.length; i++) {
-        const page = pages[i];
-        const pageEl = page.el;
-        const isLandscape = page.orientation === "landscape";
+      let firstPageUsed = false;
 
-        const pageW = isLandscape ? 297 : 210;
-        const pageH = isLandscape ? 210 : 297;
+      if (coverEl) {
+        const coverRaster = await rasterizeElement(coverEl, 2);
+        addRasterPage(pdf, coverRaster, "portrait", true);
+        firstPageUsed = true;
+      }
 
-        const canvas = await html2canvas(pageEl, {
-          backgroundColor: "#ffffff",
-          scale: 2,
-          useCORS: true,
-          logging: false
-        });
+      await addSummaryNativePage(pdf);
 
-        const imgData = canvas.toDataURL("image/jpeg", 0.95);
-
-        const imgRatio = canvas.width / canvas.height;
-        const pageRatio = pageW / pageH;
-
-        let renderW;
-        let renderH;
-
-        if (imgRatio > pageRatio) {
-          renderW = pageW;
-          renderH = pageW / imgRatio;
-        } else {
-          renderH = pageH;
-          renderW = pageH * imgRatio;
-        }
-
-        const x = (pageW - renderW) / 2;
-        const y = (pageH - renderH) / 2;
-
-        if (i > 0) {
-          pdf.addPage("a4", page.orientation);
-        }
-
-        pdf.addImage(imgData, "JPEG", x, y, renderW, renderH);
+      if (laminaEl) {
+        const laminaRaster = await rasterizeElement(laminaEl, 2);
+        addRasterPage(pdf, laminaRaster, "landscape", false);
       }
 
       pdf.save(`informe-impacto-${airport}.pdf`);
