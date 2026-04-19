@@ -86,7 +86,7 @@ ZGL,YSGW,"",AU
 ZGI,CZGI,Gods River,CA
 ZGF,CZGF,Grand Forks,CA
 ZFW,,Fairview,CA
-ZFU,,ArujÃ¡,BR
+ZFU,,Aruja,BR
 ZFN,CZFN,Tulita,CA
 ZFM,CZFM,Fort Mcpherson,CA
 ZFL,ZWZS,Zhaosu,CN
@@ -108,7 +108,7 @@ ZBO,YBWN,Bowen,AU
 ZBM,CZBM,Bromont,CA
 ZBL,,Biloela,AU
 ZBF,CZBF,South Tetagouche,CA
-ZBE,LKZA,DolnÃ­ BeneÅ¡ov,CZ
+ZBE,LKZA,Dolni BeneÅ¡ov,CZ
 ZAZ,LEZG,Zaragoza,ES
 ZAT,ZPZT,Zhaotong (Zhaoyang),CN
 ZAR,DNZA,Zaria,NG
@@ -178,7 +178,7 @@ YWP,CYWP,Webequie,CA
 YWM,,Williams Harbour,CA
 YWL,CYWL,Williams Lake,CA
 YWK,CYWK,Wabush,CA
-YWJ,CYWJ,DÃ©line,CA
+YWJ,CYWJ,Deline,CA
 YWH,CYWH,Victoria,CA
 YWG,CYWG,Winnipeg,CA
 YWB,CYKG,Kangiqsujuaq,CA
@@ -201,7 +201,7 @@ YUX,CYUX,Sanirajak,CA
 YUT,CYUT,Repulse Bay,CA
 YUS,ZLYS,Yushu (Batang),CN
 YUM,KNYL,Yuma,US
-YUL,CYUL,MontrÃ©al,CA
+YUL,CYUL,Montreal,CA
 YUK,UDCK,Kapan,AM
 YUE,YYND,"",AU
 YUD,CYMU,Umiujaq,CA
@@ -234,7 +234,7 @@ YSP,CYSP,Marathon,CA
 YSO,,Postville,CA
 YSN,CZAM,Salmon Arm,CA
 YSM,CYSM,Fort Smith,CA
-YSL,CYSL,Saint-LÃ©onard,CA
+YSL,CYSL,Saint-Leonard,CA
 YSK,CYSK,Sanikiluaq,CA
 YSJ,CYSJ,Saint John,CA
 YSI,,Frying Pan Island,CA
@@ -314,7 +314,7 @@ YOO,CYOO,Oshawa,CA
 YON,VQTY,Yongphulla,BT
 YOL,DNYO,Yola,NG
 YOJ,CYOJ,High Level,CA
-YOI,,Ã‰lÃ©onore Mine,CA
+YOI,,Ã‰leonore Mine,CA
 YOH,CYOH,Oxford House,CA
 YOG,CYKP,Ogoki Post,CA
 YOE,,Donnelly,CA
@@ -338,7 +338,7 @@ YND,CYND,Gatineau,CA
 YNC,CYNC,Wemindji,CA
 YNB,OEYN,Yanbu,SA
 YNA,CYNA,Natashquan,CA
-YMX,CYMX,MontrÃ©al,CA
+YMX,CYMX,Montreal,CA
 YMW,CYMW,Messines,CA
 YMV,,Mary River,CA
 YMU,,Mansons Landing,CA
@@ -358,11 +358,11 @@ YME,CYME,Matane,CA
 YMB,,Merritt,CA
 YMA,CYMA,Mayo,CA
 YLY,CYNJ,Langley,CA
-YLX,ZGYL,YÃ¹lÃ­n,CN
+YLX,ZGYL,YÃ¹lin,CN
 YLW,CYLW,Kelowna,CA
 YLV,UBEE,Yevlakh,AZ
 YLT,CYLT,Alert,CA
-YLS,,Lebel-sur-QuÃ©villon,CA
+YLS,,Lebel-sur-Quevillon,CA
 YLR,CYLR,Leaf Rapids,CA
 YLQ,CYLQ,La Tuque,CA
 YLP,,Longue-Pointe-de-Mingan,CA
@@ -416,7 +416,7 @@ YIB,CYIB,Atikokan,CA
 YIA,WAHI,Yogyakarta,ID
 YHZ,CYHZ,Halifax,CA
 YHY,CYHY,Hay River,CA
-YHU,CYHU,MontrÃ©al,CA
+YHU,CYHU,Montreal,CA
 YHT,CYHT,Haines Junction,CA
 YHS,,Sechelt,CA
 YHR,CYHR,Chevery,CA
@@ -442,7 +442,7 @@ YGV,CYGV,Havre-Saint-Pierre,CA
 YGT,CYGT,Igloolik,CA
 YGR,CYGR,Les ÃŽles-de-la-Madeleine,CA
 YGQ,CYGQ,Geraldton,CA
-YGP,CYGP,GaspÃ©,CA
+YGP,CYGP,Gaspe,CA
 YGO,CYGO,Gods Lake Narrows,CA
 YGN,,Broughton Island,CA
 YGM,CYGM,Gimli,CA
@@ -551,7 +551,7 @@ YAS,NFSW,Yasawa Island,FJ
 YAR,CYAD,La Grande-3,CA
 YAQ,,Maple Bay,CA
 YAP,PTYA,Yap Island,FM
-YAO,FKKY,YaoundÃ©,CM
+YAO,FKKY,Yaounde,CM
 YAN,FZIR,Yangambi,CD
 YAM,CYAM,Sault Ste Marie,CA
 YAL,CYAL,Alert Bay,CA
@@ -564,8 +564,8 @@ YAE,,Yartsevo,RU
 YAC,CYAC,Cat Lake,CA
 YAB,CYAB,Arctic Bay,CA
 YAA,,Anahim Lake,CA
-XZM,,SÃ©,MO
-XZA,DFEZ,ZabrÃ©,BF
+XZM,,Se,MO
+XZA,DFEZ,Zabre,BF
 XYR,AYED,Yellow River Mission,PG
 XYE,VYYE,Ye,MM
 XYA,AGGY,Yandina,SB
@@ -652,7 +652,7 @@ XBE,,Bearskin Lake,CA
 XBB,,Blubber Bay,CA
 XAU,SOOS,SaÃ¼l,GF
 XAR,DFOY,Aribinda,BF
-XAP,SBCH,ChapecÃ³,BR
+XAP,SBCH,Chapeco,BR
 XAL,,Ãlamos,MX
 XAI,ZHXY,Xinyang,CN
 WZQ,,Urad Middle Banner,CN
@@ -738,14 +738,14 @@ WPM,AYXP,Wipim,PG
 WPL,,Powell River,CA
 WPK,YWMP,Wrotham Park,AU
 WPC,CZPC,Pincher Creek,CA
-WPB,FMNG,Port BergÃ©,MG
-WPA,SCAS,Puerto AysÃ©n,CL
+WPB,FMNG,Port Berge,MG
+WPA,SCAS,Puerto Aysen,CL
 WOW,PAUO,Willow,US
 WOT,RCWA,Wang'an,TW
 WOS,ZKWS,Wonsan,KP
 WON,YWDL,Wondoola,AU
 WOL,,Albion Park Rail,AU
-WOK,SVUQ,UonquÃ©n,VE
+WOK,SVUQ,Uonquen,VE
 WOE,EHWO,Hoogerheide,NL
 WOA,AYWO,Wonenara,PG
 WNZ,ZSWZ,Wenzhou (Longwan),CN
@@ -766,7 +766,7 @@ WMO,PAWM,White Mountain,US
 WMN,FMNR,Maroantsetra,MG
 WML,FMMC,Malaimbandy,MG
 WMK,,Meyers Chuck,US
-WMI,EPMO,Nowy DwÃ³r Mazowiecki,PL
+WMI,EPMO,Nowy Dwor Mazowiecki,PL
 WMH,KBPK,Mountain Home,US
 WME,YMNE,"",AU
 WMD,FMSC,Mandabe,MG
@@ -850,7 +850,7 @@ WDH,FYWH,Windhoek,NA
 WDG,KWDG,Enid,US
 WDA,,Ain District,YE
 WCR,PALR,Chandalar Lake,US
-WCH,SCTN,ChaitÃ©n,CL
+WCH,SCTN,Chaiten,CL
 WCD,,Cundeelee,AU
 WCA,SCST,Castro,CL
 WBW,KWBW,Wilkes-Barre,US
@@ -891,7 +891,7 @@ VYS,KVYS,Peru,US
 VYI,UENW,Vilyuisk,RU
 VYD,FAVY,Vryheid,ZA
 VXO,ESMX,VÃ¤xjÃ¶,SE
-VXE,GVSV,SÃ£o Pedro,CV
+VXE,GVSV,Sao Pedro,CV
 VXC,FQLC,Lichinga,MZ
 VVZ,DAAP,Illizi,DZ
 VVO,UHWW,Artyom,RU
@@ -980,8 +980,8 @@ VKG,VVRG,Rach Gia,VN
 VJQ,,Gurue,MZ
 VJI,KVJI,Abingdon,US
 VJB,FQXA,Xai-Xai,MZ
-VIY,,"VÃ©lizy-Villacoublay, Yvelines",FR
-VIX,SBVT,VitÃ³ria,BR
+VIY,,"Velizy-Villacoublay, Yvelines",FR
+VIX,SBVT,Vitoria,BR
 VIV,,Vivigani,PG
 VIU,AGVH,Viru,SB
 VIT,LEVT,Alava,ES
@@ -994,7 +994,7 @@ VIL,GMMH,Dakhla,EH
 VIJ,TUPW,Spanish Town,VG
 VII,VVVH,Vinh,VN
 VIH,KVIH,Vichy,US
-VIG,SVVG,El VigÃ­a,VE
+VIG,SVVG,El Vigia,VE
 VIE,LOWW,Vienna,AT
 VIA,SSVI,Videira,BR
 VHZ,NTUV,Vahitahi,PF
@@ -1003,7 +1003,7 @@ VHV,UENI,Verkhnevilyuisk,RU
 VHN,KVHN,Van Horn,US
 VHM,ESNV,Vilhelmina,SE
 VHC,FNSA,Saurimo,AO
-VGZ,SKVG,Villa GarzÃ³n,CO
+VGZ,SKVG,Villa Garzon,CO
 VGT,KVGT,Las Vegas,US
 VGS,,General Villegas,AR
 VGO,LEVX,Vigo,ES
@@ -1028,7 +1028,7 @@ VDM,SAVV,Viedma / Carmen de Patagones,AR
 VDI,KVDI,Vidalia,US
 VDH,VVDH,Dong Hoi,VN
 VDE,GCHI,El Hierro Island,ES
-VDC,SBVC,VitÃ³ria da Conquista,BR
+VDC,SBVC,Vitoria da Conquista,BR
 VDA,LLOV,Eilat,IL
 VCV,KVCV,Victorville,US
 VCT,KVCT,Victoria,US
@@ -1058,7 +1058,7 @@ VAP,SCRD,ViÃ±a Del Mar,CL
 VAO,AGGV,Suavanao,SB
 VAN,LTCI,Van,TR
 VAM,VRMV,Maamigili,MV
-VAL,SNVB,ValenÃ§a,BR
+VAL,SNVB,Valenza,BR
 VAK,PAVA,Chevak,US
 VAI,AYVN,Vanimo,PG
 VAH,SLVG,Vallegrande,BO
@@ -1078,9 +1078,9 @@ UYL,HSNN,Nyala,SD
 UWA,,Ware,US
 UVO,AYUZ,Uvol,PG
 UVL,HEKG,Kharja Oases,EG
-UVI,SSUV,UniÃ£o da VitÃ³ria,BR
+UVI,SSUV,Uniao da Vitoria,BR
 UVF,TLPL,Vieux Fort,LC
-UVE,NWWV,OuvÃ©a,NC
+UVE,NWWV,Ouvea,NC
 UVA,KUVA,Uvalde,US
 UUU,,Manumu,PG
 UUS,UHSS,Yuzhno-Sakhalinsk,RU
@@ -1127,7 +1127,7 @@ URS,UUOK,Kursk,RU
 URR,SKUR,Urrao,CO
 URO,LFOP,Boos,FR
 URN,OAOG,Urgun,AF
-URM,SVUM,UrimÃ¡n,VE
+URM,SVUM,Uriman,VE
 URJ,USHU,Uray,RU
 URI,SKUB,La Uribe,CO
 URG,SBUG,Uruguaiana,BR
@@ -1154,7 +1154,7 @@ UNI,TVSU,Union Island,VC
 UNG,AYKI,Kiunga,PG
 UNE,FXQN,Qacha's Nek,LS
 UND,OAUZ,Kunduz,AF
-UNC,,UnguÃ­a,CO
+UNC,,Unguia,CO
 UNA,SBTC,Una,BR
 UMZ,,Mena,US
 UMY,UKHS,Sumy,UA
@@ -1168,14 +1168,14 @@ UME,ESNU,UmeÃ¥,SE
 UMD,BGUM,Uummannaq,GL
 UMC,AYUC,Umba,PG
 UMB,,Kalumbila,ZM
-UMA,,MaisÃ­,CU
+UMA,,Maisi,CU
 ULZ,ZMDN,Uliastai,MN
 ULY,UWLW,Cherdakly,RU
 ULX,FAUS,Ulusaba,ZA
 ULV,UWLL,Ulyanovsk,RU
 ULU,HUGU,Gulu,UG
 ULS,,Mulatos,CO
-ULQ,SKUL,TuluÃ¡,CO
+ULQ,SKUL,Tulua,CO
 ULP,YQLP,"",AU
 ULO,ZMUG,Ulaangom,MN
 ULN,ZMUB,Ulaanbaatar,MN
@@ -1213,9 +1213,9 @@ UIL,KUIL,Quillayute,US
 UIK,UIBS,Ust-Ilimsk,RU
 UII,MHUT,Utila Island,HN
 UIH,VVPC,Quy Nohn,VN
-UIB,SKUI,QuibdÃ³,CO
+UIB,SKUI,Quibdo,CO
 UHS,,Aleksandrovsk-Sakhalinskiy,RU
-UHE,LKKU,UherskÃ© HradiÅ¡tÄ›,CZ
+UHE,LKKU,Uherske HradiÅ¡tÄ›,CZ
 UGU,,Bilogai,ID
 UGT,ZMBR,Khankhongor,MN
 UGS,,Ugashik,US
@@ -1267,8 +1267,8 @@ UAK,BGBW,Narsarsuaq,GL
 UAI,WPDB,Suai,TL
 UAH,NTMU,Ua Huka,PF
 UAE,AYAE,Aue,PG
-UAC,,San Luis RÃ­o Colorado,MX
-UAB,LTAG,SarÄ±Ã§am,TR
+UAC,,San Luis Rio Colorado,MX
+UAB,LTAG,SarÄ±zam,TR
 TZX,LTCG,Trabzon,TR
 TZO,,Ankisatra,MG
 TZN,MYAK,Andros,BS
@@ -1325,7 +1325,7 @@ TUW,,Coetupo,PA
 TUV,SVTC,Tucupita,VE
 TUU,OETB,Tabuk,SA
 TUS,KTUS,Tucson,US
-TUR,SBTU,TucuruÃ­,BR
+TUR,SBTU,Tucurui,BR
 TUQ,DFOT,Tougan,BF
 TUP,KTUP,Tupelo,US
 TUO,NZAP,Taupo,NZ
@@ -1339,19 +1339,19 @@ TUH,,Manchester,US
 TUG,RPUT,Tuguegarao City,PH
 TUF,LFOT,"Tours, Indre-et-Loire",FR
 TUD,GOTT,Tambacounda,SN
-TUC,SANT,San Miguel de TucumÃ¡n,AR
+TUC,SANT,San Miguel de Tucuman,AR
 TUB,NTAT,"",PF
-TUA,SETU,TulcÃ¡n,EC
+TUA,SETU,Tulcan,EC
 TTX,YTST,Anjo Peninsula,AU
 TTW,,Tissamaharama,LK
-TTU,GMTN,TÃ©touan,MA
+TTU,GMTN,Tetouan,MA
 TTT,RCFN,Taitung City,TW
 TTS,FMNT,Tsaratanana,MG
 TTR,,Makale,ID
 TTQ,MRBT,Tortuguero,CR
 TTO,KBTN,Britton,US
 TTN,KTTN,Ewing Township,US
-TTM,,TablÃ³n De Tamara,CO
+TTM,,Tablon De Tamara,CO
 TTL,,Nanuya Levu Island,FJ
 TTJ,RJOR,Tottori,JP
 TTI,NTTE,Tetiaroa,PF
@@ -1373,7 +1373,7 @@ TSQ,,Torres,BR
 TSP,KTSP,Tehachapi,US
 TSN,ZBTJ,Tianjin,CN
 TSM,KSKX,Taos,US
-TSL,MMTN,TamuÃ­n,MX
+TSL,MMTN,Tamuin,MX
 TSJ,RJDT,Tsushima,JP
 TSI,,Tsile Tsile,PG
 TSH,FZUK,Tshikapa,CD
@@ -1392,7 +1392,7 @@ TRU,SPRU,Trujillo,PE
 TRT,WAFB,Toraja,ID
 TRS,LIPQ,Ronchi dei Legionari (GO),IT
 TRR,VCCT,Trincomalee,LK
-TRQ,SBTK,TarauacÃ¡,BR
+TRQ,SBTK,Tarauaca,BR
 TRO,YTRE,Taree,AU
 TRN,LIMF,Caselle Torinese (TO),IT
 TRM,KTRM,Palm Springs,US
@@ -1405,7 +1405,7 @@ TRG,NZTG,Tauranga,NZ
 TRF,ENTO,Torp,NO
 TRE,EGPU,Balemartine,GB
 TRD,ENVA,Trondheim,NO
-TRC,MMTC,TorreÃ³n,MX
+TRC,MMTC,Torreon,MX
 TRB,SKTU,Turbo,CO
 TRA,RORT,Tarama,JP
 TQS,SKTQ,Tres Esquinas,CO
@@ -1490,8 +1490,8 @@ TMY,,Tiom-Papua Island,ID
 TMX,DAUT,Timimoun,DZ
 TMW,YSTW,Tamworth,AU
 TMU,MRTR,Nicoya,CR
-TMT,SBTB,OriximinÃ¡,BR
-TMS,FPST,SÃ£o TomÃ©,ST
+TMT,SBTB,Oriximina,BR
+TMS,FPST,Sao Tome,ST
 TMR,DAAT,Tamanrasset,DZ
 TMQ,DFEM,Tambao,BF
 TMP,EFTP,Tampere / Pirkkala,FI
@@ -1509,7 +1509,7 @@ TMD,GQNH,Timbedra,MR
 TMC,WATK,Radamata,ID
 TMB,KTMB,Miami,US
 TMA,KTMA,Tifton,US
-TLZ,SWKT,CatalÃ£o,BR
+TLZ,SWKT,Catalao,BR
 TLY,UHWP,Plastun,RU
 TLX,SCTL,Talca,CL
 TLW,AYVL,Talasea,PG
@@ -1572,7 +1572,7 @@ TJK,LTAW,Tokat,TR
 TJI,MHTJ,Trujillo,HN
 TJH,RJBT,Toyooka,JP
 TJG,WAON,Tanta-Tabalong,ID
-TJC,,TicantiquÃ­,PA
+TJC,,Ticantiqui,PA
 TJB,,Tanjung Balai-Karinmunbesar Island,ID
 TJA,SLTJ,Tarija,BO
 TIZ,AYTA,Tari,PG
@@ -1608,7 +1608,7 @@ THS,VTPO,"",TH
 THR,OIII,Tehran,IR
 THQ,ZLTS,Tianshui (Maiji),CN
 THP,,Thermopolis,US
-THO,BITN,ÃžÃ³rshÃ¶fn,IS
+THO,BITN,ÃžorshÃ¶fn,IS
 THN,ESGT,TrollhÃ¤ttan,SE
 THM,KTHM,Thompson Falls,US
 THL,VYTL,Tachileik,MM
@@ -1617,16 +1617,16 @@ THI,GQNC,Tichitt,MR
 THH,,Taharoa,NZ
 THG,YTNG,Biloela,AU
 THE,SBTE,Teresina,BR
-THD,VVTX,Thanh HÃ³a,VN
+THD,VVTX,Thanh Hoa,VN
 THC,GLTN,Zwedru,LR
 THB,FXTA,Thaba-Tseka,LS
 THA,KTHA,Tullahoma,US
-TGZ,MMTG,Tuxtla GutiÃ©rrez,MX
+TGZ,MMTG,Tuxtla Gutierrez,MX
 TGU,MHTG,Tegucigalpa,HN
 TGT,HTTG,Tanga,TZ
-TGS,,ChokwÃ©,MZ
+TGS,,Chokwe,MZ
 TGR,DAUK,Touggourt,DZ
-TGQ,SWTS,TangarÃ¡ da Serra,BR
+TGQ,SWTS,Tangara da Serra,BR
 TGP,UNIP,Bor,RU
 TGO,ZBTL,Tongliao,CN
 TGN,YLTV,Morwell,AU
@@ -1648,9 +1648,9 @@ TFS,GCTS,Tenerife,ES
 TFR,,New Cairo,EG
 TFN,GCXO,Tenerife,ES
 TFM,AYTE,Telefomin,PG
-TFL,SNTO,TeÃ³filo Otoni,BR
+TFL,SNTO,Teofilo Otoni,BR
 TFI,AYTU,Tufi,PG
-TFF,SBTF,TefÃ©,BR
+TFF,SBTF,Tefe,BR
 TFB,AYTH,Tifalmin,PG
 TEZ,VETZ,"",IN
 TEY,BITE,Ãžingeyri,IS
@@ -1659,7 +1659,7 @@ TEV,LETL,Teruel,ES
 TEU,NZMO,"",NZ
 TET,FQTT,Tete,MZ
 TES,HHTS,Tessenei,ER
-TER,LPLA,Praia da VitÃ³ria,PT
+TER,LPLA,Praia da Vitoria,PT
 TEQ,LTBU,Ã‡orlu,TR
 TEP,AYTP,Teptep,PG
 TEO,AYTY,Terapo Mission,PG
@@ -1671,7 +1671,7 @@ TEI,VETJ,Tezu,IN
 TEH,,Tetlin,US
 TEG,DFET,Tenkodogo,BF
 TEF,YTEF,"",AU
-TEE,DABS,TÃ©bessi,DZ
+TEE,DABS,Tebessi,DZ
 TED,EKTS,Thisted,DK
 TEC,,TelÃªmaco Borba,BR
 TEB,KTEB,Teterboro,US
@@ -1704,7 +1704,7 @@ TCR,VOTK,Vagaikulam,IN
 TCQ,SPTN,Tacna,PE
 TCP,HETB,Taba,EG
 TCO,SKCO,Tumaco,CO
-TCN,MMHC,TehuacÃ¡n,MX
+TCN,MMHC,Tehuacan,MX
 TCM,KTCM,Tacoma,US
 TCL,KTCL,Tuscaloosa,US
 TCK,AYYL,Tinboli,PG
@@ -1713,7 +1713,7 @@ TCH,FOOT,Tchibanga,GA
 TCG,ZWTC,Tacheng,CN
 TCF,,Tocoa,HN
 TCE,LRTC,Mihail KogÄƒlniceanu,RO
-TCD,SKRA,TarapacÃ¡,CO
+TCD,SKRA,Tarapaca,CO
 TCC,KTCC,Tucumcari,US
 TCB,MYAT,Treasure Cay,BS
 TCA,YTNK,Tennant Creek,AU
@@ -1799,7 +1799,7 @@ SYO,RJSY,Shonai,JP
 SYN,KSYN,Dennison,US
 SYM,ZPSM,Pu'er,CN
 SYL,,Camp Roberts/San Miguel,US
-SYK,BIST,StykkishÃ³lmur,IS
+SYK,BIST,Stykkisholmur,IS
 SYJ,OIKY,Sirjan,IR
 SYI,KSYI,Shelbyville,US
 SYH,VNSB,Namche Bazaar,NP
@@ -1811,7 +1811,7 @@ SYB,,Seal Bay,US
 SYA,PASY,Shemya,US
 SXZ,LTCL,Siirt,TR
 SXY,,Sidney,US
-SXX,SNFX,SÃ£o FÃ©lix do Xingu,BR
+SXX,SNFX,Sao Felix do Xingu,BR
 SXW,AYSV,Sauren,PG
 SXV,VOSM,Salem,IN
 SXU,HASD,Soddu,ET
@@ -1820,7 +1820,7 @@ SXS,WBKH,Sahabat,MY
 SXR,VISR,Srinagar,IN
 SXQ,PASX,Soldotna,US
 SXP,,Nunam Iqua,US
-SXO,SWFX,SÃ£o FÃ©lix Do Araguaia,BR
+SXO,SWFX,Sao Felix Do Araguaia,BR
 SXN,FBSN,Sowa,BW
 SXM,TNCM,Sint Maarten,SX
 SXL,EISG,Sligo,IE
@@ -1869,10 +1869,10 @@ SVN,KSVN,Savannah,US
 SVL,EFSA,Savonlinna,FI
 SVK,,Silver Creek,BZ
 SVJ,ENSH,SvolvÃ¦r,NO
-SVI,SKSV,San Vicente Del CaguÃ¡n,CO
+SVI,SKSV,San Vicente Del Caguan,CO
 SVH,KSVH,Statesville,US
 SVG,ENZV,Stavanger,NO
-SVF,DBBS,SavÃ©,BJ
+SVF,DBBS,Save,BJ
 SVE,KSVE,Susanville,US
 SVD,TVSA,Kingstown,VC
 SVC,KSVC,Silver City,US
@@ -1913,7 +1913,7 @@ STR,EDDS,Stuttgart,DE
 STQ,KOYM,St Marys,US
 STP,KSTP,Saint Paul,US
 STN,EGSS,London,GB
-STM,SBSN,SantarÃ©m,BR
+STM,SBSN,Santarem,BR
 STL,KSTL,St Louis,US
 STK,KSTK,Sterling,US
 STJ,KSTJ,St Joseph,US
@@ -1926,7 +1926,7 @@ STD,SVSO,Santo Domingo,VE
 STC,KSTC,Saint Cloud,US
 STB,SVSZ,San Carlos del Zulia,VE
 STA,EKVJ,Skjern,DK
-SSZ,SBST,GuarujÃ¡,BR
+SSZ,SBST,Guaruja,BR
 SSY,FNBC,Mbanza Congo,AO
 SSX,,Singita Safari Lodge,ZA
 SSW,,Friday Harbor,US
@@ -1935,7 +1935,7 @@ SSS,,Siassi,PG
 SSR,NVSH,Pentecost Island,VU
 SSQ,,La Sarre,CA
 SSP,,Silver Plains,AU
-SSO,SNLO,SÃ£o LourenÃ§o,BR
+SSO,SNLO,Sao Lourenzo,BR
 SSN,,Seongnam,KR
 SSL,SKSL,Santa Rosalia,CO
 SSK,,Sturt Creek,AU
@@ -1963,18 +1963,18 @@ SRP,ENSO,Leirvik,NO
 SRO,,Santana Ramos,CO
 SRN,YSRN,"",AU
 SRM,,Sandringham Station,AU
-SRL,,MulegÃ©,MX
+SRL,,Mulege,MX
 SRK,BGSI,Siorapaluk,GL
 SRJ,SLSB,San Borja,BO
 SRH,FTTA,Sarh,TD
 SRG,WAHS,Semarang,ID
 SRE,,Yamparaez,BO
-SRD,SLRA,San RamÃ³n / MamorÃ©,BO
+SRD,SLRA,San Ramon / Mamore,BO
 SRC,KSRC,Searcy,US
 SRB,SLSR,Santa Rosa,BO
 SRA,SSZR,Santa Rosa,BR
-SQY,SSRU,SÃ£o LourenÃ§o Do Sul,BR
-SQX,SSOE,SÃ£o Miguel do Oeste,BR
+SQY,SSRU,Sao Lourenzo Do Sul,BR
+SQX,SSOE,Sao Miguel do Oeste,BR
 SQW,EKSV,Skive,DK
 SQV,,Sequim,US
 SQU,SPOA,Plaza Saposoa,PE
@@ -1984,7 +1984,7 @@ SQR,WAWS,Soroako,ID
 SQQ,EYSA,Å iauliai,LT
 SQO,ESUD,Storuman,SE
 SQN,WAES,Sanana,ID
-SQM,SWUA,SÃ£o Miguel do Araguaia,BR
+SQM,SWUA,Sao Miguel do Araguaia,BR
 SQL,KSQL,San Carlos,US
 SQK,,Sidi El Barrani,EG
 SQJ,ZSSM,Sanming (Sha),CN
@@ -2043,18 +2043,18 @@ SOF,LBSF,Sofia,BG
 SOE,FCOS,Souanke,CG
 SOD,SDCO,Sorocaba,BR
 SOC,WAHQ,Surakarta,ID
-SOB,LHSM,SÃ¡rmellÃ©k,HU
-SOA,,SÃ³c TrÄƒng,VN
+SOB,LHSM,Sarmellek,HU
+SOA,,Soc TrÄƒng,VN
 SNZ,,Rio de Janeiro,BR
 SNY,KSNY,Sidney,US
 SNX,OIIS,Semnan,IR
 SNW,VYTD,Thandwe,MM
-SNV,SVSE,Santa Elena de UairÃ©n,VE
+SNV,SVSE,Santa Elena de Uairen,VE
 SNU,MUSC,Santa Clara,CU
 SNT,SKRU,Sabana de Torres,CO
 SNS,KSNS,Salinas,US
 SNR,LFRZ,Saint-Nazaire/Montoir,FR
-SNQ,,San QuintÃ­n,MX
+SNQ,,San Quintin,MX
 SNP,PASN,St Paul Island,US
 SNO,VTUI,"",TH
 SNN,EINN,Shannon,IE
@@ -2066,7 +2066,7 @@ SNI,GLGE,Greenville,LR
 SNH,YSPE,"",AU
 SNG,SLSI,San Ignacio de Velasco,BO
 SNF,SVSP,San Felipe,VE
-SNE,GVSN,PreguiÃ§a,CV
+SNE,GVSN,Preguiza,CV
 SNC,SESA,Salinas,EC
 SNB,,Milikapiti,AU
 SNA,KSNA,Santa Ana,US
@@ -2094,7 +2094,7 @@ SME,KSME,Somerset,US
 SMD,KSMD,Fort Wayne,US
 SMB,SCSB,Cerro Sombrero,CL
 SMA,LPAZ,Vila do Porto,PT
-SLZ,SBSL,SÃ£o LuÃ­s,BR
+SLZ,SBSL,Sao Luis,BR
 SLY,USDD,Salekhard,RU
 SLX,MBSY,Salt Cay,TC
 SLW,MMIO,Saltillo,MX
@@ -2103,7 +2103,7 @@ SLU,TLPC,Castries,LC
 SLT,KANK,Salida,US
 SLR,KSLR,Sulphur Springs,US
 SLQ,PASL,Sleetmute,US
-SLP,MMSP,San Luis PotosÃ­,MX
+SLP,MMSP,San Luis Potosi,MX
 SLO,KSLO,Salem,US
 SLN,KSLN,Salina,US
 SLM,LESA,Salamanca,ES
@@ -2149,22 +2149,22 @@ SJW,ZBSJ,Shijiazhuang,CN
 SJV,SLJV,San Javier,BO
 SJU,TJSJ,San Juan,PR
 SJT,KSJT,San Angelo,US
-SJS,SLJE,San JosÃ© de Chiquitos,BO
+SJS,SLJE,San Jose de Chiquitos,BO
 SJR,,San Juan De Uraba,CO
 SJQ,FLSS,Sesheke,ZM
-SJP,SBSR,SÃ£o JosÃ© do Rio Preto,BR
-SJO,MROC,San JosÃ© (Alajuela),CR
+SJP,SBSR,Sao Jose do Rio Preto,BR
+SJO,MROC,San Jose (Alajuela),CR
 SJN,KSJN,St Johns,US
-SJL,SBUA,SÃ£o Gabriel da Cachoeira,BR
-SJK,SBSJ,SÃ£o JosÃ© Dos Campos,BR
+SJL,SBUA,Sao Gabriel da Cachoeira,BR
+SJK,SBSJ,Sao Jose Dos Campos,BR
 SJJ,LQSA,Sarajevo,BA
 SJI,RPUH,San Jose,PH
-SJH,,San Juan Del CÃ©sar,CO
+SJH,,San Juan Del Cesar,CO
 SJF,,Cruz Bay,VI
-SJE,SKSJ,San JosÃ© Del Guaviare,CO
-SJD,MMSD,San JosÃ© del Cabo,MX
+SJE,SKSJ,San Jose Del Guaviare,CO
+SJD,MMSD,San Jose del Cabo,MX
 SJC,KSJC,San Jose,US
-SJB,SLJO,San JoaquÃ­n,BO
+SJB,SLJO,San Joaquin,BO
 SJA,SPJN,San Juan de Marcona,PE
 SIZ,AYZN,Sissano,PG
 SIY,KSIY,Montague,US
@@ -2227,7 +2227,7 @@ SGQ,,Sanggata/Sangkimah,ID
 SGP,YSHG,Shay Gap,AU
 SGO,YSGE,"",AU
 SGN,VVTS,Ho Chi Minh City,VN
-SGM,,MulegÃ©,MX
+SGM,,Mulege,MX
 SGL,RPLS,Cavite,PH
 SGK,AYSK,Sengapi,PG
 SGI,OPSR,Sargodha,PK
@@ -2240,14 +2240,14 @@ SGC,USRR,Surgut,RU
 SGA,OASN,Shiveh,AF
 SFZ,KSFZ,Pawtucket,US
 SFX,,Ciudad Guayana,VE
-SFV,,Santa FÃ© do Sul,BR
+SFV,,Santa Fe do Sul,BR
 SFU,AYSF,Safia,PG
 SFT,ESNS,SkellefteÃ¥,SE
 SFS,RPLB,Olongapo,PH
 SFO,KSFO,San Francisco,US
 SFN,SAAV,Santa Fe,AR
 SFM,KSFM,Sanford,US
-SFL,GVSF,SÃ£o Filipe,CV
+SFL,GVSF,Sao Filipe,CV
 SFK,SNSW,Soure,BR
 SFJ,BGSF,Kangerlussuaq,GL
 SFH,MMSF,Mexicali,MX
@@ -2255,11 +2255,11 @@ SFG,TFFG,Grand Case,MF
 SFF,KSFF,Spokane,US
 SFE,RPUS,San Fernando,PH
 SFD,SVSR,San Fernando de Apure,VE
-SFC,TFFC,St-FranÃ§ois,GP
+SFC,TFFC,St-Franzois,GP
 SFB,KSFB,Orlando,US
 SFA,DTTX,Sfax,TN
 SEZ,FSIA,Mahe Island,SC
-SEY,GQNS,SÃ©libaby,MR
+SEY,GQNS,Selibaby,MR
 SEW,,Siwa Oasis,EG
 SEU,HTSN,Seronera,TZ
 SET,SNHS,Serra Talhada,BR
@@ -2267,7 +2267,7 @@ SES,,Svetlogorsk,RU
 SER,KSER,Seymour,US
 SEQ,WIBS,Bengkalis-Sumatra Island,ID
 SEP,KSEP,Stephenville,US
-SEO,DISG,SÃ©guÃ©la,CI
+SEO,DISG,Seguela,CI
 SEN,EGMC,"Southend-on-Sea, Essex",GB
 SEM,KSEM,Selma,US
 SEK,UESK,Srednekolymsk,RU
@@ -2307,13 +2307,13 @@ SCU,MUCU,Santiago,CU
 SCT,OYSQ,Mori,YE
 SCR,,Malung-SÃ¤len,SE
 SCQ,LEST,Santiago de Compostela,ES
-SCP,LFNC,"Saint-CrÃ©pin, Hautes-Alpes",FR
+SCP,LFNC,"Saint-Crepin, Hautes-Alpes",FR
 SCO,UATE,Aktau,KZ
 SCN,EDDR,SaarbrÃ¼cken,DE
 SCM,PACM,Scammon Bay,US
 SCL,SCEL,Santiago,CL
 SCK,KSCK,Stockton,US
-SCI,SVPM,San CristÃ³bal,VE
+SCI,SVPM,San Cristobal,VE
 SCH,KSCH,Schenectady,US
 SCG,YSPK,"",AU
 SCF,KSDL,Scottsdale,US
@@ -2337,8 +2337,8 @@ SBO,,Salina,US
 SBN,KSBN,South Bend,US
 SBM,KSBM,Sheboygan,US
 SBL,SLSA,Santa Ana del Yacuma,BO
-SBK,LFRT,"TrÃ©muson, CÃ´tes-d'Armor",FR
-SBJ,SNMX,SÃ£o Mateus,BR
+SBK,LFRT,"Tremuson, CÃ´tes-d'Armor",FR
+SBJ,SNMX,Sao Mateus,BR
 SBI,GUSB,Koundara,GN
 SBH,TFFJ,Gustavia,BL
 SBG,WITN,Sabang,ID
@@ -2346,10 +2346,10 @@ SBF,OADS,Sardeh Band,AF
 SBE,AYSA,"",PG
 SBD,KSBD,San Bernardino,US
 SBC,AYSO,Selbang,PG
-SBB,SVSB,Santa BÃ¡rbara,VE
+SBB,SVSB,Santa Barbara,VE
 SBA,KSBA,Santa Barbara,US
 SAZ,GLST,Sasstown,LR
-SAX,,Boca de SÃ¡balo,PA
+SAX,,Boca de Sabalo,PA
 SAW,LTFJ,"Pendik, Istanbul",TR
 SAV,KSAV,Savannah,US
 SAU,WATS,Sabu-Sawu Island,ID
@@ -2361,7 +2361,7 @@ SAP,MHLM,San Pedro Sula,HN
 SAN,KSAN,San Diego,US
 SAM,,Salamo,PG
 SAL,MSLP,San Salvador (San Luis Talpa),SV
-SAK,BIKR,SauÃ°Ã¡rkrÃ³kur,IS
+SAK,BIKR,SauÃ°arkrokur,IS
 SAI,VDSA,Siem Reap,KH
 SAH,OYSN,Sanaa,YE
 SAG,VASD,Kakadi,IN
@@ -2379,7 +2379,7 @@ RZH,,Preobrazheniye,RU
 RZE,EPRZ,Jasionka,PL
 RZA,SAWU,Puerto Santa Cruz,AR
 RYO,SAWT,Rio Turbio,AR
-RYN,LFCY,Royan/MÃ©dis,FR
+RYN,LFCY,Royan/Medis,FR
 RYL,,Lower Zambezi River,ZM
 RYK,OPRK,Rahim Yar Khan,PK
 RYB,UUBK,Rybinsk,RU
@@ -2402,7 +2402,7 @@ RVE,SKSA,Saravena,CO
 RVD,SWLC,Rio Verde,BR
 RVC,,River Cess,LR
 RVA,FMSG,Farafangana,MG
-RUY,,CopÃ¡n Ruinas,HN
+RUY,,Copan Ruinas,HN
 RUV,MGRB,Rubelsanto,GT
 RUU,,Kawbenaberi,PG
 RUT,KRUT,Rutland,US
@@ -2430,7 +2430,7 @@ RTM,EHRD,Rotterdam,NL
 RTL,,Okoboji,US
 RTI,WATR,Ba'a - Rote Island,ID
 RTG,WATG,"Satar Tacik, Manggarai",ID
-RTE,,SÃ£o Paulo,BR
+RTE,,Sao Paulo,BR
 RTC,VARG,"",IN
 RTB,MHRO,Coxen Hole,HN
 RTA,NFNR,Rotuma,FJ
@@ -2481,7 +2481,7 @@ ROT,NZRO,Rotorua,NZ
 ROS,SAAR,Rosario,AR
 ROR,PTRO,Babelthuap Island,PW
 ROP,PGRO,Rota Island,MP
-ROO,SBRD,RondonÃ³polis,BR
+ROO,SBRD,Rondonopolis,BR
 RON,SKPA,Paipa,CO
 ROL,,Roosevelt,US
 ROK,YBRK,Rockhampton,AU
@@ -2505,7 +2505,7 @@ RNL,AGGR,Rennell Island,SB
 RNJ,RORY,Yoron,JP
 RNI,MNCI,Corn Island,NI
 RNH,KRNH,New Richmond,US
-RNE,LFLO,Saint-LÃ©ger-sur-Roanne,FR
+RNE,LFLO,Saint-Leger-sur-Roanne,FR
 RND,KRND,Universal City,US
 RNC,KRNC,Mc Minnville,US
 RNB,ESDF,Ronneby,SE
@@ -2539,7 +2539,7 @@ RLA,,Rolla,US
 RKZ,ZURK,XigazÃª (SamzhubzÃª),CN
 RKY,,Rokeby,AU
 RKW,KRKW,Rockwood,US
-RKV,BIRK,ReykjavÃ­k,IS
+RKV,BIRK,Reykjavik,IS
 RKU,AYRK,Yule Island,PG
 RKT,OMRK,Ras Al Khaimah,AE
 RKS,KRKS,Rock Springs,US
@@ -2569,7 +2569,7 @@ RIN,AGRC,Ringi Cove,SB
 RIM,SPLN,Rodriguez de Mendoza,PE
 RIL,KRIL,Rifle,US
 RIJ,SPJA,Rioja,PE
-RIH,MPSM,RÃ­o Hato,PA
+RIH,MPSM,Rio Hato,PA
 RIG,,Rio Grande,BR
 RIF,KRIF,Richfield,US
 RIE,KRPD,Rice Lake,US
@@ -2585,8 +2585,8 @@ RHN,FYSA,Rosh Pinah,NA
 RHL,YRYH,"",AU
 RHI,KRHI,Rhinelander,US
 RHG,HRYU,Ruhengeri,RW
-RHD,SANR,Termas de RÃ­o Hondo,AR
-RHA,BIRE,ReykhÃ³lar,IS
+RHD,SANR,Termas de Rio Hondo,AR
+RHA,BIRE,Reykholar,IS
 RGT,WIBJ,Rengat-Sumatra Island,ID
 RGS,LEBG,Burgos,ES
 RGR,,Ranger,US
@@ -2617,7 +2617,7 @@ REQ,,Chagai,PK
 REO,KREO,Rome,US
 REN,UWOO,Orenburg,RU
 REL,SAVT,Rawson,AR
-REI,SOOR,RÃ©gina,GF
+REI,SOOR,Regina,GF
 REG,LICR,Reggio Calabria,IT
 REE,,Lubbock,US
 RED,KRVL,Reedsville,US
@@ -2638,7 +2638,7 @@ RDL,,El Hassana,EG
 RDG,KRDG,Reading,US
 RDE,,Merdei-Papua Island,ID
 RDD,KRDD,Redding,US
-RDC,SNDC,RedenÃ§Ã£o,BR
+RDC,SNDC,Redenzao,BR
 RDB,PADG,Red Dog,US
 RDA,,Rockhampton Downs,AU
 RCY,MYRP,Port Nelson,BS
@@ -2666,7 +2666,7 @@ RBS,YORB,"",AU
 RBR,SBRB,Rio Branco,BR
 RBQ,SLRQ,Rurrenabaque,BO
 RBP,AYRE,Rabaraba,PG
-RBO,SLRB,RoborÃ©,BO
+RBO,SLRB,Robore,BO
 RBM,EDMS,Atting,DE
 RBL,KRBL,Red Bluff,US
 RBK,,Murrieta,US
@@ -2687,7 +2687,7 @@ RAS,OIGG,Rasht,IR
 RAR,NCRG,Avarua,CK
 RAQ,WAWR,Raha,ID
 RAP,KRAP,Rapid City,US
-RAO,SBRP,RibeirÃ£o Preto,BR
+RAO,SBRP,Ribeirao Preto,BR
 RAN,LIDR,Ravenna (RA),IT
 RAM,YRNG,"",AU
 RAL,KRAL,Riverside,US
@@ -2711,11 +2711,11 @@ QSZ,ZWSC,Shache,CN
 QSX,,New Amsterdam,GY
 QSR,LIRI,Salerno,IT
 QSI,HTMS,Moshi,TZ
-QSF,DAAS,SÃ©tif,DZ
-QSC,SDSC,SÃ£o Carlos,BR
+QSF,DAAS,Setif,DZ
+QSC,SDSC,Sao Carlos,BR
 QRY,,Ikerassaarsuk,GL
 QRW,DNSU,Okpe,NG
-QRO,MMQT,QuerÃ©taro,MX
+QRO,MMQT,Queretaro,MX
 QRM,,"",AU
 QRF,,Bragado,AR
 QRA,FAGM,Johannesburg,ZA
@@ -2746,7 +2746,7 @@ QFN,,Narsarmijit,GL
 QFI,,Iginniarfik,GL
 QFG,,Eqalugaarsuit,GL
 QDY,,Taean,KR
-QDV,,JundiaÃ­,BR
+QDV,,Jundiai,BR
 QDB,,Cachoeira Do Sul,BR
 QCY,EGXC,"Lincoln, Lincolnshire",GB
 QCU,,Akunnaaq,GL
@@ -2756,7 +2756,7 @@ QBC,CYBD,Bella Coola,CA
 PZY,LZPP,PieÅ¡Å¥any,SK
 PZU,HSPN,Port Sudan,SD
 PZS,SCTC,Temuco,CL
-PZR,,Bajo BaudÃ³,CO
+PZR,,Bajo Baudo,CO
 PZO,SVPR,Puerto Ordaz-Ciudad Guayana,VE
 PZL,FADQ,Phinda,ZA
 PZK,NCPK,Pukapuka Atoll,CK
@@ -2771,7 +2771,7 @@ PYT,,Paracatu,BR
 PYS,,Paradise,US
 PYR,LGAD,Andravida,GR
 PYO,SEPT,Puerto Putumayo,EC
-PYN,,PayÃ¡n,CO
+PYN,,Payan,CO
 PYM,KPYM,Plymouth,US
 PYL,,Perry Island,US
 PYK,OIIP,Karaj,IR
@@ -2781,7 +2781,7 @@ PYG,VEPY,Pakyong,IN
 PYE,NCPY,Penrhyn Island,CK
 PYC,,Ukupseni,PA
 PYB,VEJP,Jeypore,IN
-PYA,SKVL,Puerto BoyacÃ¡,CO
+PYA,SKVL,Puerto Boyaca,CO
 PXU,VVPK,Pleiku,VN
 PXR,VTUJ,Surin,TH
 PXO,LPPS,Vila Baleira,PT
@@ -2809,7 +2809,7 @@ PVR,MMPR,Puerto Vallarta,MX
 PVO,SEPV,Portoviejo,EC
 PVL,KPBX,Pikeville,US
 PVK,LGPZ,Preveza,GR
-PVI,SSPI,ParanavaÃ­,BR
+PVI,SSPI,Paranavai,BR
 PVH,SBPV,Porto Velho,BR
 PVG,ZSPD,Shanghai (Pudong),CN
 PVF,KPVF,Placerville,US
@@ -2822,7 +2822,7 @@ PUY,LDPL,Pula,HR
 PUX,SCPV,Puerto Varas,CL
 PUW,KPUW,Pullman,US
 PUV,NWWP,Malabou,NC
-PUU,SKAS,Puerto AsÃ­s,CO
+PUU,SKAS,Puerto Asis,CO
 PUT,VOPN,Puttaparthi,IN
 PUS,RKPK,Busan,KR
 PUR,SLPR,Puerto Rico/Manuripi,BO
@@ -2833,8 +2833,8 @@ PUL,,Poulsbo,US
 PUK,NTGQ,Pukaruha,PF
 PUJ,MDPC,Punta Cana,DO
 PUG,YPAG,"",AU
-PUF,LFBP,Pau/PyrÃ©nÃ©es (Uzein),FR
-PUE,MPOA,Puerto ObaldÃ­a,PA
+PUF,LFBP,Pau/Pyrenees (Uzein),FR
+PUE,MPOA,Puerto Obaldia,PA
 PUD,SAWD,Puerto Deseado,AR
 PUC,KPUC,Price,US
 PUB,KPUB,Pueblo,US
@@ -2852,7 +2852,7 @@ PTP,TFFR,Pointe-Ã -Pitre,GP
 PTO,,Pato Branco,BR
 PTN,KPTN,Patterson,US
 PTM,SVPT,Palmarito,VE
-PTL,,MÃ¡ncora,PE
+PTL,,Mancora,PE
 PTK,KPTK,Pontiac,US
 PTJ,YPOD,"",AU
 PTH,PAPH,Port Heiden,US
@@ -2862,7 +2862,7 @@ PTD,PAAP,Port Alexander,US
 PTC,,Port Alice,US
 PTB,KPTB,Petersburg,US
 PTA,PALJ,Port Alsworth,US
-PSZ,SLPS,Puerto SuÃ¡rez,BO
+PSZ,SLPS,Puerto Suarez,BO
 PSY,SFAL,Stanley,FK
 PSX,KPSX,Palacios,US
 PSW,,Passos,BR
@@ -2871,7 +2871,7 @@ PSS,SARP,Posadas,AR
 PSR,LIBP,Pescara,IT
 PSQ,,Essington,US
 PSP,KPSP,Palm Springs,US
-PSO,SKPS,ChachagÃ¼Ã­,CO
+PSO,SKPS,ChachagÃ¼i,CO
 PSN,KPSN,Palestine,US
 PSM,KPSM,Portsmouth,US
 PSL,EGPT,Perth,GB
@@ -2894,11 +2894,11 @@ PRV,LKPO,PÅ™erov,CZ
 PRU,VYPY,Pye,MM
 PRS,AGGP,Parasi,SB
 PRR,SYPR,Paruima,GY
-PRQ,SARS,Presidencia Roque SÃ¡enz PeÃ±a,AR
+PRQ,SARS,Presidencia Roque Saenz PeÃ±a,AR
 PRP,LFKO,Propriano,FR
 PRO,KPRO,Perry,US
 PRN,BKPR,Prishtina,XK
-PRM,LPPM,PortimÃ£o,PT
+PRM,LPPM,Portimao,PT
 PRK,FAPK,Prieska,ZA
 PRI,FSPP,Praslin Island,SC
 PRH,VTCP,"",TH
@@ -2926,13 +2926,13 @@ PPS,RPVP,Puerto Princesa,PH
 PPR,,Pasir Pengarayan,ID
 PPQ,NZPP,"",NZ
 PPP,YBPN,Proserpine,AU
-PPN,SKPP,PopayÃ¡n,CO
+PPN,SKPP,Popayan,CO
 PPM,KPMP,Pompano Beach,US
 PPL,VNPL,Phaplu,NP
 PPK,UACP,Petropavl,KZ
 PPJ,,Jakarta,ID
 PPI,YPIR,"",AU
-PPH,,Parai-tepuÃ­,VE
+PPH,,Parai-tepui,VE
 PPG,NSTU,Pago Pago,AS
 PPF,KPPF,Parsons,US
 PPE,MMPE,Puerto PeÃ±asco,MX
@@ -2949,12 +2949,12 @@ POT,MKKJ,Ken Jones,JM
 POS,TTPP,Port of Spain,TT
 POR,EFPO,Pori,FI
 POP,MDPP,Puerto Plata,DO
-POO,SBPC,PoÃ§os De Caldas,BR
+POO,SBPC,Pozos De Caldas,BR
 PON,MGPP,PoptÃºn,GT
 POM,AYPY,Port Moresby,PG
 POL,FQPB,Pemba,MZ
 POJ,SNPD,Patos de Minas,BR
-POI,SLPO,PotosÃ­,BO
+POI,SLPO,Potosi,BO
 POH,KPOH,Pocahontas,US
 POG,FOOG,Port Gentil,GA
 POF,KPOF,Poplar Bluff,US
@@ -2979,7 +2979,7 @@ PNK,WIOO,Pontianak,ID
 PNJ,,Yantai,CN
 PNI,PTPN,Pohnpei Island,FM
 PNH,VDPP,Phnom Penh (Pou Senchey),KH
-PNG,SSPG,ParanaguÃ¡,BR
+PNG,SSPG,Paranagua,BR
 PNE,KPNE,Philadelphia,US
 PND,,Punta Gorda,BZ
 PNC,KPNC,Ponca City,US
@@ -3000,7 +3000,7 @@ PML,PAAL,Cold Bay,US
 PMK,YPAM,"",AU
 PMI,LEPA,Palma de Mallorca,ES
 PMH,KPMH,Portsmouth,US
-PMG,SBPP,Ponta PorÃ£,BR
+PMG,SBPP,Ponta Pora,BR
 PMF,LIMP,Parma (PR),IT
 PMD,KPMD,Palmdale,US
 PMC,SCTE,Puerto Montt,CL
@@ -3092,10 +3092,10 @@ PHF,KPHF,Newport News,US
 PHE,YPPD,Port Hedland,AU
 PHD,KPHD,New Philadelphia,US
 PHC,DNPO,Port Harcourt,NG
-PHB,SBPB,ParnaÃ­ba,BR
+PHB,SBPB,Parnaiba,BR
 PHA,VVPR,Phan Rang,VN
 PGZ,SBPG,Ponta Grossa,BR
-PGX,LFBX,PÃ©rigueux/Bassillac,FR
+PGX,LFBX,Perigueux/Bassillac,FR
 PGV,KPGV,Greenville,US
 PGU,OIBP,Khiyaroo,IR
 PGS,,Peach Springs,US
@@ -3126,7 +3126,7 @@ PEZ,UWPP,Penza,RU
 PEY,,Penong,AU
 PEX,UUYP,Pechora,RU
 PEW,OPPS,Peshawar,PK
-PEV,LHPP,PÃ©cs,HU
+PEV,LHPP,Pecs,HU
 PEU,MHPL,Puerto Lempira,HN
 PET,SBPK,Pelotas,BR
 PES,ULPB,Petrozavodsk,RU
@@ -3138,7 +3138,7 @@ PEM,SPTU,Puerto Maldonado,PE
 PEL,FXPG,Pelaneng,LS
 PEK,ZBAA,Beijing,CN
 PEI,SKPE,Pereira,CO
-PEH,SAZP,PehuajÃ³,AR
+PEH,SAZP,Pehuajo,AR
 PEG,LIRZ,Perugia (PG),IT
 PEF,EDCP,PeenemÃ¼nde,DE
 PEE,USPP,Perm,RU
@@ -3156,7 +3156,7 @@ PDR,,Presidente Dutra,BR
 PDP,SULS,Punta del Este,UY
 PDO,WIPQ,Talang Gudang-Sumatra Island,ID
 PDN,,Kangaroo Island,AU
-PDM,,PedasÃ­,PA
+PDM,,Pedasi,PA
 PDL,LPPD,Ponta Delgada,PT
 PDK,KPDK,Atlanta,US
 PDI,AYPD,Pindiu,PG
@@ -3164,16 +3164,16 @@ PDG,WIEE,Padang (Katapiang),ID
 PDF,SNRD,Prado,BR
 PDE,YPDI,"",AU
 PDD,FQPO,Ponta do Ouro,MZ
-PDC,NWWQ,NÃ©poui,NC
+PDC,NWWQ,Nepoui,NC
 PDB,,Pedro Bay,US
-PDA,SKPD,Puerto InÃ­rida,CO
-PCV,,MulegÃ©,MX
+PDA,SKPD,Puerto Inirida,CO
+PCV,,Mulege,MX
 PCU,,Poplarville,US
 PCT,,Princeton/Rocky Hill,US
 PCS,SNPC,Picos,BR
 PCR,SKPC,Puerto CarreÃ±o,CO
 PCQ,,Phongsaly,LA
-PCP,FPPR,SÃ£o TomÃ© & PrÃ­ncipe,ST
+PCP,FPPR,Sao Tome & Principe,ST
 PCO,MMPL,La Ribera,MX
 PCN,NZPN,Koromiko,NZ
 PCM,,Playa del Carmen,MX
@@ -3205,7 +3205,7 @@ PBF,KPBF,Pine Bluff,US
 PBE,SKPR,Puerto Berrio,CO
 PBD,VAPR,Porbandar,IN
 PBC,MMPB,Puebla,MX
-PBB,SSPN,ParanaÃ­ba,BR
+PBB,SSPN,Paranaiba,BR
 PBA,,Cairu,BR
 PAZ,MMPA,Poza Rica,MX
 PAY,WBKP,Pamol,MY
@@ -3232,7 +3232,7 @@ PAB,VEBU,Bilaspur,IN
 PAA,VYPA,Hpa-N,MM
 OZZ,GMMZ,Ouarzazate,MA
 OZR,KOZR,Fort Rucker/Ozark,US
-OZP,LEMO,MorÃ³n,ES
+OZP,LEMO,Moron,ES
 OZH,UKDE,Zaporizhia,UA
 OZG,GMAZ,Zagora,MA
 OZC,RPMO,Ozamiz,PH
@@ -3262,10 +3262,10 @@ OVR,SAZF,Olavarria,AR
 OVL,SCOV,Ovalle,CL
 OVG,FAOB,Overberg,ZA
 OVE,KOVE,Oroville,US
-OVD,LEAS,RanÃ³n,ES
+OVD,LEAS,Ranon,ES
 OVB,UNNT,Novosibirsk,RU
 OVA,FMSL,Bekily,MG
-OUZ,GQPZ,ZouÃ©rate,MR
+OUZ,GQPZ,Zouerate,MR
 OUT,FTTS,Bousso,TD
 OUS,SDOU,Ourinhos,BR
 OUR,FKKI,Batouri,CM
@@ -3280,7 +3280,7 @@ OUD,GMFO,Ahl Angad,MA
 OUA,DFFD,Ouagadougou,BF
 OTZ,PAOT,Kotzebue,US
 OTU,SKOT,Remedios,CO
-OTT,,CotriguaÃ§u,BR
+OTT,,Cotriguazu,BR
 OTS,,Anacortes,US
 OTR,MRCC,Corredores,CR
 OTQ,,Otog Front Banner,CN
@@ -3319,7 +3319,7 @@ OSC,KOSC,Oscoda,US
 OSB,,Osage Beach,US
 ORZ,,Orange Walk,BZ
 ORY,LFPO,"Paris (Orly, Val-de-Marne)",FR
-ORX,SNOX,OriximinÃ¡,BR
+ORX,SNOX,Oriximina,BR
 ORW,OPOR,Ormara Raik,PK
 ORV,PFNO,Noorvik,US
 ORU,SLOR,Oruro,BO
@@ -3327,7 +3327,7 @@ ORT,PAOR,Northway,US
 ORR,YYOR,"",AU
 ORP,FBOR,Orapa,BW
 ORO,MHYR,Yoro,HN
-ORN,DAOO,Es-SÃ©nia,DZ
+ORN,DAOO,Es-Senia,DZ
 ORM,EGBK,"Northampton, Northamptonshire",GB
 ORL,KORL,Orlando,US
 ORK,EICK,Cork,IE
@@ -3340,18 +3340,18 @@ ORE,LFOZ,"Saint-Denis-de-l'HÃ´tel, Loiret",FR
 ORD,KORD,Chicago,US
 ORC,SKOE,Orocue,CO
 ORB,ESOE,Ã–rebro,SE
-ORA,SASO,OrÃ¡n,AR
+ORA,SASO,Oran,AR
 OQN,,Kokand,UZ
 OPW,FYOP,Opuwa,NA
 OPU,AYBM,Balimo,PG
 OPS,SBSI,Sinop,BR
-OPP,,SalinÃ³polis,BR
+OPP,,Salinopolis,BR
 OPO,LPPR,Porto,PT
 OPL,KOPL,Opelousas,US
 OPI,YOEN,"",AU
 OPF,KOPF,Miami,US
 OPB,,Maitanakunai,PG
-OPA,BIKP,KÃ³pasker,IS
+OPA,BIKP,Kopasker,IS
 OOT,NGON,Onotoa,KI
 OOR,YMOO,"",AU
 OOM,YCOM,Cooma,AU
@@ -3360,7 +3360,7 @@ OOK,PAOO,Toksook Bay,US
 OOD,,Koodaideri Mine,AU
 OOA,KOOA,Cedar,US
 ONY,KONY,Olney,US
-ONX,MPEJ,ColÃ³n,PA
+ONX,MPEJ,Colon,PA
 ONU,NFOL,Ono-i-Lau,FJ
 ONT,KONT,Ontario,US
 ONS,YOLW,"",AU
@@ -3416,7 +3416,7 @@ OLG,,"",KE
 OLF,KOLF,Wolf Point,US
 OLE,KOLE,Olean,US
 OLD,KOLD,Old Town,US
-OLC,SDCG,SÃ£o Paulo De OlivenÃ§a,BR
+OLC,SDCG,Sao Paulo De Olivenza,BR
 OLB,LIEO,Olbia (SS),IT
 OLA,ENOL,Ã˜rland,NO
 OKY,YBOK,"",AU
@@ -3493,12 +3493,12 @@ ODO,UIKB,Bodaybo,RU
 ODN,WBGI,Long Seridan,MY
 ODM,,Accident,US
 ODL,YCOD,Cordillo Downs,AU
-ODJ,FEGO,Ouanda DjallÃ©,CF
+ODJ,FEGO,Ouanda Djalle,CF
 ODH,EGVO,"Hook, Hampshire",GB
 ODE,EKOD,Odense,DK
 ODD,YOOD,"",AU
 ODC,,Oakdale,US
-ODB,LEBA,CÃ³rdoba,ES
+ODB,LEBA,Cordoba,ES
 ODA,FEFW,Ouadda,CF
 OCW,KOCW,Washington,US
 OCV,SKOC,OcaÃ±a,CO
@@ -3541,7 +3541,7 @@ NZY,KNZY,San Diego,US
 NZL,ZBZL,Zhalantun,CN
 NZH,ZBMZ,Manzhouli,CN
 NZG,,Nizhneangarsk,RU
-NZE,GUNZ,NzÃ©rÃ©korÃ©,GN
+NZE,GUNZ,Nzerekore,GN
 NZC,SPZA,Nazca,PE
 NZA,FNZG,Nzagi,AO
 NYW,VYMY,Monywar,MM
@@ -3564,7 +3564,7 @@ NWA,FMCI,Fomboni,KM
 NVY,VONV,Neyveli,IN
 NVT,SBNF,Navegantes,BR
 NVS,LFQG,"Marzy, NiÃ¨vre",FR
-NVP,SWNA,Novo AripuanÃ£,BR
+NVP,SWNA,Novo Aripuana,BR
 NVN,,Beckwourth,US
 NVM,,Nova Mutum,BR
 NVI,UTSA,Navoi,UZ
@@ -3607,14 +3607,14 @@ NTC,,Santa Carolina,MZ
 NTB,ENNO,Notodden,NO
 NSV,YNSH,"",AU
 NST,VTSF,Nakhon Si Thammarat,TH
-NSR,,SÃ£o Raimundo Nonato,BR
+NSR,,Sao Raimundo Nonato,BR
 NSQ,,Nuussuaq,GL
 NSO,YSCO,"",AU
 NSN,NZNS,Nelson,NZ
 NSM,YNSM,Norseman,AU
 NSL,KDVP,Slayton,US
 NSK,UOOO,Norilsk,RU
-NSI,FKYS,YaoundÃ©,CM
+NSI,FKYS,Yaounde,CM
 NSH,OINN,Nowshahr,IR
 NSE,KNSE,Milton,US
 NSB,,Bimini,BS
@@ -3635,14 +3635,14 @@ NRA,YNAR,Narrandera,AU
 NQZ,UACC,Astana,KZ
 NQY,EGHQ,Newquay,GB
 NQX,KNQX,Key West,US
-NQU,SKNQ,NuquÃ­,CO
+NQU,SKNQ,Nuqui,CO
 NQT,EGBN,Nottingham,GB
 NQN,SAZN,Neuquen,AR
 NQL,SWNQ,NiquelÃ¢ndia,BR
 NQI,KNQI,Kingsville,US
 NQA,KNQA,Millington,US
 NPY,HTMP,Mpanda,TZ
-NPU,,San Pedro de UrabÃ¡,CO
+NPU,,San Pedro de Uraba,CO
 NPT,KUUU,Newport,US
 NPR,SJNP,Novo Progresso,BR
 NPP,,Napperby,AU
@@ -3654,7 +3654,7 @@ NPE,NZNR,Napier,NZ
 NPA,KNPA,Pensacola,US
 NOZ,UNWW,Novokuznetsk,RU
 NOV,FNHU,Huambo,AO
-NOU,NWWW,NoumÃ©a (La Tontouta),NC
+NOU,NWWW,Noumea (La Tontouta),NC
 NOT,KDVO,Novato,US
 NOS,FMNN,Nosy Be,MG
 NOR,BINF,NorÃ°fjÃ¶rÃ°ur,IS
@@ -3736,7 +3736,7 @@ NJC,USNN,Nizhnevartovsk,RU
 NJA,RJTA,Ayase / Yamato,JP
 NIX,GANR,Nioro du Sahel,ML
 NIU,NTKN,Naiu Atoll,PF
-NIT,LFBN,Niort/SouchÃ©,FR
+NIT,LFBN,Niort/Souche,FR
 NIS,AYSE,Simberi Island,PG
 NIR,,Beeville,US
 NIQ,,Niaqornat,GL
@@ -3767,7 +3767,7 @@ NGL,FANG,Ngala,ZA
 NGK,UHSN,Nogliki,RU
 NGI,NFNG,Ngau,FJ
 NGF,PHNG,Kaneohe,US
-NGE,FKKN,N'GaoundÃ©rÃ©,CM
+NGE,FKKN,N'Gaoundere,CM
 NGD,TUPA,Anegada,VG
 NGB,ZSNB,Ningbo,CN
 NGA,YYNG,"",AU
@@ -3792,7 +3792,7 @@ NDS,YSAN,Sandstone,AU
 NDR,GMMW,Al Aaroui,MA
 NDN,AYNC,Nadunumu,PG
 NDM,HAMN,Mendi,ET
-NDL,FEFN,N'DÃ©lÃ©,CF
+NDL,FEFN,N'Dele,CF
 NDK,,Namorik Atoll,MH
 NDJ,FTTJ,N'Djamena,TD
 NDI,AYNJ,Namudi,PG
@@ -3821,7 +3821,7 @@ NBX,WABI,Nabire,ID
 NBW,MUGM,Guantanamo Bay Naval Station,CU
 NBS,ZYBS,Baishan,CN
 NBO,HKJK,Nairobi,KE
-NBN,,San Antonio de PalÃ©,GQ
+NBN,,San Antonio de Pale,GQ
 NBL,MPWN,San Blas,PA
 NBJ,FNBJ,Luanda (Ãcolo e Bengo),AO
 NBH,,Nambucca Heads,AU
@@ -3869,13 +3869,13 @@ MZN,,Minj,PG
 MZL,SKMZ,Manizales,CO
 MZK,NGMK,Marakei,KI
 MZJ,KMZJ,Marana,US
-MZI,GAMB,SÃ©varÃ©,ML
+MZI,GAMB,Sevare,ML
 MZH,LTAP,Amasya,TR
 MZG,RCQC,Huxi,TW
 MZE,,"",BZ
-MZD,,Santiago de MÃ©ndez,EC
+MZD,,Santiago de Mendez,EC
 MZC,FOOM,Mitzic,GA
-MZB,FQMP,MocÃ­mboa da Praia,MZ
+MZB,FQMP,Mocimboa da Praia,MZ
 MZA,SPMF,Mazamari,PE
 MYZ,FWMY,Monkey Bay,MW
 MYY,WBGR,Miri,MY
@@ -3968,7 +3968,7 @@ MVN,KMVN,Mount Vernon,US
 MVM,,Kayenta,US
 MVL,KMVL,Morrisville,US
 MVK,YMUK,Mulka,AU
-MVF,SBMS,MossorÃ³,BR
+MVF,SBMS,Mossoro,BR
 MVE,KMVE,Montevideo,US
 MVD,SUMU,Ciudad de la Costa,UY
 MVC,KMVC,Monroeville,US
@@ -3985,7 +3985,7 @@ MUR,WBGM,Marudi,MY
 MUQ,YMUC,Muccan Station,AU
 MUP,YMUP,"",AU
 MUO,KMUO,Mountain Home,US
-MUN,SVMT,MaturÃ­n,VE
+MUN,SVMT,Maturin,VE
 MUM,,Muli,MV
 MUL,KMUL,Moultrie,US
 MUK,NCMK,Mauke Island,CK
@@ -4006,7 +4006,7 @@ MTV,NVSA,Ablow,VU
 MTU,,Montepuez,MZ
 MTT,MMMT,Cosoleacaque,MX
 MTS,FDMS,Manzini,SZ
-MTR,SKMR,MonterÃ­a,CO
+MTR,SKMR,Monteria,CO
 MTQ,YMIT,"",AU
 MTP,KMTP,Montauk,US
 MTO,KMTO,Mattoon,US
@@ -4017,14 +4017,14 @@ MTK,NGMN,Makin Island,KI
 MTJ,KMTJ,Montrose,US
 MTI,GVMT,Vila do Mosteiros,CV
 MTH,KMTH,Marathon,US
-MTG,,Vila Bela Da SantÃ­ssima Trindade,BR
+MTG,,Vila Bela Da Santissima Trindade,BR
 MTF,HAMT,Mizan Teferi,ET
 MTE,SNMA,Monte Alegre,BR
 MTD,YMSF,"",AU
 MTC,KMTC,Mount Clemens,US
-MTB,SKML,MontelÃ­bano,CO
+MTB,SKML,Montelibano,CO
 MTA,NZMA,"",NZ
-MSZ,FNMO,MoÃ§Ã¢medes,AO
+MSZ,FNMO,MozÃ¢medes,AO
 MSY,KMSY,New Orleans,US
 MSX,FCMM,Mossendjo,CG
 MSW,HHMS,Massawa,ER
@@ -4039,7 +4039,7 @@ MSO,KMSO,Missoula,US
 MSN,KMSN,Madison,US
 MSM,FZCV,Masi Manimba,CD
 MSL,KMSL,Muscle Shoals,US
-MSK,,Puerto GaitÃ¡n,CO
+MSK,,Puerto Gaitan,CO
 MSJ,RJSM,Misawa,JP
 MSI,,Masalembo Island,ID
 MSH,OOMA,Masirah,OM
@@ -4056,7 +4056,7 @@ MRV,URMM,Mineralnyye Vody,RU
 MRU,FIMP,Plaine Magnien,MU
 MRT,,Moroak,AU
 MRS,LFML,"Marignane, Bouches-du-RhÃ´ne",FR
-MRR,SEMA,MacarÃ¡,EC
+MRR,SEMA,Macara,EC
 MRQ,RPUW,Gasan,PH
 MRP,YALA,Marla,AU
 MRO,NZMS,Masterton,NZ
@@ -4068,7 +4068,7 @@ MRH,,May River,PG
 MRG,YMBA,Mareeba,AU
 MRF,KMRF,Marfa,US
 MRE,HKMS,Masai Mara,KE
-MRD,SVMD,MÃ©rida,VE
+MRD,SVMD,Merida,VE
 MRC,KMRC,Columbia/Mount Pleasant,US
 MRB,KMRB,Martinsburg,US
 MRA,HLMS,Misrata,LY
@@ -4087,9 +4087,9 @@ MQO,AYMQ,Malam,PG
 MQN,ENRA,Mo i Rana,NO
 MQM,LTCR,Mardin,TR
 MQL,YMIA,Mildura,AU
-MQK,SLTI,San MatÃ­as,BO
+MQK,SLTI,San Matias,BO
 MQJ,UEMA,Khonuu,RU
-MQH,,MinaÃ§u,BR
+MQH,,Minazu,BR
 MQG,FYMG,Midgard,NA
 MQF,USCM,Magnitogorsk,RU
 MQE,YMQA,Marqua,AU
@@ -4110,7 +4110,7 @@ MPP,,Mulatupo,PA
 MPO,KMPO,Mount Pocono,US
 MPN,EGYP,Mount Pleasant,FK
 MPM,FQMA,Maputo,MZ
-MPL,LFMT,Montpellier/MÃ©diterranÃ©e,FR
+MPL,LFMT,Montpellier/Mediterranee,FR
 MPJ,KMPJ,Morrilton,US
 MPI,,Mamitupu,PA
 MPH,RPVE,Caticlan,PH
@@ -4147,7 +4147,7 @@ MOB,KMOB,Mobile,US
 MOA,MUMO,Moa,CU
 MNZ,KHEF,Manassas,US
 MNY,AGGO,Stirling Island,SB
-MNX,SBMY,ManicorÃ©,BR
+MNX,SBMY,Manicore,BR
 MNW,YMDS,"",AU
 MNV,,"",AU
 MNU,VYMM,Mawlamyine,MM
@@ -4179,7 +4179,7 @@ MMU,KMMU,Morristown,US
 MMT,KMMT,Eastover,US
 MMS,KMMS,Marks,US
 MMQ,FLBA,Mbala,ZM
-MMP,SKMP,Santa Cruz de MompÃ³x,CO
+MMP,SKMP,Santa Cruz de Mompox,CO
 MMO,GVMA,Vila do Maio,CV
 MMN,,Stow,US
 MMM,YMMU,"",AU
@@ -4214,7 +4214,7 @@ MLJ,KMLJ,Milledgeville,US
 MLI,KMLI,Moline,US
 MLG,WARA,Malang,ID
 MLF,KMLF,Milford,US
-MLE,VRMM,MalÃ©,MV
+MLE,VRMM,Male,MV
 MLD,KMLD,Malad City,US
 MLC,KMLC,Mc Alester,US
 MLB,KMLB,Melbourne,US
@@ -4266,7 +4266,7 @@ MJB,,Mejit Atoll,MH
 MJA,FMSJ,Manja,MG
 MIZ,,Mainoru,AU
 MIY,,"",AU
-MIX,,MiritÃ­-ParanÃ¡,CO
+MIX,,Miriti-Parana,CO
 MIW,KMIW,Marshalltown,US
 MIV,KMIV,Millville,US
 MIU,DNMA,Maiduguri,NG
@@ -4280,12 +4280,12 @@ MIN,YMPA,"",AU
 MIM,YMER,Merimbula,AU
 MIK,EFMI,Mikkeli,FI
 MIJ,,Mili Island,MH
-MII,SBML,MarÃ­lia,BR
+MII,SBML,Marilia,BR
 MIH,YMIP,Mitchell Plateau,AU
 MIG,ZUMY,Mianyang (Fucheng),CN
 MIF,,Monahans,US
 MIE,KMIE,Muncie,US
-MID,MMMD,MÃ©rida,MX
+MID,MMMD,Merida,MX
 MIC,KMIC,Minneapolis,US
 MIB,KMIB,Minot,US
 MIA,KMIA,Miami,US
@@ -4324,14 +4324,14 @@ MGS,NCMG,Mangaia Island,CK
 MGR,KMGR,Moultrie,US
 MGQ,HCMM,Mogadishu,SO
 MGP,,Manga Mission,PG
-MGN,SKMG,MaganguÃ©,CO
+MGN,SKMG,Magangue,CO
 MGM,KMGM,Montgomery,US
 MGL,EDLN,MÃ¶nchengladbach,DE
 MGK,VYMT,Mong Tong,MM
 MGJ,KMGJ,Montgomery,US
 MGI,,Matagorda Island,US
 MGH,FAMG,Margate,ZA
-MGF,SBMG,MaringÃ¡,BR
+MGF,SBMG,Maringa,BR
 MGE,KMGE,Marietta,US
 MGD,SLMG,Magdalena,BO
 MGC,KMGC,Michigan City,US
@@ -4362,7 +4362,7 @@ MFB,,Monfort,CO
 MFA,HTMA,Kilindoni,TZ
 MEZ,,Musina,ZA
 MEY,VNMG,Meghauli,NP
-MEX,MMMX,Ciudad de MÃ©xico,MX
+MEX,MMMX,Ciudad de Mexico,MX
 MEW,FZVM,Mweka,CD
 MEV,KMEV,Minden,US
 MEU,SBMD,Almeirim,BR
@@ -4372,7 +4372,7 @@ MER,KMER,Merced,US
 MEQ,WITC,Kuala Pesisir,ID
 MEP,WMAU,Mersing,MY
 MEO,KMQI,Manteo,US
-MEN,LFNB,Mende/BrÃ©noux,FR
+MEN,LFNB,Mende/Brenoux,FR
 MEM,KMEM,Memphis,US
 MEL,YMML,Melbourne,AU
 MEK,GMFM,Meknes,MA
@@ -4381,16 +4381,16 @@ MEI,KMEI,Meridian,US
 MEH,ENMH,Mehamn,NO
 MEG,FNMA,Malanje,AO
 MEF,,Melfi,TD
-MEE,NWWR,MarÃ©,NC
+MEE,NWWR,Mare,NC
 MED,OEMA,Medina,SA
 MEC,SEMT,Manta,EC
 MEB,YMEN,Essendon Fields,AU
-MEA,SBME,MacaÃ©,BR
+MEA,SBME,Macae,BR
 MDZ,SAME,Mendoza,AR
 MDY,PMDY,Sand Island,UM
 MDX,SATM,Mercedes,AR
 MDW,KMDW,Chicago,US
-MDV,,"MÃ©douneu, Gabon",GQ
+MDV,,"Medouneu, Gabon",GQ
 MDU,AYMN,Mendi,PG
 MDT,KMDT,Harrisburg,US
 MDS,MBMC,Middle Caicos,TC
@@ -4407,20 +4407,20 @@ MDI,DNMK,Makurdi,NG
 MDH,KMDH,Murphysboro,US
 MDG,ZYMD,Mudanjiang,CN
 MDF,KMDZ,Medford,US
-MDE,SKRG,MedellÃ­n,CO
+MDE,SKRG,Medellin,CO
 MDD,KMDD,Midland,US
 MDC,WAMM,Manado,ID
 MDB,,Melinda,BZ
 MDA,,San Antonio,US
-MCZ,SBMO,MaceiÃ³,BR
+MCZ,SBMO,Maceio,BR
 MCY,YBSU,Maroochydore,AU
 MCX,URML,Makhachkala,RU
 MCW,KMCW,Mason City,US
 MCV,YMHU,McArthur River Mine,AU
-MCU,LFBK,"LÃ©paud, Creuse",FR
+MCU,LFBK,"Lepaud, Creuse",FR
 MCT,OOMS,Muscat,OM
 MCS,SARM,Monte Caseros,AR
-MCP,SBMQ,MacapÃ¡,BR
+MCP,SBMQ,Macapa,BR
 MCO,KMCO,Orlando,US
 MCN,KMCN,Macon,US
 MCM,LNMC,Fontvieille,MC
@@ -4435,7 +4435,7 @@ MCD,KMCD,Mackinac Island,US
 MCC,KMCC,Sacramento,US
 MCB,KMCB,McComb,US
 MCA,GUMA,Macenta,GN
-MBZ,SWMW,MauÃ©s,BR
+MBZ,SWMW,Maues,BR
 MBY,KMBY,Moberly,US
 MBX,LJMB,Orehova Vas,SI
 MBW,YMMB,Melbourne,AU
@@ -4449,7 +4449,7 @@ MBO,RPUM,Mamburao,PH
 MBN,,Wunaamin Miliwundi Ranges,AU
 MBM,,Mkambati,ZA
 MBL,KMBL,Manistee,US
-MBK,SWXM,MatupÃ¡,BR
+MBK,SWXM,Matupa,BR
 MBJ,MKJS,Montego Bay,JM
 MBI,HTGW,Mbeya,TZ
 MBH,YMYB,Maryborough,AU
@@ -4477,13 +4477,13 @@ MAM,MMMA,Matamoros,MX
 MAL,,Mangole Island,ID
 MAK,,Malakal,SS
 MAJ,PKMJ,Majuro Atoll,MH
-MAH,LEMH,MahÃ³n (MaÃ³),ES
+MAH,LEMH,Mahon (Mao),ES
 MAG,AYMD,Madang,PG
 MAF,KMAF,Midland,US
 MAE,KMAE,Madera,US
 MAD,LEMD,Madrid,ES
 MAC,KMAC,Macon,US
-MAB,SBMA,MarabÃ¡,BR
+MAB,SBMA,Maraba,BR
 MAA,VOMM,Chennai,IN
 LZY,ZUNZ,Nyingchi (Mainling),CN
 LZU,KLZU,Lawrenceville,US
@@ -4494,7 +4494,7 @@ LZM,FNLZ,Luzamba,AO
 LZI,FZAL,Luozi,CD
 LZH,ZGZH,Liuzhou (Liujiang),CN
 LZG,ZULA,Nanchong (Langzhong),CN
-LZC,MMLC,LÃ¡zaro CÃ¡rdenas,MX
+LZC,MMLC,Lazaro Cardenas,MX
 LZA,FZUG,Luiza,CD
 LYX,EGMD,"Romney Marsh, Kent",GB
 LYU,KELO,Ely,US
@@ -4558,7 +4558,7 @@ LUN,FLKK,Lusaka,ZM
 LUM,ZPMS,Dehong (Mangshi),CN
 LUL,KLUL,Laurel,US
 LUK,KLUK,Cincinnati,US
-LUI,,La UniÃ³n,HN
+LUI,,La Union,HN
 LUH,VILD,"",IN
 LUG,LSZA,Agno,CH
 LUF,KLUF,Glendale,US
@@ -4596,7 +4596,7 @@ LST,YMLT,Launceston (Western Junction),AU
 LSS,TFFS,Les Saintes,GP
 LSR,,Kutacane,ID
 LSQ,SCGE,Los Angeles,CL
-LSP,SVJC,ParaguanÃ¡,VE
+LSP,SVJC,Paraguana,VE
 LSO,LFOO,Les Sables-d'Olonne,FR
 LSN,KLSN,Los Banos,US
 LSM,WBGD,Long Semado,MY
@@ -4612,7 +4612,7 @@ LSB,KLSB,Lordsburg,US
 LSA,AYKA,Losuia,PG
 LRV,SVRS,Gran Roque Island,VE
 LRU,KLRU,Las Cruces,US
-LRT,LFRH,Lorient/Lann/BihouÃ©,FR
+LRT,LFRH,Lorient/Lann/Bihoue,FR
 LRS,LGLE,Leros Island,GR
 LRR,OISL,Lar,IR
 LRQ,,Laurie River,CA
@@ -4627,7 +4627,7 @@ LRD,KLRD,Laredo,US
 LRB,FXLR,Leribe,LS
 LRA,LGLR,Larissa,GR
 LQN,OAQN,Qala-i-Naw,AF
-LQM,SKLG,Puerto LeguÃ­zamo,CO
+LQM,SKLG,Puerto Leguizamo,CO
 LQK,KLQK,Pickens,US
 LPY,LFHP,"Chaspuzac, Haute-Loire",FR
 LPX,EVLA,LiepÄja,LV
@@ -4709,7 +4709,7 @@ LMN,WBGJ,Limbang,MY
 LMM,MMLM,Los Mochis,MX
 LML,,Lae Island,MH
 LMI,AYLU,Lumi,PG
-LMH,,LimÃ³n,HN
+LMH,,Limon,HN
 LME,LFRM,"Le Mans, Sarthe",FR
 LMD,,Los Menucos,AR
 LMC,SKNA,La Macarena,CO
@@ -4817,7 +4817,7 @@ LGD,KLGD,La Grande,US
 LGC,KLGC,LaGrange,US
 LGB,KLGB,Long Beach,US
 LGA,KLGA,New York,US
-LFW,DXXX,LomÃ©,TG
+LFW,DXXX,Lome,TG
 LFT,KLFT,Lafayette,US
 LFR,SVLF,"",VE
 LFQ,ZBLF,Linfen (Yaodu),CN
@@ -4844,14 +4844,14 @@ LEO,,Lekoni,GA
 LEN,LELN,La Virgen Del Camino,ES
 LEM,KLEM,Lemmon,US
 LEL,YLEV,"",AU
-LEK,GULB,LabÃ©,GN
+LEK,GULB,Labe,GN
 LEJ,EDDP,Schkeuditz,DE
-LEI,LEAM,AlmerÃ­a,ES
+LEI,LEAM,Almeria,ES
 LEH,LFOH,Le Havre,FR
 LEF,FXLK,Lebakeng,LS
 LEE,KLEE,Leesburg,US
 LED,ULLI,St. Petersburg,RU
-LEC,SBLE,LenÃ§Ã³is,BR
+LEC,SBLE,Lenzois,BR
 LEB,KLEB,Lebanon,US
 LEA,YPLM,Exmouth,AU
 LDZ,FALD,Londolozi,ZA
@@ -4869,7 +4869,7 @@ LDJ,KLDJ,Linden,US
 LDI,HTLI,Lindi,TZ
 LDH,YLHI,Lord Howe Island,AU
 LDG,ULAL,Leshukonskoye,RU
-LDE,LFBT,Tarbes/Lourdes/PyrÃ©nÃ©es,FR
+LDE,LFBT,Tarbes/Lourdes/Pyrenees,FR
 LDC,YLIN,Lindeman Island,AU
 LDB,SBLO,Londrina,BR
 LDA,VEMH,Malda,IN
@@ -4885,7 +4885,7 @@ LCN,YBLC,"",AU
 LCM,SACC,La Cumbre,AR
 LCL,MULM,Pinar del Rio,CU
 LCK,KLCK,Columbus,US
-LCJ,EPLL,ÅÃ³dÅº,PL
+LCJ,EPLL,ÅodÅº,PL
 LCI,KLCI,Laconia / Gilford,US
 LCH,KLCH,Lake Charles,US
 LCG,LECO,Culleredo,ES
@@ -4903,7 +4903,7 @@ LBV,FOOL,Libreville,GA
 LBU,WBKL,Labuan,MY
 LBT,KLBT,Lumberton,US
 LBS,NFNL,Labasa,FJ
-LBR,SWLB,LÃ¡brea,BR
+LBR,SWLB,Labrea,BR
 LBQ,FOGR,Lambarene,GA
 LBP,,Long Banga,MY
 LBO,FZVI,Lusambo,CD
@@ -5154,7 +5154,7 @@ KNU,,Kanpur,IN
 KNT,KTKX,Kennett,US
 KNS,YKII,"",AU
 KNR,OIBJ,Jam,IR
-KNQ,NWWD,KonÃ©,NC
+KNQ,NWWD,Kone,NC
 KNP,FNCP,Capanda,AO
 KNO,WIMM,Beringin,ID
 KNN,GXUD,Kankan,GN
@@ -5211,7 +5211,7 @@ KLI,FZFP,Kotakoli,CD
 KLH,VAKP,Kolhapur,IN
 KLG,PALG,Kalskag,US
 KLF,UUBC,Kaluga,RU
-KLE,FKKH,KaÃ©lÃ©,CM
+KLE,FKKH,Kaele,CM
 KLD,UUEM,Tver,RU
 KLC,GOOK,Kaolack,SN
 KLB,FLKL,Kalabo,ZM
@@ -5311,7 +5311,7 @@ KGK,PAJZ,Koliganek,US
 KGJ,FWKA,Karonga,MW
 KGI,YPKG,Broadwood,AU
 KGH,AYJO,Yongai,PG
-KGG,GOTK,KÃ©dougou,SN
+KGG,GOTK,Kedougou,SN
 KGF,UAKK,Karaganda,KZ
 KGE,AGKG,Kagau Island,SB
 KGD,UMKK,Kaliningrad,RU
@@ -5345,9 +5345,9 @@ KEJ,UNEE,Kemerovo,RU
 KEI,WAKP,Kepi,ID
 KEH,,Kenmore,US
 KEG,AYLG,Denglagu Mission,PG
-KEF,BIKF,ReykjavÃ­k,IS
+KEF,BIKF,Reykjavik,IS
 KEE,FCOK,Kelle,CG
-KED,GQNK,KaÃ©di,MR
+KED,GQNK,Kaedi,MR
 KEC,FZQG,Kasenga,CD
 KEB,,Nanwalek,US
 KEA,UTAE,Kerki,TM
@@ -5367,7 +5367,7 @@ KDN,FOGE,Ndende,GA
 KDM,VRMT,Huvadhu Atoll,MV
 KDL,EEKA,KÃ¤rdla,EE
 KDK,PAKD,Kodiak,US
-KDJ,FOGJ,N'DjolÃ©,GA
+KDJ,FOGJ,N'Djole,GA
 KDI,WAWW,Kendari,ID
 KDH,OAKN,Khvoshab,AF
 KDE,AYOW,Koroba,PG
@@ -5427,7 +5427,7 @@ KAZ,WAEK,Kao-Celebes Island,ID
 KAY,NFNW,Wakaya Island,FJ
 KAX,YKBR,Kalbarri,AU
 KAW,VYKT,Kawthoung,MM
-KAV,SVKA,KavanayÃ©n,VE
+KAV,SVKA,Kavanayen,VE
 KAU,EFKA,Kauhava,FI
 KAT,NZKT,Awanui,NZ
 KAS,FYKB,Karasburg,NA
@@ -5465,7 +5465,7 @@ JUV,BGUK,Upernavik,GL
 JUU,,Nuugaatsiaq,GL
 JUT,MHJU,Jutigalpa,HN
 JUR,YJNB,Jurien Bay,AU
-JUO,SKJU,JuradÃ³,CO
+JUO,SKJU,Jurado,CO
 JUN,YJDA,Jundah,AU
 JUM,VNJL,Jumla,NP
 JUL,SPJL,Juliaca,PE
@@ -5477,10 +5477,10 @@ JUB,HJJJ,Juba,SS
 JUA,SIZX,Juara,BR
 JTY,LGPL,Astypalaia Island,GR
 JTR,LGSR,Santorini Island,GR
-JTN,,ItanhaÃ©m,BR
-JTI,SWJW,JataÃ­,BR
+JTN,,Itanhaem,BR
+JTI,SWJW,Jatai,BR
 JTC,SBAE,Bauru,BR
-JTA,,TauÃ¡,BR
+JTA,,Taua,BR
 JSY,LGSO,Syros Island,GR
 JSU,BGMQ,Maniitsoq,GL
 JST,KJST,Johnstown,US
@@ -5491,7 +5491,7 @@ JSK,OIZJ,Bandar-e-Jask,IR
 JSJ,ZYJS,Jiansanjiang,CN
 JSI,LGSK,Skiathos,GR
 JSH,LGST,Crete Island,GR
-JSB,,SÃ£o Benedito,BR
+JSB,,Sao Benedito,BR
 JSA,VIJR,"",IN
 JRT,,Juruti,BR
 JRO,HTKJ,Arusha,TZ
@@ -5503,14 +5503,14 @@ JRG,VEJH,"",IN
 JRF,PHJR,Kapolei,US
 JRB,,New York,US
 JRA,,New York,US
-JQE,MPJE,JaquÃ©,PA
+JQE,MPJE,Jaque,PA
 JQA,BGUQ,Uummannaq,GL
 JPY,,Paraty,BR
-JPR,,Ji-ParanÃ¡,BR
+JPR,,Ji-Parana,BR
 JPO,,Patos,BR
 JPN,,Washington DC,US
 JPE,,Paragominas,BR
-JPA,SBJP,JoÃ£o Pessoa,BR
+JPA,SBJP,Joao Pessoa,BR
 JOT,KJOT,Joliet,US
 JOS,DNJO,Jos,NG
 JOP,AYJS,Josephstaal,PG
@@ -5531,15 +5531,15 @@ JNJ,,Duqm,OM
 JNH,ZSJX,"Xiuzhou, Hangzhou",CN
 JNG,ZSJG,Jining,CN
 JNB,FAOR,Johannesburg,ZA
-JNA,SNJN,JanuÃ¡ria,BR
+JNA,SNJN,Januaria,BR
 JMU,ZYJM,Jiamusi,CN
 JMS,KJMS,Jamestown,US
-JMR,,MaricÃ¡,BR
+JMR,,Marica,BR
 JMO,VNJS,Jomsom,NP
 JMK,LGMK,Mykonos,GR
 JMJ,ZPJM,Pu'er (Lancang),CN
 JMB,FNJM,Jamba,AO
-JMA,,ManhuaÃ§u,BR
+JMA,,Manhuazu,BR
 JLS,SDJL,Jales,BR
 JLR,VAJB,Jabalpur,IN
 JLN,KJLN,Joplin,US
@@ -5553,7 +5553,7 @@ JKG,ESGJ,JÃ¶nkÃ¶ping,SE
 JJU,,Qaqortoq,GL
 JJN,ZSQZ,Quanzhou,CN
 JJM,HKMK,Meru-Kinna,KE
-JJI,SPJI,JuanjuÃ­,PE
+JJI,SPJI,Juanjui,PE
 JJG,SBJA,Jaguaruna,BR
 JJD,SBJE,Cruz,BR
 JIU,ZSJJ,Jiujiang,CN
@@ -5569,14 +5569,14 @@ JIJ,HAJJ,Jijiga,ET
 JID,,City of Industry,US
 JIC,ZLJC,Jinchang,CN
 JIB,HDAM,Djibouti City,DJ
-JIA,SWJN,JuÃ­na,BR
+JIA,SWJN,Juina,BR
 JHW,KJHW,Jamestown,US
 JHS,BGSS,Sisimiut,GL
 JHN,WIMF,Mandailing,ID
 JHM,PHJH,Lahaina,US
 JHL,,Albian Village,CA
 JHG,ZPJH,Jinghong (Gasa),CN
-JHF,SBJH,SÃ£o Roque,BR
+JHF,SBJH,Sao Roque,BR
 JHB,WMKJ,Johor Bahru,MY
 JGS,ZSGS,Ji'an,CN
 JGR,,Kangilinnguit,GL
@@ -5590,7 +5590,7 @@ JFN,KHZY,Ashtabula,US
 JFM,,Fremantle,AU
 JFK,KJFK,New York,US
 JER,EGJJ,St. Peter,JE
-JEQ,SNJK,JequiÃ©,BR
+JEQ,SNJK,Jequie,BR
 JEK,,Jeki,ZM
 JEJ,,Ailinglapalap Atoll,MH
 JEG,BGAA,Aasiaat,GL
@@ -5598,7 +5598,7 @@ JEF,KJEF,Jefferson City,US
 JEE,MTJE,Carrefour Sanon,HT
 JED,OEJN,Jeddah,SA
 JDZ,ZSJD,Jingdezhen,CN
-JDR,SNJR,SÃ£o JoÃ£o Del Rei,BR
+JDR,SNJR,Sao Joao Del Rei,BR
 JDO,SBJU,Juazeiro do Norte,BR
 JDN,KJDN,Jordan,US
 JDH,VIJO,Jodhpur,IN
@@ -5613,14 +5613,14 @@ JCS,,CrateÃºs,BR
 JCR,SBEK,Jacareacanga,BR
 JCO,,Comino,MT
 JCM,SNJB,Jacobina,BR
-JCL,LKCS,ÄŒeskÃ© BudÄ›jovice,CZ
+JCL,LKCS,ÄŒeske BudÄ›jovice,CZ
 JCK,YJLC,"",AU
 JCJ,,"Chuja, Hachâ€™uja-do (Chujado Islands)",KR
 JCI,KIXD,New Century,US
 JCH,BGCH,Qasigiannguit,GL
-JCB,SSJA,JoaÃ§aba,BR
+JCB,SSJA,Joazaba,BR
 JBT,,Bethel,US
-JBS,,SÃ£o Borja,BR
+JBS,,Sao Borja,BR
 JBR,KJBR,Jonesboro,US
 JBQ,MDJB,La Isabela,DO
 JBK,ZWQT,Qitai,CN
@@ -5641,14 +5641,14 @@ JAK,MTJA,Jacmel,HT
 JAI,VIJP,Jaipur,IN
 JAG,OPJA,Jacobabad,PK
 JAF,VCCJ,Jaffna,LK
-JAE,SPJE,JaÃ©n,PE
+JAE,SPJE,Jaen,PE
 JAD,YPJT,Perth,AU
 JAC,KJAC,Jackson,US
 JAB,YJAB,"",AU
 JAA,OAJL,Jalalabad,AF
 IZT,MMIT,Ixtepec,MX
 IZO,RJOC,Izumo,JP
-IZM,LTFB,SelÃ§uk,TR
+IZM,LTFB,Selzuk,TR
 IZE,,Hohenlockstedt,DE
 IZA,SBZM,Juiz de Fora,BR
 IYK,KIYK,Inyokern,US
@@ -5690,7 +5690,7 @@ IVI,,Isla Viveros,PA
 IVG,LYBR,Berane,ME
 IVC,NZNV,Invercargill,NZ
 IVA,,"",MG
-IUP,,ApuÃ­,BR
+IUP,,Apui,BR
 IUL,,Ilu,ID
 IUI,,Innarsuit,GL
 IUE,NIUE,Alofi,NU
@@ -5703,10 +5703,10 @@ ITO,PHTO,Hilo,US
 ITN,,Itabuna,BR
 ITM,RJOO,Osaka,JP
 ITK,,Itokama,PG
-ITJ,,ItajaÃ­,BR
+ITJ,,Itajai,BR
 ITI,,Itambacuri,BR
 ITH,KITH,Ithaca,US
-ITE,SNZW,ItuberÃ¡,BR
+ITE,SNZW,Itubera,BR
 ITB,SBIH,Itaituba,BR
 ITA,SBIC,Itacoatiara,BR
 ISW,KISW,Wisconsin Rapids,US
@@ -5723,7 +5723,7 @@ ISJ,MMIM,Isla Mujeres,MX
 ISI,YISF,"",AU
 ISG,ROIG,Ishigaki,JP
 ISE,LTFC,Isparta,TR
-ISD,,IscuandÃ©,CO
+ISD,,Iscuande,CO
 ISC,EGHE,"St. Mary's, Isles of Scilly",GB
 ISB,OPIS,Attock,PK
 ISA,YBMA,Mount Isa,AU
@@ -5748,21 +5748,21 @@ IQQ,SCDA,Iquique,CL
 IQN,ZLQY,Qingyang (Xifeng),CN
 IQM,ZWCM,Qiemo,CN
 IQA,ORAA,HÄ«t,IQ
-IPZ,MRSI,PÃ©rez ZeledÃ³n,CR
+IPZ,MRSI,Perez Zeledon,CR
 IPU,SNIU,IpiaÃº,BR
 IPT,KIPT,Williamsport,US
 IPN,SBIP,Ipatinga,BR
 IPL,KIPL,Imperial,US
 IPI,SKIP,Ipiales,CO
 IPH,WMKI,Ipoh,MY
-IPG,SWII,Santo AntÃ´nio do IÃ§Ã¡,BR
+IPG,SWII,Santo AntÃ´nio do Iza,BR
 IPE,RPMV,Ipil,PH
 IPC,SCIP,Isla De Pascua,CL
 IPA,NVVI,Ipota,VU
 IOW,KIOW,Iowa City,US
 IOT,,Illorsuit,GL
-IOS,SBIL,IlhÃ©us,BR
-IOR,EIIM,Inis MÃ³r,IE
+IOS,SBIL,Ilheus,BR
+IOR,EIIM,Inis Mor,IE
 IOQ,,Isortoq,GL
 IOP,,Ioma,PG
 ION,FCOI,Impfondo,CG
@@ -5777,7 +5777,7 @@ INV,EGPE,Inverness,GB
 INU,ANYN,Yaren District,NR
 INT,KINT,Winston Salem,US
 INS,KINS,Indian Springs,US
-INQ,EIIR,Inis OÃ­rr,IE
+INQ,EIIR,Inis Oirr,IE
 INO,FZBA,Inongo,CD
 INN,LOWI,Innsbruck,AT
 INM,YINN,"",AU
@@ -5806,7 +5806,7 @@ IMF,VEIM,Imphal,IN
 IMD,AYIO,Imonda,PG
 IMB,SYIB,Imbaimadai,GY
 IMA,,"Iamalele, Fergusson Island",PG
-ILZ,LZZI,DolnÃ½ HriÄov,SK
+ILZ,LZZI,Dolny HriÄov,SK
 ILY,EGPI,"Isle of Islay, Argyll and Bute",GB
 ILU,HKKL,Kilaguni,KE
 ILS,MSSS,San Salvador,SV
@@ -5838,21 +5838,21 @@ IKE,,Ikerasak,GL
 IKB,KUKF,North Wilkesboro,US
 IKA,OIIE,Tehran,IR
 IJX,KIJX,Jacksonville,US
-IJU,SSIJ,IjuÃ­,BR
+IJU,SSIJ,Ijui,BR
 IJK,USII,Izhevsk,RU
 IIS,AYIA,Nissan Island,PG
 IIL,OICI,Ilam,IR
-IIA,EIMN,Inis MeÃ¡in,IE
+IIA,EIMN,Inis Meain,IE
 IHU,,Ihu,PG
 IHR,OIZI,Iranshahr,IR
 IHO,FMSI,Ihosy,MG
 IHN,OYQN,Qishn,YE
 IHC,FQIA,Inhaca,MZ
-IGU,SBFI,Foz do IguaÃ§u,BR
+IGU,SBFI,Foz do Iguazu,BR
 IGT,URMS,Sunzha,RU
 IGS,ETSI,Manching,DE
 IGR,SARI,Puerto Iguazu,AR
-IGO,SKIG,ChigorodÃ³,CO
+IGO,SKIG,Chigorodo,CO
 IGN,RPMI,Balo-i,PH
 IGM,KIGM,Kingman,US
 IGL,,Ã‡iÄŸli,TR
@@ -5904,7 +5904,7 @@ IBO,FQIB,Ibo,MZ
 IBM,,Japal Camp,AU
 IBL,,Bazaruto Island,MZ
 IBI,,Iboki,PG
-IBE,SKIB,IbaguÃ©,CO
+IBE,SKIB,Ibague,CO
 IBB,SEII,Puerto Villamil,EC
 IBA,DNIB,Ibadan,NG
 IAX,WAMS,Miangas,ID
@@ -5913,7 +5913,7 @@ IAR,UUDL,Tunoshna,RU
 IAQ,,Imam Hassan,IR
 IAO,RPNS,Del Carmen,PH
 IAN,PAIK,Kiana,US
-IAM,DAUZ,In AmÃ©nas,DZ
+IAM,DAUZ,In Amenas,DZ
 IAL,,Ialibu,PG
 IAH,KIAH,Houston,US
 IAG,KIAG,Niagara Falls,US
@@ -5924,7 +5924,7 @@ HZV,,Hazyview,ZA
 HZU,,Chengdu (Jintang),CN
 HZP,CYNR,Fort Mackay,CA
 HZL,KHZL,Hazleton,US
-HZK,BIHU,HÃºsavÃ­k,IS
+HZK,BIHU,HÃºsavik,IS
 HZH,ZUNP,Liping,CN
 HZG,ZLHZ,Hanzhong (Chenggu),CN
 HZB,LFQT,"Merville, Nord",FR
@@ -5950,7 +5950,7 @@ HWA,AYHU,Hawabango,PG
 HVS,KHVS,Hartsville,US
 HVR,KHVR,Havre,US
 HVN,KHVN,New Haven,US
-HVK,BIHK,HÃ³lmavÃ­k,IS
+HVK,BIHK,Holmavik,IS
 HVG,ENHV,HonningsvÃ¥g,NO
 HVE,KHVE,Hanksville,US
 HVD,ZMKD,Khovd,MN
@@ -5959,9 +5959,9 @@ HVA,FMNL,Analalava,MG
 HUZ,ZGHZ,Huizhou (Pingtan),CN
 HUY,EGNJ,"Grimsby, Lincolnshire",GB
 HUX,MMBT,Huatulco,MX
-HUW,SWHT,HumaitÃ¡,BR
+HUW,SWHT,Humaita,BR
 HUV,ESNH,Hudiksvall,SE
-HUU,SPNC,HuÃ¡nuco,PE
+HUU,SPNC,Huanuco,PE
 HUT,KHUT,Hutchinson,US
 HUS,PAHU,Hughes,US
 HUQ,HLON,"",LY
@@ -6005,7 +6005,7 @@ HSP,KHSP,Hot Springs,US
 HSN,ZSZS,Zhoushan,CN
 HSM,YHSM,"",AU
 HSL,PAHL,Huslia,US
-HSK,LEHC,Monflorite/AlcalÃ¡ del Obispo,ES
+HSK,LEHC,Monflorite/Alcala del Obispo,ES
 HSJ,,Zhengzhou,CN
 HSI,KHSI,Hastings,US
 HSH,KHND,Las Vegas,US
@@ -6264,7 +6264,7 @@ GYG,UEMM,Magan,RU
 GYE,SEGU,Guayaquil,EC
 GYD,UBBB,Baku,AZ
 GYB,,Wodgina,AU
-GYA,,GuayaramerÃ­n,BO
+GYA,,Guayaramerin,BO
 GXY,KGXY,Greeley,US
 GXX,FKKJ,Yagoua,CM
 GXQ,SCCY,Coyhaique,CL
@@ -6302,7 +6302,7 @@ GUP,KGUP,Gallup,US
 GUO,,Guriel,SO
 GUM,PGUM,HagÃ¥tÃ±a,GU
 GUL,YGLB,"",AU
-GUJ,SBGW,GuaratinguetÃ¡,BR
+GUJ,SBGW,Guaratingueta,BR
 GUI,SVGI,"",VE
 GUH,YGDH,"",AU
 GUG,AYGF,Guari,PG
@@ -6310,7 +6310,7 @@ GUF,KJKA,Gulf Shores,US
 GUE,,Guriaso,PG
 GUD,GAGM,Goundam,ML
 GUC,KGUC,Gunnison,US
-GUB,MMGR,San QuintÃ­n,MX
+GUB,MMGR,San Quintin,MX
 GUA,MGGT,Guatemala City,GT
 GTZ,HTGR,Grumeti Game Reserve,TZ
 GTY,,Gettysburg,US
@@ -6337,7 +6337,7 @@ GSO,KGSO,Greensboro,US
 GSN,YMGN,Mount Gunson,AU
 GSM,OIKQ,Dayrestan,IR
 GSL,,Taltheilei Narrows,CA
-GSJ,MGSJ,Puerto San JosÃ©,GT
+GSJ,MGSJ,Puerto San Jose,GT
 GSI,SOGS,Grand-Santi,GF
 GSH,KGSH,Goshen,US
 GSE,ESGP,GÃ¶teborg,SE
@@ -6345,11 +6345,11 @@ GSC,YGSC,Gascoyne Junction,AU
 GSB,KGSB,Goldsboro,US
 GSA,WBKN,Long Miau,MY
 GRZ,LOWG,Feldkirchen bei Graz,AT
-GRY,BIGR,GrÃ­msey,IS
+GRY,BIGR,Grimsey,IS
 GRX,LEGR,Granada,ES
 GRW,LPGR,Santa Cruz da Graciosa,PT
 GRV,URMG,Grozny,RU
-GRU,SBGR,SÃ£o Paulo,BR
+GRU,SBGR,Sao Paulo,BR
 GRT,,Gujrat,PK
 GRS,LIRS,Grosseto (GR),IT
 GRR,KGRR,Grand Rapids,US
@@ -6424,7 +6424,7 @@ GMZ,GCGM,"Alajero, La Gomera Island",ES
 GMV,,Oljato-Monument Valley,US
 GMU,KGMU,Greenville,US
 GMT,PAGZ,Granite Mountain,US
-GMS,,GuimarÃ£es,BR
+GMS,,Guimaraes,BR
 GMR,NTGJ,"",PF
 GMQ,ZLGL,Golog (MaqÃªn),CN
 GMP,RKSS,Seoul,KR
@@ -6466,11 +6466,11 @@ GKL,YGKL,Great Keppel Island,AU
 GKK,VRMO,Huvadhu Atoll,MV
 GKH,VNGK,Gorkha,NP
 GKE,ETNG,Geilenkirchen,DE
-GKD,LTFK,GÃ¶kÃ§eada,TR
+GKD,LTFK,GÃ¶kzeada,TR
 GKA,AYGA,Goronka,PG
 GJT,KGJT,Grand Junction,US
 GJR,BIGJ,GjÃ¶gur,IS
-GJM,SBGM,GuajarÃ¡-Mirim,BR
+GJM,SBGM,Guajara-Mirim,BR
 GJL,DAAV,Tahir,DZ
 GJA,MHNJ,Guanaja,HN
 GIZ,OEGN,Jizan,SA
@@ -6495,7 +6495,7 @@ GHN,ZUGH,Deyang (Guanghan),CN
 GHM,KGHM,Centerville,US
 GHK,,Kennedy Lake,CA
 GHF,EDQG,Giebelstadt,DE
-GHE,,GarachinÃ©,PA
+GHE,,Garachine,PA
 GHC,MYBG,Bullocks Harbour,BS
 GHB,MYEM,Governor's Harbour,BS
 GHA,DAUG,El Atteuf,DZ
@@ -6506,7 +6506,7 @@ GGR,,Garowe,SO
 GGO,DIGL,Guiglo,CI
 GGN,DIGA,Gagnoa,CI
 GGM,HKKG,Kakamega,KE
-GGJ,SSGY,GuaÃ­ra,BR
+GGJ,SSGY,Guaira,BR
 GGH,SSCT,Cianorte,BR
 GGG,KGGG,Longview,US
 GGF,SNYA,Almeirim,BR
@@ -6515,7 +6515,7 @@ GGD,YGDS,"",AU
 GGC,FNBL,Lumbala N'guimbo,AO
 GGB,SWHP,Ãgua Boa,BR
 GFY,FYGF,Grootfontein,NA
-GFR,LFRF,"BrÃ©ville-sur-Mer, Manche",FR
+GFR,LFRF,"Breville-sur-Mer, Manche",FR
 GFO,SYBT,Bartica,GY
 GFN,YGFN,Grafton,AU
 GFL,KGFL,Glens Falls,US
@@ -6531,15 +6531,15 @@ GET,YGEL,Moonyoonooka,AU
 GES,RPMR,General Santos,PH
 GER,MUNG,Nueva Gerona,CU
 GEO,SYCJ,Georgetown,GY
-GEM,FGMY,MengomeyÃ©n,GQ
+GEM,FGMY,Mengomeyen,GQ
 GEL,SBNM,Santo Ã‚ngelo,BR
 GEG,KGEG,Spokane,US
 GEF,AGEV,Liangia,SB
 GEE,YGTO,George Town,AU
 GED,KGED,Georgetown,US
-GEC,LCGK,Lefkoniko (GeÃ§itkale),CY
+GEC,LCGK,Lefkoniko (Gezitkale),CY
 GEB,WAMJ,Gebe Island,ID
-GEA,NWWM,NoumÃ©a,NC
+GEA,NWWM,Noumea,NC
 GDZ,URKG,Gelendzhik,RU
 GDX,UHMM,Magadan,RU
 GDW,KGDW,Gladwin,US
@@ -6602,7 +6602,7 @@ GAS,HKGA,Garissa,KE
 GAR,AYGI,Garaina,PG
 GAQ,GAGO,"",ML
 GAP,AYGP,Gusap,PG
-GAO,MUGT,GuantÃ¡namo,CU
+GAO,MUGT,Guantanamo,CU
 GAN,VRMG,Gan,MV
 GAM,PAGM,Gambell,US
 GAL,PAGA,Galena,US
@@ -6671,7 +6671,7 @@ FRO,ENFL,FlorÃ¸,NO
 FRN,PAFR,Fort Richardson,US
 FRM,KFRM,Fairmont,US
 FRL,LIPK,ForlÃ¬ (FC),IT
-FRK,FSSF,FrÃ©gate Island,SC
+FRK,FSSF,Fregate Island,SC
 FRI,KFRI,Fort Riley (Junction City),US
 FRH,KFRH,French Lick,US
 FRG,KFRG,Farmingdale,US
@@ -6733,7 +6733,7 @@ FLS,YFLI,Whitemark,AU
 FLR,LIRQ,Firenze (FI),IT
 FLP,KFLP,Flippin,US
 FLO,KFLO,Florence,US
-FLN,SBFL,FlorianÃ³polis,BR
+FLN,SBFL,Florianopolis,BR
 FLM,SGFI,Filadelfia,PY
 FLL,KFLL,Fort Lauderdale,US
 FLI,,Flateyri,IS
@@ -6776,7 +6776,7 @@ FEZ,GMFF,SaÃ¯ss,MA
 FET,KFET,Fremont,US
 FEP,KFEP,Freeport,US
 FEN,SBFN,Fernando de Noronha,BR
-FEJ,SNOU,FeijÃ³,BR
+FEJ,SNOU,Feijo,BR
 FEG,UTFF,Fergana,UZ
 FEC,,Feira de Santana,BR
 FEB,VNSR,Sanfebagar,NP
@@ -6787,7 +6787,7 @@ FDK,KFDK,Frederick,US
 FDH,EDNY,Friedrichshafen,DE
 FDF,TFFF,Fort-de-France,MQ
 FDE,ENBL,FÃ¸rde,NO
-FDA,,FundaciÃ³n,CO
+FDA,,Fundacion,CO
 FCY,KFCY,Forrest City,US
 FCS,KFCS,Fort Carson,US
 FCO,LIRF,Rome,IT
@@ -6803,7 +6803,7 @@ FBM,FZQA,Lubumbashi,CD
 FBL,KFBL,Faribault,US
 FBK,PAFB,Fairbanks,US
 FBG,KFBG,Fort Bragg,US
-FBE,SSFB,Francisco BeltrÃ£o,BR
+FBE,SSFB,Francisco Beltrao,BR
 FBD,OAFZ,Fayzabad,AF
 FBA,SWOB,Fonte Boa,BR
 FAZ,OISF,Fasa,IR
@@ -6811,7 +6811,7 @@ FAY,KFAY,Fayetteville,US
 FAV,NTGF,"",PF
 FAU,OOFD,Fahud,OM
 FAT,KFAT,Fresno,US
-FAS,BIFF,FÃ¡skrÃºÃ°sfjÃ¶rÃ°ur,IS
+FAS,BIFF,FaskrÃºÃ°sfjÃ¶rÃ°ur,IS
 FAR,KFAR,Fargo,US
 FAQ,AYFR,Frieda River,PG
 FAO,LPFR,Faro,PT
@@ -6819,20 +6819,20 @@ FAM,KFAM,Farmington,US
 FAK,,False Island,US
 FAI,PAFA,Fairbanks,US
 FAH,OAFR,Farah,AF
-FAG,BIFM,FagurhÃ³lsmÃ½ri,IS
+FAG,BIFM,Fagurholsmyri,IS
 FAF,KFAF,Newport News (Fort Eustis),US
-FAE,EKVG,VÃ¡gar,FO
+FAE,EKVG,Vagar,FO
 FAC,NTKF,Faaite,PF
 FAB,EGLF,"Farnborough, Hampshire",GB
 FAA,GUFH,Faranah,GN
 EZV,,"",RU
-EZS,LTCA,ElazÄ±ÄŸ,TR
+EZS,LTCA,Elazig,TR
 EZE,SAEZ,Buenos Aires (Ezeiza),AR
 EYW,KEYW,Key West,US
 EYS,HKES,Eliye Springs,KE
 EYR,,Yerington,US
 EYP,SKYP,Yopal,CO
-EYL,GAYE,YÃ©limanÃ©,ML
+EYL,GAYE,Yelimane,ML
 EYK,USHQ,"",RU
 EYA,,Zeya,RU
 EXT,EGTE,"Exeter, Devon",GB
@@ -6898,7 +6898,7 @@ ERT,,Erdenet,MN
 ERS,FYWE,Windhoek,NA
 ERR,KERR,Errol,US
 ERQ,YESE,Elrose Mine,AU
-ERN,SWEI,EirunepÃ©,BR
+ERN,SWEI,Eirunepe,BR
 ERM,SSER,Erechim,BR
 ERL,ZBER,Erenhot,CN
 ERI,KERI,Erie,US
@@ -6923,14 +6923,14 @@ EOS,KEOS,Neosho,US
 EOR,SVED,Bolivar,VE
 EOK,KEOK,Keokuk,US
 EOI,EGED,Eday,GB
-EOH,SKMD,MedellÃ­n,CO
+EOH,SKMD,Medellin,CO
 ENY,ZLYA,Yan'an (Baota),CN
 ENW,KENW,Kenosha,US
 ENV,KENV,Wendover,US
 ENU,DNEN,Enegu,NG
 ENT,PKMA,Eniwetok Atoll,MH
 ENS,EHTW,Enschede,NL
-ENO,SGEN,EncarnaciÃ³n,PY
+ENO,SGEN,Encarnacion,PY
 ENN,PANN,Nenana,US
 ENL,KENL,Centralia,US
 ENK,EGAB,"Enniskillen, Fermanagh and Omagh",GB
@@ -6945,13 +6945,13 @@ ENC,LFSN,"Tomblaine, Meurthe-et-Moselle",FR
 ENB,YEEB,Eneabba,AU
 ENA,PAEN,Kenai,US
 EMY,,El Minya,EG
-EMX,SAVD,El MaitÃ©n,AR
+EMX,SAVD,El Maiten,AR
 EMT,KEMT,El Monte,US
 EMS,AYEB,Embessa,PG
 EMR,,El Mirador,GT
 EMP,KEMP,Emporia,US
 EMO,AYEO,Emo Mission,PG
-EMN,GQNI,NÃ©ma,MR
+EMN,GQNI,Nema,MR
 EMM,KEMM,Kemmerer,US
 EML,LSME,Emmen,CH
 EMK,PAEM,Emmonak,US
@@ -6981,7 +6981,7 @@ ELI,PFEL,Elim,US
 ELH,MYEH,North Eleuthera,BS
 ELG,DAUE,El Menia,DZ
 ELF,HSFS,El Fasher,SD
-ELE,,El Real de Santa MarÃ­a,PA
+ELE,,El Real de Santa Maria,PA
 ELD,KELD,El Dorado,US
 ELC,YELD,Elcho Island,AU
 ELB,SKBC,El Banco,CO
@@ -7009,7 +7009,7 @@ EIE,UNII,Yeniseysk,RU
 EIB,EDGE,HÃ¶rselberg-Hainich,DE
 EHU,ZHEC,Ezhou,CN
 EHM,PAEH,Cape Newenham,US
-EHL,SAVB,El BolsÃ³n,AR
+EHL,SAVB,El Bolson,AR
 EGX,PAII,Egegik,US
 EGV,KEGV,Eagle River,US
 EGS,BIEG,EgilsstaÃ°ir,IS
@@ -7057,7 +7057,7 @@ ECH,YECH,"",AU
 ECG,KECG,Elizabeth City,US
 ECA,,East Tawas,US
 EBW,FKKW,Ebolowa,CM
-EBU,LFMH,"AndrÃ©zieux-BouthÃ©on, Loire",FR
+EBU,LFMH,"Andrezieux-Boutheon, Loire",FR
 EBS,KEBS,Webster City,US
 EBO,,Ebon Atoll,MH
 EBN,,Ebadon Island,MH
@@ -7210,7 +7210,7 @@ DNS,KDNS,Denison,US
 DNR,LFRD,Dinard,FR
 DNQ,YDLQ,Deniliquin,AU
 DNP,VNDG,Dang,NP
-DNO,SWDN,DianÃ³polis,BR
+DNO,SWDN,Dianopolis,BR
 DNN,KDNN,Dalton,US
 DNL,KDNL,Augusta,US
 DNK,UKDD,Dnipro,UA
@@ -7268,7 +7268,7 @@ DIW,,Dickwella,LK
 DIU,VADU,Diu,IN
 DIS,FCPD,Dolisie,CG
 DIR,HADR,Dire Dawa,ET
-DIQ,SNDV,DivinÃ³polis,BR
+DIQ,SNDV,Divinopolis,BR
 DIP,DFED,Diapaga,BF
 DIO,,Diomede,US
 DIN,VVDB,Dien Bien Phu,VN
@@ -7477,7 +7477,7 @@ CUP,SVCP,CarÃºpano,VE
 CUO,SKCR,CarurÃº,CO
 CUN,MMUN,CancÃºn,MX
 CUM,SVCU,"",VE
-CUL,MMCL,CuliacÃ¡n,MX
+CUL,MMCL,Culiacan,MX
 CUK,,Caye Caulker,BZ
 CUJ,,Culion,PH
 CUI,,Currillo,CO
@@ -7498,7 +7498,7 @@ CTU,ZUUU,Chengdu (Shuangliu),CN
 CTT,LFMQ,"Le Castellet, Var",FR
 CTS,RJCC,Sapporo,JP
 CTR,,"",AU
-CTQ,,Santa VitÃ³ria do Palmar,BR
+CTQ,,Santa Vitoria do Palmar,BR
 CTP,,Carutapera,BR
 CTO,,Calverton,US
 CTN,YCKN,"",AU
@@ -7509,8 +7509,8 @@ CTI,FNCV,Cuito Cuanavale,AO
 CTH,KMQS,Coatesville,US
 CTG,SKCG,Cartagena,CO
 CTF,MGCT,Coatepeque,GT
-CTE,,CartÃ­ Islands,PA
-CTD,MPCE,ChitrÃ©,PA
+CTE,,Carti Islands,PA
+CTD,MPCE,Chitre,PA
 CTC,SANC,Catamarca,AR
 CTB,KCTB,Cut Bank,US
 CTA,LICC,Catania,IT
@@ -7587,7 +7587,7 @@ CPF,WARC,Blora,ID
 CPE,MMCP,Campeche,MX
 CPD,YCBP,Coober Pedy,AU
 CPC,SAZY,Chapelco/San Martin de los Andes,AR
-CPB,SKCA,AcandÃ­,CO
+CPB,SKCA,Acandi,CO
 CPA,GLCP,Harper,LR
 COZ,MDCZ,Costanza,DO
 COY,YCWY,Coolawanyah Station,AU
@@ -7646,7 +7646,7 @@ CMX,KCMX,Hancock,US
 CMW,MUCM,Camaguey,CU
 CMV,NZCX,Coromandel,NZ
 CMU,AYCH,Kundiawa,PG
-CMT,,CametÃ¡,BR
+CMT,,Cameta,BR
 CMS,HCMS,Iskushuban,SO
 CMR,LFGA,Colmar,FR
 CMQ,YCMT,"",AU
@@ -7659,8 +7659,8 @@ CMK,FWCM,Club Makokola,MW
 CMJ,RCCM,Qimei,TW
 CMI,KCMI,Savoy,US
 CMH,KCMH,Columbus,US
-CMG,SBCR,CorumbÃ¡,BR
-CMF,LFLB,ChambÃ©ry,FR
+CMG,SBCR,Corumba,BR
+CMF,LFLB,Chambery,FR
 CME,MMCE,Ciudad del Carmen,MX
 CMD,YCTM,"",AU
 CMC,SNWC,Camocim,BR
@@ -7698,7 +7698,7 @@ CKU,,Cordova,US
 CKT,OIMC,Sarakhs,IR
 CKS,SBCJ,Parauapebas,BR
 CKR,,Crane Island,US
-CKO,SSCP,CornÃ©lio ProcÃ³pio,BR
+CKO,SSCP,Cornelio Procopio,BR
 CKN,KCKN,Crookston,US
 CKM,KCKM,Clarksdale,US
 CKL,UUMU,Moscow,RU
@@ -7713,8 +7713,8 @@ CKB,KCKB,Bridgeport,US
 CKA,KCKA,Cherokee,US
 CJZ,,Cajazeiras,BR
 CJU,RKPC,Jeju City,KR
-CJT,MMCO,ComitÃ¡n,MX
-CJS,MMCS,Ciudad JuÃ¡rez,MX
+CJT,MMCO,Comitan,MX
+CJS,MMCS,Ciudad Juarez,MX
 CJN,WICN,Cijulang,ID
 CJM,VTSE,Chumphon,TH
 CJL,OPCH,Chitral,PK
@@ -7736,7 +7736,7 @@ CIS,PCIS,Abariringa,KI
 CIR,KCIR,Cairo,US
 CIQ,,Chiquimula,GT
 CIP,FLCP,Chipata,ZM
-CIO,SGCO,ConcepciÃ³n,PY
+CIO,SGCO,Concepcion,PY
 CIN,KCIN,Carroll,US
 CIM,SKCM,Cimitarra,CO
 CIL,,Council,US
@@ -7788,13 +7788,13 @@ CGL,SPGL,"",PE
 CGK,WIII,Jakarta,ID
 CGJ,FLKE,Chingola,ZM
 CGI,KCGI,Cape Girardeau,US
-CGH,SBSP,SÃ£o Paulo,BR
+CGH,SBSP,Sao Paulo,BR
 CGG,,Casiguran,PH
 CGF,KCGF,Cleveland,US
 CGE,KCGE,Cambridge,US
 CGD,ZGCD,Changde (Dingcheng),CN
 CGC,AYCG,Cape Gloucester,PG
-CGB,SBCY,CuiabÃ¡,BR
+CGB,SBCY,Cuiaba,BR
 CGA,,Craig,US
 CFV,KCFV,Coffeyville,US
 CFU,LGKR,Kerkyra (Corfu),GR
@@ -7813,7 +7813,7 @@ CFG,MUCF,Cienfuegos,CU
 CFF,FNCF,Cafunfo,AO
 CFE,LFLC,Clermont-Ferrand,FR
 CFD,KCFD,Bryan,US
-CFC,SBCD,CaÃ§ador,BR
+CFC,SBCD,Cazador,BR
 CFB,SBCB,Cabo Frio,BR
 CEZ,KCEZ,Cortez,US
 CEY,KCEY,Murray,US
@@ -7825,9 +7825,9 @@ CET,LFOU,Cholet,FR
 CES,YCNK,"",AU
 CER,LFRC,Cherbourg,FR
 CEQ,LFMD,Cannes,FR
-CEP,SLCP,ConcepciÃ³n,BO
+CEP,SLCP,Concepcion,BO
 CEO,FNWK,Waco Kungo,AO
-CEN,MMCN,Ciudad ObregÃ³n,MX
+CEN,MMCN,Ciudad Obregon,MX
 CEM,PACE,Central,US
 CEL,SSCN,Canela,BR
 CEK,USCC,Chelyabinsk,RU
@@ -7844,7 +7844,7 @@ CDY,RPMU,Mapun,PH
 CDW,KCDW,Caldwell,US
 CDV,PACV,Cordova,US
 CDU,YSCN,Cobbitty,AU
-CDT,LECH,CastellÃ³n de la Plana,ES
+CDT,LECH,Castellon de la Plana,ES
 CDS,KCDS,Childress,US
 CDR,KCDR,Chadron,US
 CDQ,YCRY,"",AU
@@ -7853,7 +7853,7 @@ CDO,FACD,Cradock,ZA
 CDN,KCDN,Camden,US
 CDL,,Candle,US
 CDK,KCDK,Cedar Key,US
-CDJ,SBAA,ConceiÃ§Ã£o do Araguaia,BR
+CDJ,SBAA,Conceizao do Araguaia,BR
 CDI,SNKI,Cachoeiro do Itapemirim,BR
 CDH,KCDH,Camden,US
 CDG,LFPG,"Paris (Roissy-en-France, Val-d'Oise)",FR
@@ -7864,20 +7864,20 @@ CDB,PACD,Cold Bay,US
 CDA,YCOO,"",AU
 CCZ,MYBC,Chub Cay,BS
 CCY,KCCY,Charles City,US
-CCX,SWKC,CÃ¡ceres,BR
+CCX,SWKC,Caceres,BR
 CCW,YCWL,"",AU
 CCV,NVSF,Craig Cove,VU
 CCU,VECC,Kolkata,IN
-CCS,SVMI,MaiquetÃ­a,VE
+CCS,SVMI,Maiquetia,VE
 CCR,KCCR,Concord,US
 CCP,SCIE,Concepcion,CL
-CCO,SKCI,Puerto LÃ³pez,CO
+CCO,SKCI,Puerto Lopez,CO
 CCN,OACC,Chaghcharan,AF
 CCM,,CriciÃºma,BR
 CCL,YCCA,Chinchilla,AU
 CCK,YPCC,West Island,CC
 CCJ,VOCL,Calicut,IN
-CCI,SSCK,ConcÃ³rdia,BR
+CCI,SSCK,Concordia,BR
 CCH,SCCC,Chile Chico,CL
 CCG,,Crane,US
 CCF,LFMK,Carcassonne,FR
@@ -7889,7 +7889,7 @@ CCA,SLHI,Chimore,BO
 CBZ,,Binzhou,CN
 CBY,,Canobie,AU
 CBX,YCDO,"",AU
-CBW,SSKM,Campo MourÃ£o,BR
+CBW,SSKM,Campo Mourao,BR
 CBV,MGCB,Coban,GT
 CBT,FNCT,Catumbela,AO
 CBS,SVON,Cabimas,VE
@@ -7902,7 +7902,7 @@ CBL,SVCB,Ciudad Bolivar,VE
 CBK,KCBK,Colby,US
 CBJ,MDCR,Cabo Rojo,DO
 CBI,,Cape Barren Island,AU
-CBH,DAOR,BÃ©char,DZ
+CBH,DAOR,Bechar,DZ
 CBG,EGSC,"Cambridge, Cambridgeshire",GB
 CBF,KCBF,Council Bluffs,US
 CBE,KCBE,Wiley Ford,US
@@ -7941,7 +7941,7 @@ BZX,ZUBZ,Bazhong (Enyang),CN
 BZV,FCBB,Brazzaville,CG
 BZU,FZKJ,Buta,CD
 BZT,,Brazoria,US
-BZR,LFMU,BÃ©ziers,FR
+BZR,LFMU,Beziers,FR
 BZP,,Lakefield National Park,AU
 BZO,LIPB,Bolzano (BZ),IT
 BZN,KBZN,Bozeman,US
@@ -7971,21 +7971,21 @@ BYO,SBDB,Bonito,BR
 BYN,ZMBH,Bayankhongor,MN
 BYM,MUBY,Bayamo,CU
 BYL,,Beliyela,LR
-BYK,DIBK,BouakÃ©,CI
+BYK,DIBK,Bouake,CI
 BYJ,LPBJ,Beja,PT
 BYI,KBYI,Burley,US
 BYH,KBYH,Blytheville,US
 BYG,KBYG,Buffalo,US
 BYF,LFAQ,Albert,FR
 BYD,,Al-Bayda,YE
-BYC,SLYA,YacuÃ­ba,BO
+BYC,SLYA,Yacuiba,BO
 BYB,,Dibba al Baya,OM
 BYA,,Boundary,US
 BXZ,AYNS,Bunsil - Umboi Island,PG
 BXY,UAOL,Baikonur,KZ
 BXX,,Borama,SO
 BXW,WARW,Bawean,ID
-BXV,BIBV,BreiÃ°dalsvÃ­k,IS
+BXV,BIBV,BreiÃ°dalsvik,IS
 BXU,RPME,Butuan,PH
 BXT,WALC,Bontang-Borneo Island,ID
 BXS,,Borrego Springs,US
@@ -8115,8 +8115,8 @@ BSG,FGBT,Bata,GQ
 BSF,PHSF,Waimea (Kamuela),US
 BSE,WBGN,Sematan,MY
 BSD,ZPBS,Baoshan (Longyang),CN
-BSC,SKBS,BahÃ­a Solano,CO
-BSB,SBBR,BrasÃ­lia,BR
+BSC,SKBS,Bahia Solano,CO
+BSB,SBBR,Brasilia,BR
 BSA,HCMF,Bosaso,SO
 BRY,KBRY,Bardstown,US
 BRX,MDBH,Barahona,DO
@@ -8167,7 +8167,7 @@ BPL,ZWBL,Bole,CN
 BPK,AYBQ,Biangabip,PG
 BPI,KBPI,Big Piney,US
 BPH,RPMF,Bislig,PH
-BPG,SBBW,Barra do GarÃ§as,BR
+BPG,SBBW,Barra do Garzas,BR
 BPF,AGBT,Batuna Mission Station,SB
 BPE,ZBDH,Qinhuangdao (Changli),CN
 BPD,AYBP,Bapi,PG
@@ -8193,7 +8193,7 @@ BOH,EGHH,Bournemouth,GB
 BOG,SKBO,Bogota,CO
 BOE,FCOB,Boundji,CG
 BOD,LFBD,Bordeaux,FR
-BOC,MPBO,Isla ColÃ³n,PA
+BOC,MPBO,Isla Colon,PA
 BOB,NTTB,Motu Mute,PF
 BOA,FZAJ,Boma,CD
 BNY,AGGB,Anua,SB
@@ -8256,7 +8256,7 @@ BLS,YBLL,"",AU
 BLR,VOBL,Bangalore,IN
 BLQ,LIPE,Bologna,IT
 BLP,,Bellavista,PE
-BLO,BIBL,BlÃ¶nduÃ³s,IS
+BLO,BIBL,BlÃ¶nduos,IS
 BLN,YBLA,Benalla,AU
 BLM,KBLM,Belmar/Farmingdale,US
 BLL,EKBI,Billund,DK
@@ -8269,7 +8269,7 @@ BLF,KBLF,Bluefield,US
 BLE,ESSD,Borlange,SE
 BLD,,Boulder City,US
 BLC,FKKG,Bali,CM
-BLB,,PanamÃ¡ City,PA
+BLB,,Panama City,PA
 BLA,SVBC,Barcelona,VE
 BKZ,HTBU,Bukoba,TZ
 BKY,FZMA,Kamakombe,CD
@@ -8287,7 +8287,7 @@ BKN,,Balkanabat,TM
 BKM,WBGQ,Bakalalan,MY
 BKL,KBKL,Cleveland,US
 BKK,VTBS,Bangkok,TH
-BKJ,GUOK,BokÃ©,GN
+BKJ,GUOK,Boke,GN
 BKI,WBKK,Kota Kinabalu,MY
 BKH,PHBK,Kekaha,US
 BKG,KBBG,Branson,US
@@ -8306,7 +8306,7 @@ BJU,VNBR,Bajura,NP
 BJT,,Bentota,LK
 BJR,HABD,Bahir Dar,ET
 BJQ,,Bahja,OM
-BJP,SBBP,BraganÃ§a Paulista,BR
+BJP,SBBP,Braganza Paulista,BR
 BJO,SLBJ,Bermejo,BO
 BJM,HBBA,Bujumbura,BI
 BJL,GBYD,Yundum,GM
@@ -8320,7 +8320,7 @@ BJE,,Baleela Base Camp,SD
 BJD,BIBK,BakkafjÃ¶rÃ°ur,IS
 BJC,KBJC,Denver,US
 BJB,OIMN,Bojnord,IR
-BJA,DAAE,BÃ©jaÃ¯a,DZ
+BJA,DAAE,BejaÃ¯a,DZ
 BIY,FABE,Bisho,ZA
 BIX,KBIX,Biloxi,US
 BIW,,"",AU
@@ -8362,19 +8362,19 @@ BHM,KBHM,Birmingham,US
 BHL,,Ensenada,MX
 BHK,UTSB,Bukhara,UZ
 BHJ,VABJ,Bhuj,IN
-BHI,SAZB,BahÃ­a Blanca,AR
+BHI,SAZB,Bahia Blanca,AR
 BHH,OEBH,Bisha,SA
 BHG,,Brus Laguna,HN
-BHF,SKCP,BahÃ­a Solano,CO
+BHF,SKCP,Bahia Solano,CO
 BHE,NZWB,Blenheim,NZ
 BHD,EGAC,Belfast,GB
 BHC,,Bhurban,PK
 BHB,KBHB,Bar Harbor,US
-BHA,SESV,BahÃ­a de Caraquez,EC
+BHA,SESV,Bahia de Caraquez,EC
 BGY,LIME,Orio al Serio (BG),IT
-BGX,SBBG,BagÃ©,BR
+BGX,SBBG,Bage,BR
 BGW,ORBI,Baghdad,IQ
-BGV,,Bento GonÃ§alves,BR
+BGV,,Bento Gonzalves,BR
 BGU,FEFG,Bangassou,CF
 BGT,,Bagdad,US
 BGS,,Boguchany,RU
@@ -8392,7 +8392,7 @@ BGG,LTCU,BingÃ¶l,TR
 BGF,FEFF,Bangui,CF
 BGE,KBGE,Bainbridge,US
 BGD,KBGD,Borger,US
-BGC,LPBG,BraganÃ§a,PT
+BGC,LPBG,Braganza,PT
 BGB,FOGB,Booue,GA
 BGA,SKBG,Bucaramanga,CO
 BFY,ZSBA,Bengbu,CN
@@ -8418,7 +8418,7 @@ BFF,KBFF,Scottsbluff,US
 BFE,EDLI,Bielefeld,DE
 BFD,KBFD,Bradford,US
 BFC,,"",AU
-BFA,SGBN,BahÃ­a Negra,PY
+BFA,SGBN,Bahia Negra,PY
 BEZ,NGBR,Beru,KI
 BEY,OLBA,Beirut,LB
 BEX,EGUB,"Wallingford, Oxfordshire",GB
@@ -8433,7 +8433,7 @@ BEP,VOBI,Bellary,IN
 BEO,YLMQ,City of Lake Macquarie,AU
 BEN,HLLB,Benina,LY
 BEM,GMMD,Oulad Yaich,MA
-BEL,SBBE,BelÃ©m,BR
+BEL,SBBE,Belem,BR
 BEK,VIBY,Bareilly,IN
 BEJ,WAQT,Tanjung Redeb - Borneo Island,ID
 BEI,HABE,Beica,ET
@@ -8499,9 +8499,9 @@ BBZ,FLZB,Zambezi,ZM
 BBY,FEFM,Bambari,CF
 BBX,KLOM,Philadelphia,US
 BBW,KBBW,Broken Bow,US
-BBV,DIGN,Grand-BÃ©rÃ©by,CI
+BBV,DIGN,Grand-Bereby,CI
 BBU,LRBS,Bucharest,RO
-BBT,FEFT,BerbÃ©rati,CF
+BBT,FEFT,Berberati,CF
 BBS,EGLK,"Camberley, Surrey",GB
 BBR,TFFB,Basse-Terre,GP
 BBQ,TAPH,Codrington,AG
@@ -8544,14 +8544,14 @@ AZZ,FNAM,Ambriz,AO
 AZT,,Zapatoca,CO
 AZS,MDCY,Samana,DO
 AZR,DAUA,Adrar,DZ
-AZP,MMJC,AtizapÃ¡n de Zaragoza,MX
+AZP,MMJC,Atizapan de Zaragoza,MX
 AZO,KAZO,Kalamazoo,US
 AZN,,Andizhan,UZ
 AZL,SWTU,Sapezal,BR
 AZJ,ZSDL,Zhenjiang,CN
 AZI,OMAD,Abu Dhabi,AE
 AZH,,Azamgarh,IN
-AZG,,ApatzingÃ¡n,MX
+AZG,,Apatzingan,MX
 AZD,OIYY,Yazd,IR
 AZB,,"",PG
 AZA,KIWA,Mesa,US
@@ -8571,7 +8571,7 @@ AYL,,"",AU
 AYK,UAUR,Arkalyk,KZ
 AYJ,VEAY,Faizabad,IN
 AYI,,Yari,CO
-AYG,SKYA,San Vicente Del CaguÃ¡n,CO
+AYG,SKYA,San Vicente Del Caguan,CO
 AYD,,Alroy Downs,AU
 AYC,,Ayacucho,CO
 AYA,,Ayapel,CO
@@ -8601,7 +8601,7 @@ AWP,,"",AU
 AWN,,"",AU
 AWM,KAWM,West Memphis,US
 AWK,PWAK,Wake Island,UM
-AWE,FOGW,Wonga WonguÃ© Presidential Reserve,GA
+AWE,FOGW,Wonga Wongue Presidential Reserve,GA
 AWD,NVVB,Aniwa,VU
 AWB,AYAW,Awaba,PG
 AWA,HALA,Hawassa,ET
@@ -8620,7 +8620,7 @@ AVB,LIPA,Aviano (PN),IT
 AVA,ZUAS,Anshun (Xixiu),CN
 AUZ,KARR,Chicago/Aurora,US
 AUY,NVVA,Anatom Island,VU
-AUX,SWGN,AraguaÃ­na,BR
+AUX,SWGN,Araguaina,BR
 AUW,KAUW,Wausau,US
 AUV,AYUM,Aumo,PG
 AUU,YAUR,Aurukun,AU
@@ -8674,7 +8674,7 @@ ASY,KASY,Ashley,US
 ASX,KASX,Ashland,US
 ASW,HESN,Aswan,EG
 ASV,HKAM,Amboseli National Park,KE
-ASU,SGAS,AsunciÃ³n,PY
+ASU,SGAS,Asuncion,PY
 AST,KAST,Astoria,US
 ASS,FAAR,Arathusa,ZA
 ASR,LTAU,Kayseri,TR
@@ -8692,7 +8692,7 @@ ASG,NZAS,Ashburton,NZ
 ASF,URWA,Astrakhan,RU
 ASE,KASE,Aspen,US
 ASD,MYAF,Andros Town,BS
-ASC,SLAS,AscensiÃ³n de Guarayos,BO
+ASC,SLAS,Ascension de Guarayos,BO
 ASB,UTAA,Ashgabat,TM
 ASA,HHSB,Assab,ER
 ARZ,FNZE,N'zeto,AO
@@ -8700,9 +8700,9 @@ ARY,YARA,Ararat,AU
 ARX,SBAC,Aracati,BR
 ARW,LRAR,Arad,RO
 ARV,KARV,Woodruff,US
-ARU,SBAU,AraÃ§atuba,BR
+ARU,SBAU,Arazatuba,BR
 ART,KART,Watertown,US
-ARS,,AragarÃ§as,BR
+ARS,,Aragarzas,BR
 ARR,SAVR,Alto Rio Senguerr,AR
 ARQ,SKAT,Arauquita,CO
 ARP,,"",PG
@@ -8726,16 +8726,16 @@ AQM,,Ariquemes,BR
 AQJ,OJAQ,Aqaba,JO
 AQI,OEPA,Qaisumah,SA
 AQG,ZSAQ,Anqing,CN
-AQB,MGQC,Santa Cruz del QuichÃ©,GT
+AQB,MGQC,Santa Cruz del Quiche,GT
 AQA,SBAQ,Araraquara,BR
 APZ,SAHZ,Zapala,AR
-APY,,Alto ParnaÃ­ba,BR
+APY,,Alto Parnaiba,BR
 APX,SSOG,Arapongas,BR
 APW,NSFA,Apia,WS
 APV,KAPV,Apple Valley,US
 APU,SSAP,Apucarana,BR
 APT,KAPT,Jasper,US
-APS,SWNS,AnÃ¡polis,BR
+APS,SWNS,Anapolis,BR
 APR,AYPE,April River,PG
 APQ,SNAL,Arapiraca,BR
 APP,,"",PG
@@ -8867,7 +8867,7 @@ AKB,PAAK,Atka,US
 AKA,ZLAK,Ankang (Hanbin),CN
 AJY,DRZA,Agadez,NE
 AJU,SBAR,Aracaju,BR
-AJS,,MulegÃ©,MX
+AJS,,Mulege,MX
 AJR,ESNX,Arvidsjaur,SE
 AJN,FMCV,Ouani,KM
 AJL,VELP,Aizawl (Lengpui),IN
@@ -8877,13 +8877,13 @@ AJI,LTCO,AÄŸrÄ±,TR
 AJF,OESK,Al-Jawf,SA
 AJA,LFKJ,Ajaccio,FR
 AIZ,KAIZ,Kaiser Lake Ozark,US
-AIY,,AraÃ§uaÃ­,BR
+AIY,,Arazuai,BR
 AIW,FYAA,Ai-Ais,NA
 AIV,KAIV,Aliceville,US
 AIU,NCAT,Atiu Island,CK
 AIT,NCAI,Aitutaki,CK
 AIS,NGTR,Arorae Island,KI
-AIR,SSOU,AripuanÃ£,BR
+AIR,SSOU,Aripuana,BR
 AIP,VIAX,Adampur,IN
 AIO,KAIO,Atlantic,US
 AIN,PAWI,Wainwright,US
@@ -8924,7 +8924,7 @@ AGU,MMAS,Aguascalientes,MX
 AGT,SGES,Ciudad del Este,PY
 AGS,KAGS,Augusta,US
 AGR,VIAG,Agra,IN
-AGP,LEMG,MÃ¡laga,ES
+AGP,LEMG,Malaga,ES
 AGO,KAGO,Magnolia,US
 AGN,PAGN,Angoon,US
 AGM,,Tasiilaq,GL
@@ -8971,7 +8971,7 @@ AEG,WIME,Padang Sidempuan,ID
 AEE,,Adar,SS
 AEB,ZGBS,Baise (Tianyang),CN
 AEA,NGTB,Abemama,KI
-ADZ,SKSP,San AndrÃ©s,CO
+ADZ,SKSP,San Andres,CO
 ADY,FAAL,Alldays,ZA
 ADX,EGQL,"Leuchars, Fife",GB
 ADW,KADW,Camp Springs,US
@@ -9005,7 +9005,7 @@ ACT,KACT,Waco,US
 ACS,UNKS,Achinsk,RU
 ACR,SKAC,Araracuara,CO
 ACP,OITM,Maragheh,IR
-ACO,,CÃ³bano,CR
+ACO,,Cobano,CR
 ACN,MMCC,Ciudad AcuÃ±a,MX
 ACM,,Arica,CO
 ACK,KACK,Nantucket,US
@@ -9013,8 +9013,8 @@ ACJ,VCCA,Anuradhapura,LK
 ACI,EGJA,Saint Anne,GG
 ACH,LSZR,St. Gallen,CH
 ACF,ZWAL,Aral,CN
-ACE,GCRR,San BartolomÃ©,ES
-ACD,SKAD,AcandÃ­,CO
+ACE,GCRR,San Bartolome,ES
+ACD,SKAD,Acandi,CO
 ACC,DGAA,Accra,GH
 ACB,KACB,Bellaire,US
 ACA,MMAA,Acapulco,MX
@@ -9045,7 +9045,7 @@ ABB,DNAS,Asaba,NG
 ABA,UNAA,Abakan,RU
 AAZ,MGQZ,Quezaltenango,GT
 AAY,OYGD,Al Ghaydah,YE
-AAX,SBAX,AraxÃ¡,BR
+AAX,SBAX,Araxa,BR
 AAV,RPMA,Surallah,PH
 AAU,NSAU,Asau,WS
 AAT,ZWAT,Altay,CN
@@ -9975,7 +9975,7 @@ AAA,NTGA,Anaa,PF
 ,BGSQ,Saqqaq,GL
 ,BIBA,Bakki,IS
 ,BIBR,BÃºÃ°ardalur,IS
-,CCAA,Há»“ ChÃ­ Minh,VN
+,CCAA,Há»“ Chi Minh,VN
 ,CYAV,Winnipeg/Saint Andrews,CA
 ,CYAW,Halifax,CA
 ,CYAX,Lac du Bonnet,CA
@@ -9989,10 +9989,10 @@ AAA,NTGA,Anaa,PF
 ,DAAN,Reggane,DZ
 ,DAAQ,Ain Oussera,DZ
 ,DAAW,Bordj Omar Driss,DZ
-,DAAX,ChÃ©raga,DZ
+,DAAX,Cheraga,DZ
 ,DAAZ,Relizane,DZ
 ,DAFI,Djelfa,DZ
-,DAOC,BÃ©char,DZ
+,DAOC,Bechar,DZ
 ,DAOE,Bousfer,DZ
 ,DBBC,Bohicon,BJ
 ,DBBO,Porga,BJ
@@ -10004,7 +10004,7 @@ AAA,NTGA,Anaa,PF
 ,DFCR,Poura,BF
 ,DFCS,Seguenega,BF
 ,DFOA,Dano,BF
-,DFOH,HoundÃ©,BF
+,DFOH,Hounde,BF
 ,DFOR,Orodara,BF
 ,DGAH,Ho,GH
 ,DGLN,Navrongo,GH
@@ -10021,7 +10021,7 @@ AAA,NTGA,Anaa,PF
 ,DNEK,Eket,NG
 ,DNES,Escravos,NG
 ,DNFB,Finima,NG
-,DNFD,ForÃ§ados,NG
+,DNFD,Forzados,NG
 ,DNGU,Gusau,NG
 ,DNJA,Jalingo,NG
 ,DRRA,Tessaoua,NE
@@ -10038,11 +10038,11 @@ AAA,NTGA,Anaa,PF
 ,DRZI,Iferouane,NE
 ,DRZM,Maine-Soroa,NE
 ,DTTB,Borj Challouf,TN
-,DXAK,AtakpamÃ©,TG
+,DXAK,Atakpame,TG
 ,DXDP,Dapaong,TG
-,DXKP,AniÃ©,TG
+,DXKP,Anie,TG
 ,DXMG,Mango,TG
-,DXSK,SokodÃ©,TG
+,DXSK,Sokode,TG
 ,EBAM,Mont-de-l'Enclus,BE
 ,EBAR,Arlon,BE
 ,EBAS,Schilde,BE
@@ -10062,7 +10062,7 @@ AAA,NTGA,Anaa,PF
 ,EBSP,Spa,BE
 ,EBTN,Tienen,BE
 ,EBTX,Verviers,BE
-,EBTY,PÃ©ruwelz,BE
+,EBTY,Peruwelz,BE
 ,EBZH,Hasselt,BE
 ,EBZW,Genk,BE
 ,EDAQ,Landsberg,DE
@@ -10176,7 +10176,7 @@ AAA,NTGA,Anaa,PF
 ,EPBG,GoÅ‚ubie,PL
 ,EPBK,BiaÅ‚ystok,PL
 ,EPBO,Borsk,PL
-,EPCD,KrÃ³lewskie,PL
+,EPCD,Krolewskie,PL
 ,EPCE,Siemirowice,PL
 ,EPDA,DarÅ‚owo,PL
 ,EPDE,DÄ™blin,PL
@@ -10186,7 +10186,7 @@ AAA,NTGA,Anaa,PF
 ,EPKA,Kielce,PL
 ,EPKN,KamieÅ„ ÅšlÄ…ski,PL
 ,EPLY,LeÅºnica Wielka,PL
-,EPMY,NowogrÃ³dek Pomorski,PL
+,EPMY,Nowogrodek Pomorski,PL
 ,EPPG,KÄ…kolewo,PL
 ,EPRU,Rudniki,PL
 ,EPSD,Szczecin,PL
@@ -10368,7 +10368,7 @@ AAA,NTGA,Anaa,PF
 ,FEFA,Alindao,CF
 ,FEFB,Obo,CF
 ,FEFE,Mobaye Mbanga,CF
-,FEFK,KembÃ©,CF
+,FEFK,Kembe,CF
 ,FEFP,Paoua,CF
 ,FEFQ,Kaga-Bandoro,CF
 ,FEFU,Sibut,CF
@@ -10619,7 +10619,7 @@ AAA,NTGA,Anaa,PF
 ,FZWS,Lubao,CD
 ,GAAO,Ansongo,ML
 ,GABD,Bandiagara,ML
-,GABF,BafoulabÃ©,ML
+,GABF,Bafoulabe,ML
 ,GABG,Bougouni,ML
 ,GABR,Bourem,ML
 ,GADZ,Douentza,ML
@@ -10654,7 +10654,7 @@ AAA,NTGA,Anaa,PF
 ,GUBE,Beyla,GN
 ,GUGO,Banankoro,GN
 ,GUKR,Port Kamsar,GN
-,GUSA,SangarÃ©di,GN
+,GUSA,Sangaredi,GN
 ,HAAD,Adaba,ET
 ,HAAL,Addis Ababa,ET
 ,HADO,Dodola,ET
@@ -10764,7 +10764,7 @@ AAA,NTGA,Anaa,PF
 ,LELC,San Javier,ES
 ,LELI,Almendralejo,ES
 ,LERP,Herrera de Pisuerga,ES
-,LESB,MarratxÃ­,ES
+,LESB,Marratxi,ES
 ,LESL,Sant Lluis,ES
 ,LEVS,"",ES
 ,LFAD,Margny-lÃ¨s-CompiÃ¨gne,FR
@@ -10773,7 +10773,7 @@ AAA,NTGA,Anaa,PF
 ,LFCQ,Graulhet/Montdragon,FR
 ,LFDG,Gaillac,FR
 ,LFDH,Auch,FR
-,LFHS,Bourg/CeyzÃ©riat,FR
+,LFHS,Bourg/Ceyzeriat,FR
 ,LFHV,"Frontenas, RhÃ´ne",FR
 ,LFHY,Toulon-sur-Allier,FR
 ,LFKG,GHISONACCIA,FR
@@ -10788,8 +10788,8 @@ AAA,NTGA,Anaa,PF
 ,LFPK,"Pommeuse, Seine-et-Marne",FR
 ,LFPL,"Lognes, Seine-et-Marne",FR
 ,LFPX,"Chavenay, Yvelines",FR
-,LFQM,BesanÃ§on,FR
-,LFQV,Charleville-MÃ©ziÃ¨res,FR
+,LFQM,Besanzon,FR
+,LFQV,Charleville-MeziÃ¨res,FR
 ,LFTA,La Tranche-sur-Mer,FR
 ,LGAG,Agrinion,GR
 ,LGEL,Elefsina,GR
@@ -10798,18 +10798,18 @@ AAA,NTGA,Anaa,PF
 ,LGMG,Megara,GR
 ,LGMO,Molos,GR
 ,LHGD,GÃ¶dÃ¶llÅ‘,HU
-,LHGR,GyÃºrÃ³,HU
-,LHGU,GyÅ‘rÃºjbarÃ¡t,HU
+,LHGR,GyÃºro,HU
+,LHGU,GyÅ‘rÃºjbarat,HU
 ,LHGY,GyÃ¶ngyÃ¶s,HU
 ,LHHH,Budapest,HU
-,LHHK,HajmÃ¡skÃ©r,HU
-,LHHM,HÃ³dmezÅ‘vÃ¡sÃ¡rhely,HU
-,LHHO,HajdÃºszoboszlÃ³,HU
-,LHJK,JakabszÃ¡llÃ¡s,HU
+,LHHK,Hajmasker,HU
+,LHHM,HodmezÅ‘vasarhely,HU
+,LHHO,HajdÃºszoboszlo,HU
+,LHJK,Jakabszallas,HU
 ,LHKA,Kalocsa,HU
 ,LHKC,Kecel,HU
-,LHKD,KecskÃ©d,HU
-,LHKE,KecskemÃ©t,HU
+,LHKD,Kecsked,HU
+,LHKE,Kecskemet,HU
 ,LHPL,"",HU
 ,LHZA,Zalaegerszeg,HU
 ,LHZK,Zalakaros,HU
@@ -10847,32 +10847,32 @@ AAA,NTGA,Anaa,PF
 ,LKBR,Broumov,CZ
 ,LKBU,Bubovice,CZ
 ,LKCB,Cheb,CZ
-,LKCE,ÄŒeskÃ¡ LÃ­pa,CZ
+,LKCE,ÄŒeska Lipa,CZ
 ,LKCH,Otvice,CZ
-,LKCM,MedlÃ¡nky,CZ
+,LKCM,Medlanky,CZ
 ,LKCR,Chrudim,CZ
 ,LKCT,ChotÄ›boÅ™,CZ
 ,LKCU,Chomutov,CZ
 ,LKCV,Chotusice,CZ
-,LKDK,DvÅ¯r KrÃ¡lovÃ© nad Labem,CZ
+,LKDK,DvÅ¯r Kralove nad Labem,CZ
 ,LKER,ErpuÅ¾ice,CZ
-,LKFR,FrÃ½dlant,CZ
-,LKHB,HavlÃ­ÄkÅ¯v Brod,CZ
+,LKFR,Frydlant,CZ
+,LKHB,HavliÄkÅ¯v Brod,CZ
 ,LKHC,Holovousy,CZ
 ,LKHD,Hodkovice nad Mohelkou,CZ
-,LKHK,Hradec KrÃ¡lovÃ©,CZ
+,LKHK,Hradec Kralove,CZ
 ,LKHN,Hranice,CZ
-,LKHS,HlubokÃ¡ nad Vltavou,CZ
+,LKHS,Hluboka nad Vltavou,CZ
 ,LKHV,HoÅ™ovice,CZ
 ,LKJA,JaromÄ›Å™,CZ
-,LKJC,JiÄÃ­n,CZ
+,LKJC,JiÄin,CZ
 ,LKJH,JindÅ™ichÅ¯v Hradec,CZ
 ,LKJI,Jihlava,CZ
 ,LKKA,KÅ™iÅ¾anov,CZ
 ,LKKB,Prague,CZ
 ,LKKL,Kladno,CZ
-,LKKM,KromÄ›Å™Ã­Å¾,CZ
-,LKKO,KolÃ­n,CZ
+,LKKM,KromÄ›Å™iÅ¾,CZ
+,LKKO,Kolin,CZ
 ,LKKR,Krnov,CZ
 ,LKKT,Klatovy,CZ
 ,LKKY,SvatoboÅ™ice,CZ
@@ -10880,42 +10880,42 @@ AAA,NTGA,Anaa,PF
 ,LKLN,Plzen,CZ
 ,LKLT,LetÅˆany,CZ
 ,LKLU,LuhaÄovice,CZ
-,LKMB,MladÃ¡ Boleslav,CZ
+,LKMB,Mlada Boleslav,CZ
 ,LKMI,Mikulovice,CZ
-,LKMK,MoravskÃ¡ TÅ™ebovÃ¡,CZ
+,LKMK,Moravska TÅ™ebova,CZ
 ,LKMO,Most,CZ
 ,LKNA,Sedlec,CZ
-,LKNM,NovÃ© MÄ›sto nad MetujÃ­,CZ
+,LKNM,Nove MÄ›sto nad Metuji,CZ
 ,LKPA,PoliÄka,CZ
 ,LKPC,Panensky Tynec,CZ
 ,LKPI,PÅ™ibyslav,CZ
 ,LKPL,Letkov,CZ
-,LKPM,DrÃ¡sov,CZ
+,LKPM,Drasov,CZ
 ,LKPS,Plasy,CZ
-,LKRA,RanÃ¡,CZ
+,LKRA,Rana,CZ
 ,LKRK,Rakovnik,CZ
 ,LKRO,Roudnice nad Labem,CZ
 ,LKRY,Rokycany,CZ
 ,LKSA,StaÅˆkov,CZ
 ,LKSB,Mostkovice,CZ
 ,LKSK,SkuteÄ,CZ
-,LKSN,SlanÃ½,CZ
+,LKSN,Slany,CZ
 ,LKSO,SobÄ›slav,CZ
 ,LKSR,Prachatice,CZ
 ,LKST,Strakonice,CZ
-,LKSU,NovÃ½ MalÃ­n,CZ
-,LKSZ,SazenÃ¡,CZ
-,LKTA,TÃ¡bor,CZ
+,LKSU,Novy Malin,CZ
+,LKSZ,Sazena,CZ
+,LKTA,Tabor,CZ
 ,LKTC,Prague,CZ
 ,LKTD,Tachov,CZ
 ,LKTH,"",CZ
 ,LKTO,TouÅ¾im,CZ
 ,LKUL,Usti Nad Labem,CZ
-,LKUO,ÃšstÃ­ nad OrlicÃ­,CZ
+,LKUO,Ãšsti nad Orlici,CZ
 ,LKVL,VlaÅ¡im,CZ
-,LKVM,VysokÃ© MÃ½to,CZ
+,LKVM,Vysoke Myto,CZ
 ,LKVP,Velke Porici,CZ
-,LKVR,LÃ¡nov,CZ
+,LKVR,Lanov,CZ
 ,LKVY,Vyskov,CZ
 ,LKZB,Zbraslavice,CZ
 ,LKZD,Å½atec,CZ
@@ -10994,15 +10994,15 @@ AAA,NTGA,Anaa,PF
 ,LPAR,Vila Franca de Xira,PT
 ,LPAS,Amadora,PT
 ,LPAV,Aveiro,PT
-,LPBA,PortimÃ£o,PT
+,LPBA,Portimao,PT
 ,LPBH,Braga,PT
 ,LPBR,Braga,PT
 ,LPCB,Castelo Branco,PT
 ,LPCC,Funchal,PT
-,LPCD,Santa Comba DÃ£o,PT
+,LPCD,Santa Comba Dao,PT
 ,LPCH,Chaves,PT
 ,LPCI,Coimbra,PT
-,LPCL,CovilhÃ£,PT
+,LPCL,Covilha,PT
 ,LPCO,Coimbra,PT
 ,LPCV,Coimba,PT
 ,LPDA,Porto,PT
@@ -11017,7 +11017,7 @@ AAA,NTGA,Anaa,PF
 ,LPSI,Sines,PT
 ,LPSM,Lisbon,PT
 ,LPSO,Ponte de Sor,PT
-,LPSR,SantarÃ©m,PT
+,LPSR,Santarem,PT
 ,LPSS,Santa Maria da Feira,PT
 ,LPTT,Viseu,PT
 ,LPVC,Viana do Castelo,PT
@@ -11107,28 +11107,28 @@ AAA,NTGA,Anaa,PF
 ,LYNK,NikÅ¡iÄ‡,ME
 ,LYPO,Podgorica,ME
 ,LZBD,Bidovce,SK
-,LZDB,Dubnica nad VÃ¡hom,SK
+,LZDB,Dubnica nad Vahom,SK
 ,LZDN,Zvolen,SK
-,LZDU,DunajskÃ¡ Streda,SK
-,LZDV,DubovÃ¡,SK
+,LZDU,Dunajska Streda,SK
+,LZDV,Dubova,SK
 ,LZHL,HoliÄ,SK
 ,LZJS,DÃºbrava,SK
 ,LZKC,Kamenica nad Cirochou,SK
 ,LZMA,Martin,SK
 ,LZMC,KuchyÅˆa,SK
 ,LZNI,Nitra,SK
-,LZNZ,NovÃ© ZÃ¡mky,SK
-,LZOC,OÄovÃ¡,SK
+,LZNZ,Nove Zamky,SK
+,LZOC,OÄova,SK
 ,LZPE,Prievidza,SK
-,LZPT,PartizÃ¡nske,SK
+,LZPT,Partizanske,SK
 ,LZRU,RuÅ¾omberok,SK
 ,LZRY,RaÅ¾Åˆany,SK
-,LZSE,HlbokÃ©,SK
-,LZSK,SvidnÃ­k,SK
-,LZSV,SpiÅ¡skÃ¡ NovÃ¡ Ves,SK
+,LZSE,Hlboke,SK
+,LZSK,Svidnik,SK
+,LZSV,SpiÅ¡ska Nova Ves,SK
 ,LZSY,Å urany,SK
-,LZTN,TrenÄÃ­n,SK
-,LZTR,BolerÃ¡z,SK
+,LZTN,TrenÄin,SK
+,LZTR,Boleraz,SK
 ,MBAC,Big Ambergris Cay,TC
 ,MDAB,Arroyo Barril,DO
 ,MNLL,Malacataya,NI
@@ -11220,11 +11220,11 @@ AAA,NTGA,Anaa,PF
 ,SAAK,Isla Martin Garcia,AR
 ,SATI,Bernardo de Irigoyen,AR
 ,SBAF,Rio de Janeiro,BR
-,SBAN,AnÃ¡polis,BR
+,SBAN,Anapolis,BR
 ,SBBU,Bauru,BR
 ,SBNT,Natal,BR
-,SBYA,SÃ£o Gabriel da Cachoeira,BR
-,SCCV,CuracavÃ­,CL
+,SBYA,Sao Gabriel da Cachoeira,BR
+,SCCV,Curacavi,CL
 ,SCFR,Frutillar,CL
 ,SCJK,Osorno,CL
 ,SCNL,Villa Cerro Castillo,CL
@@ -11250,7 +11250,7 @@ AAA,NTGA,Anaa,PF
 ,SEAK,Macuma,EC
 ,SEAL,Guayaquil,EC
 ,SEAN,La Esperanza,EC
-,SEAO,SamborondÃ³n,EC
+,SEAO,Samborondon,EC
 ,SEAP,Manta,EC
 ,SEAQ,Engunga,EC
 ,SEAT,Achuar,EC
@@ -11262,7 +11262,7 @@ AAA,NTGA,Anaa,PF
 ,SEKM,Fumisa,EC
 ,SEMK,Maki,EC
 ,SEZA,Pampantza,EC
-,SEZB,LÃ©rida,EC
+,SEZB,Lerida,EC
 ,SEZD,Puerto Cayo,EC
 ,SEZE,Tzapapentza,EC
 ,SEZI,ImatiÃ±o,EC
@@ -11288,24 +11288,24 @@ AAA,NTGA,Anaa,PF
 ,SHWT,Santiago,CL
 ,SHYA,Pirque,CL
 ,SJOY,Palmeira,BR
-,SLGY,GuayaramerÃ­n,BO
+,SLGY,Guayaramerin,BO
 ,SLSU,Sucre,BO
-,SNAI,JateÃ­,BR
-,SNBL,UnaÃ­,BR
+,SNAI,Jatei,BR
+,SNBL,Unai,BR
 ,SNBU,FunilÃ¢ndia,BR
 ,SNDN,Salvador,BR
-,SNGM,SÃ£o FÃ©lix do Xingu,BR
-,SNHA,SÃ£o LuÃ­s,BR
-,SNJD,ChapadÃ£o do CÃ©u,BR
+,SNGM,Sao Felix do Xingu,BR
+,SNHA,Sao Luis,BR
+,SNJD,Chapadao do Ceu,BR
 ,SNKE,Morada Nova de Minas,BR
-,SNLB,LÃ¡brea,BR
+,SNLB,Labrea,BR
 ,SPBL,Bolognesi,PE
 ,SSDO,Porto Seguro,BR
-,SSOM,Bela Vista de GoiÃ¡s,BR
+,SSOM,Bela Vista de Goias,BR
 ,SSPB,Ribas do Rio Pardo,BR
 ,SSPM,Porto Murtinho,BR
-,SSVP,ConceiÃ§Ã£o da Barra,BR
-,SSYA,SÃ£o Luiz do Norte,BR
+,SSVP,Conceizao da Barra,BR
+,SSYA,Sao Luiz do Norte,BR
 ,SSZW,Limeira Do Oeste,BR
 ,SVAA,"",VE
 ,SVAT,San Fernando de Atabapo,VE
@@ -11320,9 +11320,9 @@ AAA,NTGA,Anaa,PF
 ,SVUY,"",VE
 ,SVWX,"",VE
 ,SWJI,Baixa Grande do Ribeiro,BR
-,SWJU,DuerÃ©,BR
+,SWJU,Duere,BR
 ,SWRA,Nova Monte Verde,BR
-,SWRD,Alto GarÃ§as,BR
+,SWRD,Alto Garzas,BR
 ,SWSI,Jacareacanga,BR
 ,SWSN,Pontes e Lacerda,BR
 ,SWST,Votorantim,BR
