@@ -992,13 +992,40 @@ function getRoutesSummary(iata) {
   };
 }
   
+function hasRegularFlightsData(iata, year = YEAR_REF) {
+  const paxRows = pasajerosMensualRows.filter(r =>
+    r.iata === iata &&
+    r.date &&
+    r.date.getFullYear() === year &&
+    Number.isFinite(r.valor) &&
+    r.valor > 0
+  );
 
-  function renderFlights(iata) {
-    const stats = getFlightsStats(iata);
-    setText("vuelosAnuales", stats.total ? formatNumber(Math.round(stats.total)) : "–");
-    setText("vuelosSemanales", stats.weekly ? formatNumber(stats.weekly) : "–");
-    setText("vuelosDiarios", stats.daily ? formatNumber(stats.daily) : "–");
+  const movRows = movimientosMensualRows.filter(r =>
+    r.iata === iata &&
+    r.date &&
+    r.date.getFullYear() === year &&
+    Number.isFinite(r.valor) &&
+    r.valor > 0
+  );
+
+  return paxRows.length > 0 || movRows.length > 0;
+}
+function renderFlights(iata) {
+  const stats = getFlightsStats(iata);
+  const hasRegularData = hasRegularFlightsData(iata, YEAR_REF);
+
+  if (!hasRegularData) {
+    setText("vuelosAnuales", "sin vuelos regulares");
+    setText("vuelosSemanales", "–");
+    setText("vuelosDiarios", "–");
+    return;
   }
+
+  setText("vuelosAnuales", stats.total ? formatNumber(Math.round(stats.total)) : "–");
+  setText("vuelosSemanales", stats.weekly ? formatNumber(stats.weekly) : "–");
+  setText("vuelosDiarios", stats.daily ? formatNumber(stats.daily) : "–");
+}
 
   function renderRoutes(iata) {
     const {
@@ -1168,17 +1195,32 @@ function renderPassengerMixDonut(cab, intl) {
     const totalSeries = buildPaxSeries(iata, "total");
     const cabSeries = buildPaxSeries(iata, "cabotaje");
     const intSeries = buildPaxSeries(iata, "internacional");
+    const hasRegularData = hasRegularFlightsData(iata, YEAR_REF);
 
     const total = sumYear(totalSeries, YEAR_REF);
     const cab = sumYear(cabSeries, YEAR_REF);
     const intl = sumYear(intSeries, YEAR_REF);
 
-setText("paxTotal2025", total ? formatNumber(Math.round(total)) : "–");
-setText("paxCab2025", cab ? formatNumber(Math.round(cab)) : "–");
-setText("paxInt2025", intl ? formatNumber(Math.round(intl)) : "–");
+setText("paxTotal2025", hasRegularData
+  ? (total ? formatNumber(Math.round(total)) : "–")
+  : "sin vuelos regulares"
+);
+setText("paxCab2025", hasRegularData
+  ? (cab ? formatNumber(Math.round(cab)) : "–")
+  : "–"
+);
 
-renderPassengerMixDonut(cab, intl);
-const daysInYear = (YEAR_REF % 4 === 0 && (YEAR_REF % 100 !== 0 || YEAR_REF % 400 === 0)) ? 366 : 365;
+setText("paxInt2025", hasRegularData
+  ? (intl ? formatNumber(Math.round(intl)) : "–")
+  : "–"
+);
+
+  if (!hasRegularData) {
+    renderPassengerMixDonut(0, 0);
+  } else {
+    renderPassengerMixDonut(cab, intl);
+  }
+    const daysInYear = (YEAR_REF % 4 === 0 && (YEAR_REF % 100 !== 0 || YEAR_REF % 400 === 0)) ? 366 : 365;
 const weeksInYear = daysInYear / 7;
 
 setText("paxPromSemanal", total ? formatNumber(Math.round(total / weeksInYear)) : "–");
