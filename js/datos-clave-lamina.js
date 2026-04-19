@@ -32,7 +32,7 @@ let mapPredio = null;
   const YEAR_REF = 2025;
   const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
   const PAX_DATASET_INT = "pasajeros_comerciales_internacional_aeropuerto";
-  const MIN_PAX_TO_SHOW = 100;
+  const MIN_PAX_TO_SHOW = 1;
   const q = id => document.getElementById(id);
 const CHART_COLORS = {
   passengersLine: "#2A6FB0",
