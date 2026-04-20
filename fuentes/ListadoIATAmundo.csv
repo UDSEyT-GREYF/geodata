@@ -21,7 +21,7 @@ ZTS;;Tahsis;CA
 ZTR;UKKV;Zhytomyr;UA
 ZTM;CZTM;Shamattawa;CA
 ZTH;LGZA;Zakynthos;GR
-ZTB;;T«¶te-«ˇ-la-Baleine;CA
+ZTB;;T√á¬¶te-√áÀô-la-Baleine;CA
 ZTA;NTGY;Tureia;PF
 ZSW;CZSW;Prince Rupert;CA
 ZST;CZST;Stewart;CA
@@ -35,7 +35,7 @@ ZRJ;CZRJ;Round Lake;CA
 ZRI;WABO;Serui;ID
 ZRH;LSZH;Zurich;CH
 ZQZ;ZBZJ;Zhangjiakou;CN
-ZQW;EDRZ;Zweibr«¨cken;DE
+ZQW;EDRZ;Zweibr√á¬¨cken;DE
 ZQS;;Queen Charlotte;CA
 ZQN;NZQN;Queenstown;NZ
 ZPO;CZPO;Pinehouse Lake;CA
@@ -56,12 +56,12 @@ ZMM;MMZM;Zamora;MX
 ZMH;CZML;108 Mile;CA
 ZMD;;Sena Madureira;BR
 ZLX;HSZA;Zalingei;SD
-ZLT;;La Tabati«˘re;CA
+ZLT;;La Tabati√á≈Øre;CA
 ZLR;;Linares;CL
 ZLO;MMZO;Manzanillo;MX
 ZKP;UESU;Zyryanka;RU
 ZKL;;Zigong (Gongjing);CN
-ZKG;;C«Ôte-Nord-du-Golfe-du-Saint-Laurent;CA
+ZKG;;C√áƒète-Nord-du-Golfe-du-Saint-Laurent;CA
 ZKE;CZKE;Kashechewan;CA
 ZKB;FLKY;Kasaba Bay;ZM
 ZJN;CZJN;Swan River;CA
@@ -108,7 +108,7 @@ ZBO;YBWN;Bowen;AU
 ZBM;CZBM;Bromont;CA
 ZBL;;Biloela;AU
 ZBF;CZBF;South Tetagouche;CA
-ZBE;LKZA;Dolni Beneè≠ov;CZ
+ZBE;LKZA;Dolni Bene≈π¬≠ov;CZ
 ZAZ;LEZG;Zaragoza;ES
 ZAT;ZPZT;Zhaotong (Zhaoyang);CN
 ZAR;DNZA;Zaria;NG
@@ -124,7 +124,7 @@ YZZ;;Trail;CA
 YZY;ZLZY;Zhangye (Ganzhou);CN
 YZX;CYZX;Greenwood;CA
 YZW;CYZW;Teslin;CA
-YZV;CYZV;Sept-«?les;CA
+YZV;CYZV;Sept-√á?les;CA
 YZU;CYZU;Whitecourt;CA
 YZT;CYZT;Port Hardy;CA
 YZS;CYZS;Coral Harbour;CA
@@ -250,19 +250,19 @@ YRV;CYRV;Revelstoke;CA
 YRT;CYRT;Rankin Inlet;CA
 YRS;CYRS;Red Sucker Lake;CA
 YRR;;Big Bay;CA
-YRQ;CYRQ;Trois-Rivi«˘res;CA
+YRQ;CYRQ;Trois-Rivi√á≈Øres;CA
 YRO;CYRO;Ottawa;CA
 YRN;;Rivers Inlet;CA
 YRM;CYRM;Rocky Mountain House;CA
 YRL;CYRL;Red Lake;CA
 YRJ;CYRJ;Roberval;CA
-YRI;CYRI;Rivi«˘re-du-Loup;CA
+YRI;CYRI;Rivi√á≈Øre-du-Loup;CA
 YRG;;Rigolet;CA
 YRF;CYCA;Cartwright;CA
 YRD;;Kimsquit Valley;CA
 YRC;;Desolation Sound;CA
 YRB;CYRB;Resolute Bay;CA
-YRA;CYRA;Gam«˘t«™;CA
+YRA;CYRA;Gam√á≈Øt√á≈û;CA
 YQZ;CYQZ;Quesnel;CA
 YQY;CYQY;Sydney;CA
 YQX;CYQX;Gander;CA
@@ -314,7 +314,7 @@ YOO;CYOO;Oshawa;CA
 YON;VQTY;Yongphulla;BT
 YOL;DNYO;Yola;NG
 YOJ;CYOJ;High Level;CA
-YOI;;«?leonore Mine;CA
+YOI;;√á?leonore Mine;CA
 YOH;CYOH;Oxford House;CA
 YOG;CYKP;Ogoki Post;CA
 YOE;;Donnelly;CA
@@ -358,7 +358,7 @@ YME;CYME;Matane;CA
 YMB;;Merritt;CA
 YMA;CYMA;Mayo;CA
 YLY;CYNJ;Langley;CA
-YLX;ZGYL;Y«˚lin;CN
+YLX;ZGYL;Y√á≈±lin;CN
 YLW;CYLW;Kelowna;CA
 YLV;UBEE;Yevlakh;AZ
 YLT;CYLT;Alert;CA
@@ -372,7 +372,7 @@ YLJ;CYLJ;Meadow Lake;CA
 YLI;EFYL;Ylivieska;FI
 YLH;CYLH;Lansdowne House;CA
 YLG;YYAL;Yalgoo;AU
-YLE;;What«™;CA
+YLE;;What√á≈û;CA
 YLD;CYLD;Chapleau;CA
 YLC;CYLC;Kimmirut;CA
 YLB;CYLB;Lac La Biche;CA
@@ -396,7 +396,7 @@ YKD;CYKM;Kincardine;CA
 YKC;CYKC;Collins Bay;CA
 YKA;CYKA;Kamloops;CA
 YJT;CYJT;Stephenville;CA
-YJS;ZKSE;Samjiyèèn;KP
+YJS;ZKSE;Samjiy≈π≈πn;KP
 YJP;;Hinton;CA
 YJN;CYJN;St Jean;CA
 YJF;CYJF;Fort Liard;CA
@@ -440,13 +440,13 @@ YGX;CYGX;Gillam;CA
 YGW;CYGW;Kuujjuarapik;CA
 YGV;CYGV;Havre-Saint-Pierre;CA
 YGT;CYGT;Igloolik;CA
-YGR;CYGR;Les «?les-de-la-Madeleine;CA
+YGR;CYGR;Les √á?les-de-la-Madeleine;CA
 YGQ;CYGQ;Geraldton;CA
 YGP;CYGP;Gaspe;CA
 YGO;CYGO;Gods Lake Narrows;CA
 YGN;;Broughton Island;CA
 YGM;CYGM;Gimli;CA
-YGL;CYGL;La Grande Rivi«˘re;CA
+YGL;CYGL;La Grande Rivi√á≈Øre;CA
 YGK;CYGK;Kingston;CA
 YGJ;RJOH;Yonago;JP
 YGH;CYGH;Fort Good Hope;CA
@@ -459,7 +459,7 @@ YFS;CYFS;Fort Simpson;CA
 YFR;CYFR;Fort Resolution;CA
 YFO;CYFO;Flin Flon;CA
 YFL;;Fort Reliance;CA
-YFJ;CYWE;Wekwe«˘t«™;CA
+YFJ;CYWE;Wekwe√á≈Øt√á≈û;CA
 YFI;;Suncor Energy Site;CA
 YFH;CYFH;Fort Hope;CA
 YFG;;Fontanges;CA
@@ -479,7 +479,7 @@ YEN;CYEN;Estevan;CA
 YEM;CYEM;Sheguiandah;CA
 YEL;CYEL;Elliot Lake;CA
 YEK;CYEK;Arviat;CA
-YEI;LTBR;Yeniè?ehir;TR
+YEI;LTBR;Yeni≈π?ehir;TR
 YEH;;Yinchuan;CN
 YEG;CYEG;Edmonton;CA
 YEC;RKTY;Yecheon-ri;KR
@@ -650,10 +650,10 @@ XBJ;OIMB;Birjand;IR
 XBG;DFEB;Bogande;BF
 XBE;;Bearskin Lake;CA
 XBB;;Blubber Bay;CA
-XAU;SOOS;Sa«¨l;GF
+XAU;SOOS;Sa√á¬¨l;GF
 XAR;DFOY;Aribinda;BF
 XAP;SBCH;Chapeco;BR
-XAL;;«Ålamos;MX
+XAL;;√á¬Ålamos;MX
 XAI;ZHXY;Xinyang;CN
 WZQ;;Urad Middle Banner;CN
 WZA;DGLW;Wa;GH
@@ -722,7 +722,7 @@ WRZ;VCCW;Weerawila;LK
 WRY;EGEW;Westray;GB
 WRW;YWWG;;AU
 WRT;EGNO;Warton;GB
-WRO;EPWR;Wrocè?aw;PL
+WRO;EPWR;Wroc≈π?aw;PL
 WRN;YWDG;Windarling Mine;AU
 WRL;KWRL;Worland;US
 WRI;KWRI;Wrightstown;US
@@ -890,13 +890,13 @@ WAA;PAIW;Wales;US
 VYS;KVYS;Peru;US
 VYI;UENW;Vilyuisk;RU
 VYD;FAVY;Vryheid;ZA
-VXO;ESMX;V«œxj«Ù;SE
+VXO;ESMX;V√áƒéxj√á√¥;SE
 VXE;GVSV;Sao Pedro;CV
 VXC;FQLC;Lichinga;MZ
 VVZ;DAAP;Illizi;DZ
 VVO;UHWW;Artyom;RU
 VVN;;Las Malvinas;PE
-VVK;ESSW;V«œstervik;SE
+VVK;ESSW;V√áƒéstervik;SE
 VVI;SLVR;Santa Cruz;BO
 VVC;SKVV;Villavicencio;CO
 VVB;FMMH;Mahanoro;MG
@@ -907,17 +907,17 @@ VTZ;VOVZ;Visakhapatnam;IN
 VTU;MUVT;Las Tunas;CU
 VTN;KVTN;Valentine;US
 VTM;LLNV;Beersheba;IL
-VTG;VVVT;Vè∏ng T«ˇu;VN
+VTG;VVVT;V≈π¬∏ng T√áÀôu;VN
 VTF;NFVL;Vatulele;FJ
 VTE;VLVT;Vientiane;LA
 VTB;UMII;Vitebsk;BY
 VSV;;Shravasti;IN
-VST;ESOW;Stockholm / V«œster«æs;SE
+VST;ESOW;Stockholm / V√áƒéster√áƒæs;SE
 VSF;KVSF;North Springfield;US
 VSE;LPVZ;Viseu;PT
 VSA;MMVA;Villahermosa;MX
 VRZ;;Lavras;BR
-VRY;;V«›r«˜y;NO
+VRY;;V√á√ùr√á√∑y;NO
 VRU;FAVB;Vyrburg;ZA
 VRS;;Versailles;US
 VRO;MUKW;Santa Marta;CU
@@ -934,7 +934,7 @@ VQQ;KVQQ;Jacksonville;US
 VPZ;KVPZ;Valparaiso;US
 VPY;FQCH;Chimoio;MZ
 VPS;KVPS;Valparaiso;US
-VPN;BIVO;Vopnafj«Ùr«¯ur;IS
+VPN;BIVO;Vopnafj√á√¥r√á≈ôur;IS
 VPG;;Vipingo Estate;KE
 VPE;FNGI;Ngiva;AO
 VOZ;UUOO;Voronezh;RU
@@ -1020,7 +1020,7 @@ VEG;SYMK;Maikwak;GY
 VEE;PAVE;Venetie;US
 VDZ;PAVD;Valdez;US
 VDY;VOJV;Toranagallu;IN
-VDS;ENVD;Vads«˜;NO
+VDS;ENVD;Vads√á√∑;NO
 VDR;SAOD;Villa Dolores;AR
 VDP;SVVP;;VE
 VDO;VVVD;Van Don;VN
@@ -1034,7 +1034,7 @@ VCV;KVCV;Victorville;US
 VCT;KVCT;Victoria;US
 VCS;VVCS;Con Dao;VN
 VCP;SBKP;Campinas;BR
-VCL;VVCA;Tam Nghé∏a;VN
+VCL;VVCA;Tam Ngh≈Ω¬∏a;VN
 VCH;SUVO;Vichadero;UY
 VCF;;Valcheta;AR
 VCE;LIPZ;Venezia (VE);IT
@@ -1048,13 +1048,13 @@ VBP;VYBP;Bokpyinn;MM
 VBG;KVBG;Lompoc;US
 VBC;VYCZ;Mandalay;MM
 VBA;VYAN;Aeng;MM
-VAW;ENSS;Vard«˜;NO
+VAW;ENSS;Vard√á√∑;NO
 VAV;NFTV;Vava'u Island;TO
 VAT;FMMY;Vatomandry;MG
 VAS;LTAR;Sivas;TR
 VAR;LBWN;Varna;BG
 VAQ;;Vanavara;RU
-VAP;SCRD;Vi§a Del Mar;CL
+VAP;SCRD;Vi¬§a Del Mar;CL
 VAO;AGGV;Suavanao;SB
 VAN;LTCI;Van;TR
 VAM;VRMV;Maamigili;MV
@@ -1063,7 +1063,7 @@ VAK;PAVA;Chevak;US
 VAI;AYVN;Vanimo;PG
 VAH;SLVG;Vallegrande;BO
 VAG;SBVG;Varginha;BR
-VAF;LFLU;Chabeuil; Dr«Ôme
+VAF;LFLU;Chabeuil; Dr√áƒème
 VAD;KVAD;Valdosta;US
 VAC;EDWU;Cloppenburg;DE
 VAB;;Yavarate;CO
@@ -1109,7 +1109,7 @@ USU;RPVV;Coron;PH
 UST;KSGJ;St Augustine;US
 USS;MUSS;Sancti Spiritus;CU
 USR;UEMT;Ust-Nera;RU
-USQ;LTBO;Uè?ak;TR
+USQ;LTBO;U≈π?ak;TR
 USN;RKPU;Ulsan;KR
 USM;VTSM;Na Thon (Ko Samui Island);TH
 USL;YUSL;Useless Loop;AU
@@ -1119,7 +1119,7 @@ USI;SYMB;Mabaruma;GY
 USH;SAWH;Ushuaia;AR
 USC;;Union;US
 USA;KJQF;Concord;US
-URZ;OARG;OrèÆzgéÅn;AF
+URZ;OARG;Or≈π¬Æzg≈Ω¬Ån;AF
 URY;OEGT;Gurayat;SA
 URU;AYUE;Uroubi;PG
 URT;VTSB;Surat Thani;TH
@@ -1133,7 +1133,7 @@ URI;SKUB;La Uribe;CO
 URG;SBUG;Uruguaiana;BR
 URE;EEKE;Kuressaare;EE
 URD;EDQE;Ebermannstadt;DE
-URC;ZWWW;«?r«¨mqi;CN
+URC;ZWWW;√á?r√á¬¨mqi;CN
 URA;UARR;Uralsk;KZ
 UPV;EGDJ;Pewsey; Wiltshire
 UPR;AYUR;Upiara;PG
@@ -1147,7 +1147,7 @@ UOS;KUOS;Sewanee;US
 UOL;WAFY;Buol-Celebes Island;ID
 UOA;NTTX;Moruroa Atoll;PF
 UNU;KUNU;Juneau;US
-UNR;ZMUH;«?nd«Ùrkhaan;MN
+UNR;ZMUH;√á?nd√á√¥rkhaan;MN
 UNN;VTSR;Ranong;TH
 UNK;PAUN;Unalakleet;US
 UNI;TVSU;Union Island;VC
@@ -1164,7 +1164,7 @@ UMS;UEMU;Ust-Maya;RU
 UMR;YPWR;Woomera;AU
 UMM;PAST;Cantwell;US
 UMI;SPIL;Quince Mil;PE
-UME;ESNU;Ume«æ;SE
+UME;ESNU;Ume√áƒæ;SE
 UMD;BGUM;Uummannaq;GL
 UMC;AYUC;Umba;PG
 UMB;;Kalumbila;ZM
@@ -1183,7 +1183,7 @@ ULM;KULM;New Ulm;US
 ULK;UERL;Lensk;RU
 ULI;;Falalop Island;FM
 ULH;OEAO;Al Ula;SA
-ULG;ZMUL;«?lgii;MN
+ULG;ZMUL;√á?lgii;MN
 ULE;;Sule;PG
 ULD;FAUL;Ulundi;ZA
 ULB;NVSU;Ambrym Island;VU
@@ -1215,7 +1215,7 @@ UII;MHUT;Utila Island;HN
 UIH;VVPC;Quy Nohn;VN
 UIB;SKUI;Quibdo;CO
 UHS;;Aleksandrovsk-Sakhalinskiy;RU
-UHE;LKKU;Uherske Hradiè≠té?;CZ
+UHE;LKKU;Uherske Hradi≈π¬≠t≈Ω?;CZ
 UGU;;Bilogai;ID
 UGT;ZMBR;Khankhongor;MN
 UGS;;Ugashik;US
@@ -1235,7 +1235,7 @@ UEL;FQQL;Quelimane;MZ
 UEE;YQNS;;AU
 UDR;VAUD;Udaipur;IN
 UDJ;UKLU;Uzhhorod;UA
-UDI;SBUL;Uberl«Ωndia;BR
+UDI;SBUL;Uberl√áÀùndia;BR
 UDE;EHVK;Uden;NL
 UDD;KUDD;Bermuda Dunes;US
 UDA;YUDA;Undara;AU
@@ -1268,7 +1268,7 @@ UAI;WPDB;Suai;TL
 UAH;NTMU;Ua Huka;PF
 UAE;AYAE;Aue;PG
 UAC;;San Luis Rio Colorado;MX
-UAB;LTAG;SaréÒzam;TR
+UAB;LTAG;Sar≈Ω≈Ñzam;TR
 TZX;LTCG;Trabzon;TR
 TZO;;Ankisatra;MG
 TZN;MYAK;Andros;BS
@@ -1368,7 +1368,7 @@ TSV;YBTL;Townsville;AU
 TSU;NGTS;Tabiteuea South;KI
 TST;VTST;Trang;TH
 TSS;;New York;US
-TSR;LRTR;Timiè?oara;RO
+TSR;LRTR;Timi≈π?oara;RO
 TSQ;;Torres;BR
 TSP;KTSP;Tehachapi;US
 TSN;ZBTJ;Tianjin;CN
@@ -1442,7 +1442,7 @@ TOW;SBTD;Toledo;BR
 TOV;;Tortola;VG
 TOU;NWWU;Touho;NC
 TOT;SMCO;Totness;SR
-TOS;ENTC;Troms«˜;NO
+TOS;ENTC;Troms√á√∑;NO
 TOR;KTOR;Torrington;US
 TOQ;SCBE;Tocopilla;CL
 TOP;KTOP;Topeka;US
@@ -1514,14 +1514,14 @@ TLY;UHWP;Plastun;RU
 TLX;SCTL;Talca;CL
 TLW;AYVL;Talasea;PG
 TLV;LLBG;Tel Aviv;IL
-TLU;SKTL;Santiago de Tol«ß;CO
+TLU;SKTL;Santiago de Tolu;CO
 TLT;;Tuluksak;US
 TLS;LFBO;Toulouse/Blagnac;FR
 TLR;KTLR;Tulare;US
 TLQ;ZWTL;Turpan;CN
 TLP;AYQL;Tumolbil;PG
 TLO;AYXO;Tol;PG
-TLN;LFTH;Hy«˘res; Var
+TLN;LFTH;Hy√á≈Øres; Var
 TLM;DAON;Zenata;DZ
 TLL;EETN;Tallinn;EE
 TLK;UECT;Talakan Oil Field;RU
@@ -1567,7 +1567,7 @@ TJS;;Tanjung Selor-Borneo Island;ID
 TJQ;WIKT;Tanjung Pandan;ID
 TJN;NTKM;Takume;PF
 TJM;USTR;Tyumen;RU
-TJL;SBTG;Tr«¶s Lagoas;BR
+TJL;SBTG;Tr√á¬¶s Lagoas;BR
 TJK;LTAW;Tokat;TR
 TJI;MHTJ;Trujillo;HN
 TJH;RJBT;Toyooka;JP
@@ -1591,11 +1591,11 @@ TIK;KTIK;Oklahoma City;US
 TIJ;MMTJ;Tijuana;MX
 TII;OATN;Tarinkot;AF
 TIH;NTGC;Tuherahera;PF
-TIF;OETF;TaÉ??if;SA
+TIF;OETF;Ta¬É??if;SA
 TIE;HATP;Tippi;ET
 TID;DAOB;Tiaret;DZ
 TIC;;Arno Atoll;MH
-TIB;SKTB;Tib«ß;CO
+TIB;SKTB;Tibu;CO
 TIA;LATI;Rinas;AL
 THZ;DRRT;Tahoua;NE
 THY;FATH;Thohoyandou;ZA
@@ -1608,8 +1608,8 @@ THS;VTPO;;TH
 THR;OIII;Tehran;IR
 THQ;ZLTS;Tianshui (Maiji);CN
 THP;;Thermopolis;US
-THO;BITN;«?orsh«Ùfn;IS
-THN;ESGT;Trollh«œttan;SE
+THO;BITN;√á?orsh√á√¥fn;IS
+THN;ESGT;Trollh√áƒéttan;SE
 THM;KTHM;Thompson Falls;US
 THL;VYTL;Tachileik;MM
 THK;VLTK;Thakhek;LA
@@ -1653,14 +1653,14 @@ TFI;AYTU;Tufi;PG
 TFF;SBTF;Tefe;BR
 TFB;AYTH;Tifalmin;PG
 TEZ;VETZ;;IN
-TEY;BITE;«?ingeyri;IS
+TEY;BITE;√á?ingeyri;IS
 TEX;KTEX;Telluride;US
 TEV;LETL;Teruel;ES
 TEU;NZMO;;NZ
 TET;FQTT;Tete;MZ
 TES;HHTS;Tessenei;ER
 TER;LPLA;Praia da Vitoria;PT
-TEQ;LTBU;«?orlu;TR
+TEQ;LTBU;√á?orlu;TR
 TEP;AYTP;Teptep;PG
 TEO;AYTY;Terapo Mission;PG
 TEN;ZUTR;Tongren (Daxing);CN
@@ -1673,7 +1673,7 @@ TEG;DFET;Tenkodogo;BF
 TEF;YTEF;;AU
 TEE;DABS;Tebessi;DZ
 TED;EKTS;Thisted;DK
-TEC;;Tel«¶maco Borba;BR
+TEC;;Tel√á¬¶maco Borba;BR
 TEB;KTEB;Teterboro;US
 TEA;MHTE;Tela;HN
 TDZ;KTDZ;Toledo;US
@@ -1712,7 +1712,7 @@ TCJ;AYVM;Torembi;PG
 TCH;FOOT;Tchibanga;GA
 TCG;ZWTC;Tacheng;CN
 TCF;;Tocoa;HN
-TCE;LRTC;Mihail Kogéülniceanu;RO
+TCE;LRTC;Mihail Kog≈Ω≈∫lniceanu;RO
 TCD;SKRA;Tarapaca;CO
 TCC;KTCC;Tucumcari;US
 TCB;MYAT;Treasure Cay;BS
@@ -1742,7 +1742,7 @@ TBE;AYTV;Timbunke;PG
 TBD;SKMB;Timbiqui;CO
 TBC;;Tuba City;US
 TBB;VVTH;Tuy Hoa;VN
-TAZ;UTAT;Daè?oguz;TM
+TAZ;UTAT;Da≈π?oguz;TM
 TAY;EETU;Reola;EE
 TAX;WAPT;Tikong-Taliabu Island;ID
 TAW;SUTB;Tacuarembo;UY
@@ -1790,7 +1790,7 @@ SYX;ZJSY;Sanya (Tianya);CN
 SYW;OPSN;Sehwan Sharif;PK
 SYV;KSYV;Sylvester;US
 SYU;YWBS;Sue Islet;AU
-SYT;LFLN;L'H«Ôpital-le-Mercier; Sa«Ône-et-Loire
+SYT;LFLN;L'H√áƒèpital-le-Mercier; Sa√áƒène-et-Loire
 SYS;UERS;Saskylakh;RU
 SYR;KSYR;Syracuse;US
 SYQ;MRPV;San Jose;CR
@@ -1868,7 +1868,7 @@ SVO;UUEE;Moscow;RU
 SVN;KSVN;Savannah;US
 SVL;EFSA;Savonlinna;FI
 SVK;;Silver Creek;BZ
-SVJ;ENSH;Svolv«›r;NO
+SVJ;ENSH;Svolv√á√ùr;NO
 SVI;SKSV;San Vicente Del Caguan;CO
 SVH;KSVH;Statesville;US
 SVG;ENZV;Stavanger;NO
@@ -1886,7 +1886,7 @@ SUU;KSUU;Fairfield;US
 SUT;HTSU;Sumbawanga;TZ
 SUS;KSUS;St Louis;US
 SUR;;Summer Beaver;CA
-SUQ;SESC;Suc«ßa;EC
+SUQ;SESC;Sucua;EC
 SUP;WART;Sumenep;ID
 SUO;;Sunriver;US
 SUN;KSUN;Hailey;US
@@ -1981,7 +1981,7 @@ SQU;SPOA;Plaza Saposoa;PE
 SQT;AYCS;Samarai Island;PG
 SQS;;Spanish Lookout;BZ
 SQR;WAWS;Soroako;ID
-SQQ;EYSA;èˇiauliai;LT
+SQQ;EYSA;≈πÀôiauliai;LT
 SQO;ESUD;Storuman;SE
 SQN;WAES;Sanana;ID
 SQM;SWUA;Sao Miguel do Araguaia;BR
@@ -2002,7 +2002,7 @@ SPY;DISP;;CI
 SPX;HESX;Al Jiza;EG
 SPW;KSPW;Spencer;US
 SPV;;Sepik Plains;PG
-SPU;LDSP;Kaè≠tel èˇtafilié?;HR
+SPU;LDSP;Ka≈π¬≠tel ≈πÀôtafili≈Ω?;HR
 SPT;;Sipitang;MY
 SPS;KSPS;Wichita Falls;US
 SPR;;San Pedro;BZ
@@ -2030,12 +2030,12 @@ SOT;EFSO;Sodankyla;FI
 SOR;;T2;SY
 SOQ;WASS;Sorong;ID
 SOP;KSOP;Carthage;US
-SOO;ESNY;S«Ùderhamn;SE
+SOO;ESNY;S√á√¥derhamn;SE
 SON;NVSS;Luganville;VU
 SOM;SVST;El Tigre;VE
 SOL;;Solomon;US
 SOK;FXSM;Semonkong;LS
-SOJ;ENSR;S«˜rkjosen;NO
+SOJ;ENSR;S√á√∑rkjosen;NO
 SOI;;South Molle Island Resort;AU
 SOH;;Solita;CO
 SOG;ENSG;Sogndal;NO
@@ -2044,7 +2044,7 @@ SOE;FCOS;Souanke;CG
 SOD;SDCO;Sorocaba;BR
 SOC;WAHQ;Surakarta;ID
 SOB;LHSM;Sarmellek;HU
-SOA;;Soc Tréüng;VN
+SOA;;Soc Tr≈Ω≈∫ng;VN
 SNZ;;Rio de Janeiro;BR
 SNY;KSNY;Sidney;US
 SNX;OIIS;Semnan;IR
@@ -2115,7 +2115,7 @@ SLH;NVSC;Sola;VU
 SLG;KSLG;Siloam Springs;US
 SLF;OESL;As-Sulayyil;SA
 SLE;KSLE;Salem;US
-SLD;LZSL;Sliaéç;SK
+SLD;LZSL;Slia≈Ω≈§;SK
 SLC;KSLC;Salt Lake City;US
 SLB;KSLB;Storm Lake;US
 SLA;SASA;Salta;AR
@@ -2143,7 +2143,7 @@ SKC;AYSU;Suki;PG
 SKB;TKPK;Basseterre;KN
 SKA;KSKA;Spokane;US
 SJZ;LPSJ;Velas;PT
-SJY;EFSI;Sein«œjoki / Ilmajoki;FI
+SJY;EFSI;Sein√áƒéjoki / Ilmajoki;FI
 SJX;;Sartaneja;BZ
 SJW;ZBSJ;Shijiazhuang;CN
 SJV;SLJV;San Javier;BO
@@ -2182,7 +2182,7 @@ SIN;WSSS;Singapore;SG
 SIM;AYSJ;Simbai;PG
 SIL;AYSG;Sila Mission;PG
 SIK;KSIK;Sikeston;US
-SIJ;BISI;Siglufj«Ùr«¯ur;IS
+SIJ;BISI;Siglufj√á√¥r√á≈ôur;IS
 SIH;VNDT;Silgadi Doti;NP
 SIG;TJIG;San Juan;PR
 SIF;VNSI;Simara;NP
@@ -2235,14 +2235,14 @@ SGH;KSGH;Springfield;US
 SGG;BGSG;Sermiligaaq;GL
 SGF;KSGF;Springfield;US
 SGE;EDGS;Burbach;DE
-SGD;EKSB;S«˜nderborg;DK
+SGD;EKSB;S√á√∑nderborg;DK
 SGC;USRR;Surgut;RU
 SGA;OASN;Shiveh;AF
 SFZ;KSFZ;Pawtucket;US
 SFX;;Ciudad Guayana;VE
 SFV;;Santa Fe do Sul;BR
 SFU;AYSF;Safia;PG
-SFT;ESNS;Skellefte«æ;SE
+SFT;ESNS;Skellefte√áƒæ;SE
 SFS;RPLB;Olongapo;PH
 SFO;KSFO;San Francisco;US
 SFN;SAAV;Santa Fe;AR
@@ -2288,7 +2288,7 @@ SDQ;MDSD;Santo Domingo;DO
 SDP;PASD;Sand Point;US
 SDN;ENSD;Sandane;NO
 SDM;KSDM;San Diego;US
-SDL;ESNN;Sundsvall/ H«œrn«Ùsand;SE
+SDL;ESNN;Sundsvall/ H√áƒérn√á√¥sand;SE
 SDK;WBKS;Sandakan;MY
 SDJ;RJSS;Natori;JP
 SDI;AYSD;Saidor;PG
@@ -2305,11 +2305,11 @@ SCW;UUYY;Syktyvkar;RU
 SCV;LRSV;Suceava;RO
 SCU;MUCU;Santiago;CU
 SCT;OYSQ;Mori;YE
-SCR;;Malung-S«œlen;SE
+SCR;;Malung-S√áƒélen;SE
 SCQ;LEST;Santiago de Compostela;ES
 SCP;LFNC;Saint-Crepin; Hautes-Alpes
 SCO;UATE;Aktau;KZ
-SCN;EDDR;Saarbr«¨cken;DE
+SCN;EDDR;Saarbr√á¬¨cken;DE
 SCM;PACM;Scammon Bay;US
 SCL;SCEL;Santiago;CL
 SCK;KSCK;Stockton;US
@@ -2337,7 +2337,7 @@ SBO;;Salina;US
 SBN;KSBN;South Bend;US
 SBM;KSBM;Sheboygan;US
 SBL;SLSA;Santa Ana del Yacuma;BO
-SBK;LFRT;Tremuson; C«Ôtes-d'Armor
+SBK;LFRT;Tremuson; C√áƒètes-d'Armor
 SBJ;SNMX;Sao Mateus;BR
 SBI;GUSB;Koundara;GN
 SBH;TFFJ;Gustavia;BL
@@ -2361,7 +2361,7 @@ SAP;MHLM;San Pedro Sula;HN
 SAN;KSAN;San Diego;US
 SAM;;Salamo;PG
 SAL;MSLP;San Salvador (San Luis Talpa);SV
-SAK;BIKR;Sau«¯arkrokur;IS
+SAK;BIKR;Sau√á≈ôarkrokur;IS
 SAI;VDSA;Siem Reap;KH
 SAH;OYSN;Sanaa;YE
 SAG;VASD;Kakadi;IN
@@ -2397,7 +2397,7 @@ RVS;KRVS;Tulsa;US
 RVR;;Green River;US
 RVO;FARI;Reivilo;ZA
 RVN;EFRO;Rovaniemi;FI
-RVK;ENRM;R«˜rvik;NO
+RVK;ENRM;R√á√∑rvik;NO
 RVE;SKSA;Saravena;CO
 RVD;SWLC;Rio Verde;BR
 RVC;;River Cess;LR
@@ -2451,7 +2451,7 @@ RSB;YRSB;;AU
 RSA;SAZR;Santa Rosa;AR
 RRV;;;AU
 RRT;KRRT;Warroad;US
-RRS;ENRO;R«˜ros;NO
+RRS;ENRO;R√á√∑ros;NO
 RRR;NTKO;Raroia;PF
 RRM;;Marromeu;MZ
 RRL;KRRL;Merrill;US
@@ -2499,7 +2499,7 @@ RNT;KRNT;Renton;US
 RNS;LFRN;Saint-Jacques-de-la-Lande; Ille-et-Vilaine
 RNP;;Rongelap Island;MH
 RNO;KRNO;Reno;US
-RNN;EKRN;R«˜nne;DK
+RNN;EKRN;R√á√∑nne;DK
 RNM;OOGB;Ghaba;OM
 RNL;AGGR;Rennell Island;SB
 RNJ;RORY;Yoron;JP
@@ -2517,7 +2517,7 @@ RMT;NTAM;Rimatara Island;PF
 RMS;ETAR;Ramstein-Miesenbach;DE
 RMQ;RCMQ;Taichung (Qingshui);TW
 RMP;;Rampart;US
-RMO;LUKK;Chiè?inéüu;MD
+RMO;LUKK;Chi≈π?in≈Ω≈∫u;MD
 RMN;AYRG;;PG
 RML;VCCC;Colombo;LK
 RMK;YREN;;AU
@@ -2536,7 +2536,7 @@ RLK;ZBYZ;Bavannur;CN
 RLG;ETNL;Laage;DE
 RLD;KRLD;Richland;US
 RLA;;Rolla;US
-RKZ;ZURK;Xigaz«¶ (Samzhubz«¶);CN
+RKZ;ZURK;Xigaz√á¬¶ (Samzhubz√á¬¶);CN
 RKY;;Rokeby;AU
 RKW;KRKW;Rockwood;US
 RKV;BIRK;Reykjavik;IS
@@ -2552,8 +2552,8 @@ RKD;KRKD;Rockland;US
 RKA;NTKK;;PF
 RJN;OIKR;Rafsanjan;IR
 RJM;WASN;Waisai;ID
-RJL;;Logro§o;ES
-RJK;LDRI;Omiè≠alj;HR
+RJL;;Logro¬§o;ES
+RJK;LDRI;Omi≈π¬≠alj;HR
 RJI;;Rajouri;IN
 RJH;VGRJ;Rajshahi;BD
 RJB;VNRB;Rajbiraj;NP
@@ -2600,17 +2600,17 @@ RGA;SAWE;Rio Grande;AR
 RFS;MNRT;La Rosita;NI
 RFR;MRRF;Rio Frio / Progreso;CR
 RFP;NTTR;Uturoa;PF
-RFN;BIRG;Raufarh«Ùfn;IS
+RFN;BIRG;Raufarh√á√¥fn;IS
 RFK;;Rolling Fork;US
 RFG;KRFG;Refugio;US
 RFD;KRFD;Chicago/Rockford;US
-RFA;FEGR;Rafa«Ó;CF
+RFA;FEGR;Rafa√á√Æ;CF
 REZ;SDRS;Resende;BR
 REY;SLRY;Reyes;BO
 REX;MMRX;Reynosa;MX
 REW;;Rewa;IN
 REU;LERS;Reus;ES
-RET;ENRS;R«˜st;NO
+RET;ENRS;R√á√∑st;NO
 RES;SARE;Resistencia;AR
 RER;MGRT;Retalhuleu;GT
 REQ;;Chagai;PK
@@ -2622,7 +2622,7 @@ REG;LICR;Reggio Calabria;IT
 REE;;Lubbock;US
 RED;KRVL;Reedsville;US
 REC;SBRF;Recife;BR
-REB;EDAX;L«œrz;DE
+REB;EDAX;L√áƒérz;DE
 REA;NTGE;Reao;PF
 RDZ;LFCR;Rodez/Marcillac;FR
 RDV;;Red Devil;US
@@ -2753,7 +2753,7 @@ QCU;;Akunnaaq;GL
 QCP;;Currais Novos;BR
 QCH;;Colatina;BR
 QBC;CYBD;Bella Coola;CA
-PZY;LZPP;Pieè≠èæany;SK
+PZY;LZPP;Pie≈π¬≠≈πƒæany;SK
 PZU;HSPN;Port Sudan;SD
 PZS;SCTC;Temuco;CL
 PZR;;Bajo Baudo;CO
@@ -2848,7 +2848,7 @@ PTU;PAPM;Platinum;US
 PTT;KPTT;Pratt;US
 PTS;KPTS;Pittsburg;US
 PTQ;SNMZ;Porto de Moz;BR
-PTP;TFFR;Pointe-«ˇ-Pitre;GP
+PTP;TFFR;Pointe-√áÀô-Pitre;GP
 PTO;;Pato Branco;BR
 PTN;KPTN;Patterson;US
 PTM;SVPT;Palmarito;VE
@@ -2871,7 +2871,7 @@ PSS;SARP;Posadas;AR
 PSR;LIBP;Pescara;IT
 PSQ;;Essington;US
 PSP;KPSP;Palm Springs;US
-PSO;SKPS;Chachag«¨i;CO
+PSO;SKPS;Chachag√á¬¨i;CO
 PSN;KPSN;Palestine;US
 PSM;KPSM;Portsmouth;US
 PSL;EGPT;Perth;GB
@@ -2890,11 +2890,11 @@ PRZ;;Prineville;US
 PRY;FAWB;Pretoria;ZA
 PRX;KPRX;Paris;US
 PRW;;Prentice;US
-PRV;LKPO;Pè?erov;CZ
+PRV;LKPO;P≈π?erov;CZ
 PRU;VYPY;Pye;MM
 PRS;AGGP;Parasi;SB
 PRR;SYPR;Paruima;GY
-PRQ;SARS;Presidencia Roque Saenz Pe§a;AR
+PRQ;SARS;Presidencia Roque Saenz Pe¬§a;AR
 PRP;LFKO;Propriano;FR
 PRO;KPRO;Perry;US
 PRN;BKPR;Prishtina;XK
@@ -2935,22 +2935,22 @@ PPI;YPIR;;AU
 PPH;;Parai-tepui;VE
 PPG;NSTU;Pago Pago;AS
 PPF;KPPF;Parsons;US
-PPE;MMPE;Puerto Pe§asco;MX
+PPE;MMPE;Puerto Pe¬§asco;MX
 PPC;PAPR;Prospect Creek;US
 PPB;SBDN;Presidente Prudente;BR
 PPA;KPPA;Pampa;US
-POZ;EPPO;Poznaè?;PL
+POZ;EPPO;Pozna≈π?;PL
 POY;KPOY;Powell;US
 POX;;Cormeilles-en-Vexin; Val-d'Oise
-POW;LJPZ;Seéçovlje;SI
-POV;LZPW;Preè≠ov;SK
+POW;LJPZ;Se≈Ω≈§ovlje;SI
+POV;LZPW;Pre≈π¬≠ov;SK
 POU;KPOU;Poughkeepsie;US
 POT;MKKJ;Ken Jones;JM
 POS;TTPP;Port of Spain;TT
 POR;EFPO;Pori;FI
 POP;MDPP;Puerto Plata;DO
 POO;SBPC;Pozos De Caldas;BR
-PON;MGPP;Popt«ßn;GT
+PON;MGPP;Poptun;GT
 POM;AYPY;Port Moresby;PG
 POL;FQPB;Pemba;MZ
 POJ;SNPD;Patos de Minas;BR
@@ -2966,7 +2966,7 @@ POA;SBPA;Porto Alegre;BR
 PNZ;SBPL;Petrolina;BR
 PNY;VOPC;Puducherry (Pondicherry);IN
 PNX;KGYI;Denison;US
-PNV;EYPP;Panevé?èÛys;LT
+PNV;EYPP;Panev≈Ω?≈π√≥ys;LT
 PNU;;Panguitch;US
 PNT;SCNT;Puerto Natales;CL
 PNS;KPNS;Pensacola;US
@@ -3118,7 +3118,7 @@ PFR;FZVS;Ilebo;CD
 PFQ;OITP;Parsabad;IR
 PFO;LCPH;Paphos;CY
 PFM;;Primrose;CA
-PFJ;BIPA;Patreksfj«Ùr«¯ur;IS
+PFJ;BIPA;Patreksfj√á√¥r√á≈ôur;IS
 PFC;KPFC;Pacific City;US
 PFB;SBPF;Passo Fundo;BR
 PFA;;Harbin;CN
@@ -3140,7 +3140,7 @@ PEK;ZBAA;Beijing;CN
 PEI;SKPE;Pereira;CO
 PEH;SAZP;Pehuajo;AR
 PEG;LIRZ;Perugia (PG);IT
-PEF;EDCP;Peenem«¨nde;DE
+PEF;EDCP;Peenem√á¬¨nde;DE
 PEE;USPP;Perm;RU
 PED;LKPD;Pardubice;CZ
 PEC;;Pelican;US
@@ -3149,7 +3149,7 @@ PEA;YPSH;Ironstone;AU
 PDZ;SVPE;Capure;VE
 PDX;KPDX;Portland;US
 PDV;LBPD;Plovdiv;BG
-PDU;SUPU;Paysand«ß;UY
+PDU;SUPU;Paysandu;UY
 PDT;KPDT;Pendleton;US
 PDS;MMPG;Piedras Negras;MX
 PDR;;Presidente Dutra;BR
@@ -3171,7 +3171,7 @@ PCV;;Mulege;MX
 PCU;;Poplarville;US
 PCT;;Princeton/Rocky Hill;US
 PCS;SNPC;Picos;BR
-PCR;SKPC;Puerto Carre§o;CO
+PCR;SKPC;Puerto Carre¬§o;CO
 PCQ;;Phongsaly;LA
 PCP;FPPR;Sao Tome & Principe;ST
 PCO;MMPL;La Ribera;MX
@@ -3226,7 +3226,7 @@ PAH;KPAH;Paducah;US
 PAG;RPMP;Pagadian;PH
 PAF;HUPA;Pakuba;UG
 PAE;KPAE;Everett;US
-PAD;EDLP;B«¨ren;DE
+PAD;EDLP;B√á¬¨ren;DE
 PAC;MPMG;Albrook;PA
 PAB;VEBU;Bilaspur;IN
 PAA;VYPA;Hpa-N;MM
@@ -3302,7 +3302,7 @@ OSW;UWOR;Orsk;RU
 OSU;KOSU;Columbus;US
 OST;EBOS;Oostende;BE
 OSS;UCFO;Osh;KG
-OSR;LKMT;Moè≠nov;CZ
+OSR;LKMT;Mo≈π¬≠nov;CZ
 OSO;YOSB;;AU
 OSN;RKSO;Pyeongtaek;KR
 OSM;ORBM;Mosul;IQ
@@ -3314,7 +3314,7 @@ OSH;KOSH;Oshkosh;US
 OSG;AYZS;Ossima;PG
 OSF;UUMO;Moscow;RU
 OSE;AYOM;Omora;PG
-OSD;ESNZ;«?stersund;SE
+OSD;ESNZ;√á?stersund;SE
 OSC;KOSC;Oscoda;US
 OSB;;Osage Beach;US
 ORZ;;Orange Walk;BZ
@@ -3336,10 +3336,10 @@ ORI;;Port Lions;US
 ORH;KORH;Worcester;US
 ORG;SMZO;Paramaribo;SR
 ORF;KORF;Norfolk;US
-ORE;LFOZ;Saint-Denis-de-l'H«Ôtel; Loiret
+ORE;LFOZ;Saint-Denis-de-l'H√áƒètel; Loiret
 ORD;KORD;Chicago;US
 ORC;SKOE;Orocue;CO
-ORB;ESOE;«?rebro;SE
+ORB;ESOE;√á?rebro;SE
 ORA;SASO;Oran;AR
 OQN;;Kokand;UZ
 OPW;FYOP;Opuwa;NA
@@ -3418,7 +3418,7 @@ OLE;KOLE;Olean;US
 OLD;KOLD;Old Town;US
 OLC;SDCG;Sao Paulo De Olivenza;BR
 OLB;LIEO;Olbia (SS);IT
-OLA;ENOL;«?rland;NO
+OLA;ENOL;√á?rland;NO
 OKY;YBOK;;AU
 OKV;AYOF;Okao;PG
 OKU;FYMO;Mokuti Lodge;NA
@@ -3447,10 +3447,10 @@ OIT;RJFO;Oita;JP
 OIR;RJEO;Okushiri Island;JP
 OIM;RJTO;Izu Oshima;JP
 OIC;KOIC;Norwich;US
-OIA;SDOW;Ouril«Ωndia do Norte;BR
+OIA;SDOW;Ouril√áÀùndia do Norte;BR
 OHT;OPKT;Kohat;PK
 OHS;OOSH;Sohar;OM
-OHR;EDXY;Wyk auf F«Ùhr;DE
+OHR;EDXY;Wyk auf F√á√¥hr;DE
 OHO;UHOO;Okhotsk;RU
 OHI;FYOS;Oshakati;NA
 OHH;UHSH;Okha;RU
@@ -3475,11 +3475,11 @@ OGB;KOGB;Orangeburg;US
 OGA;KOGA;Ogallala;US
 OFU;NSAS;Ofu;AS
 OFK;KOFK;Norfolk;US
-OFJ;BIOF;«?lafsfj«Ùr«¯ur;IS
+OFJ;BIOF;√á?lafsfj√á√¥r√á≈ôur;IS
 OFI;DIOF;Ouango Fitini;CI
 OFF;KOFF;Omaha;US
 OES;SAVN;San Antonio Oeste;AR
-OER;ESNO;«?rnsk«Ùldsvik;SE
+OER;ESNO;√á?rnsk√á√¥ldsvik;SE
 OEO;KOEO;Osceola;US
 OEM;SMPA;Paloemeu;SR
 OEC;WPOC;Oecussi-Ambeno;TL
@@ -3501,7 +3501,7 @@ ODC;;Oakdale;US
 ODB;LEBA;Cordoba;ES
 ODA;FEFW;Ouadda;CF
 OCW;KOCW;Washington;US
-OCV;SKOC;Oca§a;CO
+OCV;SKOC;Oca¬§a;CO
 OCS;;Corisco Island;GQ
 OCN;KOKB;Oceanside;US
 OCM;YBGD;;AU
@@ -3514,13 +3514,13 @@ OCA;;Key Largo;US
 OBY;;Ittoqqortoormiit;GL
 OBX;AYOB;Obo;PG
 OBU;PAOB;Kobuk;US
-OBS;LFHO;Lanas; Ard«˘che
+OBS;LFHO;Lanas; Ard√á≈Øche
 OBO;RJCB;Obihiro;JP
 OBN;EGEO;North Connel;GB
 OBM;AYMB;Morobe;PG
 OBL;EBZR;Zoersel;BE
-OBI;SNTI;«?bidos;BR
-OBF;EDMO;We«?ling;DE
+OBI;SNTI;√á?bidos;BR
+OBF;EDMO;We√á?ling;DE
 OBE;KOBE;Okeechobee;US
 OBD;;Obano;ID
 OBC;HDOB;Obock;DJ
@@ -3549,7 +3549,7 @@ NYU;VYBG;Nyaung U;MM
 NYT;VYNT;Pyinmana;MM
 NYS;;New York;US
 NYR;UENN;Nyurba;RU
-NYO;ESKN;Nyk«Ùping;SE
+NYO;ESKN;Nyk√á√¥ping;SE
 NYN;YNYN;;AU
 NYM;USMM;Nadym;RU
 NYK;HKNL;Nanyuki;KE
@@ -3563,7 +3563,7 @@ NWH;;Newport;US
 NWA;FMCI;Fomboni;KM
 NVY;VONV;Neyveli;IN
 NVT;SBNF;Navegantes;BR
-NVS;LFQG;Marzy; Ni«˘vre
+NVS;LFQG;Marzy; Ni√á≈Øvre
 NVP;SWNA;Novo Aripuana;BR
 NVN;;Beckwourth;US
 NVM;;Nova Mutum;BR
@@ -3625,7 +3625,7 @@ NRR;TJRV;Ceiba;PR
 NRN;EDLV;Weeze;DE
 NRM;GANK;Nara;ML
 NRL;EGEN;North Ronaldsay;GB
-NRK;ESSP;Norrk«Ùping;SE
+NRK;ESSP;Norrk√á√¥ping;SE
 NRI;;Afton;US
 NRG;YNRG;Narrogin;AU
 NRE;WAPG;Namrole;ID
@@ -3638,7 +3638,7 @@ NQX;KNQX;Key West;US
 NQU;SKNQ;Nuqui;CO
 NQT;EGBN;Nottingham;GB
 NQN;SAZN;Neuquen;AR
-NQL;SWNQ;Niquel«Ωndia;BR
+NQL;SWNQ;Niquel√áÀùndia;BR
 NQI;KNQI;Kingsville;US
 NQA;KNQA;Millington;US
 NPY;HTMP;Mpanda;TZ
@@ -3657,7 +3657,7 @@ NOV;FNHU;Huambo;AO
 NOU;NWWW;Noumea (La Tontouta);NC
 NOT;KDVO;Novato;US
 NOS;FMNN;Nosy Be;MG
-NOR;BINF;Nor«¯fj«Ùr«¯ur;IS
+NOR;BINF;Nor√á≈ôfj√á√¥r√á≈ôur;IS
 NOP;LTCM;Sinop;TR
 NOO;;Naoro Vilage;PG
 NON;NGTO;Nonouti;KI
@@ -3717,7 +3717,7 @@ NKY;FCBY;Nkayi;CG
 NKX;KNKX;San Diego;US
 NKW;;Diego Garcia;IO
 NKU;FXNK;Nkaus;LS
-NKT;LTCV;è?éÒrnak;TR
+NKT;LTCV;≈π?≈Ω≈Ñrnak;TR
 NKP;;Nukutepipi;PF
 NKO;;Ankokoambo;MG
 NKN;AYNA;Gwarawon;PG
@@ -3823,7 +3823,7 @@ NBS;ZYBS;Baishan;CN
 NBO;HKJK;Nairobi;KE
 NBN;;San Antonio de Pale;GQ
 NBL;MPWN;San Blas;PA
-NBJ;FNBJ;Luanda («çcolo e Bengo);AO
+NBJ;FNBJ;Luanda (√á≈§colo e Bengo);AO
 NBH;;Nambucca Heads;AU
 NBG;KNBG;New Orleans;US
 NBE;DTNH;Enfidha;TN
@@ -3833,7 +3833,7 @@ NBA;AYNY;Nambaiyufa;PG
 NAZ;AGNA;Star Harbor;SB
 NAY;;Beijing;CN
 NAW;VTSC;;TH
-NAV;LTAZ;Nevè?ehir;TR
+NAV;LTAZ;Nev≈π?ehir;TR
 NAU;NTGN;Napuka Island;PF
 NAT;;Natal;BR
 NAS;MYNN;Nassau;BS
@@ -3859,7 +3859,7 @@ MZY;FAMO;Mossel Bay;ZA
 MZW;DAAY;Mecheria;DZ
 MZV;WBMU;Mulu;MY
 MZU;VEMZ;Muzaffarpur;IN
-MZT;MMMZ;Mazatl«ˇn;MX
+MZT;MMMZ;Mazatl√áÀôn;MX
 MZS;;Moradabad;IN
 MZR;OAMS;Mazar-i-Sharif;AF
 MZQ;FAMU;Mkuze;ZA
@@ -3907,7 +3907,7 @@ MXZ;ZGMX;Meizhou (Meixian);CN
 MXY;PAMX;Mccarthy;US
 MXX;ESKM;Mora;SE
 MXW;ZMMG;Mandalgobi;MN
-MXV;ZMMN;M«Ùr«Ùn;MN
+MXV;ZMMN;M√á√¥r√á√¥n;MN
 MXU;YMWA;;AU
 MXT;FMMO;Maintirano;MG
 MXS;NSMA;Maota;WS
@@ -3956,13 +3956,13 @@ MVZ;FVMV;Masvingo;ZW
 MVY;KMVY;Martha's Vineyard;US
 MVX;FOGV;Minvoul;GA
 MVW;KBVS;Burlington;US
-MVV;LFHM;Meg«˘ve;FR
+MVV;LFHM;Meg√á≈Øve;FR
 MVU;YMGV;Musgrave;AU
 MVT;NTGV;;PF
 MVS;SNMU;Mucuri;BR
 MVR;FKKL;Maroua;CM
 MVQ;UMOO;Mogilev;BY
-MVP;SKMU;Mit«ß;CO
+MVP;SKMU;Mitu;CO
 MVO;FTTM;Mongo;TD
 MVN;KMVN;Mount Vernon;US
 MVM;;Kayenta;US
@@ -3978,7 +3978,7 @@ MUZ;HTMU;Musoma;TZ
 MUY;FCBM;Mouyondzi;CG
 MUX;OPMT;Multan;PK
 MUW;DAOV;Ghriss;DZ
-MUU;;Mara«ß;BR
+MUU;;Marau;BR
 MUT;KMUT;Muscatine;US
 MUS;RJAM;Ogasawara;JP
 MUR;WBGM;Marudi;MY
@@ -4024,7 +4024,7 @@ MTD;YMSF;;AU
 MTC;KMTC;Mount Clemens;US
 MTB;SKML;Montelibano;CO
 MTA;NZMA;;NZ
-MSZ;FNMO;Moz«Ωmedes;AO
+MSZ;FNMO;Moz√áÀùmedes;AO
 MSY;KMSY;New Orleans;US
 MSX;FCMM;Mossendjo;CG
 MSW;HHMS;Massawa;ER
@@ -4032,7 +4032,7 @@ MSV;KMSV;Monticello;US
 MSU;FXMM;Mazenod;LS
 MST;EHBK;Maastricht;NL
 MSS;KMSS;Massena;US
-MSR;LTCK;Muè?;TR
+MSR;LTCK;Mu≈π?;TR
 MSQ;UMMS;Minsk;BY
 MSP;KMSP;Minneapolis;US
 MSO;KMSO;Missoula;US
@@ -4051,11 +4051,11 @@ MSA;CZMD;Muskrat Dam;CA
 MRZ;YMOR;Moree;AU
 MRY;KMRY;Monterey;US
 MRX;OIAM;Mahshahr;IR
-MRW;EKMB;R«˜dby;DK
+MRW;EKMB;R√á√∑dby;DK
 MRV;URMM;Mineralnyye Vody;RU
 MRU;FIMP;Plaine Magnien;MU
 MRT;;Moroak;AU
-MRS;LFML;Marignane; Bouches-du-Rh«Ône
+MRS;LFML;Marignane; Bouches-du-Rh√áƒène
 MRR;SEMA;Macara;EC
 MRQ;RPUW;Gasan;PH
 MRP;YALA;Marla;AU
@@ -4134,7 +4134,7 @@ MOP;KMOP;Mount Pleasant;US
 MOO;YOOM;Moomba;AU
 MON;NZMC;;NZ
 MOM;GQNL;Moudjeria;MR
-MOL;ENML;«?r«˜;NO
+MOL;ENML;√á?r√á√∑;NO
 MOK;UTNM;Muynak;UZ
 MOJ;SMMO;Moengo;SR
 MOI;NCMR;Mitiaro Island;CK
@@ -4174,7 +4174,7 @@ MNB;FZAG;Muanda;CD
 MNA;WAMN;Karakelong Island;ID
 MMZ;OAMN;Maymana;AF
 MMY;ROMY;Miyakojima;JP
-MMX;ESMS;Malm«Ù;SE
+MMX;ESMS;Malm√á√¥;SE
 MMV;;Mal Island;PG
 MMU;KMMU;Morristown;US
 MMT;KMMT;Eastover;US
@@ -4194,7 +4194,7 @@ MMF;FKKF;Mamfe;CM
 MME;EGNV;Darlington; Durham
 MMD;ROMD;Minamidaito;JP
 MMC;MMDM;Ciudad Mante;MX
-MMB;RJCM;è?zora;JP
+MMB;RJCM;≈π?zora;JP
 MLZ;SUMO;Melo;UY
 MLY;PAML;Manley Hot Springs;US
 MLX;LTAT;Malatya;TR
@@ -4259,7 +4259,7 @@ MJK;YSHK;Denham;AU
 MJJ;;Moki;PG
 MJI;HLLM;Tripoli;LY
 MJG;;Mayajigua;CU
-MJF;ENMS;Mosj«˜en;NO
+MJF;ENMS;Mosj√á√∑en;NO
 MJE;;Majkin;MH
 MJD;OPMJ;Moenjodaro;PK
 MJC;DIMN;;CI
@@ -4293,7 +4293,7 @@ MIA;KMIA;Miami;US
 MHZ;EGUN;Bury Saint Edmunds; Suffolk
 MHY;AYEH;Morehead;PG
 MHX;NCMH;Manihiki Island;CK
-MHW;SLAG;El Ba§ado;BO
+MHW;SLAG;El Ba¬§ado;BO
 MHV;KMHV;Mojave;US
 MHU;YHOT;Mount Hotham;AU
 MHT;KMHT;Manchester;US
@@ -4327,7 +4327,7 @@ MGQ;HCMM;Mogadishu;SO
 MGP;;Manga Mission;PG
 MGN;SKMG;Magangue;CO
 MGM;KMGM;Montgomery;US
-MGL;EDLN;M«Ùnchengladbach;DE
+MGL;EDLN;M√á√¥nchengladbach;DE
 MGK;VYMT;Mong Tong;MM
 MGJ;KMGJ;Montgomery;US
 MGI;;Matagorda Island;US
@@ -4500,7 +4500,7 @@ LZA;FZUG;Luiza;CD
 LYX;EGMD;Romney Marsh; Kent
 LYU;KELO;Ely;US
 LYT;YLTT;Lady Elliot Island;AU
-LYS;LFLL;Colombier-Saugnieu; Rh«Ône
+LYS;LFLL;Colombier-Saugnieu; Rh√áƒène
 LYR;ENSB;Longyearbyen;NO
 LYP;OPFA;Faisalabad;PK
 LYO;KLYO;Lyons;US
@@ -4563,7 +4563,7 @@ LUI;;La Union;HN
 LUH;VILD;;IN
 LUG;LSZA;Agno;CH
 LUF;KLUF;Glendale;US
-LUE;LZLU;Luéçenec;SK
+LUE;LZLU;Lu≈Ω≈§enec;SK
 LUD;FYLZ;Luderitz;NA
 LUC;NFNH;Laucala Island;FJ
 LUB;SYLP;Lumid Pau;GY
@@ -4587,7 +4587,7 @@ LTF;;Leitre;PG
 LTD;HLTD;Ghadames;LY
 LTC;FTTH;Lai;TD
 LTA;FATZ;Tzaneen;ZA
-LSZ;LDLO;Mali Loè≠inj;HR
+LSZ;LDLO;Mali Lo≈π¬≠inj;HR
 LSY;YLIS;Lismore;AU
 LSX;WITL;Lhok Sukon-Sumatra Island;ID
 LSW;WIMA;Lhok Seumawe-Sumatra Island;ID
@@ -4631,7 +4631,7 @@ LQN;OAQN;Qala-i-Naw;AF
 LQM;SKLG;Puerto Leguizamo;CO
 LQK;KLQK;Pickens;US
 LPY;LFHP;Chaspuzac; Haute-Loire
-LPX;EVLA;LiepéÅja;LV
+LPX;EVLA;Liep≈Ω¬Åja;LV
 LPU;WAQL;Long Apung-Borneo Island;ID
 LPT;VTCL;;TH
 LPS;;Lopez;US
@@ -4643,7 +4643,7 @@ LPM;NVSL;Lamap;VU
 LPL;EGGP;Liverpool;GB
 LPK;UUOL;Lipetsk;RU
 LPJ;;Guayabal;VE
-LPI;ESSL;Link«Ùping;SE
+LPI;ESSL;Link√á√¥ping;SE
 LPG;SADL;La Plata;AR
 LPF;ZUPS;Liupanshui (Zhongshan);CN
 LPE;SKIM;La Primavera;CO
@@ -4719,7 +4719,7 @@ LMA;PAMH;Minchumina;US
 LLY;KVAY;Lumberton;US
 LLX;KCDA;Lyndonville;US
 LLW;FWKI;Lumbadzi;MW
-LLV;ZBLL;L«¨liang;CN
+LLV;ZBLL;L√á¬¨liang;CN
 LLU;;Alluitsup Paa;GL
 LLT;FNLB;Lobito;AO
 LLS;SATK;Las Lomitas;AR
@@ -4736,7 +4736,7 @@ LLF;ZGLG;Yongzhou;CN
 LLE;FAMN;Malelane;ZA
 LLC;RPLH;Lal-lo;PH
 LLB;ZULB;Qiannan (Libo);CN
-LLA;ESPA;Lule«æ;SE
+LLA;ESPA;Lule√áƒæ;SE
 LKZ;EGUL;Brandon; Suffolk
 LKY;HTLM;Lake Manyara National Park;TZ
 LKW;OOLK;Lekhwair;OM
@@ -4811,7 +4811,7 @@ LGL;WBGF;Long Datih;MY
 LGK;WMKL;Langkawi;MY
 LGI;MYLD;Deadman's Cay;BS
 LGH;YLEC;;AU
-LGG;EBLG;Gr«Ωce-Hollogne;BE
+LGG;EBLG;Gr√áÀùce-Hollogne;BE
 LGF;KLGF;Yuma Proving Ground(Yuma);US
 LGE;;Lake Gregory;AU
 LGD;KLGD;La Grande;US
@@ -4865,7 +4865,7 @@ LDS;ZYLD;Yichun;CN
 LDO;SMDO;Aurora;SR
 LDN;VNLD;Lamidanda;NP
 LDM;KLDM;Ludington;US
-LDK;ESGL;Lidk«Ùping;SE
+LDK;ESGL;Lidk√á√¥ping;SE
 LDJ;KLDJ;Linden;US
 LDI;HTLI;Lindi;TZ
 LDH;YLHI;Lord Howe Island;AU
@@ -4886,7 +4886,7 @@ LCN;YBLC;;AU
 LCM;SACC;La Cumbre;AR
 LCL;MULM;Pinar del Rio;CU
 LCK;KLCK;Columbus;US
-LCJ;EPLL;èÅodèß;PL
+LCJ;EPLL;≈π¬Åod≈π¬ß;PL
 LCI;KLCI;Laconia / Gilford;US
 LCH;KLCH;Lake Charles;US
 LCG;LECO;Culleredo;ES
@@ -4919,7 +4919,7 @@ LBG;LFPB;Paris;FR
 LBF;KLBF;North Platte;US
 LBE;KLBE;Latrobe;US
 LBD;UTDL;Khujand;TJ
-LBC;EDHL;L«¨beck;DE
+LBC;EDHL;L√á¬¨beck;DE
 LBB;KLBB;Lubbock;US
 LBA;EGNM;Leeds; West Yorkshire
 LAZ;SBLP;Bom Jesus da Lapa;BR
@@ -4946,7 +4946,7 @@ LAC;;Pulau Layang-Layang (Swallow Reef);MY
 LAB;AYLB;Lab Lab Mission;PG
 LAA;KLAA;Lamar;US
 KZS;LGKJ;Kastelorizo Island;GR
-KZR;LTBZ;AltéÒntaè?;TR
+KZR;LTBZ;Alt≈Ω≈Ñnta≈π?;TR
 KZO;UAOO;Kyzylorda;KZ
 KZN;UWKD;Kazan;RU
 KZI;LGKZ;Kozani;GR
@@ -5006,7 +5006,7 @@ KVK;;Apatity;RU
 KVG;AYKV;Kavieng;PG
 KVE;;Kitava Island;PG
 KVC;PAVC;King Cove;US
-KVB;ESGR;Sk«Ùvde;SE
+KVB;ESGR;Sk√á√¥vde;SE
 KVA;LGKV;Kavala;GR
 KUZ;;Kuummiut;GL
 KUY;;Kamusi;PG
@@ -5018,7 +5018,7 @@ KUS;BGKK;Kulusuk;GL
 KUR;OARZ;Skazar;AF
 KUQ;AYKU;Kuri;PG
 KUP;;Kupiano;PG
-KUO;EFKU;Kuopio / Siilinj«œrvi;FI
+KUO;EFKU;Kuopio / Siilinj√áƒérvi;FI
 KUN;EYKA;Kaunas;LT
 KUM;RJFC;Yakushima;JP
 KUL;WMKK;Sepang;MY
@@ -5035,7 +5035,7 @@ KTX;GAKO;Koutiala;ML
 KTW;EPKT;Katowice;PL
 KTV;SVKM;Kamarata;VE
 KTU;VIKO;Kota;IN
-KTT;EFKT;Kittil«œ;FI
+KTT;EFKT;Kittil√áƒé;FI
 KTS;PFKT;Brevig Mission;US
 KTR;YPTN;;AU
 KTQ;EFIT;Kitee;FI
@@ -5050,7 +5050,7 @@ KTH;;Tikchik;US
 KTG;WIOK;Ketapang;ID
 KTF;NZTK;;NZ
 KTE;WMKE;Kerteh;MY
-KTD;RORK;Kitadaitèçjima;JP
+KTD;RORK;Kitadait≈π≈§jima;JP
 KTC;;Katiola;CI
 KTB;;Thorne Bay;US
 KTA;YPKA;Karratha;AU
@@ -5075,7 +5075,7 @@ KSH;OICC;Kermanshah;IR
 KSF;EDVK;Calden;DE
 KSE;HUKS;Kasese;UG
 KSD;ESOK;Karlstad;SE
-KSC;LZKZ;Koè≠ice;SK
+KSC;LZKZ;Ko≈π¬≠ice;SK
 KSB;AYNM;Kasonombe;PG
 KSA;PTSA;Okat;FM
 KRZ;FZBT;Kiri;CD
@@ -5134,7 +5134,7 @@ KOU;FOGK;Koulamoutou;GA
 KOT;PFKO;Kotlik;US
 KOS;VDSV;Preah Sihanouk;KH
 KOR;AYRO;Kakoro;PG
-KOQ;EDCK;K«Ùthen (Anhalt);DE
+KOQ;EDCK;K√á√¥then (Anhalt);DE
 KOP;VTUW;Nakhon Phanom;TH
 KOO;FZRQ;Kongolo;CD
 KOM;AYOO;Komo;PG
@@ -5169,7 +5169,7 @@ KNF;EGYM;King's Lynn; Norfolk
 KNE;AYKJ;Kanainj;PG
 KND;FZOA;Kindu;CD
 KNB;KKNB;Kanab;US
-KNA;SCVM;Vi§a Del Mar;CL
+KNA;SCVM;Vi¬§a Del Mar;CL
 KMZ;FLKO;Kaoma;ZM
 KMY;;Moser Bay;US
 KMX;OEKM;Khamis Mushait;SA
@@ -5199,7 +5199,7 @@ KLY;FZOD;Kalima;CD
 KLX;LGKL;Kalamata;GR
 KLW;PAKW;Klawock;US
 KLV;LKKV;Karlovy Vary;CZ
-KLU;LOWK;Klagenfurt am W«Ùrthersee;AT
+KLU;LOWK;Klagenfurt am W√á√¥rthersee;AT
 KLS;KKLS;Kelso;US
 KLR;ESMQ;Kalmar;SE
 KLP;WAGF;Seruyan;ID
@@ -5299,7 +5299,7 @@ KGY;YKRY;;AU
 KGX;;Grayling;US
 KGW;AYKQ;Kagi;PG
 KGU;WBKG;Keningau;MY
-KGT;ZUKD;Garz«¶ (Kangding);CN
+KGT;ZUKD;Garz√á¬¶ (Kangding);CN
 KGS;LGKO;Kos Island;GR
 KGR;;Ghan;AU
 KGQ;;Kangersuatsiaq;GL
@@ -5319,7 +5319,7 @@ KGD;UMKK;Kaliningrad;RU
 KGC;YKSC;;AU
 KGB;AYOE;Konge;PG
 KGA;FZUA;Kananga;CD
-KFZ;LAKU;Kuk«Æs;AL
+KFZ;LAKU;Kuk√á¬Æs;AL
 KFS;LTAL;Kastamonu;TR
 KFP;PAKF;False Pass;US
 KFM;;Kirby Lake;CA
@@ -5330,7 +5330,7 @@ KEZ;;Colombo;LK
 KEY;HKKR;Kericho;KE
 KEX;AYNB;Kanabea;PG
 KEW;;Keewaywin;CA
-KEV;EFHA;J«œms«œ;FI
+KEV;EFHA;J√áƒéms√áƒé;FI
 KEU;HKKE;Keekorok;KE
 KET;VYKG;Kengtung;MM
 KES;CZEE;Kelsey;CA
@@ -5366,7 +5366,7 @@ KDP;AYNN;Kandep;PG
 KDO;VRMK;Kadhdhoo;MV
 KDN;FOGE;Ndende;GA
 KDM;VRMT;Huvadhu Atoll;MV
-KDL;EEKA;K«œrdla;EE
+KDL;EEKA;K√áƒérdla;EE
 KDK;PAKD;Kodiak;US
 KDJ;FOGJ;N'Djole;GA
 KDI;WAWW;Kendari;ID
@@ -5386,7 +5386,7 @@ KCQ;;Chignik Lake;US
 KCP;;Kamyan'ka;UA
 KCO;LTBQ;Kartepe;TR
 KCN;;Chernofski Harbor;US
-KCM;LTCN;Kahramanmaraè?;TR
+KCM;LTCN;Kahramanmara≈π?;TR
 KCL;;Chignik Flats;US
 KCK;UIKK;Kirensk;RU
 KCJ;AYOQ;Komaio;PG
@@ -5451,7 +5451,7 @@ KAC;OSKL;Qamishly;SY
 KAB;FVKB;Kariba;ZW
 KAA;FLKS;Kasama;ZM
 JZH;ZUJZ;Ngawa (Songpan);CN
-JYV;EFJY;Jyv«œskyl«œn Maalaiskunta;FI
+JYV;EFJY;Jyv√áƒéskyl√áƒén Maalaiskunta;FI
 JYR;OIKJ;Jiroft;IR
 JXN;KJXN;Jackson;US
 JXA;ZYJX;Jixi;CN
@@ -5550,7 +5550,7 @@ JKV;KJSO;Jacksonville;US
 JKR;VNJP;Janakpur;NP
 JKL;LGKY;Kalymnos Island;GR
 JKH;LGHI;Chios Island;GR
-JKG;ESGJ;J«Ùnk«Ùping;SE
+JKG;ESGJ;J√á√¥nk√á√¥ping;SE
 JJU;;Qaqortoq;GL
 JJN;ZSQZ;Quanzhou;CN
 JJM;HKMK;Meru-Kinna;KE
@@ -5610,13 +5610,13 @@ JDA;KGCD;John Day;US
 JCY;;Stonewall;US
 JCU;GECE;Ceuta;ES
 JCT;KJCT;Junction;US
-JCS;;Crate«ßs;BR
+JCS;;Crateus;BR
 JCR;SBEK;Jacareacanga;BR
 JCO;;Comino;MT
 JCM;SNJB;Jacobina;BR
-JCL;LKCS;é?eske Budé?jovice;CZ
+JCL;LKCS;≈Ω?eske Bud≈Ω?jovice;CZ
 JCK;YJLC;;AU
-JCJ;;Chuja; HachÉ??uja-do (Chujado Islands)
+JCJ;;Chuja; Hach¬É??uja-do (Chujado Islands)
 JCI;KIXD;New Century;US
 JCH;BGCH;Qasigiannguit;GL
 JCB;SSJA;Joazaba;BR
@@ -5712,13 +5712,13 @@ ITB;SBIH;Itaituba;BR
 ITA;SBIC;Itacoatiara;BR
 ISW;KISW;Wisconsin Rapids;US
 ISU;ORSU;Sulaymaniyah;IQ
-IST;LTFM;Arnavutk«Ùy; Istanbul
+IST;LTFM;Arnavutk√á√¥y; Istanbul
 ISS;KIWI;Wiscasset;US
 ISQ;KISQ;Manistique;US
 ISP;KISP;Islip;US
 ISO;KISO;Kinston;US
 ISM;KISM;Orlando;US
-ISL;LTBA;BakéÒrk«Ùy; Istanbul
+ISL;LTBA;Bak≈Ω≈Ñrk√á√¥y; Istanbul
 ISK;VAOZ;Nasik;IN
 ISJ;MMIM;Isla Mujeres;MX
 ISI;YISF;;AU
@@ -5739,7 +5739,7 @@ IRK;KIRK;Kirksville;US
 IRJ;SANL;La Rioja;AR
 IRI;HTIR;Nduli;TZ
 IRG;YLHR;Lockhart River;AU
-IRE;SNIC;Irec«¶;BR
+IRE;SNIC;Irec√á¬¶;BR
 IRD;VGIS;Ishurdi;BD
 IRC;PACR;Circle;US
 IRB;;Iraan;US
@@ -5748,15 +5748,15 @@ IQT;SPQT;Iquitos;PE
 IQQ;SCDA;Iquique;CL
 IQN;ZLQY;Qingyang (Xifeng);CN
 IQM;ZWCM;Qiemo;CN
-IQA;ORAA;HéÆt;IQ
+IQA;ORAA;H≈Ω¬Æt;IQ
 IPZ;MRSI;Perez Zeledon;CR
-IPU;SNIU;Ipia«ß;BR
+IPU;SNIU;Ipiau;BR
 IPT;KIPT;Williamsport;US
 IPN;SBIP;Ipatinga;BR
 IPL;KIPL;Imperial;US
 IPI;SKIP;Ipiales;CO
 IPH;WMKI;Ipoh;MY
-IPG;SWII;Santo Ant«Ônio do Iza;BR
+IPG;SWII;Santo Ant√áƒènio do Iza;BR
 IPE;RPMV;Ipil;PH
 IPC;SCIP;Isla De Pascua;CL
 IPA;NVVI;Ipota;VU
@@ -5785,7 +5785,7 @@ INM;YINN;;AU
 INL;KINL;International Falls;US
 INK;KINK;Wink;US
 INJ;YINJ;Injune;AU
-INI;LYNI;Niè≠;RS
+INI;LYNI;Ni≈π¬≠;RS
 INH;FQIN;Inhambane;MZ
 INF;DATG;In Guezzam;DZ
 INE;;Chinde;MZ
@@ -5807,13 +5807,13 @@ IMF;VEIM;Imphal;IN
 IMD;AYIO;Imonda;PG
 IMB;SYIB;Imbaimadai;GY
 IMA;;Iamalele; Fergusson Island
-ILZ;LZZI;Dolny Hriéçov;SK
+ILZ;LZZI;Dolny Hri≈Ω≈§ov;SK
 ILY;EGPI;Isle of Islay; Argyll and Bute
 ILU;HKKL;Kilaguni;KE
 ILS;MSSS;San Salvador;SV
 ILR;DNIL;Ilorin;NG
 ILQ;SPLO;Ilo;PE
-ILP;NWWE;«?le des Pins;NC
+ILP;NWWE;√á?le des Pins;NC
 ILO;RPVI;Cabatuan;PH
 ILN;KILN;Wilmington;US
 ILM;KILM;Wilmington;US
@@ -5856,11 +5856,11 @@ IGR;SARI;Puerto Iguazu;AR
 IGO;SKIG;Chigorodo;CO
 IGN;RPMI;Balo-i;PH
 IGM;KIGM;Kingman;US
-IGL;;«?ié?li;TR
+IGL;;√á?i≈Ω?li;TR
 IGH;YIGM;;AU
 IGG;PAIG;Igiugig;US
 IGE;FOOI;Iguela;GA
-IGD;LTCT;Ié?déÒr;TR
+IGD;LTCT;I≈Ω?d≈Ω≈Ñr;TR
 IGB;SAVJ;Ingeniero Jacobacci;AR
 IGA;MYIG;Matthew Town;BS
 IFU;VREI;Ifuru Island;MV
@@ -5868,7 +5868,7 @@ IFP;KIFP;Bullhead City;US
 IFO;UKLI;Ivano-Frankivsk;UA
 IFN;OIFM;Isfahan;IR
 IFL;YIFL;;AU
-IFJ;BIIS;«çsafj«Ùr«¯ur;IS
+IFJ;BIIS;√á≈§safj√á√¥r√á≈ôur;IS
 IFH;OIFE;Hesa;IR
 IFF;YIFY;;AU
 IFA;KIFA;Iowa Falls;US
@@ -5876,10 +5876,10 @@ IEV;UKKK;Kyiv;UA
 IES;EDAU;Riesa;DE
 IEJ;RORE;Ie;JP
 IEG;EPZG;Nowe Kramsko;PL
-IDY;LFEY;«?le d'Yeu;FR
+IDY;LFEY;√á?le d'Yeu;FR
 IDR;VAID;Indore;IN
 IDP;KIDP;Independence;US
-IDO;SWIY;Cristal«Ωndia;BR
+IDO;SWIY;Cristal√áÀùndia;BR
 IDN;AYID;Indagen;PG
 IDK;YIDK;Indulkana;AU
 IDI;KIDI;Indiana;US
@@ -5909,7 +5909,7 @@ IBE;SKIB;Ibague;CO
 IBB;SEII;Puerto Villamil;EC
 IBA;DNIB;Ibadan;NG
 IAX;WAMS;Miangas;ID
-IAS;LRIA;Iaè?i;RO
+IAS;LRIA;Ia≈π?i;RO
 IAR;UUDL;Tunoshna;RU
 IAQ;;Imam Hassan;IR
 IAO;RPNS;Del Carmen;PH
@@ -5925,12 +5925,12 @@ HZV;;Hazyview;ZA
 HZU;;Chengdu (Jintang);CN
 HZP;CYNR;Fort Mackay;CA
 HZL;KHZL;Hazleton;US
-HZK;BIHU;H«ßsavik;IS
+HZK;BIHU;Husavik;IS
 HZH;ZUNP;Liping;CN
 HZG;ZLHZ;Hanzhong (Chenggu);CN
 HZB;LFQT;Merville; Nord
 HZA;ZSHZ;Heze (Dingtao);CN
-HYV;EFHV;Hyvink«œ«œ;FI
+HYV;EFHV;Hyvink√áƒé√áƒé;FI
 HYS;KHYS;Hays;US
 HYR;KHYR;Hayward;US
 HYN;ZSLQ;Taizhou (Luqiao);CN
@@ -5952,7 +5952,7 @@ HVS;KHVS;Hartsville;US
 HVR;KHVR;Havre;US
 HVN;KHVN;New Haven;US
 HVK;BIHK;Holmavik;IS
-HVG;ENHV;Honningsv«æg;NO
+HVG;ENHV;Honningsv√áƒæg;NO
 HVE;KHVE;Hanksville;US
 HVD;ZMKD;Khovd;MN
 HVB;YHBA;Hervey Bay;AU
@@ -5972,7 +5972,7 @@ HUM;KHUM;Houma;US
 HUL;KHUL;Houlton;US
 HUK;;Hukuntsi;BW
 HUJ;KHHW;Hugo;US
-HUI;VVPB;Hu†ß®;VN
+HUI;VVPB;Hu¬†¬ß¬®;VN
 HUH;NTTH;Fare;PF
 HUG;MGHT;Huehuetenango;GT
 HUF;;Terre Haute;US
@@ -6014,11 +6014,11 @@ HSG;RJFS;Saga;JP
 HSF;ZYSD;Suifenhe;CN
 HSC;ZGSG;Shaoguan;CN
 HSB;KHSB;Harrisburg;US
-HSA;UAIT;TurkéÒstan;KZ
+HSA;UAIT;Turk≈Ω≈Ñstan;KZ
 HRZ;SSHZ;Horizontina;BR
 HRY;YHBY;Ghan;AU
 HRS;FAHR;Harrismith;ZA
-HRR;;Campi§a;CO
+HRR;;Campi¬§a;CO
 HRO;KHRO;Harrison;US
 HRM;DAFH;Hassi R'Mel;DZ
 HRL;KHRL;Harlingen;US
@@ -6030,7 +6030,7 @@ HRF;;;MV
 HRE;;Harare;ZW
 HRC;;Zhayrem;KZ
 HRB;ZYHB;Harbin;CN
-HRA;LKMH;Mnichovo Hradiè≠té?;CZ
+HRA;LKMH;Mnichovo Hradi≈π¬≠t≈Ω?;CZ
 HQQ;ZHQQ;Anyang;CN
 HQM;KHQM;Hoquiam;US
 HQL;ZWTK;Tashikuergan;CN
@@ -6045,14 +6045,14 @@ HPE;;Hope Vale;AU
 HPB;PAHP;Hooper Bay;US
 HPA;NFTL;Lifuka;TO
 HOX;VYHL;Hommalinn;MM
-HOV;ENOV;«?rsta;NO
+HOV;ENOV;√á?rsta;NO
 HOU;KHOU;Houston;US
 HOT;KHOT;Hot Springs;US
 HOS;SAHC;Chos Malal;AR
 HOR;LPHR;Horta;PT
 HOQ;EDQM;Hof;DE
 HOP;KHOP;Fort Campbell;US
-HOO;;éêéük R'L†ßæp;VN
+HOO;;≈Ω¬ê≈Ω≈∫k R'L¬†¬ßƒæp;VN
 HON;KHON;Huron;US
 HOM;PAHO;Homer;US
 HOK;YHOO;Lajamanu;AU
@@ -6095,7 +6095,7 @@ HLT;YHML;;AU
 HLS;YSTH;;AU
 HLR;KHLR;Fort Cavazos (Killeen);US
 HLP;WIHH;Jakarta;ID
-HLO;;Onundarfj«Ùr«¯ur;IS
+HLO;;Onundarfj√á√¥r√á≈ôur;IS
 HLN;KHLN;Helena;US
 HLM;;Holland;US
 HLL;YHIL;Hillside;AU
@@ -6163,8 +6163,8 @@ HGE;SVHG;Higuerote;VE
 HGD;YHUG;Hughenden;AU
 HGA;HCMH;Hargeisa;SO
 HFT;ENHF;Hammerfest;NO
-HFS;ESOH;R«æda;SE
-HFN;BIHN;H«Ùfn;IS
+HFS;ESOH;R√áƒæda;SE
+HFN;BIHN;H√á√¥fn;IS
 HFF;KHFF;Hoffman;US
 HFE;ZSOF;Hefei;CN
 HFD;KHFD;Hartford;US
@@ -6223,7 +6223,7 @@ HAZ;;Hatzfeldhaven;PG
 HAY;SKAG;Aguachica;CO
 HAW;EGFE;Haverfordwest;GB
 HAV;MUHA;Havana;CU
-HAU;ENHD;Karm«˜y;NO
+HAU;ENHD;Karm√á√∑y;NO
 HAT;YHTL;Shelburne;AU
 HAS;OEHL;Ha'il;SA
 HAR;KCXY;Harrisburg;US
@@ -6245,11 +6245,11 @@ HAB;KHAB;Hamilton;US
 HAA;ENHK;Hasvik;NO
 GZW;OIIK;Qazvin;IR
 GZT;LTAJ;Gaziantep;TR
-GZP;LTFG;Gazipaè?a;TR
+GZP;LTFG;Gazipa≈π?a;TR
 GZO;AGGN;Gizo;SB
 GZM;LMMG;Gozo;MT
 GZI;OAGN;Ghazni;AF
-GZG;ZUGZ;Garz«¶ (Garz«¶);CN
+GZG;ZUGZ;Garz√á¬¶ (Garz√á¬¶);CN
 GYZ;;Cosmo Newbery;AU
 GYY;;Gary;US
 GYU;ZLGY;Guyuan (Yuanzhou);CN
@@ -6257,7 +6257,7 @@ GYS;ZUGU;Guangyuan (Lizhou);CN
 GYR;KGYR;Goodyear;US
 GYP;YGYM;;AU
 GYO;;Kabupaten Gayo Lues;ID
-GYN;SBGO;Goi«Ωnia;BR
+GYN;SBGO;Goi√áÀùnia;BR
 GYM;MMGM;Guaymas;MX
 GYL;YARG;;AU
 GYI;HRYG;Gisenyi;RW
@@ -6281,7 +6281,7 @@ GWL;VIGR;Gwalior;IN
 GWE;FVTL;Gweru;ZW
 GWD;OPGD;Gurandani;PK
 GWA;VYGW;Gwa;MM
-GVX;ESSK;G«œvle / Sandviken;SE
+GVX;ESSK;G√áƒévle / Sandviken;SE
 GVT;KGVT;Greenville;US
 GVR;SBGV;Governador Valadares;BR
 GVP;YGNV;;AU
@@ -6295,13 +6295,13 @@ GUY;KGUY;Guymon;US
 GUX;VAGN;;IN
 GUW;UATG;Atyrau;KZ
 GUV;AYML;Mougulu;PG
-GUU;BIGF;Grundarfj«Ùr«¯ur;IS
+GUU;BIGF;Grundarfj√á√¥r√á≈ôur;IS
 GUS;KGUS;Peru;US
 GUR;AYGN;Gurney;PG
 GUQ;SVGU;Guanare;VE
 GUP;KGUP;Gallup;US
 GUO;;Guriel;SO
-GUM;PGUM;Hag«æt§a;GU
+GUM;PGUM;Hag√áƒæt¬§a;GU
 GUL;YGLB;;AU
 GUJ;SBGW;Guaratingueta;BR
 GUI;SVGI;;VE
@@ -6341,7 +6341,7 @@ GSL;;Taltheilei Narrows;CA
 GSJ;MGSJ;Puerto San Jose;GT
 GSI;SOGS;Grand-Santi;GF
 GSH;KGSH;Goshen;US
-GSE;ESGP;G«Ùteborg;SE
+GSE;ESGP;G√á√¥teborg;SE
 GSC;YGSC;Gascoyne Junction;AU
 GSB;KGSB;Goldsboro;US
 GSA;WBKN;Long Miau;MY
@@ -6386,7 +6386,7 @@ GOY;UNIT;Tura;RU
 GOX;VOGA;Mopa;IN
 GOV;YPGV;Nhulunbuy;AU
 GOU;FKKR;Garoua;CM
-GOT;ESGG;G«Ùteborg;SE
+GOT;ESGG;G√á√¥teborg;SE
 GOS;YSMB;Gosford;AU
 GOR;HAGR;Gore;ET
 GOQ;ZLGM;Golmud;CN
@@ -6405,7 +6405,7 @@ GOC;AYGX;Gora;PG
 GOB;HAGB;Goba;ET
 GOA;LIMJ;Genova (GE);IT
 GNZ;FBGZ;Ghanzi;BW
-GNY;LTCS;è?anléÒurfa;TR
+GNY;LTCS;≈π?anl≈Ω≈Ñurfa;TR
 GNV;KGNV;Gainesville;US
 GNU;;Goodnews;US
 GNT;KGNT;Grants;US
@@ -6414,7 +6414,7 @@ GNR;SAHR;General Roca;AR
 GNN;HAGH;Ghinnir;ET
 GNM;SNGI;Guanambi;BR
 GNJ;UBBG;Ganja;AZ
-GNI;RCGI;L«¨dao;TW
+GNI;RCGI;L√á¬¨dao;TW
 GNG;KGNG;Gooding;US
 GNF;;Quincy;US
 GNE;;Gent;BE
@@ -6427,7 +6427,7 @@ GMU;KGMU;Greenville;US
 GMT;PAGZ;Granite Mountain;US
 GMS;;Guimaraes;BR
 GMR;NTGJ;;PF
-GMQ;ZLGL;Golog (Maq«¶n);CN
+GMQ;ZLGL;Golog (Maq√á¬¶n);CN
 GMP;RKSS;Seoul;KR
 GMO;DNGO;Gombe;NG
 GMN;NZGM;;NZ
@@ -6435,7 +6435,7 @@ GMM;FCOG;Gamboma;CG
 GMI;AYGT;Gasmata Island;PG
 GME;UMGG;Gomel;BY
 GMD;GMMB;Ben Slimane;MA
-GMC;;Puerto Carre§o;CO
+GMC;;Puerto Carre¬§o;CO
 GMB;HAGM;Gambela;ET
 GMA;FZFK;Gemena;CD
 GLZ;EHGR;Rijen;NL
@@ -6467,10 +6467,10 @@ GKL;YGKL;Great Keppel Island;AU
 GKK;VRMO;Huvadhu Atoll;MV
 GKH;VNGK;Gorkha;NP
 GKE;ETNG;Geilenkirchen;DE
-GKD;LTFK;G«Ùkzeada;TR
+GKD;LTFK;G√á√¥kzeada;TR
 GKA;AYGA;Goronka;PG
 GJT;KGJT;Grand Junction;US
-GJR;BIGJ;Gj«Ùgur;IS
+GJR;BIGJ;Gj√á√¥gur;IS
 GJM;SBGM;Guajara-Mirim;BR
 GJL;DAAV;Tahir;DZ
 GJA;MHNJ;Guanaja;HN
@@ -6488,7 +6488,7 @@ GIF;KGIF;Winter Haven;US
 GID;HBBE;Gitega;BI
 GIC;YBOI;Boigu Island;AU
 GIB;LXGB;Gibraltar;GI
-GHV;LRBV;Bra‘?ov (Ghimbav);RO
+GHV;LRBV;Bra√î?ov (Ghimbav);RO
 GHU;SAAG;Gualeguaychu;AR
 GHT;HLGT;Ghat;LY
 GHS;WALE;Melak-Borneo Island;ID
@@ -6514,7 +6514,7 @@ GGF;SNYA;Almeirim;BR
 GGE;KGGE;Georgetown;US
 GGD;YGDS;;AU
 GGC;FNBL;Lumbala N'guimbo;AO
-GGB;SWHP;«Ågua Boa;BR
+GGB;SWHP;√á¬Ågua Boa;BR
 GFY;FYGF;Grootfontein;NA
 GFR;LFRF;Breville-sur-Mer; Manche
 GFO;SYBT;Bartica;GY
@@ -6527,13 +6527,13 @@ GFD;KGFD;Greenfield;US
 GFA;;Great Falls;US
 GEY;KGEY;Greybull;US
 GEW;AYGC;Gewoia;PG
-GEV;ESNG;G«œllivare;SE
+GEV;ESNG;G√áƒéllivare;SE
 GET;YGEL;Moonyoonooka;AU
 GES;RPMR;General Santos;PH
 GER;MUNG;Nueva Gerona;CU
 GEO;SYCJ;Georgetown;GY
 GEM;FGMY;Mengomeyen;GQ
-GEL;SBNM;Santo «?ngelo;BR
+GEL;SBNM;Santo √á?ngelo;BR
 GEG;KGEG;Spokane;US
 GEF;AGEV;Liangia;SB
 GEE;YGTO;George Town;AU
@@ -6550,7 +6550,7 @@ GDR;;Angra dos Reis;BR
 GDQ;HAGN;Azezo;ET
 GDP;SNGD;Guadalupe;BR
 GDO;SVGD;Guasdualito;VE
-GDN;EPGD;Gdaè?sk;PL
+GDN;EPGD;Gda≈π?sk;PL
 GDM;KGDM;Gardner;US
 GDL;MMGL;Guadalajara;MX
 GDI;FEGL;Melle;CF
@@ -6612,7 +6612,7 @@ GAI;KGAI;Gaithersburg;US
 GAH;YGAY;Gayndah;AU
 GAG;KGAG;Gage;US
 GAF;DTTF;Gafsa;TN
-GAE;DTTG;Gab«˘s;TN
+GAE;DTTG;Gab√á≈Øs;TN
 GAD;KGAD;Gadsden;US
 GAC;;Gracias;HN
 GAB;KGAB;Gabbs;US
@@ -6646,7 +6646,7 @@ FUB;;Fulleborn;PG
 FTY;KFTY;Atlanta;US
 FTX;FCOO;Owando;CG
 FTW;KFTW;Fort Worth;US
-FTU;FMSD;T«Ôlanaro;MG
+FTU;FMSD;T√áƒèlanaro;MG
 FTK;KFTK;Fort Knox;US
 FTI;NSFQ;Fitiuta Village;AS
 FTE;;El Calafate;AR
@@ -6668,10 +6668,10 @@ FRT;;Frutillar;CL
 FRS;;San Benito;GT
 FRR;KFRR;Front Royal;US
 FRQ;;Feramin;PG
-FRO;ENFL;Flor«˜;NO
+FRO;ENFL;Flor√á√∑;NO
 FRN;PAFR;Fort Richardson;US
 FRM;KFRM;Fairmont;US
-FRL;LIPK;Forl«™ (FC);IT
+FRL;LIPK;Forl√á≈û (FC);IT
 FRK;FSSF;Fregate Island;SC
 FRI;KFRI;Fort Riley (Junction City);US
 FRH;KFRH;French Lick;US
@@ -6704,7 +6704,7 @@ FNT;KFNT;Flint;US
 FNR;PANR;Funter Bay;US
 FNL;KFNL;Loveland;US
 FNJ;ZKPY;Pyongyang;KP
-FNI;LFTW;N«©mes/Garons;FR
+FNI;LFTW;N√á¬©mes/Garons;FR
 FNH;HAFN;Fincha;ET
 FNG;DFEF;Fada N'gourma;BF
 FNE;AYFA;Fane Mission;PG
@@ -6750,7 +6750,7 @@ FKN;KFKN;Franklin;US
 FKL;KFKL;Franklin;US
 FKJ;RJNF;Fukui;JP
 FKI;FZIC;Kisangani;CD
-FKB;EDSB;Rheinm«¨nster;DE
+FKB;EDSB;Rheinm√á¬¨nster;DE
 FJR;OMFJ;Fujairah;AE
 FIZ;YFTZ;;AU
 FIN;AYFI;Buki;PG
@@ -6773,7 +6773,7 @@ FFM;KFFM;Fergus Falls;US
 FFL;KFFL;Fairfield;US
 FFD;EGVA;Fairford; Gloucestershire
 FFA;KFFA;Kill Devil Hills;US
-FEZ;GMFF;Sa«Óss;MA
+FEZ;GMFF;Sa√á√Æss;MA
 FET;KFET;Fremont;US
 FEP;KFEP;Freeport;US
 FEN;SBFN;Fernando de Noronha;BR
@@ -6787,12 +6787,12 @@ FDR;KFDR;Frederick;US
 FDK;KFDK;Frederick;US
 FDH;EDNY;Friedrichshafen;DE
 FDF;TFFF;Fort-de-France;MQ
-FDE;ENBL;F«˜rde;NO
+FDE;ENBL;F√á√∑rde;NO
 FDA;;Fundacion;CO
 FCY;KFCY;Forrest City;US
 FCS;KFCS;Fort Carson;US
 FCO;LIRF;Rome;IT
-FCN;ETMN;Wurster Nordseek«¨ste;DE
+FCN;ETMN;Wurster Nordseek√á¬¨ste;DE
 FCM;KFCM;Minneapolis;US
 FCH;KFCH;Fresno;US
 FCB;FAFB;Ficksburg;ZA
@@ -6812,7 +6812,7 @@ FAY;KFAY;Fayetteville;US
 FAV;NTGF;;PF
 FAU;OOFD;Fahud;OM
 FAT;KFAT;Fresno;US
-FAS;BIFF;Faskr«ß«¯sfj«Ùr«¯ur;IS
+FAS;BIFF;Faskru√á≈ôsfj√á√¥r√á≈ôur;IS
 FAR;KFAR;Fargo;US
 FAQ;AYFR;Frieda River;PG
 FAO;LPFR;Faro;PT
@@ -6858,8 +6858,8 @@ EVD;;Eva Downs;AU
 EUX;TNCE;Oranjestad;BQ
 EUQ;RPVS;San Jose;PH
 EUO;;Paratebueno;CO
-EUN;GMML;El Aai«ßn;EH
-EUM;EDHN;Neum«¨nster;DE
+EUN;GMML;El Aaiun;EH
+EUM;EDHN;Neum√á¬¨nster;DE
 EUG;KEUG;Eugene;US
 EUF;KEUF;Eufaula;US
 EUE;;Eureka;US
@@ -6883,7 +6883,7 @@ ESO;;Espanola;US
 ESN;KESN;Easton;US
 ESM;SETN;Tachina;EC
 ESL;URWI;Elista;RU
-ESK;LTBI;Eskiè?ehir;TR
+ESK;LTBI;Eski≈π?ehir;TR
 ESH;EGKA;Brighton; East Sussex
 ESG;SGME;Mariscal Estigarribia;PY
 ESF;KESF;Alexandria;US
@@ -6912,10 +6912,10 @@ ERC;LTCD;Erzincan;TR
 ERB;YERN;;AU
 ERA;HCMU;Erigavo;SO
 EQS;SAVE;Esquel;AR
-EPU;EEPU;P«œrnu;EE
+EPU;EEPU;P√áƒérnu;EE
 EPT;AYEL;Eliptamin;PG
 EPR;YESP;Esperance;AU
-EPL;LFSG;«?pinal;FR
+EPL;LFSG;√á?pinal;FR
 EPH;KEPH;Ephrata;US
 EPG;;Weeping Water;US
 EPA;SADP;El Palomar;AR
@@ -7007,13 +7007,13 @@ EIL;PAEI;Fairbanks;US
 EIK;;Yeysk;RU
 EIH;;Einasleigh;AU
 EIE;UNII;Yeniseysk;RU
-EIB;EDGE;H«Ùrselberg-Hainich;DE
+EIB;EDGE;H√á√¥rselberg-Hainich;DE
 EHU;ZHEC;Ezhou;CN
 EHM;PAEH;Cape Newenham;US
 EHL;SAVB;El Bolson;AR
 EGX;PAII;Egegik;US
 EGV;KEGV;Eagle River;US
-EGS;BIEG;Egilssta«¯ir;IS
+EGS;BIEG;Egilssta√á≈ôir;IS
 EGP;;Eagle Pass;US
 EGO;UUOB;Belgorod;RU
 EGN;HSGN;Geneina;SD
@@ -7117,7 +7117,7 @@ DVL;KDVL;Devils Lake;US
 DVK;;Diavik;CA
 DVD;;Andavadoaka;MG
 DUT;PADU;Unalaska;US
-DUS;EDDL;D«¨sseldorf;DE
+DUS;EDDL;D√á¬¨sseldorf;DE
 DUR;FALE;Durban;ZA
 DUQ;;Duncan;CA
 DUM;WIBD;Dumai;ID
@@ -7146,7 +7146,7 @@ DSY;;Ta Noun;KH
 DSX;RCLM;Kaohsiung (Cijin - Pratas Island);TW
 DSV;KDSV;Dansville;US
 DSS;GOBD;Dakar;SN
-DSO;ZKSD;Sèèndèèng-ni;KP
+DSO;ZKSD;S≈π≈πnd≈π≈πng-ni;KP
 DSN;ZBDS;Ordos;CN
 DSM;KDSM;Des Moines;US
 DSK;OPDI;Dera Ismael Khan;PK
@@ -7254,7 +7254,7 @@ DKR;GOOY;Dakar;SN
 DKK;KDKK;Dunkirk;US
 DKI;YDKI;Dunk Island;AU
 DKA;DNKT;Katsina;NG
-DJU;BIDV;Dj«ßpivogur;IS
+DJU;BIDV;Djupivogur;IS
 DJR;;;AU
 DJO;DIDL;;CI
 DJN;;Delta Junction;US
@@ -7264,7 +7264,7 @@ DJG;DAAJ;Djanet;DZ
 DJE;DTTJ;Mellita;TN
 DJB;WIJJ;Jambi;ID
 DJA;DBBD;Djougou;BJ
-DIY;LTCC;DiyarbakéÒr;TR
+DIY;LTCC;Diyarbak≈Ω≈Ñr;TR
 DIW;;Dickwella;LK
 DIU;VADU;Diu;IN
 DIS;FCPD;Dolisie;CG
@@ -7330,14 +7330,14 @@ DEC;KDEC;Decatur;US
 DEB;LHDC;Debrecen;HU
 DEA;OPDG;Dera Ghazi Khan;PK
 DDU;;Dadu;PK
-DDR;ZUDR;Xigaz«¶ (Dingri);CN
+DDR;ZUDR;Xigaz√á¬¶ (Dingri);CN
 DDN;YDLT;;AU
 DDM;;;PG
 DDI;;Whitsundays;AU
 DDG;ZYDD;Dandong (Zhenxing);CN
 DDD;VRMU;Kudahuvadhoo;MV
 DDC;KDDC;Dodge City;US
-DCY;ZUDC;Garz«¶ (Daocheng);CN
+DCY;ZUDC;Garz√á¬¶ (Daocheng);CN
 DCU;KDCU;Decatur;US
 DCT;MYRD;Duncan Town;BS
 DCN;YCIN;Derby;AU
@@ -7347,7 +7347,7 @@ DCI;LIED;Decimomannu;IT
 DCF;TDCF;Canefield;DM
 DCA;KDCA;Washington;US
 DBY;YDAY;;AU
-DBV;LDDU;é?ilipi;HR
+DBV;LDDU;≈Ω?ilipi;HR
 DBU;;Dambulla;LK
 DBT;HADT;Debre Tabor;ET
 DBS;;Dubois;US
@@ -7401,7 +7401,7 @@ CZF;PACZ;Cape Romanzof;US
 CZE;SVCR;Coro;VE
 CZC;;Copper Center;US
 CZB;;Cruz Alta;BR
-CZA;MMCT;Tin«ßm;MX
+CZA;MMCT;Tinum;MX
 CYZ;RPUY;Cauayan City;PH
 CYX;UESS;Cherskiy;RU
 CYW;MMCY;Celaya;MX
@@ -7463,7 +7463,7 @@ CVI;;Caleta Olivia;AR
 CVH;;Lafontaine;AR
 CVG;KCVG;Cincinnati / Covington;US
 CVF;LFLJ;Saint-Bon;FR
-CVE;SKCV;Cove§as;CO
+CVE;SKCV;Cove¬§as;CO
 CVC;YCEE;;AU
 CVB;AYCB;Chungribu;PG
 CUZ;SPZO;Cusco;PE
@@ -7474,9 +7474,9 @@ CUT;SAZW;Cutral-Co;AR
 CUS;;Columbus;US
 CUR;TNCC;Willemstad;CW
 CUQ;YCOE;Coen;AU
-CUP;SVCP;Car«ßpano;VE
-CUO;SKCR;Carur«ß;CO
-CUN;MMUN;Canc«ßn;MX
+CUP;SVCP;Carupano;VE
+CUO;SKCR;Caruru;CO
+CUN;MMUN;Cancun;MX
 CUM;SVCU;;VE
 CUL;MMCL;Culiacan;MX
 CUK;;Caye Caulker;BZ
@@ -7487,9 +7487,9 @@ CUG;YCUA;;AU
 CUF;LIMZ;Levaldigi (CN);IT
 CUE;SECU;Cuenca;EC
 CUD;YCDR;Caloundra;AU
-CUC;SKCC;C«ßcuta;CO
+CUC;SKCC;Cucuta;CO
 CUB;KCUB;Columbia;US
-CUA;;Comond«ß;MX
+CUA;;Comondu;MX
 CTZ;KCTZ;Clinton;US
 CTY;KCTY;Cross City;US
 CTX;;Cortland;US
@@ -7521,7 +7521,7 @@ CSX;ZGHA;Changsha (Changsha);CN
 CSV;KCSV;Crossville;US
 CSU;SSSC;Santa Cruz do Sul;BR
 CST;NFCS;Castaway Island;FJ
-CSS;SSCL;Cassil«Ωndia;BR
+CSS;SSCL;Cassil√áÀùndia;BR
 CSR;;Casuarito;CO
 CSQ;KCSQ;Creston;US
 CSO;EDBC;Hecklingen;DE
@@ -7534,10 +7534,10 @@ CSG;KCSG;Columbus;US
 CSF;LFPC;Creil;FR
 CSE;;Crested Butte;US
 CSD;;Cresswell Downs;AU
-CSC;MRMJ;Ca§as;CR
-CSB;LRCS;Caransebeè?;RO
+CSC;MRMJ;Ca¬§as;CR
+CSB;LRCS;Caransebe≈π?;RO
 CSA;;Colonsay;GB
-CRZ;UTAV;T«¨rkmenabat;TM
+CRZ;UTAV;T√á¬¨rkmenabat;TM
 CRY;;Carlton Hill;AU
 CRX;KCRX;Corinth;US
 CRW;KCRW;Charleston;US
@@ -7623,7 +7623,7 @@ CNV;SNED;Canavieiras;BR
 CNU;KCNU;Chanute;US
 CNT;;Charata;AR
 CNS;YBCS;Cairns;AU
-CNR;SCRA;Cha§aral;CL
+CNR;SCRA;Cha¬§aral;CL
 CNQ;SARC;Corrientes;AR
 CNP;BGCO;Neerlerit Inaat;GL
 CNO;KCNO;Chino;US
@@ -7634,10 +7634,10 @@ CNK;KCNK;Concordia;US
 CNJ;YCCY;Cloncurry;AU
 CNI;ZYCH;Dalian (Changhai);CN
 CNH;KCNH;Claremont;US
-CNG;LFBG;Cognac/Ch«Ωteaubernard;FR
+CNG;LFBG;Cognac/Ch√áÀùteaubernard;FR
 CNF;SBCF;Belo Horizonte;BR
 CNE;;Penrose;US
-CND;LRCK;Mihail Kogéülniceanu;RO
+CND;LRCK;Mihail Kog≈Ω≈∫lniceanu;RO
 CNC;YCCT;;AU
 CNB;YCNM;;AU
 CNA;MMCA;Cananea;MX
@@ -7690,7 +7690,7 @@ CLG;;Coalinga;US
 CLE;KCLE;Cleveland;US
 CLD;KCRQ;Carlsbad;US
 CLA;VGCM;Comilla;BD
-CKZ;LTBH;«?anakkale;TR
+CKZ;LTBH;√á?anakkale;TR
 CKY;GUCY;Conakry;GN
 CKX;;Chicken;US
 CKW;YCHK;Christmas Creek Mine;AU
@@ -7743,7 +7743,7 @@ CIM;SKCM;Cimitarra;CO
 CIL;;Council;US
 CIK;PACI;Chalkyitsik;US
 CIJ;SLCO;Cobija;BO
-CII;LTBD;AydéÒn;TR
+CII;LTBD;Ayd≈Ω≈Ñn;TR
 CIH;ZBCZ;Changzhi;CN
 CIG;KCAG;Craig;US
 CIF;ZBCF;Chifeng;CN
@@ -7757,7 +7757,7 @@ CHX;MPCH;Changuinola;PA
 CHU;;Chuathbaluk;US
 CHT;NZCI;Te One;NZ
 CHS;KCHS;Charleston;US
-CHR;LFLX;Ch«Ωteauroux;FR
+CHR;LFLX;Ch√áÀùteauroux;FR
 CHQ;LGSA;Souda;GR
 CHP;;Circle Hot Springs;US
 CHO;KCHO;Charlottesville;US
@@ -7770,7 +7770,7 @@ CHH;SPPY;Chachapoyas;PE
 CHG;ZYCY;Shuangta; Chaoyang
 CHF;RKPE;Jinhae;KR
 CHE;EECL;Tallinn;EE
-CHD;;Mucug«¶;BR
+CHD;;Mucug√á¬¶;BR
 CHC;NZCH;Christchurch;NZ
 CHB;OPCL;Chilas;PK
 CHA;KCHA;Chattanooga;US
@@ -7783,7 +7783,7 @@ CGR;SBCG;Campo Grande;BR
 CGQ;ZYCC;Changchun;CN
 CGP;VGEG;Chattogram (Chittagong);BD
 CGO;ZHCC;Zhengzhou;CN
-CGN;EDDK;K«Ùln (Cologne);DE
+CGN;EDDK;K√á√¥ln (Cologne);DE
 CGM;RPMH;Mambajao;PH
 CGL;SPGL;;PE
 CGK;WIII;Jakarta;ID
@@ -7874,7 +7874,7 @@ CCR;KCCR;Concord;US
 CCP;SCIE;Concepcion;CL
 CCO;SKCI;Puerto Lopez;CO
 CCN;OACC;Chaghcharan;AF
-CCM;;Crici«ßma;BR
+CCM;;Criciuma;BR
 CCL;YCCA;Chinchilla;AU
 CCK;YPCC;West Island;CC
 CCJ;VOCL;Calicut;IN
@@ -7937,7 +7937,7 @@ CAC;SBCA;Cascavel;BR
 CAB;FNCA;Cabinda;AO
 CAA;MHGE;El Aguacate;HN
 BZZ;EGVN;Carterton; Oxfordshire
-BZY;LUBL;Béül‘?i;MD
+BZY;LUBL;B≈Ω≈∫l√î?i;MD
 BZX;ZUBZ;Bazhong (Enyang);CN
 BZV;FCBB;Brazzaville;CG
 BZU;FZKJ;Buta;CD
@@ -7950,7 +7950,7 @@ BZM;;Bemolanga;MG
 BZL;VGBR;Barisal;BD
 BZK;UUBP;Bryansk;RU
 BZJ;ZSBO;Bozhou;CN
-BZI;LTBF;BaléÒkesir;TR
+BZI;LTBF;Bal≈Ω≈Ñkesir;TR
 BZH;;Bumi;ZW
 BZG;EPBY;Bydgoszcz;PL
 BZF;;Redding;US
@@ -7965,7 +7965,7 @@ BYV;;Colombo;LK
 BYU;EDQD;Bindlach;DE
 BYT;EIBN;Bantry;IE
 BYS;KBYS;Fort Irwin/Barstow;US
-BYR;EKLS;L«›s«˜;DK
+BYR;EKLS;L√á√ùs√á√∑;DK
 BYQ;;Bunju Island;ID
 BYP;YBRY;;AU
 BYO;SBDB;Bonito;BR
@@ -7986,7 +7986,7 @@ BXZ;AYNS;Bunsil - Umboi Island;PG
 BXY;UAOL;Baikonur;KZ
 BXX;;Borama;SO
 BXW;WARW;Bawean;ID
-BXV;BIBV;Brei«¯dalsvik;IS
+BXV;BIBV;Brei√á≈ôdalsvik;IS
 BXU;RPME;Butuan;PH
 BXT;WALC;Bontang-Borneo Island;ID
 BXS;;Borrego Springs;US
@@ -8040,7 +8040,7 @@ BVK;SLHJ;Itenes;BO
 BVJ;USDB;Bovanenkovo;RU
 BVI;YBDV;;AU
 BVH;SBVH;Vilhena;BR
-BVG;ENBV;Berlev«æg;NO
+BVG;ENBV;Berlev√áƒæg;NO
 BVE;LFSL;Brive;FR
 BVC;GVBA;Rabil;CV
 BVB;SBBV;Boa Vista;BR
@@ -8108,7 +8108,7 @@ BSP;AYBH;Bensbach;PG
 BSO;RPUO;Basco;PH
 BSN;FEFS;Bossangoa;CF
 BSM;OINJ;Amol;IR
-BSL;LFSB;B«Ωle / Mulhouse;FR
+BSL;LFSB;B√áÀùle / Mulhouse;FR
 BSK;DAUB;Biskra;DZ
 BSJ;YBNS;Bairnsdale;AU
 BSI;RPLE;Balesin;PH
@@ -8121,7 +8121,7 @@ BSB;SBBR;Brasilia;BR
 BSA;HCMF;Bosaso;SO
 BRY;KBRY;Bardstown;US
 BRX;MDBH;Barahona;DO
-BRW;PABR;Utqiaé≠vik;US
+BRW;PABR;Utqia≈Ω¬≠vik;US
 BRU;EBBR;Zaventem;BE
 BRT;YBTI;Wurrumiyanga;AU
 BRS;EGGD;Bristol;GB
@@ -8184,7 +8184,7 @@ BOT;AYET;Bosset;PG
 BOS;KBOS;Boston;US
 BOR;;Ton Phueng;LA
 BOP;FEFO;Bouar;CF
-BOO;ENBO;Bod«˜;NO
+BOO;ENBO;Bod√á√∑;NO
 BON;TNCB;Kralendijk;BQ
 BOM;VABB;Mumbai;IN
 BOK;KBOK;Brookings;US
@@ -8207,7 +8207,7 @@ BNS;SVBI;Barinas;VE
 BNR;DFOB;Banfora;BF
 BNP;OPBN;Bannu;PK
 BNO;KBNO;Burns;US
-BNN;ENBN;Br«˜nn«˜y;NO
+BNN;ENBN;Br√á√∑nn√á√∑y;NO
 BNM;AYBD;Bodinumu;PG
 BNL;KBNL;Barnwell;US
 BNK;YBNA;Ballina;AU
@@ -8257,7 +8257,7 @@ BLS;YBLL;;AU
 BLR;VOBL;Bangalore;IN
 BLQ;LIPE;Bologna;IT
 BLP;;Bellavista;PE
-BLO;BIBL;Bl«Ùnduos;IS
+BLO;BIBL;Bl√á√¥nduos;IS
 BLN;YBLA;Benalla;AU
 BLM;KBLM;Belmar/Farmingdale;US
 BLL;EKBI;Billund;DK
@@ -8316,12 +8316,12 @@ BJJ;KBJJ;Wooster;US
 BJI;KBJI;Bemidji;US
 BJH;VNBG;Bajhang;NP
 BJG;;Kota Mobagu;ID
-BJF;ENBS;B«ætsfjord;NO
+BJF;ENBS;B√áƒætsfjord;NO
 BJE;;Baleela Base Camp;SD
-BJD;BIBK;Bakkafj«Ùr«¯ur;IS
+BJD;BIBK;Bakkafj√á√¥r√á≈ôur;IS
 BJC;KBJC;Denver;US
 BJB;OIMN;Bojnord;IR
-BJA;DAAE;Beja«Óa;DZ
+BJA;DAAE;Beja√á√Æa;DZ
 BIY;FABE;Bisho;ZA
 BIX;KBIX;Biloxi;US
 BIW;;;AU
@@ -8386,10 +8386,10 @@ BGN;UESG;Belaya Gora;RU
 BGM;KBGM;Binghamton;US
 BGL;VNBL;Baglung;NP
 BGK;;Big Creek;BZ
-BGJ;BIBF;Borgarfj«Ùr«¯ur eystri;IS
+BGJ;BIBF;Borgarfj√á√¥r√á≈ôur eystri;IS
 BGI;TBPB;Bridgetown;BB
 BGH;GQNE;Boghe;MR
-BGG;LTCU;Bing«Ùl;TR
+BGG;LTCU;Bing√á√¥l;TR
 BGF;FEFF;Bangui;CF
 BGE;KBGE;Bainbridge;US
 BGD;KBGD;Borger;US
@@ -8398,13 +8398,13 @@ BGB;FOGB;Booue;GA
 BGA;SKBG;Bucaramanga;CO
 BFY;ZSBA;Bengbu;CN
 BFX;FKKU;Bafoussam;CM
-BFW;DAOS;Sidi Bel Abb«˘s;DZ
+BFW;DAOS;Sidi Bel Abb√á≈Øs;DZ
 BFV;VTUO;Buriram;TH
 BFU;ZSBB;Bengbu;CN
 BFT;KARW;Beaufort;US
 BFS;EGAA;Belfast;GB
 BFR;KBFR;Bedford;US
-BFQ;;Puerto Pi§a;PA
+BFQ;;Puerto Pi¬§a;PA
 BFP;KBVI;Beaver Falls;US
 BFO;FVCZ;Chiredzi;ZW
 BFN;FABL;Bloemfontain;ZA
@@ -8450,7 +8450,7 @@ BDY;;Bandon;US
 BDX;;Broadus;US
 BDW;YBDF;;AU
 BDV;FZRB;Moba;CD
-BDU;ENDU;M«ælselv;NO
+BDU;ENDU;M√áƒælselv;NO
 BDT;FZFD;Gbadolite;CD
 BDS;LIBR;Brindisi;IT
 BDR;KBDR;Bridgeport;US
@@ -8458,7 +8458,7 @@ BDQ;VABO;Vadodara;IN
 BDP;VNCG;Bhadrapur;NP
 BDO;WICC;Bandung;ID
 BDN;OPTH;Badin;PK
-BDM;LTBG;BandéÒrma;TR
+BDM;LTBG;Band≈Ω≈Ñrma;TR
 BDL;KBDL;Hartford;US
 BDK;DIBU;Bondoukou;CI
 BDJ;WAOO;Landasan Ulin;ID
@@ -8483,7 +8483,7 @@ BCQ;;Brak;LY
 BCP;AYBC;Bambu;PG
 BCO;HABC;Baco;ET
 BCN;LEBL;Barcelona;ES
-BCM;LRBC;Bacéüu;RO
+BCM;LRBC;Bac≈Ω≈∫u;RO
 BCL;MRBC;Pococi;CR
 BCK;;;AU
 BCJ;;Mianyang;CN
@@ -8521,7 +8521,7 @@ BBC;KBYY;Bay City;US
 BBB;KBBB;Benson;US
 BBA;SCBA;Balmaceda;CL
 BAZ;SWBC;Barcelos;BR
-BAY;LRBM;Téüu‘?ii-Méügheréüu‘?;RO
+BAY;LRBM;T≈Ω≈∫u√î?ii-M≈Ω≈∫gher≈Ω≈∫u√î?;RO
 BAX;UNBB;Barnaul;RU
 BAV;ZBOW;Baotou;CN
 BAT;;Barretos;BR
@@ -8591,7 +8591,7 @@ AXK;OYAT;Ataq;YE
 AXJ;RJDA;Amakusa;JP
 AXG;KAXA;Algona;US
 AXF;ZBAL;Bayanhot;CN
-AXE;;Xanxer«¶;BR
+AXE;;Xanxer√á¬¶;BR
 AXD;LGAL;Alexandroupolis;GR
 AXC;YAMC;;AU
 AXB;;Alexandria Bay;US
@@ -8767,8 +8767,8 @@ AOJ;RJSA;Aomori;JP
 AOI;LIPY;Falconara Marittima (AN);IT
 AOH;KAOH;Lima;US
 AOG;ZYAS;Anshan;CN
-AOE;LTBY;Eskiè?ehir;TR
-AOD;;Abou-De«Óa;TD
+AOE;LTBY;Eski≈π?ehir;TR
+AOD;;Abou-De√á√Æa;TD
 AOC;EDAC;Nobitz;DE
 AOB;;;PG
 ANZ;;Angus Downs Station;AU
@@ -8789,7 +8789,7 @@ ANL;;Andulo;AO
 ANK;LTAD;Ankara;TR
 ANJ;FCBZ;Zanaga;CG
 ANI;PANI;Aniak;US
-ANG;LFBU;Angoul«¶me;FR
+ANG;LFBU;Angoul√á¬¶me;FR
 ANF;SCFA;Antofagasta;CL
 ANE;LFJR;Angers;FR
 AND;KAND;Anderson;US
@@ -8874,7 +8874,7 @@ AJN;FMCV;Ouani;KM
 AJL;VELP;Aizawl (Lengpui);IN
 AJK;OIHR;Araak;IR
 AJJ;GQNJ;Akjoujt;MR
-AJI;LTCO;Aé?réÒ;TR
+AJI;LTCO;A≈Ω?r≈Ω≈Ñ;TR
 AJF;OESK;Al-Jawf;SA
 AJA;LFKJ;Ajaccio;FR
 AIZ;KAIZ;Kaiser Lake Ozark;US
@@ -8899,7 +8899,7 @@ AIE;AYAO;Aiome;PG
 AID;KAID;Anderson;US
 AIC;;Bigatyelang Island;MH
 AIA;KAIA;Alliance;US
-AHZ;LFHU;Huez; Is«˘re
+AHZ;LFHU;Huez; Is√á≈Øre
 AHY;;Ambatolahy;MG
 AHU;GMTA;Al Hoceima;MA
 AHS;MHAH;Ahuas;HN
@@ -8933,7 +8933,7 @@ AGL;AYWG;Wanigela;PG
 AGK;;Kagua;PG
 AGJ;RORA;Aguni;JP
 AGI;SMWA;Wageningen;SR
-AGH;ESTA;«?ngelholm;SE
+AGH;ESTA;√á?ngelholm;SE
 AGG;;Angoram;PG
 AGF;LFBA;Agen;FR
 AGE;EDWG;Wangerooge;DE
@@ -8959,7 +8959,7 @@ AEY;BIAR;Akureyri;IS
 AEX;KAEX;Alexandria;US
 AEU;OIBA;Abu Musa;IR
 AET;PFAL;Allakaket;US
-AES;ENAL;«?lesund;NO
+AES;ENAL;√á?lesund;NO
 AER;URSS;Sochi;RU
 AEQ;;Chifeng;CN
 AEP;SABE;Buenos Aires;AR
@@ -8991,7 +8991,7 @@ ADJ;OJAM;Amman;JO
 ADI;FYAR;Arandis;NA
 ADH;UEEA;Aldan;RU
 ADG;KADG;Adrian;US
-ADF;LTCP;AdéÒyaman;TR
+ADF;LTCP;Ad≈Ω≈Ñyaman;TR
 ADE;OYAA;Aden;YE
 ADD;HAAB;Addis Ababa;ET
 ADC;AYAN;Andekombe;PG
@@ -9007,7 +9007,7 @@ ACS;UNKS;Achinsk;RU
 ACR;SKAC;Araracuara;CO
 ACP;OITM;Maragheh;IR
 ACO;;Cobano;CR
-ACN;MMCC;Ciudad Acu§a;MX
+ACN;MMCC;Ciudad Acu¬§a;MX
 ACM;;Arica;CO
 ACK;KACK;Nantucket;US
 ACJ;VCCA;Anuradhapura;LK
@@ -9141,7 +9141,7 @@ AAA;NTGA;Anaa;PF
 ;2246;EA. ENRIQUETA;AR
 ;2247;EL LABRIEGO;AR
 ;2248;DOS ADELAS S.A.;AR
-;2249;EA. SAN MIGUEL-CÖRDOBA;AR
+;2249;EA. SAN MIGUEL-C‚Ä¶RDOBA;AR
 ;2250;ROWAN LAS HERAS;AR
 ;2251;EA. SAN SIMON;AR
 ;2252;EA. EL PALOMAR;AR
@@ -9180,7 +9180,7 @@ AAA;NTGA;Anaa;PF
 ;2292;EL ROBLEDAL DE LOS ARROYOS;AR
 ;2293;EA. LA ERCILIA;AR
 ;2294;LA BELGICA;AR
-;2296;ESCUELA MILITAR DE MONTAæA;AR
+;2296;ESCUELA MILITAR DE MONTAƒæA;AR
 ;2298;PUERTO SAN CARLOS;AR
 ;2299;VILLA LA ANGOSTURA;AR
 ;2300;POLICLINICO DEL VIDRIO;AR
@@ -9216,7 +9216,7 @@ AAA;NTGA;Anaa;PF
 ;2336;EA. LOS RODEOS;AR
 ;2337;ROVEY- JOVITA;AR
 ;2340;ISOARDI;AR
-;2341;JEFATURA DE POLICIA DE ENTRE RôOS;AR
+;2341;JEFATURA DE POLICIA DE ENTRE R‚Ñ¢OS;AR
 ;2342;CHANCANI;AR
 ;2343;EA. LAS MATILDES;AR
 ;2344;EA. EL CARACOL;AR
@@ -9281,12 +9281,12 @@ AAA;NTGA;Anaa;PF
 ;2430;LA INVERNADA;AR
 ;2431;TRES PROV. FORESTACIONES;AR
 ;2432;CASTELLI (EX AD.);AR
-;2433;SAN FRANCISCO  DEL CHAæAR;AR
+;2433;SAN FRANCISCO  DEL CHAƒæAR;AR
 ;2434;EO. SAN ANTONIO-BS.AS.;AR
 ;2435;EA. ARGENTINAS;AR
 ;2436;HOTEL GOLF ASCOCHINGA;AR
 ;2437;OLIVEROS;AR
-;2438;EA. LAS CAæAS;AR
+;2438;EA. LAS CAƒæAS;AR
 ;2439;EO. SANTO DOMINGO;AR
 ;2440;EO. DON ATILIO;AR
 ;2443;EA. OSCURO;AR
@@ -9326,7 +9326,7 @@ AAA;NTGA;Anaa;PF
 ;2479;EA. SAN GABRIEL;AR
 ;2480;EA. LA LEONOR;AR
 ;2481;NUEVO MILENIO;AR
-;2482;CERRO PUITÊ;AR
+;2482;CERRO PUITƒá;AR
 ;2483;EA. DOS ABUELOS;AR
 ;2485;EA. EL EMBRUJO;AR
 ;2487;YUCHAN - FRANZINI;AR
@@ -9353,19 +9353,19 @@ AAA;NTGA;Anaa;PF
 ;2510;LOS MOLLES - QUEIJO;AR
 ;2511;EA. RINCON AMIGO;AR
 ;2512;RINCON DEL DIABLO;AR
-;2513;EA. AæA CUA;AR
+;2513;EA. AƒæA CUA;AR
 ;2514;EA. IBERA;AR
 ;2515;LA CAUTIVA;AR
 ;2516;EO. LA SISTINA;AR
 ;2518;HOSPITAL DOMINGO FUNES;AR
 ;2519;EA. LA MARIA;AR
-;2520;EA. CABAæA CAA CUPE;AR
-;2522;EA. LA CABAæA;AR
+;2520;EA. CABAƒæA CAA CUPE;AR
+;2522;EA. LA CABAƒæA;AR
 ;2523;LEVAGRO S.H.;AR
 ;2524;PICO TRUNCADO;AR
 ;2525;FINCA EL ZANJON;AR
 ;2527;AGROEDERA S.A.;AR
-;2528;QUINTA DOæA CATA;AR
+;2528;QUINTA DOƒæA CATA;AR
 ;2529;EO. LA RESERVA;AR
 ;2530;SANTA FLORIDA;AR
 ;2531;LOS HERMANOS;AR
@@ -9395,7 +9395,7 @@ AAA;NTGA;Anaa;PF
 ;2561;EA. LA TARUCA PAMPA;AR
 ;2562;POTRERO DE GARAY;AR
 ;2563;SANTILLO SERVICIOS S.R.L.;AR
-;2564;LA SEæORA DEL MILAGRO S.R.L.;AR
+;2564;LA SEƒæORA DEL MILAGRO S.R.L.;AR
 ;2565;EO. LA ARGENTINA;AR
 ;2566;EL GAUCHO;AR
 ;2567;CRIADERO;AR
@@ -9420,7 +9420,7 @@ AAA;NTGA;Anaa;PF
 ;2587;TRATAYEN;AR
 ;2588;COLONIA DURAN;AR
 ;2589;ARROCERA DESAGUADERO;AR
-;2591;EL LUCERO-CÖRDOBA;AR
+;2591;EL LUCERO-C‚Ä¶RDOBA;AR
 ;2592;LA LEONOR;AR
 ;2593;EUFEMIA / BONO;AR
 ;2594;GESSLER;AR
@@ -9528,12 +9528,12 @@ AAA;NTGA;Anaa;PF
 ;2706;EO. LA ESCONDIDA;AR
 ;2707;CAMPO SAN EDUARDO;AR
 ;2708;EA. LA MERCED;AR
-;2709;RIO UNIÖN;AR
-;2710;CABAæA EL RASTREADOR;AR
+;2709;RIO UNI‚Ä¶N;AR
+;2710;CABAƒæA EL RASTREADOR;AR
 ;2711;LA RIOJANA;AR
 ;2713;EL CUADRADO;AR
 ;2714;EL 38 S.A.;AR
-;2715;CABAæA LA BELLACA;AR
+;2715;CABAƒæA LA BELLACA;AR
 ;2716;BASE EUREKA;AR
 ;2717;BASE EL RETIRO;AR
 ;2718;EA. SAN EUGENIO;AR
@@ -9555,7 +9555,7 @@ AAA;NTGA;Anaa;PF
 ;2737;PLAZA DE MULAS;AR
 ;2738;NIDO DE CONDORES;AR
 ;2739;PLAZA ARGENTINA;AR
-;2740;PAMPA DE LAS LEæAS;AR
+;2740;PAMPA DE LAS LEƒæAS;AR
 ;2741;LAS AGUILAS;AR
 ;2742;EA. LA JOSEFINA;AR
 ;2743;COMANDANCIA FRIAS;AR
@@ -9586,7 +9586,7 @@ AAA;NTGA;Anaa;PF
 ;2771;LOS PIRPINTOS;AR
 ;2772;SANTA FELICITAS;AR
 ;2773;EA. EL PERICON;AR
-;2774;LAS PEæAS SUD / EA. LA MOROCHA;AR
+;2774;LAS PEƒæAS SUD / EA. LA MOROCHA;AR
 ;2775;URANGA / EA. SAN NICOLAS;AR
 ;2776;MIRAMAR/RUMACHELLA;AR
 ;2778;ESTACION TRANSFORMADORA COBOS;AR
@@ -9603,15 +9603,15 @@ AAA;NTGA;Anaa;PF
 ;2790;PILAR S.A.;AR
 ;2791;EA. EL RENACIMIENTO;AR
 ;2792;LAS DELICIAS;AR
-;2793;ZAæARTU;AR
+;2793;ZAƒæARTU;AR
 ;2794;EL DANUBIO / LA DULCE;AR
-;2796;EA. LA PORTEæA;AR
+;2796;EA. LA PORTEƒæA;AR
 ;2797;LA ADELINA;AR
 ;2798;EO. SANTA ROSA;AR
 ;2799;EO. 10 DE SEPTIEMBRE;AR
 ;2800;FINCA PORVENIR 8;AR
 ;2801;FINCA SURI POZO;AR
-;2802;CABAæA LOS GATOS;AR
+;2802;CABAƒæA LOS GATOS;AR
 ;2803;FINCA PORVENIR 5;AR
 ;2804;EA. PICHICO;AR
 ;2805;EA. EL RETIRO;AR
@@ -9628,7 +9628,7 @@ AAA;NTGA;Anaa;PF
 ;2817;SAN GABRIEL;AR
 ;2818;FALUCHO;AR
 ;2819;CENTELLA;AR
-;2820;EA. LOS PORTEæOS;AR
+;2820;EA. LOS PORTEƒæOS;AR
 ;2822;VILLA CASA DE PIEDRA;AR
 ;2823;LA HUMADA;AR
 ;2824;TALI SUMAJ;AR
@@ -9647,7 +9647,7 @@ AAA;NTGA;Anaa;PF
 ;2837;TELSEN;AR
 ;2838;BLUE;AR
 ;2839;SALTA FORESTAL - ECO DESARROLLO;AR
-;2840;CURUZÇ CUATIÊ / EA. EL YAGUARô;AR
+;2840;CURUZ‚Äö CUATIƒá / EA. EL YAGUAR‚Ñ¢;AR
 ;2841;CERRO NEGRO;AR
 ;2842;EO. EL PALOMAR;AR
 ;2843;LAGO CHOLILA;AR
@@ -9747,7 +9747,7 @@ AAA;NTGA;Anaa;PF
 ;2942;San Carlos;AR
 ;2943;ESTANCIA DON JUAN;AR
 ;2944;ESTABLECIMIENTO LOS LAURELES;AR
-;2945;YAPEYÇ - GENERAL SAN MARTIN;AR
+;2945;YAPEY‚Äö - GENERAL SAN MARTIN;AR
 ;2946;ESTANCIA CERRO BATISTIN;AR
 ;2947;GRANADERO BAIGORRIA;AR
 ;2948;LOMA CAMPANA;AR
@@ -9762,7 +9762,7 @@ AAA;NTGA;Anaa;PF
 ;2957;ESTANCIA SAN MIGUEL;AR
 ;2958;SAUCE CO;AR
 ;2959;GARELLO - PILAR;AR
-;2960;LAHUEN - CÖ;AR
+;2960;LAHUEN - C‚Ä¶;AR
 ;2961;MARTINEZ;AR
 ;2962;RESIDENCIA OFICIAL DEL GOBERNADOR;AR
 ;2963;OLIVEROS - GARNERO;AR
@@ -9796,7 +9796,7 @@ AAA;NTGA;Anaa;PF
 ;2991;ESTANCIA LOS CRISPINES;AR
 ;2992;ESTANCIA SAN MIGUEL;AR
 ;2993;LA LONJA;AR
-;2994;ACA-TIMBÇES;AR
+;2994;ACA-TIMB‚ÄöES;AR
 ;2995;LA TILA;AR
 ;2996;ESTANCIA SAN FRANCISCO;AR
 ;2997;SAN ISIDRO;AR
@@ -9809,13 +9809,13 @@ AAA;NTGA;Anaa;PF
 ;3004;10 DE MAYO;AR
 ;3005;LA DORITA;AR
 ;3006;DIAZ;AR
-;3007;MARIO JOSê BERTANI;AR
+;3007;MARIO JOS¬ê BERTANI;AR
 ;3008;SANTA HERMINIA;AR
-;3009;DOæA SUSANA;AR
+;3009;DOƒæA SUSANA;AR
 ;3010;EA. OJO DE AGUA;AR
 ;3011;ESTANCIA 8 DE DICIEMBRE;AR
 ;3012;LA GRAPPA;AR
-;3013;RINCÖN DE SANTA MARôA;AR
+;3013;RINC‚Ä¶N DE SANTA MAR‚Ñ¢A;AR
 ;3014;PAYNAKEN S.A.;AR
 ;3016;NUECES DE CATAMARCA;AR
 ;3017;RATONES OESTE II;AR
@@ -9828,14 +9828,14 @@ AAA;NTGA;Anaa;PF
 ;3024;ESTANCIA LAS CORZUELAS;AR
 ;3025;LA ESCOBITA;AR
 ;3026;SUIPACHA;AR
-;3027;TUNUYÊN;AR
+;3027;TUNUYƒáN;AR
 ;3028;FINCA CAMPO FUERTE;AR
 ;3029;TANCACHA / FASA;AR
 ;3030;GENARO PLAZA;AR
 ;3031;LOS CARDALES;AR
 ;3032;PUESTO EL PLUMERO;AR
 ;3033;DON OSVALDO;AR
-;3034;CURURÇ BARRY;AR
+;3034;CURUR‚Äö BARRY;AR
 ;3035;LA ESMERALDA;AR
 ;3036;EA. EL SILENCIO - BS AS;AR
 ;3037;EL CANDUCHO;AR
@@ -9879,33 +9879,33 @@ AAA;NTGA;Anaa;PF
 ;3076;RINCON DE ANIMAS;AR
 ;3077;CATRIEL;AR
 ;3078;PLAZA ESCOBAR;AR
-;3079;ESTABLECIMIENTO EL CHOCHÖN;AR
-;3080;DOæA CARMEN;AR
+;3079;ESTABLECIMIENTO EL CHOCH‚Ä¶N;AR
+;3080;DOƒæA CARMEN;AR
 ;3081;PTO. SAN CARLOS;AR
 ;3082;ESTANCIA LA ALPINA;AR
 ;3083;La Esperanza;AR
-;3084;DESPEæADEROSAEROCAMPO;AR
+;3084;DESPEƒæADEROSAEROCAMPO;AR
 ;3085;DON SALVADOR;AR
 ;3086;LUCIANO BARALE;AR
 ;3087;LAS HOJAS;AR
 ;3088;ESTANCIA SAN ESTEBAN;AR
 ;3089;MARIA LUISA;AR
-;3090;LAS BREæAS;AR
+;3090;LAS BREƒæAS;AR
 ;3091;DON DAVID;AR
 ;3092;THE VINES;AR
-;3093;EA LAS MARôAS - ENTRE RôOS;AR
+;3093;EA LAS MAR‚Ñ¢AS - ENTRE R‚Ñ¢OS;AR
 ;3094;SAN PABLO;AR
 ;3095;MANISEL;AR
-;3096;CAæADA HONDA;AR
+;3096;CAƒæADA HONDA;AR
 ;3097;DON ALEJANDRO;AR
 ;3098;GUNZIGER AGROPECUARIA;AR
 ;3099;AGROPECUARIA DON MANUEL;AR
 ;3100;SPLIF BARILOCHE;AR
-;3101;CAæADA DEL UCLE;AR
+;3101;CAƒæADA DEL UCLE;AR
 ;3102;BODEGA CASTEL CONEGLIANO;AR
 ;3103;ESTANCIA OVECHA RATY;AR
 ;3104;GOBERNADOR MACIA;AR
-;3105;ESTANCIA LA CONCEPCIÖN;AR
+;3105;ESTANCIA LA CONCEPCI‚Ä¶N;AR
 ;3106;EL LUCHADOR;AR
 ;3107;EMILIANO KAP;AR
 ;3108;ARMSTRONG - CRUCIANELLI;AR
@@ -9920,17 +9920,17 @@ AAA;NTGA;Anaa;PF
 ;3118;EL TAMBO;AR
 ;3119;ESTANCIA BELLA VISTA;AR
 ;3120;DON ROBERTO;AR
-;3121;AGRôCOLA GANADERA TINA;AR
+;3121;AGR‚Ñ¢COLA GANADERA TINA;AR
 ;3122;EA. EL PATRIA;AR
 ;3123;ESTANCIA LA GITANA;AR
-;3124;ESTANCIA SANTA MARôA;AR
+;3124;ESTANCIA SANTA MAR‚Ñ¢A;AR
 ;3125;LA CALERA;AR
 ;3126;DON PEDRO;AR
 ;3127;LOS GATOS COLORADOS;AR
-;3128;DOæA LUISA;AR
+;3128;DOƒæA LUISA;AR
 ;3130;LA CENTURIA;AR
 ;3133;ESTANCIA LA LUCIA;AR
-;3134;EA SAN PEDRO -ENTRE RôOS;AR
+;3134;EA SAN PEDRO -ENTRE R‚Ñ¢OS;AR
 ;3135;ARBOL BLANCO;AR
 ;3137;CHISCHACA;AR
 ;380;EA. ALEGRIA;AR
@@ -9972,8 +9972,8 @@ AAA;NTGA;Anaa;PF
 ;AYFF;;PG
 ;BGSQ;Saqqaq;GL
 ;BIBA;Bakki;IS
-;BIBR;B«ß«¯ardalur;IS
-;CCAA;H†Ø? Chi Minh;VN
+;BIBR;Bu√á≈ôardalur;IS
+;CCAA;H¬†≈ª? Chi Minh;VN
 ;CYAV;Winnipeg/Saint Andrews;CA
 ;CYAW;Halifax;CA
 ;CYAX;Lac du Bonnet;CA
@@ -10071,7 +10071,7 @@ AAA;NTGA;Anaa;PF
 ;EDFA;Wehrheim;DE
 ;EDFE;Egelsbach;DE
 ;EDFK;Bad Kissingen;DE
-;EDFP;Ober-M«Ùrlen;DE
+;EDFP;Ober-M√á√¥rlen;DE
 ;EDFQ;Allendorf (Eder);DE
 ;EDFZ;Mainz;DE
 ;EDGZ;Weinheim;DE
@@ -10080,45 +10080,45 @@ AAA;NTGA;Anaa;PF
 ;EDHO;Tornesch;DE
 ;EDKS;Iserlohn;DE
 ;EDKV;Dahlhem;DE
-;EDLD;H«¨nxe;DE
+;EDLD;H√á¬¨nxe;DE
 ;EDLS;Stadtlohn;DE
 ;EDLU;;DE
 ;EDMN;Tussenhausen;DE
-;EDPH;B«¨chenbach;DE
+;EDPH;B√á¬¨chenbach;DE
 ;EDQA;Bamberg;DE
-;EDRH;Hoppst«œdten;DE
+;EDRH;Hoppst√áƒédten;DE
 ;EDRN;Nannhausen;DE
-;EDRT;F«Ùhren;DE
+;EDRT;F√á√¥hren;DE
 ;EDRY;Speyer;DE
 ;EDSD;Sindelfingen;DE
 ;EDSF;Rickenbach;DE
-;EDSM;M«¨llheim;DE
+;EDSM;M√á¬¨llheim;DE
 ;EDSP;Ammerbuch;DE
 ;EDSX;Aspach;DE
-;EDTA;Wut«Ùschingen;DE
+;EDTA;Wut√á√¥schingen;DE
 ;EDTB;Baden-Baden;DE
 ;EDTF;Freiburg im Breisgau;DE
 ;EDUG;Gransee;DE
 ;EDUP;;DE
 ;EDVA;Bad Gandersheim;DE
 ;EDVQ;Gifhorn;DE
-;EDWO;Osnabr«¨ck;DE
+;EDWO;Osnabr√á¬¨ck;DE
 ;EDXA;Bramsche;DE
 ;EDXP;Harlesiel;DE
 ;EDXS;Zeven;DE
 ;EEAA;Antsla;EE
 ;EEEI;Keila;EE
 ;EEHA;Humala;EE
-;EEJI;J«Êhvi;EE
+;EEJI;J√áƒáhvi;EE
 ;EEKI;Karksi;EE
-;EEKU;Saarek«¨la;EE
+;EEKU;Saarek√á¬¨la;EE
 ;EELM;Tartu;EE
 ;EELU;Saare;EE
 ;EENA;Narva;EE
 ;EERA;Rapla;EE
 ;EERD;Riidaja;EE
 ;EERE;Rakvere;EE
-;EERI;Suurk«¨la;EE
+;EERI;Suurk√á¬¨la;EE
 ;EERU;Ringsu;EE
 ;EESE;Salme;EE
 ;EEVI;Viljandi;EE
@@ -10159,110 +10159,110 @@ AAA;NTGA;Anaa;PF
 ;EIHH;Navan;IE
 ;EILT;Letterkenny;IE
 ;EIWT;Leixlip;IE
-;EKRB;R«˜nne;DK
+;EKRB;R√á√∑nne;DK
 ;ELLZ;Luxembourg;LU
 ;ENQE;;NO
 ;ENQO;;NO
 ;ENRY;Oslo;NO
 ;ENSN;Geiteryggen;NO
 ;EPAR;Wola Korzeniecka;PL
-;EPBA;Bielsko-Biaè?a;PL
-;EPBB;Babié?ta;PL
+;EPBA;Bielsko-Bia≈π?a;PL
+;EPBB;Babi≈Ω?ta;PL
 ;EPBC;Warsaw;PL
 ;EPBD;Bydgoszcz;PL
-;EPBE;Kaè?duny;PL
-;EPBG;Goè?ubie;PL
-;EPBK;Biaè?ystok;PL
+;EPBE;Ka≈π?duny;PL
+;EPBG;Go≈π?ubie;PL
+;EPBK;Bia≈π?ystok;PL
 ;EPBO;Borsk;PL
 ;EPCD;Krolewskie;PL
 ;EPCE;Siemirowice;PL
-;EPDA;Darè?owo;PL
-;EPDE;Dé?blin;PL
-;EPEL;Elblé?g;PL
-;EPGE;Giè¨e;PL
-;EPGI;Grudzié?dz;PL
+;EPDA;Dar≈π?owo;PL
+;EPDE;D≈Ω?blin;PL
+;EPEL;Elbl≈Ω?g;PL
+;EPGE;Gi≈π¬¨e;PL
+;EPGI;Grudzi≈Ω?dz;PL
 ;EPKA;Kielce;PL
-;EPKN;Kamieè? è?lé?ski;PL
-;EPLY;Leèßnica Wielka;PL
+;EPKN;Kamie≈π? ≈π?l≈Ω?ski;PL
+;EPLY;Le≈π¬ßnica Wielka;PL
 ;EPMY;Nowogrodek Pomorski;PL
-;EPPG;Ké?kolewo;PL
+;EPPG;K≈Ω?kolewo;PL
 ;EPRU;Rudniki;PL
 ;EPSD;Szczecin;PL
-;EPSK;Kré?pa Sè?upska;PL
+;EPSK;Kr≈Ω?pa S≈π?upska;PL
 ;EPSN;;PL
-;ESCF;Link«Ùping;SE
+;ESCF;Link√á√¥ping;SE
 ;ESCM;Uppsala;SE
-;ESEB;Bor«æs;SE
+;ESEB;Bor√áƒæs;SE
 ;ESED;Sundsvall;SE
-;ESEG;G«œllivare;SE
+;ESEG;G√áƒéllivare;SE
 ;ESEK;Kiruna;SE
-;ESEL;Link«Ùping;SE
+;ESEL;Link√á√¥ping;SE
 ;ESEM;Lund;SE
-;ESEN;Trollh«œttan;SE
-;ESES;Lule«æ;SE
+;ESEN;Trollh√áƒéttan;SE
+;ESES;Lule√áƒæ;SE
 ;ESET;Torsby;SE
 ;ESEU;Uddevalla;SE
 ;ESEV;Visby;SE
 ;ESEW;;SE
 ;ESEY;Lycksele;SE
-;ESFA;H«œssleholm;SE
-;ESFR;R«æda;SE
+;ESFA;H√áƒéssleholm;SE
+;ESFR;R√áƒæda;SE
 ;ESFS;Sandvik;SE
 ;ESGA;Uddevalla;SE
-;ESGC;«?lleberg;SE
+;ESGC;√á?lleberg;SE
 ;ESGD;Tidaholm;SE
-;ESGE;Bor«æs;SE
+;ESGE;Bor√áƒæs;SE
 ;ESGF;Falkenberg;SE
 ;ESGH;Herrljunga;SE
-;ESGI;Alings«æs;SE
-;ESGK;Falk«Ùping;SE
-;ESGM;«?resten;SE
-;ESGN;G«Ùtene;SE
-;ESGO;V«ærg«ærda;SE
-;ESGS;Str«Ùmstad;SE
+;ESGI;Alings√áƒæs;SE
+;ESGK;Falk√á√¥ping;SE
+;ESGM;√á?resten;SE
+;ESGN;G√á√¥tene;SE
+;ESGO;V√áƒærg√áƒærda;SE
+;ESGS;Str√á√¥mstad;SE
 ;ESGU;Uddevalla;SE
 ;ESGV;Varberg;SE
-;ESGY;S«œffle;SE
-;ESHB;G«Ùteborg;SE
+;ESGY;S√áƒéffle;SE
+;ESHB;G√á√¥teborg;SE
 ;ESHC;Stockholm;SE
 ;ESHD;Stockholm;SE
 ;ESHG;Stockholm;SE
 ;ESHI;Kristianstad;SE
-;ESHJ;J«Ùnk«Ùping;SE
+;ESHJ;J√á√¥nk√á√¥ping;SE
 ;ESHK;Solna;SE
 ;ESHL;Flemingsberg;SE
-;ESHM;Kung«œlv;SE
-;ESME;Esl«Ùv;SE
-;ESML;H«œrsl«Ùv;SE
-;ESMU;«?lmhult;SE
+;ESHM;Kung√áƒélv;SE
+;ESME;Esl√á√¥v;SE
+;ESML;H√áƒérsl√á√¥v;SE
+;ESMU;√á?lmhult;SE
 ;ESMV;;SE
-;ESMY;Sm«ælandsstenar;SE
-;ESMZ;«?landa;SE
+;ESMY;Sm√áƒælandsstenar;SE
+;ESMZ;√á?landa;SE
 ;ESNA;Hallviken;SE
 ;ESNM;;SE
-;ESNP;Pite«æ;SE
+;ESNP;Pite√áƒæ;SE
 ;ESNR;;SE
 ;ESQO;;SE
 ;ESSG;Ludvika;SE
 ;ESVK;Katrineholm;SE
-;ESVL;Enk«Ùping;SE
+;ESVL;Enk√á√¥ping;SE
 ;ESVM;Malung;SE
-;ESVQ;K«Ùping;SE
-;ESVS;Siljansn«œs;SE
+;ESVQ;K√á√¥ping;SE
+;ESVS;Siljansn√áƒés;SE
 ;ETEB;Ansbach;DE
 ;ETED;Kaiserslautern;DE
 ;ETHA;Altenstadt;DE
-;ETHB;B«¨ckeburg;DE
+;ETHB;B√á¬¨ckeburg;DE
 ;ETHC;Celle;DE
 ;ETHE;;DE
 ;ETHL;Laupheim;DE
 ;ETHN;Niederstetten;DE
-;ETHS;Fa«?berg;DE
-;ETIC;Grafenw«Ùhr;DE
+;ETHS;Fa√á?berg;DE
+;ETIC;Grafenw√á√¥hr;DE
 ;ETIH;Hohenfels;DE
 ;ETND;Diepholz;DE
 ;ETNH;Hohn;DE
-;ETNN;N«Ùrvenich;DE
+;ETNN;N√á√¥rvenich;DE
 ;ETNT;Wittmund;DE
 ;ETNW;;DE
 ;ETSB;Alflen;DE
@@ -10270,24 +10270,24 @@ AAA;NTGA;Anaa;PF
 ;ETSL;Graben;DE
 ;ETSN;Neuburg an der Donau;DE
 ;ETWM;;DE
-;EVAD;é?daèÛi;LV
+;EVAD;≈Ω?da≈π√≥i;LV
 ;EVAP;Jelgava;LV
 ;EVCA;Cesis;LV
 ;EVGA;Lielvarde;LV
-;EVHB;NéÅkotne;LV
-;EVJC;NéÅkotne;LV
-;EVLI;LimbaèÛi;LV
+;EVHB;N≈Ω¬Åkotne;LV
+;EVJC;N≈Ω¬Åkotne;LV
+;EVLI;Limba≈π√≥i;LV
 ;EVLU;Ludza;LV
 ;EVPA;Ikshkile;LV
 ;EVRS;Riga;LV
-;EVSM;LielvéÅrde;LV
-;EYBI;BirèÛai;LT
+;EVSM;Lielv≈Ω¬Årde;LV
+;EYBI;Bir≈π√≥ai;LT
 ;EYDR;Druskininkai;LT
 ;EYIG;;LT
-;EYKL;Klaipé?da;LT
+;EYKL;Klaip≈Ω?da;LT
 ;EYKS;Kaunas;LT
 ;EYKT;Kartena;LT
-;EYMA;Tirkè≠liai / MaèÛeikiai;LT
+;EYMA;Tirk≈π¬≠liai / Ma≈π√≥eikiai;LT
 ;EYMM;Sasnava;LT
 ;FAAE;Aberdeen;ZA
 ;FAAF;Struisbaai;ZA
@@ -10646,7 +10646,7 @@ AAA;NTGA;Anaa;PF
 ;GMFZ;Taza;MA
 ;GMMO;Taroudant;MA
 ;GMSL;Sidi Slimane;MA
-;GOOG;Lingu«˘re;SN
+;GOOG;Lingu√á≈Øre;SN
 ;GQNM;Timbreda;MR
 ;GQPT;Bir Moghrein;MR
 ;GUBE;Beyla;GN
@@ -10745,12 +10745,12 @@ AAA;NTGA;Anaa;PF
 ;LDPN;Unije Island;HR
 ;LDPV;Vrsar;HR
 ;LDRG;Soboli;HR
-;LDRO;Otoéçac;HR
+;LDRO;Oto≈Ω≈§ac;HR
 ;LDSF;Split;HR
 ;LDSH;Hvar Island;HR
 ;LDSS;Sinj;HR
-;LDVA;VaraèÛdin;HR
-;LDVC;é?akovec;HR
+;LDVA;Vara≈π√≥din;HR
+;LDVC;≈Ω?akovec;HR
 ;LDVD;Daruvar;HR
 ;LDVK;Koprivnica;HR
 ;LDVR;Daruvar;HR
@@ -10765,21 +10765,21 @@ AAA;NTGA;Anaa;PF
 ;LESB;Marratxi;ES
 ;LESL;Sant Lluis;ES
 ;LEVS;;ES
-;LFAD;Margny-l«˘s-Compi«˘gne;FR
+;LFAD;Margny-l√á≈Øs-Compi√á≈Øgne;FR
 ;LFAE;Eu;FR
 ;LFAY;Amiens;FR
 ;LFCQ;Graulhet/Montdragon;FR
 ;LFDG;Gaillac;FR
 ;LFDH;Auch;FR
 ;LFHS;Bourg/Ceyzeriat;FR
-;LFHV;Frontenas; Rh«Ône
+;LFHV;Frontenas; Rh√áƒène
 ;LFHY;Toulon-sur-Allier;FR
 ;LFKG;GHISONACCIA;FR
 ;LFLE;Barby;FR
-;LFLG;Le Versoud; Is«˘re
-;LFLH;Ch«Ωlon sur Sa«Ône;FR
+;LFLG;Le Versoud; Is√á≈Øre
+;LFLH;Ch√áÀùlon sur Sa√áƒène;FR
 ;LFMA;Aix en Provence;FR
-;LFMI;Istres; Bouches-du-Rh«Ône
+;LFMI;Istres; Bouches-du-Rh√áƒène
 ;LFOI;Buigny-Saint-Maclou;FR
 ;LFOQ;Blois;FR
 ;LFPF;Beynes; Yvelines
@@ -10787,7 +10787,7 @@ AAA;NTGA;Anaa;PF
 ;LFPL;Lognes; Seine-et-Marne
 ;LFPX;Chavenay; Yvelines
 ;LFQM;Besanzon;FR
-;LFQV;Charleville-Mezi«˘res;FR
+;LFQV;Charleville-Mezi√á≈Øres;FR
 ;LFTA;La Tranche-sur-Mer;FR
 ;LGAG;Agrinion;GR
 ;LGEL;Elefsina;GR
@@ -10795,14 +10795,14 @@ AAA;NTGA;Anaa;PF
 ;LGKN;Marathon;GR
 ;LGMG;Megara;GR
 ;LGMO;Molos;GR
-;LHGD;G«Ùd«Ùllè?;HU
-;LHGR;Gy«ßro;HU
-;LHGU;Gyè?r«ßjbarat;HU
-;LHGY;Gy«Ùngy«Ùs;HU
+;LHGD;G√á√¥d√á√¥ll≈π?;HU
+;LHGR;Gyuro;HU
+;LHGU;Gy≈π?rujbarat;HU
+;LHGY;Gy√á√¥ngy√á√¥s;HU
 ;LHHH;Budapest;HU
 ;LHHK;Hajmasker;HU
-;LHHM;Hodmezè?vasarhely;HU
-;LHHO;Hajd«ßszoboszlo;HU
+;LHHM;Hodmez≈π?vasarhely;HU
+;LHHO;Hajduszoboszlo;HU
 ;LHJK;Jakabszallas;HU
 ;LHKA;Kalocsa;HU
 ;LHKC;Kecel;HU
@@ -10816,7 +10816,7 @@ AAA;NTGA;Anaa;PF
 ;LIAF;Foligno (PG);IT
 ;LIAG;Gubbio (PG);IT
 ;LIAJ;Ostia Antica (RM);IT
-;LIAL;Citt«ˇ di Castello (PG);IT
+;LIAL;Citt√áÀô di Castello (PG);IT
 ;LIAO;Castelvecchio Pascoli (LU);IT
 ;LIAP;L'Aquila;IT
 ;LIAQ;Aquino;IT
@@ -10839,54 +10839,54 @@ AAA;NTGA;Anaa;PF
 ;LIQL;Capannori (LU);IT
 ;LIQS;Ampugnano (SI);IT
 ;LIRH;Frosinone;IT
-;LKBA;Bè?eclav;CZ
-;LKBE;Beneè≠ov;CZ
-;LKBO;Bohuè?ovice;CZ
+;LKBA;B≈π?eclav;CZ
+;LKBE;Bene≈π¬≠ov;CZ
+;LKBO;Bohu≈π?ovice;CZ
 ;LKBR;Broumov;CZ
 ;LKBU;Bubovice;CZ
 ;LKCB;Cheb;CZ
-;LKCE;é?eska Lipa;CZ
+;LKCE;≈Ω?eska Lipa;CZ
 ;LKCH;Otvice;CZ
 ;LKCM;Medlanky;CZ
 ;LKCR;Chrudim;CZ
-;LKCT;Choté?boè?;CZ
+;LKCT;Chot≈Ω?bo≈π?;CZ
 ;LKCU;Chomutov;CZ
 ;LKCV;Chotusice;CZ
-;LKDK;DvèÓr Kralove nad Labem;CZ
-;LKER;ErpuèÛice;CZ
+;LKDK;Dv≈π√Ær Kralove nad Labem;CZ
+;LKER;Erpu≈π√≥ice;CZ
 ;LKFR;Frydlant;CZ
-;LKHB;HavliéçkèÓv Brod;CZ
+;LKHB;Havli≈Ω≈§k≈π√Æv Brod;CZ
 ;LKHC;Holovousy;CZ
 ;LKHD;Hodkovice nad Mohelkou;CZ
 ;LKHK;Hradec Kralove;CZ
 ;LKHN;Hranice;CZ
 ;LKHS;Hluboka nad Vltavou;CZ
-;LKHV;Hoè?ovice;CZ
-;LKJA;Jaromé?è?;CZ
-;LKJC;Jiéçin;CZ
-;LKJH;Jindè?ichèÓv Hradec;CZ
+;LKHV;Ho≈π?ovice;CZ
+;LKJA;Jarom≈Ω?≈π?;CZ
+;LKJC;Ji≈Ω≈§in;CZ
+;LKJH;Jind≈π?ich≈π√Æv Hradec;CZ
 ;LKJI;Jihlava;CZ
-;LKKA;Kè?ièÛanov;CZ
+;LKKA;K≈π?i≈π√≥anov;CZ
 ;LKKB;Prague;CZ
 ;LKKL;Kladno;CZ
-;LKKM;Kromé?è?ièÛ;CZ
+;LKKM;Krom≈Ω?≈π?i≈π√≥;CZ
 ;LKKO;Kolin;CZ
 ;LKKR;Krnov;CZ
 ;LKKT;Klatovy;CZ
-;LKKY;Svatoboè?ice;CZ
+;LKKY;Svatobo≈π?ice;CZ
 ;LKLB;Liberec;CZ
 ;LKLN;Plzen;CZ
-;LKLT;Letè?any;CZ
-;LKLU;Luhaéçovice;CZ
+;LKLT;Let≈π?any;CZ
+;LKLU;Luha≈Ω≈§ovice;CZ
 ;LKMB;Mlada Boleslav;CZ
 ;LKMI;Mikulovice;CZ
-;LKMK;Moravska Tè?ebova;CZ
+;LKMK;Moravska T≈π?ebova;CZ
 ;LKMO;Most;CZ
 ;LKNA;Sedlec;CZ
-;LKNM;Nove Mé?sto nad Metuji;CZ
-;LKPA;Poliéçka;CZ
+;LKNM;Nove M≈Ω?sto nad Metuji;CZ
+;LKPA;Poli≈Ω≈§ka;CZ
 ;LKPC;Panensky Tynec;CZ
-;LKPI;Pè?ibyslav;CZ
+;LKPI;P≈π?ibyslav;CZ
 ;LKPL;Letkov;CZ
 ;LKPM;Drasov;CZ
 ;LKPS;Plasy;CZ
@@ -10894,11 +10894,11 @@ AAA;NTGA;Anaa;PF
 ;LKRK;Rakovnik;CZ
 ;LKRO;Roudnice nad Labem;CZ
 ;LKRY;Rokycany;CZ
-;LKSA;Staè?kov;CZ
+;LKSA;Sta≈π?kov;CZ
 ;LKSB;Mostkovice;CZ
-;LKSK;Skuteéç;CZ
+;LKSK;Skute≈Ω≈§;CZ
 ;LKSN;Slany;CZ
-;LKSO;Sobé?slav;CZ
+;LKSO;Sob≈Ω?slav;CZ
 ;LKSR;Prachatice;CZ
 ;LKST;Strakonice;CZ
 ;LKSU;Novy Malin;CZ
@@ -10907,18 +10907,18 @@ AAA;NTGA;Anaa;PF
 ;LKTC;Prague;CZ
 ;LKTD;Tachov;CZ
 ;LKTH;;CZ
-;LKTO;TouèÛim;CZ
+;LKTO;Tou≈π√≥im;CZ
 ;LKUL;Usti Nad Labem;CZ
-;LKUO;«?sti nad Orlici;CZ
-;LKVL;Vlaè≠im;CZ
+;LKUO;√á?sti nad Orlici;CZ
+;LKVL;Vla≈π¬≠im;CZ
 ;LKVM;Vysoke Myto;CZ
 ;LKVP;Velke Porici;CZ
 ;LKVR;Lanov;CZ
 ;LKVY;Vyskov;CZ
 ;LKZB;Zbraslavice;CZ
-;LKZD;è´atec;CZ
+;LKZD;≈π¬´atec;CZ
 ;LKZL;Otrokovice;CZ
-;LKZM;è´amberk;CZ
+;LKZM;≈π¬´amberk;CZ
 ;LKZN;Znojmo;CZ
 ;LLBO;Habonim;IL
 ;LLEK;Rehovot;IL
@@ -10941,18 +10941,18 @@ AAA;NTGA;Anaa;PF
 ;LOAH;Horn;AT
 ;LOAI;Wiener Neustadt;AT
 ;LOAK;Krems;AT
-;LOAL;P«Ùchlarn-W«Ùrth;AT
+;LOAL;P√á√¥chlarn-W√á√¥rth;AT
 ;LOAM;Vienna;AT
 ;LOAN;Wiener Neustadt;AT
 ;LOAP;Waidhofen an der Ybbs;AT
 ;LOAS;Hundsheim;AT
 ;LOAU;Stockerau;AT
-;LOAV;Bad V«Ùslau;AT
-;LOGF;F«¨rstenfeld;AT
+;LOAV;Bad V√á√¥slau;AT
+;LOGF;F√á¬¨rstenfeld;AT
 ;LOGG;Punitz;AT
-;LOGL;G«Ùriach;AT
+;LOGL;G√á√¥riach;AT
 ;LOGM;Mariazell;AT
-;LOGO;Nieder«Ùblarn;AT
+;LOGO;Nieder√á√¥blarn;AT
 ;LOGP;Pinkafeld;AT
 ;LOGT;Timmersdorf;AT
 ;LOGW;Weiz;AT
@@ -10961,12 +10961,12 @@ AAA;NTGA;Anaa;PF
 ;LOIR;Reutte;AT
 ;LOIT;Sankt Johann in Tirol;AT
 ;LOJD;Dornbirn;AT
-;LOKF;Feldkirchen in K«œrnten;AT
+;LOKF;Feldkirchen in K√áƒérnten;AT
 ;LOKG;Ferlach;AT
 ;LOKH;Micheldorf;AT
 ;LOKL;Lengberg;AT
 ;LOKM;Mayerhofen;AT
-;LOKN;N«Ùtsch im Gailtal;AT
+;LOKN;N√á√¥tsch im Gailtal;AT
 ;LOKW;Wolfsberg;AT
 ;LOLC;Scharnstein;AT
 ;LOLE;Pupping;AT
@@ -11005,7 +11005,7 @@ AAA;NTGA;Anaa;PF
 ;LPCV;Coimba;PT
 ;LPDA;Porto;PT
 ;LPEM;Alfragida;PT
-;LPER;«?vora;PT
+;LPER;√á?vora;PT
 ;LPJF;Leiria;PT
 ;LPMO;Mora;PT
 ;LPMR;;PT
@@ -11021,9 +11021,9 @@ AAA;NTGA;Anaa;PF
 ;LPVC;Viana do Castelo;PT
 ;LPVL;Maia;PT
 ;LPXR;Vila Franca de Xira;PT
-;LQBI;Bihaé?;BA
-;LQBZ;ZaluèÛani;BA
-;LQCG;Baè≠igovci;BA
+;LQBI;Biha≈Ω?;BA
+;LQBZ;Zalu≈π√≥ani;BA
+;LQCG;Ba≈π¬≠igovci;BA
 ;LQJL;Rainci Gornji;BA
 ;LQLV;Livno;BA
 ;LQPD;Prijedor;BA
@@ -11031,22 +11031,22 @@ AAA;NTGA;Anaa;PF
 ;LRBA;Comana;RO
 ;LRBH;Bucharest;RO
 ;LRBO;Boboc;RO
-;LRCB;‘?iria;RO
+;LRCB;√î?iria;RO
 ;LRCC;Oituz;RO
-;LRCD;Cisnéüdie;RO
-;LRCT;C«Ωmpia Turzii;RO
-;LRCX;Bra‘?ov;RO
+;LRCD;Cisn≈Ω≈∫die;RO
+;LRCT;C√áÀùmpia Turzii;RO
+;LRCX;Bra√î?ov;RO
 ;LRFT;Borcea;RO
 ;LRIC;Ianca;RO
 ;LRIS;;RO
 ;LRMA;Ghimbav;RO
-;LRMC;Néüvodari;RO
+;LRMC;N≈Ω≈∫vodari;RO
 ;LRMM;Baia Mare;RO
-;LRMS;T«Ωrgu Mure‘?;RO
-;LRPH;Ploie‘?ti;RO
-;LRPT;Pite‘?ti;RO
+;LRMS;T√áÀùrgu Mure√î?;RO
+;LRPH;Ploie√î?ti;RO
+;LRPT;Pite√î?ti;RO
 ;LRPW;Strejnicu;RO
-;LRSP;S«Ωnpetru;RO
+;LRSP;S√áÀùnpetru;RO
 ;LRSU;;RO
 ;LRTZ;Tuzla;RO
 ;LRWG;Bucharest;RO
@@ -11056,7 +11056,7 @@ AAA;NTGA;Anaa;PF
 ;LSGK;Saanen;CH
 ;LSGL;Lausanne;CH
 ;LSGN;Boudry;CH
-;LSGP;La C«Ôte;CH
+;LSGP;La C√áƒète;CH
 ;LSGR;Reichenbach im Kandertal;CH
 ;LSGT;Epagny;CH
 ;LSGY;Yverdon-les-Bains;CH
@@ -11068,19 +11068,19 @@ AAA;NTGA;Anaa;PF
 ;LSPL;Bleienbach;CH
 ;LSPM;Quinto;CH
 ;LSPN;Triengen;CH
-;LSPU;M«¨nster;CH
+;LSPU;M√á¬¨nster;CH
 ;LSPV;Wangen;CH
 ;LSTA;Raron;CH
-;LSTO;M«Ôtiers;CH
+;LSTO;M√áƒètiers;CH
 ;LSTS;Sankt Stephan;CH
 ;LSTZ;Zweisimmen;CH
-;LSVD;Plateau n«Ùrdlich Planurah«¨tte;CH
+;LSVD;Plateau n√á√¥rdlich Planurah√á¬¨tte;CH
 ;LSVP;Firnplateau;CH
 ;LSVV;Sattel;CH
 ;LSXB;Balzers;LI
 ;LSYI;Oberer Firnrand;CH
 ;LSYK;West of Mutthorn hut;CH
-;LSYR;Grat s«¨dlich Gipfel;CH
+;LSYR;Grat s√á¬¨dlich Gipfel;CH
 ;LSYX;Firnrand;CH
 ;LSZE;Bad Ragaz;CH
 ;LSZF;Lupfig;CH
@@ -11095,37 +11095,37 @@ AAA;NTGA;Anaa;PF
 ;LSZT;Lommis;CH
 ;LSZU;Buttwil;CH
 ;LSZW;Thun;CH
-;LSZX;Sch«œnis;CH
+;LSZX;Sch√áƒénis;CH
 ;LTBE;Bursa;TR
-;LTON;é¯stiklal;TR
-;LUBM;Méürculeè?ti;MD
+;LTON;≈Ω≈ôstiklal;TR
+;LUBM;M≈Ω≈∫rcule≈π?ti;MD
 ;LUCH;Cahul;MD
-;LWST;èˇtip;MK
+;LWST;≈πÀôtip;MK
 ;LYBS;Budva;ME
-;LYNK;Nikè≠ié?;ME
+;LYNK;Nik≈π¬≠i≈Ω?;ME
 ;LYPO;Podgorica;ME
 ;LZBD;Bidovce;SK
 ;LZDB;Dubnica nad Vahom;SK
 ;LZDN;Zvolen;SK
 ;LZDU;Dunajska Streda;SK
 ;LZDV;Dubova;SK
-;LZHL;Holiéç;SK
-;LZJS;D«ßbrava;SK
+;LZHL;Holi≈Ω≈§;SK
+;LZJS;Dubrava;SK
 ;LZKC;Kamenica nad Cirochou;SK
 ;LZMA;Martin;SK
-;LZMC;Kuchyè?a;SK
+;LZMC;Kuchy≈π?a;SK
 ;LZNI;Nitra;SK
 ;LZNZ;Nove Zamky;SK
-;LZOC;Oéçova;SK
+;LZOC;O≈Ω≈§ova;SK
 ;LZPE;Prievidza;SK
 ;LZPT;Partizanske;SK
-;LZRU;RuèÛomberok;SK
-;LZRY;RaèÛè?any;SK
+;LZRU;Ru≈π√≥omberok;SK
+;LZRY;Ra≈π√≥≈π?any;SK
 ;LZSE;Hlboke;SK
 ;LZSK;Svidnik;SK
-;LZSV;Spiè≠ska Nova Ves;SK
-;LZSY;èˇurany;SK
-;LZTN;Trenéçin;SK
+;LZSV;Spi≈π¬≠ska Nova Ves;SK
+;LZSY;≈πÀôurany;SK
+;LZTN;Tren≈Ω≈§in;SK
 ;LZTR;Boleraz;SK
 ;MBAC;Big Ambergris Cay;TC
 ;MDAB;Arroyo Barril;DO
@@ -11263,7 +11263,7 @@ AAA;NTGA;Anaa;PF
 ;SEZB;Lerida;EC
 ;SEZD;Puerto Cayo;EC
 ;SEZE;Tzapapentza;EC
-;SEZI;Imati§o;EC
+;SEZI;Imati¬§o;EC
 ;SEZK;Karakam;EC
 ;SEZM;Tamantza;EC
 ;SEZN;Tzapino;EC
@@ -11290,7 +11290,7 @@ AAA;NTGA;Anaa;PF
 ;SLSU;Sucre;BO
 ;SNAI;Jatei;BR
 ;SNBL;Unai;BR
-;SNBU;Funil«Ωndia;BR
+;SNBU;Funil√áÀùndia;BR
 ;SNDN;Salvador;BR
 ;SNGM;Sao Felix do Xingu;BR
 ;SNHA;Sao Luis;BR
@@ -11334,18 +11334,18 @@ AAA;NTGA;Anaa;PF
 ;SYKW;Kwakwani;GY
 ;TAPT;Coco Point;AG
 ;TBPO;;BB
-;UAON;T«Ùretam;KZ
+;UAON;T√á√¥retam;KZ
 ;UATA;Aralsk;KZ
-;UBBC;«?ilov;AZ
+;UBBC;√á?ilov;AZ
 ;UBBH;Khachmaz;AZ
 ;UBBI;Sumqayit;AZ
 ;UBBM;Hajigabul;AZ
-;UBBP;PirallahéÒ;AZ
+;UBBP;Pirallah≈Ω≈Ñ;AZ
 ;UBBS;Khojaly;AZ
 ;UBEI;Shaki;AZ
 ;UBEN;Naftalan;AZ
 ;UBEY;Agjabedi;AZ
-;UBLL;L«Ùkbatan;AZ
+;UBLL;L√á√¥kbatan;AZ
 ;UCFB;Batken;KG
 ;UCFD;Jalal-Abad;KG
 ;UCFR;Isfana;KG
