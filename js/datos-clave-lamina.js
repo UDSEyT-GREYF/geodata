@@ -21,7 +21,7 @@ let mapPredio = null;
   let terminalesLayer = null;
   let predioMarker = null;
   let iataWorldIndex = {};
-  let iataWorldIndex = {};
+  let routeCodeIndex = {};
   const DEST_OVERRIDES = {
   BUE: { ciudad: "Buenos Aires AEP+EZE", pais: "Argentina" },
   GRU: { ciudad: "São Paulo", pais: "Brasil" },
