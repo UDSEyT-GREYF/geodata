@@ -21,6 +21,7 @@ let mapPredio = null;
   let terminalesLayer = null;
   let predioMarker = null;
   let iataWorldIndex = {};
+  let iataWorldIndex = {};
   const DEST_OVERRIDES = {
   BUE: { ciudad: "Buenos Aires AEP+EZE", pais: "Argentina" },
   GRU: { ciudad: "São Paulo", pais: "Brasil" },
@@ -950,15 +951,25 @@ function getRoutesSummary(iata) {
     const airline = r.airline || "Sin dato";
     airlineMap.set(airline, (airlineMap.get(airline) || 0) + r.volume);
 
-    const otherCodeRaw = (r.endpointA === selected) ? r.endpointB : r.endpointA;
-    if (!otherCodeRaw || otherCodeRaw === selected) return;
+const otherCodeRaw = (r.endpointA === selected) ? r.endpointB : r.endpointA;
+if (!otherCodeRaw || otherCodeRaw === selected) return;
 
-    const destinationCode = getEquivalentDestinationCode(selected, otherCodeRaw);
-    if (!destinationCode || destinationCode === selected) return;
+const otherMeta = getRouteMeta(otherCodeRaw);
+const otherNormalizedCode = clean(otherMeta?.iata || otherCodeRaw).toUpperCase();
 
-    const isCabotaje = domesticIATAs.has(otherCodeRaw);
-    const targetMap = isCabotaje ? destMapCab : destMapIntl;
-    const key = destinationCode;
+const destinationCode = getEquivalentDestinationCode(selected, otherNormalizedCode);
+if (!destinationCode || destinationCode === selected) return;
+
+let isCabotaje;
+if (otherMeta) {
+  isCabotaje = isArgentinaCountry(otherMeta.pais);
+} else {
+  // fallback por si todavía no existe el código en tu tabla maestra
+  isCabotaje = domesticIATAs.has(otherNormalizedCode);
+}
+
+const targetMap = isCabotaje ? destMapCab : destMapIntl;
+const key = destinationCode;
 
     if (!targetMap.has(key)) {
       targetMap.set(key, {
@@ -1445,10 +1456,11 @@ setText("psnDetalleCompacto", `Comerciales ${psnComTxt} - Av. General ${psnGenTx
       if (vuelosResp && vuelosResp.ok) vuelosRows = parseVuelosCSV(await readTextSmart(vuelosResp));
       if (rutasResp && rutasResp.ok) rutasRows = parseRutasCSV(await readTextSmart(rutasResp));
       
-      if (iataWorldResp && iataWorldResp.ok) {
-        iataWorldIndex = parseIATAMundoCSV(await readTextSmart(iataWorldResp));
-
-      }
+if (iataWorldResp && iataWorldResp.ok) {
+  const parsedWorld = parseIATAMundoCSV(await readTextSmart(iataWorldResp));
+  iataWorldIndex = parsedWorld.byIata;
+  routeCodeIndex = parsedWorld.byCode;
+}
       if (select) {
         select.innerHTML = "";
         aeropuertos.forEach(a => {
@@ -1494,21 +1506,40 @@ try {
   }
 function parseIATAMundoCSV(text) {
   const rows = parseCSV(text);
-  const result = {};
+
+  const byIata = {};
+  const byCode = {};
 
   rows.forEach(r => {
     const iata = clean(firstNonEmpty(r, ["iata"])).toUpperCase();
-    if (!iata) return;
+    const oaci = clean(firstNonEmpty(r, ["oaci", "icao"])).toUpperCase();
 
-    result[iata] = {
+    const meta = {
+      iata,
+      oaci,
       ciudad: clean(firstNonEmpty(r, ["ciudad", "city"])),
       pais: clean(firstNonEmpty(r, ["pais", "país", "country"]))
     };
+
+    if (iata) byIata[iata] = meta;
+    if (iata) byCode[iata] = meta;
+    if (oaci) byCode[oaci] = meta;
   });
 
-  return result;
+  return { byIata, byCode };
 }
 
+function getRouteMeta(code) {
+  const key = clean(code).toUpperCase();
+  if (!key) return null;
+  return routeCodeIndex[key] || iataWorldIndex[key] || null;
+}
+
+function isArgentinaCountry(value) {
+  const p = clean(value).toUpperCase();
+  return p === "AR" || p === "ARG" || p === "ARGENTINA" || p.startsWith("AR-");
+}
+  
 function getDestinationLabel(code, isInternational) {
   const key = clean(code).toUpperCase();
 
@@ -1519,7 +1550,7 @@ function getDestinationLabel(code, isInternational) {
     };
   }
 
-  const meta = iataWorldIndex[key] || {};
+  const meta = getRouteMeta(key) || {};
   const ciudad = clean(meta.ciudad) || key;
   const pais = clean(meta.pais);
 
