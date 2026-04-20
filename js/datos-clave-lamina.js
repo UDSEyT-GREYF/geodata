@@ -195,7 +195,10 @@ const CHART_COLORS = {
       .replace(/[\u0300-\u036f]/g, "")
       .replace(/[^a-z0-9]+/g, "");
   }
-
+function isUnnamedAirline(name) {
+  const key = normalizeAirlineKey(name);
+  return !key || key === "sindato";
+}
   function getAirlineLogoSrc(name) {
     const key = normalizeAirlineKey(name);
     const logos = {
@@ -233,7 +236,9 @@ const CHART_COLORS = {
       swissinternationalairlines: "img/LogosAerolineas/SWISS.png",
       azullinhasaereasbrasileiras: "img/LogosAerolineas/Azul.png",
       lade: "img/LogosAerolineas/LADE.png",
-      americanjet: "img/LogosAerolineas/AmericanJet.png"
+      americanjet: "img/LogosAerolineas/AmericanJet.png",
+      fuerzaaerea: "img/LogosAerolineas/FuerzaAerea.png",
+      ejercito: "img/LogosAerolineas/Ejercito.png"
     };
 
     if (logos[key]) return logos[key];
@@ -272,6 +277,8 @@ const CHART_COLORS = {
     if (key.includes("swiss")) return logos.swissinternationalairlines;
     if (key.includes("azul")) return logos.azullinhasaereasbrasileiras;
     if (key.includes("lade")) return logos.lade;
+    if (key.includes("fuerzaaerea")) return logos.fuerzaaerea;
+    if (key.includes("ejercito")) return logos.ejercito;
     return "";
   }
 
@@ -944,32 +951,40 @@ function getRoutesSummary(iata) {
   if (yearRows.length) rows = yearRows;
 
   const airlineMap = new Map();
+  const countableAirlines = new Set();
   const destMapIntl = new Map();
   const destMapCab = new Map();
 
   rows.forEach(r => {
-    const airline = r.airline || "Sin dato";
-    airlineMap.set(airline, (airlineMap.get(airline) || 0) + r.volume);
+    const airlineRaw = clean(r.airline);
+    const airlineLabel = isUnnamedAirline(airlineRaw)
+      ? "Aviación general / privada"
+      : airlineRaw;
 
-const otherCodeRaw = (r.endpointA === selected) ? r.endpointB : r.endpointA;
-if (!otherCodeRaw || otherCodeRaw === selected) return;
+    airlineMap.set(airlineLabel, (airlineMap.get(airlineLabel) || 0) + r.volume);
 
-const otherMeta = getRouteMeta(otherCodeRaw);
-const otherNormalizedCode = clean(otherMeta?.iata || otherCodeRaw).toUpperCase();
+    if (!isUnnamedAirline(airlineRaw)) {
+      countableAirlines.add(airlineLabel);
+    }
 
-const destinationCode = getEquivalentDestinationCode(selected, otherNormalizedCode);
-if (!destinationCode || destinationCode === selected) return;
+    const otherCodeRaw = (r.endpointA === selected) ? r.endpointB : r.endpointA;
+    if (!otherCodeRaw || otherCodeRaw === selected) return;
 
-let isCabotaje;
-if (otherMeta) {
-  isCabotaje = isArgentinaCountry(otherMeta.pais);
-} else {
-  // fallback por si todavía no existe el código en tu tabla maestra
-  isCabotaje = domesticIATAs.has(otherNormalizedCode);
-}
+    const otherMeta = getRouteMeta(otherCodeRaw);
+    const otherNormalizedCode = clean(otherMeta?.iata || otherCodeRaw).toUpperCase();
 
-const targetMap = isCabotaje ? destMapCab : destMapIntl;
-const key = destinationCode;
+    const destinationCode = getEquivalentDestinationCode(selected, otherNormalizedCode);
+    if (!destinationCode || destinationCode === selected) return;
+
+    let isCabotaje;
+    if (otherMeta) {
+      isCabotaje = isArgentinaCountry(otherMeta.pais);
+    } else {
+      isCabotaje = domesticIATAs.has(otherNormalizedCode);
+    }
+
+    const targetMap = isCabotaje ? destMapCab : destMapIntl;
+    const key = destinationCode;
 
     if (!targetMap.has(key)) {
       targetMap.set(key, {
@@ -986,6 +1001,10 @@ const key = destinationCode;
     .filter(d => d.volume >= MIN_PAX_TO_SHOW)
     .sort((a, b) => b.volume - a.volume);
 
+  const airlinesCount = Array.from(countableAirlines)
+    .filter(name => (airlineMap.get(name) || 0) >= MIN_PAX_TO_SHOW)
+    .length;
+
   const intlArray = Array.from(destMapIntl.values())
     .filter(d => d.volume >= MIN_PAX_TO_SHOW)
     .sort((a, b) => b.volume - a.volume);
@@ -995,7 +1014,7 @@ const key = destinationCode;
     .sort((a, b) => b.volume - a.volume);
 
   return {
-    airlinesCount: airlinesArray.length,
+    airlinesCount,
     topAirlines: airlinesArray.slice(0, 5),
     topDestinationsIntl: intlArray.slice(0, 5),
     topDestinationsCab: cabArray.slice(0, 5),
