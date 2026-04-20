@@ -1418,7 +1418,7 @@ setText("psnDetalleCompacto", `Comerciales ${psnComTxt} - Av. General ${psnGenTx
     if (clean(a["CintasFlex"])) cintasParts.push(`Flex: ${safeValue(a["CintasFlex"])}`);
     setText("cintasDetalle", cintasParts.join(" · ") || "–");
 
-    setBadgeNumber("carritos", safeValue(firstNonEmpty(a, ["Carritos porta equipajes"])));
+    setBadgeNumber("carritos", safeValue(firstNonEmpty(a, ["Carros porta equipajes"])));
     setBadgeNumber("estacionamientoVeh", safeValue(firstNonEmpty(a, ["Estacionamiento Vehicular"])));
 
     const tr = transportePorIATA[iata] || {};
