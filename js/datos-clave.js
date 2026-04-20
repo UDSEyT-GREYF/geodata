@@ -2502,7 +2502,7 @@ function renderPaxRanking(iataUpper) {
     const estacionamientoEl = document.getElementById("estacionamiento");
     const carritosEl = document.getElementById("carritos");
     if (estacionamientoEl) estacionamientoEl.textContent = safeVal(a["Estacionamiento Vehicular"]);
-    if (carritosEl) carritosEl.textContent = safeVal(a["Carritos porta equipajes"]);
+    if (carritosEl) carritosEl.textContent = safeVal(a["Carros porta equipajes"]);
 
     /* ---------- UBICACIÓN ---------- */
     const ubicacionTextEl = document.getElementById("ubicacionText");
