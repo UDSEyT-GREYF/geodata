@@ -692,6 +692,78 @@ if (soloComercial) {
     });
   }
 
+function renderAirlinesChart(rows) {
+  const canvas = q("odAirlinesChart");
+  if (!canvas || typeof Chart === "undefined") return;
+
+  if (canvas._chart) {
+    canvas._chart.destroy();
+    canvas._chart = null;
+  }
+
+  const dataRows = (rows || []).slice(0, 6);
+  if (!dataRows.length) return;
+
+  const labels = dataRows.map(r => r.name);
+  const values = dataRows.map(r => Math.round(r.asientos || 0));
+
+  canvas._chart = new Chart(canvas, {
+    type: "bar",
+    data: {
+      labels,
+      datasets: [
+        {
+          label: "Asientos",
+          data: values,
+          backgroundColor: "rgba(42, 111, 176, 0.22)",
+          borderColor: "rgba(42, 111, 176, 1)",
+          borderWidth: 1.2,
+          borderRadius: 4,
+          barThickness: 16
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      indexAxis: "y",
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: ctx => `${ctx.dataset.label}: ${Number(ctx.raw).toLocaleString("es-AR")}`
+          }
+        }
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          grid: {
+            color: "#e6edf4"
+          },
+          ticks: {
+            color: "#6f7d8c",
+            callback: value => Number(value).toLocaleString("es-AR")
+          }
+        },
+        y: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            color: "#334150",
+            font: {
+              size: 10
+            }
+          }
+        }
+      }
+    }
+  });
+}
+  
   function renderOfertaDemanda(iata) {
     const summary = getOfertaDemandaSummary(iata, YEAR_REF, { soloComercial: true });
 
@@ -746,21 +818,12 @@ setText(
       `).join("") || '<div class="od-empty">Sin datos</div>';
     }
 
-    const topAirlinesEl = q("odTopAirlines");
-    if (topAirlinesEl) {
-      topAirlinesEl.innerHTML = summary.airlines.slice(0, 6).map(a => `
-        <div class="od-airline-row">
-          <div class="od-airline-name">${escapeHtml(a.name)}</div>
-          <div class="od-airline-metrics">
-            <span>${formatNumber(Math.round(a.asientos))} asientos</span>
-            <span>${formatNumber(Math.round(a.pax))} pax</span>
-          </div>
-        </div>
-      `).join("") || '<div class="od-empty">Sin datos</div>';
-    }
+renderAirlinesChart(summary.airlines);
 
-    renderOfertaDemandaMonthlyChart(summary.monthly);
-    console.log("Oferta-demanda resumen", {
+renderOfertaDemandaMonthlyChart(summary.monthly);
+renderAirlinesChart(summary.airlines);
+
+console.log("Oferta-demanda resumen", {
   iata,
   totalPax: summary.totalPax,
   totalAsientos: summary.totalAsientos,
