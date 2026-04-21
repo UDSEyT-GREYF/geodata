@@ -1,1 +1,365 @@
+/* ==========================================================
+   OFERTA / DEMANDA - HOJA A4
+   ========================================================== */
 
+.oferta-demanda-sheet {
+  width: 210mm;
+  min-height: 297mm;
+  background: #ffffff;
+  color: #2f3a45;
+  box-sizing: border-box;
+  margin: 0 auto;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+.od-page {
+  width: 100%;
+  min-height: 297mm;
+  padding: 11mm 11mm 9mm 11mm;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ==========================================================
+   HEADER
+   ========================================================== */
+
+.od-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+  border-bottom: 1.4px solid #d6dfeb;
+  padding-bottom: 6px;
+}
+
+.od-header-left {
+  min-width: 0;
+}
+
+.od-kicker {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #6d7c8b;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.od-title {
+  margin: 0;
+  font-size: 21px;
+  line-height: 1.05;
+  font-weight: 700;
+  color: #1f4f82;
+}
+
+.od-subtitle {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #5d6b78;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.od-sep {
+  opacity: 0.6;
+}
+
+.od-header-right {
+  flex: 0 0 auto;
+}
+
+.od-logo-mark {
+  padding: 7px 10px;
+  border: 1px solid #cdd8e4;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #1f4f82;
+  background: #f7fafd;
+}
+
+/* ==========================================================
+   KPIS
+   ========================================================== */
+
+.od-kpis {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.od-kpi {
+  border: 1px solid #d8e1ea;
+  border-radius: 10px;
+  padding: 7px 8px 8px;
+  background: #fbfdff;
+  min-height: 58px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.od-kpi-label {
+  font-size: 9px;
+  line-height: 1.1;
+  color: #748291;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.od-kpi-value {
+  font-size: 17px;
+  line-height: 1.05;
+  font-weight: 700;
+  color: #1f4f82;
+  margin-top: 4px;
+  word-break: break-word;
+}
+
+/* ==========================================================
+   MAIN GRID
+   ========================================================== */
+
+.od-main-grid {
+  display: grid;
+  grid-template-columns: 1.55fr 0.95fr;
+  gap: 8px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.od-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+}
+
+.od-col-main {
+  min-width: 0;
+}
+
+.od-col-side {
+  min-width: 0;
+}
+
+/* ==========================================================
+   PANELS
+   ========================================================== */
+
+.od-panel {
+  border: 1px solid #d8e1ea;
+  border-radius: 12px;
+  background: #ffffff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.od-panel-head {
+  padding: 8px 10px 6px;
+  border-bottom: 1px solid #ebf0f5;
+  background: #f9fbfd;
+}
+
+.od-panel-title {
+  font-size: 11px;
+  line-height: 1.15;
+  font-weight: 700;
+  color: #1f4f82;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.od-panel-subtitle {
+  margin-top: 2px;
+  font-size: 9px;
+  color: #7a8794;
+  line-height: 1.2;
+}
+
+.od-panel-chart {
+  flex: 0 0 auto;
+}
+
+.od-panel-routes {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.od-panel-airlines {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.od-panel-method {
+  flex: 0 0 auto;
+}
+
+/* ==========================================================
+   CHART
+   ========================================================== */
+
+.od-chart-wrap {
+  position: relative;
+  height: 255px;
+  padding: 8px 10px 4px;
+  box-sizing: border-box;
+}
+
+#odMonthlyChart {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.od-note {
+  padding: 0 10px 9px;
+  font-size: 9px;
+  color: #707d8a;
+  line-height: 1.25;
+}
+
+/* ==========================================================
+   LISTS
+   ========================================================== */
+
+.od-list {
+  padding: 8px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.od-route-row,
+.od-airline-row {
+  border-bottom: 1px dashed #dbe3ec;
+  padding-bottom: 6px;
+}
+
+.od-route-row:last-child,
+.od-airline-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.od-route-main,
+.od-airline-name {
+  font-size: 11px;
+  line-height: 1.2;
+  color: #334150;
+}
+
+.od-route-country {
+  color: #7c8896;
+  font-weight: 400;
+}
+
+.od-route-metrics,
+.od-airline-metrics {
+  margin-top: 3px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 9px;
+  color: #63717f;
+}
+
+.od-airline-name {
+  font-weight: 700;
+}
+
+.od-empty {
+  font-size: 10px;
+  color: #7d8995;
+}
+
+/* ==========================================================
+   METHOD TEXT
+   ========================================================== */
+
+.od-method-text {
+  padding: 8px 10px 0;
+  font-size: 9.5px;
+  line-height: 1.35;
+  color: #55626f;
+}
+
+.od-method-text:last-child {
+  padding-bottom: 10px;
+}
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+
+.od-footer {
+  margin-top: auto;
+  border-top: 1px solid #d6dfeb;
+  padding-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 8.5px;
+  color: #7a8794;
+}
+
+/* ==========================================================
+   PRINT
+   ========================================================== */
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+  }
+
+  .oferta-demanda-sheet {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0;
+    box-shadow: none;
+    break-after: page;
+    page-break-after: always;
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE SOLO PARA VISTA PANTALLA
+   ========================================================== */
+
+@media screen and (max-width: 1100px) {
+  .oferta-demanda-sheet {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .od-page {
+    min-height: auto;
+    padding: 20px;
+  }
+
+  .od-kpis {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .od-main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .od-chart-wrap {
+    height: 320px;
+  }
+}
