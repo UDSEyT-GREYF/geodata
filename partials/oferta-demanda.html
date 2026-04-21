@@ -1,1 +1,38 @@
+<section class="sheet-a4 oferta-demanda-sheet" id="sheetOfertaDemanda">
+  <header class="sheet-head">
+    <h2 id="odTitle">Oferta y demanda de transporte aéreo</h2>
+    <div id="odSubtitle">Síntesis anual por aeropuerto</div>
+  </header>
 
+  <section class="od-kpis">
+    <div class="od-kpi"><span>Pasajeros</span><strong id="odTotalPax">–</strong></div>
+    <div class="od-kpi"><span>Asientos</span><strong id="odTotalAsientos">–</strong></div>
+    <div class="od-kpi"><span>Vuelos</span><strong id="odTotalVuelos">–</strong></div>
+    <div class="od-kpi"><span>Frecuencia semanal</span><strong id="odFrecuenciaSemanal">–</strong></div>
+    <div class="od-kpi"><span>Aerolíneas</span><strong id="odAirlinesCount">–</strong></div>
+    <div class="od-kpi"><span>Distancia media</span><strong id="odDistMedia">–</strong></div>
+    <div class="od-kpi"><span>Ocupación aparente</span><strong id="odLoadFactor">–</strong></div>
+  </section>
+
+  <section class="od-chart-block">
+    <div class="od-block-title">Oferta y demanda mensual</div>
+    <div class="od-chart-wrap">
+      <canvas id="odMonthlyChart"></canvas>
+    </div>
+  </section>
+
+  <section class="od-grid-2">
+    <div class="od-block">
+      <div class="od-block-title">Principales rutas</div>
+      <div id="odTopRoutes"></div>
+    </div>
+    <div class="od-block">
+      <div class="od-block-title">Participación por aerolínea</div>
+      <div id="odTopAirlines"></div>
+    </div>
+  </section>
+
+  <footer class="od-footer">
+    Fuente: elaborado por ORSNA con datos de SIAC ANAC.
+  </footer>
+</section>
