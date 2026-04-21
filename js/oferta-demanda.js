@@ -711,7 +711,7 @@ function renderAirlinesChart(rows) {
     canvas._chart = null;
   }
 
-  const dataRows = (rows || []).slice(0, 6);
+  const dataRows = (rows || []).slice(0, 5);
   if (!dataRows.length) return;
 
   const labels = dataRows.map(r => r.name);
@@ -748,19 +748,20 @@ function renderAirlinesChart(rows) {
         }
       },
       scales: {
-        x: {
-          beginAtZero: true,
-          grid: {
-            color: "#e6edf4"
-          },
-          ticks: {
-            color: "#6f7d8c",
-            font: {
-              size: 9
-            },
-            callback: value => Number(value).toLocaleString("es-AR")
-          }
-        },
+x: {
+  beginAtZero: true,
+  grid: {
+    color: "#e6edf4"
+  },
+  ticks: {
+    color: "#6f7d8c",
+    font: {
+      size: 9
+    },
+    maxTicksLimit: 4,
+    callback: value => Number(value).toLocaleString("es-AR")
+  }
+},
         y: {
           grid: {
             display: false
