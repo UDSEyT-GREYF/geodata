@@ -676,17 +676,27 @@ if (soloComercial) {
           legend: { position: "top" }
         },
         scales: {
-          x: {
-            ticks: {
-              maxRotation: 0,
-              minRotation: 0,
-              autoSkip: true,
-              maxTicksLimit: 12
-            }
-          },
-          y: {
-            beginAtZero: true
-          }
+x: {
+  ticks: {
+    maxRotation: 0,
+    minRotation: 0,
+    autoSkip: true,
+    maxTicksLimit: 12,
+    color: "#6f7d8c",
+    font: {
+      size: 9
+    }
+  }
+},
+y: {
+  beginAtZero: true,
+  ticks: {
+    color: "#6f7d8c",
+    font: {
+      size: 9
+    }
+  }
+}
         }
       }
     });
@@ -755,7 +765,7 @@ function renderAirlinesChart(rows) {
           ticks: {
             color: "#334150",
             font: {
-              size: 10
+              size: 9
             }
           }
         }
