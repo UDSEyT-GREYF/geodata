@@ -75,18 +75,23 @@ body {
 }
 
 .sheet-wrap {
-  max-width: 1540px;
+  width: 297mm;
+  max-width: 297mm;
   margin: 0 auto 18px;
-  padding: 0 14px 20px;
+  padding: 0;
 }
+
 .sheet-a4 {
-  width: 1496px;
-  min-height: 794px;
+  width: 297mm;
+  height: 210mm;
+  min-height: 210mm;
+  max-height: 210mm;
   margin: 0 auto;
   background: #fff;
   border: 1px solid #d7dee8;
   box-shadow: 0 10px 26px rgba(33, 45, 68, 0.12);
-  padding: 8px 12px 10px;
+  padding: 5mm 6mm 5mm 6mm;
+  overflow: hidden;
 }
 
 .sheet-header {
@@ -666,17 +671,41 @@ body {
 }
 
 @media print {
-  @page { size: A4 landscape; margin: 6mm; }
-  body { background: #fff; }
-  .no-print { display: none !important; }
-  .sheet-wrap { max-width: none; margin: 0; padding: 0; }
-  .sheet-a4 {
-    width: 100%;
-    min-height: auto;
+  @page {
+    size: A4 landscape;
     margin: 0;
-    box-shadow: none;
+  }
+
+  html,
+  body {
+    width: 297mm;
+    height: 210mm;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .sheet-wrap {
+    width: 297mm;
+    max-width: 297mm;
+    margin: 0;
+    padding: 0;
+  }
+
+  .sheet-a4 {
+    width: 297mm;
+    height: 210mm;
+    min-height: 210mm;
+    max-height: 210mm;
+    margin: 0;
     border: none;
-    padding: 6px;
+    box-shadow: none;
+    padding: 5mm 6mm 5mm 6mm;
+    overflow: hidden;
   }
 }
 
