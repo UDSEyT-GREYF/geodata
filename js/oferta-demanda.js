@@ -8,7 +8,7 @@
   const YEAR_REF = 2025;
 
   // Si tu archivo no se llama así, cambia SOLO esta línea
-  const RUTAS_CSV_PATH = "fuentes/oferta_demanda_rutas.csv";
+  const RUTAS_CSV_PATH = "fuentes/rutasaereas.csv";
   const AEROPUERTOS_GEOJSON_PATH = "fuentes/Datos_aeropuertos.geojson";
   const IATA_MUNDO_CSV_PATH = "fuentes/ListadoIATAmundo.csv";
 
