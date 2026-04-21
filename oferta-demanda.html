@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Oferta y demanda de transporte aéreo</title>
 
-  <!-- CSS de la hoja -->
   <link rel="stylesheet" href="css/oferta-demanda.css">
-
-  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
@@ -47,21 +44,10 @@
       color: #334150;
       background: #fff;
     }
-
-    @media print {
-      .test-toolbar {
-        display: none !important;
-      }
-
-      body {
-        background: #ffffff;
-      }
-    }
   </style>
 </head>
 <body>
 
-  <!-- Barra de prueba para selector -->
   <div class="test-toolbar">
     <label for="airportSelect">Seleccionar aeropuerto</label>
     <select id="airportSelect">
@@ -69,135 +55,19 @@
     </select>
   </div>
 
-  <!-- HOJA DE OFERTA / DEMANDA -->
-  <section class="sheet-a4 oferta-demanda-sheet" id="sheetOfertaDemanda">
-    <div class="od-page">
+  <div id="partialHost"></div>
 
-      <!-- ENCABEZADO -->
-      <header class="od-header">
-        <div class="od-header-left">
-          <h2 class="od-title">Oferta y demanda de transporte aéreo</h2>
-          <div class="od-subtitle">
-            <span id="odAirportName">Aeropuerto</span>
-            <span class="od-sep">·</span>
-            <span>Año <span id="odYearRef">2025</span></span>
-          </div>
-        </div>
+  <script>
+    fetch("partials/oferta-demanda.html")
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById("partialHost").innerHTML = html;
 
-
-      </header>
-
-      <!-- KPI STRIP -->
-<section class="od-kpis">
-  <article class="od-kpi">
-    <div class="od-kpi-label">Pasajeros</div>
-    <div class="od-kpi-value" id="odTotalPax">–</div>
-  </article>
-
-  <article class="od-kpi">
-    <div class="od-kpi-label">Asientos</div>
-    <div class="od-kpi-value" id="odTotalAsientos">–</div>
-  </article>
-
-  <article class="od-kpi">
-    <div class="od-kpi-label">Vuelos</div>
-    <div class="od-kpi-value" id="odTotalVuelos">–</div>
-  </article>
-
-  <article class="od-kpi">
-    <div class="od-kpi-label">Frecuencia semanal</div>
-    <div class="od-kpi-value" id="odFrecuenciaSemanal">–</div>
-  </article>
-
-  <article class="od-kpi">
-    <div class="od-kpi-label">Aerolíneas</div>
-    <div class="od-kpi-value" id="odAirlinesCount">–</div>
-  </article>
-
-  <article class="od-kpi">
-    <div class="od-kpi-label">Ocupación</div>
-    <div class="od-kpi-value" id="odLoadFactor">–</div>
-  </article>
-</section>
-
-      <!-- BLOQUE PRINCIPAL -->
-      <section class="od-main-grid">
-
-        <!-- COLUMNA IZQUIERDA -->
-        <div class="od-col od-col-main">
-
-          <section class="od-panel od-panel-chart">
-            <div class="od-panel-head">
-              <div class="od-panel-title">Oferta y demanda mensual</div>
-              <div class="od-panel-subtitle">Asientos ofrecidos y pasajeros transportados</div>
-            </div>
-
-            <div class="od-chart-wrap">
-              <canvas id="odMonthlyChart"></canvas>
-            </div>
-
-            <div class="od-note">
-              La serie muestra la relación entre capacidad ofrecida y demanda observada a lo largo del año.
-            </div>
-          </section>
-
-          <section class="od-panel od-panel-routes">
-            <div class="od-panel-head">
-              <div class="od-panel-title">Principales rutas</div>
-            </div>
-
-            <div class="od-list od-routes-list" id="odTopRoutes">
-              <div class="od-empty">Sin datos</div>
-            </div>
-          </section>
-
-        </div>
-
-        <!-- COLUMNA DERECHA -->
-        <div class="od-col od-col-side">
-
-          <section class="od-panel od-panel-airlines">
-            <div class="od-panel-head">
-              <div class="od-panel-title">Participación por aerolínea</div>
-              <div class="od-panel-subtitle">Oferta agregada por operador</div>
-            </div>
-
-            <div class="od-list od-airlines-list" id="odTopAirlines">
-              <div class="od-empty">Sin datos</div>
-            </div>
-          </section>
-
-          <section class="od-panel od-panel-method">
-            <div class="od-panel-head">
-              <div class="od-panel-title">Criterio de lectura</div>
-            </div>
-
-            <div class="od-method-text">
-              La hoja resume la estructura de la oferta y la demanda anual del aeropuerto, identificando las principales rutas y operadores a partir de la desagregación mensual por CityPair_IATA, aerolínea y mercado.
-            </div>
-
-            <div class="od-method-text">
-              La información de destinos se construye resolviendo el otro extremo de cada CityPair_IATA contra la tabla maestra de códigos IATA/OACI.
-            </div>
-          </section>
-
-        </div>
-      </section>
-
-      <!-- FOOTER -->
-      <footer class="od-footer">
-        <div class="od-footer-left">
-          Fuente: elaborado por ORSNA con datos de SIAC ANAC.
-        </div>
-        <div class="od-footer-right">
-          Hoja de oferta y demanda
-        </div>
-      </footer>
-
-    </div>
-  </section>
-
-  <!-- JS de la hoja -->
-  <script src="js/oferta-demanda.js"></script>
+        const s = document.createElement("script");
+        s.src = "js/oferta-demanda.js";
+        document.body.appendChild(s);
+      })
+      .catch(err => console.error("No se pudo cargar el partial de oferta-demanda", err));
+  </script>
 </body>
 </html>
