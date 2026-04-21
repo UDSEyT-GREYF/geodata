@@ -28,13 +28,17 @@
 
 .od-header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 14px;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 0;
   border-bottom: 1.4px solid #d6dfeb;
-  padding-bottom: 6px;
+  padding-bottom: 4px;
 }
-
+.od-header-right,
+.od-kicker,
+.od-logo-mark {
+  display: none !important;
+}
 .od-header-left {
   min-width: 0;
 }
