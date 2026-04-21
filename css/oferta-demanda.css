@@ -103,9 +103,9 @@
 .od-kpi {
   border: 1px solid #d8e1ea;
   border-radius: 10px;
-  padding: 6px 9px 7px;
+  padding: 5px 9px 5px;
   background: #fbfdff;
-  min-height: 56px;
+  min-height: 45px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
