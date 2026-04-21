@@ -489,14 +489,16 @@ if (soloComercial) {
     const monthlyMap = new Map();
     const countableAirlines = new Set();
 
-    let totalPax = 0;
-    let totalAsientos = 0;
-    let totalVuelos = 0;
-    let totalFrecuenciaSemanal = 0;
-    let totalASK = 0;
-    let totalRPK = 0;
-    let weightedDistSeats = 0;
-    let seatsForWeightedDist = 0;
+let totalPax = 0;
+let totalAsientos = 0;
+let totalVuelos = 0;
+let totalASK = 0;
+let totalRPK = 0;
+let weightedDistSeats = 0;
+let seatsForWeightedDist = 0;
+
+const freqByRouteAirline = new Map();
+let totalFrecuenciaSemanal = 0;
 
     rows.forEach(r => {
       const otherCodeRaw = (r.endpointA === selected) ? r.endpointB : r.endpointA;
@@ -532,13 +534,13 @@ if (soloComercial) {
       const pax = Number.isFinite(r.pax) ? r.pax : 0;
       const asientos = Number.isFinite(r.asientos) ? r.asientos : 0;
       const vuelos = Number.isFinite(r.vuelos) ? r.vuelos : 0;
-      const freq = Number.isFinite(r.frecuenciaSemanal) ? r.frecuenciaSemanal : 0;
+      const freq = Number.isFinite(r.frecuenciaSemanal) ? r.frecuenciaSemanal : NaN;
       const dist = Number.isFinite(r.distanciaKm) ? r.distanciaKm : null;
 
       d.pax += pax;
       d.asientos += asientos;
       d.vuelos += vuelos;
-      d.frecuenciaSemanal += freq;
+      d.frecuenciaSemanal += Number.isFinite(freq) ? freq : 0;
 
       if (dist !== null) {
         d.distanciaKm = dist;
@@ -568,7 +570,23 @@ if (soloComercial) {
       if (!isUnnamedAirline(airlineRaw)) {
         countableAirlines.add(airlineLabel);
       }
+const freqKey = [
+  normalizeCityPairKey(r.cityPair),
+  normalizeTextKey(airlineLabel || r.airline || "sin_dato")
+].join("|");
 
+if (Number.isFinite(freq)) {
+  if (!freqByRouteAirline.has(freqKey)) {
+    freqByRouteAirline.set(freqKey, {
+      sum: 0,
+      count: 0
+    });
+  }
+
+  const freqAcc = freqByRouteAirline.get(freqKey);
+  freqAcc.sum += freq;
+  freqAcc.count += 1;
+}
       if (r.anioMes) {
         if (!monthlyMap.has(r.anioMes)) {
           monthlyMap.set(r.anioMes, {
@@ -596,7 +614,11 @@ if (soloComercial) {
         seatsForWeightedDist += asientos;
       }
     });
-
+totalFrecuenciaSemanal = Array.from(freqByRouteAirline.values())
+  .reduce((acc, item) => {
+    if (!item.count) return acc;
+    return acc + (item.sum / item.count);
+  }, 0);
     const destinos = Array.from(destinosMap.values())
       .filter(d => (d.pax > 0 || d.asientos > 0 || d.vuelos > 0))
       .sort((a, b) => b.pax - a.pax);
