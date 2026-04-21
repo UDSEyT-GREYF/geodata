@@ -709,21 +709,25 @@ setText(
   "odTotalVuelos",
   Number.isFinite(summary.totalVuelos) ? formatNumber(Math.round(summary.totalVuelos)) : "–"
 );
-    setText("odAirlinesCount", summary.airlinesCount ? String(summary.airlinesCount) : "–");
-    setText(
-      "odFrecuenciaSemanal",
-      summary.totalFrecuenciaSemanal ? formatNumber(Math.round(summary.totalFrecuenciaSemanal)) : "–"
-    );
-    setText(
-      "odDistMedia",
-      summary.routeDistanceAvgBySeats ? `${formatNumber(Math.round(summary.routeDistanceAvgBySeats))} km` : "–"
-    );
-    setText(
-      "odLoadFactor",
-      summary.loadFactor !== null
-        ? `${(summary.loadFactor * 100).toLocaleString("es-AR", { maximumFractionDigits: 1 })}%`
-        : "–"
-    );
+
+setText(
+  "odAirlinesCount",
+  Number.isFinite(summary.airlinesCount) ? String(summary.airlinesCount) : "–"
+);
+
+setText(
+  "odFrecuenciaSemanal",
+  Number.isFinite(summary.totalFrecuenciaSemanal)
+    ? formatNumber(Math.round(summary.totalFrecuenciaSemanal))
+    : "–"
+);
+
+setText(
+  "odLoadFactor",
+  summary.loadFactorWeighted !== null
+    ? `${(summary.loadFactorWeighted * 100).toLocaleString("es-AR", { maximumFractionDigits: 1 })}%`
+    : "–"
+);
 
     const topRoutesEl = q("odTopRoutes");
     if (topRoutesEl) {
