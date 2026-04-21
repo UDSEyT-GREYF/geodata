@@ -748,7 +748,7 @@ function renderOfertaDemandaMonthlyChart(rows) {
       maintainAspectRatio: false,
       plugins: {
         legend: {
-          display: true,
+          display: false,
           position: "top",
           align: "start",
           labels: {
