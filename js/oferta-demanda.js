@@ -1000,19 +1000,28 @@ rutasOfertaRows = rutasOfertaRows.map(r => ({
       const params = new URLSearchParams(window.location.search);
       const initial = clean(params.get("airport")).toUpperCase() || clean(firstNonEmpty(aeropuertos[0], ["IATA"])).toUpperCase();
 
-      if (select) {
-        select.value = initial;
-        select.addEventListener("change", e => {
-          const value = clean(e.target.value).toUpperCase();
-          renderAirport(value);
+if (select) {
+  select.value = initial;
+  select.addEventListener("change", e => {
+    const value = clean(e.target.value).toUpperCase();
 
-          const url = new URL(window.location.href);
-          url.searchParams.set("airport", value);
-          window.history.replaceState({}, "", url);
-        });
-      }
+    try {
+      renderAirport(value);
 
-      renderAirport(initial);
+      const url = new URL(window.location.href);
+      url.searchParams.set("airport", value);
+      window.history.replaceState({}, "", url);
+    } catch (err) {
+      console.error("Error al cambiar de aeropuerto:", err);
+    }
+  });
+}
+
+try {
+  renderAirport(initial);
+} catch (err) {
+  console.error("Error al renderizar aeropuerto inicial:", err);
+}
 
     } catch (err) {
       console.error("Error cargando oferta-demanda:", err);
