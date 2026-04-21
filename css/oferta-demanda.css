@@ -372,3 +372,17 @@
     height: 320px;
   }
 }
+.od-chart-wrap-airlines {
+  height: 250px;
+  padding: 8px 10px 2px;
+}
+
+.od-note-tight {
+  padding-top: 0;
+  padding-bottom: 8px;
+}
+
+#odAirlinesChart {
+  width: 100% !important;
+  height: 100% !important;
+}
