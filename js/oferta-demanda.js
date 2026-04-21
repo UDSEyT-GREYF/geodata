@@ -587,20 +587,33 @@ if (Number.isFinite(freq)) {
   freqAcc.sum += freq;
   freqAcc.count += 1;
 }
-      if (r.anioMes) {
-        if (!monthlyMap.has(r.anioMes)) {
-          monthlyMap.set(r.anioMes, {
-            anioMes: r.anioMes,
-            pax: 0,
-            asientos: 0,
-            vuelos: 0
-          });
-        }
-        const m = monthlyMap.get(r.anioMes);
-        m.pax += pax;
-        m.asientos += asientos;
-        m.vuelos += vuelos;
-      }
+if (r.anioMes) {
+  if (!monthlyMap.has(r.anioMes)) {
+    monthlyMap.set(r.anioMes, {
+      anioMes: r.anioMes,
+      paxCab: 0,
+      paxInt: 0,
+      paxTotal: 0,
+      asientosCab: 0,
+      asientosInt: 0,
+      asientosTotal: 0,
+      vuelosCab: 0,
+      vuelosInt: 0,
+      vuelosTotal: 0
+    });
+  }
+
+  const m = monthlyMap.get(r.anioMes);
+  const marketKey = isInternational ? "Int" : "Cab";
+
+  m.paxTotal += pax;
+  m.asientosTotal += asientos;
+  m.vuelosTotal += vuelos;
+
+  m[`pax${marketKey}`] += pax;
+  m[`asientos${marketKey}`] += asientos;
+  m[`vuelos${marketKey}`] += vuelos;
+}
 
       totalPax += pax;
       totalAsientos += asientos;
@@ -652,77 +665,146 @@ totalFrecuenciaSemanal = Array.from(freqByRouteAirline.values())
   /* ============================================================
      RENDER
      ============================================================ */
-  function renderOfertaDemandaMonthlyChart(rows) {
-    const canvas = q("odMonthlyChart");
-    if (!canvas || typeof Chart === "undefined") return;
+function renderOfertaDemandaMonthlyChart(rows) {
+  const canvas = q("odMonthlyChart");
+  if (!canvas || typeof Chart === "undefined") return;
 
-    if (canvas._chart) {
-      canvas._chart.destroy();
-      canvas._chart = null;
-    }
+  if (canvas._chart) {
+    canvas._chart.destroy();
+    canvas._chart = null;
+  }
 
-    const labels = rows.map(r => r.anioMes);
-    const pax = rows.map(r => Math.round(r.pax || 0));
-    const asientos = rows.map(r => Math.round(r.asientos || 0));
+  const dataRows = (rows || [])
+    .slice()
+    .sort((a, b) => a.anioMes.localeCompare(b.anioMes));
 
-    canvas._chart = new Chart(canvas, {
-      type: "bar",
-      data: {
-        labels,
-        datasets: [
-          {
-            type: "bar",
-            label: "Asientos",
-            data: asientos,
-            backgroundColor: "rgba(42, 111, 176, 0.22)",
-            borderColor: "rgba(42, 111, 176, 1)",
-            borderWidth: 1
-          },
-          {
-            type: "line",
-            label: "Pasajeros",
-            data: pax,
-            tension: 0.25,
-            borderColor: "#2a6fb0",
-            pointRadius: 2.5,
-            pointHoverRadius: 4,
-            fill: false
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { position: "top" }
+  if (!dataRows.length) return;
+
+  const labels = dataRows.map(r => r.anioMes);
+
+  const paxCab = dataRows.map(r => Math.round(r.paxCab || 0));
+  const paxInt = dataRows.map(r => Math.round(r.paxInt || 0));
+  const asientosCab = dataRows.map(r => Math.round(r.asientosCab || 0));
+  const asientosInt = dataRows.map(r => Math.round(r.asientosInt || 0));
+
+  canvas._chart = new Chart(canvas, {
+    data: {
+      labels,
+      datasets: [
+        {
+          type: "bar",
+          label: "Pasajeros cabotaje",
+          data: paxCab,
+          backgroundColor: "rgba(117, 170, 219, 0.35)",
+          borderColor: "#75AADB",
+          borderWidth: 1.1,
+          stack: "pasajeros",
+          order: 3
         },
-        scales: {
-x: {
-  ticks: {
-    maxRotation: 0,
-    minRotation: 0,
-    autoSkip: true,
-    maxTicksLimit: 12,
-    color: "#6f7d8c",
-    font: {
-      size: 9
-    }
-  }
-},
-y: {
-  beginAtZero: true,
-  ticks: {
-    color: "#6f7d8c",
-    font: {
-      size: 9
-    }
-  }
-}
+        {
+          type: "bar",
+          label: "Pasajeros internacional",
+          data: paxInt,
+          backgroundColor: "rgba(62, 209, 4, 0.18)",
+          borderColor: "#3ed104",
+          borderWidth: 1.1,
+          stack: "pasajeros",
+          order: 4
+        },
+        {
+          type: "line",
+          label: "Asientos cabotaje",
+          data: asientosCab,
+          borderColor: "#2A6FB0",
+          backgroundColor: "rgba(42, 111, 176, 0)",
+          pointBackgroundColor: "#2A6FB0",
+          pointBorderColor: "#2A6FB0",
+          pointRadius: 2.2,
+          pointHoverRadius: 3.4,
+          borderWidth: 2.1,
+          tension: 0.22,
+          fill: false,
+          order: 1
+        },
+        {
+          type: "line",
+          label: "Asientos internacional",
+          data: asientosInt,
+          borderColor: "#1C7C1B",
+          backgroundColor: "rgba(28, 124, 27, 0)",
+          pointBackgroundColor: "#1C7C1B",
+          pointBorderColor: "#1C7C1B",
+          pointRadius: 2.2,
+          pointHoverRadius: 3.4,
+          borderWidth: 2.1,
+          tension: 0.22,
+          fill: false,
+          order: 2
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: "top",
+          align: "start",
+          labels: {
+            color: "#5f6e7d",
+            boxWidth: 34,
+            boxHeight: 10,
+            padding: 12,
+            font: {
+              size: 10
+            }
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const value = Number(ctx.raw || 0);
+              return `${ctx.dataset.label}: ${value.toLocaleString("es-AR")}`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          grid: {
+            color: "#e6edf4"
+          },
+          ticks: {
+            color: "#6f7d8c",
+            font: {
+              size: 9
+            },
+            maxRotation: 0,
+            minRotation: 0,
+            autoSkip: true,
+            maxTicksLimit: 12
+          }
+        },
+        y: {
+          stacked: true,
+          beginAtZero: true,
+          grid: {
+            color: "#e6edf4"
+          },
+          ticks: {
+            color: "#6f7d8c",
+            font: {
+              size: 9
+            },
+            callback: value => Number(value).toLocaleString("es-AR")
+          }
         }
       }
-    });
-  }
-
+    }
+  });
+}
  
 function splitLabelTwoLines(text, maxLen = 12) {
   const raw = clean(text);
