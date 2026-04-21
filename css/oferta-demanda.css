@@ -95,8 +95,9 @@
 
 .od-kpis {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 7px;
+  min-width: 0;
 }
 
 .od-kpi {
@@ -119,12 +120,13 @@
 }
 
 .od-kpi-value {
-  font-size: 17px;
+  font-size: 15px;
   line-height: 1.05;
   font-weight: 700;
   color: #1f4f82;
   margin-top: 4px;
   word-break: break-word;
+  font-variant-numeric: tabular-nums;
 }
 
 /* ==========================================================
@@ -355,9 +357,9 @@
     padding: 20px;
   }
 
-  .od-kpis {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.od-kpis {
+  grid-template-columns: repeat(3, 1fr);
+}
 
   .od-main-grid {
     grid-template-columns: 1fr;
