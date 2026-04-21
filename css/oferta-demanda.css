@@ -109,7 +109,6 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 4px;
   min-width: 0;
 }
 
@@ -119,14 +118,16 @@
   color: #748291;
   text-transform: uppercase;
   letter-spacing: 0.035em;
+  min-height: 17px;   /* reserva espacio para separar label del valor */
+  display: block;
 }
 
 .od-kpi-value {
   font-size: 14px;
-  line-height: 1.05;
+  line-height: 1;
   font-weight: 700;
   color: #1f4f82;
-  margin-top: 0;
+  margin-top: 6px;    /* más aire entre label y número */
   word-break: break-word;
   font-variant-numeric: tabular-nums;
 }
