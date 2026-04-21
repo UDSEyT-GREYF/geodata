@@ -877,5 +877,8 @@ rutasOfertaRows = rutasOfertaRows.map(r => ({
   /* ============================================================
      INIT
      ============================================================ */
+if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", loadData);
-})();
+} else {
+  loadData();
+}})();
