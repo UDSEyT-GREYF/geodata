@@ -819,7 +819,8 @@ function renderAirlinesChart(rows) {
           borderColor: "rgba(42, 111, 176, 1)",
           borderWidth: 1.2,
           borderRadius: 4,
-          barThickness: 14
+          barThickness: 14,
+          minBarLength: 10
         }
       ]
     },
