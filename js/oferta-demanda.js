@@ -9,6 +9,7 @@
 
   // Si tu archivo no se llama así, cambia SOLO esta línea
   const RUTAS_CSV_PATH = "fuentes/rutasaereas.csv";
+  const RUTAS_KM_CSV_PATH = "fuentes/km rutasaereas.csv";
   const AEROPUERTOS_GEOJSON_PATH = "fuentes/Datos_aeropuertos.geojson";
   const IATA_MUNDO_CSV_PATH = "fuentes/ListadoIATAmundo.csv";
 
@@ -20,6 +21,8 @@
   let iataWorldIndex = {};
   let routeCodeIndex = {};
   let currentIATA = "";
+  let rutasKmRows = [];
+  let rutasKmIndex = new Map();
 
   const DEST_OVERRIDES = {
     BUE: { ciudad: "Buenos Aires AEP+EZE", pais: "Argentina" },
@@ -110,6 +113,32 @@
     return Number.isFinite(n) ? n : NaN;
   }
 
+  function normalizeTextKey(v) {
+  return clean(v)
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function normalizeCityPairKey(v) {
+  return clean(v).toUpperCase().replace(/\s+/g, " ").trim();
+}
+
+function buildRouteFullKey(cityPair, airline, clasificacion, tipoOperacion) {
+  return [
+    normalizeCityPairKey(cityPair),
+    normalizeTextKey(airline),
+    normalizeTextKey(clasificacion),
+    normalizeTextKey(tipoOperacion)
+  ].join("|");
+}
+
+function buildRouteSimpleKey(cityPair) {
+  return normalizeCityPairKey(cityPair);
+}
+  
   function formatNumber(n) {
     if (n === null || n === undefined || n === "" || Number.isNaN(Number(n))) return "–";
     return Number(n).toLocaleString("es-AR");
@@ -283,55 +312,140 @@
     };
   }
 
-  function parseRutasOfertaCSV(text) {
-    return parseCSV(text).map(r => {
-      const anioMesRaw = clean(firstNonEmpty(r, ["anomes", "ano_mes", "fecha"]));
-      const date = parseFechaFlexible(anioMesRaw);
-      const yearNum = parseNumber(firstNonEmpty(r, ["anio", "ano", "year"]));
+function parseRutasOfertaCSV(text) {
+  return parseCSV(text).map(r => {
+    const anioMesRaw = clean(firstNonEmpty(r, [
+      "anomes", "ano_mes", "año_mes", "fecha"
+    ]));
 
-      const cityPair = clean(firstNonEmpty(r, ["citypair_iata"])).toUpperCase();
+    const date = parseFechaFlexible(anioMesRaw);
+    const yearNum = parseNumber(firstNonEmpty(r, ["anio", "ano", "year", "año"]));
 
-      let endpointA = "";
-      let endpointB = "";
+    const cityPair = clean(firstNonEmpty(r, ["citypair_iata"])).toUpperCase();
 
-      if (cityPair.includes("-")) {
-        const parts = cityPair.split("-").map(s => s.trim().toUpperCase());
-        endpointA = parts[0] || "";
-        endpointB = parts[1] || "";
-      }
+    let endpointA = "";
+    let endpointB = "";
 
-      return {
-        anioMes: anioMesRaw,
-        date,
-        year: Number.isFinite(yearNum) ? Number(yearNum) : (date ? date.getFullYear() : NaN),
+    if (cityPair.includes("-")) {
+      const parts = cityPair.split("-").map(s => s.trim().toUpperCase());
+      endpointA = parts[0] || "";
+      endpointB = parts[1] || "";
+    }
 
-        cityPair,
-        endpointA,
-        endpointB,
+    return {
+      anioMes: anioMesRaw,
+      date,
+      year: Number.isFinite(yearNum) ? Number(yearNum) : (date ? date.getFullYear() : NaN),
 
-        airline: clean(firstNonEmpty(r, [
-          "aerolinea_nombre",
-          "aerolinea",
-          "airline",
-          "compania"
-        ])),
+      cityPair,
+      endpointA,
+      endpointB,
 
-        clasificacion: clean(firstNonEmpty(r, ["clasificacion"])),
-        tipoOperacion: clean(firstNonEmpty(r, ["comercial_av_gral"])),
+      airline: clean(firstNonEmpty(r, [
+        "aerolinea_nombre",
+        "aerolinea",
+        "airline",
+        "compania"
+      ])),
 
-        pax: parseNumber(firstNonEmpty(r, ["pax", "pasajeros", "valor_pax"])),
-        asientos: parseNumber(firstNonEmpty(r, ["asientos_pax", "asientos"])),
-        vuelos: parseNumber(firstNonEmpty(r, ["vuelos", "cantidad_vuelos"])),
-        frecuenciaSemanal: parseNumber(firstNonEmpty(r, ["frecuencia_semanal", "frecuencias"])),
-        distanciaKm: parseNumber(firstNonEmpty(r, ["distanciakm", "distancia_km"]))
-      };
-    }).filter(r =>
-      r.endpointA &&
-      r.endpointB &&
-      Number.isFinite(r.year)
+      clasificacion: clean(firstNonEmpty(r, ["clasificacion"])),
+      tipoOperacion: clean(firstNonEmpty(r, [
+        "comercial_av_gral",
+        "tipo_operacion",
+        "operacion"
+      ])),
+
+      pax: parseNumber(firstNonEmpty(r, [
+        "totalpasajeros",
+        "pax",
+        "pasajeros",
+        "valor_pax"
+      ])),
+
+      asientos: parseNumber(firstNonEmpty(r, [
+        "asientos_pax",
+        "asientos"
+      ])),
+
+      vuelos: parseNumber(firstNonEmpty(r, [
+        "vuelos",
+        "cantidad_vuelos",
+        "movimientos"
+      ])),
+
+      frecuenciaSemanal: parseNumber(firstNonEmpty(r, [
+        "frecuencia_semanal",
+        "frecuencias"
+      ])),
+
+      distanciaKm: NaN
+    };
+  }).filter(r =>
+    r.endpointA &&
+    r.endpointB &&
+    Number.isFinite(r.year)
+  );
+}
+function parseRutasKmCSV(text) {
+  return parseCSV(text).map(r => ({
+    cityPair: clean(firstNonEmpty(r, ["citypair_iata"])).toUpperCase(),
+    airline: clean(firstNonEmpty(r, [
+      "aerolinea_nombre",
+      "aerolinea",
+      "airline",
+      "compania"
+    ])),
+    clasificacion: clean(firstNonEmpty(r, ["clasificacion"])),
+    tipoOperacion: clean(firstNonEmpty(r, [
+      "comercial_av_gral",
+      "tipo_operacion",
+      "operacion"
+    ])),
+    distanciaKm: parseNumber(firstNonEmpty(r, [
+      "distanciakm",
+      "distancia_km"
+    ]))
+  })).filter(r =>
+    r.cityPair &&
+    Number.isFinite(r.distanciaKm)
+  );
+}
+
+function buildRutasKmIndex(rows) {
+  const idx = new Map();
+
+  rows.forEach(r => {
+    const fullKey = buildRouteFullKey(
+      r.cityPair,
+      r.airline,
+      r.clasificacion,
+      r.tipoOperacion
     );
-  }
 
+    const simpleKey = buildRouteSimpleKey(r.cityPair);
+
+    if (!idx.has(fullKey)) idx.set(fullKey, r.distanciaKm);
+    if (!idx.has(simpleKey)) idx.set(simpleKey, r.distanciaKm);
+  });
+
+  return idx;
+}
+
+function getDistanciaForRuta(row) {
+  const fullKey = buildRouteFullKey(
+    row.cityPair,
+    row.airline,
+    row.clasificacion,
+    row.tipoOperacion
+  );
+
+  const simpleKey = buildRouteSimpleKey(row.cityPair);
+
+  if (rutasKmIndex.has(fullKey)) return rutasKmIndex.get(fullKey);
+  if (rutasKmIndex.has(simpleKey)) return rutasKmIndex.get(simpleKey);
+
+  return NaN;
+}
   /* ============================================================
      AGREGACIÓN
      ============================================================ */
@@ -348,9 +462,9 @@
       r.year === year
     );
 
-    if (soloComercial) {
-      rows = rows.filter(r => clean(r.tipoOperacion).toLowerCase() === "comercial");
-    }
+if (soloComercial) {
+  rows = rows.filter(r => clean(r.tipoOperacion).toLowerCase().includes("comercial"));
+}
 
     if (!rows.length) {
       return {
@@ -581,9 +695,20 @@
   function renderOfertaDemanda(iata) {
     const summary = getOfertaDemandaSummary(iata, YEAR_REF, { soloComercial: true });
 
-    setText("odTotalPax", summary.totalPax ? formatNumber(Math.round(summary.totalPax)) : "–");
-    setText("odTotalAsientos", summary.totalAsientos ? formatNumber(Math.round(summary.totalAsientos)) : "–");
-    setText("odTotalVuelos", summary.totalVuelos ? formatNumber(Math.round(summary.totalVuelos)) : "–");
+setText(
+  "odTotalPax",
+  Number.isFinite(summary.totalPax) ? formatNumber(Math.round(summary.totalPax)) : "–"
+);
+
+setText(
+  "odTotalAsientos",
+  Number.isFinite(summary.totalAsientos) ? formatNumber(Math.round(summary.totalAsientos)) : "–"
+);
+
+setText(
+  "odTotalVuelos",
+  Number.isFinite(summary.totalVuelos) ? formatNumber(Math.round(summary.totalVuelos)) : "–"
+);
     setText("odAirlinesCount", summary.airlinesCount ? String(summary.airlinesCount) : "–");
     setText(
       "odFrecuenciaSemanal",
@@ -631,6 +756,14 @@
     }
 
     renderOfertaDemandaMonthlyChart(summary.monthly);
+    console.log("Oferta-demanda resumen", {
+  iata,
+  totalPax: summary.totalPax,
+  totalAsientos: summary.totalAsientos,
+  totalVuelos: summary.totalVuelos,
+  monthly: summary.monthly.slice(0, 3),
+  destinos: summary.destinos.slice(0, 3)
+});
   }
 
   function renderAirport(iataCode) {
@@ -654,15 +787,17 @@
     const select = q("airportSelect");
 
     try {
-      const [
-        airportsResp,
-        rutasOfertaResp,
-        iataWorldResp
-      ] = await Promise.all([
-        fetch(AEROPUERTOS_GEOJSON_PATH),
-        fetch(RUTAS_CSV_PATH).catch(() => null),
-        fetch(IATA_MUNDO_CSV_PATH).catch(() => null)
-      ]);
+const [
+  airportsResp,
+  rutasOfertaResp,
+  rutasKmResp,
+  iataWorldResp
+] = await Promise.all([
+  fetch(AEROPUERTOS_GEOJSON_PATH),
+  fetch(RUTAS_CSV_PATH).catch(() => null),
+  fetch(RUTAS_KM_CSV_PATH).catch(() => null),
+  fetch(IATA_MUNDO_CSV_PATH).catch(() => null)
+]);
 
       const geojson = await airportsResp.json();
       aeropuertos = (geojson.features || [])
@@ -673,11 +808,24 @@
         clean(firstNonEmpty(a, ["IATA"])).localeCompare(clean(firstNonEmpty(b, ["IATA"])), "es")
       );
 
-      if (rutasOfertaResp && rutasOfertaResp.ok) {
-        rutasOfertaRows = parseRutasOfertaCSV(await readTextSmart(rutasOfertaResp));
-      } else {
-        rutasOfertaRows = [];
-      }
+if (rutasOfertaResp && rutasOfertaResp.ok) {
+  rutasOfertaRows = parseRutasOfertaCSV(await readTextSmart(rutasOfertaResp));
+} else {
+  rutasOfertaRows = [];
+}
+
+if (rutasKmResp && rutasKmResp.ok) {
+  rutasKmRows = parseRutasKmCSV(await readTextSmart(rutasKmResp));
+  rutasKmIndex = buildRutasKmIndex(rutasKmRows);
+} else {
+  rutasKmRows = [];
+  rutasKmIndex = new Map();
+}
+
+rutasOfertaRows = rutasOfertaRows.map(r => ({
+  ...r,
+  distanciaKm: getDistanciaForRuta(r)
+}));
 
       if (iataWorldResp && iataWorldResp.ok) {
         const parsedWorld = parseIATAMundoCSV(await readTextSmart(iataWorldResp));
