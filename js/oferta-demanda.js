@@ -702,6 +702,34 @@ y: {
     });
   }
 
+function splitLabelTwoLines(text, maxLen = 16) {
+  const raw = clean(text);
+  if (!raw) return [""];
+
+  if (raw.length <= maxLen) return [raw];
+
+  const words = raw.split(/\s+/);
+  const lines = [];
+  let current = "";
+
+  for (const word of words) {
+    const test = current ? `${current} ${word}` : word;
+
+    if (test.length <= maxLen || lines.length === 1) {
+      current = test;
+    } else {
+      lines.push(current);
+      current = word;
+    }
+  }
+
+  if (current) lines.push(current);
+
+  if (lines.length <= 2) return lines;
+
+  return [lines[0], lines.slice(1).join(" ")];
+}  
+  
 function renderAirlinesChart(rows) {
   const canvas = q("odAirlinesChart");
   if (!canvas || typeof Chart === "undefined") return;
@@ -714,8 +742,8 @@ function renderAirlinesChart(rows) {
   const dataRows = (rows || []).slice(0, 5);
   if (!dataRows.length) return;
 
-  const labels = dataRows.map(r => r.name);
-  const values = dataRows.map(r => Math.round(r.asientos || 0));
+const fullLabels = dataRows.map(r => r.name);
+const labels = fullLabels.map(name => splitLabelTwoLines(name, 16));
 
   canvas._chart = new Chart(canvas, {
     type: "bar",
@@ -729,7 +757,7 @@ function renderAirlinesChart(rows) {
           borderColor: "rgba(42, 111, 176, 1)",
           borderWidth: 1.2,
           borderRadius: 4,
-          barThickness: 16
+          barThickness: 14
         }
       ]
     },
@@ -737,6 +765,14 @@ function renderAirlinesChart(rows) {
       responsive: true,
       maintainAspectRatio: false,
       indexAxis: "y",
+       layout: {
+        padding: {
+          left: 2,
+          right: 6,
+          top: 0,
+          bottom: 0
+        }
+      },
       plugins: {
         legend: {
           display: false
