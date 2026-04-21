@@ -762,15 +762,49 @@ function renderAirlinesChart(rows) {
     canvas._chart = null;
   }
 
-  const dataRows = (rows || [])
-    .filter(r => (r.asientos || 0) > 0)
-    .slice(0, 5);
+  const allRows = (rows || [])
+    .filter(r => (r.asientos || 0) > 0);
+
+  const dataRows = allRows.slice(0, 5);
 
   if (!dataRows.length) return;
+
+  const totalSeatsAll = allRows.reduce((acc, r) => acc + (r.asientos || 0), 0);
 
   const fullLabels = dataRows.map(r => r.name);
   const labels = fullLabels.map(name => splitLabelTwoLines(name, 12));
   const values = dataRows.map(r => Math.round(r.asientos || 0));
+  const percents = dataRows.map(r =>
+    totalSeatsAll > 0 ? ((r.asientos || 0) / totalSeatsAll) * 100 : 0
+  );
+
+  const percentLabelPlugin = {
+    id: "percentLabelPlugin",
+    afterDatasetsDraw(chart) {
+      const { ctx } = chart;
+      const meta = chart.getDatasetMeta(0);
+      const dataset = chart.data.datasets[0];
+      if (!meta || !dataset) return;
+
+      ctx.save();
+      ctx.font = "600 9px sans-serif";
+      ctx.fillStyle = "#5f6e7d";
+      ctx.textAlign = "left";
+      ctx.textBaseline = "middle";
+
+      meta.data.forEach((bar, index) => {
+        const pct = dataset.percentData?.[index] ?? 0;
+        const label = `${pct.toLocaleString("es-AR", { maximumFractionDigits: 1 })}%`;
+
+        const x = bar.x + 6;
+        const y = bar.y;
+
+        ctx.fillText(label, x, y);
+      });
+
+      ctx.restore();
+    }
+  };
 
   canvas._chart = new Chart(canvas, {
     type: "bar",
@@ -780,6 +814,7 @@ function renderAirlinesChart(rows) {
         {
           label: "Asientos",
           data: values,
+          percentData: percents,
           backgroundColor: "rgba(42, 111, 176, 0.22)",
           borderColor: "rgba(42, 111, 176, 1)",
           borderWidth: 1.2,
@@ -795,7 +830,7 @@ function renderAirlinesChart(rows) {
       layout: {
         padding: {
           left: 2,
-          right: 6,
+          right: 30,
           top: 0,
           bottom: 0
         }
@@ -807,7 +842,10 @@ function renderAirlinesChart(rows) {
         tooltip: {
           callbacks: {
             title: items => fullLabels[items[0].dataIndex],
-            label: ctx => `Asientos: ${Number(ctx.raw).toLocaleString("es-AR")}`
+            label: ctx => {
+              const pct = ctx.dataset.percentData?.[ctx.dataIndex] ?? 0;
+              return `Asientos: ${Number(ctx.raw).toLocaleString("es-AR")} (${pct.toLocaleString("es-AR", { maximumFractionDigits: 1 })}%)`;
+            }
           }
         }
       },
@@ -838,7 +876,8 @@ function renderAirlinesChart(rows) {
           }
         }
       }
-    }
+    },
+    plugins: [percentLabelPlugin]
   });
 }
   
