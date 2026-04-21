@@ -103,28 +103,30 @@
 .od-kpi {
   border: 1px solid #d8e1ea;
   border-radius: 10px;
-  padding: 7px 8px 8px;
+  padding: 5px 8px 6px;
   background: #fbfdff;
-  min-height: 58px;
+  min-height: 46px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 3px;
+  min-width: 0;
 }
 
 .od-kpi-label {
-  font-size: 9px;
-  line-height: 1.1;
+  font-size: 8px;
+  line-height: 1.05;
   color: #748291;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.035em;
 }
 
 .od-kpi-value {
-  font-size: 15px;
-  line-height: 1.05;
+  font-size: 14px;
+  line-height: 1;
   font-weight: 700;
   color: #1f4f82;
-  margin-top: 4px;
+  margin-top: 0;
   word-break: break-word;
   font-variant-numeric: tabular-nums;
 }
