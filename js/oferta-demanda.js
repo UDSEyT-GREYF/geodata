@@ -702,34 +702,7 @@ y: {
     });
   }
 
-function splitLabelTwoLines(text, maxLen = 16) {
-  const raw = clean(text);
-  if (!raw) return [""];
-
-  if (raw.length <= maxLen) return [raw];
-
-  const words = raw.split(/\s+/);
-  const lines = [];
-  let current = "";
-
-  for (const word of words) {
-    const test = current ? `${current} ${word}` : word;
-
-    if (test.length <= maxLen || lines.length === 1) {
-      current = test;
-    } else {
-      lines.push(current);
-      current = word;
-    }
-  }
-
-  if (current) lines.push(current);
-
-  if (lines.length <= 2) return lines;
-
-  return [lines[0], lines.slice(1).join(" ")];
-}  
-  
+ 
 function splitLabelTwoLines(text, maxLen = 12) {
   const raw = clean(text);
   if (!raw) return [""];
