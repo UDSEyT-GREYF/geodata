@@ -15,11 +15,11 @@
 .od-page {
   width: 100%;
   min-height: 297mm;
-  padding: 11mm 11mm 9mm 11mm;
+  padding: 9mm 11mm 9mm 11mm;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
 /* ==========================================================
@@ -61,8 +61,8 @@
 }
 
 .od-subtitle {
-  margin-top: 4px;
-  font-size: 11px;
+  margin-top: 2px;
+  font-size: 10px;
   color: #5d6b78;
   display: flex;
   gap: 6px;
@@ -103,26 +103,26 @@
 .od-kpi {
   border: 1px solid #d8e1ea;
   border-radius: 10px;
-  padding: 5px 8px 6px;
+  padding: 6px 9px 7px;
   background: #fbfdff;
-  min-height: 50px;
+  min-height: 56px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 3px;
-  min-width: 1;
+  gap: 4px;
+  min-width: 0;
 }
 
 .od-kpi-label {
   font-size: 8px;
-  line-height: 1.05;
+  line-height: 1.1;
   color: #748291;
   text-transform: uppercase;
   letter-spacing: 0.035em;
 }
 
 .od-kpi-value {
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.05;
   font-weight: 700;
   color: #1f4f82;
@@ -138,7 +138,7 @@
 .od-main-grid {
   display: grid;
   grid-template-columns: 1.55fr 0.95fr;
-  gap: 8px;
+  gap: 6px;
   flex: 1 1 auto;
   min-height: 0;
 }
