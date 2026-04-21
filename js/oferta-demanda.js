@@ -755,6 +755,9 @@ function renderAirlinesChart(rows) {
           },
           ticks: {
             color: "#6f7d8c",
+            font: {
+              size: 9
+            },
             callback: value => Number(value).toLocaleString("es-AR")
           }
         },
