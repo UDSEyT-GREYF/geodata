@@ -730,6 +730,35 @@ function splitLabelTwoLines(text, maxLen = 16) {
   return [lines[0], lines.slice(1).join(" ")];
 }  
   
+function splitLabelTwoLines(text, maxLen = 12) {
+  const raw = clean(text);
+  if (!raw) return [""];
+
+  if (raw.length <= maxLen) return [raw];
+
+  const words = raw.split(/\s+/);
+  const lines = [];
+  let current = "";
+
+  for (const word of words) {
+    const test = current ? `${current} ${word}` : word;
+
+    if (test.length <= maxLen && lines.length === 0) {
+      current = test;
+    } else {
+      if (current) lines.push(current);
+      current = word;
+    }
+  }
+
+  if (current) lines.push(current);
+
+  if (lines.length === 1) return lines;
+  if (lines.length === 2) return lines;
+
+  return [lines[0], lines.slice(1).join(" ")];
+}
+
 function renderAirlinesChart(rows) {
   const canvas = q("odAirlinesChart");
   if (!canvas || typeof Chart === "undefined") return;
@@ -739,11 +768,15 @@ function renderAirlinesChart(rows) {
     canvas._chart = null;
   }
 
-  const dataRows = (rows || []).slice(0, 5);
+  const dataRows = (rows || [])
+    .filter(r => (r.asientos || 0) > 0)
+    .slice(0, 5);
+
   if (!dataRows.length) return;
 
-const fullLabels = dataRows.map(r => r.name);
-const labels = fullLabels.map(name => splitLabelTwoLines(name, 16));
+  const fullLabels = dataRows.map(r => r.name);
+  const labels = fullLabels.map(name => splitLabelTwoLines(name, 12));
+  const values = dataRows.map(r => Math.round(r.asientos || 0));
 
   canvas._chart = new Chart(canvas, {
     type: "bar",
@@ -765,7 +798,7 @@ const labels = fullLabels.map(name => splitLabelTwoLines(name, 16));
       responsive: true,
       maintainAspectRatio: false,
       indexAxis: "y",
-       layout: {
+      layout: {
         padding: {
           left: 2,
           right: 6,
@@ -779,25 +812,26 @@ const labels = fullLabels.map(name => splitLabelTwoLines(name, 16));
         },
         tooltip: {
           callbacks: {
-            label: ctx => `${ctx.dataset.label}: ${Number(ctx.raw).toLocaleString("es-AR")}`
+            title: items => fullLabels[items[0].dataIndex],
+            label: ctx => `Asientos: ${Number(ctx.raw).toLocaleString("es-AR")}`
           }
         }
       },
       scales: {
-x: {
-  beginAtZero: true,
-  grid: {
-    color: "#e6edf4"
-  },
-  ticks: {
-    color: "#6f7d8c",
-    font: {
-      size: 9
-    },
-    maxTicksLimit: 4,
-    callback: value => Number(value).toLocaleString("es-AR")
-  }
-},
+        x: {
+          beginAtZero: true,
+          grid: {
+            color: "#e6edf4"
+          },
+          ticks: {
+            color: "#6f7d8c",
+            font: {
+              size: 9
+            },
+            maxTicksLimit: 4,
+            callback: value => Number(value).toLocaleString("es-AR")
+          }
+        },
         y: {
           grid: {
             display: false
@@ -868,7 +902,6 @@ setText(
       `).join("") || '<div class="od-empty">Sin datos</div>';
     }
 
-renderAirlinesChart(summary.airlines);
 
 renderOfertaDemandaMonthlyChart(summary.monthly);
 renderAirlinesChart(summary.airlines);
