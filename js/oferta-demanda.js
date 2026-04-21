@@ -605,7 +605,6 @@ if (Number.isFinite(freq)) {
       totalPax += pax;
       totalAsientos += asientos;
       totalVuelos += vuelos;
-      totalFrecuenciaSemanal += freq;
 
       if (dist !== null) {
         totalASK += asientos * dist;
