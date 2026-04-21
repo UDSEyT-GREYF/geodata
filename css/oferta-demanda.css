@@ -386,3 +386,26 @@
   width: 100% !important;
   height: 100% !important;
 }
+.od-panel-subtitle-rich {
+  line-height: 1.25;
+}
+
+.od-sub-asientos-cab {
+  color: #2A6FB0;
+  font-weight: 600;
+}
+
+.od-sub-asientos-int {
+  color: #1C7C1B;
+  font-weight: 600;
+}
+
+.od-sub-pax-cab {
+  color: #75AADB;
+  font-weight: 600;
+}
+
+.od-sub-pax-int {
+  color: #3ed104;
+  font-weight: 600;
+}
