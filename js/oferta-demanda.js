@@ -700,90 +700,99 @@ function renderOfertaDemandaMonthlyChart(rows) {
   const paxInt = dataRows.map(r => Math.round(r.paxInt || 0));
   const asientosCab = dataRows.map(r => Math.round(r.asientosCab || 0));
   const asientosInt = dataRows.map(r => Math.round(r.asientosInt || 0));
-const hasPaxInt = paxInt.some(v => v > 0);
-const hasAsientosInt = asientosInt.some(v => v > 0);
 
-const subtitleEl = q("odMonthlySubtitle");
-if (subtitleEl) {
-  subtitleEl.innerHTML =
-    `Asientos ofrecidos <span class="od-sub-asientos-cab">cabotaje</span>` +
-    (hasAsientosInt ? ` e <span class="od-sub-asientos-int">internacional</span>` : ``) +
-    ` y pasajeros transportados <span class="od-sub-pax-cab">cabotaje</span>` +
-    (hasPaxInt ? ` e <span class="od-sub-pax-int">internacional</span>` : ``);
-}
+  const hasPaxInt = paxInt.some(v => v > 0);
+  const hasAsientosInt = asientosInt.some(v => v > 0);
+
+  const subtitleEl = q("odMonthlySubtitle");
+  if (subtitleEl) {
+    subtitleEl.innerHTML =
+      `Asientos ofrecidos <span class="od-sub-asientos-cab">cabotaje</span>` +
+      (hasAsientosInt ? ` e <span class="od-sub-asientos-int">internacional</span>` : ``) +
+      ` y pasajeros transportados <span class="od-sub-pax-cab">cabotaje</span>` +
+      (hasPaxInt ? ` e <span class="od-sub-pax-int">internacional</span>` : ``);
+  }
+
+  const datasets = [
+    {
+      type: "bar",
+      label: "Pasajeros cabotaje",
+      data: paxCab,
+      yAxisID: "yPax",
+      backgroundColor: "rgba(117, 170, 219, 0.35)",
+      borderColor: "#75AADB",
+      borderWidth: 1.1,
+      order: 3,
+      barPercentage: 0.42,
+      categoryPercentage: 0.72
+    },
+    {
+      type: "line",
+      label: "Asientos cabotaje",
+      data: asientosCab,
+      yAxisID: "yAsientos",
+      borderColor: "#2A6FB0",
+      backgroundColor: "rgba(42, 111, 176, 0)",
+      pointBackgroundColor: "#2A6FB0",
+      pointBorderColor: "#2A6FB0",
+      pointRadius: 2,
+      pointHoverRadius: 3,
+      borderWidth: 2,
+      tension: 0.22,
+      fill: false,
+      order: 1
+    }
+  ];
+
+  if (hasPaxInt) {
+    datasets.push({
+      type: "bar",
+      label: "Pasajeros internacional",
+      data: paxInt,
+      yAxisID: "yPax",
+      backgroundColor: "rgba(62, 209, 4, 0.18)",
+      borderColor: "#3ed104",
+      borderWidth: 1.1,
+      order: 4,
+      barPercentage: 0.42,
+      categoryPercentage: 0.72
+    });
+  }
+
+  if (hasAsientosInt) {
+    datasets.push({
+      type: "line",
+      label: "Asientos internacional",
+      data: asientosInt,
+      yAxisID: "yAsientos",
+      borderColor: "#1C7C1B",
+      backgroundColor: "rgba(28, 124, 27, 0)",
+      pointBackgroundColor: "#1C7C1B",
+      pointBorderColor: "#1C7C1B",
+      pointRadius: 2,
+      pointHoverRadius: 3,
+      borderWidth: 2,
+      tension: 0.22,
+      fill: false,
+      order: 2
+    });
+  }
+
   canvas._chart = new Chart(canvas, {
     data: {
       labels,
-      datasets: [
-        {
-          type: "bar",
-          label: "Pasajeros cabotaje",
-          data: paxCab,
-          backgroundColor: "rgba(117, 170, 219, 0.35)",
-          borderColor: "#75AADB",
-          borderWidth: 1.1,
-          stack: "pasajeros",
-          order: 3
-        },
-        {
-          type: "bar",
-          label: "Pasajeros internacional",
-          data: paxInt,
-          backgroundColor: "rgba(62, 209, 4, 0.18)",
-          borderColor: "#3ed104",
-          borderWidth: 1.1,
-          stack: "pasajeros",
-          order: 4
-        },
-        {
-          type: "line",
-          label: "Asientos cabotaje",
-          data: asientosCab,
-          borderColor: "#2A6FB0",
-          backgroundColor: "rgba(42, 111, 176, 0)",
-          pointBackgroundColor: "#2A6FB0",
-          pointBorderColor: "#2A6FB0",
-          pointRadius: 2.2,
-          pointHoverRadius: 3.4,
-          borderWidth: 2.1,
-          tension: 0.22,
-          fill: false,
-          order: 1
-        },
-        {
-          type: "line",
-          label: "Asientos internacional",
-          data: asientosInt,
-          borderColor: "#1C7C1B",
-          backgroundColor: "rgba(28, 124, 27, 0)",
-          pointBackgroundColor: "#1C7C1B",
-          pointBorderColor: "#1C7C1B",
-          pointRadius: 2.2,
-          pointHoverRadius: 3.4,
-          borderWidth: 2.1,
-          tension: 0.22,
-          fill: false,
-          order: 2
-        }
-      ]
+      datasets
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      interaction: {
+        mode: "index",
+        intersect: false
+      },
       plugins: {
         legend: {
-          display: false,
-          position: "top",
-          align: "start",
-          labels: {
-            color: "#5f6e7d",
-            boxWidth: 34,
-            boxHeight: 10,
-            padding: 12,
-            font: {
-              size: 10
-            }
-          }
+          display: false
         },
         tooltip: {
           callbacks: {
@@ -796,7 +805,7 @@ if (subtitleEl) {
       },
       scales: {
         x: {
-          stacked: true,
+          stacked: false,
           grid: {
             color: "#e6edf4"
           },
@@ -811,11 +820,27 @@ if (subtitleEl) {
             maxTicksLimit: 12
           }
         },
-        y: {
-          stacked: true,
+        yPax: {
+          type: "linear",
+          position: "left",
           beginAtZero: true,
           grid: {
             color: "#e6edf4"
+          },
+          ticks: {
+            color: "#6f7d8c",
+            font: {
+              size: 9
+            },
+            callback: value => Number(value).toLocaleString("es-AR")
+          }
+        },
+        yAsientos: {
+          type: "linear",
+          position: "right",
+          beginAtZero: true,
+          grid: {
+            drawOnChartArea: false
           },
           ticks: {
             color: "#6f7d8c",
