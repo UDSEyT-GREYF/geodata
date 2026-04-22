@@ -548,10 +548,10 @@ let totalFrecuenciaSemanal = 0;
         d.rpk += pax * dist;
       }
 
-      const airlineRaw = clean(r.airline);
-      const airlineLabel = isUnnamedAirline(airlineRaw)
-        ? "Aviación general / privada"
-        : airlineRaw;
+const airlineRaw = clean(r.airline);
+const airlineLabel = isUnnamedAirline(airlineRaw)
+  ? "Aviación general / privada"
+  : airlineRaw;
 
 if (!airlinesMap.has(airlineLabel)) {
   airlinesMap.set(airlineLabel, {
@@ -569,26 +569,19 @@ if (!airlinesMap.has(airlineLabel)) {
 }
 
 const a = airlinesMap.get(airlineLabel);
-const marketKey = isInternational ? "Int" : "Cab";
+const airlineMarketKey = isInternational ? "Int" : "Cab";
 
 a.paxTotal += pax;
 a.asientosTotal += asientos;
 a.vuelosTotal += vuelos;
 
-a[`pax${marketKey}`] += pax;
-a[`asientos${marketKey}`] += asientos;
-a[`vuelos${marketKey}`] += vuelos;
-        });
-      }
+a[`pax${airlineMarketKey}`] += pax;
+a[`asientos${airlineMarketKey}`] += asientos;
+a[`vuelos${airlineMarketKey}`] += vuelos;
 
-      const a = airlinesMap.get(airlineLabel);
-      a.pax += pax;
-      a.asientos += asientos;
-      a.vuelos += vuelos;
-
-      if (!isUnnamedAirline(airlineRaw)) {
-        countableAirlines.add(airlineLabel);
-      }
+if (!isUnnamedAirline(airlineRaw)) {
+  countableAirlines.add(airlineLabel);
+}
 const freqKey = [
   normalizeCityPairKey(r.cityPair),
   normalizeTextKey(airlineLabel || r.airline || "sin_dato")
@@ -623,15 +616,15 @@ if (r.anioMes) {
   }
 
   const m = monthlyMap.get(r.anioMes);
-  const marketKey = isInternational ? "Int" : "Cab";
+const monthlyMarketKey = isInternational ? "Int" : "Cab";
 
-  m.paxTotal += pax;
-  m.asientosTotal += asientos;
-  m.vuelosTotal += vuelos;
+m.paxTotal += pax;
+m.asientosTotal += asientos;
+m.vuelosTotal += vuelos;
 
-  m[`pax${marketKey}`] += pax;
-  m[`asientos${marketKey}`] += asientos;
-  m[`vuelos${marketKey}`] += vuelos;
+m[`pax${monthlyMarketKey}`] += pax;
+m[`asientos${monthlyMarketKey}`] += asientos;
+m[`vuelos${monthlyMarketKey}`] += vuelos;
 }
 
       totalPax += pax;
