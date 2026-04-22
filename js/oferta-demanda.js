@@ -258,7 +258,83 @@ function buildRouteSimpleKey(cityPair) {
     if (nombreOficial) return `${nombreOficial} (${iata})`;
     return `Aeropuerto (${iata})`;
   }
+function getAirportBaseRouteName(iata) {
+  const key = clean(iata).toUpperCase();
+  const a = aeropuertos.find(x => clean(firstNonEmpty(x, ["IATA"])).toUpperCase() === key);
+  if (!a) return key;
 
+  return clean(firstNonEmpty(a, [
+    "Aeropuerto",
+    "Nombre del Aeropuerto",
+    "Ciudad",
+    "Localidad"
+  ])) || key;
+}
+
+function formatShareShort(value) {
+  if (!Number.isFinite(value)) return "0%";
+  return `${value.toLocaleString("es-AR", { maximumFractionDigits: 1 })}%`;
+}
+
+function formatMonthShort(anioMes) {
+  const d = parseFechaFlexible(anioMes);
+  if (!d) return anioMes;
+  return d.toLocaleDateString("es-AR", { month: "short" }).replace(".", "");
+}
+
+function hexToRgba(hex, alpha = 0.22) {
+  const raw = clean(hex).replace("#", "");
+  const full = raw.length === 3
+    ? raw.split("").map(ch => ch + ch).join("")
+    : raw;
+
+  const int = parseInt(full, 16);
+  if (!Number.isFinite(int)) return `rgba(42, 111, 176, ${alpha})`;
+
+  const r = (int >> 16) & 255;
+  const g = (int >> 8) & 255;
+  const b = int & 255;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+function getAirlineColor(name) {
+  const key = normalizeTextKey(name);
+
+  const fixed = {
+    "aerolineas": "#2A6FB0",
+    "aerolineas argentinas": "#2A6FB0",
+    "jetsmart": "#F28C28",
+    "jetsmart airlines": "#F28C28",
+    "flybondi": "#D2A106",
+    "gol": "#00A859",
+    "gol linhas aereas": "#00A859",
+    "american": "#6C7A89",
+    "american airlines": "#6C7A89",
+    "latam": "#7E57C2",
+    "andes": "#8D6E63"
+  };
+
+  if (fixed[key]) return fixed[key];
+
+  const fallback = [
+    "#2A6FB0",
+    "#F28C28",
+    "#D2A106",
+    "#7E57C2",
+    "#00A859",
+    "#6C7A89",
+    "#C2557A",
+    "#4E79A7"
+  ];
+
+  let hash = 0;
+  for (let i = 0; i < key.length; i++) {
+    hash = ((hash << 5) - hash) + key.charCodeAt(i);
+    hash |= 0;
+  }
+
+  return fallback[Math.abs(hash) % fallback.length];
+}
   /* ============================================================
      LOOKUP DE DESTINOS / RUTAS
      ============================================================ */
@@ -517,13 +593,15 @@ if (soloComercial) {
         airlinesCount: 0,
         destinos: [],
         airlines: [],
-        monthly: []
+        monthly: [],
+        mainRoutes: []
       };
     }
 
     const destinosMap = new Map();
     const airlinesMap = new Map();
     const monthlyMap = new Map();
+    const mainRoutesMap = new Map();
     const countableAirlines = new Set();
 
 let totalPax = 0;
@@ -587,7 +665,64 @@ let totalFrecuenciaSemanal = 0;
 
 const airlineRaw = clean(r.airline);
 const airlineLabel = getAirlineDisplayName(airlineRaw);
+const routeKey = [
+  normalizeTextKey(label.ciudad || destinationCode),
+  normalizeTextKey(label.pais || ""),
+  normalizeTextKey(r.clasificacion || "")
+].join("|");
 
+if (!mainRoutesMap.has(routeKey)) {
+  mainRoutesMap.set(routeKey, {
+    key: routeKey,
+    ciudad: label.ciudad || destinationCode,
+    pais: label.pais || "",
+    clasificacion: clean(r.clasificacion),
+    airportCodes: new Set(),
+    totalPax: 0,
+    totalAsientos: 0,
+    totalVuelos: 0,
+    monthlyMap: new Map()
+  });
+}
+
+const routeAgg = mainRoutesMap.get(routeKey);
+
+if (otherNormalizedCode) {
+  routeAgg.airportCodes.add(otherNormalizedCode);
+}
+
+routeAgg.totalPax += pax;
+routeAgg.totalAsientos += asientos;
+routeAgg.totalVuelos += vuelos;
+
+if (r.anioMes) {
+  if (!routeAgg.monthlyMap.has(r.anioMes)) {
+    routeAgg.monthlyMap.set(r.anioMes, {
+      anioMes: r.anioMes,
+      totalPax: 0,
+      totalAsientos: 0,
+      totalVuelos: 0,
+      airlines: {}
+    });
+  }
+
+  const routeMonth = routeAgg.monthlyMap.get(r.anioMes);
+  routeMonth.totalPax += pax;
+  routeMonth.totalAsientos += asientos;
+  routeMonth.totalVuelos += vuelos;
+
+  if (!routeMonth.airlines[airlineLabel]) {
+    routeMonth.airlines[airlineLabel] = {
+      pax: 0,
+      asientos: 0,
+      vuelos: 0
+    };
+  }
+
+  routeMonth.airlines[airlineLabel].pax += pax;
+  routeMonth.airlines[airlineLabel].asientos += asientos;
+  routeMonth.airlines[airlineLabel].vuelos += vuelos;
+}
 if (!airlinesMap.has(airlineLabel)) {
   airlinesMap.set(airlineLabel, {
     name: airlineLabel,
@@ -693,7 +828,44 @@ const airlines = Array.from(airlinesMap.values())
       const db = parseFechaFlexible(b.anioMes);
       return (da?.getTime() || 0) - (db?.getTime() || 0);
     });
+const originRouteName = getAirportBaseRouteName(selected);
 
+const mainRoutes = Array.from(mainRoutesMap.values())
+  .filter(r => (r.totalPax > 0 || r.totalAsientos > 0))
+  .sort((a, b) => b.totalPax - a.totalPax)
+  .slice(0, 6)
+  .map(route => {
+    const codes = Array.from(route.airportCodes).sort((a, b) => a.localeCompare(b, "es"));
+    const codesLabel = codes.join("+");
+
+    const cityAlreadyHasCodes =
+      codesLabel &&
+      clean(route.ciudad).toUpperCase().includes(codesLabel);
+
+    const destinationDisplay = codesLabel && !cityAlreadyHasCodes
+      ? `${route.ciudad} ${codesLabel}`
+      : route.ciudad;
+
+    const monthly = Array.from(route.monthlyMap.values()).sort((a, b) => {
+      const da = parseFechaFlexible(a.anioMes);
+      const db = parseFechaFlexible(b.anioMes);
+      return (da?.getTime() || 0) - (db?.getTime() || 0);
+    });
+
+    return {
+      key: route.key,
+      title: `${originRouteName} - ${destinationDisplay}`,
+      ciudad: route.ciudad,
+      pais: route.pais,
+      codesLabel,
+      totalPax: route.totalPax,
+      totalAsientos: route.totalAsientos,
+      totalVuelos: route.totalVuelos,
+      sharePaxPct: totalPax > 0 ? (route.totalPax / totalPax) * 100 : 0,
+      shareSeatsPct: totalAsientos > 0 ? (route.totalAsientos / totalAsientos) * 100 : 0,
+      monthly
+    };
+  });
     return {
       totalPax,
       totalAsientos,
@@ -707,7 +879,8 @@ const airlines = Array.from(airlinesMap.values())
       airlinesCount: Array.from(countableAirlines).length,
       destinos,
       airlines,
-      monthly
+      monthly,
+      mainRoutes
     };
   }
 
@@ -1062,7 +1235,227 @@ function renderAirlinesChart(rows) {
     plugins: [totalLabelPlugin]
   });
 }
- 
+
+function renderSingleRouteChart(canvasId, route) {
+  const canvas = q(canvasId);
+  if (!canvas || typeof Chart === "undefined") return;
+
+  if (canvas._chart) {
+    canvas._chart.destroy();
+    canvas._chart = null;
+  }
+
+  const monthlyRows = (route.monthly || [])
+    .slice()
+    .sort((a, b) => a.anioMes.localeCompare(b.anioMes));
+
+  if (!monthlyRows.length) return;
+
+  const labels = monthlyRows.map(r => formatMonthShort(r.anioMes));
+
+  let airlines = Array.from(new Set(
+    monthlyRows.flatMap(m => Object.keys(m.airlines || {}))
+  ));
+
+  airlines = airlines.sort((a, b) => {
+    const totalA = monthlyRows.reduce((acc, m) => acc + (m.airlines?.[a]?.pax || 0), 0);
+    const totalB = monthlyRows.reduce((acc, m) => acc + (m.airlines?.[b]?.pax || 0), 0);
+    return totalB - totalA;
+  });
+
+  const airlineCount = Math.max(1, airlines.length);
+  const barPct = Math.max(0.18, Math.min(0.74, 0.86 / airlineCount));
+
+  const datasets = [];
+
+  airlines.forEach((airline, idx) => {
+    const color = getAirlineColor(airline);
+
+    datasets.push({
+      type: "bar",
+      label: `${airline} pasajeros`,
+      data: monthlyRows.map(m => Math.round(m.airlines?.[airline]?.pax || 0)),
+      backgroundColor: hexToRgba(color, 0.26),
+      borderColor: color,
+      borderWidth: 1,
+      order: 3,
+      barPercentage: barPct,
+      categoryPercentage: 0.72
+    });
+
+    datasets.push({
+      type: "line",
+      label: `${airline} asientos`,
+      data: monthlyRows.map(m => Math.round(m.airlines?.[airline]?.asientos || 0)),
+      borderColor: color,
+      backgroundColor: "rgba(0,0,0,0)",
+      pointBackgroundColor: color,
+      pointBorderColor: color,
+      pointRadius: 1.8,
+      pointHoverRadius: 2.8,
+      borderWidth: 1.8,
+      tension: 0.22,
+      fill: false,
+      order: 1
+    });
+  });
+
+  const totalPaxSeries = monthlyRows.map(m => Math.round(m.totalPax || 0));
+  const positivePax = totalPaxSeries.filter(v => v > 0);
+
+  const maxVal = positivePax.length ? Math.max(...positivePax) : 0;
+  const minVal = positivePax.length ? Math.min(...positivePax) : 0;
+
+  const maxIdx = totalPaxSeries.findIndex(v => v === maxVal);
+  const minIdx = totalPaxSeries.findIndex(v => v === minVal);
+
+  const extremaPlugin = {
+    id: `routeExtrema_${canvasId}`,
+    afterDatasetsDraw(chart) {
+      const { ctx, scales } = chart;
+      const xScale = scales.x;
+      const yScale = scales.y;
+
+      function drawChip(index, value, text, bg) {
+        if (index < 0 || !Number.isFinite(value) || value <= 0) return;
+
+        const x = xScale.getPixelForValue(index);
+        const y = yScale.getPixelForValue(value) - 10;
+
+        const w = 30;
+        const h = 14;
+        const r = 7;
+
+        ctx.save();
+        ctx.font = "600 9px sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+
+        ctx.fillStyle = bg;
+        ctx.beginPath();
+        ctx.moveTo(x - w / 2 + r, y - h / 2);
+        ctx.arcTo(x + w / 2, y - h / 2, x + w / 2, y + h / 2, r);
+        ctx.arcTo(x + w / 2, y + h / 2, x - w / 2, y + h / 2, r);
+        ctx.arcTo(x - w / 2, y + h / 2, x - w / 2, y - h / 2, r);
+        ctx.arcTo(x - w / 2, y - h / 2, x + w / 2, y - h / 2, r);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.fillStyle = "#ffffff";
+        ctx.fillText(text, x, y + 0.5);
+        ctx.restore();
+      }
+
+      if (minIdx === maxIdx) {
+        drawChip(maxIdx, maxVal, "▲ máx", "#2A6FB0");
+      } else {
+        drawChip(minIdx, minVal, "▼ mín", "#8A98A8");
+        drawChip(maxIdx, maxVal, "▲ máx", "#2A6FB0");
+      }
+    }
+  };
+
+  canvas._chart = new Chart(canvas, {
+    data: {
+      labels,
+      datasets
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: {
+        mode: "index",
+        intersect: false
+      },
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            title: items => {
+              const idx = items[0]?.dataIndex ?? 0;
+              return monthlyRows[idx]?.anioMes || "";
+            },
+            label: ctx => {
+              const value = Number(ctx.raw || 0);
+              return `${ctx.dataset.label}: ${value.toLocaleString("es-AR")}`;
+            },
+            footer: items => {
+              const idx = items[0]?.dataIndex ?? 0;
+              const row = monthlyRows[idx];
+              if (!row) return "";
+              return `Total mes: ${formatNumber(Math.round(row.totalPax))} pax · ${formatNumber(Math.round(row.totalAsientos))} asientos`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          stacked: false,
+          grid: {
+            color: "#eef3f8"
+          },
+          ticks: {
+            color: "#6f7d8c",
+            font: {
+              size: 8
+            },
+            maxRotation: 0,
+            minRotation: 0,
+            autoSkip: false
+          }
+        },
+        y: {
+          beginAtZero: true,
+          grid: {
+            color: "#eef3f8"
+          },
+          ticks: {
+            color: "#6f7d8c",
+            font: {
+              size: 8
+            },
+            callback: value => Number(value).toLocaleString("es-AR")
+          }
+        }
+      }
+    },
+    plugins: [extremaPlugin]
+  });
+}
+
+function renderTopRoutesCharts(routes) {
+  const topRoutesEl = q("odTopRoutes");
+  if (!topRoutesEl) return;
+
+  const dataRoutes = (routes || []).slice(0, 6);
+
+  if (!dataRoutes.length) {
+    topRoutesEl.innerHTML = '<div class="od-empty">Sin datos</div>';
+    return;
+  }
+
+  topRoutesEl.innerHTML = dataRoutes.map((route, idx) => `
+    <div class="od-route-card-chart">
+      <div class="od-route-card-head">
+        <div class="od-route-card-title">${escapeHtml(route.title)}</div>
+        <div class="od-route-card-share">
+          ${escapeHtml(formatShareShort(route.sharePaxPct))} pax ·
+          ${escapeHtml(formatShareShort(route.shareSeatsPct))} asientos
+        </div>
+      </div>
+      <div class="od-route-chart-wrap">
+        <canvas id="odRouteChart_${idx}"></canvas>
+      </div>
+    </div>
+  `).join("");
+
+  dataRoutes.forEach((route, idx) => {
+    renderSingleRouteChart(`odRouteChart_${idx}`, route);
+  });
+}
+  
   function renderOfertaDemanda(iata) {
     const summary = getOfertaDemandaSummary(iata, YEAR_REF, { soloComercial: true });
 setText(
@@ -1099,22 +1492,7 @@ setText(
     : "–"
 );
 
-    const topRoutesEl = q("odTopRoutes");
-    if (topRoutesEl) {
-      topRoutesEl.innerHTML = summary.destinos.slice(0, 6).map(d => `
-        <div class="od-route-row">
-          <div class="od-route-main">
-            <strong>${escapeHtml(d.ciudad || d.code)}</strong>
-            ${d.pais ? `<span class="od-route-country"> · ${escapeHtml(d.pais)}</span>` : ""}
-          </div>
-          <div class="od-route-metrics">
-            <span>${formatNumber(Math.round(d.pax))} pax</span>
-            <span>${formatNumber(Math.round(d.asientos))} asientos</span>
-            <span>${formatNumber(Math.round(d.vuelos))} vuelos</span>
-          </div>
-        </div>
-      `).join("") || '<div class="od-empty">Sin datos</div>';
-    }
+renderTopRoutesCharts(summary.mainRoutes);
 
 
 renderOfertaDemandaMonthlyChart(summary.monthly);
