@@ -47,44 +47,62 @@
 </section>
 
     <!-- BLOQUE PRINCIPAL -->
-    <section class="od-main-grid">
+<section class="od-main-grid">
 
-      <!-- COLUMNA IZQUIERDA -->
-      <div class="od-col od-col-main">
-
-        <section class="od-panel od-panel-chart">
-          <div class="od-panel-head">
-            <div class="od-panel-title">Oferta y demanda mensual</div>
-<div class="od-panel-subtitle od-panel-subtitle-rich" id="odMonthlySubtitle">
-  Asientos ofrecidos
-  <span class="od-sub-asientos-cab">cabotaje</span>
-  e
-  <span class="od-sub-asientos-int">internacional</span>
-  y pasajeros transportados
-  <span class="od-sub-pax-cab">cabotaje</span><span id="odSubPaxIntWrap"> e <span class="od-sub-pax-int">internacional</span></span>
-</div>
-          </div>
-
-          <div class="od-chart-wrap">
-            <canvas id="odMonthlyChart"></canvas>
-          </div>
-
-          <div class="od-note">
-            La serie muestra la relación entre capacidad ofrecida y demanda observada a lo largo del año.
-          </div>
-        </section>
-
-        <section class="od-panel od-panel-routes">
-          <div class="od-panel-head">
-            <div class="od-panel-title">Principales rutas</div>
-          </div>
-
-          <div class="od-list od-routes-list" id="odTopRoutes">
-            <div class="od-empty">Sin datos</div>
-          </div>
-        </section>
-
+  <!-- FILA 1 -->
+  <div class="od-col od-col-main">
+    <section class="od-panel od-panel-chart">
+      <div class="od-panel-head">
+        <div class="od-panel-title">OFERTA Y DEMANDA MENSUAL</div>
+        <div class="od-panel-subtitle" id="odMonthlySubtitle">
+          Asientos ofrecidos cabotaje e internacional y pasajeros transportados cabotaje e internacional
+        </div>
       </div>
+
+      <div class="od-chart-wrap">
+        <canvas id="odMonthlyChart"></canvas>
+      </div>
+
+      <div class="od-note">
+        La serie muestra la relación entre capacidad ofrecida y demanda observada a lo largo del año.
+      </div>
+    </section>
+  </div>
+
+  <div class="od-col od-col-side">
+    <section class="od-panel od-panel-airlines">
+      <div class="od-panel-head">
+        <div class="od-panel-title">PARTICIPACIÓN POR AEROLÍNEA</div>
+        <div class="od-panel-subtitle">
+          Asientos ofrecidos cabotaje e internacional por operador
+        </div>
+      </div>
+
+      <div class="od-chart-wrap-airlines">
+        <canvas id="odAirlinesChart"></canvas>
+      </div>
+
+      <div class="od-note">
+        La participación se expresa sobre la oferta anual de asientos del aeropuerto.
+      </div>
+    </section>
+  </div>
+
+  <!-- FILA 2: ANCHO COMPLETO -->
+  <section class="od-panel od-panel-routes od-panel-routes-full">
+    <div class="od-panel-head">
+      <div class="od-panel-title">PRINCIPALES RUTAS</div>
+      <div class="od-panel-subtitle">
+        Top 6 rutas comerciales, ordenadas por pasajeros anuales
+      </div>
+    </div>
+
+    <div class="od-list od-routes-list" id="odTopRoutes">
+      <div class="od-empty">Sin datos</div>
+    </div>
+  </section>
+
+</section>
 
       <!-- COLUMNA DERECHA -->
       <div class="od-col od-col-side">
