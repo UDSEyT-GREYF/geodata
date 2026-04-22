@@ -1029,16 +1029,9 @@ function renderAirlinesChart(rows) {
     plugins: [totalLabelPlugin]
   });
 }
-function updateMonthlySubtitle(monthlyRows) {
-  const paxIntWrap = q("odSubPaxIntWrap");
-  if (!paxIntWrap) return;
-
-  const hasIntlPax = (monthlyRows || []).some(r => Number(r.paxInt || 0) > 0);
-  paxIntWrap.style.display = hasIntlPax ? "" : "none";
-}  
+ 
   function renderOfertaDemanda(iata) {
     const summary = getOfertaDemandaSummary(iata, YEAR_REF, { soloComercial: true });
-updateMonthlySubtitle(summary.monthly);
 setText(
   "odTotalPax",
   Number.isFinite(summary.totalPax) ? formatNumber(Math.round(summary.totalPax)) : "–"
