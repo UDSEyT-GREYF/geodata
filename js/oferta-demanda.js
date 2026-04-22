@@ -686,7 +686,17 @@ function renderOfertaDemandaMonthlyChart(rows) {
   const paxInt = dataRows.map(r => Math.round(r.paxInt || 0));
   const asientosCab = dataRows.map(r => Math.round(r.asientosCab || 0));
   const asientosInt = dataRows.map(r => Math.round(r.asientosInt || 0));
+const hasPaxInt = paxInt.some(v => v > 0);
+const hasAsientosInt = asientosInt.some(v => v > 0);
 
+const subtitleEl = q("odMonthlySubtitle");
+if (subtitleEl) {
+  subtitleEl.innerHTML =
+    `Asientos ofrecidos <span class="od-sub-asientos-cab">cabotaje</span>` +
+    (hasAsientosInt ? ` e <span class="od-sub-asientos-int">internacional</span>` : ``) +
+    ` y pasajeros transportados <span class="od-sub-pax-cab">cabotaje</span>` +
+    (hasPaxInt ? ` e <span class="od-sub-pax-int">internacional</span>` : ``);
+}
   canvas._chart = new Chart(canvas, {
     data: {
       labels,
