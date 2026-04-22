@@ -718,7 +718,6 @@ function renderOfertaDemandaMonthlyChart(rows) {
       type: "bar",
       label: "Pasajeros cabotaje",
       data: paxCab,
-      yAxisID: "yPax",
       backgroundColor: "rgba(117, 170, 219, 0.35)",
       borderColor: "#75AADB",
       borderWidth: 1.1,
@@ -730,7 +729,6 @@ function renderOfertaDemandaMonthlyChart(rows) {
       type: "line",
       label: "Asientos cabotaje",
       data: asientosCab,
-      yAxisID: "yAsientos",
       borderColor: "#2A6FB0",
       backgroundColor: "rgba(42, 111, 176, 0)",
       pointBackgroundColor: "#2A6FB0",
@@ -749,7 +747,6 @@ function renderOfertaDemandaMonthlyChart(rows) {
       type: "bar",
       label: "Pasajeros internacional",
       data: paxInt,
-      yAxisID: "yPax",
       backgroundColor: "rgba(62, 209, 4, 0.18)",
       borderColor: "#3ed104",
       borderWidth: 1.1,
@@ -764,7 +761,6 @@ function renderOfertaDemandaMonthlyChart(rows) {
       type: "line",
       label: "Asientos internacional",
       data: asientosInt,
-      yAxisID: "yAsientos",
       borderColor: "#1C7C1B",
       backgroundColor: "rgba(28, 124, 27, 0)",
       pointBackgroundColor: "#1C7C1B",
@@ -820,27 +816,11 @@ function renderOfertaDemandaMonthlyChart(rows) {
             maxTicksLimit: 12
           }
         },
-        yPax: {
-          type: "linear",
-          position: "left",
+        y: {
+          stacked: false,
           beginAtZero: true,
           grid: {
             color: "#e6edf4"
-          },
-          ticks: {
-            color: "#6f7d8c",
-            font: {
-              size: 9
-            },
-            callback: value => Number(value).toLocaleString("es-AR")
-          }
-        },
-        yAsientos: {
-          type: "linear",
-          position: "right",
-          beginAtZero: true,
-          grid: {
-            drawOnChartArea: false
           },
           ticks: {
             color: "#6f7d8c",
