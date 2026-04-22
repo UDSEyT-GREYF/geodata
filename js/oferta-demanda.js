@@ -899,31 +899,31 @@ function renderAirlinesChart(rows) {
   );
 
   const datasets = [
-    {
-      label: "Cabotaje",
-      data: cabValues,
-      backgroundColor: "rgba(117, 170, 219, 0.35)",
-      borderColor: "#75AADB",
-      borderWidth: 1.1,
-      borderRadius: 4,
-      stack: "mercado",
-      barThickness: 14,
-      minBarLength: 10
-    }
+{
+  label: "Cabotaje",
+  data: cabValues,
+  backgroundColor: "rgba(42, 111, 176, 0.22)",
+  borderColor: "#2A6FB0",
+  borderWidth: 1.1,
+  borderRadius: 4,
+  stack: "mercado",
+  barThickness: 14,
+  minBarLength: 10
+}
   ];
 
   if (hasInt) {
     datasets.push({
-      label: "Internacional",
-      data: intValues,
-      backgroundColor: "rgba(62, 209, 4, 0.18)",
-      borderColor: "#3ed104",
-      borderWidth: 1.1,
-      borderRadius: 4,
-      stack: "mercado",
-      barThickness: 14,
-      minBarLength: 10
-    });
+  label: "Internacional",
+  data: intValues,
+  backgroundColor: "rgba(28, 124, 27, 0.16)",
+  borderColor: "#1C7C1B",
+  borderWidth: 1.1,
+  borderRadius: 4,
+  stack: "mercado",
+  barThickness: 14,
+  minBarLength: 10
+});
   }
 
   const totalLabelPlugin = {
