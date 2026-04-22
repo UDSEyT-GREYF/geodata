@@ -12,6 +12,7 @@
   const RUTAS_KM_CSV_PATH = "fuentes/km rutasaereas.csv";
   const AEROPUERTOS_GEOJSON_PATH = "fuentes/Datos_aeropuertos.geojson";
   const IATA_MUNDO_CSV_PATH = "fuentes/ListadoIATAmundo.csv";
+  const AIRLINE_ALIAS_CSV_PATH = "fuentes/aerolineas_alias.csv";
 
   /* ============================================================
      ESTADO
@@ -23,6 +24,7 @@
   let currentIATA = "";
   let rutasKmRows = [];
   let rutasKmIndex = new Map();
+  let airlineAliasIndex = {};
 
   const DEST_OVERRIDES = {
     BUE: { ciudad: "Buenos Aires AEP+EZE", pais: "Argentina" },
@@ -213,6 +215,16 @@ function buildRouteSimpleKey(cityPair) {
     return !key || key === "sindato" || key === "na" || key === "n_a";
   }
 
+  function getAirlineDisplayName(name) {
+  const raw = clean(name);
+
+  if (isUnnamedAirline(raw)) {
+    return "Aviación general / privada";
+  }
+
+  const normalized = normalizeTextKey(raw);
+  return airlineAliasIndex[normalized] || raw;
+}
   function setText(id, value) {
     const el = q(id);
     if (el) el.textContent = value;
@@ -274,7 +286,32 @@ function buildRouteSimpleKey(cityPair) {
 
     return { byIata, byCode };
   }
+function parseAirlineAliasCSV(text) {
+  const rows = parseCSV(text);
+  const index = {};
 
+  rows.forEach(r => {
+    const fullName = clean(firstNonEmpty(r, [
+      "aerolinea_nombre",
+      "aerolinea",
+      "nombre",
+      "airline_name"
+    ]));
+
+    const shortName = clean(firstNonEmpty(r, [
+      "nombre_corto",
+      "alias",
+      "short_name",
+      "nombrecorto"
+    ]));
+
+    if (!fullName) return;
+
+    index[normalizeTextKey(fullName)] = shortName || fullName;
+  });
+
+  return index;
+}
   function getRouteMeta(code) {
     const key = clean(code).toUpperCase();
     if (!key) return null;
@@ -549,9 +586,7 @@ let totalFrecuenciaSemanal = 0;
       }
 
 const airlineRaw = clean(r.airline);
-const airlineLabel = isUnnamedAirline(airlineRaw)
-  ? "Aviación general / privada"
-  : airlineRaw;
+const airlineLabel = getAirlineDisplayName(airlineRaw);
 
 if (!airlinesMap.has(airlineLabel)) {
   airlinesMap.set(airlineLabel, {
@@ -1120,12 +1155,14 @@ const [
   airportsResp,
   rutasOfertaResp,
   rutasKmResp,
-  iataWorldResp
+  iataWorldResp,
+  airlineAliasResp
 ] = await Promise.all([
   fetch(AEROPUERTOS_GEOJSON_PATH),
   fetch(RUTAS_CSV_PATH).catch(() => null),
   fetch(RUTAS_KM_CSV_PATH).catch(() => null),
-  fetch(IATA_MUNDO_CSV_PATH).catch(() => null)
+  fetch(IATA_MUNDO_CSV_PATH).catch(() => null),
+  fetch(AIRLINE_ALIAS_CSV_PATH).catch(() => null)
 ]);
 
       const geojson = await airportsResp.json();
@@ -1164,7 +1201,11 @@ rutasOfertaRows = rutasOfertaRows.map(r => ({
         iataWorldIndex = {};
         routeCodeIndex = {};
       }
-
+if (airlineAliasResp && airlineAliasResp.ok) {
+  airlineAliasIndex = parseAirlineAliasCSV(await readTextSmart(airlineAliasResp));
+} else {
+  airlineAliasIndex = {};
+}
       if (select) {
         select.innerHTML = "";
         aeropuertos.forEach(a => {
