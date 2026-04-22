@@ -553,12 +553,31 @@ let totalFrecuenciaSemanal = 0;
         ? "Aviación general / privada"
         : airlineRaw;
 
-      if (!airlinesMap.has(airlineLabel)) {
-        airlinesMap.set(airlineLabel, {
-          name: airlineLabel,
-          pax: 0,
-          asientos: 0,
-          vuelos: 0
+if (!airlinesMap.has(airlineLabel)) {
+  airlinesMap.set(airlineLabel, {
+    name: airlineLabel,
+    paxCab: 0,
+    paxInt: 0,
+    paxTotal: 0,
+    asientosCab: 0,
+    asientosInt: 0,
+    asientosTotal: 0,
+    vuelosCab: 0,
+    vuelosInt: 0,
+    vuelosTotal: 0
+  });
+}
+
+const a = airlinesMap.get(airlineLabel);
+const marketKey = isInternational ? "Int" : "Cab";
+
+a.paxTotal += pax;
+a.asientosTotal += asientos;
+a.vuelosTotal += vuelos;
+
+a[`pax${marketKey}`] += pax;
+a[`asientos${marketKey}`] += asientos;
+a[`vuelos${marketKey}`] += vuelos;
         });
       }
 
@@ -635,9 +654,11 @@ totalFrecuenciaSemanal = Array.from(freqByRouteAirline.values())
       .filter(d => (d.pax > 0 || d.asientos > 0 || d.vuelos > 0))
       .sort((a, b) => b.pax - a.pax);
 
-    const airlines = Array.from(airlinesMap.values())
-      .filter(a => (a.pax > minValueToShow || a.asientos > minValueToShow || a.vuelos > minValueToShow))
-      .sort((a, b) => b.asientos - a.asientos);
+const airlines = Array.from(airlinesMap.values())
+  .filter(a =>
+    (a.paxTotal > minValueToShow || a.asientosTotal > minValueToShow || a.vuelosTotal > minValueToShow)
+  )
+  .sort((a, b) => b.asientosTotal - a.asientosTotal);
 
     const monthly = Array.from(monthlyMap.values()).sort((a, b) => {
       const da = parseFechaFlexible(a.anioMes);
@@ -855,28 +876,69 @@ function renderAirlinesChart(rows) {
   }
 
   const allRows = (rows || [])
-    .filter(r => (r.asientos || 0) > 0);
+    .filter(r => (r.asientosTotal || 0) > 0)
+    .sort((a, b) => (b.asientosTotal || 0) - (a.asientosTotal || 0));
 
   const dataRows = allRows.slice(0, 5);
-
   if (!dataRows.length) return;
 
-  const totalSeatsAll = allRows.reduce((acc, r) => acc + (r.asientos || 0), 0);
+  const totalSeatsAll = allRows.reduce((acc, r) => acc + (r.asientosTotal || 0), 0);
 
   const fullLabels = dataRows.map(r => r.name);
   const labels = fullLabels.map(name => splitLabelTwoLines(name, 12));
-  const values = dataRows.map(r => Math.round(r.asientos || 0));
+
+  const cabValues = dataRows.map(r => Math.round(r.asientosCab || 0));
+  const intValues = dataRows.map(r => Math.round(r.asientosInt || 0));
+  const totalValues = dataRows.map(r => Math.round(r.asientosTotal || 0));
+
+  const hasInt = intValues.some(v => v > 0);
+
+  const subtitleEl = q("odAirlinesSubtitle");
+  if (subtitleEl) {
+    subtitleEl.innerHTML =
+      `Asientos ofrecidos <span class="od-sub-asientos-cab">cabotaje</span>` +
+      (hasInt ? ` e <span class="od-sub-asientos-int">internacional</span>` : ``) +
+      ` por operador`;
+  }
+
   const percents = dataRows.map(r =>
-    totalSeatsAll > 0 ? ((r.asientos || 0) / totalSeatsAll) * 100 : 0
+    totalSeatsAll > 0 ? ((r.asientosTotal || 0) / totalSeatsAll) * 100 : 0
   );
 
-  const percentLabelPlugin = {
-    id: "percentLabelPlugin",
+  const datasets = [
+    {
+      label: "Cabotaje",
+      data: cabValues,
+      backgroundColor: "rgba(117, 170, 219, 0.35)",
+      borderColor: "#75AADB",
+      borderWidth: 1.1,
+      borderRadius: 4,
+      stack: "mercado",
+      barThickness: 14,
+      minBarLength: 10
+    }
+  ];
+
+  if (hasInt) {
+    datasets.push({
+      label: "Internacional",
+      data: intValues,
+      backgroundColor: "rgba(62, 209, 4, 0.18)",
+      borderColor: "#3ed104",
+      borderWidth: 1.1,
+      borderRadius: 4,
+      stack: "mercado",
+      barThickness: 14,
+      minBarLength: 10
+    });
+  }
+
+  const totalLabelPlugin = {
+    id: "airlineTotalLabelPlugin",
     afterDatasetsDraw(chart) {
       const { ctx } = chart;
-      const meta = chart.getDatasetMeta(0);
-      const dataset = chart.data.datasets[0];
-      if (!meta || !dataset) return;
+      const meta = chart.getDatasetMeta(datasets.length - 1);
+      if (!meta) return;
 
       ctx.save();
       ctx.font = "600 9px sans-serif";
@@ -885,12 +947,10 @@ function renderAirlinesChart(rows) {
       ctx.textBaseline = "middle";
 
       meta.data.forEach((bar, index) => {
-        const pct = dataset.percentData?.[index] ?? 0;
+        const pct = percents[index] || 0;
         const label = `${pct.toLocaleString("es-AR", { maximumFractionDigits: 1 })}%`;
-
         const x = bar.x + 6;
         const y = bar.y;
-
         ctx.fillText(label, x, y);
       });
 
@@ -902,19 +962,7 @@ function renderAirlinesChart(rows) {
     type: "bar",
     data: {
       labels,
-      datasets: [
-        {
-          label: "Asientos",
-          data: values,
-          percentData: percents,
-          backgroundColor: "rgba(42, 111, 176, 0.22)",
-          borderColor: "rgba(42, 111, 176, 1)",
-          borderWidth: 1.2,
-          borderRadius: 4,
-          barThickness: 14,
-          minBarLength: 10
-        }
-      ]
+      datasets
     },
     options: {
       responsive: true,
@@ -923,7 +971,7 @@ function renderAirlinesChart(rows) {
       layout: {
         padding: {
           left: 2,
-          right: 30,
+          right: 34,
           top: 0,
           bottom: 0
         }
@@ -936,14 +984,21 @@ function renderAirlinesChart(rows) {
           callbacks: {
             title: items => fullLabels[items[0].dataIndex],
             label: ctx => {
-              const pct = ctx.dataset.percentData?.[ctx.dataIndex] ?? 0;
-              return `Asientos: ${Number(ctx.raw).toLocaleString("es-AR")} (${pct.toLocaleString("es-AR", { maximumFractionDigits: 1 })}%)`;
+              const value = Number(ctx.raw || 0);
+              return `${ctx.dataset.label}: ${value.toLocaleString("es-AR")} asientos`;
+            },
+            footer: items => {
+              const idx = items[0].dataIndex;
+              const total = totalValues[idx] || 0;
+              const pct = percents[idx] || 0;
+              return `Total: ${total.toLocaleString("es-AR")} asientos (${pct.toLocaleString("es-AR", { maximumFractionDigits: 1 })}%)`;
             }
           }
         }
       },
       scales: {
         x: {
+          stacked: true,
           beginAtZero: true,
           grid: {
             color: "#e6edf4"
@@ -958,6 +1013,7 @@ function renderAirlinesChart(rows) {
           }
         },
         y: {
+          stacked: true,
           grid: {
             display: false
           },
@@ -970,7 +1026,7 @@ function renderAirlinesChart(rows) {
         }
       }
     },
-    plugins: [percentLabelPlugin]
+    plugins: [totalLabelPlugin]
   });
 }
 function updateMonthlySubtitle(monthlyRows) {
