@@ -1055,58 +1055,7 @@ function renderOfertaDemandaMonthlyChart(rows) {
 
   const totalPaxSeries = dataRows.map(r => Math.round((r.paxCab || 0) + (r.paxInt || 0)));
   const extremaPlugin = buildExtremaPlugin("monthlyExtrema", totalPaxSeries);
-  const positivePax = totalPaxSeries.filter(v => v > 0);
-  const maxVal = positivePax.length ? Math.max(...positivePax) : 0;
-  const minVal = positivePax.length ? Math.min(...positivePax) : 0;
-  const maxIdx = totalPaxSeries.findIndex(v => v === maxVal);
-  const minIdx = totalPaxSeries.findIndex(v => v === minVal);
-
-  const extremaPlugin = {
-    id: "monthlyExtrema",
-    afterDatasetsDraw(chart) {
-      const { ctx, scales } = chart;
-      const xScale = scales.x;
-      const yScale = scales.y;
-
-      function drawChip(index, value, text, bg, yOffset = -16) {
-        if (index < 0 || !Number.isFinite(value) || value <= 0) return;
-
-        const x = xScale.getPixelForValue(index);
-        const y = yScale.getPixelForValue(value) + yOffset;
-
-        const w = 34;
-        const h = 14;
-        const r = 7;
-
-        ctx.save();
-        ctx.font = "600 9px sans-serif";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-
-        ctx.fillStyle = bg;
-        ctx.beginPath();
-        ctx.moveTo(x - w / 2 + r, y - h / 2);
-        ctx.arcTo(x + w / 2, y - h / 2, x + w / 2, y + h / 2, r);
-        ctx.arcTo(x + w / 2, y + h / 2, x - w / 2, y + h / 2, r);
-        ctx.arcTo(x - w / 2, y + h / 2, x - w / 2, y - h / 2, r);
-        ctx.arcTo(x - w / 2, y - h / 2, x + w / 2, y - h / 2, r);
-        ctx.closePath();
-        ctx.fill();
-
-        ctx.fillStyle = "#ffffff";
-        ctx.fillText(text, x, y + 0.5);
-        ctx.restore();
-      }
-
-      if (minIdx === maxIdx) {
-        drawChip(maxIdx, maxVal, "▲ máx", "#2A6FB0", -18);
-      } else {
-        drawChip(minIdx, minVal, "▼ mín", "#8A98A8", -14);
-        drawChip(maxIdx, maxVal, "▲ máx", "#2A6FB0", -18);
-      }
-    }
-  };
-
+ 
   canvas._chart = new Chart(canvas, {
     data: {
       labels,
@@ -1115,10 +1064,10 @@ function renderOfertaDemandaMonthlyChart(rows) {
     options: {
       responsive: true,
       maintainAspectRatio: false,
-layout: {
-  padding: {
-    top: 22,
-    bottom: 4
+      layout: {
+        padding: {
+          top: 22,
+          bottom: 4
         }
       },
       interaction: {
@@ -1432,126 +1381,74 @@ function renderSingleRouteChart(canvasId, route) {
     });
   });
 
-  const totalPaxSeries = monthlyRows.map(m => Math.round(m.totalPax || 0));
-  const positivePax = totalPaxSeries.filter(v => v > 0);
+const totalPaxSeries = monthlyRows.map(m => Math.round(m.totalPax || 0));
+const extremaPlugin = buildExtremaPlugin(`routeExtrema_${canvasId}`, totalPaxSeries);
 
-  const maxVal = positivePax.length ? Math.max(...positivePax) : 0;
-  const minVal = positivePax.length ? Math.min(...positivePax) : 0;
-
-  const maxIdx = totalPaxSeries.findIndex(v => v === maxVal);
-  const minIdx = totalPaxSeries.findIndex(v => v === minVal);
-
-  const extremaPlugin = {
-    id: `routeExtrema_${canvasId}`,
-    afterDatasetsDraw(chart) {
-      const { ctx, scales } = chart;
-      const xScale = scales.x;
-      const yScale = scales.y;
-
-      function drawChip(index, value, text, bg, yOffset = -14) {
-        if (index < 0 || !Number.isFinite(value) || value <= 0) return;
-
-        const x = xScale.getPixelForValue(index);
-        const y = yScale.getPixelForValue(value) + yOffset;
-
-        const w = 34;
-        const h = 14;
-        const r = 7;
-
-        ctx.save();
-        ctx.font = "600 9px sans-serif";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-
-        ctx.fillStyle = bg;
-        ctx.beginPath();
-        ctx.moveTo(x - w / 2 + r, y - h / 2);
-        ctx.arcTo(x + w / 2, y - h / 2, x + w / 2, y + h / 2, r);
-        ctx.arcTo(x + w / 2, y + h / 2, x - w / 2, y + h / 2, r);
-        ctx.arcTo(x - w / 2, y + h / 2, x - w / 2, y - h / 2, r);
-        ctx.arcTo(x - w / 2, y - h / 2, x + w / 2, y - h / 2, r);
-        ctx.closePath();
-        ctx.fill();
-
-        ctx.fillStyle = "#ffffff";
-        ctx.fillText(text, x, y + 0.5);
-        ctx.restore();
+canvas._chart = new Chart(canvas, {
+  data: {
+    labels,
+    datasets
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        top: 20,
+        bottom: 4
       }
-
-      if (minIdx === maxIdx) {
-        drawChip(maxIdx, maxVal, "▲ máx", "#2A6FB0", -16);
-      } else {
-        drawChip(minIdx, minVal, "▼ mín", "#8A98A8", -14);
-        drawChip(maxIdx, maxVal, "▲ máx", "#2A6FB0", -16);
+    },
+    interaction: {
+      mode: "index",
+      intersect: false
+    },
+    plugins: {
+      legend: {
+        display: false
+      },
+      tooltip: {
+        callbacks: {
+          title: items => {
+            const idx = items[0]?.dataIndex ?? 0;
+            return monthlyRows[idx]?.anioMes || "";
+          },
+          label: ctx => {
+            const value = Number(ctx.raw || 0);
+            return `${ctx.dataset.label}: ${value.toLocaleString("es-AR")}`;
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        stacked: false,
+        grid: {
+          color: "#eef3f8"
+        },
+        ticks: {
+          color: "#6f7d8c",
+          font: { size: 8 },
+          maxRotation: 0,
+          minRotation: 0,
+          autoSkip: false
+        }
+      },
+      y: {
+        beginAtZero: true,
+        grid: {
+          color: "#eef3f8"
+        },
+        ticks: {
+          color: "#6f7d8c",
+          font: { size: 8 },
+          callback: value => Number(value).toLocaleString("es-AR")
+        }
       }
     }
-  };
-
-  canvas._chart = new Chart(canvas, {
-    data: {
-      labels,
-      datasets
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      layout: {
-        padding: {
-          top: 14
-        }
-      },
-      interaction: {
-        mode: "index",
-        intersect: false
-      },
-      plugins: {
-        legend: {
-          display: false
-        },
-        tooltip: {
-          callbacks: {
-            title: items => {
-              const idx = items[0]?.dataIndex ?? 0;
-              return monthlyRows[idx]?.anioMes || "";
-            },
-            label: ctx => {
-              const value = Number(ctx.raw || 0);
-              return `${ctx.dataset.label}: ${value.toLocaleString("es-AR")}`;
-            }
-          }
-        }
-      },
-      scales: {
-        x: {
-          stacked: false,
-          grid: {
-            color: "#eef3f8"
-          },
-          ticks: {
-            color: "#6f7d8c",
-            font: { size: 8 },
-            maxRotation: 0,
-            minRotation: 0,
-            autoSkip: false
-          }
-        },
-        y: {
-          beginAtZero: true,
-          grid: {
-            color: "#eef3f8"
-          },
-          ticks: {
-            color: "#6f7d8c",
-            font: { size: 8 },
-            callback: value => Number(value).toLocaleString("es-AR")
-          }
-        }
-      }
-    },
-    plugins: [extremaPlugin]
-  });
+  },
+  plugins: [extremaPlugin]
+});
 }
-
 function renderTopRoutesCharts(routes) {
   const topRoutesEl = q("odTopRoutes");
   if (!topRoutesEl) return;
