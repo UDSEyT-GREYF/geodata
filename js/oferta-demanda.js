@@ -899,7 +899,62 @@ const mainRoutes = Array.from(mainRoutesMap.values())
       mainRoutes
     };
   }
+function buildExtremaPlugin(pluginId, series) {
+  return {
+    id: pluginId,
+    afterDatasetsDraw(chart) {
+      const values = (series || []).map(v => Number(v || 0));
+      const positive = values.filter(v => v > 0);
 
+      if (!positive.length) return;
+
+      const maxVal = Math.max(...positive);
+      const minVal = Math.min(...positive);
+
+      const maxIdx = values.findIndex(v => v === maxVal);
+      const minIdx = values.findIndex(v => v === minVal);
+
+      const { ctx, chartArea, scales } = chart;
+      const xScale = scales.x;
+      const yScale = scales.y;
+
+      if (!xScale || !yScale) return;
+
+      function drawArrow(index, value, arrow, color, offsetY) {
+        if (index < 0 || !Number.isFinite(value)) return;
+
+        const x = xScale.getPixelForValue(index);
+        let y = yScale.getPixelForValue(value) + offsetY;
+
+        // evita que se recorten arriba o abajo
+        y = Math.max(chartArea.top + 10, Math.min(chartArea.bottom - 10, y));
+
+        ctx.save();
+        ctx.font = "700 12px Roboto, Arial, sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+
+        // halo blanco para que se vea bien sobre barras/líneas
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = "#ffffff";
+        ctx.strokeText(arrow, x, y);
+
+        ctx.fillStyle = color;
+        ctx.fillText(arrow, x, y);
+        ctx.restore();
+      }
+
+      if (minIdx === maxIdx) {
+        // caso raro: mismo mes para mín y máx
+        drawArrow(maxIdx, maxVal, "▲", "#2ca24f", -16); // verde
+        drawArrow(minIdx, minVal, "▼", "#f28c28", 14);  // naranja
+      } else {
+        drawArrow(maxIdx, maxVal, "▲", "#2ca24f", -16); // verde
+        drawArrow(minIdx, minVal, "▼", "#f28c28", 14);  // naranja
+      }
+    }
+  };
+}
   /* ============================================================
      RENDER
      ============================================================ */
@@ -999,6 +1054,7 @@ function renderOfertaDemandaMonthlyChart(rows) {
   }
 
   const totalPaxSeries = dataRows.map(r => Math.round((r.paxCab || 0) + (r.paxInt || 0)));
+  const extremaPlugin = buildExtremaPlugin("monthlyExtrema", totalPaxSeries);
   const positivePax = totalPaxSeries.filter(v => v > 0);
   const maxVal = positivePax.length ? Math.max(...positivePax) : 0;
   const minVal = positivePax.length ? Math.min(...positivePax) : 0;
@@ -1059,9 +1115,10 @@ function renderOfertaDemandaMonthlyChart(rows) {
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      layout: {
-        padding: {
-          top: 16
+layout: {
+  padding: {
+    top: 22,
+    bottom: 4
         }
       },
       interaction: {
