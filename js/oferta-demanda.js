@@ -296,7 +296,23 @@ function hexToRgba(hex, alpha = 0.22) {
   const b = int & 255;
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
+function getRouteAirlinesLegend(route) {
+  const totals = new Map();
 
+  (route.monthly || []).forEach(m => {
+    Object.entries(m.airlines || {}).forEach(([name, vals]) => {
+      if (!totals.has(name)) totals.set(name, 0);
+      totals.set(name, totals.get(name) + (vals.pax || 0));
+    });
+  });
+
+  return Array.from(totals.entries())
+    .sort((a, b) => b[1] - a[1])
+    .map(([name]) => ({
+      name,
+      color: getAirlineColor(name)
+    }));
+}
 function getAirlineColor(name) {
   const key = normalizeTextKey(name);
 
@@ -930,8 +946,8 @@ function renderOfertaDemandaMonthlyChart(rows) {
       borderColor: "#75AADB",
       borderWidth: 1.1,
       order: 3,
-      barPercentage: 0.42,
-      categoryPercentage: 0.72
+      barPercentage: 0.34,
+      categoryPercentage: 0.82
     },
     {
       type: "line",
@@ -959,8 +975,8 @@ function renderOfertaDemandaMonthlyChart(rows) {
       borderColor: "#3ed104",
       borderWidth: 1.1,
       order: 4,
-      barPercentage: 0.42,
-      categoryPercentage: 0.72
+      barPercentage: 0.34,
+      categoryPercentage: 0.82
     });
   }
 
@@ -982,6 +998,59 @@ function renderOfertaDemandaMonthlyChart(rows) {
     });
   }
 
+  const totalPaxSeries = dataRows.map(r => Math.round((r.paxCab || 0) + (r.paxInt || 0)));
+  const positivePax = totalPaxSeries.filter(v => v > 0);
+  const maxVal = positivePax.length ? Math.max(...positivePax) : 0;
+  const minVal = positivePax.length ? Math.min(...positivePax) : 0;
+  const maxIdx = totalPaxSeries.findIndex(v => v === maxVal);
+  const minIdx = totalPaxSeries.findIndex(v => v === minVal);
+
+  const extremaPlugin = {
+    id: "monthlyExtrema",
+    afterDatasetsDraw(chart) {
+      const { ctx, scales } = chart;
+      const xScale = scales.x;
+      const yScale = scales.y;
+
+      function drawChip(index, value, text, bg, yOffset = -16) {
+        if (index < 0 || !Number.isFinite(value) || value <= 0) return;
+
+        const x = xScale.getPixelForValue(index);
+        const y = yScale.getPixelForValue(value) + yOffset;
+
+        const w = 34;
+        const h = 14;
+        const r = 7;
+
+        ctx.save();
+        ctx.font = "600 9px sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+
+        ctx.fillStyle = bg;
+        ctx.beginPath();
+        ctx.moveTo(x - w / 2 + r, y - h / 2);
+        ctx.arcTo(x + w / 2, y - h / 2, x + w / 2, y + h / 2, r);
+        ctx.arcTo(x + w / 2, y + h / 2, x - w / 2, y + h / 2, r);
+        ctx.arcTo(x - w / 2, y + h / 2, x - w / 2, y - h / 2, r);
+        ctx.arcTo(x - w / 2, y - h / 2, x + w / 2, y - h / 2, r);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.fillStyle = "#ffffff";
+        ctx.fillText(text, x, y + 0.5);
+        ctx.restore();
+      }
+
+      if (minIdx === maxIdx) {
+        drawChip(maxIdx, maxVal, "▲ máx", "#2A6FB0", -18);
+      } else {
+        drawChip(minIdx, minVal, "▼ mín", "#8A98A8", -14);
+        drawChip(maxIdx, maxVal, "▲ máx", "#2A6FB0", -18);
+      }
+    }
+  };
+
   canvas._chart = new Chart(canvas, {
     data: {
       labels,
@@ -990,6 +1059,11 @@ function renderOfertaDemandaMonthlyChart(rows) {
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      layout: {
+        padding: {
+          top: 16
+        }
+      },
       interaction: {
         mode: "index",
         intersect: false
@@ -1039,7 +1113,8 @@ function renderOfertaDemandaMonthlyChart(rows) {
           }
         }
       }
-    }
+    },
+    plugins: [extremaPlugin]
   });
 }
  
@@ -1264,23 +1339,23 @@ function renderSingleRouteChart(canvasId, route) {
   });
 
   const airlineCount = Math.max(1, airlines.length);
-  const barPct = Math.max(0.18, Math.min(0.74, 0.86 / airlineCount));
+  const barPct = Math.max(0.28, Math.min(0.78, 1.05 / airlineCount));
 
   const datasets = [];
 
-  airlines.forEach((airline, idx) => {
+  airlines.forEach((airline) => {
     const color = getAirlineColor(airline);
 
     datasets.push({
       type: "bar",
       label: `${airline} pasajeros`,
       data: monthlyRows.map(m => Math.round(m.airlines?.[airline]?.pax || 0)),
-      backgroundColor: hexToRgba(color, 0.26),
+      backgroundColor: hexToRgba(color, 0.20),
       borderColor: color,
       borderWidth: 1,
       order: 3,
       barPercentage: barPct,
-      categoryPercentage: 0.72
+      categoryPercentage: 0.84
     });
 
     datasets.push({
@@ -1291,9 +1366,9 @@ function renderSingleRouteChart(canvasId, route) {
       backgroundColor: "rgba(0,0,0,0)",
       pointBackgroundColor: color,
       pointBorderColor: color,
-      pointRadius: 1.8,
-      pointHoverRadius: 2.8,
-      borderWidth: 1.8,
+      pointRadius: 2,
+      pointHoverRadius: 3,
+      borderWidth: 1.9,
       tension: 0.22,
       fill: false,
       order: 1
@@ -1316,13 +1391,13 @@ function renderSingleRouteChart(canvasId, route) {
       const xScale = scales.x;
       const yScale = scales.y;
 
-      function drawChip(index, value, text, bg) {
+      function drawChip(index, value, text, bg, yOffset = -14) {
         if (index < 0 || !Number.isFinite(value) || value <= 0) return;
 
         const x = xScale.getPixelForValue(index);
-        const y = yScale.getPixelForValue(value) - 10;
+        const y = yScale.getPixelForValue(value) + yOffset;
 
-        const w = 30;
+        const w = 34;
         const h = 14;
         const r = 7;
 
@@ -1347,10 +1422,10 @@ function renderSingleRouteChart(canvasId, route) {
       }
 
       if (minIdx === maxIdx) {
-        drawChip(maxIdx, maxVal, "▲ máx", "#2A6FB0");
+        drawChip(maxIdx, maxVal, "▲ máx", "#2A6FB0", -16);
       } else {
-        drawChip(minIdx, minVal, "▼ mín", "#8A98A8");
-        drawChip(maxIdx, maxVal, "▲ máx", "#2A6FB0");
+        drawChip(minIdx, minVal, "▼ mín", "#8A98A8", -14);
+        drawChip(maxIdx, maxVal, "▲ máx", "#2A6FB0", -16);
       }
     }
   };
@@ -1363,6 +1438,11 @@ function renderSingleRouteChart(canvasId, route) {
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      layout: {
+        padding: {
+          top: 14
+        }
+      },
       interaction: {
         mode: "index",
         intersect: false
@@ -1380,12 +1460,6 @@ function renderSingleRouteChart(canvasId, route) {
             label: ctx => {
               const value = Number(ctx.raw || 0);
               return `${ctx.dataset.label}: ${value.toLocaleString("es-AR")}`;
-            },
-            footer: items => {
-              const idx = items[0]?.dataIndex ?? 0;
-              const row = monthlyRows[idx];
-              if (!row) return "";
-              return `Total mes: ${formatNumber(Math.round(row.totalPax))} pax · ${formatNumber(Math.round(row.totalAsientos))} asientos`;
             }
           }
         }
@@ -1398,9 +1472,7 @@ function renderSingleRouteChart(canvasId, route) {
           },
           ticks: {
             color: "#6f7d8c",
-            font: {
-              size: 8
-            },
+            font: { size: 8 },
             maxRotation: 0,
             minRotation: 0,
             autoSkip: false
@@ -1413,9 +1485,7 @@ function renderSingleRouteChart(canvasId, route) {
           },
           ticks: {
             color: "#6f7d8c",
-            font: {
-              size: 8
-            },
+            font: { size: 8 },
             callback: value => Number(value).toLocaleString("es-AR")
           }
         }
@@ -1429,27 +1499,45 @@ function renderTopRoutesCharts(routes) {
   const topRoutesEl = q("odTopRoutes");
   if (!topRoutesEl) return;
 
-  const dataRoutes = (routes || []).slice(0, 6);
+  const dataRoutes = (routes || [])
+    .slice()
+    .sort((a, b) => (b.totalPax || 0) - (a.totalPax || 0))
+    .slice(0, 6);
 
   if (!dataRoutes.length) {
     topRoutesEl.innerHTML = '<div class="od-empty">Sin datos</div>';
     return;
   }
 
-  topRoutesEl.innerHTML = dataRoutes.map((route, idx) => `
-    <div class="od-route-card-chart">
-      <div class="od-route-card-head">
-        <div class="od-route-card-title">${escapeHtml(route.title)}</div>
-        <div class="od-route-card-share">
-          ${escapeHtml(formatShareShort(route.sharePaxPct))} pax ·
-          ${escapeHtml(formatShareShort(route.shareSeatsPct))} asientos
+  topRoutesEl.innerHTML = dataRoutes.map((route, idx) => {
+    const legend = getRouteAirlinesLegend(route);
+
+    return `
+      <div class="od-route-card-chart">
+        <div class="od-route-card-head">
+          <div class="od-route-card-titleline">
+            <div class="od-route-card-title">${escapeHtml(route.title)}</div>
+            <div class="od-route-card-share-inline">
+              ${escapeHtml(formatShareShort(route.sharePaxPct))} pasajeros ·
+              ${escapeHtml(formatShareShort(route.shareSeatsPct))} asientos
+            </div>
+          </div>
+
+          <div class="od-route-airline-legend">
+            ${legend.map(item => `
+              <span class="od-route-airline-item" style="color:${item.color}">
+                ${escapeHtml(item.name)}
+              </span>
+            `).join("")}
+          </div>
+        </div>
+
+        <div class="od-route-chart-wrap">
+          <canvas id="odRouteChart_${idx}"></canvas>
         </div>
       </div>
-      <div class="od-route-chart-wrap">
-        <canvas id="odRouteChart_${idx}"></canvas>
-      </div>
-    </div>
-  `).join("");
+    `;
+  }).join("");
 
   dataRoutes.forEach((route, idx) => {
     renderSingleRouteChart(`odRouteChart_${idx}`, route);
