@@ -14,129 +14,91 @@
     </header>
 
     <!-- KPI STRIP -->
-<section class="od-kpis">
-  <article class="od-kpi">
-    <div class="od-kpi-label">Pasajeros</div>
-    <div class="od-kpi-value" id="odTotalPax">–</div>
-  </article>
+    <section class="od-kpis">
+      <article class="od-kpi">
+        <div class="od-kpi-label">Pasajeros</div>
+        <div class="od-kpi-value" id="odTotalPax">–</div>
+      </article>
 
-  <article class="od-kpi">
-    <div class="od-kpi-label">Asientos</div>
-    <div class="od-kpi-value" id="odTotalAsientos">–</div>
-  </article>
+      <article class="od-kpi">
+        <div class="od-kpi-label">Asientos</div>
+        <div class="od-kpi-value" id="odTotalAsientos">–</div>
+      </article>
 
-  <article class="od-kpi">
-    <div class="od-kpi-label">Vuelos</div>
-    <div class="od-kpi-value" id="odTotalVuelos">–</div>
-  </article>
+      <article class="od-kpi">
+        <div class="od-kpi-label">Vuelos</div>
+        <div class="od-kpi-value" id="odTotalVuelos">–</div>
+      </article>
 
-  <article class="od-kpi">
-    <div class="od-kpi-label">Frecuencia semanal</div>
-    <div class="od-kpi-value" id="odFrecuenciaSemanal">–</div>
-  </article>
+      <article class="od-kpi">
+        <div class="od-kpi-label">Frecuencia semanal</div>
+        <div class="od-kpi-value" id="odFrecuenciaSemanal">–</div>
+      </article>
 
-  <article class="od-kpi">
-    <div class="od-kpi-label">Aerolíneas</div>
-    <div class="od-kpi-value" id="odAirlinesCount">–</div>
-  </article>
+      <article class="od-kpi">
+        <div class="od-kpi-label">Aerolíneas</div>
+        <div class="od-kpi-value" id="odAirlinesCount">–</div>
+      </article>
 
-  <article class="od-kpi">
-    <div class="od-kpi-label">Ocupación</div>
-    <div class="od-kpi-value" id="odLoadFactor">–</div>
-  </article>
-</section>
+      <article class="od-kpi">
+        <div class="od-kpi-label">Ocupación</div>
+        <div class="od-kpi-value" id="odLoadFactor">–</div>
+      </article>
+    </section>
 
     <!-- BLOQUE PRINCIPAL -->
-<section class="od-main-grid">
+    <section class="od-main-grid">
 
-  <!-- FILA 1 -->
-  <div class="od-col od-col-main">
-    <section class="od-panel od-panel-chart">
-      <div class="od-panel-head">
-        <div class="od-panel-title">OFERTA Y DEMANDA MENSUAL</div>
-        <div class="od-panel-subtitle" id="odMonthlySubtitle">
-          Asientos ofrecidos cabotaje e internacional y pasajeros transportados cabotaje e internacional
-        </div>
-      </div>
-
-      <div class="od-chart-wrap">
-        <canvas id="odMonthlyChart"></canvas>
-      </div>
-
-      <div class="od-note">
-        La serie muestra la relación entre capacidad ofrecida y demanda observada a lo largo del año.
-      </div>
-    </section>
-  </div>
-
-  <div class="od-col od-col-side">
-    <section class="od-panel od-panel-airlines">
-      <div class="od-panel-head">
-        <div class="od-panel-title">PARTICIPACIÓN POR AEROLÍNEA</div>
-        <div class="od-panel-subtitle">
-          Asientos ofrecidos cabotaje e internacional por operador
-        </div>
-      </div>
-
-      <div class="od-chart-wrap-airlines">
-        <canvas id="odAirlinesChart"></canvas>
-      </div>
-
-      <div class="od-note">
-        La participación se expresa sobre la oferta anual de asientos del aeropuerto.
-      </div>
-    </section>
-  </div>
-
-  <!-- FILA 2: ANCHO COMPLETO -->
-  <section class="od-panel od-panel-routes od-panel-routes-full">
-    <div class="od-panel-head">
-      <div class="od-panel-title">PRINCIPALES RUTAS</div>
-      <div class="od-panel-subtitle">
-        Top 6 rutas comerciales, ordenadas por pasajeros anuales
-      </div>
-    </div>
-
-    <div class="od-list od-routes-list" id="odTopRoutes">
-      <div class="od-empty">Sin datos</div>
-    </div>
-  </section>
-
-</section>
-
-      <!-- COLUMNA DERECHA -->
-      <div class="od-col od-col-side">
-
-<section class="od-panel od-panel-airlines">
-  <div class="od-panel-head">
-    <div class="od-panel-title">Participación por aerolínea</div>
-    <div class="od-panel-subtitle" id="odAirlinesSubtitle"></div>
-  </div>
-
-  <div class="od-chart-wrap od-chart-wrap-airlines">
-    <canvas id="odAirlinesChart"></canvas>
-  </div>
-
-  <div class="od-note od-note-tight">
-    La participación se expresa sobre la oferta anual de asientos del aeropuerto.
-  </div>
-</section>
-
-        <section class="od-panel od-panel-method">
+      <!-- FILA 1 -->
+      <div class="od-col od-col-main">
+        <section class="od-panel od-panel-chart">
           <div class="od-panel-head">
-            <div class="od-panel-title">Criterio de lectura</div>
+            <div class="od-panel-title">OFERTA Y DEMANDA MENSUAL</div>
+            <div class="od-panel-subtitle" id="odMonthlySubtitle">
+              Asientos ofrecidos cabotaje e internacional y pasajeros transportados cabotaje e internacional
+            </div>
           </div>
 
-          <div class="od-method-text">
-            La hoja resume la estructura de la oferta y la demanda anual del aeropuerto, identificando las principales rutas y operadores a partir de la desagregación mensual por CityPair_IATA, aerolínea y mercado.
+          <div class="od-chart-wrap">
+            <canvas id="odMonthlyChart"></canvas>
           </div>
 
-          <div class="od-method-text">
-            La información de destinos se construye resolviendo el otro extremo de cada CityPair_IATA contra la tabla maestra de códigos IATA/OACI.
+          <div class="od-note od-note-tight">
+            La serie muestra la relación entre capacidad ofrecida y demanda observada a lo largo del año.
           </div>
         </section>
-
       </div>
+
+      <div class="od-col od-col-side">
+        <section class="od-panel od-panel-airlines">
+          <div class="od-panel-head">
+            <div class="od-panel-title">PARTICIPACIÓN POR AEROLÍNEA</div>
+            <div class="od-panel-subtitle" id="odAirlinesSubtitle">
+              Asientos ofrecidos cabotaje e internacional por operador
+            </div>
+          </div>
+
+          <div class="od-chart-wrap-airlines">
+            <canvas id="odAirlinesChart"></canvas>
+          </div>
+
+          <div class="od-note od-note-tight">
+            La participación se expresa sobre la oferta anual de asientos del aeropuerto.
+          </div>
+        </section>
+      </div>
+
+      <!-- FILA 2: ANCHO COMPLETO -->
+      <section class="od-panel od-panel-routes od-panel-routes-full">
+        <div class="od-panel-head">
+          <div class="od-panel-title">PRINCIPALES RUTAS</div>
+        </div>
+
+        <div class="od-list od-routes-list" id="odTopRoutes">
+          <div class="od-empty">Sin datos</div>
+        </div>
+      </section>
+
     </section>
 
     <!-- FOOTER -->
