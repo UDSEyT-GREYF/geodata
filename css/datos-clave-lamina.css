@@ -1445,7 +1445,7 @@ body {
 
 .passengers-breakdown-item {
   font-size: 0.70rem;
-  line-height: 1.05;
+  line-height: 0.9;
   font-weight: 600;
   white-space: nowrap;
 }
