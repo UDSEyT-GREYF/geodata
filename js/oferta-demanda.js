@@ -984,8 +984,8 @@ function renderOfertaDemandaMonthlyChart(rows) {
 
   if (!dataRows.length) return;
 
-  const labels = dataRows.map(r => r.anioMes);
-
+const labels = dataRows.map(r => formatMonthShort(r.anioMes));
+  
   const paxCab = dataRows.map(r => Math.round(r.paxCab || 0));
   const paxInt = dataRows.map(r => Math.round(r.paxInt || 0));
   const asientosCab = dataRows.map(r => Math.round(r.asientosCab || 0));
@@ -1629,10 +1629,15 @@ tooltip: {
     size: 9
   },
   callbacks: {
-    title: items => {
-      const idx = items[0]?.dataIndex ?? 0;
-      return monthlyRows[idx]?.anioMes || "";
-    },
+title: items => {
+  const idx = items[0]?.dataIndex ?? 0;
+  const raw = dataRows[idx]?.anioMes || "";
+  const d = parseFechaFlexible(raw);
+  if (!d) return raw;
+
+  const mes = d.toLocaleDateString("es-AR", { month: "short" }).replace(".", "");
+  return `${mes} ${d.getFullYear()}`;
+},
     label: ctx => {
       // mostramos una sola línea por aerolínea, usando el dataset de línea
       if (ctx.dataset.type !== "line") return null;
