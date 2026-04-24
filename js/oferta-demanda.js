@@ -319,15 +319,27 @@ function getAirlineColor(name) {
   const fixed = {
     "aerolineas": "#2A6FB0",
     "aerolineas argentinas": "#2A6FB0",
+
     "jetsmart": "#F28C28",
     "jetsmart airlines": "#F28C28",
+
     "flybondi": "#D2A106",
+
     "gol": "#00A859",
     "gol linhas aereas": "#00A859",
+
     "american": "#6C7A89",
     "american airlines": "#6C7A89",
+
     "latam": "#7E57C2",
-    "andes": "#8D6E63"
+    "latam peru": "#7E57C2",
+
+    "andes": "#8D6E63",
+    "avianca": "#C62828",
+    "american jet": "#F57C00",
+    "sky airline": "#26A69A",
+    "paranair": "#AD1457",
+    "copa": "#1565C0"
   };
 
   if (fixed[key]) return fixed[key];
@@ -1317,6 +1329,64 @@ function renderAirlinesChart(rows) {
   });
 }
 
+function buildRouteLineEndLabelsPlugin(pluginId, airlineStats) {
+  return {
+    id: pluginId,
+    afterDatasetsDraw(chart) {
+      const { ctx, chartArea } = chart;
+      if (!chartArea) return;
+
+      ctx.save();
+      ctx.font = "600 9px Roboto, Arial, sans-serif";
+      ctx.textAlign = "left";
+      ctx.textBaseline = "middle";
+
+      const statsByName = new Map((airlineStats || []).map(a => [a.name, a]));
+
+      chart.data.datasets.forEach((dataset, datasetIndex) => {
+        if (dataset.type !== "line") return;
+
+        const airlineName = String(dataset.label || "").replace(/\s+asientos$/i, "");
+        const stats = statsByName.get(airlineName);
+
+        // Solo etiquetar líneas reales
+        if (!stats || !(stats.totalAsientos > 0)) return;
+
+        const meta = chart.getDatasetMeta(datasetIndex);
+        if (!meta?.data?.length) return;
+
+        const series = dataset.data || [];
+        let lastIndex = -1;
+
+        for (let i = series.length - 1; i >= 0; i--) {
+          const v = Number(series[i] || 0);
+          if (v > 0) {
+            lastIndex = i;
+            break;
+          }
+        }
+
+        if (lastIndex < 0) return;
+
+        const point = meta.data[lastIndex];
+        if (!point) return;
+
+        const x = Math.min(point.x + 8, chartArea.right - 64);
+        const y = point.y;
+
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = "#ffffff";
+        ctx.strokeText(airlineName, x, y);
+
+        ctx.fillStyle = dataset.borderColor || "#333";
+        ctx.fillText(airlineName, x, y);
+      });
+
+      ctx.restore();
+    }
+  };
+}
+  
 function renderSingleRouteChart(canvasId, route) {
   const canvas = q(canvasId);
   if (!canvas || typeof Chart === "undefined") return;
@@ -1334,18 +1404,23 @@ function renderSingleRouteChart(canvasId, route) {
 
   const labels = monthlyRows.map(r => formatMonthShort(r.anioMes));
 
-  let airlines = Array.from(new Set(
+  const airlineStats = Array.from(new Set(
     monthlyRows.flatMap(m => Object.keys(m.airlines || {}))
-  ));
+  )).map(name => {
+    const totalPax = monthlyRows.reduce((acc, m) => acc + (m.airlines?.[name]?.pax || 0), 0);
+    const totalAsientos = monthlyRows.reduce((acc, m) => acc + (m.airlines?.[name]?.asientos || 0), 0);
 
-  airlines = airlines.sort((a, b) => {
-    const totalA = monthlyRows.reduce((acc, m) => acc + (m.airlines?.[a]?.pax || 0), 0);
-    const totalB = monthlyRows.reduce((acc, m) => acc + (m.airlines?.[b]?.pax || 0), 0);
-    return totalB - totalA;
-  });
+    return {
+      name,
+      totalPax,
+      totalAsientos
+    };
+  })
+  .filter(a => a.totalPax > 0 || a.totalAsientos > 0)
+  .sort((a, b) => b.totalPax - a.totalPax);
 
-  const airlineCount = Math.max(1, airlines.length);
-  const barPct = Math.max(0.38, Math.min(0.88, 1.15 / airlineCount));
+  const airlines = airlineStats.map(a => a.name);
+  if (!airlines.length) return;
 
   const datasets = [];
 
@@ -1356,12 +1431,12 @@ function renderSingleRouteChart(canvasId, route) {
       type: "bar",
       label: `${airline} pasajeros`,
       data: monthlyRows.map(m => Math.round(m.airlines?.[airline]?.pax || 0)),
-      backgroundColor: hexToRgba(color, 0.20),
+      backgroundColor: hexToRgba(color, 0.35),
       borderColor: color,
-      borderWidth: 1,
+      borderWidth: 1.1,
       order: 3,
-      barPercentage: barPct,
-      categoryPercentage: 0.94
+      barPercentage: 0.34,
+      categoryPercentage: 0.82
     });
 
     datasets.push({
@@ -1381,73 +1456,75 @@ function renderSingleRouteChart(canvasId, route) {
     });
   });
 
-const totalPaxSeries = monthlyRows.map(m => Math.round(m.totalPax || 0));
-const extremaPlugin = buildExtremaPlugin(`routeExtrema_${canvasId}`, totalPaxSeries);
+  const totalPaxSeries = monthlyRows.map(m => Math.round(m.totalPax || 0));
+  const extremaPlugin = buildExtremaPlugin(`routeExtrema_${canvasId}`, totalPaxSeries);
+  const lineEndLabelsPlugin = buildRouteLineEndLabelsPlugin(`routeLineLabels_${canvasId}`, airlineStats);
 
-canvas._chart = new Chart(canvas, {
-  data: {
-    labels,
-    datasets
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    layout: {
-      padding: {
-        top: 20,
-        bottom: 4
-      }
+  canvas._chart = new Chart(canvas, {
+    data: {
+      labels,
+      datasets
     },
-    interaction: {
-      mode: "index",
-      intersect: false
-    },
-    plugins: {
-      legend: {
-        display: false
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      layout: {
+        padding: {
+          top: 20,
+          right: 72,
+          bottom: 4
+        }
       },
-      tooltip: {
-        callbacks: {
-          title: items => {
-            const idx = items[0]?.dataIndex ?? 0;
-            return monthlyRows[idx]?.anioMes || "";
+      interaction: {
+        mode: "index",
+        intersect: false
+      },
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            title: items => {
+              const idx = items[0]?.dataIndex ?? 0;
+              return monthlyRows[idx]?.anioMes || "";
+            },
+            label: ctx => {
+              const value = Number(ctx.raw || 0);
+              return `${ctx.dataset.label}: ${value.toLocaleString("es-AR")}`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          stacked: false,
+          grid: {
+            color: "#eef3f8"
           },
-          label: ctx => {
-            const value = Number(ctx.raw || 0);
-            return `${ctx.dataset.label}: ${value.toLocaleString("es-AR")}`;
+          ticks: {
+            color: "#6f7d8c",
+            font: { size: 8 },
+            maxRotation: 0,
+            minRotation: 0,
+            autoSkip: false
+          }
+        },
+        y: {
+          beginAtZero: true,
+          grid: {
+            color: "#eef3f8"
+          },
+          ticks: {
+            color: "#6f7d8c",
+            font: { size: 8 },
+            callback: value => Number(value).toLocaleString("es-AR")
           }
         }
       }
     },
-    scales: {
-      x: {
-        stacked: false,
-        grid: {
-          color: "#eef3f8"
-        },
-        ticks: {
-          color: "#6f7d8c",
-          font: { size: 8 },
-          maxRotation: 0,
-          minRotation: 0,
-          autoSkip: false
-        }
-      },
-      y: {
-        beginAtZero: true,
-        grid: {
-          color: "#eef3f8"
-        },
-        ticks: {
-          color: "#6f7d8c",
-          font: { size: 8 },
-          callback: value => Number(value).toLocaleString("es-AR")
-        }
-      }
-    }
-  },
-  plugins: [extremaPlugin]
-});
+    plugins: [extremaPlugin, lineEndLabelsPlugin]
+  });
 }
 function renderTopRoutesCharts(routes) {
   const topRoutesEl = q("odTopRoutes");
@@ -1463,35 +1540,23 @@ function renderTopRoutesCharts(routes) {
     return;
   }
 
-  topRoutesEl.innerHTML = dataRoutes.map((route, idx) => {
-    const legend = getRouteAirlinesLegend(route);
-
-    return `
-      <div class="od-route-card-chart">
-        <div class="od-route-card-head">
-          <div class="od-route-card-titleline">
-            <div class="od-route-card-title">${escapeHtml(route.title)}</div>
-            <div class="od-route-card-share-inline">
-              ${escapeHtml(formatShareShort(route.sharePaxPct))} pasajeros ·
-              ${escapeHtml(formatShareShort(route.shareSeatsPct))} asientos
-            </div>
+  topRoutesEl.innerHTML = dataRoutes.map((route, idx) => `
+    <div class="od-route-card-chart">
+      <div class="od-route-card-head">
+        <div class="od-route-card-titleline">
+          <div class="od-route-card-title">${escapeHtml(route.title)}</div>
+          <div class="od-route-card-share-inline">
+            ${escapeHtml(formatShareShort(route.sharePaxPct))} pasajeros ·
+            ${escapeHtml(formatShareShort(route.shareSeatsPct))} asientos
           </div>
-
-          <div class="od-route-airline-legend">
-            ${legend.map(item => `
-              <span class="od-route-airline-item" style="color:${item.color}">
-                ${escapeHtml(item.name)}
-              </span>
-            `).join("")}
-          </div>
-        </div>
-
-        <div class="od-route-chart-wrap">
-          <canvas id="odRouteChart_${idx}"></canvas>
         </div>
       </div>
-    `;
-  }).join("");
+
+      <div class="od-route-chart-wrap">
+        <canvas id="odRouteChart_${idx}"></canvas>
+      </div>
+    </div>
+  `).join("");
 
   dataRoutes.forEach((route, idx) => {
     renderSingleRouteChart(`odRouteChart_${idx}`, route);
