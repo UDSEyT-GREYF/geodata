@@ -1168,12 +1168,7 @@ body {
   margin: 0;
 }
 
-.movement-box-positions .movement-box-sub {
-  font-size: 0.7rem;
-  color: #444;
-  line-height: 0.8;
-  margin: 0;
-}
+
 
 .movement-box-positions .movement-box-icon {
   align-self: center;
@@ -1226,9 +1221,9 @@ body {
 
 .movement-box-positions .movement-box-sub {
   margin: 0;
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   color: #444;
-  line-height: 1.05;
+  line-height: 0.8;
 }
 
 .movement-position-detail {
