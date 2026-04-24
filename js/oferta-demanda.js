@@ -1248,7 +1248,7 @@ function renderAirlinesChart(rows) {
     .filter(r => (r.asientosTotal || 0) > 0)
     .sort((a, b) => (b.asientosTotal || 0) - (a.asientosTotal || 0));
 
-  const dataRows = allRows.slice(0, 5);
+  const dataRows = allRows.slice(0, 6);
   if (!dataRows.length) return;
 
   const totalSeatsAll = allRows.reduce((acc, r) => acc + (r.asientosTotal || 0), 0);
