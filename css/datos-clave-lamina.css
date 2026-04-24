@@ -435,9 +435,9 @@ body {
   object-fit: contain;
 }
 .story-name {
-  font-size: 0.84rem;
+  font-size: 0.8rem;
   color: #444;
-  line-height: 1.06;
+  line-height: 1;
 }
 .story-sub {
   font-size: 0.72rem;
