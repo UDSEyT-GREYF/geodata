@@ -1251,9 +1251,9 @@ body {
 
 .destination-volume {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: #6a7179;
-  line-height: 1.08;
+  line-height: 0.8;
   margin-top: 1px;
 }/* =========================================
    AEROLÍNEAS | contador independiente y lista debajo OK
