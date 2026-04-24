@@ -528,8 +528,7 @@ body {
   background: #306fb0;
   color: #fff;
   border-radius: 4px;
-  padding: 6px 8px;
-  min-height: 38px;
+  padding: 3px 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -749,8 +748,8 @@ body {
 }
 
 .passenger-side-kpi {
-  padding: 6px 8px;
-  min-height: 38px;
+  padding: 3px 5px;
+  min-height: 42px;
 }
 
 .passenger-side-value {
@@ -1461,7 +1460,7 @@ body {
   color: var(--blue-dark);
   border: 1px solid #d6e1ee;
   border-radius: 6px;
-  padding: 7px 10px;
+  padding: 3px 5px;
   min-height: 42px;
   display: flex;
   flex-direction: column;
