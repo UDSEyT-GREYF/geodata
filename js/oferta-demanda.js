@@ -1664,11 +1664,13 @@ function renderTopRoutesCharts(routes) {
     <div class="od-route-card-chart">
       <div class="od-route-card-head">
         <div class="od-route-card-titleline">
-          <div class="od-route-card-title">${escapeHtml(route.title)}</div>
-          <div class="od-route-card-share-inline">
-            ${escapeHtml(formatShareShort(route.sharePaxPct))} pasajeros ·
-            ${escapeHtml(formatShareShort(route.shareSeatsPct))} asientos
-          </div>
+<div class="od-route-card-title">
+  ${escapeHtml(route.title)}
+  <span class="od-route-card-metrics-inline">
+    ${escapeHtml(formatNumber(Math.round(route.totalPax)))} (${escapeHtml(formatShareShort(route.sharePaxPct))}) pasajeros ·
+    ${escapeHtml(formatNumber(Math.round(route.totalAsientos)))} (${escapeHtml(formatShareShort(route.shareSeatsPct))}) asientos
+  </span>
+</div>
         </div>
       </div>
 
