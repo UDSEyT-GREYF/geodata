@@ -1817,3 +1817,211 @@ body {
   font-size: 0.62rem;
   line-height: 0.9;
 }
+
+
+/* =========================================================
+   FIX FINAL | ÁREA DE MOVIMIENTO EN LÁMINA A4
+   Compacta pistas, plataforma comercial y operación/ayudas
+   para evitar corte inferior en hoja apaisada.
+   ========================================================= */
+
+.section-movimiento {
+  min-height: 0;
+}
+
+.section-movimiento .section-title {
+  padding: 4px 8px;
+  margin-bottom: 4px;
+}
+
+.movement-wrap {
+  gap: 4px;
+}
+
+/* Cajas internas generales */
+.movement-box {
+  padding: 5px 6px 4px;
+  border-radius: 4px;
+}
+
+/* ---------- PISTAS ---------- */
+
+.movement-box-runways {
+  padding: 5px 6px 5px;
+}
+
+.movement-box-title-inline,
+.movement-kpi-title {
+  font-size: 0.70rem;
+  line-height: 1;
+  margin-bottom: 4px;
+  letter-spacing: 0.025em;
+}
+
+.movement-runways-head {
+  grid-template-columns: 34px minmax(0, 1fr) 30px 94px;
+  margin-bottom: 2px;
+}
+
+.movement-runways-col {
+  font-size: 0.58rem;
+  line-height: 1;
+}
+
+.movement-runways-col-length {
+  grid-column: 4;
+}
+
+.movement-runway-list {
+  gap: 3px;
+  margin-top: 0;
+}
+
+.movement-runway-card {
+  grid-template-columns: 30px minmax(0, 1fr) 30px 94px;
+  gap: 4px;
+  min-height: 28px;
+}
+
+.movement-runway-badge {
+  width: 28px;
+  height: 28px;
+  font-size: 0.78rem;
+}
+
+.movement-runway-orientation {
+  font-size: 0.80rem;
+  line-height: 1;
+}
+
+.movement-runway-plane img {
+  width: 27px;
+  height: 27px;
+}
+
+.movement-runway-length {
+  padding: 4px 5px;
+  font-size: 0.70rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ---------- PLATAFORMA COMERCIAL ---------- */
+
+.movement-box-positions {
+  padding: 5px 6px 4px;
+}
+
+.movement-box-positions .movement-box-head {
+  grid-template-columns: 26px minmax(0, 1fr) 31px;
+  gap: 5px;
+  align-items: center;
+}
+
+.movement-box-positions .movement-box-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.movement-box-positions .movement-box-title {
+  font-size: 0.68rem;
+  line-height: 1;
+  letter-spacing: 0.025em;
+}
+
+.movement-box-positions .movement-box-sub {
+  font-size: 0.58rem;
+  line-height: 0.9;
+  margin: 0;
+}
+
+.movement-badge,
+.movement-badge-large {
+  width: 30px;
+  min-width: 30px;
+  height: 30px;
+  font-size: 0.82rem;
+}
+
+.movement-position-detail {
+  margin-top: 0;
+  font-size: 0.58rem;
+  line-height: 0.95;
+  color: #6f7882;
+}
+
+/* ---------- OPERACIÓN Y AYUDAS ---------- */
+
+.movement-extra-kpi {
+  padding: 5px 6px 4px;
+  margin-top: 0;
+}
+
+.movement-extra-kpi .movement-extra-grid {
+  grid-template-columns: 1fr 0.85fr;
+  gap: 4px 6px;
+}
+
+.movement-extra-kpi .extra-kpi {
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 4px;
+  align-items: start;
+}
+
+.movement-extra-kpi .extra-kpi img,
+.movement-extra-kpi .extra-kpi-aids img {
+  width: 22px;
+  height: 22px;
+  margin-top: 0;
+}
+
+.movement-extra-kpi .extra-kpi-value {
+  font-size: 0.78rem;
+  line-height: 0.98;
+}
+
+.movement-extra-kpi .extra-kpi-label {
+  font-size: 0.56rem;
+  line-height: 0.88;
+  margin-top: 1px;
+}
+
+.movement-extra-kpi .extra-kpi-aids {
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 4px;
+  padding-top: 4px;
+  margin-top: 1px;
+}
+
+.movement-extra-kpi .aids-kpi-stack {
+  gap: 3px;
+}
+
+.movement-extra-kpi .aids-kpi-item {
+  min-width: 0;
+}
+
+.movement-extra-kpi .aids-kpi-item + .aids-kpi-item {
+  padding-top: 3px;
+}
+
+.movement-extra-kpi .aids-kpi-value {
+  font-size: 0.58rem;
+  line-height: 1.02;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.movement-extra-kpi .aids-kpi-name {
+  font-size: 0.56rem;
+  line-height: 0.9;
+  margin-top: 1px;
+}
+
+/* Evita que valores largos rompan el ancho */
+.movement-box,
+.movement-box *,
+.movement-extra-kpi,
+.movement-extra-kpi * {
+  min-width: 0;
+}
