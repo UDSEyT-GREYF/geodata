@@ -640,15 +640,7 @@ body {
   align-items: center;
   justify-content: center;
 }
-.destination-text {
-  font-size: 0.98rem;
-  color: #6a7179;
-  line-height: 1.2;
-}
-.destination-text strong {
-  color: #5f6972;
-  font-weight: 600;
-}
+
 
 .sheet-footer {
   margin-top: 8px;
@@ -929,15 +921,8 @@ body {
   font-size: 0.92rem;
 }
 
-.destination-text {
-  font-size: 0.84rem;
-  line-height: 1.14;
-}
 
-.destination-text strong {
-  color: #5f6972;
-  font-weight: 600;
-}
+
 
 
 /* ===== FIX v4: KPI envolvente radioayudas + transporte público azul ===== */
@@ -1240,11 +1225,14 @@ body {
 
 .destination-text {
   display: block;
-  font-size: 0.84rem;
+  font-size: 0.7rem;
   color: #6a7179;
-  line-height: 1.12;
+  line-height: 1;
 }
-
+.destination-text strong {
+  color: #5f6972;
+  font-weight: 600;
+}
 .destination-title-line {
   line-height: 1.05;
   white-space: normal;
