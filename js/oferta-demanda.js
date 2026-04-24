@@ -1361,7 +1361,7 @@ function renderSingleRouteChart(canvasId, route) {
       borderWidth: 1,
       order: 3,
       barPercentage: barPct,
-      categoryPercentage: 0.84
+      categoryPercentage: 0.94
     });
 
     datasets.push({
