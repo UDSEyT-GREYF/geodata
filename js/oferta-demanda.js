@@ -1558,18 +1558,55 @@ function renderSingleRouteChart(canvasId, route) {
         legend: {
           display: false
         },
-        tooltip: {
-          callbacks: {
-            title: items => {
-              const idx = items[0]?.dataIndex ?? 0;
-              return monthlyRows[idx]?.anioMes || "";
-            },
-            label: ctx => {
-              const value = Number(ctx.raw || 0);
-              return `${ctx.dataset.label}: ${value.toLocaleString("es-AR")}`;
-            }
-          }
-        }
+tooltip: {
+  displayColors: false,
+  padding: 8,
+  titleFont: {
+    size: 10,
+    weight: "600"
+  },
+  bodyFont: {
+    size: 9
+  },
+  callbacks: {
+    title: items => {
+      const idx = items[0]?.dataIndex ?? 0;
+      return monthlyRows[idx]?.anioMes || "";
+    },
+    label: ctx => {
+      // mostramos una sola línea por aerolínea, usando el dataset de línea
+      if (ctx.dataset.type !== "line") return null;
+
+      const airline = String(ctx.dataset.label || "").replace(/\s+asientos$/i, "");
+      const idx = ctx.dataIndex;
+
+      const dsAsientos = ctx.chart.data.datasets.find(ds => ds.label === `${airline} asientos`);
+      const dsPax = ctx.chart.data.datasets.find(ds => ds.label === `${airline} pasajeros`);
+
+      const asientos = Number(dsAsientos?.data?.[idx] || 0);
+      const pax = Number(dsPax?.data?.[idx] || 0);
+
+      if (asientos === 0 && pax === 0) return null;
+
+      return `${airline}: ${asientos.toLocaleString("es-AR")} as. · ${pax.toLocaleString("es-AR")} pax`;
+    }
+  },
+  filter: ctx => {
+    // filtra para que no duplique por barra + línea
+    if (ctx.dataset.type !== "line") return false;
+
+    const airline = String(ctx.dataset.label || "").replace(/\s+asientos$/i, "");
+    const idx = ctx.dataIndex;
+
+    const dsAsientos = ctx.chart.data.datasets.find(ds => ds.label === `${airline} asientos`);
+    const dsPax = ctx.chart.data.datasets.find(ds => ds.label === `${airline} pasajeros`);
+
+    const asientos = Number(dsAsientos?.data?.[idx] || 0);
+    const pax = Number(dsPax?.data?.[idx] || 0);
+
+    return asientos > 0 || pax > 0;
+  }
+}
       },
       scales: {
         x: {
