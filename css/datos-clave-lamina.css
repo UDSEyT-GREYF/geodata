@@ -336,9 +336,9 @@ body {
   font-weight: 700;
 }
 .movement-badge-large {
-  min-width: 44px;
-  width: 44px;
-  height: 44px;
+  min-width: 35px;
+  width: 35px;
+  height: 35px;
   font-size: 1rem;
   justify-self: end;
 }
@@ -446,8 +446,8 @@ body {
   margin-top: 2px;
 }
 .story-badge {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background: var(--purple);
   color: #fff;
