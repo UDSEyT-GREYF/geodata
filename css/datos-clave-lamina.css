@@ -782,7 +782,7 @@ body {
 }
 
 .history-note {
-  font-size: 0.66rem;
+  font-size: 0.6rem;
   margin-top: 2px;
   color: var(--chart-note);
 }
@@ -1067,7 +1067,7 @@ body {
 }
 
 .movement-runways-col-label {
-  grid-column: 2;
+  grid-column: 1;
 }
 
 .movement-runways-col-length {
