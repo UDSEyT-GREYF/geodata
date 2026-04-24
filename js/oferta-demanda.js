@@ -1102,10 +1102,22 @@ tooltip: {
     size: 9
   },
   callbacks: {
-    title: items => {
-      const idx = items[0]?.dataIndex ?? 0;
-      return dataRows[idx]?.anioMes || "";
-    },
+title: items => {
+  const idx = items[0]?.dataIndex ?? 0;
+  const row = dataRows[idx];
+  if (!row) return "";
+
+  const d = parseFechaFlexible(row.anioMes);
+  const mes = d
+    ? d.toLocaleDateString("es-AR", { month: "short" }).replace(".", "")
+    : row.anioMes;
+  const anio = d ? d.getFullYear() : "";
+
+  const totalPaxMes = Number(row.paxCab || 0) + Number(row.paxInt || 0);
+  const totalAsientosMes = Number(row.asientosCab || 0) + Number(row.asientosInt || 0);
+
+  return `${mes} ${anio} · ${totalPaxMes.toLocaleString("es-AR")} pasajeros · ${totalAsientosMes.toLocaleString("es-AR")} asientos`;
+},
     label: ctx => {
       // mostramos una sola línea por mercado, usando el dataset de línea
       if (ctx.dataset.type !== "line") return null;
@@ -1631,12 +1643,19 @@ tooltip: {
   callbacks: {
 title: items => {
   const idx = items[0]?.dataIndex ?? 0;
-  const raw = dataRows[idx]?.anioMes || "";
-  const d = parseFechaFlexible(raw);
-  if (!d) return raw;
+  const row = monthlyRows[idx];
+  if (!row) return "";
 
-  const mes = d.toLocaleDateString("es-AR", { month: "short" }).replace(".", "");
-  return `${mes} ${d.getFullYear()}`;
+  const d = parseFechaFlexible(row.anioMes);
+  const mes = d
+    ? d.toLocaleDateString("es-AR", { month: "short" }).replace(".", "")
+    : row.anioMes;
+  const anio = d ? d.getFullYear() : "";
+
+  const totalPaxMes = Number(row.totalPax || 0);
+  const totalAsientosMes = Number(row.totalAsientos || 0);
+
+  return `${mes} ${anio} · ${totalPaxMes.toLocaleString("es-AR")} pasajeros · ${totalAsientosMes.toLocaleString("es-AR")} asientos`;
 },
     label: ctx => {
       // mostramos una sola línea por aerolínea, usando el dataset de línea
