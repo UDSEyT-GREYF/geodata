@@ -1460,6 +1460,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 1px;
 }
 
 .passenger-side-value {
