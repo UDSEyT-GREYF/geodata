@@ -1386,6 +1386,81 @@ function buildRouteLineEndLabelsPlugin(pluginId, airlineStats) {
     }
   };
 }
+
+function buildRouteRightLabelsPlugin(pluginId, airlineStats) {
+  return {
+    id: pluginId,
+    afterDatasetsDraw(chart) {
+      const { ctx, chartArea } = chart;
+      if (!chartArea) return;
+
+      const visibleAirlines = (airlineStats || [])
+        .filter(a => a.totalAsientos > 0)
+        .sort((a, b) => b.totalPax - a.totalPax);
+
+      if (!visibleAirlines.length) return;
+
+      ctx.save();
+      ctx.font = "600 9px Roboto, Arial, sans-serif";
+      ctx.textAlign = "left";
+      ctx.textBaseline = "middle";
+
+      const top = chartArea.top + 10;
+      const bottom = chartArea.bottom - 10;
+      const step = visibleAirlines.length === 1
+        ? 0
+        : (bottom - top) / (visibleAirlines.length - 1);
+
+      visibleAirlines.forEach((airline, idx) => {
+        const datasetIndex = chart.data.datasets.findIndex(ds =>
+          ds.type === "line" &&
+          String(ds.label || "").replace(/\s+asientos$/i, "") === airline.name
+        );
+
+        if (datasetIndex < 0) return;
+
+        const dataset = chart.data.datasets[datasetIndex];
+        const meta = chart.getDatasetMeta(datasetIndex);
+        if (!meta?.data?.length) return;
+
+        const series = dataset.data || [];
+        let lastIndex = -1;
+
+        for (let i = series.length - 1; i >= 0; i--) {
+          const v = Number(series[i] || 0);
+          if (v > 0) {
+            lastIndex = i;
+            break;
+          }
+        }
+
+        if (lastIndex < 0) return;
+
+        const point = meta.data[lastIndex];
+        if (!point) return;
+
+        const labelX = chartArea.right + 10;
+        const labelY = top + (step * idx);
+
+        ctx.strokeStyle = dataset.borderColor || "#333";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(point.x + 3, point.y);
+        ctx.lineTo(labelX - 4, labelY);
+        ctx.stroke();
+
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = "#ffffff";
+        ctx.strokeText(airline.name, labelX, labelY);
+
+        ctx.fillStyle = dataset.borderColor || "#333";
+        ctx.fillText(airline.name, labelX, labelY);
+      });
+
+      ctx.restore();
+    }
+  };
+}
   
 function renderSingleRouteChart(canvasId, route) {
   const canvas = q(canvasId);
@@ -1458,7 +1533,7 @@ function renderSingleRouteChart(canvasId, route) {
 
   const totalPaxSeries = monthlyRows.map(m => Math.round(m.totalPax || 0));
   const extremaPlugin = buildExtremaPlugin(`routeExtrema_${canvasId}`, totalPaxSeries);
-  const lineEndLabelsPlugin = buildRouteLineEndLabelsPlugin(`routeLineLabels_${canvasId}`, airlineStats);
+  const rightLabelsPlugin = buildRouteRightLabelsPlugin(`routeRightLabels_${canvasId}`, airlineStats);
 
   canvas._chart = new Chart(canvas, {
     data: {
@@ -1471,7 +1546,7 @@ function renderSingleRouteChart(canvasId, route) {
       layout: {
         padding: {
           top: 20,
-          right: 72,
+          right: 120,
           bottom: 4
         }
       },
@@ -1523,7 +1598,7 @@ function renderSingleRouteChart(canvasId, route) {
         }
       }
     },
-    plugins: [extremaPlugin, lineEndLabelsPlugin]
+    plugins: [extremaPlugin, rightLabelsPlugin]
   });
 }
 function renderTopRoutesCharts(routes) {
