@@ -181,22 +181,22 @@ body {
 .surface-top-kpis {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin: 4px 4px 8px;
+  gap: 10px;
+  margin: 2px 2px 6px;
 }
 .mini-kpi-label {
-  font-size: 0.9rem;
+  font-size: 0.78rem;
   color: #646f7c;
   line-height: 1.12;
-  margin-bottom: 7px;
+  margin-bottom: 4px;
 }
 .mini-kpi-value {
   color: var(--blue-dark);
-  font-size: 1.05rem;
+  font-size: 0.94rem;
   font-weight: 700;
 }
 .mini-kpi-value span:first-child {
-  font-size: 1.5rem;
+  font-size: 1.30rem;
 }
 .surface-visual-row {
   display: grid;
@@ -212,7 +212,7 @@ body {
   min-height: 130px;
   overflow: hidden;
 }
-.predio-map { width: 100%; height: 100%; min-height: 130px; }
+.predio-map { width: 100%; height: 100%; min-height: 118px; }
 .terminal-photo-frame img {
   width: 100%;
   height: 100%;
@@ -246,13 +246,13 @@ body {
 .movement-wrap {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 .movement-box {
   border: 1px solid #d0d7e2;
   border-radius: 4px;
   background: #fff;
-  padding: 10px 10px 8px;
+  padding: 8px 8px 6px;
 }
 .movement-box-head {
   display: grid;
@@ -407,10 +407,10 @@ body {
   border: 1px solid #d0d7e2;
   border-radius: 4px;
   background: #fff;
-  padding: 5px 7px;
+  padding: 4px 6px;
 }
 .story-block-title {
-  font-size: 0.82rem;
+  font-size: 0.76rem;
   font-weight: 600;
   color: #2a5fa0;
   text-transform: uppercase;
@@ -421,40 +421,40 @@ body {
 }
 .story-item {
   display: grid;
-  grid-template-columns: 30px 1fr 52px;
-  gap: 8px;
+  grid-template-columns: 26px 1fr 46px;
+  gap: 6px;
   align-items: center;
-  padding: 7px 0;
+  padding: 5px 0;
 }
 .story-item + .story-item {
   border-top: 1px dashed #d4dbe5;
 }
 .story-icon img {
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   object-fit: contain;
 }
 .story-name {
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   color: #444;
   line-height: 1.06;
 }
 .story-sub {
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   color: #777;
   line-height: 1.2;
-  margin-top: 3px;
+  margin-top: 2px;
 }
 .story-badge {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: var(--purple);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: 700;
   justify-self: end;
 }
@@ -1085,7 +1085,7 @@ body {
 .movement-runway-card {
   display: grid;
   grid-template-columns: 44px 1fr 48px 126px;
-  gap: 8px;
+  gap: 6px;
   align-items: center;
 }
 
@@ -1125,9 +1125,9 @@ body {
   background: #b7b7b9;
   color: #fff;
   border-radius: 3px;
-  padding: 7px 10px;
+  padding: 6px 8px;
   text-align: center;
-  font-size: 0.92rem;
+  font-size: 0.86rem;
   font-weight: 700;
   line-height: 1;
 }
@@ -1486,8 +1486,8 @@ body {
   grid-template-columns: 1fr 1fr;
   column-gap: 12px;
   row-gap: 0;
-  margin-top: 6px;
-  padding-top: 6px;
+  margin-top: 4px;
+  padding-top: 4px;
 }
 .explotacion-meta-grid::after {
   content: "";
@@ -1516,19 +1516,19 @@ body {
   grid-template-columns: 98px minmax(0, 1fr);
   gap: 6px;
   align-items: start;
-  padding: 3px 0;
+  padding: 2px 0;
 }
 .explotacion-meta-row + .explotacion-meta-row {
   border-top: 1px dashed rgba(48, 111, 176, 0.09);
 }
 .explotacion-meta-label {
-  font-size: 0.68rem;
+  font-size: 0.64rem;
   line-height: 1.05;
   color: #7a838c;
 }
 
 .explotacion-meta-value {
-  font-size: 0.74rem;
+  font-size: 0.70rem;
   line-height: 1.16;
   color: var(--blue-dark);
   font-weight: 600;
@@ -1577,7 +1577,7 @@ body {
 }
 
 .explotacion-meta-detail {
-  font-size: 0.66rem;
+  font-size: 0.62rem;
   line-height: 1.12;
   color: #6a7179;
   text-align: right;
