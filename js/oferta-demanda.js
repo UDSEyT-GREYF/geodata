@@ -1559,8 +1559,10 @@ function renderSingleRouteChart(canvasId, route) {
           display: false
         },
 tooltip: {
-  displayColors: false,
+  displayColors: true,
   padding: 8,
+  boxWidth: 10,
+  boxHeight: 10,
   titleFont: {
     size: 10,
     weight: "600"
@@ -1589,6 +1591,13 @@ tooltip: {
       if (asientos === 0 && pax === 0) return null;
 
       return `${airline}: ${asientos.toLocaleString("es-AR")} as. · ${pax.toLocaleString("es-AR")} pax`;
+    },
+    labelColor: ctx => {
+      const color = ctx.dataset.borderColor || "#2A6FB0";
+      return {
+        borderColor: color,
+        backgroundColor: color
+      };
     }
   },
   filter: ctx => {
