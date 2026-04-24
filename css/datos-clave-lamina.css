@@ -966,8 +966,7 @@ body {
 }
 
 .movement-extra-kpi .extra-kpi-label {
-  font-size: 0.78rem;
-  line-height: 1.2;
+  line-height: 1;
   color: #707c86;
   margin-top: 2px;
 }
