@@ -2025,3 +2025,169 @@ body {
 .movement-extra-kpi * {
   min-width: 0;
 }
+/* =========================================================
+   AJUSTE FINO | ÁREA DE MOVIMIENTO MÁS LEGIBLE
+   Recupera tamaño visual aprovechando el espacio sobrante
+   sin volver a cortar la sección.
+   ========================================================= */
+
+.section-movimiento {
+  min-height: 292px;
+}
+
+.movement-wrap {
+  gap: 5px;
+}
+
+/* Cajas internas un poco más aireadas */
+.movement-box {
+  padding: 6px 7px 5px;
+}
+
+/* ---------- PISTAS ---------- */
+
+.movement-box-runways {
+  padding: 6px 7px 6px;
+}
+
+.movement-box-title-inline,
+.movement-kpi-title {
+  font-size: 0.75rem;
+  line-height: 1.05;
+  margin-bottom: 5px;
+}
+
+.movement-runways-head {
+  grid-template-columns: 36px minmax(0, 1fr) 34px 100px;
+  margin-bottom: 3px;
+}
+
+.movement-runways-col {
+  font-size: 0.62rem;
+  line-height: 1;
+}
+
+.movement-runway-list {
+  gap: 4px;
+}
+
+.movement-runway-card {
+  grid-template-columns: 33px minmax(0, 1fr) 34px 100px;
+  gap: 5px;
+  min-height: 32px;
+}
+
+.movement-runway-badge {
+  width: 31px;
+  height: 31px;
+  font-size: 0.88rem;
+}
+
+.movement-runway-orientation {
+  font-size: 0.90rem;
+  line-height: 1;
+}
+
+.movement-runway-plane img {
+  width: 31px;
+  height: 31px;
+}
+
+.movement-runway-length {
+  padding: 5px 6px;
+  font-size: 0.76rem;
+}
+
+/* ---------- PLATAFORMA COMERCIAL ---------- */
+
+.movement-box-positions {
+  padding: 6px 7px 5px;
+}
+
+.movement-box-positions .movement-box-head {
+  grid-template-columns: 30px minmax(0, 1fr) 34px;
+  gap: 6px;
+}
+
+.movement-box-positions .movement-box-icon img {
+  width: 28px;
+  height: 28px;
+}
+
+.movement-box-positions .movement-box-title {
+  font-size: 0.73rem;
+  line-height: 1.05;
+}
+
+.movement-box-positions .movement-box-sub {
+  font-size: 0.62rem;
+  line-height: 0.95;
+}
+
+.movement-badge,
+.movement-badge-large {
+  width: 33px;
+  min-width: 33px;
+  height: 33px;
+  font-size: 0.92rem;
+}
+
+.movement-position-detail {
+  font-size: 0.62rem;
+  line-height: 1;
+}
+
+/* ---------- OPERACIÓN Y AYUDAS ---------- */
+
+.movement-extra-kpi {
+  padding: 6px 7px 5px;
+}
+
+.movement-extra-kpi .movement-extra-grid {
+  gap: 5px 7px;
+}
+
+.movement-extra-kpi .extra-kpi {
+  grid-template-columns: 25px minmax(0, 1fr);
+  gap: 5px;
+}
+
+.movement-extra-kpi .extra-kpi img,
+.movement-extra-kpi .extra-kpi-aids img {
+  width: 25px;
+  height: 25px;
+}
+
+.movement-extra-kpi .extra-kpi-value {
+  font-size: 0.86rem;
+  line-height: 1;
+}
+
+.movement-extra-kpi .extra-kpi-label {
+  font-size: 0.60rem;
+  line-height: 0.95;
+}
+
+.movement-extra-kpi .extra-kpi-aids {
+  grid-template-columns: 25px minmax(0, 1fr);
+  gap: 5px;
+  padding-top: 5px;
+}
+
+.movement-extra-kpi .aids-kpi-stack {
+  gap: 4px;
+}
+
+.movement-extra-kpi .aids-kpi-item + .aids-kpi-item {
+  padding-top: 4px;
+}
+
+.movement-extra-kpi .aids-kpi-value {
+  font-size: 0.62rem;
+  line-height: 1.05;
+}
+
+.movement-extra-kpi .aids-kpi-name {
+  font-size: 0.60rem;
+  line-height: 0.95;
+}
