@@ -966,6 +966,28 @@ function buildExtremaPlugin(pluginId, series) {
     }
   };
 }
+
+function getSNAPassengerRanking(selectedIata, year = YEAR_REF) {
+  const rankingRows = (aeropuertos || []).map(a => {
+    const iata = clean(firstNonEmpty(a, ["IATA"])).toUpperCase();
+    const summary = getOfertaDemandaSummary(iata, year, { soloComercial: true });
+
+    return {
+      iata,
+      totalPax: Number(summary.totalPax || 0)
+    };
+  });
+
+  rankingRows.sort((a, b) => b.totalPax - a.totalPax);
+
+  const rank = rankingRows.findIndex(r => r.iata === clean(selectedIata).toUpperCase()) + 1;
+  const totalAirports = rankingRows.length;
+
+  return {
+    rank: rank > 0 ? rank : null,
+    totalAirports
+  };
+}
   /* ============================================================
      RENDER
      ============================================================ */
@@ -1803,7 +1825,14 @@ setText(
     ? `${(summary.loadFactorWeighted * 100).toLocaleString("es-AR", { maximumFractionDigits: 1 })}%`
     : "–"
 );
+const snaRank = getSNAPassengerRanking(iata, YEAR_REF);
 
+setHTML(
+  "odSnaRank",
+  snaRank.rank
+    ? `#${formatNumber(snaRank.rank)} <span class="od-kpi-rank-total">/ ${formatNumber(snaRank.totalAirports)}</span>`
+    : "–"
+);
 renderTopRoutesCharts(summary.mainRoutes);
 
 
