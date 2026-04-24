@@ -99,7 +99,7 @@ body {
   flex-direction: column;
   gap: 2px;
   align-items: flex-start;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 
 .sheet-title-main {
@@ -113,7 +113,7 @@ body {
 }
 
 .sheet-airport-name {
-  font-size: 1.62rem;
+  font-size: 1.45rem;
   font-weight: 600;
   color: #002855;
   margin: 0;
@@ -133,13 +133,13 @@ body {
 .triptych-grid {
   display: grid;
   grid-template-columns: 1.01fr 0.78fr 1.79fr;
-  gap: 10px;
+  gap: 8px;
 }
 .triptych-col {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 .col-header,
 .section-title {
@@ -147,18 +147,18 @@ body {
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 600;
 }
 
 .col-header {
-  padding: 6px 10px;
+  padding: 5px 8px;
   border-radius: 4px;
 }
 
 .section-title {
-  padding: 6px 10px;
-  margin: -8px -8px 8px -8px;
+  padding: 5px 8px;
+  margin: -6px -6px 6px -6px;
   border-radius: 4px 4px 0 0;
 }
 .section-card {
@@ -168,15 +168,15 @@ body {
   background: #fff;
   display: flex;
   flex-direction: column;
-  padding: 8px;
+  padding: 6px;
 }
 
-.section-superficie { min-height: 352px; }
-.section-movimiento { min-height: 324px; }
-.story-card { min-height: 612px; }
-.section-passengers { min-height: 410px; }
-.section-flights { min-height: 136px; }
-.section-routes { min-height: 190px; }
+.section-superficie { min-height: 330px; }
+.section-movimiento { min-height: 296px; }
+.story-card { min-height: 580px; }
+.section-passengers { min-height: 360px; }
+.section-flights { min-height: 104px; }
+.section-routes { min-height: 162px; }
 
 .surface-top-kpis {
   display: grid;
@@ -511,7 +511,7 @@ body {
   box-shadow: 0 6px 18px rgba(31, 92, 160, 0.18); /* Sombra externa suave: 0 desplazamiento horizontal, 6 px vertical, 18 px de difuminado, azul con transparencia. */
 }
 .passengers-total {
-  font-size: 2rem;
+  font-size: 1.72rem;
   line-height: 1;
   font-weight: 700;
 }
@@ -528,8 +528,8 @@ body {
   background: #306fb0;
   color: #fff;
   border-radius: 4px;
-  padding: 10px 12px;
-  min-height: 56px;
+  padding: 6px 8px;
+  min-height: 38px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -548,7 +548,7 @@ body {
 
 .history-chart {
   width: 100%;
-  height: 260px;
+  height: 208px;
   display: block;
 }
 
@@ -721,21 +721,21 @@ body {
 
 .passengers-top-row {
   grid-template-columns: 82px 1fr 128px;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 
 
 .passengers-hero-pill {
-  min-height: 82px;
-  max-width: 370px;
+  min-height: 74px;
+  max-width: 350px;
   padding: 4px 16px;
 }
 
 .passengers-total {
-  font-size: 1.9rem;
+  font-size: 1.72rem;
   line-height: 1;
 }
 
@@ -749,8 +749,8 @@ body {
 }
 
 .passenger-side-kpi {
-  padding: 8px 10px;
-  min-height: 44px;
+  padding: 6px 8px;
+  min-height: 38px;
 }
 
 .passenger-side-value {
@@ -763,8 +763,8 @@ body {
 }
 
 .history-title {
-  font-size: 0.9rem;
-  margin: 8px 0 4px;
+  font-size: 0.82rem;
+  margin: 6px 0 3px;
   color: var(--chart-label);
 }
 
@@ -779,11 +779,11 @@ body {
 }
 
 .history-chart {
-  height: 236px;
+  height: 208px;
 }
 
 .history-note {
-  font-size: 0.70rem;
+  font-size: 0.66rem;
   margin-top: 2px;
   color: var(--chart-note);
 }
@@ -1362,15 +1362,15 @@ body {
   background: linear-gradient(135deg, #1d86de 0%, #1567bd 100%);
   color: #fff;
   border-radius: 999px;
-  min-height: 88px;
-  max-width: 390px;
+  min-height: 74px;
+  max-width: 350px;
   width: 100%;
   justify-self: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 8px 92px 8px 18px;
+  padding: 6px 82px 6px 14px;
   box-shadow: 0 6px 16px rgba(31, 92, 160, 0.16);
   overflow: visible;
 }
@@ -1421,7 +1421,7 @@ body {
   letter-spacing: 0.04em;
 }
 .passengers-kpi-kicker {
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -1430,7 +1430,7 @@ body {
 }
 
 .passengers-total {
-  font-size: 2.1rem;
+  font-size: 1.72rem;
   line-height: 1;
   font-weight: 700;
   margin-bottom: 4px;
@@ -1444,7 +1444,7 @@ body {
 }
 
 .passengers-breakdown-item {
-  font-size: 0.76rem;
+  font-size: 0.70rem;
   line-height: 1.05;
   font-weight: 600;
   white-space: nowrap;
