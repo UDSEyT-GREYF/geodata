@@ -884,7 +884,7 @@ body {
 }
 
 .airline-volume {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: #6a7179;
 }
 
@@ -1342,9 +1342,9 @@ body {
 }
 
 .airline-volume {
-  font-size: 0.80rem;
+  font-size: 0.7rem;
   color: #6a7179;
-  line-height: 0.9;
+  line-height: 0.8;
   white-space: nowrap;
 }
 /* =========================================
@@ -1612,10 +1612,10 @@ body {
 
 .airline-volume {
   min-width: 70px;
-  text-align: right;
+  text-align: left;
   white-space: nowrap;
-  font-size: 0.8rem;
-  line-height: 0.9;
+  font-size: 0.7rem;
+  line-height: 0.8;
   color: #6a7179;
   font-variant-numeric: tabular-nums;
 }
