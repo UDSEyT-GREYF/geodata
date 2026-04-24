@@ -630,12 +630,12 @@ body {
   align-items: center;
 }
 .destination-pill {
-  width: 48px;
-  height: 48px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background: #0c7bd8;
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -925,8 +925,8 @@ body {
 }
 
 .destination-pill {
-  width: 38px;
-  height: 38px;
+  width: 35px;
+  height: 35px;
   font-size: 0.92rem;
 }
 
