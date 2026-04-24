@@ -1089,14 +1089,73 @@ function renderOfertaDemandaMonthlyChart(rows) {
         legend: {
           display: false
         },
-        tooltip: {
-          callbacks: {
-            label: ctx => {
-              const value = Number(ctx.raw || 0);
-              return `${ctx.dataset.label}: ${value.toLocaleString("es-AR")}`;
-            }
-          }
-        }
+tooltip: {
+  displayColors: true,
+  padding: 8,
+  boxWidth: 10,
+  boxHeight: 10,
+  titleFont: {
+    size: 10,
+    weight: "600"
+  },
+  bodyFont: {
+    size: 9
+  },
+  callbacks: {
+    title: items => {
+      const idx = items[0]?.dataIndex ?? 0;
+      return dataRows[idx]?.anioMes || "";
+    },
+    label: ctx => {
+      // mostramos una sola línea por mercado, usando el dataset de línea
+      if (ctx.dataset.type !== "line") return null;
+
+      const isInternational = /internacional/i.test(String(ctx.dataset.label || ""));
+      const mercado = isInternational ? "Internacional" : "Cabotaje";
+      const idx = ctx.dataIndex;
+
+      const dsAsientos = ctx.chart.data.datasets.find(ds =>
+        ds.label === `Asientos ${isInternational ? "internacional" : "cabotaje"}`
+      );
+      const dsPax = ctx.chart.data.datasets.find(ds =>
+        ds.label === `Pasajeros ${isInternational ? "internacional" : "cabotaje"}`
+      );
+
+      const asientos = Number(dsAsientos?.data?.[idx] || 0);
+      const pasajeros = Number(dsPax?.data?.[idx] || 0);
+
+      if (asientos === 0 && pasajeros === 0) return null;
+
+      return `${mercado}: ${pasajeros.toLocaleString("es-AR")} pasajeros · ${asientos.toLocaleString("es-AR")} asientos`;
+    },
+    labelColor: ctx => {
+      const color = ctx.dataset.borderColor || "#2A6FB0";
+      return {
+        borderColor: color,
+        backgroundColor: color
+      };
+    }
+  },
+  filter: ctx => {
+    // filtra para que no duplique por barra + línea
+    if (ctx.dataset.type !== "line") return false;
+
+    const isInternational = /internacional/i.test(String(ctx.dataset.label || ""));
+    const idx = ctx.dataIndex;
+
+    const dsAsientos = ctx.chart.data.datasets.find(ds =>
+      ds.label === `Asientos ${isInternational ? "internacional" : "cabotaje"}`
+    );
+    const dsPax = ctx.chart.data.datasets.find(ds =>
+      ds.label === `Pasajeros ${isInternational ? "internacional" : "cabotaje"}`
+    );
+
+    const asientos = Number(dsAsientos?.data?.[idx] || 0);
+    const pasajeros = Number(dsPax?.data?.[idx] || 0);
+
+    return asientos > 0 || pasajeros > 0;
+  }
+}
       },
       scales: {
         x: {
