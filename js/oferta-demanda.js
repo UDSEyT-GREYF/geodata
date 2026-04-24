@@ -1345,7 +1345,7 @@ function renderSingleRouteChart(canvasId, route) {
   });
 
   const airlineCount = Math.max(1, airlines.length);
-  const barPct = Math.max(0.28, Math.min(0.78, 1.05 / airlineCount));
+  const barPct = Math.max(0.38, Math.min(0.88, 1.15 / airlineCount));
 
   const datasets = [];
 
