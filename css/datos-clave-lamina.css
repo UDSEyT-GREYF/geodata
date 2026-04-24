@@ -440,9 +440,9 @@ body {
   line-height: 0.8;
 }
 .story-sub {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: #777;
-  line-height: 1.2;
+  line-height: 0.9;
   margin-top: 2px;
 }
 .story-badge {
@@ -466,7 +466,7 @@ body {
   grid-template-columns: 30px 1fr;
 }
 .story-sub-transport {
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: #2d3440;
 }
@@ -1031,9 +1031,9 @@ body {
 
 .story-sub-transport {
   color: var(--blue-dark);
-  font-size: 0.68rem;
-  line-height: 1.12;
-  font-weight: 700;
+  font-size: 0.7rem;
+  line-height: 0.9;
+  font-weight: 600;
 }
 
 /* =========================================
