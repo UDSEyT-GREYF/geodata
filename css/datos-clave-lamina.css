@@ -779,9 +779,6 @@ body {
   color: var(--chart-note);
 }
 
-.section-flights {
-  min-height: 118px;
-}
 
 .flights-wrap {
   display: grid;
