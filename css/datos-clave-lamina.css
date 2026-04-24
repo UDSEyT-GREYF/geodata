@@ -755,7 +755,7 @@ body {
 
 .history-title {
   font-size: 0.82rem;
-  margin: 6px 0 3px;
+  margin: 1px 0 1px;
   color: var(--chart-label);
 }
 
