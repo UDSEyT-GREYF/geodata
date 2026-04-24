@@ -316,44 +316,43 @@ function getRouteAirlinesLegend(route) {
 function getAirlineColor(name) {
   const key = normalizeTextKey(name);
 
-  const fixed = {
-    "aerolineas": "#2A6FB0",
-    "aerolineas argentinas": "#2A6FB0",
+const fixed = {
+  "aerolineas": "#1F5AA6",
+  "aerolineas argentinas": "#1F5AA6",
 
-    "jetsmart": "#F28C28",
-    "jetsmart airlines": "#F28C28",
+  "jetsmart": "#F28C28",
+  "jetsmart airlines": "#F28C28",
 
-    "flybondi": "#D2A106",
+  "flybondi": "#D4A000",
 
-    "gol": "#00A859",
-    "gol linhas aereas": "#00A859",
+  "gol": "#2CA25F",
+  "gol linhas aereas": "#2CA25F",
 
-    "american": "#6C7A89",
-    "american airlines": "#6C7A89",
+  "american": "#7A7F87",
+  "american airlines": "#7A7F87",
 
-    "latam": "#7E57C2",
-    "latam peru": "#7E57C2",
+  "latam": "#7B61C9",
+  "latam peru": "#7B61C9",
 
-    "andes": "#8D6E63",
-    "avianca": "#C62828",
-    "american jet": "#F57C00",
-    "sky airline": "#26A69A",
-    "paranair": "#AD1457",
-    "copa": "#1565C0"
-  };
+  "andes": "#8C6D5A",
+  "avianca": "#C62828",
+  "american jet": "#E76F00",
+  "sky airline": "#19A7A0",
+  "paranair": "#C2185B",
+  "copa": "#0077B6",
+
+  "aviacion general / privada": "#8A8F98"
+};
 
   if (fixed[key]) return fixed[key];
 
-  const fallback = [
-    "#2A6FB0",
-    "#F28C28",
-    "#D2A106",
-    "#7E57C2",
-    "#00A859",
-    "#6C7A89",
-    "#C2557A",
-    "#4E79A7"
-  ];
+const fallback = [
+  "#9AA3AD",
+  "#B0B7BF",
+  "#8F98A3",
+  "#A6ADB5",
+  "#7F8A96"
+];
 
   let hash = 0;
   for (let i = 0; i < key.length; i++) {
