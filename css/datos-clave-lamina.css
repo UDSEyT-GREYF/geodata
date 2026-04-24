@@ -1637,3 +1637,186 @@ body {
   letter-spacing: 0.03em;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
+
+/* =========================================================
+   FIX FINAL | AEROLÍNEAS Y RUTAS EN LÁMINA A4
+   Compacta la columna izquierda para que entren mejor logos,
+   contador y hasta 6 aerolíneas sin invadir destinos.
+   ========================================================= */
+
+/* La sección completa gana un poco de aire sin agrandar demasiado */
+.section-routes {
+  min-height: 184px;
+}
+
+/* La columna de aerolíneas necesita un ancho mínimo real */
+.routes-grid {
+  grid-template-columns: minmax(205px, 0.98fr) minmax(0, 1.55fr);
+  gap: 10px;
+  align-items: start;
+}
+
+/* Columna izquierda: el contador queda arriba a la derecha */
+.routes-left {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  display: block;
+}
+
+/* Título más compacto y con espacio reservado para el contador */
+.routes-left .routes-subtitle {
+  margin: 0 38px 5px 0;
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  font-size: 0.70rem;
+  font-weight: 700;
+  color: #2a5fa0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.05;
+}
+
+/* Evita que el layout anterior de .airlines-summary vuelva a intervenir */
+.routes-left .airlines-summary {
+  display: block !important;
+  min-width: 0;
+  padding-top: 0;
+}
+
+/* Contador más contenido */
+.routes-left .airlines-count-pill,
+.airlines-count-pill {
+  position: absolute;
+  top: 0;
+  right: 2px;
+  width: 31px;
+  height: 31px;
+  min-width: 31px;
+  border-radius: 50%;
+  font-size: 1rem;
+  line-height: 1;
+  margin: 0;
+  z-index: 2;
+}
+
+/* Lista compacta para permitir más aerolíneas */
+.airlines-list {
+  display: grid;
+  gap: 2px;
+  width: 100%;
+  margin-top: 0;
+  white-space: normal;
+  min-width: 0;
+}
+
+/* Cada aerolínea: logo chico + volumen ajustable */
+.airline-item {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  gap: 6px;
+  align-items: center;
+  min-height: 22px;
+  padding: 1px 0;
+}
+
+/* Separador sutil entre aerolíneas */
+.airline-item + .airline-item {
+  border-top: 1px dashed rgba(208, 216, 228, 0.75);
+}
+
+/* Caja del logo más chica y estable */
+.airline-logo-wrap {
+  width: 78px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+}
+
+/* Logos normalizados */
+.airline-logo {
+  max-width: 74px;
+  max-height: 20px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Fallback si no hay logo */
+.airline-name-fallback {
+  font-size: 0.62rem;
+  line-height: 0.95;
+  color: var(--blue-dark);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+/* Volumen: deja de forzar ancho y permite adaptación */
+.airline-volume {
+  min-width: 0;
+  max-width: 100%;
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+  font-size: 0.58rem;
+  line-height: 0.92;
+  color: #6a7179;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Mensaje vacío */
+.airline-empty {
+  font-size: 0.68rem;
+  line-height: 1.05;
+  color: #6a7179;
+}
+
+/* Columna derecha algo más compacta para acompañar */
+.routes-right {
+  min-width: 0;
+  padding-left: 10px;
+  border-left: 1px dashed #cfd8e4;
+}
+
+.destinations-columns {
+  gap: 8px;
+}
+
+.destinations-column {
+  gap: 4px;
+}
+
+.destinations-column-title {
+  font-size: 0.64rem;
+  line-height: 1;
+  margin-bottom: 1px;
+}
+
+.destination-item {
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 6px;
+  min-width: 0;
+}
+
+.destination-pill {
+  width: 30px;
+  height: 30px;
+  font-size: 0.78rem;
+}
+
+.destination-text {
+  font-size: 0.62rem;
+  line-height: 0.95;
+}
+
+.destination-meta {
+  font-size: 0.64rem;
+}
+
+.destination-volume {
+  font-size: 0.62rem;
+  line-height: 0.9;
+}
