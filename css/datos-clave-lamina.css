@@ -38,12 +38,12 @@ body {
   gap: 16px;
 }
 .toolbar-title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--text-dark);
 }
 .toolbar-subtitle {
-  font-size: 0.84rem;
+  font-size: 0.8rem;
   color: var(--muted);
   margin-top: 2px;
 }
@@ -55,7 +55,7 @@ body {
   justify-content: flex-end;
 }
 .toolbar-label {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--muted);
 }
 .toolbar-select,
@@ -64,8 +64,8 @@ body {
   border-radius: 7px;
   border: 1px solid #c4cfdd;
   background: #fff;
-  padding: 0 12px;
-  font-size: 0.95rem;
+  padding: 0 8px;
+  font-size: 0.8rem;
 }
 .toolbar-select { min-width: 240px; }
 .toolbar-btn {
@@ -192,7 +192,7 @@ body {
 }
 .mini-kpi-value {
   color: var(--blue-dark);
-  font-size: 0.94rem;
+  font-size: 0.84rem;
   font-weight: 700;
 }
 .mini-kpi-value span:first-child {
@@ -230,7 +230,7 @@ body {
   display: grid;
   grid-template-columns: 148px minmax(0, 1fr);
   align-items: start;
-  gap: 10px;
+  gap: 8px;
   font-size: 0.83rem;
   line-height: 1.2;
 }
@@ -266,12 +266,12 @@ body {
   object-fit: contain;
 }
 .movement-box-title {
-  font-size: 0.98rem;
+  font-size: 0.75rem;
   color: #4d5661;
   line-height: 1.05;
 }
 .movement-box-sub {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #444;
   line-height: 1.6;
   margin-top: 0px;
@@ -288,7 +288,7 @@ body {
   align-items: center;
 }
 .movement-runway-name {
-  font-size: 0.94rem;
+  font-size: 0.8rem;
   color: #004b80;
   font-weight: 700;
   line-height: 1.1;
@@ -297,7 +297,7 @@ body {
   background: #C6923A;
   color: #fff;
   padding: 7px 12px;
-  font-size: 0.92rem;
+  font-size: 0.8rem;
   font-weight: 700;
   line-height: 1;
   min-width: 112px;
@@ -305,7 +305,7 @@ body {
   border-radius: 3px;
 }
 .runway-mat {
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   color: #626f7b;
   white-space: nowrap;
 }
@@ -320,7 +320,7 @@ body {
   justify-content: space-between;
   gap: 10px;
   color: #444;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   line-height: 1;
 }
 .movement-badge {
@@ -332,14 +332,14 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 700;
 }
 .movement-badge-large {
   min-width: 44px;
   width: 44px;
   height: 44px;
-  font-size: 1.3rem;
+  font-size: 1rem;
   justify-self: end;
 }
 .movement-badge[data-wide="1"] {
@@ -368,13 +368,13 @@ body {
   margin-top: 2px;
 }
 .extra-kpi-value {
-  font-size: 1.15rem;
+  font-size: 1rem;
   color: var(--blue-dark);
   font-weight: 700;
   line-height: 1.08;
 }
 .extra-kpi-value-small {
-  font-size: 0.86rem;
+  font-size: 0.8rem;
   line-height: 1.24;
   white-space: normal;
 }
@@ -454,13 +454,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 700;
   justify-self: end;
 }
 .story-badge[data-wide="1"] {
   width: 58px;
-  font-size: 1.05rem;
+  font-size: 1rem;
 }
 .story-item-transport {
   grid-template-columns: 30px 1fr;
@@ -911,7 +911,7 @@ body {
 }
 
 .destinations-column-title {
-  font-size: 0.76rem;
+  font-size: 0.70rem;
   color: #6b7178;
   font-weight: 700;
   margin-bottom: 2px;
