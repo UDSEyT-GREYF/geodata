@@ -540,7 +540,7 @@ body {
   font-weight: 700;
 }
 .passenger-side-label {
-  font-size: 1rem;
+  font-size: 0.7rem;
   opacity: .98;
 }
 
@@ -758,8 +758,8 @@ body {
 }
 
 .passenger-side-label {
-  font-size: 0.78rem;
-  line-height: 1.05;
+  font-size: 0.7rem;
+  line-height: 0.8;
 }
 
 .history-title {
@@ -1475,10 +1475,10 @@ body {
 }
 
 .passenger-side-label {
-  font-size: 0.72rem;
-  line-height: 1.05;
+  font-size: 0.7rem;
+  line-height: 0.8;
   color: #5f6d7d;
-  margin-top: 2px;
+  margin-top: 0px;
 }
 .explotacion-meta-grid {
   position: relative;
