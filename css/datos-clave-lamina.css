@@ -90,34 +90,45 @@ body {
   background: #fff;
   border: 1px solid #d7dee8;
   box-shadow: 0 10px 26px rgba(33, 45, 68, 0.12);
-  padding: 5mm 6mm 5mm 6mm;
+  padding: 3.5mm 6mm 5mm 6mm;
   overflow: hidden;
 }
 
 .sheet-header {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  align-items: flex-start;
-  margin-bottom: 5px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  flex-direction: end;
+  colum-gap: 12px;
+  align-items: end;
+  margin-bottom: 4px;
 }
 
 .sheet-title-main {
-  font-size: 0.72rem;
+  font-size: 0.66rem;
   font-weight: 600;
   color: #6c757d;
-  margin: 0;
+  margin: 0  0 1px 0;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  line-height: 1.05;
+  letter-spacing: 0.07em;
+  line-height: 1;
+  grid-column: 2;
+  grid-row: 1;
+  text-align: right;
+  white-space: nowrap;
 }
 
 .sheet-airport-name {
-  font-size: 1.2rem;
+  grid-column: 1;
+  grid-row: 1;
+  font-size: 1.15rem;
   font-weight: 600;
   color: #002855;
   margin: 0;
-  line-height: 1.02;
+  line-height: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .sheet-title-year-inline {
   display: inline;
@@ -695,7 +706,7 @@ body {
     margin: 0;
     border: none;
     box-shadow: none;
-    padding: 5mm 6mm 5mm 6mm;
+    padding: 3mm 6mm 5mm 6mm;
     overflow: hidden;
   }
 }
