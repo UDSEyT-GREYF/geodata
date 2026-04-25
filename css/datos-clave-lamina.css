@@ -92,6 +92,8 @@ body {
   box-shadow: 0 10px 26px rgba(33, 45, 68, 0.12);
   padding: 3.5mm 6mm 5mm 6mm;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .sheet-header {
@@ -101,6 +103,7 @@ body {
   colum-gap: 12px;
   align-items: end;
   margin-bottom: 4px;
+  flex: 0 0 auto;
 }
 
 .sheet-title-main {
@@ -145,12 +148,33 @@ body {
   display: grid;
   grid-template-columns: 1.01fr 0.78fr 1.79fr;
   gap: 8px;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: auto;
+  align-items: stretch;
 }
 .triptych-col {
   min-width: 0;
-  display: flex;
+  min-height: 0;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
+  height: 100%;
+  display: flex;
+}
+/* Los encabezados de columna no se estiran */
+.triptych-col > .col-header {
+  flex: 0 0 auto;
+}
+/* Las tarjetas dejan de imponer mínimos rígidos */
+.section-card,
+.section-superficie,
+.section-movimiento,
+.story-card,
+.section-passengers,
+.section-flights,
+.section-routes {
+  min-height: 0;
+  flex: 1 1 54%;
 }
 .col-header,
 .section-title {
@@ -413,6 +437,8 @@ body {
 
 .story-card {
   gap: 8px;
+  flex: 1 1 auto;
+  overflow: hidden;
 }
 .story-block {
   border: 1px solid #d0d7e2;
@@ -660,6 +686,7 @@ body {
   color: #7b8792;
   font-size: 0.78rem;
   text-align: right;
+  flex: 0 0 auto;
 }
 
 .leaflet-container {
@@ -708,6 +735,8 @@ body {
     box-shadow: none;
     padding: 3mm 6mm 5mm 6mm;
     overflow: hidden;
+    display: flex;
+  flex-direction: column;
   }
 }
 
@@ -719,6 +748,8 @@ body {
 
 .section-passengers {
   min-height: 368px;
+    flex: 1 1 auto;
+  overflow: hidden;
 }
 
 .passengers-top-row {
@@ -807,9 +838,14 @@ body {
   height: 60px;
   object-fit: contain;
 }
+.section-flights {
+  flex: 0 0 auto;
+}
 
 .section-routes {
   min-height: 176px;
+    flex: 0 1 auto;
+  overflow: hidden;
 }
 
 .routes-grid {
@@ -1653,6 +1689,8 @@ body {
 /* La sección completa gana un poco de aire sin agrandar demasiado */
 .section-routes {
   min-height: 184px;
+  flex: 0 1 auto;
+  overflow: hidden;
 }
 
 /* La columna de aerolíneas necesita un ancho mínimo real */
@@ -1836,6 +1874,7 @@ body {
 
 .section-movimiento {
   min-height: 0;
+  flex: 0 1 46%;
 }
 
 .section-movimiento .section-title {
@@ -2042,6 +2081,7 @@ body {
 
 .section-movimiento {
   min-height: 292px;
+  flex: 0 1 46%;
 }
 
 .movement-wrap {
