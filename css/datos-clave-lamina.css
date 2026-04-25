@@ -707,7 +707,7 @@ body {
    ========================================================= */
 
 .section-passengers {
-  min-height: 388px;
+  min-height: 368px;
 }
 
 .passengers-top-row {
@@ -755,7 +755,7 @@ body {
 
 .history-title {
   font-size: 0.82rem;
-  margin: 1px 0 1px;
+  margin: 0 0 1px;
   color: var(--chart-label);
 }
 
@@ -770,12 +770,12 @@ body {
 }
 
 .history-chart {
-  height: 208px;
+  height: 186px;
 }
 
 .history-note {
   font-size: 0.6rem;
-  margin-top: 2px;
+  margin-top: 1px;
   color: var(--chart-note);
 }
 
