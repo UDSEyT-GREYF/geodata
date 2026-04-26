@@ -218,12 +218,20 @@ function isGeneralAviationType(value) {
     key.includes("aviacionprivada")
   );
 }
-  const FORCE_COMMERCIAL_AIRLINES = new Map([
+const FORCE_COMMERCIAL_AIRLINES = new Map([
   ["americanjet", "American Jet"],
   ["andeslineasaereas", "Andes Líneas Aéreas"],
+
   ["lade", "LADE - Líneas Aéreas del Estado"],
   ["ladelineasaereasdelestado", "LADE - Líneas Aéreas del Estado"],
-  ["lineasaereasdelestado", "LADE - Líneas Aéreas del Estado"]
+  ["lineasaereasdelestado", "LADE - Líneas Aéreas del Estado"],
+
+  ["skyairline", "Sky Airline"],
+  ["skyairlines", "Sky Airline"],
+  ["sky", "Sky Airline"],
+
+  ["amaszonas", "Amaszonas"],
+  ["lineasaereasamaszonas", "Amaszonas"]
 ]);
 
 function getForcedCommercialAirlineName(name) {
@@ -242,6 +250,14 @@ function getForcedCommercialAirlineName(name) {
     key.includes("lineasaereasdelestado")
   ) {
     return "LADE - Líneas Aéreas del Estado";
+  }
+
+  if (key.includes("skyairline") || key === "sky") {
+    return "Sky Airline";
+  }
+
+  if (key.includes("amaszonas")) {
+    return "Amaszonas";
   }
 
   return "";
