@@ -36,6 +36,7 @@ let mapPredio = null;
   const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
   const PAX_DATASET_INT = "pasajeros_comerciales_internacional_aeropuerto";
   const MIN_PAX_TO_SHOW = 20;
+  const GENERAL_AVIATION_LABEL = "Aviación general / privada";
   const q = id => document.getElementById(id);
 const CHART_COLORS = {
   passengersLine: "#2A6FB0",
@@ -200,6 +201,22 @@ const CHART_COLORS = {
 function isUnnamedAirline(name) {
   const key = normalizeAirlineKey(name);
   return !key || key === "sindato";
+}
+
+function isGeneralAviationType(value) {
+  const key = normalizeAirlineKey(value);
+
+  return (
+    key === "avgeneral" ||
+    key === "avgral" ||
+    key === "aviaciongeneral" ||
+    key === "aviacionprivada" ||
+    key === "generalaviation" ||
+    key.includes("avgeneral") ||
+    key.includes("avgral") ||
+    key.includes("aviaciongeneral") ||
+    key.includes("aviacionprivada")
+  );
 }
   function getAirlineLogoSrc(name) {
     const key = normalizeAirlineKey(name);
@@ -445,7 +462,13 @@ function parseRutasCSV(text) {
         "airline",
         "compania"
       ])),
-
+  commercialType: clean(firstNonEmpty(r, [
+    "comercial_av_gral",
+    "comercial_av_general",
+    "comercial_av_gral_",
+    "comercial_av_gral__",
+    "comercial_av_gral_av_general"
+  ])),
       volume,
 
       year: Number.isFinite(yearNum)
@@ -958,16 +981,24 @@ function getRoutesSummary(iata) {
   const destMapCab = new Map();
 
   rows.forEach(r => {
-    const airlineRaw = clean(r.airline);
-    const airlineLabel = isUnnamedAirline(airlineRaw)
-      ? "Aviación general / privada"
-      : airlineRaw;
+const airlineRaw = clean(r.airline);
+const isGeneralAviation = isGeneralAviationType(r.commercialType);
 
-    airlineMap.set(airlineLabel, (airlineMap.get(airlineLabel) || 0) + r.volume);
+const airlineLabel = (isGeneralAviation || isUnnamedAirline(airlineRaw))
+  ? GENERAL_AVIATION_LABEL
+  : airlineRaw;
 
-    if (!isUnnamedAirline(airlineRaw)) {
-      countableAirlines.add(airlineLabel);
-    }
+/*
+  Regla:
+  - Si Comercial Av Gral = Av. General, suma siempre a Aviación general / privada.
+  - Aunque tenga nombre de aerolínea, NO cuenta como línea aérea.
+  - Si no tiene nombre de aerolínea, también va a Aviación general / privada.
+*/
+airlineMap.set(airlineLabel, (airlineMap.get(airlineLabel) || 0) + r.volume);
+
+if (!isGeneralAviation && !isUnnamedAirline(airlineRaw)) {
+  countableAirlines.add(airlineLabel);
+}
 
     const otherCodeRaw = (r.endpointA === selected) ? r.endpointB : r.endpointA;
     if (!otherCodeRaw || otherCodeRaw === selected) return;
