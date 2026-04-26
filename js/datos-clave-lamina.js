@@ -28,7 +28,9 @@ let mapPredio = null;
   GIG: { ciudad: "Río de Janeiro", pais: "Brasil" },
   FLN: { ciudad: "Florianópolis", pais: "Brasil" },
   LIM: { ciudad: "Lima", pais: "Perú" },
-  SCL: { ciudad: "Santiago", pais: "Chile" }
+  SCL: { ciudad: "Santiago", pais: "Chile" }, 
+  PTY: { ciudad: "Tocumén", pais: "Panamá" }, 
+  MAD: { ciudad: "Madrid", pais: "España" }
 };
   const YEAR_REF = 2025;
   const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
