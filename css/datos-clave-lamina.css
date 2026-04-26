@@ -747,7 +747,7 @@ body {
    ========================================================= */
 
 .section-passengers {
-  min-height: 368px;
+  min-height: 360px;
     flex: 1 1 auto;
   overflow: hidden;
 }
