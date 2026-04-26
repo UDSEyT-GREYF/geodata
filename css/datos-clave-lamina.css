@@ -206,7 +206,7 @@ body {
   padding: 6px;
 }
 
-.section-superficie { min-height: 330px; }
+.section-superficie { min-height: 300px; }
 .section-movimiento { min-height: 296px; }
 .story-card { min-height: 580px; }
 .section-passengers { min-height: 360px; }
