@@ -218,6 +218,34 @@ function isGeneralAviationType(value) {
     key.includes("aviacionprivada")
   );
 }
+  const FORCE_COMMERCIAL_AIRLINES = new Map([
+  ["americanjet", "American Jet"],
+  ["andeslineasaereas", "Andes Líneas Aéreas"],
+  ["lade", "LADE - Líneas Aéreas del Estado"],
+  ["ladelineasaereasdelestado", "LADE - Líneas Aéreas del Estado"],
+  ["lineasaereasdelestado", "LADE - Líneas Aéreas del Estado"]
+]);
+
+function getForcedCommercialAirlineName(name) {
+  const key = normalizeAirlineKey(name);
+
+  if (FORCE_COMMERCIAL_AIRLINES.has(key)) {
+    return FORCE_COMMERCIAL_AIRLINES.get(key);
+  }
+
+  if (key.includes("americanjet")) return "American Jet";
+  if (key.includes("andes")) return "Andes Líneas Aéreas";
+
+  if (
+    key === "lade" ||
+    key.includes("ladelineasaereasdelestado") ||
+    key.includes("lineasaereasdelestado")
+  ) {
+    return "LADE - Líneas Aéreas del Estado";
+  }
+
+  return "";
+}
   function getAirlineLogoSrc(name) {
     const key = normalizeAirlineKey(name);
     const logos = {
@@ -980,23 +1008,35 @@ function getRoutesSummary(iata) {
   const destMapIntl = new Map();
   const destMapCab = new Map();
 
-  rows.forEach(r => {
+  rows.forEach(r => { //cambio desde aqui
 const airlineRaw = clean(r.airline);
+const forcedCommercialName = getForcedCommercialAirlineName(airlineRaw);
 const isGeneralAviation = isGeneralAviationType(r.commercialType);
 
-const airlineLabel = (isGeneralAviation || isUnnamedAirline(airlineRaw))
-  ? GENERAL_AVIATION_LABEL
-  : airlineRaw;
+let airlineLabel = "";
 
-/*
-  Regla:
-  - Si Comercial Av Gral = Av. General, suma siempre a Aviación general / privada.
-  - Aunque tenga nombre de aerolínea, NO cuenta como línea aérea.
-  - Si no tiene nombre de aerolínea, también va a Aviación general / privada.
-*/
+if (forcedCommercialName) {
+  /*
+    Regla de corrección:
+    American Jet, Andes y LADE se consideran aerolíneas comerciales.
+    Si Comercial Av Gral = Av. General, se toma como error de clasificación.
+  */
+  airlineLabel = forcedCommercialName;
+} else if (isGeneralAviation || isUnnamedAirline(airlineRaw)) {
+  airlineLabel = GENERAL_AVIATION_LABEL;
+} else {
+  airlineLabel = airlineRaw;
+}
+
 airlineMap.set(airlineLabel, (airlineMap.get(airlineLabel) || 0) + r.volume);
 
-if (!isGeneralAviation && !isUnnamedAirline(airlineRaw)) {
+/*
+  Conteo:
+  - American Jet, Andes y LADE cuentan siempre como líneas aéreas.
+  - Aviación general / privada no cuenta como línea aérea.
+  - Las demás aerolíneas comerciales con nombre válido cuentan normalmente.
+*/
+if (forcedCommercialName || (!isGeneralAviation && !isUnnamedAirline(airlineRaw))) {
   countableAirlines.add(airlineLabel);
 }
 
