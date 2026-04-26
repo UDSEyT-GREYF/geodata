@@ -904,8 +904,8 @@ body {
 }
 
 .airline-logo {
-  max-width: 90px;
-  max-height: 32px;
+  max-width: 100px;
+  max-height: 30px;
   object-fit: contain;
   display: block;
 }
@@ -1349,7 +1349,7 @@ body {
 }
 
 .airline-logo-wrap {
-  height: 32px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -1357,8 +1357,8 @@ body {
 }
 
 .airline-logo {
-  max-width: 90px;
-  max-height: 32px;
+  max-width: 100px;
+  max-height: 30px;
   object-fit: contain;
   display: block;
 }
@@ -1626,15 +1626,15 @@ body {
 }
 
 .airline-logo-wrap {
-  height: 32px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
 
 .airline-logo {
-  max-width: 90px;
-  max-height: 32px;
+  max-width: 100px;
+  max-height: 30px;
   object-fit: contain;
   display: block;
 }
