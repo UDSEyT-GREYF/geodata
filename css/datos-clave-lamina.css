@@ -1641,7 +1641,7 @@ body {
 
 .airline-volume {
   min-width: 70px;
-  text-align: left;
+  text-align: right;
   white-space: nowrap;
   font-size: 0.7rem;
   line-height: 0.8;
@@ -1799,11 +1799,11 @@ body {
 .airline-volume {
   min-width: 0;
   max-width: 100%;
-  text-align: left;
+  text-align: right;
   white-space: normal;
   overflow-wrap: normal;
   word-break: normal;
-  font-size: 0.58rem;
+  font-size: 0.7rem;
   line-height: 0.92;
   color: #6a7179;
   font-variant-numeric: tabular-nums;
