@@ -904,7 +904,7 @@ body {
 }
 
 .airline-logo {
-  max-width: 104px;
+  max-width: 90px;
   max-height: 32px;
   object-fit: contain;
   display: block;
@@ -1357,7 +1357,7 @@ body {
 }
 
 .airline-logo {
-  max-width: 106px;
+  max-width: 90px;
   max-height: 32px;
   object-fit: contain;
   display: block;
@@ -1633,7 +1633,7 @@ body {
 }
 
 .airline-logo {
-  max-width: 110px;
+  max-width: 90px;
   max-height: 32px;
   object-fit: contain;
   display: block;
