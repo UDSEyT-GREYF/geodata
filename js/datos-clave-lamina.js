@@ -35,6 +35,25 @@ let mapPredio = null;
   const YEAR_REF = 2025;
   const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
   const PAX_DATASET_INT = "pasajeros_comerciales_internacional_aeropuerto";
+  const PAX_DATASET_TOTAL = "pasajeros_comerciales_total_aeropuerto";
+
+const MOV_DATASET_CAB = "movimientos_comerciales_cabotaje_aeropuerto";
+const MOV_DATASET_INT = "movimientos_comerciales_internacional_aeropuerto";
+const MOV_DATASET_TOTAL = "movimientos_comerciales_total_aeropuerto";
+
+const EXTRA_TRAFFIC_SOURCE = "extra_9_aeropuertos";
+
+const EXTRA_TRAFFIC_IATAS = new Set([
+  "SST",
+  "TTG",
+  "RYO",
+  "NEC",
+  "PMQ",
+  "GNR",
+  "LPG",
+  "JNI",
+  "AOL"
+]);
   const MIN_PAX_TO_SHOW = 20;
   const GENERAL_AVIATION_LABEL = "Aviación general / privada";
   const q = id => document.getElementById(id);
@@ -431,6 +450,166 @@ function parseMovimientosMensualCSV(text) {
     date: parseFechaFlexible(firstNonEmpty(r, ["fecha"])),
     valor: parseNumber(firstNonEmpty(r, ["valor_movimientos", "valor", "movimientos"]))
   })).filter(r => r.iata && r.date && Number.isFinite(r.valor)).sort((a, b) => a.date - b.date);
+}
+
+function normalizeTrafficSegment(value) {
+  const key = normalizeHeader(value);
+
+  if (
+    key.includes("internacional") ||
+    key.includes("international") ||
+    key === "int"
+  ) {
+    return "internacional";
+  }
+
+  if (
+    key.includes("cabotaje") ||
+    key.includes("domestico") ||
+    key.includes("domestic") ||
+    key.includes("nacional") ||
+    key === "cab"
+  ) {
+    return "cabotaje";
+  }
+
+  // Si segmento viene vacío, como en tu tabla, se interpreta como total.
+  return "total";
+}
+
+function datasetForPassengerSegment(segment) {
+  if (segment === "cabotaje") return PAX_DATASET_CAB;
+  if (segment === "internacional") return PAX_DATASET_INT;
+  return PAX_DATASET_TOTAL;
+}
+
+function datasetForMovementSegment(segment) {
+  if (segment === "cabotaje") return MOV_DATASET_CAB;
+  if (segment === "internacional") return MOV_DATASET_INT;
+  return MOV_DATASET_TOTAL;
+}
+
+function parseExtraTrafficCSV(text) {
+  const rows = parseCSV(text);
+
+  const paxRows = [];
+  const movRows = [];
+
+  rows.forEach(r => {
+    const iata = clean(firstNonEmpty(r, [
+      "iata",
+      "aeropuerto_iata",
+      "airport_iata"
+    ])).toUpperCase();
+
+    if (!EXTRA_TRAFFIC_IATAS.has(iata)) return;
+
+    const date = parseFechaFlexible(firstNonEmpty(r, [
+      "fecha",
+      "date",
+      "anomes",
+      "ano_mes",
+      "año_mes",
+      "periodo_id"
+    ]));
+
+    if (!date) return;
+
+    const segment = normalizeTrafficSegment(firstNonEmpty(r, [
+      "segmento",
+      "clasificacion",
+      "clasificación",
+      "tipo",
+      "tipo_trafico",
+      "tipo_tráfico"
+    ]));
+
+    const pasajeros = parseNumber(firstNonEmpty(r, [
+      "valor_pax",
+      "pasajeros",
+      "pax",
+      "totalpasajeros",
+      "total_pasajeros"
+    ]));
+
+    const movimientos = parseNumber(firstNonEmpty(r, [
+      "movimientos",
+      "valor_movimientos",
+      "vuelos",
+      "totalmovimientos",
+      "total_movimientos"
+    ]));
+
+    if (Number.isFinite(pasajeros)) {
+      paxRows.push({
+        iata,
+        dataset: datasetForPassengerSegment(segment),
+        date,
+        valor: pasajeros,
+        source: EXTRA_TRAFFIC_SOURCE
+      });
+    }
+
+    if (Number.isFinite(movimientos)) {
+      movRows.push({
+        iata,
+        dataset: datasetForMovementSegment(segment),
+        date,
+        valor: movimientos,
+        source: EXTRA_TRAFFIC_SOURCE
+      });
+    }
+  });
+
+  paxRows.sort((a, b) => a.date - b.date);
+  movRows.sort((a, b) => a.date - b.date);
+
+  return { paxRows, movRows };
+}
+
+/*
+  LPG, JNI y AOL:
+  - hasta 2014-12 se conserva la fuente principal
+  - desde 2015-01 inclusive se reemplaza por la fuente extra
+*/
+const EXTRA_TRAFFIC_REPLACE_FROM_IATAS = new Set([
+  "LPG",
+  "JNI",
+  "AOL"
+]);
+
+const EXTRA_TRAFFIC_REPLACE_FROM_DATE = new Date(2015, 0, 1);
+
+function isSameOrAfterMonth(date, cutoffDate) {
+  if (!date || !cutoffDate) return false;
+
+  const y = date.getFullYear();
+  const m = date.getMonth();
+
+  const cy = cutoffDate.getFullYear();
+  const cm = cutoffDate.getMonth();
+
+  return y > cy || (y === cy && m >= cm);
+}
+
+function shouldDropBaseTrafficRow(row) {
+  const iata = clean(row.iata).toUpperCase();
+
+  return (
+    EXTRA_TRAFFIC_REPLACE_FROM_IATAS.has(iata) &&
+    row.date &&
+    isSameOrAfterMonth(row.date, EXTRA_TRAFFIC_REPLACE_FROM_DATE)
+  );
+}
+
+function mergeExtraTrafficRows(baseRows, extraRows) {
+  const keptBaseRows = (baseRows || []).filter(row => {
+    return !shouldDropBaseTrafficRow(row);
+  });
+
+  return keptBaseRows
+    .concat(extraRows || [])
+    .sort((a, b) => a.date - b.date);
 }
   
 function parseVuelosCSV(text) {
