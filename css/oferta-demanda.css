@@ -560,3 +560,59 @@
   font-weight: 600;
   color: #002855;
 }
+/* ============================================================
+   PAGINACIÓN DE PRINCIPALES RUTAS
+   ============================================================ */
+
+.od-routes-extra-page.is-hidden {
+  display: none !important;
+}
+
+.od-routes-extra-page {
+  margin-top: 14px;
+}
+
+/* Evita que el contenido excedente de una hoja se vea cortado */
+.offer-demand-page {
+  overflow: hidden;
+}
+
+/* La primera hoja muestra solo 3 rutas */
+#odTopRoutes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  align-items: stretch;
+}
+
+/* La hoja de continuación también usa grilla de 3 columnas */
+#odTopRoutesExtra {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  align-items: stretch;
+}
+
+/* Evita cortes internos de cada tarjeta de ruta */
+#odTopRoutes > *,
+#odTopRoutesExtra > * {
+  min-width: 0;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* Si las tarjetas tienen canvas, controlar altura */
+#odTopRoutes canvas,
+#odTopRoutesExtra canvas {
+  max-height: 150px !important;
+}
+
+/* Etiqueta de continuación */
+.od-route-continuation-label {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #4b6380;
+  text-transform: none;
+}
