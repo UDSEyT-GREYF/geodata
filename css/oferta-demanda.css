@@ -118,7 +118,7 @@
   color: #748291;
   text-transform: uppercase;
   letter-spacing: 0.035em;
-  min-height: 17px;   /* reserva espacio para separar label del valor */
+  min-height: 12px;   /* reserva espacio para separar label del valor */
   display: block;
 }
 
