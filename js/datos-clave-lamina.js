@@ -705,33 +705,14 @@ function parseRutasCSV(text) {
   );
 }
 
-  function buildPaxSeries(iataUpper, mode) {
-    const rowsAll = pasajerosMensualRows.filter(r => r.iata === iataUpper);
-    if (!rowsAll.length) return [];
-    if (mode === "cabotaje" || mode === "internacional") {
-      const target = mode === "cabotaje" ? PAX_DATASET_CAB : PAX_DATASET_INT;
-      return rowsAll.filter(r => r.dataset === target).sort((a, b) => a.date - b.date);
-    }
-    const acc = new Map();
-    rowsAll.forEach(r => {
-      if (r.dataset !== PAX_DATASET_CAB && r.dataset !== PAX_DATASET_INT) return;
-      const year = r.date.getFullYear();
-      const month = r.date.getMonth() + 1;
-      const key = `${year}-${String(month).padStart(2, "0")}`;
-      if (!acc.has(key)) acc.set(key, { date: new Date(year, month - 1, 1), valor: 0 });
-      acc.get(key).valor += Number(r.valor) || 0;
-    });
-    return Array.from(acc.values()).sort((a, b) => a.date - b.date);
-  }
+function buildPaxSeries(iataUpper, mode) {
+  const selected = clean(iataUpper).toUpperCase();
+  const rowsAll = pasajerosMensualRows.filter(r => r.iata === selected);
 
-function buildMovSeries(iataUpper, mode = "total") {
-  const rowsAll = movimientosMensualRows.filter(r => r.iata === iataUpper);
   if (!rowsAll.length) return [];
 
   if (mode === "cabotaje" || mode === "internacional") {
-    const target = mode === "cabotaje"
-      ? "movimientos_comerciales_cabotaje_aeropuerto"
-      : "movimientos_comerciales_internacional_aeropuerto";
+    const target = mode === "cabotaje" ? PAX_DATASET_CAB : PAX_DATASET_INT;
 
     return rowsAll
       .filter(r => r.dataset === target)
@@ -741,18 +722,89 @@ function buildMovSeries(iataUpper, mode = "total") {
   const acc = new Map();
 
   rowsAll.forEach(r => {
+    if (
+      r.dataset !== PAX_DATASET_CAB &&
+      r.dataset !== PAX_DATASET_INT &&
+      r.dataset !== PAX_DATASET_TOTAL
+    ) {
+      return;
+    }
+
     const year = r.date.getFullYear();
     const month = r.date.getMonth() + 1;
     const key = `${year}-${String(month).padStart(2, "0")}`;
 
     if (!acc.has(key)) {
-      acc.set(key, { date: new Date(year, month - 1, 1), valor: 0 });
+      acc.set(key, {
+        date: new Date(year, month - 1, 1),
+        valor: 0,
+        source: ""
+      });
     }
 
-    acc.get(key).valor += Number(r.valor) || 0;
+    const item = acc.get(key);
+    item.valor += Number(r.valor) || 0;
+
+    if (r.source === EXTRA_TRAFFIC_SOURCE) {
+      item.source = EXTRA_TRAFFIC_SOURCE;
+    }
   });
 
-  return Array.from(acc.values()).sort((a, b) => a.date - b.date);
+  return Array.from(acc.values())
+    .filter(r => r.valor > 0)
+    .sort((a, b) => a.date - b.date);
+}
+
+function buildMovSeries(iataUpper, mode = "total") {
+  const selected = clean(iataUpper).toUpperCase();
+  const rowsAll = movimientosMensualRows.filter(r => r.iata === selected);
+
+  if (!rowsAll.length) return [];
+
+  if (mode === "cabotaje" || mode === "internacional") {
+    const target = mode === "cabotaje"
+      ? MOV_DATASET_CAB
+      : MOV_DATASET_INT;
+
+    return rowsAll
+      .filter(r => r.dataset === target)
+      .sort((a, b) => a.date - b.date);
+  }
+
+  const acc = new Map();
+
+  rowsAll.forEach(r => {
+    if (
+      r.dataset !== MOV_DATASET_CAB &&
+      r.dataset !== MOV_DATASET_INT &&
+      r.dataset !== MOV_DATASET_TOTAL
+    ) {
+      return;
+    }
+
+    const year = r.date.getFullYear();
+    const month = r.date.getMonth() + 1;
+    const key = `${year}-${String(month).padStart(2, "0")}`;
+
+    if (!acc.has(key)) {
+      acc.set(key, {
+        date: new Date(year, month - 1, 1),
+        valor: 0,
+        source: ""
+      });
+    }
+
+    const item = acc.get(key);
+    item.valor += Number(r.valor) || 0;
+
+    if (r.source === EXTRA_TRAFFIC_SOURCE) {
+      item.source = EXTRA_TRAFFIC_SOURCE;
+    }
+  });
+
+  return Array.from(acc.values())
+    .filter(r => r.valor > 0)
+    .sort((a, b) => a.date - b.date);
 }
   
 function annualMovementTotals(iata) {
@@ -1704,17 +1756,31 @@ setText("psnDetalleCompacto", `Comerciales ${psnComTxt} - Av. General ${psnGenTx
   async function loadData() {
     const select = q("airportSelect");
     try {
-      const [airportsResp, polygonsResp, pistasResp, terminalesResp, transpResp, paxResp, movimientosResp, vuelosResp, rutasResp, iataWorldResp] = await Promise.all([
-        fetch("fuentes/Datos_aeropuertos.geojson"),
-        fetch("fuentes/poligonos_aeropuertos.geojson").catch(() => null),
-        fetch("fuentes/pistas.geojson").catch(() => null),
-        fetch("fuentes/terminalpax.geojson").catch(() => null),
-        fetch("fuentes/Paradasapp.csv").catch(() => null),
-        fetch("fuentes/pasajeros_aeropuerto_mensual.csv").catch(() => null),
-        fetch("fuentes/movimientos_aeropuerto_mensual.csv").catch(() => null),
-        fetch("fuentes/vuelos.csv").catch(() => null),
-        fetch("fuentes/rutasaereas.csv").catch(() => null),
-        fetch("fuentes/ListadoIATAmundo.csv").catch(() => null)
+const [
+  airportsResp,
+  polygonsResp,
+  pistasResp,
+  terminalesResp,
+  transpResp,
+  paxResp,
+  movimientosResp,
+  vuelosResp,
+  rutasResp,
+  iataWorldResp,
+  extraTrafficResp
+] = await Promise.all([
+  fetch("fuentes/Datos_aeropuertos.geojson"),
+  fetch("fuentes/poligonos_aeropuertos.geojson").catch(() => null),
+  fetch("fuentes/pistas.geojson").catch(() => null),
+  fetch("fuentes/terminalpax.geojson").catch(() => null),
+  fetch("fuentes/Paradasapp.csv").catch(() => null),
+  fetch("fuentes/pasajeros_aeropuerto_mensual.csv").catch(() => null),
+  fetch("fuentes/movimientos_aeropuerto_mensual.csv").catch(() => null),
+  fetch("fuentes/vuelos.csv").catch(() => null),
+  fetch("fuentes/rutasaereas.csv").catch(() => null),
+  fetch("fuentes/ListadoIATAmundo.csv").catch(() => null),
+  fetch("fuentes/pasajeros_movimientos_extra_9aeropuertos.csv").catch(() => null)
+]);
       ]);
 
       const geojson = await airportsResp.json();
@@ -1737,11 +1803,39 @@ setText("psnDetalleCompacto", `Comerciales ${psnComTxt} - Av. General ${psnGenTx
         terminalesFeatures = gj.features || [];
       }
 
-      if (transpResp && transpResp.ok) transportePorIATA = parseTransporteCSV(await readTextSmart(transpResp));
-      if (paxResp && paxResp.ok) pasajerosMensualRows = parsePasajerosMensualCSV(await readTextSmart(paxResp));
-      if (movimientosResp && movimientosResp.ok) movimientosMensualRows = parseMovimientosMensualCSV(await readTextSmart(movimientosResp));
-      if (vuelosResp && vuelosResp.ok) vuelosRows = parseVuelosCSV(await readTextSmart(vuelosResp));
-      if (rutasResp && rutasResp.ok) rutasRows = parseRutasCSV(await readTextSmart(rutasResp));
+if (transpResp && transpResp.ok) {
+  transportePorIATA = parseTransporteCSV(await readTextSmart(transpResp));
+}
+
+if (paxResp && paxResp.ok) {
+  pasajerosMensualRows = parsePasajerosMensualCSV(await readTextSmart(paxResp));
+}
+
+if (movimientosResp && movimientosResp.ok) {
+  movimientosMensualRows = parseMovimientosMensualCSV(await readTextSmart(movimientosResp));
+}
+
+if (extraTrafficResp && extraTrafficResp.ok) {
+  const extraTraffic = parseExtraTrafficCSV(await readTextSmart(extraTrafficResp));
+
+  pasajerosMensualRows = mergeExtraTrafficRows(
+    pasajerosMensualRows,
+    extraTraffic.paxRows
+  );
+
+  movimientosMensualRows = mergeExtraTrafficRows(
+    movimientosMensualRows,
+    extraTraffic.movRows
+  );
+}
+
+if (vuelosResp && vuelosResp.ok) {
+  vuelosRows = parseVuelosCSV(await readTextSmart(vuelosResp));
+}
+
+if (rutasResp && rutasResp.ok) {
+  rutasRows = parseRutasCSV(await readTextSmart(rutasResp));
+}
       
 if (iataWorldResp && iataWorldResp.ok) {
   const parsedWorld = parseIATAMundoCSV(await readTextSmart(iataWorldResp));
