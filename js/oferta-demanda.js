@@ -1868,13 +1868,26 @@ function renderTopRoutesCharts(routes) {
     <div class="od-route-card-chart">
       <div class="od-route-card-head">
         <div class="od-route-card-titleline">
-          <div class="od-route-card-title">
-            ${escapeHtml(route.title)}
-            <span class="od-route-card-metrics-inline">
-              ${escapeHtml(formatNumber(Math.round(route.totalPax)))} (${escapeHtml(formatShareShort(route.sharePaxPct))}) pasajeros ·
-              ${escapeHtml(formatNumber(Math.round(route.totalAsientos)))} (${escapeHtml(formatShareShort(route.shareSeatsPct))}) asientos
-            </span>
-          </div>
+<div class="od-route-card-title">
+  ${escapeHtml(route.title)}
+  <span class="od-route-card-metrics-inline">
+    <span class="od-route-metric od-route-metric-pax">
+      <span class="od-mini-icon od-mini-icon-bars" aria-hidden="true"></span>
+      <span class="od-route-metric-label">Pasajeros</span>
+      <span class="od-route-metric-value">${escapeHtml(formatNumber(Math.round(route.totalPax)))}</span>
+      <span class="od-route-metric-share">(${escapeHtml(formatShareShort(route.sharePaxPct))})</span>
+    </span>
+
+    <span class="od-route-metric-sep">·</span>
+
+    <span class="od-route-metric od-route-metric-seats">
+      <span class="od-mini-icon od-mini-icon-lines" aria-hidden="true"></span>
+      <span class="od-route-metric-label">Asientos</span>
+      <span class="od-route-metric-value">${escapeHtml(formatNumber(Math.round(route.totalAsientos)))}</span>
+      <span class="od-route-metric-share">(${escapeHtml(formatShareShort(route.shareSeatsPct))})</span>
+    </span>
+  </span>
+</div>
         </div>
       </div>
 
