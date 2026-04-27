@@ -4,22 +4,24 @@
 
 .oferta-demanda-sheet {
   width: 210mm;
-  min-height: 297mm;
+  height: 297mm;
   background: #ffffff;
   color: #2f3a45;
   box-sizing: border-box;
   margin: 0 auto;
   font-family: Roboto, Arial, sans-serif;
+  overflow: hidden;
 }
 
 .od-page {
   width: 100%;
-  min-height: 297mm;
+  height: 100%;
   padding: 3mm 5mm 3mm 5mm;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 4px;
+  overflow: hidden;
 }
 
 /* ==========================================================
@@ -323,12 +325,17 @@
 .od-footer {
   margin-top: auto;
   border-top: 1px solid #d6dfeb;
-  padding-top: 5px;
+  padding-top: 4px;
   display: flex;
   justify-content: space-between;
   gap: 8px;
-  font-size: 8.5px;
+  font-size: 8px;
+  line-height: 1.1;
   color: #7a8794;
+  flex: 0 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  background: transparent;
 }
 
 /* ==========================================================
@@ -347,14 +354,16 @@
     background: #ffffff;
   }
 
-  .oferta-demanda-sheet {
-    width: 210mm;
-    min-height: 297mm;
-    margin: 0;
-    box-shadow: none;
-    break-after: page;
-    page-break-after: always;
-  }
+.oferta-demanda-sheet {
+  width: 210mm;
+  height: 297mm;
+  background: #ffffff;
+  color: #2f3a45;
+  box-sizing: border-box;
+  margin: 0 auto;
+  font-family: Roboto, Arial, sans-serif;
+  overflow: hidden;
+}
 }
 
 /* ==========================================================
@@ -362,15 +371,15 @@
    ========================================================== */
 
 @media screen and (max-width: 1100px) {
-  .oferta-demanda-sheet {
-    width: 100%;
-    min-height: auto;
-  }
+.oferta-demanda-sheet {
+  width: 210mm;
+  height: 297mm;
+}
 
-  .od-page {
-    min-height: auto;
-    padding: 15px;
-  }
+.od-page {
+  height: 100%;
+  padding: 3mm 5mm 3mm 5mm;
+}
 
 .od-kpis {
   grid-template-columns: repeat(4, 1fr);
