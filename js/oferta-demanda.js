@@ -1442,6 +1442,44 @@ function renderAirlinesChart(rows) {
   });
 }
 
+
+function paginateTopRoutes() {
+  const mainList = document.getElementById("odTopRoutes");
+  const extraList = document.getElementById("odTopRoutesExtra");
+  const extraPage = document.getElementById("odRoutesExtraPage");
+
+  if (!mainList || !extraList || !extraPage) return;
+
+  // Limpiar hoja extra
+  extraList.innerHTML = "";
+
+  const routeItems = Array.from(mainList.children).filter(el => {
+    return !el.classList.contains("od-empty");
+  });
+
+  if (routeItems.length <= 3) {
+    extraPage.classList.add("is-hidden");
+
+    if (!routeItems.length) {
+      extraList.innerHTML = '<div class="od-empty">Sin datos</div>';
+    }
+
+    return;
+  }
+
+  extraPage.classList.remove("is-hidden");
+
+  const extraItems = routeItems.slice(3);
+
+  extraItems.forEach(item => {
+    extraList.appendChild(item);
+  });
+
+  if (!extraList.children.length) {
+    extraList.innerHTML = '<div class="od-empty">Sin datos</div>';
+  }
+}
+  
 function buildRouteLineEndLabelsPlugin(pluginId, airlineStats) {
   return {
     id: pluginId,
@@ -1772,6 +1810,45 @@ title: items => {
     plugins: [extremaPlugin, rightLabelsPlugin]
   });
 }
+
+function paginateTopRoutes() {
+  const mainList = q("odTopRoutes");
+  const extraList = q("odTopRoutesExtra");
+  const extraPage = q("odRoutesExtraPage");
+
+  if (!mainList || !extraList || !extraPage) return;
+
+  // Limpiar hoja extra antes de mover nuevas tarjetas
+  extraList.innerHTML = "";
+
+  const routeItems = Array.from(mainList.children).filter(el => {
+    return !el.classList.contains("od-empty");
+  });
+
+  if (routeItems.length <= 3) {
+    extraPage.classList.add("is-hidden");
+
+    if (!routeItems.length) {
+      extraList.innerHTML = '<div class="od-empty">Sin datos</div>';
+    }
+
+    return;
+  }
+
+  // Mostrar hoja 2 solo si hay más de 3 rutas
+  extraPage.classList.remove("is-hidden");
+
+  const extraItems = routeItems.slice(3);
+
+  extraItems.forEach(item => {
+    extraList.appendChild(item);
+  });
+
+  if (!extraList.children.length) {
+    extraList.innerHTML = '<div class="od-empty">Sin datos</div>';
+  }
+}
+  
 function renderTopRoutesCharts(routes) {
   const topRoutesEl = q("odTopRoutes");
   if (!topRoutesEl) return;
@@ -1783,6 +1860,7 @@ function renderTopRoutesCharts(routes) {
 
   if (!dataRoutes.length) {
     topRoutesEl.innerHTML = '<div class="od-empty">Sin datos</div>';
+    paginateTopRoutes();
     return;
   }
 
@@ -1790,13 +1868,13 @@ function renderTopRoutesCharts(routes) {
     <div class="od-route-card-chart">
       <div class="od-route-card-head">
         <div class="od-route-card-titleline">
-<div class="od-route-card-title">
-  ${escapeHtml(route.title)}
-  <span class="od-route-card-metrics-inline">
-    ${escapeHtml(formatNumber(Math.round(route.totalPax)))} (${escapeHtml(formatShareShort(route.sharePaxPct))}) pasajeros ·
-    ${escapeHtml(formatNumber(Math.round(route.totalAsientos)))} (${escapeHtml(formatShareShort(route.shareSeatsPct))}) asientos
-  </span>
-</div>
+          <div class="od-route-card-title">
+            ${escapeHtml(route.title)}
+            <span class="od-route-card-metrics-inline">
+              ${escapeHtml(formatNumber(Math.round(route.totalPax)))} (${escapeHtml(formatShareShort(route.sharePaxPct))}) pasajeros ·
+              ${escapeHtml(formatNumber(Math.round(route.totalAsientos)))} (${escapeHtml(formatShareShort(route.shareSeatsPct))}) asientos
+            </span>
+          </div>
         </div>
       </div>
 
@@ -1805,6 +1883,10 @@ function renderTopRoutesCharts(routes) {
       </div>
     </div>
   `).join("");
+
+  // Primero mueve las rutas 4, 5 y 6 a la segunda hoja.
+  // Recién después se dibujan los gráficos en su contenedor definitivo.
+  paginateTopRoutes();
 
   dataRoutes.forEach((route, idx) => {
     renderSingleRouteChart(`odRouteChart_${idx}`, route);
