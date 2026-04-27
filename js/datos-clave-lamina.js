@@ -1781,7 +1781,6 @@ const [
   fetch("fuentes/ListadoIATAmundo.csv").catch(() => null),
   fetch("fuentes/pasajeros_movimientos_extra_9aeropuertos.csv").catch(() => null)
 ]);
-      ]);
 
       const geojson = await airportsResp.json();
       aeropuertos = (geojson.features || []).map(f => f.properties || {}).filter(p => clean(p.IATA));
