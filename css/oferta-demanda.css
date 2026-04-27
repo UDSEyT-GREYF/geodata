@@ -511,13 +511,13 @@
   }
 }
 /* ============================================================
-   CABECERA COMPACTA - OFERTA Y DEMANDA
-   Mantiene compatibilidad con .od-header y .od-title
+   HEADER TIPO DATOS CLAVE - OFERTA Y DEMANDA
    ============================================================ */
 
-.od-header.od-sheet-header {
+.od-sheet-header {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto;
   align-items: center;
   column-gap: 18px;
   margin: 0 0 6px 0;
@@ -525,11 +525,23 @@
   border-bottom: 1px solid #c8d6e8;
 }
 
-.od-header.od-sheet-header .od-header-left {
-  min-width: 0;
+.od-sheet-header .sheet-title-main {
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: #002855;
+  margin: 0 0 1px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  line-height: 1;
+  grid-column: 2;
+  grid-row: 1;
+  text-align: right;
+  white-space: nowrap;
 }
 
-.od-header.od-sheet-header .sheet-airport-name {
+.od-sheet-header .sheet-airport-name {
+  grid-column: 1;
+  grid-row: 1;
   font-size: 1.15rem;
   font-weight: 600;
   color: #002855;
@@ -541,19 +553,7 @@
   text-overflow: ellipsis;
 }
 
-.od-header.od-sheet-header .sheet-title-main {
-  font-size: 0.66rem;
-  font-weight: 700;
-  color: #002855;
-  margin: 0 0 1px 0;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  line-height: 1;
-  text-align: right;
-  white-space: nowrap;
-}
-
-.od-header.od-sheet-header #odYearRef {
+.od-sheet-header #odYearRef {
   display: inline-block;
   margin-left: 10px;
   font-size: 1.05rem;
