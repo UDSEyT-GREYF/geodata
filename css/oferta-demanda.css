@@ -331,9 +331,6 @@
   line-height: 1.1;
   color: #7a8794;
   flex: 0 0 auto;
-  width: 100%;
-  box-sizing: border-box;
-  background: transparent;
 }
 
 /* ==========================================================
@@ -390,6 +387,16 @@
   .od-chart-wrap {
     height: 320px;
   }
+#offerDemandMount .oferta-demanda-sheet {
+  width: 210mm;
+  min-height: 297mm;
+}
+
+#offerDemandMount .od-page {
+  min-height: 297mm;
+  padding: 3mm 5mm 3mm 5mm;
+}
+   
 }
 .od-chart-wrap-airlines {
   height: 250px;
@@ -543,9 +550,9 @@
 #odTopRoutes .od-route-chart-wrap,
 #odTopRoutesExtra .od-route-chart-wrap {
   width: 100%;
-  height: 152px;
-  min-height: 152px;
-  max-height: 152px;
+  height: 142px;
+  min-height: 142px;
+  max-height: 142px;
   position: relative;
 }
 
