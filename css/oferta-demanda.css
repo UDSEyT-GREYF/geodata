@@ -15,7 +15,7 @@
 .od-page {
   width: 100%;
   min-height: 297mm;
-  padding: 9mm 11mm 9mm 11mm;
+  padding: 5mm 8mm 5mm 8mm;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
