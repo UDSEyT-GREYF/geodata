@@ -373,10 +373,7 @@ async function addSummaryNativePage(pdf, useCurrentPage = false) {
 
 const coverEl = document.querySelector("#coverMount .report-cover-page");
 const laminaEl = document.querySelector("#laminaMount #sheetA4");
-const offerDemandEl = document.querySelector("#offerDemandMount .offer-demand-page")
-  || document.querySelector("#offerDemandMount .page-a4")
-  || document.querySelector("#offerDemandMount section")
-  || document.querySelector("#offerDemandMount");
+
 
       const prev = button.textContent;
       button.disabled = true;
@@ -405,16 +402,22 @@ if (laminaEl) {
   addRasterPage(pdf, laminaRaster, "landscape", false);
 }
 
-if (offerDemandEl) {
-  const offerDemandRaster = await rasterizeElement(offerDemandEl, 2);
+const offerDemandPages = Array.from(
+  document.querySelectorAll("#offerDemandMount .offer-demand-page")
+).filter(page => {
+  return page.offsetParent !== null && !page.classList.contains("is-hidden");
+});
+
+for (const page of offerDemandPages) {
+  const raster = await rasterizeElement(page, 2);
 
   const isLandscape =
-    offerDemandEl.offsetWidth > offerDemandEl.offsetHeight ||
-    offerDemandRaster.width > offerDemandRaster.height;
+    page.offsetWidth > page.offsetHeight ||
+    raster.width > raster.height;
 
   addRasterPage(
     pdf,
-    offerDemandRaster,
+    raster,
     isLandscape ? "landscape" : "portrait",
     false
   );
