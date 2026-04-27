@@ -42,7 +42,12 @@
     const mount = q("laminaMount");
     if (mount) mount.innerHTML = sheet.outerHTML;
   }
-
+  
+async function mountOfferDemandPartial() {
+  const html = await loadText("partials/oferta-demanda.html");
+  const mount = q("offerDemandMount");
+  if (mount) mount.innerHTML = html;
+}
   function fitIntoBox(srcW, srcH, boxW, boxH) {
     const srcRatio = srcW / srcH;
     const boxRatio = boxW / boxH;
@@ -366,8 +371,12 @@ async function addSummaryNativePage(pdf, useCurrentPage = false) {
 
       const { jsPDF } = window.jspdf;
 
-      const coverEl = document.querySelector("#coverMount .report-cover-page");
-      const laminaEl = document.querySelector("#laminaMount #sheetA4");
+const coverEl = document.querySelector("#coverMount .report-cover-page");
+const laminaEl = document.querySelector("#laminaMount #sheetA4");
+const offerDemandEl = document.querySelector("#offerDemandMount .offer-demand-page")
+  || document.querySelector("#offerDemandMount .page-a4")
+  || document.querySelector("#offerDemandMount section")
+  || document.querySelector("#offerDemandMount");
 
       const prev = button.textContent;
       button.disabled = true;
@@ -391,12 +400,27 @@ async function addSummaryNativePage(pdf, useCurrentPage = false) {
 
         await addSummaryNativePage(pdf, !usedFirstPage);
 
-        if (laminaEl) {
-          const laminaRaster = await rasterizeElement(laminaEl, 2);
-          addRasterPage(pdf, laminaRaster, "landscape", false);
-        }
+if (laminaEl) {
+  const laminaRaster = await rasterizeElement(laminaEl, 2);
+  addRasterPage(pdf, laminaRaster, "landscape", false);
+}
 
-        pdf.save(`informe-impacto-${airport}.pdf`);
+if (offerDemandEl) {
+  const offerDemandRaster = await rasterizeElement(offerDemandEl, 2);
+
+  const isLandscape =
+    offerDemandEl.offsetWidth > offerDemandEl.offsetHeight ||
+    offerDemandRaster.width > offerDemandRaster.height;
+
+  addRasterPage(
+    pdf,
+    offerDemandRaster,
+    isLandscape ? "landscape" : "portrait",
+    false
+  );
+}
+
+pdf.save(`informe-impacto-${airport}.pdf`);
       } catch (err) {
         console.error("No se pudo exportar el informe en PDF.", err);
       } finally {
@@ -413,6 +437,7 @@ async function addSummaryNativePage(pdf, useCurrentPage = false) {
       await mountCoverPartial();
       await mountSummaryPartial();
       await mountLaminaFromCurrentHtml();
+      await mountOfferDemandPartial();
 
       document.dispatchEvent(new CustomEvent("report:partials-ready"));
     } catch (err) {
