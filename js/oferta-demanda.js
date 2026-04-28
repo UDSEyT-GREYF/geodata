@@ -272,16 +272,28 @@ function getAirportSelectorLabel(a) {
 
 function getAirportSheetTitle(a) {
   const iata = clean(firstNonEmpty(a, ["IATA"])).toUpperCase();
-  const ciudad = getAirportCityOnly(a);
 
-  if (iata === "AEP") return "Aeroparque Jorge Newbery";
-  if (!ciudad) return "Aeropuerto";
+  const ciudad = clean(firstNonEmpty(a, [
+    "Aeropuerto",
+    "IATA"
+  ]));
 
-  if (/^Aeropuerto\s+de\s+/i.test(ciudad)) return ciudad;
-  if (/^Aeroparque/i.test(ciudad)) return ciudad;
+  let base = "";
 
-  return `Aeropuerto de ${ciudad}`;
-} 
+  if (iata === "AEP") {
+    base = "Aeroparque Jorge Newbery";
+  } else if (!ciudad) {
+    base = "Aeropuerto";
+  } else if (/^Aeropuerto\s+de\s+/i.test(ciudad)) {
+    base = ciudad;
+  } else if (/^Aeroparque/i.test(ciudad)) {
+    base = ciudad;
+  } else {
+    base = `Aeropuerto de ${ciudad}`;
+  }
+
+  return iata ? `${base} (${iata})` : base;
+}
   
 function getAirportBaseRouteName(iata) {
   const key = clean(iata).toUpperCase();
