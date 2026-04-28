@@ -235,29 +235,26 @@ function buildRouteSimpleKey(cityPair) {
     if (el) el.innerHTML = value;
   }
 
-  function getAirportDisplayName(a) {
-    const iata = clean(firstNonEmpty(a, ["IATA"])).toUpperCase();
-    const ciudad = clean(firstNonEmpty(a, [
-      "Ciudad",
-      "Localidad",
-      "Municipio",
-      "Ciudad / Localidad",
-      "Aeropuerto"
-    ]));
-    const nombreOficial = clean(firstNonEmpty(a, [
-      "Nombre del Aeropuerto",
-      "Aeropuerto",
-      "Denominacion"
-    ]));
+function getAirportDisplayName(a) {
+  const iata = clean(firstNonEmpty(a, ["IATA"])).toUpperCase();
 
-    if (iata === "AEP") return "Aeroparque Jorge Newbery (AEP)";
-    if (ciudad && nombreOficial && ciudad !== nombreOficial) {
-      return `Aeropuerto de ${ciudad} – ${nombreOficial} (${iata})`;
-    }
-    if (ciudad) return `Aeropuerto de ${ciudad} (${iata})`;
-    if (nombreOficial) return `${nombreOficial} (${iata})`;
-    return `Aeropuerto (${iata})`;
-  }
+  let ciudad = clean(firstNonEmpty(a, [
+    "Ciudad",
+    "Localidad",
+    "Municipio",
+    "Ciudad / Localidad"
+  ]));
+
+  ciudad = ciudad
+    .replace(/\s*\([A-Z]{3}\)\s*$/g, "")
+    .replace(/^Aeropuerto\s+de\s+/i, "")
+    .replace(/\s+[–-]\s+.*$/g, "")
+    .trim();
+
+  if (iata === "AEP") return "Aeroparque (AEP)";
+  if (ciudad) return `Aeropuerto de ${ciudad} (${iata})`;
+  return `Aeropuerto (${iata})`;
+}
 function getAirportBaseRouteName(iata) {
   const key = clean(iata).toUpperCase();
   const a = aeropuertos.find(x => clean(firstNonEmpty(x, ["IATA"])).toUpperCase() === key);
