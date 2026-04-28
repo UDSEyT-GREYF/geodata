@@ -274,7 +274,7 @@ function getAirportSheetTitle(a) {
   const iata = clean(firstNonEmpty(a, ["IATA"])).toUpperCase();
   const ciudad = getAirportCityOnly(a);
 
-  if (iata === "AEP") return "Aeroparque";
+  if (iata === "AEP") return "Aeroparque Jorge Newbery";
   if (!ciudad) return "Aeropuerto";
 
   if (/^Aeropuerto\s+de\s+/i.test(ciudad)) return ciudad;
