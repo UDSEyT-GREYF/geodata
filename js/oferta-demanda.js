@@ -1986,12 +1986,7 @@ setHTML(
     ? `#${formatNumber(snaRank.rank)} <span class="od-kpi-rank-total">/ ${formatNumber(snaRank.totalAirports)}</span>`
     : "–"
 );
-setHTML(
-  "odSnaRank",
-  snaRank.rank
-    ? `#${formatNumber(snaRank.rank)} <span class="od-kpi-rank-total">/ ${formatNumber(snaRank.totalAirports)}</span>`
-    : "–"
-);
+
 renderTopRoutesCharts(summary.mainRoutes);
 
 
@@ -2097,23 +2092,46 @@ if (select) {
   });
 }
 
-      const params = new URLSearchParams(window.location.search);
-      const initial = clean(params.get("airport")).toUpperCase() || clean(firstNonEmpty(aeropuertos[0], ["IATA"])).toUpperCase();
+const params = new URLSearchParams(window.location.search);
+
+const fromUrl = clean(params.get("airport")).toUpperCase();
+const fromSelect = clean(select?.value).toUpperCase();
+const firstAirport = clean(firstNonEmpty(aeropuertos[0], ["IATA"])).toUpperCase();
+
+const initial = fromUrl || fromSelect || firstAirport;
 
 if (select) {
   select.value = initial;
-  select.addEventListener("change", e => {
-    const value = clean(e.target.value).toUpperCase();
 
-    try {
-      renderAirport(value);
+  if (!select.dataset.odBound) {
+    select.dataset.odBound = "1";
 
-      const url = new URL(window.location.href);
-      url.searchParams.set("airport", value);
-      window.history.replaceState({}, "", url);
-    } catch (err) {
-      console.error("Error al cambiar de aeropuerto:", err);
-    }
+    select.addEventListener("change", e => {
+      const value = clean(e.target.value).toUpperCase();
+      if (!value) return;
+
+      try {
+        requestAnimationFrame(() => {
+          renderAirport(value);
+        });
+
+        const url = new URL(window.location.href);
+        url.searchParams.set("airport", value);
+        window.history.replaceState({}, "", url);
+      } catch (err) {
+        console.error("Error al cambiar de aeropuerto:", err);
+      }
+    });
+  }
+}
+
+try {
+  requestAnimationFrame(() => {
+    renderAirport(initial);
+  });
+} catch (err) {
+  console.error("Error al renderizar aeropuerto inicial:", err);
+}
   });
 }
 
@@ -2132,8 +2150,51 @@ try {
   /* ============================================================
      INIT
      ============================================================ */
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", loadData);
-} else {
-  loadData();
-}})();
+let ofertaDemandaBooted = false;
+let odBootObserver = null;
+
+function bootOfertaDemanda() {
+  if (ofertaDemandaBooted) return;
+
+  const sheet = q("sheetOfertaDemanda");
+  const monthlyCanvas = q("odMonthlyChart");
+  const airlinesCanvas = q("odAirlinesChart");
+  const routesList = q("odTopRoutes");
+  const extraRoutesList = q("odTopRoutesExtra");
+  const select = q("airportSelect");
+
+  // En informe-impacto.html el partial se monta después.
+  // No arrancar hasta que existan todos los nodos necesarios.
+  if (!sheet || !monthlyCanvas || !airlinesCanvas || !routesList || !extraRoutesList || !select) {
+    return;
+  }
+
+  ofertaDemandaBooted = true;
+
+  if (odBootObserver) {
+    odBootObserver.disconnect();
+    odBootObserver = null;
+  }
+
+  requestAnimationFrame(() => {
+    loadData();
+  });
+}
+
+document.addEventListener("DOMContentLoaded", bootOfertaDemanda);
+document.addEventListener("report:partials-ready", bootOfertaDemanda);
+
+if ("MutationObserver" in window) {
+  odBootObserver = new MutationObserver(() => {
+    bootOfertaDemanda();
+  });
+
+  odBootObserver.observe(document.documentElement, {
+    childList: true,
+    subtree: true
+  });
+}
+
+if (document.readyState !== "loading") {
+  bootOfertaDemanda();
+}
