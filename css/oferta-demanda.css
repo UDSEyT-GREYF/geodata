@@ -162,8 +162,31 @@
 
 .od-panel-routes-full {
   grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+}
+.od-routes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
+.od-routes-source {
+  margin-top: 6px;
+  padding-top: 4px;
+  border-top: 1px solid #d6dfeb;
+  font-size: 6.5px;
+  line-height: 1.1;
+  color: #6f7f91;
+  text-align: left;
+}
+
+.od-routes-text {
+  margin-top: 6px;
+  font-size: 8px;
+  line-height: 1.25;
+  color: #334150;
+}
 /* ==========================================================
    PANELS
    ========================================================== */
