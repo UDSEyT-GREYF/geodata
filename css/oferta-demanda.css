@@ -21,7 +21,10 @@
   flex-direction: column;
   gap: 4px;
 }
-
+/* Seguridad temporal por si queda algún footer viejo cacheado */
+.oferta-demanda-sheet .od-footer {
+  display: none !important;
+}
 /* ==========================================================
    HEADER
    ========================================================== */
