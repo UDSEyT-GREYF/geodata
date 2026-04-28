@@ -255,6 +255,34 @@ function getAirportDisplayName(a) {
   if (ciudad) return `Aeropuerto de ${ciudad} (${iata})`;
   return `Aeropuerto (${iata})`;
 }
+
+ function getAirportCityOnly(a) {
+  return clean(firstNonEmpty(a, [
+    "Aeropuerto",
+    "IATA"
+  ]));
+}
+
+function getAirportSelectorLabel(a) {
+  const iata = clean(firstNonEmpty(a, ["IATA"])).toUpperCase();
+  const ciudad = getAirportCityOnly(a);
+
+  return `${ciudad} (${iata})`;
+}
+
+function getAirportSheetTitle(a) {
+  const iata = clean(firstNonEmpty(a, ["IATA"])).toUpperCase();
+  const ciudad = getAirportCityOnly(a);
+
+  if (iata === "AEP") return "Aeroparque";
+  if (!ciudad) return "Aeropuerto";
+
+  if (/^Aeropuerto\s+de\s+/i.test(ciudad)) return ciudad;
+  if (/^Aeroparque/i.test(ciudad)) return ciudad;
+
+  return `Aeropuerto de ${ciudad}`;
+} 
+  
 function getAirportBaseRouteName(iata) {
   const key = clean(iata).toUpperCase();
   const a = aeropuertos.find(x => clean(firstNonEmpty(x, ["IATA"])).toUpperCase() === key);
@@ -1975,9 +2003,9 @@ console.log("Oferta-demanda resumen", {
 
     currentIATA = iata;
 
-    const airportName = getAirportDisplayName(a);
-    setText("odAirportName", airportName);
-    setText("odYearRef", String(YEAR_REF));
+const airportName = getAirportSheetTitle(a);
+setText("odAirportName", airportName);
+setText("odYearRef", String(YEAR_REF));
 
     renderOfertaDemanda(iata);
   }
@@ -2044,16 +2072,18 @@ if (airlineAliasResp && airlineAliasResp.ok) {
 } else {
   airlineAliasIndex = {};
 }
-      if (select) {
-        select.innerHTML = "";
-        aeropuertos.forEach(a => {
-          const opt = document.createElement("option");
-          const iata = clean(firstNonEmpty(a, ["IATA"])).toUpperCase();
-          opt.value = iata;
-          opt.textContent = getAirportDisplayName(a);
-          select.appendChild(opt);
-        });
-      }
+if (select) {
+  select.innerHTML = "";
+  aeropuertos.forEach(a => {
+    const opt = document.createElement("option");
+    const iata = clean(firstNonEmpty(a, ["IATA"])).toUpperCase();
+
+    opt.value = iata;
+    opt.textContent = getAirportSelectorLabel(a);
+
+    select.appendChild(opt);
+  });
+}
 
       const params = new URLSearchParams(window.location.search);
       const initial = clean(params.get("airport")).toUpperCase() || clean(firstNonEmpty(aeropuertos[0], ["IATA"])).toUpperCase();
