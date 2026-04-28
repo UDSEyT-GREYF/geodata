@@ -251,7 +251,7 @@ function getAirportDisplayName(a) {
     .replace(/\s+[–-]\s+.*$/g, "")
     .trim();
 
-  if (iata === "AEP") return "Aeroparque (AEP)";
+  if (iata === "AEP") return "Aeroparque Jorge Newbery (AEP)";
   if (ciudad) return `Aeropuerto de ${ciudad} (${iata})`;
   return `Aeropuerto (${iata})`;
 }
