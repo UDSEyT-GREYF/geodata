@@ -1942,7 +1942,67 @@ function renderTopRoutesCharts(routes) {
     renderSingleRouteChart(`odRouteChart_${idx}`, route);
   });
 }
-  
+  function renderHistoricTrafficBlock(iata, airportName) {
+  const block = q("historicTrafficBlock");
+  const textEl = q("historicTrafficText");
+  const tmcaEl = q("historicTmcaPrepandemia");
+  const caidaEl = q("historicCaidaPandemia");
+  const varEl = q("historicVarVs2019");
+
+  if (!block || !textEl) return;
+
+  const code = clean(iata).toUpperCase();
+
+  const d = Array.isArray(historicTrafficByIata)
+    ? historicTrafficByIata.find(x => clean(x.iata).toUpperCase() === code)
+    : historicTrafficByIata?.[code];
+
+  if (!d) {
+    block.style.display = "none";
+    return;
+  }
+
+  block.style.display = "block";
+
+  if (tmcaEl) {
+    tmcaEl.textContent = odFormatPctRatio(d.tmca_prepandemic);
+  }
+
+  if (caidaEl) {
+    caidaEl.textContent = odFormatPctRatio(d.pandemic_drop_vs_2019);
+  }
+
+  if (varEl) {
+    varEl.textContent = odFormatPctRatio(d.var_latest_vs_2019);
+  }
+
+  const nombreAeropuerto = airportName || d.aeropuerto || `Aeropuerto ${code}`;
+  const trendPhrase = odBuildHistoricalTrendPhrase(d.tmca_prepandemic);
+  const recoveryPhrase = odBuildRecoveryPhrase(d.var_latest_vs_2019);
+
+  const pandemicSentence = (
+    d.pandemic_min_year &&
+    d.pandemic_min_pax !== null &&
+    d.pandemic_min_pax !== undefined
+  )
+    ? `Durante el período 2020–2022, el menor registro se produjo en ${d.pandemic_min_year}, con ${odFormatNumber(d.pandemic_min_pax)} pasajeros, equivalente a una variación de ${odFormatPctRatio(d.pandemic_drop_vs_2019)} respecto de 2019.`
+    : `Durante el período 2020–2022 se verificó una caída excepcional asociada al shock sanitario, aunque no se cuenta con una base completa para cuantificar el mínimo del período.`;
+
+  const minSentence = (
+    d.min_year &&
+    d.min_pax !== null &&
+    d.min_pax !== undefined
+  )
+    ? `El valor mínimo de la serie se produjo en ${d.min_year}, con ${odFormatNumber(d.min_pax)} pasajeros.`
+    : "";
+
+  textEl.textContent =
+    `Durante los últimos ${d.years_shown} años, el tráfico aerocomercial del ${nombreAeropuerto} experimentó ${trendPhrase}, junto con caídas de pasajeros y operaciones asociadas a factores exógenos al sector, ambientales y/o sanitarios, así como a la redefinición de políticas públicas y a diversas estrategias aerocomerciales de los operadores aéreos. Estos comportamientos pueden observarse en el gráfico Evolución histórica de pasajeros y aeronaves de la hoja Datos clave. ` +
+    `Entre ${d.prepandemic_start_year} y ${d.baseline_year}, los pasajeros pasaron de ${odFormatNumber(d.prepandemic_start_pax)} a ${odFormatNumber(d.baseline_pax)}, con una TMCA prepandemia de ${odFormatPctRatio(d.tmca_prepandemic)} anual. ` +
+    `${pandemicSentence} ` +
+    `En ${d.latest_year}, el aeropuerto registró ${odFormatNumber(d.latest_pax)} pasajeros, ${recoveryPhrase}. ` +
+    `${minSentence}`;
+}
   function renderOfertaDemanda(iata) {
     const summary = getOfertaDemandaSummary(iata, YEAR_REF, { soloComercial: true });
 setText(
@@ -2003,19 +2063,21 @@ console.log("Oferta-demanda resumen", {
 });
   }
 
-  function renderAirport(iataCode) {
-    const iata = clean(iataCode).toUpperCase();
-    const a = aeropuertos.find(x => clean(firstNonEmpty(x, ["IATA"])).toUpperCase() === iata);
-    if (!a) return;
+function renderAirport(iataCode) {
+  const iata = clean(iataCode).toUpperCase();
+  const a = aeropuertos.find(x => clean(firstNonEmpty(x, ["IATA"])).toUpperCase() === iata);
+  if (!a) return;
 
-    currentIATA = iata;
+  currentIATA = iata;
 
-const airportName = getAirportSheetTitle(a);
-setText("odAirportName", airportName);
-setText("odYearRef", String(YEAR_REF));
+  const airportName = getAirportSheetTitle(a);
 
-    renderOfertaDemanda(iata);
-  }
+  setText("odAirportName", airportName);
+  setText("odYearRef", String(YEAR_REF));
+
+  renderOfertaDemanda(iata);
+  renderHistoricTrafficBlock(iata, airportName);
+}
 
   /* ============================================================
      CARGA DE DATOS
@@ -2082,9 +2144,15 @@ if (airlineAliasResp && airlineAliasResp.ok) {
 
 try {
   const respHistoric = await fetch("fuentes/tmca_historica_57_aeropuertos_base2019.json");
-  historicTrafficByIata = await respHistoric.json();
+
+  if (respHistoric && respHistoric.ok) {
+    historicTrafficByIata = await respHistoric.json();
+  } else {
+    historicTrafficByIata = {};
+    console.warn("No se pudo cargar el JSON de tráfico histórico base 2019.");
+  }
 } catch (e) {
-  console.warn("No se pudo cargar tmca_historica_57_aeropuertos_base2019.json", e);
+  console.warn("No se pudo cargar tmca_historica", e);
   historicTrafficByIata = {};
 }
       
@@ -2147,13 +2215,7 @@ try {
       if (select) select.innerHTML = "<option>Error al cargar datos</option>";
     }
   }
-try {
-  const respHistoric = await fetch("fuentes/tmca_historica_57_aeropuertos_base2019.json");
-  historicTrafficByIata = await respHistoric.json();
-} catch (e) {
-  console.warn("No se pudo cargar tmca_historica_57_aeropuertos_base2019.json", e);
-  historicTrafficByIata = {};
-}
+
   /* ============================================================
      INIT
      ============================================================ */
