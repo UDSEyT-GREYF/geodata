@@ -1827,8 +1827,6 @@ title: items => {
     plugins: [extremaPlugin, rightLabelsPlugin]
   });
 }
-
-
   
 function renderTopRoutesCharts(routes) {
   const topRoutesEl = q("odTopRoutes");
@@ -2076,8 +2074,7 @@ try {
 } catch (err) {
   console.error("Error al renderizar aeropuerto inicial:", err);
 }
-   
-    
+      
      } catch (err) {
       console.error("Error cargando oferta-demanda:", err);
       if (select) select.innerHTML = "<option>Error al cargar datos</option>";
