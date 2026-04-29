@@ -1911,7 +1911,7 @@ function renderPaxPatterns(iataUpper) {
           borderRadius: 4,
           barPercentage: 0.9,
           categoryPercentage: 0.7
-        }
+        },
                 {
           label: "Índice Cabotaje (base 100)",
           data: seasonalIndexCab,
@@ -1955,7 +1955,7 @@ function renderPaxPatterns(iataUpper) {
               const value = Math.round(item.parsed.y || 0);
               const formattedValue = item.yAxisID === 'y1' ? value : formatNumber(value);
               return `${item.dataset.label}: ${formattedValue}`;
-            }          }
+            }          
         }
       },
       scales: {
@@ -1969,7 +1969,7 @@ function renderPaxPatterns(iataUpper) {
             callback: (v) => formatNumber(Math.round(v)),
             maxTicksLimit: 4
           }
-        }
+        },
 
         y1: {
           type: "linear",
