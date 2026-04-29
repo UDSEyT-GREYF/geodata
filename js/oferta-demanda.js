@@ -2132,3 +2132,4 @@ if ("MutationObserver" in window) {
 if (document.readyState !== "loading") {
   bootOfertaDemanda();
 }
+})();
