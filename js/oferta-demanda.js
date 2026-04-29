@@ -1025,27 +1025,7 @@ function buildExtremaPlugin(pluginId, series) {
   };
 }
 
-function getSNAPassengerRanking(selectedIata, year = YEAR_REF) {
-  const rankingRows = (aeropuertos || []).map(a => {
-    const iata = clean(firstNonEmpty(a, ["IATA"])).toUpperCase();
-    const summary = getOfertaDemandaSummary(iata, year, { soloComercial: true });
 
-    return {
-      iata,
-      totalPax: Number(summary.totalPax || 0)
-    };
-  });
-
-  rankingRows.sort((a, b) => b.totalPax - a.totalPax);
-
-  const rank = rankingRows.findIndex(r => r.iata === clean(selectedIata).toUpperCase()) + 1;
-  const totalAirports = rankingRows.length;
-
-  return {
-    rank: rank > 0 ? rank : null,
-    totalAirports
-  };
-}
   /* ============================================================
      RENDER
      ============================================================ */
@@ -1848,43 +1828,7 @@ title: items => {
   });
 }
 
-function paginateTopRoutes() {
-  const mainList = q("odTopRoutes");
-  const extraList = q("odTopRoutesExtra");
-  const extraPage = q("odRoutesExtraPage");
 
-  if (!mainList || !extraList || !extraPage) return;
-
-  // Limpiar hoja extra antes de mover nuevas tarjetas
-  extraList.innerHTML = "";
-
-  const routeItems = Array.from(mainList.children).filter(el => {
-    return !el.classList.contains("od-empty");
-  });
-
-  if (routeItems.length <= 3) {
-    extraPage.classList.add("is-hidden");
-
-    if (!routeItems.length) {
-      extraList.innerHTML = '<div class="od-empty">Sin datos</div>';
-    }
-
-    return;
-  }
-
-  // Mostrar hoja 2 solo si hay más de 3 rutas
-  extraPage.classList.remove("is-hidden");
-
-  const extraItems = routeItems.slice(3);
-
-  extraItems.forEach(item => {
-    extraList.appendChild(item);
-  });
-
-  if (!extraList.children.length) {
-    extraList.innerHTML = '<div class="od-empty">Sin datos</div>';
-  }
-}
   
 function renderTopRoutesCharts(routes) {
   const topRoutesEl = q("odTopRoutes");
