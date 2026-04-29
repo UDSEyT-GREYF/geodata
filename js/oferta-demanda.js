@@ -171,39 +171,54 @@ function odFormatPctRatio(value, opts = {}) {
 
 function odBuildRecoveryPhrase(varVs2019) {
   if (varVs2019 === null || varVs2019 === undefined || isNaN(Number(varVs2019))) {
-    return "sin una comparación válida contra el nivel prepandemia";
+    return "sin una comparación válida contra 2019";
   }
 
   const v = Number(varVs2019);
 
   if (v >= 0.05) {
-    return `ubicándose ${odFormatPctRatio(v, { withSign: false })} por encima del nivel prepandemia`;
+    return `superó el nivel de 2019 en ${odFormatPctRatio(v, { withSign: false })}`;
   }
 
   if (v >= 0) {
-    return `ubicándose levemente por encima del nivel prepandemia (${odFormatPctRatio(v)})`;
+    return `alcanzó un nivel similar al de 2019, ubicándose ${odFormatPctRatio(v)} por encima`;
   }
 
   if (v >= -0.05) {
-    return `en un nivel similar al de 2019 (${odFormatPctRatio(v)})`;
+    return `se ubicó en un nivel similar al de 2019 (${odFormatPctRatio(v)})`;
   }
 
-  return `ubicándose ${odFormatPctRatio(Math.abs(v), { withSign: false })} por debajo del nivel prepandemia`;
+  return `se mantuvo ${odFormatPctRatio(Math.abs(v), { withSign: false })} por debajo del nivel de 2019`;
 }
 
-function odBuildHistoricalTrendPhrase(tmcaPrepandemic) {
-  if (tmcaPrepandemic === null || tmcaPrepandemic === undefined || isNaN(Number(tmcaPrepandemic))) {
-    return "una evolución heterogénea";
+function odBuildHistoricalTrendPhrase(tmcaLongTerm) {
+  if (tmcaLongTerm === null || tmcaLongTerm === undefined || isNaN(Number(tmcaLongTerm))) {
+    return "una trayectoria heterogénea";
   }
 
-  const t = Number(tmcaPrepandemic);
+  const t = Number(tmcaLongTerm);
 
-  if (t >= 0.08) return "una marcada tendencia de crecimiento durante el período prepandemia";
-  if (t >= 0.03) return "una tendencia de crecimiento durante el período prepandemia";
-  if (t >= -0.01) return "un comportamiento relativamente estable durante el período prepandemia";
-  return "una tendencia contractiva durante el período prepandemia";
+  if (t >= 0.08) return "una trayectoria de fuerte expansión";
+  if (t >= 0.03) return "una tendencia de crecimiento sostenido";
+  if (t >= 0.01) return "una expansión moderada";
+  if (t >= -0.01) return "un comportamiento relativamente estable";
+  if (t >= -0.03) return "una leve retracción";
+  return "una tendencia contractiva";
 }
-  
+function odBuildRecentTrendPhrase(tmcaRecent) {
+  if (tmcaRecent === null || tmcaRecent === undefined || isNaN(Number(tmcaRecent))) {
+    return "una evolución reciente sin una tendencia claramente definida";
+  }
+
+  const t = Number(tmcaRecent);
+
+  if (t >= 0.08) return "una expansión reciente intensa";
+  if (t >= 0.03) return "una expansión reciente moderada";
+  if (t >= 0.01) return "una mejora reciente leve";
+  if (t >= -0.01) return "un comportamiento reciente estable";
+  if (t >= -0.03) return "una leve retracción reciente";
+  return "una contracción reciente";
+}  
   function escapeHtml(value) {
     return String(value ?? "")
       .replace(/&/g, "&amp;")
