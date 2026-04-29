@@ -837,11 +837,19 @@
   color: #26374a;
   text-align: justify;
 }
+.historic-traffic-text p {
+  margin: 0 0 6px;
+  padding: 0;
+}
 
+.historic-traffic-text p:last-child {
+  margin-bottom: 0;
+}
 .historic-traffic-text strong {
   font-weight: 700;
   color: #152238;
 }
+
 
 @media print {
   .historic-traffic-block {
