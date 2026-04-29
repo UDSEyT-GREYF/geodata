@@ -769,3 +769,98 @@
   font-weight: 600;
   color: #002855;
 }
+/* ============================================================
+   TRÁFICO HISTÓRICO
+   Bloque narrativo posterior a la segunda hoja de rutas
+   ============================================================ */
+
+.historic-traffic-block {
+  margin-top: 10px;
+  padding: 12px 14px;
+  border: 1px solid #d0d7e2;
+  border-radius: 8px;
+  background: #ffffff;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.historic-traffic-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.historic-traffic-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.15;
+  color: #002855;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.historic-traffic-header p {
+  margin: 3px 0 0;
+  font-size: 0.72rem;
+  line-height: 1.25;
+  color: #64748b;
+}
+
+.historic-traffic-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 8px 0 10px;
+}
+
+.historic-metric {
+  border: 1px solid #e0e7f0;
+  border-radius: 6px;
+  background: #f8fafc;
+  padding: 7px 8px;
+  min-height: 48px;
+}
+
+.historic-metric-label {
+  display: block;
+  font-size: 0.64rem;
+  line-height: 1.15;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 3px;
+}
+
+.historic-metric-value {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.1;
+  color: #004b80;
+  font-weight: 800;
+}
+
+.historic-traffic-text {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.42;
+  color: #334155;
+  text-align: justify;
+}
+
+@media print {
+  .historic-traffic-block {
+    margin-top: 8px;
+    padding: 10px 12px;
+  }
+
+  .historic-traffic-text {
+    font-size: 0.76rem;
+    line-height: 1.38;
+  }
+
+  .historic-metric {
+    padding: 6px 7px;
+  }
+}
