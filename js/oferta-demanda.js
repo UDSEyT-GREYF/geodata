@@ -2081,7 +2081,7 @@ textEl.innerHTML =
   </p>
 
   <p>
-    En el tramo reciente, entre <strong>${recentStartYear}</strong> y <strong>${recentEndYear}</strong>,
+    Entre <strong>${recentStartYear}</strong> y <strong>${recentEndYear}</strong>,
     el aeropuerto mostró <strong>${recentPhrase}</strong>, pasando de
     <strong>${odFormatNumber(recentStartPax)}</strong> a
     <strong>${odFormatNumber(recentEndPax)}</strong> pasajeros.
