@@ -67,17 +67,42 @@
 
   <div id="partialHost"></div>
 
-  <script>
-    fetch("partials/oferta-demanda.html")
-      .then(r => r.text())
-      .then(html => {
-        document.getElementById("partialHost").innerHTML = html;
+<script>
+(async function () {
+  try {
+    const host = document.getElementById("partialHost");
+    if (!host) {
+      console.error("No existe #partialHost en oferta-demanda.html");
+      return;
+    }
 
-        const s = document.createElement("script");
-        s.src = "js/oferta-demanda.js?v=1";
-        document.body.appendChild(s);
-      })
-      .catch(err => console.error("No se pudo cargar el partial de oferta-demanda", err));
-  </script>
+    const partialResp = await fetch("partials/oferta-demanda.html?v=20260429-1", {
+      cache: "no-store"
+    });
+
+    if (!partialResp.ok) {
+      throw new Error("No se pudo cargar partials/oferta-demanda.html");
+    }
+
+    host.innerHTML = await partialResp.text();
+
+    const s = document.createElement("script");
+    s.src = "js/oferta-demanda.js?v=20260429-2";
+    s.defer = true;
+
+    s.onload = function () {
+      document.dispatchEvent(new CustomEvent("report:partials-ready"));
+    };
+
+    s.onerror = function () {
+      console.error("No se pudo cargar js/oferta-demanda.js");
+    };
+
+    document.body.appendChild(s);
+  } catch (err) {
+    console.error("No se pudo inicializar oferta-demanda.html", err);
+  }
+})();
+</script>
 </body>
 </html>
