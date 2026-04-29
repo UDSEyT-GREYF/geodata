@@ -2093,7 +2093,7 @@ textEl.innerHTML =
   </p>
 
   ${maxParagraph}`;
-  
+  }
   function renderOfertaDemanda(iata) {
     const summary = getOfertaDemandaSummary(iata, YEAR_REF, { soloComercial: true });
 setText(
