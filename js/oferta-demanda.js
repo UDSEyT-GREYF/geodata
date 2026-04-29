@@ -2060,25 +2060,39 @@ function renderHistoricTrafficBlock(iata, airportName) {
   )
     ? `El máximo de la serie se registró en <strong>${d.max_year}</strong>, con <strong>${odFormatNumber(d.max_pax)}</strong> pasajeros.`
     : "";
+  
+const maxParagraph = maxSentence
+  ? `<p>${maxSentence}</p>`
+  : "";
 
-  textEl.innerHTML =
-    `<p>
-    `Durante los últimos <strong>${d.years_shown} años</strong>, el tráfico aerocomercial del <strong>${escapeHtml(nombreAeropuerto)}</strong> presentó <strong>${trendPhrase}</strong>. ` +
+textEl.innerHTML =
+  `<p>
+    Durante los últimos <strong>${d.years_shown} años</strong>, el tráfico aerocomercial del
+    <strong>${escapeHtml(nombreAeropuerto)}</strong> presentó <strong>${trendPhrase}</strong>.
+    Esta evolución puede observarse en el gráfico <strong>Evolución histórica de pasajeros y aeronaves</strong>
+    de la hoja <strong>Datos clave</strong>.
+  </p>
 
-    `Este comportamiento puede observarse en el gráfico <strong>Evolución histórica de pasajeros y aeronaves</strong> de <strong>Datos clave</strong>. ` +
-    </p>
-    <p>
-    `Entre <strong>${longStartYear}</strong> y <strong>${longEndYear}</strong>, los pasajeros pasaron de <strong>${odFormatNumber(d.prepandemic_start_pax)}</strong> a <strong>${odFormatNumber(d.baseline_pax)}</strong>, con una <strong>TMCA de ${odFormatPctRatio(tmcaLongTerm)} anual</strong>. ` +
-    </p>
-    <p>
-    `En el tramo reciente, entre <strong>${recentStartYear}</strong> y <strong>${recentEndYear}</strong>, el aeropuerto mostró <strong>${recentPhrase}</strong>, pasando de <strong>${odFormatNumber(recentStartPax)}</strong> a <strong>${odFormatNumber(recentEndPax)}</strong> pasajeros. ` +
-    </p>
-    <p>
-    `Tomando 2019 como año de referencia, en <strong>${recentEndYear}</strong> el aeropuerto <strong>${recoveryPhrase}</strong>. ` +
-    </p>
+  <p>
+    Entre <strong>${longStartYear}</strong> y <strong>${longEndYear}</strong>, los pasajeros pasaron de
+    <strong>${odFormatNumber(d.prepandemic_start_pax)}</strong> a
+    <strong>${odFormatNumber(d.baseline_pax)}</strong>, con una
+    <strong>TMCA de ${odFormatPctRatio(tmcaLongTerm)} anual</strong>.
+  </p>
 
-    `${maxSentence}`;
-}
+  <p>
+    En el tramo reciente, entre <strong>${recentStartYear}</strong> y <strong>${recentEndYear}</strong>,
+    el aeropuerto mostró <strong>${recentPhrase}</strong>, pasando de
+    <strong>${odFormatNumber(recentStartPax)}</strong> a
+    <strong>${odFormatNumber(recentEndPax)}</strong> pasajeros.
+  </p>
+
+  <p>
+    Tomando 2019 como año de referencia, en <strong>${recentEndYear}</strong> el aeropuerto
+    <strong>${recoveryPhrase}</strong>.
+  </p>
+
+  ${maxParagraph}`;
   
   function renderOfertaDemanda(iata) {
     const summary = getOfertaDemandaSummary(iata, YEAR_REF, { soloComercial: true });
