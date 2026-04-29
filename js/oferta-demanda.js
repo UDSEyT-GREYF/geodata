@@ -8,11 +8,11 @@
   const YEAR_REF = 2025;
 
   // Si tu archivo no se llama así, cambia SOLO esta línea
-  const RUTAS_CSV_PATH = "fuentes/rutasaereas.csv";
-  const RUTAS_KM_CSV_PATH = "fuentes/km rutasaereas.csv";
-  const AEROPUERTOS_GEOJSON_PATH = "fuentes/Datos_aeropuertos.geojson";
-  const IATA_MUNDO_CSV_PATH = "fuentes/ListadoIATAmundo.csv";
-  const AIRLINE_ALIAS_CSV_PATH = "fuentes/aerolineas_alias.csv";
+  const RUTAS_CSV_PATH = "/geodata/fuentes/rutasaereas.csv";
+  const RUTAS_KM_CSV_PATH = "/geodata/fuentes/km rutasaereas.csv";
+  const AEROPUERTOS_GEOJSON_PATH = "/geodata/fuentes/Datos_aeropuertos.geojson";
+  const IATA_MUNDO_CSV_PATH = "/geodata/fuentes/ListadoIATAmundo.csv";
+  const AIRLINE_ALIAS_CSV_PATH = "/geodata/fuentes/aerolineas_alias.csv";
 
   /* ============================================================
      ESTADO
