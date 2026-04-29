@@ -1957,6 +1957,7 @@ function renderPaxPatterns(iataUpper) {
               return `${item.dataset.label}: ${formattedValue}`;
             }          
         }
+      }  
       },
       scales: {
         x: {
