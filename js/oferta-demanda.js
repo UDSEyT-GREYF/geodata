@@ -1538,26 +1538,79 @@ function paginateTopRoutes() {
   const extraList = document.getElementById("odTopRoutesExtra");
   const extraPage = document.getElementById("odRoutesExtraPage");
 
+  const historicPage = document.getElementById("odHistoricPage");
+  const historicBlock = document.getElementById("historicTrafficBlock");
+  const historicSlotMain = document.getElementById("historicTrafficSlotMain");
+  const historicSlotExtra = document.getElementById("historicTrafficSlotExtra");
+  const historicSlotDedicated = document.getElementById("historicTrafficSlotDedicated");
+
   if (!mainList || !extraList || !extraPage) return;
 
-  // Limpiar hoja extra
+  function moveHistoricBlockTo(slot) {
+    if (!historicBlock || !slot) return;
+    if (historicBlock.parentElement !== slot) {
+      slot.appendChild(historicBlock);
+    }
+  }
+
   extraList.innerHTML = "";
 
   const routeItems = Array.from(mainList.children).filter(el => {
     return !el.classList.contains("od-empty");
   });
 
-  if (routeItems.length <= 3) {
+  const routeCount = routeItems.length;
+
+  /*
+    CASO 1:
+    0 o 1 ruta.
+    Hay espacio en la primera hoja, entonces el histórico queda debajo de la fuente.
+  */
+  if (routeCount <= 1) {
     extraPage.classList.add("is-hidden");
 
-    if (!routeItems.length) {
+    if (historicPage) {
+      historicPage.classList.add("is-hidden");
+    }
+
+    moveHistoricBlockTo(historicSlotMain);
+
+    if (!routeCount) {
       extraList.innerHTML = '<div class="od-empty">Sin datos</div>';
     }
 
     return;
   }
 
+  /*
+    CASO 2:
+    2 o 3 rutas.
+    No abrimos hoja de continuación de rutas, pero sí una hoja propia de histórico.
+  */
+  if (routeCount <= 3) {
+    extraPage.classList.add("is-hidden");
+
+    if (historicPage) {
+      historicPage.classList.remove("is-hidden");
+    }
+
+    moveHistoricBlockTo(historicSlotDedicated);
+
+    return;
+  }
+
+  /*
+    CASO 3:
+    4 a 6 rutas.
+    La hoja 2 muestra rutas 4, 5 y 6, y debajo va el histórico.
+  */
   extraPage.classList.remove("is-hidden");
+
+  if (historicPage) {
+    historicPage.classList.add("is-hidden");
+  }
+
+  moveHistoricBlockTo(historicSlotExtra);
 
   const extraItems = routeItems.slice(3);
 
