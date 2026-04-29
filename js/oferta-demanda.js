@@ -25,7 +25,8 @@
   let rutasKmRows = [];
   let rutasKmIndex = new Map();
   let airlineAliasIndex = {};
-
+  let historicTrafficByIata = {};
+  
   const DEST_OVERRIDES = {
     BUE: { ciudad: "Buenos Aires AEP+EZE", pais: "Argentina" },
     GRU: { ciudad: "São Paulo", pais: "Brasil" },
@@ -146,6 +147,63 @@ function buildRouteSimpleKey(cityPair) {
     return Number(n).toLocaleString("es-AR");
   }
 
+function odFormatNumber(value) {
+  if (value === null || value === undefined || value === "" || isNaN(Number(value))) return "–";
+  return Number(value).toLocaleString("es-AR");
+}
+
+function odFormatPctRatio(value, opts = {}) {
+  if (value === null || value === undefined || isNaN(Number(value))) return "–";
+
+  const abs = Math.abs(Number(value) * 100);
+  const txt = abs.toLocaleString("es-AR", {
+    minimumFractionDigits: opts.decimals ?? 1,
+    maximumFractionDigits: opts.decimals ?? 1
+  });
+
+  if (opts.withSign === false) {
+    return `${txt}%`;
+  }
+
+  const sign = Number(value) >= 0 ? "+" : "-";
+  return `${sign}${txt}%`;
+}
+
+function odBuildRecoveryPhrase(varVs2019) {
+  if (varVs2019 === null || varVs2019 === undefined || isNaN(Number(varVs2019))) {
+    return "sin una comparación válida contra el nivel prepandemia";
+  }
+
+  const v = Number(varVs2019);
+
+  if (v >= 0.05) {
+    return `ubicándose ${odFormatPctRatio(v, { withSign: false })} por encima del nivel prepandemia`;
+  }
+
+  if (v >= 0) {
+    return `ubicándose levemente por encima del nivel prepandemia (${odFormatPctRatio(v)})`;
+  }
+
+  if (v >= -0.05) {
+    return `en un nivel similar al de 2019 (${odFormatPctRatio(v)})`;
+  }
+
+  return `ubicándose ${odFormatPctRatio(Math.abs(v), { withSign: false })} por debajo del nivel prepandemia`;
+}
+
+function odBuildHistoricalTrendPhrase(tmcaPrepandemic) {
+  if (tmcaPrepandemic === null || tmcaPrepandemic === undefined || isNaN(Number(tmcaPrepandemic))) {
+    return "una evolución heterogénea";
+  }
+
+  const t = Number(tmcaPrepandemic);
+
+  if (t >= 0.08) return "una marcada tendencia de crecimiento durante el período prepandemia";
+  if (t >= 0.03) return "una tendencia de crecimiento durante el período prepandemia";
+  if (t >= -0.01) return "un comportamiento relativamente estable durante el período prepandemia";
+  return "una tendencia contractiva durante el período prepandemia";
+}
+  
   function escapeHtml(value) {
     return String(value ?? "")
       .replace(/&/g, "&amp;")
@@ -2021,6 +2079,15 @@ if (airlineAliasResp && airlineAliasResp.ok) {
 } else {
   airlineAliasIndex = {};
 }
+
+try {
+  const respHistoric = await fetch("fuentes/tmca_historica_57_aeropuertos_base2019.json");
+  historicTrafficByIata = await respHistoric.json();
+} catch (e) {
+  console.warn("No se pudo cargar tmca_historica_57_aeropuertos_base2019.json", e);
+  historicTrafficByIata = {};
+}
+      
 if (select) {
   select.innerHTML = "";
   aeropuertos.forEach(a => {
@@ -2080,7 +2147,13 @@ try {
       if (select) select.innerHTML = "<option>Error al cargar datos</option>";
     }
   }
-
+try {
+  const respHistoric = await fetch("fuentes/tmca_historica_57_aeropuertos_base2019.json");
+  historicTrafficByIata = await respHistoric.json();
+} catch (e) {
+  console.warn("No se pudo cargar tmca_historica_57_aeropuertos_base2019.json", e);
+  historicTrafficByIata = {};
+}
   /* ============================================================
      INIT
      ============================================================ */
