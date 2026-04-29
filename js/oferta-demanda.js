@@ -2132,16 +2132,9 @@ try {
 } catch (err) {
   console.error("Error al renderizar aeropuerto inicial:", err);
 }
-  });
-}
-
-try {
-  renderAirport(initial);
-} catch (err) {
-  console.error("Error al renderizar aeropuerto inicial:", err);
-}
-
-    } catch (err) {
+   
+    
+     } catch (err) {
       console.error("Error cargando oferta-demanda:", err);
       if (select) select.innerHTML = "<option>Error al cargar datos</option>";
     }
