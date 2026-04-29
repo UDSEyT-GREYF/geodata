@@ -775,59 +775,47 @@
    ============================================================ */
 
 .historic-traffic-block {
-  margin-top: 10px;
-  padding: 12px 14px;
-  border: 1px solid #d0d7e2;
+  margin: 10px 14px 0;
+  padding: 10px 12px 12px;
+  border: 1px solid #cfd8e3;
   border-radius: 8px;
   background: #ffffff;
-  break-inside: avoid;
+  box-sizing: border-box;
   page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 .historic-traffic-header {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  align-items: flex-start;
-  margin-bottom: 8px;
+  display: block;
+  margin: 0 0 8px;
+  padding: 0;
 }
 
-.historic-traffic-header h3 {
+.historic-traffic-title {
   margin: 0;
-  font-size: 1rem;
-  line-height: 1.15;
-  color: #002855;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.historic-traffic-header p {
-  margin: 3px 0 0;
-  font-size: 0.72rem;
-  line-height: 1.25;
-  color: #64748b;
+  padding: 0;
 }
 
 .historic-traffic-metrics {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
-  margin: 8px 0 10px;
+  margin: 0 0 10px;
 }
 
 .historic-metric {
-  border: 1px solid #e0e7f0;
+  border: 1px solid #d9e2ec;
   border-radius: 6px;
   background: #f8fafc;
-  padding: 7px 8px;
-  min-height: 48px;
+  padding: 7px 9px;
+  min-height: 46px;
 }
 
 .historic-metric-label {
   display: block;
   font-size: 0.64rem;
   line-height: 1.15;
-  color: #64748b;
+  color: #617089;
   text-transform: uppercase;
   letter-spacing: 0.02em;
   margin-bottom: 3px;
@@ -843,24 +831,31 @@
 
 .historic-traffic-text {
   margin: 0;
-  font-size: 0.78rem;
-  line-height: 1.42;
-  color: #334155;
+  padding: 0;
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: #26374a;
   text-align: justify;
+}
+
+.historic-traffic-text strong {
+  font-weight: 700;
+  color: #152238;
 }
 
 @media print {
   .historic-traffic-block {
-    margin-top: 8px;
-    padding: 10px 12px;
+    margin: 8px 14px 0;
+    padding: 9px 12px 11px;
   }
 
   .historic-traffic-text {
-    font-size: 0.76rem;
-    line-height: 1.38;
+    font-size: 0.75rem;
+    line-height: 1.4;
   }
 
   .historic-metric {
-    padding: 6px 7px;
+    padding: 6px 8px;
+    min-height: 44px;
   }
 }
