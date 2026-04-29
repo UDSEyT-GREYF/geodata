@@ -2077,7 +2077,7 @@ textEl.innerHTML =
     Entre <strong>${longStartYear}</strong> y <strong>${longEndYear}</strong>, los pasajeros pasaron de
     <strong>${odFormatNumber(d.prepandemic_start_pax)}</strong> a
     <strong>${odFormatNumber(d.baseline_pax)}</strong>, con una
-    <strong>TMCA de ${odFormatPctRatio(tmcaLongTerm)} anual</strong>.
+    <strong>Tasa Media de Crecimiento Anual (TMCA) de ${odFormatPctRatio(tmcaLongTerm)} anual</strong>.
   </p>
 
   <p>
