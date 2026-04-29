@@ -1872,7 +1872,14 @@ function renderPaxPatterns(iataUpper) {
 
   const dataCab = labels.map((_, i) => (cabCnt[i] ? cabSum[i] / cabCnt[i] : null));
   const dataInt = labels.map((_, i) => (intCnt[i] ? intSum[i] / intCnt[i] : null));
+  // NUEVO: Calcular promedio anual para el índice base 100
+  const cabAnnualAvg = dataCab.filter(v => v !== null).reduce((a, b) => a + b, 0) / dataCab.filter(v => v !== null).length;
+  const intAnnualAvg = dataInt.filter(v => v !== null).reduce((a, b) => a + b, 0) / dataInt.filter(v => v !== null).length;
 
+  // NUEVO: Calcular índice base 100
+  const seasonalIndexCab = dataCab.map(v => v !== null ? (v / cabAnnualAvg) * 100 : null);
+  const seasonalIndexInt = dataInt.map(v => v !== null ? (v / intAnnualAvg) * 100 : null);
+  
   renderPaxInlineLegend("paxSeasonLegend", [
     { label: "Cabotaje", color: "#73acdf" },
     { label: "Internacional", color: "#16c41e" }
@@ -1905,6 +1912,32 @@ function renderPaxPatterns(iataUpper) {
           barPercentage: 0.9,
           categoryPercentage: 0.7
         }
+                {
+          label: "Índice Cabotaje (base 100)",
+          data: seasonalIndexCab,
+          type: "line",
+          borderColor: "#73acdf",
+          borderWidth: 2,
+          borderDash: [5, 5],
+          pointRadius: 3,
+          pointBackgroundColor: "#73acdf",
+          fill: false,
+          yAxisID: "y1",
+          tension: 0.3
+        },
+        {
+          label: "Índice Internacional (base 100)",
+          data: seasonalIndexInt,
+          type: "line",
+          borderColor: "#16c41e",
+          borderWidth: 2,
+          borderDash: [5, 5],
+          pointRadius: 3,
+          pointBackgroundColor: "#16c41e",
+          fill: false,
+          yAxisID: "y1",
+          tension: 0.3
+        }
       ]
     },
     options: {
@@ -1918,8 +1951,11 @@ function renderPaxPatterns(iataUpper) {
         },
         tooltip: {
           callbacks: {
-            label: (item) => `${item.dataset.label}: ${formatNumber(Math.round(item.parsed.y || 0))}`
-          }
+            label: (item) => {
+              const value = Math.round(item.parsed.y || 0);
+              const formattedValue = item.yAxisID === 'y1' ? value : formatNumber(value);
+              return `${item.dataset.label}: ${formattedValue}`;
+            }          }
         }
       },
       scales: {
@@ -1934,6 +1970,20 @@ function renderPaxPatterns(iataUpper) {
             maxTicksLimit: 4
           }
         }
+
+        y1: {
+          type: "linear",
+          position: "right",
+          beginAtZero: false,
+          title: {
+            display: true,
+            text: "Índice (base 100)"
+          },
+          ticks: {
+            callback: (v) => Math.round(v)
+          }
+        }
+        
       }
     }
   });
