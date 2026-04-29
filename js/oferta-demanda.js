@@ -1957,11 +1957,15 @@ function renderTopRoutesCharts(routes) {
     renderSingleRouteChart(`odRouteChart_${idx}`, route);
   });
 }
-  function renderHistoricTrafficBlock(iata, airportName) {
+function renderHistoricTrafficBlock(iata, airportName) {
   const block = q("historicTrafficBlock");
   const textEl = q("historicTrafficText");
+
+  const labelLongTermEl = q("historicLabelTmcaLongTerm");
+  const labelRecentEl = q("historicLabelTmcaRecent");
+
   const tmcaEl = q("historicTmcaPrepandemia");
-  const caidaEl = q("historicCaidaPandemia");
+  const tmcaRecentEl = q("historicTmcaRecent");
   const varEl = q("historicVarVs2019");
 
   if (!block || !textEl) return;
@@ -1979,45 +1983,98 @@ function renderTopRoutesCharts(routes) {
 
   block.style.display = "block";
 
-  if (tmcaEl) {
-    tmcaEl.textContent = odFormatPctRatio(d.tmca_prepandemic);
+  const nombreAeropuerto = airportName || d.aeropuerto || `Aeropuerto ${code}`;
+
+  const longStartYear = Number(d.prepandemic_start_year);
+  const longEndYear = Number(d.baseline_year || 2019);
+
+  const recentStartYear = 2023;
+  const recentEndYear = Number(d.latest_year || YEAR_REF || 2025);
+
+  function getAnnualPax(year) {
+    const row = Array.isArray(d.annual_series)
+      ? d.annual_series.find(x => Number(x.year) === Number(year))
+      : null;
+
+    return row && Number.isFinite(Number(row.pax))
+      ? Number(row.pax)
+      : null;
   }
 
-  if (caidaEl) {
-    caidaEl.textContent = odFormatPctRatio(d.pandemic_drop_vs_2019);
+  function calcTMCA(startYear, endYear) {
+    const startPax = getAnnualPax(startYear);
+    const endPax = getAnnualPax(endYear);
+
+    if (
+      !Number.isFinite(startPax) ||
+      !Number.isFinite(endPax) ||
+      startPax <= 0 ||
+      endPax <= 0 ||
+      endYear <= startYear
+    ) {
+      return null;
+    }
+
+    return Math.pow(endPax / startPax, 1 / (endYear - startYear)) - 1;
+  }
+
+  const tmcaLongTerm = Number.isFinite(Number(d.tmca_prepandemic))
+    ? Number(d.tmca_prepandemic)
+    : null;
+
+  const tmcaRecent = Number.isFinite(Number(d.tmca_recent))
+    ? Number(d.tmca_recent)
+    : calcTMCA(recentStartYear, recentEndYear);
+
+  const recentStartPax = getAnnualPax(recentStartYear);
+  const recentEndPax = getAnnualPax(recentEndYear) || Number(d.latest_pax);
+
+  if (labelLongTermEl) {
+    labelLongTermEl.textContent = `TMCA ${longStartYear}-${longEndYear}`;
+  }
+
+  if (labelRecentEl) {
+    labelRecentEl.textContent = `TMCA ${recentStartYear}-${recentEndYear}`;
+  }
+
+  if (tmcaEl) {
+    tmcaEl.textContent = odFormatPctRatio(tmcaLongTerm);
+  }
+
+  if (tmcaRecentEl) {
+    tmcaRecentEl.textContent = odFormatPctRatio(tmcaRecent);
   }
 
   if (varEl) {
     varEl.textContent = odFormatPctRatio(d.var_latest_vs_2019);
   }
 
-  const nombreAeropuerto = airportName || d.aeropuerto || `Aeropuerto ${code}`;
-  const trendPhrase = odBuildHistoricalTrendPhrase(d.tmca_prepandemic);
+  const trendPhrase = odBuildHistoricalTrendPhrase(tmcaLongTerm);
+  const recentPhrase = odBuildRecentTrendPhrase(tmcaRecent);
   const recoveryPhrase = odBuildRecoveryPhrase(d.var_latest_vs_2019);
 
-  const pandemicSentence = (
-    d.pandemic_min_year &&
-    d.pandemic_min_pax !== null &&
-    d.pandemic_min_pax !== undefined
+  const maxSentence = (
+    d.max_year &&
+    d.max_pax !== null &&
+    d.max_pax !== undefined
   )
-    ? `Durante el período 2020–2022, el menor registro se produjo en ${d.pandemic_min_year}, con ${odFormatNumber(d.pandemic_min_pax)} pasajeros, equivalente a una variación de ${odFormatPctRatio(d.pandemic_drop_vs_2019)} respecto de 2019.`
-    : `Durante el período 2020–2022 se verificó una caída excepcional asociada al shock sanitario, aunque no se cuenta con una base completa para cuantificar el mínimo del período.`;
-
-  const minSentence = (
-    d.min_year &&
-    d.min_pax !== null &&
-    d.min_pax !== undefined
-  )
-    ? `El valor mínimo de la serie se produjo en ${d.min_year}, con ${odFormatNumber(d.min_pax)} pasajeros.`
+    ? `El máximo de la serie se registró en <strong>${d.max_year}</strong>, con <strong>${odFormatNumber(d.max_pax)}</strong> pasajeros.`
     : "";
 
-  textEl.textContent =
-    `Durante los últimos ${d.years_shown} años, el tráfico aerocomercial del ${nombreAeropuerto} experimentó ${trendPhrase}, junto con caídas de pasajeros y operaciones asociadas a factores exógenos al sector, ambientales y/o sanitarios, así como a la redefinición de políticas públicas y a diversas estrategias aerocomerciales de los operadores aéreos. Estos comportamientos pueden observarse en el gráfico Evolución histórica de pasajeros y aeronaves de la hoja Datos clave. ` +
-    `Entre ${d.prepandemic_start_year} y ${d.baseline_year}, los pasajeros pasaron de ${odFormatNumber(d.prepandemic_start_pax)} a ${odFormatNumber(d.baseline_pax)}, con una TMCA prepandemia de ${odFormatPctRatio(d.tmca_prepandemic)} anual. ` +
-    `${pandemicSentence} ` +
-    `En ${d.latest_year}, el aeropuerto registró ${odFormatNumber(d.latest_pax)} pasajeros, ${recoveryPhrase}. ` +
-    `${minSentence}`;
+  textEl.innerHTML =
+    `Durante los últimos <strong>${d.years_shown} años</strong>, el tráfico aerocomercial del <strong>${escapeHtml(nombreAeropuerto)}</strong> presentó <strong>${trendPhrase}</strong>. ` +
+
+    `Estos comportamientos pueden observarse en el gráfico <strong>Evolución histórica de pasajeros y aeronaves</strong> de la hoja <strong>Datos clave</strong>. ` +
+
+    `Entre <strong>${longStartYear}</strong> y <strong>${longEndYear}</strong>, los pasajeros pasaron de <strong>${odFormatNumber(d.prepandemic_start_pax)}</strong> a <strong>${odFormatNumber(d.baseline_pax)}</strong>, con una <strong>TMCA de ${odFormatPctRatio(tmcaLongTerm)} anual</strong>. ` +
+
+    `En el tramo reciente, entre <strong>${recentStartYear}</strong> y <strong>${recentEndYear}</strong>, el aeropuerto mostró <strong>${recentPhrase}</strong>, pasando de <strong>${odFormatNumber(recentStartPax)}</strong> a <strong>${odFormatNumber(recentEndPax)}</strong> pasajeros. ` +
+
+    `Tomando 2019 como año de referencia, en <strong>${recentEndYear}</strong> el aeropuerto <strong>${recoveryPhrase}</strong>. ` +
+
+    `${maxSentence}`;
 }
+  
   function renderOfertaDemanda(iata) {
     const summary = getOfertaDemandaSummary(iata, YEAR_REF, { soloComercial: true });
 setText(
