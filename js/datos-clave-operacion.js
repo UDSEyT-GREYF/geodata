@@ -3,13 +3,13 @@
   "use strict";
 
   const YEAR_REF = 2025;
-  const TRAFFIC_CLASS_SOURCE = "fuentes/rutas_clase_vuelo.geojson";
+  const TRAFFIC_CLASS_SOURCE = "fuentes/rutas_clase_vuelo_resumen.json";
 
   let aeropuertos = [];
   let poligonos = [];
   let pistasFeatures = [];
   let terminalesFeatures = [];
-  let operationRows = [];
+  let operationSummary = { classes: [], routes: [], airlines: [] };
   let iataWorldIndex = {};
   let routeCodeIndex = {};
   let currentIATA = "";
@@ -466,105 +466,46 @@
     return "";
   }
 
-function normalizeJsonRowKeys(row) {
-  const out = {};
+  function parseOperationSummaryJSON(data) {
+    const normClassRow = d => ({
+      i: clean(d.i).toUpperCase(),
+      y: Number(d.y),
+      c: normalizeFlightClass(d.c),
+      p: Number(d.p) || 0,
+      s: Number(d.s) || 0,
+      v: Number(d.v) || 0
+    });
 
-  Object.entries(row || {}).forEach(([key, value]) => {
-    out[normalizeHeader(key)] = value;
-  });
+    const normRouteRow = d => ({
+      i: clean(d.i).toUpperCase(),
+      y: Number(d.y),
+      d: clean(d.d).toUpperCase(),
+      p: Number(d.p) || 0,
+      v: Number(d.v) || 0
+    });
 
-  return out;
-}
-
-function getJsonRecords(data) {
-  if (Array.isArray(data)) return data;
-
-  // Por si el JSON viene como { data: [...] } o { rows: [...] }
-  if (Array.isArray(data?.data)) return data.data;
-  if (Array.isArray(data?.rows)) return data.rows;
-
-  // Por si accidentalmente se exporta como GeoJSON
-  if (Array.isArray(data?.features)) {
-    return data.features.map(f => f.properties || {});
-  }
-
-  return [];
-}
-
-function parseOperationRoutesJSON(data) {
-  const records = getJsonRecords(data);
-
-  return records.map(rawRow => {
-    const r = normalizeJsonRowKeys(rawRow);
-
-    const year = parseNumber(firstNonEmpty(r, [
-      "anio",
-      "ano",
-      "año",
-      "year"
-    ]));
-
-    const route = clean(firstNonEmpty(r, [
-      "rutacompleta",
-      "ruta_completa",
-      "ruta",
-      "citypair_iata",
-      "city_pair_iata"
-    ])).toUpperCase();
-
-    const airline = clean(firstNonEmpty(r, [
-      "aerolinea_nombre",
-      "aerolinea",
-      "airline",
-      "compania",
-      "compañia"
-    ]));
-
-    const flightClass = normalizeFlightClass(firstNonEmpty(r, [
-      "clase_de_vuelo",
-      "clase_vuelo",
-      "clase",
-      "clasificacion",
-      "clasificación"
-    ]));
+    const normAirlineRow = d => ({
+      i: clean(d.i).toUpperCase(),
+      y: Number(d.y),
+      a: clean(d.a),
+      p: Number(d.p) || 0,
+      v: Number(d.v) || 0
+    });
 
     return {
-      year: Number.isFinite(year) ? Number(year) : NaN,
-      route,
-      airline,
-      flightClass,
-      pax: parseNumber(firstNonEmpty(r, [
-        "pax",
-        "pasajeros",
-        "totalpasajeros",
-        "total_pasajeros"
-      ])),
-      seats: parseNumber(firstNonEmpty(r, [
-        "asientos_pax",
-        "asientos",
-        "seats"
-      ])),
-      flights: parseNumber(firstNonEmpty(r, [
-        "vuelos",
-        "movimientos",
-        "operaciones"
-      ]))
+      classes: Array.isArray(data?.classes) ? data.classes.map(normClassRow).filter(d => d.i && Number.isFinite(d.y)) : [],
+      routes: Array.isArray(data?.routes) ? data.routes.map(normRouteRow).filter(d => d.i && Number.isFinite(d.y)) : [],
+      airlines: Array.isArray(data?.airlines) ? data.airlines.map(normAirlineRow).filter(d => d.i && Number.isFinite(d.y) && d.a) : []
     };
-  }).filter(r =>
-    Number.isFinite(r.year) &&
-    r.route &&
-    Number.isFinite(r.pax) &&
-    Number.isFinite(r.flights)
-  );
-}
+  }
 
-  function getOperationRowsForAirport(iata, year = YEAR_REF) {
+  function getOperationClassRowsForAirport(iata, year = YEAR_REF) {
     const selected = clean(iata).toUpperCase();
-    return operationRows.filter(r => r.year === year && routeHasAirport(r.route, selected));
+    return operationSummary.classes.filter(r => r.i === selected && r.y === year);
   }
 
   function summarizeOperationTraffic(iata, year = YEAR_REF) {
-    const rows = getOperationRowsForAirport(iata, year);
+    const rows = getOperationClassRowsForAirport(iata, year);
     const byClass = new Map();
 
     FLIGHT_CLASS_ORDER.forEach(cls => {
@@ -572,15 +513,16 @@ function parseOperationRoutesJSON(data) {
     });
 
     rows.forEach(r => {
-      if (!byClass.has(r.flightClass)) byClass.set(r.flightClass, { flightClass: r.flightClass, pax: 0, seats: 0, flights: 0 });
-      const item = byClass.get(r.flightClass);
-      item.pax += Number(r.pax) || 0;
-      item.seats += Number(r.seats) || 0;
-      item.flights += Number(r.flights) || 0;
+      const flightClass = normalizeFlightClass(r.c);
+      if (!byClass.has(flightClass)) byClass.set(flightClass, { flightClass, pax: 0, seats: 0, flights: 0 });
+      const item = byClass.get(flightClass);
+      item.pax += Number(r.p) || 0;
+      item.seats += Number(r.s) || 0;
+      item.flights += Number(r.v) || 0;
     });
 
-    const totalPax = rows.reduce((acc, r) => acc + (Number(r.pax) || 0), 0);
-    const totalMov = rows.reduce((acc, r) => acc + (Number(r.flights) || 0), 0);
+    const totalPax = rows.reduce((acc, r) => acc + (Number(r.p) || 0), 0);
+    const totalMov = rows.reduce((acc, r) => acc + (Number(r.v) || 0), 0);
     const paxPerMov = totalMov > 0 ? totalPax / totalMov : null;
     return { rows, totalPax, totalMov, paxPerMov, byClass: Array.from(byClass.values()) };
   }
@@ -629,14 +571,14 @@ function parseOperationRoutesJSON(data) {
     const acc = new Map();
     years.forEach(year => acc.set(year, { year, "Regular": 0, "No Regular": 0, "Av. Gral": 0 }));
 
-    operationRows
-      .filter(r => years.includes(r.year) && routeHasAirport(r.route, selected))
+    operationSummary.classes
+      .filter(r => r.i === selected && years.includes(r.y))
       .forEach(r => {
-        const item = acc.get(r.year);
+        const item = acc.get(r.y);
         if (!item) return;
-        const family = operationClassFamily(r.flightClass);
+        const family = operationClassFamily(r.c);
         if (!Object.prototype.hasOwnProperty.call(item, family)) return;
-        item[family] += Number(r.pax) || 0;
+        item[family] += Number(r.p) || 0;
       });
 
     return Array.from(acc.values()).sort((a, b) => a.year - b.year);
@@ -706,22 +648,10 @@ function parseOperationRoutesJSON(data) {
   }
 
   function renderOperationTopRoutes(iata) {
-    const rows = getOperationRowsForAirport(iata, YEAR_REF);
     const selected = clean(iata).toUpperCase();
-    const acc = new Map();
-
-    rows.forEach(r => {
-      const other = getOtherEndpoint(r.route, selected);
-      const key = other || r.route;
-      if (!acc.has(key)) acc.set(key, { code: key, pax: 0, flights: 0 });
-      const item = acc.get(key);
-      item.pax += Number(r.pax) || 0;
-      item.flights += Number(r.flights) || 0;
-    });
-
-    const top = Array.from(acc.values())
-      .filter(d => d.pax > 0 || d.flights > 0)
-      .sort((a, b) => b.pax - a.pax)
+    const top = operationSummary.routes
+      .filter(d => d.i === selected && d.y === YEAR_REF && ((Number(d.p) || 0) > 0 || (Number(d.v) || 0) > 0))
+      .sort((a, b) => (Number(b.p) || 0) - (Number(a.p) || 0))
       .slice(0, 8);
 
     const el = q("opTopRoutesList");
@@ -730,35 +660,28 @@ function parseOperationRoutesJSON(data) {
       ? top.map((d, idx) => `
         <div class="top-row">
           <div class="top-rank">${idx + 1}</div>
-          <div class="top-name">${escapeHtml(getRouteDisplayName(d.code, selected))}</div>
-          <div class="top-value">${formatNumber(Math.round(d.pax))} pax<br>${formatNumber(d.flights)} mov.</div>
+          <div class="top-name">${escapeHtml(getRouteDisplayName(d.d, selected))}</div>
+          <div class="top-value">${formatNumber(Math.round(d.p))} pax<br>${formatNumber(d.v)} mov.</div>
         </div>
       `).join("")
       : `<div class="operation-empty">Sin datos</div>`;
   }
 
   function renderOperationTopAirlines(iata) {
-    const rows = getOperationRowsForAirport(iata, YEAR_REF);
-    const acc = new Map();
+    const selected = clean(iata).toUpperCase();
+    const top = operationSummary.airlines
+      .filter(d => d.i === selected && d.y === YEAR_REF && d.a)
+      .sort((a, b) => (Number(b.p) || 0) - (Number(a.p) || 0))
+      .slice(0, 6);
 
-    rows.forEach(r => {
-      const name = clean(r.airline);
-      if (!name) return;
-      if (!acc.has(name)) acc.set(name, { name, pax: 0, flights: 0 });
-      const item = acc.get(name);
-      item.pax += Number(r.pax) || 0;
-      item.flights += Number(r.flights) || 0;
-    });
-
-    const top = Array.from(acc.values()).sort((a, b) => b.pax - a.pax).slice(0, 6);
     const el = q("opTopAirlinesList");
     if (!el) return;
     el.innerHTML = top.length
       ? top.map((d, idx) => `
         <div class="top-row">
           <div class="top-rank">${idx + 1}</div>
-          <div class="top-name">${escapeHtml(d.name)}</div>
-          <div class="top-value">${formatNumber(Math.round(d.pax))} pax<br>${formatNumber(d.flights)} mov.</div>
+          <div class="top-name">${escapeHtml(d.a)}</div>
+          <div class="top-value">${formatNumber(Math.round(d.p))} pax<br>${formatNumber(d.v)} mov.</div>
         </div>
       `).join("")
       : `<div class="operation-empty">Sin aerolíneas comerciales registradas</div>`;
@@ -897,9 +820,8 @@ function parseOperationRoutesJSON(data) {
       if (pistasResp && pistasResp.ok) pistasFeatures = (await pistasResp.json()).features || [];
       if (terminalesResp && terminalesResp.ok) terminalesFeatures = (await terminalesResp.json()).features || [];
       if (operationRoutesResp && operationRoutesResp.ok) {
-  const operationData = await operationRoutesResp.json();
-  operationRows = parseOperationRoutesJSON(operationData);
-}
+        operationSummary = parseOperationSummaryJSON(await operationRoutesResp.json());
+      }
       if (iataWorldResp && iataWorldResp.ok) {
         const parsedWorld = parseIATAMundoCSV(await readTextSmart(iataWorldResp));
         iataWorldIndex = parsedWorld.byIata;
