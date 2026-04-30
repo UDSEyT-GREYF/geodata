@@ -3,7 +3,7 @@
   "use strict";
 
   const YEAR_REF = 2025;
-  const TRAFFIC_CLASS_SOURCE = "fuentes/rutas_clase_vuelo.csv";
+  const TRAFFIC_CLASS_SOURCE = "fuentes/rutas_clase_vuelo.geojson";
 
   let aeropuertos = [];
   let poligonos = [];
