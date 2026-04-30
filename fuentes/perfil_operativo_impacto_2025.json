@@ -1,0 +1,939 @@
+{
+  "version": "2026-04-30",
+  "archivo_sugerido": "fuentes/perfil_operativo_impacto_2025.json",
+  "universo": {
+    "descripcion": "Aeropuertos del SNA utilizados por el informe de impacto.",
+    "total_aeropuertos": 57,
+    "incluye": [
+      "EPA",
+      "RLO"
+    ],
+    "excluye": {
+      "GGS": "No incluido en la lista SNA utilizada para el informe.",
+      "OES": "No pertenece al SNA; no se incorpora a esta clasificación."
+    }
+  },
+  "fuentes_base": [
+    "fuentes/Datos_aeropuertos.geojson",
+    "fuentes/Descriptivo_aeropuertos.geojson",
+    "fuentes/rutasaereas.csv",
+    "fuentes/pasajeros_aeropuerto_mensual.csv",
+    "fuentes/movimientos_aeropuerto_mensual.csv"
+  ],
+  "nota_metodologica": "Clasificación operativa para modular la narrativa del informe de impacto. Distingue el rol aerocomercial regular, la baja regularidad, la infraestructura sin oferta regular relevante y los aeropuertos cuyo peso principal se vincula a aviación general, ejecutiva o privada. No reemplaza la tipología territorial del Descriptivo_aeropuertos.geojson; la complementa.",
+  "campos_metricos_pendientes": {
+    "pasajeros_2025": null,
+    "movimientos_2025": null,
+    "pasajeros_por_movimiento": null,
+    "movimientos_por_pasajero": null,
+    "nota": "Campos previstos para completar con el cálculo desde pasajeros_aeropuerto_mensual.csv y movimientos_aeropuerto_mensual.csv."
+  },
+  "categorias": {
+    "nodo_aerocomercial_consolidado": {
+      "orden": 1,
+      "label": "Nodo aerocomercial consolidado",
+      "criterio": "Alto volumen relativo de pasajeros, conectividad regular significativa y peso claro dentro del SNA.",
+      "enfoque_narrativo": "Enfatizar escala, conectividad, empleo, turismo, servicios, actividad inducida e integración nacional/internacional.",
+      "aeropuertos": [
+        {
+          "iata": "AEP",
+          "nombre": "Aeroparque Jorge Newbery"
+        },
+        {
+          "iata": "EZE",
+          "nombre": "Ezeiza"
+        },
+        {
+          "iata": "COR",
+          "nombre": "Córdoba"
+        },
+        {
+          "iata": "MDZ",
+          "nombre": "Mendoza"
+        },
+        {
+          "iata": "BRC",
+          "nombre": "Bariloche"
+        },
+        {
+          "iata": "IGR",
+          "nombre": "Iguazú"
+        },
+        {
+          "iata": "SLA",
+          "nombre": "Salta"
+        },
+        {
+          "iata": "TUC",
+          "nombre": "Tucumán"
+        },
+        {
+          "iata": "NQN",
+          "nombre": "Neuquén"
+        },
+        {
+          "iata": "USH",
+          "nombre": "Ushuaia"
+        },
+        {
+          "iata": "FTE",
+          "nombre": "El Calafate"
+        },
+        {
+          "iata": "CRD",
+          "nombre": "Comodoro Rivadavia"
+        },
+        {
+          "iata": "ROS",
+          "nombre": "Rosario"
+        }
+      ]
+    },
+    "aeropuerto_regular_intermedio": {
+      "orden": 2,
+      "label": "Aeropuerto regular intermedio",
+      "criterio": "Cuenta con vuelos regulares y función aerocomercial clara, aunque con menor escala o mayor dependencia de pocos mercados que los nodos consolidados.",
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "aeropuertos": [
+        {
+          "iata": "MDQ",
+          "nombre": "Mar del Plata"
+        },
+        {
+          "iata": "JUJ",
+          "nombre": "Jujuy"
+        },
+        {
+          "iata": "CNQ",
+          "nombre": "Corrientes"
+        },
+        {
+          "iata": "RES",
+          "nombre": "Resistencia"
+        },
+        {
+          "iata": "PSS",
+          "nombre": "Posadas"
+        },
+        {
+          "iata": "PMY",
+          "nombre": "Puerto Madryn"
+        },
+        {
+          "iata": "RGA",
+          "nombre": "Río Grande"
+        },
+        {
+          "iata": "RGL",
+          "nombre": "Río Gallegos"
+        },
+        {
+          "iata": "REL",
+          "nombre": "Trelew"
+        },
+        {
+          "iata": "UAQ",
+          "nombre": "San Juan"
+        },
+        {
+          "iata": "CTC",
+          "nombre": "Catamarca"
+        },
+        {
+          "iata": "IRJ",
+          "nombre": "La Rioja"
+        },
+        {
+          "iata": "LUQ",
+          "nombre": "San Luis"
+        },
+        {
+          "iata": "RSA",
+          "nombre": "Santa Rosa"
+        },
+        {
+          "iata": "VDM",
+          "nombre": "Viedma"
+        },
+        {
+          "iata": "CPC",
+          "nombre": "San Martín de los Andes"
+        },
+        {
+          "iata": "EQS",
+          "nombre": "Esquel"
+        },
+        {
+          "iata": "FMA",
+          "nombre": "Formosa"
+        },
+        {
+          "iata": "SFN",
+          "nombre": "Santa Fe"
+        },
+        {
+          "iata": "AFA",
+          "nombre": "San Rafael"
+        },
+        {
+          "iata": "SDE",
+          "nombre": "Santiago del Estero"
+        },
+        {
+          "iata": "PRA",
+          "nombre": "Paraná"
+        },
+        {
+          "iata": "BHI",
+          "nombre": "Bahía Blanca"
+        }
+      ]
+    },
+    "baja_regularidad_demanda_acotada": {
+      "orden": 3,
+      "label": "Aeropuerto de baja regularidad o demanda aerocomercial acotada",
+      "criterio": "Baja frecuencia, pocos pasajeros, operación sensible a pocos vuelos/rutas o marcada estacionalidad.",
+      "enfoque_narrativo": "Evitar comparaciones directas con nodos de mayor escala. Destacar conectividad puntual, función territorial, estacionalidad, frontera, actividades productivas o potencial regional.",
+      "aclaracion_historica": "Dado el bajo volumen de pasajeros y la sensibilidad de la serie a operaciones puntuales, las variaciones porcentuales deben interpretarse con cautela.",
+      "aeropuertos": [
+        {
+          "iata": "VME",
+          "nombre": "Villa Mercedes"
+        },
+        {
+          "iata": "RHD",
+          "nombre": "Termas de Río Hondo"
+        },
+        {
+          "iata": "VLG",
+          "nombre": "Villa Gesell"
+        },
+        {
+          "iata": "RCU",
+          "nombre": "Río Cuarto"
+        },
+        {
+          "iata": "TDL",
+          "nombre": "Tandil"
+        },
+        {
+          "iata": "LGS",
+          "nombre": "Malargüe"
+        },
+        {
+          "iata": "AOL",
+          "nombre": "Paso de los Libres"
+        },
+        {
+          "iata": "TTG",
+          "nombre": "Tartagal"
+        },
+        {
+          "iata": "NEC",
+          "nombre": "Necochea"
+        },
+        {
+          "iata": "SST",
+          "nombre": "Santa Teresita"
+        },
+        {
+          "iata": "RCQ",
+          "nombre": "Reconquista"
+        },
+        {
+          "iata": "RLO",
+          "nombre": "Merlo / Valle del Conlara"
+        }
+      ]
+    },
+    "infraestructura_sin_oferta_regular_relevante": {
+      "orden": 4,
+      "label": "Infraestructura aeroportuaria con baja o nula oferta comercial regular relevante",
+      "criterio": "Sin vuelos regulares comerciales relevantes en el año de análisis o con actividad comercial muy limitada; su valor debe leerse principalmente como infraestructura disponible y soporte territorial.",
+      "enfoque_narrativo": "No centrar la evaluación en pasajeros comerciales. Destacar infraestructura estratégica, disponibilidad operativa, soporte territorial, conectividad eventual, logística, servicios públicos y potencial de desarrollo regional.",
+      "aeropuertos": [
+        {
+          "iata": "EPA",
+          "nombre": "El Palomar"
+        },
+        {
+          "iata": "COC",
+          "nombre": "Concordia"
+        },
+        {
+          "iata": "GPO",
+          "nombre": "General Pico"
+        },
+        {
+          "iata": "GNR",
+          "nombre": "General Roca"
+        },
+        {
+          "iata": "PMQ",
+          "nombre": "Perito Moreno"
+        },
+        {
+          "iata": "RYO",
+          "nombre": "El Turbio / 28 de Noviembre"
+        },
+        {
+          "iata": "LPG",
+          "nombre": "La Plata"
+        },
+        {
+          "iata": "JNI",
+          "nombre": "Junín"
+        }
+      ]
+    },
+    "aviacion_general_ejecutiva_privada": {
+      "orden": 5,
+      "label": "Aeropuerto de aviación general, ejecutiva y privada",
+      "criterio": "Baja cantidad de pasajeros comerciales en relación con movimientos, con rol principal asociado a aviación general, ejecutiva, privada, sanitaria, instrucción o servicios aeronáuticos.",
+      "enfoque_narrativo": "Explicar que la relevancia no se refleja adecuadamente en el volumen de pasajeros comerciales, sino en movimientos, conectividad no regular, disponibilidad operativa y función dentro del sistema aeroportuario metropolitano/regional.",
+      "aeropuertos": [
+        {
+          "iata": "FDO",
+          "nombre": "San Fernando"
+        }
+      ]
+    }
+  },
+  "aeropuertos_por_iata": {
+    "AEP": {
+      "iata": "AEP",
+      "nombre": "Aeroparque Jorge Newbery",
+      "perfil_operativo_impacto": "nodo_aerocomercial_consolidado",
+      "categoria_label": "Nodo aerocomercial consolidado",
+      "orden_categoria": 1,
+      "enfoque_narrativo": "Enfatizar escala, conectividad, empleo, turismo, servicios, actividad inducida e integración nacional/internacional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "AFA": {
+      "iata": "AFA",
+      "nombre": "San Rafael",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "AOL": {
+      "iata": "AOL",
+      "nombre": "Paso de los Libres",
+      "perfil_operativo_impacto": "baja_regularidad_demanda_acotada",
+      "categoria_label": "Aeropuerto de baja regularidad o demanda aerocomercial acotada",
+      "orden_categoria": 3,
+      "enfoque_narrativo": "Evitar comparaciones directas con nodos de mayor escala. Destacar conectividad puntual, función territorial, estacionalidad, frontera, actividades productivas o potencial regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "BHI": {
+      "iata": "BHI",
+      "nombre": "Bahía Blanca",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "BRC": {
+      "iata": "BRC",
+      "nombre": "Bariloche",
+      "perfil_operativo_impacto": "nodo_aerocomercial_consolidado",
+      "categoria_label": "Nodo aerocomercial consolidado",
+      "orden_categoria": 1,
+      "enfoque_narrativo": "Enfatizar escala, conectividad, empleo, turismo, servicios, actividad inducida e integración nacional/internacional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "CNQ": {
+      "iata": "CNQ",
+      "nombre": "Corrientes",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "COC": {
+      "iata": "COC",
+      "nombre": "Concordia",
+      "perfil_operativo_impacto": "infraestructura_sin_oferta_regular_relevante",
+      "categoria_label": "Infraestructura aeroportuaria con baja o nula oferta comercial regular relevante",
+      "orden_categoria": 4,
+      "enfoque_narrativo": "No centrar la evaluación en pasajeros comerciales. Destacar infraestructura estratégica, disponibilidad operativa, soporte territorial, conectividad eventual, logística, servicios públicos y potencial de desarrollo regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "COR": {
+      "iata": "COR",
+      "nombre": "Córdoba",
+      "perfil_operativo_impacto": "nodo_aerocomercial_consolidado",
+      "categoria_label": "Nodo aerocomercial consolidado",
+      "orden_categoria": 1,
+      "enfoque_narrativo": "Enfatizar escala, conectividad, empleo, turismo, servicios, actividad inducida e integración nacional/internacional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "CPC": {
+      "iata": "CPC",
+      "nombre": "San Martín de los Andes",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "CRD": {
+      "iata": "CRD",
+      "nombre": "Comodoro Rivadavia",
+      "perfil_operativo_impacto": "nodo_aerocomercial_consolidado",
+      "categoria_label": "Nodo aerocomercial consolidado",
+      "orden_categoria": 1,
+      "enfoque_narrativo": "Enfatizar escala, conectividad, empleo, turismo, servicios, actividad inducida e integración nacional/internacional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "CTC": {
+      "iata": "CTC",
+      "nombre": "Catamarca",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "EPA": {
+      "iata": "EPA",
+      "nombre": "El Palomar",
+      "perfil_operativo_impacto": "infraestructura_sin_oferta_regular_relevante",
+      "categoria_label": "Infraestructura aeroportuaria con baja o nula oferta comercial regular relevante",
+      "orden_categoria": 4,
+      "enfoque_narrativo": "No centrar la evaluación en pasajeros comerciales. Destacar infraestructura estratégica, disponibilidad operativa, soporte territorial, conectividad eventual, logística, servicios públicos y potencial de desarrollo regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "EQS": {
+      "iata": "EQS",
+      "nombre": "Esquel",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "EZE": {
+      "iata": "EZE",
+      "nombre": "Ezeiza",
+      "perfil_operativo_impacto": "nodo_aerocomercial_consolidado",
+      "categoria_label": "Nodo aerocomercial consolidado",
+      "orden_categoria": 1,
+      "enfoque_narrativo": "Enfatizar escala, conectividad, empleo, turismo, servicios, actividad inducida e integración nacional/internacional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "FDO": {
+      "iata": "FDO",
+      "nombre": "San Fernando",
+      "perfil_operativo_impacto": "aviacion_general_ejecutiva_privada",
+      "categoria_label": "Aeropuerto de aviación general, ejecutiva y privada",
+      "orden_categoria": 5,
+      "enfoque_narrativo": "Explicar que la relevancia no se refleja adecuadamente en el volumen de pasajeros comerciales, sino en movimientos, conectividad no regular, disponibilidad operativa y función dentro del sistema aeroportuario metropolitano/regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "FMA": {
+      "iata": "FMA",
+      "nombre": "Formosa",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "FTE": {
+      "iata": "FTE",
+      "nombre": "El Calafate",
+      "perfil_operativo_impacto": "nodo_aerocomercial_consolidado",
+      "categoria_label": "Nodo aerocomercial consolidado",
+      "orden_categoria": 1,
+      "enfoque_narrativo": "Enfatizar escala, conectividad, empleo, turismo, servicios, actividad inducida e integración nacional/internacional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "GNR": {
+      "iata": "GNR",
+      "nombre": "General Roca",
+      "perfil_operativo_impacto": "infraestructura_sin_oferta_regular_relevante",
+      "categoria_label": "Infraestructura aeroportuaria con baja o nula oferta comercial regular relevante",
+      "orden_categoria": 4,
+      "enfoque_narrativo": "No centrar la evaluación en pasajeros comerciales. Destacar infraestructura estratégica, disponibilidad operativa, soporte territorial, conectividad eventual, logística, servicios públicos y potencial de desarrollo regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "GPO": {
+      "iata": "GPO",
+      "nombre": "General Pico",
+      "perfil_operativo_impacto": "infraestructura_sin_oferta_regular_relevante",
+      "categoria_label": "Infraestructura aeroportuaria con baja o nula oferta comercial regular relevante",
+      "orden_categoria": 4,
+      "enfoque_narrativo": "No centrar la evaluación en pasajeros comerciales. Destacar infraestructura estratégica, disponibilidad operativa, soporte territorial, conectividad eventual, logística, servicios públicos y potencial de desarrollo regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "IGR": {
+      "iata": "IGR",
+      "nombre": "Iguazú",
+      "perfil_operativo_impacto": "nodo_aerocomercial_consolidado",
+      "categoria_label": "Nodo aerocomercial consolidado",
+      "orden_categoria": 1,
+      "enfoque_narrativo": "Enfatizar escala, conectividad, empleo, turismo, servicios, actividad inducida e integración nacional/internacional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "IRJ": {
+      "iata": "IRJ",
+      "nombre": "La Rioja",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "JNI": {
+      "iata": "JNI",
+      "nombre": "Junín",
+      "perfil_operativo_impacto": "infraestructura_sin_oferta_regular_relevante",
+      "categoria_label": "Infraestructura aeroportuaria con baja o nula oferta comercial regular relevante",
+      "orden_categoria": 4,
+      "enfoque_narrativo": "No centrar la evaluación en pasajeros comerciales. Destacar infraestructura estratégica, disponibilidad operativa, soporte territorial, conectividad eventual, logística, servicios públicos y potencial de desarrollo regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "JUJ": {
+      "iata": "JUJ",
+      "nombre": "Jujuy",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "LGS": {
+      "iata": "LGS",
+      "nombre": "Malargüe",
+      "perfil_operativo_impacto": "baja_regularidad_demanda_acotada",
+      "categoria_label": "Aeropuerto de baja regularidad o demanda aerocomercial acotada",
+      "orden_categoria": 3,
+      "enfoque_narrativo": "Evitar comparaciones directas con nodos de mayor escala. Destacar conectividad puntual, función territorial, estacionalidad, frontera, actividades productivas o potencial regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "LPG": {
+      "iata": "LPG",
+      "nombre": "La Plata",
+      "perfil_operativo_impacto": "infraestructura_sin_oferta_regular_relevante",
+      "categoria_label": "Infraestructura aeroportuaria con baja o nula oferta comercial regular relevante",
+      "orden_categoria": 4,
+      "enfoque_narrativo": "No centrar la evaluación en pasajeros comerciales. Destacar infraestructura estratégica, disponibilidad operativa, soporte territorial, conectividad eventual, logística, servicios públicos y potencial de desarrollo regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "LUQ": {
+      "iata": "LUQ",
+      "nombre": "San Luis",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "MDQ": {
+      "iata": "MDQ",
+      "nombre": "Mar del Plata",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "MDZ": {
+      "iata": "MDZ",
+      "nombre": "Mendoza",
+      "perfil_operativo_impacto": "nodo_aerocomercial_consolidado",
+      "categoria_label": "Nodo aerocomercial consolidado",
+      "orden_categoria": 1,
+      "enfoque_narrativo": "Enfatizar escala, conectividad, empleo, turismo, servicios, actividad inducida e integración nacional/internacional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "NEC": {
+      "iata": "NEC",
+      "nombre": "Necochea",
+      "perfil_operativo_impacto": "baja_regularidad_demanda_acotada",
+      "categoria_label": "Aeropuerto de baja regularidad o demanda aerocomercial acotada",
+      "orden_categoria": 3,
+      "enfoque_narrativo": "Evitar comparaciones directas con nodos de mayor escala. Destacar conectividad puntual, función territorial, estacionalidad, frontera, actividades productivas o potencial regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "NQN": {
+      "iata": "NQN",
+      "nombre": "Neuquén",
+      "perfil_operativo_impacto": "nodo_aerocomercial_consolidado",
+      "categoria_label": "Nodo aerocomercial consolidado",
+      "orden_categoria": 1,
+      "enfoque_narrativo": "Enfatizar escala, conectividad, empleo, turismo, servicios, actividad inducida e integración nacional/internacional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "PMQ": {
+      "iata": "PMQ",
+      "nombre": "Perito Moreno",
+      "perfil_operativo_impacto": "infraestructura_sin_oferta_regular_relevante",
+      "categoria_label": "Infraestructura aeroportuaria con baja o nula oferta comercial regular relevante",
+      "orden_categoria": 4,
+      "enfoque_narrativo": "No centrar la evaluación en pasajeros comerciales. Destacar infraestructura estratégica, disponibilidad operativa, soporte territorial, conectividad eventual, logística, servicios públicos y potencial de desarrollo regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "PMY": {
+      "iata": "PMY",
+      "nombre": "Puerto Madryn",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "PRA": {
+      "iata": "PRA",
+      "nombre": "Paraná",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "PSS": {
+      "iata": "PSS",
+      "nombre": "Posadas",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "RCQ": {
+      "iata": "RCQ",
+      "nombre": "Reconquista",
+      "perfil_operativo_impacto": "baja_regularidad_demanda_acotada",
+      "categoria_label": "Aeropuerto de baja regularidad o demanda aerocomercial acotada",
+      "orden_categoria": 3,
+      "enfoque_narrativo": "Evitar comparaciones directas con nodos de mayor escala. Destacar conectividad puntual, función territorial, estacionalidad, frontera, actividades productivas o potencial regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "RCU": {
+      "iata": "RCU",
+      "nombre": "Río Cuarto",
+      "perfil_operativo_impacto": "baja_regularidad_demanda_acotada",
+      "categoria_label": "Aeropuerto de baja regularidad o demanda aerocomercial acotada",
+      "orden_categoria": 3,
+      "enfoque_narrativo": "Evitar comparaciones directas con nodos de mayor escala. Destacar conectividad puntual, función territorial, estacionalidad, frontera, actividades productivas o potencial regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "REL": {
+      "iata": "REL",
+      "nombre": "Trelew",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "RES": {
+      "iata": "RES",
+      "nombre": "Resistencia",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "RGA": {
+      "iata": "RGA",
+      "nombre": "Río Grande",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "RGL": {
+      "iata": "RGL",
+      "nombre": "Río Gallegos",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "RHD": {
+      "iata": "RHD",
+      "nombre": "Termas de Río Hondo",
+      "perfil_operativo_impacto": "baja_regularidad_demanda_acotada",
+      "categoria_label": "Aeropuerto de baja regularidad o demanda aerocomercial acotada",
+      "orden_categoria": 3,
+      "enfoque_narrativo": "Evitar comparaciones directas con nodos de mayor escala. Destacar conectividad puntual, función territorial, estacionalidad, frontera, actividades productivas o potencial regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "RLO": {
+      "iata": "RLO",
+      "nombre": "Merlo / Valle del Conlara",
+      "perfil_operativo_impacto": "baja_regularidad_demanda_acotada",
+      "categoria_label": "Aeropuerto de baja regularidad o demanda aerocomercial acotada",
+      "orden_categoria": 3,
+      "enfoque_narrativo": "Evitar comparaciones directas con nodos de mayor escala. Destacar conectividad puntual, función territorial, estacionalidad, frontera, actividades productivas o potencial regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "ROS": {
+      "iata": "ROS",
+      "nombre": "Rosario",
+      "perfil_operativo_impacto": "nodo_aerocomercial_consolidado",
+      "categoria_label": "Nodo aerocomercial consolidado",
+      "orden_categoria": 1,
+      "enfoque_narrativo": "Enfatizar escala, conectividad, empleo, turismo, servicios, actividad inducida e integración nacional/internacional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "RSA": {
+      "iata": "RSA",
+      "nombre": "Santa Rosa",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "RYO": {
+      "iata": "RYO",
+      "nombre": "El Turbio / 28 de Noviembre",
+      "perfil_operativo_impacto": "infraestructura_sin_oferta_regular_relevante",
+      "categoria_label": "Infraestructura aeroportuaria con baja o nula oferta comercial regular relevante",
+      "orden_categoria": 4,
+      "enfoque_narrativo": "No centrar la evaluación en pasajeros comerciales. Destacar infraestructura estratégica, disponibilidad operativa, soporte territorial, conectividad eventual, logística, servicios públicos y potencial de desarrollo regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "SDE": {
+      "iata": "SDE",
+      "nombre": "Santiago del Estero",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "SFN": {
+      "iata": "SFN",
+      "nombre": "Santa Fe",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "SLA": {
+      "iata": "SLA",
+      "nombre": "Salta",
+      "perfil_operativo_impacto": "nodo_aerocomercial_consolidado",
+      "categoria_label": "Nodo aerocomercial consolidado",
+      "orden_categoria": 1,
+      "enfoque_narrativo": "Enfatizar escala, conectividad, empleo, turismo, servicios, actividad inducida e integración nacional/internacional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "SST": {
+      "iata": "SST",
+      "nombre": "Santa Teresita",
+      "perfil_operativo_impacto": "baja_regularidad_demanda_acotada",
+      "categoria_label": "Aeropuerto de baja regularidad o demanda aerocomercial acotada",
+      "orden_categoria": 3,
+      "enfoque_narrativo": "Evitar comparaciones directas con nodos de mayor escala. Destacar conectividad puntual, función territorial, estacionalidad, frontera, actividades productivas o potencial regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "TDL": {
+      "iata": "TDL",
+      "nombre": "Tandil",
+      "perfil_operativo_impacto": "baja_regularidad_demanda_acotada",
+      "categoria_label": "Aeropuerto de baja regularidad o demanda aerocomercial acotada",
+      "orden_categoria": 3,
+      "enfoque_narrativo": "Evitar comparaciones directas con nodos de mayor escala. Destacar conectividad puntual, función territorial, estacionalidad, frontera, actividades productivas o potencial regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "TTG": {
+      "iata": "TTG",
+      "nombre": "Tartagal",
+      "perfil_operativo_impacto": "baja_regularidad_demanda_acotada",
+      "categoria_label": "Aeropuerto de baja regularidad o demanda aerocomercial acotada",
+      "orden_categoria": 3,
+      "enfoque_narrativo": "Evitar comparaciones directas con nodos de mayor escala. Destacar conectividad puntual, función territorial, estacionalidad, frontera, actividades productivas o potencial regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "TUC": {
+      "iata": "TUC",
+      "nombre": "Tucumán",
+      "perfil_operativo_impacto": "nodo_aerocomercial_consolidado",
+      "categoria_label": "Nodo aerocomercial consolidado",
+      "orden_categoria": 1,
+      "enfoque_narrativo": "Enfatizar escala, conectividad, empleo, turismo, servicios, actividad inducida e integración nacional/internacional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "UAQ": {
+      "iata": "UAQ",
+      "nombre": "San Juan",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "USH": {
+      "iata": "USH",
+      "nombre": "Ushuaia",
+      "perfil_operativo_impacto": "nodo_aerocomercial_consolidado",
+      "categoria_label": "Nodo aerocomercial consolidado",
+      "orden_categoria": 1,
+      "enfoque_narrativo": "Enfatizar escala, conectividad, empleo, turismo, servicios, actividad inducida e integración nacional/internacional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "VDM": {
+      "iata": "VDM",
+      "nombre": "Viedma",
+      "perfil_operativo_impacto": "aeropuerto_regular_intermedio",
+      "categoria_label": "Aeropuerto regular intermedio",
+      "orden_categoria": 2,
+      "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "VLG": {
+      "iata": "VLG",
+      "nombre": "Villa Gesell",
+      "perfil_operativo_impacto": "baja_regularidad_demanda_acotada",
+      "categoria_label": "Aeropuerto de baja regularidad o demanda aerocomercial acotada",
+      "orden_categoria": 3,
+      "enfoque_narrativo": "Evitar comparaciones directas con nodos de mayor escala. Destacar conectividad puntual, función territorial, estacionalidad, frontera, actividades productivas o potencial regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    },
+    "VME": {
+      "iata": "VME",
+      "nombre": "Villa Mercedes",
+      "perfil_operativo_impacto": "baja_regularidad_demanda_acotada",
+      "categoria_label": "Aeropuerto de baja regularidad o demanda aerocomercial acotada",
+      "orden_categoria": 3,
+      "enfoque_narrativo": "Evitar comparaciones directas con nodos de mayor escala. Destacar conectividad puntual, función territorial, estacionalidad, frontera, actividades productivas o potencial regional.",
+      "pasajeros_2025": null,
+      "movimientos_2025": null,
+      "pasajeros_por_movimiento": null
+    }
+  },
+  "conteo": {
+    "total_aeropuertos": 57,
+    "nodo_aerocomercial_consolidado": 13,
+    "aeropuerto_regular_intermedio": 23,
+    "baja_regularidad_demanda_acotada": 12,
+    "infraestructura_sin_oferta_regular_relevante": 8,
+    "aviacion_general_ejecutiva_privada": 1
+  }
+}
