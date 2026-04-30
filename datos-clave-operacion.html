@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lámina de operación aeroportuaria – ORSNA</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <link rel="stylesheet" href="css/datos-clave-operacion.css?v=operacion1">
+</head>
+<body>
+  <div class="lamina-toolbar no-print">
+    <div class="toolbar-left">
+      <div class="toolbar-title">Operación aeroportuaria por aeropuerto</div>
+      <div class="toolbar-subtitle">Lámina A4 con pasajeros y movimientos por clase de vuelo</div>
+    </div>
+    <div class="toolbar-actions">
+      <label class="toolbar-label" for="airportSelect">Aeropuerto</label>
+      <select id="airportSelect" class="toolbar-select">
+        <option value="">Cargando aeropuertos...</option>
+      </select>
+      <button id="btnExportPng" class="toolbar-btn" type="button">Exportar PNG</button>
+      <button id="btnPrint" class="toolbar-btn" type="button">Imprimir A4</button>
+    </div>
+  </div>
+
+  <main class="sheet-wrap">
+    <section id="sheetA4" class="sheet-a4">
+      <header class="sheet-header">
+        <h1 id="sheetTitle" class="sheet-title-main">Datos clave de operación aeroportuaria</h1>
+        <div class="sheet-airport-name" id="airportName"></div>
+      </header>
+
+      <section class="operation-grid">
+        <section class="operation-col col-infra">
+          <div class="col-header">INFRAESTRUCTURA Y ÁREA DE MOVIMIENTO</div>
+
+          <article class="section-card section-superficie operation-left-superficie">
+            <div class="section-title">EXPLOTACIÓN</div>
+            <div class="surface-top-kpis">
+              <div class="mini-kpi">
+                <div class="mini-kpi-label">Tamaño del predio</div>
+                <div class="mini-kpi-value"><span id="sumSupPredio">–</span> <span>hectáreas</span></div>
+              </div>
+              <div class="mini-kpi">
+                <div class="mini-kpi-label">Terminal de pasajeros</div>
+                <div class="mini-kpi-value"><span id="sumTerminal">–</span> <span>m²</span></div>
+              </div>
+            </div>
+
+            <div class="surface-visual-row">
+              <div class="predio-map-frame">
+                <div id="mapPredio" class="predio-map" aria-label="Mapa del predio aeroportuario"></div>
+              </div>
+              <div class="terminal-photo-frame">
+                <img id="imgTerminal" alt="Imagen de la terminal del aeropuerto">
+              </div>
+            </div>
+
+            <div class="explotacion-meta-grid">
+              <div class="explotacion-meta-col">
+                <div class="explotacion-meta-row">
+                  <div class="explotacion-meta-label">Explotador</div>
+                  <div class="explotacion-meta-value" id="predioExplotador">–</div>
+                </div>
+
+                <div class="explotacion-meta-row">
+                  <div class="explotacion-meta-label">Códigos</div>
+                  <div class="explotacion-meta-value" id="predioCodigos">–</div>
+                </div>
+
+                <div class="explotacion-meta-row">
+                  <div class="explotacion-meta-label">Habilitación</div>
+                  <div class="explotacion-meta-value" id="predioHabilitacion">–</div>
+                </div>
+              </div>
+
+              <div class="explotacion-meta-col">
+                <div class="explotacion-meta-row explotacion-meta-row-stack">
+                  <div class="explotacion-meta-label">Áreas concesionadas</div>
+                  <div class="explotacion-meta-value explotacion-meta-value-stack">
+                    <div id="predioSupAreasConcesionadas">–</div>
+                    <div class="explotacion-meta-detail" id="predioAreasConcesionadas">–</div>
+                  </div>
+                </div>
+
+                <div class="explotacion-meta-row">
+                  <div class="explotacion-meta-label">Concesionado hasta</div>
+                  <div class="explotacion-meta-value" id="predioConcesionHasta">–</div>
+                </div>
+
+                <div class="explotacion-meta-row">
+                  <div class="explotacion-meta-label">Grupo de concesión</div>
+                  <div class="explotacion-meta-value" id="predioGrupoConcesion">–</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="section-card section-movimiento operation-left-movimiento">
+            <div class="section-title">ÁREA DE MOVIMIENTO</div>
+            <div class="movement-wrap">
+              <div class="movement-box movement-box-runways">
+                <div class="movement-box-title movement-box-title-inline">Pistas de aterrizaje</div>
+
+                <div class="movement-runways-head">
+                  <div class="movement-runways-col movement-runways-col-label">Orientación</div>
+                  <div class="movement-runways-col movement-runways-col-length">Longitudes</div>
+                </div>
+
+                <div class="movement-runway-list" id="runwaysList"></div>
+              </div>
+
+              <div class="movement-box movement-box-positions">
+                <div class="story-block-title movement-kpi-title">PLATAFORMA</div>
+
+                <div class="movement-box-head">
+                  <div class="movement-box-icon">
+                    <img src="img/icons/PSN.png" alt="Plataforma">
+                  </div>
+                  <div class="movement-box-text">
+                    <div class="movement-box-sub">Puestos de estacionamiento de aeronaves</div>
+                    <div class="movement-position-detail" id="psnDetalleCompacto">Comerciales (–) - Av. General (–)</div>
+                  </div>
+                  <div class="movement-badge movement-badge-large" id="badgePsnTotal">–</div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="operation-col col-traffic-wide">
+          <div class="col-header">TRÁFICO POR CLASE DE VUELO Y CONECTIVIDAD</div>
+
+          <article class="section-card section-traffic-summary">
+            <div class="section-title">PASAJEROS Y MOVIMIENTOS 2025</div>
+
+            <div class="traffic-kpi-grid">
+              <div class="traffic-kpi">
+                <div class="traffic-kpi-label">Pasajeros</div>
+                <div class="traffic-kpi-value" id="opPaxTotal2025">–</div>
+              </div>
+              <div class="traffic-kpi">
+                <div class="traffic-kpi-label">Movimientos</div>
+                <div class="traffic-kpi-value" id="opMovTotal2025">–</div>
+              </div>
+              <div class="traffic-kpi">
+                <div class="traffic-kpi-label">Pasajeros / mov.</div>
+                <div class="traffic-kpi-value" id="opPaxPorMov2025">–</div>
+              </div>
+            </div>
+
+            <div class="class-matrix" id="classMatrix"></div>
+          </article>
+
+          <article class="section-card section-traffic-history">
+            <div class="section-title">EVOLUCIÓN 2022–2025 POR CLASE DE VUELO</div>
+            <div class="operation-chart-legend">
+              <span class="operation-legend-item"><span class="operation-legend-dot operation-legend-regular"></span>Regular</span>
+              <span class="operation-legend-item"><span class="operation-legend-dot operation-legend-noreg"></span>No regular</span>
+              <span class="operation-legend-item"><span class="operation-legend-dot operation-legend-avgral"></span>Av. general</span>
+            </div>
+            <svg id="opTrafficChart" class="operation-chart" viewBox="0 0 820 210" preserveAspectRatio="none" aria-label="Evolución de pasajeros por clase de vuelo"></svg>
+            <div class="history-note">Fuente: elaborado por ORSNA con datos de SIAC ANAC.</div>
+          </article>
+
+          <article class="section-card section-routes operation-top-routes">
+            <div class="section-title">PRINCIPALES RUTAS 2025</div>
+            <div class="top-list" id="opTopRoutesList">Sin datos</div>
+          </article>
+
+          <article class="section-card section-airlines operation-top-airlines">
+            <div class="section-title">PRINCIPALES AEROLÍNEAS 2025</div>
+            <div class="top-list" id="opTopAirlinesList">Sin datos</div>
+          </article>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="js/datos-clave-operacion.js?v=operacion1"></script>
+</body>
+</html>
