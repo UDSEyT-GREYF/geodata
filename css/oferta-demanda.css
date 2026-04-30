@@ -850,7 +850,23 @@
   color: #152238;
 }
 
+/* Hoja independiente de tráfico histórico */
+.od-historic-page.is-hidden {
+  display: none !important;
+}
 
+.od-historic-page {
+  break-before: page;
+  page-break-before: always;
+}
+
+.od-historic-page .od-panel-historic-only {
+  margin-top: 10px;
+}
+
+.od-historic-page .historic-traffic-block {
+  margin: 0;
+}
 @media print {
   .historic-traffic-block {
     margin: 8px 14px 0;
