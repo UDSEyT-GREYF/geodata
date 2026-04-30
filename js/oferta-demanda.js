@@ -989,19 +989,20 @@ const mainRoutes = Array.from(mainRoutesMap.values())
       return (da?.getTime() || 0) - (db?.getTime() || 0);
     });
 
-    return {
-      key: route.key,
-      title: `${originRouteName} - ${destinationDisplay}`,
-      ciudad: route.ciudad,
-      pais: route.pais,
-      codesLabel,
-      totalPax: route.totalPax,
-      totalAsientos: route.totalAsientos,
-      totalVuelos: route.totalVuelos,
-      sharePaxPct: totalPax > 0 ? (route.totalPax / totalPax) * 100 : 0,
-      shareSeatsPct: totalAsientos > 0 ? (route.totalAsientos / totalAsientos) * 100 : 0,
-      monthly
-    };
+return {
+  key: route.key,
+  title: `${originRouteName} - ${destinationDisplay}`,
+  ciudad: route.ciudad,
+  pais: route.pais,
+  clasificacion: route.clasificacion || "",
+  codesLabel,
+  totalPax: route.totalPax,
+  totalAsientos: route.totalAsientos,
+  totalVuelos: route.totalVuelos,
+  sharePaxPct: totalPax > 0 ? (route.totalPax / totalPax) * 100 : 0,
+  shareSeatsPct: totalAsientos > 0 ? (route.totalAsientos / totalAsientos) * 100 : 0,
+  monthly
+};
   });
     return {
       totalPax,
