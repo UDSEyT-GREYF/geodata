@@ -895,10 +895,9 @@
 .od-routes-method-note {
   display: none;
   margin: 3px 0 6px;
-  font-size: 0.58rem;
-  line-height: 1.25;
-  color: #64748b;
-  font-style: italic;
+  font-size: 6.5px;
+  line-height: 1.1;
+  color: #6f7f91;
 }
 .od-historic-page {
   break-before: page;
