@@ -892,7 +892,14 @@
 .od-historic-page.is-hidden {
   display: none !important;
 }
-
+.od-routes-method-note {
+  display: none;
+  margin: 3px 0 6px;
+  font-size: 0.58rem;
+  line-height: 1.25;
+  color: #64748b;
+  font-style: italic;
+}
 .od-historic-page {
   break-before: page;
   page-break-before: always;
