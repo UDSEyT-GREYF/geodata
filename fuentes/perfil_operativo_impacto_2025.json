@@ -91,7 +91,7 @@
     },
     "aeropuerto_regular_intermedio": {
       "orden": 2,
-      "label": "Aeropuerto regular intermedio",
+      "label": "Aeropuerto nodo regional intermedio",
       "criterio": "Cuenta con vuelos regulares y función aerocomercial clara, aunque con menor escala o mayor dependencia de pocos mercados que los nodos consolidados.",
       "enfoque_narrativo": "Combinar conectividad regular con perfil territorial: capitalidad provincial, turismo regional, servicios, producción, conectividad patagónica o articulación regional.",
       "aeropuertos": [
@@ -191,7 +191,7 @@
     },
     "baja_regularidad_demanda_acotada": {
       "orden": 3,
-      "label": "Aeropuerto de baja regularidad o demanda aerocomercial acotada",
+      "label": "Aeropuerto de demanda estacional",
       "criterio": "Baja frecuencia, pocos pasajeros, operación sensible a pocos vuelos/rutas o marcada estacionalidad.",
       "enfoque_narrativo": "Evitar comparaciones directas con nodos de mayor escala. Destacar conectividad puntual, función territorial, estacionalidad, frontera, actividades productivas o potencial regional.",
       "aclaracion_historica": "Dado el bajo volumen de pasajeros y la sensibilidad de la serie a operaciones puntuales, las variaciones porcentuales deben interpretarse con cautela.",
@@ -199,6 +199,14 @@
         {
           "iata": "VME",
           "nombre": "Villa Mercedes"
+        },
+                {
+          "iata": "NEC",
+          "nombre": "Necochea"
+        },
+        {
+          "iata": "SST",
+          "nombre": "Santa Teresita"
         },
         {
           "iata": "RHD",
@@ -213,28 +221,8 @@
           "nombre": "Río Cuarto"
         },
         {
-          "iata": "TDL",
-          "nombre": "Tandil"
-        },
-        {
           "iata": "LGS",
           "nombre": "Malargüe"
-        },
-        {
-          "iata": "AOL",
-          "nombre": "Paso de los Libres"
-        },
-        {
-          "iata": "TTG",
-          "nombre": "Tartagal"
-        },
-        {
-          "iata": "NEC",
-          "nombre": "Necochea"
-        },
-        {
-          "iata": "SST",
-          "nombre": "Santa Teresita"
         },
         {
           "iata": "RCQ",
@@ -248,10 +236,22 @@
     },
     "infraestructura_sin_oferta_regular_relevante": {
       "orden": 4,
-      "label": "Infraestructura aeroportuaria con baja o nula oferta comercial regular relevante",
+      "label": "Aeropurto sin vuelos regulares",
       "criterio": "Sin vuelos regulares comerciales relevantes en el año de análisis o con actividad comercial muy limitada; su valor debe leerse principalmente como infraestructura disponible y soporte territorial.",
       "enfoque_narrativo": "No centrar la evaluación en pasajeros comerciales. Destacar infraestructura estratégica, disponibilidad operativa, soporte territorial, conectividad eventual, logística, servicios públicos y potencial de desarrollo regional.",
       "aeropuertos": [
+        {
+          "iata": "AOL",
+          "nombre": "Paso de los Libres"
+        },
+        {
+          "iata": "TTG",
+          "nombre": "Tartagal"
+        },
+        {
+          "iata": "TDL",
+          "nombre": "Tandil"
+        },
         {
           "iata": "EPA",
           "nombre": "El Palomar"
