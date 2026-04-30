@@ -1953,7 +1953,33 @@ title: items => {
     plugins: [extremaPlugin, rightLabelsPlugin]
   });
 }
-  
+ function isInternationalRoute(route) {
+  return normalizeTextKey(route?.clasificacion || "").includes("internacional");
+}
+
+function renderInternationalRouteNotes(routes) {
+  const noteMain = q("odIntlRoutesNoteMain");
+  const noteExtra = q("odIntlRoutesNoteExtra");
+
+  const dataRoutes = (routes || [])
+    .slice()
+    .sort((a, b) => (b.totalPax || 0) - (a.totalPax || 0))
+    .slice(0, 6);
+
+  const mainRoutes = dataRoutes.slice(0, 3);
+  const extraRoutes = dataRoutes.slice(3);
+
+  const hasIntlMain = mainRoutes.some(isInternationalRoute);
+  const hasIntlExtra = extraRoutes.some(isInternationalRoute);
+
+  if (noteMain) {
+    noteMain.style.display = hasIntlMain ? "block" : "none";
+  }
+
+  if (noteExtra) {
+    noteExtra.style.display = hasIntlExtra ? "block" : "none";
+  }
+} 
 function renderTopRoutesCharts(routes) {
   const topRoutesEl = q("odTopRoutes");
   if (!topRoutesEl) return;
@@ -1963,11 +1989,12 @@ function renderTopRoutesCharts(routes) {
     .sort((a, b) => (b.totalPax || 0) - (a.totalPax || 0))
     .slice(0, 6);
 
-  if (!dataRoutes.length) {
-    topRoutesEl.innerHTML = '<div class="od-empty">Sin datos</div>';
-    paginateTopRoutes();
-    return;
-  }
+if (!dataRoutes.length) {
+  topRoutesEl.innerHTML = '<div class="od-empty">Sin datos</div>';
+  renderInternationalRouteNotes([]);
+  paginateTopRoutes();
+  return;
+}
 
   topRoutesEl.innerHTML = dataRoutes.map((route, idx) => `
     <div class="od-route-card-chart">
@@ -2004,11 +2031,12 @@ function renderTopRoutesCharts(routes) {
 
   // Primero mueve las rutas 4, 5 y 6 a la segunda hoja.
   // Recién después se dibujan los gráficos en su contenedor definitivo.
-  paginateTopRoutes();
+paginateTopRoutes();
+renderInternationalRouteNotes(dataRoutes);
 
-  dataRoutes.forEach((route, idx) => {
-    renderSingleRouteChart(`odRouteChart_${idx}`, route);
-  });
+dataRoutes.forEach((route, idx) => {
+  renderSingleRouteChart(`odRouteChart_${idx}`, route);
+});
 }
 function renderHistoricTrafficBlock(iata, airportName) {
   const block = q("historicTrafficBlock");
