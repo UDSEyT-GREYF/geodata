@@ -466,24 +466,97 @@
     return "";
   }
 
-  function parseOperationRoutesCSV(text) {
-    return parseCSV(text).map(r => {
-      const year = parseNumber(firstNonEmpty(r, ["anio", "ano", "año", "year"]));
-      const route = clean(firstNonEmpty(r, ["rutacompleta", "ruta_completa", "ruta", "citypair_iata", "city_pair_iata"])).toUpperCase();
-      const airline = clean(firstNonEmpty(r, ["aerolinea_nombre", "aerolinea", "airline", "compania", "compañia"]));
-      const flightClass = normalizeFlightClass(firstNonEmpty(r, ["clase_de_vuelo", "clase_vuelo", "clase", "clasificacion", "clasificación"]));
+function normalizeJsonRowKeys(row) {
+  const out = {};
 
-      return {
-        year: Number.isFinite(year) ? Number(year) : NaN,
-        route,
-        airline,
-        flightClass,
-        pax: parseNumber(firstNonEmpty(r, ["pax", "pasajeros", "totalpasajeros", "total_pasajeros"])),
-        seats: parseNumber(firstNonEmpty(r, ["asientos_pax", "asientos", "seats"])),
-        flights: parseNumber(firstNonEmpty(r, ["vuelos", "movimientos", "operaciones"]))
-      };
-    }).filter(r => Number.isFinite(r.year) && r.route && Number.isFinite(r.pax) && Number.isFinite(r.flights));
+  Object.entries(row || {}).forEach(([key, value]) => {
+    out[normalizeHeader(key)] = value;
+  });
+
+  return out;
+}
+
+function getJsonRecords(data) {
+  if (Array.isArray(data)) return data;
+
+  // Por si el JSON viene como { data: [...] } o { rows: [...] }
+  if (Array.isArray(data?.data)) return data.data;
+  if (Array.isArray(data?.rows)) return data.rows;
+
+  // Por si accidentalmente se exporta como GeoJSON
+  if (Array.isArray(data?.features)) {
+    return data.features.map(f => f.properties || {});
   }
+
+  return [];
+}
+
+function parseOperationRoutesJSON(data) {
+  const records = getJsonRecords(data);
+
+  return records.map(rawRow => {
+    const r = normalizeJsonRowKeys(rawRow);
+
+    const year = parseNumber(firstNonEmpty(r, [
+      "anio",
+      "ano",
+      "año",
+      "year"
+    ]));
+
+    const route = clean(firstNonEmpty(r, [
+      "rutacompleta",
+      "ruta_completa",
+      "ruta",
+      "citypair_iata",
+      "city_pair_iata"
+    ])).toUpperCase();
+
+    const airline = clean(firstNonEmpty(r, [
+      "aerolinea_nombre",
+      "aerolinea",
+      "airline",
+      "compania",
+      "compañia"
+    ]));
+
+    const flightClass = normalizeFlightClass(firstNonEmpty(r, [
+      "clase_de_vuelo",
+      "clase_vuelo",
+      "clase",
+      "clasificacion",
+      "clasificación"
+    ]));
+
+    return {
+      year: Number.isFinite(year) ? Number(year) : NaN,
+      route,
+      airline,
+      flightClass,
+      pax: parseNumber(firstNonEmpty(r, [
+        "pax",
+        "pasajeros",
+        "totalpasajeros",
+        "total_pasajeros"
+      ])),
+      seats: parseNumber(firstNonEmpty(r, [
+        "asientos_pax",
+        "asientos",
+        "seats"
+      ])),
+      flights: parseNumber(firstNonEmpty(r, [
+        "vuelos",
+        "movimientos",
+        "operaciones"
+      ]))
+    };
+  }).filter(r =>
+    Number.isFinite(r.year) &&
+    r.route &&
+    Number.isFinite(r.pax) &&
+    Number.isFinite(r.flights)
+  );
+}
 
   function getOperationRowsForAirport(iata, year = YEAR_REF) {
     const selected = clean(iata).toUpperCase();
@@ -823,7 +896,10 @@
       if (polygonsResp && polygonsResp.ok) poligonos = (await polygonsResp.json()).features || [];
       if (pistasResp && pistasResp.ok) pistasFeatures = (await pistasResp.json()).features || [];
       if (terminalesResp && terminalesResp.ok) terminalesFeatures = (await terminalesResp.json()).features || [];
-      if (operationRoutesResp && operationRoutesResp.ok) operationRows = parseOperationRoutesCSV(await readTextSmart(operationRoutesResp));
+      if (operationRoutesResp && operationRoutesResp.ok) {
+  const operationData = await operationRoutesResp.json();
+  operationRows = parseOperationRoutesJSON(operationData);
+}
       if (iataWorldResp && iataWorldResp.ok) {
         const parsedWorld = parseIATAMundoCSV(await readTextSmart(iataWorldResp));
         iataWorldIndex = parsedWorld.byIata;
