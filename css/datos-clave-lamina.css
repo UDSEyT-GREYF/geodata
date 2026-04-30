@@ -174,7 +174,8 @@ body {
 .section-flights,
 .section-routes {
   min-height: 0;
-  flex: 1 1 54%;
+//  flex: 1 1 54%; lo saqué porque no se ve Ayudas visuales en algunos aeropuertos
+
 }
 .col-header,
 .section-title {
