@@ -883,3 +883,58 @@
     min-height: 44px;
   }
 }
+/* ============================================================
+   HOJA EXCLUSIVA DE TRÁFICO HISTÓRICO
+   Evita doble borde y corrige márgenes
+   ============================================================ */
+
+.od-routes-extra-page.is-hidden,
+.od-historic-page.is-hidden {
+  display: none !important;
+}
+
+.od-historic-page {
+  break-before: page;
+  page-break-before: always;
+}
+
+/* El panel exterior no debe verse como otra caja */
+.od-historic-page .od-panel-historic-only {
+  margin-top: 8px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  min-height: auto;
+}
+
+/* El slot no debe agregar separación extra */
+#historicTrafficSlotDedicated {
+  margin: 0;
+  padding: 0;
+}
+
+/* En hoja exclusiva, el bloque histórico usa todo el ancho útil */
+.od-historic-page .historic-traffic-block {
+  margin: 0;
+}
+
+/* En la hoja 2 de rutas, mantenemos un margen superior moderado */
+.od-routes-extra-page .historic-traffic-block {
+  margin-top: 8px;
+}
+
+/* Ajuste fino del cuerpo del texto */
+.historic-traffic-text {
+  margin: 0;
+  padding: 0 2px 0 0;
+}
+
+.historic-traffic-text p {
+  margin: 0 0 6px;
+  padding: 0;
+}
+
+.historic-traffic-text p:last-child {
+  margin-bottom: 0;
+}
