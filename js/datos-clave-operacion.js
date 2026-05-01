@@ -874,36 +874,55 @@ function renderOperationTopRoutes(iata) {
   el.innerHTML = rowsHtml + sourceNote;
 }
 
-  function renderOperationTopAirlines(iata) {
-    const selected = clean(iata).toUpperCase();
-    const el = q("opTopAirlinesList");
-    if (!el) return;
+function renderOperationTopAirlines(iata) {
+  const selected = clean(iata).toUpperCase();
+  const el = q("opTopAirlinesList");
+  if (!el) return;
 
-    if (isFDO(selected) && (fdoTrafficAA || fdoRoutesAA.length)) {
-      el.innerHTML = `
-        <div class="operation-empty">
-          Para FDO se utiliza fuente alternativa de Aeropuertos Argentina. Esa fuente no cuenta con apertura por línea aérea.
+  // FDO: la fuente de Aeropuertos Argentina no trae apertura por aerolínea.
+  // Se asume 100% aviación general / privada.
+  if (selected === "FDO") {
+    const summary = summarizeOperationTraffic(selected, YEAR_REF);
+    const pax = Number(summary.totalPax) || 0;
+    const mov = Number(summary.totalMov) || 0;
+
+    el.innerHTML = `
+      <div class="top-row">
+        <div class="top-rank">1</div>
+        <div class="top-name">Aviación general / privada</div>
+        <div class="top-value">
+          ${formatNumber(Math.round(pax))} pax<br>
+          ${formatNumber(Math.round(mov))} mov.<br>
+          100%
         </div>
-        <div class="operation-source-note">Fuente: Aeropuertos Argentina.</div>
-      `;
-      return;
-    }
-
-    const top = operationSummary.airlines
-      .filter(d => d.i === selected && d.y === YEAR_REF && d.a)
-      .sort((a, b) => (Number(b.p) || 0) - (Number(a.p) || 0))
-      .slice(0, 6);
-
-    el.innerHTML = top.length
-      ? top.map((d, idx) => `
-        <div class="top-row">
-          <div class="top-rank">${idx + 1}</div>
-          <div class="top-name">${escapeHtml(d.a)}</div>
-          <div class="top-value">${formatNumber(Math.round(d.p))} pax<br>${formatNumber(d.v)} mov.</div>
-        </div>
-      `).join("") + `<div class="operation-source-note">Fuente: elaborado por ORSNA con datos de SIAC ANAC.</div>`
-      : `<div class="operation-empty">Sin aerolíneas comerciales registradas</div>`;
+      </div>
+      <div class="operation-source-note">
+        Para FDO se utiliza fuente alternativa de Aeropuertos Argentina. 
+        La fuente no cuenta con apertura por línea aérea; por criterio metodológico
+        se asigna el 100% a aviación general / privada.
+      </div>
+    `;
+    return;
   }
+
+  const top = operationSummary.airlines
+    .filter(d => d.i === selected && d.y === YEAR_REF && d.a)
+    .sort((a, b) => (Number(b.p) || 0) - (Number(a.p) || 0))
+    .slice(0, 6);
+
+  el.innerHTML = top.length
+    ? top.map((d, idx) => `
+      <div class="top-row">
+        <div class="top-rank">${idx + 1}</div>
+        <div class="top-name">${escapeHtml(d.a)}</div>
+        <div class="top-value">
+          ${formatNumber(Math.round(d.p))} pax<br>
+          ${formatNumber(d.v)} mov.
+        </div>
+      </div>
+    `).join("")
+    : `<div class="operation-empty">Sin aerolíneas comerciales registradas</div>`;
+}
 
   function renderOperationSections(iata) {
     setOperationTitlesAndNotes(iata);
