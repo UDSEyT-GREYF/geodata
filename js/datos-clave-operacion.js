@@ -5,6 +5,7 @@
   const YEAR_REF = 2025;
   const TRAFFIC_CLASS_SOURCE = "fuentes/rutas_clase_vuelo_resumen.json";
   const FDO_ROUTES_AA_SOURCE = "fuentes/fdo_rutas_aeropuertos_argentina.json";
+  const FDO_AA_SOURCE = "fuentes/fdo_trafico_aeropuertos_argentina.json";
   
   let aeropuertos = [];
   let poligonos = [];
@@ -12,6 +13,7 @@
   let terminalesFeatures = [];
   let operationSummary = { classes: [], routes: [], airlines: [] };
   let fdoRoutesAA = [];
+  let fdoTrafficAA = null;
   let iataWorldIndex = {};
   let routeCodeIndex = {};
   let currentIATA = "";
@@ -467,6 +469,66 @@
     if (codes.includes(selected)) return selected;
     return "";
   }
+  function isFDO(iata) {
+    return clean(iata).toUpperCase() === "FDO";
+  }
+
+  function fdoShouldUseTrafficRow(row) {
+    const cls = clean(row?.clase_vuelo).toLowerCase();
+    return cls && !cls.startsWith("cargas");
+  }
+
+  function fdoAAOperationClassRows(data) {
+    return (data?.anual_clase || [])
+      .filter(fdoShouldUseTrafficRow)
+      .map(row => ({
+        i: "FDO",
+        y: Number(row.anio),
+        c: normalizeFlightClass(row.clase_vuelo),
+        p: Number(row.pasajeros) || 0,
+        s: 0,
+        v: Number(row.movimientos) || 0,
+        source: "aeropuertos_argentina_fdo"
+      }))
+      .filter(row => Number.isFinite(row.y));
+  }
+
+  function getOperationClassRowsAllForAirport(iata) {
+    const selected = clean(iata).toUpperCase();
+
+    if (isFDO(selected) && fdoTrafficAA) {
+      return fdoAAOperationClassRows(fdoTrafficAA);
+    }
+
+    return operationSummary.classes.filter(r => r.i === selected);
+  }
+
+  function setOperationTitlesAndNotes(iata) {
+    const selected = clean(iata).toUpperCase();
+    const isFdoWithAA = isFDO(selected) && fdoTrafficAA;
+
+    const chartNote = document.querySelector(".section-traffic-history .history-note");
+    if (chartNote) {
+      chartNote.textContent = isFdoWithAA
+        ? "Fuente: elaborado por ORSNA con datos de Aeropuertos Argentina. Para FDO, la fuente alternativa no distingue regular/no regular; Comercial se mapea como No regular y Cargas se excluye."
+        : "Fuente: elaborado por ORSNA con datos de SIAC ANAC.";
+    }
+
+    const routesTitle = q("opTopRoutesList")?.closest(".section-routes")?.querySelector(".section-title");
+    if (routesTitle) {
+      routesTitle.textContent = isFDO(selected)
+        ? "PRINCIPALES RUTAS - FUENTE AEROPUERTOS ARGENTINA"
+        : `PRINCIPALES RUTAS ${YEAR_REF}`;
+    }
+
+    const airlinesTitle = q("opTopAirlinesList")?.closest(".section-airlines")?.querySelector(".section-title");
+    if (airlinesTitle) {
+      airlinesTitle.textContent = isFDO(selected)
+        ? "PRINCIPALES AEROLÍNEAS"
+        : `PRINCIPALES AEROLÍNEAS ${YEAR_REF}`;
+    }
+  }
+
 function normalizeFDORouteRowKeys(row) {
   const out = {};
 
@@ -598,8 +660,7 @@ function getFDORouteDisplayName(code) {
   }
 
   function getOperationClassRowsForAirport(iata, year = YEAR_REF) {
-    const selected = clean(iata).toUpperCase();
-    return operationSummary.classes.filter(r => r.i === selected && r.y === year);
+    return getOperationClassRowsAllForAirport(iata).filter(r => r.y === year);
   }
 
   function summarizeOperationTraffic(iata, year = YEAR_REF) {
@@ -669,8 +730,8 @@ function getFDORouteDisplayName(code) {
     const acc = new Map();
     years.forEach(year => acc.set(year, { year, "Regular": 0, "No Regular": 0, "Av. Gral": 0 }));
 
-    operationSummary.classes
-      .filter(r => r.i === selected && years.includes(r.y))
+    getOperationClassRowsAllForAirport(selected)
+      .filter(r => years.includes(r.y))
       .forEach(r => {
         const item = acc.get(r.y);
         if (!item) return;
@@ -751,8 +812,9 @@ function renderOperationTopRoutes(iata) {
   if (!el) return;
 
   let rows = [];
+  const isFdoRoutesAA = isFDO(selected) && fdoRoutesAA.length;
 
-  if (selected === "FDO" && fdoRoutesAA.length) {
+  if (isFdoRoutesAA) {
     rows = fdoRoutesAA.map(r => ({
       code: r.d,
       name: getFDORouteDisplayName(r.d),
@@ -762,16 +824,16 @@ function renderOperationTopRoutes(iata) {
       source: "aeropuertos_argentina_fdo"
     }));
   } else {
-rows = (operationSummary.routes || [])
-  .filter(r => r.i === selected && r.y === YEAR_REF)
-  .map(r => ({
-    code: r.d,
-    name: getRouteDisplayName(r.d, selected),
-    pax: Number(r.p) || 0,
-    flights: Number(r.v) || 0,
-    freq: Number(r.f) || null,
-    source: "rutas_clase_vuelo_resumen"
-  }));
+    rows = (operationSummary.routes || [])
+      .filter(r => r.i === selected && r.y === YEAR_REF)
+      .map(r => ({
+        code: r.d,
+        name: getRouteDisplayName(r.d, selected),
+        pax: Number(r.p) || 0,
+        flights: Number(r.v) || 0,
+        freq: Number(r.f) || null,
+        source: "rutas_clase_vuelo_resumen"
+      }));
   }
 
   const top = rows
@@ -784,7 +846,7 @@ rows = (operationSummary.routes || [])
     return;
   }
 
-  el.innerHTML = top.map((d, idx) => {
+  const rowsHtml = top.map((d, idx) => {
     const freqText = Number.isFinite(d.freq) && d.freq > 0
       ? `<br>${d.freq.toLocaleString("es-AR", {
           minimumFractionDigits: 1,
@@ -804,17 +866,34 @@ rows = (operationSummary.routes || [])
       </div>
     `;
   }).join("");
+
+  const sourceNote = isFdoRoutesAA
+    ? `<div class="operation-source-note">Fuente: Aeropuertos Argentina. El archivo de rutas FDO no contiene año/mes ni apertura por clase de vuelo; se muestra como ranking propio de la fuente.</div>`
+    : `<div class="operation-source-note">Fuente: elaborado por ORSNA con datos de SIAC ANAC.</div>`;
+
+  el.innerHTML = rowsHtml + sourceNote;
 }
 
   function renderOperationTopAirlines(iata) {
     const selected = clean(iata).toUpperCase();
+    const el = q("opTopAirlinesList");
+    if (!el) return;
+
+    if (isFDO(selected) && (fdoTrafficAA || fdoRoutesAA.length)) {
+      el.innerHTML = `
+        <div class="operation-empty">
+          Para FDO se utiliza fuente alternativa de Aeropuertos Argentina. Esa fuente no cuenta con apertura por línea aérea.
+        </div>
+        <div class="operation-source-note">Fuente: Aeropuertos Argentina.</div>
+      `;
+      return;
+    }
+
     const top = operationSummary.airlines
       .filter(d => d.i === selected && d.y === YEAR_REF && d.a)
       .sort((a, b) => (Number(b.p) || 0) - (Number(a.p) || 0))
       .slice(0, 6);
 
-    const el = q("opTopAirlinesList");
-    if (!el) return;
     el.innerHTML = top.length
       ? top.map((d, idx) => `
         <div class="top-row">
@@ -822,11 +901,12 @@ rows = (operationSummary.routes || [])
           <div class="top-name">${escapeHtml(d.a)}</div>
           <div class="top-value">${formatNumber(Math.round(d.p))} pax<br>${formatNumber(d.v)} mov.</div>
         </div>
-      `).join("")
+      `).join("") + `<div class="operation-source-note">Fuente: elaborado por ORSNA con datos de SIAC ANAC.</div>`
       : `<div class="operation-empty">Sin aerolíneas comerciales registradas</div>`;
   }
 
   function renderOperationSections(iata) {
+    setOperationTitlesAndNotes(iata);
     renderOperationKPIs(iata);
     renderOperationChart(iata);
     renderOperationTopRoutes(iata);
@@ -949,7 +1029,8 @@ rows = (operationSummary.routes || [])
   terminalesResp,
   operationRoutesResp,
   iataWorldResp,
-  fdoRoutesResp
+  fdoRoutesResp,
+  fdoAAResp
 ] = await Promise.all([
   fetch("fuentes/Datos_aeropuertos.geojson"),
   fetch("fuentes/poligonos_aeropuertos.geojson").catch(() => null),
@@ -957,7 +1038,8 @@ rows = (operationSummary.routes || [])
   fetch("fuentes/terminalpax.geojson").catch(() => null),
   fetch(TRAFFIC_CLASS_SOURCE).catch(() => null),
   fetch("fuentes/ListadoIATAmundo.csv").catch(() => null),
-  fetch(FDO_ROUTES_AA_SOURCE).catch(() => null)
+  fetch(FDO_ROUTES_AA_SOURCE).catch(() => null),
+  fetch(FDO_AA_SOURCE).catch(() => null)
 ]);
 
       const geojson = await airportsResp.json();
@@ -971,7 +1053,10 @@ rows = (operationSummary.routes || [])
         operationSummary = parseOperationSummaryJSON(await operationRoutesResp.json());
       }
       if (fdoRoutesResp && fdoRoutesResp.ok) {
-  fdoRoutesAA = parseFDORoutesAAJSON(await fdoRoutesResp.json());
+        fdoRoutesAA = parseFDORoutesAAJSON(await fdoRoutesResp.json());
+      }
+      if (fdoAAResp && fdoAAResp.ok) {
+        fdoTrafficAA = await fdoAAResp.json();
       }
       if (iataWorldResp && iataWorldResp.ok) {
         const parsedWorld = parseIATAMundoCSV(await readTextSmart(iataWorldResp));
