@@ -823,14 +823,16 @@ function renderOperationTopRoutes(iata) {
   const isFdoRoutesAA = isFDO(selected) && fdoRoutesAA.length;
 
   if (isFdoRoutesAA) {
-    rows = fdoRoutesAA.map(r => ({
-      code: r.d,
-      name: getFDORouteDisplayName(r.d),
-      pax: Number(r.p) || 0,
-      flights: Number(r.v) || 0,
-      freq: Number(r.f) || null,
-      source: "aeropuertos_argentina_fdo"
-    }));
+    rows = fdoRoutesAA
+      .filter(r => Number(r.y) === YEAR_REF)
+      .map(r => ({
+        code: r.d,
+        name: getFDORouteDisplayName(r.d),
+        pax: Number(r.p) || 0,
+        flights: Number(r.v) || 0,
+        freq: Number(r.f) || null,
+        source: "aeropuertos_argentina_fdo"
+      }));
   } else {
     rows = (operationSummary.routes || [])
       .filter(r => r.i === selected && r.y === YEAR_REF)
@@ -850,7 +852,7 @@ function renderOperationTopRoutes(iata) {
     .slice(0, 8);
 
   if (!top.length) {
-    el.innerHTML = `<div class="operation-empty">Sin datos de rutas.</div>`;
+    el.innerHTML = `<div class="operation-empty">Sin datos de rutas para ${YEAR_REF}.</div>`;
     return;
   }
 
@@ -876,8 +878,8 @@ function renderOperationTopRoutes(iata) {
   }).join("");
 
   const sourceNote = isFdoRoutesAA
-    ? `<div class="operation-source-note">Fuente: Aeropuertos Argentina. El archivo de rutas FDO no contiene año/mes ni apertura por clase de vuelo; se muestra como ranking propio de la fuente.</div>`
-    : `<div class="operation-source-note">Fuente: elaborado por ORSNA con datos de SIAC ANAC.</div>`;
+    ? `<div class="operation-source-note">Fuente: elaborado por GREyF ORSNA con datos de Aeropuertos Argentina. Ranking de rutas correspondiente al año ${YEAR_REF}.</div>`
+    : `<div class="operation-source-note">Fuente: elaborado por GREyF ORSNA con datos de SIAC ANAC.</div>`;
 
   el.innerHTML = rowsHtml + sourceNote;
 }
