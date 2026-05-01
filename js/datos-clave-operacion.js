@@ -564,10 +564,17 @@ function parseFDORoutesAAJSON(data) {
       "ruta"
     ])).toUpperCase();
 
-    return {
-      i: "FDO",
-      d: destino,
-      p: parseNumber(firstNonEmpty(r, [
+return {
+  i: "FDO",
+  y: Number(firstNonEmpty(r, [
+    "y",
+    "anio",
+    "ano",
+    "año",
+    "year"
+  ])),
+  d: destino,
+  p: parseNumber(firstNonEmpty(r, [
         "p",
         "pax",
         "pasajeros",
@@ -594,11 +601,12 @@ function parseFDORoutesAAJSON(data) {
         "ocupación"
       ]))
     };
-  }).filter(r =>
-    r.i === "FDO" &&
-    r.d &&
-    (Number.isFinite(r.p) || Number.isFinite(r.v))
-  );
+}).filter(r =>
+  r.i === "FDO" &&
+  Number.isFinite(r.y) &&
+  r.d &&
+  (Number.isFinite(r.p) || Number.isFinite(r.v))
+);
 }
 
 function getFDORouteDisplayName(code) {
