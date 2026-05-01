@@ -32,9 +32,14 @@
   GIG: { ciudad: "Río de Janeiro", pais: "Brasil" },
   FLN: { ciudad: "Florianópolis", pais: "Brasil" },
   LIM: { ciudad: "Lima", pais: "Perú" },
-  SCL: { ciudad: "Santiago", pais: "Chile" }, 
-  PTY: { ciudad: "Tocumén", pais: "Panamá" }, 
-  MAD: { ciudad: "Madrid", pais: "España" }
+  SCL: { ciudad: "Santiago", pais: "Chile" },
+  PTY: { ciudad: "Tocumén", pais: "Panamá" },
+  MAD: { ciudad: "Madrid", pais: "España" },
+
+  // Overrides específicos para el archivo de rutas FDO de Aeropuertos Argentina
+  FDO: { ciudad: "Operaciones locales", pais: "Argentina" },
+  AR: { ciudad: "Otros destinos de cabotaje", pais: "Argentina" },
+  EXT: { ciudad: "Otros destinos internacionales", pais: "" }
 };
   const YEAR_REF = 2025;
   const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
@@ -1181,7 +1186,7 @@ function renderRunways(runways) {
 
 
 
-function renderAnnualChart(passengerSeries, flightSeries, currentYear) {
+function renderAnnualChart(passengerSeries, flightSeries, currentYear, iata = currentIATA) {
   const svg = q("paxHistoryChart");
   const note = q("paxHistoryNote");
   if (!svg) return;
@@ -1294,7 +1299,12 @@ ${flightBars}
 ${markers}
   `;
 
-  if (note) note.textContent = "Fuente: elaborado por ORSNA con datos de SIAC ANAC.";
+  if (note) {
+    const isFdoWithAA = isFDO(iata) && fdoTrafficAA;
+    note.textContent = isFdoWithAA
+      ? "Fuente: elaborado por GREyF ORSNA con datos de Aeropuertos Argentina."
+      : "Fuente: elaborado por GREyF ORSNA con datos de SIAC ANAC.";
+  }
 }
 
 function getFlightsStats(iata) {
@@ -1327,8 +1337,144 @@ function getFlightsStats(iata) {
   };
 }
 
+
+function normalizeFDORouteRowKeys(row) {
+  const out = {};
+
+  Object.entries(row || {}).forEach(([key, value]) => {
+    out[normalizeHeader(key)] = value;
+  });
+
+  return out;
+}
+
+function getFDORouteRecords(data) {
+  if (Array.isArray(data)) return data;
+  if (Array.isArray(data?.routes)) return data.routes;
+  if (Array.isArray(data?.rutas)) return data.rutas;
+  if (Array.isArray(data?.data)) return data.data;
+  if (Array.isArray(data?.rows)) return data.rows;
+  return [];
+}
+
+function parseFDORoutesAAJSON(data) {
+  const records = getFDORouteRecords(data);
+
+  return records.map(rawRow => {
+    const r = normalizeFDORouteRowKeys(rawRow);
+
+    const code = clean(firstNonEmpty(r, [
+      "d",
+      "destino",
+      "iata_destino",
+      "codigo_destino",
+      "ruta"
+    ])).toUpperCase();
+
+    return {
+      iata: "FDO",
+      year: Number(firstNonEmpty(r, ["y", "anio", "ano", "año", "year"])),
+      code,
+      pax: parseNumber(firstNonEmpty(r, [
+        "p",
+        "pax",
+        "pasajeros",
+        "pasajeros_totales",
+        "total_pasajeros"
+      ])),
+      flights: parseNumber(firstNonEmpty(r, [
+        "v",
+        "vuelos",
+        "movimientos",
+        "vuelos_totales",
+        "total_vuelos"
+      ])),
+      freq: parseNumber(firstNonEmpty(r, [
+        "f",
+        "frecuencia",
+        "frecuencias_semanales",
+        "frecuencia_semanal"
+      ]))
+    };
+  }).filter(r =>
+    r.iata === "FDO" &&
+    Number.isFinite(r.year) &&
+    r.code &&
+    Number.isFinite(r.pax) &&
+    r.pax > 0
+  );
+}
+
+function isFdoRouteCabotage(code) {
+  const c = clean(code).toUpperCase();
+
+  if (c === "FDO") return true;
+  if (c === "-AR" || c === "AR") return true;
+  if (c === "-EX" || c === "EXT") return false;
+
+  const meta = getRouteMeta(c);
+  if (meta) return isArgentinaCountry(meta.pais);
+
+  return domesticIATAs.has(c);
+}
+
+function getFdoRouteCodeForDisplay(code) {
+  const c = clean(code).toUpperCase();
+  if (c === "-AR") return "AR";
+  if (c === "-EX") return "EXT";
+  return c;
+}
+
+function getFDORoutesSummaryAA() {
+  const destMapIntl = new Map();
+  const destMapCab = new Map();
+
+  const rows2025 = (fdoRoutesAA || [])
+    .filter(r => Number(r.year) === YEAR_REF);
+
+  rows2025.forEach(r => {
+    const code = clean(r.code).toUpperCase();
+    if (!code) return;
+
+    const volume = Number(r.pax) || 0;
+    if (volume < MIN_PAX_TO_SHOW) return;
+
+    const isCabotaje = isFdoRouteCabotage(code);
+    const targetMap = isCabotaje ? destMapCab : destMapIntl;
+    const displayCode = getFdoRouteCodeForDisplay(code);
+
+    if (!targetMap.has(displayCode)) {
+      targetMap.set(displayCode, { code: displayCode, volume: 0 });
+    }
+
+    targetMap.get(displayCode).volume += volume;
+  });
+
+  const intlArray = Array.from(destMapIntl.values())
+    .sort((a, b) => b.volume - a.volume);
+
+  const cabArray = Array.from(destMapCab.values())
+    .sort((a, b) => b.volume - a.volume);
+
+  const total2025 = sumYear(buildPaxSeries("FDO", "total"), YEAR_REF);
+
+  return {
+    airlinesCount: 0,
+    topAirlines: total2025
+      ? [{ name: GENERAL_AVIATION_LABEL, volume: total2025 }]
+      : [],
+    topDestinationsIntl: intlArray.slice(0, 5),
+    topDestinationsCab: cabArray.slice(0, 5),
+    hasInternational: intlArray.length > 0
+  };
+}
+
 function getRoutesSummary(iata) {
   const selected = clean(iata).toUpperCase();
+
+  if (selected === "FDO" && fdoRoutesAA.length) {
+    return getFDORoutesSummaryAA();
+  }
 
   const rowsAll = rutasRows.filter(r =>
     r.endpointA === selected || r.endpointB === selected
@@ -1484,7 +1630,7 @@ function renderFlights(iata) {
       hasInternational
     } = getRoutesSummary(iata);
 
-    setText("airlinesCount", airlinesCount ? String(airlinesCount) : "–");
+    setText("airlinesCount", String(airlinesCount ?? 0));
 
     const airlinesEl = q("topAirlinesList");
     if (airlinesEl) {
@@ -1677,7 +1823,8 @@ setText("paxPromDiario", total ? formatNumber(Math.round(total / daysInYear)) : 
 renderAnnualChart(
   annualTotals(totalSeries),
   annualMovementTotals(iata),
-  YEAR_REF
+  YEAR_REF,
+  iata
 );
 }
 
@@ -1866,7 +2013,8 @@ const [
   rutasResp,
   iataWorldResp,
   extraTrafficResp,
-  fdoAAResp
+  fdoAAResp,
+  fdoRoutesAAResp
 ] = await Promise.all([
   fetch("fuentes/Datos_aeropuertos.geojson"),
   fetch("fuentes/poligonos_aeropuertos.geojson").catch(() => null),
@@ -1879,7 +2027,8 @@ const [
   fetch("fuentes/rutasaereas.csv").catch(() => null),
   fetch("fuentes/ListadoIATAmundo.csv").catch(() => null),
   fetch("fuentes/pasajeros_movimientos_extra_9aeropuertos.csv").catch(() => null),
-  fetch(FDO_AA_SOURCE).catch(() => null)
+  fetch(FDO_AA_SOURCE).catch(() => null),
+  fetch(FDO_ROUTES_AA_SOURCE).catch(() => null)
 ]);
 
       const geojson = await airportsResp.json();
@@ -1946,6 +2095,10 @@ if (vuelosResp && vuelosResp.ok) {
 
 if (rutasResp && rutasResp.ok) {
   rutasRows = parseRutasCSV(await readTextSmart(rutasResp));
+}
+
+if (fdoRoutesAAResp && fdoRoutesAAResp.ok) {
+  fdoRoutesAA = parseFDORoutesAAJSON(await fdoRoutesAAResp.json());
 }
       
 if (iataWorldResp && iataWorldResp.ok) {
