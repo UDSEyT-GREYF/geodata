@@ -1346,24 +1346,23 @@ function getRoutesSummary(iata) {
   const yearRows = rowsAll.filter(r => r.year === YEAR_REF);
   if (yearRows.length) rows = yearRows;
 
-  const airlineMap = new Map();
-  const countableAirlines = new Set();
-  const destMapIntl = new Map();
-  const destMapCab = new Map();
+const airlineMap = new Map();
+const countableAirlines = new Set();
+const destMapIntl = new Map();
+const destMapCab = new Map();
 
-  rows.forEach(r => { //cambio desde aqui
+const forceFDOGeneralAviation = selected === "FDO";
+
+rows.forEach(r => {
 const airlineRaw = clean(r.airline);
 const forcedCommercialName = getForcedCommercialAirlineName(airlineRaw);
 const isGeneralAviation = isGeneralAviationType(r.commercialType);
 
 let airlineLabel = "";
 
-if (forcedCommercialName) {
-  /*
-    Regla de corrección:
-    American Jet, Andes y LADE se consideran aerolíneas comerciales.
-    Si Comercial Av Gral = Av. General, se toma como error de clasificación.
-  */
+if (forceFDOGeneralAviation) {
+  airlineLabel = GENERAL_AVIATION_LABEL;
+} else if (forcedCommercialName) {
   airlineLabel = forcedCommercialName;
 } else if (isGeneralAviation || isUnnamedAirline(airlineRaw)) {
   airlineLabel = GENERAL_AVIATION_LABEL;
@@ -1374,12 +1373,13 @@ if (forcedCommercialName) {
 airlineMap.set(airlineLabel, (airlineMap.get(airlineLabel) || 0) + r.volume);
 
 /*
-  Conteo:
-  - American Jet, Andes y LADE cuentan siempre como líneas aéreas.
-  - Aviación general / privada no cuenta como línea aérea.
-  - Las demás aerolíneas comerciales con nombre válido cuentan normalmente.
+  Para FDO no contamos aviación general / privada como línea aérea,
+  pero sí la mostramos como 100% del tráfico de la fuente.
 */
-if (forcedCommercialName || (!isGeneralAviation && !isUnnamedAirline(airlineRaw))) {
+if (
+  !forceFDOGeneralAviation &&
+  (forcedCommercialName || (!isGeneralAviation && !isUnnamedAirline(airlineRaw)))
+) {
   countableAirlines.add(airlineLabel);
 }
 
