@@ -1626,8 +1626,13 @@ if (paxAnnualChart) {
     }
 
     const last = rows[rows.length - 1];
-    const lastLabel = `${last.mesNombre || ""} ${last.anio || last.date.getFullYear()}`.trim()
-      || last.date.toLocaleDateString("es-AR");
+const lastMonthLabel = last.mesNombre
+  ? last.mesNombre
+  : last.date.toLocaleString("es-AR", { month: "short" }).replace(".", "");
+
+const lastYearLabel = last.anio || last.date.getFullYear();
+
+const lastLabel = `${lastMonthLabel} ${lastYearLabel}`.trim();
 
     if (elLastVal) elLastVal.textContent = formatNumber(last.valor);
     if (elLastPer) elLastPer.textContent = lastLabel;
