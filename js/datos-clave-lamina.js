@@ -8,14 +8,16 @@
   let terminalesFeatures = [];
   let pasajerosMensualRows = [];
   let movimientosMensualRows = [];
+  let fdoTrafficAA = null;
+  const FDO_AA_SOURCE = "fuentes/fdo_trafico_aeropuertos_argentina.json";
   let vuelosRows = [];
   let rutasRows = [];
   let transportePorIATA = {};
   let domesticIATAs = new Set();
-let currentIATA = "";
-let laminaBooted = false;
+  let currentIATA = "";
+  let laminaBooted = false;
 
-let mapPredio = null;
+  let mapPredio = null;
   let predioLayer = null;
   let pistasLayer = null;
   let terminalesLayer = null;
@@ -609,6 +611,100 @@ function mergeExtraTrafficRows(baseRows, extraRows) {
 
   return keptBaseRows
     .concat(extraRows || [])
+    .sort((a, b) => a.date - b.date);
+}
+
+function isFDO(iata) {
+  return String(iata || "").trim().toUpperCase() === "FDO";
+}
+
+function fdoShouldUseTrafficRow(row) {
+  const cls = String(row.clase_vuelo || "").toLowerCase();
+
+  // Excluimos cargas para pasajeros y movimientos operativos.
+  return !cls.startsWith("cargas");
+}
+
+function fdoPassengerDataset(segment) {
+  const s = String(segment || "").toLowerCase();
+
+  if (s.includes("internacional")) return PAX_DATASET_INT;
+  return PAX_DATASET_CAB;
+}
+
+function fdoMovementDataset(segment) {
+  const s = String(segment || "").toLowerCase();
+
+  if (s.includes("internacional")) return MOV_DATASET_INT;
+  return MOV_DATASET_CAB;
+}
+
+function fdoAAToPassengerRows(data) {
+  const acc = new Map();
+
+  (data?.mensual || [])
+    .filter(fdoShouldUseTrafficRow)
+    .forEach(row => {
+      const anio = Number(row.anio);
+      const mes = Number(row.mes);
+      if (!Number.isFinite(anio) || !Number.isFinite(mes)) return;
+
+      const dataset = fdoPassengerDataset(row.segmento);
+      const key = `${anio}-${String(mes).padStart(2, "0")}-${dataset}`;
+
+      if (!acc.has(key)) {
+        acc.set(key, {
+          iata: "FDO",
+          dataset,
+          date: new Date(anio, mes - 1, 1),
+          valor: 0,
+          source: "aeropuertos_argentina_fdo"
+        });
+      }
+
+      acc.get(key).valor += Number(row.pasajeros) || 0;
+    });
+
+  return Array.from(acc.values())
+    .filter(row => Number.isFinite(row.valor))
+    .sort((a, b) => a.date - b.date);
+}
+
+function fdoAAToMovementRows(data) {
+  const acc = new Map();
+
+  (data?.mensual || [])
+    .filter(fdoShouldUseTrafficRow)
+    .forEach(row => {
+      const anio = Number(row.anio);
+      const mes = Number(row.mes);
+      if (!Number.isFinite(anio) || !Number.isFinite(mes)) return;
+
+      const dataset = fdoMovementDataset(row.segmento);
+      const key = `${anio}-${String(mes).padStart(2, "0")}-${dataset}`;
+
+      if (!acc.has(key)) {
+        acc.set(key, {
+          iata: "FDO",
+          dataset,
+          date: new Date(anio, mes - 1, 1),
+          valor: 0,
+          source: "aeropuertos_argentina_fdo"
+        });
+      }
+
+      acc.get(key).valor += Number(row.movimientos) || 0;
+    });
+
+  return Array.from(acc.values())
+    .filter(row => Number.isFinite(row.valor))
+    .sort((a, b) => a.date - b.date);
+}
+
+function replaceRowsForFDO(baseRows, replacementRows) {
+  return (baseRows || [])
+    .filter(row => !isFDO(row.iata))
+    .concat(replacementRows || [])
     .sort((a, b) => a.date - b.date);
 }
   
@@ -1767,7 +1863,8 @@ const [
   vuelosResp,
   rutasResp,
   iataWorldResp,
-  extraTrafficResp
+  extraTrafficResp,
+  fdoAAResp
 ] = await Promise.all([
   fetch("fuentes/Datos_aeropuertos.geojson"),
   fetch("fuentes/poligonos_aeropuertos.geojson").catch(() => null),
@@ -1779,7 +1876,8 @@ const [
   fetch("fuentes/vuelos.csv").catch(() => null),
   fetch("fuentes/rutasaereas.csv").catch(() => null),
   fetch("fuentes/ListadoIATAmundo.csv").catch(() => null),
-  fetch("fuentes/pasajeros_movimientos_extra_9aeropuertos.csv").catch(() => null)
+  fetch("fuentes/pasajeros_movimientos_extra_9aeropuertos.csv").catch(() => null),
+  fetch(FDO_AA_SOURCE).catch(() => null)
 ]);
 
       const geojson = await airportsResp.json();
@@ -1827,7 +1925,19 @@ if (extraTrafficResp && extraTrafficResp.ok) {
     extraTraffic.movRows
   );
 }
+if (fdoAAResp && fdoAAResp.ok) {
+  fdoTrafficAA = await fdoAAResp.json();
 
+  pasajerosMensualRows = replaceRowsForFDO(
+    pasajerosMensualRows,
+    fdoAAToPassengerRows(fdoTrafficAA)
+  );
+
+  movimientosMensualRows = replaceRowsForFDO(
+    movimientosMensualRows,
+    fdoAAToMovementRows(fdoTrafficAA)
+  );
+}
 if (vuelosResp && vuelosResp.ok) {
   vuelosRows = parseVuelosCSV(await readTextSmart(vuelosResp));
 }
