@@ -762,16 +762,16 @@ function renderOperationTopRoutes(iata) {
       source: "aeropuertos_argentina_fdo"
     }));
   } else {
-    rows = (operationSummary.routes || [])
-      .filter(r => r.i === selected)
-      .map(r => ({
-        code: r.d,
-        name: getFDORouteDisplayName(r.d),
-        pax: Number(r.p) || 0,
-        flights: Number(r.v) || 0,
-        freq: Number(r.f) || null,
-        source: "rutas_clase_vuelo_resumen"
-      }));
+rows = (operationSummary.routes || [])
+  .filter(r => r.i === selected && r.y === YEAR_REF)
+  .map(r => ({
+    code: r.d,
+    name: getRouteDisplayName(r.d, selected),
+    pax: Number(r.p) || 0,
+    flights: Number(r.v) || 0,
+    freq: Number(r.f) || null,
+    source: "rutas_clase_vuelo_resumen"
+  }));
   }
 
   const top = rows
