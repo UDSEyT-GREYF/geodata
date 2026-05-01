@@ -2417,3 +2417,9 @@ body {
     gap: 8px;
   }
 }
+.operation-source-note {
+  font-size: 0.58rem;
+  color: #6f7d8c;
+  line-height: 1.15;
+  margin-top: 3px;
+}
