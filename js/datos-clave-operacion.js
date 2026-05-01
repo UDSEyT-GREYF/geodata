@@ -510,8 +510,8 @@
     const chartNote = document.querySelector(".section-traffic-history .history-note");
     if (chartNote) {
       chartNote.textContent = isFdoWithAA
-        ? "Fuente: elaborado por ORSNA con datos de Aeropuertos Argentina. Para FDO, la fuente alternativa no distingue regular/no regular; Comercial se mapea como No regular y Cargas se excluye."
-        : "Fuente: elaborado por ORSNA con datos de SIAC ANAC.";
+        ? "Fuente: elaborado por GREyF ORSNA con datos de Aeropuertos Argentina."
+        : "Fuente: elaborado por GREyF ORSNA con datos de SIAC ANAC.";
     }
 
     const routesTitle = q("opTopRoutesList")?.closest(".section-routes")?.querySelector(".section-title");
