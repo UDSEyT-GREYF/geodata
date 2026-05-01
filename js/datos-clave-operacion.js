@@ -4,12 +4,14 @@
 
   const YEAR_REF = 2025;
   const TRAFFIC_CLASS_SOURCE = "fuentes/rutas_clase_vuelo_resumen.json";
-
+  const FDO_ROUTES_AA_SOURCE = "fuentes/fdo_rutas_aeropuertos_argentina.json";
+  
   let aeropuertos = [];
   let poligonos = [];
   let pistasFeatures = [];
   let terminalesFeatures = [];
   let operationSummary = { classes: [], routes: [], airlines: [] };
+  let fdoRoutesAA = [];
   let iataWorldIndex = {};
   let routeCodeIndex = {};
   let currentIATA = "";
@@ -465,7 +467,103 @@
     if (codes.includes(selected)) return selected;
     return "";
   }
+function normalizeFDORouteRowKeys(row) {
+  const out = {};
 
+  Object.entries(row || {}).forEach(([key, value]) => {
+    out[normalizeHeader(key)] = value;
+  });
+
+  return out;
+}
+
+function getFDORouteRecords(data) {
+  if (Array.isArray(data)) return data;
+
+  if (Array.isArray(data?.routes)) return data.routes;
+  if (Array.isArray(data?.rutas)) return data.rutas;
+  if (Array.isArray(data?.data)) return data.data;
+  if (Array.isArray(data?.rows)) return data.rows;
+
+  return [];
+}
+
+function parseFDORoutesAAJSON(data) {
+  const records = getFDORouteRecords(data);
+
+  return records.map(rawRow => {
+    const r = normalizeFDORouteRowKeys(rawRow);
+
+    const destino = clean(firstNonEmpty(r, [
+      "d",
+      "destino",
+      "iata_destino",
+      "codigo_destino",
+      "ruta"
+    ])).toUpperCase();
+
+    return {
+      i: "FDO",
+      d: destino,
+      p: parseNumber(firstNonEmpty(r, [
+        "p",
+        "pax",
+        "pasajeros",
+        "pasajeros_totales",
+        "total_pasajeros"
+      ])),
+      v: parseNumber(firstNonEmpty(r, [
+        "v",
+        "vuelos",
+        "movimientos",
+        "vuelos_totales",
+        "total_vuelos"
+      ])),
+      f: parseNumber(firstNonEmpty(r, [
+        "f",
+        "frecuencia",
+        "frecuencias_semanales",
+        "frecuencia_semanal"
+      ])),
+      lf: parseNumber(firstNonEmpty(r, [
+        "lf",
+        "load_factor",
+        "ocupacion",
+        "ocupación"
+      ]))
+    };
+  }).filter(r =>
+    r.i === "FDO" &&
+    r.d &&
+    (Number.isFinite(r.p) || Number.isFinite(r.v))
+  );
+}
+
+function getFDORouteDisplayName(code) {
+  const c = clean(code).toUpperCase();
+
+  if (!c) return "Sin dato";
+  if (c === "FDO") return "Operaciones locales";
+  if (c === "-AR") return "Otros destinos de cabotaje";
+  if (c === "-EX") return "Otros destinos internacionales";
+
+  if (typeof DEST_OVERRIDES !== "undefined" && DEST_OVERRIDES[c]) {
+    const o = DEST_OVERRIDES[c];
+    return `${o.ciudad || c} (${c})`;
+  }
+
+  const info = routeCodeIndex?.[c] || iataWorldIndex?.[c];
+
+  if (info) {
+    const ciudad = clean(info.ciudad || info.city || info.nombre || info.name);
+    const pais = clean(info.pais || info.country);
+
+    if (ciudad && pais) return `${ciudad}, ${pais} (${c})`;
+    if (ciudad) return `${ciudad} (${c})`;
+  }
+
+  return c;
+}
   function parseOperationSummaryJSON(data) {
     const normClassRow = d => ({
       i: clean(d.i).toUpperCase(),
@@ -647,25 +745,66 @@
     return c;
   }
 
-  function renderOperationTopRoutes(iata) {
-    const selected = clean(iata).toUpperCase();
-    const top = operationSummary.routes
-      .filter(d => d.i === selected && d.y === YEAR_REF && ((Number(d.p) || 0) > 0 || (Number(d.v) || 0) > 0))
-      .sort((a, b) => (Number(b.p) || 0) - (Number(a.p) || 0))
-      .slice(0, 8);
+function renderOperationTopRoutes(iata) {
+  const selected = clean(iata).toUpperCase();
+  const el = q("opTopRoutesList");
+  if (!el) return;
 
-    const el = q("opTopRoutesList");
-    if (!el) return;
-    el.innerHTML = top.length
-      ? top.map((d, idx) => `
-        <div class="top-row">
-          <div class="top-rank">${idx + 1}</div>
-          <div class="top-name">${escapeHtml(getRouteDisplayName(d.d, selected))}</div>
-          <div class="top-value">${formatNumber(Math.round(d.p))} pax<br>${formatNumber(d.v)} mov.</div>
-        </div>
-      `).join("")
-      : `<div class="operation-empty">Sin datos</div>`;
+  let rows = [];
+
+  if (selected === "FDO" && fdoRoutesAA.length) {
+    rows = fdoRoutesAA.map(r => ({
+      code: r.d,
+      name: getFDORouteDisplayName(r.d),
+      pax: Number(r.p) || 0,
+      flights: Number(r.v) || 0,
+      freq: Number(r.f) || null,
+      source: "aeropuertos_argentina_fdo"
+    }));
+  } else {
+    rows = (operationSummary.routes || [])
+      .filter(r => r.i === selected)
+      .map(r => ({
+        code: r.d,
+        name: getFDORouteDisplayName(r.d),
+        pax: Number(r.p) || 0,
+        flights: Number(r.v) || 0,
+        freq: Number(r.f) || null,
+        source: "rutas_clase_vuelo_resumen"
+      }));
   }
+
+  const top = rows
+    .filter(d => d.pax > 0 || d.flights > 0)
+    .sort((a, b) => b.pax - a.pax)
+    .slice(0, 8);
+
+  if (!top.length) {
+    el.innerHTML = `<div class="operation-empty">Sin datos de rutas.</div>`;
+    return;
+  }
+
+  el.innerHTML = top.map((d, idx) => {
+    const freqText = Number.isFinite(d.freq) && d.freq > 0
+      ? `<br>${d.freq.toLocaleString("es-AR", {
+          minimumFractionDigits: 1,
+          maximumFractionDigits: 1
+        })} frec. sem.`
+      : "";
+
+    return `
+      <div class="top-row">
+        <div class="top-rank">${idx + 1}</div>
+        <div class="top-name">${escapeHtml(d.name)}</div>
+        <div class="top-value">
+          ${formatNumber(Math.round(d.pax))} pax<br>
+          ${formatNumber(Math.round(d.flights))} mov.
+          ${freqText}
+        </div>
+      </div>
+    `;
+  }).join("");
+}
 
   function renderOperationTopAirlines(iata) {
     const selected = clean(iata).toUpperCase();
@@ -803,14 +942,23 @@
   async function loadData() {
     const select = q("airportSelect");
     try {
-      const [airportsResp, polygonsResp, pistasResp, terminalesResp, operationRoutesResp, iataWorldResp] = await Promise.all([
-        fetch("fuentes/Datos_aeropuertos.geojson"),
-        fetch("fuentes/poligonos_aeropuertos.geojson").catch(() => null),
-        fetch("fuentes/pistas.geojson").catch(() => null),
-        fetch("fuentes/terminalpax.geojson").catch(() => null),
-        fetch(TRAFFIC_CLASS_SOURCE).catch(() => null),
-        fetch("fuentes/ListadoIATAmundo.csv").catch(() => null)
-      ]);
+ const [
+  airportsResp,
+  polygonsResp,
+  pistasResp,
+  terminalesResp,
+  operationRoutesResp,
+  iataWorldResp,
+  fdoRoutesResp
+] = await Promise.all([
+  fetch("fuentes/Datos_aeropuertos.geojson"),
+  fetch("fuentes/poligonos_aeropuertos.geojson").catch(() => null),
+  fetch("fuentes/pistas.geojson").catch(() => null),
+  fetch("fuentes/terminalpax.geojson").catch(() => null),
+  fetch(TRAFFIC_CLASS_SOURCE).catch(() => null),
+  fetch("fuentes/ListadoIATAmundo.csv").catch(() => null),
+  fetch(FDO_ROUTES_AA_SOURCE).catch(() => null)
+]);
 
       const geojson = await airportsResp.json();
       aeropuertos = (geojson.features || []).map(f => f.properties || {}).filter(p => clean(p.IATA));
@@ -821,6 +969,9 @@
       if (terminalesResp && terminalesResp.ok) terminalesFeatures = (await terminalesResp.json()).features || [];
       if (operationRoutesResp && operationRoutesResp.ok) {
         operationSummary = parseOperationSummaryJSON(await operationRoutesResp.json());
+      }
+      if (fdoRoutesResp && fdoRoutesResp.ok) {
+  fdoRoutesAA = parseFDORoutesAAJSON(await fdoRoutesResp.json());
       }
       if (iataWorldResp && iataWorldResp.ok) {
         const parsedWorld = parseIATAMundoCSV(await readTextSmart(iataWorldResp));
