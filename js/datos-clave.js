@@ -23,7 +23,9 @@
   let areasInfluenciaFeatures = [];
   let pasajerosMensualRows = [];
   let currentIATA = "";
-
+  let fdoTrafficAA = null;
+  const FDO_AA_SOURCE = "fuentes/fdo_trafico_aeropuertos_argentina.json";
+  
   // UI
   let selectEl = null;
   let paxChart = null;
@@ -50,7 +52,7 @@
   let influenciaLegend = null;
 
   // Multiplicador para empleo indirecto
-  const EMP_IND_MULT = 5.8;
+   EMP_IND_MULT = 5.8;
 
   // Icono aeropuerto (igual a tu proyecto)
   const airportIcon = L.icon({
@@ -88,6 +90,67 @@
       .filter(Boolean);
   }
 
+  function isFDO(iata) {
+  return String(iata || "").trim().toUpperCase() === "FDO";
+}
+
+function fdoShouldUseTrafficRow(row) {
+  const cls = String(row.clase_vuelo || "").toLowerCase();
+
+  // Excluimos cargas para los KPIs y series de pasajeros.
+  return !cls.startsWith("cargas");
+}
+
+function fdoPassengerDataset(segment) {
+  const s = String(segment || "").toLowerCase();
+
+  if (s.includes("internacional")) {
+    return PAX_DATASET_INT;
+  }
+
+  return PAX_DATASET_CAB;
+}
+
+function fdoAAToPassengerRows(data) {
+  const acc = new Map();
+
+  (data?.mensual || [])
+    .filter(fdoShouldUseTrafficRow)
+    .forEach(row => {
+      const anio = Number(row.anio);
+      const mes = Number(row.mes);
+      if (!Number.isFinite(anio) || !Number.isFinite(mes)) return;
+
+      const dataset = fdoPassengerDataset(row.segmento);
+      const key = `${anio}-${String(mes).padStart(2, "0")}-${dataset}`;
+
+      if (!acc.has(key)) {
+        acc.set(key, {
+          iata: "FDO",
+          dataset,
+          date: new Date(anio, mes - 1, 1),
+          valor: 0,
+          anio,
+          mes,
+          mesNombre: "",
+          source: "aeropuertos_argentina_fdo"
+        });
+      }
+
+      acc.get(key).valor += Number(row.pasajeros) || 0;
+    });
+
+  return Array.from(acc.values())
+    .filter(row => Number.isFinite(row.valor))
+    .sort((a, b) => a.date - b.date);
+}
+
+function replaceRowsForFDO(baseRows, replacementRows) {
+  return (baseRows || [])
+    .filter(row => !isFDO(row.iata))
+    .concat(replacementRows || [])
+    .sort((a, b) => a.date - b.date);
+}
   // Parsea montos en texto (con separadores argentinos) a número
   function parseMonto(raw) {
     if (raw === null || raw === undefined) return 0;
@@ -2821,6 +2884,22 @@ renderPasajerosPanel(iata);
         pasajerosMensualRows = [];
       }
 
+      // 13) Override FDO - Aeropuertos Argentina
+try {
+  const respFDO = await fetch(FDO_AA_SOURCE);
+
+  if (respFDO.ok) {
+    fdoTrafficAA = await respFDO.json();
+
+    pasajerosMensualRows = replaceRowsForFDO(
+      pasajerosMensualRows,
+      fdoAAToPassengerRows(fdoTrafficAA)
+    );
+  }
+} catch (e) {
+  console.warn("No se pudo cargar el override FDO Aeropuertos Argentina:", e);
+}
+      
       // Inicial (URL ?airport=)
       const params = new URLSearchParams(window.location.search);
       const fromUrl = params.get("airport");
