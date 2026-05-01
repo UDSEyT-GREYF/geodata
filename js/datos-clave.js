@@ -52,7 +52,7 @@
   let influenciaLegend = null;
 
   // Multiplicador para empleo indirecto
-   EMP_IND_MULT = 5.8;
+  const EMP_IND_MULT = 5.8;
 
   // Icono aeropuerto (igual a tu proyecto)
   const airportIcon = L.icon({
