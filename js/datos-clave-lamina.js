@@ -10,6 +10,8 @@
   let movimientosMensualRows = [];
   let fdoTrafficAA = null;
   const FDO_AA_SOURCE = "fuentes/fdo_trafico_aeropuertos_argentina.json";
+  let fdoRoutesAA = [];
+  const FDO_ROUTES_AA_SOURCE = "fuentes/fdo_rutas_aeropuertos_argentina.json";
   let vuelosRows = [];
   let rutasRows = [];
   let transportePorIATA = {};
