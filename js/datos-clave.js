@@ -125,16 +125,21 @@ function fdoAAToPassengerRows(data) {
       const key = `${anio}-${String(mes).padStart(2, "0")}-${dataset}`;
 
       if (!acc.has(key)) {
-        acc.set(key, {
-          iata: "FDO",
-          dataset,
-          date: new Date(anio, mes - 1, 1),
-          valor: 0,
-          anio,
-          mes,
-          mesNombre: "",
-          source: "aeropuertos_argentina_fdo"
-        });
+const date = new Date(anio, mes - 1, 1);
+const mesNombre = date
+  .toLocaleString("es-AR", { month: "short" })
+  .replace(".", "");
+
+acc.set(key, {
+  iata: "FDO",
+  dataset,
+  date,
+  valor: 0,
+  anio,
+  mes,
+  mesNombre,
+  source: "aeropuertos_argentina_fdo"
+});
       }
 
       acc.get(key).valor += Number(row.pasajeros) || 0;
