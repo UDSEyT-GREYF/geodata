@@ -38,6 +38,87 @@
     amarilloSeleccion: "#FFD700"
   };
 
+  const BASEMAP_CONFIGS = [
+    {
+      id: "argenmap",
+      name: "Argenmap",
+      url: "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png",
+      tms: true,
+      minZoom: 3,
+      maxZoom: 19,
+      attribution: "© Instituto Geográfico Nacional + OpenStreetMap",
+      swatch: "#bfe6fb"
+    },
+    {
+      id: "argenmap_gris",
+      name: "Argenmap gris",
+      url: "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_gris@EPSG%3A3857@png/{z}/{x}/{-y}.png",
+      tms: true,
+      minZoom: 3,
+      maxZoom: 19,
+      attribution: "© Instituto Geográfico Nacional + OpenStreetMap",
+      swatch: "#d5d8dc"
+    },
+    {
+      id: "argenmap_oscuro",
+      name: "Argenmap oscuro",
+      url: "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/argenmap_oscuro@EPSG%3A3857@png/{z}/{x}/{-y}.png",
+      tms: true,
+      minZoom: 3,
+      maxZoom: 19,
+      attribution: "© Instituto Geográfico Nacional + OpenStreetMap",
+      swatch: "#23272d"
+    },
+    {
+      id: "argenmap_topografico",
+      name: "Argenmap topográfico",
+      url: "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_topo@EPSG%3A3857@png/{z}/{x}/{-y}.png",
+      tms: true,
+      minZoom: 3,
+      maxZoom: 13,
+      attribution: "© Instituto Geográfico Nacional + OpenStreetMap",
+      swatch: "#cfe8d0"
+    },
+    {
+      id: "esri_imagery",
+      name: "Imágenes satelitales Esri",
+      url: "https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+      maxZoom: 19,
+      attribution: "Imágenes satelitales © Esri",
+      swatchImage: "https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/0/0/0"
+    },
+    {
+      id: "google_imagery",
+      name: "Imágenes satelitales Google",
+      url: "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+      minZoom: 3,
+      maxZoom: 21,
+      attribution: "Imágenes satelitales © Google",
+      swatchImage: "https://mt1.google.com/vt/lyrs=s&x=0&y=0&z=0"
+    },
+    {
+      id: "esri_topografico",
+      name: "Mapa topográfico Esri",
+      url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}",
+      minZoom: 3,
+      maxZoom: 8,
+      attribution: "Mapa topográfico © Esri",
+      swatch: "#c4d7ef"
+    },
+    {
+      id: "esri_oceanico",
+      name: "Mapa Esri Fondo Oceánico",
+      url: "https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}",
+      minZoom: 3,
+      maxZoom: 10,
+      attribution: "Tiles © Esri — Fuente: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ y Esri",
+      swatchImage: "https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/0/0/0"
+    }
+  ];
+
+  const DEFAULT_BASEMAP_ID = "argenmap";
+  const AIRPORT_BASEMAP_ID = "esri_imagery";
+
   const LAYER_CONFIGS = [
     {
       id: "provincias",
@@ -239,11 +320,14 @@
   const state = {
     map: null,
     baseLayers: {},
+    baseLayerConfigs: new Map(),
+    activeBaseLayerId: "",
+    userChangedBaseLayer: false,
+    autoSwitchingBaseLayer: false,
     layerDefs: new Map(),
     airports: [],
     airportIndex: new Map(),
     selectedAirport: "",
-    selectedHighlight: null,
     airportLabelLayer: null,
     drawnItems: null
   };
@@ -323,6 +407,17 @@
     return b.isValid() ? b : null;
   }
 
+  function makeBaseLayer(cfg) {
+    return L.tileLayer(cfg.url, {
+      minZoom: cfg.minZoom ?? 0,
+      maxZoom: cfg.maxZoom ?? 20,
+      maxNativeZoom: cfg.nativeMaxZoom,
+      minNativeZoom: cfg.nativeMinZoom,
+      tms: !!cfg.tms,
+      attribution: cfg.attribution || ""
+    });
+  }
+
   function createMap() {
     const map = L.map("sigaMap", {
       center: DEFAULT_CENTER,
@@ -332,85 +427,30 @@
       fullscreenControl: !!L.Control.FullScreen
     });
 
-    const osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 20,
-      attribution: "© OpenStreetMap contributors"
+    BASEMAP_CONFIGS.forEach((cfg) => {
+      const layer = makeBaseLayer(cfg);
+      state.baseLayers[cfg.name] = layer;
+      state.baseLayerConfigs.set(cfg.id, { ...cfg, layer });
     });
-
-    const osmHot = L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
-      maxZoom: 20,
-      attribution: "© OpenStreetMap contributors, Humanitarian OpenStreetMap Team"
-    });
-
-    const carto = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-      maxZoom: 20,
-      attribution: "© OpenStreetMap contributors © CARTO"
-    });
-
-    const cartoVoyager = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
-      maxZoom: 20,
-      attribution: "© OpenStreetMap contributors © CARTO"
-    });
-
-    const cartoDark = L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-      maxZoom: 20,
-      attribution: "© OpenStreetMap contributors © CARTO"
-    });
-
-    const esri = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
-      maxZoom: 20,
-      attribution: "Tiles © Esri"
-    });
-
-    const esriStreets = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
-      maxZoom: 20,
-      attribution: "Tiles © Esri"
-    });
-
-    const esriTopo = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}", {
-      maxZoom: 20,
-      attribution: "Tiles © Esri"
-    });
-
-    const esriGray = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
-      maxZoom: 16,
-      attribution: "Tiles © Esri"
-    });
-
-    const openTopo = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
-      maxZoom: 17,
-      attribution: "© OpenStreetMap contributors, SRTM | © OpenTopoMap"
-    });
-
-    const argenmap = L.tileLayer(
-      "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG:3857@png/{z}/{x}/{-y}.png",
-      { maxZoom: 18, tms: true, attribution: "© IGN Argentina - Argenmap" }
-    );
-
-    carto.addTo(map);
-    state.baseLayers = {
-      "Carto claro": carto,
-      "Carto Voyager": cartoVoyager,
-      "Carto oscuro": cartoDark,
-      "Argenmap IGN": argenmap,
-      "OpenStreetMap": osm,
-      "OpenStreetMap HOT": osmHot,
-      "OpenTopoMap": openTopo,
-      "Esri satelital": esri,
-      "Esri calles": esriStreets,
-      "Esri topográfico": esriTopo,
-      "Esri gris": esriGray
-    };
-
-    L.control.layers(state.baseLayers, null, { collapsed: true, position: "topright" }).addTo(map);
-    L.control.scale({ metric: true, imperial: false, position: "bottomleft" }).addTo(map);
-
-    addOptionalControls(map, carto);
 
     state.map = map;
+    setBaseLayer(DEFAULT_BASEMAP_ID, { auto: true, silent: true });
+
+    map.on("baselayerchange", (e) => {
+      if (state.autoSwitchingBaseLayer) return;
+      const found = BASEMAP_CONFIGS.find((cfg) => cfg.name === e.name);
+      if (!found) return;
+      state.activeBaseLayerId = found.id;
+      state.userChangedBaseLayer = true;
+      renderBaseLayerTree();
+    });
+
+    L.control.scale({ metric: true, imperial: false, position: "bottomleft" }).addTo(map);
+
+    addOptionalControls(map);
   }
 
-  function addOptionalControls(map, minimapBase) {
+  function addOptionalControls(map) {
     try {
       if (L.control.locate) L.control.locate({ position: "topleft", flyTo: true, strings: { title: "Mostrar mi ubicación" } }).addTo(map);
     } catch (e) { console.warn("Locate plugin no disponible", e); }
@@ -704,6 +744,7 @@
       }
     }
 
+    renderBaseLayerTree();
     renderLayerTree();
     renderLegend();
     if (status) status.textContent = failed ? `Capas cargadas: ${loaded}. No disponibles: ${failed}.` : `Capas cargadas: ${loaded}.`;
@@ -731,6 +772,63 @@
         l.setStyle(style);
       }
       if (l.setOpacity) l.setOpacity(opacity);
+    });
+  }
+
+  function setBaseLayer(id, opts = {}) {
+    const { auto = false, silent = false } = opts;
+    const def = state.baseLayerConfigs.get(id);
+    if (!def || !def.layer) return;
+
+    if (!auto && !silent) state.userChangedBaseLayer = true;
+
+    Object.values(state.baseLayers).forEach((layer) => {
+      if (state.map?.hasLayer(layer)) state.map.removeLayer(layer);
+    });
+
+    state.autoSwitchingBaseLayer = true;
+    def.layer.addTo(state.map);
+    state.activeBaseLayerId = id;
+    state.autoSwitchingBaseLayer = false;
+
+    renderBaseLayerTree();
+  }
+
+  function maybeSwitchBaseLayerForAirport() {
+    if (!state.userChangedBaseLayer) {
+      setBaseLayer(AIRPORT_BASEMAP_ID, { auto: true });
+    }
+  }
+
+  function maybeSwitchBaseLayerForArgentina() {
+    if (!state.userChangedBaseLayer) {
+      setBaseLayer(DEFAULT_BASEMAP_ID, { auto: true });
+    }
+  }
+
+  function renderBaseLayerTree() {
+    const root = q("baseLayerTree");
+    if (!root) return;
+
+    root.innerHTML = BASEMAP_CONFIGS.map((cfg) => {
+      const checked = state.activeBaseLayerId === cfg.id ? "checked" : "";
+      const swatchStyle = cfg.swatchImage
+        ? `background-image:url('${cfg.swatchImage}'); background-size:cover; background-position:center;`
+        : `background:${cfg.swatch || "#d0d7e2"};`;
+
+      return `
+        <label class="basemap-row" title="${escapeHtml(cfg.name)}">
+          <input type="radio" name="sigaBaseMap" value="${escapeHtml(cfg.id)}" ${checked}>
+          <span class="basemap-thumb" style="${swatchStyle}"></span>
+          <span class="basemap-name">${escapeHtml(cfg.name)}</span>
+        </label>
+      `;
+    }).join("");
+
+    root.querySelectorAll('input[name="sigaBaseMap"]').forEach((input) => {
+      input.addEventListener("change", (e) => {
+        setBaseLayer(e.target.value, { auto: false });
+      });
     });
   }
 
@@ -804,6 +902,7 @@
   }
 
   function zoomArgentina() {
+    maybeSwitchBaseLayerForArgentina();
     clearAirportHighlight();
     state.selectedAirport = "";
     syncAirportSelects("");
@@ -822,11 +921,12 @@
     if (!code) return;
     state.selectedAirport = code;
     syncAirportSelects(code);
+    maybeSwitchBaseLayerForAirport();
 
     const bounds = findAirportBounds(code);
     if (bounds && bounds.isValid()) {
       state.map.fitBounds(bounds, { padding: [35, 35], maxZoom: 17 });
-      highlightAirport(code);
+      // No dibujamos polígono de predio seleccionado: entorpece la lectura de capas internas.
       const hint = q("airportHint");
       if (hint) hint.textContent = `Vista centrada en ${code}. Podés seguir explorando o volver a la vista nacional.`;
       updateUrl(true);
@@ -871,21 +971,12 @@
   }
 
   function highlightAirport(iata) {
-    clearAirportHighlight();
-    const pred = state.layerDefs.get("predios")?.geojson;
-    if (!pred?.features?.length) return;
-    const feats = pred.features.filter((f) => getFeatureIata(f) === iata && hasGeometry(f));
-    if (!feats.length) return;
-    state.selectedHighlight = L.geoJSON(feats, {
-      style: { color: SIGA_COLORS.azulOscuro, weight: 3.2, fillColor: SIGA_COLORS.azulClaro, fillOpacity: 0.06, dashArray: "7 5" }
-    }).addTo(state.map);
+    // Desactivado a pedido: no se dibuja un polígono de predio seleccionado,
+    // para no tapar ni competir visualmente con las capas internas del aeropuerto.
   }
 
   function clearAirportHighlight() {
-    if (state.selectedHighlight) {
-      state.map.removeLayer(state.selectedHighlight);
-      state.selectedHighlight = null;
-    }
+    // Sin resaltado persistente de predio.
   }
 
   function updateUrl(focused) {
@@ -923,6 +1014,7 @@
   async function init() {
     createMap();
     wireUi();
+    renderBaseLayerTree();
 
     try {
       await loadAirports();
