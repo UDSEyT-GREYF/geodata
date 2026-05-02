@@ -3,6 +3,11 @@
   "use strict";
 
   const params = new URLSearchParams(window.location.search);
+  const isMiniMode = params.get("mini") === "1";
+
+if (isMiniMode) {
+  document.body.classList.add("siga-mini");
+}
   const EMBED_MODE = params.get("embed") === "1";
   const URL_AIRPORT = (params.get("airport") || "").trim().toUpperCase();
   const URL_FOCUS = params.get("focus") === "1";
