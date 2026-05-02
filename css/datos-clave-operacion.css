@@ -2423,3 +2423,88 @@ body {
   line-height: 1.15;
   margin-top: 3px;
 }
+/* =========================================================
+   SIGA EMBEBIDO | MAPA DE INFRAESTRUCTURA AEROPORTUARIA
+   ========================================================= */
+
+/* Achica la tarjeta de explotación para que Área de Movimiento suba */
+.section-superficie {
+  min-height: 0 !important;
+  flex: 0 0 auto;
+}
+
+/* Compacta Área de Movimiento */
+.section-movimiento {
+  min-height: 0 !important;
+  flex: 0 0 auto;
+}
+
+.section-movimiento .section-title {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+}
+
+.section-movimiento .movement-wrap {
+  gap: 4px;
+}
+
+.section-movimiento .movement-box {
+  padding: 5px 6px 4px;
+}
+
+.section-movimiento .movement-box-runways {
+  padding: 5px 6px;
+}
+
+.section-movimiento .movement-box-positions {
+  padding: 5px 6px;
+}
+
+.section-movimiento .movement-runway-list {
+  gap: 3px;
+}
+
+.section-movimiento .movement-runway-card {
+  min-height: 28px;
+}
+
+.section-movimiento .movement-box-title-inline,
+.section-movimiento .movement-kpi-title {
+  font-size: 0.70rem;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.section-movimiento .movement-position-detail {
+  font-size: 0.58rem;
+  line-height: 1;
+}
+
+/* Nueva tarjeta SIGA */
+.section-siga-map {
+  min-height: 210px;
+  flex: 1 1 auto;
+}
+
+.section-siga-map .section-title {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+}
+
+.siga-map-frame-wrap {
+  width: 100%;
+  height: 205px;
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+.siga-map-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
