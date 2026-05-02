@@ -38,16 +38,8 @@
 
   <main class="siga-layout">
     <aside class="siga-sidebar" id="sigaSidebar">
-      <section class="siga-card siga-intro">
-        <h2>Explorá la infraestructura aeroportuaria</h2>
-        <p>
-          El mapa inicia con la vista nacional. Seleccioná un aeropuerto para hacer zoom al predio,
-          o activá y desactivá capas para recorrer la infraestructura disponible.
-        </p>
-      </section>
-
-      <section class="siga-card">
-        <div class="siga-section-title">Aeropuerto</div>
+      <section class="siga-card siga-airport-card">
+        <div class="siga-section-title">Explorá la infraestructura aeroportuaria</div>
         <label class="siga-label" for="airportSelect">Buscar / seleccionar aeropuerto</label>
         <select id="airportSelect" class="siga-select">
           <option value="">Cargando aeropuertos…</option>
@@ -59,8 +51,13 @@
         <div class="siga-hint" id="airportHint">Elegí un aeropuerto o navegá libremente por el mapa.</div>
       </section>
 
-      <section class="siga-card">
+      <section class="siga-card siga-layers-card">
         <div class="siga-section-title">Capas</div>
+
+        <div class="siga-subsection-title">Mapas base</div>
+        <div id="baseLayerTree" class="base-layer-tree"></div>
+
+        <div class="siga-subsection-title siga-subsection-title-overlays">Capas operativas</div>
         <div class="siga-button-row siga-button-row-tight">
           <button type="button" id="btnDefaultLayers" class="siga-btn siga-btn-secondary">Capas principales</button>
           <button type="button" id="btnAllLayers" class="siga-btn siga-btn-secondary">Activar todas</button>
