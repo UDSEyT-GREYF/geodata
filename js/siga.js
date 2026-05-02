@@ -45,13 +45,13 @@
       name: "Provincias",
       url: "fuentes/provincias.geojson",
       active: true,
-      opacity: 0.78,
+      opacity: 0.9,
       color: SIGA_COLORS.grisContexto,
       style: {
         color: SIGA_COLORS.grisContexto,
         weight: 1,
-        fillColor: SIGA_COLORS.grisFondo,
-        fillOpacity: 0.55
+        fillColor: "transparent",
+        fillOpacity: 0
       }
     },
     {
@@ -66,7 +66,7 @@
         color: SIGA_COLORS.azulLink,
         weight: 2.2,
         fillColor: SIGA_COLORS.azulClaro,
-        fillOpacity: 0.22
+        fillOpacity: 0.18
       }
     },
     {
@@ -142,21 +142,6 @@
         weight: 1.2,
         fillColor: SIGA_COLORS.rojoSuave,
         fillOpacity: 0.45
-      }
-    },
-    {
-      id: "terminalpax",
-      group: "Edificios e infraestructura",
-      name: "Terminal pax",
-      url: "fuentes/terminalpax.geojson",
-      active: false,
-      opacity: 0.94,
-      color: SIGA_COLORS.rojoTerminal,
-      style: {
-        color: SIGA_COLORS.rojoTerminal,
-        weight: 1.2,
-        fillColor: SIGA_COLORS.rojoSuave,
-        fillOpacity: 0.38
       }
     },
     {
@@ -259,6 +244,7 @@
     airportIndex: new Map(),
     selectedAirport: "",
     selectedHighlight: null,
+    airportLabelLayer: null,
     drawnItems: null
   };
 
@@ -299,6 +285,44 @@
     return !!feature?.geometry;
   }
 
+
+  function getDetailLabelValue(cfg, feature) {
+    const props = feature?.properties || {};
+    const byLayer = {
+      cabeceras: ["Cabecera", "cabecera", "CABECERA", "etiqueta", "ETIQUETA"],
+      pistas: ["tipo", "Tipo", "TIPO"],
+      psn: ["posicion", "Posicion", "posición", "Posición", "POSICION"],
+      terminales2026: ["tipo", "Tipo", "TIPO"]
+    };
+
+    const candidates = byLayer[cfg.id];
+    if (!candidates) return "";
+
+    return clean(getFirstProp(props, candidates));
+  }
+
+  function getAirportShortName(airport) {
+    const p = airport?.properties || {};
+    let name = clean(p.Localidad || p.localidad || p.Aeropuerto || p["Nombre del Aeropuerto"] || airport?.nombre || airport?.iata);
+    name = name
+      .replace(/^Aeropuerto\s+Internacional\s+de\s+/i, "")
+      .replace(/^Aeropuerto\s+Internacional\s+/i, "")
+      .replace(/^Aeropuerto\s+de\s+/i, "")
+      .replace(/^Aeropuerto\s+/i, "")
+      .trim();
+    return name || airport?.iata || "Aeropuerto";
+  }
+
+  function getPredioBoundsForAirport(iata) {
+    const pred = state.layerDefs.get("predios")?.geojson;
+    if (!pred?.features?.length) return null;
+    const feats = pred.features.filter((f) => getFeatureIata(f) === iata && hasGeometry(f));
+    if (!feats.length) return null;
+    const layer = L.geoJSON(feats);
+    const b = layer.getBounds();
+    return b.isValid() ? b : null;
+  }
+
   function createMap() {
     const map = L.map("sigaMap", {
       center: DEFAULT_CENTER,
@@ -310,17 +334,52 @@
 
     const osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 20,
-      attribution: "© OpenStreetMap"
+      attribution: "© OpenStreetMap contributors"
+    });
+
+    const osmHot = L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
+      maxZoom: 20,
+      attribution: "© OpenStreetMap contributors, Humanitarian OpenStreetMap Team"
     });
 
     const carto = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
       maxZoom: 20,
-      attribution: "© OpenStreetMap © CARTO"
+      attribution: "© OpenStreetMap contributors © CARTO"
+    });
+
+    const cartoVoyager = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+      maxZoom: 20,
+      attribution: "© OpenStreetMap contributors © CARTO"
+    });
+
+    const cartoDark = L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+      maxZoom: 20,
+      attribution: "© OpenStreetMap contributors © CARTO"
     });
 
     const esri = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
       maxZoom: 20,
       attribution: "Tiles © Esri"
+    });
+
+    const esriStreets = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
+      maxZoom: 20,
+      attribution: "Tiles © Esri"
+    });
+
+    const esriTopo = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}", {
+      maxZoom: 20,
+      attribution: "Tiles © Esri"
+    });
+
+    const esriGray = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
+      maxZoom: 16,
+      attribution: "Tiles © Esri"
+    });
+
+    const openTopo = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+      maxZoom: 17,
+      attribution: "© OpenStreetMap contributors, SRTM | © OpenTopoMap"
     });
 
     const argenmap = L.tileLayer(
@@ -331,9 +390,16 @@
     carto.addTo(map);
     state.baseLayers = {
       "Carto claro": carto,
-      "OpenStreetMap": osm,
+      "Carto Voyager": cartoVoyager,
+      "Carto oscuro": cartoDark,
       "Argenmap IGN": argenmap,
-      "Esri satelital": esri
+      "OpenStreetMap": osm,
+      "OpenStreetMap HOT": osmHot,
+      "OpenTopoMap": openTopo,
+      "Esri satelital": esri,
+      "Esri calles": esriStreets,
+      "Esri topográfico": esriTopo,
+      "Esri gris": esriGray
     };
 
     L.control.layers(state.baseLayers, null, { collapsed: true, position: "topright" }).addTo(map);
@@ -435,6 +501,66 @@
     });
   }
 
+
+  function createAirportLabels() {
+    if (!state.map) return;
+
+    if (state.airportLabelLayer) {
+      state.map.removeLayer(state.airportLabelLayer);
+      state.airportLabelLayer = null;
+    }
+
+    const group = L.layerGroup();
+
+    state.airports.forEach((airport) => {
+      const bounds = getPredioBoundsForAirport(airport.iata);
+      const center = bounds?.getCenter() || getAirportCenterFromFeature(airport.feature, airport.properties);
+      if (!center) return;
+
+      const shortName = getAirportShortName(airport);
+      const html = `
+        <div class="siga-airport-label-box">
+          <span class="siga-airport-label-icon">✈</span>
+          <span class="siga-airport-label-text">${escapeHtml(shortName)} (${escapeHtml(airport.iata)})</span>
+        </div>
+      `;
+
+      const marker = L.marker(center, {
+        interactive: false,
+        keyboard: false,
+        icon: L.divIcon({
+          className: "siga-airport-label-marker",
+          html,
+          iconSize: [1, 1],
+          iconAnchor: [0, 0]
+        })
+      });
+
+      group.addLayer(marker);
+    });
+
+    state.airportLabelLayer = group;
+    updateZoomDependentLabels();
+  }
+
+  function updateZoomDependentLabels() {
+    if (!state.map) return;
+
+    const z = state.map.getZoom();
+    const showAirportLabels = z <= 7;
+    const showDetailLabels = z >= 15;
+
+    if (state.airportLabelLayer) {
+      if (showAirportLabels && !state.map.hasLayer(state.airportLabelLayer)) {
+        state.airportLabelLayer.addTo(state.map);
+      } else if (!showAirportLabels && state.map.hasLayer(state.airportLabelLayer)) {
+        state.map.removeLayer(state.airportLabelLayer);
+      }
+    }
+
+    state.map.getContainer().classList.toggle("siga-show-detail-labels", showDetailLabels);
+  }
+
   function makeLayer(cfg, geojson) {
     const options = {
       pane: cfg.id === "provincias" ? "overlayPane" : "overlayPane",
@@ -464,7 +590,15 @@
     const title = featureTitle(feature, cfg.name);
     const iata = getFeatureIata(feature);
 
-    if (title || iata) {
+    const detailLabel = getDetailLabelValue(cfg, feature);
+
+    if (detailLabel) {
+      layer.bindTooltip(detailLabel, {
+        permanent: true,
+        direction: cfg.id === "psn" ? "top" : "center",
+        className: `siga-tooltip siga-label-detail siga-label-detail-${cfg.id}`
+      });
+    } else if (title || iata) {
       layer.bindTooltip(iata ? `${iata} · ${title}` : title, {
         sticky: true,
         direction: "top",
@@ -709,7 +843,7 @@
 
   function findAirportBounds(iata) {
     let bounds = null;
-    ["predios", "pistas", "plataformas", "terminales2026", "terminalpax"].forEach((id) => {
+    ["predios", "pistas", "plataformas", "terminales2026"].forEach((id) => {
       const def = state.layerDefs.get(id);
       if (!def?.geojson?.features?.length) return;
       const feats = def.geojson.features.filter((f) => getFeatureIata(f) === iata && hasGeometry(f));
@@ -743,7 +877,7 @@
     const feats = pred.features.filter((f) => getFeatureIata(f) === iata && hasGeometry(f));
     if (!feats.length) return;
     state.selectedHighlight = L.geoJSON(feats, {
-      style: { color: SIGA_COLORS.amarilloSeleccion, weight: 3.2, fillColor: SIGA_COLORS.amarilloSeleccion, fillOpacity: 0.08, dashArray: "7 5" }
+      style: { color: SIGA_COLORS.azulOscuro, weight: 3.2, fillColor: SIGA_COLORS.azulClaro, fillOpacity: 0.06, dashArray: "7 5" }
     }).addTo(state.map);
   }
 
@@ -793,6 +927,9 @@
     try {
       await loadAirports();
       await loadConfiguredLayers();
+      createAirportLabels();
+      state.map.on("zoomend", updateZoomDependentLabels);
+      updateZoomDependentLabels();
 
       setTimeout(() => state.map.invalidateSize(), 50);
 
