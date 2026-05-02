@@ -80,6 +80,54 @@
       swatch: "#cfe8d0"
     },
     {
+      id: "osm",
+      name: "OpenStreetMap",
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      maxZoom: 20,
+      attribution: "© OpenStreetMap contributors",
+      swatch: "#d8edf7"
+    },
+    {
+      id: "osm_humanitario",
+      name: "OpenStreetMap humanitario",
+      url: "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
+      maxZoom: 20,
+      attribution: "© OpenStreetMap contributors, Humanitarian OpenStreetMap Team",
+      swatch: "#f2e1d6"
+    },
+    {
+      id: "carto_claro",
+      name: "Carto claro",
+      url: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+      maxZoom: 20,
+      attribution: "© OpenStreetMap contributors © CARTO",
+      swatch: "#edf2f6"
+    },
+    {
+      id: "carto_voyager",
+      name: "Carto Voyager",
+      url: "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+      maxZoom: 20,
+      attribution: "© OpenStreetMap contributors © CARTO",
+      swatch: "#e7f0ef"
+    },
+    {
+      id: "carto_oscuro",
+      name: "Carto oscuro",
+      url: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+      maxZoom: 20,
+      attribution: "© OpenStreetMap contributors © CARTO",
+      swatch: "#242a31"
+    },
+    {
+      id: "opentopo",
+      name: "OpenTopoMap",
+      url: "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+      maxZoom: 17,
+      attribution: "© OpenStreetMap contributors, SRTM | © OpenTopoMap",
+      swatch: "#e9dcc1"
+    },
+    {
       id: "esri_imagery",
       name: "Imágenes satelitales Esri",
       url: "https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
@@ -97,13 +145,28 @@
       swatchImage: "https://mt1.google.com/vt/lyrs=s&x=0&y=0&z=0"
     },
     {
+      id: "esri_calles",
+      name: "Mapa Esri calles",
+      url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+      maxZoom: 20,
+      attribution: "Tiles © Esri",
+      swatch: "#ece2d0"
+    },
+    {
       id: "esri_topografico",
       name: "Mapa topográfico Esri",
-      url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}",
-      minZoom: 3,
-      maxZoom: 8,
+      url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+      maxZoom: 20,
       attribution: "Mapa topográfico © Esri",
       swatch: "#c4d7ef"
+    },
+    {
+      id: "esri_gris",
+      name: "Mapa Esri gris claro",
+      url: "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+      maxZoom: 16,
+      attribution: "Tiles © Esri",
+      swatch: "#d7dce2"
     },
     {
       id: "esri_oceanico",
@@ -559,10 +622,8 @@
 
       const shortName = getAirportShortName(airport);
       const html = `
-        <div class="siga-airport-label-box">
-          <span class="siga-airport-label-icon">✈</span>
-          <span class="siga-airport-label-text">${escapeHtml(shortName)} (${escapeHtml(airport.iata)})</span>
-        </div>
+        <div class="siga-airport-center-icon" aria-hidden="true">✈</div>
+        <div class="siga-airport-floating-text">${escapeHtml(shortName)} (${escapeHtml(airport.iata)})</div>
       `;
 
       const marker = L.marker(center, {
