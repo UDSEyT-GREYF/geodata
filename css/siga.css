@@ -258,3 +258,84 @@ body.embed .siga-map-shell {
 body.embed .leaflet-control-attribution {
   font-size: 9px;
 }
+
+/* ==============================
+   SIGA – Etiquetas dinámicas
+   ============================== */
+.siga-airport-label-marker {
+  pointer-events: none;
+}
+
+.siga-airport-label-box {
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 7px 3px 5px;
+  border: 1px solid rgba(0, 40, 85, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #002855;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.18);
+}
+
+.siga-airport-label-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #306fb0;
+  color: #ffffff;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.siga-airport-label-text {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Las etiquetas de detalle existen como tooltips permanentes,
+   pero solo se muestran cuando el zoom es cercano al aeropuerto. */
+.siga-label-detail {
+  display: none;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #8fa4bd;
+  color: #002855;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 1px 4px;
+  box-shadow: none;
+}
+
+.siga-show-detail-labels .siga-label-detail {
+  display: block;
+}
+
+.siga-label-detail-psn {
+  color: #6b2f82;
+  border-color: rgba(107, 47, 130, 0.55);
+  font-size: 8px;
+}
+
+.siga-label-detail-pistas {
+  color: #222222;
+  border-color: rgba(34, 34, 34, 0.45);
+}
+
+.siga-label-detail-cabeceras {
+  color: #002855;
+  border-color: rgba(0, 40, 85, 0.5);
+}
+
+.siga-label-detail-terminales2026 {
+  color: #8a1f1f;
+  border-color: rgba(178, 34, 34, 0.5);
+}
