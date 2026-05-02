@@ -942,21 +942,16 @@ function buildFdoOfertaDemandaSummary(year = YEAR_REF) {
   const freqByRoute = new Map();
 
   let totalPaxRoutes = 0;
-  let totalAsientosRoutes = 0;
   let totalVuelosRoutes = 0;
 
   routesRows.forEach(r => {
     const label = getFdoRouteLabel(r.d);
-    const isInternational = label.clasificacion === "Internacional";
-    const marketKey = isInternational ? "Int" : "Cab";
     const pax = Number(r.p) || 0;
-    const asientos = Number(r.s) || 0;
     const vuelos = Number(r.v) || 0;
     const freq = Number(r.f) || 0;
     const monthKey = r.am || `${year}-${String(r.m).padStart(2, "0")}`;
 
     totalPaxRoutes += pax;
-    totalAsientosRoutes += asientos;
     totalVuelosRoutes += vuelos;
 
     if (!monthlyByKey.has(monthKey)) {
@@ -973,10 +968,6 @@ function buildFdoOfertaDemandaSummary(year = YEAR_REF) {
         vuelosTotal: 0
       });
     }
-
-    const monthItem = monthlyByKey.get(monthKey);
-    monthItem.asientosTotal += asientos;
-    monthItem[`asientos${marketKey}`] += asientos;
 
     if (!destinosMap.has(label.code)) {
       destinosMap.set(label.code, {
@@ -996,7 +987,6 @@ function buildFdoOfertaDemandaSummary(year = YEAR_REF) {
 
     const dest = destinosMap.get(label.code);
     dest.pax += pax;
-    dest.asientos += asientos;
     dest.vuelos += vuelos;
     dest.frecuenciaSemanal += freq;
 
@@ -1031,7 +1021,6 @@ function buildFdoOfertaDemandaSummary(year = YEAR_REF) {
 
     const routeAgg = mainRoutesMap.get(routeKey);
     routeAgg.totalPax += pax;
-    routeAgg.totalAsientos += asientos;
     routeAgg.totalVuelos += vuelos;
 
     if (!routeAgg.monthlyMap.has(monthKey)) {
@@ -1046,7 +1035,6 @@ function buildFdoOfertaDemandaSummary(year = YEAR_REF) {
 
     const routeMonth = routeAgg.monthlyMap.get(monthKey);
     routeMonth.totalPax += pax;
-    routeMonth.totalAsientos += asientos;
     routeMonth.totalVuelos += vuelos;
 
     if (!routeMonth.airlines[airlineName]) {
@@ -1058,7 +1046,6 @@ function buildFdoOfertaDemandaSummary(year = YEAR_REF) {
     }
 
     routeMonth.airlines[airlineName].pax += pax;
-    routeMonth.airlines[airlineName].asientos += asientos;
     routeMonth.airlines[airlineName].vuelos += vuelos;
   });
 
@@ -1073,19 +1060,16 @@ function buildFdoOfertaDemandaSummary(year = YEAR_REF) {
 
   const totalPaxTraffic = monthlyFinal.reduce((acc, r) => acc + (Number(r.paxTotal) || 0), 0);
   const totalVuelosTraffic = monthlyFinal.reduce((acc, r) => acc + (Number(r.vuelosTotal) || 0), 0);
-  const totalAsientosMonthly = monthlyFinal.reduce((acc, r) => acc + (Number(r.asientosTotal) || 0), 0);
 
   const paxCab = monthlyFinal.reduce((acc, r) => acc + (Number(r.paxCab) || 0), 0);
   const paxInt = monthlyFinal.reduce((acc, r) => acc + (Number(r.paxInt) || 0), 0);
-  const asientosCab = monthlyFinal.reduce((acc, r) => acc + (Number(r.asientosCab) || 0), 0);
-  const asientosInt = monthlyFinal.reduce((acc, r) => acc + (Number(r.asientosInt) || 0), 0);
   const vuelosCab = monthlyFinal.reduce((acc, r) => acc + (Number(r.vuelosCab) || 0), 0);
   const vuelosInt = monthlyFinal.reduce((acc, r) => acc + (Number(r.vuelosInt) || 0), 0);
 
   const originRouteName = getAirportBaseRouteName("FDO");
 
   const mainRoutes = Array.from(mainRoutesMap.values())
-    .filter(r => r.totalPax > 0 || r.totalAsientos > 0)
+    .filter(r => r.totalPax > 0 || r.totalVuelos > 0)
     .sort((a, b) => b.totalPax - a.totalPax)
     .slice(0, 6)
     .map(route => {
@@ -1100,10 +1084,10 @@ function buildFdoOfertaDemandaSummary(year = YEAR_REF) {
         clasificacion: route.clasificacion,
         codesLabel: route.code,
         totalPax: route.totalPax,
-        totalAsientos: route.totalAsientos,
+        totalAsientos: 0,
         totalVuelos: route.totalVuelos,
         sharePaxPct: totalPaxRoutes > 0 ? (route.totalPax / totalPaxRoutes) * 100 : 0,
-        shareSeatsPct: totalAsientosRoutes > 0 ? (route.totalAsientos / totalAsientosRoutes) * 100 : 0,
+        shareSeatsPct: 0,
         monthly: monthlyRoute
       };
     });
@@ -1113,9 +1097,9 @@ function buildFdoOfertaDemandaSummary(year = YEAR_REF) {
     paxCab,
     paxInt,
     paxTotal: totalPaxTraffic,
-    asientosCab,
-    asientosInt,
-    asientosTotal: totalAsientosMonthly,
+    asientosCab: 0,
+    asientosInt: 0,
+    asientosTotal: 0,
     vuelosCab,
     vuelosInt,
     vuelosTotal: totalVuelosTraffic
@@ -1123,23 +1107,23 @@ function buildFdoOfertaDemandaSummary(year = YEAR_REF) {
 
   return {
     totalPax: totalPaxTraffic,
-    totalAsientos: totalAsientosMonthly,
+    totalAsientos: null,
     totalVuelos: totalVuelosTraffic,
     totalFrecuenciaSemanal,
     totalASK: 0,
     totalRPK: 0,
-    loadFactor: totalAsientosMonthly > 0 ? totalPaxRoutes / totalAsientosMonthly : null,
-    loadFactorWeighted: totalAsientosMonthly > 0 ? totalPaxRoutes / totalAsientosMonthly : null,
+    loadFactor: null,
+    loadFactorWeighted: null,
     routeDistanceAvgBySeats: null,
     airlinesCount: 0,
     destinos: Array.from(destinosMap.values()).sort((a, b) => b.pax - a.pax),
     airlines,
     monthly: monthlyFinal,
     mainRoutes,
+    hasSeatData: false,
     source: "aeropuertos_argentina_fdo"
   };
 }
-
 
   /* ============================================================
      AGREGACIÓN
@@ -1567,23 +1551,27 @@ function renderOfertaDemandaMonthlyChart(rows) {
 
   if (!dataRows.length) return;
 
-const labels = dataRows.map(r => formatMonthShort(r.anioMes));
-  
+  const labels = dataRows.map(r => formatMonthShort(r.anioMes));
+
   const paxCab = dataRows.map(r => Math.round(r.paxCab || 0));
   const paxInt = dataRows.map(r => Math.round(r.paxInt || 0));
   const asientosCab = dataRows.map(r => Math.round(r.asientosCab || 0));
   const asientosInt = dataRows.map(r => Math.round(r.asientosInt || 0));
 
   const hasPaxInt = paxInt.some(v => v > 0);
+  const hasAsientosCab = asientosCab.some(v => v > 0);
   const hasAsientosInt = asientosInt.some(v => v > 0);
+  const hasSeatData = hasAsientosCab || hasAsientosInt;
 
   const subtitleEl = q("odMonthlySubtitle");
   if (subtitleEl) {
-    subtitleEl.innerHTML =
-      `Asientos ofrecidos <span class="od-sub-asientos-cab">cabotaje</span>` +
-      (hasAsientosInt ? ` e <span class="od-sub-asientos-int">internacional</span>` : ``) +
-      ` y pasajeros transportados <span class="od-sub-pax-cab">cabotaje</span>` +
-      (hasPaxInt ? ` e <span class="od-sub-pax-int">internacional</span>` : ``);
+    subtitleEl.innerHTML = hasSeatData
+      ? `Asientos ofrecidos <span class="od-sub-asientos-cab">cabotaje</span>` +
+        (hasAsientosInt ? ` e <span class="od-sub-asientos-int">internacional</span>` : ``) +
+        ` y pasajeros transportados <span class="od-sub-pax-cab">cabotaje</span>` +
+        (hasPaxInt ? ` e <span class="od-sub-pax-int">internacional</span>` : ``)
+      : `Pasajeros transportados <span class="od-sub-pax-cab">cabotaje</span>` +
+        (hasPaxInt ? ` e <span class="od-sub-pax-int">internacional</span>` : ``);
   }
 
   const datasets = [
@@ -1595,10 +1583,27 @@ const labels = dataRows.map(r => formatMonthShort(r.anioMes));
       borderColor: "#75AADB",
       borderWidth: 1.1,
       order: 3,
-      barPercentage: 0.34,
+      barPercentage: hasSeatData ? 0.34 : 0.52,
       categoryPercentage: 0.82
-    },
-    {
+    }
+  ];
+
+  if (hasPaxInt) {
+    datasets.push({
+      type: "bar",
+      label: "Pasajeros internacional",
+      data: paxInt,
+      backgroundColor: "rgba(62, 209, 4, 0.18)",
+      borderColor: "#3ed104",
+      borderWidth: 1.1,
+      order: 4,
+      barPercentage: hasSeatData ? 0.34 : 0.52,
+      categoryPercentage: 0.82
+    });
+  }
+
+  if (hasAsientosCab) {
+    datasets.push({
       type: "line",
       label: "Asientos cabotaje",
       data: asientosCab,
@@ -1612,20 +1617,6 @@ const labels = dataRows.map(r => formatMonthShort(r.anioMes));
       tension: 0.22,
       fill: false,
       order: 1
-    }
-  ];
-
-  if (hasPaxInt) {
-    datasets.push({
-      type: "bar",
-      label: "Pasajeros internacional",
-      data: paxInt,
-      backgroundColor: "rgba(62, 209, 4, 0.18)",
-      borderColor: "#3ed104",
-      borderWidth: 1.1,
-      order: 4,
-      barPercentage: 0.34,
-      categoryPercentage: 0.82
     });
   }
 
@@ -1649,120 +1640,68 @@ const labels = dataRows.map(r => formatMonthShort(r.anioMes));
 
   const totalPaxSeries = dataRows.map(r => Math.round((r.paxCab || 0) + (r.paxInt || 0)));
   const extremaPlugin = buildExtremaPlugin("monthlyExtrema", totalPaxSeries);
- 
+
   canvas._chart = new Chart(canvas, {
-    data: {
-      labels,
-      datasets
-    },
+    data: { labels, datasets },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      layout: {
-        padding: {
-          top: 22,
-          bottom: 4
-        }
-      },
-      interaction: {
-        mode: "index",
-        intersect: false
-      },
+      layout: { padding: { top: 22, bottom: 4 } },
+      interaction: { mode: "index", intersect: false },
       plugins: {
-        legend: {
-          display: false
-        },
-tooltip: {
-  displayColors: true,
-  padding: 8,
-  boxWidth: 10,
-  boxHeight: 10,
-  titleFont: {
-    size: 10,
-    weight: "600"
-  },
-  bodyFont: {
-    size: 9
-  },
-  callbacks: {
-title: items => {
-  const idx = items[0]?.dataIndex ?? 0;
-  const row = dataRows[idx];
-  if (!row) return "";
+        legend: { display: false },
+        tooltip: {
+          displayColors: true,
+          padding: 8,
+          boxWidth: 10,
+          boxHeight: 10,
+          titleFont: { size: 10, weight: "600" },
+          bodyFont: { size: 9 },
+          callbacks: {
+            title: items => {
+              const idx = items[0]?.dataIndex ?? 0;
+              const row = dataRows[idx];
+              if (!row) return "";
 
-  const d = parseFechaFlexible(row.anioMes);
-  const mes = d
-    ? d.toLocaleDateString("es-AR", { month: "short" }).replace(".", "")
-    : row.anioMes;
-  const anio = d ? d.getFullYear() : "";
+              const d = parseFechaFlexible(row.anioMes);
+              const mes = d ? d.toLocaleDateString("es-AR", { month: "short" }).replace(".", "") : row.anioMes;
+              const anio = d ? d.getFullYear() : "";
+              const totalPaxMes = Number(row.paxCab || 0) + Number(row.paxInt || 0);
+              const totalAsientosMes = Number(row.asientosCab || 0) + Number(row.asientosInt || 0);
 
-  const totalPaxMes = Number(row.paxCab || 0) + Number(row.paxInt || 0);
-  const totalAsientosMes = Number(row.asientosCab || 0) + Number(row.asientosInt || 0);
+              return hasSeatData
+                ? `${mes} ${anio} · ${totalPaxMes.toLocaleString("es-AR")} pasajeros · ${totalAsientosMes.toLocaleString("es-AR")} asientos`
+                : `${mes} ${anio} · ${totalPaxMes.toLocaleString("es-AR")} pasajeros`;
+            },
+            label: ctx => {
+              const idx = ctx.dataIndex;
+              const isInternational = /internacional/i.test(String(ctx.dataset.label || ""));
+              const mercado = isInternational ? "Internacional" : "Cabotaje";
+              const value = Number(ctx.raw || 0);
 
-  return `${mes} ${anio} · ${totalPaxMes.toLocaleString("es-AR")} pasajeros · ${totalAsientosMes.toLocaleString("es-AR")} asientos`;
-},
-    label: ctx => {
-      // mostramos una sola línea por mercado, usando el dataset de línea
-      if (ctx.dataset.type !== "line") return null;
+              if (value === 0) return null;
 
-      const isInternational = /internacional/i.test(String(ctx.dataset.label || ""));
-      const mercado = isInternational ? "Internacional" : "Cabotaje";
-      const idx = ctx.dataIndex;
+              if (ctx.dataset.type === "line") {
+                return `${mercado}: ${value.toLocaleString("es-AR")} asientos`;
+              }
 
-      const dsAsientos = ctx.chart.data.datasets.find(ds =>
-        ds.label === `Asientos ${isInternational ? "internacional" : "cabotaje"}`
-      );
-      const dsPax = ctx.chart.data.datasets.find(ds =>
-        ds.label === `Pasajeros ${isInternational ? "internacional" : "cabotaje"}`
-      );
-
-      const asientos = Number(dsAsientos?.data?.[idx] || 0);
-      const pasajeros = Number(dsPax?.data?.[idx] || 0);
-
-      if (asientos === 0 && pasajeros === 0) return null;
-
-      return `${mercado}: ${pasajeros.toLocaleString("es-AR")} pasajeros · ${asientos.toLocaleString("es-AR")} asientos`;
-    },
-    labelColor: ctx => {
-      const color = ctx.dataset.borderColor || "#2A6FB0";
-      return {
-        borderColor: color,
-        backgroundColor: color
-      };
-    }
-  },
-  filter: ctx => {
-    // filtra para que no duplique por barra + línea
-    if (ctx.dataset.type !== "line") return false;
-
-    const isInternational = /internacional/i.test(String(ctx.dataset.label || ""));
-    const idx = ctx.dataIndex;
-
-    const dsAsientos = ctx.chart.data.datasets.find(ds =>
-      ds.label === `Asientos ${isInternational ? "internacional" : "cabotaje"}`
-    );
-    const dsPax = ctx.chart.data.datasets.find(ds =>
-      ds.label === `Pasajeros ${isInternational ? "internacional" : "cabotaje"}`
-    );
-
-    const asientos = Number(dsAsientos?.data?.[idx] || 0);
-    const pasajeros = Number(dsPax?.data?.[idx] || 0);
-
-    return asientos > 0 || pasajeros > 0;
-  }
-}
+              return `${mercado}: ${value.toLocaleString("es-AR")} pasajeros`;
+            },
+            labelColor: ctx => {
+              const color = ctx.dataset.borderColor || "#2A6FB0";
+              return { borderColor: color, backgroundColor: color };
+            }
+          },
+          filter: ctx => Number(ctx.raw || 0) > 0
+        }
       },
       scales: {
         x: {
           stacked: false,
-          grid: {
-            color: "#e6edf4"
-          },
+          grid: { color: "#e6edf4" },
           ticks: {
             color: "#6f7d8c",
-            font: {
-              size: 9
-            },
+            font: { size: 9 },
             maxRotation: 0,
             minRotation: 0,
             autoSkip: true,
@@ -1772,14 +1711,10 @@ title: items => {
         y: {
           stacked: false,
           beginAtZero: true,
-          grid: {
-            color: "#e6edf4"
-          },
+          grid: { color: "#e6edf4" },
           ticks: {
             color: "#6f7d8c",
-            font: {
-              size: 9
-            },
+            font: { size: 9 },
             callback: value => Number(value).toLocaleString("es-AR")
           }
         }
@@ -1788,7 +1723,7 @@ title: items => {
     plugins: [extremaPlugin]
   });
 }
- 
+
 function splitLabelTwoLines(text, maxLen = 12) {
   const raw = clean(text);
   if (!raw) return [""];
@@ -1827,62 +1762,73 @@ function renderAirlinesChart(rows) {
     canvas._chart = null;
   }
 
-  const allRows = (rows || [])
-    .filter(r => (r.asientosTotal || 0) > 0)
-    .sort((a, b) => (b.asientosTotal || 0) - (a.asientosTotal || 0));
+  const sourceRows = rows || [];
+  const hasSeatData = sourceRows.some(r => (Number(r.asientosTotal) || 0) > 0);
+  const metricPrefix = hasSeatData ? "asientos" : "pax";
+  const metricTotalKey = hasSeatData ? "asientosTotal" : "paxTotal";
+  const metricCabKey = hasSeatData ? "asientosCab" : "paxCab";
+  const metricIntKey = hasSeatData ? "asientosInt" : "paxInt";
+  const metricLabel = hasSeatData ? "asientos" : "pasajeros";
+
+  const allRows = sourceRows
+    .filter(r => (Number(r[metricTotalKey]) || 0) > 0)
+    .sort((a, b) => (Number(b[metricTotalKey]) || 0) - (Number(a[metricTotalKey]) || 0));
 
   const dataRows = allRows.slice(0, 6);
   if (!dataRows.length) return;
 
-  const totalSeatsAll = allRows.reduce((acc, r) => acc + (r.asientosTotal || 0), 0);
+  const totalMetricAll = allRows.reduce((acc, r) => acc + (Number(r[metricTotalKey]) || 0), 0);
 
   const fullLabels = dataRows.map(r => r.name);
   const labels = fullLabels.map(name => splitLabelTwoLines(name, 12));
 
-  const cabValues = dataRows.map(r => Math.round(r.asientosCab || 0));
-  const intValues = dataRows.map(r => Math.round(r.asientosInt || 0));
-  const totalValues = dataRows.map(r => Math.round(r.asientosTotal || 0));
+  const cabValues = dataRows.map(r => Math.round(Number(r[metricCabKey]) || 0));
+  const intValues = dataRows.map(r => Math.round(Number(r[metricIntKey]) || 0));
+  const totalValues = dataRows.map(r => Math.round(Number(r[metricTotalKey]) || 0));
 
   const hasInt = intValues.some(v => v > 0);
 
   const subtitleEl = q("odAirlinesSubtitle");
   if (subtitleEl) {
-    subtitleEl.innerHTML =
-      `Asientos ofrecidos <span class="od-sub-asientos-cab">cabotaje</span>` +
-      (hasInt ? ` e <span class="od-sub-asientos-int">internacional</span>` : ``) +
-      ` por operador`;
+    subtitleEl.innerHTML = hasSeatData
+      ? `Asientos ofrecidos <span class="od-sub-asientos-cab">cabotaje</span>` +
+        (hasInt ? ` e <span class="od-sub-asientos-int">internacional</span>` : ``) +
+        ` por operador`
+      : `Pasajeros transportados <span class="od-sub-pax-cab">cabotaje</span>` +
+        (hasInt ? ` e <span class="od-sub-pax-int">internacional</span>` : ``) +
+        ` por operador`;
   }
 
   const percents = dataRows.map(r =>
-    totalSeatsAll > 0 ? ((r.asientosTotal || 0) / totalSeatsAll) * 100 : 0
+    totalMetricAll > 0 ? ((Number(r[metricTotalKey]) || 0) / totalMetricAll) * 100 : 0
   );
 
   const datasets = [
-{
-  label: "Cabotaje",
-  data: cabValues,
-  backgroundColor: "rgba(42, 111, 176, 0.22)",
-  borderColor: "#2A6FB0",
-  borderWidth: 1.1,
-  borderRadius: 4,
-  stack: "mercado",
-  barThickness: 14,
-  minBarLength: 10
-}
+    {
+      label: "Cabotaje",
+      data: cabValues,
+      backgroundColor: hasSeatData ? "rgba(42, 111, 176, 0.22)" : "rgba(117, 170, 219, 0.35)",
+      borderColor: hasSeatData ? "#2A6FB0" : "#75AADB",
+      borderWidth: 1.1,
+      borderRadius: 4,
+      stack: "mercado",
+      barThickness: 14,
+      minBarLength: 10
+    }
   ];
 
   if (hasInt) {
     datasets.push({
-  label: "Internacional",
-  data: intValues,
-  backgroundColor: "rgba(28, 124, 27, 0.16)",
-  borderColor: "#1C7C1B",
-  borderWidth: 1.1,
-  borderRadius: 4,
-  stack: "mercado",
-  barThickness: 14,
-  minBarLength: 10
-});
+      label: "Internacional",
+      data: intValues,
+      backgroundColor: hasSeatData ? "rgba(28, 124, 27, 0.16)" : "rgba(62, 209, 4, 0.18)",
+      borderColor: hasSeatData ? "#1C7C1B" : "#3ed104",
+      borderWidth: 1.1,
+      borderRadius: 4,
+      stack: "mercado",
+      barThickness: 14,
+      minBarLength: 10
+    });
   }
 
   const totalLabelPlugin = {
@@ -1912,38 +1858,26 @@ function renderAirlinesChart(rows) {
 
   canvas._chart = new Chart(canvas, {
     type: "bar",
-    data: {
-      labels,
-      datasets
-    },
+    data: { labels, datasets },
     options: {
       responsive: true,
       maintainAspectRatio: false,
       indexAxis: "y",
-      layout: {
-        padding: {
-          left: 2,
-          right: 34,
-          top: 0,
-          bottom: 0
-        }
-      },
+      layout: { padding: { left: 2, right: 34, top: 0, bottom: 0 } },
       plugins: {
-        legend: {
-          display: false
-        },
+        legend: { display: false },
         tooltip: {
           callbacks: {
             title: items => fullLabels[items[0].dataIndex],
             label: ctx => {
               const value = Number(ctx.raw || 0);
-              return `${ctx.dataset.label}: ${value.toLocaleString("es-AR")} asientos`;
+              return `${ctx.dataset.label}: ${value.toLocaleString("es-AR")} ${metricLabel}`;
             },
             footer: items => {
               const idx = items[0].dataIndex;
               const total = totalValues[idx] || 0;
               const pct = percents[idx] || 0;
-              return `Total: ${total.toLocaleString("es-AR")} asientos (${pct.toLocaleString("es-AR", { maximumFractionDigits: 1 })}%)`;
+              return `Total: ${total.toLocaleString("es-AR")} ${metricLabel} (${pct.toLocaleString("es-AR", { maximumFractionDigits: 1 })}%)`;
             }
           }
         }
@@ -1952,36 +1886,24 @@ function renderAirlinesChart(rows) {
         x: {
           stacked: true,
           beginAtZero: true,
-          grid: {
-            color: "#e6edf4"
-          },
+          grid: { color: "#e6edf4" },
           ticks: {
             color: "#6f7d8c",
-            font: {
-              size: 9
-            },
+            font: { size: 9 },
             maxTicksLimit: 4,
             callback: value => Number(value).toLocaleString("es-AR")
           }
         },
         y: {
           stacked: true,
-          grid: {
-            display: false
-          },
-          ticks: {
-            color: "#334150",
-            font: {
-              size: 9
-            }
-          }
+          grid: { display: false },
+          ticks: { color: "#334150", font: { size: 9 } }
         }
       }
     },
     plugins: [totalLabelPlugin]
   });
 }
-
 
 function paginateTopRoutes() {
   const mainList = document.getElementById("odTopRoutes");
@@ -2222,6 +2144,7 @@ function renderSingleRouteChart(canvasId, route) {
   if (!monthlyRows.length) return;
 
   const labels = monthlyRows.map(r => formatMonthShort(r.anioMes));
+  const hasSeatData = monthlyRows.some(m => (Number(m.totalAsientos) || 0) > 0);
 
   const airlineStats = Array.from(new Set(
     monthlyRows.flatMap(m => Object.keys(m.airlines || {}))
@@ -2229,14 +2152,10 @@ function renderSingleRouteChart(canvasId, route) {
     const totalPax = monthlyRows.reduce((acc, m) => acc + (m.airlines?.[name]?.pax || 0), 0);
     const totalAsientos = monthlyRows.reduce((acc, m) => acc + (m.airlines?.[name]?.asientos || 0), 0);
 
-    return {
-      name,
-      totalPax,
-      totalAsientos
-    };
+    return { name, totalPax, totalAsientos };
   })
-  .filter(a => a.totalPax > 0 || a.totalAsientos > 0)
-  .sort((a, b) => b.totalPax - a.totalPax);
+    .filter(a => a.totalPax > 0 || a.totalAsientos > 0)
+    .sort((a, b) => b.totalPax - a.totalPax);
 
   const airlines = airlineStats.map(a => a.name);
   if (!airlines.length) return;
@@ -2254,131 +2173,94 @@ function renderSingleRouteChart(canvasId, route) {
       borderColor: color,
       borderWidth: 1.1,
       order: 3,
-      barPercentage: 0.52,
+      barPercentage: hasSeatData ? 0.52 : 0.62,
       categoryPercentage: 0.92
     });
 
-    datasets.push({
-      type: "line",
-      label: `${airline} asientos`,
-      data: monthlyRows.map(m => Math.round(m.airlines?.[airline]?.asientos || 0)),
-      borderColor: color,
-      backgroundColor: "rgba(0,0,0,0)",
-      pointBackgroundColor: color,
-      pointBorderColor: color,
-      pointRadius: 2,
-      pointHoverRadius: 3,
-      borderWidth: 1.9,
-      tension: 0.22,
-      fill: false,
-      order: 1
-    });
+    if (hasSeatData) {
+      datasets.push({
+        type: "line",
+        label: `${airline} asientos`,
+        data: monthlyRows.map(m => Math.round(m.airlines?.[airline]?.asientos || 0)),
+        borderColor: color,
+        backgroundColor: "rgba(0,0,0,0)",
+        pointBackgroundColor: color,
+        pointBorderColor: color,
+        pointRadius: 2,
+        pointHoverRadius: 3,
+        borderWidth: 1.9,
+        tension: 0.22,
+        fill: false,
+        order: 1
+      });
+    }
   });
 
   const totalPaxSeries = monthlyRows.map(m => Math.round(m.totalPax || 0));
   const extremaPlugin = buildExtremaPlugin(`routeExtrema_${canvasId}`, totalPaxSeries);
-  const rightLabelsPlugin = buildRouteRightLabelsPlugin(`routeRightLabels_${canvasId}`, airlineStats);
+  const plugins = hasSeatData
+    ? [extremaPlugin, buildRouteRightLabelsPlugin(`routeRightLabels_${canvasId}`, airlineStats)]
+    : [extremaPlugin];
 
   canvas._chart = new Chart(canvas, {
-    data: {
-      labels,
-      datasets
-    },
+    data: { labels, datasets },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      layout: {
-        padding: {
-          top: 20,
-          right: 120,
-          bottom: 4
-        }
-      },
-      interaction: {
-        mode: "index",
-        intersect: false
-      },
+      layout: { padding: { top: 20, right: hasSeatData ? 120 : 18, bottom: 4 } },
+      interaction: { mode: "index", intersect: false },
       plugins: {
-        legend: {
-          display: false
-        },
-tooltip: {
-  displayColors: true,
-  padding: 8,
-  boxWidth: 10,
-  boxHeight: 10,
-  titleFont: {
-    size: 10,
-    weight: "600"
-  },
-  bodyFont: {
-    size: 9
-  },
-  callbacks: {
-title: items => {
-  const idx = items[0]?.dataIndex ?? 0;
-  const row = monthlyRows[idx];
-  if (!row) return "";
+        legend: { display: false },
+        tooltip: {
+          displayColors: true,
+          padding: 8,
+          boxWidth: 10,
+          boxHeight: 10,
+          titleFont: { size: 10, weight: "600" },
+          bodyFont: { size: 9 },
+          callbacks: {
+            title: items => {
+              const idx = items[0]?.dataIndex ?? 0;
+              const row = monthlyRows[idx];
+              if (!row) return "";
 
-  const d = parseFechaFlexible(row.anioMes);
-  const mes = d
-    ? d.toLocaleDateString("es-AR", { month: "short" }).replace(".", "")
-    : row.anioMes;
-  const anio = d ? d.getFullYear() : "";
+              const d = parseFechaFlexible(row.anioMes);
+              const mes = d ? d.toLocaleDateString("es-AR", { month: "short" }).replace(".", "") : row.anioMes;
+              const anio = d ? d.getFullYear() : "";
+              const totalPaxMes = Number(row.totalPax || 0);
+              const totalAsientosMes = Number(row.totalAsientos || 0);
 
-  const totalPaxMes = Number(row.totalPax || 0);
-  const totalAsientosMes = Number(row.totalAsientos || 0);
+              return hasSeatData
+                ? `${mes} ${anio} · ${totalPaxMes.toLocaleString("es-AR")} pasajeros · ${totalAsientosMes.toLocaleString("es-AR")} asientos`
+                : `${mes} ${anio} · ${totalPaxMes.toLocaleString("es-AR")} pasajeros`;
+            },
+            label: ctx => {
+              const rawLabel = String(ctx.dataset.label || "");
+              const airline = rawLabel.replace(/\s+(asientos|pasajeros)$/i, "");
+              const idx = ctx.dataIndex;
 
-  return `${mes} ${anio} · ${totalPaxMes.toLocaleString("es-AR")} pasajeros · ${totalAsientosMes.toLocaleString("es-AR")} asientos`;
-},
-    label: ctx => {
-      // mostramos una sola línea por aerolínea, usando el dataset de línea
-      if (ctx.dataset.type !== "line") return null;
+              if (ctx.dataset.type === "line") {
+                const asientos = Number(ctx.raw || 0);
+                if (asientos === 0) return null;
+                return `${airline}: ${asientos.toLocaleString("es-AR")} asientos`;
+              }
 
-      const airline = String(ctx.dataset.label || "").replace(/\s+asientos$/i, "");
-      const idx = ctx.dataIndex;
-
-      const dsAsientos = ctx.chart.data.datasets.find(ds => ds.label === `${airline} asientos`);
-      const dsPax = ctx.chart.data.datasets.find(ds => ds.label === `${airline} pasajeros`);
-
-      const asientos = Number(dsAsientos?.data?.[idx] || 0);
-      const pax = Number(dsPax?.data?.[idx] || 0);
-
-      if (asientos === 0 && pax === 0) return null;
-
-      return `${airline}: ${asientos.toLocaleString("es-AR")} as. · ${pax.toLocaleString("es-AR")} pax`;
-    },
-    labelColor: ctx => {
-      const color = ctx.dataset.borderColor || "#2A6FB0";
-      return {
-        borderColor: color,
-        backgroundColor: color
-      };
-    }
-  },
-  filter: ctx => {
-    // filtra para que no duplique por barra + línea
-    if (ctx.dataset.type !== "line") return false;
-
-    const airline = String(ctx.dataset.label || "").replace(/\s+asientos$/i, "");
-    const idx = ctx.dataIndex;
-
-    const dsAsientos = ctx.chart.data.datasets.find(ds => ds.label === `${airline} asientos`);
-    const dsPax = ctx.chart.data.datasets.find(ds => ds.label === `${airline} pasajeros`);
-
-    const asientos = Number(dsAsientos?.data?.[idx] || 0);
-    const pax = Number(dsPax?.data?.[idx] || 0);
-
-    return asientos > 0 || pax > 0;
-  }
-}
+              const pax = Number(ctx.raw || 0);
+              if (pax === 0) return null;
+              return `${airline}: ${pax.toLocaleString("es-AR")} pasajeros`;
+            },
+            labelColor: ctx => {
+              const color = ctx.dataset.borderColor || "#2A6FB0";
+              return { borderColor: color, backgroundColor: color };
+            }
+          },
+          filter: ctx => Number(ctx.raw || 0) > 0
+        }
       },
       scales: {
         x: {
           stacked: false,
-          grid: {
-            color: "#eef3f8"
-          },
+          grid: { color: "#eef3f8" },
           ticks: {
             color: "#6f7d8c",
             font: { size: 8 },
@@ -2389,9 +2271,7 @@ title: items => {
         },
         y: {
           beginAtZero: true,
-          grid: {
-            color: "#eef3f8"
-          },
+          grid: { color: "#eef3f8" },
           ticks: {
             color: "#6f7d8c",
             font: { size: 8 },
@@ -2400,9 +2280,10 @@ title: items => {
         }
       }
     },
-    plugins: [extremaPlugin, rightLabelsPlugin]
+    plugins
   });
 }
+
  function isInternationalRoute(route) {
   return normalizeTextKey(route?.clasificacion || "").includes("internacional");
 }
@@ -2439,55 +2320,65 @@ function renderTopRoutesCharts(routes) {
     .sort((a, b) => (b.totalPax || 0) - (a.totalPax || 0))
     .slice(0, 6);
 
-if (!dataRoutes.length) {
-  topRoutesEl.innerHTML = '<div class="od-empty">Sin datos</div>';
-  renderInternationalRouteNotes([]);
-  paginateTopRoutes();
-  return;
-}
+  if (!dataRoutes.length) {
+    topRoutesEl.innerHTML = '<div class="od-empty">Sin datos</div>';
+    renderInternationalRouteNotes([]);
+    paginateTopRoutes();
+    return;
+  }
 
-  topRoutesEl.innerHTML = dataRoutes.map((route, idx) => `
-    <div class="od-route-card-chart">
-      <div class="od-route-card-head">
-        <div class="od-route-card-titleline">
-<div class="od-route-card-title">
-  ${escapeHtml(route.title)}
-  <span class="od-route-card-metrics-inline">
-    <span class="od-route-metric od-route-metric-pax">
-      <span class="od-mini-icon od-mini-icon-bars" aria-hidden="true"></span>
-      <span class="od-route-metric-label">Pasajeros</span>
-      <span class="od-route-metric-value">${escapeHtml(formatNumber(Math.round(route.totalPax)))}</span>
-      <span class="od-route-metric-share">(${escapeHtml(formatShareShort(route.sharePaxPct))})</span>
-    </span>
+  topRoutesEl.innerHTML = dataRoutes.map((route, idx) => {
+    const hasSeats = Number(route.totalAsientos || 0) > 0;
+    const secondaryMetric = hasSeats
+      ? `<span class="od-route-metric od-route-metric-seats">
+          <span class="od-mini-icon od-mini-icon-lines" aria-hidden="true"></span>
+          <span class="od-route-metric-label">Asientos</span>
+          <span class="od-route-metric-value">${escapeHtml(formatNumber(Math.round(route.totalAsientos)))}</span>
+          <span class="od-route-metric-share">(${escapeHtml(formatShareShort(route.shareSeatsPct))})</span>
+        </span>`
+      : `<span class="od-route-metric od-route-metric-seats">
+          <span class="od-mini-icon od-mini-icon-lines" aria-hidden="true"></span>
+          <span class="od-route-metric-label">Mov.</span>
+          <span class="od-route-metric-value">${escapeHtml(formatNumber(Math.round(route.totalVuelos || 0)))}</span>
+        </span>`;
 
-    <span class="od-route-metric-sep">·</span>
+    return `
+      <div class="od-route-card-chart">
+        <div class="od-route-card-head">
+          <div class="od-route-card-titleline">
+            <div class="od-route-card-title">
+              ${escapeHtml(route.title)}
+              <span class="od-route-card-metrics-inline">
+                <span class="od-route-metric od-route-metric-pax">
+                  <span class="od-mini-icon od-mini-icon-bars" aria-hidden="true"></span>
+                  <span class="od-route-metric-label">Pasajeros</span>
+                  <span class="od-route-metric-value">${escapeHtml(formatNumber(Math.round(route.totalPax)))}</span>
+                  <span class="od-route-metric-share">(${escapeHtml(formatShareShort(route.sharePaxPct))})</span>
+                </span>
 
-    <span class="od-route-metric od-route-metric-seats">
-      <span class="od-mini-icon od-mini-icon-lines" aria-hidden="true"></span>
-      <span class="od-route-metric-label">Asientos</span>
-      <span class="od-route-metric-value">${escapeHtml(formatNumber(Math.round(route.totalAsientos)))}</span>
-      <span class="od-route-metric-share">(${escapeHtml(formatShareShort(route.shareSeatsPct))})</span>
-    </span>
-  </span>
-</div>
+                <span class="od-route-metric-sep">·</span>
+
+                ${secondaryMetric}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="od-route-chart-wrap">
+          <canvas id="odRouteChart_${idx}"></canvas>
         </div>
       </div>
+    `;
+  }).join("");
 
-      <div class="od-route-chart-wrap">
-        <canvas id="odRouteChart_${idx}"></canvas>
-      </div>
-    </div>
-  `).join("");
+  paginateTopRoutes();
+  renderInternationalRouteNotes(dataRoutes);
 
-  // Primero mueve las rutas 4, 5 y 6 a la segunda hoja.
-  // Recién después se dibujan los gráficos en su contenedor definitivo.
-paginateTopRoutes();
-renderInternationalRouteNotes(dataRoutes);
-
-dataRoutes.forEach((route, idx) => {
-  renderSingleRouteChart(`odRouteChart_${idx}`, route);
-});
+  dataRoutes.forEach((route, idx) => {
+    renderSingleRouteChart(`odRouteChart_${idx}`, route);
+  });
 }
+
 function renderHistoricTrafficBlock(iata, airportName) {
   const block = q("historicTrafficBlock");
   const textEl = q("historicTrafficText");
