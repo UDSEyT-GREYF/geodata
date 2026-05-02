@@ -18,6 +18,26 @@
     "IATA", "iata", "iata_code", "cod_iata", "COD_IATA", "codigo_iata", "Código IATA"
   ];
 
+  const SIGA_COLORS = {
+    azulOrsna: "#306fb0",
+    azulOscuro: "#002855",
+    azulMedio: "#2a5fa0",
+    azulLink: "#0072bb",
+    azulClaro: "#4fa3ff",
+    celesteCab: "#75AADB",
+    verdeLima: "#8DE000",
+    violeta: "#6b2f82",
+    rojoTerminal: "#b22222",
+    rojoSuave: "#ffdede",
+    grisPista: "#222222",
+    amarilloPista: "#ffff00",
+    grisContexto: "#b0b0b0",
+    grisFondo: "#f5f5f5",
+    grisChip: "#b3b3b3",
+    verdeInternacional: "#16c41e",
+    amarilloSeleccion: "#FFD700"
+  };
+
   const LAYER_CONFIGS = [
     {
       id: "provincias",
@@ -25,9 +45,14 @@
       name: "Provincias",
       url: "fuentes/provincias.geojson",
       active: true,
-      opacity: 0.75,
-      color: "#b8c0cc",
-      style: { color: "#a8b1bd", weight: 1, fillColor: "#eef1f4", fillOpacity: 0.45 }
+      opacity: 0.78,
+      color: SIGA_COLORS.grisContexto,
+      style: {
+        color: SIGA_COLORS.grisContexto,
+        weight: 1,
+        fillColor: SIGA_COLORS.grisFondo,
+        fillOpacity: 0.55
+      }
     },
     {
       id: "predios",
@@ -35,9 +60,14 @@
       name: "Predios aeroportuarios",
       url: "fuentes/poligonos_aeropuertos.geojson",
       active: true,
-      opacity: 0.9,
-      color: "#8DE000",
-      style: { color: "#7bd000", weight: 2.4, fillColor: "#bfff49", fillOpacity: 0.13 }
+      opacity: 0.95,
+      color: SIGA_COLORS.azulLink,
+      style: {
+        color: SIGA_COLORS.azulLink,
+        weight: 2.2,
+        fillColor: SIGA_COLORS.azulClaro,
+        fillOpacity: 0.22
+      }
     },
     {
       id: "pistas",
@@ -46,8 +76,13 @@
       url: "fuentes/pistas.geojson",
       active: true,
       opacity: 1,
-      color: "#4b5563",
-      style: { color: "#374151", weight: 2.2, fillColor: "#6b7280", fillOpacity: 0.34 }
+      color: SIGA_COLORS.grisPista,
+      style: {
+        color: SIGA_COLORS.grisPista,
+        weight: 2,
+        fillColor: SIGA_COLORS.amarilloPista,
+        fillOpacity: 0.16
+      }
     },
     {
       id: "cabeceras",
@@ -56,8 +91,13 @@
       url: "fuentes/Cabeceras2026.geojson",
       active: true,
       opacity: 1,
-      color: "#1658a8",
-      style: { color: "#1658a8", weight: 2, fillColor: "#2f80ed", fillOpacity: 0.35 }
+      color: SIGA_COLORS.azulMedio,
+      style: {
+        color: SIGA_COLORS.azulOscuro,
+        weight: 1.8,
+        fillColor: SIGA_COLORS.azulMedio,
+        fillOpacity: 0.36
+      }
     },
     {
       id: "plataformas",
@@ -65,9 +105,14 @@
       name: "Plataformas 2026",
       url: "fuentes/Plataformas2026.geojson",
       active: true,
-      opacity: 0.9,
-      color: "#48a4d8",
-      style: { color: "#1976a3", weight: 1.5, fillColor: "#75c5ed", fillOpacity: 0.45 }
+      opacity: 0.92,
+      color: SIGA_COLORS.celesteCab,
+      style: {
+        color: SIGA_COLORS.azulLink,
+        weight: 1.5,
+        fillColor: SIGA_COLORS.celesteCab,
+        fillOpacity: 0.42
+      }
     },
     {
       id: "psn",
@@ -76,8 +121,13 @@
       url: "fuentes/psn_posiciones.geojson",
       active: true,
       opacity: 1,
-      color: "#6b2f82",
-      point: { radius: 4.3, color: "#4b1763", fillColor: "#6b2f82", fillOpacity: 0.9 }
+      color: SIGA_COLORS.violeta,
+      point: {
+        radius: 4.2,
+        color: "#000000",
+        fillColor: SIGA_COLORS.violeta,
+        fillOpacity: 0.88
+      }
     },
     {
       id: "terminales2026",
@@ -85,9 +135,14 @@
       name: "Terminales 2026",
       url: "fuentes/Terminales2026.geojson",
       active: true,
-      opacity: 0.95,
-      color: "#f97316",
-      style: { color: "#c2410c", weight: 1.4, fillColor: "#fb923c", fillOpacity: 0.5 }
+      opacity: 0.94,
+      color: SIGA_COLORS.rojoTerminal,
+      style: {
+        color: SIGA_COLORS.rojoTerminal,
+        weight: 1.2,
+        fillColor: SIGA_COLORS.rojoSuave,
+        fillOpacity: 0.45
+      }
     },
     {
       id: "terminalpax",
@@ -95,9 +150,14 @@
       name: "Terminal pax",
       url: "fuentes/terminalpax.geojson",
       active: false,
-      opacity: 0.95,
-      color: "#ea580c",
-      style: { color: "#9a3412", weight: 1.2, fillColor: "#fdba74", fillOpacity: 0.45 }
+      opacity: 0.94,
+      color: SIGA_COLORS.rojoTerminal,
+      style: {
+        color: SIGA_COLORS.rojoTerminal,
+        weight: 1.2,
+        fillColor: SIGA_COLORS.rojoSuave,
+        fillOpacity: 0.38
+      }
     },
     {
       id: "torres",
@@ -106,8 +166,13 @@
       url: "fuentes/Torres_control_2026.geojson",
       active: true,
       opacity: 1,
-      color: "#dc2626",
-      point: { radius: 6, color: "#991b1b", fillColor: "#ef4444", fillOpacity: 0.95 }
+      color: SIGA_COLORS.azulOscuro,
+      point: {
+        radius: 6,
+        color: SIGA_COLORS.azulOscuro,
+        fillColor: SIGA_COLORS.azulMedio,
+        fillOpacity: 0.95
+      }
     },
     {
       id: "hangares",
@@ -116,8 +181,13 @@
       url: "fuentes/Hangares2026.geojson",
       active: false,
       opacity: 0.9,
-      color: "#92400e",
-      style: { color: "#78350f", weight: 1.2, fillColor: "#b45309", fillOpacity: 0.45 }
+      color: "#8a5a35",
+      style: {
+        color: "#6f4627",
+        weight: 1.1,
+        fillColor: "#b5835a",
+        fillOpacity: 0.38
+      }
     },
     {
       id: "otros",
@@ -126,8 +196,13 @@
       url: "fuentes/Otros_edificios2026.geojson",
       active: false,
       opacity: 0.9,
-      color: "#64748b",
-      style: { color: "#475569", weight: 1.1, fillColor: "#94a3b8", fillOpacity: 0.38 }
+      color: "#6c757d",
+      style: {
+        color: "#555555",
+        weight: 1.1,
+        fillColor: "#b3b3b3",
+        fillOpacity: 0.38
+      }
     },
     {
       id: "estacionamientos",
@@ -136,8 +211,13 @@
       url: "fuentes/Estacionamientos_vehiculares2026.geojson",
       active: false,
       opacity: 0.9,
-      color: "#d9a200",
-      style: { color: "#a16207", weight: 1.1, fillColor: "#facc15", fillOpacity: 0.45 }
+      color: SIGA_COLORS.grisChip,
+      style: {
+        color: "#777777",
+        weight: 1.1,
+        fillColor: SIGA_COLORS.grisChip,
+        fillOpacity: 0.48
+      }
     },
     {
       id: "paradasapp",
@@ -146,8 +226,13 @@
       url: "fuentes/paradasapp.geojson",
       active: false,
       opacity: 1,
-      color: "#16a34a",
-      point: { radius: 4.8, color: "#166534", fillColor: "#22c55e", fillOpacity: 0.9 }
+      color: SIGA_COLORS.verdeInternacional,
+      point: {
+        radius: 4.8,
+        color: "#1a7a3e",
+        fillColor: SIGA_COLORS.verdeInternacional,
+        fillOpacity: 0.9
+      }
     },
     {
       id: "smn",
@@ -156,8 +241,13 @@
       url: "fuentes/smn_estaciones_meteorologicas2026.geojson",
       active: false,
       opacity: 1,
-      color: "#0284c7",
-      point: { radius: 5.2, color: "#075985", fillColor: "#0ea5e9", fillOpacity: 0.92 }
+      color: SIGA_COLORS.azulLink,
+      point: {
+        radius: 5.2,
+        color: SIGA_COLORS.azulOscuro,
+        fillColor: SIGA_COLORS.azulLink,
+        fillOpacity: 0.92
+      }
     }
   ];
 
@@ -264,7 +354,7 @@
     } catch (e) { console.warn("Geocoder plugin no disponible", e); }
 
     try {
-      if (L.control.measure) L.control.measure({ position: "topleft", primaryLengthUnit: "meters", primaryAreaUnit: "sqmeters", activeColor: "#1f5f9f", completedColor: "#6b2f82" }).addTo(map);
+      if (L.control.measure) L.control.measure({ position: "topleft", primaryLengthUnit: "meters", primaryAreaUnit: "sqmeters", activeColor: SIGA_COLORS.azulMedio, completedColor: SIGA_COLORS.violeta }).addTo(map);
     } catch (e) { console.warn("Measure plugin no disponible", e); }
 
     try {
@@ -653,7 +743,7 @@
     const feats = pred.features.filter((f) => getFeatureIata(f) === iata && hasGeometry(f));
     if (!feats.length) return;
     state.selectedHighlight = L.geoJSON(feats, {
-      style: { color: "#ff0000", weight: 3.5, fillColor: "#ff0000", fillOpacity: 0.05, dashArray: "8 5" }
+      style: { color: SIGA_COLORS.amarilloSeleccion, weight: 3.2, fillColor: SIGA_COLORS.amarilloSeleccion, fillOpacity: 0.08, dashArray: "7 5" }
     }).addTo(state.map);
   }
 
