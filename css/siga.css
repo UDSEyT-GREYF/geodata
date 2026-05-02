@@ -426,3 +426,128 @@ body.embed .base-layer-tree,
 body.embed .siga-subsection-title {
   display: none;
 }
+
+
+/* ==============================
+   SIGA – Compactación de listas y etiquetas nacionales
+   ============================== */
+.layer-group {
+  margin-bottom: 6px;
+}
+.layer-group-title {
+  margin: 6px 0 3px;
+  padding-bottom: 2px;
+  font-size: .68rem;
+}
+.layer-row {
+  grid-template-columns: 15px 10px minmax(0, 1fr) 46px;
+  gap: 4px;
+  padding: 2px 0;
+  font-size: .69rem;
+  min-height: 20px;
+}
+.layer-row input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+}
+.layer-swatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+}
+.layer-opacity {
+  grid-column: auto;
+  width: 46px;
+  margin: 0;
+  height: 14px;
+}
+.base-layer-tree {
+  gap: 2px;
+  margin-bottom: 8px;
+}
+.basemap-row {
+  grid-template-columns: 14px 26px minmax(0, 1fr);
+  gap: 5px;
+  padding: 3px 5px;
+  border-radius: 6px;
+  min-height: 27px;
+}
+.basemap-row input {
+  width: 13px;
+  height: 13px;
+}
+.basemap-thumb {
+  width: 26px;
+  height: 18px;
+  border-radius: 4px;
+}
+.basemap-name {
+  font-size: .68rem;
+  font-weight: 620;
+}
+.siga-subsection-title {
+  margin: 7px 0 4px;
+  font-size: .67rem;
+}
+.siga-subsection-title-overlays {
+  padding-top: 7px;
+}
+
+/* Etiquetas de aeropuerto: icono centrado en el predio y texto flotante sin fondo */
+.siga-airport-label-marker {
+  pointer-events: none;
+}
+.siga-airport-center-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #306fb0;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .35);
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 800;
+}
+.siga-airport-floating-text {
+  position: absolute;
+  left: 0;
+  top: -18px;
+  transform: translateX(-50%);
+  color: #111111;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.05;
+  white-space: nowrap;
+  max-width: 170px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-shadow:
+    -1px -1px 0 #ffffff,
+     1px -1px 0 #ffffff,
+    -1px  1px 0 #ffffff,
+     1px  1px 0 #ffffff,
+     0   -1px 0 #ffffff,
+     0    1px 0 #ffffff,
+    -1px  0   0 #ffffff,
+     1px  0   0 #ffffff;
+}
+
+/* Anula el estilo anterior de etiqueta-píldora si quedó en caché o en versiones previas */
+.siga-airport-label-box,
+.siga-airport-label-icon,
+.siga-airport-label-text {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
