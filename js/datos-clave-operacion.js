@@ -979,7 +979,9 @@ function renderOperationTopAirlines(iata) {
     const a = aeropuertos.find(x => clean(x.IATA).toUpperCase() === iata);
     if (!a) return;
     currentIATA = iata;
-
+    
+    updateSIGAFrame(iata);
+    
     const title = getAirportTitle(a, iata);
     setText("sheetTitle", "Datos clave de operación aeroportuaria");
     const airportName = q("airportName");
@@ -1109,7 +1111,19 @@ function renderOperationTopAirlines(iata) {
           window.history.replaceState({}, "", url);
         });
       }
+function updateSIGAFrame(iata) {
+  const frame = q("sigaFrame");
+  if (!frame) return;
 
+  const selected = clean(iata).toUpperCase();
+  if (!selected) return;
+
+  const src = `siga.html?airport=${encodeURIComponent(selected)}&focus=1&embed=1&mini=1`;
+
+  if (frame.getAttribute("src") !== src) {
+    frame.setAttribute("src", src);
+  }
+}
       renderAirport(initial);
     } catch (err) {
       console.error(err);
