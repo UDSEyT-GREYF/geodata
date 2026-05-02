@@ -552,46 +552,43 @@ body.embed .siga-subsection-title {
   padding: 0 !important;
 }
 /* =========================================================
-   SIGA MINI | MODO EMBEBIDO EN DATOS CLAVE OPERACIONES
-   Solo mapa, sin panel lateral ni controles de capas
+   SIGA MINI | EMBEBIDO SOLO MAPA
    ========================================================= */
 
-body.siga-mini {
-  overflow: hidden;
-}
-
-body.siga-mini .siga-header,
-body.siga-mini .siga-sidebar,
-body.siga-mini .siga-layer-panel,
-body.siga-mini .siga-basemap-panel,
-body.siga-mini .siga-intro,
-body.siga-mini .sidebar,
-body.siga-mini .map-sidebar,
-body.siga-mini .leaflet-control-layers,
-body.siga-mini .leaflet-control-zoom,
-body.siga-mini .leaflet-control-scale,
-body.siga-mini .leaflet-control-geocoder,
-body.siga-mini .leaflet-control-measure,
-body.siga-mini .leaflet-draw,
-body.siga-mini .leaflet-control-minimap,
-body.siga-mini .leaflet-control-locate,
-body.siga-mini .leaflet-control-mouseposition,
-body.siga-mini .leaflet-control-easyPrint {
+body.mini .embed-toolbar {
   display: none !important;
 }
 
-body.siga-mini .siga-layout,
-body.siga-mini .mapa-operacion-layout,
-body.siga-mini .map-main,
-body.siga-mini .siga-map-main {
-  width: 100vw !important;
-  height: 100vh !important;
-  display: block !important;
-  padding: 0 !important;
-  margin: 0 !important;
+body.mini .siga-header,
+body.mini .siga-sidebar,
+body.mini .map-status {
+  display: none !important;
 }
 
-body.siga-mini #map {
+body.mini .siga-layout {
+  height: 100vh !important;
+  grid-template-columns: 1fr !important;
+}
+
+body.mini .siga-map-shell {
+  height: 100vh !important;
+}
+
+body.mini #sigaMap {
   width: 100vw !important;
   height: 100vh !important;
+}
+
+/* Opcional: ocultar controles de Leaflet en la miniatura */
+body.mini .leaflet-control-zoom,
+body.mini .leaflet-control-layers,
+body.mini .leaflet-control-fullscreen,
+body.mini .leaflet-control-locate,
+body.mini .leaflet-control-geocoder,
+body.mini .leaflet-control-measure,
+body.mini .leaflet-draw,
+body.mini .leaflet-control-minimap,
+body.mini .leaflet-control-mouseposition,
+body.mini .leaflet-control-easyPrint {
+  display: none !important;
 }
