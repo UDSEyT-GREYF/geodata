@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIGA – Sistema de Información Geográfica Aeroportuaria</title>
+
+  <!-- Leaflet base -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+  <!-- Plugins Leaflet: todos cargan de forma defensiva; si alguno falla, el visor base sigue funcionando -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.fullscreen@3.0.2/Control.FullScreen.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.locatecontrol@0.83.1/dist/L.Control.Locate.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-measure@3.1.0/dist/leaflet-measure.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-minimap@3.6.1/dist/Control.MiniMap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ardhi/Leaflet.MousePosition/src/L.Control.MousePosition.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
+  <link rel="stylesheet" href="css/siga.css" />
+</head>
+<body>
+  <header class="siga-header">
+    <div class="siga-brand">
+      <div class="siga-logo">SIGA</div>
+      <div>
+        <h1>Sistema de Información Geográfica Aeroportuaria</h1>
+        <p>Infraestructura, área de movimiento y servicios aeroportuarios del SNA</p>
+      </div>
+    </div>
+    <div class="siga-header-actions">
+      <button type="button" id="btnArgentinaTop" class="siga-btn siga-btn-light">Ver Argentina</button>
+      <button type="button" id="btnOpenFull" class="siga-btn siga-btn-primary">Abrir mapa completo</button>
+    </div>
+  </header>
+
+  <main class="siga-layout">
+    <aside class="siga-sidebar" id="sigaSidebar">
+      <section class="siga-card siga-intro">
+        <h2>Explorá la infraestructura aeroportuaria</h2>
+        <p>
+          El mapa inicia con la vista nacional. Seleccioná un aeropuerto para hacer zoom al predio,
+          o activá y desactivá capas para recorrer la infraestructura disponible.
+        </p>
+      </section>
+
+      <section class="siga-card">
+        <div class="siga-section-title">Aeropuerto</div>
+        <label class="siga-label" for="airportSelect">Buscar / seleccionar aeropuerto</label>
+        <select id="airportSelect" class="siga-select">
+          <option value="">Cargando aeropuertos…</option>
+        </select>
+        <div class="siga-button-row">
+          <button type="button" id="btnZoomAirport" class="siga-btn siga-btn-primary">Zoom al predio</button>
+          <button type="button" id="btnArgentina" class="siga-btn siga-btn-secondary">Ver Argentina</button>
+        </div>
+        <div class="siga-hint" id="airportHint">Elegí un aeropuerto o navegá libremente por el mapa.</div>
+      </section>
+
+      <section class="siga-card">
+        <div class="siga-section-title">Capas</div>
+        <div class="siga-button-row siga-button-row-tight">
+          <button type="button" id="btnDefaultLayers" class="siga-btn siga-btn-secondary">Capas principales</button>
+          <button type="button" id="btnAllLayers" class="siga-btn siga-btn-secondary">Activar todas</button>
+          <button type="button" id="btnNoLayers" class="siga-btn siga-btn-secondary">Limpiar</button>
+        </div>
+        <div id="layerTree" class="layer-tree"></div>
+      </section>
+
+      <section class="siga-card">
+        <div class="siga-section-title">Información</div>
+        <div id="featureInfo" class="feature-info">
+          Seleccioná una geometría del mapa para ver sus atributos principales.
+        </div>
+      </section>
+
+      <section class="siga-card">
+        <div class="siga-section-title">Leyenda</div>
+        <div id="mapLegend" class="map-legend"></div>
+      </section>
+    </aside>
+
+    <section class="siga-map-shell">
+      <div id="embedToolbar" class="embed-toolbar">
+        <select id="airportSelectEmbed" class="siga-select siga-select-embed"></select>
+        <button type="button" id="btnZoomAirportEmbed" class="siga-btn siga-btn-primary">Zoom</button>
+        <button type="button" id="btnOpenFullEmbed" class="siga-btn siga-btn-secondary">Abrir</button>
+      </div>
+      <div id="sigaMap" class="siga-map" aria-label="Mapa SIGA"></div>
+      <div id="mapStatus" class="map-status">Cargando capas…</div>
+    </section>
+  </main>
+
+  <!-- Leaflet base -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- Plugins Leaflet -->
+  <script src="https://unpkg.com/leaflet.fullscreen@3.0.2/Control.FullScreen.js"></script>
+  <script src="https://unpkg.com/leaflet.locatecontrol@0.83.1/dist/L.Control.Locate.min.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.js"></script>
+  <script src="https://unpkg.com/leaflet-measure@3.1.0/dist/leaflet-measure.js"></script>
+  <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+  <script src="https://unpkg.com/leaflet-minimap@3.6.1/dist/Control.MiniMap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/ardhi/Leaflet.MousePosition/src/L.Control.MousePosition.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script src="https://unpkg.com/leaflet-easyprint@2.1.9/dist/bundle.js"></script>
+
+  <script src="js/siga.js"></script>
+</body>
+</html>
