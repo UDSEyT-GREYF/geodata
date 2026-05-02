@@ -2,17 +2,14 @@
 (() => {
   "use strict";
 
-  const params = new URLSearchParams(window.location.search);
-  const isMiniMode = params.get("mini") === "1";
+const params = new URLSearchParams(window.location.search);
+const EMBED_MODE = params.get("embed") === "1";
+const MINI_MODE = params.get("mini") === "1";
+const URL_AIRPORT = (params.get("airport") || "").trim().toUpperCase();
+const URL_FOCUS = params.get("focus") === "1";
 
-if (isMiniMode) {
-  document.body.classList.add("siga-mini");
-}
-  const EMBED_MODE = params.get("embed") === "1";
-  const URL_AIRPORT = (params.get("airport") || "").trim().toUpperCase();
-  const URL_FOCUS = params.get("focus") === "1";
-
-  if (EMBED_MODE) document.body.classList.add("embed");
+if (EMBED_MODE) document.body.classList.add("embed");
+if (MINI_MODE) document.body.classList.add("mini");
 
   const AIRPORTS_SOURCE = "fuentes/Datos_aeropuertos.geojson";
 
