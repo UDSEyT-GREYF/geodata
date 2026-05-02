@@ -448,17 +448,16 @@
     return clean(getFirstProp(props, candidates));
   }
 
-  function getAirportShortName(airport) {
-    const p = airport?.properties || {};
-    let name = clean(p.Localidad || p.localidad || p.Aeropuerto || p["Nombre del Aeropuerto"] || airport?.nombre || airport?.iata);
-    name = name
-      .replace(/^Aeropuerto\s+Internacional\s+de\s+/i, "")
-      .replace(/^Aeropuerto\s+Internacional\s+/i, "")
-      .replace(/^Aeropuerto\s+de\s+/i, "")
-      .replace(/^Aeropuerto\s+/i, "")
-      .trim();
-    return name || airport?.iata || "Aeropuerto";
-  }
+function getAirportShortName(airport) {
+  const p = airport?.properties || {};
+
+  return clean(
+    p.Aeropuerto ||
+    p.aeropuerto ||
+    airport?.nombre ||
+    airport?.iata
+  ) || "Aeropuerto";
+}
 
   function getPredioBoundsForAirport(iata) {
     const pred = state.layerDefs.get("predios")?.geojson;
