@@ -13,6 +13,8 @@
   const AEROPUERTOS_GEOJSON_PATH = "/geodata/fuentes/Datos_aeropuertos.geojson";
   const IATA_MUNDO_CSV_PATH = "/geodata/fuentes/ListadoIATAmundo.csv";
   const AIRLINE_ALIAS_CSV_PATH = "/geodata/fuentes/aerolineas_alias.csv";
+  const FDO_TRAFFIC_AA_PATH = "/geodata/fuentes/fdo_trafico_aeropuertos_argentina.json";
+  const FDO_ROUTES_MONTHLY_AA_PATH = "/geodata/fuentes/fdo_rutas_mensual_aeropuertos_argentina.json";
 
   /* ============================================================
      ESTADO
@@ -26,6 +28,8 @@
   let rutasKmIndex = new Map();
   let airlineAliasIndex = {};
   let historicTrafficByIata = {};
+  let fdoTrafficAA = null;
+  let fdoRoutesMonthlyAA = [];
   
   const DEST_OVERRIDES = {
     BUE: { ciudad: "Buenos Aires AEP+EZE", pais: "Argentina" },
@@ -33,7 +37,11 @@
     GIG: { ciudad: "Río de Janeiro", pais: "Brasil" },
     FLN: { ciudad: "Florianópolis", pais: "Brasil" },
     LIM: { ciudad: "Lima", pais: "Perú" },
-    SCL: { ciudad: "Santiago", pais: "Chile" }
+    SCL: { ciudad: "Santiago", pais: "Chile" },
+    ASU: { ciudad: "Asunción", pais: "Paraguay" },
+    FDO: { ciudad: "Operaciones locales", pais: "Argentina" },
+    AR: { ciudad: "Otros destinos de cabotaje", pais: "Argentina" },
+    EXT: { ciudad: "Otros destinos internacionales", pais: "" }
   };
 
   /* ============================================================
@@ -696,6 +704,443 @@ function getDistanciaForRuta(row) {
 
   return NaN;
 }
+
+function isFDO(iata) {
+  return clean(iata).toUpperCase() === "FDO";
+}
+
+function normalizeFDORouteCode(code) {
+  const c = clean(code).toUpperCase();
+
+  // Corrección metodológica: ASI se interpreta como ASU, Asunción, Paraguay.
+  if (c === "ASI") return "ASU";
+
+  if (c === "-AR") return "AR";
+  if (c === "-EX") return "EXT";
+
+  return c;
+}
+
+function getFdoRouteRecords(data) {
+  if (Array.isArray(data)) return data;
+  if (Array.isArray(data?.routes)) return data.routes;
+  if (Array.isArray(data?.rutas)) return data.rutas;
+  if (Array.isArray(data?.data)) return data.data;
+  if (Array.isArray(data?.rows)) return data.rows;
+  return [];
+}
+
+function normalizeFdoRowKeys(row) {
+  const out = {};
+  Object.entries(row || {}).forEach(([key, value]) => {
+    out[normalizeHeader(key)] = value;
+  });
+  return out;
+}
+
+function parseFdoRoutesMonthlyAAJSON(data) {
+  const records = getFdoRouteRecords(data);
+  const acc = new Map();
+
+  records.forEach(rawRow => {
+    const r = normalizeFdoRowKeys(rawRow);
+
+    const year = Number(firstNonEmpty(r, ["y", "anio", "ano", "año", "year"]));
+    const month = Number(firstNonEmpty(r, ["m", "mes", "month"]));
+    const code = normalizeFDORouteCode(firstNonEmpty(r, [
+      "d",
+      "destino",
+      "iata_destino",
+      "codigo_destino",
+      "ruta"
+    ]));
+
+    if (!Number.isFinite(year) || !Number.isFinite(month) || !code) return;
+
+    const pax = parseNumber(firstNonEmpty(r, [
+      "p",
+      "pax",
+      "pasajeros",
+      "pasajeros_totales",
+      "total_pasajeros"
+    ]));
+
+    const vuelos = parseNumber(firstNonEmpty(r, [
+      "v",
+      "vuelos",
+      "movimientos",
+      "vuelos_totales",
+      "total_vuelos"
+    ]));
+
+    const freq = parseNumber(firstNonEmpty(r, [
+      "f",
+      "frecuencia",
+      "frecuencias_semanales",
+      "frecuencia_semanal"
+    ]));
+
+    const seatsProvided = parseNumber(firstNonEmpty(r, [
+      "s",
+      "asientos",
+      "asientos_pax",
+      "seats"
+    ]));
+
+    const lf = parseNumber(firstNonEmpty(r, [
+      "lf",
+      "load_factor",
+      "ocupacion",
+      "ocupación"
+    ]));
+
+    const seats = Number.isFinite(seatsProvided)
+      ? seatsProvided
+      : (Number.isFinite(pax) && Number.isFinite(lf) && lf > 0 ? pax / lf : 0);
+
+    if (!Number.isFinite(pax) && !Number.isFinite(vuelos)) return;
+
+    const key = `${year}|${month}|${code}`;
+
+    if (!acc.has(key)) {
+      acc.set(key, {
+        i: "FDO",
+        y: year,
+        m: month,
+        am: `${year}-${String(month).padStart(2, "0")}`,
+        d: code,
+        p: 0,
+        v: 0,
+        f: 0,
+        s: 0
+      });
+    }
+
+    const item = acc.get(key);
+    item.p += Number.isFinite(pax) ? pax : 0;
+    item.v += Number.isFinite(vuelos) ? vuelos : 0;
+    item.f += Number.isFinite(freq) ? freq : 0;
+    item.s += Number.isFinite(seats) ? seats : 0;
+  });
+
+  return Array.from(acc.values()).map(r => ({
+    ...r,
+    lf: r.s > 0 ? r.p / r.s : null
+  })).filter(r =>
+    r.i === "FDO" &&
+    Number.isFinite(r.y) &&
+    Number.isFinite(r.m) &&
+    r.d &&
+    (Number.isFinite(r.p) || Number.isFinite(r.v))
+  );
+}
+
+function isArgentinaCountry(value) {
+  const p = clean(value).toUpperCase();
+  return p === "AR" || p === "ARG" || p === "ARGENTINA" || p.startsWith("AR-");
+}
+
+function isFdoRouteInternational(code) {
+  const c = normalizeFDORouteCode(code);
+
+  if (c === "EXT") return true;
+  if (c === "AR") return false;
+  if (c === "FDO") return false;
+
+  const meta = getRouteMeta(c);
+  if (meta) return !isArgentinaCountry(meta.pais);
+
+  const isDomesticAirport = aeropuertos.some(a =>
+    clean(firstNonEmpty(a, ["IATA"])).toUpperCase() === c
+  );
+
+  return !isDomesticAirport;
+}
+
+function fdoShouldUseTrafficRow(row) {
+  const cls = clean(row?.clase_vuelo).toLowerCase();
+
+  // Excluimos cargas para oferta-demanda de pasajeros/movimientos.
+  return !cls.startsWith("cargas");
+}
+
+function fdoTrafficSegment(row) {
+  const s = clean(row?.segmento).toLowerCase();
+
+  if (s.includes("internacional")) return "Int";
+  return "Cab";
+}
+
+function buildFdoMonthlyBase(year = YEAR_REF) {
+  const monthlyMap = new Map();
+
+  (fdoTrafficAA?.mensual || [])
+    .filter(fdoShouldUseTrafficRow)
+    .filter(row => Number(row.anio) === Number(year))
+    .forEach(row => {
+      const mes = Number(row.mes);
+      if (!Number.isFinite(mes)) return;
+
+      const key = `${year}-${String(mes).padStart(2, "0")}`;
+      const marketKey = fdoTrafficSegment(row);
+
+      if (!monthlyMap.has(key)) {
+        monthlyMap.set(key, {
+          anioMes: key,
+          paxCab: 0,
+          paxInt: 0,
+          paxTotal: 0,
+          asientosCab: 0,
+          asientosInt: 0,
+          asientosTotal: 0,
+          vuelosCab: 0,
+          vuelosInt: 0,
+          vuelosTotal: 0
+        });
+      }
+
+      const item = monthlyMap.get(key);
+      const pax = Number(row.pasajeros) || 0;
+      const mov = Number(row.movimientos) || 0;
+
+      item.paxTotal += pax;
+      item.vuelosTotal += mov;
+
+      item[`pax${marketKey}`] += pax;
+      item[`vuelos${marketKey}`] += mov;
+    });
+
+  return Array.from(monthlyMap.values())
+    .sort((a, b) => a.anioMes.localeCompare(b.anioMes));
+}
+
+function getFdoRouteLabel(code) {
+  const c = normalizeFDORouteCode(code);
+  const isInternational = isFdoRouteInternational(c);
+  const label = getDestinationLabel(c, isInternational);
+
+  return {
+    code: c,
+    ciudad: label.ciudad || c,
+    pais: label.pais || "",
+    clasificacion: isInternational ? "Internacional" : "Cabotaje"
+  };
+}
+
+function buildFdoOfertaDemandaSummary(year = YEAR_REF) {
+  const monthly = buildFdoMonthlyBase(year);
+  const airlineName = "Aviación general / privada";
+
+  const monthlyByKey = new Map(monthly.map(m => [m.anioMes, m]));
+
+  const routesRows = (fdoRoutesMonthlyAA || [])
+    .filter(r => Number(r.y) === Number(year))
+    .filter(r => (Number(r.p) || 0) > 0 || (Number(r.v) || 0) > 0);
+
+  const destinosMap = new Map();
+  const mainRoutesMap = new Map();
+  const freqByRoute = new Map();
+
+  let totalPaxRoutes = 0;
+  let totalAsientosRoutes = 0;
+  let totalVuelosRoutes = 0;
+
+  routesRows.forEach(r => {
+    const label = getFdoRouteLabel(r.d);
+    const isInternational = label.clasificacion === "Internacional";
+    const marketKey = isInternational ? "Int" : "Cab";
+    const pax = Number(r.p) || 0;
+    const asientos = Number(r.s) || 0;
+    const vuelos = Number(r.v) || 0;
+    const freq = Number(r.f) || 0;
+    const monthKey = r.am || `${year}-${String(r.m).padStart(2, "0")}`;
+
+    totalPaxRoutes += pax;
+    totalAsientosRoutes += asientos;
+    totalVuelosRoutes += vuelos;
+
+    if (!monthlyByKey.has(monthKey)) {
+      monthlyByKey.set(monthKey, {
+        anioMes: monthKey,
+        paxCab: 0,
+        paxInt: 0,
+        paxTotal: 0,
+        asientosCab: 0,
+        asientosInt: 0,
+        asientosTotal: 0,
+        vuelosCab: 0,
+        vuelosInt: 0,
+        vuelosTotal: 0
+      });
+    }
+
+    const monthItem = monthlyByKey.get(monthKey);
+    monthItem.asientosTotal += asientos;
+    monthItem[`asientos${marketKey}`] += asientos;
+
+    if (!destinosMap.has(label.code)) {
+      destinosMap.set(label.code, {
+        code: label.code,
+        ciudad: label.ciudad,
+        pais: label.pais,
+        clasificacion: label.clasificacion,
+        pax: 0,
+        asientos: 0,
+        vuelos: 0,
+        frecuenciaSemanal: 0,
+        distanciaKm: null,
+        ask: 0,
+        rpk: 0
+      });
+    }
+
+    const dest = destinosMap.get(label.code);
+    dest.pax += pax;
+    dest.asientos += asientos;
+    dest.vuelos += vuelos;
+    dest.frecuenciaSemanal += freq;
+
+    if (!freqByRoute.has(label.code)) {
+      freqByRoute.set(label.code, { sum: 0, count: 0 });
+    }
+    const freqAcc = freqByRoute.get(label.code);
+    if (Number.isFinite(freq) && freq > 0) {
+      freqAcc.sum += freq;
+      freqAcc.count += 1;
+    }
+
+    const routeKey = [
+      normalizeTextKey(label.ciudad),
+      normalizeTextKey(label.pais),
+      normalizeTextKey(label.clasificacion)
+    ].join("|");
+
+    if (!mainRoutesMap.has(routeKey)) {
+      mainRoutesMap.set(routeKey, {
+        key: routeKey,
+        ciudad: label.ciudad,
+        pais: label.pais,
+        clasificacion: label.clasificacion,
+        code: label.code,
+        totalPax: 0,
+        totalAsientos: 0,
+        totalVuelos: 0,
+        monthlyMap: new Map()
+      });
+    }
+
+    const routeAgg = mainRoutesMap.get(routeKey);
+    routeAgg.totalPax += pax;
+    routeAgg.totalAsientos += asientos;
+    routeAgg.totalVuelos += vuelos;
+
+    if (!routeAgg.monthlyMap.has(monthKey)) {
+      routeAgg.monthlyMap.set(monthKey, {
+        anioMes: monthKey,
+        totalPax: 0,
+        totalAsientos: 0,
+        totalVuelos: 0,
+        airlines: {}
+      });
+    }
+
+    const routeMonth = routeAgg.monthlyMap.get(monthKey);
+    routeMonth.totalPax += pax;
+    routeMonth.totalAsientos += asientos;
+    routeMonth.totalVuelos += vuelos;
+
+    if (!routeMonth.airlines[airlineName]) {
+      routeMonth.airlines[airlineName] = {
+        pax: 0,
+        asientos: 0,
+        vuelos: 0
+      };
+    }
+
+    routeMonth.airlines[airlineName].pax += pax;
+    routeMonth.airlines[airlineName].asientos += asientos;
+    routeMonth.airlines[airlineName].vuelos += vuelos;
+  });
+
+  const totalFrecuenciaSemanal = Array.from(freqByRoute.values())
+    .reduce((acc, item) => {
+      if (!item.count) return acc;
+      return acc + (item.sum / item.count);
+    }, 0);
+
+  const monthlyFinal = Array.from(monthlyByKey.values())
+    .sort((a, b) => a.anioMes.localeCompare(b.anioMes));
+
+  const totalPaxTraffic = monthlyFinal.reduce((acc, r) => acc + (Number(r.paxTotal) || 0), 0);
+  const totalVuelosTraffic = monthlyFinal.reduce((acc, r) => acc + (Number(r.vuelosTotal) || 0), 0);
+  const totalAsientosMonthly = monthlyFinal.reduce((acc, r) => acc + (Number(r.asientosTotal) || 0), 0);
+
+  const paxCab = monthlyFinal.reduce((acc, r) => acc + (Number(r.paxCab) || 0), 0);
+  const paxInt = monthlyFinal.reduce((acc, r) => acc + (Number(r.paxInt) || 0), 0);
+  const asientosCab = monthlyFinal.reduce((acc, r) => acc + (Number(r.asientosCab) || 0), 0);
+  const asientosInt = monthlyFinal.reduce((acc, r) => acc + (Number(r.asientosInt) || 0), 0);
+  const vuelosCab = monthlyFinal.reduce((acc, r) => acc + (Number(r.vuelosCab) || 0), 0);
+  const vuelosInt = monthlyFinal.reduce((acc, r) => acc + (Number(r.vuelosInt) || 0), 0);
+
+  const originRouteName = getAirportBaseRouteName("FDO");
+
+  const mainRoutes = Array.from(mainRoutesMap.values())
+    .filter(r => r.totalPax > 0 || r.totalAsientos > 0)
+    .sort((a, b) => b.totalPax - a.totalPax)
+    .slice(0, 6)
+    .map(route => {
+      const monthlyRoute = Array.from(route.monthlyMap.values())
+        .sort((a, b) => a.anioMes.localeCompare(b.anioMes));
+
+      return {
+        key: route.key,
+        title: `${originRouteName} - ${route.ciudad}${route.code ? ` ${route.code}` : ""}`,
+        ciudad: route.ciudad,
+        pais: route.pais,
+        clasificacion: route.clasificacion,
+        codesLabel: route.code,
+        totalPax: route.totalPax,
+        totalAsientos: route.totalAsientos,
+        totalVuelos: route.totalVuelos,
+        sharePaxPct: totalPaxRoutes > 0 ? (route.totalPax / totalPaxRoutes) * 100 : 0,
+        shareSeatsPct: totalAsientosRoutes > 0 ? (route.totalAsientos / totalAsientosRoutes) * 100 : 0,
+        monthly: monthlyRoute
+      };
+    });
+
+  const airlines = [{
+    name: airlineName,
+    paxCab,
+    paxInt,
+    paxTotal: totalPaxTraffic,
+    asientosCab,
+    asientosInt,
+    asientosTotal: totalAsientosMonthly,
+    vuelosCab,
+    vuelosInt,
+    vuelosTotal: totalVuelosTraffic
+  }];
+
+  return {
+    totalPax: totalPaxTraffic,
+    totalAsientos: totalAsientosMonthly,
+    totalVuelos: totalVuelosTraffic,
+    totalFrecuenciaSemanal,
+    totalASK: 0,
+    totalRPK: 0,
+    loadFactor: totalAsientosMonthly > 0 ? totalPaxRoutes / totalAsientosMonthly : null,
+    loadFactorWeighted: totalAsientosMonthly > 0 ? totalPaxRoutes / totalAsientosMonthly : null,
+    routeDistanceAvgBySeats: null,
+    airlinesCount: 0,
+    destinos: Array.from(destinosMap.values()).sort((a, b) => b.pax - a.pax),
+    airlines,
+    monthly: monthlyFinal,
+    mainRoutes,
+    source: "aeropuertos_argentina_fdo"
+  };
+}
+
+
   /* ============================================================
      AGREGACIÓN
      ============================================================ */
@@ -706,6 +1151,10 @@ function getDistanciaForRuta(row) {
     } = opts;
 
     const selected = clean(iata).toUpperCase();
+
+    if (isFDO(selected) && fdoTrafficAA && fdoRoutesMonthlyAA.length) {
+      return buildFdoOfertaDemandaSummary(year);
+    }
 
     let rows = rutasOfertaRows.filter(r =>
       (r.endpointA === selected || r.endpointB === selected) &&
@@ -2178,6 +2627,18 @@ textEl.innerHTML =
   }
   function renderOfertaDemanda(iata) {
     const summary = getOfertaDemandaSummary(iata, YEAR_REF, { soloComercial: true });
+
+const isFdoWithAA = isFDO(iata) && summary?.source === "aeropuertos_argentina_fdo";
+const sourceText = isFdoWithAA
+  ? "Fuente: elaborado por GREyF ORSNA con datos de Aeropuertos Argentina."
+  : "Fuente: elaborado por GREyF ORSNA con datos de SIAC ANAC.";
+
+document
+  .querySelectorAll(".od-source-note, .od-footer-source, .history-note")
+  .forEach(el => {
+    el.textContent = sourceText;
+  });
+
 setText(
   "odTotalPax",
   Number.isFinite(summary.totalPax) ? formatNumber(Math.round(summary.totalPax)) : "–"
@@ -2264,13 +2725,17 @@ const [
   rutasOfertaResp,
   rutasKmResp,
   iataWorldResp,
-  airlineAliasResp
+  airlineAliasResp,
+  fdoTrafficResp,
+  fdoRoutesMonthlyResp
 ] = await Promise.all([
   fetch(AEROPUERTOS_GEOJSON_PATH),
   fetch(RUTAS_CSV_PATH).catch(() => null),
   fetch(RUTAS_KM_CSV_PATH).catch(() => null),
   fetch(IATA_MUNDO_CSV_PATH).catch(() => null),
-  fetch(AIRLINE_ALIAS_CSV_PATH).catch(() => null)
+  fetch(AIRLINE_ALIAS_CSV_PATH).catch(() => null),
+  fetch(FDO_TRAFFIC_AA_PATH).catch(() => null),
+  fetch(FDO_ROUTES_MONTHLY_AA_PATH).catch(() => null)
 ]);
 
       const geojson = await airportsResp.json();
@@ -2313,6 +2778,18 @@ if (airlineAliasResp && airlineAliasResp.ok) {
   airlineAliasIndex = parseAirlineAliasCSV(await readTextSmart(airlineAliasResp));
 } else {
   airlineAliasIndex = {};
+}
+
+if (fdoTrafficResp && fdoTrafficResp.ok) {
+  fdoTrafficAA = await fdoTrafficResp.json();
+} else {
+  fdoTrafficAA = null;
+}
+
+if (fdoRoutesMonthlyResp && fdoRoutesMonthlyResp.ok) {
+  fdoRoutesMonthlyAA = parseFdoRoutesMonthlyAAJSON(await fdoRoutesMonthlyResp.json());
+} else {
+  fdoRoutesMonthlyAA = [];
 }
 
 try {
