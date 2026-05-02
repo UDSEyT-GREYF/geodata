@@ -339,3 +339,90 @@ body.embed .leaflet-control-attribution {
   color: #8a1f1f;
   border-color: rgba(178, 34, 34, 0.5);
 }
+
+/* ==============================
+   SIGA – Selector + mapas base en panel lateral
+   ============================== */
+.siga-airport-card .siga-section-title {
+  font-size: .88rem;
+  line-height: 1.15;
+}
+
+.siga-subsection-title {
+  margin: 10px 0 6px;
+  padding-top: 2px;
+  font-size: .72rem;
+  font-weight: 800;
+  color: var(--siga-blue-dark);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.siga-subsection-title:first-of-type {
+  margin-top: 0;
+}
+
+.siga-subsection-title-overlays {
+  border-top: 1px solid #e3e9f1;
+  padding-top: 10px;
+}
+
+.base-layer-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.basemap-row {
+  display: grid;
+  grid-template-columns: 18px 40px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 6px 7px;
+  border: 1px solid #e1e8f1;
+  border-radius: 8px;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+
+.basemap-row:hover {
+  background: #eef5ff;
+  border-color: #b8c9dc;
+}
+
+.basemap-row:has(input:checked) {
+  background: #e8f1fc;
+  border-color: var(--siga-blue);
+  box-shadow: 0 1px 4px rgba(48, 111, 176, .15);
+}
+
+.basemap-row input {
+  margin: 0;
+  accent-color: var(--siga-blue);
+}
+
+.basemap-thumb {
+  width: 40px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 40, 85, .18);
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35);
+}
+
+.basemap-name {
+  min-width: 0;
+  color: #374151;
+  font-size: .76rem;
+  font-weight: 650;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body.embed .base-layer-tree,
+body.embed .siga-subsection-title {
+  display: none;
+}
