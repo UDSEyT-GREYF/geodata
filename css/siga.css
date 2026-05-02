@@ -551,3 +551,47 @@ body.embed .siga-subsection-title {
   box-shadow: none !important;
   padding: 0 !important;
 }
+/* =========================================================
+   SIGA MINI | MODO EMBEBIDO EN DATOS CLAVE OPERACIONES
+   Solo mapa, sin panel lateral ni controles de capas
+   ========================================================= */
+
+body.siga-mini {
+  overflow: hidden;
+}
+
+body.siga-mini .siga-header,
+body.siga-mini .siga-sidebar,
+body.siga-mini .siga-layer-panel,
+body.siga-mini .siga-basemap-panel,
+body.siga-mini .siga-intro,
+body.siga-mini .sidebar,
+body.siga-mini .map-sidebar,
+body.siga-mini .leaflet-control-layers,
+body.siga-mini .leaflet-control-zoom,
+body.siga-mini .leaflet-control-scale,
+body.siga-mini .leaflet-control-geocoder,
+body.siga-mini .leaflet-control-measure,
+body.siga-mini .leaflet-draw,
+body.siga-mini .leaflet-control-minimap,
+body.siga-mini .leaflet-control-locate,
+body.siga-mini .leaflet-control-mouseposition,
+body.siga-mini .leaflet-control-easyPrint {
+  display: none !important;
+}
+
+body.siga-mini .siga-layout,
+body.siga-mini .mapa-operacion-layout,
+body.siga-mini .map-main,
+body.siga-mini .siga-map-main {
+  width: 100vw !important;
+  height: 100vh !important;
+  display: block !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+body.siga-mini #map {
+  width: 100vw !important;
+  height: 100vh !important;
+}
