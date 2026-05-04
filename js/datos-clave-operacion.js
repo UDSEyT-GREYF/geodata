@@ -813,6 +813,22 @@ function renderOperationTrafficClassCards(iata) {
     return n ? formatNumber(Math.round(n)) : "–";
   };
 
+  const segmentHtml = item => `
+    <div class="traffic-class-sub traffic-class-segments">
+      <span class="traffic-segment traffic-segment-cab">
+        <span class="traffic-segment-label">Cab.</span>
+        <span class="traffic-segment-value">${fmt(item.cab)}</span>
+      </span>
+
+      <span class="traffic-segment-separator">•</span>
+
+      <span class="traffic-segment traffic-segment-int">
+        <span class="traffic-segment-label">Int.</span>
+        <span class="traffic-segment-value">${fmt(item.intl)}</span>
+      </span>
+    </div>
+  `;
+
   const defs = [
     { key: "regular", title: "Regular", cls: "regular" },
     { key: "noRegular", title: "No regular", cls: "noreg" },
@@ -831,13 +847,13 @@ function renderOperationTrafficClassCards(iata) {
           <div class="traffic-class-metric">
             <div class="traffic-class-label">Pasajeros</div>
             <div class="traffic-class-value">${fmt(pax.total)}</div>
-            <div class="traffic-class-sub">Cab. ${fmt(pax.cab)} · Int. ${fmt(pax.intl)}</div>
+            ${segmentHtml(pax)}
           </div>
 
           <div class="traffic-class-metric">
             <div class="traffic-class-label">Movimientos</div>
             <div class="traffic-class-value">${fmt(mov.total)}</div>
-            <div class="traffic-class-sub">Cab. ${fmt(mov.cab)} · Int. ${fmt(mov.intl)}</div>
+            ${segmentHtml(mov)}
           </div>
         </div>
       </article>
