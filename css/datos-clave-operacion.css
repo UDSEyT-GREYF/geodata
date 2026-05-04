@@ -2994,12 +2994,7 @@ body {
   overflow: hidden !important;
   background: #fff !important;
 }
-/* Menos aire arriba y abajo dentro del bloque */
-.section-routes.operation-top-routes #opTopRoutesList {
-  box-sizing: border-box !important;
-  overflow: hidden !important;
-  padding: 3px 10px 4px 10px !important;
-}
+
 /* ============================================================
    Resumen 2025 por clase de vuelo: Cabotaje / Internacional
    ============================================================ */
