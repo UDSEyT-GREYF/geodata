@@ -1029,7 +1029,20 @@ function renderOperationChart(iata) {
     ${avGralLine}
   `;
 }
+function getEquivalentDestinationCode(selectedIata, otherCode) {
+  const sel = clean(selectedIata).toUpperCase();
+  const other = clean(otherCode).toUpperCase();
 
+  const selectedIsBA = sel === "AEP" || sel === "EZE";
+  const otherIsBA = other === "AEP" || other === "EZE";
+
+  // Igual que en datos-clave-lamina:
+  // consolida AEP/EZE como destino, pero no cuando el aeropuerto seleccionado
+  // es AEP o EZE.
+  if (!selectedIsBA && otherIsBA) return "BUE";
+
+  return other;
+}
 function getRouteDisplayName(code, selectedIata) {
   const c = clean(code).toUpperCase();
   const selected = clean(selectedIata).toUpperCase();
@@ -1136,36 +1149,74 @@ function renderOperationTopRoutes(iata) {
   const el = q("opTopRoutesList");
   if (!el) return;
 
-  let rows = [];
+  let rawRows = [];
   const isFdoRoutesAA = isFDO(selected) && fdoRoutesAA.length;
 
   if (isFdoRoutesAA) {
-    rows = fdoRoutesAA
+    rawRows = fdoRoutesAA
       .filter(r => Number(r.y) === YEAR_REF)
       .map(r => ({
-        code: r.d,
-        name: getFDORouteDisplayName(r.d),
+        code: clean(r.d).toUpperCase(),
         pax: Number(r.p) || 0,
         flights: Number(r.v) || 0,
         freq: Number(r.f) || null,
-        bucket: getRouteBucket(r.d, selected),
         source: "aeropuertos_argentina_fdo"
       }));
   } else {
-    rows = (operationSummary.routes || [])
-      .filter(r => r.i === selected && r.y === YEAR_REF)
+    rawRows = (operationSummary.routes || [])
+      .filter(r => r.i === selected && Number(r.y) === YEAR_REF)
       .map(r => ({
-        code: r.d,
-        name: getRouteDisplayName(r.d, selected),
+        code: clean(r.d).toUpperCase(),
         pax: Number(r.p) || 0,
         flights: Number(r.v) || 0,
         freq: Number(r.f) || null,
-        bucket: getRouteBucket(r.d, selected),
         source: "rutas_clase_vuelo_resumen"
       }));
   }
 
-  rows = rows
+  /*
+    Consolidación de destinos:
+    - COR -> AEP y COR -> EZE se agrupan como BUE.
+    - AEP como aeropuerto seleccionado NO se transforma en BUE.
+    - EZE como aeropuerto seleccionado NO se transforma en BUE.
+    Esto replica la lógica de datos-clave-lamina.js.
+  */
+  const routeMap = new Map();
+
+  rawRows.forEach(r => {
+    const originalCode = clean(r.code).toUpperCase();
+    if (!originalCode) return;
+
+    const destinationCode = getEquivalentDestinationCode(selected, originalCode);
+    if (!destinationCode) return;
+
+    const bucket = getRouteBucket(destinationCode, selected);
+    const key = `${bucket}|${destinationCode}`;
+
+    if (!routeMap.has(key)) {
+      routeMap.set(key, {
+        code: destinationCode,
+        name: isFdoRoutesAA
+          ? getFDORouteDisplayName(destinationCode)
+          : getRouteDisplayName(destinationCode, selected),
+        pax: 0,
+        flights: 0,
+        freq: null,
+        bucket,
+        source: r.source
+      });
+    }
+
+    const item = routeMap.get(key);
+    item.pax += Number(r.pax) || 0;
+    item.flights += Number(r.flights) || 0;
+
+    if (Number.isFinite(Number(r.freq))) {
+      item.freq = (Number(item.freq) || 0) + Number(r.freq);
+    }
+  });
+
+  const rows = Array.from(routeMap.values())
     .filter(d => d.pax > 0 || d.flights > 0)
     .sort((a, b) => b.pax - a.pax);
 
@@ -1174,8 +1225,13 @@ function renderOperationTopRoutes(iata) {
     return;
   }
 
-  const intl = rows.filter(d => d.bucket === "internacional").slice(0, 3);
-  const cab = rows.filter(d => d.bucket === "cabotaje");
+  const intl = rows
+    .filter(d => d.bucket === "internacional")
+    .slice(0, 3);
+
+  const cab = rows
+    .filter(d => d.bucket === "cabotaje")
+    .slice(0, 6);
 
   let leftTitle = "INTERNACIONALES";
   let rightTitle = "CABOTAJE";
@@ -1183,11 +1239,10 @@ function renderOperationTopRoutes(iata) {
   let rightRows = cab.slice(0, 3);
 
   if (!intl.length) {
-    const cabTop6 = cab.slice(0, 6);
     leftTitle = "CABOTAJE";
     rightTitle = "CABOTAJE";
-    leftRows = cabTop6.slice(0, 3);
-    rightRows = cabTop6.slice(3, 6);
+    leftRows = cab.slice(0, 3);
+    rightRows = cab.slice(3, 6);
   }
 
   const sourceNote = isFdoRoutesAA
