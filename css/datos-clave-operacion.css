@@ -171,11 +171,9 @@ body {
 .section-movimiento,
 .story-card,
 .section-passengers,
-.section-flights,
-.section-routes {
-  min-height: 0;
+.section-flights {
+min-height: 0;
 //  flex: 1 1 54%; lo saqué porque no se ve Ayudas visuales en algunos aeropuertos
-
 }
 .col-header,
 .section-title {
@@ -212,7 +210,7 @@ body {
 .story-card { min-height: 580px; }
 .section-passengers { min-height: 360px; }
 .section-flights { min-height: 104px; }
-.section-routes { min-height: 162px; }
+
 
 .surface-top-kpis {
   display: grid;
@@ -582,7 +580,6 @@ body {
 }
 
 
-
 .history-chart {
   width: 100%;
   height: 180px;
@@ -615,68 +612,6 @@ body {
   color: var(--blue-dark);
   font-weight: 700;
   line-height: 1;
-}
-
-.routes-grid {
-  display: grid;
-  grid-template-columns: 0.95fr 1.5fr;
-  gap: 14px;
-}
-.routes-right {
-  border-left: 1px dashed #cfd8e4;
-  padding-left: 14px;
-}
-.routes-subtitle {
-  font-size: 1rem;
-  color: #6b7178;
-  margin-bottom: 8px;
-}
-.airlines-summary {
-  display: grid;
-  grid-template-columns: 74px 1fr;
-  gap: 12px;
-  align-items: center;
-}
-.airlines-count-pill {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: var(--purple);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-.airlines-list {
-  white-space: pre-line;
-  font-size: 1rem;
-  color: var(--blue-dark);
-  line-height: 1.25;
-  font-weight: 600;
-}
-.destinations-list {
-  display: grid;
-  gap: 8px;
-}
-.destination-item {
-  display: grid;
-  grid-template-columns: 54px 1fr;
-  gap: 10px;
-  align-items: center;
-}
-.destination-pill {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background: #0c7bd8;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 
@@ -742,11 +677,6 @@ body {
 }
 
 
-
-/* =========================================================
-   AJUSTES COLUMNA DERECHA | PASAJEROS / VUELOS / RUTAS
-   ========================================================= */
-
 .section-passengers {
   min-height: 360px;
     flex: 1 1 auto;
@@ -759,7 +689,6 @@ body {
   align-items: center;
   margin-bottom: 4px;
 }
-
 
 
 .passengers-hero-pill {
@@ -813,7 +742,6 @@ body {
 }
 
 
-
 .history-note {
   font-size: 0.6rem;
   margin-top: 1px;
@@ -842,130 +770,6 @@ body {
 .section-flights {
   flex: 0 0 auto;
 }
-
-.section-routes {
-  min-height: 176px;
-    flex: 0 1 auto;
-  overflow: hidden;
-}
-
-.routes-grid {
-  grid-template-columns: 0.95fr 1.7fr;
-  gap: 12px;
-}
-
-.routes-right {
-  padding-left: 12px;
-}
-
-.routes-subtitle {
-  font-size: 0.90rem;
-  margin-bottom: 6px;
-}
-
-.airlines-summary {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-areas:
-    ". pill"
-    "list list";
-  column-gap: 8px;
-  row-gap: 6px;
-  align-items: start;
-}
-
-.airlines-count-pill {
-  grid-area: pill;
-  justify-self: end;
-  align-self: start;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: var(--purple);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-.airlines-list {
-  grid-area: list;
-  display: grid;
-  gap: 6px;
-  white-space: normal;
-}
-
-.airline-item {
-  display: grid;
-  grid-template-columns: 84px 1fr;
-  gap: 8px;
-  align-items: center;
-}
-
-.airline-logo {
-  max-width: 100px;
-  max-height: 26px;
-  object-fit: contain;
-  display: block;
-}
-
-.airline-name-fallback {
-  font-size: 0.80rem;
-  color: var(--blue-dark);
-  font-weight: 700;
-  line-height: 1.05;
-}
-
-.airline-volume {
-  font-size: 0.7rem;
-  color: #6a7179;
-}
-
-.airline-empty {
-  font-size: 0.86rem;
-  color: #6a7179;
-}
-
-.destinations-list {
-  display: block;
-}
-
-.destinations-columns {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.destinations-column {
-  display: grid;
-  gap: 6px;
-  align-content: start;
-}
-
-.destinations-column-title {
-  font-size: 0.70rem;
-  color: #6b7178;
-  font-weight: 700;
-  margin-bottom: 2px;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-}
-
-.destination-item {
-  grid-template-columns: 42px 1fr;
-  gap: 8px;
-}
-
-.destination-pill {
-  width: 35px;
-  height: 35px;
-  font-size: 0.92rem;
-}
-
-
-
 
 
 /* ===== FIX v4: KPI envolvente radioayudas + transporte público azul ===== */
@@ -1196,7 +1000,6 @@ body {
 }
 
 
-
 .movement-box-positions .movement-box-icon {
   align-self: center;
 }
@@ -1261,122 +1064,7 @@ body {
   color: #777;
 }
 
-/* =========================================
-   DESTINOS | ciudad y país en una línea
-   ========================================= */
 
-.destination-text {
-  display: block;
-  font-size: 0.7rem;
-  color: #6a7179;
-  line-height: 1;
-}
-.destination-text strong {
-  color: #5f6972;
-  font-weight: 600;
-}
-.destination-title-line {
-  line-height: 1.05;
-  white-space: normal;
-}
-
-.destination-title-line strong {
-  color: #5f6972;
-  font-weight: 600;
-}
-
-.destination-meta {
-  display: inline;
-  font-size: 0.76rem;
-  color: #7a838c;
-}
-
-.destination-volume {
-  display: block;
-  font-size: 0.7rem;
-  color: #6a7179;
-  line-height: 0.8;
-  margin-top: 1px;
-}/* =========================================
-   AEROLÍNEAS | contador independiente y lista debajo OK
-   ========================================= */
-
-.routes-left {
-  position: relative;
-  display: block;
-}
-
-.routes-left .routes-subtitle {
-  display: block;
-  margin: 0 46px 10px 0;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #2a5fa0;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  line-height: 1.1;
-}
-
-.routes-left .airlines-summary {
-  display: block !important;
-  padding-top: 2px;
-}
-
-.airlines-count-pill {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  width: 34px;
-  height: 34px;
-  font-size: 1.1rem;
-  z-index: 2;
-}
-
-.airlines-list {
-  display: grid;
-  gap: 10px;
-  white-space: normal;
-  width: 100%;
-  margin-top: 2px;
-}
-
-.airline-item {
-  display: grid;
-  grid-template-columns: 112px minmax(0, 1fr);
-  gap: 12px;
-  align-items: center;
-  min-height: 32px;
-}
-
-.airline-logo-wrap {
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-top: 1px;
-}
-
-.airline-logo {
-  max-width: 100px;
-  max-height: 26px;
-  object-fit: contain;
-  display: block;
-}
-
-.airline-name-fallback {
-  font-size: 0.84rem;
-  color: var(--blue-dark);
-  font-weight: 700;
-  line-height: 1.05;
-}
-
-.airline-volume {
-  font-size: 0.7rem;
-  color: #6a7179;
-  line-height: 0.8;
-  white-space: nowrap;
-}
 /* =========================================
    PASAJEROS | KPI principal más limpio
    ========================================= */
@@ -1618,37 +1306,8 @@ body {
 .movement-kpi-title {
   letter-spacing: 0.03em;
 }
-.airline-item {
-  display: grid;
-  grid-template-columns: 118px 1fr;
-  gap: 14px;
-  align-items: center;
-  min-height: 34px;
-}
 
-.airline-logo-wrap {
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
 
-.airline-logo {
-  max-width: 100px;
-  max-height: 26px;
-  object-fit: contain;
-  display: block;
-}
-
-.airline-volume {
-  min-width: 70px;
-  text-align: right;
-  white-space: nowrap;
-  font-size: 0.7rem;
-  line-height: 0.8;
-  color: #6a7179;
-  font-variant-numeric: tabular-nums;
-}
 .predio-codes {
   display: grid;
   gap: 2px;
@@ -1679,189 +1338,6 @@ body {
   text-align: right;
   letter-spacing: 0.03em;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-}
-
-/* =========================================================
-   FIX FINAL | AEROLÍNEAS Y RUTAS EN LÁMINA A4
-   Compacta la columna izquierda para que entren mejor logos,
-   contador y hasta 6 aerolíneas sin invadir destinos.
-   ========================================================= */
-
-/* La sección completa gana un poco de aire sin agrandar demasiado */
-.section-routes {
-  min-height: 184px;
-  flex: 0 1 auto;
-  overflow: hidden;
-}
-
-/* La columna de aerolíneas necesita un ancho mínimo real */
-.routes-grid {
-  grid-template-columns: minmax(205px, 0.98fr) minmax(0, 1.55fr);
-  gap: 10px;
-  align-items: start;
-}
-
-/* Columna izquierda: el contador queda arriba a la derecha */
-.routes-left {
-  position: relative;
-  min-width: 0;
-  overflow: hidden;
-  display: block;
-}
-
-/* Título más compacto y con espacio reservado para el contador */
-.routes-left .routes-subtitle {
-  margin: 0 38px 5px 0;
-  min-height: 30px;
-  display: flex;
-  align-items: center;
-  font-size: 0.70rem;
-  font-weight: 700;
-  color: #2a5fa0;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  line-height: 1.05;
-}
-
-/* Evita que el layout anterior de .airlines-summary vuelva a intervenir */
-.routes-left .airlines-summary {
-  display: block !important;
-  min-width: 0;
-  padding-top: 0;
-}
-
-/* Contador más contenido */
-.routes-left .airlines-count-pill,
-.airlines-count-pill {
-  position: absolute;
-  top: 0;
-  right: 2px;
-  width: 31px;
-  height: 31px;
-  min-width: 31px;
-  border-radius: 50%;
-  font-size: 1rem;
-  line-height: 1;
-  margin: 0;
-  z-index: 2;
-}
-
-/* Lista compacta para permitir más aerolíneas */
-.airlines-list {
-  display: grid;
-  gap: 2px;
-  width: 100%;
-  margin-top: 0;
-  white-space: normal;
-  min-width: 0;
-}
-
-/* Cada aerolínea: logo chico + volumen ajustable */
-.airline-item {
-  display: grid;
-  grid-template-columns: 78px minmax(0, 1fr);
-  gap: 6px;
-  align-items: center;
-  min-height: 22px;
-  padding: 1px 0;
-}
-
-/* Separador sutil entre aerolíneas */
-.airline-item + .airline-item {
-  border-top: 1px dashed rgba(208, 216, 228, 0.75);
-}
-
-/* Caja del logo más chica y estable */
-.airline-logo-wrap {
-  width: 78px;
-  height: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  min-width: 0;
-}
-
-/* Logos normalizados */
-.airline-logo {
-  object-fit: contain;
-  display: block;
-}
-
-/* Fallback si no hay logo */
-.airline-name-fallback {
-  font-size: 0.62rem;
-  line-height: 0.95;
-  color: var(--blue-dark);
-  font-weight: 700;
-  overflow-wrap: anywhere;
-}
-
-/* Volumen: deja de forzar ancho y permite adaptación */
-.airline-volume {
-  min-width: 0;
-  max-width: 100%;
-  text-align: right;
-  white-space: normal;
-  overflow-wrap: normal;
-  word-break: normal;
-  font-size: 0.7rem;
-  line-height: 0.92;
-  color: #6a7179;
-  font-variant-numeric: tabular-nums;
-}
-
-/* Mensaje vacío */
-.airline-empty {
-  font-size: 0.68rem;
-  line-height: 1.05;
-  color: #6a7179;
-}
-
-/* Columna derecha algo más compacta para acompañar */
-.routes-right {
-  min-width: 0;
-  padding-left: 10px;
-  border-left: 1px dashed #cfd8e4;
-}
-
-.destinations-columns {
-  gap: 8px;
-}
-
-.destinations-column {
-  gap: 4px;
-}
-
-.destinations-column-title {
-  font-size: 0.64rem;
-  line-height: 1;
-  margin-bottom: 1px;
-}
-
-.destination-item {
-  grid-template-columns: 34px minmax(0, 1fr);
-  gap: 6px;
-  min-width: 0;
-}
-
-.destination-pill {
-  width: 30px;
-  height: 30px;
-  font-size: 0.78rem;
-}
-
-.destination-text {
-  font-size: 0.62rem;
-  line-height: 0.95;
-}
-
-.destination-meta {
-  font-size: 0.64rem;
-}
-
-.destination-volume {
-  font-size: 0.62rem;
-  line-height: 0.9;
 }
 
 
@@ -2269,8 +1745,8 @@ body {
 .operation-left-movimiento .movement-box-positions { flex: 0 0 auto; }
 .section-traffic-summary { flex: 0 0 auto; }
 .section-traffic-history { flex: 0 0 auto; }
-.section-routes.operation-top-routes { flex: 1 1 auto; min-height: 150px; }
-.section-airlines.operation-top-airlines { flex: 0 1 auto; min-height: 122px; }
+
+
 .traffic-kpi-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2592,11 +2068,6 @@ body {
 }
 
 
-/* =========================================================
-   REDISEÑO COLUMNA DERECHA | PASAJEROS, MOVIMIENTOS Y RUTAS
-   Mantiene intacta la columna izquierda.
-   ========================================================= */
-
 .col-traffic-wide {
   gap: 5px;
 }
@@ -2616,14 +2087,6 @@ body {
   padding-bottom: 5px;
 }
 
-.section-airlines.operation-top-airlines {
-  display: none !important;
-}
-
-.section-routes.operation-top-routes {
-  flex: 1 1 auto;
-  min-height: 198px;
-}
 
 .op-lamina-hero {
   display: grid;
@@ -2691,6 +2154,20 @@ body {
   font-weight: 800;
 }
 
+.op-pill-subline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: 0.58rem;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.op-pill-subline span:nth-child(1) { color: #d9ecff; }
+.op-pill-subline span:nth-child(2) { color: #ffe9bd; }
+.op-pill-subline span:nth-child(3) { color: #ead7f4; }
 
 .op-side-kpis {
   display: grid;
@@ -2753,6 +2230,50 @@ body {
   font-size: 0.96rem;
 }
 
+.op-class-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.op-class-card {
+  position: relative;
+  border: 1px solid #d0d7e2;
+  border-left-width: 4px;
+  border-radius: 5px;
+  background: #fff;
+  padding: 5px 6px 4px;
+  min-width: 0;
+}
+
+.op-class-regular { border-left-color: #2A6FB0; }
+.op-class-noreg { border-left-color: #C6923A; }
+.op-class-avgral { border-left-color: #6b2f82; }
+
+.op-class-title {
+  font-size: 0.62rem;
+  line-height: 1;
+  color: #2a5fa0;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.op-class-main {
+  font-size: 0.98rem;
+  line-height: 1;
+  color: #004b80;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.op-class-detail {
+  margin-top: 3px;
+  font-size: 0.56rem;
+  line-height: 1.05;
+  color: #6f7d8c;
+  white-space: nowrap;
+}
 
 .operation-legend-line {
   display: inline-block;
@@ -2794,131 +2315,26 @@ body {
   color: #7a838c;
   margin-top: 4px;
 }
-/* =========================================================
-   RUTAS | 2 columnas como datos clave lámina
-   ========================================================= */
-
-.routes-two-col-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  align-items: start;
-}
-
-.route-two-col {
-  min-width: 0;
-}
-
-.route-two-col-title {
-  font-size: 0.68rem;
-  line-height: 1;
-  font-weight: 700;
-  color: #6b7178;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  margin-bottom: 6px;
-}
-
-.route-two-col-list {
-  display: grid;
-  gap: 6px;
-}
-
-.route-two-col-item {
-  display: grid;
-  grid-template-columns: 34px minmax(0, 1fr);
-  gap: 8px;
-  align-items: start;
-}
-
-.route-two-col-pill {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: #0c7bd8;
-  color: #fff;
-  font-size: 0.78rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.route-two-col-body {
-  min-width: 0;
-}
-
-.route-two-col-name {
-  font-size: 0.66rem;
-  line-height: 1.05;
-  color: #5f6972;
-  font-weight: 600;
-}
-
-.route-two-col-meta {
-  font-size: 0.62rem;
-  line-height: 1.05;
-  color: #7a838c;
-  margin-top: 2px;
-}
-
-.route-two-col-empty {
-  font-size: 0.64rem;
-  line-height: 1.05;
-  color: #7a838c;
-}
 
 
 /* =========================================================
-   LIMPIEZA FINAL v6 | KPIs superiores + resumen compacto por clase
+   RESUMEN POR CLASE DE VUELO | más legible
    ========================================================= */
-.section-op-passengers .op-passengers-pill {
-  min-height: 66px;
-  padding: 6px 16px;
-}
-
-/* Se oculta solo la sublínea dentro de la pastilla azul;
-   las 3 tarjetas compactas se muestran en su propio bloque. */
-.section-op-passengers .op-pill-subline,
-.op-class-card-grid,
-.op-class-card {
-  display: none !important;
-}
-
-.op-movement-kpi-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 7px;
-  align-items: stretch;
-}
-
-.section-op-class-summary {
-  flex: 0 0 auto;
-  min-height: 0;
-  padding-bottom: 4px;
-}
-
-.section-op-class-summary .section-title {
-  padding: 4px 8px;
-  margin-bottom: 5px;
-}
 
 .op-traffic-class-cards {
-  display: grid !important;
+  display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 6px;
-  margin: 0;
+  margin-top: 6px;
 }
 
 .traffic-class-card {
-  display: grid !important;
-  grid-template-rows: auto 1fr;
-  min-width: 0;
   border: 1px solid #d0d7e2;
   border-top: 3px solid #2a5fa0;
   border-radius: 6px;
+  padding: 6px 8px 5px;
   background: #fff;
-  padding: 5px 6px 4px;
+  min-width: 0;
 }
 
 .traffic-class-regular {
@@ -2937,7 +2353,7 @@ body {
 }
 
 .traffic-class-head {
-  font-size: 0.62rem;
+  font-size: 0.66rem;
   line-height: 1;
   font-weight: 800;
   color: #2a5fa0;
@@ -2945,19 +2361,14 @@ body {
   margin-bottom: 5px;
 }
 
-.traffic-class-metrics {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 6px;
-}
-
-.traffic-class-metric + .traffic-class-metric {
-  border-left: 1px dashed #d8dee8;
-  padding-left: 6px;
+.traffic-class-row + .traffic-class-row {
+  margin-top: 6px;
+  padding-top: 5px;
+  border-top: 1px dashed #d8dee8;
 }
 
 .traffic-class-label {
-  font-size: 0.52rem;
+  font-size: 0.58rem;
   line-height: 1;
   color: #6f7d8c;
   text-transform: uppercase;
@@ -2966,162 +2377,385 @@ body {
 }
 
 .traffic-class-value {
-  font-size: 0.88rem;
+  font-size: 1rem;
   line-height: 1;
   font-weight: 800;
   color: #004b80;
-  white-space: nowrap;
 }
 
 .traffic-class-sub {
-  font-size: 0.50rem;
-  line-height: 1.05;
+  font-size: 0.58rem;
+  line-height: 1.1;
   color: #6f7d8c;
   margin-top: 2px;
-  white-space: nowrap;
+}
+/* =========================================================
+   RUTAS Y AEROLÍNEAS | BLOQUE ÚNICO Y DEFINITIVO
+   ---------------------------------------------------------
+   Este bloque reúne todas las reglas de:
+   - sección de rutas de la lámina tradicional;
+   - logos y ranking de aerolíneas;
+   - destinos de cabotaje / internacionales;
+   - panel "PRINCIPALES RUTAS 2025" de operación aeroportuaria.
+
+   Criterio general:
+   - no repetir definiciones de rutas en otras partes del archivo;
+   - no usar height: 100% ni flex: 1 en PRINCIPALES RUTAS,
+     porque estira la caja y genera espacio blanco inferior;
+   - cerrar siempre el borde del contenedor;
+   - compactar el contenido para que entren tres rutas por columna.
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   A. Contenedor general de rutas en la lámina tradicional
+   --------------------------------------------------------- */
+.section-routes {
+  min-height: 184px;
+  flex: 0 1 auto;
+  overflow: hidden;
 }
 
-/* Recupera altura para el bloque nuevo sin romper la hoja A4. */
-.operation-chart {
-  height: 150px;
+/* Grilla general: aerolíneas a la izquierda, destinos a la derecha. */
+.routes-grid {
+  display: grid;
+  grid-template-columns: minmax(205px, 0.98fr) minmax(0, 1.55fr);
+  gap: 10px;
+  align-items: start;
 }
 
-/* Caja cerrada, pero con contenido más compacto */
-.section-routes.operation-top-routes {
-  border: 1px solid #cfd6df !important;
-  border-top: none !important;
-  box-sizing: border-box !important;
-  overflow: hidden !important;
-  background: #fff !important;
+.routes-left {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  display: block;
 }
 
-/* ============================================================
-   Resumen 2025 por clase de vuelo: Cabotaje / Internacional
-   ============================================================ */
+.routes-right {
+  min-width: 0;
+  padding-left: 10px;
+  border-left: 1px dashed #cfd8e4;
+}
 
-.traffic-class-segments {
+.routes-subtitle {
+  margin: 0 38px 5px 0;
+  min-height: 30px;
   display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 6px;
-  margin-top: 4px;
-  color: #1f2937;
-  font-size: 0.76rem;
-  line-height: 1.15;
-  flex-wrap: wrap;
-}
-
-.traffic-segment {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 3px;
-  white-space: nowrap;
-}
-
-.traffic-segment-label {
-  font-size: 0.68rem;
+  align-items: center;
+  font-size: 0.70rem;
   font-weight: 700;
-  color: #5b6470;
+  color: #2a5fa0;
   text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.05;
 }
 
-.traffic-segment-value {
-  font-size: 0.82rem;
-  font-weight: 800;
-  color: #123f73;
+/* ---------------------------------------------------------
+   B. Aerolíneas: contador, logos y volúmenes
+   --------------------------------------------------------- */
+.airlines-summary {
+  display: block !important;
+  min-width: 0;
+  padding-top: 0;
 }
 
-.traffic-segment-separator {
-  font-size: 0.75rem;
+.airlines-count-pill {
+  position: absolute;
+  top: 0;
+  right: 2px;
+  width: 31px;
+  height: 31px;
+  min-width: 31px;
+  border-radius: 50%;
+  background: var(--purple);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
   font-weight: 700;
-  color: #9aa3af;
+  line-height: 1;
+  margin: 0;
+  z-index: 2;
 }
 
-/* Diferenciación suave por segmento */
-.traffic-segment-cab .traffic-segment-value {
-  color: #1f5f99;
+.airlines-list {
+  display: grid;
+  gap: 2px;
+  width: 100%;
+  margin-top: 0;
+  white-space: normal;
+  min-width: 0;
 }
 
-.traffic-segment-int .traffic-segment-value {
-  color: #257a38;
-}
-/* ============================================================
-   Principales rutas: evitar corte inferior y compactar filas
-   ============================================================ */
-
-.section-routes,
-.operation-top-routes {
-  min-height: 188px;
-  overflow: visible !important;
+.airline-item {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  gap: 6px;
+  align-items: center;
+  min-height: 22px;
+  padding: 1px 0;
 }
 
-#opTopRoutesList {
-  overflow: visible !important;
-  padding-bottom: 0 !important;
+.airline-item + .airline-item {
+  border-top: 1px dashed rgba(208, 216, 228, 0.75);
 }
 
-/* Dos columnas compactas */
-.routes-two-col-grid {
+.airline-logo-wrap {
+  width: 78px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+}
+
+.airline-logo {
+  max-width: 100px;
+  max-height: 26px;
+  object-fit: contain;
+  display: block;
+}
+
+.airline-name-fallback {
+  font-size: 0.62rem;
+  line-height: 0.95;
+  color: var(--blue-dark);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.airline-volume {
+  min-width: 0;
+  max-width: 100%;
+  text-align: right;
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+  font-size: 0.70rem;
+  line-height: 0.92;
+  color: #6a7179;
+  font-variant-numeric: tabular-nums;
+}
+
+.airline-empty {
+  font-size: 0.68rem;
+  line-height: 1.05;
+  color: #6a7179;
+}
+
+/* ---------------------------------------------------------
+   C. Destinos en la lámina tradicional
+   --------------------------------------------------------- */
+.destinations-list {
+  display: block;
+}
+
+.destinations-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.destinations-column {
+  display: grid;
+  gap: 4px;
+  align-content: start;
+}
+
+.destinations-column-title {
+  font-size: 0.64rem;
+  line-height: 1;
+  margin-bottom: 1px;
+  color: #6b7178;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.destination-item {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 6px;
+  align-items: center;
+  min-width: 0;
+}
+
+.destination-pill {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #0c7bd8;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.destination-text {
+  display: block;
+  font-size: 0.62rem;
+  color: #6a7179;
+  line-height: 0.95;
+}
+
+.destination-text strong,
+.destination-title-line strong {
+  color: #5f6972;
+  font-weight: 600;
+}
+
+.destination-title-line {
+  line-height: 1.05;
+  white-space: normal;
+}
+
+.destination-meta {
+  display: inline;
+  font-size: 0.64rem;
+  color: #7a838c;
+}
+
+.destination-volume {
+  display: block;
+  font-size: 0.62rem;
+  color: #6a7179;
+  line-height: 0.90;
+  margin-top: 1px;
+}
+
+/* ---------------------------------------------------------
+   D. PRINCIPALES RUTAS 2025 | página de operación aeroportuaria
+   ---------------------------------------------------------
+   Esta sección es más específica que .section-routes general.
+   No debe estirarse hasta el fondo de la columna: debe cerrar
+   justo después de las rutas visibles.
+   --------------------------------------------------------- */
+.section-routes.operation-top-routes {
+  flex: 0 0 auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+
+  border: 1px solid #cfd6df !important;
+  border-radius: 4px !important;
+  background: #ffffff !important;
+  overflow: hidden !important;
+
+  padding: 6px !important;
+  margin-top: 5px !important;
+  box-sizing: border-box !important;
+}
+
+/* Cabecera azul del panel de operación. */
+.section-routes.operation-top-routes .section-title {
+  margin: -6px -6px 4px -6px !important;
+  padding: 4px 8px !important;
+  border-radius: 4px 4px 0 0 !important;
+  font-size: 0.72rem !important;
+  line-height: 1 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* Cuerpo interno: poco padding para ganar altura útil. */
+.section-routes.operation-top-routes #opTopRoutesList {
+  padding: 0 8px 4px 8px !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+/* Dos columnas: internacionales y cabotaje. */
+.section-routes.operation-top-routes .routes-two-col-grid {
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 14px !important;
+  gap: 12px !important;
   align-items: start !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
-/* Títulos INTERNACIONALES / CABOTAJE: menos alto y menos pesados */
-.route-two-col-title {
-  font-size: 0.58rem !important;
-  line-height: 0.95 !important;
+
+.section-routes.operation-top-routes .route-two-col {
+  min-width: 0 !important;
+}
+
+/* Títulos INTERNACIONALES / CABOTAJE: compactos y menos pesados. */
+.section-routes.operation-top-routes .route-two-col-title {
   margin: 0 0 2px 0 !important;
   padding: 0 !important;
-  font-weight: 650 !important;
+  font-size: 0.56rem !important;
+  line-height: 0.95 !important;
+  font-weight: 600 !important;
   letter-spacing: 0.01em !important;
-  color: #4d5560 !important;
+  text-transform: uppercase !important;
+  color: #4f5966 !important;
 }
-.route-two-col-list {
+
+.section-routes.operation-top-routes .route-two-col-list {
   display: grid !important;
   gap: 2px !important;
 }
 
-/* Cada ruta ocupa menos altura */
-.route-two-col-item {
+/* Fila de ruta: altura controlada para que entren tres filas completas. */
+.section-routes.operation-top-routes .route-two-col-item {
   display: grid !important;
-  grid-template-columns: 26px minmax(0, 1fr) !important;
+  grid-template-columns: 24px minmax(0, 1fr) !important;
   gap: 5px !important;
   align-items: center !important;
-  min-height: 23px !important;
+  min-height: 22px !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
 }
 
-/* Círculo del código más chico */
-.route-two-col-pill {
-  width: 23px !important;
-  height: 23px !important;
-  min-width: 23px !important;
-  min-height: 23px !important;
-  font-size: 0.56rem !important;
-  line-height: 1 !important;
+.section-routes.operation-top-routes .route-two-col-pill {
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  border-radius: 50% !important;
+  background: #0c7bd8 !important;
+  color: #ffffff !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  font-size: 0.52rem !important;
+  line-height: 1 !important;
+  font-weight: 700 !important;
 }
 
-/* Nombre de ruta */
-.route-two-col-name {
-  font-size: 0.60rem !important;
+.section-routes.operation-top-routes .route-two-col-body {
+  min-width: 0 !important;
+}
+
+/* Nombre de ciudad / país: una sola línea para no cortar la tercera ruta. */
+.section-routes.operation-top-routes .route-two-col-name {
+  font-size: 0.58rem !important;
   line-height: 1.02 !important;
   font-weight: 650 !important;
   color: #3f4a56 !important;
-  white-space: normal !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
-/* Pasajeros */
-.route-two-col-meta {
-  font-size: 0.53rem !important;
-  line-height: 1 !important;
+.section-routes.operation-top-routes .route-two-col-meta {
   margin-top: 0 !important;
+  font-size: 0.50rem !important;
+  line-height: 1 !important;
   color: #607080 !important;
+  white-space: nowrap !important;
 }
 
-/* La fuente en rutas no entra en esta lámina */
+.section-routes.operation-top-routes .route-two-col-empty {
+  font-size: 0.56rem !important;
+  line-height: 1 !important;
+  color: #7a838c !important;
+}
+
+/* La fuente ya aparece en el gráfico anterior; en rutas ocupa altura y provoca cortes. */
 .section-routes.operation-top-routes .operation-source-note {
   display: none !important;
 }
+
