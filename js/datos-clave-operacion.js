@@ -18,9 +18,10 @@
   let operationSummary = { classes: [], routes: [], airlines: [] };
   let fdoRoutesAA = [];
   let fdoTrafficAA = null;
-  let iataWorldIndex = {};
-  let routeCodeIndex = {};
-  let currentIATA = "";
+let iataWorldIndex = {};
+let routeCodeIndex = {};
+let domesticIATAs = new Set();
+let currentIATA = "";
 
   let mapPredio = null;
   let predioLayer = null;
@@ -1029,34 +1030,63 @@ function renderOperationChart(iata) {
   `;
 }
 
-  function getRouteDisplayName(code, selectedIata) {
-    const c = clean(code).toUpperCase();
-    if (!c) return "Sin dato";
-    if (c === clean(selectedIata).toUpperCase()) return "Operaciones locales";
-    const override = DEST_OVERRIDES[c];
-    if (override) return `${override.ciudad} (${c})`;
-    const info = routeCodeIndex[c] || iataWorldIndex[c];
-    if (info && info.ciudad) return `${info.ciudad} (${c})`;
-    return c;
+function getRouteDisplayName(code, selectedIata) {
+  const c = clean(code).toUpperCase();
+  const selected = clean(selectedIata).toUpperCase();
+
+  if (!c) return "Sin dato";
+  if (c === selected) return "Operaciones locales";
+
+  if (c === "-AR" || c === "AR") return "Otros destinos de cabotaje";
+  if (c === "-EX" || c === "EXT") return "Otros destinos internacionales";
+
+  if (DEST_OVERRIDES[c]) {
+    return `${DEST_OVERRIDES[c].ciudad} (${c})`;
   }
+
+  const meta = getRouteMeta(c);
+  if (meta) {
+    const ciudad = clean(meta.ciudad) || c;
+    return `${ciudad} (${c})`;
+  }
+
+  return c;
+}
 function getRouteBucket(code, selectedIata) {
   const c = clean(code).toUpperCase();
   const selected = clean(selectedIata).toUpperCase();
 
   if (!c) return "cabotaje";
-  if (c === selected) return "cabotaje";
-  if (c === "-AR") return "cabotaje";
-  if (c === "-EX") return "internacional";
 
-  if (DEST_OVERRIDES[c]?.pais) {
-    return /argentina/i.test(DEST_OVERRIDES[c].pais) ? "cabotaje" : "internacional";
+  // Operaciones locales: AEP - AEP, FDO - FDO, etc.
+  if (c === selected) return "cabotaje";
+
+  // Códigos especiales de la fuente FDO Aeropuertos Argentina
+  if (c === "-AR" || c === "AR") return "cabotaje";
+  if (c === "-EX" || c === "EXT") return "internacional";
+
+  // Primero, si el código pertenece al SNA, es cabotaje.
+  // Esto evita casos como BRC clasificado como internacional.
+  if (domesticIATAs.has(c)) return "cabotaje";
+
+  // Overrides manuales
+  if (DEST_OVERRIDES[c]) {
+    return isArgentinaCountry(DEST_OVERRIDES[c].pais)
+      ? "cabotaje"
+      : "internacional";
   }
 
-  const info = routeCodeIndex?.[c] || iataWorldIndex?.[c];
-  const country = clean(info?.pais || info?.country);
+  // Clasificación por ListadoIATAmundo.csv
+  const meta = getRouteMeta(c);
+  if (meta) {
+    return isArgentinaCountry(meta.pais)
+      ? "cabotaje"
+      : "internacional";
+  }
 
-  if (!country) return "cabotaje";
-  return /argentina/i.test(country) ? "cabotaje" : "internacional";
+  // Si no hay metadata, lo dejamos como cabotaje para no mandar códigos locales
+  // desconocidos a internacional por error.
+  return "cabotaje";
 }
 
 function formatRouteCardName(name, code) {
@@ -1231,27 +1261,45 @@ function renderOperationSections(iata) {
   renderOperationTopRoutes(iata);
 }
 
-  function parseIATAMundoCSV(text) {
-    const rows = parseCSV(text);
-    const byIata = {};
-    const byCode = {};
+function parseIATAMundoCSV(text) {
+  const rows = parseCSV(text);
 
-    rows.forEach(r => {
-      const iata = clean(firstNonEmpty(r, ["iata", "codigo_iata", "cod_iata"])).toUpperCase();
-      const oaci = clean(firstNonEmpty(r, ["oaci", "icao", "codigo_oaci", "cod_oaci"])).toUpperCase();
-      const code = clean(firstNonEmpty(r, ["codigo", "code", "iata_oaci", "cod"])).toUpperCase();
-      const ciudad = clean(firstNonEmpty(r, ["ciudad", "city", "localidad", "nombre", "aeropuerto"]));
-      const pais = clean(firstNonEmpty(r, ["pais", "país", "country"]));
-      const item = { iata, oaci, code, ciudad, pais };
-      if (iata) byIata[iata] = item;
-      if (iata) byCode[iata] = item;
-      if (oaci) byCode[oaci] = item;
-      if (code) byCode[code] = item;
-    });
+  const byIata = {};
+  const byCode = {};
 
-    return { byIata, byCode };
-  }
+  rows.forEach(r => {
+    const iata = clean(firstNonEmpty(r, ["iata"])).toUpperCase();
+    const oaci = clean(firstNonEmpty(r, ["oaci", "icao"])).toUpperCase();
 
+    const meta = {
+      iata,
+      oaci,
+      ciudad: clean(firstNonEmpty(r, ["ciudad", "city"])),
+      pais: clean(firstNonEmpty(r, ["pais", "país", "country"]))
+    };
+
+    if (iata) byIata[iata] = meta;
+    if (iata) byCode[iata] = meta;
+    if (oaci) byCode[oaci] = meta;
+  });
+
+  return { byIata, byCode };
+}
+function getRouteMeta(code) {
+  const key = clean(code).toUpperCase();
+  if (!key) return null;
+  return routeCodeIndex[key] || iataWorldIndex[key] || null;
+}
+
+function isArgentinaCountry(value) {
+  const p = clean(value).toUpperCase();
+  return (
+    p === "AR" ||
+    p === "ARG" ||
+    p === "ARGENTINA" ||
+    p.startsWith("AR-")
+  );
+}
   function getAirportTitle(a, iata) {
     const ciudad = clean(firstNonEmpty(a, ["Ciudad", "Localidad", "Municipio", "Ciudad / Localidad", "Aeropuerto"]));
     const nombreOficial = clean(firstNonEmpty(a, ["Nombre del Aeropuerto", "Aeropuerto", "Denominacion"]));
@@ -1469,7 +1517,11 @@ function updateSIGAFrame(iata) {
       const geojson = await airportsResp.json();
       aeropuertos = (geojson.features || []).map(f => f.properties || {}).filter(p => clean(p.IATA));
       aeropuertos.sort((a, b) => clean(a.IATA).localeCompare(clean(b.IATA), "es"));
-
+domesticIATAs = new Set(
+  aeropuertos
+    .map(a => clean(a.IATA).toUpperCase())
+    .filter(Boolean)
+);
       if (polygonsResp && polygonsResp.ok) poligonos = (await polygonsResp.json()).features || [];
       if (pistasResp && pistasResp.ok) pistasFeatures = (await pistasResp.json()).features || [];
       if (terminalesResp && terminalesResp.ok) terminalesFeatures = (await terminalesResp.json()).features || [];
