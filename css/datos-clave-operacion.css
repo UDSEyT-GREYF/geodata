@@ -2997,3 +2997,33 @@ body {
   color: #6f7d8c;
   margin-top: 2px;
 }
+/* ============================================================
+   FIX URGENTE: eliminar KPI viejos por clase de vuelo
+   ============================================================ */
+
+/* Oculta tarjetas viejas de Regular / No regular / Av. general */
+.op-traffic-class-cards,
+.op-traffic-class-card,
+.op-class-card,
+.op-passenger-class-cards,
+.op-passenger-class-card {
+  display: none !important;
+}
+
+/* Movimientos: deja solo 4 KPI limpios */
+.op-movement-kpi-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 8px !important;
+  align-items: stretch !important;
+}
+
+/* Los KPI de movimientos ocupan bien el espacio */
+.op-movement-kpi {
+  min-width: 0 !important;
+}
+
+/* Ajuste visual para que no se aplaste el bloque */
+.op-movements-hero {
+  align-items: stretch !important;
+}
