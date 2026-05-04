@@ -724,31 +724,114 @@ function getFDORouteDisplayName(code) {
     `;
   }
 
+  function buildOperationFamilyBreakdown(iata, year = YEAR_REF) {
+    const summary = summarizeOperationTraffic(iata, year);
+    const out = {
+      totalPax: summary.totalPax,
+      totalMov: summary.totalMov,
+      paxPerMov: summary.paxPerMov,
+      pax: {
+        regular: { total: 0, cab: 0, intl: 0 },
+        noRegular: { total: 0, cab: 0, intl: 0 },
+        avGral: { total: 0, cab: 0, intl: 0 }
+      },
+      mov: {
+        regular: { total: 0, cab: 0, intl: 0 },
+        noRegular: { total: 0, cab: 0, intl: 0 },
+        avGral: { total: 0, cab: 0, intl: 0 }
+      }
+    };
+
+    summary.byClass.forEach(item => {
+      const cls = normalizeFlightClass(item.flightClass);
+      let family = null;
+      if (cls.startsWith("Regular")) family = "regular";
+      else if (cls.startsWith("No Regular")) family = "noRegular";
+      else if (cls.startsWith("Av. Gral")) family = "avGral";
+      if (!family) return;
+
+      const segment = cls.includes("Internacional") ? "intl" : "cab";
+      const pax = Number(item.pax) || 0;
+      const mov = Number(item.flights) || 0;
+
+      out.pax[family].total += pax;
+      out.pax[family][segment] += pax;
+      out.mov[family].total += mov;
+      out.mov[family][segment] += mov;
+    });
+
+    return out;
+  }
+
+  function formatIntegerValue(value) {
+    const n = Number(value) || 0;
+    return n ? formatNumber(Math.round(n)) : "–";
+  }
+
+  function formatDecimalValue(value, digits = 1) {
+    const n = Number(value);
+    if (!Number.isFinite(n) || n === 0) return "–";
+    return n.toLocaleString("es-AR", {
+      minimumFractionDigits: digits,
+      maximumFractionDigits: digits
+    });
+  }
+
   function renderOperationKPIs(iata) {
-    const summary = summarizeOperationTraffic(iata, YEAR_REF);
-    setText("opPaxTotal2025", summary.totalPax ? formatNumber(Math.round(summary.totalPax)) : "–");
-    setText("opMovTotal2025", summary.totalMov ? formatNumber(summary.totalMov) : "–");
-    setText("opPaxPorMov2025", summary.paxPerMov ? summary.paxPerMov.toLocaleString("es-AR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) : "–");
-    renderClassMatrix(iata);
+    const s = buildOperationFamilyBreakdown(iata, YEAR_REF);
+
+    setText("opPaxTotal2025", formatIntegerValue(s.totalPax));
+    setText("opPaxWeekly2025", formatIntegerValue(s.totalPax / 52));
+    setText("opPaxDaily2025", formatIntegerValue(s.totalPax / 365));
+
+    setText("opMovTotal2025", formatIntegerValue(s.totalMov));
+    setText("opMovWeekly2025", formatIntegerValue(s.totalMov / 52));
+    setText("opMovDaily2025", formatIntegerValue(s.totalMov / 365));
+    setText("opPaxPorMov2025", formatDecimalValue(s.paxPerMov, 1));
+
+    setText("opPaxRegularTotal", formatIntegerValue(s.pax.regular.total));
+    setText("opPaxNoRegularTotal", formatIntegerValue(s.pax.noRegular.total));
+    setText("opPaxAvGralTotal", formatIntegerValue(s.pax.avGral.total));
+
+    setText("opPaxRegularMain", formatIntegerValue(s.pax.regular.total));
+    setText("opPaxRegularCab", formatIntegerValue(s.pax.regular.cab));
+    setText("opPaxRegularIntl", formatIntegerValue(s.pax.regular.intl));
+
+    setText("opPaxNoRegularMain", formatIntegerValue(s.pax.noRegular.total));
+    setText("opPaxNoRegularCab", formatIntegerValue(s.pax.noRegular.cab));
+    setText("opPaxNoRegularIntl", formatIntegerValue(s.pax.noRegular.intl));
+
+    setText("opPaxAvGralMain", formatIntegerValue(s.pax.avGral.total));
+    setText("opPaxAvGralCab", formatIntegerValue(s.pax.avGral.cab));
+    setText("opPaxAvGralIntl", formatIntegerValue(s.pax.avGral.intl));
+
+    setText("opMovRegularMain", formatIntegerValue(s.mov.regular.total));
+    setText("opMovRegularCab", formatIntegerValue(s.mov.regular.cab));
+    setText("opMovRegularIntl", formatIntegerValue(s.mov.regular.intl));
+
+    setText("opMovNoRegularMain", formatIntegerValue(s.mov.noRegular.total));
+    setText("opMovNoRegularCab", formatIntegerValue(s.mov.noRegular.cab));
+    setText("opMovNoRegularIntl", formatIntegerValue(s.mov.noRegular.intl));
+
+    setText("opMovAvGralMain", formatIntegerValue(s.mov.avGral.total));
+    setText("opMovAvGralCab", formatIntegerValue(s.mov.avGral.cab));
+    setText("opMovAvGralIntl", formatIntegerValue(s.mov.avGral.intl));
   }
 
   function buildOperationAnnualFamilySeries(iata) {
     const selected = clean(iata).toUpperCase();
     const years = [2022, 2023, 2024, 2025];
-    const acc = new Map();
-    years.forEach(year => acc.set(year, { year, "Regular": 0, "No Regular": 0, "Av. Gral": 0 }));
-
-    getOperationClassRowsAllForAirport(selected)
-      .filter(r => years.includes(r.y))
-      .forEach(r => {
-        const item = acc.get(r.y);
-        if (!item) return;
-        const family = operationClassFamily(r.c);
-        if (!Object.prototype.hasOwnProperty.call(item, family)) return;
-        item[family] += Number(r.p) || 0;
-      });
-
-    return Array.from(acc.values()).sort((a, b) => a.year - b.year);
+    return years.map(year => {
+      const s = buildOperationFamilyBreakdown(selected, year);
+      return {
+        year,
+        regular: s.pax.regular.total,
+        noRegular: s.pax.noRegular.total,
+        avGral: s.pax.avGral.total,
+        paxTotal: s.totalPax,
+        movTotal: s.totalMov
+      };
+    });
   }
 
   function renderOperationChart(iata) {
@@ -756,50 +839,86 @@ function getFDORouteDisplayName(code) {
     if (!svg) return;
 
     const data = buildOperationAnnualFamilySeries(iata);
-    const maxValue = Math.max(...data.flatMap(d => [d.Regular, d["No Regular"], d["Av. Gral"]]), 1);
-    if (!data.some(d => d.Regular || d["No Regular"] || d["Av. Gral"])) {
+    const hasData = data.some(d => d.paxTotal || d.movTotal);
+    if (!hasData) {
       svg.innerHTML = `<text x="410" y="105" text-anchor="middle" font-size="14" fill="#6f7d8c">Sin datos para el aeropuerto seleccionado</text>`;
       return;
     }
 
     const W = 820, H = 210;
-    const padL = 58, padR = 18, padT = 16, padB = 30;
+    const padL = 58, padR = 58, padT = 14, padB = 30;
     const innerW = W - padL - padR;
     const innerH = H - padT - padB;
-    const scale = buildNiceScale(maxValue, 4);
-    const y = v => padT + innerH - (innerH * (v / scale.niceMax));
+    const baseY = padT + innerH;
+
+    const maxPax = Math.max(...data.map(d => d.paxTotal), 1);
+    const maxMov = Math.max(...data.map(d => d.movTotal), 1);
+    const paxScale = buildNiceScale(maxPax, 4);
+    const movScale = buildNiceScale(maxMov, 4);
+
+    const yPax = v => baseY - (innerH * ((Number(v) || 0) / paxScale.niceMax));
+    const yMov = v => baseY - (innerH * ((Number(v) || 0) / movScale.niceMax));
     const xGroup = i => padL + (innerW * (i + 0.5) / data.length);
-    const groupW = Math.min(96, innerW / data.length * 0.55);
-    const barW = groupW / 3 - 3;
-    const colors = { "Regular": CHART_COLORS.regular, "No Regular": CHART_COLORS.noRegular, "Av. Gral": CHART_COLORS.avGral };
+    const barW = Math.min(54, innerW / data.length * 0.30);
 
     let grid = "";
-    scale.values.forEach(v => {
-      const yy = y(v);
+    paxScale.values.forEach(v => {
+      const yy = yPax(v);
       grid += `<line x1="${padL}" y1="${yy}" x2="${W - padR}" y2="${yy}" stroke="${CHART_COLORS.grid}" stroke-width="1"></line>`;
-      grid += `<text x="${padL - 8}" y="${yy + 4}" text-anchor="end" font-size="10" fill="${CHART_COLORS.label}">${formatNumber(Math.round(v))}</text>`;
+      grid += `<text x="${padL - 8}" y="${yy + 4}" text-anchor="end" font-size="9" fill="${CHART_COLORS.label}">${formatNumber(Math.round(v))}</text>`;
+    });
+
+    let rightTicks = "";
+    movScale.values.forEach(v => {
+      const yy = yMov(v);
+      rightTicks += `<text x="${W - padR + 8}" y="${yy + 4}" text-anchor="start" font-size="9" fill="${CHART_COLORS.label}">${formatNumber(Math.round(v))}</text>`;
     });
 
     let bars = "";
+    const colors = {
+      regular: CHART_COLORS.regular,
+      noRegular: CHART_COLORS.noRegular,
+      avGral: CHART_COLORS.avGral
+    };
+
+    data.forEach((d, i) => {
+      const x = xGroup(i) - barW / 2;
+      let top = baseY;
+      [
+        ["regular", d.regular],
+        ["noRegular", d.noRegular],
+        ["avGral", d.avGral]
+      ].forEach(([key, value]) => {
+        const h = innerH * ((Number(value) || 0) / paxScale.niceMax);
+        const y = top - h;
+        if (h > 0) {
+          bars += `<rect x="${x}" y="${y}" width="${barW}" height="${h}" rx="1.5" fill="${colors[key]}"></rect>`;
+        }
+        top = y;
+      });
+      bars += `<text x="${xGroup(i)}" y="${H - 10}" text-anchor="middle" font-size="10" fill="${CHART_COLORS.label}">${d.year}</text>`;
+    });
+
+    const points = data.map((d, i) => `${xGroup(i)},${yMov(d.movTotal)}`).join(" ");
+    let lineDots = "";
     data.forEach((d, i) => {
       const cx = xGroup(i);
-      const startX = cx - groupW / 2;
-      ["Regular", "No Regular", "Av. Gral"].forEach((k, j) => {
-        const val = d[k] || 0;
-        const yy = y(val);
-        const hh = (padT + innerH) - yy;
-        bars += `<rect x="${startX + j * (barW + 4)}" y="${yy}" width="${barW}" height="${hh}" rx="2" fill="${colors[k]}"></rect>`;
-      });
-      bars += `<text x="${cx}" y="${H - 10}" text-anchor="middle" font-size="10" fill="${CHART_COLORS.label}">${d.year}</text>`;
+      const cy = yMov(d.movTotal);
+      lineDots += `<circle cx="${cx}" cy="${cy}" r="3" fill="#25364a"></circle>`;
     });
 
     svg.innerHTML = `
       <rect x="0" y="0" width="${W}" height="${H}" fill="#ffffff"></rect>
       ${grid}
-      <line x1="${padL}" y1="${padT + innerH}" x2="${W - padR}" y2="${padT + innerH}" stroke="${CHART_COLORS.axis}" stroke-width="1"></line>
-      <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT + innerH}" stroke="${CHART_COLORS.axis}" stroke-width="1"></line>
+      ${rightTicks}
+      <line x1="${padL}" y1="${baseY}" x2="${W - padR}" y2="${baseY}" stroke="${CHART_COLORS.axis}" stroke-width="1"></line>
+      <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${baseY}" stroke="${CHART_COLORS.axis}" stroke-width="1"></line>
+      <line x1="${W - padR}" y1="${padT}" x2="${W - padR}" y2="${baseY}" stroke="${CHART_COLORS.axis}" stroke-width="1"></line>
       <text x="12" y="${padT + innerH / 2}" transform="rotate(-90 12 ${padT + innerH / 2})" text-anchor="middle" font-size="10" fill="${CHART_COLORS.label}">Pasajeros</text>
+      <text x="${W - 12}" y="${padT + innerH / 2}" transform="rotate(90 ${W - 12} ${padT + innerH / 2})" text-anchor="middle" font-size="10" fill="${CHART_COLORS.label}">Movimientos</text>
       ${bars}
+      <polyline points="${points}" fill="none" stroke="#25364a" stroke-width="2.2"></polyline>
+      ${lineDots}
     `;
   }
 
@@ -939,7 +1058,6 @@ function renderOperationTopAirlines(iata) {
     renderOperationKPIs(iata);
     renderOperationChart(iata);
     renderOperationTopRoutes(iata);
-    renderOperationTopAirlines(iata);
   }
 
   function parseIATAMundoCSV(text) {
@@ -973,19 +1091,7 @@ function renderOperationTopAirlines(iata) {
     if (nombreOficial) return `${nombreOficial} (${iata})`;
     return `Aeropuerto (${iata})`;
   }
-function updateSIGAFrame(iata) {
-  const frame = q("sigaFrame");
-  if (!frame) return;
 
-  const selected = clean(iata).toUpperCase();
-  if (!selected) return;
-
-  const src = `siga.html?airport=${encodeURIComponent(selected)}&focus=1&embed=1&mini=1`;
-
-  if (frame.getAttribute("src") !== src) {
-    frame.setAttribute("src", src);
-  }
-}
   function renderAirport(iataCode) {
     const iata = clean(iataCode).toUpperCase();
     const a = aeropuertos.find(x => clean(x.IATA).toUpperCase() === iata);
@@ -1123,7 +1229,19 @@ function updateSIGAFrame(iata) {
           window.history.replaceState({}, "", url);
         });
       }
+function updateSIGAFrame(iata) {
+  const frame = q("sigaFrame");
+  if (!frame) return;
 
+  const selected = clean(iata).toUpperCase();
+  if (!selected) return;
+
+  const src = `siga.html?airport=${encodeURIComponent(selected)}&focus=1&embed=1&mini=1`;
+
+  if (frame.getAttribute("src") !== src) {
+    frame.setAttribute("src", src);
+  }
+}
       renderAirport(initial);
     } catch (err) {
       console.error(err);
