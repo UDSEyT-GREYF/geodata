@@ -2625,13 +2625,18 @@ min-height: 0;
   margin-top: 1px;
 }
 
-/* ---------------------------------------------------------
-   D. PRINCIPALES RUTAS 2025 | página de operación aeroportuaria
-   ---------------------------------------------------------
-   Esta sección es más específica que .section-routes general.
-   No debe estirarse hasta el fondo de la columna: debe cerrar
-   justo después de las rutas visibles.
-   --------------------------------------------------------- */
+/* ============================================================
+   PRINCIPALES RUTAS 2025 | bloque definitivo optimizado
+   ------------------------------------------------------------
+   Objetivo:
+   - cerrar correctamente la caja contenedora;
+   - aprovechar mejor el espacio horizontal disponible;
+   - poner ciudad + pasajeros en una sola línea;
+   - agrandar la tipografía útil;
+   - mantener 3 rutas por columna sin cortar la última.
+   ============================================================ */
+
+/* Contenedor general de la sección */
 .section-routes.operation-top-routes {
   flex: 0 0 auto !important;
   height: auto !important;
@@ -2648,18 +2653,18 @@ min-height: 0;
   box-sizing: border-box !important;
 }
 
-/* Cabecera azul del panel de operación. */
+/* Cabecera azul */
 .section-routes.operation-top-routes .section-title {
   margin: -6px -6px 4px -6px !important;
   padding: 4px 8px !important;
-  border-radius: 4px 4px 0 0 !important;
+
   font-size: 0.72rem !important;
   line-height: 1 !important;
   font-weight: 700 !important;
   letter-spacing: 0.01em !important;
 }
 
-/* Cuerpo interno: poco padding para ganar altura útil. */
+/* Cuerpo interno */
 .section-routes.operation-top-routes #opTopRoutesList {
   padding: 0 8px 4px 8px !important;
   margin: 0 !important;
@@ -2667,25 +2672,27 @@ min-height: 0;
   box-sizing: border-box !important;
 }
 
-/* Dos columnas: internacionales y cabotaje. */
+/* Dos columnas */
 .section-routes.operation-top-routes .routes-two-col-grid {
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 12px !important;
+  gap: 14px !important;
   align-items: start !important;
   width: 100% !important;
   box-sizing: border-box !important;
 }
 
+/* Columna */
 .section-routes.operation-top-routes .route-two-col {
   min-width: 0 !important;
 }
 
-/* Títulos INTERNACIONALES / CABOTAJE: compactos y menos pesados. */
+/* Títulos de columna: más compactos y menos pesados */
 .section-routes.operation-top-routes .route-two-col-title {
   margin: 0 0 2px 0 !important;
   padding: 0 !important;
-  font-size: 0.56rem !important;
+
+  font-size: 0.54rem !important;
   line-height: 0.95 !important;
   font-weight: 600 !important;
   letter-spacing: 0.01em !important;
@@ -2693,68 +2700,91 @@ min-height: 0;
   color: #4f5966 !important;
 }
 
+/* Lista */
 .section-routes.operation-top-routes .route-two-col-list {
   display: grid !important;
-  gap: 2px !important;
+  gap: 3px !important;
 }
 
-/* Fila de ruta: altura controlada para que entren tres filas completas. */
+/* Cada ruta */
 .section-routes.operation-top-routes .route-two-col-item {
   display: grid !important;
   grid-template-columns: 24px minmax(0, 1fr) !important;
-  gap: 5px !important;
+  gap: 6px !important;
   align-items: center !important;
-  min-height: 22px !important;
+
+  min-height: 24px !important;
   padding: 0 !important;
   box-sizing: border-box !important;
 }
 
+/* Círculo del código */
 .section-routes.operation-top-routes .route-two-col-pill {
-  width: 22px !important;
-  height: 22px !important;
-  min-width: 22px !important;
-  min-height: 22px !important;
+  width: 23px !important;
+  height: 23px !important;
+  min-width: 23px !important;
+  min-height: 23px !important;
+
   border-radius: 50% !important;
   background: #0c7bd8 !important;
   color: #ffffff !important;
+
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  font-size: 0.52rem !important;
+
+  font-size: 0.54rem !important;
   line-height: 1 !important;
   font-weight: 700 !important;
 }
 
+/* Cuerpo textual:
+   acá está el cambio clave: nombre y pasajeros en una sola línea */
 .section-routes.operation-top-routes .route-two-col-body {
   min-width: 0 !important;
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 6px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
 }
 
-/* Nombre de ciudad / país: una sola línea para no cortar la tercera ruta. */
+/* Nombre de destino */
 .section-routes.operation-top-routes .route-two-col-name {
-  font-size: 0.58rem !important;
-  line-height: 1.02 !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+
+  font-size: 0.64rem !important;
+  line-height: 1 !important;
   font-weight: 650 !important;
   color: #3f4a56 !important;
+
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
 }
 
+/* Volumen de pasajeros en la misma línea */
 .section-routes.operation-top-routes .route-two-col-meta {
+  flex: 0 0 auto !important;
   margin-top: 0 !important;
-  font-size: 0.50rem !important;
+
+  font-size: 0.60rem !important;
   line-height: 1 !important;
   color: #607080 !important;
+  font-weight: 500 !important;
+
   white-space: nowrap !important;
 }
 
+/* Si alguna columna no tiene rutas */
 .section-routes.operation-top-routes .route-two-col-empty {
   font-size: 0.56rem !important;
   line-height: 1 !important;
   color: #7a838c !important;
 }
 
-/* La fuente ya aparece en el gráfico anterior; en rutas ocupa altura y provoca cortes. */
+/* En esta caja no mostramos fuente para ahorrar altura */
 .section-routes.operation-top-routes .operation-source-note {
   display: none !important;
 }
