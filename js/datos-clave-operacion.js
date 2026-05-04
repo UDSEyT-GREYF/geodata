@@ -3,6 +3,10 @@
   "use strict";
 
   const YEAR_REF = 2025;
+  // El gráfico toma automáticamente el primer año disponible en el JSON.
+  // No fuerza 2018: si el resumen trae 2022–2025, muestra 2022–2025;
+  // si luego el resumen compacto trae 2018–2025, mostrará 2018–2025.
+  const CHART_YEAR_FROM = null;
   const TRAFFIC_CLASS_SOURCE = "fuentes/rutas_clase_vuelo_resumen.json";
   const FDO_ROUTES_AA_SOURCE = "fuentes/fdo_rutas_aeropuertos_argentina.json";
   const FDO_AA_SOURCE = "fuentes/fdo_trafico_aeropuertos_argentina.json";
@@ -780,6 +784,8 @@ function getFDORouteDisplayName(code) {
   function renderOperationKPIs(iata) {
     const s = buildOperationFamilyBreakdown(iata, YEAR_REF);
 
+    // KPIs superiores: solo totales y promedios. El desglose Regular / No regular / Av. general
+    // queda únicamente en el gráfico de evolución, no como tarjetas ni sub-KPIs visibles.
     setText("opPaxTotal2025", formatIntegerValue(s.totalPax));
     setText("opPaxWeekly2025", formatIntegerValue(s.totalPax / 52));
     setText("opPaxDaily2025", formatIntegerValue(s.totalPax / 365));
@@ -788,34 +794,6 @@ function getFDORouteDisplayName(code) {
     setText("opMovWeekly2025", formatIntegerValue(s.totalMov / 52));
     setText("opMovDaily2025", formatIntegerValue(s.totalMov / 365));
     setText("opPaxPorMov2025", formatDecimalValue(s.paxPerMov, 1));
-
-    setText("opPaxRegularTotal", formatIntegerValue(s.pax.regular.total));
-    setText("opPaxNoRegularTotal", formatIntegerValue(s.pax.noRegular.total));
-    setText("opPaxAvGralTotal", formatIntegerValue(s.pax.avGral.total));
-
-    setText("opPaxRegularMain", formatIntegerValue(s.pax.regular.total));
-    setText("opPaxRegularCab", formatIntegerValue(s.pax.regular.cab));
-    setText("opPaxRegularIntl", formatIntegerValue(s.pax.regular.intl));
-
-    setText("opPaxNoRegularMain", formatIntegerValue(s.pax.noRegular.total));
-    setText("opPaxNoRegularCab", formatIntegerValue(s.pax.noRegular.cab));
-    setText("opPaxNoRegularIntl", formatIntegerValue(s.pax.noRegular.intl));
-
-    setText("opPaxAvGralMain", formatIntegerValue(s.pax.avGral.total));
-    setText("opPaxAvGralCab", formatIntegerValue(s.pax.avGral.cab));
-    setText("opPaxAvGralIntl", formatIntegerValue(s.pax.avGral.intl));
-
-    setText("opMovRegularMain", formatIntegerValue(s.mov.regular.total));
-    setText("opMovRegularCab", formatIntegerValue(s.mov.regular.cab));
-    setText("opMovRegularIntl", formatIntegerValue(s.mov.regular.intl));
-
-    setText("opMovNoRegularMain", formatIntegerValue(s.mov.noRegular.total));
-    setText("opMovNoRegularCab", formatIntegerValue(s.mov.noRegular.cab));
-    setText("opMovNoRegularIntl", formatIntegerValue(s.mov.noRegular.intl));
-
-    setText("opMovAvGralMain", formatIntegerValue(s.mov.avGral.total));
-    setText("opMovAvGralCab", formatIntegerValue(s.mov.avGral.cab));
-    setText("opMovAvGralIntl", formatIntegerValue(s.mov.avGral.intl));
   }
 function formatTrafficValue(value, decimals = 0) {
   const n = Number(value) || 0;
@@ -829,6 +807,11 @@ function renderOperationTrafficClassCards(iata) {
   const s = buildOperationFamilyBreakdown(iata, YEAR_REF);
   const el = q("opTrafficClassCards");
   if (!el) return;
+
+  const fmt = value => {
+    const n = Number(value) || 0;
+    return n ? formatNumber(Math.round(n)) : "–";
+  };
 
   const defs = [
     { key: "regular", title: "Regular", cls: "regular" },
@@ -844,19 +827,17 @@ function renderOperationTrafficClassCards(iata) {
       <article class="traffic-class-card traffic-class-${def.cls}">
         <div class="traffic-class-head">${def.title}</div>
 
-        <div class="traffic-class-row">
-          <div class="traffic-class-label">Pasajeros</div>
-          <div class="traffic-class-value">${formatTrafficValue(pax.total)}</div>
-          <div class="traffic-class-sub">
-            Cab. ${formatTrafficValue(pax.cab)} · Int. ${formatTrafficValue(pax.intl)}
+        <div class="traffic-class-metrics">
+          <div class="traffic-class-metric">
+            <div class="traffic-class-label">Pasajeros</div>
+            <div class="traffic-class-value">${fmt(pax.total)}</div>
+            <div class="traffic-class-sub">Cab. ${fmt(pax.cab)} · Int. ${fmt(pax.intl)}</div>
           </div>
-        </div>
 
-        <div class="traffic-class-row">
-          <div class="traffic-class-label">Movimientos</div>
-          <div class="traffic-class-value">${formatTrafficValue(mov.total)}</div>
-          <div class="traffic-class-sub">
-            Cab. ${formatTrafficValue(mov.cab)} · Int. ${formatTrafficValue(mov.intl)}
+          <div class="traffic-class-metric">
+            <div class="traffic-class-label">Movimientos</div>
+            <div class="traffic-class-value">${fmt(mov.total)}</div>
+            <div class="traffic-class-sub">Cab. ${fmt(mov.cab)} · Int. ${fmt(mov.intl)}</div>
           </div>
         </div>
       </article>
@@ -868,11 +849,11 @@ function getOperationAvailableYears(iata) {
 
   const yearsInData = getOperationClassRowsAllForAirport(selected)
     .map(r => Number(r.y))
-    .filter(y => Number.isFinite(y) && y <= YEAR_REF);
+    .filter(y => Number.isFinite(y) && y <= YEAR_REF && (CHART_YEAR_FROM === null || y >= CHART_YEAR_FROM));
 
   if (!yearsInData.length) return [YEAR_REF];
 
-  const minYear = Math.min(...yearsInData);
+  const minYear = CHART_YEAR_FROM === null ? Math.min(...yearsInData) : Math.max(CHART_YEAR_FROM, Math.min(...yearsInData));
   const maxYear = Math.min(YEAR_REF, Math.max(...yearsInData));
 
   return Array.from(
@@ -1229,7 +1210,6 @@ function renderOperationTopAirlines(iata) {
 function renderOperationSections(iata) {
   setOperationTitlesAndNotes(iata);
   renderOperationKPIs(iata);
-  renderOperationTrafficClassCards(iata);
   renderOperationChart(iata);
   renderOperationTopRoutes(iata);
 }
