@@ -1092,6 +1092,85 @@ function renderOperationTopAirlines(iata) {
     return `Aeropuerto (${iata})`;
   }
 
+function prepareSIGAFrameForSheet(frame) {
+  if (!frame) return;
+
+  try {
+    const doc = frame.contentDocument || frame.contentWindow?.document;
+    const win = frame.contentWindow;
+    if (!doc || !win) return;
+
+    const styleId = "siga-sheet-mini-style";
+    let style = doc.getElementById(styleId);
+
+    if (!style) {
+      style = doc.createElement("style");
+      style.id = styleId;
+      style.textContent = `
+        html,
+        body {
+          width: 100% !important;
+          height: 100% !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          overflow: hidden !important;
+        }
+
+        .siga-header,
+        .siga-sidebar,
+        .siga-layer-panel,
+        .siga-basemap-panel,
+        .siga-intro,
+        .sidebar,
+        .map-sidebar,
+        .embed-toolbar,
+        .map-status {
+          display: none !important;
+        }
+
+        .siga-layout,
+        .mapa-operacion-layout,
+        .map-main,
+        .siga-map-main,
+        .siga-map-shell {
+          width: 100vw !important;
+          height: 100vh !important;
+          display: block !important;
+          grid-template-columns: 1fr !important;
+          padding: 0 !important;
+          margin: 0 !important;
+        }
+
+        #sigaMap,
+        #map {
+          width: 100vw !important;
+          height: 100vh !important;
+        }
+
+        .leaflet-control-zoom,
+        .leaflet-control-layers,
+        .leaflet-control-fullscreen,
+        .leaflet-control-locate,
+        .leaflet-control-geocoder,
+        .leaflet-control-measure,
+        .leaflet-draw,
+        .leaflet-control-minimap,
+        .leaflet-control-mouseposition,
+        .leaflet-control-easyPrint {
+          display: none !important;
+        }
+      `;
+      doc.head.appendChild(style);
+    }
+
+    setTimeout(() => {
+      win.dispatchEvent(new Event("resize"));
+    }, 250);
+  } catch (err) {
+    console.warn("No se pudo preparar SIGA embebido:", err);
+  }
+}
+
 function updateSIGAFrame(iata) {
   const frame = q("sigaFrame");
   if (!frame) return;
@@ -1101,9 +1180,20 @@ function updateSIGAFrame(iata) {
 
   const src = `siga.html?airport=${encodeURIComponent(selected)}&focus=1&embed=1&mini=1`;
 
+  frame.onload = () => {
+    prepareSIGAFrameForSheet(frame);
+  };
+
   if (frame.getAttribute("src") !== src) {
+    frame.style.opacity = "0";
     frame.setAttribute("src", src);
+  } else {
+    prepareSIGAFrameForSheet(frame);
   }
+
+  setTimeout(() => {
+    frame.style.opacity = "1";
+  }, 450);
 }
 
   function renderAirport(iataCode) {
