@@ -2852,3 +2852,76 @@ body {
   color: #7a838c;
   margin-top: 4px;
 }
+/* =========================================================
+   RUTAS | 2 columnas como datos clave lámina
+   ========================================================= */
+
+.routes-two-col-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+.route-two-col {
+  min-width: 0;
+}
+
+.route-two-col-title {
+  font-size: 0.68rem;
+  line-height: 1;
+  font-weight: 700;
+  color: #6b7178;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 6px;
+}
+
+.route-two-col-list {
+  display: grid;
+  gap: 6px;
+}
+
+.route-two-col-item {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+}
+
+.route-two-col-pill {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #0c7bd8;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.route-two-col-body {
+  min-width: 0;
+}
+
+.route-two-col-name {
+  font-size: 0.66rem;
+  line-height: 1.05;
+  color: #5f6972;
+  font-weight: 600;
+}
+
+.route-two-col-meta {
+  font-size: 0.62rem;
+  line-height: 1.05;
+  color: #7a838c;
+  margin-top: 2px;
+}
+
+.route-two-col-empty {
+  font-size: 0.64rem;
+  line-height: 1.05;
+  color: #7a838c;
+}
