@@ -3,9 +3,6 @@
   "use strict";
 
   const YEAR_REF = 2025;
-  // El gráfico toma automáticamente el primer año disponible en el JSON.
-  // No fuerza 2018: si el resumen trae 2022–2025, muestra 2022–2025;
-  // si luego el resumen compacto trae 2018–2025, mostrará 2018–2025.
   const CHART_YEAR_FROM = null;
   const TRAFFIC_CLASS_SOURCE = "fuentes/rutas_clase_vuelo_resumen.json";
   const FDO_ROUTES_AA_SOURCE = "fuentes/fdo_rutas_aeropuertos_argentina.json";
