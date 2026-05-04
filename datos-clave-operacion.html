@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lámina de operación aeroportuaria – ORSNA</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="css/datos-clave-operacion.css?v=operacion2">
+  <link rel="stylesheet" href="css/datos-clave-operacion.css?v=operacion6">
 </head>
 <body>
   <div class="lamina-toolbar no-print">
@@ -155,11 +155,6 @@
               <div class="op-passengers-pill">
                 <div class="op-pill-kicker">TOTAL ANUAL DE PASAJEROS</div>
                 <div class="op-pill-value" id="opPaxTotal2025">–</div>
-                <div class="op-pill-subline">
-                  <span>Regular <strong id="opPaxRegularTotal">–</strong></span>
-                  <span>No regular <strong id="opPaxNoRegularTotal">–</strong></span>
-                  <span>Av. general <strong id="opPaxAvGralTotal">–</strong></span>
-                </div>
               </div>
 
               <div class="op-side-kpis">
@@ -204,6 +199,11 @@
             </div>
           </article>
 
+          <article class="section-card section-op-class-summary">
+            <div class="section-title">RESUMEN 2025 POR CLASE DE VUELO</div>
+            <div id="opTrafficClassCards" class="op-traffic-class-cards"></div>
+          </article>
+
           <article class="section-card section-traffic-history">
             <div class="section-title">EVOLUCIÓN 2022–2025 POR CLASE DE VUELO</div>
             <div class="operation-chart-legend">
@@ -227,6 +227,6 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script src="js/datos-clave-operacion.js?v=operacion2"></script>
+  <script src="js/datos-clave-operacion.js?v=operacion6"></script>
 </body>
 </html>
