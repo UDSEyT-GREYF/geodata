@@ -2742,17 +2742,22 @@ min-height: 0;
    acá está el cambio clave: nombre y pasajeros en una sola línea */
 .section-routes.operation-top-routes .route-two-col-body {
   min-width: 0 !important;
-  display: flex !important;
+  max-width: 100% !important;
+
+  display: inline-flex !important;
   align-items: baseline !important;
-  gap: 6px !important;
+  justify-content: flex-start !important;
+  gap: 5px !important;
+
   white-space: nowrap !important;
   overflow: hidden !important;
 }
 
 /* Nombre de destino */
 .section-routes.operation-top-routes .route-two-col-name {
-  flex: 1 1 auto !important;
+  flex: 0 1 auto !important;
   min-width: 0 !important;
+  max-width: 170px !important;
 
   font-size: 0.64rem !important;
   line-height: 1 !important;
@@ -2769,7 +2774,7 @@ min-height: 0;
   flex: 0 0 auto !important;
   margin-top: 0 !important;
 
-  font-size: 0.60rem !important;
+  font-size: 0.58rem !important;
   line-height: 1 !important;
   color: #607080 !important;
   font-weight: 500 !important;
