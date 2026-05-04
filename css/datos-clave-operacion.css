@@ -3039,3 +3039,62 @@ body {
 .traffic-segment-int .traffic-segment-value {
   color: #257a38;
 }
+/* ============================================================
+   Principales rutas: evitar corte inferior y compactar filas
+   ============================================================ */
+
+.section-routes,
+.operation-top-routes {
+  min-height: 188px;
+  overflow: visible !important;
+}
+
+#opTopRoutesList {
+  overflow: visible !important;
+}
+
+.routes-two-col-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.route-two-col-list {
+  display: grid;
+  gap: 4px;
+}
+
+.route-two-col-item {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 6px;
+  align-items: center;
+  min-height: 31px;
+}
+
+.route-two-col-pill {
+  width: 30px;
+  height: 30px;
+  font-size: 0.78rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.route-two-col-name {
+  font-size: 0.74rem;
+  line-height: 1.05;
+}
+
+.route-two-col-meta {
+  font-size: 0.64rem;
+  line-height: 1;
+}
+
+.operation-source-note {
+  margin-top: 5px;
+  font-size: 0.58rem;
+  line-height: 1.05;
+}
