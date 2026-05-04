@@ -2987,7 +2987,18 @@ body {
 }
 
 .section-routes.operation-top-routes {
-  min-height: 160px;
+  border: 1px solid #cfd6df !important;
+  border-top: none !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  background: #fff !important;
+}
+.section-routes.operation-top-routes #opTopRoutesList {
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  padding: 6px 10px 6px 10px !important;
 }
 /* ============================================================
    Resumen 2025 por clase de vuelo: Cabotaje / Internacional
