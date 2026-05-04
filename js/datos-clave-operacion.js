@@ -817,7 +817,52 @@ function getFDORouteDisplayName(code) {
     setText("opMovAvGralCab", formatIntegerValue(s.mov.avGral.cab));
     setText("opMovAvGralIntl", formatIntegerValue(s.mov.avGral.intl));
   }
+function formatTrafficValue(value, decimals = 0) {
+  const n = Number(value) || 0;
+  return n.toLocaleString("es-AR", {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  });
+}
 
+function renderOperationTrafficClassCards(iata) {
+  const s = buildOperationFamilyBreakdown(iata, YEAR_REF);
+  const el = q("opTrafficClassCards");
+  if (!el) return;
+
+  const defs = [
+    { key: "regular", title: "Regular", cls: "regular" },
+    { key: "noRegular", title: "No regular", cls: "noreg" },
+    { key: "avGral", title: "Av. general", cls: "avgral" }
+  ];
+
+  el.innerHTML = defs.map(def => {
+    const pax = s.pax[def.key];
+    const mov = s.mov[def.key];
+
+    return `
+      <article class="traffic-class-card traffic-class-${def.cls}">
+        <div class="traffic-class-head">${def.title}</div>
+
+        <div class="traffic-class-row">
+          <div class="traffic-class-label">Pasajeros</div>
+          <div class="traffic-class-value">${formatTrafficValue(pax.total)}</div>
+          <div class="traffic-class-sub">
+            Cab. ${formatTrafficValue(pax.cab)} · Int. ${formatTrafficValue(pax.intl)}
+          </div>
+        </div>
+
+        <div class="traffic-class-row">
+          <div class="traffic-class-label">Movimientos</div>
+          <div class="traffic-class-value">${formatTrafficValue(mov.total)}</div>
+          <div class="traffic-class-sub">
+            Cab. ${formatTrafficValue(mov.cab)} · Int. ${formatTrafficValue(mov.intl)}
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
 function getOperationAvailableYears(iata) {
   const selected = clean(iata).toUpperCase();
 
@@ -1181,12 +1226,13 @@ function renderOperationTopAirlines(iata) {
     : `<div class="operation-empty">Sin aerolíneas comerciales registradas</div>`;
 }
 
-  function renderOperationSections(iata) {
-    setOperationTitlesAndNotes(iata);
-    renderOperationKPIs(iata);
-    renderOperationChart(iata);
-    renderOperationTopRoutes(iata);
-  }
+function renderOperationSections(iata) {
+  setOperationTitlesAndNotes(iata);
+  renderOperationKPIs(iata);
+  renderOperationTrafficClassCards(iata);
+  renderOperationChart(iata);
+  renderOperationTopRoutes(iata);
+}
 
   function parseIATAMundoCSV(text) {
     const rows = parseCSV(text);
