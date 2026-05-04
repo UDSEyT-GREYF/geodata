@@ -489,7 +489,7 @@ function getAirportShortName(airport) {
       zoomControl: true,
         zoomSnap: 0.25,
         zoomDelta: 0.25,
-        wheelPxPerZoomLevel: 150
+        wheelPxPerZoomLevel: 150,
       preferCanvas: true,
       fullscreenControl: !!L.Control.FullScreen
     });
