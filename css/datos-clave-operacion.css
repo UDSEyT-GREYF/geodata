@@ -2521,3 +2521,72 @@ body {
   min-height: 245px;
   flex: 1 1 auto;
 }
+
+/* =========================================================
+   EXPLOTACIÓN | compactar contenido interno sin mover secciones
+   ========================================================= */
+
+/* Reduce altura de mapa e imagen de terminal */
+.operation-left-superficie .predio-map-frame,
+.operation-left-superficie .terminal-photo-frame {
+  min-height: 104px;
+  height: 104px;
+}
+
+.operation-left-superficie .predio-map {
+  min-height: 104px;
+  height: 104px;
+}
+
+/* Compacta KPIs superiores */
+.operation-left-superficie .surface-top-kpis {
+  margin: 1px 2px 4px;
+  gap: 8px;
+}
+
+.operation-left-superficie .mini-kpi-label {
+  font-size: 0.70rem;
+  margin-bottom: 2px;
+  line-height: 1;
+}
+
+.operation-left-superficie .mini-kpi-value {
+  font-size: 0.76rem;
+  line-height: 1;
+}
+
+.operation-left-superficie .mini-kpi-value span:first-child {
+  font-size: 0.98rem;
+}
+
+/* Compacta bloque inferior de metadatos */
+.operation-left-superficie .explotacion-meta-grid {
+  margin-top: 2px;
+  padding-top: 2px;
+  column-gap: 10px;
+}
+
+.operation-left-superficie .explotacion-meta-row {
+  padding: 1px 0;
+  grid-template-columns: 88px minmax(0, 1fr);
+}
+
+.operation-left-superficie .explotacion-meta-label {
+  font-size: 0.58rem;
+  line-height: 1;
+}
+
+.operation-left-superficie .explotacion-meta-value {
+  font-size: 0.64rem;
+  line-height: 1.05;
+}
+
+.operation-left-superficie #predioSupAreasConcesionadas {
+  font-size: 0.68rem;
+  line-height: 1;
+}
+
+.operation-left-superficie .explotacion-meta-detail {
+  font-size: 0.56rem;
+  line-height: 1;
+}
