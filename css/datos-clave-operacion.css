@@ -3051,50 +3051,61 @@ body {
 
 #opTopRoutesList {
   overflow: visible !important;
+  padding-bottom: 0 !important;
 }
 
 .routes-two-col-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-  align-items: start;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  align-items: start !important;
 }
-
+.route-two-col-title {
+  font-size: 0.66rem !important;
+  line-height: 1 !important;
+  margin-bottom: 4px !important;
+  font-weight: 800 !important;
+}
 .route-two-col-list {
-  display: grid;
-  gap: 4px;
+  display: grid !important;
+  gap: 3px !important;
 }
 
 .route-two-col-item {
-  display: grid;
-  grid-template-columns: 34px minmax(0, 1fr);
-  gap: 6px;
-  align-items: center;
-  min-height: 31px;
+  display: grid !important;
+  grid-template-columns: 28px minmax(0, 1fr) !important;
+  gap: 6px !important;
+  align-items: center !important;
+  min-height: 25px !important;
 }
 
 .route-two-col-pill {
-  width: 30px;
-  height: 30px;
-  font-size: 0.78rem;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 25px !important;
+  height: 25px !important;
+  min-width: 25px !important;
+  min-height: 25px !important;
+  font-size: 0.60rem !important;
+  line-height: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .route-two-col-name {
-  font-size: 0.74rem;
-  line-height: 1.05;
+  font-size: 0.64rem !important;
+  line-height: 1.02 !important;
+  font-weight: 650 !important;
+  color: #3f4a56 !important;
 }
 
 .route-two-col-meta {
-  font-size: 0.64rem;
-  line-height: 1;
+  font-size: 0.56rem !important;
+  line-height: 1 !important;
+  margin-top: 1px !important;
+  color: #607080 !important;
 }
 
-.operation-source-note {
-  margin-top: 5px;
-  font-size: 0.58rem;
-  line-height: 1.05;
+/* Ya no usamos fuente debajo de rutas en la lámina A4 */
+.section-routes .operation-source-note {
+  display: none !important;
 }
