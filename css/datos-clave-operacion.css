@@ -2986,19 +2986,19 @@ body {
   height: 150px;
 }
 
+/* Caja cerrada, pero con contenido más compacto */
 .section-routes.operation-top-routes {
   border: 1px solid #cfd6df !important;
   border-top: none !important;
   box-sizing: border-box !important;
   overflow: hidden !important;
-  height: 100% !important;
-  min-height: 0 !important;
   background: #fff !important;
 }
+/* Menos aire arriba y abajo dentro del bloque */
 .section-routes.operation-top-routes #opTopRoutesList {
   box-sizing: border-box !important;
   overflow: hidden !important;
-  padding: 6px 10px 6px 10px !important;
+  padding: 3px 10px 4px 10px !important;
 }
 /* ============================================================
    Resumen 2025 por clase de vuelo: Cabotaje / Internacional
@@ -3065,58 +3065,68 @@ body {
   padding-bottom: 0 !important;
 }
 
+/* Dos columnas compactas */
 .routes-two-col-grid {
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 16px !important;
+  gap: 14px !important;
   align-items: start !important;
 }
+/* Títulos INTERNACIONALES / CABOTAJE: menos alto y menos pesados */
 .route-two-col-title {
-  font-size: 0.66rem !important;
-  line-height: 1 !important;
-  margin-bottom: 4px !important;
-  font-weight: 800 !important;
+  font-size: 0.58rem !important;
+  line-height: 0.95 !important;
+  margin: 0 0 2px 0 !important;
+  padding: 0 !important;
+  font-weight: 650 !important;
+  letter-spacing: 0.01em !important;
+  color: #4d5560 !important;
 }
 .route-two-col-list {
   display: grid !important;
-  gap: 3px !important;
+  gap: 2px !important;
 }
 
+/* Cada ruta ocupa menos altura */
 .route-two-col-item {
   display: grid !important;
-  grid-template-columns: 28px minmax(0, 1fr) !important;
-  gap: 6px !important;
+  grid-template-columns: 26px minmax(0, 1fr) !important;
+  gap: 5px !important;
   align-items: center !important;
-  min-height: 25px !important;
+  min-height: 23px !important;
 }
 
+/* Círculo del código más chico */
 .route-two-col-pill {
-  width: 25px !important;
-  height: 25px !important;
-  min-width: 25px !important;
-  min-height: 25px !important;
-  font-size: 0.60rem !important;
+  width: 23px !important;
+  height: 23px !important;
+  min-width: 23px !important;
+  min-height: 23px !important;
+  font-size: 0.56rem !important;
   line-height: 1 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
 }
 
+/* Nombre de ruta */
 .route-two-col-name {
-  font-size: 0.64rem !important;
+  font-size: 0.60rem !important;
   line-height: 1.02 !important;
   font-weight: 650 !important;
   color: #3f4a56 !important;
+  white-space: normal !important;
 }
 
+/* Pasajeros */
 .route-two-col-meta {
-  font-size: 0.56rem !important;
+  font-size: 0.53rem !important;
   line-height: 1 !important;
-  margin-top: 1px !important;
+  margin-top: 0 !important;
   color: #607080 !important;
 }
 
-/* Ya no usamos fuente debajo de rutas en la lámina A4 */
-.section-routes .operation-source-note {
+/* La fuente en rutas no entra en esta lámina */
+.section-routes.operation-top-routes .operation-source-note {
   display: none !important;
 }
