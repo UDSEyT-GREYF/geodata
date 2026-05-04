@@ -1210,6 +1210,7 @@ function renderOperationTopAirlines(iata) {
 function renderOperationSections(iata) {
   setOperationTitlesAndNotes(iata);
   renderOperationKPIs(iata);
+  renderOperationTrafficClassCards(iata);
   renderOperationChart(iata);
   renderOperationTopRoutes(iata);
 }
