@@ -818,109 +818,174 @@ function getFDORouteDisplayName(code) {
     setText("opMovAvGralIntl", formatIntegerValue(s.mov.avGral.intl));
   }
 
-  function buildOperationAnnualFamilySeries(iata) {
-    const selected = clean(iata).toUpperCase();
-    const years = [2022, 2023, 2024, 2025];
-    return years.map(year => {
-      const s = buildOperationFamilyBreakdown(selected, year);
-      return {
-        year,
-        regular: s.pax.regular.total,
-        noRegular: s.pax.noRegular.total,
-        avGral: s.pax.avGral.total,
-        paxTotal: s.totalPax,
-        movTotal: s.totalMov
-      };
-    });
+function getOperationAvailableYears(iata) {
+  const selected = clean(iata).toUpperCase();
+
+  const yearsInData = getOperationClassRowsAllForAirport(selected)
+    .map(r => Number(r.y))
+    .filter(y => Number.isFinite(y) && y <= YEAR_REF);
+
+  if (!yearsInData.length) return [YEAR_REF];
+
+  const minYear = Math.min(...yearsInData);
+  const maxYear = Math.min(YEAR_REF, Math.max(...yearsInData));
+
+  return Array.from(
+    { length: maxYear - minYear + 1 },
+    (_, idx) => minYear + idx
+  );
+}
+
+function buildOperationAnnualFamilySeries(iata) {
+  const selected = clean(iata).toUpperCase();
+  const years = getOperationAvailableYears(selected);
+
+  return years.map(year => {
+    const s = buildOperationFamilyBreakdown(selected, year);
+
+    return {
+      year,
+      regular: s.pax.regular.total,
+      noRegular: s.pax.noRegular.total,
+      avGral: s.pax.avGral.total,
+      paxTotal: s.totalPax,
+      movTotal: s.totalMov
+    };
+  });
+}
+
+function renderOperationChart(iata) {
+  const svg = q("opTrafficChart");
+  if (!svg) return;
+
+  const data = buildOperationAnnualFamilySeries(iata);
+  const hasData = data.some(d => d.paxTotal || d.movTotal);
+
+  if (!hasData) {
+    svg.innerHTML = `<text x="410" y="105" text-anchor="middle" font-size="14" fill="#6f7d8c">Sin datos para el aeropuerto seleccionado</text>`;
+    return;
   }
 
-  function renderOperationChart(iata) {
-    const svg = q("opTrafficChart");
-    if (!svg) return;
+  const firstYear = data[0]?.year;
+  const lastYear = data[data.length - 1]?.year;
 
-    const data = buildOperationAnnualFamilySeries(iata);
-    const hasData = data.some(d => d.paxTotal || d.movTotal);
-    if (!hasData) {
-      svg.innerHTML = `<text x="410" y="105" text-anchor="middle" font-size="14" fill="#6f7d8c">Sin datos para el aeropuerto seleccionado</text>`;
-      return;
-    }
+  const titleEl = svg.closest(".section-traffic-history")?.querySelector(".section-title");
+  if (titleEl && firstYear && lastYear) {
+    titleEl.textContent = `EVOLUCIÓN ${firstYear}–${lastYear} POR CLASE DE VUELO`;
+  }
 
-    const W = 820, H = 210;
-    const padL = 58, padR = 58, padT = 14, padB = 30;
-    const innerW = W - padL - padR;
-    const innerH = H - padT - padB;
-    const baseY = padT + innerH;
+  const W = 820;
+  const H = 210;
+  const padL = 58;
+  const padR = 58;
+  const padT = 16;
+  const padB = 30;
+  const innerW = W - padL - padR;
+  const innerH = H - padT - padB;
+  const baseY = padT + innerH;
 
-    const maxPax = Math.max(...data.map(d => d.paxTotal), 1);
-    const maxMov = Math.max(...data.map(d => d.movTotal), 1);
-    const paxScale = buildNiceScale(maxPax, 4);
-    const movScale = buildNiceScale(maxMov, 4);
+  const maxPax = Math.max(
+    ...data.flatMap(d => [d.regular, d.noRegular, d.avGral]),
+    1
+  );
 
-    const yPax = v => baseY - (innerH * ((Number(v) || 0) / paxScale.niceMax));
-    const yMov = v => baseY - (innerH * ((Number(v) || 0) / movScale.niceMax));
-    const xGroup = i => padL + (innerW * (i + 0.5) / data.length);
-    const barW = Math.min(54, innerW / data.length * 0.30);
+  const maxMov = Math.max(...data.map(d => d.movTotal), 1);
 
-    let grid = "";
-    paxScale.values.forEach(v => {
-      const yy = yPax(v);
-      grid += `<line x1="${padL}" y1="${yy}" x2="${W - padR}" y2="${yy}" stroke="${CHART_COLORS.grid}" stroke-width="1"></line>`;
-      grid += `<text x="${padL - 8}" y="${yy + 4}" text-anchor="end" font-size="9" fill="${CHART_COLORS.label}">${formatNumber(Math.round(v))}</text>`;
-    });
+  const paxScale = buildNiceScale(maxPax, 4);
+  const movScale = buildNiceScale(maxMov, 4);
 
-    let rightTicks = "";
-    movScale.values.forEach(v => {
-      const yy = yMov(v);
-      rightTicks += `<text x="${W - padR + 8}" y="${yy + 4}" text-anchor="start" font-size="9" fill="${CHART_COLORS.label}">${formatNumber(Math.round(v))}</text>`;
-    });
+  const yPax = v => baseY - (innerH * ((Number(v) || 0) / paxScale.niceMax));
+  const yMov = v => baseY - (innerH * ((Number(v) || 0) / movScale.niceMax));
 
-    let bars = "";
-    const colors = {
-      regular: CHART_COLORS.regular,
-      noRegular: CHART_COLORS.noRegular,
-      avGral: CHART_COLORS.avGral
-    };
+  const xGroup = i => {
+    if (data.length === 1) return padL + innerW / 2;
+    return padL + (innerW * (i / (data.length - 1)));
+  };
 
-    data.forEach((d, i) => {
-      const x = xGroup(i) - barW / 2;
-      let top = baseY;
-      [
-        ["regular", d.regular],
-        ["noRegular", d.noRegular],
-        ["avGral", d.avGral]
-      ].forEach(([key, value]) => {
-        const h = innerH * ((Number(value) || 0) / paxScale.niceMax);
-        const y = top - h;
-        if (h > 0) {
-          bars += `<rect x="${x}" y="${y}" width="${barW}" height="${h}" rx="1.5" fill="${colors[key]}"></rect>`;
-        }
-        top = y;
-      });
-      bars += `<text x="${xGroup(i)}" y="${H - 10}" text-anchor="middle" font-size="10" fill="${CHART_COLORS.label}">${d.year}</text>`;
-    });
+  const barW = Math.min(28, Math.max(12, innerW / data.length * 0.34));
 
-    const points = data.map((d, i) => `${xGroup(i)},${yMov(d.movTotal)}`).join(" ");
-    let lineDots = "";
-    data.forEach((d, i) => {
+  let grid = "";
+  paxScale.values.forEach(v => {
+    const yy = yPax(v);
+    grid += `
+      <line x1="${padL}" y1="${yy}" x2="${W - padR}" y2="${yy}" stroke="${CHART_COLORS.grid}" stroke-width="1"></line>
+      <text x="${padL - 8}" y="${yy + 4}" text-anchor="end" font-size="9" fill="${CHART_COLORS.label}">${formatNumber(Math.round(v))}</text>
+    `;
+  });
+
+  let rightTicks = "";
+  movScale.values.forEach(v => {
+    const yy = yMov(v);
+    rightTicks += `
+      <text x="${W - padR + 8}" y="${yy + 4}" text-anchor="start" font-size="9" fill="${CHART_COLORS.label}">${formatNumber(Math.round(v))}</text>
+    `;
+  });
+
+  let movementBars = "";
+  data.forEach((d, i) => {
+    const cx = xGroup(i);
+    const h = innerH * ((Number(d.movTotal) || 0) / movScale.niceMax);
+    const y = baseY - h;
+
+    movementBars += `
+      <rect
+        x="${cx - barW / 2}"
+        y="${y}"
+        width="${barW}"
+        height="${h}"
+        rx="2"
+        fill="#f2c983"
+        fill-opacity="0.48"
+        stroke="#C6923A"
+        stroke-width="1">
+      </rect>
+    `;
+
+    movementBars += `
+      <text x="${cx}" y="${H - 10}" text-anchor="middle" font-size="10" fill="${CHART_COLORS.label}">${d.year}</text>
+    `;
+  });
+
+  function makeLine(key, color) {
+    const points = data
+      .map((d, i) => `${xGroup(i)},${yPax(d[key])}`)
+      .join(" ");
+
+    const dots = data.map((d, i) => {
       const cx = xGroup(i);
-      const cy = yMov(d.movTotal);
-      lineDots += `<circle cx="${cx}" cy="${cy}" r="3" fill="#25364a"></circle>`;
-    });
+      const cy = yPax(d[key]);
+      return `<circle cx="${cx}" cy="${cy}" r="2.7" fill="${color}" stroke="#ffffff" stroke-width="1"></circle>`;
+    }).join("");
 
-    svg.innerHTML = `
-      <rect x="0" y="0" width="${W}" height="${H}" fill="#ffffff"></rect>
-      ${grid}
-      ${rightTicks}
-      <line x1="${padL}" y1="${baseY}" x2="${W - padR}" y2="${baseY}" stroke="${CHART_COLORS.axis}" stroke-width="1"></line>
-      <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${baseY}" stroke="${CHART_COLORS.axis}" stroke-width="1"></line>
-      <line x1="${W - padR}" y1="${padT}" x2="${W - padR}" y2="${baseY}" stroke="${CHART_COLORS.axis}" stroke-width="1"></line>
-      <text x="12" y="${padT + innerH / 2}" transform="rotate(-90 12 ${padT + innerH / 2})" text-anchor="middle" font-size="10" fill="${CHART_COLORS.label}">Pasajeros</text>
-      <text x="${W - 12}" y="${padT + innerH / 2}" transform="rotate(90 ${W - 12} ${padT + innerH / 2})" text-anchor="middle" font-size="10" fill="${CHART_COLORS.label}">Movimientos</text>
-      ${bars}
-      <polyline points="${points}" fill="none" stroke="#25364a" stroke-width="2.2"></polyline>
-      ${lineDots}
+    return `
+      <polyline points="${points}" fill="none" stroke="${color}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"></polyline>
+      ${dots}
     `;
   }
+
+  const regularLine = makeLine("regular", CHART_COLORS.regular);
+  const noRegularLine = makeLine("noRegular", CHART_COLORS.noRegular);
+  const avGralLine = makeLine("avGral", CHART_COLORS.avGral);
+
+  svg.innerHTML = `
+    <rect x="0" y="0" width="${W}" height="${H}" fill="#ffffff"></rect>
+
+    ${grid}
+    ${rightTicks}
+
+    <line x1="${padL}" y1="${baseY}" x2="${W - padR}" y2="${baseY}" stroke="${CHART_COLORS.axis}" stroke-width="1"></line>
+    <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${baseY}" stroke="${CHART_COLORS.axis}" stroke-width="1"></line>
+    <line x1="${W - padR}" y1="${padT}" x2="${W - padR}" y2="${baseY}" stroke="${CHART_COLORS.axis}" stroke-width="1"></line>
+
+    <text x="12" y="${padT + innerH / 2}" transform="rotate(-90 12 ${padT + innerH / 2})" text-anchor="middle" font-size="10" fill="${CHART_COLORS.label}">Pasajeros</text>
+    <text x="${W - 12}" y="${padT + innerH / 2}" transform="rotate(90 ${W - 12} ${padT + innerH / 2})" text-anchor="middle" font-size="10" fill="${CHART_COLORS.label}">Movimientos</text>
+
+    ${movementBars}
+    ${regularLine}
+    ${noRegularLine}
+    ${avGralLine}
+  `;
+}
 
   function getRouteDisplayName(code, selectedIata) {
     const c = clean(code).toUpperCase();
