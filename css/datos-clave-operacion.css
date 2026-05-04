@@ -2318,23 +2318,39 @@ min-height: 0;
 
 
 /* =========================================================
-   RESUMEN POR CLASE DE VUELO | más legible
+   RESUMEN 2025 POR CLASE DE VUELO | ESTILO DEFINITIVO
+   ---------------------------------------------------------
+   Este bloque controla únicamente las 3 tarjetas:
+   - Regular
+   - No regular
+   - Av. general
+
+   Cada tarjeta muestra:
+   - Pasajeros
+   - Movimientos
+   - Cab. / Int.
+
+   No modifica rutas, gráfico ni KPIs superiores.
    ========================================================= */
 
 .op-traffic-class-cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 6px;
+  gap: 8px;
   margin-top: 6px;
+  overflow: visible;
 }
 
 .traffic-class-card {
   border: 1px solid #d0d7e2;
   border-top: 3px solid #2a5fa0;
   border-radius: 6px;
-  padding: 6px 8px 5px;
+  padding: 6px 9px 6px;
   background: #fff;
   min-width: 0;
+  min-height: 72px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .traffic-class-regular {
@@ -2353,41 +2369,99 @@ min-height: 0;
 }
 
 .traffic-class-head {
-  font-size: 0.66rem;
+  font-size: 0.62rem;
   line-height: 1;
   font-weight: 800;
   color: #2a5fa0;
   text-transform: uppercase;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
-.traffic-class-row + .traffic-class-row {
-  margin-top: 6px;
-  padding-top: 5px;
-  border-top: 1px dashed #d8dee8;
+.traffic-class-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  align-items: start;
+  width: 100%;
+  min-width: 0;
+}
+
+.traffic-class-metric {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.traffic-class-metric + .traffic-class-metric {
+  border-left: 1px dashed #d8dee8;
+  padding-left: 8px;
 }
 
 .traffic-class-label {
-  font-size: 0.58rem;
+  font-size: 0.50rem;
   line-height: 1;
-  color: #6f7d8c;
+  color: #7a838c;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   margin-bottom: 2px;
+  font-weight: 600;
 }
 
 .traffic-class-value {
-  font-size: 1rem;
-  line-height: 1;
+  font-size: 0.88rem;
+  line-height: 0.95;
   font-weight: 800;
   color: #004b80;
+  margin-bottom: 3px;
+  white-space: nowrap;
 }
 
-.traffic-class-sub {
-  font-size: 0.58rem;
-  line-height: 1.1;
-  color: #6f7d8c;
-  margin-top: 2px;
+.traffic-class-sub,
+.traffic-class-segments {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 3px;
+  flex-wrap: wrap;
+  margin: 0;
+  font-size: 0.50rem;
+  line-height: 1.05;
+  color: #607080;
+}
+
+.traffic-segment {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  white-space: nowrap;
+}
+
+.traffic-segment-label {
+  font-size: 0.48rem;
+  line-height: 1;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+}
+
+.traffic-segment-value {
+  font-size: 0.56rem;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.traffic-segment-cab .traffic-segment-value {
+  color: #1f5f99;
+}
+
+.traffic-segment-int .traffic-segment-value {
+  color: #257a38;
+}
+
+.traffic-segment-separator {
+  font-size: 0.48rem;
+  line-height: 1;
+  font-weight: 700;
+  color: #a0a8b2;
 }
 /* =========================================================
    RUTAS Y AEROLÍNEAS | BLOQUE ÚNICO Y DEFINITIVO
