@@ -1043,9 +1043,9 @@ function getEquivalentDestinationCode(selectedIata, otherCode) {
 
   return other;
 }
-function getRouteDisplayName(code, selectedIata) {
-  const c = clean(code).toUpperCase();
-  const selected = clean(selectedIata).toUpperCase();
+function getRouteDisplayName(code, selectedIata, isInternational = false) {
+  const c = normalizeRouteCode(code);
+  const selected = normalizeRouteCode(selectedIata);
 
   if (!c) return "Sin dato";
   if (c === selected) return "Operaciones locales";
@@ -1054,12 +1054,25 @@ function getRouteDisplayName(code, selectedIata) {
   if (c === "-EX" || c === "EXT") return "Otros destinos internacionales";
 
   if (DEST_OVERRIDES[c]) {
-    return `${DEST_OVERRIDES[c].ciudad} (${c})`;
+    const ciudad = clean(DEST_OVERRIDES[c].ciudad) || c;
+    const pais = clean(DEST_OVERRIDES[c].pais);
+
+    if (isInternational && pais && !isArgentinaCountry(pais)) {
+      return `${ciudad}, ${pais} (${c})`;
+    }
+
+    return `${ciudad} (${c})`;
   }
 
   const meta = getRouteMeta(c);
   if (meta) {
     const ciudad = clean(meta.ciudad) || c;
+    const pais = clean(meta.pais);
+
+    if (isInternational && pais && !isArgentinaCountry(pais)) {
+      return `${ciudad}, ${pais} (${c})`;
+    }
+
     return `${ciudad} (${c})`;
   }
 
@@ -1194,17 +1207,17 @@ function renderOperationTopRoutes(iata) {
     const key = `${bucket}|${destinationCode}`;
 
     if (!routeMap.has(key)) {
-      routeMap.set(key, {
-        code: destinationCode,
-        name: isFdoRoutesAA
-          ? getFDORouteDisplayName(destinationCode)
-          : getRouteDisplayName(destinationCode, selected),
-        pax: 0,
-        flights: 0,
-        freq: null,
-        bucket,
-        source: r.source
-      });
+routeMap.set(key, {
+  code: destinationCode,
+  name: isFdoRoutesAA
+    ? getFDORouteDisplayName(destinationCode)
+    : getRouteDisplayName(destinationCode, selected, bucket === "internacional"),
+  pax: 0,
+  flights: 0,
+  freq: null,
+  bucket,
+  source: r.source
+});
     }
 
     const item = routeMap.get(key);
