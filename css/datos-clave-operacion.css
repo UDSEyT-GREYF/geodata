@@ -2925,3 +2925,75 @@ body {
   line-height: 1.05;
   color: #7a838c;
 }
+/* =========================================================
+   RESUMEN POR CLASE DE VUELO | más legible
+   ========================================================= */
+
+.op-traffic-class-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.traffic-class-card {
+  border: 1px solid #d0d7e2;
+  border-top: 3px solid #2a5fa0;
+  border-radius: 6px;
+  padding: 6px 8px 5px;
+  background: #fff;
+  min-width: 0;
+}
+
+.traffic-class-regular {
+  border-top-color: #2A6FB0;
+  background: rgba(42, 111, 176, 0.03);
+}
+
+.traffic-class-noreg {
+  border-top-color: #C6923A;
+  background: rgba(198, 146, 58, 0.05);
+}
+
+.traffic-class-avgral {
+  border-top-color: #6b2f82;
+  background: rgba(107, 47, 130, 0.04);
+}
+
+.traffic-class-head {
+  font-size: 0.66rem;
+  line-height: 1;
+  font-weight: 800;
+  color: #2a5fa0;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.traffic-class-row + .traffic-class-row {
+  margin-top: 6px;
+  padding-top: 5px;
+  border-top: 1px dashed #d8dee8;
+}
+
+.traffic-class-label {
+  font-size: 0.58rem;
+  line-height: 1;
+  color: #6f7d8c;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 2px;
+}
+
+.traffic-class-value {
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: 800;
+  color: #004b80;
+}
+
+.traffic-class-sub {
+  font-size: 0.58rem;
+  line-height: 1.1;
+  color: #6f7d8c;
+  margin-top: 2px;
+}
