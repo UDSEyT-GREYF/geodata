@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lámina de operación aeroportuaria – ORSNA</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="css/datos-clave-operacion.css?v=operacion1">
+  <link rel="stylesheet" href="css/datos-clave-operacion.css?v=operacion2">
 </head>
 <body>
   <div class="lamina-toolbar no-print">
@@ -32,6 +32,7 @@
 
       <section class="operation-grid">
         <section class="operation-col col-infra">
+          <div class="col-header">INFRAESTRUCTURA Y ÁREA DE MOVIMIENTO</div>
 
           <article class="section-card section-superficie operation-left-superficie">
             <div class="section-title">EXPLOTACIÓN</div>
@@ -143,25 +144,104 @@
 
         <section class="operation-col col-traffic-wide">
 
-          <article class="section-card section-traffic-summary">
-            <div class="section-title">PASAJEROS Y MOVIMIENTOS 2025</div>
+          <article class="section-card section-op-passengers">
+            <div class="section-title">PASAJEROS 2025 POR CLASE DE VUELO</div>
 
-            <div class="traffic-kpi-grid">
-              <div class="traffic-kpi">
-                <div class="traffic-kpi-label">Pasajeros</div>
-                <div class="traffic-kpi-value" id="opPaxTotal2025">–</div>
+            <div class="op-lamina-hero op-passengers-hero">
+              <div class="op-hero-icon op-hero-icon-passengers">
+                <img src="img/icons/pax.png" alt="Pasajeros">
               </div>
-              <div class="traffic-kpi">
-                <div class="traffic-kpi-label">Movimientos</div>
-                <div class="traffic-kpi-value" id="opMovTotal2025">–</div>
+
+              <div class="op-passengers-pill">
+                <div class="op-pill-kicker">TOTAL ANUAL DE PASAJEROS</div>
+                <div class="op-pill-value" id="opPaxTotal2025">–</div>
+                <div class="op-pill-subline">
+                  <span>Regular <strong id="opPaxRegularTotal">–</strong></span>
+                  <span>No regular <strong id="opPaxNoRegularTotal">–</strong></span>
+                  <span>Av. general <strong id="opPaxAvGralTotal">–</strong></span>
+                </div>
               </div>
-              <div class="traffic-kpi">
-                <div class="traffic-kpi-label">Pasajeros / mov.</div>
-                <div class="traffic-kpi-value" id="opPaxPorMov2025">–</div>
+
+              <div class="op-side-kpis">
+                <div class="op-side-kpi">
+                  <div class="op-side-value" id="opPaxWeekly2025">–</div>
+                  <div class="op-side-label">Promedio semanal</div>
+                </div>
+                <div class="op-side-kpi">
+                  <div class="op-side-value" id="opPaxDaily2025">–</div>
+                  <div class="op-side-label">Promedio diario</div>
+                </div>
               </div>
             </div>
 
-            <div class="class-matrix" id="classMatrix"></div>
+            <div class="op-class-card-grid op-class-card-grid-pax">
+              <div class="op-class-card op-class-regular">
+                <div class="op-class-title">Regular</div>
+                <div class="op-class-main" id="opPaxRegularMain">–</div>
+                <div class="op-class-detail">Cab. <span id="opPaxRegularCab">–</span> · Int. <span id="opPaxRegularIntl">–</span></div>
+              </div>
+
+              <div class="op-class-card op-class-noreg">
+                <div class="op-class-title">No regular</div>
+                <div class="op-class-main" id="opPaxNoRegularMain">–</div>
+                <div class="op-class-detail">Cab. <span id="opPaxNoRegularCab">–</span> · Int. <span id="opPaxNoRegularIntl">–</span></div>
+              </div>
+
+              <div class="op-class-card op-class-avgral">
+                <div class="op-class-title">Av. general</div>
+                <div class="op-class-main" id="opPaxAvGralMain">–</div>
+                <div class="op-class-detail">Cab. <span id="opPaxAvGralCab">–</span> · Int. <span id="opPaxAvGralIntl">–</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="section-card section-op-movements">
+            <div class="section-title">MOVIMIENTOS DE AERONAVES 2025</div>
+
+            <div class="op-lamina-hero op-movements-hero">
+              <div class="op-hero-icon op-hero-icon-flights">
+                <img src="img/icons/vuelos.png" alt="Movimientos de aeronaves">
+              </div>
+
+              <div class="op-movement-kpi-grid">
+                <div class="op-movement-kpi">
+                  <div class="op-movement-label">Anual</div>
+                  <div class="op-movement-value" id="opMovTotal2025">–</div>
+                </div>
+                <div class="op-movement-kpi">
+                  <div class="op-movement-label">Promedio semanal</div>
+                  <div class="op-movement-value" id="opMovWeekly2025">–</div>
+                </div>
+                <div class="op-movement-kpi">
+                  <div class="op-movement-label">Promedio diario</div>
+                  <div class="op-movement-value" id="opMovDaily2025">–</div>
+                </div>
+                <div class="op-movement-kpi op-movement-kpi-ratio">
+                  <div class="op-movement-label">Pasajeros / mov.</div>
+                  <div class="op-movement-value" id="opPaxPorMov2025">–</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="op-class-card-grid op-class-card-grid-mov">
+              <div class="op-class-card op-class-regular">
+                <div class="op-class-title">Regular</div>
+                <div class="op-class-main" id="opMovRegularMain">–</div>
+                <div class="op-class-detail">Cab. <span id="opMovRegularCab">–</span> · Int. <span id="opMovRegularIntl">–</span></div>
+              </div>
+
+              <div class="op-class-card op-class-noreg">
+                <div class="op-class-title">No regular</div>
+                <div class="op-class-main" id="opMovNoRegularMain">–</div>
+                <div class="op-class-detail">Cab. <span id="opMovNoRegularCab">–</span> · Int. <span id="opMovNoRegularIntl">–</span></div>
+              </div>
+
+              <div class="op-class-card op-class-avgral">
+                <div class="op-class-title">Av. general</div>
+                <div class="op-class-main" id="opMovAvGralMain">–</div>
+                <div class="op-class-detail">Cab. <span id="opMovAvGralCab">–</span> · Int. <span id="opMovAvGralIntl">–</span></div>
+              </div>
+            </div>
           </article>
 
           <article class="section-card section-traffic-history">
@@ -170,19 +250,15 @@
               <span class="operation-legend-item"><span class="operation-legend-dot operation-legend-regular"></span>Regular</span>
               <span class="operation-legend-item"><span class="operation-legend-dot operation-legend-noreg"></span>No regular</span>
               <span class="operation-legend-item"><span class="operation-legend-dot operation-legend-avgral"></span>Av. general</span>
+              <span class="operation-legend-item"><span class="operation-legend-line operation-legend-movements"></span>Movimientos</span>
             </div>
-            <svg id="opTrafficChart" class="operation-chart" viewBox="0 0 820 210" preserveAspectRatio="none" aria-label="Evolución de pasajeros por clase de vuelo"></svg>
+            <svg id="opTrafficChart" class="operation-chart" viewBox="0 0 820 210" preserveAspectRatio="none" aria-label="Evolución de pasajeros y movimientos por clase de vuelo"></svg>
             <div class="history-note">Fuente: elaborado por ORSNA con datos de SIAC ANAC.</div>
           </article>
 
           <article class="section-card section-routes operation-top-routes">
             <div class="section-title">PRINCIPALES RUTAS 2025</div>
             <div class="top-list" id="opTopRoutesList">Sin datos</div>
-          </article>
-
-          <article class="section-card section-airlines operation-top-airlines">
-            <div class="section-title">PRINCIPALES AEROLÍNEAS 2025</div>
-            <div class="top-list" id="opTopAirlinesList">Sin datos</div>
           </article>
         </section>
       </section>
@@ -191,6 +267,6 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script src="js/datos-clave-operacion.js?v=operacion1"></script>
+  <script src="js/datos-clave-operacion.js?v=operacion2"></script>
 </body>
 </html>
