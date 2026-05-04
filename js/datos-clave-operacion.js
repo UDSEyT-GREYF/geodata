@@ -3,6 +3,9 @@
   "use strict";
 
   const YEAR_REF = 2025;
+  // El gráfico toma automáticamente el primer año disponible en el JSON.
+  // No fuerza 2018: si el resumen trae 2022–2025, muestra 2022–2025;
+  // si luego el resumen compacto trae 2018–2025, mostrará 2018–2025.
   const CHART_YEAR_FROM = null;
   const TRAFFIC_CLASS_SOURCE = "fuentes/rutas_clase_vuelo_resumen.json";
   const FDO_ROUTES_AA_SOURCE = "fuentes/fdo_rutas_aeropuertos_argentina.json";
@@ -15,10 +18,10 @@
   let operationSummary = { classes: [], routes: [], airlines: [] };
   let fdoRoutesAA = [];
   let fdoTrafficAA = null;
-let iataWorldIndex = {};
-let routeCodeIndex = {};
-let domesticIATAs = new Set();
-let currentIATA = "";
+  let iataWorldIndex = {};
+  let routeCodeIndex = {};
+  let domesticIATAs = new Set();
+  let currentIATA = "";
 
   let mapPredio = null;
   let predioLayer = null;
@@ -1026,20 +1029,37 @@ function renderOperationChart(iata) {
     ${avGralLine}
   `;
 }
-function getEquivalentDestinationCode(selectedIata, otherCode) {
-  const sel = clean(selectedIata).toUpperCase();
-  const other = clean(otherCode).toUpperCase();
+function normalizeRouteCode(code) {
+  const c = clean(code).toUpperCase();
+  if (!c) return "";
 
-  const selectedIsBA = sel === "AEP" || sel === "EZE";
+  const meta = getRouteMeta(c);
+
+  // Convierte códigos OACI a IATA cuando ListadoIATAmundo.csv lo permite
+  // (por ejemplo: SABE -> AEP, SAEZ -> EZE).
+  if (meta && clean(meta.iata)) {
+    return clean(meta.iata).toUpperCase();
+  }
+
+  return c;
+}
+
+function getEquivalentDestinationCode(selectedIata, otherCode) {
+  const selected = normalizeRouteCode(selectedIata);
+  const other = normalizeRouteCode(otherCode);
+
+  if (!other) return "";
+
+  const selectedIsBA = selected === "AEP" || selected === "EZE";
   const otherIsBA = other === "AEP" || other === "EZE";
 
-  // Igual que en datos-clave-lamina:
-  // consolida AEP/EZE como destino, pero no cuando el aeropuerto seleccionado
-  // es AEP o EZE.
+  // Consolida AEP/EZE como destino BUE solo cuando el aeropuerto seleccionado
+  // no es AEP ni EZE, igual que en datos-clave-lamina.
   if (!selectedIsBA && otherIsBA) return "BUE";
 
   return other;
 }
+
 function getRouteDisplayName(code, selectedIata, isInternational = false) {
   const c = normalizeRouteCode(code);
   const selected = normalizeRouteCode(selectedIata);
@@ -1075,31 +1095,31 @@ function getRouteDisplayName(code, selectedIata, isInternational = false) {
 
   return c;
 }
+
 function getRouteBucket(code, selectedIata) {
-  const c = clean(code).toUpperCase();
-  const selected = clean(selectedIata).toUpperCase();
+  const c = normalizeRouteCode(code);
+  const selected = normalizeRouteCode(selectedIata);
 
   if (!c) return "cabotaje";
 
   // Operaciones locales: AEP - AEP, FDO - FDO, etc.
   if (c === selected) return "cabotaje";
 
-  // Códigos especiales de la fuente FDO Aeropuertos Argentina
+  // Códigos especiales de la fuente FDO Aeropuertos Argentina.
   if (c === "-AR" || c === "AR") return "cabotaje";
   if (c === "-EX" || c === "EXT") return "internacional";
 
-  // Primero, si el código pertenece al SNA, es cabotaje.
-  // Esto evita casos como BRC clasificado como internacional.
+  // Si el código pertenece al SNA, se clasifica como cabotaje.
   if (domesticIATAs.has(c)) return "cabotaje";
 
-  // Overrides manuales
+  // Overrides manuales: BUE, GRU, GIG, SCL, etc.
   if (DEST_OVERRIDES[c]) {
     return isArgentinaCountry(DEST_OVERRIDES[c].pais)
       ? "cabotaje"
       : "internacional";
   }
 
-  // Clasificación por ListadoIATAmundo.csv
+  // Clasificación por ListadoIATAmundo.csv.
   const meta = getRouteMeta(c);
   if (meta) {
     return isArgentinaCountry(meta.pais)
@@ -1107,10 +1127,10 @@ function getRouteBucket(code, selectedIata) {
       : "internacional";
   }
 
-  // Si no hay metadata, lo dejamos como cabotaje para no mandar códigos locales
-  // desconocidos a internacional por error.
+  // Fallback conservador: evita mandar códigos argentinos desconocidos a internacional.
   return "cabotaje";
 }
+
 
 function formatRouteCardName(name, code) {
   const c = clean(code).toUpperCase();
@@ -1184,13 +1204,6 @@ function renderOperationTopRoutes(iata) {
       }));
   }
 
-  /*
-    Consolidación de destinos:
-    - COR -> AEP y COR -> EZE se agrupan como BUE.
-    - AEP como aeropuerto seleccionado NO se transforma en BUE.
-    - EZE como aeropuerto seleccionado NO se transforma en BUE.
-    Esto replica la lógica de datos-clave-lamina.js.
-  */
   const routeMap = new Map();
 
   rawRows.forEach(r => {
@@ -1204,17 +1217,17 @@ function renderOperationTopRoutes(iata) {
     const key = `${bucket}|${destinationCode}`;
 
     if (!routeMap.has(key)) {
-routeMap.set(key, {
-  code: destinationCode,
-  name: isFdoRoutesAA
-    ? getFDORouteDisplayName(destinationCode)
-    : getRouteDisplayName(destinationCode, selected, bucket === "internacional"),
-  pax: 0,
-  flights: 0,
-  freq: null,
-  bucket,
-  source: r.source
-});
+      routeMap.set(key, {
+        code: destinationCode,
+        name: isFdoRoutesAA
+          ? getFDORouteDisplayName(destinationCode)
+          : getRouteDisplayName(destinationCode, selected, bucket === "internacional"),
+        pax: 0,
+        flights: 0,
+        freq: null,
+        bucket,
+        source: r.source
+      });
     }
 
     const item = routeMap.get(key);
@@ -1247,26 +1260,24 @@ routeMap.set(key, {
   let rightTitle = "CABOTAJE";
   let leftRows = intl;
   let rightRows = cab.slice(0, 3);
+  let layoutClass = "routes-has-intl";
 
   if (!intl.length) {
     leftTitle = "CABOTAJE";
     rightTitle = "CABOTAJE";
     leftRows = cab.slice(0, 3);
     rightRows = cab.slice(3, 6);
+    layoutClass = "routes-only-cab";
   }
 
-  const sourceNote = isFdoRoutesAA
-    ? `<div class="operation-source-note">Fuente: elaborado por GREyF ORSNA con datos de Aeropuertos Argentina. Ranking de rutas correspondiente al año ${YEAR_REF}.</div>`
-    : `<div class="operation-source-note">Fuente: elaborado por GREyF ORSNA con datos de SIAC ANAC.</div>`;
-
   el.innerHTML = `
-    <div class="routes-two-col-grid">
+    <div class="routes-two-col-grid ${layoutClass}">
       ${buildRouteColumnHTML(leftTitle, leftRows)}
       ${buildRouteColumnHTML(rightTitle, rightRows)}
     </div>
-    ${sourceNote}
   `;
 }
+
 
 function renderOperationTopAirlines(iata) {
   const selected = clean(iata).toUpperCase();
