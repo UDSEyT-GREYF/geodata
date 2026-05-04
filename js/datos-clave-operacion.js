@@ -997,7 +997,68 @@ function renderOperationChart(iata) {
     if (info && info.ciudad) return `${info.ciudad} (${c})`;
     return c;
   }
+function getRouteBucket(code, selectedIata) {
+  const c = clean(code).toUpperCase();
+  const selected = clean(selectedIata).toUpperCase();
 
+  if (!c) return "cabotaje";
+  if (c === selected) return "cabotaje";
+  if (c === "-AR") return "cabotaje";
+  if (c === "-EX") return "internacional";
+
+  if (DEST_OVERRIDES[c]?.pais) {
+    return /argentina/i.test(DEST_OVERRIDES[c].pais) ? "cabotaje" : "internacional";
+  }
+
+  const info = routeCodeIndex?.[c] || iataWorldIndex?.[c];
+  const country = clean(info?.pais || info?.country);
+
+  if (!country) return "cabotaje";
+  return /argentina/i.test(country) ? "cabotaje" : "internacional";
+}
+
+function formatRouteCardName(name, code) {
+  const c = clean(code).toUpperCase();
+  const n = clean(name);
+
+  if (!n) return c || "Sin dato";
+
+  const suffix = `(${c})`;
+  if (c && n.endsWith(suffix)) {
+    return n.slice(0, -suffix.length).trim();
+  }
+  return n;
+}
+
+function buildRouteColumnHTML(title, rows) {
+  if (!rows.length) {
+    return `
+      <div class="route-two-col">
+        <div class="route-two-col-title">${escapeHtml(title)}</div>
+        <div class="route-two-col-empty">Sin rutas.</div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="route-two-col">
+      <div class="route-two-col-title">${escapeHtml(title)}</div>
+      <div class="route-two-col-list">
+        ${rows.map(d => `
+          <div class="route-two-col-item">
+            <div class="route-two-col-pill">${escapeHtml(d.code)}</div>
+            <div class="route-two-col-body">
+              <div class="route-two-col-name">${escapeHtml(formatRouteCardName(d.name, d.code))}</div>
+              <div class="route-two-col-meta">
+                ${formatNumber(Math.round(d.pax))} pasajeros
+              </div>
+            </div>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+  `;
+}
 function renderOperationTopRoutes(iata) {
   const selected = clean(iata).toUpperCase();
   const el = q("opTopRoutesList");
@@ -1015,6 +1076,7 @@ function renderOperationTopRoutes(iata) {
         pax: Number(r.p) || 0,
         flights: Number(r.v) || 0,
         freq: Number(r.f) || null,
+        bucket: getRouteBucket(r.d, selected),
         source: "aeropuertos_argentina_fdo"
       }));
   } else {
@@ -1026,46 +1088,47 @@ function renderOperationTopRoutes(iata) {
         pax: Number(r.p) || 0,
         flights: Number(r.v) || 0,
         freq: Number(r.f) || null,
+        bucket: getRouteBucket(r.d, selected),
         source: "rutas_clase_vuelo_resumen"
       }));
   }
 
-  const top = rows
+  rows = rows
     .filter(d => d.pax > 0 || d.flights > 0)
-    .sort((a, b) => b.pax - a.pax)
-    .slice(0, 8);
+    .sort((a, b) => b.pax - a.pax);
 
-  if (!top.length) {
+  if (!rows.length) {
     el.innerHTML = `<div class="operation-empty">Sin datos de rutas para ${YEAR_REF}.</div>`;
     return;
   }
 
-  const rowsHtml = top.map((d, idx) => {
-    const freqText = Number.isFinite(d.freq) && d.freq > 0
-      ? `<br>${d.freq.toLocaleString("es-AR", {
-          minimumFractionDigits: 1,
-          maximumFractionDigits: 1
-        })} frec. sem.`
-      : "";
+  const intl = rows.filter(d => d.bucket === "internacional").slice(0, 3);
+  const cab = rows.filter(d => d.bucket === "cabotaje");
 
-    return `
-      <div class="top-row">
-        <div class="top-rank">${idx + 1}</div>
-        <div class="top-name">${escapeHtml(d.name)}</div>
-        <div class="top-value">
-          ${formatNumber(Math.round(d.pax))} pax<br>
-          ${formatNumber(Math.round(d.flights))} mov.
-          ${freqText}
-        </div>
-      </div>
-    `;
-  }).join("");
+  let leftTitle = "INTERNACIONALES";
+  let rightTitle = "CABOTAJE";
+  let leftRows = intl;
+  let rightRows = cab.slice(0, 3);
+
+  if (!intl.length) {
+    const cabTop6 = cab.slice(0, 6);
+    leftTitle = "CABOTAJE";
+    rightTitle = "CABOTAJE";
+    leftRows = cabTop6.slice(0, 3);
+    rightRows = cabTop6.slice(3, 6);
+  }
 
   const sourceNote = isFdoRoutesAA
     ? `<div class="operation-source-note">Fuente: elaborado por GREyF ORSNA con datos de Aeropuertos Argentina. Ranking de rutas correspondiente al año ${YEAR_REF}.</div>`
     : `<div class="operation-source-note">Fuente: elaborado por GREyF ORSNA con datos de SIAC ANAC.</div>`;
 
-  el.innerHTML = rowsHtml + sourceNote;
+  el.innerHTML = `
+    <div class="routes-two-col-grid">
+      ${buildRouteColumnHTML(leftTitle, leftRows)}
+      ${buildRouteColumnHTML(rightTitle, rightRows)}
+    </div>
+    ${sourceNote}
+  `;
 }
 
 function renderOperationTopAirlines(iata) {
