@@ -269,10 +269,10 @@ if (MINI_MODE) document.body.classList.add("mini");
       opacity: 1,
       color: SIGA_COLORS.violeta,
       point: {
-        radius: 4.2,
+        radius: 2.2,
         color: "#000000",
         fillColor: SIGA_COLORS.violeta,
-        fillOpacity: 0.88
+        fillOpacity: 0.5
       }
     },
     {
