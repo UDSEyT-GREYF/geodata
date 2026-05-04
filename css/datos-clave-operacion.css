@@ -2989,3 +2989,53 @@ body {
 .section-routes.operation-top-routes {
   min-height: 160px;
 }
+/* ============================================================
+   Resumen 2025 por clase de vuelo: Cabotaje / Internacional
+   ============================================================ */
+
+.traffic-class-segments {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
+  color: #1f2937;
+  font-size: 0.76rem;
+  line-height: 1.15;
+  flex-wrap: wrap;
+}
+
+.traffic-segment {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  white-space: nowrap;
+}
+
+.traffic-segment-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #5b6470;
+  text-transform: uppercase;
+}
+
+.traffic-segment-value {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #123f73;
+}
+
+.traffic-segment-separator {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #9aa3af;
+}
+
+/* Diferenciación suave por segmento */
+.traffic-segment-cab .traffic-segment-value {
+  color: #1f5f99;
+}
+
+.traffic-segment-int .traffic-segment-value {
+  color: #257a38;
+}
