@@ -2495,7 +2495,7 @@ body {
 
 .siga-map-frame-wrap {
   width: 100%;
-  height: 205px;
+  height: 238px;
   border: 1px solid #d0d7e2;
   border-radius: 4px;
   overflow: hidden;
@@ -2507,4 +2507,17 @@ body {
   height: 100%;
   border: 0;
   display: block;
+}
+/* =========================================================
+   OPERACIÓN | SIN ENCABEZADOS DE COLUMNA
+   ========================================================= */
+
+.operation-col > .col-header {
+  display: none !important;
+}
+
+/* Aprovecha el espacio liberado para agrandar el mapa SIGA */
+.section-siga-map {
+  min-height: 245px;
+  flex: 1 1 auto;
 }
