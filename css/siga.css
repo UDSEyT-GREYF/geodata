@@ -116,11 +116,10 @@ body {
 .siga-button-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
 .siga-button-row-tight { gap: 4px; }
 .siga-btn {
-  border: 1px solid transparent;
   border-radius: 7px;
-  padding: 6px 9px;
-  font-size: .76rem;
-  font-weight: 650;
+  padding: 2px 3px;
+  font-size: .65rem;
+  font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
 }
