@@ -53,7 +53,7 @@ if (MINI_MODE) document.body.classList.add("mini");
     },
     {
       id: "argenmap_gris",
-      name: "Argenmap gris",
+      name: "Argenmap IGN gris",
       url: "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_gris@EPSG%3A3857@png/{z}/{x}/{-y}.png",
       tms: true,
       minZoom: 3,
@@ -63,7 +63,7 @@ if (MINI_MODE) document.body.classList.add("mini");
     },
     {
       id: "argenmap_oscuro",
-      name: "Argenmap oscuro",
+      name: "Argenmap IGN oscuro",
       url: "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/argenmap_oscuro@EPSG%3A3857@png/{z}/{x}/{-y}.png",
       tms: true,
       minZoom: 3,
@@ -73,7 +73,7 @@ if (MINI_MODE) document.body.classList.add("mini");
     },
     {
       id: "argenmap_topografico",
-      name: "Argenmap topográfico",
+      name: "Argenmap IGN topográfico",
       url: "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_topo@EPSG%3A3857@png/{z}/{x}/{-y}.png",
       tms: true,
       minZoom: 3,
