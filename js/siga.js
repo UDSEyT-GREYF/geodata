@@ -43,7 +43,7 @@ if (MINI_MODE) document.body.classList.add("mini");
   const BASEMAP_CONFIGS = [
     {
       id: "argenmap",
-      name: "Argenmap",
+      name: "Argenmap IGN",
       url: "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png",
       tms: true,
       minZoom: 3,
@@ -98,6 +98,14 @@ if (MINI_MODE) document.body.classList.add("mini");
       swatch: "#f2e1d6"
     },
     {
+      id: "opentopo",
+      name: "Openstreetmap Topográfico",
+      url: "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+      maxZoom: 17,
+      attribution: "© OpenStreetMap contributors, SRTM | © OpenTopoMap",
+      swatch: "#e9dcc1"
+    },
+    {
       id: "carto_claro",
       name: "Carto claro",
       url: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
@@ -122,24 +130,8 @@ if (MINI_MODE) document.body.classList.add("mini");
       swatch: "#242a31"
     },
     {
-      id: "opentopo",
-      name: "OpenTopoMap",
-      url: "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
-      maxZoom: 17,
-      attribution: "© OpenStreetMap contributors, SRTM | © OpenTopoMap",
-      swatch: "#e9dcc1"
-    },
-    {
-      id: "esri_imagery",
-      name: "Imágenes satelitales Esri",
-      url: "https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-      maxZoom: 19,
-      attribution: "Imágenes satelitales © Esri",
-      swatchImage: "https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/0/0/0"
-    },
-    {
       id: "google_imagery",
-      name: "Imágenes satelitales Google",
+      name: "Google satelital",
       url: "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
       minZoom: 3,
       maxZoom: 21,
@@ -147,8 +139,17 @@ if (MINI_MODE) document.body.classList.add("mini");
       swatchImage: "https://mt1.google.com/vt/lyrs=s&x=0&y=0&z=0"
     },
     {
+      id: "esri_imagery",
+      name: "Esri satelital",
+      url: "https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+      maxZoom: 19,
+      attribution: "Imágenes satelitales © Esri",
+      swatchImage: "https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/0/0/0"
+    },
+
+    {
       id: "esri_calles",
-      name: "Mapa Esri calles",
+      name: "Esri calles",
       url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
       maxZoom: 20,
       attribution: "Tiles © Esri",
@@ -156,7 +157,7 @@ if (MINI_MODE) document.body.classList.add("mini");
     },
     {
       id: "esri_topografico",
-      name: "Mapa topográfico Esri",
+      name: "Esri topográfico",
       url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
       maxZoom: 20,
       attribution: "Mapa topográfico © Esri",
@@ -164,7 +165,7 @@ if (MINI_MODE) document.body.classList.add("mini");
     },
     {
       id: "esri_gris",
-      name: "Mapa Esri gris claro",
+      name: "Esri gris claro",
       url: "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
       maxZoom: 16,
       attribution: "Tiles © Esri",
@@ -172,7 +173,7 @@ if (MINI_MODE) document.body.classList.add("mini");
     },
     {
       id: "esri_oceanico",
-      name: "Mapa Esri Fondo Oceánico",
+      name: "Esri Oceánico",
       url: "https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}",
       minZoom: 3,
       maxZoom: 10,
