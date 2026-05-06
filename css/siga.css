@@ -517,35 +517,48 @@ body.embed .siga-subsection-title {
 .siga-airport-floating-text {
   position: absolute;
   left: 0;
-  top: -28px;
+  top: -31px;
   transform: translateX(-50%);
-  color: #111111;
+  width: 96px;
+  max-width: 96px;
 
-  /* más chico y menos pesado */
-  font-size: 8.0px;
-  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: #111111;
+  font-size: 8px;
+  font-weight: 500;
   line-height: 1.05;
   text-align: center;
-
-  /* permite partir nombres largos */
-  width: 88px;
-  max-width: 88px;
-  white-space: normal;
-  overflow: hidden;
-
-  /* máximo 2 líneas */
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
 
   background: transparent;
   border: 0;
   padding: 0;
 
-  /* halo más suave: menos empaste */
   text-shadow:
     0 0 2px #ffffff,
     0 0 3px #ffffff;
+}
+
+.siga-airport-label-line {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.siga-airport-label-line-1,
+.siga-airport-label-line-2 {
+  white-space: nowrap;
+}
+
+.siga-airport-label-line-1 {
+  font-weight: 600;
+}
+
+.siga-airport-label-line-2 {
+  font-weight: 400;
 }
 
 /* Anula el estilo anterior de etiqueta-píldora si quedó en caché o en versiones previas */
