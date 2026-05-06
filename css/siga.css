@@ -517,7 +517,7 @@ body.embed .siga-subsection-title {
 .siga-airport-floating-text {
   position: absolute;
   left: 0;
-  top: -31px;
+  top: -25px;
   transform: translateX(-50%);
   width: 96px;
   max-width: 96px;
