@@ -202,7 +202,7 @@ if (MINI_MODE) document.body.classList.add("mini");
     },
     {
       id: "predios",
-      group: "Contexto territorial",
+      group: "Explotación",
       name: "Predios aeroportuarios",
       url: "fuentes/poligonos_aeropuertos.geojson",
       active: true,
@@ -381,7 +381,13 @@ if (MINI_MODE) document.body.classList.add("mini");
       }
     }
   ];
-
+const LAYER_GROUP_ORDER = [
+  "Explotación",
+  "Edificios e infraestructura",
+  "Área de movimiento",
+  "Servicios y apoyo",
+  "Contexto territorial"
+];
   const state = {
     map: null,
     baseLayers: {},
@@ -897,18 +903,24 @@ function getAirportShortName(airport) {
     });
   }
 
-  function renderLayerTree() {
-    const root = q("layerTree");
-    if (!root) return;
+function renderLayerTree() {
+  const root = q("layerTree");
+  if (!root) return;
 
-    const groups = new Map();
-    LAYER_CONFIGS.forEach((cfg) => {
-      if (!groups.has(cfg.group)) groups.set(cfg.group, []);
-      groups.get(cfg.group).push(cfg);
-    });
+  const groups = new Map();
+  LAYER_CONFIGS.forEach((cfg) => {
+    if (!groups.has(cfg.group)) groups.set(cfg.group, []);
+    groups.get(cfg.group).push(cfg);
+  });
 
-    root.innerHTML = "";
-    groups.forEach((items, groupName) => {
+  const orderedGroups = [
+    ...LAYER_GROUP_ORDER.filter((groupName) => groups.has(groupName)),
+    ...Array.from(groups.keys()).filter((groupName) => !LAYER_GROUP_ORDER.includes(groupName))
+  ];
+
+  root.innerHTML = "";
+  orderedGroups.forEach((groupName) => {
+    const items = groups.get(groupName);
       const groupEl = document.createElement("div");
       groupEl.className = "layer-group";
       groupEl.innerHTML = `<div class="layer-group-title">${escapeHtml(groupName)}</div>`;
