@@ -615,7 +615,54 @@ function getAirportShortName(airport) {
     });
   }
 
+function buildAirportLabelText(iata, name) {
+  const code = `(${escapeHtml(clean(iata).toUpperCase())})`;
+  const cleanName = clean(name);
 
+  if (!cleanName) {
+    return {
+      line1: code,
+      line2: ""
+    };
+  }
+
+  const words = cleanName.split(/\s+/).filter(Boolean);
+
+  // Si el nombre es corto, deja el código arriba y el nombre abajo.
+  // Ejemplo:
+  // (AEP)
+  // Aeroparque
+  if (cleanName.length <= 15 || words.length <= 1) {
+    return {
+      line1: code,
+      line2: escapeHtml(cleanName)
+    };
+  }
+
+  // Si el nombre es largo, usa el código al inicio de la primera línea.
+  // Ejemplo:
+  // (CPC) San Martín
+  // de los Andes
+  const maxFirstLineNameChars = 13;
+  const firstLineWords = [];
+  const secondLineWords = [...words];
+
+  while (secondLineWords.length) {
+    const next = secondLineWords[0];
+    const test = [...firstLineWords, next].join(" ");
+
+    if (firstLineWords.length > 0 && test.length > maxFirstLineNameChars) {
+      break;
+    }
+
+    firstLineWords.push(secondLineWords.shift());
+  }
+
+  return {
+    line1: `${code} ${escapeHtml(firstLineWords.join(" "))}`,
+    line2: escapeHtml(secondLineWords.join(" "))
+  };
+}
   function createAirportLabels() {
     if (!state.map) return;
 
@@ -631,11 +678,16 @@ function getAirportShortName(airport) {
       const center = bounds?.getCenter() || getAirportCenterFromFeature(airport.feature, airport.properties);
       if (!center) return;
 
-      const shortName = getAirportShortName(airport);
-      const html = `
-        <div class="siga-airport-center-icon" aria-hidden="true">✈</div>
-        <div class="siga-airport-floating-text">${escapeHtml(shortName)} (${escapeHtml(airport.iata)})</div>
-      `;
+const shortName = getAirportShortName(airport);
+const label = buildAirportLabelText(airport.iata, shortName);
+
+const html = `
+  <div class="siga-airport-center-icon" aria-hidden="true">✈</div>
+  <div class="siga-airport-floating-text">
+    <span class="siga-airport-label-line siga-airport-label-line-1">${label.line1}</span>
+    <span class="siga-airport-label-line siga-airport-label-line-2">${label.line2}</span>
+  </div>
+`;
 
       const marker = L.marker(center, {
         interactive: false,
