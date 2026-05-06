@@ -233,7 +233,7 @@ if (MINI_MODE) document.body.classList.add("mini");
     {
       id: "cabeceras",
       group: "Área de movimiento",
-      name: "Cabeceras 2026",
+      name: "Cabeceras de pista",
       url: "fuentes/Cabeceras2026.geojson",
       active: true,
       opacity: 1,
@@ -248,7 +248,7 @@ if (MINI_MODE) document.body.classList.add("mini");
     {
       id: "plataformas",
       group: "Área de movimiento",
-      name: "Plataformas 2026",
+      name: "Plataformas",
       url: "fuentes/Plataformas2026.geojson",
       active: true,
       opacity: 0.92,
@@ -263,7 +263,7 @@ if (MINI_MODE) document.body.classList.add("mini");
     {
       id: "psn",
       group: "Área de movimiento",
-      name: "Posiciones PSN",
+      name: "Posiciones aeronaves",
       url: "fuentes/psn_posiciones.geojson",
       active: true,
       opacity: 1,
@@ -278,7 +278,7 @@ if (MINI_MODE) document.body.classList.add("mini");
     {
       id: "terminales2026",
       group: "Edificios e infraestructura",
-      name: "Terminales 2026",
+      name: "Terminales",
       url: "fuentes/Terminales2026.geojson",
       active: true,
       opacity: 0.94,
@@ -293,7 +293,7 @@ if (MINI_MODE) document.body.classList.add("mini");
     {
       id: "torres",
       group: "Edificios e infraestructura",
-      name: "Torres de control 2026",
+      name: "Torres de control",
       url: "fuentes/Torres_control_2026.geojson",
       active: true,
       opacity: 1,
@@ -308,7 +308,7 @@ if (MINI_MODE) document.body.classList.add("mini");
     {
       id: "hangares",
       group: "Edificios e infraestructura",
-      name: "Hangares 2026",
+      name: "Hangares",
       url: "fuentes/Hangares2026.geojson",
       active: false,
       opacity: 0.9,
@@ -323,7 +323,7 @@ if (MINI_MODE) document.body.classList.add("mini");
     {
       id: "otros",
       group: "Edificios e infraestructura",
-      name: "Otros edificios 2026",
+      name: "Otros edificios",
       url: "fuentes/Otros_edificios2026.geojson",
       active: false,
       opacity: 0.9,
@@ -338,7 +338,7 @@ if (MINI_MODE) document.body.classList.add("mini");
     {
       id: "estacionamientos",
       group: "Edificios e infraestructura",
-      name: "Estacionamientos vehiculares 2026",
+      name: "Estacionamientos vehiculares",
       url: "fuentes/Estacionamientos_vehiculares2026.geojson",
       active: false,
       opacity: 0.9,
@@ -353,7 +353,7 @@ if (MINI_MODE) document.body.classList.add("mini");
     {
       id: "paradasapp",
       group: "Servicios y apoyo",
-      name: "Paradas APP",
+      name: "Paradas transporte público",
       url: "fuentes/paradasapp.geojson",
       active: false,
       opacity: 1,
@@ -368,7 +368,7 @@ if (MINI_MODE) document.body.classList.add("mini");
     {
       id: "smn",
       group: "Servicios y apoyo",
-      name: "Estaciones meteorológicas SMN 2026",
+      name: "Estaciones meteorológicas SMN",
       url: "fuentes/smn_estaciones_meteorologicas2026.geojson",
       active: false,
       opacity: 1,
