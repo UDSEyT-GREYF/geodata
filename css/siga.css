@@ -343,8 +343,8 @@ body.embed .leaflet-control-attribution {
    SIGA – Selector + mapas base en panel lateral
    ============================== */
 .siga-airport-card .siga-section-title {
-  font-size: .88rem;
-  line-height: 1.15;
+  font-size: .7rem;
+  line-height: 0.9;
 }
 
 .siga-subsection-title {
