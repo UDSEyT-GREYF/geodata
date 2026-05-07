@@ -262,6 +262,27 @@ if (MINI_MODE) document.body.classList.add("mini");
       }
     },
     {
+  id: "aeroplantas",
+  group: "Área de movimiento",
+  name: "Aeroplantas",
+  url: "fuentes/Aeroplantas.geojson",
+  active: true,
+  opacity: 1,
+  color: "#556b2f",
+  style: {
+    color: "#3f4f23",
+    weight: 1.4,
+    fillColor: "#808000",
+    fillOpacity: 0.42
+  },
+  point: {
+    radius: 5,
+    color: "#3f4f23",
+    fillColor: "#808000",
+    fillOpacity: 0.9
+  }
+},
+    {
       id: "psn",
       group: "Área de movimiento",
       name: "Posiciones aeronaves",
@@ -311,7 +332,7 @@ if (MINI_MODE) document.body.classList.add("mini");
       group: "Edificios e infraestructura",
       name: "Hangares",
       url: "fuentes/Hangares2026.geojson",
-      active: false,
+      active: true,
       opacity: 0.9,
       color: "#8a5a35",
       style: {
@@ -326,7 +347,7 @@ if (MINI_MODE) document.body.classList.add("mini");
       group: "Edificios e infraestructura",
       name: "Otros edificios",
       url: "fuentes/Otros_edificios2026.geojson",
-      active: false,
+      active: true,
       opacity: 0.9,
       color: "#6c757d",
       style: {
@@ -341,7 +362,7 @@ if (MINI_MODE) document.body.classList.add("mini");
       group: "Edificios e infraestructura",
       name: "Estacionamientos vehiculares",
       url: "fuentes/Estacionamientos_vehiculares2026.geojson",
-      active: false,
+      active: true,
       opacity: 0.9,
       color: SIGA_COLORS.grisChip,
       style: {
@@ -356,7 +377,7 @@ if (MINI_MODE) document.body.classList.add("mini");
       group: "Servicios y apoyo",
       name: "Paradas transporte público",
       url: "fuentes/paradasapp.geojson",
-      active: false,
+      active: true,
       opacity: 1,
       color: SIGA_COLORS.verdeInternacional,
       point: {
@@ -371,7 +392,7 @@ if (MINI_MODE) document.body.classList.add("mini");
       group: "Servicios y apoyo",
       name: "Estaciones meteorológicas SMN",
       url: "fuentes/smn_estaciones_meteorologicas2026.geojson",
-      active: false,
+      active: true,
       opacity: 1,
       color: SIGA_COLORS.azulLink,
       point: {
