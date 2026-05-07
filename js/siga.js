@@ -301,7 +301,7 @@ polygonIcon: {
             fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
     </svg>
   `,
-  className: "siga-poly-center-icon siga-poly-center-icon-aeroplanta"
+    className: "siga-poly-center-icon siga-poly-center-icon-aeroplanta siga-zoom-detail-icon"
 }
 },
     {
@@ -818,11 +818,24 @@ if (cfg.polygonIcon && isPolygonGeometry(feature)) {
 
     layer.on("click", () => setFeatureInfo(cfg, feature));
 
-    layer.on("mouseover", () => {
-      if (layer.setStyle && cfg.id !== "provincias") {
-        layer.setStyle({ weight: Math.max(3, Number((cfg.style || {}).weight || 1.5) + 1.5), fillOpacity: Math.min(0.72, Number((cfg.style || {}).fillOpacity || 0.35) + 0.18) });
-      }
+layer.on("mouseover", () => {
+  if (!layer.setStyle || cfg.id === "provincias") return;
+
+  // Aeroplantas: solo engrosar borde, sin relleno
+  if (cfg.id === "aeroplantas") {
+    layer.setStyle({
+      weight: Math.max(3, Number((cfg.style || {}).weight || 1.4) + 1.6),
+      fill: false,
+      fillOpacity: 0
     });
+    return;
+  }
+
+  layer.setStyle({
+    weight: Math.max(3, Number((cfg.style || {}).weight || 1.5) + 1.5),
+    fillOpacity: Math.min(0.72, Number((cfg.style || {}).fillOpacity ?? 0.35) + 0.18)
+  });
+});
 
     layer.on("mouseout", () => {
       const def = state.layerDefs.get(cfg.id);
@@ -933,12 +946,20 @@ if (cfg.polygonIcon && isPolygonGeometry(feature)) {
   function applyLayerOpacity(layer, opacity) {
     if (!layer) return;
     layer.eachLayer?.((l) => {
-      if (l.setStyle) {
-        const style = {};
-        if (l.options.fillOpacity !== undefined) style.fillOpacity = opacity * (l.options.fillOpacity || 0.5);
-        if (l.options.opacity !== undefined) style.opacity = opacity;
-        l.setStyle(style);
-      }
+if (l.setStyle) {
+  const style = {};
+
+  if (l.options.fill === false) {
+    style.fill = false;
+    style.fillOpacity = 0;
+  } else if (l.options.fillOpacity !== undefined) {
+    style.fillOpacity = opacity * (l.options.fillOpacity ?? 0.5);
+  }
+
+  if (l.options.opacity !== undefined) style.opacity = opacity;
+
+  l.setStyle(style);
+}
       if (l.setOpacity) l.setOpacity(opacity);
     });
   }
