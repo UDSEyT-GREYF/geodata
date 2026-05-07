@@ -209,6 +209,13 @@ if (MINI_MODE) document.body.classList.add("mini");
       active: true,
       opacity: 0.95,
       color: SIGA_COLORS.azulLink,
+      tooltipTitle: "Predio aeroportuario",
+      tooltipFields: [
+      { label: "Aeropuerto", keys: ["Aeropuerto", "aeropuerto", "nombre", "Nombre"] },
+      { label: "IATA", keys: ["IATA", "iata"] },
+      { label: "OACI", keys: ["OACI", "oaci"] }
+    ],
+
       style: {
         color: SIGA_COLORS.azulLink,
         weight: 2.2,
