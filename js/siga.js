@@ -217,11 +217,13 @@ if (MINI_MODE) document.body.classList.add("mini");
     ],
   popupFields: [
     { label: "IATA", keys: ["IATA", "iata"] },
+    { label: "Grupo", keys: ["Grupo"] },
     { label: "Aeropuerto", keys: ["Nom_aerop", "Aeropuerto", "aeropuerto", "Nombre"] },
     { label: "Ciudad", keys: ["Ciudad", "ciudad"] },
     { label: "Provincia", keys: ["Provincia", "provincia"] },
     { label: "Habilitación", keys: ["Habilitaci", "Habilitación", "habilitacion"] },
-    { label: "Superficie", keys: ["SupHa", "sup_ha", "superficie"] }
+    { label: "Sup. Hectáreas", keys: ["SupHaText", "Supha"],suffix: "Ha."  },
+    { label: "Sup. Kilómetros", keys: ["SupKm2Text", "SupKm2"], suffix: "km²" }
   ],
       style: {
         color: SIGA_COLORS.azulLink,
@@ -957,7 +959,8 @@ function getImportantProps(feature, cfg = {}) {
 
         if (value === undefined || value === null || String(value).trim() === "") return null;
 
-        return [label, value];
+        const suffix = field.suffix ? ` ${field.suffix}` : "";
+        return [label, `${formatValue(value)}${suffix}`];
       })
       .filter(Boolean);
   }
