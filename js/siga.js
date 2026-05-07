@@ -261,7 +261,23 @@ if (MINI_MODE) document.body.classList.add("mini");
         fillOpacity: 0.42
       }
     },
+
     {
+      id: "psn",
+      group: "Área de movimiento",
+      name: "Posiciones aeronaves",
+      url: "fuentes/psn_posiciones.geojson",
+      active: true,
+      opacity: 1,
+      color: SIGA_COLORS.violeta,
+      point: {
+        radius: 2.2,
+        color: "#000000",
+        fillColor: SIGA_COLORS.violeta,
+        fillOpacity: 0.5
+      }
+    },
+        {
   id: "aeroplantas",
   group: "Área de movimiento",
   name: "Aeroplantas",
@@ -282,21 +298,6 @@ if (MINI_MODE) document.body.classList.add("mini");
     fillOpacity: 0.9
   }
 },
-    {
-      id: "psn",
-      group: "Área de movimiento",
-      name: "Posiciones aeronaves",
-      url: "fuentes/psn_posiciones.geojson",
-      active: true,
-      opacity: 1,
-      color: SIGA_COLORS.violeta,
-      point: {
-        radius: 2.2,
-        color: "#000000",
-        fillColor: SIGA_COLORS.violeta,
-        fillOpacity: 0.5
-      }
-    },
     {
       id: "terminales2026",
       group: "Edificios e infraestructura",
