@@ -461,7 +461,10 @@ const LAYER_GROUP_ORDER = [
   function hasGeometry(feature) {
     return !!feature?.geometry;
   }
-
+function isPolygonGeometry(feature) {
+  const type = feature?.geometry?.type;
+  return type === "Polygon" || type === "MultiPolygon";
+}
 
   function getDetailLabelValue(cfg, feature) {
     const props = feature?.properties || {};
@@ -782,21 +785,27 @@ const html = `
     const title = featureTitle(feature, cfg.name);
     const iata = getFeatureIata(feature);
 
-    const detailLabel = getDetailLabelValue(cfg, feature);
+const detailLabel = getDetailLabelValue(cfg, feature);
 
-    if (detailLabel) {
-      layer.bindTooltip(detailLabel, {
-        permanent: true,
-        direction: cfg.id === "psn" ? "top" : "center",
-        className: `siga-tooltip siga-label-detail siga-label-detail-${cfg.id}`
-      });
-    } else if (title || iata) {
-      layer.bindTooltip(iata ? `${iata} · ${title}` : title, {
-        sticky: true,
-        direction: "top",
-        className: "siga-tooltip"
-      });
-    }
+if (cfg.polygonIcon && isPolygonGeometry(feature)) {
+  layer.bindTooltip(cfg.polygonIcon.html || "", {
+    permanent: true,
+    direction: "center",
+    className: cfg.polygonIcon.className || "siga-poly-center-icon"
+  });
+} else if (detailLabel) {
+  layer.bindTooltip(detailLabel, {
+    permanent: true,
+    direction: cfg.id === "psn" ? "top" : "center",
+    className: `siga-tooltip siga-label-detail siga-label-detail-${cfg.id}`
+  });
+} else if (title || iata) {
+  layer.bindTooltip(iata ? `${iata} · ${title}` : title, {
+    sticky: true,
+    direction: "top",
+    className: "siga-tooltip"
+  });
+}
 
     layer.bindPopup(buildPopupHtml(cfg, feature), { className: "siga-popup", maxWidth: 360 });
 
