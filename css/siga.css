@@ -615,45 +615,13 @@ body.mini .leaflet-control-mouseposition,
 body.mini .leaflet-control-easyPrint {
   display: none !important;
 }
-/* ==============================
-   SIGA – Ícono centrado en polígonos
-   ============================== */
-
-.siga-poly-center-icon {
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-  pointer-events: none;
-}
-
-.siga-poly-center-icon::before {
-  content: "";
-  display: none;
-}
-
 .siga-poly-center-icon-aeroplanta {
-  background: transparent;
-  border: 0;
-}
-
-.siga-poly-center-icon-aeroplanta .leaflet-tooltip-content {
-  margin: 0;
-}
-
-.siga-poly-center-icon-aeroplanta {
-  width: 20px;
-  height: 20px;
-  display: grid;
-  place-items: center;
-
   background: rgba(85, 107, 47, 0.88);
   border: 1px solid rgba(63, 79, 35, 0.95);
   border-radius: 50%;
-
   color: #ffffff;
   font-size: 12px;
-  line-height: 1;
-  text-align: center;
-
+  font-weight: 700;
+  padding: 2px 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.30);
 }
