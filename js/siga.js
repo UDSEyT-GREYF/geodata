@@ -325,7 +325,7 @@ if (MINI_MODE) document.body.classList.add("mini");
         color: "#000000",
         fillColor: SIGA_COLORS.violeta,
         fillOpacity: 0.5
-      }
+      },
       tooltipTitle: "Posiciones de aeronaves",
       tooltipFields: [
       { label: "IATA", keys: ["IATA", "iata"] },
