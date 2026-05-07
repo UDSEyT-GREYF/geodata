@@ -319,27 +319,27 @@ body.embed .leaflet-control-attribution {
 }
 
 .siga-label-detail-psn {
-  color: rgba(107, 47, 130, 0.72);
+  color: rgba(107, 47, 130, 0.85);
   border-color: rgba(107, 47, 130, 0.42);
   font-size: 8px;
 }
 
 .siga-label-detail-pistas {
-  color: rgba(34, 34, 34, 0.72);
+  color: rgba(34, 34, 34, 0.85);
   border-color: rgba(34, 34, 34, 0.38);
 }
 
 .siga-label-detail-cabeceras {
-  color: rgba(0, 40, 85, 0.72);
+  color: rgba(0, 40, 85, 0.85);
   border-color: rgba(0, 40, 85, 0.38);
 }
 
 .siga-label-detail-terminales2026 {
-  color: rgba(138, 31, 31, 0.72);
+  color: rgba(138, 31, 31, 0.85);
   border-color: rgba(178, 34, 34, 0.38);
 }
 .siga-label-detail-plataformas {
-  color: rgba(0, 114, 187, 0.72);
+  color: rgba(0, 114, 187, 0.85);
   border-color: rgba(0, 114, 187, 0.38);
   font-size: 8px;
 }
