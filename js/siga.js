@@ -241,6 +241,19 @@ if (MINI_MODE) document.body.classList.add("mini");
       active: true,
       opacity: 1,
       color: SIGA_COLORS.grisPista,
+
+      tooltipTitle: "Pistas",
+      tooltipFields: [
+      { label: "Pista", keys: ["tipo", "Tipo",] },
+      { label: "IATA", keys: ["IATA", "iata"] },
+    ],
+  popupFields: [
+    { label: "IATA", keys: ["IATA", "iata"] },
+    { label: "Longitud", keys: ["largxanchm"], suffix: "metros" },
+    { label: "Orientación", keys: ["orientacio", "Orientacion"] },
+    { label: "Material", keys: ["material", "Material"] }
+  ],
+      
       style: {
         color: SIGA_COLORS.grisPista,
         weight: 2,
@@ -256,6 +269,16 @@ if (MINI_MODE) document.body.classList.add("mini");
       active: true,
       opacity: 1,
       color: SIGA_COLORS.azulMedio,
+
+      tooltipTitle: "Cabeceras",
+      tooltipFields: [
+      { label: "Cabecera", keys: ["Cabecera", "cabecera",] },
+      { label: "IATA", keys: ["IATA", "iata"] },
+    ],
+  popupFields: [
+    { label: "IATA", keys: ["IATA", "iata"] },
+    { label: "Cabecera", keys: ["Cabecera", "cabecera"], }
+  ],
       style: {
         color: SIGA_COLORS.azulOscuro,
         weight: 1.8,
@@ -271,6 +294,17 @@ if (MINI_MODE) document.body.classList.add("mini");
       active: true,
       opacity: 0.92,
       color: SIGA_COLORS.celesteCab,
+      tooltipTitle: "Plataformas",
+      tooltipFields: [
+      { label: "Tipo", keys: ["Tipo", "tipo",] },
+      { label: "IATA", keys: ["IATA", "iata"] },
+    ],
+  popupFields: [
+    { label: "IATA", keys: ["IATA", "iata"] },
+    { label: "Tipo", keys: ["Tipo", "tipo"], },
+    { label: "Superficie", keys: ["Metros2", "Metros", "Metros2"], suffix: "metros²" },
+  ],
+      
       style: {
         color: SIGA_COLORS.azulLink,
         weight: 1.5,
