@@ -305,11 +305,11 @@ body.embed .leaflet-control-attribution {
 .siga-label-detail {
   display: none;
   pointer-events: none;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid #8fa4bd;
-  color: #002855;
+  background: rgba(255, 255, 255, 0.50);
+  border: 1px solid rgba(143, 164, 189, 0.50);
+  color: rgba(0, 40, 85, 0.72);
   font-size: 9px;
-  font-weight: 800;
+  font-weight: 600;
   padding: 1px 4px;
   box-shadow: none;
 }
@@ -319,24 +319,24 @@ body.embed .leaflet-control-attribution {
 }
 
 .siga-label-detail-psn {
-  color: #6b2f82;
-  border-color: rgba(107, 47, 130, 0.55);
+  color: rgba(107, 47, 130, 0.72);
+  border-color: rgba(107, 47, 130, 0.42);
   font-size: 8px;
 }
 
 .siga-label-detail-pistas {
-  color: #222222;
-  border-color: rgba(34, 34, 34, 0.45);
+  color: rgba(34, 34, 34, 0.72);
+  border-color: rgba(34, 34, 34, 0.38);
 }
 
 .siga-label-detail-cabeceras {
-  color: #002855;
-  border-color: rgba(0, 40, 85, 0.5);
+  color: rgba(0, 40, 85, 0.72);
+  border-color: rgba(0, 40, 85, 0.38);
 }
 
 .siga-label-detail-terminales2026 {
-  color: #8a1f1f;
-  border-color: rgba(178, 34, 34, 0.5);
+  color: rgba(138, 31, 31, 0.72);
+  border-color: rgba(178, 34, 34, 0.38);
 }
 
 /* ==============================
