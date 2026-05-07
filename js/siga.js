@@ -284,13 +284,13 @@ if (MINI_MODE) document.body.classList.add("mini");
   url: "fuentes/Aeroplantas.geojson",
   active: true,
   opacity: 1,
-  color: "#556b2f",
-  style: {
-    color: "#3f4f23",
-    weight: 1.2,
-    fillColor: "#808000",
-    fillOpacity: 0.30
-  },
+color: "#d71920",
+style: {
+  color: "#d71920",
+  weight: 1.4,
+  fillColor: "#d71920",
+  fillOpacity: 0
+},
 polygonIcon: {
   html: `
     <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
