@@ -338,7 +338,11 @@ body.embed .leaflet-control-attribution {
   color: rgba(138, 31, 31, 0.72);
   border-color: rgba(178, 34, 34, 0.38);
 }
-
+.siga-label-detail-plataformas {
+  color: rgba(0, 114, 187, 0.72);
+  border-color: rgba(0, 114, 187, 0.38);
+  font-size: 8px;
+}
 /* ==============================
    SIGA – Selector + mapas base en panel lateral
    ============================== */
