@@ -296,12 +296,12 @@ if (MINI_MODE) document.body.classList.add("mini");
       color: SIGA_COLORS.celesteCab,
       tooltipTitle: "Plataformas",
       tooltipFields: [
-      { label: "Tipo", keys: ["Tipo", "tipo",] },
+      { label: "Tipo", keys: ["Tipo", "tipo"] },
       { label: "IATA", keys: ["IATA", "iata"] },
     ],
   popupFields: [
     { label: "IATA", keys: ["IATA", "iata"] },
-    { label: "Tipo", keys: ["Tipo", "tipo"], },
+    { label: "Tipo", keys: ["Tipo", "tipo"] },
     { label: "Superficie", keys: ["Metros2", "Metros", "Metros2"], suffix: "metros²" },
   ],
       
@@ -327,6 +327,15 @@ if (MINI_MODE) document.body.classList.add("mini");
         fillColor: SIGA_COLORS.violeta,
         fillOpacity: 0.5
       }
+
+      tooltipFields: [
+      { label: "IATA", keys: ["IATA", "iata"] },
+      { label: "Posición", keys: ["Posicion"] },
+    ],
+  popupFields: [
+    { label: "IATA", keys: ["IATA", "iata"] },
+    { label: "Posición", keys: ["Posicion"] },
+  ],
     },
 {
   id: "aeroplantas",
