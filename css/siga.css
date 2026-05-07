@@ -625,3 +625,44 @@ body.mini .leaflet-control-easyPrint {
   padding: 2px 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.30);
 }
+/* ==============================
+   SIGA – Aeroplantas: ícono por zoom
+   ============================== */
+
+/* Oculto por defecto: no aparece en vista nacional */
+.siga-zoom-detail-icon {
+  display: none !important;
+}
+
+/* Aparece junto con PSN, pistas, cabeceras y terminales */
+.siga-show-detail-labels .siga-zoom-detail-icon {
+  display: grid !important;
+}
+
+/* Tooltip usado como contenedor del ícono centrado */
+.siga-poly-center-icon {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  pointer-events: none;
+  padding: 0 !important;
+}
+
+/* Ícono de aeroplanta */
+.siga-poly-center-icon-aeroplanta {
+  width: 20px;
+  height: 20px;
+  place-items: center;
+
+  background: rgba(215, 25, 32, 0.88) !important;
+  border: 1px solid rgba(150, 0, 0, 0.95) !important;
+  border-radius: 50%;
+
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.30) !important;
+}
