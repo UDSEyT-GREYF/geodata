@@ -277,7 +277,7 @@ if (MINI_MODE) document.body.classList.add("mini");
         fillOpacity: 0.5
       }
     },
-        {
+{
   id: "aeroplantas",
   group: "Área de movimiento",
   name: "Aeroplantas",
@@ -287,16 +287,22 @@ if (MINI_MODE) document.body.classList.add("mini");
   color: "#556b2f",
   style: {
     color: "#3f4f23",
-    weight: 1.4,
+    weight: 1.2,
     fillColor: "#808000",
-    fillOpacity: 0.42
+    fillOpacity: 0.30
   },
-  point: {
-    radius: 5,
-    color: "#3f4f23",
-    fillColor: "#808000",
-    fillOpacity: 0.9
-  }
+polygonIcon: {
+  html: `
+    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+      <path d="M7 3h8c1.1 0 2 .9 2 2v14c0 1.1-.9 2-2 2H7c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2Z"
+            fill="currentColor"/>
+      <path d="M8 6h6v3H8V6Z" fill="#ffffff" opacity="0.9"/>
+      <path d="M17 7h1.4c.5 0 .9.4.9.9v3.8c0 .8.5 1.3 1.1 1.3s1.1-.5 1.1-1.3V9.2"
+            fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+  `,
+  className: "siga-poly-center-icon siga-poly-center-icon-aeroplanta"
+}
 },
     {
       id: "terminales2026",
