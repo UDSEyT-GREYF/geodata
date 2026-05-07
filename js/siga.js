@@ -223,7 +223,8 @@ if (MINI_MODE) document.body.classList.add("mini");
     { label: "Provincia", keys: ["Provincia", "provincia"] },
     { label: "Habilitación", keys: ["Habilitaci", "Habilitación", "habilitacion"] },
     { label: "Sup. Hectáreas", keys: ["SupHaText", "Supha"],suffix: "Ha."  },
-    { label: "Sup. Kilómetros", keys: ["SupKm2Text", "SupKm2"], suffix: "km²" }
+    { label: "Sup. Kilómetros", keys: ["SupKm2Text", "SupKm2"], suffix: "km²" },
+    { label: "Descripción", keys: ["Descrip"] }
   ],
       style: {
         color: SIGA_COLORS.azulLink,
