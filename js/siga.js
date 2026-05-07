@@ -241,7 +241,6 @@ if (MINI_MODE) document.body.classList.add("mini");
       active: true,
       opacity: 1,
       color: SIGA_COLORS.grisPista,
-
       tooltipTitle: "Pistas",
       tooltipFields: [
       { label: "Pista", keys: ["tipo", "Tipo",] },
@@ -327,7 +326,7 @@ if (MINI_MODE) document.body.classList.add("mini");
         fillColor: SIGA_COLORS.violeta,
         fillOpacity: 0.5
       }
-
+      tooltipTitle: "Posiciones de aeronaves",
       tooltipFields: [
       { label: "IATA", keys: ["IATA", "iata"] },
       { label: "Posición", keys: ["Posicion"] },
