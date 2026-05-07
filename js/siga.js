@@ -444,12 +444,19 @@ const LAYER_GROUP_ORDER = [
 
   function getDetailLabelValue(cfg, feature) {
     const props = feature?.properties || {};
-    const byLayer = {
-      cabeceras: ["Cabecera", "cabecera", "CABECERA", "etiqueta", "ETIQUETA"],
-      pistas: ["tipo", "Tipo", "TIPO"],
-      psn: ["posicion", "Posicion", "posición", "Posición", "POSICION"],
-      terminales2026: ["tipo", "Tipo", "TIPO"]
-    };
+const byLayer = {
+  cabeceras: ["Cabecera", "cabecera", "CABECERA", "etiqueta", "ETIQUETA"],
+  pistas: ["tipo", "Tipo", "TIPO"],
+
+  plataformas: [
+    "etiqueta", "Etiqueta", "ETIQUETA",
+    "tipo", "Tipo", "TIPO",
+    "nombre", "Nombre", "NOMBRE"
+  ],
+
+  psn: ["posicion", "Posicion", "posición", "Posición", "POSICION"],
+  terminales2026: ["tipo", "Tipo", "TIPO"]
+};
 
     const candidates = byLayer[cfg.id];
     if (!candidates) return "";
