@@ -832,7 +832,46 @@ function refreshZoomDependentLayers() {
     const base = cfg.style || { color: cfg.color, weight: 1.5, fillColor: cfg.color, fillOpacity: 0.35 };
     return { ...base };
   }
+function buildHoverTooltip(cfg, feature) {
+  if (cfg.tooltip === false) return "";
 
+  const props = feature?.properties || {};
+  const fields = cfg.tooltipFields || [];
+
+  // Si la capa no define tooltipFields, usa el comportamiento actual.
+  if (!fields.length) {
+    const title = featureTitle(feature, cfg.name);
+    const iata = getFeatureIata(feature);
+    return iata ? `${escapeHtml(iata)} · ${escapeHtml(title)}` : escapeHtml(title);
+  }
+
+  const rows = fields
+    .map((field) => {
+      const label = field.label || "";
+      const keys = Array.isArray(field.keys) ? field.keys : [field.key];
+      const value = clean(getFirstProp(props, keys));
+
+      if (!value) return "";
+
+      return `
+        <div class="siga-tooltip-row">
+          <span class="siga-tooltip-key">${escapeHtml(label)}</span>
+          <span class="siga-tooltip-value">${escapeHtml(formatValue(value))}</span>
+        </div>
+      `;
+    })
+    .filter(Boolean)
+    .join("");
+
+  if (!rows) return "";
+
+  const title = cfg.tooltipTitle || cfg.name;
+
+  return `
+    <div class="siga-tooltip-title">${escapeHtml(title)}</div>
+    ${rows}
+  `;
+}
   function bindFeature(cfg, feature, layer) {
     const title = featureTitle(feature, cfg.name);
     const iata = getFeatureIata(feature);
@@ -851,12 +890,16 @@ if (cfg.polygonIcon && isPolygonGeometry(feature)) {
     direction: cfg.id === "psn" ? "top" : "center",
     className: `siga-tooltip siga-label-detail siga-label-detail-${cfg.id}`
   });
-} else if (title || iata) {
-  layer.bindTooltip(iata ? `${iata} · ${title}` : title, {
-    sticky: true,
-    direction: "top",
-    className: "siga-tooltip"
-  });
+} else {
+  const hoverTooltip = buildHoverTooltip(cfg, feature);
+
+  if (hoverTooltip) {
+    layer.bindTooltip(hoverTooltip, {
+      sticky: true,
+      direction: cfg.tooltipDirection || "top",
+      className: "siga-tooltip siga-tooltip-rich"
+    });
+  }
 }
 
     layer.bindPopup(buildPopupHtml(cfg, feature), { className: "siga-popup", maxWidth: 360 });
