@@ -766,7 +766,35 @@ const html = `
 
     state.map.getContainer().classList.toggle("siga-show-detail-labels", showDetailLabels);
   }
+function layerPassesZoom(def) {
+  if (!def?.cfg) return false;
 
+  const minZoom = def.cfg.minVisibleZoom;
+
+  // Si la capa no tiene minVisibleZoom, se comporta como siempre.
+  if (minZoom === undefined || minZoom === null) return true;
+
+  return state.map && state.map.getZoom() >= minZoom;
+}
+
+function refreshZoomDependentLayers() {
+  if (!state.map) return;
+
+  state.layerDefs.forEach((def) => {
+    if (!def?.layer) return;
+
+    const shouldShow = !!def.active && layerPassesZoom(def);
+    const isShown = state.map.hasLayer(def.layer);
+
+    if (shouldShow && !isShown) {
+      def.layer.addTo(state.map);
+    } else if (!shouldShow && isShown) {
+      state.map.removeLayer(def.layer);
+    }
+  });
+
+  renderLegend();
+}
   function makeLayer(cfg, geojson) {
     const options = {
       pane: cfg.id === "provincias" ? "overlayPane" : "overlayPane",
@@ -935,17 +963,23 @@ layer.on("mouseover", () => {
     if (status) status.textContent = failed ? `Capas cargadas: ${loaded}. No disponibles: ${failed}.` : `Capas cargadas: ${loaded}.`;
   }
 
-  function setLayerActive(id, active) {
-    const def = state.layerDefs.get(id);
-    if (!def || !def.layer) return;
-    def.active = !!active;
-    if (active) {
-      if (!state.map.hasLayer(def.layer)) def.layer.addTo(state.map);
-    } else if (state.map.hasLayer(def.layer)) {
-      state.map.removeLayer(def.layer);
-    }
-    renderLegend();
+function setLayerActive(id, active) {
+  const def = state.layerDefs.get(id);
+  if (!def || !def.layer) return;
+
+  def.active = !!active;
+
+  const shouldShow = def.active && layerPassesZoom(def);
+  const isShown = state.map.hasLayer(def.layer);
+
+  if (shouldShow && !isShown) {
+    def.layer.addTo(state.map);
+  } else if (!shouldShow && isShown) {
+    state.map.removeLayer(def.layer);
   }
+
+  renderLegend();
+}
 
   function applyLayerOpacity(layer, opacity) {
     if (!layer) return;
@@ -1080,7 +1114,9 @@ function renderLayerTree() {
   function renderLegend() {
     const el = q("mapLegend");
     if (!el) return;
-    const active = Array.from(state.layerDefs.values()).filter((def) => def.active && def.layer);
+    const active = Array.from(state.layerDefs.values()).filter((def) =>
+    def.active && def.layer && state.map?.hasLayer(def.layer)
+    );
     if (!active.length) {
       el.innerHTML = `<div class="siga-hint">No hay capas activas.</div>`;
       return;
@@ -1219,8 +1255,12 @@ function renderLayerTree() {
       await loadAirports();
       await loadConfiguredLayers();
       createAirportLabels();
-      state.map.on("zoomend", updateZoomDependentLabels);
+      state.map.on("zoomend", () => {
       updateZoomDependentLabels();
+      refreshZoomDependentLayers();
+      });
+      updateZoomDependentLabels();
+      refreshZoomDependentLayers();
 
       setTimeout(() => state.map.invalidateSize(), 50);
 
