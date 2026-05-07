@@ -215,7 +215,14 @@ if (MINI_MODE) document.body.classList.add("mini");
       { label: "IATA", keys: ["IATA", "iata"] },
       { label: "OACI", keys: ["OACI", "oaci"] }
     ],
-
+  popupFields: [
+    { label: "IATA", keys: ["IATA", "iata"] },
+    { label: "Aeropuerto", keys: ["Nom_aerop", "Aeropuerto", "aeropuerto", "Nombre"] },
+    { label: "Ciudad", keys: ["Ciudad", "ciudad"] },
+    { label: "Provincia", keys: ["Provincia", "provincia"] },
+    { label: "Habilitación", keys: ["Habilitaci", "Habilitación", "habilitacion"] },
+    { label: "Superficie", keys: ["SupHa", "sup_ha", "superficie"] }
+  ],
       style: {
         color: SIGA_COLORS.azulLink,
         weight: 2.2,
@@ -938,55 +945,73 @@ layer.on("mouseover", () => {
     });
   }
 
-  function getImportantProps(feature) {
-    const props = feature?.properties || {};
-    const preferred = [
-      "IATA", "iata", "OACI", "oaci", "ANAC", "Aeropuerto", "nombre", "Nombre", "NOMBRE",
-      "tipo", "Tipo", "etiqueta", "ETIQUETA", "orientacion", "Orientacion", "PistaOrientacion",
-      "longitud", "Longitud", "dimensiones", "Dimensiones", "superficie", "Superficie", "metros2", "m2",
-      "posicion", "Posicion", "clase", "Clase", "estado", "Estado"
-    ];
+function getImportantProps(feature, cfg = {}) {
+  const props = feature?.properties || {};
 
-    const out = [];
-    preferred.forEach((key) => {
-      if (props[key] !== undefined && props[key] !== null && String(props[key]).trim() !== "") {
-        out.push([key, props[key]]);
-      }
-    });
+  if (Array.isArray(cfg.popupFields) && cfg.popupFields.length) {
+    return cfg.popupFields
+      .map((field) => {
+        const label = field.label || field.key || "";
+        const keys = Array.isArray(field.keys) ? field.keys : [field.key];
+        const value = getFirstProp(props, keys);
 
-    Object.keys(props).forEach((key) => {
-      if (out.length >= 12) return;
-      if (preferred.includes(key)) return;
-      const val = props[key];
-      if (val !== undefined && val !== null && String(val).trim() !== "") out.push([key, val]);
-    });
+        if (value === undefined || value === null || String(value).trim() === "") return null;
 
-    return out.slice(0, 12);
+        return [label, value];
+      })
+      .filter(Boolean);
   }
 
-  function buildPopupHtml(cfg, feature) {
-    const rows = getImportantProps(feature);
-    const title = featureTitle(feature, cfg.name);
-    return `
-      <div class="siga-popup-title">${escapeHtml(cfg.name)} · ${escapeHtml(title)}</div>
-      <table class="siga-popup-table">
-        ${rows.map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td>${escapeHtml(formatValue(v))}</td></tr>`).join("")}
-      </table>
-    `;
-  }
+  const preferred = [
+    "IATA", "iata", "OACI", "oaci", "ANAC", "Aeropuerto", "nombre", "Nombre", "NOMBRE",
+    "tipo", "Tipo", "etiqueta", "ETIQUETA", "orientacion", "Orientacion", "PistaOrientacion",
+    "longitud", "Longitud", "dimensiones", "Dimensiones", "superficie", "Superficie", "metros2", "m2",
+    "posicion", "Posicion", "clase", "Clase", "estado", "Estado"
+  ];
 
-  function setFeatureInfo(cfg, feature) {
-    const el = q("featureInfo");
-    if (!el) return;
-    const title = featureTitle(feature, cfg.name);
-    const rows = getImportantProps(feature);
-    el.innerHTML = `
-      <div class="feature-title">${escapeHtml(cfg.name)} · ${escapeHtml(title)}</div>
-      <table class="feature-table">
-        ${rows.map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td>${escapeHtml(formatValue(v))}</td></tr>`).join("")}
-      </table>
-    `;
-  }
+  const out = [];
+  preferred.forEach((key) => {
+    if (props[key] !== undefined && props[key] !== null && String(props[key]).trim() !== "") {
+      out.push([key, props[key]]);
+    }
+  });
+
+  Object.keys(props).forEach((key) => {
+    if (out.length >= 12) return;
+    if (preferred.includes(key)) return;
+    const val = props[key];
+    if (val !== undefined && val !== null && String(val).trim() !== "") out.push([key, val]);
+  });
+
+  return out.slice(0, 12);
+}
+
+function buildPopupHtml(cfg, feature) {
+  const rows = getImportantProps(feature, cfg);
+  const title = featureTitle(feature, cfg.name);
+
+  return `
+    <div class="siga-popup-title">${escapeHtml(cfg.popupTitle || cfg.name)} · ${escapeHtml(title)}</div>
+    <table class="siga-popup-table">
+      ${rows.map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td>${escapeHtml(formatValue(v))}</td></tr>`).join("")}
+    </table>
+  `;
+}
+
+function setFeatureInfo(cfg, feature) {
+  const el = q("featureInfo");
+  if (!el) return;
+
+  const title = featureTitle(feature, cfg.name);
+  const rows = getImportantProps(feature, cfg);
+
+  el.innerHTML = `
+    <div class="feature-title">${escapeHtml(cfg.popupTitle || cfg.name)} · ${escapeHtml(title)}</div>
+    <table class="feature-table">
+      ${rows.map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td>${escapeHtml(formatValue(v))}</td></tr>`).join("")}
+    </table>
+  `;
+}
 
   function escapeHtml(value) {
     return String(value ?? "")
