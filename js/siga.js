@@ -400,6 +400,10 @@ polygonIcon: {
       name: "Estaciones meteorológicas SMN",
       url: "fuentes/smn_estaciones_meteorologicas2026.geojson",
       active: true,
+
+      // Visible solo cuando el zoom ya está cerca del aeropuerto
+      minVisibleZoom: 12,
+
       opacity: 1,
       color: SIGA_COLORS.azulLink,
       point: {
