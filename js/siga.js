@@ -562,7 +562,20 @@ function getAirportShortName(airport) {
     });
 
     L.control.scale({ metric: true, imperial: false, position: "bottomleft" }).addTo(map);
+const zoomIndicator = L.control({ position: "bottomleft" });
 
+zoomIndicator.onAdd = function () {
+  const div = L.DomUtil.create("div", "siga-zoom-indicator");
+  div.textContent = `Zoom: ${map.getZoom().toFixed(2)}`;
+  return div;
+};
+
+zoomIndicator.addTo(map);
+
+map.on("zoomend", () => {
+  const el = document.querySelector(".siga-zoom-indicator");
+  if (el) el.textContent = `Zoom: ${map.getZoom().toFixed(2)}`;
+});
     addOptionalControls(map);
   }
 
