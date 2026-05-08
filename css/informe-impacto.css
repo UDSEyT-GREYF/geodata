@@ -206,7 +206,140 @@
     padding: 0 16px 16px;
   }
 }
+.summary-profile-card {
+  margin: 8px 0 10px;
+  padding: 9px 10px 10px;
+  border: 1px solid #d7e3ec;
+  border-radius: 12px;
+  background: #f7fafc;
+  color: #263746;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
 
+.summary-profile-card[hidden] {
+  display: none !important;
+}
+
+.summary-profile-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.summary-profile-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: #234B6B;
+  color: #ffffff;
+  font-size: 8.5px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.summary-profile-title {
+  margin: 0;
+  color: #17344A;
+  font-size: 12px;
+  line-height: 1.15;
+  font-weight: 800;
+  text-align: right;
+}
+
+.summary-profile-text {
+  margin: 0;
+  color: #334155;
+  font-size: 10.2px;
+  line-height: 1.35;
+  text-align: justify;
+}
+
+.summary-profile-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.summary-profile-metric {
+  padding: 6px 7px;
+  border: 1px solid #e1e8ef;
+  border-radius: 9px;
+  background: #ffffff;
+}
+
+.summary-profile-metric span {
+  display: block;
+  margin-bottom: 2px;
+  color: #64748b;
+  font-size: 7.8px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.summary-profile-metric strong {
+  display: block;
+  color: #17344A;
+  font-size: 12.5px;
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+/* Colores suaves según perfil operativo */
+
+.summary-profile-card[data-perfil="nodo_aerocomercial_consolidado"] {
+  border-color: #c7dce9;
+  background: #f5f9fc;
+}
+
+.summary-profile-card[data-perfil="nodo_aerocomercial_consolidado"] .summary-profile-badge {
+  background: #234B6B;
+}
+
+.summary-profile-card[data-perfil="aeropuerto_regular_intermedio"] {
+  border-color: #cbdfe8;
+  background: #f6fafc;
+}
+
+.summary-profile-card[data-perfil="aeropuerto_regular_intermedio"] .summary-profile-badge {
+  background: #3d728f;
+}
+
+.summary-profile-card[data-perfil="baja_regularidad_demanda_acotada"] {
+  border-color: #e1d7bd;
+  background: #fcfaf4;
+}
+
+.summary-profile-card[data-perfil="baja_regularidad_demanda_acotada"] .summary-profile-badge {
+  background: #8a6d2f;
+}
+
+.summary-profile-card[data-perfil="infraestructura_sin_oferta_regular_relevante"] {
+  border-color: #d3d8df;
+  background: #f8fafc;
+}
+
+.summary-profile-card[data-perfil="infraestructura_sin_oferta_regular_relevante"] .summary-profile-badge {
+  background: #6d7480;
+}
+
+.summary-profile-card[data-perfil="aviacion_general_ejecutiva_privada"] {
+  border-color: #ddd3e7;
+  background: #fbf8fd;
+}
+
+.summary-profile-card[data-perfil="aviacion_general_ejecutiva_privada"] .summary-profile-badge {
+  background: #6d4c7d;
+}
 @media print {
   body {
     background: #fff;
@@ -226,5 +359,10 @@
     border: none;
     margin: 0;
     page-break-after: always;
+  }
+    .summary-profile-card {
+    box-shadow: none;
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 }
