@@ -42,15 +42,19 @@
         <div class="siga-section-title">Sistema Nacional de Aeropuertos</div>
         <label class="siga-label" for="airportSearch">Buscar / seleccionar aeropuerto</label>
         
-        <input
-          id="airportSearch"
-          class="siga-select siga-search-input"
-          type="search"
-          placeholder="Buscar por ciudad, aeropuerto o IATA…"
-          autocomplete="off"
-        />
+        <div class="siga-airport-combobox">
+          <input
+            id="airportSearch"
+            class="siga-select siga-search-input"
+            type="search"
+            placeholder="Buscar por ciudad, aeropuerto o IATA…"
+            autocomplete="off"
+          />
         
-        <select id="airportSelect" class="siga-select">
+          <div id="airportSearchResults" class="siga-search-results"></div>
+        </div>
+        
+        <select id="airportSelect" class="siga-select siga-select-hidden">
           <option value="">Cargando aeropuertos…</option>
         </select>
         <div class="siga-button-row">
