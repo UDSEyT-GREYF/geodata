@@ -2,7 +2,16 @@
   "use strict";
 
   const q = id => document.getElementById(id);
+  const PERFIL_OPERATIVO_URL = "fuentes/perfil_operativo_impacto_2025.json";
 
+  const PerfilOperativoImpacto = {
+    data: null,
+    index: new Map(),
+    ready: false
+  };
+
+  window.PerfilOperativoImpacto = PerfilOperativoImpacto;
+  
   async function loadText(url) {
     const sep = url.includes("?") ? "&" : "?";
     const cacheBust = `v=impacto9-${Date.now()}`;
@@ -48,6 +57,188 @@ async function mountOfferDemandPartial() {
   const mount = q("offerDemandMount");
   if (mount) mount.innerHTML = html;
 }
+
+    async function loadJson(url) {
+    const text = await loadText(url);
+    return JSON.parse(text);
+  }
+
+  async function loadPerfilOperativoImpacto() {
+    try {
+      const data = await loadJson(PERFIL_OPERATIVO_URL);
+      const index = buildPerfilOperativoIndex(data);
+
+      PerfilOperativoImpacto.data = data;
+      PerfilOperativoImpacto.index = index;
+      PerfilOperativoImpacto.ready = true;
+
+      console.log(
+        `[perfil operativo] cargados ${index.size} aeropuertos desde ${PERFIL_OPERATIVO_URL}`
+      );
+
+      return PerfilOperativoImpacto;
+    } catch (error) {
+      console.warn("[perfil operativo] no se pudo cargar el perfil operativo:", error);
+
+      PerfilOperativoImpacto.data = null;
+      PerfilOperativoImpacto.index = new Map();
+      PerfilOperativoImpacto.ready = false;
+
+      return PerfilOperativoImpacto;
+    }
+  }
+
+  function buildPerfilOperativoIndex(data) {
+    const index = new Map();
+
+    if (!data || !data.categorias) return index;
+
+    Object.entries(data.categorias).forEach(([categoriaKey, categoria]) => {
+      const aeropuertos = Array.isArray(categoria.aeropuertos)
+        ? categoria.aeropuertos
+        : [];
+
+      aeropuertos.forEach(aeropuerto => {
+        const iata = normalizeIata(aeropuerto.iata);
+        if (!iata) return;
+
+        index.set(iata, {
+          ...aeropuerto,
+          iata,
+          categoria_key: categoriaKey,
+          categoria_orden: categoria.orden ?? null,
+          categoria_label: categoria.label || "",
+          categoria_criterio: categoria.criterio || "",
+          categoria_enfoque_narrativo: categoria.enfoque_narrativo || "",
+          categoria_aclaracion_historica: categoria.aclaracion_historica || ""
+        });
+      });
+    });
+
+    return index;
+  }
+
+  function normalizeIata(value) {
+    return String(value || "").trim().toUpperCase();
+  }
+
+  function getPerfilOperativo(iata) {
+    const key = normalizeIata(iata);
+    if (!key) return null;
+
+    return PerfilOperativoImpacto.index.get(key) || null;
+  }
+
+  window.getPerfilOperativoImpacto = getPerfilOperativo;
+
+    function renderPerfilOperativoCard(iata) {
+    const perfil = getPerfilOperativo(iata);
+
+    const card = q("summaryPerfilOperativoCard");
+    const badge = q("summaryPerfilOperativoBadge");
+    const title = q("summaryPerfilOperativoTitle");
+    const text = q("summaryPerfilOperativoText");
+    const metrics = q("summaryPerfilOperativoMetrics");
+
+    if (!card || !badge || !title || !text || !metrics) return;
+
+    if (!perfil) {
+      card.hidden = true;
+      card.dataset.perfil = "";
+      badge.textContent = "";
+      title.textContent = "";
+      text.textContent = "";
+      metrics.innerHTML = "";
+      return;
+    }
+
+    card.hidden = false;
+    card.dataset.perfil = perfil.categoria_key || "";
+
+    badge.textContent = "Perfil operativo 2025";
+    title.textContent = perfil.categoria_label || "Caracterización operativa";
+    text.textContent = getTextoPerfilOperativo(perfil);
+
+    metrics.innerHTML = `
+      <div class="summary-profile-metric">
+        <span>Pasajeros 2025</span>
+        <strong>${formatIntegerPerfil(perfil.pasajeros_2025)}</strong>
+      </div>
+
+      <div class="summary-profile-metric">
+        <span>Movimientos 2025</span>
+        <strong>${formatIntegerPerfil(perfil.movimientos_2025)}</strong>
+      </div>
+
+      <div class="summary-profile-metric">
+        <span>Pasajeros por movimiento</span>
+        <strong>${formatDecimalPerfil(perfil.pasajeros_por_movimiento)}</strong>
+      </div>
+    `;
+  }
+
+  function getTextoPerfilOperativo(perfil) {
+    if (!perfil) return "";
+
+    switch (perfil.categoria_key) {
+      case "nodo_aerocomercial_consolidado":
+        return "El aeropuerto presenta una función aerocomercial consolidada dentro del SNA, con alto volumen relativo de pasajeros, conectividad regular significativa y capacidad de generar impactos sobre empleo, turismo, servicios e integración territorial.";
+
+      case "aeropuerto_regular_intermedio":
+        return "El aeropuerto cumple una función aerocomercial regular de escala regional. Su impacto debe leerse combinando conectividad, función territorial y dependencia relativa de un conjunto acotado de rutas, frecuencias u operadores.";
+
+      case "baja_regularidad_demanda_acotada":
+        return "El aeropuerto presenta una demanda acotada o estacional. En estos casos, las variaciones porcentuales deben interpretarse con cautela, ya que pocos vuelos pueden modificar sensiblemente los resultados anuales o mensuales.";
+
+      case "infraestructura_sin_oferta_regular_relevante":
+        return "El aeropuerto no debe evaluarse principalmente por su volumen de pasajeros comerciales. Su relevancia se vincula con la disponibilidad de infraestructura, el soporte territorial, la conectividad eventual, la logística, los servicios públicos y el potencial de desarrollo regional.";
+
+      case "aviacion_general_ejecutiva_privada":
+        return "El aeropuerto tiene un perfil principalmente asociado a aviación general, ejecutiva, privada, sanitaria, de instrucción o de servicios aeronáuticos. Por eso, su importancia se expresa mejor en los movimientos y en la disponibilidad operativa que en el volumen de pasajeros comerciales.";
+
+      default:
+        return perfil.categoria_enfoque_narrativo || perfil.categoria_criterio || "";
+    }
+  }
+
+  function formatIntegerPerfil(value) {
+    const num = Number(value);
+    if (!Number.isFinite(num)) return "s/d";
+
+    return num.toLocaleString("es-AR", {
+      maximumFractionDigits: 0
+    });
+  }
+
+  function formatDecimalPerfil(value) {
+    const num = Number(value);
+    if (!Number.isFinite(num)) return "s/d";
+
+    return num.toLocaleString("es-AR", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+  }
+
+  function getCurrentAirportIata() {
+    const selected = q("airportSelect")?.value;
+    if (selected) return normalizeIata(selected);
+
+    const params = new URLSearchParams(window.location.search);
+    return normalizeIata(params.get("airport"));
+  }
+
+  function initPerfilOperativoBindings() {
+    const airportSelect = q("airportSelect");
+
+    if (airportSelect) {
+      airportSelect.addEventListener("change", event => {
+        renderPerfilOperativoCard(event.target.value);
+      });
+    }
+
+    window.renderPerfilOperativoCard = renderPerfilOperativoCard;
+  }
   function fitIntoBox(srcW, srcH, boxW, boxH) {
     const srcRatio = srcW / srcH;
     const boxRatio = boxW / boxH;
@@ -437,12 +628,23 @@ pdf.save(`informe-impacto-${airport}.pdf`);
     try {
       initReportExport();
 
+      const perfilPromise = loadPerfilOperativoImpacto();
+
       await mountCoverPartial();
       await mountSummaryPartial();
       await mountLaminaFromCurrentHtml();
       await mountOfferDemandPartial();
 
-      document.dispatchEvent(new CustomEvent("report:partials-ready"));
+      await perfilPromise;
+
+      initPerfilOperativoBindings();
+      renderPerfilOperativoCard(getCurrentAirportIata());
+
+      document.dispatchEvent(new CustomEvent("report:partials-ready", {
+        detail: {
+          perfilOperativoReady: PerfilOperativoImpacto.ready
+        }
+      }));
     } catch (err) {
       console.error("No se pudo armar el informe.", err);
     }
