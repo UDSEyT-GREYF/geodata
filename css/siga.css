@@ -716,13 +716,62 @@ body.mini .leaflet-control-easyPrint {
   text-align: right;
 }
 /* ==============================
-   SIGA – Buscador de aeropuertos
+   SIGA – Selector buscable integrado
    ============================== */
 
-.siga-search-input {
-  margin-bottom: 6px;
+.siga-airport-combobox {
+  position: relative;
 }
 
-.siga-search-input::placeholder {
-  color: #8a96a8;
+.siga-select-hidden {
+  display: none;
+}
+
+.siga-search-input {
+  margin-bottom: 0;
+}
+
+.siga-search-results {
+  display: none;
+  position: absolute;
+  z-index: 900;
+  top: calc(100% + 3px);
+  left: 0;
+  right: 0;
+
+  max-height: 220px;
+  overflow-y: auto;
+
+  background: #ffffff;
+  border: 1px solid #b9c6d6;
+  border-radius: 7px;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.18);
+}
+
+.siga-search-results.is-open {
+  display: block;
+}
+
+.siga-search-result {
+  padding: 5px 7px;
+  font-size: .72rem;
+  color: #111827;
+  cursor: pointer;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.siga-search-result:last-child {
+  border-bottom: 0;
+}
+
+.siga-search-result:hover,
+.siga-search-result.is-highlighted {
+  background: #eef5ff;
+  color: #002855;
+}
+
+.siga-search-result-code {
+  font-weight: 800;
+  color: #2a5fa0;
+  margin-right: 4px;
 }
