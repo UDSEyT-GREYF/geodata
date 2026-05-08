@@ -703,25 +703,130 @@ map.on("zoomend", () => {
     renderAirportSelects();
   }
 
-  function renderAirportSelects() {
-    const selects = [q("airportSelect"), q("airportSelectEmbed")].filter(Boolean);
-    selects.forEach((select) => {
-      select.innerHTML = `<option value="">Seleccionar aeropuerto…</option>`;
-      state.airports.forEach((a) => {
-        const opt = document.createElement("option");
-        opt.value = a.iata;
-        opt.textContent = `${a.nombre} (${a.iata})`;
-        select.appendChild(opt);
-      });
-      if (URL_AIRPORT && state.airportIndex.has(URL_AIRPORT)) select.value = URL_AIRPORT;
-      select.addEventListener("change", (e) => {
-        state.selectedAirport = e.target.value;
-        syncAirportSelects(state.selectedAirport);
-        if (state.selectedAirport) zoomToAirport(state.selectedAirport);
-        updateUrl(false);
-      });
-    });
+function normalizeSearchTerm(value) {
+  return clean(value)
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function getAirportSearchText(airport) {
+  const p = airport?.properties || {};
+
+  return normalizeSearchTerm([
+    airport.iata,
+    airport.nombre,
+    p.Aeropuerto,
+    p.aeropuerto,
+    p["Nombre del Aeropuerto"],
+    p.nombre,
+    p.name,
+    p.Ciudad,
+    p["Ciudad/Localidad"],
+    p.Localidad,
+    p.Provincia,
+    p.OACI,
+    p.oaci
+  ].filter(Boolean).join(" "));
+}
+
+function populateAirportSelect(select, airports) {
+  const currentValue = select.value;
+
+  select.innerHTML = `<option value="">Seleccionar aeropuerto…</option>`;
+
+  airports.forEach((a) => {
+    const opt = document.createElement("option");
+    opt.value = a.iata;
+    opt.textContent = `${a.nombre} (${a.iata})`;
+    select.appendChild(opt);
+  });
+
+  if (currentValue && airports.some((a) => a.iata === currentValue)) {
+    select.value = currentValue;
   }
+}
+
+function wireAirportSearch() {
+  const search = q("airportSearch");
+  const select = q("airportSelect");
+
+  if (!search || !select || search.dataset.bound === "1") return;
+
+  search.dataset.bound = "1";
+
+  search.addEventListener("input", () => {
+    const term = normalizeSearchTerm(search.value);
+
+    const filtered = term
+      ? state.airports.filter((a) => getAirportSearchText(a).includes(term))
+      : state.airports;
+
+    populateAirportSelect(select, filtered);
+
+    const hint = q("airportHint");
+    if (hint) {
+      hint.textContent = filtered.length
+        ? `Coincidencias: ${filtered.length}. Seleccioná un aeropuerto de la lista.`
+        : "No se encontraron aeropuertos con ese texto.";
+    }
+  });
+
+  search.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter") return;
+
+    const firstOption = Array.from(select.options).find((opt) => opt.value);
+    if (!firstOption) return;
+
+    select.value = firstOption.value;
+    select.dispatchEvent(new Event("change"));
+  });
+
+  search.addEventListener("search", () => {
+    if (!search.value) {
+      populateAirportSelect(select, state.airports);
+    }
+  });
+}
+
+function renderAirportSelects() {
+  const selects = [q("airportSelect"), q("airportSelectEmbed")].filter(Boolean);
+
+  selects.forEach((select) => {
+    populateAirportSelect(select, state.airports);
+
+    if (URL_AIRPORT && state.airportIndex.has(URL_AIRPORT)) {
+      select.value = URL_AIRPORT;
+    }
+
+    if (select.dataset.bound === "1") return;
+    select.dataset.bound = "1";
+
+    select.addEventListener("change", (e) => {
+      state.selectedAirport = e.target.value;
+
+      syncAirportSelects(state.selectedAirport);
+
+      if (select.id === "airportSelect") {
+        const search = q("airportSearch");
+        const airport = state.airportIndex.get(state.selectedAirport);
+
+        if (search && airport) {
+          search.value = `${airport.nombre} (${airport.iata})`;
+        }
+
+        populateAirportSelect(select, state.airports);
+        select.value = state.selectedAirport;
+      }
+
+      if (state.selectedAirport) zoomToAirport(state.selectedAirport);
+
+      updateUrl(false);
+    });
+  });
+
+  wireAirportSearch();
+}
 
   function syncAirportSelects(iata) {
     [q("airportSelect"), q("airportSelectEmbed")].forEach((select) => {
