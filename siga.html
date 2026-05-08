@@ -40,7 +40,16 @@
     <aside class="siga-sidebar" id="sigaSidebar">
       <section class="siga-card siga-airport-card">
         <div class="siga-section-title">Sistema Nacional de Aeropuertos</div>
-        <label class="siga-label" for="airportSelect">Buscar / seleccionar aeropuerto</label>
+        <label class="siga-label" for="airportSearch">Buscar / seleccionar aeropuerto</label>
+        
+        <input
+          id="airportSearch"
+          class="siga-select siga-search-input"
+          type="search"
+          placeholder="Buscar por ciudad, aeropuerto o IATA…"
+          autocomplete="off"
+        />
+        
         <select id="airportSelect" class="siga-select">
           <option value="">Cargando aeropuertos…</option>
         </select>
