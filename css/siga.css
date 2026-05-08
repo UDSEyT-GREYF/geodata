@@ -715,3 +715,14 @@ body.mini .leaflet-control-easyPrint {
   font-weight: 700;
   text-align: right;
 }
+/* ==============================
+   SIGA – Buscador de aeropuertos
+   ============================== */
+
+.siga-search-input {
+  margin-bottom: 6px;
+}
+
+.siga-search-input::placeholder {
+  color: #8a96a8;
+}
