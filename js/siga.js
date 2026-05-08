@@ -750,41 +750,131 @@ function populateAirportSelect(select, airports) {
 function wireAirportSearch() {
   const search = q("airportSearch");
   const select = q("airportSelect");
+  const results = q("airportSearchResults");
 
-  if (!search || !select || search.dataset.bound === "1") return;
+  if (!search || !select || !results || search.dataset.bound === "1") return;
 
   search.dataset.bound = "1";
 
-  search.addEventListener("input", () => {
-    const term = normalizeSearchTerm(search.value);
+  let highlightedIndex = -1;
+  let currentResults = [];
 
-    const filtered = term
-      ? state.airports.filter((a) => getAirportSearchText(a).includes(term))
+  function closeResults() {
+    results.classList.remove("is-open");
+    highlightedIndex = -1;
+  }
+
+  function selectAirport(iata) {
+    if (!iata || !state.airportIndex.has(iata)) return;
+
+    const airport = state.airportIndex.get(iata);
+
+    select.value = iata;
+    search.value = `${airport.nombre} (${airport.iata})`;
+
+    closeResults();
+
+    select.dispatchEvent(new Event("change"));
+  }
+
+  function renderResults(term = "") {
+    const normalized = normalizeSearchTerm(term);
+
+    currentResults = normalized
+      ? state.airports.filter((a) => getAirportSearchText(a).includes(normalized))
       : state.airports;
 
-    populateAirportSelect(select, filtered);
+    results.innerHTML = "";
 
-    const hint = q("airportHint");
-    if (hint) {
-      hint.textContent = filtered.length
-        ? `Coincidencias: ${filtered.length}. Seleccioná un aeropuerto de la lista.`
-        : "No se encontraron aeropuertos con ese texto.";
+    if (!currentResults.length) {
+      results.innerHTML = `
+        <div class="siga-search-result">
+          No se encontraron aeropuertos.
+        </div>
+      `;
+      results.classList.add("is-open");
+      return;
     }
+
+    currentResults.slice(0, 80).forEach((airport, index) => {
+      const item = document.createElement("div");
+      item.className = "siga-search-result";
+      item.dataset.iata = airport.iata;
+      item.dataset.index = String(index);
+
+      item.innerHTML = `
+        <span class="siga-search-result-code">${escapeHtml(airport.iata)}</span>
+        ${escapeHtml(airport.nombre)}
+      `;
+
+      item.addEventListener("mousedown", (e) => {
+        e.preventDefault();
+        selectAirport(airport.iata);
+      });
+
+      results.appendChild(item);
+    });
+
+    results.classList.add("is-open");
+  }
+
+  function updateHighlight() {
+    results.querySelectorAll(".siga-search-result").forEach((el, idx) => {
+      el.classList.toggle("is-highlighted", idx === highlightedIndex);
+    });
+  }
+
+  search.addEventListener("focus", () => {
+    renderResults(search.value);
+  });
+
+  search.addEventListener("input", () => {
+    highlightedIndex = -1;
+    renderResults(search.value);
   });
 
   search.addEventListener("keydown", (e) => {
-    if (e.key !== "Enter") return;
+    if (!results.classList.contains("is-open")) {
+      if (e.key === "ArrowDown" || e.key === "Enter") {
+        renderResults(search.value);
+      }
+      return;
+    }
 
-    const firstOption = Array.from(select.options).find((opt) => opt.value);
-    if (!firstOption) return;
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      highlightedIndex = Math.min(highlightedIndex + 1, currentResults.length - 1);
+      updateHighlight();
+      return;
+    }
 
-    select.value = firstOption.value;
-    select.dispatchEvent(new Event("change"));
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      highlightedIndex = Math.max(highlightedIndex - 1, 0);
+      updateHighlight();
+      return;
+    }
+
+    if (e.key === "Enter") {
+      e.preventDefault();
+
+      const selected =
+        highlightedIndex >= 0
+          ? currentResults[highlightedIndex]
+          : currentResults[0];
+
+      if (selected) selectAirport(selected.iata);
+      return;
+    }
+
+    if (e.key === "Escape") {
+      closeResults();
+    }
   });
 
-  search.addEventListener("search", () => {
-    if (!search.value) {
-      populateAirportSelect(select, state.airports);
+  document.addEventListener("mousedown", (e) => {
+    if (!e.target.closest(".siga-airport-combobox")) {
+      closeResults();
     }
   });
 }
