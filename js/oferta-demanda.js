@@ -2685,7 +2685,8 @@ textEl.innerHTML =
     resume la dinámica posterior. Por ello, el indicador Tasa Media de Crecimiento Anual (TMDA) se muestra diferenciado.
     </p>
     <p>
-    A lo largo de todo el período considerado, el aeropuerto presentó ${trendPhrase}.
+    A lo largo de todo el período considerado, el aeropuerto presentó <strong>${trendPhrase}</strong>.
+    </p>
     <span class="historic-period-note"> 
     </span>
     </p>
