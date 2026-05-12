@@ -2681,8 +2681,8 @@ textEl.innerHTML =
     Esta evolución puede observarse en el gráfico <strong>Evolución histórica de pasajeros y aeronaves</strong> de la hoja <strong>Datos clave</strong>. 
     </p>
     <p>
-    Para analizar la serie histórica, ${longStartYear}-${longEndYear} se utiliza como referencia prepandemia, mientras que el período ${recentStartYear}-${recentEndYear}
-    resume la dinámica posterior. Por ello, el indicador Tasa Media de Crecimiento Anual (TMDA) se muestra diferenciado.
+    Para analizar la serie histórica, se decidió utilizar el período ${longStartYear}-${longEndYear} como referencia prepandemia, mientras que el período ${recentStartYear}-${recentEndYear}
+    resume la dinámica posterior. Por ello, el indicador Tasa Media de Crecimiento Anual (TMDA) se muestra diferenciado, evitando los años 2020 a 2022 debido a su carácter atípico.
     </p>
     <p>
     A lo largo de todo el período considerado, el aeropuerto presentó <strong>${trendPhrase}</strong>.
@@ -2696,10 +2696,7 @@ textEl.innerHTML =
     <strong>${odFormatNumber(d.prepandemic_start_pax)}</strong> a
     <strong>${odFormatNumber(d.baseline_pax)}</strong>, con una
     <strong>Tasa Media de Crecimiento Anual (TMCA) de ${odFormatPctRatio(tmcaLongTerm)}</strong>.
-  </p>
-
-  <p>
-    Entre <strong>${recentStartYear}</strong> y <strong>${recentEndYear}</strong>,
+    Mientras que entre <strong>${recentStartYear}</strong> y <strong>${recentEndYear}</strong>,
     el aeropuerto mostró <strong>${recentPhrase}</strong>, pasando de
     <strong>${odFormatNumber(recentStartPax)}</strong> a
     <strong>${odFormatNumber(recentEndPax)}</strong> pasajeros, con una
