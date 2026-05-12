@@ -2680,7 +2680,11 @@ textEl.innerHTML =
     <strong>${escapeHtml(nombreAeropuerto)}</strong> presentó <strong>${trendPhrase}</strong>.
     Esta evolución puede observarse en el gráfico <strong>Evolución histórica de pasajeros y aeronaves</strong>
     de la hoja <strong>Datos clave</strong>.
-  </p>
+    <span class="historic-period-note">
+    El año ${longEndYear} se utiliza como referencia prepandemia, mientras que el período ${recentStartYear}-${recentEndYear}
+    resume la dinámica posterior a la recuperación del tráfico.
+    </span>
+    </p>
 
   <p>
     Entre <strong>${longStartYear}</strong> y <strong>${longEndYear}</strong>, los pasajeros pasaron de
