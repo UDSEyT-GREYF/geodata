@@ -2671,17 +2671,17 @@ const maxParagraph = maxSentence
   : "";
   
 const historicSubject = d.source === "aeropuertos_argentina_fdo"
-  ? "el movimiento de pasajeros registrados del"
+  ? "el movimiento de pasajeros registrados en el"
   : "el tráfico aerocomercial del";
   
 textEl.innerHTML =
   `<p>
-    Durante los últimos <strong>${d.years_shown} años</strong>, ${historicSubject}
-    <strong>${escapeHtml(nombreAeropuerto)}</strong> presentó <strong>${trendPhrase}</strong>.
+    Durante los últimos <strong>${d.years_shown} años, el tráfico aerocomercial del</strong>, ${historicSubject}
+    <strong>${escapeHtml(nombreAeropuerto)} experimentó tanto tendencias de crecimiento de la demanda como así también caídas de pasajeros y operaciones. 
     Esta evolución puede observarse en el gráfico <strong>Evolución histórica de pasajeros y aeronaves</strong>
-    de la hoja <strong>Datos clave</strong>.
-    <span class="historic-period-note">
-    El año ${longEndYear} se utiliza como referencia prepandemia, mientras que el período ${recentStartYear}-${recentEndYear}
+    de la hoja <strong>Datos clave</strong>. 
+    Si se tiene en cuenta la Tasa Media de Crecimiento Anual (TMDA) del período, ${trendPhrase}
+    <span class="historic-period-note"> El año ${longEndYear} se utiliza como referencia prepandemia, mientras que el período ${recentStartYear}-${recentEndYear}
     resume la dinámica posterior a la recuperación del tráfico.
     </span>
     </p>
