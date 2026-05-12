@@ -227,7 +227,55 @@ function odBuildRecentTrendPhrase(tmcaRecent) {
   if (t >= -0.03) return "una leve retracción reciente";
   return "una contracción reciente";
 }  
+function odBuildSyntheticNonPandemicTMCA(
+  tmcaLongTerm,
+  tmcaRecent,
+  longStartYear,
+  longEndYear,
+  recentStartYear,
+  recentEndYear
+) {
+  const tLong = Number(tmcaLongTerm);
+  const tRecent = Number(tmcaRecent);
 
+  const longIntervals = Number(longEndYear) - Number(longStartYear);
+  const recentIntervals = Number(recentEndYear) - Number(recentStartYear);
+
+  const hasLongTerm = Number.isFinite(tLong);
+  const hasRecent = Number.isFinite(tRecent);
+
+  const validLongIntervals = Number.isFinite(longIntervals) && longIntervals > 0;
+  const validRecentIntervals = Number.isFinite(recentIntervals) && recentIntervals > 0;
+
+  if (!hasLongTerm && !hasRecent) return null;
+
+  if (hasLongTerm && validLongIntervals && (!hasRecent || !validRecentIntervals)) {
+    return tLong;
+  }
+
+  if (hasRecent && validRecentIntervals && (!hasLongTerm || !validLongIntervals)) {
+    return tRecent;
+  }
+
+  if (!validLongIntervals && !validRecentIntervals) return null;
+
+  const accumulatedGrowth =
+    Math.pow(1 + tLong, longIntervals) *
+    Math.pow(1 + tRecent, recentIntervals);
+
+  const totalIntervals = longIntervals + recentIntervals;
+
+  if (
+    !Number.isFinite(accumulatedGrowth) ||
+    accumulatedGrowth <= 0 ||
+    !Number.isFinite(totalIntervals) ||
+    totalIntervals <= 0
+  ) {
+    return null;
+  }
+
+  return Math.pow(accumulatedGrowth, 1 / totalIntervals) - 1;
+}
   function calcTMCAFromValues(startValue, endValue, startYear, endYear) {
   const start = Number(startValue);
   const end = Number(endValue);
@@ -2654,9 +2702,18 @@ const d = getHistoricTrafficDataForAirport(code);
     varEl.textContent = odFormatPctRatio(d.var_latest_vs_2019);
   }
 
-  const trendPhrase = odBuildHistoricalTrendPhrase(tmcaLongTerm);
-  const recentPhrase = odBuildRecentTrendPhrase(tmcaRecent);
-  const recoveryPhrase = odBuildRecoveryPhrase(d.var_latest_vs_2019);
+const tmcaNonPandemicOverall = odBuildSyntheticNonPandemicTMCA(
+  tmcaLongTerm,
+  tmcaRecent,
+  longStartYear,
+  longEndYear,
+  recentStartYear,
+  recentEndYear
+);
+
+const trendPhrase = odBuildHistoricalTrendPhrase(tmcaNonPandemicOverall);
+const recentPhrase = odBuildRecentTrendPhrase(tmcaRecent);
+const recoveryPhrase = odBuildRecoveryPhrase(d.var_latest_vs_2019);
 
   const maxSentence = (
     d.max_year &&
@@ -2682,10 +2739,11 @@ textEl.innerHTML =
     </p>
     <p>
     Para analizar la serie histórica, se decidió utilizar el período ${longStartYear}-${longEndYear} como referencia prepandemia, mientras que el período ${recentStartYear}-${recentEndYear}
-    resume la dinámica posterior. Por ello, el indicador Tasa Media de Crecimiento Anual (TMDA) se muestra diferenciado, evitando los años 2020 a 2022 debido a su carácter atípico.
+    resume la dinámica posterior. Por ello, el indicador Tasa Media de Crecimiento Anual (TMCA) se muestra diferenciado, evitando los años 2020 a 2022 debido a su carácter atípico.
     </p>
     <p>
-    A lo largo de todo el período considerado, el aeropuerto presentó <strong>${trendPhrase}</strong>.
+    En una lectura de conjunto de los años no pandémicos, el aeropuerto presentó
+    <strong>${trendPhrase}</strong>.
     </p>
     <span class="historic-period-note"> 
     </span>
