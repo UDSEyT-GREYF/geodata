@@ -2676,13 +2676,14 @@ const historicSubject = d.source === "aeropuertos_argentina_fdo"
   
 textEl.innerHTML =
   `<p>
-    Durante los últimos <strong>${d.years_shown} años, el tráfico aerocomercial del</strong>, ${historicSubject}
-    <strong>${escapeHtml(nombreAeropuerto)} experimentó tanto tendencias de crecimiento de la demanda como así también caídas de pasajeros y operaciones. 
-    Esta evolución puede observarse en el gráfico <strong>Evolución histórica de pasajeros y aeronaves</strong>
-    de la hoja <strong>Datos clave</strong>. 
-    Si se tiene en cuenta la Tasa Media de Crecimiento Anual (TMDA) del período, ${trendPhrase}
+    Durante los últimos <strong>${d.years_shown} años</strong>, ${historicSubject}
+    <strong>${escapeHtml(nombreAeropuerto)} </strong> experimentó tanto tendencias de crecimiento de la demanda como así también caídas de pasajeros y operaciones. 
+    Esta evolución puede observarse en el gráfico Evolución histórica de pasajeros y aeronaves de la hoja <strong>Datos clave</strong>. 
+    </p>
+    <p>
+    Si se tiene en cuenta la Tasa Media de Crecimiento Anual (TMDA) del período, el aeropuerto presentó ${trendPhrase}.
     <span class="historic-period-note"> El año ${longEndYear} se utiliza como referencia prepandemia, mientras que el período ${recentStartYear}-${recentEndYear}
-    resume la dinámica posterior a la recuperación del tráfico.
+    resume la dinámica posterior.
     </span>
     </p>
 
