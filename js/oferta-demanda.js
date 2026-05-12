@@ -2678,12 +2678,14 @@ textEl.innerHTML =
   `<p>
     Durante los últimos <strong>${d.years_shown} años</strong>, ${historicSubject}
     <strong>${escapeHtml(nombreAeropuerto)} </strong> experimentó tanto tendencias de crecimiento de la demanda como así también caídas de pasajeros y operaciones. 
-    Esta evolución puede observarse en el gráfico Evolución histórica de pasajeros y aeronaves de la hoja <strong>Datos clave</strong>. 
+    Esta evolución puede observarse en el gráfico <strong>Evolución histórica de pasajeros y aeronaves</strong> de la hoja <strong>Datos clave</strong>. 
     </p>
     <p>
-    Si se tiene en cuenta la Tasa Media de Crecimiento Anual (TMDA) del período, el aeropuerto presentó ${trendPhrase}.
-    <span class="historic-period-note"> El año ${longEndYear} se utiliza como referencia prepandemia, mientras que el período ${recentStartYear}-${recentEndYear}
-    resume la dinámica posterior.
+    Para analizar la serie histórica, el año ${longEndYear} se utiliza como referencia prepandemia, mientras que el período ${recentStartYear}-${recentEndYear}
+    resume la dinámica posterior. Por ello el indicador Tasa Media de Crecimiento Anual (TMDA) se muestra diferenciado.
+    
+    A lo largo de todo el período considerado, el aeropuerto presentó ${trendPhrase}.
+    <span class="historic-period-note"> 
     </span>
     </p>
 
