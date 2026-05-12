@@ -227,6 +227,27 @@ function odBuildRecentTrendPhrase(tmcaRecent) {
   if (t >= -0.03) return "una leve retracción reciente";
   return "una contracción reciente";
 }  
+
+  function calcTMCAFromValues(startValue, endValue, startYear, endYear) {
+  const start = Number(startValue);
+  const end = Number(endValue);
+  const y0 = Number(startYear);
+  const y1 = Number(endYear);
+
+  if (
+    !Number.isFinite(start) ||
+    !Number.isFinite(end) ||
+    !Number.isFinite(y0) ||
+    !Number.isFinite(y1) ||
+    start <= 0 ||
+    end <= 0 ||
+    y1 <= y0
+  ) {
+    return null;
+  }
+
+  return Math.pow(end / start, 1 / (y1 - y0)) - 1;
+}
   function escapeHtml(value) {
     return String(value ?? "")
       .replace(/&/g, "&amp;")
@@ -871,6 +892,152 @@ function fdoTrafficSegment(row) {
   return "Cab";
 }
 
+function getFdoTrafficMonthlyRecords() {
+  if (Array.isArray(fdoTrafficAA?.mensual)) return fdoTrafficAA.mensual;
+  if (Array.isArray(fdoTrafficAA?.monthly)) return fdoTrafficAA.monthly;
+  if (Array.isArray(fdoTrafficAA?.data)) return fdoTrafficAA.data;
+  if (Array.isArray(fdoTrafficAA?.rows)) return fdoTrafficAA.rows;
+  return [];
+}
+
+function buildFdoHistoricTrafficData() {
+  if (!fdoTrafficAA) return null;
+
+  const yearMap = new Map();
+
+  getFdoTrafficMonthlyRecords()
+    .map(normalizeFdoRowKeys)
+    .filter(fdoShouldUseTrafficRow)
+    .forEach(row => {
+      const year = Number(firstNonEmpty(row, [
+        "anio",
+        "ano",
+        "año",
+        "year",
+        "y"
+      ]));
+
+      if (!Number.isFinite(year)) return;
+
+      const pax = parseNumber(firstNonEmpty(row, [
+        "pasajeros",
+        "pax",
+        "p",
+        "pasajeros_totales",
+        "total_pasajeros"
+      ]));
+
+      const mov = parseNumber(firstNonEmpty(row, [
+        "movimientos",
+        "vuelos",
+        "v",
+        "movimientos_totales",
+        "total_movimientos",
+        "total_vuelos"
+      ]));
+
+      if (!yearMap.has(year)) {
+        yearMap.set(year, {
+          year,
+          pax: 0,
+          movimientos: 0
+        });
+      }
+
+      const item = yearMap.get(year);
+      item.pax += Number.isFinite(pax) ? pax : 0;
+      item.movimientos += Number.isFinite(mov) ? mov : 0;
+    });
+
+  const annualSeries = Array.from(yearMap.values())
+    .filter(row => Number(row.pax) > 0 || Number(row.movimientos) > 0)
+    .sort((a, b) => a.year - b.year);
+
+  if (!annualSeries.length) return null;
+
+  function getAnnualPax(year) {
+    const row = annualSeries.find(x => Number(x.year) === Number(year));
+    return row && Number.isFinite(Number(row.pax)) ? Number(row.pax) : null;
+  }
+
+  const availableYears = annualSeries.map(row => Number(row.year));
+
+  const latestYear = availableYears.includes(Number(YEAR_REF))
+    ? Number(YEAR_REF)
+    : Math.max(...availableYears);
+
+  const baselineYear = availableYears.includes(2019)
+    ? 2019
+    : Math.max(...availableYears.filter(y => y <= 2019));
+
+  const longStartYear = Math.min(
+    ...annualSeries
+      .filter(row => Number(row.year) <= baselineYear && Number(row.pax) > 0)
+      .map(row => Number(row.year))
+  );
+
+  const recentStartYear = availableYears.includes(2023)
+    ? 2023
+    : Math.min(...availableYears.filter(y => y >= 2020));
+
+  const startPax = getAnnualPax(longStartYear);
+  const baselinePax = getAnnualPax(baselineYear);
+  const recentStartPax = getAnnualPax(recentStartYear);
+  const latestPax = getAnnualPax(latestYear);
+
+  const maxRow = annualSeries.reduce((max, row) => {
+    if (!max) return row;
+    return Number(row.pax) > Number(max.pax) ? row : max;
+  }, null);
+
+  const tmcaPrepandemic = calcTMCAFromValues(
+    startPax,
+    baselinePax,
+    longStartYear,
+    baselineYear
+  );
+
+  const tmcaRecent = calcTMCAFromValues(
+    recentStartPax,
+    latestPax,
+    recentStartYear,
+    latestYear
+  );
+
+  const varLatestVs2019 =
+    Number.isFinite(Number(baselinePax)) &&
+    Number.isFinite(Number(latestPax)) &&
+    Number(baselinePax) > 0
+      ? (Number(latestPax) / Number(baselinePax)) - 1
+      : null;
+
+  return {
+    iata: "FDO",
+    aeropuerto: "Aeropuerto de San Fernando (FDO)",
+    source: "aeropuertos_argentina_fdo",
+
+    annual_series: annualSeries,
+
+    years_shown: latestYear - longStartYear + 1,
+
+    prepandemic_start_year: longStartYear,
+    prepandemic_start_pax: startPax,
+
+    baseline_year: baselineYear,
+    baseline_pax: baselinePax,
+
+    latest_year: latestYear,
+    latest_pax: latestPax,
+
+    tmca_prepandemic: tmcaPrepandemic,
+    tmca_recent: tmcaRecent,
+    var_latest_vs_2019: varLatestVs2019,
+
+    max_year: maxRow?.year ?? null,
+    max_pax: maxRow?.pax ?? null
+  };
+}
+  
 function buildFdoMonthlyBase(year = YEAR_REF) {
   const monthlyMap = new Map();
 
@@ -2378,7 +2545,25 @@ function renderTopRoutesCharts(routes) {
     renderSingleRouteChart(`odRouteChart_${idx}`, route);
   });
 }
+function getHistoricTrafficDataForAirport(iata) {
+  const code = clean(iata).toUpperCase();
 
+  if (isFDO(code)) {
+    const fdoHistoricData = buildFdoHistoricTrafficData();
+
+    if (fdoHistoricData) {
+      return fdoHistoricData;
+    }
+
+    console.warn(
+      "No se pudo construir el histórico de FDO desde fdo_trafico_aeropuertos_argentina.json. Se usará la fuente histórica general como respaldo."
+    );
+  }
+
+  return Array.isArray(historicTrafficByIata)
+    ? historicTrafficByIata.find(x => clean(x.iata).toUpperCase() === code)
+    : historicTrafficByIata?.[code];
+}
 function renderHistoricTrafficBlock(iata, airportName) {
   const block = q("historicTrafficBlock");
   const textEl = q("historicTrafficText");
@@ -2392,11 +2577,9 @@ function renderHistoricTrafficBlock(iata, airportName) {
 
   if (!block || !textEl) return;
 
-  const code = clean(iata).toUpperCase();
+const code = clean(iata).toUpperCase();
 
-  const d = Array.isArray(historicTrafficByIata)
-    ? historicTrafficByIata.find(x => clean(x.iata).toUpperCase() === code)
-    : historicTrafficByIata?.[code];
+const d = getHistoricTrafficDataForAirport(code);
 
   if (!d) {
     block.style.display = "none";
@@ -2486,10 +2669,14 @@ function renderHistoricTrafficBlock(iata, airportName) {
 const maxParagraph = maxSentence
   ? `<p>${maxSentence}</p>`
   : "";
-
+  
+const historicSubject = d.source === "aeropuertos_argentina_fdo"
+  ? "el movimiento de pasajeros registrados del"
+  : "el tráfico aerocomercial del";
+  
 textEl.innerHTML =
   `<p>
-    Durante los últimos <strong>${d.years_shown} años</strong>, el tráfico aerocomercial del
+    Durante los últimos <strong>${d.years_shown} años</strong>, ${historicSubject}
     <strong>${escapeHtml(nombreAeropuerto)}</strong> presentó <strong>${trendPhrase}</strong>.
     Esta evolución puede observarse en el gráfico <strong>Evolución histórica de pasajeros y aeronaves</strong>
     de la hoja <strong>Datos clave</strong>.
