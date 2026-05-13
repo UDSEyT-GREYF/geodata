@@ -17,6 +17,7 @@
   const FDO_ROUTES_MONTHLY_AA_PATH = "/geodata/fuentes/fdo_rutas_mensual_aeropuertos_argentina.json";
   // Perfil operativo 2025: clasifica cada aeropuerto para modular la narrativa de conectividad.
   const PERFIL_OPERATIVO_PATH = "/geodata/fuentes/perfil_operativo_impacto_2025.json";
+  const DESCRIPTIVO_AEROPUERTOS_GEOJSON_PATH = "/geodata/fuentes/Descriptivo_aeropuertos.geojson";
 
   /* ============================================================
      ESTADO
@@ -34,6 +35,8 @@
   let fdoRoutesMonthlyAA = [];
   // Índice por IATA construido a partir de perfil_operativo_impacto_2025.json.
   let operationalProfileByIata = {};
+  // Índice por IATA construido a partir de Descriptivo_aeropuertos.geojson.
+  let descriptivoByIata = {};
   
   const DEST_OVERRIDES = {
     BUE: { ciudad: "Buenos Aires AEP+EZE", pais: "Argentina" },
@@ -651,6 +654,33 @@ function getOperationalProfile(iata) {
   return operationalProfileByIata?.[clean(iata).toUpperCase()] || null;
 }
 
+/* ============================================================
+   DESCRIPTIVO AEROPORTUARIO
+   ------------------------------------------------------------
+   Convierte Descriptivo_aeropuertos.geojson en un índice por IATA.
+   Esta fuente aporta perfil territorial, tipo de demanda y estacionalidad
+   esperada para enriquecer la narrativa de conectividad.
+   ============================================================ */
+
+function buildDescriptivoAirportIndex(geojson) {
+  const index = {};
+
+  (geojson?.features || []).forEach(feature => {
+    const props = feature?.properties || {};
+    const iata = clean(firstNonEmpty(props, ["IATA", "iata"])).toUpperCase();
+
+    if (!iata) return;
+
+    index[iata] = props;
+  });
+
+  return index;
+}
+
+function getAirportDescriptivo(iata) {
+  return descriptivoByIata?.[clean(iata).toUpperCase()] || null;
+}
+  
 function sumMarketPassengers(summary, marketKey) {
   return (summary?.monthly || []).reduce((acc, row) => {
     if (marketKey === "cab") return acc + (Number(row.paxCab) || 0);
@@ -740,9 +770,216 @@ function buildMarketProfilePhrase(iata, paxCab, paxInt) {
   return "orientado principalmente al cabotaje";
 }
 
+/* ============================================================
+   ESTACIONALIDAD OBSERVADA
+   ------------------------------------------------------------
+   Usa la serie mensual 2025 del gráfico de oferta-demanda.
+   No reemplaza la estacionalidad esperada del descriptivo:
+   la contrasta con los datos mensuales observados.
+   ============================================================ */
+
+function buildObservedSeasonality(summary) {
+  const rows = (summary?.monthly || [])
+    .map(row => {
+      const date = parseFechaFlexible(row.anioMes);
+      const pax = Number(row.paxTotal || 0);
+
+      return {
+        anioMes: row.anioMes,
+        date,
+        month: date ? date.getMonth() + 1 : null,
+        monthLabel: date
+          ? date.toLocaleDateString("es-AR", { month: "long" })
+          : row.anioMes,
+        pax
+      };
+    })
+    .filter(row => row.pax > 0);
+
+  if (!rows.length) return null;
+
+  const total = rows.reduce((acc, row) => acc + row.pax, 0);
+  const avg = total / rows.length;
+
+  const sorted = rows.slice().sort((a, b) => b.pax - a.pax);
+  const peak = sorted[0];
+  const top3 = sorted.slice(0, 3);
+  const top3Pax = top3.reduce((acc, row) => acc + row.pax, 0);
+
+  const peakShare = total > 0 ? (peak.pax / total) * 100 : 0;
+  const top3Share = total > 0 ? (top3Pax / total) * 100 : 0;
+  const peakVsAvg = avg > 0 ? peak.pax / avg : null;
+
+  let intensity = "distribuida";
+
+  if (top3Share >= 45 || peakVsAvg >= 2) {
+    intensity = "muy marcada";
+  } else if (top3Share >= 35 || peakVsAvg >= 1.6) {
+    intensity = "marcada";
+  } else if (top3Share >= 30 || peakVsAvg >= 1.35) {
+    intensity = "moderada";
+  }
+
+  return {
+    peak,
+    top3,
+    peakShare,
+    top3Share,
+    peakVsAvg,
+    intensity
+  };
+}
+
+/* ============================================================
+   FRASES TERRITORIALES Y DE ESTACIONALIDAD
+   ------------------------------------------------------------
+   Estas funciones convierten los campos del descriptivo en texto
+   más narrativo para evitar que el bloque quede como una lista
+   de indicadores.
+   ============================================================ */
+
+function formatDescriptiveList(items, maxItems = 2) {
+  const values = items
+    .map(clean)
+    .filter(Boolean)
+    .slice(0, maxItems);
+
+  if (!values.length) return "";
+
+  if (values.length === 1) return values[0];
+
+  return `${values.slice(0, -1).join(", ")} y ${values[values.length - 1]}`;
+}
+
+function buildTerritorialRolePhrase(descriptivo) {
+  if (!descriptivo) return "";
+
+  const rasgo = clean(descriptivo.rasgo_territorial);
+  const tipologia = clean(descriptivo.tipologia_principal);
+  const secundaria = clean(descriptivo.tipologia_secundaria);
+
+  if (rasgo && tipologia) {
+    return `asociado territorialmente a un perfil de <strong>${escapeHtml(rasgo)}</strong>, dentro de una estructura funcional vinculada a <strong>${escapeHtml(tipologia)}</strong>${secundaria ? ` y <strong>${escapeHtml(secundaria)}</strong>` : ""}`;
+  }
+
+  if (rasgo) {
+    return `asociado territorialmente a un perfil de <strong>${escapeHtml(rasgo)}</strong>`;
+  }
+
+  if (tipologia) {
+    return `vinculado principalmente a una función territorial de <strong>${escapeHtml(tipologia)}</strong>`;
+  }
+
+  return "";
+}
+
+function buildDemandRolePhrase(descriptivo) {
+  if (!descriptivo) return "";
+
+  const demanda = clean(descriptivo.tipologia_demanda_aerea);
+  const secundaria = clean(descriptivo.demanda_secundaria);
+  const observacion = clean(descriptivo.observacion_demanda);
+
+  if (observacion) {
+    return escapeHtml(observacion);
+  }
+
+  if (demanda && secundaria) {
+    return `demanda aérea de perfil ${escapeHtml(demanda)}, con un componente secundario ${escapeHtml(secundaria)}`;
+  }
+
+  if (demanda) {
+    return `demanda aérea de perfil ${escapeHtml(demanda)}`;
+  }
+
+  return "";
+}
+
+function buildTourismPhrase(descriptivo) {
+  if (!descriptivo) return "";
+
+  const tourismCat = clean(descriptivo.turismo_cat);
+  const atractivos = formatDescriptiveList([
+    descriptivo.atractivo_1,
+    descriptivo.atractivo_2
+  ]);
+
+  if (!tourismCat && !atractivos) return "";
+
+  if (tourismCat && atractivos) {
+    return `El componente turístico se vincula con <strong>${escapeHtml(atractivos)}</strong>.`;
+  }
+
+  if (atractivos) {
+    return `Entre los elementos territoriales relevantes se destacan <strong>${escapeHtml(atractivos)}</strong>.`;
+  }
+
+  return "";
+}
+
+function isPeakConsistentWithExpectedSeason(expectedType, peakMonth) {
+  const expected = normalizeTextKey(expectedType);
+
+  if (!peakMonth) return null;
+
+  if (expected === "invierno") {
+    return [6, 7, 8].includes(Number(peakMonth));
+  }
+
+  if (expected === "verano") {
+    return [12, 1, 2].includes(Number(peakMonth));
+  }
+
+  if (expected === "todo_el_ano" || expected === "todo el ano" || expected === "todo el año") {
+    return null;
+  }
+
+  if (expected === "eventos") {
+    return null;
+  }
+
+  return null;
+}
+
+function buildSeasonalityPhrase(descriptivo, observed) {
+  if (!observed) return "";
+
+  const expectedType = clean(descriptivo?.tipo_estacionalidad);
+  const expectedNote = clean(descriptivo?.observacion_estacionalidad);
+  const peakMonth = observed.peak?.month;
+  const peakLabel = observed.peak?.monthLabel || "el mes pico";
+
+  const top3Text = formatShareShort(observed.top3Share);
+  const peakText = formatShareShort(observed.peakShare);
+
+  let base = `La dinámica mensual mostró una estacionalidad <strong>${escapeHtml(observed.intensity)}</strong>: el mes de mayor movimiento fue <strong>${escapeHtml(peakLabel)}</strong>, con <strong>${peakText}</strong> de los pasajeros anuales, mientras que los tres meses principales concentraron <strong>${top3Text}</strong>.`;
+
+  if (!expectedType) return base;
+
+  const consistency = isPeakConsistentWithExpectedSeason(expectedType, peakMonth);
+
+  if (consistency === true) {
+    base += ` Este comportamiento es consistente con el perfil estacional <strong>${escapeHtml(expectedType)}</strong> identificado para el aeropuerto.`;
+  } else if (consistency === false) {
+    base += ` Este comportamiento no coincide plenamente con el perfil estacional <strong>${escapeHtml(expectedType)}</strong>, por lo que conviene interpretarlo junto con la programación efectiva de rutas y frecuencias de 2025.`;
+  } else if (normalizeTextKey(expectedType).includes("todo")) {
+    if (observed.intensity === "distribuida" || observed.intensity === "moderada") {
+      base += ` Esto resulta compatible con un perfil de demanda de actividad anual.`;
+    } else {
+      base += ` Aunque el descriptivo identifica una demanda de actividad anual, en 2025 se observó una concentración mensual relevante.`;
+    }
+  } else if (expectedNote) {
+    base += ` ${escapeHtml(expectedNote)}.`;
+  }
+
+  return base;
+}
+  
 function buildConnectivityProfile(iata, summary, snaRank) {
   const code = clean(iata).toUpperCase();
   const profile = getOperationalProfile(code);
+  const descriptivo = getAirportDescriptivo(code);
+  const observedSeasonality = buildObservedSeasonality(summary);
   const totalPax = Number(summary?.totalPax || 0);
   const paxCab = sumMarketPassengers(summary, "cab");
   const paxInt = sumMarketPassengers(summary, "int");
@@ -776,6 +1013,8 @@ function buildConnectivityProfile(iata, summary, snaRank) {
   return {
     code,
     profile,
+    descriptivo,
+    observedSeasonality,
     totalPax,
     paxCab,
     paxInt,
@@ -799,7 +1038,13 @@ function buildConnectivityProfile(iata, summary, snaRank) {
 
 function buildConnectivityProfileHtml(iata, summary, snaRank) {
   const p = buildConnectivityProfile(iata, summary, snaRank);
+
   const profileLabel = p.profile?.label || "perfil operativo no clasificado";
+  const territorialPhrase = buildTerritorialRolePhrase(p.descriptivo);
+  const demandPhrase = buildDemandRolePhrase(p.descriptivo);
+  const tourismPhrase = buildTourismPhrase(p.descriptivo);
+  const seasonalityPhrase = buildSeasonalityPhrase(p.descriptivo, p.observedSeasonality);
+
   const totalRankText = p.snaRank?.rank
     ? `posición <strong>#${formatNumber(p.snaRank.rank)} / ${formatNumber(p.snaRank.totalAirports)}</strong> en el ranking general del SNA`
     : "sin posición general disponible en el ranking del SNA";
@@ -812,31 +1057,78 @@ function buildConnectivityProfileHtml(iata, summary, snaRank) {
   const routeShare = Number(p.topRoute?.sharePaxPct || 0);
   const top3Share = Number(p.concentration?.top3 || 0);
 
+  const introTerritorial = territorialPhrase
+    ? `, ${territorialPhrase}`
+    : "";
+
+  const demandText = demandPhrase
+    ? ` Su demanda aérea se asocia principalmente a ${demandPhrase}.`
+    : "";
+
+  let firstParagraph = `
+    <p>
+      En 2025, el aeropuerto cumplió un rol de <strong>${escapeHtml(profileLabel)}</strong> dentro del SNA${introTerritorial}.
+      ${demandText}
+      ${tourismPhrase ? ` ${tourismPhrase}` : ""}
+    </p>
+  `;
+
+  let marketParagraph = `
+    <p>
+      En términos de mercado, presentó ${escapeHtml(p.marketPhrase)} y ocupó la ${totalRankText}.${segmentRankText}
+    </p>
+  `;
+
   let networkSentence = "";
+
   if (p.isMetroNode) {
-    networkSentence = `Por tratarse de un nodo metropolitano, la lectura no se basa en dependencia respecto de BUE, sino en la dispersión del tráfico entre múltiples destinos. En 2025 la red fue <strong>${escapeHtml(p.concentration.label)}</strong>: la principal ruta representó <strong>${formatShareShort(routeShare)}</strong> de los pasajeros y las tres primeras concentraron <strong>${formatShareShort(top3Share)}</strong>.`;
+    networkSentence = `
+      <p>
+        Por tratarse de un nodo metropolitano, la conectividad no se interpreta como dependencia respecto de BUE,
+        sino por la amplitud de su red y la distribución del tráfico entre múltiples corredores.
+        En 2025 la red fue <strong>${escapeHtml(p.concentration.label)}</strong>:
+        la principal ruta representó <strong>${formatShareShort(routeShare)}</strong> de los pasajeros
+        y las tres primeras concentraron <strong>${formatShareShort(top3Share)}</strong>.
+      </p>
+    `;
   } else {
     const buePart = Number.isFinite(p.bueShare)
       ? `La red mostró <strong>${escapeHtml(p.bueDependence)}</strong>, con <strong>${formatShareShort(p.bueShare)}</strong> del tráfico vinculado a AEP/EZE.`
       : "La red no registró una dependencia radial claramente identificable.";
 
     const federalPart = p.federalRoutesCount > 0
-      ? ` La conectividad federal alcanzó <strong>${formatShareShort(p.federalShare)}</strong> del tráfico, a partir de <strong>${formatNumber(p.federalRoutesCount)}</strong> ruta${p.federalRoutesCount === 1 ? "" : "s"} doméstica${p.federalRoutesCount === 1 ? "" : "s"} fuera de BUE.`
-      : " No se identificaron conexiones federales domésticas relevantes fuera de BUE.";
+      ? `La conectividad federal alcanzó <strong>${formatShareShort(p.federalShare)}</strong> del tráfico, a partir de <strong>${formatNumber(p.federalRoutesCount)}</strong> ruta${p.federalRoutesCount === 1 ? "" : "s"} doméstica${p.federalRoutesCount === 1 ? "" : "s"} fuera de BUE.`
+      : "No se identificaron conexiones federales domésticas relevantes fuera de BUE.";
 
-    networkSentence = `La estructura de rutas fue <strong>${escapeHtml(p.concentration.label)}</strong>: <strong>${escapeHtml(routeName)}</strong> explicó <strong>${formatShareShort(routeShare)}</strong> de los pasajeros y las tres primeras rutas concentraron <strong>${formatShareShort(top3Share)}</strong>. ${buePart}${federalPart}`;
+    networkSentence = `
+      <p>
+        La estructura de rutas fue <strong>${escapeHtml(p.concentration.label)}</strong>:
+        <strong>${escapeHtml(routeName)}</strong> explicó <strong>${formatShareShort(routeShare)}</strong> de los pasajeros
+        y las tres primeras rutas concentraron <strong>${formatShareShort(top3Share)}</strong>.
+        ${buePart} ${federalPart}
+      </p>
+    `;
   }
 
-  const intlSentence = p.intRelevant
-    ? ` El segmento internacional representó <strong>${formatShareShort(p.intlShare)}</strong> de los pasajeros y comprendió <strong>${formatNumber(p.intlRoutesCount)}</strong> destino${p.intlRoutesCount === 1 ? "" : "s"} internacional${p.intlRoutesCount === 1 ? "" : "es"}.`
+  const intlParagraph = p.intRelevant
+    ? `
+      <p>
+        El segmento internacional representó <strong>${formatShareShort(p.intlShare)}</strong> de los pasajeros
+        y comprendió <strong>${formatNumber(p.intlRoutesCount)}</strong> destino${p.intlRoutesCount === 1 ? "" : "s"} internacional${p.intlRoutesCount === 1 ? "" : "es"}.
+      </p>
+    `
+    : "";
+
+  const seasonalityParagraph = seasonalityPhrase
+    ? `<p>${seasonalityPhrase}</p>`
     : "";
 
   return `
-    <p>
-      En 2025, el aeropuerto se inscribió dentro del perfil <strong>${escapeHtml(profileLabel)}</strong>,
-      ${escapeHtml(p.marketPhrase)}, y ocupó la ${totalRankText}.${segmentRankText}
-    </p>
-    <p>${networkSentence}${intlSentence}</p>
+    ${firstParagraph}
+    ${marketParagraph}
+    ${networkSentence}
+    ${intlParagraph}
+    ${seasonalityParagraph}
   `;
 }
 
@@ -3410,7 +3702,8 @@ const [
   airlineAliasResp,
   fdoTrafficResp,
   fdoRoutesMonthlyResp,
-  operationalProfileResp
+  operationalProfileResp,
+  descriptivoResp
 ] = await Promise.all([
   fetch(AEROPUERTOS_GEOJSON_PATH),
   fetch(RUTAS_CSV_PATH).catch(() => null),
@@ -3419,7 +3712,8 @@ const [
   fetch(AIRLINE_ALIAS_CSV_PATH).catch(() => null),
   fetch(FDO_TRAFFIC_AA_PATH).catch(() => null),
   fetch(FDO_ROUTES_MONTHLY_AA_PATH).catch(() => null),
-  fetch(PERFIL_OPERATIVO_PATH).catch(() => null)
+  fetch(PERFIL_OPERATIVO_PATH).catch(() => null),
+  fetch(DESCRIPTIVO_AEROPUERTOS_GEOJSON_PATH).catch(() => null)
 ]);
 
       const geojson = await airportsResp.json();
@@ -3483,7 +3777,14 @@ if (operationalProfileResp && operationalProfileResp.ok) {
   operationalProfileByIata = {};
   console.warn("No se pudo cargar perfil_operativo_impacto_2025.json.");
 }
-
+// Carga opcional del descriptivo aeroportuario.
+// Aporta rol territorial, tipo de demanda y estacionalidad esperada.
+if (descriptivoResp && descriptivoResp.ok) {
+  descriptivoByIata = buildDescriptivoAirportIndex(await descriptivoResp.json());
+} else {
+  descriptivoByIata = {};
+  console.warn("No se pudo cargar Descriptivo_aeropuertos.geojson.");
+}
 try {
   const respHistoric = await fetch("fuentes/tmca_historica_57_aeropuertos_base2019.json");
 
