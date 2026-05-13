@@ -943,3 +943,227 @@
 .historic-traffic-text p:last-child {
   margin-bottom: 0;
 }
+
+/* ==========================================================
+   NUEVO 2026-05: PERFIL OPERATIVO, RUTAS 2025 E HISTÓRICO
+   Estos estilos acompañan la nueva estructura de 3 páginas:
+   Página 1: síntesis 2025; Página 2: top 6 rutas; Página 3: histórico.
+   ========================================================== */
+
+/* Bloque narrativo de perfil operativo y conectividad 2025 */
+.od-panel-connectivity {
+  grid-column: 1 / -1;
+  min-height: 0;
+}
+
+.od-connectivity-text {
+  padding: 8px 10px 10px;
+  font-size: 9.2px;
+  line-height: 1.34;
+  color: #334150;
+  column-count: 2;
+  column-gap: 16px;
+}
+
+.od-connectivity-text p {
+  margin: 0 0 6px 0;
+  break-inside: avoid;
+}
+
+.od-connectivity-text strong {
+  color: #1f4f82;
+  font-weight: 700;
+}
+
+/* Hoja de rutas: ahora muestra las 6 rutas 2025 juntas. */
+.od-panel-routes-page {
+  flex: 1 1 auto;
+}
+
+.od-routes-list-page {
+  flex: 1 1 auto;
+  gap: 6px !important;
+  padding-bottom: 4px !important;
+}
+
+/* Cada tarjeta se compacta para que entren hasta 6 rutas en una hoja A4. */
+#odTopRoutes .od-route-card-chart {
+  padding: 6px 8px !important;
+  border-radius: 8px !important;
+}
+
+/* Encabezado de ruta: nombre a la izquierda, métricas a la derecha. */
+#odTopRoutes .od-route-card-head,
+#odTopRoutesExtra .od-route-card-head {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  column-gap: 10px;
+  row-gap: 2px;
+  margin-bottom: 4px !important;
+  flex-wrap: nowrap !important;
+}
+
+#odTopRoutes .od-route-card-title,
+#odTopRoutesExtra .od-route-card-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#odTopRoutes .od-route-card-metrics-inline,
+#odTopRoutesExtra .od-route-card-metrics-inline {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 3px 6px;
+  margin-left: 0 !important;
+  text-align: right;
+  font-size: 8.9px !important;
+  line-height: 1.1 !important;
+  color: #38526b;
+  max-width: 465px;
+}
+
+#odTopRoutes .od-route-metric,
+#odTopRoutesExtra .od-route-metric {
+  gap: 3px;
+}
+
+/* Icono específico para frecuencia semanal: calendario/reloj sintético. */
+.od-mini-icon-frequency {
+  border: 1px solid rgba(31, 79, 130, 0.42);
+  border-radius: 3px;
+  width: 15px;
+  height: 13px;
+}
+
+.od-mini-icon-frequency::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  top: 3px;
+  border-top: 1px solid rgba(31, 79, 130, 0.52);
+}
+
+.od-mini-icon-frequency::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  left: 5px;
+  top: 6px;
+  border-radius: 50%;
+  background: #1f4f82;
+  box-shadow: 4px 0 0 rgba(31, 79, 130, 0.72);
+}
+
+/* Altura más compacta para que entren 6 rutas completas en página 2. */
+#odTopRoutes .od-route-chart-wrap,
+#odTopRoutesExtra .od-route-chart-wrap {
+  height: 112px !important;
+  min-height: 112px !important;
+  max-height: 112px !important;
+}
+
+/* Oculta nodos auxiliares de compatibilidad cuando el HTML los conserva. */
+.is-hidden {
+  display: none !important;
+}
+
+/* Página histórica: gráfico apilado + bloque textual. */
+.od-historic-page {
+  margin-top: 24px;
+}
+
+.od-historic-routes-panel {
+  flex: 0 0 auto;
+  margin-bottom: 8px;
+}
+
+.od-historic-routes-chart-wrap {
+  position: relative;
+  height: 360px;
+  padding: 8px 10px 2px;
+  box-sizing: border-box;
+}
+
+#odHistoricRoutesChart {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* El bloque de tráfico histórico ahora vive en la página 3 debajo del gráfico de rutas. */
+.od-historic-page .historic-traffic-block {
+  border: 1px solid #d8e1ea;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 8px 10px 10px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.od-historic-page .historic-traffic-header {
+  margin-bottom: 6px;
+}
+
+.od-historic-page .historic-traffic-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+  margin-bottom: 8px;
+}
+
+.od-historic-page .historic-metric {
+  border: 1px solid #d8e1ea;
+  border-radius: 8px;
+  padding: 5px 7px;
+  background: #fbfdff;
+}
+
+.od-historic-page .historic-metric-label {
+  display: block;
+  font-size: 7.6px;
+  line-height: 1.1;
+  color: #748291;
+  text-transform: uppercase;
+  letter-spacing: 0.035em;
+}
+
+.od-historic-page .historic-metric-value {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 700;
+  color: #1f4f82;
+}
+
+.od-historic-page .historic-traffic-text {
+  font-size: 8.8px;
+  line-height: 1.28;
+  color: #334150;
+  column-count: 2;
+  column-gap: 16px;
+}
+
+.od-historic-page .historic-traffic-text p {
+  margin: 0 0 6px 0;
+  break-inside: avoid;
+}
+
+.od-historic-page .historic-traffic-text strong {
+  color: #1f4f82;
+}
+
+@media print {
+  .od-routes-extra-page,
+  .od-historic-page {
+    page-break-before: always;
+    break-before: page;
+    margin-top: 0 !important;
+  }
+}
