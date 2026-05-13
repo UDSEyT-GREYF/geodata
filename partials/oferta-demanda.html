@@ -1,7 +1,16 @@
+<!-- ============================================================
+     PARTIAL: OFERTA Y DEMANDA
+     Reemplazar el archivo del repositorio: partials/oferta-demanda.html
+     Estructura final: Página 1 síntesis, Página 2 rutas 2025, Página 3 histórico.
+     ============================================================ -->
+
+<!-- ============================================================
+     PÁGINA 1: KPIs + gráficos generales + perfil operativo/conectividad
+     ============================================================ -->
 <section class="sheet-a4 oferta-demanda-sheet offer-demand-page" id="sheetOfertaDemanda">
   <div class="od-page">
 
-    <!-- ENCABEZADO -->
+    <!-- ENCABEZADO: título de la hoja y aeropuerto seleccionado -->
     <header class="sheet-header od-sheet-header">
       <h1 id="odSheetTitle" class="sheet-title-main">
         Oferta y demanda de transporte aéreo
@@ -13,7 +22,7 @@
       </div>
     </header>
 
-    <!-- KPI STRIP -->
+    <!-- KPIs SUPERIORES: resumen anual 2025 -->
     <section class="od-kpis">
       <article class="od-kpi">
         <div class="od-kpi-label">Pasajeros</div>
@@ -51,10 +60,10 @@
       </article>
     </section>
 
-    <!-- BLOQUE PRINCIPAL -->
+    <!-- GRID PRINCIPAL: gráficos generales + texto analítico 2025 -->
     <section class="od-main-grid">
 
-      <!-- FILA 1 -->
+      <!-- Gráfico mensual: pasajeros y asientos por mes y segmento -->
       <div class="od-col od-col-main">
         <section class="od-panel od-panel-chart">
           <div class="od-panel-head">
@@ -74,6 +83,7 @@
         </section>
       </div>
 
+      <!-- Gráfico de participación por aerolínea/operador -->
       <div class="od-col od-col-side">
         <section class="od-panel od-panel-airlines">
           <div class="od-panel-head">
@@ -93,100 +103,73 @@
         </section>
       </div>
 
-      <!-- FILA 2: ANCHO COMPLETO -->
-      <section class="od-panel od-panel-routes od-panel-routes-full">
+      <!-- Nuevo bloque narrativo: perfil operativo + conectividad 2025 -->
+      <section class="od-panel od-panel-connectivity od-panel-routes-full">
         <div class="od-panel-head">
-        <div class="od-panel-title">PRINCIPALES RUTAS</div>
-      </div>
+          <div class="od-panel-title">PERFIL OPERATIVO Y CONECTIVIDAD 2025</div>
+          <div class="od-panel-subtitle">
+            Lectura sintética de mercado, estructura de rutas, ranking por segmento y conectividad federal.
+          </div>
+        </div>
 
-  <div class="od-list od-routes-list" id="odTopRoutes">
-    <div class="od-empty">Sin datos</div>
-  </div>
+        <div class="od-connectivity-text" id="odConnectivityProfileText">
+          Calculando perfil operativo y conectividad…
+        </div>
+      </section>
 
-  <div class="od-routes-source">
-    Fuente: elaborado por ORSNA con datos de SIAC ANAC.
-  </div>
-
-<div class="od-routes-method-note" id="odIntlRoutesNoteMain">
-  Nota: en las rutas internacionales, los destinos se registran hasta el primer tramo operado y no necesariamente representan el destino final de los pasajeros.
-</div>
-        
-  <div id="historicTrafficSlotMain"></div>
-
-  <div class="od-routes-text" id="odRoutesText"></div></section>
-
-</section>
-
+    </section>
   </div>
 </section>
 
-<!-- HOJA 2: CONTINUACIÓN DE PRINCIPALES RUTAS -->
-<section class="sheet-a4 oferta-demanda-sheet offer-demand-page od-routes-extra-page is-hidden" id="odRoutesExtraPage">
+<!-- ============================================================
+     PÁGINA 2: 6 principales rutas 2025
+     ============================================================ -->
+<section class="sheet-a4 oferta-demanda-sheet offer-demand-page od-routes-extra-page" id="odRoutesExtraPage">
   <div class="od-page">
 
+    <!-- Encabezado de la hoja de rutas -->
     <header class="sheet-header od-sheet-header">
       <h1 id="odSheetTitleRoutes" class="sheet-title-main">
         Oferta y demanda de transporte aéreo
       </h1>
 
       <div class="sheet-airport-name">
-        Principales rutas
-        <span class="od-route-continuation-label">continuación</span>
+        Principales rutas 2025
       </div>
     </header>
 
-<section class="od-panel od-panel-routes od-panel-routes-full od-panel-routes-extra">
-  <div class="od-panel-head">
-    <div class="od-panel-title">PRINCIPALES RUTAS</div>
-  </div>
+    <!-- Panel de rutas: JS inserta hasta 6 tarjetas con gráfico mensual -->
+    <section class="od-panel od-panel-routes od-panel-routes-full od-panel-routes-extra od-panel-routes-page">
+      <div class="od-panel-head">
+        <div class="od-panel-title">PRINCIPALES RUTAS</div>
+        <div class="od-panel-subtitle">
+          Top 6 de rutas por pasajeros transportados. El título muestra pasajeros, asientos o movimientos y frecuencia semanal promedio.
+        </div>
+      </div>
 
-  <div class="od-list od-routes-list od-routes-list-extra" id="odTopRoutesExtra">
-    <div class="od-empty">Sin datos</div>
-  </div>
+      <div class="od-list od-routes-list od-routes-list-page" id="odTopRoutes">
+        <div class="od-empty">Sin datos</div>
+      </div>
 
-  <div class="od-routes-source">
-    Fuente: elaborado por ORSNA con datos de SIAC ANAC.
-  </div>
+      <div class="od-routes-source">
+        Fuente: elaborado por ORSNA con datos de SIAC ANAC.
+      </div>
 
-  <div class="od-routes-method-note" id="odIntlRoutesNoteExtra">
-  Nota: en las rutas internacionales, los destinos se registran hasta el primer tramo operado y no necesariamente representan el destino final de los pasajeros.
-</div>
+      <div class="od-routes-method-note" id="odIntlRoutesNoteMain">
+        Nota: en las rutas internacionales, los destinos se registran hasta el primer tramo operado y no necesariamente representan el destino final de los pasajeros.
+      </div>
 
-<div id="historicTrafficSlotExtra">
-<section class="historic-traffic-block" id="historicTrafficBlock">
-  <div class="historic-traffic-header">
-    <div class="od-panel-title historic-traffic-title">TRÁFICO HISTÓRICO</div>
-  </div>
-
-  <div class="historic-traffic-metrics">
-    <div class="historic-metric">
-      <span class="historic-metric-label" id="historicLabelTmcaLongTerm">TMCA 2001-2019</span>
-      <span class="historic-metric-value" id="historicTmcaPrepandemia">–</span>
-    </div>
-
-    <div class="historic-metric">
-      <span class="historic-metric-label" id="historicLabelTmcaRecent">TMCA 2023-2025</span>
-      <span class="historic-metric-value" id="historicTmcaRecent">–</span>
-    </div>
-
-    <div class="historic-metric">
-      <span class="historic-metric-label">Variación 2019-2025</span>
-      <span class="historic-metric-value" id="historicVarVs2019">–</span>
-    </div>
-  </div>
-
-  <div class="historic-traffic-text" id="historicTrafficText">
-    Calculando análisis histórico…
-  </div>
-</section>
-</div>
-  </div>
-</section>
-
+      <!-- Nodo de compatibilidad: el JS anterior lo buscaba para paginar rutas. -->
+      <div class="od-list od-routes-list od-routes-list-extra is-hidden" id="odTopRoutesExtra"></div>
+      <div class="od-routes-method-note is-hidden" id="odIntlRoutesNoteExtra"></div>
+    </section>
 
   </div>
 </section>
-<!-- HOJA INDEPENDIENTE: TRÁFICO HISTÓRICO -->
+
+<!-- ============================================================
+     PÁGINA 3: histórico de rutas + análisis histórico total
+     ============================================================ -->
 <section class="sheet-a4 oferta-demanda-sheet offer-demand-page od-historic-page is-hidden" id="odHistoricPage">
   <div class="od-page">
 
@@ -196,12 +179,54 @@
       </h1>
 
       <div class="sheet-airport-name">
-        Tráfico histórico
+        Evolución histórica
       </div>
     </header>
 
-    <section class="od-panel od-panel-routes od-panel-routes-full od-panel-historic-only">
-      <div id="historicTrafficSlotDedicated"></div>
+    <!-- Gráfico histórico apilado de rutas principales -->
+    <section class="od-panel od-panel-routes od-panel-routes-full od-historic-routes-panel">
+      <div class="od-panel-head">
+        <div class="od-panel-title">EVOLUCIÓN HISTÓRICA DE PASAJEROS EN LAS PRINCIPALES RUTAS</div>
+        <div class="od-panel-subtitle" id="odHistoricRoutesSubtitle">
+          Principales rutas históricas por pasajeros acumulados, más resto de rutas.
+        </div>
+      </div>
+
+      <div class="od-historic-routes-chart-wrap">
+        <canvas id="odHistoricRoutesChart"></canvas>
+      </div>
+
+      <div class="od-routes-source od-historic-source">
+        Fuente: elaborado por ORSNA con datos de SIAC ANAC.
+      </div>
+    </section>
+
+    <!-- Bloque histórico textual: TMCA prepandemia, TMCA reciente y recuperación vs 2019 -->
+    <section class="historic-traffic-block" id="historicTrafficBlock">
+      <div class="historic-traffic-header">
+        <div class="od-panel-title historic-traffic-title">TRÁFICO HISTÓRICO</div>
+      </div>
+
+      <div class="historic-traffic-metrics">
+        <div class="historic-metric">
+          <span class="historic-metric-label" id="historicLabelTmcaLongTerm">TMCA 2001-2019</span>
+          <span class="historic-metric-value" id="historicTmcaPrepandemia">–</span>
+        </div>
+
+        <div class="historic-metric">
+          <span class="historic-metric-label" id="historicLabelTmcaRecent">TMCA 2023-2025</span>
+          <span class="historic-metric-value" id="historicTmcaRecent">–</span>
+        </div>
+
+        <div class="historic-metric">
+          <span class="historic-metric-label">Variación 2019-2025</span>
+          <span class="historic-metric-value" id="historicVarVs2019">–</span>
+        </div>
+      </div>
+
+      <div class="historic-traffic-text" id="historicTrafficText">
+        Calculando análisis histórico…
+      </div>
     </section>
 
   </div>
