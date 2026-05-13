@@ -830,7 +830,7 @@
 .historic-traffic-text {
   margin: 0;
   padding: 0;
-  font-size: 0.9rem;
+  font-size: 3.55mm;
   line-height: 1.45;
   color: #26374a;
   text-align: justify;
@@ -872,8 +872,9 @@
   }
 
   .historic-traffic-text {
-    font-size: 0.75rem;
+    font-size: 3.55mm;
     line-height: 1.4;
+    text-align: justify;
   }
 
   .historic-metric {
@@ -958,11 +959,12 @@
 
 .od-connectivity-text {
   padding: 8px 10px 10px;
-  font-size: 0.9rem;
+  font-size: 3.55mm;
   line-height: 1.34;
   color: #334150;
   column-count: 2;
   column-gap: 16px;
+   text-align: justify;
 }
 
 .od-connectivity-text p {
