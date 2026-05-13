@@ -5,11 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Oferta y demanda de transporte aéreo</title>
 
+  <!-- Ícono de la página de prueba independiente -->
   <link rel="icon" type="image/png" href="img/icons/iconoOfertaDemanda.png">
 
-  <link rel="stylesheet" href="css/oferta-demanda.css">
+  <!-- CSS específico de la hoja Oferta/Demanda -->
+  <link rel="stylesheet" href="css/oferta-demanda.css?v=20260513-od-perfil-rutas">
+
+  <!-- Chart.js: motor de gráficos de oferta/demanda, rutas 2025 e histórico de rutas -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+  <!-- Estilos solo para el contenedor de prueba; no afectan el partial dentro de informe-impacto.html -->
   <style>
     body {
       margin: 0;
@@ -60,6 +65,7 @@
 </head>
 <body>
 
+  <!-- Selector usado únicamente en la página independiente de prueba -->
   <div class="test-toolbar">
     <label for="airportSelect">Seleccionar aeropuerto</label>
     <select id="airportSelect">
@@ -67,9 +73,15 @@
     </select>
   </div>
 
+  <!-- Acá se inyecta partials/oferta-demanda.html -->
   <div id="partialHost"></div>
 
 <script>
+/*
+  Carga defensiva del partial y luego del JS.
+  En informe-impacto.html el partial se monta por otro flujo; esta página solo sirve
+  para probar oferta-demanda.html de manera aislada.
+*/
 (async function () {
   try {
     const host = document.getElementById("partialHost");
@@ -78,7 +90,7 @@
       return;
     }
 
-    const partialResp = await fetch("partials/oferta-demanda.html?v=20260429-1", {
+    const partialResp = await fetch("partials/oferta-demanda.html?v=20260513-od-perfil-rutas", {
       cache: "no-store"
     });
 
@@ -89,7 +101,7 @@
     host.innerHTML = await partialResp.text();
 
     const s = document.createElement("script");
-    s.src = "js/oferta-demanda.js?v=20260429-2";
+    s.src = "js/oferta-demanda.js?v=20260513-od-perfil-rutas";
     s.defer = true;
 
     s.onload = function () {
