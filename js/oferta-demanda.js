@@ -1034,11 +1034,20 @@ function normalizeFDORouteCode(code) {
 }
 
 function getFdoRouteRecords(data) {
+  // La fuente especial de FDO puede publicarse como array directo
+  // o dentro de distintas claves contenedoras. Esta función centraliza
+  // esa lectura para no atar el gráfico histórico a una única estructura JSON.
   if (Array.isArray(data)) return data;
-  if (Array.isArray(data?.routes)) return data.routes;
-  if (Array.isArray(data?.rutas)) return data.rutas;
-  if (Array.isArray(data?.data)) return data.data;
-  if (Array.isArray(data?.rows)) return data.rows;
+
+  const candidateKeys = [
+    "routes", "rutas", "rutas_mensuales", "rutas_mensual",
+    "monthly", "mensual", "data", "rows", "records", "registros"
+  ];
+
+  for (const key of candidateKeys) {
+    if (Array.isArray(data?.[key])) return data[key];
+  }
+
   return [];
 }
 
@@ -1054,18 +1063,85 @@ function parseFdoRoutesMonthlyAAJSON(data) {
   const records = getFdoRouteRecords(data);
   const acc = new Map();
 
-  records.forEach(rawRow => {
-    const r = normalizeFdoRowKeys(rawRow);
+  // Extrae año y mes de FDO desde columnas explícitas (y/m, anio/mes)
+  // o desde campos período tipo 2018-01, 201801, AñoMes, fecha, etc.
+  // Esto corrige el histórico: si los registros 2018-2024 vienen solo con AñoMes,
+  // no deben descartarse ni quedar el gráfico limitado a 2025.
+  function getFdoYearMonth(row) {
+    let year = parseNumber(firstNonEmpty(row, ["y", "anio", "ano", "year"]));
+    let month = parseNumber(firstNonEmpty(row, ["m", "mes", "month"]));
 
-    const year = Number(firstNonEmpty(r, ["y", "anio", "ano", "año", "year"]));
-    const month = Number(firstNonEmpty(r, ["m", "mes", "month"]));
-    const code = normalizeFDORouteCode(firstNonEmpty(r, [
+    if (Number.isFinite(year) && Number.isFinite(month)) {
+      return { year, month };
+    }
+
+    const rawPeriod = clean(firstNonEmpty(row, [
+      "am",
+      "anomes",
+      "anio_mes",
+      "ano_mes",
+      "periodo",
+      "periodo_id",
+      "fecha",
+      "date"
+    ]));
+
+    if (!rawPeriod) return { year: NaN, month: NaN };
+
+    const compact = rawPeriod.match(/^(\d{4})(\d{2})$/);
+    if (compact) {
+      return { year: Number(compact[1]), month: Number(compact[2]) };
+    }
+
+    const ym = rawPeriod.match(/^(\d{4})[-_/](\d{1,2})/);
+    if (ym) {
+      return { year: Number(ym[1]), month: Number(ym[2]) };
+    }
+
+    const d = parseFechaFlexible(rawPeriod);
+    if (d) {
+      return { year: d.getFullYear(), month: d.getMonth() + 1 };
+    }
+
+    return { year: NaN, month: NaN };
+  }
+
+  // Extrae el destino de FDO. Si el campo viene como CityPair/Ruta
+  // del tipo FDO - ASU, se queda con el extremo distinto de FDO.
+  function getFdoDestinationCode(row) {
+    const raw = clean(firstNonEmpty(row, [
       "d",
       "destino",
+      "destino_iata",
       "iata_destino",
       "codigo_destino",
-      "ruta"
-    ]));
+      "cod_destino",
+      "ruta",
+      "citypair_iata",
+      "citypair",
+      "par_iata"
+    ])).toUpperCase();
+
+    if (!raw) return "";
+
+    if (raw.includes("-")) {
+      const parts = raw.split("-").map(x => clean(x).toUpperCase()).filter(Boolean);
+      const other = parts.find(x => x !== "FDO");
+      return normalizeFDORouteCode(other || raw);
+    }
+
+    const codes = raw.match(/[A-Z]{3}/g) || [];
+    if (codes.length > 1 && codes.includes("FDO")) {
+      return normalizeFDORouteCode(codes.find(x => x !== "FDO") || raw);
+    }
+
+    return normalizeFDORouteCode(raw);
+  }
+
+  records.forEach(rawRow => {
+    const r = normalizeFdoRowKeys(rawRow);
+    const { year, month } = getFdoYearMonth(r);
+    const code = getFdoDestinationCode(r);
 
     if (!Number.isFinite(year) || !Number.isFinite(month) || !code) return;
 
@@ -1074,7 +1150,8 @@ function parseFdoRoutesMonthlyAAJSON(data) {
       "pax",
       "pasajeros",
       "pasajeros_totales",
-      "total_pasajeros"
+      "total_pasajeros",
+      "valor_pax"
     ]));
 
     const vuelos = parseNumber(firstNonEmpty(r, [
@@ -1082,12 +1159,14 @@ function parseFdoRoutesMonthlyAAJSON(data) {
       "vuelos",
       "movimientos",
       "vuelos_totales",
-      "total_vuelos"
+      "total_vuelos",
+      "total_movimientos"
     ]));
 
     const freq = parseNumber(firstNonEmpty(r, [
       "f",
       "frecuencia",
+      "frecuencias",
       "frecuencias_semanales",
       "frecuencia_semanal"
     ]));
@@ -1102,8 +1181,7 @@ function parseFdoRoutesMonthlyAAJSON(data) {
     const lf = parseNumber(firstNonEmpty(r, [
       "lf",
       "load_factor",
-      "ocupacion",
-      "ocupación"
+      "ocupacion"
     ]));
 
     const seats = Number.isFinite(seatsProvided)
@@ -1143,7 +1221,7 @@ function parseFdoRoutesMonthlyAAJSON(data) {
     Number.isFinite(r.y) &&
     Number.isFinite(r.m) &&
     r.d &&
-    (Number.isFinite(r.p) || Number.isFinite(r.v))
+    ((Number(r.p) || 0) > 0 || (Number(r.v) || 0) > 0)
   );
 }
 
@@ -2971,8 +3049,8 @@ function renderHistoricRoutesChart(iata) {
 
   if (subtitle) {
     const topText = getHistoricRouteLimit(iata) === 10
-      ? "Diez principales rutas históricas por pasajeros acumulados, más resto de rutas."
-      : "Seis principales rutas históricas por pasajeros acumulados, más resto de rutas.";
+      ? "Diez principales rutas históricas por pasajeros acumulados, más resto de rutas, según años disponibles en la fuente de rutas."
+      : "Seis principales rutas históricas por pasajeros acumulados, más resto de rutas, según años disponibles en la fuente de rutas.";
     subtitle.textContent = topText;
   }
 
