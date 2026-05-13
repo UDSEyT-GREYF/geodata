@@ -15,6 +15,8 @@
   const AIRLINE_ALIAS_CSV_PATH = "/geodata/fuentes/aerolineas_alias.csv";
   const FDO_TRAFFIC_AA_PATH = "/geodata/fuentes/fdo_trafico_aeropuertos_argentina.json";
   const FDO_ROUTES_MONTHLY_AA_PATH = "/geodata/fuentes/fdo_rutas_mensual_aeropuertos_argentina.json";
+  // Perfil operativo 2025: clasifica cada aeropuerto para modular la narrativa de conectividad.
+  const PERFIL_OPERATIVO_PATH = "/geodata/fuentes/perfil_operativo_impacto_2025.json";
 
   /* ============================================================
      ESTADO
@@ -30,6 +32,8 @@
   let historicTrafficByIata = {};
   let fdoTrafficAA = null;
   let fdoRoutesMonthlyAA = [];
+  // Índice por IATA construido a partir de perfil_operativo_impacto_2025.json.
+  let operationalProfileByIata = {};
   
   const DEST_OVERRIDES = {
     BUE: { ciudad: "Buenos Aires AEP+EZE", pais: "Argentina" },
@@ -463,6 +467,15 @@ function formatShareShort(value) {
   return `${value.toLocaleString("es-AR", { maximumFractionDigits: 1 })}%`;
 }
 
+// Formato compacto para frecuencias semanales: evita mostrar decimales innecesarios.
+function formatFrequencyShort(value) {
+  if (!Number.isFinite(Number(value)) || Number(value) <= 0) return "–";
+  return Number(value).toLocaleString("es-AR", {
+    minimumFractionDigits: Number(value) < 10 ? 1 : 0,
+    maximumFractionDigits: Number(value) < 10 ? 1 : 0
+  });
+}
+
 function formatMonthShort(anioMes) {
   const d = parseFechaFlexible(anioMes);
   if (!d) return anioMes;
@@ -601,6 +614,236 @@ function parseAirlineAliasCSV(text) {
   });
 
   return index;
+}
+
+
+/* ============================================================
+   PERFIL OPERATIVO 2025 Y NARRATIVA DE CONECTIVIDAD
+   ============================================================ */
+
+function buildOperationalProfileIndex(data) {
+  const index = {};
+  const categorias = data?.categorias || {};
+
+  Object.entries(categorias).forEach(([categoryKey, category]) => {
+    (category?.aeropuertos || []).forEach(item => {
+      const iata = clean(item?.iata).toUpperCase();
+      if (!iata) return;
+
+      index[iata] = {
+        categoryKey,
+        label: clean(category?.label) || categoryKey,
+        criterio: clean(category?.criterio),
+        enfoqueNarrativo: clean(category?.enfoque_narrativo),
+        aclaracionHistorica: clean(category?.aclaracion_historica),
+        pasajeros2025: Number(item?.pasajeros_2025),
+        movimientos2025: Number(item?.movimientos_2025),
+        pasajerosPorMovimiento: Number(item?.pasajeros_por_movimiento),
+        movimientosPorPasajero: Number(item?.movimientos_por_pasajero)
+      };
+    });
+  });
+
+  return index;
+}
+
+function getOperationalProfile(iata) {
+  return operationalProfileByIata?.[clean(iata).toUpperCase()] || null;
+}
+
+function sumMarketPassengers(summary, marketKey) {
+  return (summary?.monthly || []).reduce((acc, row) => {
+    if (marketKey === "cab") return acc + (Number(row.paxCab) || 0);
+    if (marketKey === "int") return acc + (Number(row.paxInt) || 0);
+    return acc + (Number(row.paxTotal) || 0);
+  }, 0);
+}
+
+function hasRelevantInternationalTraffic(summary) {
+  const total = Number(summary?.totalPax || 0);
+  const paxInt = sumMarketPassengers(summary, "int");
+  if (total <= 0 || paxInt <= 0) return false;
+
+  const share = paxInt / total;
+
+  // Umbral prudente: evita sobredimensionar operaciones internacionales muy marginales.
+  return paxInt >= 10000 && share >= 0.01;
+}
+
+function getSNAPassengerRankingByMarket(selectedIata, marketKey, year = YEAR_REF) {
+  const selected = clean(selectedIata).toUpperCase();
+
+  const rankingRows = (aeropuertos || []).map(a => {
+    const iata = clean(firstNonEmpty(a, ["IATA"])).toUpperCase();
+    const summary = getOfertaDemandaSummary(iata, year, { soloComercial: true });
+
+    return {
+      iata,
+      totalPax: sumMarketPassengers(summary, marketKey)
+    };
+  });
+
+  rankingRows.sort((a, b) => b.totalPax - a.totalPax);
+
+  const rank = rankingRows.findIndex(r => r.iata === selected) + 1;
+  const selectedRow = rankingRows.find(r => r.iata === selected);
+
+  return {
+    rank: rank > 0 ? rank : null,
+    totalAirports: rankingRows.length,
+    value: selectedRow?.totalPax ?? 0
+  };
+}
+
+function classifyConcentration(mainRoutes) {
+  const routes = (mainRoutes || []).slice().sort((a, b) => (b.totalPax || 0) - (a.totalPax || 0));
+  const r1 = Number(routes[0]?.sharePaxPct || 0);
+  const top3 = routes.slice(0, 3).reduce((acc, r) => acc + (Number(r.sharePaxPct) || 0), 0);
+
+  if (r1 >= 50) return { label: "muy concentrada", r1, top3 };
+  if (r1 >= 35) return { label: "concentrada", r1, top3 };
+  if (r1 >= 25) return { label: "intermedia", r1, top3 };
+  if (r1 < 20 && top3 < 60) return { label: "muy diversificada", r1, top3 };
+  return { label: "diversificada", r1, top3 };
+}
+
+function classifyBueDependence(shareBue) {
+  if (!Number.isFinite(shareBue)) return "sin dependencia radial claramente identificable";
+  if (shareBue >= 70) return "alta dependencia de BUE";
+  if (shareBue >= 50) return "dependencia marcada de BUE";
+  if (shareBue >= 30) return "estructura mixta, con peso relevante de BUE";
+  return "baja dependencia de BUE";
+}
+
+function buildMarketProfilePhrase(iata, paxCab, paxInt) {
+  const code = clean(iata).toUpperCase();
+  const total = Number(paxCab || 0) + Number(paxInt || 0);
+  if (total <= 0) return "sin una composición de mercado claramente identificable";
+
+  const cabShare = Number(paxCab || 0) / total;
+  const intShare = Number(paxInt || 0) / total;
+
+  if (code === "AEP") {
+    return intShare >= 0.20
+      ? "con predominio del cabotaje, aunque con un volumen internacional relevante"
+      : "con predominio marcado del cabotaje";
+  }
+
+  if (code === "EZE") {
+    return cabShare >= 0.20
+      ? "con predominio internacional, aunque con un volumen de cabotaje significativo"
+      : "con predominio marcado del tráfico internacional";
+  }
+
+  if (intShare >= 0.25) return "con presencia internacional relevante";
+  if (intShare > 0.01) return "con presencia internacional acotada";
+  return "orientado principalmente al cabotaje";
+}
+
+function buildConnectivityProfile(iata, summary, snaRank) {
+  const code = clean(iata).toUpperCase();
+  const profile = getOperationalProfile(code);
+  const totalPax = Number(summary?.totalPax || 0);
+  const paxCab = sumMarketPassengers(summary, "cab");
+  const paxInt = sumMarketPassengers(summary, "int");
+  const intRelevant = hasRelevantInternationalTraffic(summary);
+  const isMetroNode = code === "AEP" || code === "EZE";
+  const concentration = classifyConcentration(summary?.mainRoutes || []);
+
+  const rankCab = getSNAPassengerRankingByMarket(code, "cab", YEAR_REF);
+  const rankInt = getSNAPassengerRankingByMarket(code, "int", YEAR_REF);
+
+  const destinos = (summary?.destinos || []).filter(d => Number(d.pax || 0) > 0);
+  const buePax = destinos
+    .filter(d => clean(d.code).toUpperCase() === "BUE")
+    .reduce((acc, d) => acc + (Number(d.pax) || 0), 0);
+
+  const domesticFederal = destinos.filter(d => {
+    const destCode = clean(d.code).toUpperCase();
+    const cls = normalizeTextKey(d.clasificacion || "");
+    return destCode !== "BUE" && !cls.includes("internacional");
+  });
+
+  const federalPax = domesticFederal.reduce((acc, d) => acc + (Number(d.pax) || 0), 0);
+  const federalShare = totalPax > 0 ? (federalPax / totalPax) * 100 : 0;
+
+  const intlDestinos = destinos.filter(d => normalizeTextKey(d.clasificacion || "").includes("internacional"));
+  const intlShare = totalPax > 0 ? (paxInt / totalPax) * 100 : 0;
+  const bueShare = totalPax > 0 ? (buePax / totalPax) * 100 : NaN;
+
+  const topRoute = (summary?.mainRoutes || []).slice().sort((a, b) => (b.totalPax || 0) - (a.totalPax || 0))[0];
+
+  return {
+    code,
+    profile,
+    totalPax,
+    paxCab,
+    paxInt,
+    intRelevant,
+    isMetroNode,
+    concentration,
+    rankCab,
+    rankInt,
+    marketPhrase: buildMarketProfilePhrase(code, paxCab, paxInt),
+    topRoute,
+    destinosCount: destinos.length,
+    bueShare,
+    bueDependence: classifyBueDependence(bueShare),
+    federalRoutesCount: domesticFederal.length,
+    federalShare,
+    intlRoutesCount: intlDestinos.length,
+    intlShare,
+    snaRank
+  };
+}
+
+function buildConnectivityProfileHtml(iata, summary, snaRank) {
+  const p = buildConnectivityProfile(iata, summary, snaRank);
+  const profileLabel = p.profile?.label || "perfil operativo no clasificado";
+  const totalRankText = p.snaRank?.rank
+    ? `posición <strong>#${formatNumber(p.snaRank.rank)} / ${formatNumber(p.snaRank.totalAirports)}</strong> en el ranking general del SNA`
+    : "sin posición general disponible en el ranking del SNA";
+
+  const segmentRankText = p.intRelevant
+    ? ` En los rankings por segmento, se ubicó en la posición <strong>#${formatNumber(p.rankCab.rank)} / ${formatNumber(p.rankCab.totalAirports)}</strong> en cabotaje y <strong>#${formatNumber(p.rankInt.rank)} / ${formatNumber(p.rankInt.totalAirports)}</strong> en internacional.`
+    : "";
+
+  const routeName = p.topRoute?.title || "la principal conexión";
+  const routeShare = Number(p.topRoute?.sharePaxPct || 0);
+  const top3Share = Number(p.concentration?.top3 || 0);
+
+  let networkSentence = "";
+  if (p.isMetroNode) {
+    networkSentence = `Por tratarse de un nodo metropolitano, la lectura no se basa en dependencia respecto de BUE, sino en la dispersión del tráfico entre múltiples destinos. En 2025 la red fue <strong>${escapeHtml(p.concentration.label)}</strong>: la principal ruta representó <strong>${formatShareShort(routeShare)}</strong> de los pasajeros y las tres primeras concentraron <strong>${formatShareShort(top3Share)}</strong>.`;
+  } else {
+    const buePart = Number.isFinite(p.bueShare)
+      ? `La red mostró <strong>${escapeHtml(p.bueDependence)}</strong>, con <strong>${formatShareShort(p.bueShare)}</strong> del tráfico vinculado a AEP/EZE.`
+      : "La red no registró una dependencia radial claramente identificable.";
+
+    const federalPart = p.federalRoutesCount > 0
+      ? ` La conectividad federal alcanzó <strong>${formatShareShort(p.federalShare)}</strong> del tráfico, a partir de <strong>${formatNumber(p.federalRoutesCount)}</strong> ruta${p.federalRoutesCount === 1 ? "" : "s"} doméstica${p.federalRoutesCount === 1 ? "" : "s"} fuera de BUE.`
+      : " No se identificaron conexiones federales domésticas relevantes fuera de BUE.";
+
+    networkSentence = `La estructura de rutas fue <strong>${escapeHtml(p.concentration.label)}</strong>: <strong>${escapeHtml(routeName)}</strong> explicó <strong>${formatShareShort(routeShare)}</strong> de los pasajeros y las tres primeras rutas concentraron <strong>${formatShareShort(top3Share)}</strong>. ${buePart}${federalPart}`;
+  }
+
+  const intlSentence = p.intRelevant
+    ? ` El segmento internacional representó <strong>${formatShareShort(p.intlShare)}</strong> de los pasajeros y comprendió <strong>${formatNumber(p.intlRoutesCount)}</strong> destino${p.intlRoutesCount === 1 ? "" : "s"} internacional${p.intlRoutesCount === 1 ? "" : "es"}.`
+    : "";
+
+  return `
+    <p>
+      En 2025, el aeropuerto se inscribió dentro del perfil <strong>${escapeHtml(profileLabel)}</strong>,
+      ${escapeHtml(p.marketPhrase)}, y ocupó la ${totalRankText}.${segmentRankText}
+    </p>
+    <p>${networkSentence}${intlSentence}</p>
+  `;
+}
+
+function renderConnectivityProfileText(iata, summary, snaRank) {
+  const el = q("odConnectivityProfileText");
+  if (!el) return;
+  el.innerHTML = buildConnectivityProfileHtml(iata, summary, snaRank);
 }
   function getRouteMeta(code) {
     const key = clean(code).toUpperCase();
@@ -1230,13 +1473,20 @@ function buildFdoOfertaDemandaSummary(year = YEAR_REF) {
         totalPax: 0,
         totalAsientos: 0,
         totalVuelos: 0,
-        monthlyMap: new Map()
+        monthlyMap: new Map(),
+        // Frecuencia semanal de la ruta: promedio mensual del dato f/frecuencia.
+        frequencyAcc: { sum: 0, count: 0 }
       });
     }
 
     const routeAgg = mainRoutesMap.get(routeKey);
     routeAgg.totalPax += pax;
     routeAgg.totalVuelos += vuelos;
+
+    if (Number.isFinite(freq) && freq > 0) {
+      routeAgg.frequencyAcc.sum += freq;
+      routeAgg.frequencyAcc.count += 1;
+    }
 
     if (!routeAgg.monthlyMap.has(monthKey)) {
       routeAgg.monthlyMap.set(monthKey, {
@@ -1301,6 +1551,8 @@ function buildFdoOfertaDemandaSummary(year = YEAR_REF) {
         totalPax: route.totalPax,
         totalAsientos: 0,
         totalVuelos: route.totalVuelos,
+        // Promedio mensual de frecuencia semanal para esta ruta.
+        frecuenciaSemanal: route.frequencyAcc.count ? (route.frequencyAcc.sum / route.frequencyAcc.count) : null,
         sharePaxPct: totalPaxRoutes > 0 ? (route.totalPax / totalPaxRoutes) * 100 : 0,
         shareSeatsPct: 0,
         monthly: monthlyRoute
@@ -1466,7 +1718,9 @@ if (!mainRoutesMap.has(routeKey)) {
     totalPax: 0,
     totalAsientos: 0,
     totalVuelos: 0,
-    monthlyMap: new Map()
+    monthlyMap: new Map(),
+    // Frecuencia de la ruta por operador: se promedia por mes y luego se suma por ruta.
+    freqByRouteAirline: new Map()
   });
 }
 
@@ -1553,6 +1807,16 @@ if (Number.isFinite(freq)) {
   const freqAcc = freqByRouteAirline.get(freqKey);
   freqAcc.sum += freq;
   freqAcc.count += 1;
+
+  // Mismo criterio del KPI general, pero guardado dentro de cada ruta.
+  if (routeAgg?.freqByRouteAirline) {
+    if (!routeAgg.freqByRouteAirline.has(freqKey)) {
+      routeAgg.freqByRouteAirline.set(freqKey, { sum: 0, count: 0 });
+    }
+    const routeFreqAcc = routeAgg.freqByRouteAirline.get(freqKey);
+    routeFreqAcc.sum += freq;
+    routeFreqAcc.count += 1;
+  }
 }
 if (r.anioMes) {
   if (!monthlyMap.has(r.anioMes)) {
@@ -1637,6 +1901,13 @@ const mainRoutes = Array.from(mainRoutesMap.values())
       return (da?.getTime() || 0) - (db?.getTime() || 0);
     });
 
+    // Frecuencia semanal de la ruta: suma de promedios mensuales por ruta-operador.
+    const frecuenciaSemanalRuta = Array.from(route.freqByRouteAirline?.values?.() || [])
+      .reduce((acc, item) => {
+        if (!item.count) return acc;
+        return acc + (item.sum / item.count);
+      }, 0);
+
 return {
   key: route.key,
   title: `${originRouteName} - ${destinationDisplay}`,
@@ -1647,6 +1918,7 @@ return {
   totalPax: route.totalPax,
   totalAsientos: route.totalAsientos,
   totalVuelos: route.totalVuelos,
+  frecuenciaSemanal: frecuenciaSemanalRuta > 0 ? frecuenciaSemanalRuta : null,
   sharePaxPct: totalPax > 0 ? (route.totalPax / totalPax) * 100 : 0,
   shareSeatsPct: totalAsientos > 0 ? (route.totalAsientos / totalAsientos) * 100 : 0,
   monthly
@@ -2121,93 +2393,17 @@ function renderAirlinesChart(rows) {
 }
 
 function paginateTopRoutes() {
+  const routesPage = document.getElementById("odRoutesExtraPage");
   const mainList = document.getElementById("odTopRoutes");
   const extraList = document.getElementById("odTopRoutesExtra");
-  const extraPage = document.getElementById("odRoutesExtraPage");
 
-  const historicPage = document.getElementById("odHistoricPage");
-  const historicBlock = document.getElementById("historicTrafficBlock");
-  const historicSlotMain = document.getElementById("historicTrafficSlotMain");
-  const historicSlotExtra = document.getElementById("historicTrafficSlotExtra");
-  const historicSlotDedicated = document.getElementById("historicTrafficSlotDedicated");
+  // Desde esta versión, las 6 rutas 2025 se muestran juntas en una hoja propia.
+  // La hoja histórica queda siempre separada como tercera página.
+  if (extraList) extraList.innerHTML = "";
+  if (!routesPage || !mainList) return;
 
-  if (!mainList || !extraList || !extraPage) return;
-
-  function moveHistoricBlockTo(slot) {
-    if (!historicBlock || !slot) return;
-    if (historicBlock.parentElement !== slot) {
-      slot.appendChild(historicBlock);
-    }
-  }
-
-  extraList.innerHTML = "";
-
-  const routeItems = Array.from(mainList.children).filter(el => {
-    return !el.classList.contains("od-empty");
-  });
-
-  const routeCount = routeItems.length;
-
-  /*
-    CASO 1:
-    0 o 1 ruta.
-    Hay espacio en la primera hoja, entonces el histórico queda debajo de la fuente.
-  */
-  if (routeCount <= 1) {
-    extraPage.classList.add("is-hidden");
-
-    if (historicPage) {
-      historicPage.classList.add("is-hidden");
-    }
-
-    moveHistoricBlockTo(historicSlotMain);
-
-    if (!routeCount) {
-      extraList.innerHTML = '<div class="od-empty">Sin datos</div>';
-    }
-
-    return;
-  }
-
-  /*
-    CASO 2:
-    2 o 3 rutas.
-    No abrimos hoja de continuación de rutas, pero sí una hoja propia de histórico.
-  */
-  if (routeCount <= 3) {
-    extraPage.classList.add("is-hidden");
-
-    if (historicPage) {
-      historicPage.classList.remove("is-hidden");
-    }
-
-    moveHistoricBlockTo(historicSlotDedicated);
-
-    return;
-  }
-
-  /*
-    CASO 3:
-    4 a 6 rutas.
-    La hoja 2 muestra rutas 4, 5 y 6, y debajo va el histórico.
-  */
-  extraPage.classList.remove("is-hidden");
-
-  if (historicPage) {
-    historicPage.classList.add("is-hidden");
-  }
-
-  moveHistoricBlockTo(historicSlotExtra);
-
-  const extraItems = routeItems.slice(3);
-
-  extraItems.forEach(item => {
-    extraList.appendChild(item);
-  });
-
-  if (!extraList.children.length) {
-    extraList.innerHTML = '<div class="od-empty">Sin datos</div>';
-  }
+  const routeCount = Array.from(mainList.children).filter(el => !el.classList.contains("od-empty")).length;
+  routesPage.classList.toggle("is-hidden", routeCount === 0);
 }
   
 function buildRouteLineEndLabelsPlugin(pluginId, airlineStats) {
@@ -2506,26 +2702,13 @@ function renderSingleRouteChart(canvasId, route) {
 function renderInternationalRouteNotes(routes) {
   const noteMain = q("odIntlRoutesNoteMain");
   const noteExtra = q("odIntlRoutesNoteExtra");
+  const dataRoutes = (routes || []).slice(0, 6);
+  const hasIntl = dataRoutes.some(isInternationalRoute);
 
-  const dataRoutes = (routes || [])
-    .slice()
-    .sort((a, b) => (b.totalPax || 0) - (a.totalPax || 0))
-    .slice(0, 6);
+  if (noteMain) noteMain.style.display = hasIntl ? "block" : "none";
+  if (noteExtra) noteExtra.style.display = "none";
+}
 
-  const mainRoutes = dataRoutes.slice(0, 3);
-  const extraRoutes = dataRoutes.slice(3);
-
-  const hasIntlMain = mainRoutes.some(isInternationalRoute);
-  const hasIntlExtra = extraRoutes.some(isInternationalRoute);
-
-  if (noteMain) {
-    noteMain.style.display = hasIntlMain ? "block" : "none";
-  }
-
-  if (noteExtra) {
-    noteExtra.style.display = hasIntlExtra ? "block" : "none";
-  }
-} 
 function renderTopRoutesCharts(routes) {
   const topRoutesEl = q("odTopRoutes");
   if (!topRoutesEl) return;
@@ -2557,25 +2740,31 @@ function renderTopRoutesCharts(routes) {
           <span class="od-route-metric-value">${escapeHtml(formatNumber(Math.round(route.totalVuelos || 0)))}</span>
         </span>`;
 
+    const frequencyMetric = Number.isFinite(Number(route.frecuenciaSemanal)) && Number(route.frecuenciaSemanal) > 0
+      ? `<span class="od-route-metric-sep">·</span>
+         <span class="od-route-metric od-route-metric-frequency">
+           <span class="od-mini-icon od-mini-icon-frequency" aria-hidden="true"></span>
+           <span class="od-route-metric-label">Frec. semanal</span>
+           <span class="od-route-metric-value">${escapeHtml(formatFrequencyShort(route.frecuenciaSemanal))}</span>
+         </span>`
+      : "";
+
     return `
       <div class="od-route-card-chart">
         <div class="od-route-card-head">
-          <div class="od-route-card-titleline">
-            <div class="od-route-card-title">
-              ${escapeHtml(route.title)}
-              <span class="od-route-card-metrics-inline">
-                <span class="od-route-metric od-route-metric-pax">
-                  <span class="od-mini-icon od-mini-icon-bars" aria-hidden="true"></span>
-                  <span class="od-route-metric-label">Pasajeros</span>
-                  <span class="od-route-metric-value">${escapeHtml(formatNumber(Math.round(route.totalPax)))}</span>
-                  <span class="od-route-metric-share">(${escapeHtml(formatShareShort(route.sharePaxPct))})</span>
-                </span>
+          <div class="od-route-card-title">${escapeHtml(route.title)}</div>
 
-                <span class="od-route-metric-sep">·</span>
+          <div class="od-route-card-metrics-inline">
+            <span class="od-route-metric od-route-metric-pax">
+              <span class="od-mini-icon od-mini-icon-bars" aria-hidden="true"></span>
+              <span class="od-route-metric-label">Pasajeros</span>
+              <span class="od-route-metric-value">${escapeHtml(formatNumber(Math.round(route.totalPax)))}</span>
+              <span class="od-route-metric-share">(${escapeHtml(formatShareShort(route.sharePaxPct))})</span>
+            </span>
 
-                ${secondaryMetric}
-              </span>
-            </div>
+            <span class="od-route-metric-sep">·</span>
+            ${secondaryMetric}
+            ${frequencyMetric}
           </div>
         </div>
 
@@ -2593,6 +2782,271 @@ function renderTopRoutesCharts(routes) {
     renderSingleRouteChart(`odRouteChart_${idx}`, route);
   });
 }
+
+/* ============================================================
+   HISTÓRICO DE RUTAS
+   ============================================================ */
+
+const HISTORIC_ROUTE_COLORS = [
+  "#2A6FB0", "#75AADB", "#F28C28", "#2CA25F", "#7B61C9",
+  "#C62828", "#8C6D5A", "#19A7A0", "#D4A000", "#7A7F87", "#B0B7BF"
+];
+
+function getHistoricRouteLimit(iata) {
+  const code = clean(iata).toUpperCase();
+  return (code === "AEP" || code === "EZE") ? 10 : 6;
+}
+
+function getHistoricRouteColor(index) {
+  return HISTORIC_ROUTE_COLORS[index % HISTORIC_ROUTE_COLORS.length];
+}
+
+function buildHistoricRouteTitle(selected, route) {
+  const originRouteName = getAirportBaseRouteName(selected);
+  return `${originRouteName} - ${route.ciudad}${route.codesLabel ? ` ${route.codesLabel}` : ""}`;
+}
+
+function addHistoricRouteRow(acc, row) {
+  const routeKey = row.routeKey;
+  const year = Number(row.year);
+  const pax = Number(row.pax || 0);
+  if (!routeKey || !Number.isFinite(year) || pax <= 0) return;
+
+  if (!acc.routes.has(routeKey)) {
+    acc.routes.set(routeKey, {
+      key: routeKey,
+      ciudad: row.ciudad,
+      pais: row.pais || "",
+      clasificacion: row.clasificacion || "",
+      codesLabel: row.codesLabel || "",
+      totalPax: 0,
+      annual: new Map()
+    });
+  }
+
+  const route = acc.routes.get(routeKey);
+  route.totalPax += pax;
+  route.annual.set(year, (route.annual.get(year) || 0) + pax);
+  acc.years.add(year);
+  acc.totalByYear.set(year, (acc.totalByYear.get(year) || 0) + pax);
+}
+
+function buildHistoricRouteSeriesFromGeneral(iata) {
+  const selected = clean(iata).toUpperCase();
+  const acc = { routes: new Map(), years: new Set(), totalByYear: new Map() };
+
+  const rows = (rutasOfertaRows || []).filter(r =>
+    (r.endpointA === selected || r.endpointB === selected) &&
+    clean(r.tipoOperacion).toLowerCase().includes("comercial")
+  );
+
+  rows.forEach(r => {
+    const otherCodeRaw = (r.endpointA === selected) ? r.endpointB : r.endpointA;
+    if (!otherCodeRaw || otherCodeRaw === selected) return;
+
+    const otherMeta = getRouteMeta(otherCodeRaw);
+    const otherNormalizedCode = clean(otherMeta?.iata || otherCodeRaw).toUpperCase();
+    const destinationCode = getEquivalentDestinationCode(selected, otherNormalizedCode);
+    if (!destinationCode || destinationCode === selected) return;
+
+    const isInternational = clean(r.clasificacion).toLowerCase() === "internacional";
+    const label = getDestinationLabel(destinationCode, isInternational);
+    const routeKey = [
+      normalizeTextKey(label.ciudad || destinationCode),
+      normalizeTextKey(label.pais || ""),
+      normalizeTextKey(r.clasificacion || "")
+    ].join("|");
+
+    addHistoricRouteRow(acc, {
+      routeKey,
+      year: r.year,
+      pax: Number.isFinite(r.pax) ? r.pax : 0,
+      ciudad: label.ciudad || destinationCode,
+      pais: label.pais || "",
+      clasificacion: clean(r.clasificacion),
+      codesLabel: otherNormalizedCode
+    });
+  });
+
+  return buildHistoricRouteSeriesFromAccumulator(selected, acc);
+}
+
+function buildFdoHistoricRouteSeries() {
+  const selected = "FDO";
+  const acc = { routes: new Map(), years: new Set(), totalByYear: new Map() };
+
+  (fdoRoutesMonthlyAA || []).forEach(r => {
+    const label = getFdoRouteLabel(r.d);
+    const routeKey = [
+      normalizeTextKey(label.ciudad),
+      normalizeTextKey(label.pais || ""),
+      normalizeTextKey(label.clasificacion || "")
+    ].join("|");
+
+    addHistoricRouteRow(acc, {
+      routeKey,
+      year: r.y,
+      pax: Number(r.p) || 0,
+      ciudad: label.ciudad,
+      pais: label.pais || "",
+      clasificacion: label.clasificacion || "",
+      codesLabel: label.code || ""
+    });
+  });
+
+  return buildHistoricRouteSeriesFromAccumulator(selected, acc);
+}
+
+function buildHistoricRouteSeriesFromAccumulator(selected, acc) {
+  const years = Array.from(acc.years).sort((a, b) => a - b);
+  const routes = Array.from(acc.routes.values()).sort((a, b) => b.totalPax - a.totalPax);
+  const limit = getHistoricRouteLimit(selected);
+  const selectedRoutes = routes.slice(0, limit);
+  const selectedKeys = new Set(selectedRoutes.map(r => r.key));
+
+  const datasets = selectedRoutes.map((route, idx) => ({
+    key: route.key,
+    label: buildHistoricRouteTitle(selected, route),
+    data: years.map(year => Math.round(route.annual.get(year) || 0)),
+    totalPax: route.totalPax,
+    backgroundColor: getHistoricRouteColor(idx),
+    borderColor: getHistoricRouteColor(idx),
+    borderWidth: 0.5
+  }));
+
+  const otherData = years.map(year => {
+    const total = Number(acc.totalByYear.get(year) || 0);
+    const selectedTotal = selectedRoutes.reduce((sum, route) => sum + (Number(route.annual.get(year)) || 0), 0);
+    return Math.max(0, Math.round(total - selectedTotal));
+  });
+
+  if (otherData.some(v => v > 0)) {
+    datasets.push({
+      key: "__otras__",
+      label: "Otras rutas",
+      data: otherData,
+      totalPax: otherData.reduce((a, b) => a + b, 0),
+      backgroundColor: "#C9D1DA",
+      borderColor: "#AEB8C3",
+      borderWidth: 0.5
+    });
+  }
+
+  return {
+    years,
+    routes,
+    selectedRoutes,
+    datasets,
+    limit,
+    hasData: years.length > 0 && datasets.length > 0
+  };
+}
+
+function buildHistoricRouteSeries(iata) {
+  const code = clean(iata).toUpperCase();
+  if (isFDO(code)) return buildFdoHistoricRouteSeries();
+  return buildHistoricRouteSeriesFromGeneral(code);
+}
+
+function renderHistoricRoutesChart(iata) {
+  const canvas = q("odHistoricRoutesChart");
+  const subtitle = q("odHistoricRoutesSubtitle");
+  const page = q("odHistoricPage");
+
+  if (!canvas || typeof Chart === "undefined") return;
+
+  if (canvas._chart) {
+    canvas._chart.destroy();
+    canvas._chart = null;
+  }
+
+  const data = buildHistoricRouteSeries(iata);
+
+  if (!data?.hasData) {
+    if (page) page.classList.add("is-hidden");
+    return;
+  }
+
+  if (page) page.classList.remove("is-hidden");
+
+  if (subtitle) {
+    const topText = getHistoricRouteLimit(iata) === 10
+      ? "Diez principales rutas históricas por pasajeros acumulados, más resto de rutas."
+      : "Seis principales rutas históricas por pasajeros acumulados, más resto de rutas.";
+    subtitle.textContent = topText;
+  }
+
+  canvas._chart = new Chart(canvas, {
+    type: "bar",
+    data: {
+      labels: data.years.map(String),
+      datasets: data.datasets
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: "index", intersect: false },
+      plugins: {
+        legend: {
+          position: "bottom",
+          labels: {
+            boxWidth: 10,
+            boxHeight: 10,
+            font: { size: 8 }
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: ctx => `${ctx.dataset.label}: ${Number(ctx.raw || 0).toLocaleString("es-AR")} pasajeros`,
+            footer: items => {
+              const total = items.reduce((acc, item) => acc + (Number(item.raw) || 0), 0);
+              return `Total seleccionado: ${total.toLocaleString("es-AR")} pasajeros`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          grid: { display: false },
+          ticks: { color: "#6f7d8c", font: { size: 8 }, maxRotation: 0 }
+        },
+        y: {
+          stacked: true,
+          beginAtZero: true,
+          grid: { color: "#e6edf4" },
+          ticks: {
+            color: "#6f7d8c",
+            font: { size: 8 },
+            callback: value => Number(value).toLocaleString("es-AR")
+          }
+        }
+      }
+    }
+  });
+}
+
+function buildHistoricRouteNarrative(iata) {
+  const data = buildHistoricRouteSeries(iata);
+  if (!data?.hasData || !data.selectedRoutes.length) return "";
+
+  const code = clean(iata).toUpperCase();
+  const first = data.selectedRoutes[0];
+  const firstLabel = buildHistoricRouteTitle(code, first);
+  const totalSelected = data.datasets.reduce((acc, ds) => acc + (Number(ds.totalPax) || 0), 0);
+  const firstShare = totalSelected > 0 ? (first.totalPax / totalSelected) * 100 : 0;
+
+  if (code === "AEP" || code === "EZE") {
+    return `<p>La evolución histórica por rutas muestra una red amplia y distribuida. Por ese motivo, en los nodos metropolitanos se representan las diez principales conexiones históricas y el resto de rutas, evitando interpretar el comportamiento del aeropuerto a partir de una única ruta dominante.</p>`;
+  }
+
+  if (code === "FDO") {
+    return `<p>La evolución por rutas de San Fernando debe interpretarse en el marco de su perfil de aviación general, ejecutiva y privada: los destinos operados y la frecuencia de movimientos resultan más representativos que la oferta aerocomercial regular tradicional.</p>`;
+  }
+
+  return `<p>El gráfico histórico por rutas permite identificar el peso estructural de <strong>${escapeHtml(firstLabel)}</strong>, que concentró aproximadamente <strong>${formatShareShort(firstShare)}</strong> de los pasajeros acumulados entre las rutas principales representadas. Esta lectura complementa la serie total del aeropuerto al mostrar qué corredores explicaron la dinámica de largo plazo.</p>`;
+}
+
 function getHistoricTrafficDataForAirport(iata) {
   const code = clean(iata).toUpperCase();
 
@@ -2730,6 +3184,8 @@ const maxParagraph = maxSentence
 const historicSubject = d.source === "aeropuertos_argentina_fdo"
   ? "el movimiento de pasajeros registrados en el"
   : "el tráfico aerocomercial del";
+
+const historicRouteParagraph = buildHistoricRouteNarrative(code);
   
 textEl.innerHTML =
   `<p>
@@ -2766,6 +3222,7 @@ textEl.innerHTML =
     <strong>${recoveryPhrase}</strong>.
   </p>
 
+  ${historicRouteParagraph}
   ${maxParagraph}`;
   }
   function renderOfertaDemanda(iata) {
@@ -2777,7 +3234,7 @@ const sourceText = isFdoWithAA
   : "Fuente: elaborado por GREyF ORSNA con datos de SIAC ANAC.";
 
 document
-  .querySelectorAll(".od-source-note, .od-footer-source, .history-note")
+  .querySelectorAll(".od-source-note, .od-footer-source, .history-note, .od-routes-source, .od-historic-source")
   .forEach(el => {
     el.textContent = sourceText;
   });
@@ -2817,6 +3274,9 @@ setText(
 );
 const snaRank = getSNAPassengerRanking(iata, YEAR_REF);
 
+// Bloque narrativo de perfil operativo, ranking por segmento y conectividad 2025.
+renderConnectivityProfileText(iata, summary, snaRank);
+
 setHTML(
   "odSnaRank",
   snaRank.rank
@@ -2825,7 +3285,8 @@ setHTML(
 );
 
 renderTopRoutesCharts(summary.mainRoutes);
-
+// Gráfico histórico de rutas, construido con la fuente general o con la fuente especial de FDO.
+renderHistoricRoutesChart(iata);
 
 renderOfertaDemandaMonthlyChart(summary.monthly);
 renderAirlinesChart(summary.airlines);
@@ -2870,7 +3331,8 @@ const [
   iataWorldResp,
   airlineAliasResp,
   fdoTrafficResp,
-  fdoRoutesMonthlyResp
+  fdoRoutesMonthlyResp,
+  operationalProfileResp
 ] = await Promise.all([
   fetch(AEROPUERTOS_GEOJSON_PATH),
   fetch(RUTAS_CSV_PATH).catch(() => null),
@@ -2878,7 +3340,8 @@ const [
   fetch(IATA_MUNDO_CSV_PATH).catch(() => null),
   fetch(AIRLINE_ALIAS_CSV_PATH).catch(() => null),
   fetch(FDO_TRAFFIC_AA_PATH).catch(() => null),
-  fetch(FDO_ROUTES_MONTHLY_AA_PATH).catch(() => null)
+  fetch(FDO_ROUTES_MONTHLY_AA_PATH).catch(() => null),
+  fetch(PERFIL_OPERATIVO_PATH).catch(() => null)
 ]);
 
       const geojson = await airportsResp.json();
@@ -2933,6 +3396,14 @@ if (fdoRoutesMonthlyResp && fdoRoutesMonthlyResp.ok) {
   fdoRoutesMonthlyAA = parseFdoRoutesMonthlyAAJSON(await fdoRoutesMonthlyResp.json());
 } else {
   fdoRoutesMonthlyAA = [];
+}
+
+// Carga opcional del perfil operativo 2025.
+if (operationalProfileResp && operationalProfileResp.ok) {
+  operationalProfileByIata = buildOperationalProfileIndex(await operationalProfileResp.json());
+} else {
+  operationalProfileByIata = {};
+  console.warn("No se pudo cargar perfil_operativo_impacto_2025.json.");
 }
 
 try {
@@ -3027,7 +3498,8 @@ function bootOfertaDemanda() {
 
   // En informe-impacto.html el partial se monta después.
   // No arrancar hasta que existan todos los nodos necesarios.
-  if (!sheet || !monthlyCanvas || !airlinesCanvas || !routesList || !extraRoutesList || !select) {
+  // odTopRoutesExtra queda como nodo de compatibilidad, pero ya no es obligatorio para renderizar.
+  if (!sheet || !monthlyCanvas || !airlinesCanvas || !routesList || !select) {
     return;
   }
 
