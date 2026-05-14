@@ -615,11 +615,9 @@ function odBuildFdoIntroTextHtml(summary) {
     </p>
 
     <p>
-      A lo largo del año, la fuente especial de Aeropuertos Argentina registró una intensidad agregada de
+      A lo largo del año, se registraron
       ${freqText} asociadas a los destinos operados.
       ${destinationsText}
-      En este caso, la fuente utilizada no permite reconstruir una oferta anual completa de asientos,
-      por lo que la lectura se apoya principalmente en <strong>pasajeros, vuelos, frecuencias y destinos operados</strong>.
     </p>
   `;
 }
