@@ -10,6 +10,7 @@
   let deptosData = [];
   let paxRows = [];
   let movRows = [];
+  let fdoTrafficAA = null;
   let gentiliciosMap = new Map();
 
   const AIRPORTS_URL = "fuentes/Datos_aeropuertos.geojson";
@@ -22,7 +23,8 @@
   const PAX_ALT_URL = "data/4paxxaeropuerto2021a2025SinSIIAC.geojson";
   const MOV_SIAC_URL = "data/4movxaeropuerto2021a2025SIACANAC.geojson";
   const MOV_ALT_URL = "data/4movxaeropuerto2021a2025SinSIIAC.geojson";
-
+  const FDO_TRAFFIC_AA_URL = "fuentes/fdo_trafico_aeropuertos_argentina.json";
+  
   const ALT_IATAS = new Set([
     "RLO", "AOL", "COC", "GNR", "JNI", "LPG", "NEC",
     "PMQ", "RYO", "SST", "TDL", "TTG", "VLG"
@@ -478,6 +480,99 @@ return `${fragments.slice(0, -1).join(", ")}, y ${fragments[fragments.length - 1
       .reduce((acc, r) => acc + (Number(r.valor) || 0), 0);
   }
 
+function isFDO(iata) {
+  return clean(iata).toUpperCase() === "FDO";
+}
+
+function normalizeHeader(v) {
+  return clean(v)
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+}
+
+function normalizeFdoRowKeys(row) {
+  const out = {};
+
+  Object.entries(row || {}).forEach(([key, value]) => {
+    out[normalizeHeader(key)] = value;
+  });
+
+  return out;
+}
+
+function getFdoTrafficMonthlyRecords() {
+  if (Array.isArray(fdoTrafficAA)) return fdoTrafficAA;
+  if (Array.isArray(fdoTrafficAA?.mensual)) return fdoTrafficAA.mensual;
+  if (Array.isArray(fdoTrafficAA?.monthly)) return fdoTrafficAA.monthly;
+  if (Array.isArray(fdoTrafficAA?.data)) return fdoTrafficAA.data;
+  if (Array.isArray(fdoTrafficAA?.rows)) return fdoTrafficAA.rows;
+  return [];
+}
+
+function fdoShouldUseTrafficRow(row) {
+  const cls = clean(row?.clase_vuelo).toLowerCase();
+
+  // Se excluyen cargas para el resumen de pasajeros/movimientos.
+  return !cls.startsWith("cargas");
+}
+
+function getFdoTrafficYearTotal(year, metric) {
+  const targetYear = Number(year);
+
+  const valueKeys = metric === "movimientos"
+    ? [
+        "movimientos",
+        "vuelos",
+        "v",
+        "movimientos_totales",
+        "total_movimientos",
+        "total_vuelos"
+      ]
+    : [
+        "pasajeros",
+        "pax",
+        "p",
+        "pasajeros_totales",
+        "total_pasajeros"
+      ];
+
+  return getFdoTrafficMonthlyRecords()
+    .map(normalizeFdoRowKeys)
+    .filter(fdoShouldUseTrafficRow)
+    .reduce((acc, row) => {
+      const rowYear = Number(firstNonEmpty(row, [
+        "anio",
+        "ano",
+        "year",
+        "y"
+      ]));
+
+      if (rowYear !== targetYear) return acc;
+
+      const value = parseNumber(firstNonEmpty(row, valueKeys));
+      return acc + (Number.isFinite(value) ? value : 0);
+    }, 0);
+}
+
+function getResumenPassengerYearTotal(iata, year) {
+  if (isFDO(iata) && fdoTrafficAA) {
+    return getFdoTrafficYearTotal(year, "pasajeros");
+  }
+
+  return getYearTotal(paxRows, iata, year);
+}
+
+function getResumenMovementYearTotal(iata, year) {
+  if (isFDO(iata) && fdoTrafficAA) {
+    return getFdoTrafficYearTotal(year, "movimientos");
+  }
+
+  return getYearTotal(movRows, iata, year);
+}
+  
   function loadImageWithFallback(imgEl, candidates) {
     if (!imgEl) return;
 
@@ -518,16 +613,16 @@ return `${fragments.slice(0, -1).join(", ")}, y ${fragments[fragments.length - 1
       "Poblacion 2022"
     ]));
 
-    const pasajeros2025 = getYearTotal(paxRows, iata, 2025);
-    const pasajeros2024 = getYearTotal(paxRows, iata, 2024);
+const pasajeros2025 = getResumenPassengerYearTotal(iata, YEAR_REF);
+const pasajeros2024 = getResumenPassengerYearTotal(iata, YEAR_REF - 1);
 
     const variacionPct =
       pasajeros2024 > 0
         ? ((pasajeros2025 - pasajeros2024) / pasajeros2024) * 100
         : NaN;
 
-    const movimientos2025 = getYearTotal(movRows, iata, 2025);
-
+    const movimientos2025 = getResumenMovementYearTotal(iata, YEAR_REF);
+    
     const impactoPositivo = formatUSD(impact["Impacto económico positivo"]);
     const empleoTotal = formatNumber(impact["EmpleoAeropTotal2025"]);
     const pba = formatUSD(impact["PBA 2025 USD"]);
@@ -592,24 +687,26 @@ return `${fragments.slice(0, -1).join(", ")}, y ${fragments[fragments.length - 1
 
   async function loadData() {
     const [
-      airportsGeo,
-      impactGeo,
-      deptosGeo,
-      paxSiacGeo,
-      paxAltGeo,
-      movSiacGeo,
-      movAltGeo,
-      gentiliciosCsv
-    ] = await Promise.all([
-      fetchJSON(AIRPORTS_URL),
-      fetchJSON(IMPACT_URL),
-      fetchJSON(DEPTOS_URL),
-      fetchJSON(PAX_SIAC_URL),
-      fetchJSON(PAX_ALT_URL),
-      fetchJSON(MOV_SIAC_URL),
-      fetchJSON(MOV_ALT_URL),
-      fetchText(GENTILICIOS_URL).catch(() => "")
-    ]);
+  airportsGeo,
+  impactGeo,
+  deptosGeo,
+  paxSiacGeo,
+  paxAltGeo,
+  movSiacGeo,
+  movAltGeo,
+  gentiliciosCsv,
+  fdoTrafficGeo
+] = await Promise.all([
+  fetchJSON(AIRPORTS_URL),
+  fetchJSON(IMPACT_URL),
+  fetchJSON(DEPTOS_URL),
+  fetchJSON(PAX_SIAC_URL),
+  fetchJSON(PAX_ALT_URL),
+  fetchJSON(MOV_SIAC_URL),
+  fetchJSON(MOV_ALT_URL),
+  fetchText(GENTILICIOS_URL).catch(() => ""),
+  fetchJSON(FDO_TRAFFIC_AA_URL).catch(() => null)
+]);
 
     airportsData = (airportsGeo.features || [])
       .map(f => f.properties || {})
@@ -619,7 +716,7 @@ return `${fragments.slice(0, -1).join(", ")}, y ${fragments[fragments.length - 1
     deptosData = deptosGeo.features || [];
 
     if (gentiliciosCsv) parseGentiliciosCSV(gentiliciosCsv);
-
+    fdoTrafficAA = fdoTrafficGeo || null;
     const paxSiacRows = parsePaxSiacGeojson(paxSiacGeo);
     const paxAltRows = parseWideMonthlyGeojson(
       paxAltGeo,
