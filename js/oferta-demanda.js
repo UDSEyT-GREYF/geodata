@@ -748,26 +748,26 @@ function classifyBueDependence(shareBue) {
 function buildMarketProfilePhrase(iata, paxCab, paxInt) {
   const code = clean(iata).toUpperCase();
   const total = Number(paxCab || 0) + Number(paxInt || 0);
-  if (total <= 0) return "sin una composición de mercado claramente identificable";
+  if (total <= 0) return "un perfil de mercado no claramente identificable";
 
   const cabShare = Number(paxCab || 0) / total;
   const intShare = Number(paxInt || 0) / total;
 
   if (code === "AEP") {
     return intShare >= 0.20
-      ? "con predominio del cabotaje, aunque con un volumen internacional relevante"
-      : "con predominio marcado del cabotaje";
+      ? "un perfil con predominio del cabotaje, aunque con un volumen internacional relevante"
+      : "un perfil con predominio marcado del cabotaje";
   }
 
   if (code === "EZE") {
     return cabShare >= 0.20
-      ? "con predominio internacional, aunque con un volumen de cabotaje significativo"
-      : "con predominio marcado del tráfico internacional";
+      ? "un perfil con predominio internacional, aunque con un volumen de cabotaje significativo"
+      : "un perfil con predominio marcado del tráfico internacional";
   }
 
-  if (intShare >= 0.25) return "con presencia internacional relevante";
-  if (intShare > 0.01) return "con presencia internacional acotada";
-  return "orientado principalmente al cabotaje";
+  if (intShare >= 0.25) return "un perfil con presencia internacional relevante";
+  if (intShare > 0.01) return "un perfil con presencia internacional acotada";
+  return "un perfil orientado principalmente al cabotaje";
 }
 
 /* ============================================================
@@ -810,14 +810,14 @@ function buildObservedSeasonality(summary) {
   const top3Share = total > 0 ? (top3Pax / total) * 100 : 0;
   const peakVsAvg = avg > 0 ? peak.pax / avg : null;
 
-  let intensity = "distribuida";
+  let intensity = "sin estacionalidad marcada";
 
   if (top3Share >= 45 || peakVsAvg >= 2) {
-    intensity = "muy marcada";
+    intensity = "estacionalidad muy marcada";
   } else if (top3Share >= 35 || peakVsAvg >= 1.6) {
-    intensity = "marcada";
+    intensity = "estacionalidad marcada";
   } else if (top3Share >= 30 || peakVsAvg >= 1.35) {
-    intensity = "moderada";
+    intensity = "estacionalidad moderada";
   }
 
   return {
@@ -858,16 +858,18 @@ function buildTerritorialRolePhrase(descriptivo) {
   const tipologia = clean(descriptivo.tipologia_principal);
   const secundaria = clean(descriptivo.tipologia_secundaria);
 
-  if (rasgo && tipologia) {
-    return `asociado territorialmente a un perfil de <strong>${escapeHtml(rasgo)}</strong>, dentro de una estructura funcional vinculada a <strong>${escapeHtml(tipologia)}</strong>${secundaria ? ` y <strong>${escapeHtml(secundaria)}</strong>` : ""}`;
+  const funciones = formatDescriptiveList([tipologia, secundaria], 2);
+
+  if (rasgo && funciones) {
+    return `asociado a <strong>${escapeHtml(rasgo)}</strong>, con funciones vinculadas a <strong>${escapeHtml(funciones)}</strong>`;
   }
 
   if (rasgo) {
-    return `asociado territorialmente a un perfil de <strong>${escapeHtml(rasgo)}</strong>`;
+    return `asociado a <strong>${escapeHtml(rasgo)}</strong>`;
   }
 
-  if (tipologia) {
-    return `vinculado principalmente a una función territorial de <strong>${escapeHtml(tipologia)}</strong>`;
+  if (funciones) {
+    return `vinculado a funciones de <strong>${escapeHtml(funciones)}</strong>`;
   }
 
   return "";
@@ -876,20 +878,26 @@ function buildTerritorialRolePhrase(descriptivo) {
 function buildDemandRolePhrase(descriptivo) {
   if (!descriptivo) return "";
 
+  const observacion = clean(descriptivo.observacion_demanda);
   const demanda = clean(descriptivo.tipologia_demanda_aerea);
   const secundaria = clean(descriptivo.demanda_secundaria);
-  const observacion = clean(descriptivo.observacion_demanda);
 
   if (observacion) {
-    return escapeHtml(observacion);
+    const txt = lowerFirst(observacion).replace(/\.$/, "");
+
+    if (/^fuerte peso/.test(txt)) return `por un ${escapeHtml(txt)}`;
+    if (/^predominio/.test(txt)) return `por el ${escapeHtml(txt)}`;
+    if (/^puerta/.test(txt)) return `por su rol como ${escapeHtml(txt)}`;
+
+    return `por ${escapeHtml(txt)}`;
   }
 
   if (demanda && secundaria) {
-    return `demanda aérea de perfil ${escapeHtml(demanda)}, con un componente secundario ${escapeHtml(secundaria)}`;
+    return `por una demanda de perfil ${escapeHtml(demanda)}, con un componente secundario ${escapeHtml(secundaria)}`;
   }
 
   if (demanda) {
-    return `demanda aérea de perfil ${escapeHtml(demanda)}`;
+    return `por una demanda de perfil ${escapeHtml(demanda)}`;
   }
 
   return "";
@@ -946,35 +954,114 @@ function buildSeasonalityPhrase(descriptivo, observed) {
 
   const expectedType = clean(descriptivo?.tipo_estacionalidad);
   const expectedNote = clean(descriptivo?.observacion_estacionalidad);
-  const peakMonth = observed.peak?.month;
+
   const peakLabel = observed.peak?.monthLabel || "el mes pico";
-
-  const top3Text = formatShareShort(observed.top3Share);
   const peakText = formatShareShort(observed.peakShare);
+  const top3Text = formatShareShort(observed.top3Share);
 
-  let base = `La dinámica mensual mostró una estacionalidad <strong>${escapeHtml(observed.intensity)}</strong>: el mes de mayor movimiento fue <strong>${escapeHtml(peakLabel)}</strong>, con <strong>${peakText}</strong> de los pasajeros anuales, mientras que los tres meses principales concentraron <strong>${top3Text}</strong>.`;
+  const top3Months = joinHtmlList(
+    (observed.top3 || []).map(row =>
+      `<strong>${escapeHtml(row.monthLabel)}</strong>`
+    )
+  );
 
-  if (!expectedType) return base;
+  let base = "";
 
-  const consistency = isPeakConsistentWithExpectedSeason(expectedType, peakMonth);
-
-  if (consistency === true) {
-    base += ` Este comportamiento es consistente con el perfil estacional <strong>${escapeHtml(expectedType)}</strong> identificado para el aeropuerto.`;
-  } else if (consistency === false) {
-    base += ` Este comportamiento no coincide plenamente con el perfil estacional <strong>${escapeHtml(expectedType)}</strong>, por lo que conviene interpretarlo junto con la programación efectiva de rutas y frecuencias de 2025.`;
-  } else if (normalizeTextKey(expectedType).includes("todo")) {
-    if (observed.intensity === "distribuida" || observed.intensity === "moderada") {
-      base += ` Esto resulta compatible con un perfil de demanda de actividad anual.`;
-    } else {
-      base += ` Aunque el descriptivo identifica una demanda de actividad anual, en 2025 se observó una concentración mensual relevante.`;
-    }
-  } else if (expectedNote) {
-    base += ` ${escapeHtml(expectedNote)}.`;
+  if (observed.intensity === "sin estacionalidad marcada") {
+    base = `
+      La dinámica mensual no mostró una estacionalidad marcada:
+      el mes de mayor movimiento fue <strong>${escapeHtml(peakLabel)}</strong>, con <strong>${peakText}</strong>
+      de los pasajeros anuales, y los tres meses principales —${top3Months}— concentraron
+      <strong>${top3Text}</strong>.
+    `;
+  } else {
+    base = `
+      La dinámica mensual mostró <strong>${escapeHtml(observed.intensity)}</strong>:
+      el mes de mayor movimiento fue <strong>${escapeHtml(peakLabel)}</strong>, con <strong>${peakText}</strong>
+      de los pasajeros anuales, y los tres meses principales —${top3Months}— concentraron
+      <strong>${top3Text}</strong>.
+    `;
   }
 
-  return base;
+  if (expectedNote) {
+    base += ` ${escapeHtml(normalizeSentenceText(expectedNote))}`;
+  } else if (normalizeTextKey(expectedType).includes("todo") && observed.intensity === "sin estacionalidad marcada") {
+    base += " Esto resulta compatible con un perfil de demanda de actividad anual.";
+  } else if (normalizeTextKey(expectedType).includes("todo")) {
+    base += " Aunque el descriptivo identifica una demanda de actividad anual, en 2025 se observó una concentración mensual relevante.";
+  }
+
+  return base.replace(/\s+/g, " ").trim();
 }
-  
+ function joinHtmlList(items) {
+  const values = (items || []).filter(Boolean);
+
+  if (!values.length) return "";
+  if (values.length === 1) return values[0];
+  if (values.length === 2) return `${values[0]} y ${values[1]}`;
+
+  return `${values.slice(0, -1).join(", ")} y ${values[values.length - 1]}`;
+}
+
+function routeTextName(route) {
+  const ciudad = clean(route?.ciudad);
+  const codes = clean(route?.codesLabel);
+
+  if (ciudad && codes && !ciudad.toUpperCase().includes(codes.toUpperCase())) {
+    return `${ciudad} (${codes})`;
+  }
+
+  if (ciudad) return ciudad;
+
+  return clean(route?.title)
+    .replace(/^.*?\s[-–]\s/g, "")
+    .trim();
+}
+
+function destinationTextName(destino) {
+  const ciudad = clean(destino?.ciudad) || clean(destino?.code);
+  const code = clean(destino?.code);
+
+  if (ciudad && code && !ciudad.toUpperCase().includes(code.toUpperCase())) {
+    return `${ciudad} (${code})`;
+  }
+
+  return ciudad || code;
+}
+
+function routeNamesHtml(routes) {
+  return joinHtmlList(
+    (routes || []).map(route =>
+      `<strong>${escapeHtml(routeTextName(route))}</strong>`
+    )
+  );
+}
+
+function destinationNamesWithSharesHtml(destinos, denominatorPax) {
+  const denom = Number(denominatorPax || 0);
+
+  return joinHtmlList(
+    (destinos || []).map(destino => {
+      const share = denom > 0
+        ? (Number(destino.pax || 0) / denom) * 100
+        : 0;
+
+      return `<strong>${escapeHtml(destinationTextName(destino))}</strong> (${formatShareShort(share)})`;
+    })
+  );
+}
+
+function normalizeSentenceText(text) {
+  const value = clean(text);
+  if (!value) return "";
+  return /[.!?]$/.test(value) ? value : `${value}.`;
+}
+
+function lowerFirst(text) {
+  const value = clean(text);
+  if (!value) return "";
+  return value.charAt(0).toLowerCase() + value.slice(1);
+} 
 function buildConnectivityProfile(iata, summary, snaRank) {
   const code = clean(iata).toUpperCase();
   const profile = getOperationalProfile(code);
@@ -1004,36 +1091,48 @@ function buildConnectivityProfile(iata, summary, snaRank) {
   const federalPax = domesticFederal.reduce((acc, d) => acc + (Number(d.pax) || 0), 0);
   const federalShare = totalPax > 0 ? (federalPax / totalPax) * 100 : 0;
 
-  const intlDestinos = destinos.filter(d => normalizeTextKey(d.clasificacion || "").includes("internacional"));
-  const intlShare = totalPax > 0 ? (paxInt / totalPax) * 100 : 0;
-  const bueShare = totalPax > 0 ? (buePax / totalPax) * 100 : NaN;
+const intlDestinos = destinos
+  .filter(d => normalizeTextKey(d.clasificacion || "").includes("internacional"))
+  .sort((a, b) => (Number(b.pax) || 0) - (Number(a.pax) || 0));
 
-  const topRoute = (summary?.mainRoutes || []).slice().sort((a, b) => (b.totalPax || 0) - (a.totalPax || 0))[0];
+const intlShare = totalPax > 0 ? (paxInt / totalPax) * 100 : 0;
+const bueShare = totalPax > 0 ? (buePax / totalPax) * 100 : NaN;
 
-  return {
-    code,
-    profile,
-    descriptivo,
-    observedSeasonality,
-    totalPax,
-    paxCab,
-    paxInt,
-    intRelevant,
-    isMetroNode,
-    concentration,
-    rankCab,
-    rankInt,
-    marketPhrase: buildMarketProfilePhrase(code, paxCab, paxInt),
-    topRoute,
-    destinosCount: destinos.length,
-    bueShare,
-    bueDependence: classifyBueDependence(bueShare),
-    federalRoutesCount: domesticFederal.length,
-    federalShare,
-    intlRoutesCount: intlDestinos.length,
-    intlShare,
-    snaRank
-  };
+const routesSorted = (summary?.mainRoutes || [])
+  .slice()
+  .sort((a, b) => (b.totalPax || 0) - (a.totalPax || 0));
+
+const topRoute = routesSorted[0] || null;
+const top3Routes = routesSorted.slice(0, 3);
+const topIntlDestinos = intlDestinos.slice(0, 3);
+
+return {
+  code,
+  profile,
+  descriptivo,
+  observedSeasonality,
+  totalPax,
+  paxCab,
+  paxInt,
+  intRelevant,
+  isMetroNode,
+  concentration,
+  rankCab,
+  rankInt,
+  marketPhrase: buildMarketProfilePhrase(code, paxCab, paxInt),
+  routesSorted,
+  topRoute,
+  top3Routes,
+  topIntlDestinos,
+  destinosCount: destinos.length,
+  bueShare,
+  bueDependence: classifyBueDependence(bueShare),
+  federalRoutesCount: domesticFederal.length,
+  federalShare,
+  intlRoutesCount: intlDestinos.length,
+  intlShare,
+  snaRank
+};
 }
 
 function buildConnectivityProfileHtml(iata, summary, snaRank) {
@@ -1042,93 +1141,102 @@ function buildConnectivityProfileHtml(iata, summary, snaRank) {
   const profileLabel = p.profile?.label || "perfil operativo no clasificado";
   const territorialPhrase = buildTerritorialRolePhrase(p.descriptivo);
   const demandPhrase = buildDemandRolePhrase(p.descriptivo);
-  const tourismPhrase = buildTourismPhrase(p.descriptivo);
+  const tourismPhrase = (!p.isMetroNode) ? buildTourismPhrase(p.descriptivo) : "";
   const seasonalityPhrase = buildSeasonalityPhrase(p.descriptivo, p.observedSeasonality);
 
   const totalRankText = p.snaRank?.rank
-    ? `posición <strong>#${formatNumber(p.snaRank.rank)} / ${formatNumber(p.snaRank.totalAirports)}</strong> en el ranking general del SNA`
-    : "sin posición general disponible en el ranking del SNA";
+    ? `ocupó la posición <strong>#${formatNumber(p.snaRank.rank)} / ${formatNumber(p.snaRank.totalAirports)}</strong> en el ranking general del SNA`
+    : "no cuenta con una posición general disponible en el ranking del SNA";
 
   const segmentRankText = p.intRelevant
     ? ` En los rankings por segmento, se ubicó en la posición <strong>#${formatNumber(p.rankCab.rank)} / ${formatNumber(p.rankCab.totalAirports)}</strong> en cabotaje y <strong>#${formatNumber(p.rankInt.rank)} / ${formatNumber(p.rankInt.totalAirports)}</strong> en internacional.`
     : "";
 
-  const routeName = p.topRoute?.title || "la principal conexión";
+  const routeName = p.topRoute
+    ? `<strong>${escapeHtml(routeTextName(p.topRoute))}</strong>`
+    : "la principal conexión";
+
   const routeShare = Number(p.topRoute?.sharePaxPct || 0);
   const top3Share = Number(p.concentration?.top3 || 0);
+  const top3Names = routeNamesHtml(p.top3Routes || []);
 
-  const introTerritorial = territorialPhrase
-    ? `, ${territorialPhrase}`
-    : "";
-
-  const demandText = demandPhrase
-    ? ` Su demanda aérea se asocia principalmente a ${demandPhrase}.`
-    : "";
-
-  let firstParagraph = `
-    <p>
-      En 2025, el aeropuerto cumplió un rol de <strong>${escapeHtml(profileLabel)}</strong> dentro del SNA${introTerritorial}.
-      ${demandText}
-      ${tourismPhrase ? ` ${tourismPhrase}` : ""}
-    </p>
+  let roleText = `
+    En 2025, el aeropuerto cumplió un rol de <strong>${escapeHtml(profileLabel)}</strong> dentro del SNA.
   `;
 
-  let marketParagraph = `
-    <p>
-      En términos de mercado, presentó ${escapeHtml(p.marketPhrase)} y ocupó la ${totalRankText}.${segmentRankText}
-    </p>
+  if (territorialPhrase) {
+    roleText += ` Territorialmente, se encuentra ${territorialPhrase}.`;
+  }
+
+  if (demandPhrase) {
+    roleText += ` Su demanda aérea se caracterizó ${demandPhrase}.`;
+  }
+
+  if (tourismPhrase) {
+    roleText += ` ${tourismPhrase}`;
+  }
+
+  const marketText = `
+    El tráfico presentó <strong>${escapeHtml(p.marketPhrase)}</strong> y ${totalRankText}.${segmentRankText}
   `;
 
-  let networkSentence = "";
+  let networkText = "";
 
   if (p.isMetroNode) {
-    networkSentence = `
-      <p>
-        Por tratarse de un nodo metropolitano, la conectividad no se interpreta como dependencia respecto de BUE,
-        sino por la amplitud de su red y la distribución del tráfico entre múltiples corredores.
-        En 2025 la red fue <strong>${escapeHtml(p.concentration.label)}</strong>:
-        la principal ruta representó <strong>${formatShareShort(routeShare)}</strong> de los pasajeros
-        y las tres primeras concentraron <strong>${formatShareShort(top3Share)}</strong>.
-      </p>
+    networkText = `
+      Por tratarse de un nodo metropolitano, la conectividad no se interpreta como dependencia respecto de BUE,
+      sino por la amplitud de su red y la distribución del tráfico entre múltiples corredores.
+      La red fue <strong>${escapeHtml(p.concentration.label)}</strong>: la principal conexión fue ${routeName},
+      con <strong>${formatShareShort(routeShare)}</strong> de los pasajeros.
+      Las tres primeras conexiones —${top3Names}— concentraron <strong>${formatShareShort(top3Share)}</strong>.
     `;
   } else {
     const buePart = Number.isFinite(p.bueShare)
-      ? `La red mostró <strong>${escapeHtml(p.bueDependence)}</strong>, con <strong>${formatShareShort(p.bueShare)}</strong> del tráfico vinculado a AEP/EZE.`
-      : "La red no registró una dependencia radial claramente identificable.";
+      ? `La relación con AEP/EZE representó <strong>${formatShareShort(p.bueShare)}</strong> del tráfico, configurando una <strong>${escapeHtml(p.bueDependence)}</strong>.`
+      : "No se identificó una dependencia radial claramente medible respecto de AEP/EZE.";
 
     const federalPart = p.federalRoutesCount > 0
-      ? `La conectividad federal alcanzó <strong>${formatShareShort(p.federalShare)}</strong> del tráfico, a partir de <strong>${formatNumber(p.federalRoutesCount)}</strong> ruta${p.federalRoutesCount === 1 ? "" : "s"} doméstica${p.federalRoutesCount === 1 ? "" : "s"} fuera de BUE.`
+      ? `La conectividad federal explicó <strong>${formatShareShort(p.federalShare)}</strong> del tráfico, a partir de <strong>${formatNumber(p.federalRoutesCount)}</strong> ruta${p.federalRoutesCount === 1 ? "" : "s"} doméstica${p.federalRoutesCount === 1 ? "" : "s"} fuera de BUE.`
       : "No se identificaron conexiones federales domésticas relevantes fuera de BUE.";
 
-    networkSentence = `
-      <p>
-        La estructura de rutas fue <strong>${escapeHtml(p.concentration.label)}</strong>:
-        <strong>${escapeHtml(routeName)}</strong> explicó <strong>${formatShareShort(routeShare)}</strong> de los pasajeros
-        y las tres primeras rutas concentraron <strong>${formatShareShort(top3Share)}</strong>.
-        ${buePart} ${federalPart}
-      </p>
+    networkText = `
+      La estructura de rutas fue <strong>${escapeHtml(p.concentration.label)}</strong>.
+      La principal conexión fue ${routeName}, con <strong>${formatShareShort(routeShare)}</strong> de los pasajeros.
+      Las tres primeras conexiones —${top3Names}— concentraron <strong>${formatShareShort(top3Share)}</strong>.
+      ${buePart} ${federalPart}
     `;
   }
 
-  const intlParagraph = p.intRelevant
+  const intlRoutesText = destinationNamesWithSharesHtml(p.topIntlDestinos || [], p.paxInt);
+
+  const intlText = p.intRelevant
     ? `
-      <p>
-        El segmento internacional representó <strong>${formatShareShort(p.intlShare)}</strong> de los pasajeros
-        y comprendió <strong>${formatNumber(p.intlRoutesCount)}</strong> destino${p.intlRoutesCount === 1 ? "" : "s"} internacional${p.intlRoutesCount === 1 ? "" : "es"}.
-      </p>
+      El segmento internacional representó <strong>${formatShareShort(p.intlShare)}</strong> del tráfico total.
+      Dentro de ese segmento, las principales conexiones fueron ${intlRoutesText}, medidas sobre los pasajeros internacionales.
     `
     : "";
 
-  const seasonalityParagraph = seasonalityPhrase
-    ? `<p>${seasonalityPhrase}</p>`
-    : "";
-
   return `
-    ${firstParagraph}
-    ${marketParagraph}
-    ${networkSentence}
-    ${intlParagraph}
-    ${seasonalityParagraph}
+    <div class="od-connectivity-block">
+      <div class="od-connectivity-kicker">Rol territorial y demanda</div>
+      <p>${roleText.replace(/\s+/g, " ").trim()}</p>
+    </div>
+
+    <div class="od-connectivity-block">
+      <div class="od-connectivity-kicker">Mercado y ranking</div>
+      <p>${marketText.replace(/\s+/g, " ").trim()}</p>
+    </div>
+
+    <div class="od-connectivity-block">
+      <div class="od-connectivity-kicker">Estructura de rutas</div>
+      <p>${networkText.replace(/\s+/g, " ").trim()}</p>
+      ${intlText ? `<p>${intlText.replace(/\s+/g, " ").trim()}</p>` : ""}
+    </div>
+
+    <div class="od-connectivity-block">
+      <div class="od-connectivity-kicker">Estacionalidad mensual</div>
+      <p>${seasonalityPhrase}</p>
+    </div>
   `;
 }
 
