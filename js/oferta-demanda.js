@@ -619,13 +619,13 @@ function odBuildIntroTextHtml(iata, summary) {
   const freq = Number(summary?.totalFrecuenciaSemanal || 0);
 
   const freqText = Number.isFinite(freq) && freq > 0
-    ? `<strong>${formatNumber(Math.round(freq))}</strong> frecuencias comerciales semanales promedio`
+    ? `<strong>${formatNumber(Math.round(freq))}</strong> frecuencias comerciales semanales (ida y vuelta)`
     : "frecuencias comerciales semanales no determinadas";
 
   const weeklySeats = hasSeatData ? seats.total / 52 : null;
 
   const weeklySeatsText = hasSeatData
-    ? ` y un promedio de <strong>${formatNumber(Math.round(weeklySeats))}</strong> asientos semanales ofrecidos`
+    ? ` y <strong>${formatNumber(Math.round(weeklySeats))}</strong> asientos semanales ofrecidos`
     : "";
 
   const destinations = odGetIntroDestinations(summary, 5);
