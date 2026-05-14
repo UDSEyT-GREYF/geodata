@@ -38,18 +38,20 @@
   // Índice por IATA construido a partir de Descriptivo_aeropuertos.geojson.
   let descriptivoByIata = {};
   
-  const DEST_OVERRIDES = {
-    BUE: { ciudad: "Buenos Aires AEP+EZE", pais: "Argentina" },
-    GRU: { ciudad: "São Paulo", pais: "Brasil" },
-    GIG: { ciudad: "Río de Janeiro", pais: "Brasil" },
-    FLN: { ciudad: "Florianópolis", pais: "Brasil" },
-    LIM: { ciudad: "Lima", pais: "Perú" },
-    SCL: { ciudad: "Santiago", pais: "Chile" },
-    ASU: { ciudad: "Asunción", pais: "Paraguay" },
-    FDO: { ciudad: "Operaciones locales", pais: "Argentina" },
-    AR: { ciudad: "Otros destinos de cabotaje", pais: "Argentina" },
-    EXT: { ciudad: "Otros destinos internacionales", pais: "" }
-  };
+const DEST_OVERRIDES = {
+  BUE: { ciudad: "Buenos Aires AEP+EZE", pais: "Argentina" },
+  GRU: { ciudad: "São Paulo", pais: "Brasil" },
+  GIG: { ciudad: "Río de Janeiro", pais: "Brasil" },
+  FLN: { ciudad: "Florianópolis", pais: "Brasil" },
+  LIM: { ciudad: "Lima", pais: "Perú" },
+  SCL: { ciudad: "Santiago", pais: "Chile" },
+  ASU: { ciudad: "Asunción", pais: "Paraguay" },
+  CML: { ciudad: "Carmelo", pais: "Uruguay" },
+  PTY: { ciudad: "Panamá", pais: "Panamá" },
+  FDO: { ciudad: "Operaciones locales", pais: "Argentina" },
+  AR: { ciudad: "Otros destinos de cabotaje", pais: "Argentina" },
+  EXT: { ciudad: "Otros destinos internacionales", pais: "" }
+};
 
   /* ============================================================
      HELPERS
@@ -591,7 +593,42 @@ function odBuildServiceMarketPhrase(seatsCab, seatsInt) {
   return "comerciales";
 }
 
+function odBuildFdoIntroTextHtml(summary) {
+  const freq = Number(summary?.totalFrecuenciaSemanal || 0);
+
+  const freqText = Number.isFinite(freq) && freq > 0
+    ? `<strong>${formatNumber(Math.round(freq))}</strong> frecuencias semanales promedio`
+    : "frecuencias semanales no determinadas";
+
+  const destinations = odGetIntroDestinations(summary, 5);
+
+  const destinationsText = destinations.text
+    ? ` Entre los principales destinos registrados se encuentran <strong>${escapeHtml(destinations.text)}</strong>.`
+    : "";
+
+  return `
+    <p>
+      En el año <strong>${YEAR_REF}</strong>, el <strong>Aeropuerto de San Fernando</strong>
+      presentó un perfil operativo asociado principalmente a la <strong>aviación general, ejecutiva y privada</strong>.
+      Por ese motivo, su actividad no debe interpretarse bajo la misma lógica de vuelos regulares comerciales
+      que caracteriza a los aeropuertos aerocomerciales del SNA.
+    </p>
+
+    <p>
+      A lo largo del año, la fuente especial de Aeropuertos Argentina registró una intensidad agregada de
+      ${freqText} asociadas a los destinos operados.
+      ${destinationsText}
+      En este caso, la fuente utilizada no permite reconstruir una oferta anual completa de asientos,
+      por lo que la lectura se apoya principalmente en <strong>pasajeros, vuelos, frecuencias y destinos operados</strong>.
+    </p>
+  `;
+}
+  
 function odBuildIntroTextHtml(iata, summary) {
+  if (isFDO(iata) || summary?.source === "aeropuertos_argentina_fdo") {
+    return odBuildFdoIntroTextHtml(summary);
+  }
+
   const airportName = odGetAirportNarrativeName(iata);
   const seats = odGetMarketSeatTotals(summary);
   const hasSeatData = seats.total > 0;
@@ -1626,8 +1663,9 @@ function normalizeFDORouteCode(code) {
   // Corrección metodológica: ASI se interpreta como ASU, Asunción, Paraguay.
   if (c === "ASI") return "ASU";
 
-  if (c === "-AR") return "AR";
-  if (c === "-EX") return "EXT";
+  // Códigos agregados de la fuente especial de San Fernando.
+  if (c === "-AR" || c === "AR") return "AR";
+  if (c === "-EX" || c === "EX") return "EXT";
 
   return c;
 }
