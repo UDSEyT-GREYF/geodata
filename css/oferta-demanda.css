@@ -1196,3 +1196,38 @@
     margin-top: 0 !important;
   }
 }
+/* ==========================================================
+   SÍNTESIS DE OFERTA Y CONECTIVIDAD 2025
+   ----------------------------------------------------------
+   Bloque introductorio ubicado entre los gráficos principales
+   y el perfil operativo/conectividad.
+   ========================================================== */
+
+.od-panel-intro {
+  grid-column: 1 / -1;
+  background: #ffffff;
+}
+
+.od-intro-text {
+  padding: 8px 10px 9px;
+  font-size: 9.4px;
+  line-height: 1.38;
+  color: #334150;
+  column-count: 2;
+  column-gap: 16px;
+  text-align: justify;
+}
+
+.od-intro-text p {
+  margin: 0 0 6px 0;
+  break-inside: avoid;
+}
+
+.od-intro-text p:last-child {
+  margin-bottom: 0;
+}
+
+.od-intro-text strong {
+  color: #1f4f82;
+  font-weight: 700;
+}
