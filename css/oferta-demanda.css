@@ -959,17 +959,45 @@
 
 .od-connectivity-text {
   padding: 8px 10px 10px;
-  font-size: 3.55mm;
+  font-size: 9.1px;
   line-height: 1.34;
   color: #334150;
-  column-count: 2;
-  column-gap: 16px;
-  text-align: justify;
+
+  /* En vez de columnas automáticas, usamos bloques ordenados */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px 12px;
+}
+
+.od-connectivity-block {
+  border-left: 3px solid #75AADB;
+  background: #f9fbfd;
+  border-radius: 8px;
+  padding: 6px 8px;
+  min-width: 0;
+}
+
+.od-connectivity-kicker {
+  margin-bottom: 3px;
+  font-size: 8px;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #002855;
 }
 
 .od-connectivity-text p {
-  margin: 0 0 6px 0;
-  break-inside: avoid;
+  margin: 0 0 5px 0;
+}
+
+.od-connectivity-text p:last-child {
+  margin-bottom: 0;
+}
+
+.od-connectivity-text strong {
+  color: #1f4f82;
+  font-weight: 700;
 }
 
 .od-connectivity-text strong {
