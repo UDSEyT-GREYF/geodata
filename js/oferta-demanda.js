@@ -465,6 +465,205 @@ function getAirportBaseRouteName(iata) {
   ])) || key;
 }
 
+/* ============================================================
+   INTRO OFERTA Y CONECTIVIDAD 2025
+   ------------------------------------------------------------
+   Construye el párrafo introductorio ubicado entre los gráficos
+   principales y el bloque "Perfil operativo y conectividad 2025".
+   Resume operadores, asientos, frecuencia semanal y destinos.
+   ============================================================ */
+
+function odJoinList(items) {
+  const values = (items || [])
+    .map(clean)
+    .filter(Boolean);
+
+  if (!values.length) return "";
+  if (values.length === 1) return values[0];
+  if (values.length === 2) return `${values[0]} y ${values[1]}`;
+
+  return `${values.slice(0, -1).join(", ")} y ${values[values.length - 1]}`;
+}
+
+function odGetAirportNarrativeName(iata) {
+  const code = clean(iata).toUpperCase();
+  const base = getAirportBaseRouteName(code);
+
+  if (!base || base === code) return `Aeropuerto (${code})`;
+
+  if (/^Aeropuerto/i.test(base) || /^Aeroparque/i.test(base)) {
+    return base;
+  }
+
+  return `Aeropuerto de ${base}`;
+}
+
+function odCleanDestinationName(destino) {
+  const city = clean(destino?.ciudad) || clean(destino?.code);
+
+  if (!city) return "";
+
+  if (/Buenos Aires AEP\+EZE/i.test(city)) return "Buenos Aires";
+
+  return city
+    .replace(/\s+[A-Z]{3}\+[A-Z]{3}$/g, "")
+    .replace(/\s+[A-Z]{3}$/g, "")
+    .trim();
+}
+
+function odGetMarketSeatTotals(summary) {
+  const rows = summary?.monthly || [];
+
+  return rows.reduce((acc, row) => {
+    acc.cab += Number(row.asientosCab || 0);
+    acc.int += Number(row.asientosInt || 0);
+    acc.total += Number(row.asientosTotal || 0);
+    return acc;
+  }, {
+    cab: 0,
+    int: 0,
+    total: 0
+  });
+}
+
+function odGetRelevantAirlinesForIntro(summary, limit = 3) {
+  const rows = (summary?.airlines || [])
+    .filter(a => {
+      const name = clean(a.name);
+      const key = normalizeTextKey(name);
+
+      // Evita mencionar aviación general como operador regular,
+      // salvo que luego no haya ningún operador comercial disponible.
+      if (key === "aviacion general / privada") return false;
+
+      const seats = Number(a.asientosTotal || 0);
+      const pax = Number(a.paxTotal || 0);
+
+      return seats > 0 || pax > 0;
+    })
+    .sort((a, b) => {
+      const seatsB = Number(b.asientosTotal || 0);
+      const seatsA = Number(a.asientosTotal || 0);
+
+      if (seatsB !== seatsA) return seatsB - seatsA;
+
+      return Number(b.paxTotal || 0) - Number(a.paxTotal || 0);
+    });
+
+  return rows.slice(0, limit).map(a => clean(a.name));
+}
+
+function odGetIntroDestinations(summary, limit = 5) {
+  const rows = (summary?.destinos || [])
+    .filter(d => {
+      const seats = Number(d.asientos || 0);
+      const pax = Number(d.pax || 0);
+      return seats > 0 || pax > 0;
+    })
+    .sort((a, b) => {
+      const seatsB = Number(b.asientos || 0);
+      const seatsA = Number(a.asientos || 0);
+
+      if (seatsB !== seatsA) return seatsB - seatsA;
+
+      return Number(b.pax || 0) - Number(a.pax || 0);
+    });
+
+  const selected = rows
+    .slice(0, limit)
+    .map(odCleanDestinationName)
+    .filter(Boolean);
+
+  return {
+    names: selected,
+    text: selected.length ? odJoinList(selected) : ""
+  };
+}
+
+function odBuildServiceMarketPhrase(seatsCab, seatsInt) {
+  const hasCab = Number(seatsCab || 0) > 0;
+  const hasInt = Number(seatsInt || 0) > 0;
+
+  if (hasCab && hasInt) return "de cabotaje e internacionales";
+  if (hasCab) return "de cabotaje";
+  if (hasInt) return "internacionales";
+
+  return "comerciales";
+}
+
+function odBuildIntroTextHtml(iata, summary) {
+  const airportName = odGetAirportNarrativeName(iata);
+  const seats = odGetMarketSeatTotals(summary);
+  const hasSeatData = seats.total > 0;
+
+  const airlineNames = odGetRelevantAirlinesForIntro(summary, 3);
+  const airlineText = airlineNames.length ? odJoinList(airlineNames) : "";
+
+  const marketPhrase = odBuildServiceMarketPhrase(seats.cab, seats.int);
+
+  const hasCabSeats = seats.cab > 0;
+  const hasIntSeats = seats.int > 0;
+
+  const seatsCabText = hasCabSeats
+    ? `En total, se ofertaron <strong>${formatNumber(Math.round(seats.cab))}</strong> asientos anuales en el mercado de cabotaje.`
+    : "";
+
+  const seatsIntText = hasIntSeats
+    ? `Asimismo, se ofertaron <strong>${formatNumber(Math.round(seats.int))}</strong> asientos anuales en el mercado internacional.`
+    : "";
+
+  const operatorSentence = airlineText
+    ? `En el año <strong>${YEAR_REF}</strong>, la oferta de servicios aéreos del <strong>${escapeHtml(airportName)}</strong> fue sostenida principalmente por <strong>${escapeHtml(airlineText)}</strong>, que operaron vuelos regulares ${marketPhrase}.`
+    : `En el año <strong>${YEAR_REF}</strong>, el <strong>${escapeHtml(airportName)}</strong> registró vuelos regulares ${marketPhrase}.`;
+
+  const freq = Number(summary?.totalFrecuenciaSemanal || 0);
+
+  const freqText = Number.isFinite(freq) && freq > 0
+    ? `<strong>${formatNumber(Math.round(freq))}</strong> frecuencias comerciales semanales promedio`
+    : "frecuencias comerciales semanales no determinadas";
+
+  const weeklySeats = hasSeatData ? seats.total / 52 : null;
+
+  const weeklySeatsText = hasSeatData
+    ? ` y un promedio de <strong>${formatNumber(Math.round(weeklySeats))}</strong> asientos semanales ofrecidos`
+    : "";
+
+  const destinations = odGetIntroDestinations(summary, 5);
+
+  const destinationsText = destinations.text
+    ? ` hacia <strong>${escapeHtml(destinations.text)}</strong>`
+    : "";
+
+  const frequencySentence = `
+    A lo largo del año <strong>${YEAR_REF}</strong>, el aeropuerto contó con un total de ${freqText}
+    ${weeklySeatsText}${destinationsText}.
+  `;
+
+  const noSeatsNote = !hasSeatData
+    ? ` En este caso, la fuente utilizada no permite reconstruir una oferta anual completa de asientos, por lo que la lectura se apoya principalmente en pasajeros, vuelos y frecuencias.`
+    : "";
+
+  return `
+    <p>
+      ${operatorSentence}
+      ${seatsCabText}
+      ${seatsIntText}
+    </p>
+
+    <p>
+      ${frequencySentence.replace(/\s+/g, " ").trim()}
+      ${noSeatsNote}
+    </p>
+  `;
+}
+
+function renderOfertaDemandaIntro(iata, summary) {
+  const el = q("odIntroText");
+  if (!el) return;
+
+  el.innerHTML = odBuildIntroTextHtml(iata, summary);
+}  
+  
 function formatShareShort(value) {
   if (!Number.isFinite(value)) return "0%";
   return `${value.toLocaleString("es-AR", { maximumFractionDigits: 1 })}%`;
@@ -3752,6 +3951,8 @@ setText(
 );
 const snaRank = getSNAPassengerRanking(iata, YEAR_REF);
 
+renderOfertaDemandaIntro(iata, summary);
+    
 // Bloque narrativo de perfil operativo, ranking por segmento y conectividad 2025.
 renderConnectivityProfileText(iata, summary, snaRank);
 
