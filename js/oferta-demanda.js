@@ -592,7 +592,71 @@ function odBuildServiceMarketPhrase(seatsCab, seatsInt) {
 
   return "comerciales";
 }
+function odBuildFdoDestinationsText(summary) {
+  const destinos = (summary?.destinos || [])
+    .filter(d => (Number(d.pax || 0) > 0 || Number(d.vuelos || 0) > 0))
+    .sort((a, b) => {
+      const paxB = Number(b.pax || 0);
+      const paxA = Number(a.pax || 0);
+      if (paxB !== paxA) return paxB - paxA;
+      return Number(b.vuelos || 0) - Number(a.vuelos || 0);
+    });
 
+  const genericTypes = new Set();
+
+  const destinosNominales = destinos.filter(d => {
+    const code = clean(d.code).toUpperCase();
+    const nameKey = normalizeTextKey(d.ciudad || d.code);
+
+    const isGenericInternational =
+      code === "EXT" ||
+      nameKey.includes("otros destinos internacionales");
+
+    const isGenericDomestic =
+      code === "AR" ||
+      nameKey.includes("otros destinos de cabotaje") ||
+      nameKey.includes("otros destinos nacionales");
+
+    if (isGenericInternational) {
+      genericTypes.add("internacionales");
+      return false;
+    }
+
+    if (isGenericDomestic) {
+      genericTypes.add("nacionales");
+      return false;
+    }
+
+    return true;
+  });
+
+  const nombres = destinosNominales
+    .slice(0, 4)
+    .map(odCleanDestinationName)
+    .filter(Boolean);
+
+  if (!nombres.length && !genericTypes.size) return "";
+
+  const listaDestinos = odJoinList(nombres);
+
+  let cierre = "";
+
+  if (genericTypes.has("internacionales") && genericTypes.has("nacionales")) {
+    cierre = " entre otros destinos internacionales y nacionales";
+  } else if (genericTypes.has("internacionales")) {
+    cierre = " entre otros destinos internacionales";
+  } else if (genericTypes.has("nacionales")) {
+    cierre = " entre otros destinos nacionales";
+  }
+
+  if (!listaDestinos) {
+    return genericTypes.size
+      ? `otros destinos ${Array.from(genericTypes).join(" y ")}`
+      : "";
+  }
+
+  return `${listaDestinos}${cierre}`;
+}
 function odBuildFdoIntroTextHtml(summary) {
   const freq = Number(summary?.totalFrecuenciaSemanal || 0);
 
@@ -600,11 +664,11 @@ function odBuildFdoIntroTextHtml(summary) {
     ? `<strong>${formatNumber(Math.round(freq))}</strong> frecuencias semanales promedio`
     : "frecuencias semanales no determinadas";
 
-  const destinations = odGetIntroDestinations(summary, 5);
+const fdoDestinationsText = odBuildFdoDestinationsText(summary);
 
-  const destinationsText = destinations.text
-    ? ` Entre los principales destinos registrados se encuentran <strong>${escapeHtml(destinations.text)}</strong>.`
-    : "";
+const destinationsText = fdoDestinationsText
+  ? ` Entre los principales destinos registrados se encuentran <strong>${escapeHtml(fdoDestinationsText)}</strong>.`
+  : "";
 
   return `
     <p>
