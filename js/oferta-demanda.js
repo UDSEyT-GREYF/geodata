@@ -1192,7 +1192,7 @@ function buildConnectivityProfileHtml(iata, summary, snaRank) {
     `;
   } else {
     const buePart = Number.isFinite(p.bueShare)
-      ? `La relación con AEP/EZE representó <strong>${formatShareShort(p.bueShare)}</strong> del tráfico, configurando una <strong>${escapeHtml(p.bueDependence)}</strong>.`
+      ? `La relación con la Región Metropolitana de Buenos Aires, a través del Aeroparque Jorge Newbery y el Aeropuerto Internacional de Ezeiza, representó <strong>${formatShareShort(p.bueShare)}</strong> del tráfico, configurando una <strong>${escapeHtml(p.bueDependence)}</strong>.`
       : "No se identificó una dependencia radial claramente medible respecto de AEP/EZE.";
 
     const federalPart = p.federalRoutesCount > 0
@@ -1289,7 +1289,7 @@ function parseRutasOfertaCSV(text) {
     ]));
 
     const date = parseFechaFlexible(anioMesRaw);
-    const yearNum = parseNumber(firstNonEmpty(r, ["anio", "ano", "year", "año"]));
+    const yearNum = parseNumber(firstNonEmpty(r, ["anio", "ano", "year", "año","AÃ±o"]));
 
     const cityPair = clean(firstNonEmpty(r, ["citypair_iata"])).toUpperCase();
 
