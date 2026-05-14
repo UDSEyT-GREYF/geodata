@@ -534,27 +534,37 @@ function odGetRelevantAirlinesForIntro(summary, limit = 3) {
       const name = clean(a.name);
       const key = normalizeTextKey(name);
 
-      // Evita mencionar aviación general como operador regular,
-      // salvo que luego no haya ningún operador comercial disponible.
+      // No mencionar aviación general como aerolínea regular en el texto introductorio.
       if (key === "aviacion general / privada") return false;
 
       const seats = Number(a.asientosTotal || 0);
-      const pax = Number(a.paxTotal || 0);
-
-      return seats > 0 || pax > 0;
+      return seats > 0;
     })
-    .sort((a, b) => {
-      const seatsB = Number(b.asientosTotal || 0);
-      const seatsA = Number(a.asientosTotal || 0);
+    .sort((a, b) => Number(b.asientosTotal || 0) - Number(a.asientosTotal || 0));
 
-      if (seatsB !== seatsA) return seatsB - seatsA;
+  const totalSeats =
+    Number(summary?.totalAsientos || 0) > 0
+      ? Number(summary.totalAsientos)
+      : rows.reduce((acc, a) => acc + Number(a.asientosTotal || 0), 0);
 
-      return Number(b.paxTotal || 0) - Number(a.paxTotal || 0);
-    });
+  return rows.slice(0, limit).map(a => {
+    const seats = Number(a.asientosTotal || 0);
+    const sharePct = totalSeats > 0 ? (seats / totalSeats) * 100 : 0;
 
-  return rows.slice(0, limit).map(a => clean(a.name));
+    return {
+      name: clean(a.name),
+      seats,
+      sharePct
+    };
+  });
 }
-
+function odFormatAirlineOfferShareList(airlines) {
+  return odJoinList(
+    (airlines || []).map(a =>
+      `${a.name} (${formatShareShort(a.sharePct)})`
+    )
+  );
+}
 function odGetIntroDestinations(summary, limit = 5) {
   const rows = (summary?.destinos || [])
     .filter(d => {
@@ -695,8 +705,12 @@ function odBuildIntroTextHtml(iata, summary) {
   const seats = odGetMarketSeatTotals(summary);
   const hasSeatData = seats.total > 0;
 
-  const airlineNames = odGetRelevantAirlinesForIntro(summary, 3);
-  const airlineText = airlineNames.length ? odJoinList(airlineNames) : "";
+const airlineItems = odGetRelevantAirlinesForIntro(summary, 3);
+const airlineText = airlineItems.length
+  ? odFormatAirlineOfferShareList(airlineItems)
+  : "";
+
+const airlineVerb = airlineItems.length === 1 ? "operó" : "operaron";
 
   const marketPhrase = odBuildServiceMarketPhrase(seats.cab, seats.int);
 
@@ -711,9 +725,9 @@ function odBuildIntroTextHtml(iata, summary) {
     ? `Asimismo, se ofertaron <strong>${formatNumber(Math.round(seats.int))}</strong> asientos anuales en el mercado internacional.`
     : "";
 
-  const operatorSentence = airlineText
-    ? `En el año <strong>${YEAR_REF}</strong>, la oferta de servicios aéreos del <strong>${escapeHtml(airportName)}</strong> fue sostenida principalmente por <strong>${escapeHtml(airlineText)}</strong>, que operaron vuelos regulares ${marketPhrase}.`
-    : `En el año <strong>${YEAR_REF}</strong>, el <strong>${escapeHtml(airportName)}</strong> registró vuelos regulares ${marketPhrase}.`;
+const operatorSentence = airlineText
+  ? `En el año <strong>${YEAR_REF}</strong>, la oferta de servicios aéreos del <strong>${escapeHtml(airportName)}</strong> fue sostenida principalmente por <strong>${escapeHtml(airlineText)}</strong>, que ${airlineVerb} vuelos regulares ${marketPhrase}.`
+  : `En el año <strong>${YEAR_REF}</strong>, el <strong>${escapeHtml(airportName)}</strong> registró vuelos regulares ${marketPhrase}.`;
 
   const freq = Number(summary?.totalFrecuenciaSemanal || 0);
 
