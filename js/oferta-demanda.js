@@ -18,6 +18,7 @@
   // Perfil operativo 2025: clasifica cada aeropuerto para modular la narrativa de conectividad.
   const PERFIL_OPERATIVO_PATH = "/geodata/fuentes/perfil_operativo_impacto_2025.json";
   const DESCRIPTIVO_AEROPUERTOS_GEOJSON_PATH = "/geodata/fuentes/Descriptivo_aeropuertos.geojson";
+  const OD_MIN_ROUTE_PAX_SHARE_PCT = 0.5;
 
   /* ============================================================
      ESTADO
@@ -609,16 +610,13 @@ function odGetIntroDestinations(summary, limit = 5) {
     .replace(/\s+[A-Z]{3}$/g, "")
     .trim();
 }
-
-function odGetIntroRoutes(summary, limit = 6, minSharePct = 0.5) {
+function odRoutePassesMinPaxShare(route, minSharePct = OD_MIN_ROUTE_PAX_SHARE_PCT) {
+  const sharePax = Number(route?.sharePaxPct || 0);
+  return sharePax >= minSharePct;
+}
+function odGetIntroRoutes(summary, limit = 6, minSharePct = OD_MIN_ROUTE_PAX_SHARE_PCT) {
   const routes = (summary?.mainRoutes || [])
-    .filter(route => {
-      const paxShare = Number(route.sharePaxPct || 0);
-      const seatsShare = Number(route.shareSeatsPct || 0);
-
-      // Deja afuera rutas muy marginales.
-      return paxShare >= minSharePct || seatsShare >= minSharePct;
-    })
+    .filter(route => odRoutePassesMinPaxShare(route, minSharePct))
     .slice(0, limit);
 
   const totalSeats =
@@ -805,8 +803,7 @@ const operatorSentence = airlineText
     ? ` y <strong>${formatNumber(Math.round(weeklySeats))}</strong> asientos semanales ofrecidos`
     : "";
 
-const introRoutes = odGetIntroRoutes(summary, 6, 0.5);
-const introRoutesText = odFormatRouteSeatShareList(introRoutes);
+const introRoutes = odGetIntroRoutes(summary, 6, OD_MIN_ROUTE_PAX_SHARE_PCT);const introRoutesText = odFormatRouteSeatShareList(introRoutes);
 
 const destinationsText = introRoutesText
   ? ` hacia <strong>${escapeHtml(introRoutesText)}</strong>`
@@ -3558,7 +3555,11 @@ function renderSingleRouteChart(canvasId, route) {
 function renderInternationalRouteNotes(routes) {
   const noteMain = q("odIntlRoutesNoteMain");
   const noteExtra = q("odIntlRoutesNoteExtra");
-  const dataRoutes = (routes || []).slice(0, 6);
+  const dataRoutes = (routes || [])
+  .slice()
+  .filter(route => odRoutePassesMinPaxShare(route))
+  .sort((a, b) => (b.totalPax || 0) - (a.totalPax || 0))
+  .slice(0, 6);
   const hasIntl = dataRoutes.some(isInternationalRoute);
 
   if (noteMain) noteMain.style.display = hasIntl ? "block" : "none";
@@ -3569,10 +3570,11 @@ function renderTopRoutesCharts(routes) {
   const topRoutesEl = q("odTopRoutes");
   if (!topRoutesEl) return;
 
-  const dataRoutes = (routes || [])
-    .slice()
-    .sort((a, b) => (b.totalPax || 0) - (a.totalPax || 0))
-    .slice(0, 6);
+const dataRoutes = (routes || [])
+  .slice()
+  .filter(route => odRoutePassesMinPaxShare(route))
+  .sort((a, b) => (b.totalPax || 0) - (a.totalPax || 0))
+  .slice(0, 6);
 
   if (!dataRoutes.length) {
     topRoutesEl.innerHTML = '<div class="od-empty">Sin datos</div>';
