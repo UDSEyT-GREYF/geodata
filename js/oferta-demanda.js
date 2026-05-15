@@ -815,7 +815,6 @@ const destinationsText = introRoutesText
 const frequencySentence = `
   A lo largo del año <strong>${YEAR_REF}</strong>, el aeropuerto contó con un total de ${freqText}
   ${weeklySeatsText}${destinationsText}.
-  ${routeShareClarification}
 `;
 
   const noSeatsNote = !hasSeatData
