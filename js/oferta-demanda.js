@@ -812,10 +812,6 @@ const destinationsText = introRoutesText
   ? ` hacia <strong>${escapeHtml(introRoutesText)}</strong>`
   : "";
 
-const routeShareClarification = introRoutesText
-  ? ` Los porcentajes entre paréntesis indican la participación de cada ruta en los asientos anuales ofrecidos.`
-  : "";
-
 const frequencySentence = `
   A lo largo del año <strong>${YEAR_REF}</strong>, el aeropuerto contó con un total de ${freqText}
   ${weeklySeatsText}${destinationsText}.
