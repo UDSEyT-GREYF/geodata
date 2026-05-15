@@ -592,6 +592,70 @@ function odGetIntroDestinations(summary, limit = 5) {
   };
 }
 
+ function odCleanRouteDestinationName(route) {
+  const city = clean(route?.ciudad);
+  const codes = clean(route?.codesLabel);
+
+  if (city) {
+    if (codes && !city.toUpperCase().includes(codes.toUpperCase())) {
+      return `${city}`;
+    }
+    return city;
+  }
+
+  return clean(route?.title)
+    .replace(/^.*?\s[-–]\s/g, "")
+    .replace(/\s+[A-Z]{3}\+[A-Z]{3}$/g, "")
+    .replace(/\s+[A-Z]{3}$/g, "")
+    .trim();
+}
+
+function odGetIntroRoutes(summary, limit = 6, minSharePct = 0.5) {
+  const routes = (summary?.mainRoutes || [])
+    .filter(route => {
+      const paxShare = Number(route.sharePaxPct || 0);
+      const seatsShare = Number(route.shareSeatsPct || 0);
+
+      // Deja afuera rutas muy marginales.
+      return paxShare >= minSharePct || seatsShare >= minSharePct;
+    })
+    .slice(0, limit);
+
+  const totalSeats =
+    Number(summary?.totalAsientos || 0) > 0
+      ? Number(summary.totalAsientos)
+      : odGetMarketSeatTotals(summary).total;
+
+  const items = routes.map(route => {
+    const name = odCleanRouteDestinationName(route);
+
+    let shareSeatsPct = Number(route.shareSeatsPct);
+
+    if (!Number.isFinite(shareSeatsPct) && totalSeats > 0) {
+      shareSeatsPct = (Number(route.totalAsientos || 0) / totalSeats) * 100;
+    }
+
+    return {
+      name,
+      shareSeatsPct
+    };
+  }).filter(item => item.name);
+
+  return items;
+}
+
+function odFormatRouteSeatShareList(routes) {
+  return odJoinList(
+    (routes || []).map(route => {
+      const pct = Number.isFinite(route.shareSeatsPct)
+        ? formatShareShort(route.shareSeatsPct)
+        : "s/d";
+
+      return `${route.name} (${pct})`;
+    })
+  );
+} 
+  
 function odBuildServiceMarketPhrase(seatsCab, seatsInt) {
   const hasCab = Number(seatsCab || 0) > 0;
   const hasInt = Number(seatsInt || 0) > 0;
@@ -741,16 +805,22 @@ const operatorSentence = airlineText
     ? ` y <strong>${formatNumber(Math.round(weeklySeats))}</strong> asientos semanales ofrecidos`
     : "";
 
-  const destinations = odGetIntroDestinations(summary, 5);
+const introRoutes = odGetIntroRoutes(summary, 6, 0.5);
+const introRoutesText = odFormatRouteSeatShareList(introRoutes);
 
-  const destinationsText = destinations.text
-    ? ` hacia <strong>${escapeHtml(destinations.text)}</strong>`
-    : "";
+const destinationsText = introRoutesText
+  ? ` hacia <strong>${escapeHtml(introRoutesText)}</strong>`
+  : "";
 
-  const frequencySentence = `
-    A lo largo del año <strong>${YEAR_REF}</strong>, el aeropuerto contó con un total de ${freqText}
-    ${weeklySeatsText}${destinationsText}.
-  `;
+const routeShareClarification = introRoutesText
+  ? ` Los porcentajes entre paréntesis indican la participación de cada ruta en los asientos anuales ofrecidos.`
+  : "";
+
+const frequencySentence = `
+  A lo largo del año <strong>${YEAR_REF}</strong>, el aeropuerto contó con un total de ${freqText}
+  ${weeklySeatsText}${destinationsText}.
+  ${routeShareClarification}
+`;
 
   const noSeatsNote = !hasSeatData
     ? ` En este caso, la fuente utilizada no permite reconstruir una oferta anual completa de asientos, por lo que la lectura se apoya principalmente en pasajeros, vuelos y frecuencias.`
