@@ -191,9 +191,6 @@ const CHART_COLORS = {
    Busca por IATA, nombre, ciudad/localidad, provincia y OACI.
    Mantiene #airportSelect como fuente de verdad.
    ============================================================ */
-
-let airportSearchIndex = new Map();
-
 function normalizeSearchTerm(value) {
   return clean(value)
     .toLowerCase()
@@ -821,7 +818,8 @@ const EXTRA_TRAFFIC_REPLACE_FROM_IATAS = new Set([
 const EXTRA_TRAFFIC_REPLACE_FROM_DATE = new Date(2015, 0, 1);
 
 function isSameOrAfterMonth(date, cutoffDate) {
-  if (!date || !cutoffDate) return false;
+  if (!(date instanceof Date) || Number.isNaN(date.getTime())) return false;
+  if (!(cutoffDate instanceof Date) || Number.isNaN(cutoffDate.getTime())) return false;
 
   const y = date.getFullYear();
   const m = date.getMonth();
