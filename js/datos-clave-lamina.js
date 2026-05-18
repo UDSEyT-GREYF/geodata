@@ -18,7 +18,8 @@
   let domesticIATAs = new Set();
   let currentIATA = "";
   let laminaBooted = false;
-
+  let airportSearchIndex = new Map();
+  
   let mapPredio = null;
   let predioLayer = null;
   let pistasLayer = null;
@@ -183,7 +184,237 @@ const CHART_COLORS = {
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#39;");
   }
+/* ============================================================
+   BUSCADOR DE AEROPUERTOS - ESTILO SIGA PARA LÁMINA
+   ------------------------------------------------------------
+   Adaptación compacta de la lógica de siga.js.
+   Busca por IATA, nombre, ciudad/localidad, provincia y OACI.
+   Mantiene #airportSelect como fuente de verdad.
+   ============================================================ */
 
+let airportSearchIndex = new Map();
+
+function normalizeSearchTerm(value) {
+  return clean(value)
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function getLaminaAirportSearchRecord(a) {
+  const iata = clean(firstNonEmpty(a, ["IATA", "iata"])).toUpperCase();
+
+  const nombre = clean(firstNonEmpty(a, [
+    "Aeropuerto",
+    "Ciudad",
+    "Localidad",
+    "Municipio",
+    "Ciudad/Localidad",
+    "Ciudad / Localidad",
+    "Nombre del Aeropuerto",
+    "nombre",
+    "name",
+    "IATA"
+  ]));
+
+  return {
+    iata,
+    nombre: nombre || iata,
+    properties: a
+  };
+}
+
+function getAirportSearchText(airport) {
+  const p = airport?.properties || {};
+
+  return normalizeSearchTerm([
+    airport.iata,
+    airport.nombre,
+    p.Aeropuerto,
+    p.aeropuerto,
+    p["Nombre del Aeropuerto"],
+    p.nombre,
+    p.name,
+    p.Ciudad,
+    p["Ciudad/Localidad"],
+    p["Ciudad / Localidad"],
+    p.Localidad,
+    p.Municipio,
+    p.Provincia,
+    p.OACI,
+    p.oaci
+  ].filter(Boolean).join(" "));
+}
+
+function populateAirportSelect(select, airports) {
+  const currentValue = clean(select.value).toUpperCase();
+
+  select.innerHTML = `<option value="">Seleccionar aeropuerto…</option>`;
+
+  airports.forEach((a) => {
+    const airport = getLaminaAirportSearchRecord(a);
+    if (!airport.iata) return;
+
+    const opt = document.createElement("option");
+    opt.value = airport.iata;
+    opt.textContent = `${airport.nombre} (${airport.iata})`;
+    select.appendChild(opt);
+  });
+
+  if (currentValue && airports.some((a) => clean(a.IATA).toUpperCase() === currentValue)) {
+    select.value = currentValue;
+  }
+}
+
+function syncAirportSearchInput(iata) {
+  const search = q("airportSearch");
+  if (!search) return;
+
+  const code = clean(iata).toUpperCase();
+  const airport = airportSearchIndex.get(code);
+
+  search.value = airport
+    ? `${airport.nombre} (${airport.iata})`
+    : code;
+}
+
+function wireAirportSearch() {
+  const search = q("airportSearch");
+  const select = q("airportSelect");
+  const results = q("airportSearchResults");
+
+  if (!search || !select || !results || search.dataset.bound === "1") return;
+
+  search.dataset.bound = "1";
+
+  let highlightedIndex = -1;
+  let currentResults = [];
+
+  function closeResults() {
+    results.classList.remove("is-open");
+    highlightedIndex = -1;
+  }
+
+  function selectAirport(iata) {
+    const code = clean(iata).toUpperCase();
+    if (!code || !airportSearchIndex.has(code)) return;
+
+    const airport = airportSearchIndex.get(code);
+
+    select.value = code;
+    search.value = `${airport.nombre} (${airport.iata})`;
+
+    closeResults();
+
+    select.dispatchEvent(new Event("change", { bubbles: true }));
+  }
+
+  function renderResults(term = "") {
+    const normalized = normalizeSearchTerm(term);
+
+    currentResults = normalized
+      ? Array.from(airportSearchIndex.values()).filter((a) => getAirportSearchText(a).includes(normalized))
+      : Array.from(airportSearchIndex.values());
+
+    results.innerHTML = "";
+
+    if (!currentResults.length) {
+      results.innerHTML = `
+        <div class="siga-search-result">
+          No se encontraron aeropuertos.
+        </div>
+      `;
+      results.classList.add("is-open");
+      return;
+    }
+
+    currentResults.slice(0, 80).forEach((airport, index) => {
+      const item = document.createElement("div");
+      item.className = "siga-search-result";
+      item.dataset.iata = airport.iata;
+      item.dataset.index = String(index);
+
+      item.innerHTML = `
+        <span class="siga-search-result-code">${escapeHtml(airport.iata)}</span>
+        ${escapeHtml(airport.nombre)}
+      `;
+
+      item.addEventListener("mousedown", (e) => {
+        e.preventDefault();
+        selectAirport(airport.iata);
+      });
+
+      results.appendChild(item);
+    });
+
+    results.classList.add("is-open");
+  }
+
+  function updateHighlight() {
+    results.querySelectorAll(".siga-search-result").forEach((el, idx) => {
+      el.classList.toggle("is-highlighted", idx === highlightedIndex);
+    });
+  }
+
+  search.addEventListener("focus", () => {
+    renderResults(search.value);
+  });
+
+  search.addEventListener("click", () => {
+    renderResults(search.value);
+  });
+
+  search.addEventListener("input", () => {
+    highlightedIndex = -1;
+    renderResults(search.value);
+  });
+
+  search.addEventListener("keydown", (e) => {
+    if (!results.classList.contains("is-open")) {
+      if (e.key === "ArrowDown" || e.key === "Enter") {
+        renderResults(search.value);
+      }
+      return;
+    }
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      highlightedIndex = Math.min(highlightedIndex + 1, currentResults.length - 1);
+      updateHighlight();
+      return;
+    }
+
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      highlightedIndex = Math.max(highlightedIndex - 1, 0);
+      updateHighlight();
+      return;
+    }
+
+    if (e.key === "Enter") {
+      e.preventDefault();
+
+      const selected =
+        highlightedIndex >= 0
+          ? currentResults[highlightedIndex]
+          : currentResults[0];
+
+      if (selected) selectAirport(selected.iata);
+      return;
+    }
+
+    if (e.key === "Escape") {
+      closeResults();
+      syncAirportSearchInput(select.value);
+    }
+  });
+
+  document.addEventListener("mousedown", (e) => {
+    if (!e.target.closest(".siga-airport-combobox")) {
+      closeResults();
+    }
+  });
+}
   function splitField(str) {
     if (!str) return [];
     return String(str)
@@ -2106,24 +2337,30 @@ if (iataWorldResp && iataWorldResp.ok) {
   iataWorldIndex = parsedWorld.byIata;
   routeCodeIndex = parsedWorld.byCode;
 }
-      if (select) {
-        select.innerHTML = "";
-        aeropuertos.forEach(a => {
-          const opt = document.createElement("option");
-          const airportName = clean(firstNonEmpty(a, ["Aeropuerto", "Nombre del Aeropuerto", "IATA"]));
-            opt.value = clean(a.IATA).toUpperCase();
-          opt.textContent = `${airportName} (${clean(a.IATA).toUpperCase()})`;
-          select.appendChild(opt);
-        });
-      }
+airportSearchIndex = new Map();
+
+aeropuertos.forEach(a => {
+  const airport = getLaminaAirportSearchRecord(a);
+  if (airport.iata) airportSearchIndex.set(airport.iata, airport);
+});
+
+if (select) {
+  populateAirportSelect(select, aeropuertos);
+}
+
+wireAirportSearch();
 
 const params = new URLSearchParams(window.location.search);
 const initial = clean(params.get("airport")).toUpperCase() || clean(aeropuertos[0]?.IATA).toUpperCase();
 
 select?.addEventListener("change", e => {
   const value = clean(e.target.value).toUpperCase();
+  if (!value) return;
+
   try {
+    syncAirportSearchInput(value);
     renderAirport(value);
+
     const url = new URL(window.location.href);
     url.searchParams.set("airport", value);
     window.history.replaceState({}, "", url);
@@ -2133,6 +2370,8 @@ select?.addEventListener("change", e => {
 });
 
 if (select) select.value = initial;
+
+syncAirportSearchInput(initial);
 
 try {
   renderAirport(initial);
