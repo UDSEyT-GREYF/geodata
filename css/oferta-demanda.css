@@ -1012,13 +1012,15 @@
 
 .od-routes-list-page {
   flex: 1 1 auto;
-  gap: 6px !important;
-  padding-bottom: 4px !important;
+  gap: 4px !important;
+  padding-top: 5px !important;
+  padding-bottom: 2px !important;
 }
 
 /* Cada tarjeta se compacta para que entren hasta 6 rutas en una hoja A4. */
-#odTopRoutes .od-route-card-chart {
-  padding: 6px 8px !important;
+#odTopRoutes .od-route-card-chart,
+#odTopRoutesExtra .od-route-card-chart {
+  padding: 4px 7px !important;
   border-radius: 8px !important;
 }
 
@@ -1030,7 +1032,7 @@
   align-items: baseline;
   column-gap: 10px;
   row-gap: 2px;
-  margin-bottom: 4px !important;
+  margin-bottom: 2px !important;
   flex-wrap: nowrap !important;
 }
 
@@ -1094,9 +1096,9 @@
 /* Altura más compacta para que entren 6 rutas completas en página 2. */
 #odTopRoutes .od-route-chart-wrap,
 #odTopRoutesExtra .od-route-chart-wrap {
-  height: 112px !important;
-  min-height: 112px !important;
-  max-height: 112px !important;
+  height: 124px !important;
+  min-height: 124px !important;
+  max-height: 124px !important;
 }
 
 /* Oculta nodos auxiliares de compatibilidad cuando el HTML los conserva. */
