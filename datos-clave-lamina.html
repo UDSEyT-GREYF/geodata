@@ -16,10 +16,25 @@
       <div class="toolbar-title">Datos clave por aeropuerto</div>
     </div>
     <div class="toolbar-actions">
-      <label class="toolbar-label" for="airportSelect">Aeropuerto</label>
-      <select id="airportSelect" class="toolbar-select">
-        <option value="">Cargando aeropuertos...</option>
-      </select>
+<div class="siga-airport-combobox lamina-airport-combobox">
+  <label for="airportSearch">Buscar / seleccionar aeropuerto</label>
+
+  <div class="lamina-airport-search-row">
+    <input
+      id="airportSearch"
+      class="lamina-airport-search-input"
+      type="text"
+      autocomplete="off"
+      placeholder="Buscar por ciudad, aeropuerto o IATA..."
+    >
+
+    <select id="airportSelect" class="lamina-hidden-airport-select">
+      <option value="">Cargando aeropuertos...</option>
+    </select>
+
+    <div id="airportSearchResults" class="siga-search-results lamina-airport-search-results"></div>
+  </div>
+</div>
       <button id="btnExportPng" class="toolbar-btn" type="button">Exportar PNG</button>
       <button id="btnPrint" class="toolbar-btn" type="button">Imprimir A4</button>
     </div>
