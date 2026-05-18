@@ -2239,3 +2239,116 @@ body {
   font-size: 0.60rem;
   line-height: 0.95;
 }
+/* ==========================================================
+   BUSCADOR DE AEROPUERTOS - ESTILO SIGA COMPACTO
+   ----------------------------------------------------------
+   Mantiene #airportSelect oculto para conservar la lógica JS,
+   pero muestra un input buscador con lista desplegable.
+   ========================================================== */
+
+.lamina-airport-combobox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 320px;
+  max-width: 420px;
+  z-index: 9999;
+}
+
+.lamina-airport-combobox label {
+  flex: 0 0 auto;
+  font-size: 11px;
+  line-height: 1.1;
+  font-weight: 600;
+  color: #4f5d6b;
+  white-space: nowrap;
+}
+
+.lamina-airport-search-row {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 260px;
+}
+
+.lamina-airport-search-input {
+  width: 100%;
+  height: 30px;
+  padding: 5px 9px;
+  border: 1px solid #b9c7d8;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #334150;
+  font-size: 12px;
+  line-height: 1.2;
+  outline: none;
+}
+
+.lamina-airport-search-input:focus {
+  border-color: #2a6fb0;
+  box-shadow: 0 0 0 2px rgba(42, 111, 176, 0.14);
+}
+
+.lamina-hidden-airport-select {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.lamina-airport-search-results {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  display: none;
+  max-height: 230px;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid #cbd6e2;
+  border-radius: 7px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.16);
+  z-index: 10000;
+}
+
+.lamina-airport-search-results.is-open {
+  display: block;
+}
+
+.siga-search-result {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 9px;
+  border-bottom: 1px solid #edf1f5;
+  background: #ffffff;
+  color: #26374a;
+  font-size: 12px;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.siga-search-result:last-child {
+  border-bottom: none;
+}
+
+.siga-search-result:hover,
+.siga-search-result.is-highlighted {
+  background: #eaf3fb;
+  color: #002855;
+}
+
+.siga-search-result-code {
+  flex: 0 0 34px;
+  font-weight: 800;
+  color: #0056a4;
+  letter-spacing: 0.02em;
+}
+
+@media print {
+  .lamina-airport-combobox {
+    display: none !important;
+  }
+}
