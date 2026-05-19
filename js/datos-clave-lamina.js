@@ -2444,31 +2444,45 @@ function getDestinationLabel(code, isInternational) {
   function initExport() {
     q("btnPrint")?.addEventListener("click", () => window.print());
 
-    q("btnExportPng")?.addEventListener("click", async () => {
-      const button = q("btnExportPng");
-      const sheet = q("sheetA4");
-      if (!sheet || typeof html2canvas === "undefined") return;
-      const prev = button.textContent;
-      button.disabled = true;
-      button.textContent = "Exportando...";
-      try {
-        const canvas = await html2canvas(sheet, {
-          backgroundColor: "#ffffff",
-          scale: 2,
-          useCORS: true,
-          logging: false
-        });
-        const link = document.createElement("a");
-        link.href = canvas.toDataURL("image/png");
-        link.download = `datos-clave-${currentIATA || "aeropuerto"}.png`;
-        link.click();
-      } catch (e) {
-        console.error("No se pudo exportar la lámina.", e);
-      } finally {
-        button.disabled = false;
-        button.textContent = prev;
-      }
+q("btnExportPng")?.addEventListener("click", async () => {
+  const button = q("btnExportPng");
+  const sheet = q("sheetA4");
+
+  if (!sheet || typeof html2canvas === "undefined") return;
+
+  const prev = button.textContent;
+
+  button.disabled = true;
+  button.textContent = "Exportando...";
+
+  sheet.classList.add("is-exporting");
+
+  try {
+    await new Promise(resolve => requestAnimationFrame(resolve));
+
+    const canvas = await html2canvas(sheet, {
+      backgroundColor: "#ffffff",
+      scale: 2,
+      useCORS: true,
+      logging: false,
+      windowWidth: Math.ceil(sheet.scrollWidth),
+      windowHeight: Math.ceil(sheet.scrollHeight)
     });
+
+    const link = document.createElement("a");
+    link.href = canvas.toDataURL("image/png");
+    link.download = `datos-clave-${currentIATA || "aeropuerto"}.png`;
+    link.click();
+
+  } catch (e) {
+    console.error("No se pudo exportar la lámina.", e);
+
+  } finally {
+    sheet.classList.remove("is-exporting");
+    button.disabled = false;
+    button.textContent = prev;
+  }
+});
   }
 
 function bootLamina() {
