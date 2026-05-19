@@ -2831,3 +2831,8 @@ html {
 .destination-meta {
   font-size: 0.58rem;
 }
+.sheet-a4.is-exporting {
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+}
