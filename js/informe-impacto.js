@@ -111,14 +111,19 @@ async function mountOfferDemandPartial() {
     };
   }
 
-  async function rasterizeElement(el, scale = 2) {
-    if (!el) return null;
+async function rasterizeElement(el, scale = 2) {
+  if (!el) return null;
 
+  el.classList.add("is-exporting");
+
+  try {
     const canvas = await html2canvas(el, {
       backgroundColor: "#ffffff",
       scale,
       useCORS: true,
-      logging: false
+      logging: false,
+      windowWidth: el.scrollWidth,
+      windowHeight: el.scrollHeight
     });
 
     return {
@@ -126,7 +131,10 @@ async function mountOfferDemandPartial() {
       width: canvas.width,
       height: canvas.height
     };
+  } finally {
+    el.classList.remove("is-exporting");
   }
+}
 
   function addRasterPage(pdf, raster, orientation = "portrait", isFirst = false) {
     if (!raster) return;
