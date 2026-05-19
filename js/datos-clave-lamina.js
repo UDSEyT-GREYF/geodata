@@ -287,6 +287,32 @@ function wireAirportSearch() {
   let highlightedIndex = -1;
   let currentResults = [];
 
+    function getAirportList() {
+    return Array.from(airportSearchIndex.values());
+  }
+
+  function getSelectedAirportLabel() {
+    const code = clean(select.value).toUpperCase();
+    const airport = airportSearchIndex.get(code);
+
+    return airport
+      ? `${airport.nombre} (${airport.iata})`
+      : code;
+  }
+
+  function isShowingSelectedAirport() {
+    return clean(search.value) === clean(getSelectedAirportLabel());
+  }
+
+  function getEffectiveSearchTerm() {
+    return isShowingSelectedAirport() ? "" : search.value;
+  }
+
+  function restoreSelectedAirportLabel() {
+    const label = getSelectedAirportLabel();
+    if (label) search.value = label;
+  }
+  
   function closeResults() {
     results.classList.remove("is-open");
     highlightedIndex = -1;
@@ -309,9 +335,11 @@ function wireAirportSearch() {
   function renderResults(term = "") {
     const normalized = normalizeSearchTerm(term);
 
+    const airports = getAirportList();
+
     currentResults = normalized
-      ? Array.from(airportSearchIndex.values()).filter((a) => getAirportSearchText(a).includes(normalized))
-      : Array.from(airportSearchIndex.values());
+      ? airports.filter((a) => getAirportSearchText(a).includes(normalized))
+      : airports;
 
     results.innerHTML = "";
 
@@ -346,7 +374,18 @@ function wireAirportSearch() {
 
     results.classList.add("is-open");
   }
+  
+  function openResultsFromCurrentInput() {
+    highlightedIndex = -1;
+    renderResults(getEffectiveSearchTerm());
 
+    // Si el input muestra el aeropuerto seleccionado, dejamos el texto seleccionado:
+    // al escribir, se reemplaza; al salir sin elegir nada, se conserva la selección previa.
+    if (isShowingSelectedAirport()) {
+      setTimeout(() => search.select(), 0);
+    }
+  }
+  
   function updateHighlight() {
     results.querySelectorAll(".siga-search-result").forEach((el, idx) => {
       el.classList.toggle("is-highlighted", idx === highlightedIndex);
@@ -354,22 +393,28 @@ function wireAirportSearch() {
   }
 
   search.addEventListener("focus", () => {
-    renderResults(search.value);
+    openResultsFromCurrentInput();
   });
 
   search.addEventListener("click", () => {
-    renderResults(search.value);
+    openResultsFromCurrentInput();
   });
 
   search.addEventListener("input", () => {
     highlightedIndex = -1;
     renderResults(search.value);
   });
-
+  
+  // En inputs type="search", Chrome/Edge disparan este evento al usar la X nativa.
+  search.addEventListener("search", () => {
+    highlightedIndex = -1;
+    renderResults(search.value);
+  });
+  
   search.addEventListener("keydown", (e) => {
     if (!results.classList.contains("is-open")) {
       if (e.key === "ArrowDown" || e.key === "Enter") {
-        renderResults(search.value);
+        renderResults(getEffectiveSearchTerm());
       }
       return;
     }
@@ -402,13 +447,17 @@ function wireAirportSearch() {
 
     if (e.key === "Escape") {
       closeResults();
-      syncAirportSearchInput(select.value);
+      restoreSelectedAirportLabel();
     }
   });
 
   document.addEventListener("mousedown", (e) => {
     if (!e.target.closest(".siga-airport-combobox")) {
       closeResults();
+
+      if (!clean(search.value)) {
+        restoreSelectedAirportLabel();
+      }
     }
   });
 }
