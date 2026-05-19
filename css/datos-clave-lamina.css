@@ -617,9 +617,10 @@ body {
 }
 
 .routes-grid {
-  display: grid;
-  grid-template-columns: 0.95fr 1.5fr;
-  gap: 14px;
+  grid-template-columns: 0.95fr 1.7fr;
+  gap: 10px;
+  height: 100%;
+  min-height: 0;
 }
 .routes-right {
   border-left: 1px dashed #cfd8e4;
@@ -821,8 +822,8 @@ body {
 
 .flights-wrap {
   display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 14px;
+  grid-template-columns: 105px 1fr;
+  gap: 10px;
   align-items: center;
 }
 
@@ -833,24 +834,21 @@ body {
 }
 
 .flights-icon-block img {
-  width: 150px;
-  height: 60px;
+  width: 125px;
+  height: 50px;
   object-fit: contain;
 }
 .section-flights {
-  flex: 0 0 auto;
+  flex: 0 0 25mm;
+  min-height: 0;
 }
 
 .section-routes {
-  min-height: 176px;
-    flex: 0 1 auto;
+  min-height: 0;
+  flex: 1 1 auto;
   overflow: hidden;
 }
 
-.routes-grid {
-  grid-template-columns: 0.95fr 1.7fr;
-  gap: 12px;
-}
 
 .routes-right {
   padding-left: 12px;
@@ -938,7 +936,7 @@ body {
 
 .destinations-column {
   display: grid;
-  gap: 6px;
+  gap: 4px;
   align-content: start;
 }
 
@@ -952,8 +950,8 @@ body {
 }
 
 .destination-item {
-  grid-template-columns: 42px 1fr;
-  gap: 8px;
+  grid-template-columns: 36px 1fr;
+  gap: 6px;
 }
 
 .destination-pill {
@@ -1685,19 +1683,6 @@ body {
    contador y hasta 6 aerolíneas sin invadir destinos.
    ========================================================= */
 
-/* La sección completa gana un poco de aire sin agrandar demasiado */
-.section-routes {
-  min-height: 184px;
-  flex: 0 1 auto;
-  overflow: hidden;
-}
-
-/* La columna de aerolíneas necesita un ancho mínimo real */
-.routes-grid {
-  grid-template-columns: minmax(205px, 0.98fr) minmax(0, 1.55fr);
-  gap: 10px;
-  align-items: start;
-}
 
 /* Columna izquierda: el contador queda arriba a la derecha */
 .routes-left {
@@ -1826,21 +1811,12 @@ body {
   gap: 8px;
 }
 
-.destinations-column {
-  gap: 4px;
-}
-
 .destinations-column-title {
   font-size: 0.64rem;
   line-height: 1;
   margin-bottom: 1px;
 }
 
-.destination-item {
-  grid-template-columns: 34px minmax(0, 1fr);
-  gap: 6px;
-  min-width: 0;
-}
 
 .destination-pill {
   width: 30px;
@@ -2714,16 +2690,6 @@ html {
   line-height: 1;
 }
 
-/* Movimientos */
-.flights-wrap {
-  grid-template-columns: 102px 1fr;
-  gap: 10px;
-}
-
-.flights-icon-block img {
-  width: 128px;
-  height: 52px;
-}
 
 .flight-label {
   font-size: 0.72rem;
@@ -2736,11 +2702,7 @@ html {
   font-size: 1.08rem;
 }
 
-/* Rutas */
-.routes-grid {
-  grid-template-columns: minmax(185px, 0.95fr) minmax(0, 1.62fr);
-  gap: 8px;
-}
+
 
 .routes-right {
   padding-left: 8px;
@@ -2790,18 +2752,10 @@ html {
   gap: 6px;
 }
 
-.destinations-column {
-  gap: 3px;
-}
-
 .destinations-column-title {
   font-size: 0.60rem;
 }
 
-.destination-item {
-  grid-template-columns: 31px minmax(0, 1fr);
-  gap: 5px;
-}
 
 .destination-pill {
   width: 28px;
