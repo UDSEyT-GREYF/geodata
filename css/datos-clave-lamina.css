@@ -582,10 +582,9 @@ body {
 }
 
 
-
 .history-chart {
   width: 100%;
-  height: 180px;
+  height: 155px;
   display: block;
 }
 
@@ -2708,10 +2707,6 @@ html {
 .history-title {
   font-size: 0.76rem;
   line-height: 1;
-}
-
-.history-chart {
-  height: 166px;
 }
 
 .history-note {
