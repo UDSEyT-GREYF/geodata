@@ -117,13 +117,15 @@ async function rasterizeElement(el, scale = 2) {
   el.classList.add("is-exporting");
 
   try {
+    await new Promise(resolve => requestAnimationFrame(resolve));
+
     const canvas = await html2canvas(el, {
       backgroundColor: "#ffffff",
       scale,
       useCORS: true,
       logging: false,
-      windowWidth: el.scrollWidth,
-      windowHeight: el.scrollHeight
+      windowWidth: Math.ceil(el.scrollWidth),
+      windowHeight: Math.ceil(el.scrollHeight)
     });
 
     return {
@@ -131,6 +133,7 @@ async function rasterizeElement(el, scale = 2) {
       width: canvas.width,
       height: canvas.height
     };
+
   } finally {
     el.classList.remove("is-exporting");
   }
@@ -369,10 +372,6 @@ async function addSummaryNativePage(pdf, useCurrentPage = false) {
 }
 
   function initReportExport() {
-    q("btnPrintReport")?.addEventListener("click", () => {
-      window.print();
-    });
-
     q("btnExportReportPng")?.addEventListener("click", async () => {
       const button = q("btnExportReportPng");
       const airport = q("airportSelect")?.value || "aeropuerto";
