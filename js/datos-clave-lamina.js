@@ -2442,8 +2442,6 @@ function getDestinationLabel(code, isInternational) {
   };
 }
   function initExport() {
-    q("btnPrint")?.addEventListener("click", () => window.print());
-
 q("btnExportPng")?.addEventListener("click", async () => {
   const button = q("btnExportPng");
   const sheet = q("sheetA4");
