@@ -2836,3 +2836,9 @@ html {
   box-shadow: none !important;
   margin: 0 !important;
 }
+/* Estado temporal usado solo durante exportación PNG/PDF */
+.sheet-a4.is-exporting {
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+}
