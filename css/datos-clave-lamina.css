@@ -706,8 +706,12 @@ body {
     margin: 0;
   }
 
-  html,
-  body {
+  .no-print,
+  .lamina-toolbar {
+    display: none !important;
+  }
+
+  body.page-lamina {
     width: 297mm;
     height: 210mm;
     margin: 0;
@@ -715,29 +719,24 @@ body {
     background: #fff;
   }
 
-  .no-print {
-    display: none !important;
-  }
-
-  .sheet-wrap {
+  body.page-lamina .sheet-wrap {
     width: 297mm;
     max-width: 297mm;
     margin: 0;
     padding: 0;
   }
 
-  .sheet-a4 {
+  body.page-lamina .sheet-a4 {
     width: 297mm;
     height: 210mm;
+    min-width: 297mm;
+    max-width: 297mm;
     min-height: 210mm;
     max-height: 210mm;
     margin: 0;
     border: none;
     box-shadow: none;
-    padding: 3mm 6mm 5mm 6mm;
     overflow: hidden;
-    display: flex;
-  flex-direction: column;
   }
 }
 
@@ -2351,4 +2350,484 @@ body {
   .lamina-airport-combobox {
     display: none !important;
   }
+}
+
+
+
+
+/* =========================================================
+   FIX A4 REAL | DATOS CLAVE LÁMINA
+   Objetivo: que la hoja sea A4 real y que el contenido entre
+   a 100%, sin depender del tamaño de pantalla.
+   ========================================================= */
+
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.sheet-a4 {
+  width: 297mm;
+  height: 210mm;
+  min-width: 297mm;
+  max-width: 297mm;
+  min-height: 210mm;
+  max-height: 210mm;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* En pantalla: la lámina sigue siendo A4 real */
+.page-lamina .sheet-wrap {
+  width: 297mm;
+  max-width: 297mm;
+  margin: 0 auto 18px;
+  padding: 0;
+}
+
+/* En informe: no dejar que el CSS de lámina limite todo el stack */
+.page-informe-impacto .sheet-wrap {
+  width: auto;
+  max-width: none;
+}
+
+/* Estructura general de la hoja */
+.sheet-a4 {
+  padding: 3mm 5.5mm 4mm 5.5mm;
+}
+
+.sheet-header {
+  margin-bottom: 3px;
+}
+
+.sheet-airport-name {
+  font-size: 1.08rem;
+  line-height: 1;
+}
+
+.sheet-title-main {
+  font-size: 0.62rem;
+}
+
+/* La grilla debe ocupar exactamente el espacio restante */
+.triptych-grid {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  gap: 7px;
+  grid-template-columns: 1fr 0.76fr 1.84fr;
+}
+
+.triptych-col {
+  gap: 4px;
+  min-height: 0;
+  height: 100%;
+}
+
+.col-header {
+  padding: 4px 7px;
+  font-size: 0.76rem;
+  line-height: 1.05;
+}
+
+.section-title {
+  padding: 4px 7px;
+  margin: -5px -5px 5px -5px;
+  font-size: 0.76rem;
+  line-height: 1.05;
+}
+
+.section-card {
+  padding: 5px;
+  min-height: 0 !important;
+}
+
+/* =========================================================
+   COLUMNA IZQUIERDA
+   ========================================================= */
+
+.col-infra .section-superficie {
+  flex: 0 0 92mm;
+  min-height: 0 !important;
+}
+
+.col-infra .section-movimiento {
+  flex: 1 1 auto;
+  min-height: 0 !important;
+}
+
+.surface-top-kpis {
+  margin: 1px 1px 5px;
+  gap: 8px;
+}
+
+.mini-kpi-label {
+  font-size: 0.72rem;
+  line-height: 1.05;
+  margin-bottom: 2px;
+}
+
+.mini-kpi-value {
+  font-size: 0.78rem;
+  line-height: 1;
+}
+
+.mini-kpi-value span:first-child {
+  font-size: 1.02rem;
+}
+
+.surface-visual-row {
+  gap: 6px;
+}
+
+.predio-map-frame,
+.terminal-photo-frame {
+  min-height: 124px;
+}
+
+.predio-map {
+  min-height: 112px;
+}
+
+.explotacion-meta-grid {
+  margin-top: 3px;
+  padding-top: 3px;
+  column-gap: 9px;
+}
+
+.explotacion-meta-row {
+  padding: 1.5px 0;
+}
+
+.explotacion-meta-label {
+  font-size: 0.60rem;
+  line-height: 1;
+}
+
+.explotacion-meta-value {
+  font-size: 0.66rem;
+  line-height: 1.08;
+}
+
+.explotacion-meta-detail {
+  font-size: 0.58rem;
+  line-height: 1.05;
+}
+
+/* Área de movimiento */
+.movement-wrap {
+  gap: 4px;
+}
+
+.movement-box,
+.movement-extra-kpi {
+  padding: 5px 6px 4px;
+}
+
+.movement-box-title-inline,
+.movement-kpi-title {
+  font-size: 0.70rem;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.movement-runway-list {
+  gap: 3px;
+}
+
+.movement-runway-card {
+  min-height: 29px;
+}
+
+.movement-runway-badge {
+  width: 28px;
+  height: 28px;
+  font-size: 0.78rem;
+}
+
+.movement-runway-orientation {
+  font-size: 0.82rem;
+}
+
+.movement-runway-plane img {
+  width: 27px;
+  height: 27px;
+}
+
+.movement-runway-length {
+  font-size: 0.70rem;
+  padding: 4px 5px;
+}
+
+.movement-box-positions .movement-box-head {
+  grid-template-columns: 26px minmax(0, 1fr) 31px;
+}
+
+.movement-box-positions .movement-box-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.movement-box-positions .movement-box-sub,
+.movement-position-detail {
+  font-size: 0.58rem;
+  line-height: 0.95;
+}
+
+.movement-badge,
+.movement-badge-large {
+  width: 30px;
+  min-width: 30px;
+  height: 30px;
+  font-size: 0.82rem;
+}
+
+.movement-extra-kpi .extra-kpi-value {
+  font-size: 0.78rem;
+}
+
+.movement-extra-kpi .extra-kpi-label,
+.movement-extra-kpi .aids-kpi-name {
+  font-size: 0.56rem;
+}
+
+.movement-extra-kpi .aids-kpi-value {
+  font-size: 0.58rem;
+  line-height: 1.02;
+}
+
+/* =========================================================
+   COLUMNA CENTRAL
+   ========================================================= */
+
+.col-terminal .story-card {
+  flex: 1 1 auto;
+  min-height: 0 !important;
+  gap: 6px;
+}
+
+.story-block {
+  padding: 4px 5px;
+}
+
+.story-block-title {
+  font-size: 0.68rem;
+  line-height: 1;
+}
+
+.story-item {
+  grid-template-columns: 24px 1fr 41px;
+  gap: 5px;
+  padding: 4px 0;
+}
+
+.story-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.story-name {
+  font-size: 0.66rem;
+  line-height: 0.85;
+}
+
+.story-sub {
+  font-size: 0.56rem;
+  line-height: 0.9;
+}
+
+.story-badge {
+  width: 32px;
+  height: 32px;
+  font-size: 0.9rem;
+}
+
+.story-badge[data-wide="1"] {
+  width: 52px;
+  font-size: 0.88rem;
+}
+
+.story-sub-transport {
+  font-size: 0.56rem;
+  line-height: 1.05;
+}
+
+/* =========================================================
+   COLUMNA DERECHA
+   ========================================================= */
+
+.col-trafico .section-passengers {
+  flex: 1 1 auto;
+  min-height: 0 !important;
+}
+
+.col-trafico .section-flights {
+  flex: 0 0 28mm;
+  min-height: 0 !important;
+}
+
+.col-trafico .section-routes {
+  flex: 0 0 48mm;
+  min-height: 0 !important;
+}
+
+.passengers-top-row {
+  grid-template-columns: 76px 1fr 122px;
+  gap: 7px;
+  margin-bottom: 3px;
+}
+
+.passengers-icon-block img {
+  width: 82px;
+  height: 82px;
+}
+
+.passengers-hero-pill {
+  min-height: 70px;
+  max-width: 340px;
+  padding: 5px 78px 5px 12px;
+}
+
+.passengers-kpi-kicker {
+  font-size: 0.58rem;
+}
+
+.passengers-total {
+  font-size: 1.48rem;
+}
+
+.passengers-breakdown-item {
+  font-size: 0.66rem;
+}
+
+.passenger-side-kpi {
+  min-height: 39px;
+  padding: 3px 5px;
+}
+
+.passenger-side-value {
+  font-size: 0.96rem;
+}
+
+.passenger-side-label {
+  font-size: 0.66rem;
+}
+
+.history-title {
+  font-size: 0.76rem;
+  line-height: 1;
+}
+
+.history-chart {
+  height: 166px;
+}
+
+.history-note {
+  font-size: 0.56rem;
+  line-height: 1;
+}
+
+/* Movimientos */
+.flights-wrap {
+  grid-template-columns: 102px 1fr;
+  gap: 10px;
+}
+
+.flights-icon-block img {
+  width: 128px;
+  height: 52px;
+}
+
+.flight-label {
+  font-size: 0.72rem;
+  padding: 4px 4px 2px;
+  margin-bottom: 5px;
+  border-top-width: 7px;
+}
+
+.flight-value {
+  font-size: 1.08rem;
+}
+
+/* Rutas */
+.routes-grid {
+  grid-template-columns: minmax(185px, 0.95fr) minmax(0, 1.62fr);
+  gap: 8px;
+}
+
+.routes-right {
+  padding-left: 8px;
+}
+
+.routes-left .routes-subtitle {
+  font-size: 0.66rem;
+  min-height: 27px;
+  margin-right: 35px;
+}
+
+.routes-left .airlines-count-pill,
+.airlines-count-pill {
+  width: 29px;
+  height: 29px;
+  min-width: 29px;
+  font-size: 0.92rem;
+}
+
+.airlines-list {
+  gap: 1px;
+}
+
+.airline-item {
+  grid-template-columns: 74px minmax(0, 1fr);
+  gap: 5px;
+  min-height: 20px;
+  padding: 0;
+}
+
+.airline-logo-wrap {
+  width: 74px;
+  height: 20px;
+}
+
+.airline-logo {
+  max-width: 72px;
+  max-height: 20px;
+}
+
+.airline-volume {
+  font-size: 0.64rem;
+  line-height: 0.9;
+}
+
+.destinations-columns {
+  gap: 6px;
+}
+
+.destinations-column {
+  gap: 3px;
+}
+
+.destinations-column-title {
+  font-size: 0.60rem;
+}
+
+.destination-item {
+  grid-template-columns: 31px minmax(0, 1fr);
+  gap: 5px;
+}
+
+.destination-pill {
+  width: 28px;
+  height: 28px;
+  font-size: 0.72rem;
+}
+
+.destination-text,
+.destination-volume {
+  font-size: 0.58rem;
+  line-height: 0.9;
+}
+
+.destination-meta {
+  font-size: 0.58rem;
 }
