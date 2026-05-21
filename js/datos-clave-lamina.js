@@ -1506,12 +1506,12 @@ function renderAnnualChart(passengerSeries, flightSeries, currentYear, iata = cu
     rightAxis += `<text x="${W - padR + 8}" y="${yy + 4}" text-anchor="start" font-size="10" fill="${CHART_COLORS.label}">${formatNumber(Math.round(v))}</text>`;  });
 const leftAxisLabel = `
   <text x="10" y="${padT + innerH / 2}" transform="rotate(-90 10 ${padT + innerH / 2})"
-        text-anchor="middle" font-size="12" fill="#7a838c">Pasajeros</text>
+        text-anchor="middle" font-size="14" fill="#7a838c">Pasajeros</text>
 `;
 
 const rightAxisLabel = `
   <text x="${W - 12}" y="${padT + innerH / 2}" transform="rotate(90 ${W - 12} ${padT + innerH / 2})"
-        text-anchor="middle" font-size="12" fill="${CHART_COLORS.label}">Movimientos</text>
+        text-anchor="middle" font-size="14" fill="${CHART_COLORS.label}">Movimientos</text>
 `;
   let xLabels = "";
   passengerSeries.forEach((d, i) => {
