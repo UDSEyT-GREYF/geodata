@@ -20,10 +20,42 @@
 <body class="page-informe-impacto">
   <header class="report-toolbar">
     <div class="toolbar-actions">
-      <label class="toolbar-label" for="airportSelect">Aeropuerto</label>
-      <select id="airportSelect" class="toolbar-select">
-        <option value="">Cargando aeropuertos...</option>
-      </select>
+<label class="toolbar-label" for="airportSearchInput">Aeropuerto</label>
+
+<div class="airport-search" id="airportSearch">
+  <div class="airport-search-control">
+    <input
+      id="airportSearchInput"
+      class="airport-search-input"
+      type="text"
+      autocomplete="off"
+      spellcheck="false"
+      role="combobox"
+      aria-autocomplete="list"
+      aria-expanded="false"
+      aria-controls="airportSearchResults"
+      placeholder="Buscar aeropuerto o código IATA"
+    >
+    <button
+      id="airportSearchClear"
+      class="airport-search-clear"
+      type="button"
+      aria-label="Limpiar búsqueda"
+      title="Limpiar búsqueda"
+    >×</button>
+  </div>
+
+  <div
+    id="airportSearchResults"
+    class="airport-search-results"
+    role="listbox"
+    aria-label="Resultados de búsqueda de aeropuertos"
+  ></div>
+</div>
+
+<select id="airportSelect" class="toolbar-select toolbar-select-hidden" aria-hidden="true" tabindex="-1">
+  <option value="">Cargando aeropuertos...</option>
+</select>
 
 <button id="btnExportReportPng" class="toolbar-btn" type="button">Exportar PDF A4</button>
     </div>
