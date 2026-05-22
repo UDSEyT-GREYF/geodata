@@ -64,10 +64,47 @@
 }
 
 #coverMount,
-#laminaMount {
+#summaryMount,
+#laminaMount,
+#offerDemandMount {
   width: 100%;
+}
+
+#coverMount,
+#summaryMount,
+#laminaMount {
   display: flex;
   justify-content: center;
+}
+
+#offerDemandMount {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Lámina datos clave: única hoja apaisada del informe */
+.page-informe-impacto #laminaMount #sheetA4 {
+  width: 297mm;
+  min-width: 297mm;
+  height: 210mm;
+  min-height: 210mm;
+  page: reportLandscape;
+  break-after: page;
+  page-break-after: always;
+}
+
+/* Oferta y demanda: vuelve a A4 vertical */
+.page-informe-impacto #offerDemandMount .offer-demand-page {
+  width: 210mm;
+  min-width: 210mm;
+  height: 297mm;
+  min-height: 297mm;
+  max-width: none;
+  page: reportPortrait;
+  break-after: page;
+  page-break-after: always;
 }
 
 .report-cover-page {
@@ -208,6 +245,16 @@
 }
 
 
+@page reportPortrait {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@page reportLandscape {
+  size: A4 landscape;
+  margin: 0;
+}
+
 @media print {
   body {
     background: #fff;
@@ -222,11 +269,16 @@
     padding-top: 0;
   }
 
-  .report-cover-page {
+  #offerDemandMount {
+    gap: 0;
+  }
+
+  .report-cover-page,
+  .summary-page,
+  #laminaMount #sheetA4,
+  #offerDemandMount .offer-demand-page {
     box-shadow: none;
     border: none;
     margin: 0;
-    page-break-after: always;
   }
-
 }
