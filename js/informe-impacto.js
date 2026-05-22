@@ -423,14 +423,10 @@ const offerDemandPages = Array.from(
 for (const page of offerDemandPages) {
   const raster = await rasterizeElement(page, 2);
 
-  const isLandscape =
-    page.offsetWidth > page.offsetHeight ||
-    raster.width > raster.height;
-
   addRasterPage(
     pdf,
     raster,
-    isLandscape ? "landscape" : "portrait",
+    "portrait",
     false
   );
 }
