@@ -4049,7 +4049,7 @@ textEl.innerHTML =
   `<p>
     Durante los últimos <strong>${d.years_shown} años</strong>, ${historicSubject}
     <strong>${escapeHtml(nombreAeropuerto)} </strong> experimentó tanto tendencias de crecimiento de la demanda como así también caídas de pasajeros y operaciones. 
-    Esta evolución puede observarse en el gráfico <strong>Evolución histórica de pasajeros y aeronaves</strong> de la hoja <strong>Datos clave</strong>. 
+    Esta evolución puede observarse en el gráfico <strong>Evolución histórica de pasajeros y aeronaves</strong> de los <strong>Datos clave</strong> (Pág.3). 
     </p>
     <p>
     Para analizar la serie histórica, se decidió utilizar el período ${longStartYear}-${longEndYear} como referencia prepandemia, mientras que el período ${recentStartYear}-${recentEndYear}
