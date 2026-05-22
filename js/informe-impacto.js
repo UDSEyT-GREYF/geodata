@@ -2,7 +2,237 @@
   "use strict";
 
   const q = id => document.getElementById(id);
+  function normalizeSearchText(value) {
+    return String(value || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
 
+  function initAirportSearch() {
+    const select = q("airportSelect");
+    const box = q("airportSearch");
+    const input = q("airportSearchInput");
+    const clearBtn = q("airportSearchClear");
+    const results = q("airportSearchResults");
+
+    if (!select || !box || !input || !clearBtn || !results) return;
+    if (box.dataset.bound === "1") return;
+
+    box.dataset.bound = "1";
+
+    let items = [];
+    let activeIndex = -1;
+    let committedLabel = "";
+
+    function getOptionLabel(option) {
+      return String(option?.textContent || "").trim();
+    }
+
+    function rebuildItems() {
+      items = Array.from(select.options)
+        .filter(opt => opt.value)
+        .map(opt => {
+          const value = String(opt.value || "").trim().toUpperCase();
+          const label = getOptionLabel(opt);
+          const codeMatch = label.match(/\(([A-Z0-9]{3})\)\s*$/);
+          const code = value || (codeMatch ? codeMatch[1] : "");
+
+          return {
+            value,
+            code,
+            label,
+            search: normalizeSearchText(`${label} ${value}`)
+          };
+        });
+    }
+
+    function selectedLabel() {
+      const opt = select.options[select.selectedIndex];
+      return getOptionLabel(opt);
+    }
+
+    function setInputValue(value) {
+      input.value = value || "";
+      box.classList.toggle("has-text", input.value.trim() !== "");
+    }
+
+    function syncFromSelect() {
+      const label = selectedLabel();
+      if (label) {
+        committedLabel = label;
+        setInputValue(label);
+      }
+    }
+
+    function closeResults(restoreIfEmpty = true) {
+      box.classList.remove("is-open");
+      input.setAttribute("aria-expanded", "false");
+      activeIndex = -1;
+
+      if (restoreIfEmpty && !input.value.trim()) {
+        setInputValue(committedLabel || selectedLabel());
+      }
+    }
+
+    function openResults() {
+      box.classList.add("is-open");
+      input.setAttribute("aria-expanded", "true");
+    }
+
+    function chooseAirport(value) {
+      const nextValue = String(value || "").trim().toUpperCase();
+      if (!nextValue) return;
+
+      select.value = nextValue;
+
+      const label = selectedLabel();
+      committedLabel = label;
+      setInputValue(label);
+
+      closeResults(false);
+
+      select.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+
+    function renderResults(query = "") {
+      rebuildItems();
+
+      const qNorm = normalizeSearchText(query);
+      const filtered = qNorm
+        ? items.filter(item => item.search.includes(qNorm))
+        : items;
+
+      const visible = filtered.slice(0, 12);
+
+      results.innerHTML = "";
+      activeIndex = visible.length ? 0 : -1;
+
+      if (!visible.length) {
+        const empty = document.createElement("div");
+        empty.className = "airport-search-empty";
+        empty.textContent = "No se encontraron aeropuertos.";
+        results.appendChild(empty);
+        openResults();
+        return;
+      }
+
+      visible.forEach((item, index) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = `airport-search-option${index === activeIndex ? " is-active" : ""}`;
+        btn.setAttribute("role", "option");
+        btn.dataset.value = item.value;
+
+        btn.innerHTML = `
+          <span class="airport-search-name">${item.label}</span>
+          <span class="airport-search-code">${item.code}</span>
+        `;
+
+        btn.addEventListener("mousedown", event => {
+          event.preventDefault();
+          chooseAirport(item.value);
+        });
+
+        results.appendChild(btn);
+      });
+
+      openResults();
+    }
+
+    function updateActiveOption(delta) {
+      const options = Array.from(results.querySelectorAll(".airport-search-option"));
+      if (!options.length) return;
+
+      activeIndex = activeIndex + delta;
+
+      if (activeIndex < 0) activeIndex = options.length - 1;
+      if (activeIndex >= options.length) activeIndex = 0;
+
+      options.forEach((opt, index) => {
+        opt.classList.toggle("is-active", index === activeIndex);
+      });
+
+      options[activeIndex].scrollIntoView({ block: "nearest" });
+    }
+
+    input.addEventListener("focus", () => {
+      committedLabel = selectedLabel() || committedLabel;
+      setInputValue("");
+      renderResults("");
+    });
+
+    input.addEventListener("click", () => {
+      committedLabel = selectedLabel() || committedLabel;
+      setInputValue("");
+      renderResults("");
+    });
+
+    input.addEventListener("input", () => {
+      setInputValue(input.value);
+      renderResults(input.value);
+    });
+
+    input.addEventListener("keydown", event => {
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        if (!box.classList.contains("is-open")) renderResults(input.value);
+        updateActiveOption(1);
+        return;
+      }
+
+      if (event.key === "ArrowUp") {
+        event.preventDefault();
+        if (!box.classList.contains("is-open")) renderResults(input.value);
+        updateActiveOption(-1);
+        return;
+      }
+
+      if (event.key === "Enter") {
+        const active = results.querySelector(".airport-search-option.is-active");
+        if (active?.dataset.value) {
+          event.preventDefault();
+          chooseAirport(active.dataset.value);
+        }
+        return;
+      }
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeResults(true);
+      }
+    });
+
+    input.addEventListener("blur", () => {
+      window.setTimeout(() => closeResults(true), 120);
+    });
+
+    clearBtn.addEventListener("click", () => {
+      committedLabel = selectedLabel() || committedLabel;
+      setInputValue("");
+      renderResults("");
+      input.focus();
+    });
+
+    select.addEventListener("change", syncFromSelect);
+
+    const observer = new MutationObserver(() => {
+      rebuildItems();
+      syncFromSelect();
+    });
+
+    observer.observe(select, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["selected"]
+    });
+
+    rebuildItems();
+    syncFromSelect();
+  }
   
   async function loadText(url) {
     const sep = url.includes("?") ? "&" : "?";
@@ -444,6 +674,7 @@ pdf.save(`informe-impacto-${airport}.pdf`);
 async function bootReport() {
   try {
     initReportExport();
+    initAirportSearch();
 
     await mountCoverPartial();
     await mountSummaryPartial();
