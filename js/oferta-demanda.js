@@ -40,7 +40,7 @@
   let descriptivoByIata = {};
   
 const DEST_OVERRIDES = {
-  BUE: { ciudad: "Buenos Aires AEP+EZE", pais: "Argentina" },
+  BUE: { ciudad: "Buenos Aires (AEP-EZE)", pais: "Argentina" },
   GRU: { ciudad: "São Paulo", pais: "Brasil" },
   GIG: { ciudad: "Río de Janeiro", pais: "Brasil" },
   FLN: { ciudad: "Florianópolis", pais: "Brasil" },
@@ -49,7 +49,7 @@ const DEST_OVERRIDES = {
   ASU: { ciudad: "Asunción", pais: "Paraguay" },
   CML: { ciudad: "Carmelo", pais: "Uruguay" },
   PTY: { ciudad: "Panamá", pais: "Panamá" },
-  FDO: { ciudad: "Operaciones locales", pais: "Argentina" },
+  FDO: { ciudad: "San Fernando", pais: "Argentina" },
   AR: { ciudad: "Otros destinos de cabotaje", pais: "Argentina" },
   EXT: { ciudad: "Otros destinos internacionales", pais: "" }
 };
