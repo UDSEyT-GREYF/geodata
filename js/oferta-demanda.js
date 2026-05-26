@@ -1558,8 +1558,7 @@ function buildConnectivityProfileHtml(iata, summary, snaRank) {
 
   if (p.isMetroNode) {
     networkText = `
-      Por tratarse de un nodo metropolitano, la conectividad no se interpreta como dependencia respecto de BUE,
-      sino por la amplitud de su red y la distribución del tráfico entre múltiples corredores.
+      Por tratarse de un nodo metropolitano, la conectividad se analiza por la amplitud de su red y la distribución del tráfico entre múltiples corredores.
       La red fue <strong>${escapeHtml(p.concentration.label)}</strong>: la principal conexión fue ${routeName},
       con <strong>${formatShareShort(routeShare)}</strong> de los pasajeros.
       Las tres primeras conexiones —${top3Names}— concentraron <strong>${formatShareShort(top3Share)}</strong>.
