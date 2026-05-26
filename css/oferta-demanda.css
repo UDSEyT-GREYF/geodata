@@ -951,34 +951,41 @@
    Página 1: síntesis 2025; Página 2: top 6 rutas; Página 3: histórico.
    ========================================================== */
 
-/* Bloque narrativo de perfil operativo y conectividad 2025 */
+/* Bloque narrativo unificado: oferta, estructura de rutas y estacionalidad 2025 */
 .od-panel-connectivity {
   grid-column: 1 / -1;
   min-height: 0;
+  background: #ffffff;
 }
 
 .od-connectivity-text {
   padding: 8px 10px 10px;
   font-size: 10.5px;
-  line-height: 1.34;
+  line-height: 1.38;
   color: #334150;
-
-  /* En vez de columnas automáticas, usamos bloques ordenados */
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 7px 12px;
+  gap: 8px 12px;
+}
+
+.od-connectivity-output {
+  display: contents;
 }
 
 .od-connectivity-block {
   border-left: 3px solid #75AADB;
   background: #f9fbfd;
   border-radius: 8px;
-  padding: 6px 8px;
+  padding: 7px 9px;
   min-width: 0;
 }
 
+.od-connectivity-block-wide {
+  grid-column: 1 / -1;
+}
+
 .od-connectivity-kicker {
-  margin-bottom: 3px;
+  margin-bottom: 4px;
   font-size: 10px;
   line-height: 1.1;
   font-weight: 800;
@@ -993,11 +1000,6 @@
 
 .od-connectivity-text p:last-child {
   margin-bottom: 0;
-}
-
-.od-connectivity-text strong {
-  color: #1f4f82;
-  font-weight: 700;
 }
 
 .od-connectivity-text strong {
@@ -1205,16 +1207,12 @@
    y el perfil operativo/conectividad.
    ========================================================== */
 
-.od-panel-intro {
-  grid-column: 1 / -1;
-  background: #ffffff;
-}
-
+/* Texto interno del bloque Oferta de transporte aéreo y conectividad 2025 */
 .od-intro-text {
-  padding: 8px 10px 9px;
-  font-size: 10.5px;
-  line-height: 1.5;
-  color: #334150;
+  padding: 0;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
   column-count: 2;
   column-gap: 16px;
   text-align: justify;
