@@ -1592,23 +1592,13 @@ function buildConnectivityProfileHtml(iata, summary, snaRank) {
 
   return `
     <div class="od-connectivity-block">
-      <div class="od-connectivity-kicker">Rol territorial y demanda</div>
-      <p>${roleText.replace(/\s+/g, " ").trim()}</p>
-    </div>
-
-    <div class="od-connectivity-block">
-      <div class="od-connectivity-kicker">Mercado y ranking</div>
-      <p>${marketText.replace(/\s+/g, " ").trim()}</p>
-    </div>
-
-    <div class="od-connectivity-block">
-      <div class="od-connectivity-kicker">Estructura de rutas</div>
+      <div class="od-connectivity-kicker">Estructura de rutas 2025</div>
       <p>${networkText.replace(/\s+/g, " ").trim()}</p>
       ${intlText ? `<p>${intlText.replace(/\s+/g, " ").trim()}</p>` : ""}
     </div>
 
     <div class="od-connectivity-block">
-      <div class="od-connectivity-kicker">Estacionalidad mensual</div>
+      <div class="od-connectivity-kicker">Estacionalidad mensual 2025</div>
       <p>${seasonalityPhrase}</p>
     </div>
   `;
