@@ -960,12 +960,13 @@
 
 .od-connectivity-text {
   padding: 8px 10px 10px;
-  font-size: 10.5px;
+  font-size: 3.55mm;
   line-height: 1.38;
   color: #334150;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px 12px;
+  text-align: justify;
 }
 
 .od-connectivity-output {
