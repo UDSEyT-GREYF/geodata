@@ -822,7 +822,6 @@ function odBuildRegularConnectedDestinationStats(iata, year = YEAR_REF, minMonth
     const monthKey = odGetRouteMonthKey(row);
     if (!monthKey) return;
 
-    // Clave por ciudad-país, no por código IATA: evita sobrecontar aeropuertos de una misma ciudad.
     const destinationKey = [
       isInternational ? "INT" : "CAB",
       normalizeTextKey(ciudad),
@@ -836,6 +835,7 @@ function odBuildRegularConnectedDestinationStats(iata, year = YEAR_REF, minMonth
         pais,
         isInternational,
         months: new Set(),
+        airportCodes: new Set(),
         pax: 0,
         asientos: 0,
         vuelos: 0
@@ -843,14 +843,25 @@ function odBuildRegularConnectedDestinationStats(iata, year = YEAR_REF, minMonth
     }
 
     const item = destinosMap.get(destinationKey);
+
     item.months.add(monthKey);
+
+    // Guarda los códigos reales que aparecen en la ruta.
+    // Para Buenos Aires agrupado, esto permite ver AEP+EZE.
+    item.airportCodes.add(otherNormalizedCode);
+
     item.pax += Number(row.pax || 0);
     item.asientos += Number(row.asientos || 0);
     item.vuelos += Number(row.vuelos || 0);
   });
 
   const regularDestinations = Array.from(destinosMap.values())
-    .filter(destino => destino.months.size >= minMonths);
+    .filter(destino => destino.months.size >= minMonths)
+    .map(destino => ({
+      ...destino,
+      monthsCount: destino.months.size,
+      airportCodesList: Array.from(destino.airportCodes).sort((a, b) => a.localeCompare(b, "es"))
+    }));
 
   const domestic = regularDestinations.filter(destino => !destino.isInternational);
   const international = regularDestinations.filter(destino => destino.isInternational);
@@ -864,6 +875,10 @@ function odBuildRegularConnectedDestinationStats(iata, year = YEAR_REF, minMonth
   );
 
   return {
+    domestic,
+    southAmerica,
+    extraSouthAmerica,
+
     domesticCount: domestic.length,
     southAmericaCount: southAmerica.length,
     extraSouthAmericaCount: extraSouthAmerica.length,
@@ -876,6 +891,33 @@ function odPlural(value, singular, plural) {
   return Number(value) === 1 ? singular : plural;
 }
 
+function odGetDestinationCodesLabel(destino) {
+  const codes = Array.isArray(destino?.airportCodesList)
+    ? destino.airportCodesList.filter(Boolean)
+    : [];
+
+  if (codes.length) return codes.join("+");
+
+  return clean(destino?.code).toUpperCase();
+}
+
+function odFormatDestinationDebugList(destinations) {
+  const items = (destinations || [])
+    .slice()
+    .sort((a, b) => clean(a.ciudad).localeCompare(clean(b.ciudad), "es"))
+    .map(destino => {
+      const city = escapeHtml(clean(destino.ciudad));
+      const codes = escapeHtml(odGetDestinationCodesLabel(destino));
+      const months = Number(destino.monthsCount || 0);
+
+      return `${city} <strong>(${codes}; ${months} meses)</strong>`;
+    });
+
+  if (!items.length) return "";
+
+  return `: ${odJoinList(items)}`;
+}
+  
 function odBuildDestinationCountText(iata) {
   const counts = odBuildRegularConnectedDestinationStats(
     iata,
@@ -887,19 +929,19 @@ function odBuildDestinationCountText(iata) {
 
   if (counts.domesticCount > 0) {
     parts.push(
-      `<strong>${formatNumber(counts.domesticCount)}</strong> ${odPlural(counts.domesticCount, "ciudad del país", "ciudades de todo el país")}`
+      `<strong>${formatNumber(counts.domesticCount)}</strong> ${odPlural(counts.domesticCount, "ciudad del país", "ciudades de todo el país")}${odFormatDestinationDebugList(counts.domestic)}`
     );
   }
 
   if (counts.southAmericaCount > 0) {
     parts.push(
-      `<strong>${formatNumber(counts.southAmericaCount)}</strong> ${odPlural(counts.southAmericaCount, "destino sudamericano", "destinos sudamericanos")}`
+      `<strong>${formatNumber(counts.southAmericaCount)}</strong> ${odPlural(counts.southAmericaCount, "destino sudamericano", "destinos sudamericanos")}${odFormatDestinationDebugList(counts.southAmerica)}`
     );
   }
 
   if (counts.extraSouthAmericaCount > 0) {
     parts.push(
-      `<strong>${formatNumber(counts.extraSouthAmericaCount)}</strong> ${odPlural(counts.extraSouthAmericaCount, "destino extra-sudamericano", "destinos extra-sudamericanos")}`
+      `<strong>${formatNumber(counts.extraSouthAmericaCount)}</strong> ${odPlural(counts.extraSouthAmericaCount, "destino extra-sudamericano", "destinos extra-sudamericanos")}${odFormatDestinationDebugList(counts.extraSouthAmerica)}`
     );
   }
 
