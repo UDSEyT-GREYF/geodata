@@ -751,7 +751,17 @@ const OD_SOUTH_AMERICA_COUNTRIES = new Set([
 function odIsSouthAmericaCountry(country) {
   return OD_SOUTH_AMERICA_COUNTRIES.has(normalizeTextKey(country));
 }
+  
+function odIsSouthAmericaDestinationItem(destino) {
+  const continent = odGetDestinationContinent(destino);
 
+  if (continent) {
+    return continent === "SA";
+  }
+
+  // Respaldo por país si el código no aparece en ourairports.csv
+  return odIsSouthAmericaCountry(destino?.pais);
+}
 function odIsGenericDestinationCodeOrName(code, city) {
   const codeKey = clean(code).toUpperCase();
   const cityKey = normalizeTextKey(city);
@@ -883,11 +893,11 @@ const regularDestinations = Array.from(destinosMap.values())
   const international = regularDestinations.filter(destino => destino.isInternational);
 
   const southAmerica = international.filter(destino =>
-    odIsSouthAmericaCountry(destino.pais)
+    odIsSouthAmericaDestinationItem(destino)
   );
 
   const extraSouthAmerica = international.filter(destino =>
-    !odIsSouthAmericaCountry(destino.pais)
+    !odIsSouthAmericaDestinationItem(destino)
   );
 
   return {
@@ -4478,6 +4488,7 @@ const [
   rutasOfertaResp,
   rutasKmResp,
   iataWorldResp,
+  ourAirportsResp,
   airlineAliasResp,
   fdoTrafficResp,
   fdoRoutesMonthlyResp,
@@ -4488,6 +4499,7 @@ const [
   fetch(RUTAS_CSV_PATH).catch(() => null),
   fetch(RUTAS_KM_CSV_PATH).catch(() => null),
   fetch(IATA_MUNDO_CSV_PATH).catch(() => null),
+  fetch(OURAIRPORTS_CSV_PATH).catch(() => null),
   fetch(AIRLINE_ALIAS_CSV_PATH).catch(() => null),
   fetch(FDO_TRAFFIC_AA_PATH).catch(() => null),
   fetch(FDO_ROUTES_MONTHLY_AA_PATH).catch(() => null),
@@ -4531,6 +4543,12 @@ rutasOfertaRows = rutasOfertaRows.map(r => ({
         iataWorldIndex = {};
         routeCodeIndex = {};
       }
+      if (ourAirportsResp && ourAirportsResp.ok) {
+  ourAirportsIndex = parseOurAirportsCSV(await readTextSmart(ourAirportsResp));
+} else {
+  ourAirportsIndex = {};
+  console.warn("No se pudo cargar ourairports.csv para clasificar continentes.");
+}
 if (airlineAliasResp && airlineAliasResp.ok) {
   airlineAliasIndex = parseAirlineAliasCSV(await readTextSmart(airlineAliasResp));
 } else {
