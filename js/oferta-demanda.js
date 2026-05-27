@@ -729,6 +729,104 @@ function odBuildFdoDestinationsText(summary) {
 
   return `${listaDestinos}${cierre}`;
 }
+
+const OD_SOUTH_AMERICA_COUNTRIES = new Set([
+  "argentina",
+  "bolivia",
+  "brasil",
+  "chile",
+  "colombia",
+  "ecuador",
+  "guyana",
+  "paraguay",
+  "peru",
+  "surinam",
+  "uruguay",
+  "venezuela"
+]);
+
+function odIsInternationalDestination(destino) {
+  return normalizeTextKey(destino?.clasificacion || "").includes("internacional");
+}
+
+function odIsGenericDestination(destino) {
+  const code = clean(destino?.code).toUpperCase();
+  const nameKey = normalizeTextKey(destino?.ciudad || destino?.code);
+
+  return (
+    code === "AR" ||
+    code === "EXT" ||
+    nameKey.includes("otros destinos")
+  );
+}
+
+function odIsSouthAmericaDestination(destino) {
+  const countryKey = normalizeTextKey(destino?.pais || "");
+  return OD_SOUTH_AMERICA_COUNTRIES.has(countryKey);
+}
+
+function odGetConnectedDestinations(summary) {
+  return (summary?.destinos || [])
+    .filter(destino => {
+      if (odIsGenericDestination(destino)) return false;
+
+      const pax = Number(destino?.pax || 0);
+      const seats = Number(destino?.asientos || 0);
+      const flights = Number(destino?.vuelos || 0);
+
+      return pax > 0 || seats > 0 || flights > 0;
+    });
+}
+
+function odBuildDestinationCountParts(summary) {
+  const destinos = odGetConnectedDestinations(summary);
+
+  const domestic = destinos.filter(d => !odIsInternationalDestination(d));
+  const international = destinos.filter(d => odIsInternationalDestination(d));
+
+  const southAmerica = international.filter(odIsSouthAmericaDestination);
+  const extraSouthAmerica = international.filter(d => !odIsSouthAmericaDestination(d));
+
+  return {
+    domesticCount: domestic.length,
+    southAmericaCount: southAmerica.length,
+    extraSouthAmericaCount: extraSouthAmerica.length,
+    totalCount: destinos.length
+  };
+}
+
+function odPlural(value, singular, plural) {
+  return Number(value) === 1 ? singular : plural;
+}
+
+function odBuildDestinationCountText(summary) {
+  const counts = odBuildDestinationCountParts(summary);
+  const parts = [];
+
+  if (counts.domesticCount > 0) {
+    parts.push(
+      `<strong>${formatNumber(counts.domesticCount)}</strong> ${odPlural(counts.domesticCount, "ciudad del país", "ciudades de todo el país")}`
+    );
+  }
+
+  if (counts.southAmericaCount > 0) {
+    parts.push(
+      `<strong>${formatNumber(counts.southAmericaCount)}</strong> ${odPlural(counts.southAmericaCount, "destino sudamericano", "destinos sudamericanos")}`
+    );
+  }
+
+  if (counts.extraSouthAmericaCount > 0) {
+    parts.push(
+      `<strong>${formatNumber(counts.extraSouthAmericaCount)}</strong> ${odPlural(counts.extraSouthAmericaCount, "destino extra-sudamericano", "destinos extra-sudamericanos")}`
+    );
+  }
+
+  if (!parts.length) {
+    return "sin destinos regulares identificados en la fuente utilizada";
+  }
+
+  return odJoinList(parts);
+}
 function odBuildFdoIntroTextHtml(summary) {
   const freq = Number(summary?.totalFrecuenciaSemanal || 0);
 
@@ -764,55 +862,54 @@ function odBuildIntroTextHtml(iata, summary) {
   }
 
   const airportName = odGetAirportNarrativeName(iata);
+  const destinationCountText = odBuildDestinationCountText(summary);
+
   const seats = odGetMarketSeatTotals(summary);
   const hasSeatData = seats.total > 0;
-
-const airlineItems = odGetRelevantAirlinesForIntro(summary, 3);
-const airlineText = airlineItems.length
-  ? odFormatAirlineOfferShareList(airlineItems)
-  : "";
-
-const airlineVerb = airlineItems.length === 1 ? "operó" : "operaron";
-
-  const marketPhrase = odBuildServiceMarketPhrase(seats.cab, seats.int);
 
   const hasCabSeats = seats.cab > 0;
   const hasIntSeats = seats.int > 0;
 
-  const seatsCabText = hasCabSeats
-    ? `En total, se ofertaron <strong>${formatNumber(Math.round(seats.cab))}</strong> asientos anuales en el mercado de cabotaje.`
+  const airlineItems = odGetRelevantAirlinesForIntro(summary, 3);
+  const airlineText = airlineItems.length
+    ? odFormatAirlineOfferShareList(airlineItems)
     : "";
 
-  const seatsIntText = hasIntSeats
-    ? `Asimismo, se ofertaron <strong>${formatNumber(Math.round(seats.int))}</strong> asientos anuales en el mercado internacional.`
-    : "";
+  const airlineVerb = airlineItems.length === 1 ? "sostuvo" : "sostuvieron";
+  const marketPhrase = odBuildServiceMarketPhrase(seats.cab, seats.int);
 
-const operatorSentence = airlineText
-  ? `En el año <strong>${YEAR_REF}</strong>, la oferta de servicios aéreos del <strong>${escapeHtml(airportName)}</strong> fue sostenida principalmente por <strong>${escapeHtml(airlineText)}</strong>, que ${airlineVerb} vuelos regulares ${marketPhrase}.`
-  : `En el año <strong>${YEAR_REF}</strong>, el <strong>${escapeHtml(airportName)}</strong> registró vuelos regulares ${marketPhrase}.`;
+  const operatorSentence = airlineText
+    ? `La operación fue sostenida principalmente por <strong>${escapeHtml(airlineText)}</strong>, que ${airlineVerb} vuelos regulares ${marketPhrase}.`
+    : `La operación registró vuelos regulares ${marketPhrase}.`;
 
   const freq = Number(summary?.totalFrecuenciaSemanal || 0);
 
   const freqText = Number.isFinite(freq) && freq > 0
-    ? `<strong>${formatNumber(Math.round(freq))}</strong> frecuencias comerciales semanales (ida y vuelta)`
+    ? `<strong>${formatNumber(Math.round(freq))}</strong> frecuencias comerciales semanales promedio`
     : "frecuencias comerciales semanales no determinadas";
+
+  const annualSeatsText = hasSeatData
+    ? `<strong>${formatNumber(Math.round(seats.total))}</strong> asientos anuales ofrecidos`
+    : "asientos anuales no determinados";
 
   const weeklySeats = hasSeatData ? seats.total / 52 : null;
 
   const weeklySeatsText = hasSeatData
-    ? ` y <strong>${formatNumber(Math.round(weeklySeats))}</strong> asientos semanales ofrecidos`
+    ? `, equivalentes a aproximadamente <strong>${formatNumber(Math.round(weeklySeats))}</strong> asientos semanales`
     : "";
 
-const introRoutes = odGetIntroRoutes(summary, 6, OD_MIN_ROUTE_PAX_SHARE_PCT);const introRoutesText = odFormatRouteSeatShareList(introRoutes);
+  let seatsBreakdownText = "";
 
-const destinationsText = introRoutesText
-  ? ` hacia <strong>${escapeHtml(introRoutesText)}</strong>`
-  : "";
-
-const frequencySentence = `
-  A lo largo del año <strong>${YEAR_REF}</strong>, el aeropuerto contó con un total de ${freqText}
-  ${weeklySeatsText}${destinationsText}.
-`;
+  if (hasCabSeats && hasIntSeats) {
+    seatsBreakdownText =
+      ` La oferta se distribuyó entre <strong>${formatNumber(Math.round(seats.cab))}</strong> asientos de cabotaje y <strong>${formatNumber(Math.round(seats.int))}</strong> asientos internacionales.`;
+  } else if (hasCabSeats) {
+    seatsBreakdownText =
+      ` La oferta correspondió al mercado de cabotaje.`;
+  } else if (hasIntSeats) {
+    seatsBreakdownText =
+      ` La oferta correspondió al mercado internacional.`;
+  }
 
   const noSeatsNote = !hasSeatData
     ? ` En este caso, la fuente utilizada no permite reconstruir una oferta anual completa de asientos, por lo que la lectura se apoya principalmente en pasajeros, vuelos y frecuencias.`
@@ -820,14 +917,17 @@ const frequencySentence = `
 
   return `
     <p>
-      ${operatorSentence}
-      ${seatsCabText}
-      ${seatsIntText}
+      En el año <strong>${YEAR_REF}</strong>, la oferta aerocomercial del
+      <strong>${escapeHtml(airportName)}</strong> conectó de forma directa a esta ciudad con
+      ${destinationCountText}.
     </p>
 
     <p>
-      ${frequencySentence.replace(/\s+/g, " ").trim()}
-      ${noSeatsNote}
+      ${operatorSentence}
+    </p>
+
+    <p>
+      A lo largo del año, el aeropuerto contó con ${freqText} y ${annualSeatsText}${weeklySeatsText}.${seatsBreakdownText}${noSeatsNote}
     </p>
   `;
 }
