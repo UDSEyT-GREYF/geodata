@@ -855,13 +855,27 @@ function odBuildRegularConnectedDestinationStats(iata, year = YEAR_REF, minMonth
     item.vuelos += Number(row.vuelos || 0);
   });
 
-  const regularDestinations = Array.from(destinosMap.values())
-    .filter(destino => destino.months.size >= minMonths)
-    .map(destino => ({
+const totalAirportPax = Array.from(destinosMap.values())
+  .reduce((acc, destino) => acc + Number(destino.pax || 0), 0);
+
+const regularDestinations = Array.from(destinosMap.values())
+  .map(destino => {
+    const pax = Number(destino.pax || 0);
+    const sharePaxPct = totalAirportPax > 0
+      ? (pax / totalAirportPax) * 100
+      : 0;
+
+    return {
       ...destino,
       monthsCount: destino.months.size,
+      sharePaxPct,
       airportCodesList: Array.from(destino.airportCodes).sort((a, b) => a.localeCompare(b, "es"))
-    }));
+    };
+  })
+  .filter(destino =>
+    destino.monthsCount >= minMonths &&
+    destino.sharePaxPct >= OD_MIN_ROUTE_PAX_SHARE_PCT
+  );
 
   const domestic = regularDestinations.filter(destino => !destino.isInternational);
   const international = regularDestinations.filter(destino => destino.isInternational);
@@ -910,7 +924,7 @@ function odFormatDestinationDebugList(destinations) {
       const codes = escapeHtml(odGetDestinationCodesLabel(destino));
       const months = Number(destino.monthsCount || 0);
 
-      return `${city} <strong>(${codes}; ${months} meses)</strong>`;
+      return `${city} <strong>(${codes}; ${months} meses; ${formatShareShort(Number(destino.sharePaxPct || 0))})</strong>`;
     });
 
   if (!items.length) return "";
