@@ -802,7 +802,12 @@ function odRouteRowHasActivity(row) {
     Number(row?.vuelos || 0) > 0
   );
 }
-
+function odRouteRowHasConnectivityActivity(row) {
+  return (
+    Number(row?.pax || 0) > 0 ||
+    Number(row?.vuelos || 0) > 0
+  );
+}
 function odRouteRowIsCommercial(row) {
   // Mismo criterio base que usa el resumen general de oferta-demanda:
   // considerar solamente registros cuyo tipo de operación sea comercial.
@@ -865,12 +870,12 @@ function odBuildRegularConnectedDestinationStats(iata, year = YEAR_REF, minMonth
   const selected = clean(iata).toUpperCase();
   const destinosMap = new Map();
 
-  const rows = (rutasOfertaRows || []).filter(row =>
-    (row.endpointA === selected || row.endpointB === selected) &&
-    Number(row.year) === Number(year) &&
-    odRouteRowIsCommercial(row) &&
-    odRouteRowHasActivity(row)
-  );
+const rows = (rutasOfertaRows || []).filter(row =>
+  (row.endpointA === selected || row.endpointB === selected) &&
+  Number(row.year) === Number(year) &&
+  odRouteRowIsCommercial(row) &&
+  odRouteRowHasConnectivityActivity(row)
+);
 
   rows.forEach(row => {
     const otherCodeRaw = row.endpointA === selected ? row.endpointB : row.endpointA;
@@ -879,8 +884,11 @@ function odBuildRegularConnectedDestinationStats(iata, year = YEAR_REF, minMonth
     const otherMeta = getRouteMeta(otherCodeRaw);
     const otherNormalizedCode = clean(otherMeta?.iata || otherCodeRaw).toUpperCase();
 
-    const destinationCode = getEquivalentDestinationCode(selected, otherNormalizedCode);
-    if (!destinationCode || destinationCode === selected) return;
+const destinationCode = getEquivalentDestinationCode(selected, otherNormalizedCode);
+if (!destinationCode || destinationCode === selected) return;
+
+if (OD_EXCLUDED_DESTINATION_CODES_FOR_CONNECTIVITY_TEXT.has(destinationCode)) return;
+if (OD_EXCLUDED_DESTINATION_CODES_FOR_CONNECTIVITY_TEXT.has(otherNormalizedCode)) return;
 
     const isInternational = clean(row.clasificacion).toLowerCase() === "internacional";
     const label = getDestinationLabel(destinationCode, isInternational);
@@ -1014,47 +1022,94 @@ function odGetDestinationCodesLabel(destino) {
   return clean(destino?.code).toUpperCase();
 }
 
-function odFormatDestinationDebugList(destinations) {
-  const items = (destinations || [])
-    .slice()
-    .sort((a, b) => clean(a.ciudad).localeCompare(clean(b.ciudad), "es"))
-    .map(destino => {
-      const city = escapeHtml(clean(destino.ciudad));
-      const codes = escapeHtml(odGetDestinationCodesLabel(destino));
-      const months = Number(destino.monthsCount || 0);
+function odFormatMonthDuration(monthsCount) {
+  const months = Number(monthsCount || 0);
 
-      return `${city} <strong>(${codes}; ${months} meses; ${formatShareShort(Number(destino.sharePaxPct || 0))})</strong>`;
-    });
+  if (months === 1) return "durante 1 mes del año";
 
-  if (!items.length) return "";
+  return `durante ${formatNumber(months)} meses del año`;
+}
 
-  return `: ${odJoinList(items)}`;
+function odFormatDestinationNameWithCodes(destino) {
+  const city = escapeHtml(clean(destino?.ciudad));
+  const codes = escapeHtml(odGetDestinationCodesLabel(destino));
+
+  if (!city && !codes) return "";
+  if (!codes) return city;
+
+  return `${city} <strong>(${codes})</strong>`;
+}
+
+function odFormatDestinationsGroupedByMonths(destinations) {
+  const groups = new Map();
+
+  (destinations || []).forEach(destino => {
+    const months = Number(destino?.monthsCount || 0);
+    if (!months) return;
+
+    if (!groups.has(months)) groups.set(months, []);
+
+    const label = odFormatDestinationNameWithCodes(destino);
+    if (label) groups.get(months).push(label);
+  });
+
+  const orderedGroups = Array.from(groups.entries())
+    .sort((a, b) => Number(b[0]) - Number(a[0]));
+
+  if (!orderedGroups.length) return "";
+
+  return orderedGroups
+    .map(([months, labels]) => {
+      const cleanLabels = labels
+        .slice()
+        .sort((a, b) => a.localeCompare(b, "es"));
+
+      return `${odJoinList(cleanLabels)} ${odFormatMonthDuration(months)}`;
+    })
+    .join("; ");
+}
+
+function odBuildDestinationCategoryText(count, singular, plural, destinations) {
+  if (Number(count || 0) <= 0) return "";
+
+  const groupedText = odFormatDestinationsGroupedByMonths(destinations);
+
+  return `<strong>${formatNumber(count)}</strong> ${odPlural(count, singular, plural)}${groupedText ? `: ${groupedText}` : ""}`;
 }
 
 function odBuildSeasonalDestinationText(counts) {
   const parts = [];
 
-  if (counts.seasonalDomesticCount > 0) {
-    parts.push(
-      `<strong>${formatNumber(counts.seasonalDomesticCount)}</strong> ${odPlural(counts.seasonalDomesticCount, "ciudad del país de temporada", "ciudades del país de temporada")}${odFormatDestinationDebugList(counts.seasonalDomestic)}`
-    );
-  }
+  const seasonalDomesticText = odBuildDestinationCategoryText(
+    counts.seasonalDomesticCount,
+    "ciudad del país de temporada",
+    "ciudades del país de temporada",
+    counts.seasonalDomestic
+  );
 
-  if (counts.seasonalSouthAmericaCount > 0) {
-    parts.push(
-      `<strong>${formatNumber(counts.seasonalSouthAmericaCount)}</strong> ${odPlural(counts.seasonalSouthAmericaCount, "destino sudamericano de temporada", "destinos sudamericanos de temporada")}${odFormatDestinationDebugList(counts.seasonalSouthAmerica)}`
-    );
-  }
+  if (seasonalDomesticText) parts.push(seasonalDomesticText);
 
-  if (counts.seasonalExtraSouthAmericaCount > 0) {
-    parts.push(
-      `<strong>${formatNumber(counts.seasonalExtraSouthAmericaCount)}</strong> ${odPlural(counts.seasonalExtraSouthAmericaCount, "destino extra-sudamericano de temporada", "destinos extra-sudamericanos de temporada")}${odFormatDestinationDebugList(counts.seasonalExtraSouthAmerica)}`
-    );
-  }
+  const seasonalSouthAmericaText = odBuildDestinationCategoryText(
+    counts.seasonalSouthAmericaCount,
+    "destino sudamericano de temporada",
+    "destinos sudamericanos de temporada",
+    counts.seasonalSouthAmerica
+  );
+
+  if (seasonalSouthAmericaText) parts.push(seasonalSouthAmericaText);
+
+  const seasonalExtraSouthAmericaText = odBuildDestinationCategoryText(
+    counts.seasonalExtraSouthAmericaCount,
+    "destino extra-sudamericano de temporada",
+    "destinos extra-sudamericanos de temporada",
+    counts.seasonalExtraSouthAmerica
+  );
+
+  if (seasonalExtraSouthAmericaText) parts.push(seasonalExtraSouthAmericaText);
 
   return odJoinList(parts);
 }
-  
+
 function odBuildDestinationCountText(iata) {
   const counts = odBuildRegularConnectedDestinationStats(
     iata,
@@ -1064,37 +1119,42 @@ function odBuildDestinationCountText(iata) {
 
   const regularParts = [];
 
-  if (counts.domesticCount > 0) {
-    regularParts.push(
-      `<strong>${formatNumber(counts.domesticCount)}</strong> ${odPlural(counts.domesticCount, "ciudad del país", "ciudades de todo el país")}${odFormatDestinationDebugList(counts.domestic)}`
-    );
-  }
+  const domesticText = odBuildDestinationCategoryText(
+    counts.domesticCount,
+    "ciudad del país",
+    "ciudades de todo el país",
+    counts.domestic
+  );
 
-  if (counts.southAmericaCount > 0) {
-    regularParts.push(
-      `<strong>${formatNumber(counts.southAmericaCount)}</strong> ${odPlural(counts.southAmericaCount, "destino sudamericano", "destinos sudamericanos")}${odFormatDestinationDebugList(counts.southAmerica)}`
-    );
-  }
+  if (domesticText) regularParts.push(domesticText);
 
-  if (counts.extraSouthAmericaCount > 0) {
-    regularParts.push(
-      `<strong>${formatNumber(counts.extraSouthAmericaCount)}</strong> ${odPlural(counts.extraSouthAmericaCount, "destino extra-sudamericano", "destinos extra-sudamericanos")}${odFormatDestinationDebugList(counts.extraSouthAmerica)}`
-    );
-  }
+  const southAmericaText = odBuildDestinationCategoryText(
+    counts.southAmericaCount,
+    "destino sudamericano",
+    "destinos sudamericanos",
+    counts.southAmerica
+  );
+
+  if (southAmericaText) regularParts.push(southAmericaText);
+
+  const extraSouthAmericaText = odBuildDestinationCategoryText(
+    counts.extraSouthAmericaCount,
+    "destino extra-sudamericano",
+    "destinos extra-sudamericanos",
+    counts.extraSouthAmerica
+  );
+
+  if (extraSouthAmericaText) regularParts.push(extraSouthAmericaText);
 
   const seasonalText = odBuildSeasonalDestinationText(counts);
 
-  if (!regularParts.length && !seasonalText) {
-    return `sin destinos comerciales regulares identificados con al menos ${counts.minMonths} meses de operación`;
-  }
-
-  const regularText = regularParts.length
-    ? odJoinList(regularParts)
-    : "sin destinos comerciales regulares identificados";
-
-  return seasonalText
-    ? `${regularText}. Además, registró conexiones de temporada con ${seasonalText}`
-    : regularText;
+  return {
+    counts,
+    hasRegular: regularParts.length > 0,
+    hasSeasonal: Boolean(seasonalText),
+    regularText: regularParts.length ? odJoinList(regularParts) : "",
+    seasonalText
+  };
 }
 
 
@@ -1134,8 +1194,8 @@ function odBuildIntroTextHtml(iata, summary) {
     return odBuildFdoIntroTextHtml(summary);
   }
 
-  const airportName = odGetAirportNarrativeName(iata);
-  const destinationCountText = odBuildDestinationCountText(iata);
+const airportName = odGetAirportNarrativeName(iata);
+const destinationInfo = odBuildDestinationCountText(iata);
   
   const seats = odGetMarketSeatTotals(summary);
   const hasSeatData = seats.total > 0;
@@ -1187,13 +1247,40 @@ function odBuildIntroTextHtml(iata, summary) {
   const noSeatsNote = !hasSeatData
     ? ` En este caso, la fuente utilizada no permite reconstruir una oferta anual completa de asientos, por lo que la lectura se apoya principalmente en pasajeros, vuelos y frecuencias.`
     : "";
+let openingParagraph = "";
 
+if (destinationInfo.hasRegular) {
+  openingParagraph = `
+    En el año <strong>${YEAR_REF}</strong>, la oferta aerocomercial del
+    <strong>${escapeHtml(airportName)}</strong> conectó de forma directa a esta ciudad con
+    ${destinationInfo.regularText}${destinationInfo.hasSeasonal ? `. Además, registró conexiones comerciales de temporada con ${destinationInfo.seasonalText}` : ""}.
+  `;
+} else if (destinationInfo.hasSeasonal) {
+  openingParagraph = `
+    En el año <strong>${YEAR_REF}</strong>, no se identificaron destinos comerciales regulares
+    con continuidad anual para el <strong>${escapeHtml(airportName)}</strong>.
+    No obstante, se registraron conexiones comerciales de temporada con
+    ${destinationInfo.seasonalText}.
+  `;
+} else {
+  openingParagraph = `
+    En el año <strong>${YEAR_REF}</strong>, no se identificaron destinos comerciales regulares
+    ni conexiones comerciales de temporada con volumen y continuidad suficientes para el
+    <strong>${escapeHtml(airportName)}</strong>.
+  `;
+}
+
+if (!destinationInfo.hasRegular && !destinationInfo.hasSeasonal) {
   return `
     <p>
-      En el año <strong>${YEAR_REF}</strong>, la oferta aerocomercial del
-      <strong>${escapeHtml(airportName)}</strong> conectó de forma directa a esta ciudad con
-      ${destinationCountText}.
+      ${openingParagraph.replace(/\s+/g, " ").trim()}
     </p>
+  `;
+}
+  return `
+<p>
+  ${openingParagraph.replace(/\s+/g, " ").trim()}
+</p>
 
     <p>
       ${operatorSentence}
