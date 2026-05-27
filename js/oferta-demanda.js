@@ -19,10 +19,14 @@
   // Perfil operativo 2025: clasifica cada aeropuerto para modular la narrativa de conectividad.
   const PERFIL_OPERATIVO_PATH = "/geodata/fuentes/perfil_operativo_impacto_2025.json";
   const DESCRIPTIVO_AEROPUERTOS_GEOJSON_PATH = "/geodata/fuentes/Descriptivo_aeropuertos.geojson";
-  const OD_MIN_ROUTE_PAX_SHARE_PCT = 0.5;
-  const OD_CONNECTED_DESTINATION_MIN_MONTHS = 7;
-  const OD_SEASONAL_DESTINATION_MIN_MONTHS = 3;
-  const OD_SEASONAL_DESTINATION_MIN_CONSECUTIVE_MONTHS = 3;
+const OD_MIN_ROUTE_PAX_SHARE_PCT = 0.5;
+const OD_CONNECTED_DESTINATION_MIN_MONTHS = 7;
+const OD_SEASONAL_DESTINATION_MIN_MONTHS = 3;
+const OD_SEASONAL_DESTINATION_MIN_CONSECUTIVE_MONTHS = 3;
+
+const OD_EXCLUDED_DESTINATION_CODES_FOR_CONNECTIVITY_TEXT = new Set([
+  "FDO"
+]);
 
   /* ============================================================
      ESTADO
@@ -1270,7 +1274,7 @@ if (destinationInfo.hasRegular) {
   `;
 }
 
-if (!destinationInfo.hasRegular && !destinationInfo.hasSeasonal) {
+if (!destinationInfo.hasRegular) {
   return `
     <p>
       ${openingParagraph.replace(/\s+/g, " ").trim()}
