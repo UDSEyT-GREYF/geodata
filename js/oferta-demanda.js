@@ -753,6 +753,10 @@ function odIsSouthAmericaCountry(country) {
 }
   
 function odIsSouthAmericaDestinationItem(destino) {
+  // Importante: los aeropuertos argentinos también tienen continent = SA,
+  // pero no deben contarse como "destinos sudamericanos" si son cabotaje.
+  if (!destino?.isInternational) return false;
+
   const continent = odGetDestinationContinent(destino);
 
   if (continent) {
@@ -762,6 +766,7 @@ function odIsSouthAmericaDestinationItem(destino) {
   // Respaldo por país si el código no aparece en ourairports.csv
   return odIsSouthAmericaCountry(destino?.pais);
 }
+  
 function odIsGenericDestinationCodeOrName(code, city) {
   const codeKey = clean(code).toUpperCase();
   const cityKey = normalizeTextKey(city);
