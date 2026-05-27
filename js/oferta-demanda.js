@@ -20,7 +20,7 @@
   const PERFIL_OPERATIVO_PATH = "/geodata/fuentes/perfil_operativo_impacto_2025.json";
   const DESCRIPTIVO_AEROPUERTOS_GEOJSON_PATH = "/geodata/fuentes/Descriptivo_aeropuertos.geojson";
   const OD_MIN_ROUTE_PAX_SHARE_PCT = 0.5;
-  const OD_CONNECTED_DESTINATION_MIN_MONTHS = 7;
+  const OD_CONNECTED_DESTINATION_MIN_MONTHS = 6;
 
   /* ============================================================
      ESTADO
