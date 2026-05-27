@@ -19,6 +19,7 @@
   const PERFIL_OPERATIVO_PATH = "/geodata/fuentes/perfil_operativo_impacto_2025.json";
   const DESCRIPTIVO_AEROPUERTOS_GEOJSON_PATH = "/geodata/fuentes/Descriptivo_aeropuertos.geojson";
   const OD_MIN_ROUTE_PAX_SHARE_PCT = 0.5;
+  const OD_CONNECTED_DESTINATION_MIN_MONTHS = 7;
 
   /* ============================================================
      ESTADO
@@ -745,53 +746,129 @@ const OD_SOUTH_AMERICA_COUNTRIES = new Set([
   "venezuela"
 ]);
 
-function odIsInternationalDestination(destino) {
-  return normalizeTextKey(destino?.clasificacion || "").includes("internacional");
+function odIsSouthAmericaCountry(country) {
+  return OD_SOUTH_AMERICA_COUNTRIES.has(normalizeTextKey(country));
 }
 
-function odIsGenericDestination(destino) {
-  const code = clean(destino?.code).toUpperCase();
-  const nameKey = normalizeTextKey(destino?.ciudad || destino?.code);
+function odIsGenericDestinationCodeOrName(code, city) {
+  const codeKey = clean(code).toUpperCase();
+  const cityKey = normalizeTextKey(city);
 
   return (
-    code === "AR" ||
-    code === "EXT" ||
-    nameKey.includes("otros destinos")
+    codeKey === "AR" ||
+    codeKey === "EXT" ||
+    cityKey.includes("otros destinos")
   );
 }
 
-function odIsSouthAmericaDestination(destino) {
-  const countryKey = normalizeTextKey(destino?.pais || "");
-  return OD_SOUTH_AMERICA_COUNTRIES.has(countryKey);
+function odGetRouteMonthKey(row) {
+  if (row?.date instanceof Date && !Number.isNaN(row.date.getTime())) {
+    return `${row.date.getFullYear()}-${String(row.date.getMonth() + 1).padStart(2, "0")}`;
+  }
+
+  const raw = clean(row?.anioMes);
+  const m = raw.match(/^(\d{4})[-_/]?(\d{1,2})/);
+
+  if (m) {
+    return `${m[1]}-${String(Number(m[2])).padStart(2, "0")}`;
+  }
+
+  return "";
 }
 
-function odGetConnectedDestinations(summary) {
-  return (summary?.destinos || [])
-    .filter(destino => {
-      if (odIsGenericDestination(destino)) return false;
-
-      const pax = Number(destino?.pax || 0);
-      const seats = Number(destino?.asientos || 0);
-      const flights = Number(destino?.vuelos || 0);
-
-      return pax > 0 || seats > 0 || flights > 0;
-    });
+function odRouteRowHasActivity(row) {
+  return (
+    Number(row?.pax || 0) > 0 ||
+    Number(row?.asientos || 0) > 0 ||
+    Number(row?.vuelos || 0) > 0
+  );
 }
 
-function odBuildDestinationCountParts(summary) {
-  const destinos = odGetConnectedDestinations(summary);
+function odRouteRowIsCommercial(row) {
+  // Mismo criterio base que usa el resumen general de oferta-demanda:
+  // considerar solamente registros cuyo tipo de operación sea comercial.
+  return clean(row?.tipoOperacion).toLowerCase().includes("comercial");
+}
 
-  const domestic = destinos.filter(d => !odIsInternationalDestination(d));
-  const international = destinos.filter(d => odIsInternationalDestination(d));
+function odBuildRegularConnectedDestinationStats(iata, year = YEAR_REF, minMonths = OD_CONNECTED_DESTINATION_MIN_MONTHS) {
+  const selected = clean(iata).toUpperCase();
+  const destinosMap = new Map();
 
-  const southAmerica = international.filter(odIsSouthAmericaDestination);
-  const extraSouthAmerica = international.filter(d => !odIsSouthAmericaDestination(d));
+  const rows = (rutasOfertaRows || []).filter(row =>
+    (row.endpointA === selected || row.endpointB === selected) &&
+    Number(row.year) === Number(year) &&
+    odRouteRowIsCommercial(row) &&
+    odRouteRowHasActivity(row)
+  );
+
+  rows.forEach(row => {
+    const otherCodeRaw = row.endpointA === selected ? row.endpointB : row.endpointA;
+    if (!otherCodeRaw || otherCodeRaw === selected) return;
+
+    const otherMeta = getRouteMeta(otherCodeRaw);
+    const otherNormalizedCode = clean(otherMeta?.iata || otherCodeRaw).toUpperCase();
+
+    const destinationCode = getEquivalentDestinationCode(selected, otherNormalizedCode);
+    if (!destinationCode || destinationCode === selected) return;
+
+    const isInternational = clean(row.clasificacion).toLowerCase() === "internacional";
+    const label = getDestinationLabel(destinationCode, isInternational);
+
+    const ciudad = clean(label.ciudad) || destinationCode;
+    const pais = clean(label.pais) || (isInternational ? "" : "Argentina");
+
+    if (odIsGenericDestinationCodeOrName(destinationCode, ciudad)) return;
+
+    const monthKey = odGetRouteMonthKey(row);
+    if (!monthKey) return;
+
+    // Clave por ciudad-país, no por código IATA: evita sobrecontar aeropuertos de una misma ciudad.
+    const destinationKey = [
+      isInternational ? "INT" : "CAB",
+      normalizeTextKey(ciudad),
+      normalizeTextKey(pais) || clean(destinationCode).toUpperCase()
+    ].join("|");
+
+    if (!destinosMap.has(destinationKey)) {
+      destinosMap.set(destinationKey, {
+        code: destinationCode,
+        ciudad,
+        pais,
+        isInternational,
+        months: new Set(),
+        pax: 0,
+        asientos: 0,
+        vuelos: 0
+      });
+    }
+
+    const item = destinosMap.get(destinationKey);
+    item.months.add(monthKey);
+    item.pax += Number(row.pax || 0);
+    item.asientos += Number(row.asientos || 0);
+    item.vuelos += Number(row.vuelos || 0);
+  });
+
+  const regularDestinations = Array.from(destinosMap.values())
+    .filter(destino => destino.months.size >= minMonths);
+
+  const domestic = regularDestinations.filter(destino => !destino.isInternational);
+  const international = regularDestinations.filter(destino => destino.isInternational);
+
+  const southAmerica = international.filter(destino =>
+    odIsSouthAmericaCountry(destino.pais)
+  );
+
+  const extraSouthAmerica = international.filter(destino =>
+    !odIsSouthAmericaCountry(destino.pais)
+  );
 
   return {
     domesticCount: domestic.length,
     southAmericaCount: southAmerica.length,
     extraSouthAmericaCount: extraSouthAmerica.length,
-    totalCount: destinos.length
+    totalCount: regularDestinations.length,
+    minMonths
   };
 }
 
@@ -799,8 +876,13 @@ function odPlural(value, singular, plural) {
   return Number(value) === 1 ? singular : plural;
 }
 
-function odBuildDestinationCountText(summary) {
-  const counts = odBuildDestinationCountParts(summary);
+function odBuildDestinationCountText(iata) {
+  const counts = odBuildRegularConnectedDestinationStats(
+    iata,
+    YEAR_REF,
+    OD_CONNECTED_DESTINATION_MIN_MONTHS
+  );
+
   const parts = [];
 
   if (counts.domesticCount > 0) {
@@ -822,11 +904,15 @@ function odBuildDestinationCountText(summary) {
   }
 
   if (!parts.length) {
-    return "sin destinos regulares identificados en la fuente utilizada";
+    return `sin destinos comerciales regulares identificados con al menos ${counts.minMonths} meses de operación`;
   }
 
   return odJoinList(parts);
 }
+
+
+
+  
 function odBuildFdoIntroTextHtml(summary) {
   const freq = Number(summary?.totalFrecuenciaSemanal || 0);
 
@@ -862,8 +948,8 @@ function odBuildIntroTextHtml(iata, summary) {
   }
 
   const airportName = odGetAirportNarrativeName(iata);
-  const destinationCountText = odBuildDestinationCountText(summary);
-
+  const destinationCountText = odBuildDestinationCountText(iata);
+  
   const seats = odGetMarketSeatTotals(summary);
   const hasSeatData = seats.total > 0;
 
