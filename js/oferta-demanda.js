@@ -21,6 +21,8 @@
   const DESCRIPTIVO_AEROPUERTOS_GEOJSON_PATH = "/geodata/fuentes/Descriptivo_aeropuertos.geojson";
   const OD_MIN_ROUTE_PAX_SHARE_PCT = 0.5;
   const OD_CONNECTED_DESTINATION_MIN_MONTHS = 7;
+  const OD_SEASONAL_DESTINATION_MIN_MONTHS = 3;
+  const OD_SEASONAL_DESTINATION_MIN_CONSECUTIVE_MONTHS = 3;
 
   /* ============================================================
      ESTADO
@@ -807,6 +809,58 @@ function odRouteRowIsCommercial(row) {
   return clean(row?.tipoOperacion).toLowerCase().includes("comercial");
 }
 
+function odGetDestinationMonthNumbers(destino) {
+  return Array.from(destino?.months || [])
+    .map(monthKey => {
+      const m = clean(monthKey).match(/^\d{4}-(\d{2})$/);
+      return m ? Number(m[1]) : null;
+    })
+    .filter(m => Number.isFinite(m) && m >= 1 && m <= 12)
+    .sort((a, b) => a - b);
+}
+
+function odLongestConsecutiveMonthRun(monthNumbers) {
+  const months = Array.from(new Set(monthNumbers || [])).sort((a, b) => a - b);
+  if (!months.length) return 0;
+
+  let longest = 1;
+  let current = 1;
+
+  for (let i = 1; i < months.length; i++) {
+    if (months[i] === months[i - 1] + 1) {
+      current += 1;
+      longest = Math.max(longest, current);
+    } else {
+      current = 1;
+    }
+  }
+
+  return longest;
+}
+
+function odDestinationPassesShareThreshold(destino) {
+  return Number(destino?.sharePaxPct || 0) >= OD_MIN_ROUTE_PAX_SHARE_PCT;
+}
+
+function odDestinationIsRegular(destino, minMonths = OD_CONNECTED_DESTINATION_MIN_MONTHS) {
+  return (
+    Number(destino?.monthsCount || 0) >= minMonths &&
+    odDestinationPassesShareThreshold(destino)
+  );
+}
+
+function odDestinationIsSeasonal(destino) {
+  const monthsCount = Number(destino?.monthsCount || 0);
+  const longestRun = Number(destino?.longestConsecutiveMonthRun || 0);
+
+  return (
+    monthsCount >= OD_SEASONAL_DESTINATION_MIN_MONTHS &&
+    monthsCount < OD_CONNECTED_DESTINATION_MIN_MONTHS &&
+    longestRun >= OD_SEASONAL_DESTINATION_MIN_CONSECUTIVE_MONTHS &&
+    odDestinationPassesShareThreshold(destino)
+  );
+}  
+  
 function odBuildRegularConnectedDestinationStats(iata, year = YEAR_REF, minMonths = OD_CONNECTED_DESTINATION_MIN_MONTHS) {
   const selected = clean(iata).toUpperCase();
   const destinosMap = new Map();
@@ -875,23 +929,33 @@ function odBuildRegularConnectedDestinationStats(iata, year = YEAR_REF, minMonth
 const totalAirportPax = Array.from(destinosMap.values())
   .reduce((acc, destino) => acc + Number(destino.pax || 0), 0);
 
-const regularDestinations = Array.from(destinosMap.values())
+const candidateDestinations = Array.from(destinosMap.values())
   .map(destino => {
     const pax = Number(destino.pax || 0);
     const sharePaxPct = totalAirportPax > 0
       ? (pax / totalAirportPax) * 100
       : 0;
 
+    const monthNumbers = odGetDestinationMonthNumbers(destino);
+    const longestConsecutiveMonthRun = odLongestConsecutiveMonthRun(monthNumbers);
+
     return {
       ...destino,
       monthsCount: destino.months.size,
+      monthNumbers,
+      longestConsecutiveMonthRun,
       sharePaxPct,
       airportCodesList: Array.from(destino.airportCodes).sort((a, b) => a.localeCompare(b, "es"))
     };
-  })
+  });
+
+const regularDestinations = candidateDestinations
+  .filter(destino => odDestinationIsRegular(destino, minMonths));
+
+const seasonalDestinations = candidateDestinations
   .filter(destino =>
-    destino.monthsCount >= minMonths &&
-    destino.sharePaxPct >= OD_MIN_ROUTE_PAX_SHARE_PCT
+    !odDestinationIsRegular(destino, minMonths) &&
+    odDestinationIsSeasonal(destino)
   );
 
   const domestic = regularDestinations.filter(destino => !destino.isInternational);
@@ -904,18 +968,36 @@ const regularDestinations = Array.from(destinosMap.values())
   const extraSouthAmerica = international.filter(destino =>
     !odIsSouthAmericaDestinationItem(destino)
   );
+const seasonalDomestic = seasonalDestinations.filter(destino => !destino.isInternational);
+const seasonalInternational = seasonalDestinations.filter(destino => destino.isInternational);
 
-  return {
-    domestic,
-    southAmerica,
-    extraSouthAmerica,
+const seasonalSouthAmerica = seasonalInternational.filter(destino =>
+  odIsSouthAmericaDestinationItem(destino)
+);
 
-    domesticCount: domestic.length,
-    southAmericaCount: southAmerica.length,
-    extraSouthAmericaCount: extraSouthAmerica.length,
-    totalCount: regularDestinations.length,
-    minMonths
-  };
+const seasonalExtraSouthAmerica = seasonalInternational.filter(destino =>
+  !odIsSouthAmericaDestinationItem(destino)
+);
+return {
+  domestic,
+  southAmerica,
+  extraSouthAmerica,
+
+  seasonalDomestic,
+  seasonalSouthAmerica,
+  seasonalExtraSouthAmerica,
+
+  domesticCount: domestic.length,
+  southAmericaCount: southAmerica.length,
+  extraSouthAmericaCount: extraSouthAmerica.length,
+
+  seasonalDomesticCount: seasonalDomestic.length,
+  seasonalSouthAmericaCount: seasonalSouthAmerica.length,
+  seasonalExtraSouthAmericaCount: seasonalExtraSouthAmerica.length,
+
+  totalCount: regularDestinations.length,
+  minMonths
+};
 }
 
 function odPlural(value, singular, plural) {
@@ -948,6 +1030,30 @@ function odFormatDestinationDebugList(destinations) {
 
   return `: ${odJoinList(items)}`;
 }
+
+function odBuildSeasonalDestinationText(counts) {
+  const parts = [];
+
+  if (counts.seasonalDomesticCount > 0) {
+    parts.push(
+      `<strong>${formatNumber(counts.seasonalDomesticCount)}</strong> ${odPlural(counts.seasonalDomesticCount, "ciudad del país de temporada", "ciudades del país de temporada")}${odFormatDestinationDebugList(counts.seasonalDomestic)}`
+    );
+  }
+
+  if (counts.seasonalSouthAmericaCount > 0) {
+    parts.push(
+      `<strong>${formatNumber(counts.seasonalSouthAmericaCount)}</strong> ${odPlural(counts.seasonalSouthAmericaCount, "destino sudamericano de temporada", "destinos sudamericanos de temporada")}${odFormatDestinationDebugList(counts.seasonalSouthAmerica)}`
+    );
+  }
+
+  if (counts.seasonalExtraSouthAmericaCount > 0) {
+    parts.push(
+      `<strong>${formatNumber(counts.seasonalExtraSouthAmericaCount)}</strong> ${odPlural(counts.seasonalExtraSouthAmericaCount, "destino extra-sudamericano de temporada", "destinos extra-sudamericanos de temporada")}${odFormatDestinationDebugList(counts.seasonalExtraSouthAmerica)}`
+    );
+  }
+
+  return odJoinList(parts);
+}
   
 function odBuildDestinationCountText(iata) {
   const counts = odBuildRegularConnectedDestinationStats(
@@ -956,31 +1062,39 @@ function odBuildDestinationCountText(iata) {
     OD_CONNECTED_DESTINATION_MIN_MONTHS
   );
 
-  const parts = [];
+  const regularParts = [];
 
   if (counts.domesticCount > 0) {
-    parts.push(
+    regularParts.push(
       `<strong>${formatNumber(counts.domesticCount)}</strong> ${odPlural(counts.domesticCount, "ciudad del país", "ciudades de todo el país")}${odFormatDestinationDebugList(counts.domestic)}`
     );
   }
 
   if (counts.southAmericaCount > 0) {
-    parts.push(
+    regularParts.push(
       `<strong>${formatNumber(counts.southAmericaCount)}</strong> ${odPlural(counts.southAmericaCount, "destino sudamericano", "destinos sudamericanos")}${odFormatDestinationDebugList(counts.southAmerica)}`
     );
   }
 
   if (counts.extraSouthAmericaCount > 0) {
-    parts.push(
+    regularParts.push(
       `<strong>${formatNumber(counts.extraSouthAmericaCount)}</strong> ${odPlural(counts.extraSouthAmericaCount, "destino extra-sudamericano", "destinos extra-sudamericanos")}${odFormatDestinationDebugList(counts.extraSouthAmerica)}`
     );
   }
 
-  if (!parts.length) {
+  const seasonalText = odBuildSeasonalDestinationText(counts);
+
+  if (!regularParts.length && !seasonalText) {
     return `sin destinos comerciales regulares identificados con al menos ${counts.minMonths} meses de operación`;
   }
 
-  return odJoinList(parts);
+  const regularText = regularParts.length
+    ? odJoinList(regularParts)
+    : "sin destinos comerciales regulares identificados";
+
+  return seasonalText
+    ? `${regularText}. Además, registró conexiones de temporada con ${seasonalText}`
+    : regularText;
 }
 
 
