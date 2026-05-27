@@ -12,6 +12,7 @@
   const RUTAS_KM_CSV_PATH = "/geodata/fuentes/km rutasaereas.csv";
   const AEROPUERTOS_GEOJSON_PATH = "/geodata/fuentes/Datos_aeropuertos.geojson";
   const IATA_MUNDO_CSV_PATH = "/geodata/fuentes/ListadoIATAmundo.csv";
+  const OURAIRPORTS_CSV_PATH = "/geodata/fuentes/ourairports.csv";
   const AIRLINE_ALIAS_CSV_PATH = "/geodata/fuentes/aerolineas_alias.csv";
   const FDO_TRAFFIC_AA_PATH = "/geodata/fuentes/fdo_trafico_aeropuertos_argentina.json";
   const FDO_ROUTES_MONTHLY_AA_PATH = "/geodata/fuentes/fdo_rutas_mensual_aeropuertos_argentina.json";
@@ -28,6 +29,7 @@
   let rutasOfertaRows = [];
   let iataWorldIndex = {};
   let routeCodeIndex = {};
+  let ourAirportsIndex = {};
   let currentIATA = "";
   let rutasKmRows = [];
   let rutasKmIndex = new Map();
@@ -1208,6 +1210,62 @@ const fallback = [
 
     return { byIata, byCode };
   }
+
+function parseOurAirportsCSV(text) {
+  const rows = parseCSV(text);
+  const index = {};
+
+  rows.forEach(row => {
+    const iata = clean(firstNonEmpty(row, ["iata"])).toUpperCase();
+    const oaci = clean(firstNonEmpty(row, ["oaci", "icao"])).toUpperCase();
+    const continent = clean(firstNonEmpty(row, ["continent"])).toUpperCase();
+
+    const meta = {
+      iata,
+      oaci,
+      continent,
+      latitude: parseNumber(firstNonEmpty(row, ["latitude", "lat"])),
+      longitude: parseNumber(firstNonEmpty(row, ["longitude", "lon", "lng"]))
+    };
+
+    if (iata) index[iata] = meta;
+    if (oaci) index[oaci] = meta;
+  });
+
+  return index;
+}
+
+function odGetAirportContinentByCode(code) {
+  const key = clean(code).toUpperCase();
+  if (!key) return "";
+
+  const ourMeta = ourAirportsIndex[key];
+  if (ourMeta?.continent) return clean(ourMeta.continent).toUpperCase();
+
+  return "";
+}
+
+function odGetDestinationContinent(destino) {
+  const codes = [];
+
+  const mainCode = clean(destino?.code).toUpperCase();
+  if (mainCode) codes.push(mainCode);
+
+  if (Array.isArray(destino?.airportCodesList)) {
+    destino.airportCodesList.forEach(code => {
+      const c = clean(code).toUpperCase();
+      if (c) codes.push(c);
+    });
+  }
+
+  for (const code of codes) {
+    const continent = odGetAirportContinentByCode(code);
+    if (continent) return continent;
+  }
+
+  return "";
+}
+  
 function parseAirlineAliasCSV(text) {
   const rows = parseCSV(text);
   const index = {};
