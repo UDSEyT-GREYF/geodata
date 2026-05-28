@@ -27,7 +27,23 @@ const OD_SEASONAL_DESTINATION_MIN_CONSECUTIVE_MONTHS = 3;
 const OD_EXCLUDED_DESTINATION_CODES_FOR_CONNECTIVITY_TEXT = new Set([
   "FDO"
 ]);
-
+const OD_AIRPORTS_WITHOUT_REGULAR_COMMERCIAL_SERVICE_2025 = new Set([
+  "EPA",
+  "COC",
+  "LPG",
+  "GNR",
+  "GPO",
+  "JNI",
+  "LGS",
+  "NEC",
+  "PMQ",
+  "RYO",
+  "SST",
+  "TDL",
+  "TTG",
+  "VLG",
+  "VME"
+]);
   /* ============================================================
      ESTADO
      ============================================================ */
@@ -1161,7 +1177,39 @@ function odBuildDestinationCountText(iata) {
   };
 }
 
+function odIsAirportWithoutRegularCommercialService2025(iata) {
+  return OD_AIRPORTS_WITHOUT_REGULAR_COMMERCIAL_SERVICE_2025.has(
+    clean(iata).toUpperCase()
+  );
+}
 
+function odShouldSuppressCurrentRouteAnalysis(iata, summary, destinationInfo = null) {
+  const code = clean(iata).toUpperCase();
+
+  // FDO tiene tratamiento especial propio.
+  if (isFDO(code) || summary?.source === "aeropuertos_argentina_fdo") {
+    return false;
+  }
+
+  const info = destinationInfo || odBuildDestinationCountText(code);
+
+  return (
+    odIsAirportWithoutRegularCommercialService2025(code) ||
+    !info.hasRegular
+  );
+}
+
+function odBuildNoRegularCommercialServiceIntroHtml(iata) {
+  const airportName = odGetAirportNarrativeName(iata);
+
+  return `
+    <p>
+      En el año <strong>${YEAR_REF}</strong>, no se identificaron destinos comerciales regulares
+      para el <strong>${escapeHtml(airportName)}</strong>. La actividad registrada no alcanza
+      volumen y continuidad suficientes para caracterizar una red aerocomercial regular.
+    </p>
+  `;
+}
 
   
 function odBuildFdoIntroTextHtml(summary) {
@@ -1200,6 +1248,9 @@ function odBuildIntroTextHtml(iata, summary) {
 
 const airportName = odGetAirportNarrativeName(iata);
 const destinationInfo = odBuildDestinationCountText(iata);
+if (odShouldSuppressCurrentRouteAnalysis(iata, summary, destinationInfo)) {
+  return odBuildNoRegularCommercialServiceIntroHtml(iata);
+}
   
   const seats = odGetMarketSeatTotals(summary);
   const hasSeatData = seats.total > 0;
@@ -1251,36 +1302,11 @@ const destinationInfo = odBuildDestinationCountText(iata);
   const noSeatsNote = !hasSeatData
     ? ` En este caso, la fuente utilizada no permite reconstruir una oferta anual completa de asientos, por lo que la lectura se apoya principalmente en pasajeros, vuelos y frecuencias.`
     : "";
-let openingParagraph = "";
-
-if (destinationInfo.hasRegular) {
-  openingParagraph = `
-    En el año <strong>${YEAR_REF}</strong>, la oferta aerocomercial del
-    <strong>${escapeHtml(airportName)}</strong> conectó de forma directa a esta ciudad con
-    ${destinationInfo.regularText}${destinationInfo.hasSeasonal ? `. Además, registró conexiones comerciales de temporada con ${destinationInfo.seasonalText}` : ""}.
-  `;
-} else if (destinationInfo.hasSeasonal) {
-  openingParagraph = `
-    En el año <strong>${YEAR_REF}</strong>, no se identificaron destinos comerciales regulares
-    con continuidad anual para el <strong>${escapeHtml(airportName)}</strong>.
-    No obstante, se registraron conexiones comerciales de temporada con
-    ${destinationInfo.seasonalText}.
-  `;
-} else {
-  openingParagraph = `
-    En el año <strong>${YEAR_REF}</strong>, no se identificaron destinos comerciales regulares
-    ni conexiones comerciales de temporada con volumen y continuidad suficientes para el
-    <strong>${escapeHtml(airportName)}</strong>.
-  `;
-}
-
-if (!destinationInfo.hasRegular) {
-  return `
-    <p>
-      ${openingParagraph.replace(/\s+/g, " ").trim()}
-    </p>
-  `;
-}
+let openingParagraph = `
+  En el año <strong>${YEAR_REF}</strong>, la oferta aerocomercial del
+  <strong>${escapeHtml(airportName)}</strong> conectó de forma directa a esta ciudad con
+  ${destinationInfo.regularText}${destinationInfo.hasSeasonal ? `. Además, registró conexiones comerciales de temporada con ${destinationInfo.seasonalText}` : ""}.
+`;
   return `
 <p>
   ${openingParagraph.replace(/\s+/g, " ").trim()}
@@ -2126,6 +2152,14 @@ function buildConnectivityProfileHtml(iata, summary, snaRank) {
 function renderConnectivityProfileText(iata, summary, snaRank) {
   const el = q("odConnectivityProfileText");
   if (!el) return;
+
+  if (odShouldSuppressCurrentRouteAnalysis(iata, summary)) {
+    el.innerHTML = "";
+    el.style.display = "none";
+    return;
+  }
+
+  el.style.display = "";
   el.innerHTML = buildConnectivityProfileHtml(iata, summary, snaRank);
 }
   function getRouteMeta(code) {
@@ -3765,7 +3799,10 @@ function paginateTopRoutes() {
   if (!routesPage || !mainList) return;
 
   const routeCount = Array.from(mainList.children).filter(el => !el.classList.contains("od-empty")).length;
-  routesPage.classList.toggle("is-hidden", routeCount === 0);
+  const shouldHideRoutesPage = routeCount === 0;
+
+routesPage.classList.toggle("is-hidden", shouldHideRoutesPage);
+routesPage.style.display = shouldHideRoutesPage ? "none" : "";
 }
   
 function buildRouteLineEndLabelsPlugin(pluginId, airlineStats) {
@@ -4653,8 +4690,14 @@ setHTML(
     : "–"
 );
 
-renderTopRoutesCharts(summary.mainRoutes);
+const suppressCurrentRouteAnalysis = odShouldSuppressCurrentRouteAnalysis(iata, summary);
+
+renderTopRoutesCharts(
+  suppressCurrentRouteAnalysis ? [] : summary.mainRoutes
+);
+
 // Gráfico histórico de rutas, construido con la fuente general o con la fuente especial de FDO.
+// Se mantiene también para aeropuertos sin conectividad comercial regular 2025.
 renderHistoricRoutesChart(iata);
 
 renderOfertaDemandaMonthlyChart(summary.monthly);
