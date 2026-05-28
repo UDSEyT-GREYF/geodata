@@ -1283,3 +1283,37 @@
 .od-historic-routes-narrative p {
   margin: 0;
 }
+/* ===== EVOLUCIÓN HISTÓRICA: ajuste general de bloque ===== */
+
+#historicTrafficBlock {
+  min-height: 0 !important;
+  height: auto !important;
+  padding-bottom: 6px;
+}
+
+#historicTrafficText {
+  font-family: inherit;
+  font-size: 0.72rem;
+  line-height: 1.28;
+  color: #1f2d3d;
+  column-count: 2;
+  column-gap: 14px;
+  margin-top: 4px;
+}
+
+#historicTrafficText p,
+#odHistoricRoutesNarrative p {
+  font-family: inherit;
+  font-size: 0.72rem;
+  line-height: 1.28;
+  font-weight: 400;
+  color: #1f2d3d;
+  margin: 0 0 0.38rem 0;
+  break-inside: avoid;
+}
+
+#historicTrafficText strong,
+#odHistoricRoutesNarrative strong {
+  font-weight: 700;
+  color: #0b4f8a;
+}
