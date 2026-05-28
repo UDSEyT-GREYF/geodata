@@ -4577,9 +4577,7 @@ const recoveryPhrase = odBuildRecoveryPhrase(d.var_latest_vs_2019);
     ? `El máximo de la serie se registró en <strong>${d.max_year}</strong>, con <strong>${odFormatNumber(d.max_pax)}</strong> pasajeros.`
     : "";
   
-const maxParagraph = maxSentence
-  ? `<p>${maxSentence}</p>`
-  : "";
+
   
 const historicSubject = d.source === "aeropuertos_argentina_fdo"
   ? "el movimiento de pasajeros registrados en el"
@@ -4592,7 +4590,8 @@ textEl.innerHTML =
     Durante los últimos <strong>${d.years_shown} años</strong>, ${historicSubject}
     <strong>${escapeHtml(nombreAeropuerto)} </strong> experimentó tanto tendencias de crecimiento de la demanda como así también caídas de pasajeros y operaciones. 
     Esta evolución puede observarse en el gráfico <strong>Evolución histórica de pasajeros y aeronaves</strong> de los <strong>Datos clave</strong> (Pág.3). 
-    </p>
+    ${maxSentence}
+  </p>
     <p>
     Para analizar la serie histórica, se decidió utilizar el período ${longStartYear}-${longEndYear} como referencia prepandemia, mientras que el período ${recentStartYear}-${recentEndYear}
     resume la dinámica posterior. Por ello, el indicador Tasa Media de Crecimiento Anual (TMCA) se muestra diferenciado, evitando los años 2020 a 2022 debido a su carácter atípico.
@@ -4622,8 +4621,7 @@ textEl.innerHTML =
     <strong>${recoveryPhrase}</strong>.
   </p>
 
-  ${historicRouteParagraph}
-  ${maxParagraph}`;
+${historicRouteParagraph}`;
   }
   function renderOfertaDemanda(iata) {
     const summary = getOfertaDemandaSummary(iata, YEAR_REF, { soloComercial: true });
