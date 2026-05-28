@@ -1394,11 +1394,7 @@
   box-sizing: border-box;
 }
 
-/* Texto bajo el gráfico histórico de rutas */
-.od-historic-routes-narrative {
-  margin: 4px 0 0;
-  padding: 0;
-}
+
 .od-connectivity-text--historic p {
   margin: 0 0 5px 0;
   text-align: justify;
