@@ -5047,8 +5047,18 @@ function renderHistoricRoutesNarrative(iata) {
 
   const html = buildHistoricRouteNarrative(iata);
 
-  el.innerHTML = html || "";
-  el.style.display = html ? "" : "none";
+  if (!html) {
+    el.innerHTML = "";
+    el.style.display = "none";
+    return;
+  }
+
+  el.innerHTML = odBuildHistoricConnectivityBlock(
+    "Lectura de rutas históricas",
+    html
+  );
+
+  el.style.display = "";
 }
 function buildHistoricRouteNarrative(iata) {
   const data = buildHistoricRouteSeries(iata);
@@ -5090,6 +5100,27 @@ function getHistoricTrafficDataForAirport(iata) {
     ? historicTrafficByIata.find(x => clean(x.iata).toUpperCase() === code)
     : historicTrafficByIata?.[code];
 }
+
+function odStripOuterParagraph(html) {
+  return clean(html)
+    .replace(/^<p[^>]*>/i, "")
+    .replace(/<\/p>\s*$/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function odBuildHistoricConnectivityBlock(title, bodyHtml) {
+  const body = odStripOuterParagraph(bodyHtml);
+
+  if (!body) return "";
+
+  return `
+    <div class="od-connectivity-block od-historic-text-block">
+      <div class="od-connectivity-kicker">${escapeHtml(title)}</div>
+      <p>${body}</p>
+    </div>
+  `;
+}  
 function renderHistoricTrafficBlock(iata, airportName) {
   const block = q("historicTrafficBlock");
   const textEl = q("historicTrafficText");
@@ -5208,34 +5239,38 @@ const historicSubject = d.source === "aeropuertos_argentina_fdo"
   : "el tráfico aerocomercial del";
 
   
+const historicOverviewText = `
+  Durante los últimos <strong>${d.years_shown} años</strong>, ${historicSubject}
+  <strong>${escapeHtml(nombreAeropuerto)}</strong> experimentó tanto tendencias de crecimiento
+  de la demanda como caídas de pasajeros y operaciones. ${maxSentence}
+`;
+
+const historicMethodText = `
+  Para analizar la serie histórica, se decidió utilizar el período ${longStartYear}-${longEndYear}
+  como referencia prepandemia, mientras que el período ${recentStartYear}-${recentEndYear}
+  resume la dinámica posterior. Por ello, el indicador Tasa Media de Crecimiento Anual (TMCA)
+  se muestra diferenciado, evitando los años 2020 a 2022 debido a su carácter atípico.
+`;
+
+const historicComparisonText = `
+  Entre <strong>${longStartYear}</strong> y <strong>${longEndYear}</strong>, los pasajeros pasaron de
+  <strong>${odFormatNumber(d.prepandemic_start_pax)}</strong> a
+  <strong>${odFormatNumber(d.baseline_pax)}</strong>, con una
+  <strong>Tasa Media de Crecimiento Anual (TMCA) de ${odFormatPctRatio(tmcaLongTerm)}</strong>.
+  Mientras que entre <strong>${recentStartYear}</strong> y <strong>${recentEndYear}</strong>,
+  el aeropuerto mostró <strong>${recentPhrase}</strong>, pasando de
+  <strong>${odFormatNumber(recentStartPax)}</strong> a
+  <strong>${odFormatNumber(recentEndPax)}</strong> pasajeros, con una
+  <strong>TMCA de ${odFormatPctRatio(tmcaRecent)}</strong>.
+  En una lectura de conjunto de los años no pandémicos, el aeropuerto presentó
+  <strong>${trendPhrase}</strong>. Tomando 2019 como año de referencia, en
+  <strong>${recentEndYear}</strong> el aeropuerto <strong>${recoveryPhrase}</strong>.
+`;
+
 textEl.innerHTML = `
-  <p>
-    Durante los últimos <strong>${d.years_shown} años</strong>, ${historicSubject}
-    <strong>${escapeHtml(nombreAeropuerto)}</strong> experimentó tanto tendencias de crecimiento de la demanda como caídas de pasajeros y operaciones.
-    ${maxSentence}
-  </p>
-
-  <p>
-    Para analizar la serie histórica, se decidió utilizar el período ${longStartYear}-${longEndYear}
-    como referencia prepandemia, mientras que el período ${recentStartYear}-${recentEndYear}
-    resume la dinámica posterior. Por ello, el indicador Tasa Media de Crecimiento Anual (TMCA)
-    se muestra diferenciado, evitando los años 2020 a 2022 debido a su carácter atípico.
-  </p>
-
-  <p>
-    Entre <strong>${longStartYear}</strong> y <strong>${longEndYear}</strong>, los pasajeros pasaron de
-    <strong>${odFormatNumber(d.prepandemic_start_pax)}</strong> a
-    <strong>${odFormatNumber(d.baseline_pax)}</strong>, con una
-    <strong>Tasa Media de Crecimiento Anual (TMCA) de ${odFormatPctRatio(tmcaLongTerm)}</strong>.
-    Mientras que entre <strong>${recentStartYear}</strong> y <strong>${recentEndYear}</strong>,
-    el aeropuerto mostró <strong>${recentPhrase}</strong>, pasando de
-    <strong>${odFormatNumber(recentStartPax)}</strong> a
-    <strong>${odFormatNumber(recentEndPax)}</strong> pasajeros, con una
-    <strong>TMCA de ${odFormatPctRatio(tmcaRecent)}</strong>.
-    En una lectura de conjunto de los años no pandémicos, el aeropuerto presentó
-    <strong>${trendPhrase}</strong>. Tomando 2019 como año de referencia, en
-    <strong>${recentEndYear}</strong> el aeropuerto <strong>${recoveryPhrase}</strong>.
-  </p>
+  ${odBuildHistoricConnectivityBlock("Lectura general 2001–2025", historicOverviewText)}
+  ${odBuildHistoricConnectivityBlock("Criterio de análisis", historicMethodText)}
+  ${odBuildHistoricConnectivityBlock("Comparación de períodos", historicComparisonText)}
 `;
 
 renderHistoricAirportTrafficChart(code);
