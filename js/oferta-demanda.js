@@ -4826,8 +4826,11 @@ function ensureHistoricAirportChartHost() {
       </div>
       <div id="odHistoricAirportTrafficSource" class="od-historic-airport-source"></div>
     `;
+  }
 
-    textEl.insertAdjacentElement("afterend", wrap);
+  // El gráfico debe ir antes del texto narrativo general.
+  if (wrap.parentElement !== textEl.parentElement || wrap.nextElementSibling !== textEl) {
+    textEl.insertAdjacentElement("beforebegin", wrap);
   }
 
   return wrap;
@@ -4994,16 +4997,26 @@ function ensureHistoricRoutesNarrativeHost() {
   const canvas = q("odHistoricRoutesChart");
   if (!canvas) return null;
 
-  const parent = canvas.closest(".od-panel, .od-chart-card, .od-historic-chart-wrap, .panel, section, div") || canvas.parentElement;
-  if (!parent) return null;
-
   let el = q("odHistoricRoutesNarrative");
 
   if (!el) {
     el = document.createElement("div");
     el.id = "odHistoricRoutesNarrative";
     el.className = "od-historic-routes-narrative";
-    parent.appendChild(el);
+  }
+
+  const routePanel =
+    canvas.closest(".od-panel") ||
+    canvas.closest(".od-chart-card") ||
+    canvas.closest(".od-historic-chart-wrap") ||
+    canvas.parentElement;
+
+  if (!routePanel || !routePanel.parentElement) return null;
+
+  // El texto debe quedar después de la caja completa del gráfico de rutas,
+  // no dentro del canvas ni dentro del contenedor interno del gráfico.
+  if (el.parentElement !== routePanel.parentElement || el.previousElementSibling !== routePanel) {
+    routePanel.insertAdjacentElement("afterend", el);
   }
 
   return el;
@@ -5180,18 +5193,14 @@ textEl.innerHTML = `
   <p>
     Durante los últimos <strong>${d.years_shown} años</strong>, ${historicSubject}
     <strong>${escapeHtml(nombreAeropuerto)}</strong> experimentó tanto tendencias de crecimiento de la demanda como caídas de pasajeros y operaciones.
-    Esta evolución se observa en el gráfico de evolución histórica del tráfico del aeropuerto.
     ${maxSentence}
   </p>
 
   <p>
-    Para analizar la serie histórica, se decidió utilizar el período ${longStartYear}-${longEndYear} como referencia prepandemia, mientras que el período ${recentStartYear}-${recentEndYear}
-    resume la dinámica posterior. Por ello, el indicador Tasa Media de Crecimiento Anual (TMCA) se muestra diferenciado, evitando los años 2020 a 2022 debido a su carácter atípico.
-  </p>
-
-  <p>
-    En una lectura de conjunto de los años no pandémicos, el aeropuerto presentó
-    <strong>${trendPhrase}</strong>.
+    Para analizar la serie histórica, se decidió utilizar el período ${longStartYear}-${longEndYear}
+    como referencia prepandemia, mientras que el período ${recentStartYear}-${recentEndYear}
+    resume la dinámica posterior. Por ello, el indicador Tasa Media de Crecimiento Anual (TMCA)
+    se muestra diferenciado, evitando los años 2020 a 2022 debido a su carácter atípico.
   </p>
 
   <p>
@@ -5204,11 +5213,9 @@ textEl.innerHTML = `
     <strong>${odFormatNumber(recentStartPax)}</strong> a
     <strong>${odFormatNumber(recentEndPax)}</strong> pasajeros, con una
     <strong>TMCA de ${odFormatPctRatio(tmcaRecent)}</strong>.
-  </p>
-
-  <p>
-    Tomando 2019 como año de referencia, en <strong>${recentEndYear}</strong> el aeropuerto
-    <strong>${recoveryPhrase}</strong>.
+    En una lectura de conjunto de los años no pandémicos, el aeropuerto presentó
+    <strong>${trendPhrase}</strong>. Tomando 2019 como año de referencia, en
+    <strong>${recentEndYear}</strong> el aeropuerto <strong>${recoveryPhrase}</strong>.
   </p>
 `;
 
@@ -5298,7 +5305,38 @@ console.log("Oferta-demanda resumen", {
   destinos: summary.destinos.slice(0, 3)
 });
   }
+function ensureHistoricSectionOrder() {
+  const trafficBlock = q("historicTrafficBlock");
+  const routesCanvas = q("odHistoricRoutesChart");
 
+  if (!trafficBlock || !routesCanvas) return;
+
+  const routesPanel =
+    routesCanvas.closest(".od-panel") ||
+    routesCanvas.closest(".od-chart-card") ||
+    routesCanvas.closest(".od-historic-chart-wrap") ||
+    routesCanvas.parentElement;
+
+  if (!routesPanel || !routesPanel.parentElement) return;
+
+  const parent = routesPanel.parentElement;
+
+  // Si están en contenedores distintos, movemos Tráfico histórico
+  // al mismo nivel que el gráfico de rutas.
+  if (trafficBlock.parentElement !== parent) {
+    parent.insertBefore(trafficBlock, routesPanel);
+    return;
+  }
+
+  // Si el gráfico de rutas quedó antes del bloque de tráfico histórico,
+  // invertimos el orden.
+  const routesIsBeforeTraffic =
+    trafficBlock.compareDocumentPosition(routesPanel) & Node.DOCUMENT_POSITION_PRECEDING;
+
+  if (routesIsBeforeTraffic) {
+    parent.insertBefore(trafficBlock, routesPanel);
+  }
+}
 function renderAirport(iataCode) {
   const iata = clean(iataCode).toUpperCase();
   const a = aeropuertos.find(x => clean(firstNonEmpty(x, ["IATA"])).toUpperCase() === iata);
@@ -5311,8 +5349,9 @@ function renderAirport(iataCode) {
   setText("odAirportName", airportName);
   setText("odYearRef", String(YEAR_REF));
 
-  renderOfertaDemanda(iata);
-  renderHistoricTrafficBlock(iata, airportName);
+renderHistoricTrafficBlock(iata, airportName);
+renderOfertaDemanda(iata);
+ensureHistoricSectionOrder();
 }
 
   /* ============================================================
