@@ -19,6 +19,29 @@
   // Perfil operativo 2025: clasifica cada aeropuerto para modular la narrativa de conectividad.
   const PERFIL_OPERATIVO_PATH = "/geodata/fuentes/perfil_operativo_impacto_2025.json";
   const DESCRIPTIVO_AEROPUERTOS_GEOJSON_PATH = "/geodata/fuentes/Descriptivo_aeropuertos.geojson";
+  const PAX_MENSUAL_PATH = "/geodata/fuentes/pasajeros_aeropuerto_mensual.csv";
+const MOV_MENSUAL_PATH = "/geodata/fuentes/movimientos_aeropuerto_mensual.csv";
+const EXTRA_TRAFFIC_PATH = "/geodata/fuentes/pasajeros_movimientos_extra_9aeropuertos.csv";
+
+const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
+const PAX_DATASET_INT = "pasajeros_comerciales_internacional_aeropuerto";
+const PAX_DATASET_TOTAL = "pasajeros_comerciales_total_aeropuerto";
+
+const MOV_DATASET_CAB = "movimientos_comerciales_cabotaje_aeropuerto";
+const MOV_DATASET_INT = "movimientos_comerciales_internacional_aeropuerto";
+const MOV_DATASET_TOTAL = "movimientos_comerciales_total_aeropuerto";
+
+const EXTRA_TRAFFIC_SOURCE = "extra_9_aeropuertos";
+
+const EXTRA_TRAFFIC_IATAS = new Set([
+  "SST", "TTG", "RYO", "NEC", "PMQ", "GNR", "LPG", "JNI", "AOL"
+]);
+
+const EXTRA_TRAFFIC_REPLACE_FROM_IATAS = new Set([
+  "LPG", "JNI", "AOL"
+]);
+
+const EXTRA_TRAFFIC_REPLACE_FROM_DATE = new Date(2015, 0, 1);
 const OD_MIN_ROUTE_PAX_SHARE_PCT = 0.5;
 const OD_CONNECTED_DESTINATION_MIN_MONTHS = 7;
 const OD_SEASONAL_DESTINATION_MIN_MONTHS = 3;
@@ -59,6 +82,8 @@ const OD_AIRPORTS_WITHOUT_REGULAR_COMMERCIAL_SERVICE_2025 = new Set([
   let historicTrafficByIata = {};
   let fdoTrafficAA = null;
   let fdoRoutesMonthlyAA = [];
+  let pasajerosMensualRows = [];
+let movimientosMensualRows = [];
   // Índice por IATA construido a partir de perfil_operativo_impacto_2025.json.
   let operationalProfileByIata = {};
   // Índice por IATA construido a partir de Descriptivo_aeropuertos.geojson.
@@ -386,7 +411,263 @@ function odBuildSyntheticNonPandemicTMCA(
     const d = new Date(s);
     return Number.isNaN(d.getTime()) ? null : d;
   }
+function parsePasajerosMensualCSV(text) {
+  return parseCSV(text).map(r => ({
+    iata: clean(firstNonEmpty(r, ["iata"])).toUpperCase(),
+    dataset: clean(firstNonEmpty(r, ["dataset"])),
+    date: parseFechaFlexible(firstNonEmpty(r, ["fecha"])),
+    valor: parseNumber(firstNonEmpty(r, ["valor_pax", "valor", "pasajeros"]))
+  })).filter(r =>
+    r.iata &&
+    r.date &&
+    Number.isFinite(r.valor)
+  ).sort((a, b) => a.date - b.date);
+}
 
+function parseMovimientosMensualCSV(text) {
+  return parseCSV(text).map(r => ({
+    iata: clean(firstNonEmpty(r, ["iata"])).toUpperCase(),
+    dataset: clean(firstNonEmpty(r, ["dataset"])),
+    date: parseFechaFlexible(firstNonEmpty(r, ["fecha"])),
+    valor: parseNumber(firstNonEmpty(r, ["valor_movimientos", "valor", "movimientos"]))
+  })).filter(r =>
+    r.iata &&
+    r.date &&
+    Number.isFinite(r.valor)
+  ).sort((a, b) => a.date - b.date);
+}
+
+function normalizeTrafficSegment(value) {
+  const key = normalizeHeader(value);
+
+  if (
+    key.includes("internacional") ||
+    key.includes("international") ||
+    key === "int"
+  ) {
+    return "internacional";
+  }
+
+  if (
+    key.includes("cabotaje") ||
+    key.includes("domestico") ||
+    key.includes("domestic") ||
+    key.includes("nacional") ||
+    key === "cab"
+  ) {
+    return "cabotaje";
+  }
+
+  return "total";
+}
+
+function datasetForPassengerSegment(segment) {
+  if (segment === "cabotaje") return PAX_DATASET_CAB;
+  if (segment === "internacional") return PAX_DATASET_INT;
+  return PAX_DATASET_TOTAL;
+}
+
+function datasetForMovementSegment(segment) {
+  if (segment === "cabotaje") return MOV_DATASET_CAB;
+  if (segment === "internacional") return MOV_DATASET_INT;
+  return MOV_DATASET_TOTAL;
+}
+
+function parseExtraTrafficCSV(text) {
+  const rows = parseCSV(text);
+  const paxRows = [];
+  const movRows = [];
+
+  rows.forEach(r => {
+    const iata = clean(firstNonEmpty(r, [
+      "iata",
+      "aeropuerto_iata",
+      "airport_iata"
+    ])).toUpperCase();
+
+    if (!EXTRA_TRAFFIC_IATAS.has(iata)) return;
+
+    const date = parseFechaFlexible(firstNonEmpty(r, [
+      "fecha",
+      "date",
+      "anomes",
+      "ano_mes",
+      "año_mes",
+      "periodo_id"
+    ]));
+
+    if (!date) return;
+
+    const segment = normalizeTrafficSegment(firstNonEmpty(r, [
+      "segmento",
+      "clasificacion",
+      "clasificación",
+      "tipo",
+      "tipo_trafico",
+      "tipo_tráfico"
+    ]));
+
+    const pasajeros = parseNumber(firstNonEmpty(r, [
+      "valor_pax",
+      "pasajeros",
+      "pax",
+      "totalpasajeros",
+      "total_pasajeros"
+    ]));
+
+    const movimientos = parseNumber(firstNonEmpty(r, [
+      "movimientos",
+      "valor_movimientos",
+      "vuelos",
+      "totalmovimientos",
+      "total_movimientos"
+    ]));
+
+    if (Number.isFinite(pasajeros)) {
+      paxRows.push({
+        iata,
+        dataset: datasetForPassengerSegment(segment),
+        date,
+        valor: pasajeros,
+        source: EXTRA_TRAFFIC_SOURCE
+      });
+    }
+
+    if (Number.isFinite(movimientos)) {
+      movRows.push({
+        iata,
+        dataset: datasetForMovementSegment(segment),
+        date,
+        valor: movimientos,
+        source: EXTRA_TRAFFIC_SOURCE
+      });
+    }
+  });
+
+  return {
+    paxRows: paxRows.sort((a, b) => a.date - b.date),
+    movRows: movRows.sort((a, b) => a.date - b.date)
+  };
+}
+
+function isSameOrAfterMonth(date, cutoffDate) {
+  if (!(date instanceof Date) || Number.isNaN(date.getTime())) return false;
+
+  const y = date.getFullYear();
+  const m = date.getMonth();
+  const cy = cutoffDate.getFullYear();
+  const cm = cutoffDate.getMonth();
+
+  return y > cy || (y === cy && m >= cm);
+}
+
+function shouldDropBaseTrafficRow(row) {
+  const iata = clean(row.iata).toUpperCase();
+
+  return (
+    EXTRA_TRAFFIC_REPLACE_FROM_IATAS.has(iata) &&
+    row.date &&
+    isSameOrAfterMonth(row.date, EXTRA_TRAFFIC_REPLACE_FROM_DATE)
+  );
+}
+
+function mergeExtraTrafficRows(baseRows, extraRows) {
+  const keptBaseRows = (baseRows || []).filter(row => !shouldDropBaseTrafficRow(row));
+
+  return keptBaseRows
+    .concat(extraRows || [])
+    .sort((a, b) => a.date - b.date);
+}
+
+function replaceRowsForFDO(baseRows, replacementRows) {
+  return (baseRows || [])
+    .filter(row => !isFDO(row.iata))
+    .concat(replacementRows || [])
+    .sort((a, b) => a.date - b.date);
+}
+
+function fdoShouldUseTrafficRow(row) {
+  const cls = clean(row?.clase_vuelo).toLowerCase();
+  return !cls.startsWith("cargas");
+}
+
+function fdoPassengerDataset(segment) {
+  const s = clean(segment).toLowerCase();
+  if (s.includes("internacional")) return PAX_DATASET_INT;
+  return PAX_DATASET_CAB;
+}
+
+function fdoMovementDataset(segment) {
+  const s = clean(segment).toLowerCase();
+  if (s.includes("internacional")) return MOV_DATASET_INT;
+  return MOV_DATASET_CAB;
+}
+
+function getFdoTrafficMonthlyRecords() {
+  if (Array.isArray(fdoTrafficAA?.mensual)) return fdoTrafficAA.mensual;
+  if (Array.isArray(fdoTrafficAA?.monthly)) return fdoTrafficAA.monthly;
+  if (Array.isArray(fdoTrafficAA?.data)) return fdoTrafficAA.data;
+  if (Array.isArray(fdoTrafficAA?.rows)) return fdoTrafficAA.rows;
+  return [];
+}
+
+function fdoAAToPassengerRows(data) {
+  const acc = new Map();
+
+  getFdoTrafficMonthlyRecords(data)
+    .filter(fdoShouldUseTrafficRow)
+    .forEach(row => {
+      const anio = Number(row.anio ?? row.year ?? row.y);
+      const mes = Number(row.mes ?? row.month ?? row.m);
+      if (!Number.isFinite(anio) || !Number.isFinite(mes)) return;
+
+      const dataset = fdoPassengerDataset(row.segmento);
+      const key = `${anio}-${String(mes).padStart(2, "0")}-${dataset}`;
+
+      if (!acc.has(key)) {
+        acc.set(key, {
+          iata: "FDO",
+          dataset,
+          date: new Date(anio, mes - 1, 1),
+          valor: 0,
+          source: "aeropuertos_argentina_fdo"
+        });
+      }
+
+      acc.get(key).valor += Number(row.pasajeros ?? row.pax ?? row.p ?? 0) || 0;
+    });
+
+  return Array.from(acc.values()).sort((a, b) => a.date - b.date);
+}
+
+function fdoAAToMovementRows(data) {
+  const acc = new Map();
+
+  getFdoTrafficMonthlyRecords(data)
+    .filter(fdoShouldUseTrafficRow)
+    .forEach(row => {
+      const anio = Number(row.anio ?? row.year ?? row.y);
+      const mes = Number(row.mes ?? row.month ?? row.m);
+      if (!Number.isFinite(anio) || !Number.isFinite(mes)) return;
+
+      const dataset = fdoMovementDataset(row.segmento);
+      const key = `${anio}-${String(mes).padStart(2, "0")}-${dataset}`;
+
+      if (!acc.has(key)) {
+        acc.set(key, {
+          iata: "FDO",
+          dataset,
+          date: new Date(anio, mes - 1, 1),
+          valor: 0,
+          source: "aeropuertos_argentina_fdo"
+        });
+      }
+
+      acc.get(key).valor += Number(row.movimientos ?? row.vuelos ?? row.v ?? 0) || 0;
+    });
+
+  return Array.from(acc.values()).sort((a, b) => a.date - b.date);
+}
   function normalizeAirlineKey(name) {
     return clean(name)
       .toLowerCase()
@@ -4425,7 +4706,318 @@ function renderHistoricRoutesChart(iata) {
     }
   });
 }
+function buildTrafficMonthlySeries(iataUpper, mode, kind) {
+  const selected = clean(iataUpper).toUpperCase();
+  const rowsAll = kind === "mov"
+    ? movimientosMensualRows.filter(r => r.iata === selected)
+    : pasajerosMensualRows.filter(r => r.iata === selected);
 
+  if (!rowsAll.length) return [];
+
+  const datasetCab = kind === "mov" ? MOV_DATASET_CAB : PAX_DATASET_CAB;
+  const datasetInt = kind === "mov" ? MOV_DATASET_INT : PAX_DATASET_INT;
+  const datasetTotal = kind === "mov" ? MOV_DATASET_TOTAL : PAX_DATASET_TOTAL;
+
+  if (mode === "cabotaje" || mode === "internacional") {
+    const target = mode === "cabotaje" ? datasetCab : datasetInt;
+
+    return rowsAll
+      .filter(r => r.dataset === target)
+      .sort((a, b) => a.date - b.date);
+  }
+
+  const acc = new Map();
+
+  rowsAll.forEach(r => {
+    if (![datasetCab, datasetInt, datasetTotal].includes(r.dataset)) return;
+
+    const year = r.date.getFullYear();
+    const month = r.date.getMonth() + 1;
+    const key = `${year}-${String(month).padStart(2, "0")}`;
+
+    if (!acc.has(key)) {
+      acc.set(key, {
+        date: new Date(year, month - 1, 1),
+        valor: 0
+      });
+    }
+
+    acc.get(key).valor += Number(r.valor) || 0;
+  });
+
+  return Array.from(acc.values())
+    .filter(r => r.valor > 0)
+    .sort((a, b) => a.date - b.date);
+}
+
+function annualTotalsFromMonthlyRows(rows) {
+  const acc = new Map();
+
+  (rows || []).forEach(r => {
+    const y = r.date.getFullYear();
+    acc.set(y, (acc.get(y) || 0) + (Number(r.valor) || 0));
+  });
+
+  return Array.from(acc.entries())
+    .map(([year, valor]) => ({ year, valor }))
+    .sort((a, b) => a.year - b.year);
+}
+
+function buildHistoricAirportTrafficChartData(iata) {
+  const code = clean(iata).toUpperCase();
+
+  const paxCab = annualTotalsFromMonthlyRows(
+    buildTrafficMonthlySeries(code, "cabotaje", "pax")
+  );
+
+  const paxInt = annualTotalsFromMonthlyRows(
+    buildTrafficMonthlySeries(code, "internacional", "pax")
+  );
+
+  const movTotal = annualTotalsFromMonthlyRows(
+    buildTrafficMonthlySeries(code, "total", "mov")
+  );
+
+  const yearsSet = new Set();
+
+  paxCab.forEach(r => yearsSet.add(r.year));
+  paxInt.forEach(r => yearsSet.add(r.year));
+  movTotal.forEach(r => yearsSet.add(r.year));
+
+  const years = Array.from(yearsSet)
+    .filter(y => y >= 2001 && y <= YEAR_REF)
+    .sort((a, b) => a - b);
+
+  const cabMap = new Map(paxCab.map(r => [r.year, r.valor]));
+  const intMap = new Map(paxInt.map(r => [r.year, r.valor]));
+  const movMap = new Map(movTotal.map(r => [r.year, r.valor]));
+
+  return {
+    years,
+    paxCab: years.map(y => Math.round(cabMap.get(y) || 0)),
+    paxInt: years.map(y => Math.round(intMap.get(y) || 0)),
+    movTotal: years.map(y => Math.round(movMap.get(y) || 0)),
+    hasData: years.length > 0
+  };
+}
+
+function ensureHistoricAirportChartHost() {
+  const block = q("historicTrafficBlock");
+  const textEl = q("historicTrafficText");
+
+  if (!block || !textEl) return null;
+
+  let wrap = q("odHistoricAirportTrafficChartWrap");
+
+  if (!wrap) {
+    wrap = document.createElement("div");
+    wrap.id = "odHistoricAirportTrafficChartWrap";
+    wrap.className = "od-historic-airport-chart-wrap";
+
+    wrap.innerHTML = `
+      <div class="od-historic-airport-chart-head">
+        <div class="od-historic-airport-chart-title">Evolución histórica de pasajeros y aeronaves</div>
+        <div class="od-historic-airport-chart-subtitle">
+          Pasajeros cabotaje/internacional y movimientos totales
+        </div>
+      </div>
+      <div class="od-historic-airport-canvas-wrap">
+        <canvas id="odHistoricAirportTrafficChart"></canvas>
+      </div>
+      <div id="odHistoricAirportTrafficSource" class="od-historic-airport-source"></div>
+    `;
+
+    textEl.insertAdjacentElement("afterend", wrap);
+  }
+
+  return wrap;
+}
+
+function renderHistoricAirportTrafficChart(iata) {
+  const wrap = ensureHistoricAirportChartHost();
+  if (!wrap || typeof Chart === "undefined") return;
+
+  const canvas = q("odHistoricAirportTrafficChart");
+  const source = q("odHistoricAirportTrafficSource");
+
+  if (!canvas) return;
+
+  if (canvas._chart) {
+    canvas._chart.destroy();
+    canvas._chart = null;
+  }
+
+  const data = buildHistoricAirportTrafficChartData(iata);
+
+  if (!data.hasData) {
+    wrap.style.display = "none";
+    return;
+  }
+
+  wrap.style.display = "";
+
+  const hasInt = data.paxInt.some(v => v > 0);
+  const hasMov = data.movTotal.some(v => v > 0);
+
+  const datasets = [
+    {
+      type: "bar",
+      label: "Pasajeros cabotaje",
+      data: data.paxCab,
+      backgroundColor: "rgba(117, 170, 219, 0.38)",
+      borderColor: "#75AADB",
+      borderWidth: 1,
+      stack: "pax",
+      yAxisID: "y",
+      order: 2
+    }
+  ];
+
+  if (hasInt) {
+    datasets.push({
+      type: "bar",
+      label: "Pasajeros internacional",
+      data: data.paxInt,
+      backgroundColor: "rgba(62, 209, 4, 0.18)",
+      borderColor: "#3ed104",
+      borderWidth: 1,
+      stack: "pax",
+      yAxisID: "y",
+      order: 2
+    });
+  }
+
+  if (hasMov) {
+    datasets.push({
+      type: "line",
+      label: "Movimientos",
+      data: data.movTotal,
+      borderColor: "#C6923A",
+      backgroundColor: "rgba(198, 146, 58, 0)",
+      pointBackgroundColor: "#C6923A",
+      pointBorderColor: "#C6923A",
+      pointRadius: 2,
+      pointHoverRadius: 3,
+      borderWidth: 2,
+      tension: 0.22,
+      yAxisID: "y1",
+      order: 1
+    });
+  }
+
+  canvas._chart = new Chart(canvas, {
+    data: {
+      labels: data.years.map(String),
+      datasets
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: "index", intersect: false },
+      plugins: {
+        legend: {
+          position: "bottom",
+          labels: {
+            boxWidth: 9,
+            boxHeight: 9,
+            font: { size: 8 }
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const value = Number(ctx.raw || 0).toLocaleString("es-AR");
+              return ctx.dataset.yAxisID === "y1"
+                ? `${ctx.dataset.label}: ${value} movimientos`
+                : `${ctx.dataset.label}: ${value} pasajeros`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          grid: { color: "#eef3f8" },
+          ticks: {
+            color: "#6f7d8c",
+            font: { size: 8 },
+            maxRotation: 0,
+            autoSkip: true,
+            maxTicksLimit: 13
+          }
+        },
+        y: {
+          stacked: true,
+          beginAtZero: true,
+          position: "left",
+          grid: { color: "#e6edf4" },
+          ticks: {
+            color: "#6f7d8c",
+            font: { size: 8 },
+            callback: value => Number(value).toLocaleString("es-AR")
+          },
+          title: {
+            display: true,
+            text: "Pasajeros",
+            color: "#6f7d8c",
+            font: { size: 9 }
+          }
+        },
+        y1: {
+          beginAtZero: true,
+          position: "right",
+          grid: { drawOnChartArea: false },
+          ticks: {
+            color: "#6f7d8c",
+            font: { size: 8 },
+            callback: value => Number(value).toLocaleString("es-AR")
+          },
+          title: {
+            display: true,
+            text: "Movimientos",
+            color: "#6f7d8c",
+            font: { size: 9 }
+          }
+        }
+      }
+    }
+  });
+
+  if (source) {
+    source.textContent = isFDO(iata)
+      ? "Fuente: elaborado por GREyF ORSNA con datos de Aeropuertos Argentina."
+      : "Fuente: elaborado por GREyF ORSNA con datos de SIAC ANAC.";
+  }
+}
+
+function ensureHistoricRoutesNarrativeHost() {
+  const canvas = q("odHistoricRoutesChart");
+  if (!canvas) return null;
+
+  const parent = canvas.closest(".od-panel, .od-chart-card, .od-historic-chart-wrap, .panel, section, div") || canvas.parentElement;
+  if (!parent) return null;
+
+  let el = q("odHistoricRoutesNarrative");
+
+  if (!el) {
+    el = document.createElement("div");
+    el.id = "odHistoricRoutesNarrative";
+    el.className = "od-historic-routes-narrative";
+    parent.appendChild(el);
+  }
+
+  return el;
+}
+
+function renderHistoricRoutesNarrative(iata) {
+  const el = ensureHistoricRoutesNarrativeHost();
+  if (!el) return;
+
+  const html = buildHistoricRouteNarrative(iata);
+
+  el.innerHTML = html || "";
+  el.style.display = html ? "" : "none";
+}
 function buildHistoricRouteNarrative(iata) {
   const data = buildHistoricRouteSeries(iata);
   if (!data?.hasData || !data.selectedRoutes.length) return "";
@@ -4583,13 +5175,12 @@ const historicSubject = d.source === "aeropuertos_argentina_fdo"
   ? "el movimiento de pasajeros registrados en el"
   : "el tráfico aerocomercial del";
 
-const historicRouteParagraph = buildHistoricRouteNarrative(code);
   
 textEl.innerHTML =
   `<p>
     Durante los últimos <strong>${d.years_shown} años</strong>, ${historicSubject}
     <strong>${escapeHtml(nombreAeropuerto)} </strong> experimentó tanto tendencias de crecimiento de la demanda como así también caídas de pasajeros y operaciones. 
-    Esta evolución puede observarse en el gráfico <strong>Evolución histórica de pasajeros y aeronaves</strong> de los <strong>Datos clave</strong> (Pág.3). 
+    Esta evolución se observa en el gráfico de evolución histórica del tráfico del aeropuerto. 
     ${maxSentence}
   </p>
     <p>
@@ -4619,9 +5210,8 @@ textEl.innerHTML =
   <p>
     Tomando 2019 como año de referencia, en <strong>${recentEndYear}</strong> el aeropuerto
     <strong>${recoveryPhrase}</strong>.
-  </p>
-
-${historicRouteParagraph}`;
+  </p>;
+renderHistoricAirportTrafficChart(code);
   }
   function renderOfertaDemanda(iata) {
     const summary = getOfertaDemandaSummary(iata, YEAR_REF, { soloComercial: true });
@@ -4693,6 +5283,7 @@ renderTopRoutesCharts(
 // Gráfico histórico de rutas, construido con la fuente general o con la fuente especial de FDO.
 // Se mantiene también para aeropuertos sin conectividad comercial regular 2025.
 renderHistoricRoutesChart(iata);
+renderHistoricRoutesNarrative(iata);
 
 renderOfertaDemandaMonthlyChart(summary.monthly);
 renderAirlinesChart(summary.airlines);
@@ -4740,7 +5331,10 @@ const [
   fdoTrafficResp,
   fdoRoutesMonthlyResp,
   operationalProfileResp,
-  descriptivoResp
+  descriptivoResp,
+  paxMensualResp,
+  movMensualResp,
+  extraTrafficResp
 ] = await Promise.all([
   fetch(AEROPUERTOS_GEOJSON_PATH),
   fetch(RUTAS_CSV_PATH).catch(() => null),
@@ -4751,7 +5345,10 @@ const [
   fetch(FDO_TRAFFIC_AA_PATH).catch(() => null),
   fetch(FDO_ROUTES_MONTHLY_AA_PATH).catch(() => null),
   fetch(PERFIL_OPERATIVO_PATH).catch(() => null),
-  fetch(DESCRIPTIVO_AEROPUERTOS_GEOJSON_PATH).catch(() => null)
+fetch(DESCRIPTIVO_AEROPUERTOS_GEOJSON_PATH).catch(() => null),
+fetch(PAX_MENSUAL_PATH).catch(() => null),
+fetch(MOV_MENSUAL_PATH).catch(() => null),
+fetch(EXTRA_TRAFFIC_PATH).catch(() => null)
 ]);
 
       const geojson = await airportsResp.json();
@@ -4807,7 +5404,43 @@ if (fdoTrafficResp && fdoTrafficResp.ok) {
 } else {
   fdoTrafficAA = null;
 }
+if (paxMensualResp && paxMensualResp.ok) {
+  pasajerosMensualRows = parsePasajerosMensualCSV(await readTextSmart(paxMensualResp));
+} else {
+  pasajerosMensualRows = [];
+}
 
+if (movMensualResp && movMensualResp.ok) {
+  movimientosMensualRows = parseMovimientosMensualCSV(await readTextSmart(movMensualResp));
+} else {
+  movimientosMensualRows = [];
+}
+
+if (extraTrafficResp && extraTrafficResp.ok) {
+  const extraTraffic = parseExtraTrafficCSV(await readTextSmart(extraTrafficResp));
+
+  pasajerosMensualRows = mergeExtraTrafficRows(
+    pasajerosMensualRows,
+    extraTraffic.paxRows
+  );
+
+  movimientosMensualRows = mergeExtraTrafficRows(
+    movimientosMensualRows,
+    extraTraffic.movRows
+  );
+}
+
+if (fdoTrafficAA) {
+  pasajerosMensualRows = replaceRowsForFDO(
+    pasajerosMensualRows,
+    fdoAAToPassengerRows(fdoTrafficAA)
+  );
+
+  movimientosMensualRows = replaceRowsForFDO(
+    movimientosMensualRows,
+    fdoAAToMovementRows(fdoTrafficAA)
+  );
+}
 if (fdoRoutesMonthlyResp && fdoRoutesMonthlyResp.ok) {
   fdoRoutesMonthlyAA = parseFdoRoutesMonthlyAAJSON(await fdoRoutesMonthlyResp.json());
 } else {
