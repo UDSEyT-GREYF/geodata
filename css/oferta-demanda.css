@@ -1232,3 +1232,54 @@
   color: #1f4f82;
   font-weight: 700;
 }
+.od-historic-airport-chart-wrap {
+  margin-top: 8px;
+  border: 1px solid #d0d7e2;
+  border-radius: 8px;
+  background: #fff;
+  padding: 6px 8px 4px;
+}
+
+.od-historic-airport-chart-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.od-historic-airport-chart-title {
+  font-size: 0.66rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #004b80;
+  letter-spacing: 0.03em;
+}
+
+.od-historic-airport-chart-subtitle {
+  font-size: 0.58rem;
+  color: #6f7d8c;
+  text-align: right;
+}
+
+.od-historic-airport-canvas-wrap {
+  height: 165px;
+  position: relative;
+}
+
+.od-historic-airport-source {
+  margin-top: 2px;
+  font-size: 0.52rem;
+  color: #6f7d8c;
+}
+
+.od-historic-routes-narrative {
+  margin-top: 6px;
+  font-size: 0.72rem;
+  line-height: 1.28;
+  color: #1f2d3d;
+}
+
+.od-historic-routes-narrative p {
+  margin: 0;
+}
