@@ -5176,24 +5176,23 @@ const historicSubject = d.source === "aeropuertos_argentina_fdo"
   : "el tráfico aerocomercial del";
 
   
-textEl.innerHTML =
-  `<p>
+textEl.innerHTML = `
+  <p>
     Durante los últimos <strong>${d.years_shown} años</strong>, ${historicSubject}
-    <strong>${escapeHtml(nombreAeropuerto)} </strong> experimentó tanto tendencias de crecimiento de la demanda como así también caídas de pasajeros y operaciones. 
-    Esta evolución se observa en el gráfico de evolución histórica del tráfico del aeropuerto. 
+    <strong>${escapeHtml(nombreAeropuerto)}</strong> experimentó tanto tendencias de crecimiento de la demanda como caídas de pasajeros y operaciones.
+    Esta evolución se observa en el gráfico de evolución histórica del tráfico del aeropuerto.
     ${maxSentence}
   </p>
-    <p>
+
+  <p>
     Para analizar la serie histórica, se decidió utilizar el período ${longStartYear}-${longEndYear} como referencia prepandemia, mientras que el período ${recentStartYear}-${recentEndYear}
     resume la dinámica posterior. Por ello, el indicador Tasa Media de Crecimiento Anual (TMCA) se muestra diferenciado, evitando los años 2020 a 2022 debido a su carácter atípico.
-    </p>
-    <p>
+  </p>
+
+  <p>
     En una lectura de conjunto de los años no pandémicos, el aeropuerto presentó
     <strong>${trendPhrase}</strong>.
-    </p>
-    <span class="historic-period-note"> 
-    </span>
-    </p>
+  </p>
 
   <p>
     Entre <strong>${longStartYear}</strong> y <strong>${longEndYear}</strong>, los pasajeros pasaron de
@@ -5210,9 +5209,11 @@ textEl.innerHTML =
   <p>
     Tomando 2019 como año de referencia, en <strong>${recentEndYear}</strong> el aeropuerto
     <strong>${recoveryPhrase}</strong>.
-  </p>;
+  </p>
+`;
+
 renderHistoricAirportTrafficChart(code);
-  }
+}
   function renderOfertaDemanda(iata) {
     const summary = getOfertaDemandaSummary(iata, YEAR_REF, { soloComercial: true });
 
