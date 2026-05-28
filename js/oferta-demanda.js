@@ -4814,18 +4814,16 @@ function ensureHistoricAirportChartHost() {
     wrap.id = "odHistoricAirportTrafficChartWrap";
     wrap.className = "od-historic-airport-chart-wrap";
 
-    wrap.innerHTML = `
-      <div class="od-historic-airport-chart-head">
-        <div class="od-historic-airport-chart-title">Evolución histórica de pasajeros y aeronaves</div>
-        <div class="od-historic-airport-chart-subtitle">
-          Pasajeros cabotaje/internacional y movimientos totales
-        </div>
-      </div>
-      <div class="od-historic-airport-canvas-wrap">
-        <canvas id="odHistoricAirportTrafficChart"></canvas>
-      </div>
-      <div id="odHistoricAirportTrafficSource" class="od-historic-airport-source"></div>
-    `;
+wrap.innerHTML = `
+  <div class="od-historic-airport-chart-head">
+    <div class="od-historic-airport-chart-title">Evolución histórica de pasajeros y aeronaves</div>
+    <div id="odHistoricAirportTrafficSubtitle" class="od-historic-airport-chart-subtitle"></div>
+  </div>
+  <div class="od-historic-airport-canvas-wrap">
+    <canvas id="odHistoricAirportTrafficChart"></canvas>
+  </div>
+  <div id="odHistoricAirportTrafficSource" class="od-historic-airport-source"></div>
+`;
   }
 
   // El gráfico debe ir antes del texto narrativo general.
@@ -4840,8 +4838,9 @@ function renderHistoricAirportTrafficChart(iata) {
   const wrap = ensureHistoricAirportChartHost();
   if (!wrap || typeof Chart === "undefined") return;
 
-  const canvas = q("odHistoricAirportTrafficChart");
-  const source = q("odHistoricAirportTrafficSource");
+const canvas = q("odHistoricAirportTrafficChart");
+const source = q("odHistoricAirportTrafficSource");
+const subtitleEl = q("odHistoricAirportTrafficSubtitle");
 
   if (!canvas) return;
 
@@ -4861,7 +4860,12 @@ function renderHistoricAirportTrafficChart(iata) {
 
   const hasInt = data.paxInt.some(v => v > 0);
   const hasMov = data.movTotal.some(v => v > 0);
-
+if (subtitleEl) {
+  subtitleEl.innerHTML =
+    `Pasajeros <span class="od-sub-pax-cab">cabotaje</span>` +
+    (hasInt ? ` e <span class="od-sub-pax-int">internacional</span>` : ``) +
+    (hasMov ? ` y <span class="od-sub-mov-total">movimientos totales</span>` : ``);
+}
   const datasets = [
     {
       type: "bar",
@@ -4918,14 +4922,9 @@ function renderHistoricAirportTrafficChart(iata) {
       maintainAspectRatio: false,
       interaction: { mode: "index", intersect: false },
       plugins: {
-        legend: {
-          position: "bottom",
-          labels: {
-            boxWidth: 9,
-            boxHeight: 9,
-            font: { size: 8 }
-          }
-        },
+legend: {
+  display: false
+},
         tooltip: {
           callbacks: {
             label: ctx => {
