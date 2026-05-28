@@ -1232,12 +1232,100 @@
   color: #1f4f82;
   font-weight: 700;
 }
-.od-historic-airport-chart-wrap {
+/* ==========================================================
+   TRÁFICO HISTÓRICO - COMPONENTES PROPIOS
+   Usa el mismo sistema visual que od-connectivity-block
+   ========================================================== */
+
+.od-routes-extra-page.is-hidden,
+.od-historic-page.is-hidden {
+  display: none !important;
+}
+
+.od-historic-page {
+  break-before: page;
+  page-break-before: always;
+  margin-top: 24px;
+}
+
+.od-historic-page .od-panel-historic-only {
   margin-top: 8px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  min-height: auto;
+}
+
+#historicTrafficSlotDedicated {
+  margin: 0;
+  padding: 0;
+}
+
+.historic-traffic-block {
+  margin: 0;
+  padding: 8px 10px 10px;
+  border: 1px solid #d8e1ea;
+  border-radius: 12px;
+  background: #ffffff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.historic-traffic-header {
+  margin: 0;
+  padding: 0;
+}
+
+.historic-traffic-title {
+  margin: 0;
+  padding: 0;
+}
+
+.historic-traffic-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  margin: 0;
+}
+
+.historic-metric {
+  border: 1px solid #d8e1ea;
+  border-radius: 8px;
+  padding: 5px 7px;
+  background: #fbfdff;
+  min-height: 44px;
+}
+
+.historic-metric-label {
+  display: block;
+  font-size: 9px;
+  line-height: 1.1;
+  color: #748291;
+  text-transform: uppercase;
+  letter-spacing: 0.035em;
+}
+
+.historic-metric-value {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 700;
+  color: #1f4f82;
+}
+
+/* Gráfico histórico total: pasajeros y aeronaves */
+.od-historic-airport-chart-wrap {
+  margin: 0;
+  padding: 5px 7px 3px;
   border: 1px solid #d0d7e2;
   border-radius: 8px;
-  background: #fff;
-  padding: 6px 8px 4px;
+  background: #ffffff;
 }
 
 .od-historic-airport-chart-head {
@@ -1245,104 +1333,10 @@
   justify-content: space-between;
   align-items: baseline;
   gap: 8px;
-  margin-bottom: 4px;
-}
-
-.od-historic-airport-chart-title {
-  font-size: 0.66rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: #004b80;
-  letter-spacing: 0.03em;
-}
-
-.od-historic-airport-chart-subtitle {
-  font-size: 0.58rem;
-  color: #6f7d8c;
-  text-align: right;
-}
-
-.od-historic-airport-canvas-wrap {
-  height: 165px;
-  position: relative;
-}
-
-.od-historic-airport-source {
-  margin-top: 2px;
-  font-size: 0.52rem;
-  color: #6f7d8c;
-}
-
-.od-historic-routes-narrative {
-  margin: 6px 2px 0;
-  font-size: 0.72rem;
-  line-height: 1.28;
-  color: #1f2d3d;
-}
-
-.od-historic-routes-narrative p {
-  margin: 0;
-}
-/* ===== EVOLUCIÓN HISTÓRICA: ajuste general de bloque ===== */
-
-#historicTrafficBlock {
-  height: auto !important;
-  min-height: 0 !important;
-  max-height: none !important;
-  overflow: visible !important;
-
-  display: flex !important;
-  flex-direction: column;
-  gap: 6px;
-
-  padding-bottom: 8px !important;
-}
-
-#historicTrafficText {
-  font-family: inherit;
-  font-size: 0.72rem;
-  line-height: 1.28;
-  color: #1f2d3d;
-  column-count: 2;
-  column-gap: 14px;
-  margin-top: 4px;
-}
-
-#historicTrafficText p,
-#odHistoricRoutesNarrative p {
-  font-family: inherit;
-  font-size: 0.72rem;
-  line-height: 1.28;
-  font-weight: 400;
-  color: #1f2d3d;
-  margin: 0 0 0.38rem 0;
-  break-inside: avoid;
-}
-
-#historicTrafficText strong,
-#odHistoricRoutesNarrative strong {
-  font-weight: 700;
-  color: #0b4f8a;
-}
-/* Gráfico histórico total: pasajeros y aeronaves */
-#historicTrafficBlock .od-historic-airport-chart-wrap {
-  margin: 4px 0 2px !important;
-  padding: 5px 7px 3px !important;
-  border: 1px solid #d0d7e2;
-  border-radius: 8px;
-  background: #fff;
-  flex: 0 0 auto;
-}
-
-#historicTrafficBlock .od-historic-airport-chart-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 8px;
   margin-bottom: 2px;
 }
 
-#historicTrafficBlock .od-historic-airport-chart-title {
+.od-historic-airport-chart-title {
   font-size: 0.64rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -1350,93 +1344,83 @@
   letter-spacing: 0.03em;
 }
 
-#historicTrafficBlock .od-historic-airport-chart-subtitle {
+.od-historic-airport-chart-subtitle {
   font-size: 0.56rem;
   line-height: 1.15;
   color: #6f7d8c;
   text-align: right;
 }
 
-#historicTrafficBlock .od-historic-airport-canvas-wrap {
-  height: 120px !important;
+.od-historic-airport-canvas-wrap {
+  height: 120px;
   position: relative;
 }
 
-#historicTrafficBlock .od-historic-airport-source {
+.od-historic-airport-source {
   margin-top: 1px;
   font-size: 0.50rem;
   line-height: 1.1;
   color: #6f7d8c;
 }
 
-/* Texto histórico general: mismo criterio visual que Estructura de rutas */
-#historicTrafficText {
-  display: grid !important;
+/* Texto histórico: reutiliza od-connectivity-block */
+.od-connectivity-text--historic {
+  padding: 0;
+  margin: 0;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 14px;
-  row-gap: 0;
-
-  margin: 2px 0 4px !important;
-  padding: 0 !important;
-
-  font-family: Roboto, Arial, sans-serif;
-  font-size: 0.73rem;
-  line-height: 1.26;
-  color: #002855;
-}
-
-#historicTrafficText p {
-  margin: 0 0 0.34rem 0 !important;
-  font-family: Roboto, Arial, sans-serif;
-  font-size: 0.73rem;
-  line-height: 1.26;
-  font-weight: 400;
-  color: #002855;
+  gap: 6px 8px;
   text-align: left;
-  break-inside: avoid;
 }
 
-#historicTrafficText strong {
-  font-weight: 800;
-  color: #004b80;
+.od-connectivity-text--historic .od-connectivity-block {
+  margin: 0;
+  min-height: 0;
 }
 
-/* Gráfico histórico por rutas dentro del mismo marco */
-#historicTrafficBlock .od-panel:has(#odHistoricRoutesChart),
-#historicTrafficBlock .od-chart-card:has(#odHistoricRoutesChart),
-#historicTrafficBlock .od-historic-chart-wrap:has(#odHistoricRoutesChart) {
-  margin-top: 4px !important;
-  margin-bottom: 0 !important;
+.od-connectivity-text--historic .od-connectivity-block:nth-child(3) {
+  grid-column: 1 / -1;
+}
+
+/* Gráfico histórico por rutas dentro del marco histórico */
+#historicTrafficBlock .od-historic-routes-panel {
+  margin: 2px 0 0;
   flex: 0 0 auto;
 }
 
-/* Texto interpretativo de rutas históricas */
-#odHistoricRoutesNarrative {
-  margin: 2px 2px 0 !important;
-  padding: 0 !important;
-
-  font-family: Roboto, Arial, sans-serif;
-  font-size: 0.73rem;
-  line-height: 1.26;
-  color: #002855;
+#historicTrafficBlock .od-historic-routes-chart-wrap {
+  height: 270px;
+  padding: 7px 10px 2px;
+  box-sizing: border-box;
 }
 
-#odHistoricRoutesNarrative p {
-  margin: 0 !important;
-  font-family: Roboto, Arial, sans-serif;
-  font-size: 0.73rem;
-  line-height: 1.26;
-  font-weight: 400;
-  color: #002855;
+/* Texto bajo el gráfico histórico de rutas */
+.od-historic-routes-narrative {
+  margin: 4px 0 0;
+  padding: 0;
 }
 
-#odHistoricRoutesNarrative strong {
-  font-weight: 800;
-  color: #004b80;
+.od-connectivity-text--historic-routes {
+  padding: 0;
+  margin: 0;
+  grid-template-columns: 1fr;
+  gap: 0;
 }
 
-/* Colores del subtítulo/leyenda textual */
+.od-connectivity-text--historic-routes .od-connectivity-block {
+  margin: 0;
+}
+
+/* Color de la referencia textual del gráfico histórico */
 .od-sub-mov-total {
   color: #C6923A;
-  font-weight: 800;
+  font-weight: 600;
+}
+
+@media print {
+  .od-routes-extra-page,
+  .od-historic-page {
+    page-break-before: always;
+    break-before: page;
+    margin-top: 0;
+  }
 }
