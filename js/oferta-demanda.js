@@ -1203,11 +1203,7 @@ function odBuildNoRegularCommercialServiceIntroHtml(iata) {
   const airportName = odGetAirportNarrativeName(iata);
 
   return `
-    <p>
-      En el año <strong>${YEAR_REF}</strong>, no se identificaron destinos comerciales regulares
-      para el <strong>${escapeHtml(airportName)}</strong>. La actividad registrada no alcanza
-      volumen y continuidad suficientes para caracterizar una red aerocomercial regular.
-    </p>
+<p> En el año <strong>${YEAR_REF}</strong>, no se identificaron destinos comerciales regulares para el <strong>${escapeHtml(airportName)}</strong>. La actividad no regular registrada corresponde a aviación general/privada. </p>
   `;
 }
 
