@@ -979,6 +979,7 @@
   border-radius: 8px;
   padding: 7px 9px;
   min-width: 0;
+  box-sizing: border-box;
 }
 
 .od-connectivity-block-wide {
@@ -1368,8 +1369,8 @@
   padding: 0;
   margin: 0;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 6px 8px;
-  text-align: left;
+  gap: 8px 12px;
+  text-align: justify;
 }
 
 .od-connectivity-text--historic .od-connectivity-block {
@@ -1398,18 +1399,30 @@
   margin: 4px 0 0;
   padding: 0;
 }
-
+.od-connectivity-text--historic p {
+  margin: 0 0 5px 0;
+  text-align: justify;
+}
+.od-connectivity-text--historic p:last-child {
+  margin-bottom: 0;
+}
 .od-connectivity-text--historic-routes {
   padding: 0;
-  margin: 0;
+  margin: 4px 0 0;
+  display: grid;
   grid-template-columns: 1fr;
   gap: 0;
+  text-align: justify;
 }
 
 .od-connectivity-text--historic-routes .od-connectivity-block {
   margin: 0;
+  min-height: 0;
 }
-
+.od-connectivity-text--historic-routes p {
+  margin: 0;
+  text-align: justify;
+}
 /* Color de la referencia textual del gráfico histórico */
 .od-sub-mov-total {
   color: #C6923A;
