@@ -4992,9 +4992,39 @@ legend: {
   }
 }
 
-function ensureHistoricRoutesNarrativeHost() {
+function getHistoricRoutesPanel() {
   const canvas = q("odHistoricRoutesChart");
   if (!canvas) return null;
+
+  return (
+    canvas.closest(".od-panel") ||
+    canvas.closest(".od-chart-card") ||
+    canvas.closest(".od-historic-chart-wrap") ||
+    canvas.parentElement
+  );
+}
+
+function ensureHistoricRoutesInsideTrafficBlock() {
+  const block = q("historicTrafficBlock");
+  const textEl = q("historicTrafficText");
+  const routesPanel = getHistoricRoutesPanel();
+
+  if (!block || !textEl || !routesPanel || routesPanel === block) return routesPanel;
+
+  /*
+    El orden deseado dentro del marco Tráfico histórico es:
+    KPIs -> gráfico pasajeros/aeronaves -> texto general -> gráfico rutas -> texto rutas
+  */
+  if (routesPanel.parentElement !== block || routesPanel.previousElementSibling !== textEl) {
+    textEl.insertAdjacentElement("afterend", routesPanel);
+  }
+
+  return routesPanel;
+}
+
+function ensureHistoricRoutesNarrativeHost() {
+  const routesPanel = ensureHistoricRoutesInsideTrafficBlock();
+  if (!routesPanel) return null;
 
   let el = q("odHistoricRoutesNarrative");
 
@@ -5004,18 +5034,8 @@ function ensureHistoricRoutesNarrativeHost() {
     el.className = "od-historic-routes-narrative";
   }
 
-  const routePanel =
-    canvas.closest(".od-panel") ||
-    canvas.closest(".od-chart-card") ||
-    canvas.closest(".od-historic-chart-wrap") ||
-    canvas.parentElement;
-
-  if (!routePanel || !routePanel.parentElement) return null;
-
-  // El texto debe quedar después de la caja completa del gráfico de rutas,
-  // no dentro del canvas ni dentro del contenedor interno del gráfico.
-  if (el.parentElement !== routePanel.parentElement || el.previousElementSibling !== routePanel) {
-    routePanel.insertAdjacentElement("afterend", el);
+  if (el.parentElement !== routesPanel.parentElement || el.previousElementSibling !== routesPanel) {
+    routesPanel.insertAdjacentElement("afterend", el);
   }
 
   return el;
