@@ -16,6 +16,7 @@
   const AIRLINE_ALIAS_CSV_PATH = "/geodata/fuentes/aerolineas_alias.csv";
   const FDO_TRAFFIC_AA_PATH = "/geodata/fuentes/fdo_trafico_aeropuertos_argentina.json";
   const FDO_ROUTES_MONTHLY_AA_PATH = "/geodata/fuentes/fdo_rutas_mensual_aeropuertos_argentina.json";
+  const FDO_ROUTES_ANNUAL_AA_PATH = "/geodata/fuentes/fdo_rutas_aeropuertos_argentina.json";
   // Perfil operativo 2025: clasifica cada aeropuerto para modular la narrativa de conectividad.
   const PERFIL_OPERATIVO_PATH = "/geodata/fuentes/perfil_operativo_impacto_2025.json";
   const DESCRIPTIVO_AEROPUERTOS_GEOJSON_PATH = "/geodata/fuentes/Descriptivo_aeropuertos.geojson";
@@ -82,6 +83,7 @@ const OD_AIRPORTS_WITHOUT_REGULAR_COMMERCIAL_SERVICE_2025 = new Set([
   let historicTrafficByIata = {};
   let fdoTrafficAA = null;
   let fdoRoutesMonthlyAA = [];
+  let fdoRoutesAnnualAA = [];
   let pasajerosMensualRows = [];
 let movimientosMensualRows = [];
   // Índice por IATA construido a partir de perfil_operativo_impacto_2025.json.
@@ -2819,7 +2821,131 @@ function parseFdoRoutesMonthlyAAJSON(data) {
     ((Number(r.p) || 0) > 0 || (Number(r.v) || 0) > 0)
   );
 }
+function parseFdoRoutesAnnualAAJSON(data) {
+  const records = getFdoRouteRecords(data);
+  const acc = new Map();
 
+  function getFdoYear(row) {
+    let year = parseNumber(firstNonEmpty(row, [
+      "y",
+      "anio",
+      "ano",
+      "año",
+      "year"
+    ]));
+
+    if (Number.isFinite(year)) return year;
+
+    const rawPeriod = clean(firstNonEmpty(row, [
+      "am",
+      "anomes",
+      "anio_mes",
+      "ano_mes",
+      "año_mes",
+      "periodo",
+      "periodo_id",
+      "fecha",
+      "date"
+    ]));
+
+    if (!rawPeriod) return NaN;
+
+    const compact = rawPeriod.match(/^(\d{4})(\d{2})?$/);
+    if (compact) return Number(compact[1]);
+
+    const ym = rawPeriod.match(/^(\d{4})[-_/]?/);
+    if (ym) return Number(ym[1]);
+
+    const d = parseFechaFlexible(rawPeriod);
+    return d ? d.getFullYear() : NaN;
+  }
+
+  function getFdoDestinationCodeAnnual(row) {
+    const raw = clean(firstNonEmpty(row, [
+      "d",
+      "destino",
+      "destino_iata",
+      "iata_destino",
+      "codigo_destino",
+      "cod_destino",
+      "ruta",
+      "citypair_iata",
+      "citypair",
+      "par_iata"
+    ])).toUpperCase();
+
+    if (!raw) return "";
+
+    if (raw.includes("-")) {
+      const parts = raw.split("-").map(x => clean(x).toUpperCase()).filter(Boolean);
+      const other = parts.find(x => x !== "FDO");
+      return normalizeFDORouteCode(other || raw);
+    }
+
+    const codes = raw.match(/[A-Z]{3}/g) || [];
+    if (codes.length > 1 && codes.includes("FDO")) {
+      return normalizeFDORouteCode(codes.find(x => x !== "FDO") || raw);
+    }
+
+    return normalizeFDORouteCode(raw);
+  }
+
+  records.forEach(rawRow => {
+    const r = normalizeFdoRowKeys(rawRow);
+
+    const year = getFdoYear(r);
+    const code = getFdoDestinationCodeAnnual(r);
+
+    if (!Number.isFinite(year) || !code) return;
+
+    const pax = parseNumber(firstNonEmpty(r, [
+      "p",
+      "pax",
+      "pasajeros",
+      "pasajeros_totales",
+      "total_pasajeros",
+      "valor_pax"
+    ]));
+
+    const vuelos = parseNumber(firstNonEmpty(r, [
+      "v",
+      "vuelos",
+      "movimientos",
+      "vuelos_totales",
+      "total_vuelos",
+      "total_movimientos"
+    ]));
+
+    if (!Number.isFinite(pax) && !Number.isFinite(vuelos)) return;
+
+    const key = `${year}|${code}`;
+
+    if (!acc.has(key)) {
+      acc.set(key, {
+        i: "FDO",
+        y: year,
+        m: 1,
+        am: String(year),
+        d: code,
+        p: 0,
+        v: 0,
+        f: 0,
+        s: 0
+      });
+    }
+
+    const item = acc.get(key);
+    item.p += Number.isFinite(pax) ? pax : 0;
+    item.v += Number.isFinite(vuelos) ? vuelos : 0;
+  });
+
+  return Array.from(acc.values()).filter(r =>
+    r.i === "FDO" &&
+    Number.isFinite(r.y) &&
+    r.d &&
+    ((Number(r.p) || 0) > 0 || (Number(r.v) || 0) > 0)
+  );
+}
 function isArgentinaCountry(value) {
   const p = clean(value).toUpperCase();
   return p === "AR" || p === "ARG" || p === "ARGENTINA" || p.startsWith("AR-");
@@ -4556,8 +4682,34 @@ function buildFdoHistoricRouteSeries() {
   const selected = "FDO";
   const acc = { routes: new Map(), years: new Set(), totalByYear: new Map() };
 
-  (fdoRoutesMonthlyAA || []).forEach(r => {
+  const monthlyRows = fdoRoutesMonthlyAA || [];
+  const monthlyYears = new Set(
+    monthlyRows
+      .map(r => Number(r.y))
+      .filter(y => Number.isFinite(y))
+  );
+
+  /*
+    Usamos la fuente mensual cuando existe.
+    La fuente anual se usa como complemento para años que no están
+    en el archivo mensual, evitando duplicar 2025 si aparece en ambos.
+  */
+  const annualComplementRows = (fdoRoutesAnnualAA || [])
+    .filter(r => {
+      const y = Number(r.y);
+      return Number.isFinite(y) && !monthlyYears.has(y);
+    });
+
+  const rows = monthlyRows.concat(annualComplementRows);
+
+  rows.forEach(r => {
+    const year = Number(r.y);
+    const pax = Number(r.p) || 0;
+
+    if (!Number.isFinite(year) || pax <= 0) return;
+
     const label = getFdoRouteLabel(r.d);
+
     const routeKey = [
       normalizeTextKey(label.ciudad),
       normalizeTextKey(label.pais || ""),
@@ -4566,8 +4718,8 @@ function buildFdoHistoricRouteSeries() {
 
     addHistoricRouteRow(acc, {
       routeKey,
-      year: r.y,
-      pax: Number(r.p) || 0,
+      year,
+      pax,
       ciudad: label.ciudad,
       pais: label.pais || "",
       clasificacion: label.clasificacion || "",
@@ -5427,9 +5579,10 @@ const [
   iataWorldResp,
   ourAirportsResp,
   airlineAliasResp,
-  fdoTrafficResp,
-  fdoRoutesMonthlyResp,
-  operationalProfileResp,
+fdoTrafficResp,
+fdoRoutesMonthlyResp,
+fdoRoutesAnnualResp,
+operationalProfileResp,
   descriptivoResp,
   paxMensualResp,
   movMensualResp,
@@ -5442,8 +5595,9 @@ const [
   fetch(OURAIRPORTS_CSV_PATH).catch(() => null),
   fetch(AIRLINE_ALIAS_CSV_PATH).catch(() => null),
   fetch(FDO_TRAFFIC_AA_PATH).catch(() => null),
-  fetch(FDO_ROUTES_MONTHLY_AA_PATH).catch(() => null),
-  fetch(PERFIL_OPERATIVO_PATH).catch(() => null),
+fetch(FDO_ROUTES_MONTHLY_AA_PATH).catch(() => null),
+fetch(FDO_ROUTES_ANNUAL_AA_PATH).catch(() => null),
+fetch(PERFIL_OPERATIVO_PATH).catch(() => null),
 fetch(DESCRIPTIVO_AEROPUERTOS_GEOJSON_PATH).catch(() => null),
 fetch(PAX_MENSUAL_PATH).catch(() => null),
 fetch(MOV_MENSUAL_PATH).catch(() => null),
@@ -5545,7 +5699,11 @@ if (fdoRoutesMonthlyResp && fdoRoutesMonthlyResp.ok) {
 } else {
   fdoRoutesMonthlyAA = [];
 }
-
+if (fdoRoutesAnnualResp && fdoRoutesAnnualResp.ok) {
+  fdoRoutesAnnualAA = parseFdoRoutesAnnualAAJSON(await fdoRoutesAnnualResp.json());
+} else {
+  fdoRoutesAnnualAA = [];
+}
 // Carga opcional del perfil operativo 2025.
 if (operationalProfileResp && operationalProfileResp.ok) {
   operationalProfileByIata = buildOperationalProfileIndex(await operationalProfileResp.json());
