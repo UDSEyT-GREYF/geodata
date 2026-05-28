@@ -5053,6 +5053,11 @@ function renderHistoricRoutesNarrative(iata) {
     return;
   }
 
+  el.classList.add(
+    "od-connectivity-text",
+    "od-connectivity-text--historic-routes"
+  );
+
   el.innerHTML = odBuildHistoricConnectivityBlock(
     "Lectura de rutas históricas",
     html
@@ -5266,7 +5271,7 @@ const historicComparisonText = `
   <strong>${trendPhrase}</strong>. Tomando 2019 como año de referencia, en
   <strong>${recentEndYear}</strong> el aeropuerto <strong>${recoveryPhrase}</strong>.
 `;
-
+textEl.classList.add("od-connectivity-text", "od-connectivity-text--historic");
 textEl.innerHTML = `
   ${odBuildHistoricConnectivityBlock("Lectura general 2001–2025", historicOverviewText)}
   ${odBuildHistoricConnectivityBlock("Criterio de análisis", historicMethodText)}
