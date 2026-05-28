@@ -1376,6 +1376,11 @@
 .od-connectivity-text--historic .od-connectivity-block {
   margin: 0;
   min-height: 0;
+  border: 1px solid #d8e1ea;
+  border-left: 3px solid #75AADB;
+  background: #f9fbfd;
+  border-radius: 8px;
+  box-sizing: border-box;
 }
 
 .od-connectivity-text--historic .od-connectivity-block:nth-child(3) {
@@ -1414,6 +1419,11 @@
 .od-connectivity-text--historic-routes .od-connectivity-block {
   margin: 0;
   min-height: 0;
+  border: 1px solid #d8e1ea;
+  border-left: 3px solid #75AADB;
+  background: #f9fbfd;
+  border-radius: 8px;
+  box-sizing: border-box;
 }
 .od-connectivity-text--historic-routes p {
   margin: 0;
