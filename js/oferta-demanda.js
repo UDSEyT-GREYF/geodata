@@ -5264,7 +5264,7 @@ function buildHistoricRouteNarrative(iata) {
     return `<p>La evolución por rutas de San Fernando debe interpretarse en el marco de su perfil de aviación general, ejecutiva y privada: los destinos operados y la frecuencia de movimientos resultan más representativos que la oferta aerocomercial regular tradicional.</p>`;
   }
 
-  return `<p>El gráfico histórico por rutas permite identificar el peso estructural de <strong>${escapeHtml(firstLabel)}</strong>, que concentró aproximadamente <strong>${formatShareShort(firstShare)}</strong> de los pasajeros acumulados entre las rutas principales representadas. Esta lectura complementa la serie total del aeropuerto al mostrar qué corredores explicaron la dinámica de largo plazo.</p>`;
+  return `<p>El gráfico histórico por rutas permite identificar el peso estructural de <strong>${escapeHtml(firstLabel)}</strong>, que concentró el <strong>${formatShareShort(firstShare)}</strong> de los pasajeros acumulados entre las rutas principales representadas. Esta lectura complementa la serie total del aeropuerto al mostrar qué corredores explicaron la dinámica de largo plazo.</p>`;
 }
 
 function getHistoricTrafficDataForAirport(iata) {
