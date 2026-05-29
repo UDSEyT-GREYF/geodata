@@ -13,6 +13,7 @@
   const AEROPUERTOS_GEOJSON_PATH = "/geodata/fuentes/Datos_aeropuertos.geojson";
   const IATA_MUNDO_CSV_PATH = "/geodata/fuentes/ListadoIATAmundo.csv";
   const OURAIRPORTS_CSV_PATH = "/geodata/fuentes/ourairports.csv";
+  const PROVINCIAS_GEOJSON_PATH = "/geodata/fuentes/provincias.geojson";
   const AIRLINE_ALIAS_CSV_PATH = "/geodata/fuentes/aerolineas_alias.csv";
   const FDO_TRAFFIC_AA_PATH = "/geodata/fuentes/fdo_trafico_aeropuertos_argentina.json";
   const FDO_ROUTES_MONTHLY_AA_PATH = "/geodata/fuentes/fdo_rutas_mensual_aeropuertos_argentina.json";
@@ -76,6 +77,8 @@ const OD_AIRPORTS_WITHOUT_REGULAR_COMMERCIAL_SERVICE_2025 = new Set([
   let iataWorldIndex = {};
   let routeCodeIndex = {};
   let ourAirportsIndex = {};
+  let provinciasFeatures = [];
+  let odConnectivityMaps = {};
   let currentIATA = "";
   let rutasKmRows = [];
   let rutasKmIndex = new Map();
@@ -1519,7 +1522,477 @@ const destinationsText = fdoDestinationsText
     </p>
   `;
 }
-  
+ /* ============================================================
+   MAPAS DE CONECTIVIDAD 2025
+   ------------------------------------------------------------
+   Reemplazan el párrafo largo de oferta y conectividad.
+   Usan la misma clasificación ya empleada por el texto:
+   cabotaje / sudamérica / extra-sudamérica / temporada.
+   ============================================================ */
+
+const OD_MAP_BOUNDS_ARGENTINA = [
+  [-55.2, -73.7],
+  [-21.6, -53.4]
+];
+
+const OD_MAP_BOUNDS_SOUTH_AMERICA = [
+  [-56.5, -82.8],
+  [13.0, -34.0]
+];
+
+const OD_MAP_COLORS = {
+  domestic: "#00A3E0",
+  southamerica: "#2CA25F",
+  extra: "#F28C28"
+};
+
+const OD_MAP_ROUTE_WEIGHT_MIN = 1.6;
+const OD_MAP_ROUTE_WEIGHT_MAX = 4.6;
+
+function odDestroyConnectivityMaps() {
+  Object.values(odConnectivityMaps || {}).forEach(map => {
+    try {
+      if (map && typeof map.remove === "function") map.remove();
+    } catch (e) {
+      console.warn("No se pudo destruir mapa de conectividad", e);
+    }
+  });
+
+  odConnectivityMaps = {};
+}
+
+function odGetAirportRecordByIata(iata) {
+  const code = clean(iata).toUpperCase();
+
+  return aeropuertos.find(a =>
+    clean(firstNonEmpty(a, ["IATA"])).toUpperCase() === code
+  ) || null;
+}
+
+function odGetAirportLatLngByCode(code) {
+  const key = clean(code).toUpperCase();
+  if (!key) return null;
+
+  const airport = odGetAirportRecordByIata(key);
+
+  if (airport) {
+    const lat = parseNumber(firstNonEmpty(airport, ["Lat", "LAT", "lat", "latitude"]));
+    const lon = parseNumber(firstNonEmpty(airport, ["Lon", "LON", "Long", "long", "lng", "longitude"]));
+
+    if (Number.isFinite(lat) && Number.isFinite(lon)) {
+      return [lat, lon];
+    }
+  }
+
+  const meta = ourAirportsIndex[key];
+  if (
+    meta &&
+    Number.isFinite(meta.latitude) &&
+    Number.isFinite(meta.longitude)
+  ) {
+    return [meta.latitude, meta.longitude];
+  }
+
+  return null;
+}
+
+function odResolveDestinationMapCode(destino, mapKind) {
+  const code = clean(destino?.code).toUpperCase();
+
+  // Para destinos agrupados como BUE:
+  // - cabotaje se ubica en AEP;
+  // - internacional se ubica en EZE.
+  if (code === "BUE") {
+    return mapKind === "domestic" ? "AEP" : "EZE";
+  }
+
+  const codes = Array.isArray(destino?.airportCodesList)
+    ? destino.airportCodesList.map(c => clean(c).toUpperCase()).filter(Boolean)
+    : [];
+
+  const withCoords = codes.find(c => odGetAirportLatLngByCode(c));
+  if (withCoords) return withCoords;
+
+  return code;
+}
+
+function odGetDestinationMapLabel(destino, mapKind) {
+  const code = odResolveDestinationMapCode(destino, mapKind);
+  const airport = odGetAirportRecordByIata(code);
+
+  // Para aeropuertos del SNA, usar la denominación local del sistema.
+  if (airport) {
+    const local = clean(firstNonEmpty(airport, [
+      "Aeropuerto",
+      "Ciudad",
+      "Localidad",
+      "Municipio",
+      "Ciudad / Localidad"
+    ]));
+
+    if (local) {
+      return local
+        .replace(/^Aeropuerto\s+de\s+/i, "")
+        .replace(/\s*\([A-Z]{3}\)\s*$/g, "")
+        .trim();
+    }
+  }
+
+  // Para destinos fuera del SNA, usar municipality de ourairports.csv.
+  const meta = ourAirportsIndex[code];
+
+  return (
+    clean(meta?.municipality) ||
+    clean(destino?.ciudad) ||
+    code
+  );
+}
+
+function odGetConnectivityMapPlan(iata) {
+  const info = odBuildRegularConnectedDestinationStats(
+    iata,
+    YEAR_REF,
+    OD_CONNECTED_DESTINATION_MIN_MONTHS
+  );
+
+  const domesticItems = [
+    ...(info.domestic || []).map(d => ({ ...d, mapStatus: "regular", mapKind: "domestic" })),
+    ...(info.seasonalDomestic || []).map(d => ({ ...d, mapStatus: "seasonal", mapKind: "domestic" }))
+  ];
+
+  const southAmericaItems = [
+    ...(info.southAmerica || []).map(d => ({ ...d, mapStatus: "regular", mapKind: "southamerica" })),
+    ...(info.seasonalSouthAmerica || []).map(d => ({ ...d, mapStatus: "seasonal", mapKind: "southamerica" }))
+  ];
+
+  const extraItems = [
+    ...(info.extraSouthAmerica || []).map(d => ({ ...d, mapStatus: "regular", mapKind: "extra" })),
+    ...(info.seasonalExtraSouthAmerica || []).map(d => ({ ...d, mapStatus: "seasonal", mapKind: "extra" }))
+  ];
+
+  const hasDomestic = domesticItems.length > 0;
+  const hasSouthAmerica = southAmericaItems.length > 0;
+  const hasExtra = extraItems.length > 0;
+
+  const maps = [];
+
+  if (hasDomestic) {
+    maps.push({
+      id: "odConnectivityMapDomestic",
+      legendId: "odConnectivityMapDomesticLegend",
+      title: "Conectividad aérea 2025 · Cabotaje",
+      mode: "argentina",
+      kind: "domestic",
+      routes: domesticItems
+    });
+  }
+
+  if (hasSouthAmerica || hasExtra) {
+    maps.push({
+      id: "odConnectivityMapInternational",
+      legendId: "odConnectivityMapInternationalLegend",
+      title: hasExtra
+        ? "Conectividad aérea 2025 · Internacional"
+        : "Conectividad aérea 2025 · Internacional sudamericana",
+      mode: hasExtra ? "extra" : "southamerica",
+      kind: hasExtra ? "international-extra" : "international-southamerica",
+      routes: hasExtra
+        ? [...southAmericaItems, ...extraItems]
+        : southAmericaItems
+    });
+  }
+
+  return {
+    info,
+    maps
+  };
+}
+
+function odScaleRouteWeight(pax, maxPax) {
+  const value = Number(pax || 0);
+  const max = Number(maxPax || 0);
+
+  if (max <= 0 || value <= 0) return OD_MAP_ROUTE_WEIGHT_MIN;
+
+  const ratio = Math.sqrt(value / max);
+
+  return OD_MAP_ROUTE_WEIGHT_MIN +
+    (OD_MAP_ROUTE_WEIGHT_MAX - OD_MAP_ROUTE_WEIGHT_MIN) * ratio;
+}
+
+function odMakeCurvedRouteLatLngs(origin, destination, curvature = 0.22) {
+  const [lat1, lng1] = origin;
+  const [lat2, lng2] = destination;
+
+  const dx = lng2 - lng1;
+  const dy = lat2 - lat1;
+
+  const distance = Math.sqrt(dx * dx + dy * dy) || 1;
+
+  // Perpendicular normalizada.
+  const px = -dy / distance;
+  const py = dx / distance;
+
+  // Curvatura proporcional a la distancia.
+  const curveAmount = distance * curvature;
+
+  const controlLng = (lng1 + lng2) / 2 + px * curveAmount;
+  const controlLat = (lat1 + lat2) / 2 + py * curveAmount;
+
+  const points = [];
+  const steps = 34;
+
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps;
+    const oneMinusT = 1 - t;
+
+    const lat =
+      oneMinusT * oneMinusT * lat1 +
+      2 * oneMinusT * t * controlLat +
+      t * t * lat2;
+
+    const lng =
+      oneMinusT * oneMinusT * lng1 +
+      2 * oneMinusT * t * controlLng +
+      t * t * lng2;
+
+    points.push([lat, lng]);
+  }
+
+  return points;
+}
+
+function odShouldShowProvincesInConnectivityMap(mode) {
+  // Provincias en Argentina y en Sudamérica.
+  // No en mapa extra-sudamericano.
+  return mode === "argentina" || mode === "southamerica";
+}
+
+function odAddConnectivityBaseMap(map, mode) {
+  L.tileLayer(
+    "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG:3857@png/{z}/{x}/{-y}.png",
+    {
+      maxZoom: 14,
+      tms: true,
+      attribution: "© IGN Argentina - Argenmap"
+    }
+  ).addTo(map);
+
+  if (
+    odShouldShowProvincesInConnectivityMap(mode) &&
+    provinciasFeatures &&
+    provinciasFeatures.length
+  ) {
+    L.geoJSON(
+      {
+        type: "FeatureCollection",
+        features: provinciasFeatures
+      },
+      {
+        style: {
+          color: "#ffffff",
+          weight: 0.8,
+          fillColor: "#d9d9d9",
+          fillOpacity: 0.7
+        }
+      }
+    ).addTo(map);
+  }
+}
+
+function odGetMapRouteColor(route) {
+  if (route.mapKind === "domestic") return OD_MAP_COLORS.domestic;
+  if (route.mapKind === "southamerica") return OD_MAP_COLORS.southamerica;
+  return OD_MAP_COLORS.extra;
+}
+
+function odBuildConnectivityMapLegendHtml(routes) {
+  const ordered = (routes || [])
+    .slice()
+    .sort((a, b) => Number(b.pax || 0) - Number(a.pax || 0));
+
+  return ordered.map(route => {
+    const color = odGetMapRouteColor(route);
+    const name = odGetDestinationMapLabel(route, route.mapKind);
+    const codes = escapeHtml(odGetDestinationCodesLabel(route));
+    const pax = formatNumber(Math.round(Number(route.pax || 0)));
+    const months = formatNumber(Number(route.monthsCount || 0));
+    const status = route.mapStatus === "seasonal" ? "temporada" : "regular";
+
+    return `
+      <div class="od-map-legend-row">
+        <span class="od-map-legend-line ${route.mapStatus === "seasonal" ? "is-seasonal" : ""}" style="--route-color:${color};"></span>
+        <span class="od-map-legend-text">
+          <strong>${escapeHtml(name)}${codes ? ` (${codes})` : ""}</strong>
+          <span>${pax} pasajeros · ${months} meses · ${status}</span>
+        </span>
+      </div>
+    `;
+  }).join("");
+}
+
+function odBuildConnectivityMapsHtml(iata, summary) {
+  if (isFDO(iata) || summary?.source === "aeropuertos_argentina_fdo") {
+    return odBuildIntroTextHtml(iata, summary);
+  }
+
+  const destinationInfo = odBuildDestinationCountText(iata);
+
+  if (odShouldSuppressCurrentRouteAnalysis(iata, summary, destinationInfo)) {
+    return odBuildNoRegularCommercialServiceIntroHtml(iata);
+  }
+
+  const plan = odGetConnectivityMapPlan(iata);
+
+  if (!plan.maps.length) {
+    return odBuildIntroTextHtml(iata, summary);
+  }
+
+  const layoutClass = plan.maps.length === 1
+    ? "od-connectivity-maps--single"
+    : "od-connectivity-maps--double";
+
+  return `
+    <div class="od-connectivity-map-section ${layoutClass}">
+      ${plan.maps.map(mapCfg => `
+        <div class="od-connectivity-map-panel">
+          <div class="od-connectivity-map-title">${escapeHtml(mapCfg.title)}</div>
+          <div id="${mapCfg.id}" class="od-connectivity-map-box"></div>
+          <div id="${mapCfg.legendId}" class="od-connectivity-map-legend"></div>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function odRenderConnectivityMaps(iata, summary) {
+  odDestroyConnectivityMaps();
+
+  if (typeof L === "undefined") {
+    console.warn("Leaflet no está cargado. No se pueden renderizar los mapas de conectividad.");
+    return;
+  }
+
+  if (isFDO(iata) || summary?.source === "aeropuertos_argentina_fdo") return;
+
+  const destinationInfo = odBuildDestinationCountText(iata);
+  if (odShouldSuppressCurrentRouteAnalysis(iata, summary, destinationInfo)) return;
+
+  const originCode = clean(iata).toUpperCase();
+  const originLatLng = odGetAirportLatLngByCode(originCode);
+  if (!originLatLng) return;
+
+  const plan = odGetConnectivityMapPlan(originCode);
+
+  plan.maps.forEach(mapCfg => {
+    const mapEl = q(mapCfg.id);
+    const legendEl = q(mapCfg.legendId);
+
+    if (!mapEl || !mapCfg.routes.length) return;
+
+    const map = L.map(mapEl, {
+      zoomControl: false,
+      attributionControl: false,
+      dragging: false,
+      scrollWheelZoom: false,
+      doubleClickZoom: false,
+      boxZoom: false,
+      keyboard: false,
+      tap: false
+    });
+
+    odConnectivityMaps[mapCfg.id] = map;
+
+    odAddConnectivityBaseMap(map, mapCfg.mode);
+
+    const maxPax = Math.max(
+      ...mapCfg.routes.map(r => Number(r.pax || 0)),
+      1
+    );
+
+    const routeBounds = L.latLngBounds([originLatLng]);
+
+    mapCfg.routes.forEach(route => {
+      const destCode = odResolveDestinationMapCode(route, route.mapKind);
+      const destLatLng = odGetAirportLatLngByCode(destCode);
+
+      if (!destLatLng) return;
+
+      routeBounds.extend(destLatLng);
+
+      const color = odGetMapRouteColor(route);
+      const weight = odScaleRouteWeight(route.pax, maxPax);
+      const isSeasonal = route.mapStatus === "seasonal";
+
+      const curve = odMakeCurvedRouteLatLngs(
+        originLatLng,
+        destLatLng,
+        mapCfg.mode === "argentina" ? 0.18 : 0.12
+      );
+
+      L.polyline(curve, {
+        color,
+        weight,
+        opacity: isSeasonal ? 0.85 : 0.95,
+        dashArray: isSeasonal ? "5 5" : null,
+        lineCap: "round",
+        lineJoin: "round"
+      }).addTo(map);
+
+      const label = odGetDestinationMapLabel(route, route.mapKind);
+
+      L.circleMarker(destLatLng, {
+        radius: 3.2,
+        color: "#555",
+        weight: 0.8,
+        fillColor: "#6f7d8c",
+        fillOpacity: 1
+      })
+        .addTo(map)
+        .bindTooltip(label, {
+          permanent: true,
+          direction: "top",
+          offset: [0, -4],
+          className: "od-map-city-label"
+        });
+    });
+
+    L.circleMarker(originLatLng, {
+      radius: 4.8,
+      color: "#003b70",
+      weight: 1.2,
+      fillColor: "#00A3E0",
+      fillOpacity: 1
+    })
+      .addTo(map)
+      .bindTooltip(getAirportBaseRouteName(originCode), {
+        permanent: true,
+        direction: "right",
+        offset: [6, 0],
+        className: "od-map-origin-label"
+      });
+
+    if (mapCfg.mode === "argentina") {
+      map.fitBounds(OD_MAP_BOUNDS_ARGENTINA, { padding: [6, 6], animate: false });
+    } else if (mapCfg.mode === "southamerica") {
+      map.fitBounds(OD_MAP_BOUNDS_SOUTH_AMERICA, { padding: [6, 6], animate: false });
+    } else if (routeBounds.isValid()) {
+      map.fitBounds(routeBounds.pad(0.22), {
+        padding: [10, 10],
+        animate: false,
+        maxZoom: 4
+      });
+    }
+
+    if (legendEl) {
+      legendEl.innerHTML = odBuildConnectivityMapLegendHtml(mapCfg.routes);
+    }
+
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 80);
+  });
+} 
 function odBuildIntroTextHtml(iata, summary) {
   if (isFDO(iata) || summary?.source === "aeropuertos_argentina_fdo") {
     return odBuildFdoIntroTextHtml(summary);
@@ -1605,8 +2078,12 @@ function renderOfertaDemandaIntro(iata, summary) {
   const el = q("odIntroText");
   if (!el) return;
 
-  el.innerHTML = odBuildIntroTextHtml(iata, summary);
-}  
+  el.innerHTML = odBuildConnectivityMapsHtml(iata, summary);
+
+  requestAnimationFrame(() => {
+    odRenderConnectivityMaps(iata, summary);
+  });
+}
   
 function formatShareShort(value) {
   if (!Number.isFinite(value)) return "0%";
@@ -1741,16 +2218,50 @@ function parseOurAirportsCSV(text) {
   const index = {};
 
   rows.forEach(row => {
-    const iata = clean(firstNonEmpty(row, ["iata"])).toUpperCase();
-    const oaci = clean(firstNonEmpty(row, ["oaci", "icao"])).toUpperCase();
+    const iata = clean(firstNonEmpty(row, [
+      "iata",
+      "iata_code",
+      "iata_code_"
+    ])).toUpperCase();
+
+    const oaci = clean(firstNonEmpty(row, [
+      "oaci",
+      "icao",
+      "icao_code"
+    ])).toUpperCase();
+
     const continent = clean(firstNonEmpty(row, ["continent"])).toUpperCase();
 
     const meta = {
       iata,
       oaci,
       continent,
-      latitude: parseNumber(firstNonEmpty(row, ["latitude", "lat"])),
-      longitude: parseNumber(firstNonEmpty(row, ["longitude", "lon", "lng"]))
+      countryCode: clean(firstNonEmpty(row, [
+        "country_code",
+        "iso_country",
+        "pais_codigo"
+      ])).toUpperCase(),
+      municipality: clean(firstNonEmpty(row, [
+        "municipality",
+        "ciudad",
+        "city"
+      ])),
+      name: clean(firstNonEmpty(row, [
+        "name",
+        "airport_name",
+        "nombre"
+      ])),
+      latitude: parseNumber(firstNonEmpty(row, [
+        "latitude",
+        "latitude_deg",
+        "lat"
+      ])),
+      longitude: parseNumber(firstNonEmpty(row, [
+        "longitude",
+        "longitude_deg",
+        "lon",
+        "lng"
+      ]))
     };
 
     if (iata) index[iata] = meta;
@@ -2336,91 +2847,9 @@ return {
 
 function buildConnectivityProfileHtml(iata, summary, snaRank) {
   const p = buildConnectivityProfile(iata, summary, snaRank);
-
-  const profileLabel = p.profile?.label || "perfil operativo no clasificado";
-  const territorialPhrase = buildTerritorialRolePhrase(p.descriptivo);
-  const demandPhrase = buildDemandRolePhrase(p.descriptivo);
-  const tourismPhrase = (!p.isMetroNode) ? buildTourismPhrase(p.descriptivo) : "";
   const seasonalityPhrase = buildSeasonalityPhrase(p.descriptivo, p.observedSeasonality);
 
-  const totalRankText = p.snaRank?.rank
-    ? `ocupó la posición <strong>#${formatNumber(p.snaRank.rank)} / ${formatNumber(p.snaRank.totalAirports)}</strong> en el ranking general del SNA`
-    : "no cuenta con una posición general disponible en el ranking del SNA";
-
-  const segmentRankText = p.intRelevant
-    ? ` En los rankings por segmento, se ubicó en la posición <strong>#${formatNumber(p.rankCab.rank)} / ${formatNumber(p.rankCab.totalAirports)}</strong> en cabotaje y <strong>#${formatNumber(p.rankInt.rank)} / ${formatNumber(p.rankInt.totalAirports)}</strong> en internacional.`
-    : "";
-
-  const routeName = p.topRoute
-    ? `<strong>${escapeHtml(routeTextName(p.topRoute))}</strong>`
-    : "la principal conexión";
-
-  const routeShare = Number(p.topRoute?.sharePaxPct || 0);
-  const top3Share = Number(p.concentration?.top3 || 0);
-  const top3Names = routeNamesHtml(p.top3Routes || []);
-
-  let roleText = `
-    En 2025, el aeropuerto cumplió un rol de <strong>${escapeHtml(profileLabel)}</strong> dentro del SNA.
-  `;
-
-  if (territorialPhrase) {
-    roleText += ` Territorialmente, se encuentra ${territorialPhrase}.`;
-  }
-
-  if (demandPhrase) {
-    roleText += ` Su demanda aérea se caracterizó ${demandPhrase}.`;
-  }
-
-  if (tourismPhrase) {
-    roleText += ` ${tourismPhrase}`;
-  }
-
-  const marketText = `
-    El tráfico presentó <strong>${escapeHtml(p.marketPhrase)}</strong> y ${totalRankText}.${segmentRankText}
-  `;
-
-  let networkText = "";
-
-  if (p.isMetroNode) {
-    networkText = `
-      Por tratarse de un nodo metropolitano, la conectividad se analiza por la amplitud de su red y la distribución del tráfico entre múltiples corredores.
-      La red fue <strong>${escapeHtml(p.concentration.label)}</strong>: la principal conexión fue ${routeName},
-      con <strong>${formatShareShort(routeShare)}</strong> de los pasajeros.
-      Las tres primeras conexiones —${top3Names}— concentraron <strong>${formatShareShort(top3Share)}</strong>.
-    `;
-  } else {
-    const buePart = Number.isFinite(p.bueShare)
-      ? `La relación con la Región Metropolitana de Buenos Aires, a través del Aeroparque Jorge Newbery y el Aeropuerto Internacional de Ezeiza, representó <strong>${formatShareShort(p.bueShare)}</strong> del tráfico, configurando una <strong>${escapeHtml(p.bueDependence)}</strong>.`
-      : "No se identificó una dependencia radial claramente medible respecto de AEP/EZE.";
-
-    const federalPart = p.federalRoutesCount > 0
-      ? `La conectividad federal explicó <strong>${formatShareShort(p.federalShare)}</strong> del tráfico, a partir de <strong>${formatNumber(p.federalRoutesCount)}</strong> ruta${p.federalRoutesCount === 1 ? "" : "s"} doméstica${p.federalRoutesCount === 1 ? "" : "s"} fuera de BUE.`
-      : "No se identificaron conexiones federales domésticas relevantes fuera de BUE.";
-
-    networkText = `
-      La estructura de rutas fue <strong>${escapeHtml(p.concentration.label)}</strong>.
-      La principal conexión fue ${routeName}, con <strong>${formatShareShort(routeShare)}</strong> de los pasajeros.
-      Las tres primeras conexiones —${top3Names}— concentraron <strong>${formatShareShort(top3Share)}</strong>.
-      ${buePart} ${federalPart}
-    `;
-  }
-
-  const intlRoutesText = destinationNamesWithSharesHtml(p.topIntlDestinos || [], p.paxInt);
-
-  const intlText = p.intRelevant
-    ? `
-      El segmento internacional representó <strong>${formatShareShort(p.intlShare)}</strong> del tráfico total.
-      Dentro de ese segmento, las principales conexiones fueron ${intlRoutesText}, medidas sobre los pasajeros internacionales.
-    `
-    : "";
-
   return `
-    <div class="od-connectivity-block">
-      <div class="od-connectivity-kicker">Estructura de rutas 2025</div>
-      <p>${networkText.replace(/\s+/g, " ").trim()}</p>
-      ${intlText ? `<p>${intlText.replace(/\s+/g, " ").trim()}</p>` : ""}
-    </div>
-
     <div class="od-connectivity-block">
       <div class="od-connectivity-kicker">Estacionalidad mensual 2025</div>
       <p>${seasonalityPhrase}</p>
@@ -5822,6 +6251,7 @@ const [
   rutasKmResp,
   iataWorldResp,
   ourAirportsResp,
+  provinciasResp,
   airlineAliasResp,
 fdoTrafficResp,
 fdoRoutesMonthlyResp,
@@ -5837,6 +6267,7 @@ operationalProfileResp,
   fetch(RUTAS_KM_CSV_PATH).catch(() => null),
   fetch(IATA_MUNDO_CSV_PATH).catch(() => null),
   fetch(OURAIRPORTS_CSV_PATH).catch(() => null),
+  fetch(AIRLINE_ALIAS_CSV_PATH).catch(() => null),
   fetch(AIRLINE_ALIAS_CSV_PATH).catch(() => null),
   fetch(FDO_TRAFFIC_AA_PATH).catch(() => null),
 fetch(FDO_ROUTES_MONTHLY_AA_PATH).catch(() => null),
@@ -5889,6 +6320,13 @@ rutasOfertaRows = rutasOfertaRows.map(r => ({
 } else {
   ourAirportsIndex = {};
   console.warn("No se pudo cargar ourairports.csv para clasificar continentes.");
+}
+if (provinciasResp && provinciasResp.ok) {
+  const provinciasGeojson = await provinciasResp.json();
+  provinciasFeatures = provinciasGeojson?.features || [];
+} else {
+  provinciasFeatures = [];
+  console.warn("No se pudo cargar provincias.geojson para mapas de conectividad.");
 }
 if (airlineAliasResp && airlineAliasResp.ok) {
   airlineAliasIndex = parseAirlineAliasCSV(await readTextSmart(airlineAliasResp));
