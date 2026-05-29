@@ -4613,7 +4613,16 @@ function buildHistoricRouteTitle(selected, route) {
   const originRouteName = getAirportBaseRouteName(selected);
   return `${originRouteName} - ${route.ciudad}${route.codesLabel ? ` ${route.codesLabel}` : ""}`;
 }
+function buildHistoricRouteLegendLabel(selected, route) {
+  if (!route || route.key === "__otras__") return "Otras rutas";
 
+  const city = clean(route.ciudad);
+  const code = clean(route.codesLabel);
+
+  if (!city && !code) return "Ruta";
+
+  return `${city}${code ? ` ${code}` : ""}`;
+}
 function addHistoricRouteRow(acc, row) {
   const routeKey = row.routeKey;
   const year = Number(row.year);
@@ -4764,17 +4773,27 @@ function buildHistoricRouteSeriesFromAccumulator(selected, acc) {
   });
 
   const selectedRoutes = significantRoutes.slice(0, limit);
-  const selectedKeys = new Set(selectedRoutes.map(r => r.key));
 
-  const datasets = selectedRoutes.map((route, idx) => ({
-    key: route.key,
-    label: buildHistoricRouteTitle(selected, route),
-    data: years.map(year => Math.round(route.annual.get(year) || 0)),
-    totalPax: route.totalPax,
-    backgroundColor: getHistoricRouteColor(idx),
-    borderColor: getHistoricRouteColor(idx),
-    borderWidth: 0.5
-  }));
+  const datasets = selectedRoutes.map((route, idx) => {
+    const totalPax = Number(route.totalPax) || 0;
+    const historicSharePct = totalPaxAll > 0
+      ? (totalPax / totalPaxAll) * 100
+      : 0;
+
+    const color = getHistoricRouteColor(idx);
+
+    return {
+      key: route.key,
+      label: buildHistoricRouteTitle(selected, route),
+      legendLabel: buildHistoricRouteLegendLabel(selected, route),
+      data: years.map(year => Math.round(route.annual.get(year) || 0)),
+      totalPax,
+      historicSharePct,
+      backgroundColor: color,
+      borderColor: color,
+      borderWidth: 0.5
+    };
+  });
 
   const otherData = years.map(year => {
     const total = Number(acc.totalByYear.get(year) || 0);
@@ -4792,8 +4811,12 @@ function buildHistoricRouteSeriesFromAccumulator(selected, acc) {
     datasets.push({
       key: "__otras__",
       label: "Otras rutas",
+      legendLabel: "Otras rutas",
       data: otherData,
       totalPax: otherTotalPax,
+      historicSharePct: totalPaxAll > 0
+        ? (otherTotalPax / totalPaxAll) * 100
+        : 0,
       backgroundColor: "#C9D1DA",
       borderColor: "#AEB8C3",
       borderWidth: 0.5
@@ -4841,25 +4864,25 @@ function renderHistoricRoutesChart(iata) {
 
   if (page) page.classList.remove("is-hidden");
 
-if (subtitle) {
-  let topText = "";
+  if (subtitle) {
+    let topText = "";
 
-  if (data.hasOnlyOneSignificantRoute) {
-    topText = data.hasOtherRoutes
-      ? "Ruta histórica principal por pasajeros acumulados; las conexiones de menor peso se agrupan como Otras rutas."
-      : "Ruta histórica principal por pasajeros acumulados, según años disponibles en la fuente de rutas.";
-  } else {
-    const countText = data.selectedRoutes.length === 10
-      ? "Diez"
-      : data.selectedRoutes.length === 6
-        ? "Seis"
-        : formatNumber(data.selectedRoutes.length);
+    if (data.hasOnlyOneSignificantRoute) {
+      topText = data.hasOtherRoutes
+        ? "Ruta histórica principal por pasajeros acumulados; las conexiones de menor peso se agrupan como Otras rutas."
+        : "Ruta histórica principal por pasajeros acumulados, según años disponibles en la fuente de rutas.";
+    } else {
+      const countText = data.selectedRoutes.length === 10
+        ? "Diez"
+        : data.selectedRoutes.length === 6
+          ? "Seis"
+          : formatNumber(data.selectedRoutes.length);
 
-    topText = `${countText} principales rutas históricas por pasajeros acumulados, más resto de rutas, según años disponibles en la fuente de rutas.`;
+      topText = `${countText} principales rutas históricas por pasajeros acumulados, más resto de rutas, según años disponibles en la fuente de rutas.`;
+    }
+
+    subtitle.textContent = topText;
   }
-
-  subtitle.textContent = topText;
-}
 
   canvas._chart = new Chart(canvas, {
     type: "bar",
@@ -4871,18 +4894,46 @@ if (subtitle) {
       responsive: true,
       maintainAspectRatio: false,
       interaction: { mode: "index", intersect: false },
+      layout: {
+        padding: {
+          top: 4,
+          right: 4,
+          bottom: 2,
+          left: 0
+        }
+      },
       plugins: {
         legend: {
-          position: "bottom",
+          position: "right",
+          align: "center",
           labels: {
-            boxWidth: 10,
-            boxHeight: 10,
-            font: { size: 8 }
+            boxWidth: 9,
+            boxHeight: 9,
+            padding: 8,
+            font: { size: 8 },
+            generateLabels(chart) {
+              return (chart.data.datasets || []).map((ds, idx) => ({
+                text: `${ds.legendLabel || ds.label} · ${formatShareShort(Number(ds.historicSharePct || 0))}`,
+                fillStyle: ds.backgroundColor,
+                strokeStyle: ds.borderColor || ds.backgroundColor,
+                lineWidth: 1,
+                hidden: !chart.isDatasetVisible(idx),
+                datasetIndex: idx
+              }));
+            }
           }
         },
         tooltip: {
           callbacks: {
-            label: ctx => `${ctx.dataset.label}: ${Number(ctx.raw || 0).toLocaleString("es-AR")} pasajeros`,
+            label: ctx => {
+              const ds = ctx.dataset || {};
+              const value = Number(ctx.raw || 0).toLocaleString("es-AR");
+              const share = Number.isFinite(Number(ds.historicSharePct))
+                ? ` · participación histórica ${formatShareShort(Number(ds.historicSharePct))}`
+                : "";
+
+              return `${ds.label}: ${value} pasajeros${share}`;
+            },
             footer: items => {
               const total = items.reduce((acc, item) => acc + (Number(item.raw) || 0), 0);
               return `Total seleccionado: ${total.toLocaleString("es-AR")} pasajeros`;
@@ -4894,7 +4945,11 @@ if (subtitle) {
         x: {
           stacked: true,
           grid: { display: false },
-          ticks: { color: "#6f7d8c", font: { size: 8 }, maxRotation: 0 }
+          ticks: {
+            color: "#6f7d8c",
+            font: { size: 8 },
+            maxRotation: 0
+          }
         },
         y: {
           stacked: true,
