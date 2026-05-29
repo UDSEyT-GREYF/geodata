@@ -4842,7 +4842,50 @@ function buildHistoricRouteSeries(iata) {
   if (isFDO(code)) return buildFdoHistoricRouteSeries();
   return buildHistoricRouteSeriesFromGeneral(code);
 }
+function odCompactAirportNameForTitle(iata) {
+  const code = clean(iata).toUpperCase();
+  const a = aeropuertos.find(x =>
+    clean(firstNonEmpty(x, ["IATA"])).toUpperCase() === code
+  );
 
+  if (!a) return code;
+
+  return getAirportSheetTitle(a);
+}
+
+function odSetHistoricTrafficTitle(iata) {
+  const block = q("historicTrafficBlock");
+  if (!block) return;
+
+  const titleEl =
+    q("historicTrafficTitle") ||
+    block.querySelector(".historic-traffic-title") ||
+    block.querySelector(".od-panel-title");
+
+  if (!titleEl) return;
+
+  titleEl.textContent = `Tráfico histórico · ${odCompactAirportNameForTitle(iata)}`;
+}
+
+function odSetHistoricRoutesTitle(iata) {
+  const canvas = q("odHistoricRoutesChart");
+  if (!canvas) return;
+
+  const panel =
+    canvas.closest(".od-panel") ||
+    canvas.closest(".od-historic-routes-panel") ||
+    canvas.parentElement;
+
+  if (!panel) return;
+
+  const titleEl =
+    q("odHistoricRoutesTitle") ||
+    panel.querySelector(".od-panel-title");
+
+  if (!titleEl) return;
+
+  titleEl.textContent = `Evolución histórica de pasajeros en las rutas aéreas · ${odCompactAirportNameForTitle(iata)}`;
+}
 function renderHistoricRoutesChart(iata) {
   const canvas = q("odHistoricRoutesChart");
   const subtitle = q("odHistoricRoutesSubtitle");
@@ -4863,7 +4906,7 @@ function renderHistoricRoutesChart(iata) {
   }
 
   if (page) page.classList.remove("is-hidden");
-
+odSetHistoricRoutesTitle(iata);
   if (subtitle) {
     let topText = "";
 
@@ -4947,7 +4990,10 @@ function renderHistoricRoutesChart(iata) {
           grid: { display: false },
           ticks: {
             color: "#6f7d8c",
-            font: { size: 8 },
+            font: {
+  size: 9.5,
+  weight: "600"
+},
             maxRotation: 0
           }
         },
@@ -5455,7 +5501,7 @@ const d = getHistoricTrafficDataForAirport(code);
   }
 
   block.style.display = "block";
-
+odSetHistoricTrafficTitle(code);
   const nombreAeropuerto = airportName || d.aeropuerto || `Aeropuerto ${code}`;
 
   const longStartYear = Number(d.prepandemic_start_year);
