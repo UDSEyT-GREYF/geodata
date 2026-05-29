@@ -140,12 +140,13 @@
 
 body.page-informe-impacto .impact-numbered-page {
   position: relative;
+  overflow: hidden;
 }
 
 body.page-informe-impacto .impact-page-number {
   position: absolute;
   right: 7mm;
-  bottom: 5mm;
+  bottom: 6mm;
   z-index: 500;
 
   min-width: 7mm;
@@ -167,4 +168,9 @@ body.page-informe-impacto .impact-page-number {
   border: 1px solid #d6dfeb;
   box-sizing: border-box;
   pointer-events: none;
+}
+
+body.page-informe-impacto .is-exporting {
+  box-shadow: none !important;
+  transform: none !important;
 }
