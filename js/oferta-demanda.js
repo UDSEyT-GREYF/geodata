@@ -1576,8 +1576,29 @@ function odGetAirportLatLngByCode(code) {
   const airport = odGetAirportRecordByIata(key);
 
   if (airport) {
-    const lat = parseNumber(firstNonEmpty(airport, ["Lat", "LAT", "lat", "latitude"]));
-    const lon = parseNumber(firstNonEmpty(airport, ["Lon", "LON", "Long", "long", "lng", "longitude"]));
+    const lat = parseNumber(firstNonEmpty(airport, [
+      "__lat",
+      "Lat",
+      "LAT",
+      "lat",
+      "latitude",
+      "latitude_deg",
+      "y",
+      "Y"
+    ]));
+
+    const lon = parseNumber(firstNonEmpty(airport, [
+      "__lon",
+      "Lon",
+      "LON",
+      "Long",
+      "long",
+      "lng",
+      "longitude",
+      "longitude_deg",
+      "x",
+      "X"
+    ]));
 
     if (Number.isFinite(lat) && Number.isFinite(lon)) {
       return [lat, lon];
@@ -1585,6 +1606,7 @@ function odGetAirportLatLngByCode(code) {
   }
 
   const meta = ourAirportsIndex[key];
+
   if (
     meta &&
     Number.isFinite(meta.latitude) &&
@@ -1769,14 +1791,24 @@ function odShouldShowProvincesInConnectivityMap(mode) {
 }
 
 function odAddConnectivityBaseMap(map, mode) {
-  L.tileLayer(
-    "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG:3857@png/{z}/{x}/{-y}.png",
-    {
-      maxZoom: 14,
-      tms: true,
-      attribution: "© IGN Argentina - Argenmap"
-    }
-  ).addTo(map);
+  if (mode === "argentina") {
+    L.tileLayer(
+      "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG:3857@png/{z}/{x}/{-y}.png",
+      {
+        maxZoom: 14,
+        tms: true,
+        attribution: "© IGN Argentina - Argenmap"
+      }
+    ).addTo(map);
+  } else {
+    L.tileLayer(
+      "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+      {
+        maxZoom: 10,
+        attribution: "© OpenStreetMap © CARTO"
+      }
+    ).addTo(map);
+  }
 
   if (
     odShouldShowProvincesInConnectivityMap(mode) &&
@@ -1793,7 +1825,7 @@ function odAddConnectivityBaseMap(map, mode) {
           color: "#ffffff",
           weight: 0.8,
           fillColor: "#d9d9d9",
-          fillOpacity: 0.7
+          fillOpacity: mode === "argentina" ? 0.7 : 0.45
         }
       }
     ).addTo(map);
@@ -1852,7 +1884,12 @@ function odBuildConnectivityMapsHtml(iata, summary) {
     ? "od-connectivity-maps--single"
     : "od-connectivity-maps--double";
 
-  return `
+const seasonalityHtml = buildConnectivityProfileHtml(iata, summary, null);
+
+return `
+  <div class="od-connectivity-maps-with-seasonality">
+    ${seasonalityHtml}
+
     <div class="od-connectivity-map-section ${layoutClass}">
       ${plan.maps.map(mapCfg => `
         <div class="od-connectivity-map-panel">
@@ -1862,7 +1899,8 @@ function odBuildConnectivityMapsHtml(iata, summary) {
         </div>
       `).join("")}
     </div>
-  `;
+  </div>
+`;
 }
 
 function odRenderConnectivityMaps(iata, summary) {
@@ -1885,12 +1923,16 @@ function odRenderConnectivityMaps(iata, summary) {
   const plan = odGetConnectivityMapPlan(originCode);
 
   plan.maps.forEach(mapCfg => {
-    const mapEl = q(mapCfg.id);
-    const legendEl = q(mapCfg.legendId);
+const mapEl = q(mapCfg.id);
+const legendEl = q(mapCfg.legendId);
 
-    if (!mapEl || !mapCfg.routes.length) return;
+if (!mapEl || !mapCfg.routes.length) return;
 
-    const map = L.map(mapEl, {
+if (legendEl) {
+  legendEl.innerHTML = odBuildConnectivityMapLegendHtml(mapCfg.routes);
+}
+
+const map = L.map(mapEl, {
       zoomControl: false,
       attributionControl: false,
       dragging: false,
@@ -1916,7 +1958,14 @@ function odRenderConnectivityMaps(iata, summary) {
       const destCode = odResolveDestinationMapCode(route, route.mapKind);
       const destLatLng = odGetAirportLatLngByCode(destCode);
 
-      if (!destLatLng) return;
+      if (!destLatLng) {
+  console.warn("Sin coordenadas para destino del mapa de conectividad", {
+    origen: originCode,
+    destino: destCode,
+    ruta: route
+  });
+  return;
+}
 
       routeBounds.extend(destLatLng);
 
@@ -2861,14 +2910,13 @@ function renderConnectivityProfileText(iata, summary, snaRank) {
   const el = q("odConnectivityProfileText");
   if (!el) return;
 
-  if (odShouldSuppressCurrentRouteAnalysis(iata, summary)) {
-    el.innerHTML = "";
-    el.style.display = "none";
-    return;
-  }
-
-  el.style.display = "";
-  el.innerHTML = buildConnectivityProfileHtml(iata, summary, snaRank);
+  /*
+    La estacionalidad ahora se inserta dentro de odIntroText,
+    por encima de los mapas de conectividad.
+    Este contenedor queda oculto para no duplicar el bloque.
+  */
+  el.innerHTML = "";
+  el.style.display = "none";
 }
   function getRouteMeta(code) {
     const key = clean(code).toUpperCase();
@@ -6289,10 +6337,21 @@ operationalProfileResp,
   fetch(EXTRA_TRAFFIC_PATH).catch(() => null)
 ]);
 
-      const geojson = await airportsResp.json();
-      aeropuertos = (geojson.features || [])
-        .map(f => f.properties || {})
-        .filter(p => clean(firstNonEmpty(p, ["IATA"])));
+const geojson = await airportsResp.json();
+
+aeropuertos = (geojson.features || [])
+  .map(f => {
+    const props = { ...(f.properties || {}) };
+    const coords = f.geometry?.coordinates;
+
+    if (Array.isArray(coords) && coords.length >= 2) {
+      props.__lon = Number(coords[0]);
+      props.__lat = Number(coords[1]);
+    }
+
+    return props;
+  })
+  .filter(p => clean(firstNonEmpty(p, ["IATA"])));
 
       aeropuertos.sort((a, b) =>
         clean(firstNonEmpty(a, ["IATA"])).localeCompare(clean(firstNonEmpty(b, ["IATA"])), "es")
