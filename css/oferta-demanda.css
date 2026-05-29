@@ -1367,12 +1367,11 @@
 /* Texto histórico: reutiliza od-connectivity-block */
 .od-connectivity-text--historic {
   padding: 0;
-  margin: 0;
+  margin: 6px 0 0;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px 12px;
   text-align: justify;
 }
-
 .od-connectivity-text--historic .od-connectivity-block {
   padding: 8px 10px 10px;
   margin: 0;
@@ -1383,24 +1382,19 @@
   border-radius: 8px;
   box-sizing: border-box;
 }
-
 .od-connectivity-text--historic .od-connectivity-block:nth-child(3) {
   grid-column: 1 / -1;
 }
-
 /* Gráfico histórico por rutas dentro del marco histórico */
 #historicTrafficBlock .od-historic-routes-panel {
   margin: 2px 0 0;
   flex: 0 0 auto;
 }
-
 #historicTrafficBlock .od-historic-routes-chart-wrap {
   height: 270px;
   padding: 7px 10px 2px;
   box-sizing: border-box;
 }
-
-
 .od-connectivity-text--historic p {
   margin: 0 0 5px 0;
   text-align: justify;
