@@ -417,3 +417,45 @@
     margin: 0;
   }
 }
+/* ==========================================================
+   NUMERACIÓN SOLO EN INFORME IMPACTO
+   No afecta los HTML individuales ni los parciales.
+   ========================================================== */
+
+body.page-informe-impacto .impact-page-number {
+  position: absolute;
+  right: 7mm;
+  bottom: 5mm;
+  z-index: 200;
+
+  min-width: 7mm;
+  height: 7mm;
+  padding: 0 2mm;
+  border-radius: 999px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1;
+
+  color: #1f4f82;
+  background: rgba(244, 248, 252, 0.96);
+  border: 1px solid #d6dfeb;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+body.page-informe-impacto .impact-numbered-page {
+  position: relative;
+}
+
+@media print {
+  body.page-informe-impacto .impact-page-number {
+    right: 7mm;
+    bottom: 5mm;
+  }
+}
