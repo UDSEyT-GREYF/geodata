@@ -437,13 +437,21 @@ async function rasterizeElement(el, scale = 2) {
   try {
     await new Promise(resolve => requestAnimationFrame(resolve));
 
+    const rect = el.getBoundingClientRect();
+    const width = Math.ceil(rect.width);
+    const height = Math.ceil(rect.height);
+
     const canvas = await html2canvas(el, {
       backgroundColor: "#ffffff",
       scale,
       useCORS: true,
       logging: false,
-      windowWidth: Math.ceil(el.scrollWidth),
-      windowHeight: Math.ceil(el.scrollHeight)
+      width,
+      height,
+      windowWidth: width,
+      windowHeight: height,
+      scrollX: 0,
+      scrollY: 0
     });
 
     return {
@@ -457,48 +465,21 @@ async function rasterizeElement(el, scale = 2) {
   }
 }
 
-  function addRasterPage(pdf, raster, orientation = "portrait", isFirst = false) {
-    if (!raster) return;
-
-    const pageW = orientation === "landscape" ? 297 : 210;
-    const pageH = orientation === "landscape" ? 210 : 297;
-
-    if (!isFirst) {
-      pdf.addPage("a4", orientation);
-    }
-
-    const fit = fitIntoBox(raster.width, raster.height, pageW, pageH);
-    pdf.addImage(raster.dataUrl, "JPEG", fit.x, fit.y, fit.w, fit.h);
-  }
-function addPdfPageNumber(pdf, pageNumber, orientation = "portrait") {
-  if (!pdf || !pageNumber) return;
+function addRasterPage(pdf, raster, orientation = "portrait", isFirst = false) {
+  if (!raster) return;
 
   const pageW = orientation === "landscape" ? 297 : 210;
   const pageH = orientation === "landscape" ? 210 : 297;
 
-  // Ubicación: esquina inferior derecha de hojas verticales.
-  const cx = pageW - 10;
-  const cy = pageH - 7;
+  if (!isFirst) {
+    pdf.addPage("a4", orientation);
+  }
 
-  pdf.setDrawColor(214, 223, 235);
-  pdf.setFillColor(244, 248, 252);
-  pdf.circle(cx, cy, 3.4, "FD");
-
-  pdf.setTextColor(31, 79, 130);
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(8);
-  pdf.text(String(pageNumber), cx, cy + 0.8, {
-    align: "center"
-  });
+  // Las hojas del informe ya están maquetadas como A4.
+  // Se insertan ocupando la página completa para evitar reencuadres.
+  pdf.addImage(raster.dataUrl, "JPEG", 0, 0, pageW, pageH);
 }
 
-function shouldShowPdfPageNumber(pageNumber, orientation = "portrait") {
-  // No mostrar en portada ni en la lámina apaisada.
-  if (pageNumber === 1) return false;
-  if (orientation === "landscape") return false;
-
-  return true;
-}
   function extractRichTextSegments(node, inheritedBold = false) {
     const segments = [];
 
@@ -747,33 +728,36 @@ const laminaEl = document.querySelector("#laminaMount #sheetA4");
           compress: true
         });
 
+renderInformeImpactoPageNumbers();
+
+await new Promise(resolve => {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(resolve);
+  });
+});
+
 let usedFirstPage = false;
-let reportPageNumber = 0;
 
 if (coverEl) {
   const coverRaster = await rasterizeElement(coverEl, 2);
   addRasterPage(pdf, coverRaster, "portrait", true);
-
-  reportPageNumber += 1; // Página 1: portada, sin número visible.
   usedFirstPage = true;
 }
 
 await addSummaryNativePage(pdf, !usedFirstPage);
 
-reportPageNumber += 1; // Página 2: resumen ejecutivo.
-if (shouldShowPdfPageNumber(reportPageNumber, "portrait")) {
-  addPdfPageNumber(pdf, reportPageNumber, "portrait");
-}
-
 if (laminaEl) {
   const laminaRaster = await rasterizeElement(laminaEl, 2);
   addRasterPage(pdf, laminaRaster, "landscape", false);
-
-  reportPageNumber += 1; // Página 3: lámina apaisada, cuenta pero no muestra número.
-  if (shouldShowPdfPageNumber(reportPageNumber, "landscape")) {
-    addPdfPageNumber(pdf, reportPageNumber, "landscape");
-  }
 }
+
+renderInformeImpactoPageNumbers();
+
+await new Promise(resolve => {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(resolve);
+  });
+});
 
 const offerDemandPages = Array.from(
   document.querySelectorAll("#offerDemandMount .offer-demand-page")
@@ -790,11 +774,6 @@ for (const page of offerDemandPages) {
     "portrait",
     false
   );
-
-  reportPageNumber += 1; // Página 4 en adelante.
-  if (shouldShowPdfPageNumber(reportPageNumber, "portrait")) {
-    addPdfPageNumber(pdf, reportPageNumber, "portrait");
-  }
 }
 
 pdf.save(`informe-impacto-${airport}.pdf`);
