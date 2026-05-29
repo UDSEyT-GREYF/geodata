@@ -1082,9 +1082,9 @@
 /* Altura más compacta para que entren 6 rutas completas en página 2. */
 #odTopRoutes .od-route-chart-wrap,
 #odTopRoutesExtra .od-route-chart-wrap {
-  height: 124px !important;
-  min-height: 124px !important;
-  max-height: 124px !important;
+  height: 130px !important;
+  min-height: 130px !important;
+  max-height: 130px !important;
 }
 
 /* Oculta nodos auxiliares de compatibilidad cuando el HTML los conserva. */
