@@ -990,16 +990,17 @@
   font-weight: 700;
 }
 
-/* Hoja de rutas: ahora muestra las 6 rutas 2025 juntas. */
+/* Hoja de rutas: el panel debe envolver el contenido, no estirarse al pie */
 .od-panel-routes-page {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
+  margin-bottom: 8mm;
 }
 
 .od-routes-list-page {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   gap: 4px !important;
   padding-top: 5px !important;
-  padding-bottom: 2px !important;
+  padding-bottom: 6px !important;
 }
 
 /* Cada tarjeta se compacta para que entren hasta 6 rutas en una hoja A4. */
@@ -1232,11 +1233,13 @@
 
 .od-historic-page .od-panel-historic-only {
   margin-top: 8px;
+  margin-bottom: 8mm;
   padding: 0;
   border: none;
   background: transparent;
   box-shadow: none;
   min-height: auto;
+  flex: 0 0 auto;
 }
 
 #historicTrafficSlotDedicated {
@@ -1254,6 +1257,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+  flex: 0 0 auto;
   page-break-inside: avoid;
   break-inside: avoid;
 }
