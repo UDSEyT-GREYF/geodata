@@ -4514,7 +4514,49 @@ function renderInternationalRouteNotes(routes) {
   if (noteMain) noteMain.style.display = hasIntl ? "block" : "none";
   if (noteExtra) noteExtra.style.display = "none";
 }
+function odSetTopRoutesTitles(iata, summary) {
+  const airportName = odGetAirportNarrativeName(iata);
 
+  const hasSeatData =
+    Number(summary?.totalAsientos || 0) > 0 ||
+    (summary?.mainRoutes || []).some(route => Number(route.totalAsientos || 0) > 0);
+
+  // Para casi todos los aeropuertos: pasajeros y asientos.
+  // Para FDO u otros casos sin asientos: pasajeros y movimientos.
+  const metricText = hasSeatData
+    ? "Pasajeros y asientos"
+    : "Pasajeros y movimientos";
+
+  const fullTitle = `${metricText} en las principales rutas del ${airportName}`;
+
+  const routesPage = q("odRoutesExtraPage");
+  const topRoutesEl = q("odTopRoutes");
+
+  // Título grande de la hoja: antes decía "Principales rutas 2025".
+  // Lo dejamos más corto para que no se corte en el encabezado.
+  const pageTitle =
+    routesPage?.querySelector(".od-sheet-header .sheet-airport-name") ||
+    routesPage?.querySelector(".sheet-airport-name");
+
+  if (pageTitle) {
+    pageTitle.textContent = `Principales rutas · ${airportName} ${YEAR_REF}`;
+  }
+
+  // Título interno del panel: antes decía "PRINCIPALES RUTAS".
+  const panel =
+    topRoutesEl?.closest(".od-panel") ||
+    topRoutesEl?.closest(".od-panel-routes-page") ||
+    routesPage;
+
+  const panelTitle =
+    panel?.querySelector(".od-panel-title") ||
+    Array.from(document.querySelectorAll(".od-panel-title"))
+      .find(el => normalizeTextKey(el.textContent).includes("principales rutas"));
+
+  if (panelTitle) {
+    panelTitle.textContent = fullTitle;
+  }
+}
 function renderTopRoutesCharts(routes) {
   const topRoutesEl = q("odTopRoutes");
   if (!topRoutesEl) return;
@@ -5694,6 +5736,8 @@ setHTML(
 );
 
 const suppressCurrentRouteAnalysis = odShouldSuppressCurrentRouteAnalysis(iata, summary);
+
+odSetTopRoutesTitles(iata, summary);
 
 renderTopRoutesCharts(
   suppressCurrentRouteAnalysis ? [] : summary.mainRoutes
