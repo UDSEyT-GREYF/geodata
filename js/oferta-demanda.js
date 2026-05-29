@@ -4985,7 +4985,28 @@ wrap.innerHTML = `
 
   return wrap;
 }
+function odForceChartResize(chart, attempt = 0) {
+  if (!chart || !chart.canvas) return;
 
+  const canvas = chart.canvas;
+  const parent = canvas.parentElement;
+  const box = parent ? parent.getBoundingClientRect() : canvas.getBoundingClientRect();
+
+  const hasUsableSize =
+    box &&
+    box.width > 40 &&
+    box.height > 40;
+
+  if (hasUsableSize || attempt >= 12) {
+    chart.resize();
+    chart.update("none");
+    return;
+  }
+
+  requestAnimationFrame(() => {
+    odForceChartResize(chart, attempt + 1);
+  });
+}
 function renderHistoricAirportTrafficChart(iata) {
   const wrap = ensureHistoricAirportChartHost();
   if (!wrap || typeof Chart === "undefined") return;
@@ -5136,7 +5157,15 @@ legend: {
       }
     }
   });
+odForceChartResize(canvas._chart);
 
+setTimeout(() => {
+  odForceChartResize(canvas._chart);
+}, 150);
+
+setTimeout(() => {
+  odForceChartResize(canvas._chart);
+}, 400);
   if (source) {
     source.textContent = isFDO(iata)
       ? "Fuente: elaborado por GREyF ORSNA con datos de Aeropuertos Argentina."
