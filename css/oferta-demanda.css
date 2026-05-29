@@ -1351,7 +1351,11 @@
   color: #6f7d8c;
   text-align: right;
 }
-
+#odHistoricAirportTrafficChart {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
 .od-historic-airport-canvas-wrap {
   height: 120px;
   position: relative;
