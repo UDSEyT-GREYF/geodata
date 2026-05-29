@@ -216,7 +216,10 @@
       input.focus();
     });
 
-    select.addEventListener("change", syncFromSelect);
+    select.addEventListener("change", () => {
+  syncFromSelect();
+  scheduleInformeImpactoPageNumbers();
+});
 
     const observer = new MutationObserver(() => {
       rebuildItems();
@@ -278,6 +281,91 @@ async function mountOfferDemandPartial() {
   const html = await loadText("partials/oferta-demanda.html");
   const mount = q("offerDemandMount");
   if (mount) mount.innerHTML = html;
+}
+
+function isVisibleReportPage(page) {
+  if (!page) return false;
+
+  const style = window.getComputedStyle(page);
+
+  return (
+    style.display !== "none" &&
+    style.visibility !== "hidden" &&
+    !page.classList.contains("is-hidden") &&
+    page.offsetWidth > 0 &&
+    page.offsetHeight > 0
+  );
+}
+
+function getInformeImpactoPagesForNumbering() {
+  const pages = [];
+
+  const coverEl = document.querySelector("#coverMount .report-cover-page");
+  const summaryEl = document.querySelector("#summaryMount .summary-page");
+  const laminaEl = document.querySelector("#laminaMount #sheetA4");
+
+  if (isVisibleReportPage(coverEl)) {
+    pages.push({ el: coverEl, orientation: "portrait" });
+  }
+
+  if (isVisibleReportPage(summaryEl)) {
+    pages.push({ el: summaryEl, orientation: "portrait" });
+  }
+
+  if (isVisibleReportPage(laminaEl)) {
+    pages.push({ el: laminaEl, orientation: "landscape" });
+  }
+
+  const offerDemandPages = Array.from(
+    document.querySelectorAll("#offerDemandMount .offer-demand-page")
+  ).filter(isVisibleReportPage);
+
+  offerDemandPages.forEach(page => {
+    pages.push({ el: page, orientation: "portrait" });
+  });
+
+  return pages;
+}
+
+function renderInformeImpactoPageNumbers() {
+  const root = q("reportStack");
+  if (!root) return;
+
+  root.querySelectorAll(".impact-page-number").forEach(el => el.remove());
+  root.querySelectorAll(".impact-numbered-page").forEach(el => {
+    el.classList.remove("impact-numbered-page");
+  });
+
+  const pages = getInformeImpactoPagesForNumbering();
+
+  pages.forEach((item, index) => {
+    const pageNumber = index + 1;
+    const page = item.el;
+
+    // La portada cuenta pero no muestra número.
+    if (pageNumber === 1) return;
+
+    // La página apaisada cuenta pero no muestra número.
+    if (item.orientation === "landscape") return;
+
+    page.classList.add("impact-numbered-page");
+
+    const numberEl = document.createElement("div");
+    numberEl.className = "impact-page-number";
+    numberEl.textContent = String(pageNumber);
+
+    page.appendChild(numberEl);
+  });
+}
+
+function scheduleInformeImpactoPageNumbers() {
+  requestAnimationFrame(() => {
+    renderInformeImpactoPageNumbers();
+
+    setTimeout(renderInformeImpactoPageNumbers, 400);
+    setTimeout(renderInformeImpactoPageNumbers, 1000);
+    setTimeout(renderInformeImpactoPageNumbers, 1800);
+  });
 }
 
 
@@ -650,6 +738,8 @@ const laminaEl = document.querySelector("#laminaMount #sheetA4");
       button.textContent = "Exportando PDF...";
 
       try {
+        renderInformeImpactoPageNumbers();
+        await new Promise(resolve => requestAnimationFrame(resolve));
         const pdf = new jsPDF({
           orientation: "portrait",
           unit: "mm",
@@ -722,12 +812,14 @@ async function bootReport() {
     initReportExport();
     initAirportSearch();
 
-    await mountCoverPartial();
-    await mountSummaryPartial();
-    await mountLaminaFromCurrentHtml();
-    await mountOfferDemandPartial();
+await mountCoverPartial();
+await mountSummaryPartial();
+await mountLaminaFromCurrentHtml();
+await mountOfferDemandPartial();
 
-    document.dispatchEvent(new CustomEvent("report:partials-ready"));
+document.dispatchEvent(new CustomEvent("report:partials-ready"));
+
+scheduleInformeImpactoPageNumbers();
   } catch (err) {
     console.error("No se pudo armar el informe.", err);
   }
