@@ -1387,7 +1387,7 @@
 }
 /* Gráfico histórico por rutas dentro del marco histórico */
 #historicTrafficBlock .od-historic-routes-panel {
-  margin: 2px 0 0;
+  margin: 8px 0 0;
   flex: 0 0 auto;
 }
 #historicTrafficBlock .od-historic-routes-chart-wrap {
