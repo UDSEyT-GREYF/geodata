@@ -1447,3 +1447,122 @@
     height: 250px !important;
   }
 }
+/* ==========================================================
+   MAPAS DE CONECTIVIDAD 2025
+   ========================================================== */
+
+.od-connectivity-map-section {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+}
+
+.od-connectivity-maps--single {
+  grid-template-columns: 1fr;
+}
+
+.od-connectivity-maps--double {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.od-connectivity-map-panel {
+  border: 1px solid #d8e1ea;
+  border-left: 3px solid #75aadb;
+  border-radius: 10px;
+  background: #f9fbfd;
+  padding: 7px 8px 8px;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.od-connectivity-map-title {
+  font-size: 0.68rem;
+  line-height: 1.15;
+  font-weight: 800;
+  color: #003b70;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 5px;
+}
+
+.od-connectivity-map-box {
+  width: 100%;
+  height: 178px;
+  border: 1px solid #d8e1ea;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.od-connectivity-maps--single .od-connectivity-map-box {
+  height: 205px;
+}
+
+.od-connectivity-map-legend {
+  margin-top: 5px;
+  display: grid;
+  gap: 2px;
+  font-size: 0.58rem;
+  line-height: 1.15;
+  color: #23364a;
+}
+
+.od-map-legend-row {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 5px;
+  align-items: center;
+}
+
+.od-map-legend-line {
+  width: 20px;
+  height: 0;
+  border-top: 3px solid var(--route-color, #00A3E0);
+  border-radius: 999px;
+}
+
+.od-map-legend-line.is-seasonal {
+  border-top-style: dashed;
+}
+
+.od-map-legend-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.od-map-legend-text strong {
+  color: #003b70;
+  font-weight: 800;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.od-map-legend-text span {
+  color: #5b6775;
+}
+
+.od-map-city-label,
+.od-map-origin-label {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #111827;
+  font-size: 0.58rem;
+  font-weight: 800;
+  text-shadow:
+    -1px -1px 0 #fff,
+     1px -1px 0 #fff,
+    -1px  1px 0 #fff,
+     1px  1px 0 #fff;
+}
+
+.od-map-origin-label {
+  color: #003b70;
+  font-size: 0.64rem;
+}
+
+.od-connectivity-map-box .leaflet-control-attribution {
+  display: none;
+}
