@@ -6198,22 +6198,32 @@ function ensureHistoricSectionOrder() {
   const routesPanel =
     routesCanvas.closest(".od-panel") ||
     routesCanvas.closest(".od-chart-card") ||
+    routesCanvas.closest(".od-historic-routes-panel") ||
     routesCanvas.closest(".od-historic-chart-wrap") ||
     routesCanvas.parentElement;
 
   if (!routesPanel || !routesPanel.parentElement) return;
 
+  /*
+    Desde que ensureHistoricRoutesInsideTrafficBlock() mueve el gráfico
+    de rutas históricas dentro de historicTrafficBlock, no hay que intentar
+    mover historicTrafficBlock otra vez si routesPanel ya está adentro.
+  */
+  if (routesPanel === trafficBlock || trafficBlock.contains(routesPanel)) {
+    return;
+  }
+
+  if (routesPanel.contains(trafficBlock)) {
+    return;
+  }
+
   const parent = routesPanel.parentElement;
 
-  // Si están en contenedores distintos, movemos Tráfico histórico
-  // al mismo nivel que el gráfico de rutas.
   if (trafficBlock.parentElement !== parent) {
     parent.insertBefore(trafficBlock, routesPanel);
     return;
   }
 
-  // Si el gráfico de rutas quedó antes del bloque de tráfico histórico,
-  // invertimos el orden.
   const routesIsBeforeTraffic =
     trafficBlock.compareDocumentPosition(routesPanel) & Node.DOCUMENT_POSITION_PRECEDING;
 
