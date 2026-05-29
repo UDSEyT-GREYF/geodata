@@ -1367,7 +1367,7 @@
 /* Texto histórico: reutiliza od-connectivity-block */
 .od-connectivity-text--historic {
   padding: 0;
-  margin: 6px 0 0;
+  margin: 10px 0 0;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px 12px;
   text-align: justify;
@@ -1387,7 +1387,7 @@
 }
 /* Gráfico histórico por rutas dentro del marco histórico */
 #historicTrafficBlock .od-historic-routes-panel {
-  margin: 8px 0 0;
+  margin: 12px 0 0;
   flex: 0 0 auto;
 }
 #historicTrafficBlock .od-historic-routes-chart-wrap {
