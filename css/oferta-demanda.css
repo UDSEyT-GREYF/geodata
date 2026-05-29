@@ -1566,3 +1566,11 @@
 .od-connectivity-map-box .leaflet-control-attribution {
   display: none;
 }
+.od-connectivity-maps-with-seasonality {
+  display: grid;
+  gap: 8px;
+}
+
+.od-connectivity-maps-with-seasonality .od-connectivity-block {
+  margin: 0;
+}
