@@ -6267,16 +6267,16 @@ operationalProfileResp,
   fetch(RUTAS_KM_CSV_PATH).catch(() => null),
   fetch(IATA_MUNDO_CSV_PATH).catch(() => null),
   fetch(OURAIRPORTS_CSV_PATH).catch(() => null),
-  fetch(AIRLINE_ALIAS_CSV_PATH).catch(() => null),
+  fetch(PROVINCIAS_GEOJSON_PATH).catch(() => null),
   fetch(AIRLINE_ALIAS_CSV_PATH).catch(() => null),
   fetch(FDO_TRAFFIC_AA_PATH).catch(() => null),
-fetch(FDO_ROUTES_MONTHLY_AA_PATH).catch(() => null),
-fetch(FDO_ROUTES_ANNUAL_AA_PATH).catch(() => null),
-fetch(PERFIL_OPERATIVO_PATH).catch(() => null),
-fetch(DESCRIPTIVO_AEROPUERTOS_GEOJSON_PATH).catch(() => null),
-fetch(PAX_MENSUAL_PATH).catch(() => null),
-fetch(MOV_MENSUAL_PATH).catch(() => null),
-fetch(EXTRA_TRAFFIC_PATH).catch(() => null)
+  fetch(FDO_ROUTES_MONTHLY_AA_PATH).catch(() => null),
+  fetch(FDO_ROUTES_ANNUAL_AA_PATH).catch(() => null),
+  fetch(PERFIL_OPERATIVO_PATH).catch(() => null),
+  fetch(DESCRIPTIVO_AEROPUERTOS_GEOJSON_PATH).catch(() => null),
+  fetch(PAX_MENSUAL_PATH).catch(() => null),
+  fetch(MOV_MENSUAL_PATH).catch(() => null),
+  fetch(EXTRA_TRAFFIC_PATH).catch(() => null)
 ]);
 
       const geojson = await airportsResp.json();
