@@ -1404,7 +1404,7 @@
 }
 .od-connectivity-text--historic-routes {
   padding: 0;
-  margin: 4px 0 0;
+  margin: 10px 0 0;
   display: grid;
   grid-template-columns: 1fr;
   gap: 0;
