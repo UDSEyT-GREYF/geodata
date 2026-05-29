@@ -4598,7 +4598,8 @@ const HISTORIC_ROUTE_COLORS = [
   "#2A6FB0", "#75AADB", "#F28C28", "#2CA25F", "#7B61C9",
   "#C62828", "#8C6D5A", "#19A7A0", "#D4A000", "#7A7F87", "#B0B7BF"
 ];
-
+const HISTORIC_ROUTE_MIN_SHARE_PCT = 1.0;
+const HISTORIC_ROUTE_DOMINANT_SHARE_PCT = 95;
 function getHistoricRouteLimit(iata) {
   const code = clean(iata).toUpperCase();
   return (code === "AEP" || code === "EZE") ? 10 : 6;
@@ -4656,23 +4657,29 @@ function buildHistoricRouteSeriesFromGeneral(iata) {
     const destinationCode = getEquivalentDestinationCode(selected, otherNormalizedCode);
     if (!destinationCode || destinationCode === selected) return;
 
-    const isInternational = clean(r.clasificacion).toLowerCase() === "internacional";
-    const label = getDestinationLabel(destinationCode, isInternational);
-    const routeKey = [
-      normalizeTextKey(label.ciudad || destinationCode),
-      normalizeTextKey(label.pais || ""),
-      normalizeTextKey(r.clasificacion || "")
-    ].join("|");
+const isInternational = clean(r.clasificacion).toLowerCase() === "internacional";
+const label = getDestinationLabel(destinationCode, isInternational);
 
-    addHistoricRouteRow(acc, {
-      routeKey,
-      year: r.year,
-      pax: Number.isFinite(r.pax) ? r.pax : 0,
-      ciudad: label.ciudad || destinationCode,
-      pais: label.pais || "",
-      clasificacion: clean(r.clasificacion),
-      codesLabel: otherNormalizedCode
-    });
+const codesLabel =
+  destinationCode === "BUE"
+    ? "AEP+EZE"
+    : otherNormalizedCode;
+
+const routeKey = [
+  normalizeTextKey(label.ciudad || destinationCode),
+  normalizeTextKey(label.pais || ""),
+  normalizeTextKey(r.clasificacion || "")
+].join("|");
+
+addHistoricRouteRow(acc, {
+  routeKey,
+  year: r.year,
+  pax: Number.isFinite(r.pax) ? r.pax : 0,
+  ciudad: label.ciudad || destinationCode,
+  pais: label.pais || "",
+  clasificacion: clean(r.clasificacion),
+  codesLabel
+});
   });
 
   return buildHistoricRouteSeriesFromAccumulator(selected, acc);
@@ -4734,7 +4741,29 @@ function buildHistoricRouteSeriesFromAccumulator(selected, acc) {
   const years = Array.from(acc.years).sort((a, b) => a - b);
   const routes = Array.from(acc.routes.values()).sort((a, b) => b.totalPax - a.totalPax);
   const limit = getHistoricRouteLimit(selected);
-  const selectedRoutes = routes.slice(0, limit);
+
+  const totalPaxAll = routes.reduce(
+    (sum, route) => sum + (Number(route.totalPax) || 0),
+    0
+  );
+
+  /*
+    Criterio:
+    - La ruta principal siempre se muestra.
+    - Las demás solo se muestran si alcanzan al menos 1% del total histórico.
+    - Las rutas menores quedan agrupadas como "Otras rutas".
+  */
+  const significantRoutes = routes.filter((route, idx) => {
+    if (idx === 0) return true;
+
+    const share = totalPaxAll > 0
+      ? (Number(route.totalPax || 0) / totalPaxAll) * 100
+      : 0;
+
+    return share >= HISTORIC_ROUTE_MIN_SHARE_PCT;
+  });
+
+  const selectedRoutes = significantRoutes.slice(0, limit);
   const selectedKeys = new Set(selectedRoutes.map(r => r.key));
 
   const datasets = selectedRoutes.map((route, idx) => ({
@@ -4749,16 +4778,22 @@ function buildHistoricRouteSeriesFromAccumulator(selected, acc) {
 
   const otherData = years.map(year => {
     const total = Number(acc.totalByYear.get(year) || 0);
-    const selectedTotal = selectedRoutes.reduce((sum, route) => sum + (Number(route.annual.get(year)) || 0), 0);
+    const selectedTotal = selectedRoutes.reduce(
+      (sum, route) => sum + (Number(route.annual.get(year)) || 0),
+      0
+    );
+
     return Math.max(0, Math.round(total - selectedTotal));
   });
 
-  if (otherData.some(v => v > 0)) {
+  const otherTotalPax = otherData.reduce((a, b) => a + b, 0);
+
+  if (otherTotalPax > 0) {
     datasets.push({
       key: "__otras__",
       label: "Otras rutas",
       data: otherData,
-      totalPax: otherData.reduce((a, b) => a + b, 0),
+      totalPax: otherTotalPax,
       backgroundColor: "#C9D1DA",
       borderColor: "#AEB8C3",
       borderWidth: 0.5
@@ -4771,6 +4806,10 @@ function buildHistoricRouteSeriesFromAccumulator(selected, acc) {
     selectedRoutes,
     datasets,
     limit,
+    totalPaxAll,
+    otherTotalPax,
+    hasOtherRoutes: otherTotalPax > 0,
+    hasOnlyOneSignificantRoute: selectedRoutes.length === 1,
     hasData: years.length > 0 && datasets.length > 0
   };
 }
@@ -4802,12 +4841,25 @@ function renderHistoricRoutesChart(iata) {
 
   if (page) page.classList.remove("is-hidden");
 
-  if (subtitle) {
-    const topText = getHistoricRouteLimit(iata) === 10
-      ? "Diez principales rutas históricas por pasajeros acumulados, más resto de rutas, según años disponibles en la fuente de rutas."
-      : "Seis principales rutas históricas por pasajeros acumulados, más resto de rutas, según años disponibles en la fuente de rutas.";
-    subtitle.textContent = topText;
+if (subtitle) {
+  let topText = "";
+
+  if (data.hasOnlyOneSignificantRoute) {
+    topText = data.hasOtherRoutes
+      ? "Ruta histórica principal por pasajeros acumulados; las conexiones de menor peso se agrupan como Otras rutas."
+      : "Ruta histórica principal por pasajeros acumulados, según años disponibles en la fuente de rutas.";
+  } else {
+    const countText = data.selectedRoutes.length === 10
+      ? "Diez"
+      : data.selectedRoutes.length === 6
+        ? "Seis"
+        : formatNumber(data.selectedRoutes.length);
+
+    topText = `${countText} principales rutas históricas por pasajeros acumulados, más resto de rutas, según años disponibles en la fuente de rutas.`;
   }
+
+  subtitle.textContent = topText;
+}
 
   canvas._chart = new Chart(canvas, {
     type: "bar",
@@ -5253,8 +5305,14 @@ function buildHistoricRouteNarrative(iata) {
   const code = clean(iata).toUpperCase();
   const first = data.selectedRoutes[0];
   const firstLabel = buildHistoricRouteTitle(code, first);
-  const totalSelected = data.datasets.reduce((acc, ds) => acc + (Number(ds.totalPax) || 0), 0);
-  const firstShare = totalSelected > 0 ? (first.totalPax / totalSelected) * 100 : 0;
+
+  const totalAll = Number(data.totalPaxAll || 0) > 0
+    ? Number(data.totalPaxAll)
+    : data.datasets.reduce((acc, ds) => acc + (Number(ds.totalPax) || 0), 0);
+
+  const firstShare = totalAll > 0
+    ? (Number(first.totalPax || 0) / totalAll) * 100
+    : 0;
 
   if (code === "AEP" || code === "EZE") {
     return `<p>La evolución histórica por rutas muestra una red amplia y distribuida. Por ese motivo, en los nodos metropolitanos se representan las diez principales conexiones históricas y el resto de rutas, evitando interpretar el comportamiento del aeropuerto a partir de una única ruta dominante.</p>`;
@@ -5264,7 +5322,19 @@ function buildHistoricRouteNarrative(iata) {
     return `<p>La evolución por rutas de San Fernando debe interpretarse en el marco de su perfil de aviación general, ejecutiva y privada: los destinos operados y la frecuencia de movimientos resultan más representativos que la oferta aerocomercial regular tradicional.</p>`;
   }
 
-  return `<p>El gráfico histórico por rutas permite identificar el peso estructural de <strong>${escapeHtml(firstLabel)}</strong>, que concentró el <strong>${formatShareShort(firstShare)}</strong> de los pasajeros acumulados entre las rutas principales representadas. Esta lectura complementa la serie total del aeropuerto al mostrar qué corredores explicaron la dinámica de largo plazo.</p>`;
+  if (data.hasOnlyOneSignificantRoute) {
+    const dominancePhrase = firstShare >= HISTORIC_ROUTE_DOMINANT_SHARE_PCT
+      ? "se explicó casi exclusivamente por"
+      : "estuvo principalmente asociada a";
+
+    const otherPhrase = data.hasOtherRoutes
+      ? " Las demás conexiones tuvieron una participación marginal y se presentan agrupadas como <strong>Otras rutas</strong>."
+      : " No se identificaron otras rutas con peso significativo en la serie histórica representada.";
+
+    return `<p>La evolución histórica por rutas ${dominancePhrase} <strong>${escapeHtml(firstLabel)}</strong>, que concentró aproximadamente <strong>${formatShareShort(firstShare)}</strong> de los pasajeros acumulados. ${otherPhrase}</p>`;
+  }
+
+  return `<p>El gráfico histórico por rutas permite identificar el peso estructural de <strong>${escapeHtml(firstLabel)}</strong>, que concentró el <strong>${formatShareShort(firstShare)}</strong> de los pasajeros acumulados entre las rutas principales. Esta lectura complementa la serie total del aeropuerto al mostrar qué corredores explicaron la dinámica de largo plazo.</p>`;
 }
 
 function getHistoricTrafficDataForAirport(iata) {
