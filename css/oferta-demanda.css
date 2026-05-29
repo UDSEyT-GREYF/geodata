@@ -389,40 +389,21 @@
 
 /* ==========================================================
    RESPONSIVE SOLO PARA VISTA PANTALLA
+   La hoja A4 no debe cambiar su grilla al exportar.
    ========================================================== */
 
 @media screen and (max-width: 1100px) {
-.oferta-demanda-sheet {
-  width: 210mm;
-  height: 297mm;
-}
-
-.od-page {
-  height: 100%;
-  padding: 3mm 5mm 3mm 5mm;
-}
-
-.od-kpis {
-  grid-template-columns: repeat(4, 1fr);
-}
-
-  .od-main-grid {
-    grid-template-columns: 1fr;
+  .oferta-demanda-sheet,
+  #offerDemandMount .oferta-demanda-sheet {
+    width: 210mm;
+    min-height: 297mm;
   }
 
-  .od-chart-wrap {
-    height: 320px;
+  .oferta-demanda-sheet .od-page,
+  #offerDemandMount .od-page {
+    min-height: 297mm;
+    padding: 3mm 5mm 3mm 5mm;
   }
-#offerDemandMount .oferta-demanda-sheet {
-  width: 210mm;
-  min-height: 297mm;
-}
-
-#offerDemandMount .od-page {
-  min-height: 297mm;
-  padding: 3mm 5mm 3mm 5mm;
-}
-   
 }
 .od-chart-wrap-airlines {
   height: 250px;
@@ -1443,5 +1424,22 @@
     page-break-before: always;
     break-before: page;
     margin-top: 0;
+  }
+}
+@media print {
+  .oferta-demanda-sheet .od-kpis {
+    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  }
+
+  .oferta-demanda-sheet .od-main-grid {
+    grid-template-columns: minmax(0, 1.65fr) minmax(260px, 0.95fr) !important;
+  }
+
+  .oferta-demanda-sheet .od-chart-wrap {
+    height: 250px !important;
+  }
+
+  .oferta-demanda-sheet .od-chart-wrap-airlines {
+    height: 250px !important;
   }
 }
