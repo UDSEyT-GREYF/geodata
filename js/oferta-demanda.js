@@ -2093,19 +2093,31 @@ if (legendEl) {
 }
 
 const map = L.map(mapEl, {
-      zoomControl: false,
-      attributionControl: false,
-      dragging: false,
-      scrollWheelZoom: false,
-      doubleClickZoom: false,
-      boxZoom: false,
-      keyboard: false,
-      tap: false
-    });
+  zoomControl: false,
+  attributionControl: false,
+  dragging: false,
+  scrollWheelZoom: false,
+  doubleClickZoom: false,
+  boxZoom: false,
+  keyboard: false,
+  tap: false
+});
 
-    odConnectivityMaps[mapCfg.id] = map;
+/*
+  Leaflet necesita una vista inicial antes de agregar polígonos
+  como provincias.geojson. Si no, puede fallar en Polygon.js.
+*/
+if (mapCfg.mode === "argentina") {
+  map.setView([-38.5, -63.5], 4);
+} else if (mapCfg.mode === "southamerica") {
+  map.setView([-22.0, -60.0], 3);
+} else {
+  map.setView([-20.0, -58.0], 3);
+}
 
-    odAddConnectivityBaseMap(map, mapCfg.mode);
+odConnectivityMaps[mapCfg.id] = map;
+
+odAddConnectivityBaseMap(map, mapCfg.mode);
 
     const maxPax = Math.max(
       ...mapCfg.routes.map(r => Number(r.pax || 0)),
