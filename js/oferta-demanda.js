@@ -1659,7 +1659,29 @@ function odGetAirportLatLngByCode(code) {
   console.warn("No se encontraron coordenadas para código IATA/OACI:", key);
   return null;
 }
+window.odDebugCoords = function(codes = ["AEP", "COR", "BRC", "MDZ", "IGR", "SCL", "GRU"]) {
+  const rows = codes.map(code => {
+    const key = clean(code).toUpperCase();
+    const sna = odGetAirportRecordByIata(key);
+    const our = ourAirportsIndex?.[key];
 
+    return {
+      code: key,
+      coords: JSON.stringify(odGetAirportLatLngByCode(key)),
+      enDatosAeropuertos: Boolean(sna),
+      snaLat: sna?.__lat ?? "",
+      snaLon: sna?.__lon ?? "",
+      enOurAirports: Boolean(our),
+      ourLat: our?.latitude ?? "",
+      ourLon: our?.longitude ?? "",
+      municipality: our?.municipality ?? "",
+      continent: our?.continent ?? ""
+    };
+  });
+
+  console.table(rows);
+  return rows;
+};
 function odResolveDestinationMapCode(destino, mapKind) {
   const code = clean(destino?.code).toUpperCase();
 
