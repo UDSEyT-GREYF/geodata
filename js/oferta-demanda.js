@@ -376,22 +376,61 @@ function odBuildSyntheticNonPandemicTMCA(
     return ",";
   }
 
-  function parseCSV(text) {
-    if (!text) return [];
-    const lines = text.trim().split(/\r?\n/).filter(Boolean);
-    if (lines.length < 2) return [];
-    const sep = detectSep(lines[0]);
-    const headers = lines[0].split(sep).map(normalizeHeader);
+function splitDelimitedLine(line, sep) {
+  const cols = [];
+  let current = "";
+  let inQuotes = false;
 
-    return lines.slice(1).map(line => {
-      const cols = line.split(sep);
-      const row = {};
-      headers.forEach((h, idx) => {
-        row[h] = cols[idx] ?? "";
-      });
-      return row;
-    });
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+
+    if (ch === '"') {
+      if (inQuotes && line[i + 1] === '"') {
+        current += '"';
+        i++;
+      } else {
+        inQuotes = !inQuotes;
+      }
+      continue;
+    }
+
+    if (ch === sep && !inQuotes) {
+      cols.push(current);
+      current = "";
+      continue;
+    }
+
+    current += ch;
   }
+
+  cols.push(current);
+  return cols;
+}
+
+function parseCSV(text) {
+  if (!text) return [];
+
+  const lines = text
+    .replace(/^\uFEFF/, "")
+    .split(/\r?\n/)
+    .filter(line => line.trim() !== "");
+
+  if (lines.length < 2) return [];
+
+  const sep = detectSep(lines[0]);
+  const headers = splitDelimitedLine(lines[0], sep).map(normalizeHeader);
+
+  return lines.slice(1).map(line => {
+    const cols = splitDelimitedLine(line, sep);
+    const row = {};
+
+    headers.forEach((h, idx) => {
+      row[h] = cols[idx] ?? "";
+    });
+
+    return row;
+  });
+}
 
   async function readTextSmart(response) {
     const buffer = await response.arrayBuffer();
@@ -1573,6 +1612,7 @@ function odGetAirportLatLngByCode(code) {
   const key = clean(code).toUpperCase();
   if (!key) return null;
 
+  // 1) Primero busca en Datos_aeropuertos.geojson: aeropuertos del SNA
   const airport = odGetAirportRecordByIata(key);
 
   if (airport) {
@@ -1605,6 +1645,7 @@ function odGetAirportLatLngByCode(code) {
     }
   }
 
+  // 2) Si no está en el SNA, busca en ourairports.csv
   const meta = ourAirportsIndex[key];
 
   if (
@@ -1615,6 +1656,7 @@ function odGetAirportLatLngByCode(code) {
     return [meta.latitude, meta.longitude];
   }
 
+  console.warn("No se encontraron coordenadas para código IATA/OACI:", key);
   return null;
 }
 
@@ -1838,31 +1880,127 @@ function odGetMapRouteColor(route) {
   return OD_MAP_COLORS.extra;
 }
 
-function odBuildConnectivityMapLegendHtml(routes) {
-  const ordered = (routes || [])
-    .slice()
-    .sort((a, b) => Number(b.pax || 0) - Number(a.pax || 0));
+function odBuildConnectivityMapLegendHtml(routes, mapCfg = null) {
+  const sourceRoutes = (routes || []).filter(route => Number(route.pax || 0) > 0);
 
-  return ordered.map(route => {
-    const color = odGetMapRouteColor(route);
-    const name = odGetDestinationMapLabel(route, route.mapKind);
-    const codes = escapeHtml(odGetDestinationCodesLabel(route));
-    const pax = formatNumber(Math.round(Number(route.pax || 0)));
-    const months = formatNumber(Number(route.monthsCount || 0));
-    const status = route.mapStatus === "seasonal" ? "temporada" : "regular";
+  if (!sourceRoutes.length) return "";
 
-    return `
-      <div class="od-map-legend-row">
-        <span class="od-map-legend-line ${route.mapStatus === "seasonal" ? "is-seasonal" : ""}" style="--route-color:${color};"></span>
-        <span class="od-map-legend-text">
-          <strong>${escapeHtml(name)}${codes ? ` (${codes})` : ""}</strong>
-          <span>${pax} pasajeros · ${months} meses · ${status}</span>
-        </span>
-      </div>
-    `;
-  }).join("");
+  function getMarketKey(route) {
+    if (route.mapKind === "domestic") return "domestic";
+    if (route.mapKind === "southamerica") return "southamerica";
+    return "extra";
+  }
+
+  function getDurationKey(route) {
+    const months = Number(route.monthsCount || 0);
+
+    if (route.mapStatus === "seasonal") return "seasonal";
+    if (months >= 12) return "fullYear";
+
+    return "regularPartial";
+  }
+
+  function monthRangeText(items) {
+    const months = items
+      .map(route => Number(route.monthsCount || 0))
+      .filter(v => Number.isFinite(v) && v > 0);
+
+    if (!months.length) return "";
+
+    const min = Math.min(...months);
+    const max = Math.max(...months);
+
+    if (min === max) {
+      return `${formatNumber(min)} ${min === 1 ? "mes" : "meses"}`;
+    }
+
+    return `${formatNumber(min)} a ${formatNumber(max)} meses`;
+  }
+
+  function getGroupLabel(marketKey, durationKey, items) {
+    const range = monthRangeText(items);
+
+    if (marketKey === "domestic") {
+      if (durationKey === "fullYear") return "Rutas de cabotaje 12 meses";
+      if (durationKey === "seasonal") return "Rutas de cabotaje de temporada";
+      return `Rutas de cabotaje ${range}`;
+    }
+
+    if (marketKey === "southamerica") {
+      if (durationKey === "fullYear") return "Rutas sudamericanas 12 meses";
+      if (durationKey === "seasonal") return "Rutas sudamericanas de temporada";
+      return `Rutas sudamericanas ${range}`;
+    }
+
+    if (durationKey === "fullYear") return "Rutas extra-sudamericanas 12 meses";
+    if (durationKey === "seasonal") return "Rutas extra-sudamericanas de temporada";
+    return `Rutas extra-sudamericanas ${range}`;
+  }
+
+  function getGroupOrder(marketKey, durationKey) {
+    const marketOrder = {
+      domestic: 1,
+      southamerica: 2,
+      extra: 3
+    };
+
+    const durationOrder = {
+      fullYear: 1,
+      regularPartial: 2,
+      seasonal: 3
+    };
+
+    return `${marketOrder[marketKey] || 9}.${durationOrder[durationKey] || 9}`;
+  }
+
+  const groups = new Map();
+
+  sourceRoutes.forEach(route => {
+    const marketKey = getMarketKey(route);
+    const durationKey = getDurationKey(route);
+    const key = `${marketKey}|${durationKey}`;
+
+    if (!groups.has(key)) {
+      groups.set(key, {
+        key,
+        marketKey,
+        durationKey,
+        routes: [],
+        pax: 0
+      });
+    }
+
+    const group = groups.get(key);
+    group.routes.push(route);
+    group.pax += Number(route.pax || 0);
+  });
+
+  return Array.from(groups.values())
+    .sort((a, b) => getGroupOrder(a.marketKey, a.durationKey).localeCompare(getGroupOrder(b.marketKey, b.durationKey)))
+    .map(group => {
+      const representative = group.routes[0];
+      const color = odGetMapRouteColor(representative);
+      const isSeasonal = group.durationKey === "seasonal";
+      const isPartial = group.durationKey === "regularPartial";
+      const label = getGroupLabel(group.marketKey, group.durationKey, group.routes);
+      const count = group.routes.length;
+
+      return `
+        <div class="od-map-legend-row">
+          <span
+            class="od-map-legend-line ${isSeasonal ? "is-seasonal" : ""} ${isPartial ? "is-partial" : ""}"
+            style="--route-color:${color};"
+          ></span>
+
+          <span class="od-map-legend-text">
+            <strong>${escapeHtml(label)}</strong>
+            <span>${formatNumber(count)} ${count === 1 ? "destino" : "destinos"} · ${formatNumber(Math.round(group.pax))} pasajeros</span>
+          </span>
+        </div>
+      `;
+    })
+    .join("");
 }
-
 function odBuildConnectivityMapsHtml(iata, summary) {
   if (isFDO(iata) || summary?.source === "aeropuertos_argentina_fdo") {
     return odBuildIntroTextHtml(iata, summary);
@@ -1929,7 +2067,7 @@ const legendEl = q(mapCfg.legendId);
 if (!mapEl || !mapCfg.routes.length) return;
 
 if (legendEl) {
-  legendEl.innerHTML = odBuildConnectivityMapLegendHtml(mapCfg.routes);
+  legendEl.innerHTML = odBuildConnectivityMapLegendHtml(mapCfg.routes, mapCfg);
 }
 
 const map = L.map(mapEl, {
@@ -1969,9 +2107,17 @@ const map = L.map(mapEl, {
 
       routeBounds.extend(destLatLng);
 
-      const color = odGetMapRouteColor(route);
-      const weight = odScaleRouteWeight(route.pax, maxPax);
-      const isSeasonal = route.mapStatus === "seasonal";
+const color = odGetMapRouteColor(route);
+const weight = odScaleRouteWeight(route.pax, maxPax);
+const isSeasonal = route.mapStatus === "seasonal";
+const monthsCount = Number(route.monthsCount || 0);
+const isFullYear = monthsCount >= 12;
+
+const routeOpacity = isSeasonal
+  ? 0.82
+  : isFullYear
+    ? 0.95
+    : 0.68;
 
       const curve = odMakeCurvedRouteLatLngs(
         originLatLng,
@@ -1982,8 +2128,8 @@ const map = L.map(mapEl, {
       L.polyline(curve, {
         color,
         weight,
-        opacity: isSeasonal ? 0.85 : 0.95,
-        dashArray: isSeasonal ? "5 5" : null,
+opacity: routeOpacity,
+dashArray: isSeasonal ? "5 5" : null,
         lineCap: "round",
         lineJoin: "round"
       }).addTo(map);
@@ -2034,7 +2180,7 @@ const map = L.map(mapEl, {
     }
 
     if (legendEl) {
-      legendEl.innerHTML = odBuildConnectivityMapLegendHtml(mapCfg.routes);
+      legendEl.innerHTML = odBuildConnectivityMapLegendHtml(mapCfg.routes, mapCfg);
     }
 
     setTimeout(() => {
@@ -6344,6 +6490,7 @@ aeropuertos = (geojson.features || [])
     const props = { ...(f.properties || {}) };
     const coords = f.geometry?.coordinates;
 
+    // GeoJSON usa [longitud, latitud]
     if (Array.isArray(coords) && coords.length >= 2) {
       props.__lon = Number(coords[0]);
       props.__lat = Number(coords[1]);
