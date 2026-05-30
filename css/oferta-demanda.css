@@ -1501,24 +1501,30 @@
 .od-connectivity-map-legend {
   margin-top: 5px;
   display: grid;
-  gap: 2px;
-  font-size: 0.58rem;
-  line-height: 1.15;
+  grid-template-columns: 1fr;
+  gap: 3px;
+  font-size: 0.56rem;
+  line-height: 1.1;
   color: #23364a;
 }
 
 .od-map-legend-row {
   display: grid;
-  grid-template-columns: 22px minmax(0, 1fr);
+  grid-template-columns: 24px minmax(0, 1fr);
   gap: 5px;
-  align-items: center;
+  align-items: start;
 }
 
 .od-map-legend-line {
-  width: 20px;
+  width: 22px;
+  margin-top: 5px;
   height: 0;
   border-top: 3px solid var(--route-color, #00A3E0);
   border-radius: 999px;
+}
+
+.od-map-legend-line.is-partial {
+  opacity: 0.68;
 }
 
 .od-map-legend-line.is-seasonal {
@@ -1541,6 +1547,9 @@
 
 .od-map-legend-text span {
   color: #5b6775;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .od-map-city-label,
