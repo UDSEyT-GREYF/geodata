@@ -1451,6 +1451,16 @@
    MAPAS DE CONECTIVIDAD 2025
    ========================================================== */
 
+.od-connectivity-maps-with-seasonality {
+  display: grid;
+  gap: 7px;
+}
+
+.od-connectivity-maps-with-seasonality .od-connectivity-block {
+  margin: 0;
+  padding: 6px 9px;
+}
+
 .od-connectivity-map-section {
   display: grid;
   gap: 8px;
@@ -1467,40 +1477,54 @@
 }
 
 .od-connectivity-map-panel {
-  height: 300px;
+  height: 360px;
+  min-height: 360px;
+  max-height: 360px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  min-width: 0;
 }
 
 .od-connectivity-map-title {
-  font-size: 0.68rem;
-  line-height: 1.15;
+  flex: 0 0 auto;
+  font-size: 0.64rem;
+  line-height: 1.12;
   font-weight: 800;
   color: #003b70;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   margin-bottom: 5px;
+  white-space: normal;
 }
 
 .od-connectivity-map-box {
   width: 100%;
-  height: 220px;
-  flex: 0 0 220px;
+  height: 285px;
+  min-height: 285px;
+  max-height: 285px;
+  flex: 0 0 285px;
   border: 1px solid #d8e1ea;
   border-radius: 8px;
   overflow: hidden;
   background: #ffffff;
 }
 
-.od-connectivity-maps--single .od-connectivity-map-box {
-  height: 250px;
-  flex-basis: 250px;
-}
 .od-connectivity-maps--single .od-connectivity-map-panel {
-  height: 330px;
+  height: 390px;
+  min-height: 390px;
+  max-height: 390px;
 }
+
+.od-connectivity-maps--single .od-connectivity-map-box {
+  height: 315px;
+  min-height: 315px;
+  max-height: 315px;
+  flex-basis: 315px;
+}
+
 .od-connectivity-map-legend {
+  flex: 0 0 auto;
   margin-top: 5px;
   display: grid;
   grid-template-columns: 1fr;
@@ -1508,7 +1532,7 @@
   font-size: 0.56rem;
   line-height: 1.1;
   color: #23364a;
-  flex: 0 0 auto;
+  overflow: hidden;
 }
 
 .od-map-legend-row {
@@ -1561,7 +1585,7 @@
   border: none;
   box-shadow: none;
   color: #111827;
-  font-size: 0.58rem;
+  font-size: 0.56rem;
   font-weight: 800;
   text-shadow:
     -1px -1px 0 #fff,
@@ -1572,17 +1596,9 @@
 
 .od-map-origin-label {
   color: #003b70;
-  font-size: 0.64rem;
+  font-size: 0.62rem;
 }
 
 .od-connectivity-map-box .leaflet-control-attribution {
   display: none;
-}
-.od-connectivity-maps-with-seasonality {
-  display: grid;
-  gap: 8px;
-}
-
-.od-connectivity-maps-with-seasonality .od-connectivity-block {
-  margin: 0;
 }
