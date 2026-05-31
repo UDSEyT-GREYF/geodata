@@ -1850,15 +1850,47 @@ function odMakeCurvedRouteLatLngs(origin, destination, curvature = 0.22) {
 function odGetRouteCurvature(route, index, mapMode) {
   const sign = index % 2 === 0 ? 1 : -1;
 
+  /*
+    Curvatura muy contenida:
+    el mapa de cabotaje siempre muestra Argentina completa,
+    por lo que una curva fuerte se va fuera del encuadre.
+  */
   if (mapMode === "argentina") {
-    return sign * 0.045;
+    return sign * 0.012;
   }
 
   if (mapMode === "southamerica") {
-    return sign * 0.04;
+    return sign * 0.018;
   }
 
-  return sign * 0.03;
+  return sign * 0.014;
+}
+  function odFitConnectivityMap(map, mapCfg, routeBounds) {
+  if (!map || !mapCfg) return;
+
+  if (mapCfg.mode === "argentina") {
+    map.fitBounds(OD_MAP_BOUNDS_ARGENTINA, {
+      padding: [10, 10],
+      animate: false
+    });
+    return;
+  }
+
+  if (mapCfg.mode === "southamerica") {
+    map.fitBounds(OD_MAP_BOUNDS_SOUTH_AMERICA, {
+      padding: [10, 10],
+      animate: false
+    });
+    return;
+  }
+
+  if (routeBounds && routeBounds.isValid()) {
+    map.fitBounds(routeBounds.pad(0.18), {
+      padding: [12, 12],
+      animate: false,
+      maxZoom: 4
+    });
+  }
 }
 function odShouldShowProvincesInConnectivityMap(mode) {
   // Provincias en Argentina y en Sudamérica.
@@ -2213,31 +2245,19 @@ dashArray: isSeasonal ? "5 5" : null,
         className: "od-map-origin-label"
       });
 
-    if (mapCfg.mode === "argentina") {
-      map.fitBounds(OD_MAP_BOUNDS_ARGENTINA, { padding: [6, 6], animate: false });
-    } else if (mapCfg.mode === "southamerica") {
-      map.fitBounds(OD_MAP_BOUNDS_SOUTH_AMERICA, { padding: [6, 6], animate: false });
-    } else if (routeBounds.isValid()) {
-      map.fitBounds(routeBounds.pad(0.22), {
-        padding: [10, 10],
-        animate: false,
-        maxZoom: 4
-      });
-    }
+odFitConnectivityMap(map, mapCfg, routeBounds);
 
     if (legendEl) {
       legendEl.innerHTML = odBuildConnectivityMapLegendHtml(mapCfg.routes, mapCfg);
     }
 
-setTimeout(() => {
-  map.invalidateSize();
-}, 80);
+[80, 300, 700].forEach(delay => {
+  setTimeout(() => {
+    map.invalidateSize();
+    odFitConnectivityMap(map, mapCfg, routeBounds);
+  }, delay);
+});
 
-setTimeout(() => {
-  map.invalidateSize();
-}, 300);
-  });
-} 
 function odBuildIntroTextHtml(iata, summary) {
   if (isFDO(iata) || summary?.source === "aeropuertos_argentina_fdo") {
     return odBuildFdoIntroTextHtml(summary);
