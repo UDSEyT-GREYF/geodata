@@ -2229,9 +2229,13 @@ dashArray: isSeasonal ? "5 5" : null,
       legendEl.innerHTML = odBuildConnectivityMapLegendHtml(mapCfg.routes, mapCfg);
     }
 
-    setTimeout(() => {
-      map.invalidateSize();
-    }, 80);
+setTimeout(() => {
+  map.invalidateSize();
+}, 80);
+
+setTimeout(() => {
+  map.invalidateSize();
+}, 300);
   });
 } 
 function odBuildIntroTextHtml(iata, summary) {
