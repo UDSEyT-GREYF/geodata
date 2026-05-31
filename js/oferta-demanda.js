@@ -1847,7 +1847,19 @@ function odMakeCurvedRouteLatLngs(origin, destination, curvature = 0.22) {
 
   return points;
 }
+function odGetRouteCurvature(route, index, mapMode) {
+  const sign = index % 2 === 0 ? 1 : -1;
 
+  if (mapMode === "argentina") {
+    return sign * 0.045;
+  }
+
+  if (mapMode === "southamerica") {
+    return sign * 0.04;
+  }
+
+  return sign * 0.03;
+}
 function odShouldShowProvincesInConnectivityMap(mode) {
   // Provincias en Argentina y en Sudamérica.
   // No en mapa extra-sudamericano.
@@ -2126,7 +2138,7 @@ odAddConnectivityBaseMap(map, mapCfg.mode);
 
     const routeBounds = L.latLngBounds([originLatLng]);
 
-    mapCfg.routes.forEach(route => {
+    mapCfg.routes.forEach((route, routeIdx) => {
       const destCode = odResolveDestinationMapCode(route, route.mapKind);
       const destLatLng = odGetAirportLatLngByCode(destCode);
 
@@ -2153,11 +2165,11 @@ const routeOpacity = isSeasonal
     ? 0.95
     : 0.68;
 
-      const curve = odMakeCurvedRouteLatLngs(
-        originLatLng,
-        destLatLng,
-        mapCfg.mode === "argentina" ? 0.18 : 0.12
-      );
+const curve = odMakeCurvedRouteLatLngs(
+  originLatLng,
+  destLatLng,
+  odGetRouteCurvature(route, routeIdx, mapCfg.mode)
+);
 
       L.polyline(curve, {
         color,
