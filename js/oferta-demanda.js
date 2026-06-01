@@ -19,7 +19,7 @@
   const FDO_ROUTES_MONTHLY_AA_PATH = "/geodata/fuentes/fdo_rutas_mensual_aeropuertos_argentina.json";
   const FDO_ROUTES_ANNUAL_AA_PATH = "/geodata/fuentes/fdo_rutas_aeropuertos_argentina.json";
   // Perfil operativo 2025: clasifica cada aeropuerto para modular la narrativa de conectividad.
-  const PERFIL_OPEzoomRATIVO_PATH = "/geodata/fuentes/perfil_operativo_impacto_2025.json";
+  const PERFIL_OPERATIVO_PATH = "/geodata/fuentes/perfil_operativo_impacto_2025.json";
   const DESCRIPTIVO_AEROPUERTOS_GEOJSON_PATH = "/geodata/fuentes/Descriptivo_aeropuertos.geojson";
   const PAX_MENSUAL_PATH = "/geodata/fuentes/pasajeros_aeropuerto_mensual.csv";
 const MOV_MENSUAL_PATH = "/geodata/fuentes/movimientos_aeropuerto_mensual.csv";
