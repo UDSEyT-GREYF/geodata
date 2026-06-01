@@ -48,7 +48,7 @@ const OD_MIN_ROUTE_PAX_SHARE_PCT = 0.5;
 const OD_CONNECTED_DESTINATION_MIN_MONTHS = 7;
 const OD_SEASONAL_DESTINATION_MIN_MONTHS = 3;
 const OD_SEASONAL_DESTINATION_MIN_CONSECUTIVE_MONTHS = 3;
-
+const OD_MAP_DEBUG_ROUTE_LABELS = true;
 const OD_EXCLUDED_DESTINATION_CODES_FOR_CONNECTIVITY_TEXT = new Set([
   "FDO"
 ]);
@@ -2205,14 +2205,36 @@ const curve = odMakeCurvedRouteLatLngs(
   odGetRouteCurvature(route, routeIdx, mapCfg.mode)
 );
 
-      L.polyline(curve, {
-        color,
-        weight,
-opacity: routeOpacity,
-dashArray: isSeasonal ? "5 5" : null,
-        lineCap: "round",
-        lineJoin: "round"
-      }).addTo(map);
+const routeLine = L.polyline(curve, {
+  color,
+  weight,
+  opacity: routeOpacity,
+  dashArray: isSeasonal ? "5 5" : null,
+  lineCap: "round",
+  lineJoin: "round"
+}).addTo(map);
+
+const routeDebugLabel = `${originCode} → ${destCode} · ${odGetDestinationMapLabel(route, route.mapKind)} · ${formatNumber(Math.round(Number(route.pax || 0)))} pax`;
+
+routeLine.bindTooltip(routeDebugLabel, {
+  sticky: true,
+  direction: "top",
+  className: "od-map-route-debug-tooltip"
+});
+
+if (OD_MAP_DEBUG_ROUTE_LABELS) {
+  const midPoint = curve[Math.floor(curve.length / 2)];
+
+  L.marker(midPoint, {
+    interactive: false,
+    icon: L.divIcon({
+      className: "od-map-route-debug-label",
+      html: escapeHtml(`${destCode}`),
+      iconSize: [42, 14],
+      iconAnchor: [21, 7]
+    })
+  }).addTo(map);
+}
 
       const label = odGetDestinationMapLabel(route, route.mapKind);
 
