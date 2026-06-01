@@ -1733,7 +1733,68 @@ function odGetDestinationMapLabel(destino, mapKind) {
     code
   );
 }
+function odGetMapLabelOptions(originLatLng, destLatLng, routeIdx, mapMode) {
+  const originLat = Number(originLatLng?.[0]);
+  const originLng = Number(originLatLng?.[1]);
+  const destLat = Number(destLatLng?.[0]);
+  const destLng = Number(destLatLng?.[1]);
 
+  const dLat = destLat - originLat;
+  const dLng = destLng - originLng;
+
+  /*
+    Jitter mínimo para que etiquetas cercanas no caigan exactamente
+    en el mismo lugar. Mantener valores bajos para que sigan cerca
+    del punto.
+  */
+  const jitterValues = [-4, -2, 0, 2, 4];
+  const jitter = jitterValues[routeIdx % jitterValues.length];
+
+  /*
+    Offset base:
+    - en Argentina conviene más cercano al punto;
+    - en internacional puede separarse apenas más.
+  */
+  const baseOffset = mapMode === "argentina" ? 4 : 5;
+
+  let direction = "top";
+
+  /*
+    La etiqueta se ubica según la posición del destino respecto del origen.
+    Esto distribuye etiquetas hacia distintos lados del punto.
+  */
+  if (Math.abs(dLng) >= Math.abs(dLat)) {
+    direction = dLng >= 0 ? "right" : "left";
+  } else {
+    direction = dLat >= 0 ? "top" : "bottom";
+  }
+
+  if (direction === "right") {
+    return {
+      direction,
+      offset: [baseOffset, jitter]
+    };
+  }
+
+  if (direction === "left") {
+    return {
+      direction,
+      offset: [-baseOffset, jitter]
+    };
+  }
+
+  if (direction === "bottom") {
+    return {
+      direction,
+      offset: [jitter, baseOffset]
+    };
+  }
+
+  return {
+    direction: "top",
+    offset: [jitter, -baseOffset]
+  };
+}
 function odGetConnectivityMapPlan(iata) {
   const info = odBuildRegularConnectedDestinationStats(
     iata,
@@ -2240,22 +2301,29 @@ routeLine.bindTooltip(routeDebugLabel, {
   className: "od-map-route-debug-tooltip"
 });
 
-      const label = odGetDestinationMapLabel(route, route.mapKind);
+const label = odGetDestinationMapLabel(route, route.mapKind);
 
-      L.circleMarker(destLatLng, {
-        radius: 3.2,
-        color: "#555",
-        weight: 0.8,
-        fillColor: "#6f7d8c",
-        fillOpacity: 1
-      })
-        .addTo(map)
-        .bindTooltip(label, {
-          permanent: true,
-          direction: "top",
-          offset: [0, -4],
-          className: "od-map-city-label"
-        });
+const labelOptions = odGetMapLabelOptions(
+  originLatLng,
+  destLatLng,
+  routeIdx,
+  mapCfg.mode
+);
+
+L.circleMarker(destLatLng, {
+  radius: 3.2,
+  color: "#555",
+  weight: 0.8,
+  fillColor: "#6f7d8c",
+  fillOpacity: 1
+})
+  .addTo(map)
+  .bindTooltip(label, {
+    permanent: true,
+    direction: labelOptions.direction,
+    offset: labelOptions.offset,
+    className: "od-map-city-label"
+  });
     });
 
     L.circleMarker(originLatLng, {
