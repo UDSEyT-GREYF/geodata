@@ -1820,8 +1820,10 @@ function odMakeCurvedRouteLatLngs(origin, destination, curvature = 0.22) {
   const py = dx / distance;
 
   // Curvatura proporcional a la distancia.
-  const curveAmount = distance * curvature;
-
+const signedCurvature = Number(curvature || 0);
+const curveAmount =
+  Math.sign(signedCurvature || 1) *
+  Math.min(distance * Math.abs(signedCurvature), 1.05);
   const controlLng = (lng1 + lng2) / 2 + px * curveAmount;
   const controlLat = (lat1 + lat2) / 2 + py * curveAmount;
 
@@ -1850,20 +1852,15 @@ function odMakeCurvedRouteLatLngs(origin, destination, curvature = 0.22) {
 function odGetRouteCurvature(route, index, mapMode) {
   const sign = index % 2 === 0 ? 1 : -1;
 
-  /*
-    Curvatura muy contenida:
-    el mapa de cabotaje siempre muestra Argentina completa,
-    por lo que una curva fuerte se va fuera del encuadre.
-  */
   if (mapMode === "argentina") {
-    return sign * 0.012;
+    return sign * 0.045;
   }
 
   if (mapMode === "southamerica") {
-    return sign * 0.018;
+    return sign * 0.035;
   }
 
-  return sign * 0.014;
+  return sign * 0.028;
 }
   function odFitConnectivityMap(map, mapCfg, routeBounds) {
   if (!map || !mapCfg) return;
