@@ -2257,7 +2257,8 @@ odFitConnectivityMap(map, mapCfg, routeBounds);
     odFitConnectivityMap(map, mapCfg, routeBounds);
   }, delay);
 });
-
+  });
+}
 function odBuildIntroTextHtml(iata, summary) {
   if (isFDO(iata) || summary?.source === "aeropuertos_argentina_fdo") {
     return odBuildFdoIntroTextHtml(summary);
