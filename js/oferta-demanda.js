@@ -1570,8 +1570,8 @@ const destinationsText = fdoDestinationsText
    ============================================================ */
 
 const OD_MAP_BOUNDS_ARGENTINA = [
-  [-55.2, -73.7],
-  [-21.6, -53.4]
+  [-55.1, -73.2],
+  [-21.8, -53.0]
 ];
 
 const OD_MAP_BOUNDS_SOUTH_AMERICA = [
@@ -1869,10 +1869,10 @@ function odGetRouteCurvature(route, index, mapMode) {
   if (!map || !mapCfg) return;
 
   if (mapCfg.mode === "argentina") {
-    map.fitBounds(OD_MAP_BOUNDS_ARGENTINA, {
-      padding: [10, 10],
-      animate: false
-    });
+map.fitBounds(OD_MAP_BOUNDS_ARGENTINA, {
+  padding: [2, 2],
+  animate: false
+});
     return;
   }
 
