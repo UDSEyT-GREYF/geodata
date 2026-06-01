@@ -1853,11 +1853,11 @@ function odGetRouteCurvature(route, index, mapMode) {
   const sign = index % 2 === 0 ? 1 : -1;
 
   if (mapMode === "argentina") { 
-    return sign * 0.070; // para agrandar la curvatura de las rutas
+    return sign * 0.150; // para agrandar la curvatura de las rutas
   }
 
   if (mapMode === "southamerica") {
-    return sign * 0.045;
+    return sign * 0.07;
   }
 
   return sign * 0.028;
@@ -1873,7 +1873,7 @@ if (mapCfg.mode === "argentina") {
 
   const currentZoom = map.getZoom();
   map.setView(map.getCenter(), currentZoom - 0.20, { // zoom para adaptar Argentina a la caja del mapa
-    animate: true
+    animate: false
   });
 
   return;
