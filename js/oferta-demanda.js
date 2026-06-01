@@ -1853,11 +1853,11 @@ function odGetRouteCurvature(route, index, mapMode) {
   const sign = index % 2 === 0 ? 1 : -1;
 
   if (mapMode === "argentina") {
-    return sign * 0.045;
+    return sign * 0.050;
   }
 
   if (mapMode === "southamerica") {
-    return sign * 0.035;
+    return sign * 0.045;
   }
 
   return sign * 0.028;
