@@ -2199,11 +2199,14 @@ const isSeasonal = route.mapStatus === "seasonal";
 const monthsCount = Number(route.monthsCount || 0);
 const isFullYear = monthsCount >= 12;
 
-const routeOpacity = isSeasonal
-  ? 0.82
-  : isFullYear
-    ? 0.95
-    : 0.68;
+const routeOpacity =
+  route.mapKind === "extra"
+    ? (isSeasonal ? 0.42 : isFullYear ? 0.55 : 0.48)
+    : isSeasonal
+      ? 0.82
+      : isFullYear
+        ? 0.95
+        : 0.68;
 
 const curve = odMakeCurvedRouteLatLngs(
   originLatLng,
