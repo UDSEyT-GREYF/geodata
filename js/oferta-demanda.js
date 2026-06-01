@@ -2503,7 +2503,41 @@ const fallback = [
 
     return { byIata, byCode };
   }
+function parseCoordinateNumber(value, type = "lat") {
+  if (value === null || value === undefined) return NaN;
 
+  let s = String(value)
+    .trim()
+    // quita apóstrofes usados para proteger signos negativos en CSV/Excel
+    .replace(/^'+/, "")
+    .replace(/'+$/, "")
+    .replace(/\s+/g, "");
+
+  if (!s) return NaN;
+
+  // En coordenadas, la coma se interpreta como decimal.
+  s = s.replace(",", ".");
+
+  // Deja solo número, punto y signo.
+  s = s.replace(/[^0-9.-]/g, "");
+
+  let n = Number(s);
+
+  if (!Number.isFinite(n)) return NaN;
+
+  /*
+    Corrección defensiva:
+    si una latitud viene como 470.159, probablemente debería ser 4.70159.
+    si una longitud viniera fuera de rango, se intenta lo mismo.
+  */
+  const maxAbs = type === "lon" ? 180 : 90;
+
+  while (Math.abs(n) > maxAbs && Math.abs(n) >= 10) {
+    n = n / 10;
+  }
+
+  return Number.isFinite(n) && Math.abs(n) <= maxAbs ? n : NaN;
+}
 function parseOurAirportsCSV(text) {
   const rows = parseCSV(text);
   const index = {};
@@ -2527,11 +2561,12 @@ function parseOurAirportsCSV(text) {
       iata,
       oaci,
       continent,
-      countryCode: clean(firstNonEmpty(row, [
-        "country_code",
-        "iso_country",
-        "pais_codigo"
-      ])).toUpperCase(),
+countryCode: clean(firstNonEmpty(row, [
+  "country",
+  "country_code",
+  "iso_country",
+  "pais_codigo"
+])).toUpperCase(),
       municipality: clean(firstNonEmpty(row, [
         "municipality",
         "ciudad",
@@ -2542,17 +2577,18 @@ function parseOurAirportsCSV(text) {
         "airport_name",
         "nombre"
       ])),
-      latitude: parseNumber(firstNonEmpty(row, [
-        "latitude",
-        "latitude_deg",
-        "lat"
-      ])),
-      longitude: parseNumber(firstNonEmpty(row, [
-        "longitude",
-        "longitude_deg",
-        "lon",
-        "lng"
-      ]))
+latitude: parseCoordinateNumber(firstNonEmpty(row, [
+  "latitude",
+  "latitude_deg",
+  "lat"
+]), "lat"),
+
+longitude: parseCoordinateNumber(firstNonEmpty(row, [
+  "longitude",
+  "longitude_deg",
+  "lon",
+  "lng"
+]), "lon")
     };
 
     if (iata) index[iata] = meta;
