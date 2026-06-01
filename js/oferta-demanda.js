@@ -2632,18 +2632,20 @@ function parseOurAirportsCSV(text) {
       "icao_code"
     ])).toUpperCase();
 
-    const continent = clean(firstNonEmpty(row, ["continent"])).toUpperCase();
+const continent = clean(firstNonEmpty(row, ["continent"])).toUpperCase();
 
-    const meta = {
-      iata,
-      oaci,
-      continent,
-countryCode: clean(firstNonEmpty(row, [
+const countryCode = clean(firstNonEmpty(row, [
   "country",
   "country_code",
   "iso_country",
   "pais_codigo"
-])).toUpperCase(),
+])).toUpperCase();
+
+const meta = {
+  iata,
+  oaci,
+  continent,
+  countryCode,
       municipality: clean(firstNonEmpty(row, [
         "municipality",
         "ciudad",
