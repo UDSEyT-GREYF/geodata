@@ -1872,7 +1872,7 @@ if (mapCfg.mode === "argentina") {
   });
 
   const currentZoom = map.getZoom();
-  map.setView(map.getCenter(), currentZoom + 0.20, {
+  map.setView(map.getCenter(), currentZoom + 0.15, { // zoom para adaptar Argentina a la caja del mapa
     animate: false
   });
 
