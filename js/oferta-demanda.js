@@ -1872,7 +1872,7 @@ if (mapCfg.mode === "argentina") {
   });
 
   const currentZoom = map.getZoom();
-  map.setView(map.getCenter(), currentZoom + 0.25, {
+  map.setView(map.getCenter(), currentZoom + 0.20, {
     animate: false
   });
 
