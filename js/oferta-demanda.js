@@ -1868,13 +1868,19 @@ function odGetRouteCurvature(route, index, mapMode) {
   function odFitConnectivityMap(map, mapCfg, routeBounds) {
   if (!map || !mapCfg) return;
 
-  if (mapCfg.mode === "argentina") {
-map.fitBounds(OD_MAP_BOUNDS_ARGENTINA, {
-  padding: [2, 2],
-  animate: false
-});
-    return;
-  }
+if (mapCfg.mode === "argentina") {
+  map.fitBounds(OD_MAP_BOUNDS_ARGENTINA, {
+    padding: [1, 1],
+    animate: false
+  });
+
+  const currentZoom = map.getZoom();
+  map.setView(map.getCenter(), currentZoom + 0.35, {
+    animate: false
+  });
+
+  return;
+}
 
   if (mapCfg.mode === "southamerica") {
     map.fitBounds(OD_MAP_BOUNDS_SOUTH_AMERICA, {
@@ -1987,19 +1993,19 @@ function odBuildConnectivityMapLegendHtml(routes, mapCfg = null) {
     const range = monthRangeText(items);
 
     if (marketKey === "domestic") {
-      if (durationKey === "fullYear") return "Rutas de cabotaje 12 meses";
-      if (durationKey === "seasonal") return "Rutas de cabotaje de temporada";
+      if (durationKey === "fullYear") return "Rutas cabotaje 12 meses";
+      if (durationKey === "seasonal") return "Rutas cabotaje temporada";
       return `Rutas de cabotaje ${range}`;
     }
 
     if (marketKey === "southamerica") {
       if (durationKey === "fullYear") return "Rutas sudamericanas 12 meses";
-      if (durationKey === "seasonal") return "Rutas sudamericanas de temporada";
+      if (durationKey === "seasonal") return "Rutas sudamericanas temporada";
       return `Rutas sudamericanas ${range}`;
     }
 
     if (durationKey === "fullYear") return "Rutas extra-sudamericanas 12 meses";
-    if (durationKey === "seasonal") return "Rutas extra-sudamericanas de temporada";
+    if (durationKey === "seasonal") return "Rutas extra-sudamericanas temporada";
     return `Rutas extra-sudamericanas ${range}`;
   }
 
@@ -2052,7 +2058,7 @@ function odBuildConnectivityMapLegendHtml(routes, mapCfg = null) {
       const count = group.routes.length;
 
 const countText = `${formatNumber(count)} ${count === 1 ? "destino" : "destinos"}`;
-const paxText = `${formatNumber(Math.round(group.pax))} pasajeros`;
+const paxText = `${formatNumber(Math.round(group.pax))} pax`;
 
 return `
   <div class="od-map-legend-row">
@@ -2146,7 +2152,10 @@ const map = L.map(mapEl, {
   doubleClickZoom: false,
   boxZoom: false,
   keyboard: false,
-  tap: false
+  tap: false,
+  worldCopyJump: false,
+  zoomSnap: 0.1,
+  zoomDelta: 0.1
 });
 
 /*
@@ -2214,6 +2223,15 @@ const routeLine = L.polyline(curve, {
   lineJoin: "round"
 }).addTo(map);
 
+const routePopupLabel = `
+  <strong>${escapeHtml(originCode)} → ${escapeHtml(destCode)}</strong><br>
+  ${escapeHtml(odGetDestinationMapLabel(route, route.mapKind))}<br>
+  ${formatNumber(Math.round(Number(route.pax || 0)))} pasajeros ·
+  ${formatNumber(Number(route.monthsCount || 0))} meses
+`;
+
+routeLine.bindPopup(routePopupLabel);
+
 const routeDebugLabel = `${originCode} → ${destCode} · ${odGetDestinationMapLabel(route, route.mapKind)} · ${formatNumber(Math.round(Number(route.pax || 0)))} pax`;
 
 routeLine.bindTooltip(routeDebugLabel, {
@@ -2221,20 +2239,6 @@ routeLine.bindTooltip(routeDebugLabel, {
   direction: "top",
   className: "od-map-route-debug-tooltip"
 });
-
-if (OD_MAP_DEBUG_ROUTE_LABELS) {
-  const midPoint = curve[Math.floor(curve.length / 2)];
-
-  L.marker(midPoint, {
-    interactive: false,
-    icon: L.divIcon({
-      className: "od-map-route-debug-label",
-      html: escapeHtml(`${destCode}`),
-      iconSize: [42, 14],
-      iconAnchor: [21, 7]
-    })
-  }).addTo(map);
-}
 
       const label = odGetDestinationMapLabel(route, route.mapKind);
 
