@@ -2051,19 +2051,21 @@ function odBuildConnectivityMapLegendHtml(routes, mapCfg = null) {
       const label = getGroupLabel(group.marketKey, group.durationKey, group.routes);
       const count = group.routes.length;
 
-      return `
-        <div class="od-map-legend-row">
-          <span
-            class="od-map-legend-line ${isSeasonal ? "is-seasonal" : ""} ${isPartial ? "is-partial" : ""}"
-            style="--route-color:${color};"
-          ></span>
+const countText = `${formatNumber(count)} ${count === 1 ? "destino" : "destinos"}`;
+const paxText = `${formatNumber(Math.round(group.pax))} pasajeros`;
 
-          <span class="od-map-legend-text">
-            <strong>${escapeHtml(label)}</strong>
-            <span>${formatNumber(count)} ${count === 1 ? "destino" : "destinos"} · ${formatNumber(Math.round(group.pax))} pasajeros</span>
-          </span>
-        </div>
-      `;
+return `
+  <div class="od-map-legend-row">
+    <span
+      class="od-map-legend-line ${isSeasonal ? "is-seasonal" : ""} ${isPartial ? "is-partial" : ""}"
+      style="--route-color:${color};"
+    ></span>
+
+    <span class="od-map-legend-text">
+      <strong>${escapeHtml(label)} - ${escapeHtml(countText)} - ${escapeHtml(paxText)}</strong>
+    </span>
+  </div>
+`;
     })
     .join("");
 }
