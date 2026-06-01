@@ -1559,9 +1559,11 @@
 }
 
 .od-map-legend-text {
-  display: flex;
-  flex-direction: column;
+  display: block;
   min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .od-map-legend-text strong {
@@ -1573,10 +1575,7 @@
 }
 
 .od-map-legend-text span {
-  color: #5b6775;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: none;
 }
 
 .od-map-city-label,
