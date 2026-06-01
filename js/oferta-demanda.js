@@ -2603,11 +2603,21 @@ function parseCoordinateNumber(value, type = "lat", context = {}) {
   if (digits) {
     const base = Number(digits);
 
-    if (Number.isFinite(base)) {
-      for (let decimals = 0; decimals <= 8; decimals++) {
-        candidates.add(sign * (base / Math.pow(10, decimals)));
-      }
-    }
+if (Number.isFinite(base)) {
+  /*
+    Probamos varias posiciones decimales.
+    Esto permite corregir casos como:
+    - 41.804.532              -> 41.804532
+    - 412.971                 -> 41.2971
+    - 2.579.319.953.918.450   -> 25.79319953918450
+    - 29.984.399.795.532.200  -> 29.984399795532200
+  */
+  const maxDecimals = Math.min(digits.length, 16);
+
+  for (let decimals = 0; decimals <= maxDecimals; decimals++) {
+    candidates.add(sign * (base / Math.pow(10, decimals)));
+  }
+}
   }
 
   const list = Array.from(candidates);
