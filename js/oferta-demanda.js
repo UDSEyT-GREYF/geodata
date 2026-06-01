@@ -1570,8 +1570,8 @@ const destinationsText = fdoDestinationsText
    ============================================================ */
 
 const OD_MAP_BOUNDS_ARGENTINA = [
-  [-55.1, -73.2],
-  [-21.8, -53.0]
+  [-53.1, -73.2],
+  [-23.8, -53.0]
 ];
 
 const OD_MAP_BOUNDS_SOUTH_AMERICA = [
