@@ -1852,8 +1852,8 @@ const curveAmount =
 function odGetRouteCurvature(route, index, mapMode) {
   const sign = index % 2 === 0 ? 1 : -1;
 
-  if (mapMode === "argentina") {
-    return sign * 0.070;
+  if (mapMode === "argentina") { 
+    return sign * 0.070; // para agrandar la curvatura de las rutas
   }
 
   if (mapMode === "southamerica") {
@@ -2503,40 +2503,117 @@ const fallback = [
 
     return { byIata, byCode };
   }
-function parseCoordinateNumber(value, type = "lat") {
+function parseCoordinateNumber(value, type = "lat", context = {}) {
   if (value === null || value === undefined) return NaN;
 
-  let s = String(value)
+  const raw = String(value)
     .trim()
-    // quita apóstrofes usados para proteger signos negativos en CSV/Excel
-    .replace(/^'+/, "")
-    .replace(/'+$/, "")
+    .replace(/^'+/, "")   // quita apóstrofes al inicio
+    .replace(/'+$/, "")   // quita apóstrofes al final
     .replace(/\s+/g, "");
 
-  if (!s) return NaN;
+  if (!raw) return NaN;
 
-  // En coordenadas, la coma se interpreta como decimal.
-  s = s.replace(",", ".");
+  const countryCode = clean(context.countryCode).toUpperCase();
+  const continent = clean(context.continent).toUpperCase();
 
-  // Deja solo número, punto y signo.
-  s = s.replace(/[^0-9.-]/g, "");
+  const COUNTRY_COORD_BOUNDS = {
+    // Sudamérica
+    AR: { lat: [-56, -21], lon: [-74, -52] },
+    UY: { lat: [-36, -30], lon: [-59, -53] },
+    PY: { lat: [-28, -19], lon: [-63, -54] },
+    BR: { lat: [-35, 6], lon: [-75, -32] },
+    CL: { lat: [-56, -17], lon: [-76, -66] },
+    PE: { lat: [-19, 1], lon: [-82, -68] },
+    CO: { lat: [-5, 14], lon: [-82, -66] },
+    BO: { lat: [-23, -9], lon: [-70, -57] },
+    EC: { lat: [-6, 2], lon: [-82, -75] },
+    VE: { lat: [0, 13], lon: [-74, -59] },
 
-  let n = Number(s);
+    // Norte / Centroamérica y Caribe
+    US: { lat: [18, 72], lon: [-170, -60] },
+    MX: { lat: [14, 33], lon: [-119, -86] },
+    PA: { lat: [7, 10], lon: [-83, -77] },
+    DO: { lat: [17, 20], lon: [-73, -68] },
+    CU: { lat: [19, 24], lon: [-86, -74] },
 
-  if (!Number.isFinite(n)) return NaN;
+    // Europa frecuente en tus rutas
+    ES: { lat: [35, 44.5], lon: [-10, 5] },
+    IT: { lat: [35, 48], lon: [6, 19.5] },
+    FR: { lat: [41, 52], lon: [-6, 10] },
+    NL: { lat: [50, 54], lon: [3, 8] },
+    DE: { lat: [47, 56], lon: [5, 16] },
+    GB: { lat: [49, 61], lon: [-9, 2] },
+    PT: { lat: [36, 43], lon: [-10, -6] }
+  };
 
-  /*
-    Corrección defensiva:
-    si una latitud viene como 470.159, probablemente debería ser 4.70159.
-    si una longitud viniera fuera de rango, se intenta lo mismo.
-  */
+  const CONTINENT_COORD_BOUNDS = {
+    SA: { lat: [-60, 15], lon: [-90, -30] },
+    NA: { lat: [5, 85], lon: [-170, -50] },
+    EU: { lat: [34, 72], lon: [-25, 60] },
+    AF: { lat: [-40, 38], lon: [-20, 55] },
+    AS: { lat: [-10, 80], lon: [25, 180] },
+    OC: { lat: [-50, 10], lon: [110, 180] },
+    AN: { lat: [-90, -60], lon: [-180, 180] }
+  };
+
+  const preferredBounds =
+    COUNTRY_COORD_BOUNDS[countryCode] ||
+    CONTINENT_COORD_BOUNDS[continent] ||
+    null;
+
   const maxAbs = type === "lon" ? 180 : 90;
 
-  while (Math.abs(n) > maxAbs && Math.abs(n) >= 10) {
-    n = n / 10;
+  function isGlobalValid(n) {
+    return Number.isFinite(n) && Math.abs(n) <= maxAbs;
   }
 
-  return Number.isFinite(n) && Math.abs(n) <= maxAbs ? n : NaN;
+  function isPreferredValid(n) {
+    if (!preferredBounds || !isGlobalValid(n)) return false;
+
+    const range = preferredBounds[type === "lon" ? "lon" : "lat"];
+    return n >= range[0] && n <= range[1];
+  }
+
+  const normalized = raw
+    .replace(",", ".")
+    .replace(/[^0-9.-]/g, "");
+
+  const sign = normalized.trim().startsWith("-") ? -1 : 1;
+
+  const candidates = new Set();
+
+  // Candidato directo: sirve para coordenadas bien formadas tipo -32.9036
+  const direct = Number(normalized);
+  if (Number.isFinite(direct)) {
+    candidates.add(direct);
+  }
+
+  /*
+    Candidatos reconstruidos:
+    - 41.804.532 -> 41804532 -> 41.804532
+    - 412.971    -> 412971   -> 41.2971
+    - 207.846    -> 207846   -> 2.07846
+  */
+  const digits = normalized.replace(/[^0-9]/g, "");
+
+  if (digits) {
+    const base = Number(digits);
+
+    if (Number.isFinite(base)) {
+      for (let decimals = 0; decimals <= 8; decimals++) {
+        candidates.add(sign * (base / Math.pow(10, decimals)));
+      }
+    }
+  }
+
+  const list = Array.from(candidates);
+
+  const preferred = list.find(isPreferredValid);
+  if (Number.isFinite(preferred)) return preferred;
+
+  const global = list.find(isGlobalValid);
+  return Number.isFinite(global) ? global : NaN;
 }
 function parseOurAirportsCSV(text) {
   const rows = parseCSV(text);
@@ -2581,14 +2658,14 @@ latitude: parseCoordinateNumber(firstNonEmpty(row, [
   "latitude",
   "latitude_deg",
   "lat"
-]), "lat"),
+]), "lat", { continent, countryCode }),
 
 longitude: parseCoordinateNumber(firstNonEmpty(row, [
   "longitude",
   "longitude_deg",
   "lon",
   "lng"
-]), "lon")
+]), "lon", { continent, countryCode })
     };
 
     if (iata) index[iata] = meta;
