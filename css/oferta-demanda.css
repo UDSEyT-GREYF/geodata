@@ -1601,3 +1601,25 @@
 .od-connectivity-map-box .leaflet-control-attribution {
   display: none;
 }
+.od-map-route-debug-label {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid #d8e1ea;
+  border-radius: 4px;
+  color: #003b70;
+  font-size: 0.52rem;
+  font-weight: 800;
+  line-height: 1;
+  padding: 2px 4px;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.od-map-route-debug-tooltip {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #75aadb;
+  color: #003b70;
+  font-size: 0.62rem;
+  font-weight: 700;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
+}
