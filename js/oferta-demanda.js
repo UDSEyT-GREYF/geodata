@@ -5763,7 +5763,38 @@ function buildFdoHistoricRouteSeries() {
 
     if (!Number.isFinite(year) || pax <= 0) return;
 
-    const label = getFdoRouteLabel(r.d);
+    const destCode = normalizeFDORouteCode(r.d);
+    const destKey = clean(destCode).replace(/\s+/g, "").toUpperCase();
+
+    /*
+      FDO-FDO no representa una ruta externa.
+      Se excluye del gráfico y también del total porcentual.
+    */
+    if (
+      !destCode ||
+      destCode === selected ||
+      destKey === "FDO-FDO"
+    ) {
+      return;
+    }
+
+    /*
+      AR y EXT son categorías agregadas de la fuente especial:
+      - AR = otros destinos de cabotaje
+      - EXT = otros destinos internacionales
+
+      No deben aparecer como rutas individuales porque después
+      el gráfico ya genera su propio bolsón "Otras rutas".
+      Sí deben contar dentro del total anual para que queden
+      incorporadas a ese bolsón gris.
+    */
+    if (destCode === "AR" || destCode === "EXT") {
+      acc.years.add(year);
+      acc.totalByYear.set(year, (acc.totalByYear.get(year) || 0) + pax);
+      return;
+    }
+
+    const label = getFdoRouteLabel(destCode);
 
     const routeKey = [
       normalizeTextKey(label.ciudad),
@@ -5790,10 +5821,10 @@ function buildHistoricRouteSeriesFromAccumulator(selected, acc) {
   const routes = Array.from(acc.routes.values()).sort((a, b) => b.totalPax - a.totalPax);
   const limit = getHistoricRouteLimit(selected);
 
-  const totalPaxAll = routes.reduce(
-    (sum, route) => sum + (Number(route.totalPax) || 0),
-    0
-  );
+const totalPaxAll = years.reduce(
+  (sum, year) => sum + (Number(acc.totalByYear.get(year) || 0)),
+  0
+);
 
   /*
     Criterio:
