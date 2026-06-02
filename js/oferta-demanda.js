@@ -3200,33 +3200,77 @@ function buildSeasonalityPhrase(descriptivo, observed) {
     )
   );
 
+  const intensityKey = normalizeTextKey(observed.intensity);
+
   let base = "";
 
-  if (observed.intensity === "sin estacionalidad marcada") {
+  if (intensityKey === "sin estacionalidad marcada") {
     base = `
-      La dinámica mensual no mostró una estacionalidad marcada:
-      el mes de mayor movimiento fue <strong>${escapeHtml(peakLabel)}</strong>, con <strong>${peakText}</strong>
-      de los pasajeros anuales, y los tres meses principales —${top3Months}— concentraron
-      <strong>${top3Text}</strong>.
+      La distribución mensual fue relativamente equilibrada:
+      el mayor movimiento se registró en <strong>${escapeHtml(peakLabel)}</strong>
+      (<strong>${peakText}</strong> de los pasajeros anuales) y los tres meses principales
+      —${top3Months}— reunieron <strong>${top3Text}</strong>.
     `;
   } else {
     base = `
-      La dinámica mensual mostró <strong>${escapeHtml(observed.intensity)}</strong>:
-      el mes de mayor movimiento fue <strong>${escapeHtml(peakLabel)}</strong>, con <strong>${peakText}</strong>
-      de los pasajeros anuales, y los tres meses principales —${top3Months}— concentraron
-      <strong>${top3Text}</strong>.
+      La distribución mensual presentó <strong>${escapeHtml(observed.intensity)}</strong>:
+      el mayor movimiento se registró en <strong>${escapeHtml(peakLabel)}</strong>
+      (<strong>${peakText}</strong> de los pasajeros anuales) y los tres meses principales
+      —${top3Months}— reunieron <strong>${top3Text}</strong>.
     `;
   }
 
-  if (expectedNote) {
-    base += ` ${escapeHtml(normalizeSentenceText(expectedNote))}`;
-  } else if (normalizeTextKey(expectedType).includes("todo") && observed.intensity === "sin estacionalidad marcada") {
-    base += " Esto resulta compatible con un perfil de demanda de actividad anual.";
-  } else if (normalizeTextKey(expectedType).includes("todo")) {
-    base += " Aunque el descriptivo identifica una demanda de actividad anual, en 2025 se observó una concentración mensual relevante.";
+  function buildInterpretationText(note, type) {
+    const raw = clean(note).replace(/\.$/, "").trim();
+
+    if (raw) {
+      let txt = lowerFirst(raw).replace(/\.$/, "").trim();
+
+      txt = txt
+        .replace(/^fuerte asociacion/i, "fuerte asociación")
+        .replace(/^temporada turistica/i, "temporada turística");
+
+      const key = normalizeTextKey(txt);
+
+      if (key.startsWith("demanda")) {
+        return `El patrón observado es compatible con una ${escapeHtml(txt)}.`;
+      }
+
+      if (key.startsWith("perfil")) {
+        return `El patrón observado es compatible con un ${escapeHtml(txt)}.`;
+      }
+
+      if (key.startsWith("turismo")) {
+        return `El comportamiento mensual se asocia con ${escapeHtml(txt)}.`;
+      }
+
+      if (key.startsWith("pico principal")) {
+        return `El comportamiento mensual evidencia un ${escapeHtml(txt)}.`;
+      }
+
+      if (key.startsWith("fuerte asociacion")) {
+        return `El comportamiento mensual muestra una ${escapeHtml(txt)}.`;
+      }
+
+      return `El patrón observado se vincula con ${escapeHtml(txt)}.`;
+    }
+
+    const typeKey = normalizeTextKey(type);
+
+    if (typeKey.includes("todo") && intensityKey === "sin estacionalidad marcada") {
+      return "El patrón observado es compatible con una demanda distribuida durante todo el año.";
+    }
+
+    if (typeKey.includes("todo")) {
+      return "Si bien el perfil esperado es anual, en 2025 se observó una concentración mensual relevante.";
+    }
+
+    return "";
   }
 
-  return base.replace(/\s+/g, " ").trim();
+  const interpretation = buildInterpretationText(expectedNote, expectedType);
+
+  return `${base} ${interpretation}`.replace(/\s+/g, " ").trim();
 }
  function joinHtmlList(items) {
   const values = (items || []).filter(Boolean);
