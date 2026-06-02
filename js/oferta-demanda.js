@@ -1969,21 +1969,30 @@ if (mapCfg.mode === "argentina") {
 }
 
     
-  if (mapCfg.mode === "southamerica") {
+if (mapCfg.mode === "southamerica") {
+  if (routeBounds && routeBounds.isValid()) {
+    map.fitBounds(routeBounds.pad(0.22), {
+      padding: [10, 10],
+      animate: false,
+      maxZoom: 4.5
+    });
+  } else {
     map.fitBounds(OD_MAP_BOUNDS_SOUTH_AMERICA, {
       padding: [10, 10],
       animate: false
     });
-    return;
   }
 
-  if (routeBounds && routeBounds.isValid()) {
-    map.fitBounds(routeBounds.pad(0.18), {
-      padding: [12, 12],
-      animate: false,
-      maxZoom: 4
-    });
-  }
+  return;
+}
+
+if (routeBounds && routeBounds.isValid()) {
+  map.fitBounds(routeBounds.pad(0.12), {
+    padding: [10, 10],
+    animate: false,
+    maxZoom: 4.6
+  });
+}
 }
 function odShouldShowProvincesInConnectivityMap(mode) {
   // Provincias en Argentina y en Sudamérica.
