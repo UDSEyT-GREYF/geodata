@@ -1451,16 +1451,47 @@
    MAPAS DE CONECTIVIDAD 2025
    ========================================================== */
 
+/* ==========================================================
+   MAPAS DE CONECTIVIDAD 2025
+   ========================================================== */
+
 .od-connectivity-maps-with-seasonality {
   display: grid;
   gap: 8px;
+  width: 100%;
 }
 
+/* Mantiene la cajita/viñeta interna de Estacionalidad mensual 2025 */
 .od-connectivity-maps-with-seasonality .od-connectivity-block {
   margin: 0;
 }
 
+/* Quita SOLO el marco exterior y el título repetido
+   "OFERTA DE TRANSPORTE AÉREO Y CONECTIVIDAD 2025" */
+.od-connectivity-block-wide:has(#odIntroText .od-connectivity-maps-with-seasonality) {
+  border-left: 0;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+}
+
+.od-connectivity-block-wide:has(#odIntroText .od-connectivity-maps-with-seasonality) > .od-connectivity-kicker {
+  display: none;
+}
+
+/* Si odIntroText conserva alguna lógica de columnas, la anulamos solo para mapas */
+#odIntroText:has(.od-connectivity-maps-with-seasonality) {
+  display: block;
+  column-count: 1;
+  column-gap: 0;
+}
+
+/* Contenedor de mapas: esto es lo que recupera los dos mapas lado a lado */
 .od-connectivity-map-section {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  align-items: stretch;
   margin-top: 2px;
 }
 
