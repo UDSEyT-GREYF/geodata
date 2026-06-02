@@ -1467,7 +1467,12 @@
   padding: 7px 9px;
   box-sizing: border-box;
 }
-
+.od-connectivity-block-wide:has(#odIntroText .od-connectivity-maps-with-seasonality) {
+  border-left: 0;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+}
 .od-connectivity-block-wide:has(#odIntroText .od-connectivity-maps-with-seasonality) > .od-connectivity-kicker {
   display: none;
 }
@@ -1479,18 +1484,14 @@
   column-gap: 0;
 }
 
-/* Caja gris clara que envuelve los dos mapas */
+/* Contenedor de mapas: mantiene la grilla, sin marco común */
 .od-connectivity-map-section {
   display: grid;
   gap: 8px;
   width: 100%;
   align-items: stretch;
   margin-top: 0;
-
-  border: 1px solid #d8e1ea;
-  border-radius: 10px;
-  background: #ffffff;
-  padding: 8px 8px 9px;
+  padding: 0;
   box-sizing: border-box;
 }
 
