@@ -1,0 +1,1748 @@
+/* =========================================================
+   1. VARIABLES Y BASE
+   ========================================================= */
+:root {
+  --blue: #306fb0;
+  --blue-dark: #2a5fa0;
+  --blue-soft: #eef2f7;
+  --line: #d0d7e2;
+  --text: #333;
+  --text-dark: #002855;
+  --muted: #555;
+  --purple: #6b2f82;
+  --bg: #f5f5f5;
+  --chart-passengers: #2A6FB0;
+  --chart-passengers-dark: #1E5A94;
+  --chart-aircraft: #C6923A;
+  --chart-aircraft-fill: rgba(198, 146, 58, 0.34);
+  --chart-grid: #E4EAF1;
+  --chart-axis: #C9D3DF;
+  --chart-label: #6F7D8C;
+  --chart-note: #7A838C;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* =========================================================
+   2. BARRA SUPERIOR / CONTROLES
+   ========================================================= */
+.lamina-toolbar {
+  max-width: 1540px;
+  margin: 16px auto 10px;
+  padding: 0 14px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.toolbar-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.toolbar-subtitle {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.toolbar-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.toolbar-select,
+.toolbar-btn {
+  height: 38px;
+  border-radius: 7px;
+  border: 1px solid #c4cfdd;
+  background: #fff;
+  padding: 0 8px;
+  font-size: 0.8rem;
+}
+
+.toolbar-select {
+  min-width: 240px;
+}
+
+.toolbar-btn {
+  color: var(--text-dark);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* =========================================================
+   3. HOJA A4, ENCABEZADO Y GRILLA GENERAL
+   ========================================================= */
+.sheet-wrap {
+  width: 297mm;
+  max-width: 297mm;
+  margin: 0 auto 18px;
+  padding: 0;
+}
+
+body.page-lamina .sheet-wrap {
+  width: 297mm;
+  max-width: 297mm;
+  margin: 0 auto 18px;
+  padding: 0;
+}
+
+body.page-informe-impacto .sheet-wrap {
+  width: auto;
+  max-width: none;
+}
+
+.sheet-a4 {
+  width: 297mm;
+  height: 210mm;
+  min-height: 210mm;
+  max-height: 210mm;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #d7dee8;
+  box-shadow: 0 10px 26px rgba(33, 45, 68, 0.12);
+  padding: 3mm 5.5mm 4mm 5.5mm;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 297mm;
+  max-width: 297mm;
+  box-sizing: border-box;
+}
+
+.sheet-header {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  row-gap: 3px;
+  align-items: start;
+  margin-bottom: 7px;
+  flex: 0 0 auto;
+}
+
+.sheet-title-main {
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: #002855;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  line-height: 1;
+  grid-column: 1;
+  grid-row: 1;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.sheet-airport-name {
+  grid-column: 1;
+  grid-row: 2;
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: #002855;
+  margin: 0;
+  line-height: 1.22;
+  min-height: 1.28em;
+  padding-bottom: 2px;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sheet-title-year-inline {
+  display: inline;
+  margin-left: 8px;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  white-space: nowrap;
+}
+
+.triptych-grid {
+  display: grid;
+  grid-template-columns: 1.01fr 0.78fr 1.79fr;
+  gap: 7px;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  align-items: stretch;
+}
+
+.triptych-col {
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+  gap: 4px;
+  height: 100%;
+  display: flex;
+}
+
+.triptych-col > .col-header {
+  flex: 0 0 auto;
+}
+
+.section-card,
+.section-superficie,
+.section-movimiento,
+.story-card,
+.section-passengers,
+.section-flights,
+.section-routes {
+  min-height: 0;
+}
+
+.col-header,
+.section-title {
+  background: #4F81BD;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.col-header {
+  padding: 4px 7px;
+  border-radius: 4px;
+  font-size: 0.76rem;
+  line-height: 1.05;
+}
+
+.section-title {
+  padding: 4px 7px;
+  margin: -5px -5px 5px -5px;
+  border-radius: 4px 4px 0 0;
+  font-size: 0.76rem;
+  line-height: 1.05;
+}
+
+.section-card {
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  min-height: 0;
+}
+
+.section-movimiento .section-title {
+  padding: 4px 8px;
+  margin-bottom: 4px;
+}
+
+/* =========================================================
+   4. COLUMNA IZQUIERDA: EXPLOTACIÓN / SUPERFICIE
+   ========================================================= */
+.section-superficie {
+  min-height: 300px;
+}
+
+.surface-top-kpis {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 2px 2px 6px;
+}
+
+.mini-kpi-label {
+  font-size: 0.78rem;
+  color: #646f7c;
+  line-height: 1.12;
+  margin-bottom: 4px;
+}
+
+.mini-kpi-value {
+  color: var(--blue-dark);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.mini-kpi-value span:first-child {
+  font-size: 1.10rem;
+}
+
+.surface-visual-row {
+  display: grid;
+  grid-template-columns: 1fr 1.12fr;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.predio-map-frame,
+.terminal-photo-frame {
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  background: #f9fafc;
+  min-height: 130px;
+  overflow: hidden;
+}
+
+.predio-map {
+  width: 100%;
+  height: 100%;
+  min-height: 118px;
+}
+
+.terminal-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.terminal-photo-frame img.is-hidden {
+  display: none;
+}
+
+.surface-bottom-grid {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+
+.surface-info-row {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr);
+  align-items: start;
+  gap: 8px;
+  font-size: 0.83rem;
+  line-height: 1.2;
+}
+
+.surface-info-row span {
+  color: #757d87;
+}
+
+.surface-info-row strong {
+  color: var(--blue-dark);
+  text-align: right;
+  font-weight: 700;
+}
+
+.explotacion-meta-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 12px;
+  row-gap: 0;
+  margin-top: 4px;
+  padding-top: 4px;
+}
+
+.explotacion-meta-grid::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px dashed rgba(48, 111, 176, 0.18);
+}
+
+.explotacion-meta-grid::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-6px);
+  border-left: 1px dashed rgba(48, 111, 176, 0.08);
+}
+
+.explotacion-meta-col {
+  display: grid;
+  gap: 0;
+}
+
+.explotacion-meta-row {
+  grid-template-columns: 98px minmax(0, 1fr);
+  gap: 6px;
+  align-items: start;
+  padding: 2px 0;
+}
+
+.explotacion-meta-row + .explotacion-meta-row {
+  border-top: 1px dashed rgba(48, 111, 176, 0.09);
+}
+
+.explotacion-meta-label {
+  font-size: 0.64rem;
+  line-height: 1.05;
+  color: #7a838c;
+}
+
+.explotacion-meta-value {
+  font-size: 0.70rem;
+  line-height: 1.16;
+  color: var(--blue-dark);
+  font-weight: 600;
+  text-align: right;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  min-width: 0;
+}
+
+#predioExplotador,
+#predioCodigos,
+#predioGrupoConcesion,
+#predioAreasConcesionadas {
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.explotacion-meta-row-stack {
+  align-items: start;
+}
+
+.explotacion-meta-value-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+#predioSupAreasConcesionadas {
+  font-size: 0.74rem;
+  line-height: 1.08;
+  color: var(--blue-dark);
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.explotacion-meta-detail {
+  font-size: 0.62rem;
+  line-height: 1.12;
+  color: #6a7179;
+  text-align: right;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.predio-codes {
+  display: grid;
+  gap: 2px;
+  justify-content: end;
+}
+
+.predio-code-row {
+  display: grid;
+  grid-template-columns: 34px 42px;
+  gap: 6px;
+  justify-content: end;
+  align-items: baseline;
+}
+
+.predio-code-label {
+  font-size: 0.66rem;
+  line-height: 1;
+  color: #7a838c;
+  text-align: right;
+  letter-spacing: 0.02em;
+}
+
+.predio-code-value {
+  font-size: 0.74rem;
+  line-height: 1;
+  color: var(--blue-dark);
+  font-weight: 700;
+  text-align: right;
+  letter-spacing: 0.03em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* =========================================================
+   5. COLUMNA IZQUIERDA: ÁREA DE MOVIMIENTO
+   ========================================================= */
+.section-movimiento {
+  min-height: 292px;
+  flex: 0 1 46%;
+}
+
+.movement-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.movement-box {
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  background: #fff;
+  padding: 6px 7px 5px;
+}
+
+.movement-box-head {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.movement-box-icon img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.movement-box-title {
+  font-size: 0.75rem;
+  color: #4d5661;
+  line-height: 1.05;
+}
+
+.movement-box-sub {
+  font-size: 0.8rem;
+  color: #444;
+  line-height: 1.6;
+  margin-top: 0px;
+}
+
+.movement-runway-list {
+  display: grid;
+  gap: 4px;
+  margin-top: 0;
+}
+
+.movement-runway-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.movement-runway-name {
+  font-size: 0.8rem;
+  color: #004b80;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.runway-size-chip {
+  background: #C6923A;
+  color: #fff;
+  padding: 7px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1;
+  min-width: 112px;
+  text-align: center;
+  border-radius: 3px;
+}
+
+.runway-mat {
+  font-size: 0.8rem;
+  color: #626f7b;
+  white-space: nowrap;
+}
+
+.movement-positions-grid {
+  display: grid;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.movement-position-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: #444;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+.movement-badge {
+  min-width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: var(--purple);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.movement-badge-large {
+  min-width: 35px;
+  width: 35px;
+  height: 35px;
+  font-size: 1rem;
+  justify-self: end;
+}
+
+.movement-badge[data-wide="1"] {
+  min-width: 34px;
+  padding: 0 8px;
+  border-radius: 999px;
+}
+
+.movement-extra-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 1px;
+}
+
+.extra-kpi {
+  border-top: 1px dashed #d9dee5;
+  padding-top: 8px;
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 8px;
+  align-items: start;
+}
+
+.extra-kpi img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  margin-top: 2px;
+}
+
+.extra-kpi-value {
+  font-size: 1rem;
+  color: var(--blue-dark);
+  font-weight: 700;
+  line-height: 1.08;
+}
+
+.extra-kpi-value-small {
+  font-size: 0.8rem;
+  line-height: 1.24;
+  white-space: normal;
+}
+
+.extra-kpi-value-stack {
+  color: #4a5561;
+  font-weight: 600;
+}
+
+.extra-kpi-meta {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--blue-dark);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 2px;
+}
+
+.extra-kpi-label {
+  font-size: 0.76rem;
+  color: #707c86;
+  margin-top: 2px;
+}
+
+.extra-kpi-wide {
+  grid-column: 1 / span 2;
+}
+
+.movement-extra-kpi {
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  background: #fff;
+  padding: 6px 7px 5px;
+  margin-top: 0;
+}
+
+.movement-extra-kpi .movement-extra-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.85fr;
+  gap: 5px 7px;
+  margin-top: 0;
+}
+
+.movement-extra-kpi .extra-kpi {
+  border-top: none;
+  padding-top: 0;
+  display: grid;
+  grid-template-columns: 25px minmax(0, 1fr);
+  gap: 5px;
+  align-items: start;
+}
+
+.movement-extra-kpi .extra-kpi img,
+.movement-extra-kpi .extra-kpi-aids img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+  margin-top: 0;
+}
+
+.movement-extra-kpi .extra-kpi-value {
+  font-size: 0.86rem;
+  line-height: 1;
+  color: var(--blue-dark);
+  font-weight: 700;
+}
+
+.movement-extra-kpi .extra-kpi-label {
+  line-height: 0.95;
+  color: #707c86;
+  margin-top: 1px;
+  font-size: 0.60rem;
+}
+
+.movement-extra-kpi .extra-kpi-aids {
+  grid-column: 1 / span 2;
+  display: grid;
+  grid-template-columns: 25px minmax(0, 1fr);
+  gap: 5px;
+  align-items: start;
+  border-top: 1px dashed #d9dee5;
+  padding-top: 5px;
+  margin-top: 1px;
+}
+
+.movement-extra-kpi .aids-kpi-stack {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+}
+
+.movement-extra-kpi .aids-kpi-item {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.movement-extra-kpi .aids-kpi-item + .aids-kpi-item {
+  border-top: 1px dashed #d9dee5;
+  padding-top: 4px;
+}
+
+.movement-extra-kpi .aids-kpi-value {
+  font-size: 0.62rem;
+  line-height: 1.05;
+  font-weight: 700;
+  color: var(--blue-dark);
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.movement-extra-kpi .aids-kpi-name {
+  font-size: 0.60rem;
+  line-height: 0.95;
+  color: #707c86;
+  margin-top: 1px;
+}
+
+.movement-box-runways {
+  padding: 6px 7px 6px;
+}
+
+.movement-box-title-inline {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #2a5fa0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.movement-runways-head {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) 34px 100px;
+  align-items: center;
+  margin-bottom: 3px;
+}
+
+.movement-runways-col {
+  font-size: 0.62rem;
+  color: #7a8088;
+  line-height: 1;
+}
+
+.movement-runways-col-label {
+  grid-column: 1;
+}
+
+.movement-runways-col-length {
+  grid-column: 4;
+  text-align: center;
+}
+
+.movement-runway-card {
+  display: grid;
+  grid-template-columns: 33px minmax(0, 1fr) 34px 100px;
+  gap: 5px;
+  align-items: center;
+  min-height: 32px;
+}
+
+.movement-runway-badge {
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  background: var(--purple);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.movement-runway-orientation {
+  font-size: 0.90rem;
+  font-weight: 700;
+  color: #4b79bd;
+  line-height: 1;
+}
+
+.movement-runway-plane {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.movement-runway-plane img {
+  width: 31px;
+  height: 31px;
+  object-fit: contain;
+}
+
+.movement-runway-length {
+  background: #b7b7b9;
+  color: #fff;
+  border-radius: 3px;
+  padding: 5px 6px;
+  text-align: center;
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.movement-position-detail {
+  margin-top: 0;
+  font-size: 0.62rem;
+  line-height: 1;
+  color: #6f7882;
+  padding-left: 0;
+}
+
+.movement-box-positions .movement-box-head {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) 34px;
+  gap: 6px;
+  align-items: center;
+}
+
+.movement-box-positions .movement-box-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  min-width: 0;
+}
+
+.movement-box-positions .movement-box-title {
+  font-size: 0.73rem;
+  font-weight: 600;
+  color: #2a5fa0;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.movement-box-positions .movement-box-icon {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.movement-box-positions .movement-badge-large {
+  justify-self: end;
+  align-self: center;
+}
+
+.movement-kpi-title {
+  margin-bottom: 4px;
+}
+
+.movement-box-positions .movement-box-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.movement-box-positions .movement-box-sub {
+  margin: 0;
+  font-size: 0.62rem;
+  color: #777;
+  line-height: 0.95;
+}
+
+.movement-box-sub,
+.movement-position-detail,
+.extra-kpi-label,
+.aids-kpi-name {
+  font-size: 0.68rem;
+  line-height: 1.05;
+  color: #7a838c;
+  font-weight: 500;
+}
+
+.story-block-title,
+.movement-kpi-title {
+  letter-spacing: 0.03em;
+}
+
+.movement-box-title-inline,
+.movement-kpi-title {
+  font-size: 0.72rem;
+  line-height: 1.05;
+  margin-bottom: 5px;
+  letter-spacing: 0.025em;
+}
+
+.movement-box-positions {
+  padding: 6px 7px 5px;
+}
+
+.movement-badge,
+.movement-badge-large {
+  width: 33px;
+  min-width: 33px;
+  height: 33px;
+  font-size: 0.92rem;
+}
+
+.movement-box,
+.movement-box *,
+.movement-extra-kpi,
+.movement-extra-kpi * {
+  min-width: 0;
+}
+
+/* =========================================================
+   6. COLUMNA CENTRAL: TERMINAL DE PASAJEROS
+   ========================================================= */
+.story-card {
+  min-height: 580px;
+  gap: 8px;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.story-block {
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  background: #fff;
+  padding: 4px 6px;
+}
+
+.story-block-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #2a5fa0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  line-height: 1;
+}
+
+.story-item {
+  display: grid;
+  grid-template-columns: 26px 1fr 46px;
+  gap: 6px;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.story-item + .story-item {
+  border-top: 1px dashed #d4dbe5;
+}
+
+.story-icon img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.story-name {
+  font-size: 0.7rem;
+  color: #444;
+  line-height: 0.8;
+}
+
+.story-sub {
+  font-size: 0.6rem;
+  color: #777;
+  line-height: 0.9;
+  margin-top: 2px;
+}
+
+.story-badge {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: var(--purple);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  justify-self: end;
+}
+
+.story-badge[data-wide="1"] {
+  width: 58px;
+  font-size: 1rem;
+}
+
+.story-item-transport {
+  grid-template-columns: 30px 1fr;
+}
+
+.story-sub-transport {
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: var(--blue-dark);
+  line-height: 1.3;
+}
+
+.history-chart {
+  width: 100%;
+  height: 180px;
+  display: block;
+}
+
+.history-title {
+  font-size: 0.82rem;
+  margin: 0 0 1px;
+  color: var(--chart-label);
+}
+
+.history-title-passengers {
+  color: var(--chart-passengers);
+  font-weight: 600;
+}
+
+.history-title-aircraft {
+  color: var(--chart-aircraft);
+  font-weight: 600;
+}
+
+.history-note {
+  font-size: 0.6rem;
+  margin-top: 1px;
+  color: var(--chart-note);
+}
+
+/* =========================================================
+   7. COLUMNA DERECHA: TRÁFICO Y CONECTIVIDAD
+   ========================================================= */
+.section-passengers {
+  min-height: 350px;
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+
+.section-flights {
+  min-height: 104px;
+  flex: 0 0 auto;
+}
+
+.section-routes {
+  min-height: 184px;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.passengers-caption,
+.flights-caption {
+  font-size: 0.9rem;
+  color: #616c77;
+  margin-bottom: 8px;
+}
+
+.passengers-top-row {
+  display: grid;
+  grid-template-columns: 82px 1fr 128px;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.passengers-icon-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.passengers-icon-block img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+}
+
+.passengers-hero-pill {
+  position: relative;
+  background: linear-gradient(135deg, #1d86de 0%, #1567bd 100%);
+  color: #fff;
+  border-radius: 999px;
+  min-height: 74px;
+  max-width: 350px;
+  width: 100%;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 82px 6px 14px;
+  box-shadow: 0 6px 16px rgba(31, 92, 160, 0.16);
+  overflow: visible;
+}
+
+.passengers-total {
+  font-size: 1.6rem;
+  line-height: 1;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.passengers-line {
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.08;
+}
+
+.passengers-side-column {
+  display: grid;
+  gap: 8px;
+}
+
+.passenger-side-kpi {
+  background: #f4f7fb;
+  color: var(--blue-dark);
+  border-radius: 6px;
+  padding: 3px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 42px;
+  border: 1px solid #d6e1ee;
+  margin-top: 1px;
+}
+
+.passenger-side-value {
+  font-size: 1.02rem;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.passenger-side-label {
+  font-size: 0.7rem;
+  opacity: .98;
+  line-height: 0.8;
+  color: #5f6d7d;
+  margin-top: 0px;
+}
+
+.flights-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.flight-card {
+  text-align: center;
+}
+
+.flight-label {
+  background: linear-gradient(180deg, #f8f8f8 0%, #ececec 100%);
+  border-top: 8px solid var(--blue-dark);
+  border-radius: 4px;
+  padding: 5px 5px 3px;
+  color: #8c7b5f;
+  font-size: 0.7rem;
+  box-shadow: 0 6px 9px rgba(0,0,0,.12);
+  margin-bottom: 8px;
+}
+
+.flight-value {
+  font-size: 1.2rem;
+  color: var(--blue-dark);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.routes-grid {
+  display: grid;
+  grid-template-columns: minmax(205px, 0.98fr) minmax(0, 1.55fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.routes-right {
+  border-left: 1px dashed #cfd8e4;
+  padding-left: 10px;
+  min-width: 0;
+}
+
+.routes-subtitle {
+  font-size: 0.90rem;
+  color: #6b7178;
+  margin-bottom: 6px;
+}
+
+.airlines-summary {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: start;
+  grid-template-areas: ". pill"
+    "list list";
+  column-gap: 8px;
+  row-gap: 6px;
+}
+
+.airlines-count-pill {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--purple);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  grid-area: pill;
+  justify-self: end;
+  align-self: start;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  z-index: 2;
+}
+
+.airlines-list {
+  white-space: normal;
+  font-size: 1rem;
+  color: var(--blue-dark);
+  line-height: 1.25;
+  font-weight: 600;
+  grid-area: list;
+  display: grid;
+  gap: 2px;
+  width: 100%;
+  margin-top: 0;
+  min-width: 0;
+}
+
+.destinations-list {
+  display: block;
+  gap: 8px;
+}
+
+.destination-item {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 6px;
+  align-items: center;
+  min-width: 0;
+}
+
+.destination-pill {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #0c7bd8;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flights-wrap {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 14px;
+  align-items: center;
+}
+
+.flights-icon-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flights-icon-block img {
+  width: 150px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.airline-item {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  gap: 6px;
+  align-items: center;
+  min-height: 22px;
+  padding: 1px 0;
+}
+
+.airline-logo {
+  max-width: 100px;
+  max-height: 26px;
+  object-fit: contain;
+  display: block;
+}
+
+.airline-name-fallback {
+  font-size: 0.62rem;
+  color: var(--blue-dark);
+  font-weight: 700;
+  line-height: 0.95;
+  overflow-wrap: anywhere;
+}
+
+.airline-volume {
+  font-size: 0.7rem;
+  color: #6a7179;
+  line-height: 0.92;
+  white-space: normal;
+  min-width: 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  max-width: 100%;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.airline-empty {
+  font-size: 0.68rem;
+  color: #6a7179;
+  line-height: 1.05;
+}
+
+.destinations-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.destinations-column {
+  display: grid;
+  gap: 4px;
+  align-content: start;
+}
+
+.destinations-column-title {
+  font-size: 0.64rem;
+  color: #6b7178;
+  font-weight: 700;
+  margin-bottom: 1px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.destination-text {
+  display: block;
+  font-size: 0.62rem;
+  color: #6a7179;
+  line-height: 0.95;
+}
+
+.destination-text strong {
+  color: #5f6972;
+  font-weight: 600;
+}
+
+.destination-title-line {
+  line-height: 1.05;
+  white-space: normal;
+}
+
+.destination-title-line strong {
+  color: #5f6972;
+  font-weight: 600;
+}
+
+.destination-meta {
+  display: inline;
+  font-size: 0.64rem;
+  color: #7a838c;
+}
+
+.destination-volume {
+  display: block;
+  font-size: 0.62rem;
+  color: #6a7179;
+  line-height: 0.9;
+  margin-top: 1px;
+}
+
+.routes-left {
+  position: relative;
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.routes-left .routes-subtitle {
+  display: flex;
+  margin: 0 38px 5px 0;
+  font-size: 0.70rem;
+  font-weight: 700;
+  color: #2a5fa0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.05;
+  min-height: 30px;
+  align-items: center;
+}
+
+.routes-left .airlines-summary {
+  display: block;
+  padding-top: 0;
+  min-width: 0;
+}
+
+.airline-logo-wrap {
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 1px;
+  width: 78px;
+  min-width: 0;
+}
+
+.passenger-split-donut {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 68px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.passenger-split-donut svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.passenger-split-donut-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.passenger-split-donut-label strong {
+  font-size: 0.66rem;
+  line-height: 1;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.passenger-split-donut-label span {
+  font-size: 0.50rem;
+  display: none;
+  line-height: 1.05;
+  font-weight: 700;
+  color: rgba(255,255,255,0.92);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.passengers-kpi-kicker {
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.92;
+  margin-bottom: 2px;
+}
+
+.passengers-breakdown {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.passengers-breakdown-item {
+  font-size: 0.70rem;
+  line-height: 0.9;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.passengers-breakdown-item:first-child {
+  color: #c7e4ff;
+}
+
+.passengers-breakdown-item:last-child {
+  color: #d5f76d;
+}
+
+.routes-left .airlines-count-pill,
+.airlines-count-pill {
+  position: absolute;
+  top: 0;
+  right: 2px;
+  width: 31px;
+  height: 31px;
+  min-width: 31px;
+  border-radius: 50%;
+  font-size: 1rem;
+  line-height: 1;
+  margin: 0;
+  z-index: 2;
+}
+
+.airline-item + .airline-item {
+  border-top: 1px dashed rgba(208, 216, 228, 0.75);
+}
+
+/* =========================================================
+   9. LEAFLET / MAPAS
+   ========================================================= */
+.leaflet-container {
+  background: #f5f7fa;
+  font: inherit;
+}
+
+.leaflet-control-container {
+  display: none;
+}
+
+.leaflet-tile {
+  filter: grayscale(1) brightness(1.12) contrast(0.9);
+  opacity: .42;
+}
+
+/* =========================================================
+   10. BUSCADOR DE AEROPUERTOS
+   ========================================================= */
+.lamina-airport-combobox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 320px;
+  max-width: 420px;
+  z-index: 9999;
+}
+
+.lamina-airport-combobox label {
+  flex: 0 0 auto;
+  font-size: 11px;
+  line-height: 1.1;
+  font-weight: 600;
+  color: #4f5d6b;
+  white-space: nowrap;
+}
+
+.lamina-airport-search-row {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 260px;
+}
+
+.lamina-airport-search-input {
+  width: 100%;
+  height: 30px;
+  padding: 5px 9px;
+  border: 1px solid #b9c7d8;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #334150;
+  font-size: 12px;
+  line-height: 1.2;
+  outline: none;
+}
+
+.lamina-airport-search-input:focus {
+  border-color: #2a6fb0;
+  box-shadow: 0 0 0 2px rgba(42, 111, 176, 0.14);
+}
+
+.lamina-hidden-airport-select {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lamina-airport-search-results {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  display: none;
+  max-height: 230px;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid #cbd6e2;
+  border-radius: 7px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.16);
+  z-index: 10000;
+}
+
+.lamina-airport-search-results.is-open {
+  display: block;
+}
+
+.siga-search-result {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 9px;
+  border-bottom: 1px solid #edf1f5;
+  background: #ffffff;
+  color: #26374a;
+  font-size: 12px;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.siga-search-result:last-child {
+  border-bottom: none;
+}
+
+.siga-search-result:hover,
+.siga-search-result.is-highlighted {
+  background: #eaf3fb;
+  color: #002855;
+}
+
+.siga-search-result-code {
+  flex: 0 0 34px;
+  font-weight: 800;
+  color: #0056a4;
+  letter-spacing: 0.02em;
+}
+
+/* =========================================================
+   11. EXPORTACIÓN
+   ========================================================= */
+.sheet-a4.is-exporting {
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+}
+
+/* =========================================================
+   12. OTROS
+   ========================================================= */
+.sheet-footer {
+  margin-top: 8px;
+  border-top: 1px solid #e1e7ee;
+  padding-top: 6px;
+  color: #7b8792;
+  font-size: 0.78rem;
+  text-align: right;
+  flex: 0 0 auto;
+}
+
+/* =========================================================
+   16. IMPRESIÓN
+   ---------------------------------------------------------
+   Este bloque no fuerza el body del informe completo.
+   La impresión directa queda preparada para la lámina standalone.
+   ========================================================= */
+
+@media print {
+  .no-print,
+  .lamina-toolbar,
+  .lamina-airport-combobox {
+    display: none !important;
+  }
+
+  body:not(.page-informe-impacto) {
+    width: 297mm;
+    height: 210mm;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+  }
+
+  body:not(.page-informe-impacto) .sheet-wrap {
+    width: 297mm;
+    max-width: 297mm;
+    margin: 0;
+    padding: 0;
+  }
+
+  body:not(.page-informe-impacto) .sheet-a4 {
+    width: 297mm;
+    height: 210mm;
+    min-width: 297mm;
+    max-width: 297mm;
+    min-height: 210mm;
+    max-height: 210mm;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+    overflow: hidden;
+  }
+}
