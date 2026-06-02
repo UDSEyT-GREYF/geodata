@@ -1703,6 +1703,28 @@ function odResolveDestinationMapCode(destino, mapKind) {
 }
 
 function odGetDestinationMapLabel(destino, mapKind) {
+  const rawCode = clean(destino?.code).toUpperCase();
+
+  const codes = Array.isArray(destino?.airportCodesList)
+    ? destino.airportCodesList.map(c => clean(c).toUpperCase()).filter(Boolean)
+    : [];
+
+  /*
+    Misma lógica conceptual que en los gráficos de rutas:
+    cuando el destino corresponde al nodo Buenos Aires,
+    la etiqueta cartográfica debe decir Buenos Aires,
+    aunque para georreferenciar se use AEP o EZE.
+  */
+  if (
+    rawCode === "BUE" ||
+    rawCode === "AEP" ||
+    rawCode === "EZE" ||
+    codes.includes("AEP") ||
+    codes.includes("EZE")
+  ) {
+    return "Buenos Aires";
+  }
+
   const code = odResolveDestinationMapCode(destino, mapKind);
   const airport = odGetAirportRecordByIata(code);
 
