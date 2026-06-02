@@ -6601,7 +6601,7 @@ const historicMethodText = `
   Para analizar la serie histórica, se decidió utilizar el período ${longStartYear}-${longEndYear}
   como referencia prepandemia, mientras que el período ${recentStartYear}-${recentEndYear}
   resume la dinámica posterior. Por ello, el indicador Tasa Media de Crecimiento Anual (TMCA)
-  se muestra diferenciado, evitando los atípicos años 2020 a 2022.
+  se muestra diferenciado, evitando los atípicos 2020 a 2022.
 `;
 
 const historicComparisonText = `
