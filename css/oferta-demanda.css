@@ -1456,7 +1456,13 @@
   gap: 10px;
   width: 100%;
 }
-
+/* Quita el borde del panel exterior que envolvía párrafo + mapas */
+.od-panel-connectivity:has(#odIntroText .od-connectivity-maps-with-seasonality) {
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
+}
 /* Caja propia para el párrafo de Estacionalidad mensual 2025 */
 .od-connectivity-maps-with-seasonality .od-connectivity-block {
   margin: 0;
@@ -1484,14 +1490,18 @@
   column-gap: 0;
 }
 
-/* Contenedor de mapas: mantiene la grilla, sin marco común */
+/* Caja gris clara que envuelve solamente los mapas */
 .od-connectivity-map-section {
   display: grid;
   gap: 8px;
   width: 100%;
   align-items: stretch;
   margin-top: 0;
-  padding: 0;
+
+  border: 1px solid #d8e1ea;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 8px 8px 9px;
   box-sizing: border-box;
 }
 
