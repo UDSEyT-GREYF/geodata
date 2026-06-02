@@ -1454,29 +1454,14 @@
 .od-connectivity-maps-with-seasonality {
   display: grid;
   gap: 8px;
-
-  /* Quita la viñeta/marco celeste del bloque de mapas */
-  border-left: 0;
-  padding-left: 0;
-  background: transparent;
-  border-radius: 0;
 }
 
 .od-connectivity-maps-with-seasonality .od-connectivity-block {
   margin: 0;
-
-  /* Quita la viñeta celeste del párrafo de Estacionalidad mensual 2025 */
-  border-left: 0;
-  padding-left: 0;
-  background: transparent;
-  border-radius: 0;
 }
 
 .od-connectivity-map-section {
-  display: grid;
-  gap: 8px;
-  width: 100%;
-  align-items: stretch;
+  margin-top: 2px;
 }
 
 .od-connectivity-maps--single {
