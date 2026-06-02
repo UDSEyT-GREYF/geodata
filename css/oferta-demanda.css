@@ -1451,28 +1451,21 @@
    MAPAS DE CONECTIVIDAD 2025
    ========================================================== */
 
-/* ==========================================================
-   MAPAS DE CONECTIVIDAD 2025
-   ========================================================== */
-
 .od-connectivity-maps-with-seasonality {
   display: grid;
-  gap: 8px;
+  gap: 10px;
   width: 100%;
 }
 
-/* Mantiene la cajita/viñeta interna de Estacionalidad mensual 2025 */
+/* Caja propia para el párrafo de Estacionalidad mensual 2025 */
 .od-connectivity-maps-with-seasonality .od-connectivity-block {
   margin: 0;
-}
-
-/* Quita SOLO el marco exterior y el título repetido
-   "OFERTA DE TRANSPORTE AÉREO Y CONECTIVIDAD 2025" */
-.od-connectivity-block-wide:has(#odIntroText .od-connectivity-maps-with-seasonality) {
-  border-left: 0;
-  background: transparent;
-  border-radius: 0;
-  padding: 0;
+  border: 1px solid #d8e1ea;
+  border-left: 3px solid #75AADB;
+  background: #f9fbfd;
+  border-radius: 8px;
+  padding: 7px 9px;
+  box-sizing: border-box;
 }
 
 .od-connectivity-block-wide:has(#odIntroText .od-connectivity-maps-with-seasonality) > .od-connectivity-kicker {
@@ -1486,13 +1479,19 @@
   column-gap: 0;
 }
 
-/* Contenedor de mapas: esto es lo que recupera los dos mapas lado a lado */
+/* Caja gris clara que envuelve los dos mapas */
 .od-connectivity-map-section {
   display: grid;
   gap: 8px;
   width: 100%;
   align-items: stretch;
-  margin-top: 2px;
+  margin-top: 0;
+
+  border: 1px solid #d8e1ea;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 8px 8px 9px;
+  box-sizing: border-box;
 }
 
 .od-connectivity-maps--single {
