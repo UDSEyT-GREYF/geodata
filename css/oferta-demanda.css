@@ -1456,6 +1456,12 @@
   gap: 10px;
   width: 100%;
 }
+/* Cuando la sección de conectividad se transforma en mapas,
+   usa todo el ancho disponible, alineado con los gráficos superiores */
+.od-connectivity-text:has(.od-connectivity-maps-with-seasonality) {
+  padding-left: 0;
+  padding-right: 0;
+}
 /* Quita el borde del panel exterior que envolvía párrafo + mapas */
 .od-panel-connectivity:has(#odIntroText .od-connectivity-maps-with-seasonality) {
   border: 0;
@@ -1501,7 +1507,7 @@
   border: 1px solid #d8e1ea;
   border-radius: 10px;
   background: #ffffff;
-  padding: 8px 8px 9px;
+  padding: 6px 6px 7px;
   box-sizing: border-box;
 }
 
