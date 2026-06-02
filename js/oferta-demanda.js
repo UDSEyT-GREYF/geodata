@@ -1955,13 +1955,20 @@ if (mapCfg.mode === "argentina") {
   });
 
   const currentZoom = map.getZoom();
-  map.setView(map.getCenter(), currentZoom - 0.20, { // zoom para adaptar Argentina a la caja del mapa
-    animate: false
-  });
+  const currentCenter = map.getCenter();
+
+  map.setView(
+    [currentCenter.lat - 1.2, currentCenter.lng],
+    currentZoom - 0.20,  // zoom para adaptar Argentina a la caja del mapa
+    {
+      animate: false
+    }
+  );
 
   return;
 }
 
+    
   if (mapCfg.mode === "southamerica") {
     map.fitBounds(OD_MAP_BOUNDS_SOUTH_AMERICA, {
       padding: [10, 10],
@@ -1994,15 +2001,15 @@ function odAddConnectivityBaseMap(map, mode) {
         attribution: "© IGN Argentina - Argenmap"
       }
     ).addTo(map);
-  } else {
-    L.tileLayer(
-      "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-      {
-        maxZoom: 10,
-        attribution: "© OpenStreetMap © CARTO"
-      }
-    ).addTo(map);
-  }
+} else {
+  L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
+      maxZoom: 10,
+      attribution: "© OpenStreetMap"
+    }
+  ).addTo(map);
+}
 
   if (
     odShouldShowProvincesInConnectivityMap(mode) &&
