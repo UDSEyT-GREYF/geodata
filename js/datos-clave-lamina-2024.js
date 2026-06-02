@@ -1555,11 +1555,9 @@ if (flightBarsData.length) {
     const isLast = i === passengerSeries.length - 1;
 
     markers += `<circle cx="${xx}" cy="${yy}" r="${isCurrent ? 4.3 : 3.2}" fill="${isCurrent ? CHART_COLORS.passengersLineDark : CHART_COLORS.passengersLine}"></circle>`;
-    if (isCurrent || isLast) {
-      const labelX = isLast ? Math.min(xx - 4, W - padR - 2) : xx;
-      const anchor = isLast ? "end" : "middle";
-      markers += `<text x="${labelX}" y="${yy - 8}" text-anchor="${anchor}" font-size="10" fill="${CHART_COLORS.value}">${formatNumber(Math.round(d.valor))}</text>`;
-    }
+if (isCurrent) {
+  markers += `<text x="${xx}" y="${yy - 8}" text-anchor="middle" font-size="10" fill="${CHART_COLORS.value}">${formatNumber(Math.round(d.valor))}</text>`;
+}
   });
 
   svg.innerHTML = `
