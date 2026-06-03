@@ -16,276 +16,114 @@
       --warn: #a15f00;
       --err: #a32626;
     }
-
     * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    .wrap {
-      max-width: 1540px;
-      margin: 0 auto;
-      padding: 22px 18px 32px;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 16px;
-      margin-bottom: 14px;
-    }
-
-    h1 {
-      margin: 0;
-      color: var(--blue-dark);
-      font-size: 1.35rem;
-      line-height: 1.15;
-    }
-
-    .subtitle {
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
-
-    .actions {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    button {
-      border: 1px solid #b9c8da;
-      border-radius: 8px;
-      background: #fff;
-      color: var(--blue-dark);
-      padding: 9px 12px;
-      font-weight: 700;
-      font-size: 0.84rem;
-      cursor: pointer;
-    }
-
-    button.primary {
-      background: var(--blue);
-      color: #fff;
-      border-color: var(--blue);
-    }
-
-    button:disabled {
-      opacity: 0.55;
-      cursor: not-allowed;
-    }
-
-    .status {
-      border: 1px solid var(--line);
-      background: #fff;
-      border-radius: 10px;
-      padding: 10px 12px;
-      margin-bottom: 12px;
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
-
+    body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); }
+    .wrap { max-width: 1540px; margin: 0 auto; padding: 22px 18px 32px; }
+    .topbar { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 14px; }
+    h1 { margin: 0; color: var(--blue-dark); font-size: 1.35rem; line-height: 1.15; }
+    .subtitle { margin-top: 5px; color: var(--muted); font-size: 0.88rem; }
+    .actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+    button { border: 1px solid #b9c8da; border-radius: 8px; background: #fff; color: var(--blue-dark); padding: 9px 12px; font-weight: 700; font-size: 0.84rem; cursor: pointer; }
+    button.primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+    button:disabled { opacity: 0.55; cursor: not-allowed; }
+    .status { border: 1px solid var(--line); background: #fff; border-radius: 10px; padding: 10px 12px; margin-bottom: 12px; font-size: 0.86rem; color: var(--muted); }
     .status.ok { border-left: 5px solid var(--ok); }
     .status.warn { border-left: 5px solid var(--warn); }
     .status.err { border-left: 5px solid var(--err); }
-
-    .tools-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-
-    .search {
-      width: 360px;
-      max-width: 100%;
-      border: 1px solid #bdcad8;
-      border-radius: 8px;
-      padding: 9px 11px;
-      font-size: 0.9rem;
-      background: #fff;
-    }
-
-    .count {
-      color: var(--muted);
-      font-size: 0.84rem;
-    }
-
-    .table-card {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 22px rgba(33, 45, 68, 0.08);
-    }
-
-    .table-scroll {
-      overflow: auto;
-      max-height: calc(100vh - 210px);
-    }
-
-    table {
-      width: 100%;
-      min-width: 1420px;
-      border-collapse: collapse;
-      font-size: 0.82rem;
-    }
-
-    thead th {
-      position: sticky;
-      top: 0;
-      z-index: 2;
-      background: #eaf1f8;
-      color: var(--blue-dark);
-      border-bottom: 1px solid var(--line);
-      text-align: right;
-      white-space: nowrap;
-      padding: 8px 8px;
-      font-weight: 800;
-    }
-
-    thead th:nth-child(1),
-    thead th:nth-child(2) {
-      text-align: left;
-      z-index: 3;
-    }
-
-    tbody td {
-      border-top: 1px solid #edf1f6;
-      padding: 6px 8px;
-      text-align: right;
-      white-space: nowrap;
-    }
-
-    tbody td:nth-child(1),
-    tbody td:nth-child(2) {
-      text-align: left;
-      font-weight: 650;
-      color: #25384d;
-    }
-
-    tbody tr:hover {
-      background: #f8fbff;
-    }
-
-    .sticky-name {
-      position: sticky;
-      left: 0;
-      background: inherit;
-      z-index: 1;
-      min-width: 300px;
-      max-width: 360px;
-      white-space: normal;
-    }
-
-    .sticky-iata {
-      position: sticky;
-      left: 300px;
-      background: inherit;
-      z-index: 1;
-      min-width: 62px;
-    }
-
-    thead .sticky-name,
-    thead .sticky-iata {
-      background: #eaf1f8;
-      z-index: 4;
-    }
-
-    .small-note {
-      margin-top: 9px;
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .hidden { display: none; }
+    .tools-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+    .search { width: 360px; max-width: 100%; border: 1px solid #bdcad8; border-radius: 8px; padding: 9px 11px; font-size: 0.9rem; background: #fff; }
+    .count { color: var(--muted); font-size: 0.84rem; }
+    .table-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 22px rgba(33, 45, 68, 0.08); }
+    .table-scroll { overflow: auto; max-height: calc(100vh - 210px); }
+    table { width: 100%; min-width: 1420px; border-collapse: collapse; font-size: 0.82rem; }
+    thead th { position: sticky; top: 0; z-index: 2; background: #eaf1f8; color: var(--blue-dark); border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; padding: 8px 8px; font-weight: 800; }
+    thead th:nth-child(1), thead th:nth-child(2) { text-align: left; z-index: 3; }
+    tbody td { border-bottom: 1px solid #edf1f5; padding: 7px 8px; text-align: right; white-space: nowrap; }
+    tbody td:nth-child(1), tbody td:nth-child(2) { text-align: left; }
+    tbody tr:hover td { background: #f6faff; }
+    .sticky-name { position: sticky; left: 0; z-index: 1; background: inherit; min-width: 310px; max-width: 310px; white-space: normal; }
+    .sticky-iata { position: sticky; left: 310px; z-index: 1; background: inherit; min-width: 70px; }
+    thead .sticky-name, thead .sticky-iata { background: #eaf1f8; z-index: 4; }
+    .note { margin-top: 10px; color: var(--muted); font-size: 0.82rem; line-height: 1.35; }
+    code { background: #edf3f8; padding: 1px 4px; border-radius: 4px; color: #123d67; }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <section class="topbar">
+  <div class="wrap">
+    <div class="topbar">
       <div>
-        <h1>Tabla descargable de tráfico por aeropuerto · 2022-2025</h1>
-        <div class="subtitle">Pasajeros y movimientos comerciales de cabotaje e internacional. Para los 12 aeropuertos de fuente extra se reconstruyen los valores desde rutasaereas.csv con el mismo criterio de rutas de la lámina: par de ruta separado en dos extremos, coincidencia exacta por IATA o por término completo.</div>
+        <h1>Tabla descargable de tráfico por aeropuerto 2022-2025</h1>
+        <div class="subtitle">Pasajeros y movimientos comerciales de cabotaje e internacional. Para los 12 aeropuertos extra, los valores se calculan directamente desde <code>rutasaereas.csv</code> con la misma lógica de la sección de rutas de la lámina.</div>
       </div>
       <div class="actions">
-        <button id="btnReload" type="button">Recargar datos</button>
+        <button id="btnReload" type="button">Recargar</button>
         <button id="btnCsv" class="primary" type="button" disabled>Descargar CSV</button>
-        <button id="btnXls" type="button" disabled>Descargar Excel</button>
+        <button id="btnXls" type="button" disabled>Descargar Excel .xls</button>
       </div>
-    </section>
+    </div>
 
-    <div id="status" class="status">Cargando fuentes…</div>
+    <div id="status" class="status warn">Cargando fuentes…</div>
 
-    <section class="tools-row">
-      <input id="filterInput" class="search" type="search" placeholder="Filtrar por nombre o IATA…" disabled>
-      <div id="rowCount" class="count">–</div>
-    </section>
+    <div class="tools-row">
+      <input id="filterInput" class="search" type="search" placeholder="Filtrar por aeropuerto o IATA..." disabled>
+      <div id="rowCount" class="count">Sin datos</div>
+    </div>
 
-    <section class="table-card">
+    <div class="table-card">
       <div class="table-scroll">
         <table id="dataTable">
           <thead></thead>
           <tbody></tbody>
         </table>
       </div>
-    </section>
-
-    <div class="small-note">
-      Ubicación esperada: guardar este archivo en la raíz de la web, al mismo nivel que la carpeta <strong>fuentes</strong>. Esta versión lee <code>fuentes/rutasaereas.csv</code> como fuente extra para TTG, RYO, SST, NEC, LPG, GNR, JNI, PMQ, AOL, LGS, EPA y COC, usando el par de ruta como en la lámina: primero <code>citypair_iata</code> y, como respaldo, <code>Ruta_completa</code>. Si se abre como archivo local y el navegador bloquea <code>fetch()</code>, usar un servidor local.
     </div>
-  </main>
+
+    <div class="note">
+      Ubicación esperada: guardar este archivo en la raíz de la web, al mismo nivel que la carpeta <strong>fuentes</strong>.
+      Esta versión usa <code>fuentes/rutasaereas.csv</code> como fuente extra para <strong>TTG, RYO, SST, NEC, LPG, GNR, JNI, PMQ, AOL, LGS, EPA y COC</strong>.
+      La coincidencia principal se hace con <code>citypair_iata</code>, separando la ruta en <code>endpointA</code> y <code>endpointB</code>, igual que en <code>datos-clave-lamina.js</code>.
+      <code>Ruta_completa</code> queda solo como respaldo si no existe <code>citypair_iata</code>.
+    </div>
+  </div>
 
   <script>
   (() => {
     "use strict";
 
     const YEARS = [2022, 2023, 2024, 2025];
+    const EXTRA_ROUTE_IATAS = new Set(["TTG", "RYO", "SST", "NEC", "LPG", "GNR", "JNI", "PMQ", "AOL", "LGS", "EPA", "COC"]);
 
     const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
     const PAX_DATASET_INT = "pasajeros_comerciales_internacional_aeropuerto";
-
     const MOV_DATASET_CAB = "movimientos_comerciales_cabotaje_aeropuerto";
     const MOV_DATASET_INT = "movimientos_comerciales_internacional_aeropuerto";
 
-    const EXTRA_TRAFFIC_SOURCE = "rutasaereas_extra_12_aeropuertos";
-    const EXTRA_TRAFFIC_IATAS = new Set(["TTG", "RYO", "SST", "NEC", "LPG", "GNR", "JNI", "PMQ", "AOL", "LGS", "EPA", "COC"]);
-    const EXTRA_TRAFFIC_REPLACE_FROM_IATAS = new Set(["TTG", "RYO", "SST", "NEC", "LPG", "GNR", "JNI", "PMQ", "AOL", "LGS", "EPA", "COC"]);
-    const EXTRA_TRAFFIC_REPLACE_FROM_DATE = new Date(2015, 0, 1);
-
-    const FDO_AA_SOURCE = "fuentes/fdo_trafico_aeropuertos_argentina.json";
+    const COLUMNS = [
+      "nombre", "iata",
+      ...YEARS.map(y => `paxcab${y}`),
+      ...YEARS.map(y => `paxinter${y}`),
+      ...YEARS.map(y => `movcab${y}`),
+      ...YEARS.map(y => `movinter${y}`)
+    ];
 
     const SOURCES = {
       airports: "fuentes/Datos_aeropuertos.geojson",
       pax: "fuentes/pasajeros_aeropuerto_mensual.csv",
       mov: "fuentes/movimientos_aeropuerto_mensual.csv",
-      extra: "fuentes/rutasaereas.csv",
-      fdo: FDO_AA_SOURCE
+      rutas: "fuentes/rutasaereas.csv",
+      iataWorld: "fuentes/ListadoIATAmundo.csv",
+      fdo: "fuentes/fdo_trafico_aeropuertos_argentina.json"
     };
 
-    const COLUMNS = [
-      "nombre", "iata",
-      "paxcab2022", "paxcab2023", "paxcab2024", "paxcab2025",
-      "paxinter2022", "paxinter2023", "paxinter2024", "paxinter2025",
-      "movcab2022", "movcab2023", "movcab2024", "movcab2025",
-      "movinter2022", "movinter2023", "movinter2024", "movinter2025"
-    ];
-
     let aeropuertos = [];
+    let domesticIATAs = new Set();
     let pasajerosMensualRows = [];
     let movimientosMensualRows = [];
-    let domesticIATAs = new Set();
+    let rutasRows = [];
+    let iataWorldIndex = {};
+    let routeCodeIndex = {};
     let tableRows = [];
-    let extraTrafficRouteStats = null;
+    let routeStats = null;
 
     const q = id => document.getElementById(id);
 
@@ -305,7 +143,8 @@
     function firstNonEmpty(obj, keys, fallback = "") {
       for (const key of keys) {
         if (!obj) continue;
-        const value = obj[key];
+        const normalizedKey = normalizeHeader(key);
+        const value = obj[key] !== undefined ? obj[key] : obj[normalizedKey];
         if (value !== undefined && value !== null && String(value).trim() !== "") return value;
       }
       return fallback;
@@ -315,19 +154,13 @@
       if (v === null || v === undefined) return NaN;
       let s = String(v).trim();
       if (!s) return NaN;
-
       s = s.replace(/\s+/g, "").replace(/[^\d,.-]/g, "");
       if (!s) return NaN;
-
       const commaCount = (s.match(/,/g) || []).length;
       const dotCount = (s.match(/\./g) || []).length;
-
       if (commaCount && dotCount) {
-        if (s.lastIndexOf(",") > s.lastIndexOf(".")) {
-          s = s.replace(/\./g, "").replace(",", ".");
-        } else {
-          s = s.replace(/,/g, "");
-        }
+        if (s.lastIndexOf(",") > s.lastIndexOf(".")) s = s.replace(/\./g, "").replace(",", ".");
+        else s = s.replace(/,/g, "");
       } else if (commaCount) {
         if (commaCount > 1) {
           const lastComma = s.lastIndexOf(",");
@@ -336,9 +169,7 @@
             const parts = s.split(",");
             const dec = parts.pop();
             s = parts.join("") + "." + dec;
-          } else {
-            s = s.replace(/,/g, "");
-          }
+          } else s = s.replace(/,/g, "");
         } else {
           const decimals = s.length - s.indexOf(",") - 1;
           s = decimals === 3 ? s.replace(/,/g, "") : s.replace(",", ".");
@@ -351,21 +182,19 @@
             const parts = s.split(".");
             const dec = parts.pop();
             s = parts.join("") + "." + dec;
-          } else {
-            s = s.replace(/\./g, "");
-          }
+          } else s = s.replace(/\./g, "");
         } else {
           const decimals = s.length - s.indexOf(".") - 1;
           if (decimals === 3) s = s.replace(".", "");
         }
       }
-
       const n = Number(s);
       return Number.isFinite(n) ? n : NaN;
     }
 
     function formatNumber(n) {
-      return Number(n || 0).toLocaleString("es-AR");
+      if (n === null || n === undefined || n === "" || Number.isNaN(Number(n))) return "0";
+      return Number(n).toLocaleString("es-AR");
     }
 
     function escapeHtml(value) {
@@ -379,52 +208,43 @@
 
     function detectSep(headerLine) {
       if (headerLine.includes("\t")) return "\t";
-      if (headerLine.includes(";")) return ";";
-      return ",";
+      const semi = (headerLine.match(/;/g) || []).length;
+      const comma = (headerLine.match(/,/g) || []).length;
+      return semi >= comma ? ";" : ",";
     }
 
-    function splitCSVLine(line, sep) {
+    function splitDelimitedLine(line, sep) {
       const out = [];
       let cur = "";
       let inQuotes = false;
-
       for (let i = 0; i < line.length; i++) {
         const ch = line[i];
-        const next = line[i + 1];
-
         if (ch === '"') {
-          if (inQuotes && next === '"') {
+          if (inQuotes && line[i + 1] === '"') {
             cur += '"';
             i++;
           } else {
             inQuotes = !inQuotes;
           }
-          continue;
-        }
-
-        if (ch === sep && !inQuotes) {
+        } else if (ch === sep && !inQuotes) {
           out.push(cur);
           cur = "";
-          continue;
+        } else {
+          cur += ch;
         }
-
-        cur += ch;
       }
-
       out.push(cur);
       return out;
     }
 
     function parseCSV(text) {
       if (!text) return [];
-      const lines = String(text).replace(/^\uFEFF/, "").split(/\r?\n/).filter(line => line.trim() !== "");
-      if (lines.length < 2) return [];
-
-      const sep = detectSep(lines[0]);
-      const headers = splitCSVLine(lines[0], sep).map(normalizeHeader);
-
-      return lines.slice(1).map(line => {
-        const cols = splitCSVLine(line, sep);
+      const rawLines = text.replace(/^\uFEFF/, "").split(/\r?\n/).filter(line => line.trim() !== "");
+      if (rawLines.length < 2) return [];
+      const sep = detectSep(rawLines[0]);
+      const headers = splitDelimitedLine(rawLines[0], sep).map(normalizeHeader);
+      return rawLines.slice(1).map(line => {
+        const cols = splitDelimitedLine(line, sep);
         const row = {};
         headers.forEach((h, idx) => { row[h] = cols[idx] ?? ""; });
         return row;
@@ -452,21 +272,32 @@
     function parseFechaFlexible(raw) {
       if (!raw) return null;
       const s = String(raw).trim();
-
       let m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
       if (m) return new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1]));
-
       m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
       if (m) return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
-
       m = s.match(/^(\d{4})-(\d{1,2})$/);
       if (m) return new Date(Number(m[1]), Number(m[2]) - 1, 1);
-
       m = s.match(/^(\d{4})(\d{2})$/);
       if (m) return new Date(Number(m[1]), Number(m[2]) - 1, 1);
-
       const d = new Date(s);
       return Number.isNaN(d.getTime()) ? null : d;
+    }
+
+    function extractYearFlexible(row) {
+      const directYear = parseNumber(firstNonEmpty(row, ["anio", "ano", "year", "año"]));
+      if (Number.isFinite(directYear)) return Number(directYear);
+      const candidates = [
+        firstNonEmpty(row, ["fecha"]),
+        firstNonEmpty(row, ["anomes", "año_mes", "ano_mes", "periodo_id", "mes_ano"])
+      ].filter(Boolean);
+      for (const raw of candidates) {
+        const d = parseFechaFlexible(raw);
+        if (d && !Number.isNaN(d.getTime())) return d.getFullYear();
+        const m = String(raw).match(/^(\d{4})/);
+        if (m) return Number(m[1]);
+      }
+      return NaN;
     }
 
     function parsePasajerosMensualCSV(text) {
@@ -487,41 +318,26 @@
       })).filter(r => r.iata && r.date && Number.isFinite(r.valor)).sort((a, b) => a.date - b.date);
     }
 
-    function normalizeTrafficSegment(value) {
-      const key = normalizeHeader(value);
-
-      if (key.includes("internacional") || key.includes("international") || key === "int") return "internacional";
-      if (key.includes("cabotaje") || key.includes("domestico") || key.includes("domestic") || key.includes("nacional") || key === "cab") return "cabotaje";
-
-      return "total";
+    function getMovementValueFromRouteRow(r) {
+      return parseNumber(firstNonEmpty(r, [
+        "movimientos", "valor_movimientos", "vuelos", "cantidad_vuelos", "cant_vuelos",
+        "vuelos_totales", "total_vuelos", "totalvuelos", "operaciones"
+      ]));
     }
 
-    function datasetForPassengerSegment(segment) {
-      if (segment === "cabotaje") return PAX_DATASET_CAB;
-      if (segment === "internacional") return PAX_DATASET_INT;
-      return "pasajeros_comerciales_total_aeropuerto";
+    function getPassengerValueFromRouteRow(r) {
+      return parseNumber(firstNonEmpty(r, [
+        "totalpasajeros", "pasajeros", "valor_pax", "pax", "pax_total", "total_pax",
+        "pasajeros_totales", "total_pasajeros", "valor"
+      ]));
     }
 
-    function datasetForMovementSegment(segment) {
-      if (segment === "cabotaje") return MOV_DATASET_CAB;
-      if (segment === "internacional") return MOV_DATASET_INT;
-      return "movimientos_comerciales_total_aeropuerto";
+    function splitRoutePair(raw) {
+      const route = clean(raw).toUpperCase();
+      if (!route) return ["", ""];
+      const parts = route.split("-").map(s => s.trim()).filter(Boolean);
+      return [parts[0] || "", parts[1] || ""];
     }
-
-    const EXTRA_AIRPORT_MANUAL_ALIASES = {
-      TTG: ["Tartagal", "Gral. Enrique Mosconi", "General Enrique Mosconi"],
-      RYO: ["Río Turbio", "Rio Turbio", "28 de Noviembre", "Veintiocho de Noviembre"],
-      SST: ["Santa Teresita", "Santa Teresita Aeropuerto"],
-      NEC: ["Necochea"],
-      LPG: ["La Plata"],
-      GNR: ["General Roca", "Gral. Roca", "Fisque Menuco"],
-      JNI: ["Junín", "Junin"],
-      PMQ: ["Perito Moreno"],
-      AOL: ["Paso de los Libres"],
-      LGS: ["Malargüe", "Malargue"],
-      EPA: ["El Palomar", "Palomar"],
-      COC: ["Concordia"]
-    };
 
     function normalizeRouteTerm(value) {
       return clean(value)
@@ -534,245 +350,143 @@
         .trim();
     }
 
-    function addRouteAlias(aliasMap, iata, value) {
-      const code = clean(iata).toUpperCase();
-      if (!code || !aliasMap.has(code)) return;
-      const normalized = normalizeRouteTerm(value);
-      if (normalized) aliasMap.get(code).add(normalized);
-    }
-
-    function buildRouteAliasIndex(iataSet) {
-      const aliasMap = new Map();
-      Array.from(iataSet || []).forEach(iata => {
-        const code = clean(iata).toUpperCase();
-        if (code) aliasMap.set(code, new Set([normalizeRouteTerm(code)]));
-      });
-
+    function buildAirportAliasLookup() {
+      const lookup = new Map();
       aeropuertos.forEach(a => {
         const iata = clean(firstNonEmpty(a, ["IATA", "iata"])).toUpperCase();
-        if (!aliasMap.has(iata)) return;
-
-        [
-          "IATA", "iata", "OACI", "oaci", "Ciudad", "Localidad", "Municipio",
-          "Ciudad / Localidad", "Ciudad/Localidad", "Aeropuerto", "Nombre del Aeropuerto",
-          "Denominacion", "Denominación", "nombre", "name"
-        ].forEach(key => addRouteAlias(aliasMap, iata, a[key]));
+        if (!iata) return;
+        const values = [
+          iata,
+          firstNonEmpty(a, ["OACI", "oaci"]),
+          firstNonEmpty(a, ["Ciudad", "Localidad", "Municipio", "Ciudad / Localidad", "Ciudad/Localidad"]),
+          firstNonEmpty(a, ["Aeropuerto", "Nombre del Aeropuerto", "Denominacion", "Denominación", "nombre", "name"])
+        ];
+        values.forEach(v => {
+          const key = normalizeRouteTerm(v);
+          if (key) lookup.set(key, iata);
+        });
       });
 
-      Object.entries(EXTRA_AIRPORT_MANUAL_ALIASES).forEach(([iata, aliases]) => {
-        if (!aliasMap.has(iata)) return;
-        aliases.forEach(alias => addRouteAlias(aliasMap, iata, alias));
-      });
-
-      return aliasMap;
-    }
-
-    function buildAliasLookup(aliasMap) {
-      const lookup = new Map();
-      aliasMap.forEach((aliases, iata) => {
-        aliases.forEach(alias => {
-          if (alias) lookup.set(alias, iata);
+      const manual = {
+        TTG: ["Tartagal", "General Enrique Mosconi", "Gral Enrique Mosconi"],
+        RYO: ["Rio Turbio", "Río Turbio", "28 de Noviembre"],
+        SST: ["Santa Teresita"],
+        NEC: ["Necochea"],
+        LPG: ["La Plata"],
+        GNR: ["General Roca", "Gral Roca"],
+        JNI: ["Junin", "Junín"],
+        PMQ: ["Perito Moreno"],
+        AOL: ["Paso de los Libres"],
+        LGS: ["Malargue", "Malargüe"],
+        EPA: ["El Palomar", "Palomar"],
+        COC: ["Concordia"]
+      };
+      Object.entries(manual).forEach(([iata, arr]) => {
+        arr.forEach(v => {
+          const key = normalizeRouteTerm(v);
+          if (key) lookup.set(key, iata);
         });
       });
       return lookup;
     }
 
-    function extractExplicitIATAFromRouteTerm(term) {
+    function resolveEndpointFromText(term, aliasLookup) {
       const raw = clean(term).toUpperCase();
       if (!raw) return "";
-
       if (/^[A-Z0-9]{2,4}$/.test(raw)) return raw;
-
       const paren = raw.match(/\(([A-Z0-9]{2,4})\)/);
       if (paren) return paren[1];
-
-      return "";
+      return aliasLookup.get(normalizeRouteTerm(term)) || raw;
     }
 
-    function resolveRouteTermToIATA(term, aliasLookup) {
-      const explicit = extractExplicitIATAFromRouteTerm(term);
-      if (explicit) return explicit;
-
-      const normalized = normalizeRouteTerm(term);
-      return aliasLookup.get(normalized) || "";
+    function getFallbackRouteTerms(row, aliasLookup) {
+      const routeRaw = firstNonEmpty(row, ["ruta_completa", "ruta completa", "ruta", "origen_destino", "citypair"]);
+      const s = clean(routeRaw);
+      if (!s) return ["", ""];
+      const parts = s.split(/\s*(?:-|–|—|→|>|\/|\\)\s*/).map(p => p.trim()).filter(Boolean);
+      return [resolveEndpointFromText(parts[0] || "", aliasLookup), resolveEndpointFromText(parts[1] || "", aliasLookup)];
     }
 
-    function splitRouteTermsLikeLamina(routeRaw) {
-      const route = clean(routeRaw);
-      if (!route) return [];
-
-      // La lámina separa citypair_iata por guion. Acá replicamos ese criterio y solo agregamos
-      // separadores visuales equivalentes para cuando la columna venga como Ruta_completa.
-      return route
-        .split(/\s*(?:-|–|—|→|>|\/|\\)\s*/)
-        .map(part => part.trim())
-        .filter(Boolean);
-    }
-
-    function getRouteFieldLikeLamina(row) {
-      // En datos-clave-lamina.js, rutasaereas.csv se interpreta desde citypair_iata.
-      // Ruta_completa queda como respaldo para archivos donde el par venga con ese encabezado.
-      return firstNonEmpty(row, [
-        "citypair_iata",
-        "ruta_completa", "ruta completa",
-        "ruta", "citypair", "od", "origen_destino"
-      ]);
-    }
-
-    function getRouteRowDate(row) {
-      const date = parseFechaFlexible(firstNonEmpty(row, [
-        "fecha", "date", "anomes", "ano_mes", "año_mes", "periodo_id", "mes_ano"
-      ]));
-      if (date) return date;
-
-      const year = parseNumber(firstNonEmpty(row, ["anio", "ano", "año", "year"]));
-      const month = parseNumber(firstNonEmpty(row, ["mes", "month"]));
-      if (Number.isFinite(year)) return new Date(Number(year), Number.isFinite(month) ? Math.max(0, Number(month) - 1) : 0, 1);
-
-      return null;
-    }
-
-    function getExplicitRouteSegment(row) {
-      const raw = firstNonEmpty(row, [
-        "segmento", "clasificacion", "clasificación", "tipo", "tipo_trafico", "tipo_tráfico",
-        "mercado", "ambito", "ámbito", "tipo_ruta", "tipo_de_ruta"
-      ]);
-
-      const segment = normalizeTrafficSegment(raw);
-      return segment === "total" ? "" : segment;
-    }
-
-    function inferSegmentLikeLamina(otherCode) {
-      const other = clean(otherCode).toUpperCase();
-      if (!other) return "cabotaje";
-      return domesticIATAs.has(other) ? "cabotaje" : "internacional";
-    }
-
-    function parseRutasAereasExtraTrafficCSV(text) {
+    function parseRutasCSV(text) {
+      const aliasLookup = buildAirportAliasLookup();
       const rows = parseCSV(text);
-      const paxRows = [];
-      const movRows = [];
-      const extraAliasMap = buildRouteAliasIndex(EXTRA_TRAFFIC_IATAS);
-      const domesticAliasMap = buildRouteAliasIndex(domesticIATAs);
-      const extraLookup = buildAliasLookup(extraAliasMap);
-      const domesticLookup = buildAliasLookup(domesticAliasMap);
+      return rows.map(r => {
+        const date = parseFechaFlexible(firstNonEmpty(r, ["fecha", "anomes", "año_mes", "ano_mes", "periodo_id"]));
+        const yearNum = parseNumber(firstNonEmpty(r, ["anio", "ano", "year", "año"]));
 
-      const stats = {
-        sourceRows: rows.length,
-        matchedSourceRows: 0,
-        paxRows: 0,
-        movRows: 0,
-        byIata: {},
-        criterio: "citypair_iata / Ruta_completa separado en dos términos; coincidencia exacta por IATA o alias del término completo"
-      };
+        const cityPair = clean(firstNonEmpty(r, ["citypair_iata"])).toUpperCase();
+        let [endpointA, endpointB] = splitRoutePair(cityPair);
 
-      EXTRA_TRAFFIC_IATAS.forEach(iata => {
-        stats.byIata[iata] = { matched: 0, paxRows: 0, movRows: 0 };
-      });
+        // La lámina usa citypair_iata. Solo si no existe, usamos Ruta_completa como respaldo.
+        if (!endpointA || !endpointB) {
+          [endpointA, endpointB] = getFallbackRouteTerms(r, aliasLookup).map(x => clean(x).toUpperCase());
+        }
 
+        const volume = getPassengerValueFromRouteRow(r);
+        const movimientos = getMovementValueFromRouteRow(r);
+
+        return {
+          cityPair,
+          endpointA,
+          endpointB,
+          volume,
+          movimientos,
+          year: Number.isFinite(yearNum) ? Number(yearNum) : (date ? date.getFullYear() : NaN)
+        };
+      }).filter(r => r.endpointA && r.endpointB && Number.isFinite(r.year) && (Number.isFinite(r.volume) || Number.isFinite(r.movimientos)));
+    }
+
+    function parseIATAMundoCSV(text) {
+      const rows = parseCSV(text);
+      const byIata = {};
+      const byCode = {};
       rows.forEach(r => {
-        const routeRaw = getRouteFieldLikeLamina(r);
-        if (!routeRaw) return;
-
-        const terms = splitRouteTermsLikeLamina(routeRaw);
-        if (terms.length < 2) return;
-
-        const endpoints = terms.slice(0, 2).map(term => {
-          const iata = resolveRouteTermToIATA(term, extraLookup) || resolveRouteTermToIATA(term, domesticLookup) || extractExplicitIATAFromRouteTerm(term);
-          return {
-            raw: term,
-            iata: clean(iata).toUpperCase()
-          };
-        });
-
-        const matches = endpoints
-          .map((endpoint, idx) => ({ ...endpoint, termIndex: idx }))
-          .filter(endpoint => EXTRA_TRAFFIC_IATAS.has(endpoint.iata));
-
-        if (!matches.length) return;
-
-        const date = getRouteRowDate(r);
-        if (!date) return;
-
-        const explicitSegment = getExplicitRouteSegment(r);
-        const pasajeros = parseNumber(firstNonEmpty(r, [
-          "pasajeros", "totalpasajeros", "total_pasajeros", "pax", "valor_pax",
-          "pax_total", "total_pax", "passengers"
-        ]));
-
-        const movimientos = parseNumber(firstNonEmpty(r, [
-          "movimientos", "valor_movimientos", "vuelos", "cantidad_vuelos", "cant_vuelos",
-          "vuelos_totales", "total_vuelos", "totalvuelos", "operaciones", "frecuencias"
-        ]));
-
-        stats.matchedSourceRows += 1;
-
-        matches.forEach(match => {
-          const otherEndpoint = endpoints[match.termIndex === 0 ? 1 : 0];
-          const segment = explicitSegment || inferSegmentLikeLamina(otherEndpoint?.iata);
-          const iata = match.iata;
-
-          stats.byIata[iata].matched += 1;
-
-          if (Number.isFinite(pasajeros)) {
-            paxRows.push({
-              iata,
-              dataset: datasetForPassengerSegment(segment),
-              date,
-              valor: pasajeros,
-              source: EXTRA_TRAFFIC_SOURCE
-            });
-            stats.paxRows += 1;
-            stats.byIata[iata].paxRows += 1;
-          }
-
-          if (Number.isFinite(movimientos)) {
-            movRows.push({
-              iata,
-              dataset: datasetForMovementSegment(segment),
-              date,
-              valor: movimientos,
-              source: EXTRA_TRAFFIC_SOURCE
-            });
-            stats.movRows += 1;
-            stats.byIata[iata].movRows += 1;
-          }
-        });
+        const iata = clean(firstNonEmpty(r, ["iata"])).toUpperCase();
+        const oaci = clean(firstNonEmpty(r, ["oaci", "icao"])).toUpperCase();
+        const meta = {
+          iata,
+          oaci,
+          ciudad: clean(firstNonEmpty(r, ["ciudad", "city"])),
+          pais: clean(firstNonEmpty(r, ["pais", "país", "country"]))
+        };
+        if (iata) byIata[iata] = meta;
+        if (iata) byCode[iata] = meta;
+        if (oaci) byCode[oaci] = meta;
       });
-
-      extraTrafficRouteStats = stats;
-
-      return {
-        paxRows: paxRows.sort((a, b) => a.date - b.date),
-        movRows: movRows.sort((a, b) => a.date - b.date),
-        stats
-      };
+      return { byIata, byCode };
     }
 
-    function parseExtraTrafficCSV(text) {
-      return parseRutasAereasExtraTrafficCSV(text);
+    function getRouteMeta(code) {
+      const key = clean(code).toUpperCase();
+      if (!key) return null;
+      return routeCodeIndex[key] || iataWorldIndex[key] || null;
     }
 
-    function isSameOrAfterMonth(date, cutoffDate) {
-      if (!(date instanceof Date) || Number.isNaN(date.getTime())) return false;
-      if (!(cutoffDate instanceof Date) || Number.isNaN(cutoffDate.getTime())) return false;
-
-      const y = date.getFullYear();
-      const m = date.getMonth();
-      const cy = cutoffDate.getFullYear();
-      const cm = cutoffDate.getMonth();
-
-      return y > cy || (y === cy && m >= cm);
+    function isArgentinaCountry(value) {
+      const p = clean(value).toUpperCase();
+      return p === "AR" || p === "ARG" || p === "ARGENTINA" || p.startsWith("AR-");
     }
 
-    function shouldDropBaseTrafficRow(row) {
-      const iata = clean(row.iata).toUpperCase();
-      return EXTRA_TRAFFIC_REPLACE_FROM_IATAS.has(iata) && row.date && isSameOrAfterMonth(row.date, EXTRA_TRAFFIC_REPLACE_FROM_DATE);
+    function getEquivalentDestinationCode(selectedIata, otherCode) {
+      const sel = clean(selectedIata).toUpperCase();
+      const other = clean(otherCode).toUpperCase();
+      const selectedIsBA = sel === "AEP" || sel === "EZE";
+      const otherIsBA = other === "AEP" || other === "EZE";
+      if (!selectedIsBA && otherIsBA) return "BUE";
+      return other;
     }
 
-    function mergeExtraTrafficRows(baseRows, extraRows) {
-      const keptBaseRows = (baseRows || []).filter(row => !shouldDropBaseTrafficRow(row));
-      return keptBaseRows.concat(extraRows || []).sort((a, b) => a.date - b.date);
+    function classifyRouteSegmentLikeLamina(selected, otherCodeRaw) {
+      const otherMeta = getRouteMeta(otherCodeRaw);
+      const otherNormalizedCode = clean(otherMeta?.iata || otherCodeRaw).toUpperCase();
+      const destinationCode = getEquivalentDestinationCode(selected, otherNormalizedCode);
+      if (!destinationCode || destinationCode === selected) return "";
+
+      let isCabotaje;
+      if (otherMeta) isCabotaje = isArgentinaCountry(otherMeta.pais);
+      else isCabotaje = domesticIATAs.has(otherNormalizedCode);
+
+      return isCabotaje ? "cabotaje" : "internacional";
     }
 
     function isFDO(iata) {
@@ -796,47 +510,33 @@
 
     function fdoAAToPassengerRows(data) {
       const acc = new Map();
-
       (data?.mensual || [])
         .filter(fdoShouldUseTrafficRow)
         .forEach(row => {
           const anio = Number(row.anio);
           const mes = Number(row.mes);
           if (!Number.isFinite(anio) || !Number.isFinite(mes)) return;
-
           const dataset = fdoPassengerDataset(row.segmento);
           const key = `${anio}-${String(mes).padStart(2, "0")}-${dataset}`;
-
-          if (!acc.has(key)) {
-            acc.set(key, { iata: "FDO", dataset, date: new Date(anio, mes - 1, 1), valor: 0, source: "aeropuertos_argentina_fdo" });
-          }
-
+          if (!acc.has(key)) acc.set(key, { iata: "FDO", dataset, date: new Date(anio, mes - 1, 1), valor: 0, source: "aeropuertos_argentina_fdo" });
           acc.get(key).valor += Number(row.pasajeros) || 0;
         });
-
       return Array.from(acc.values()).filter(row => Number.isFinite(row.valor)).sort((a, b) => a.date - b.date);
     }
 
     function fdoAAToMovementRows(data) {
       const acc = new Map();
-
       (data?.mensual || [])
         .filter(fdoShouldUseTrafficRow)
         .forEach(row => {
           const anio = Number(row.anio);
           const mes = Number(row.mes);
           if (!Number.isFinite(anio) || !Number.isFinite(mes)) return;
-
           const dataset = fdoMovementDataset(row.segmento);
           const key = `${anio}-${String(mes).padStart(2, "0")}-${dataset}`;
-
-          if (!acc.has(key)) {
-            acc.set(key, { iata: "FDO", dataset, date: new Date(anio, mes - 1, 1), valor: 0, source: "aeropuertos_argentina_fdo" });
-          }
-
+          if (!acc.has(key)) acc.set(key, { iata: "FDO", dataset, date: new Date(anio, mes - 1, 1), valor: 0, source: "aeropuertos_argentina_fdo" });
           acc.get(key).valor += Number(row.movimientos) || 0;
         });
-
       return Array.from(acc.values()).filter(row => Number.isFinite(row.valor)).sort((a, b) => a.date - b.date);
     }
 
@@ -851,7 +551,6 @@
       const iata = clean(firstNonEmpty(a, ["IATA", "iata"])).toUpperCase();
       const ciudad = clean(firstNonEmpty(a, ["Ciudad", "Localidad", "Municipio", "Ciudad / Localidad", "Ciudad/Localidad", "Aeropuerto"]));
       const nombreOficial = clean(firstNonEmpty(a, ["Nombre del Aeropuerto", "Aeropuerto", "Denominacion", "Denominación", "nombre", "name"]));
-
       if (iata === "AEP") return "Aeroparque Jorge Newbery";
       if (ciudad && nombreOficial && ciudad !== nombreOficial) return `Aeropuerto de ${ciudad} – ${nombreOficial}`;
       if (ciudad) return `Aeropuerto de ${ciudad}`;
@@ -866,29 +565,81 @@
         .reduce((acc, r) => acc + (Number(r.valor) || 0), 0);
     }
 
+    function getMatchingRouteRows(iata, year) {
+      const selected = clean(iata).toUpperCase();
+      return rutasRows.filter(r =>
+        Number(r.year) === Number(year) &&
+        (r.endpointA === selected || r.endpointB === selected)
+      );
+    }
+
+    function sumRoutesLikeLamina(iata, year, segmentWanted, metric) {
+      const selected = clean(iata).toUpperCase();
+      let total = 0;
+
+      getMatchingRouteRows(selected, year).forEach(r => {
+        const otherCodeRaw = r.endpointA === selected ? r.endpointB : r.endpointA;
+        if (!otherCodeRaw || otherCodeRaw === selected) return;
+
+        const segment = classifyRouteSegmentLikeLamina(selected, otherCodeRaw);
+        if (segment !== segmentWanted) return;
+
+        const value = metric === "pax" ? r.volume : r.movimientos;
+        if (Number.isFinite(value)) total += Number(value) || 0;
+      });
+
+      return total;
+    }
+
+    function countMatchedRouteRowsByIata() {
+      const byIata = {};
+      EXTRA_ROUTE_IATAS.forEach(iata => {
+        byIata[iata] = { rows: 0, pax: 0, mov: 0 };
+      });
+      rutasRows.forEach(r => {
+        [r.endpointA, r.endpointB].forEach(endpoint => {
+          if (!EXTRA_ROUTE_IATAS.has(endpoint)) return;
+          byIata[endpoint].rows += 1;
+          if (Number.isFinite(r.volume)) byIata[endpoint].pax += 1;
+          if (Number.isFinite(r.movimientos)) byIata[endpoint].mov += 1;
+        });
+      });
+      return byIata;
+    }
+
+    function getValue(iata, metric, segment, year) {
+      const code = clean(iata).toUpperCase();
+
+      if (EXTRA_ROUTE_IATAS.has(code)) {
+        return Math.round(sumRoutesLikeLamina(code, year, segment, metric));
+      }
+
+      if (metric === "pax") {
+        return Math.round(sumYearByDataset(
+          pasajerosMensualRows,
+          code,
+          segment === "cabotaje" ? PAX_DATASET_CAB : PAX_DATASET_INT,
+          year
+        ));
+      }
+
+      return Math.round(sumYearByDataset(
+        movimientosMensualRows,
+        code,
+        segment === "cabotaje" ? MOV_DATASET_CAB : MOV_DATASET_INT,
+        year
+      ));
+    }
+
     function buildTableRows() {
       return aeropuertos.map(a => {
         const iata = clean(firstNonEmpty(a, ["IATA", "iata"])).toUpperCase();
-        const row = {
-          nombre: getAirportTitle(a),
-          iata
-        };
+        const row = { nombre: getAirportTitle(a), iata };
 
-        YEARS.forEach(year => {
-          row[`paxcab${year}`] = Math.round(sumYearByDataset(pasajerosMensualRows, iata, PAX_DATASET_CAB, year));
-        });
-
-        YEARS.forEach(year => {
-          row[`paxinter${year}`] = Math.round(sumYearByDataset(pasajerosMensualRows, iata, PAX_DATASET_INT, year));
-        });
-
-        YEARS.forEach(year => {
-          row[`movcab${year}`] = Math.round(sumYearByDataset(movimientosMensualRows, iata, MOV_DATASET_CAB, year));
-        });
-
-        YEARS.forEach(year => {
-          row[`movinter${year}`] = Math.round(sumYearByDataset(movimientosMensualRows, iata, MOV_DATASET_INT, year));
-        });
+        YEARS.forEach(year => { row[`paxcab${year}`] = getValue(iata, "pax", "cabotaje", year); });
+        YEARS.forEach(year => { row[`paxinter${year}`] = getValue(iata, "pax", "internacional", year); });
+        YEARS.forEach(year => { row[`movcab${year}`] = getValue(iata, "mov", "cabotaje", year); });
+        YEARS.forEach(year => { row[`movinter${year}`] = getValue(iata, "mov", "internacional", year); });
 
         return row;
       });
@@ -897,26 +648,17 @@
     function renderTable(rows = tableRows) {
       const thead = q("dataTable").querySelector("thead");
       const tbody = q("dataTable").querySelector("tbody");
+      thead.innerHTML = `<tr>${COLUMNS.map((col, idx) => {
+        const cls = idx === 0 ? "sticky-name" : idx === 1 ? "sticky-iata" : "";
+        return `<th class="${cls}">${escapeHtml(col)}</th>`;
+      }).join("")}</tr>`;
 
-      thead.innerHTML = `
-        <tr>
-          ${COLUMNS.map((col, idx) => {
-            const cls = idx === 0 ? "sticky-name" : idx === 1 ? "sticky-iata" : "";
-            return `<th class="${cls}">${escapeHtml(col)}</th>`;
-          }).join("")}
-        </tr>
-      `;
-
-      tbody.innerHTML = rows.map(row => `
-        <tr>
-          ${COLUMNS.map((col, idx) => {
-            const cls = idx === 0 ? "sticky-name" : idx === 1 ? "sticky-iata" : "";
-            const value = row[col] ?? 0;
-            const display = typeof value === "number" ? formatNumber(value) : escapeHtml(value);
-            return `<td class="${cls}" data-col="${escapeHtml(col)}">${display}</td>`;
-          }).join("")}
-        </tr>
-      `).join("");
+      tbody.innerHTML = rows.map(row => `<tr>${COLUMNS.map((col, idx) => {
+        const cls = idx === 0 ? "sticky-name" : idx === 1 ? "sticky-iata" : "";
+        const value = row[col] ?? 0;
+        const display = typeof value === "number" ? formatNumber(value) : escapeHtml(value);
+        return `<td class="${cls}" data-col="${escapeHtml(col)}">${display}</td>`;
+      }).join("")}</tr>`).join("");
 
       q("rowCount").textContent = `${rows.length} aeropuertos visibles / ${tableRows.length} cargados`;
     }
@@ -946,42 +688,23 @@
     }
 
     function downloadCSV() {
-      const lines = [];
-      lines.push(COLUMNS.join(";"));
-      tableRows.forEach(row => {
-        lines.push(COLUMNS.map(col => csvEscape(row[col] ?? 0)).join(";"));
-      });
+      const lines = [COLUMNS.join(";")];
+      tableRows.forEach(row => lines.push(COLUMNS.map(col => csvEscape(row[col] ?? 0)).join(";")));
       downloadBlob("\uFEFF" + lines.join("\r\n"), "tabla_trafico_aeropuertos_2022_2025.csv", "text/csv;charset=utf-8");
     }
 
     function downloadXLS() {
-      const html = `
-        <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
-        <head><meta charset="UTF-8"></head>
-        <body>
-          <table border="1">
-            <thead><tr>${COLUMNS.map(c => `<th>${escapeHtml(c)}</th>`).join("")}</tr></thead>
-            <tbody>
-              ${tableRows.map(row => `<tr>${COLUMNS.map(col => `<td>${escapeHtml(row[col] ?? 0)}</td>`).join("")}</tr>`).join("")}
-            </tbody>
-          </table>
-        </body></html>
-      `;
+      const html = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="UTF-8"></head><body><table border="1"><thead><tr>${COLUMNS.map(c => `<th>${escapeHtml(c)}</th>`).join("")}</tr></thead><tbody>${tableRows.map(row => `<tr>${COLUMNS.map(col => `<td>${escapeHtml(row[col] ?? 0)}</td>`).join("")}</tr>`).join("")}</tbody></table></body></html>`;
       downloadBlob("\uFEFF" + html, "tabla_trafico_aeropuertos_2022_2025.xls", "application/vnd.ms-excel;charset=utf-8");
     }
 
     function applyFilter() {
       const term = clean(q("filterInput").value).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      if (!term) {
-        renderTable(tableRows);
-        return;
-      }
-
+      if (!term) { renderTable(tableRows); return; }
       const filtered = tableRows.filter(row => {
         const haystack = `${row.nombre} ${row.iata}`.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         return haystack.includes(term);
       });
-
       renderTable(filtered);
     }
 
@@ -992,11 +715,12 @@
       q("filterInput").value = "";
       setStatus("Cargando fuentes…", "warn");
 
-      const [airportsGJ, paxText, movText, extraText, fdoJson] = await Promise.all([
+      const [airportsGJ, paxText, movText, rutasText, iataWorldText, fdoJson] = await Promise.all([
         fetchOptional(SOURCES.airports, "json"),
         fetchOptional(SOURCES.pax, "text"),
         fetchOptional(SOURCES.mov, "text"),
-        fetchOptional(SOURCES.extra, "text"),
+        fetchOptional(SOURCES.rutas, "text"),
+        fetchOptional(SOURCES.iataWorld, "text"),
         fetchOptional(SOURCES.fdo, "json")
       ]);
 
@@ -1015,11 +739,14 @@
       pasajerosMensualRows = paxText ? parsePasajerosMensualCSV(paxText) : [];
       movimientosMensualRows = movText ? parseMovimientosMensualCSV(movText) : [];
 
-      if (extraText) {
-        const extraTraffic = parseExtraTrafficCSV(extraText);
-        pasajerosMensualRows = mergeExtraTrafficRows(pasajerosMensualRows, extraTraffic.paxRows);
-        movimientosMensualRows = mergeExtraTrafficRows(movimientosMensualRows, extraTraffic.movRows);
+      if (iataWorldText) {
+        const parsedWorld = parseIATAMundoCSV(iataWorldText);
+        iataWorldIndex = parsedWorld.byIata;
+        routeCodeIndex = parsedWorld.byCode;
       }
+
+      rutasRows = rutasText ? parseRutasCSV(rutasText) : [];
+      routeStats = countMatchedRouteRowsByIata();
 
       if (fdoJson) {
         pasajerosMensualRows = replaceRowsForFDO(pasajerosMensualRows, fdoAAToPassengerRows(fdoJson));
@@ -1036,14 +763,20 @@
       const warnings = [];
       if (!paxText) warnings.push("pasajeros_aeropuerto_mensual.csv no cargado");
       if (!movText) warnings.push("movimientos_aeropuerto_mensual.csv no cargado");
-      if (!extraText) warnings.push("rutasaereas.csv no cargado para la fuente extra de 12 aeropuertos");
+      if (!rutasText) warnings.push("rutasaereas.csv no cargado para los 12 aeropuertos extra");
+      if (!iataWorldText) warnings.push("ListadoIATAmundo.csv no cargado: la clasificación internacional puede quedar limitada a IATA domésticos");
       if (!fdoJson) warnings.push("fuente FDO de Aeropuertos Argentina no cargada");
 
-      const extraStatsText = extraTrafficRouteStats
-        ? `<br><span>Fuente extra: <strong>rutasaereas.csv</strong>, ${extraTrafficRouteStats.matchedSourceRows} filas de rutas coincidentes para 12 aeropuertos; ${extraTrafficRouteStats.paxRows} registros de pasajeros y ${extraTrafficRouteStats.movRows} registros de movimientos generados. Criterio: ${extraTrafficRouteStats.criterio}. Para esos 12 aeropuertos se reemplaza la fuente base desde 2015.</span>`
+      const lgs = tableRows.find(r => r.iata === "LGS");
+      const lgsText = lgs
+        ? ` LGS control: pax cab ${YEARS.map(y => `${y}=${formatNumber(lgs[`paxcab${y}`])}`).join(", ")}.`
         : "";
 
-      const msg = `Tabla generada: <strong>${tableRows.length}</strong> aeropuertos, <strong>${pasajerosMensualRows.length}</strong> registros de pasajeros y <strong>${movimientosMensualRows.length}</strong> registros de movimientos.${extraStatsText}`;
+      const matchedRows = routeStats
+        ? Array.from(EXTRA_ROUTE_IATAS).reduce((acc, iata) => acc + (routeStats[iata]?.rows || 0), 0)
+        : 0;
+
+      const msg = `Tabla generada: <strong>${tableRows.length}</strong> aeropuertos. Para los 12 aeropuertos extra se usaron <strong>${matchedRows}</strong> coincidencias de endpoint desde <strong>rutasaereas.csv</strong>, calculadas directamente como en la sección de rutas.${lgsText}`;
       setStatus(warnings.length ? `${msg}<br><span>Advertencias: ${warnings.join("; ")}.</span>` : msg, warnings.length ? "warn" : "ok");
     }
 
