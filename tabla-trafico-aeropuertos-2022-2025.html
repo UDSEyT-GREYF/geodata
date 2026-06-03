@@ -283,6 +283,7 @@
     let aeropuertos = [];
     let pasajerosMensualRows = [];
     let movimientosMensualRows = [];
+    let domesticIATAs = new Set();
     let tableRows = [];
     let extraTrafficRouteStats = null;
 
@@ -1073,6 +1074,8 @@
         .map(f => f.properties || {})
         .filter(p => clean(firstNonEmpty(p, ["IATA", "iata"])))
         .sort((a, b) => clean(firstNonEmpty(a, ["IATA", "iata"])).localeCompare(clean(firstNonEmpty(b, ["IATA", "iata"])), "es"));
+
+      domesticIATAs = new Set(aeropuertos.map(a => clean(firstNonEmpty(a, ["IATA", "iata"])).toUpperCase()).filter(Boolean));
 
       pasajerosMensualRows = paxText ? parsePasajerosMensualCSV(paxText) : [];
       movimientosMensualRows = movText ? parseMovimientosMensualCSV(movText) : [];
