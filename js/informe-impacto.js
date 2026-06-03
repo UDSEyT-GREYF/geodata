@@ -105,7 +105,7 @@
         ? items.filter(item => item.search.includes(qNorm))
         : items;
 
-      const visible = filtered.slice(0, 12);
+      const visible = filtered.slice(0, 57);
 
       results.innerHTML = "";
       activeIndex = visible.length ? 0 : -1;
