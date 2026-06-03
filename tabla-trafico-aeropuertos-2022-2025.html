@@ -215,7 +215,7 @@
     <section class="topbar">
       <div>
         <h1>Tabla descargable de tráfico por aeropuerto · 2022-2025</h1>
-        <div class="subtitle">Pasajeros y movimientos comerciales de cabotaje e internacional. Para los 12 aeropuertos de fuente extra se reconstruyen los valores desde rutasaereas.csv por Ruta_completa.</div>
+        <div class="subtitle">Pasajeros y movimientos comerciales de cabotaje e internacional. Para los 12 aeropuertos de fuente extra se reconstruyen los valores desde rutasaereas.csv con el mismo criterio de rutas de la lámina: par de ruta separado en dos extremos, coincidencia exacta por IATA o por término completo.</div>
       </div>
       <div class="actions">
         <button id="btnReload" type="button">Recargar datos</button>
@@ -241,7 +241,7 @@
     </section>
 
     <div class="small-note">
-      Ubicación esperada: guardar este archivo en la raíz de la web, al mismo nivel que la carpeta <strong>fuentes</strong>. Esta versión lee <code>fuentes/rutasaereas.csv</code> como fuente extra para TTG, RYO, SST, NEC, LPG, GNR, JNI, PMQ, AOL, LGS, EPA y COC. Si se abre como archivo local y el navegador bloquea <code>fetch()</code>, usar un servidor local.
+      Ubicación esperada: guardar este archivo en la raíz de la web, al mismo nivel que la carpeta <strong>fuentes</strong>. Esta versión lee <code>fuentes/rutasaereas.csv</code> como fuente extra para TTG, RYO, SST, NEC, LPG, GNR, JNI, PMQ, AOL, LGS, EPA y COC, usando el par de ruta como en la lámina: primero <code>citypair_iata</code> y, como respaldo, <code>Ruta_completa</code>. Si se abre como archivo local y el navegador bloquea <code>fetch()</code>, usar un servidor local.
     </div>
   </main>
 
@@ -523,54 +523,29 @@
       COC: ["Concordia"]
     };
 
-    const INTERNATIONAL_HINTS = [
-      "brasil", "brazil", "chile", "uruguay", "paraguay", "bolivia", "peru", "perú",
-      "colombia", "ecuador", "panama", "panamá", "mexico", "méxico", "estados unidos",
-      "eeuu", "usa", "spain", "espana", "españa", "italia", "francia", "alemania",
-      "sao paulo", "são paulo", "san pablo", "rio de janeiro", "río de janeiro",
-      "florianopolis", "florianópolis", "santiago", "montevideo", "asuncion", "asunción",
-      "lima", "bogota", "bogotá", "quito", "panama", "panamá", "madrid", "miami",
-      "punta del este", "santa cruz de la sierra"
-    ];
-
-    function normalizeMatchText(value) {
+    function normalizeRouteTerm(value) {
       return clean(value)
         .toLowerCase()
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\b(aeropuerto|internacional|nacional|de|del|la|el)\b/g, " ")
         .replace(/[^a-z0-9]+/g, " ")
         .replace(/\s+/g, " ")
         .trim();
     }
 
-    function compactMatchText(value) {
-      return normalizeMatchText(value).replace(/\s+/g, "");
-    }
-
-    function escapeRegExp(value) {
-      return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    }
-
-    function addAlias(aliasMap, iata, value) {
+    function addRouteAlias(aliasMap, iata, value) {
       const code = clean(iata).toUpperCase();
       if (!code || !aliasMap.has(code)) return;
-
-      const normalized = normalizeMatchText(value);
-      if (!normalized || normalized.length < 2) return;
-
-      aliasMap.get(code).add(normalized);
-
-      const compact = compactMatchText(value);
-      if (compact && compact.length >= 4) aliasMap.get(code).add(compact);
+      const normalized = normalizeRouteTerm(value);
+      if (normalized) aliasMap.get(code).add(normalized);
     }
 
-    function buildAirportAliasIndex(iataSet) {
-      const allowed = iataSet instanceof Set ? iataSet : new Set(Array.from(iataSet || []));
+    function buildRouteAliasIndex(iataSet) {
       const aliasMap = new Map();
-
-      allowed.forEach(iata => {
+      Array.from(iataSet || []).forEach(iata => {
         const code = clean(iata).toUpperCase();
-        if (code) aliasMap.set(code, new Set([normalizeMatchText(code)]));
+        if (code) aliasMap.set(code, new Set([normalizeRouteTerm(code)]));
       });
 
       aeropuertos.forEach(a => {
@@ -581,91 +556,67 @@
           "IATA", "iata", "OACI", "oaci", "Ciudad", "Localidad", "Municipio",
           "Ciudad / Localidad", "Ciudad/Localidad", "Aeropuerto", "Nombre del Aeropuerto",
           "Denominacion", "Denominación", "nombre", "name"
-        ].forEach(key => addAlias(aliasMap, iata, a[key]));
-
-        const airportName = clean(firstNonEmpty(a, ["Aeropuerto", "Nombre del Aeropuerto", "Denominacion", "Denominación", "nombre", "name"]));
-        if (airportName) {
-          addAlias(aliasMap, iata, airportName.replace(/\b(aeropuerto|internacional|nacional|de|del|la|el)\b/gi, " "));
-        }
+        ].forEach(key => addRouteAlias(aliasMap, iata, a[key]));
       });
 
       Object.entries(EXTRA_AIRPORT_MANUAL_ALIASES).forEach(([iata, aliases]) => {
         if (!aliasMap.has(iata)) return;
-        aliases.forEach(alias => addAlias(aliasMap, iata, alias));
+        aliases.forEach(alias => addRouteAlias(aliasMap, iata, alias));
       });
 
       return aliasMap;
     }
 
-    function aliasMatchesText(alias, normalizedText, compactText) {
-      if (!alias) return false;
-
-      if (alias.length <= 4 && /^[a-z0-9]+$/.test(alias)) {
-        const re = new RegExp(`(^|\\s)${escapeRegExp(alias)}(\\s|$)`, "i");
-        return re.test(normalizedText);
-      }
-
-      const compactAlias = alias.replace(/\s+/g, "");
-      return normalizedText.includes(alias) || (compactAlias.length >= 4 && compactText.includes(compactAlias));
+    function buildAliasLookup(aliasMap) {
+      const lookup = new Map();
+      aliasMap.forEach((aliases, iata) => {
+        aliases.forEach(alias => {
+          if (alias) lookup.set(alias, iata);
+        });
+      });
+      return lookup;
     }
 
-    function termMatchesAirport(term, iata, aliasMap) {
-      const aliases = aliasMap.get(clean(iata).toUpperCase());
-      if (!aliases) return false;
+    function extractExplicitIATAFromRouteTerm(term) {
+      const raw = clean(term).toUpperCase();
+      if (!raw) return "";
 
-      const normalized = normalizeMatchText(term);
-      const compact = compactMatchText(term);
-      if (!normalized) return false;
+      if (/^[A-Z0-9]{2,4}$/.test(raw)) return raw;
 
-      return Array.from(aliases).some(alias => aliasMatchesText(alias, normalized, compact));
+      const paren = raw.match(/\(([A-Z0-9]{2,4})\)/);
+      if (paren) return paren[1];
+
+      return "";
     }
 
-    function splitRouteTerms(routeRaw) {
+    function resolveRouteTermToIATA(term, aliasLookup) {
+      const explicit = extractExplicitIATAFromRouteTerm(term);
+      if (explicit) return explicit;
+
+      const normalized = normalizeRouteTerm(term);
+      return aliasLookup.get(normalized) || "";
+    }
+
+    function splitRouteTermsLikeLamina(routeRaw) {
       const route = clean(routeRaw);
       if (!route) return [];
 
-      let parts = route
-        .split(/\s*(?:-|–|—|→|>|\/|\\|\bcon\b|\bhacia\b)\s*/i)
+      // La lámina separa citypair_iata por guion. Acá replicamos ese criterio y solo agregamos
+      // separadores visuales equivalentes para cuando la columna venga como Ruta_completa.
+      return route
+        .split(/\s*(?:-|–|—|→|>|\/|\\)\s*/)
         .map(part => part.trim())
         .filter(Boolean);
-
-      if (parts.length < 2) {
-        parts = route
-          .split(/\s+\ba\b\s+/i)
-          .map(part => part.trim())
-          .filter(Boolean);
-      }
-
-      return parts.length ? parts : [route];
     }
 
-    function findExtraAirportMatchesInRoute(routeRaw, extraAliasMap) {
-      const terms = splitRouteTerms(routeRaw);
-      const matches = [];
-
-      terms.forEach((term, termIndex) => {
-        EXTRA_TRAFFIC_IATAS.forEach(iata => {
-          if (termMatchesAirport(term, iata, extraAliasMap)) {
-            matches.push({ iata, termIndex, term });
-          }
-        });
-      });
-
-      if (!matches.length) {
-        const fullRoute = clean(routeRaw);
-        EXTRA_TRAFFIC_IATAS.forEach(iata => {
-          if (termMatchesAirport(fullRoute, iata, extraAliasMap)) {
-            matches.push({ iata, termIndex: -1, term: fullRoute });
-          }
-        });
-      }
-
-      const seen = new Set();
-      return matches.filter(match => {
-        if (seen.has(match.iata)) return false;
-        seen.add(match.iata);
-        return true;
-      });
+    function getRouteFieldLikeLamina(row) {
+      // En datos-clave-lamina.js, rutasaereas.csv se interpreta desde citypair_iata.
+      // Ruta_completa queda como respaldo para archivos donde el par venga con ese encabezado.
+      return firstNonEmpty(row, [
+        "citypair_iata",
+        "ruta_completa", "ruta completa",
+        "ruta", "citypair", "od", "origen_destino"
+      ]);
     }
 
     function getRouteRowDate(row) {
@@ -691,59 +642,28 @@
       return segment === "total" ? "" : segment;
     }
 
-    function textHasInternationalHint(value) {
-      const normalized = normalizeMatchText(value);
-      return INTERNATIONAL_HINTS.some(hint => normalized.includes(normalizeMatchText(hint)));
-    }
-
-    function isDomesticRouteTerm(term, domesticAliasMap) {
-      const normalized = normalizeMatchText(term);
-      if (!normalized) return false;
-      if (normalized.includes("argentina")) return true;
-
-      for (const iata of domesticAliasMap.keys()) {
-        if (termMatchesAirport(term, iata, domesticAliasMap)) return true;
-      }
-
-      return false;
-    }
-
-    function inferSegmentFromRoute(routeRaw, matchedTermIndex, domesticAliasMap) {
-      if (textHasInternationalHint(routeRaw)) return "internacional";
-
-      const terms = splitRouteTerms(routeRaw);
-      const otherTerms = matchedTermIndex >= 0
-        ? terms.filter((_, idx) => idx !== matchedTermIndex)
-        : terms;
-
-      const otherText = otherTerms.join(" ");
-      if (otherText && textHasInternationalHint(otherText)) return "internacional";
-      if (otherText && isDomesticRouteTerm(otherText, domesticAliasMap)) return "cabotaje";
-
-      // En caso de no poder inferir el otro extremo, estos aeropuertos se tratan como cabotaje por defecto.
-      return "cabotaje";
-    }
-
-    function getRouteField(row) {
-      return firstNonEmpty(row, [
-        "ruta_completa", "ruta completa", "ruta", "denominacion_ruta", "denominación_ruta",
-        "denominacion", "denominación", "citypair_iata", "citypair", "od", "origen_destino"
-      ]);
+    function inferSegmentLikeLamina(otherCode) {
+      const other = clean(otherCode).toUpperCase();
+      if (!other) return "cabotaje";
+      return domesticIATAs.has(other) ? "cabotaje" : "internacional";
     }
 
     function parseRutasAereasExtraTrafficCSV(text) {
       const rows = parseCSV(text);
       const paxRows = [];
       const movRows = [];
-      const extraAliasMap = buildAirportAliasIndex(EXTRA_TRAFFIC_IATAS);
-      const domesticAliasMap = buildAirportAliasIndex(domesticIATAs);
+      const extraAliasMap = buildRouteAliasIndex(EXTRA_TRAFFIC_IATAS);
+      const domesticAliasMap = buildRouteAliasIndex(domesticIATAs);
+      const extraLookup = buildAliasLookup(extraAliasMap);
+      const domesticLookup = buildAliasLookup(domesticAliasMap);
 
       const stats = {
         sourceRows: rows.length,
         matchedSourceRows: 0,
         paxRows: 0,
         movRows: 0,
-        byIata: {}
+        byIata: {},
+        criterio: "citypair_iata / Ruta_completa separado en dos términos; coincidencia exacta por IATA o alias del término completo"
       };
 
       EXTRA_TRAFFIC_IATAS.forEach(iata => {
@@ -751,16 +671,28 @@
       });
 
       rows.forEach(r => {
-        const routeRaw = getRouteField(r);
+        const routeRaw = getRouteFieldLikeLamina(r);
         if (!routeRaw) return;
+
+        const terms = splitRouteTermsLikeLamina(routeRaw);
+        if (terms.length < 2) return;
+
+        const endpoints = terms.slice(0, 2).map(term => {
+          const iata = resolveRouteTermToIATA(term, extraLookup) || resolveRouteTermToIATA(term, domesticLookup) || extractExplicitIATAFromRouteTerm(term);
+          return {
+            raw: term,
+            iata: clean(iata).toUpperCase()
+          };
+        });
+
+        const matches = endpoints
+          .map((endpoint, idx) => ({ ...endpoint, termIndex: idx }))
+          .filter(endpoint => EXTRA_TRAFFIC_IATAS.has(endpoint.iata));
+
+        if (!matches.length) return;
 
         const date = getRouteRowDate(r);
         if (!date) return;
-
-        const matches = findExtraAirportMatchesInRoute(routeRaw, extraAliasMap);
-        if (!matches.length) return;
-
-        stats.matchedSourceRows += 1;
 
         const explicitSegment = getExplicitRouteSegment(r);
         const pasajeros = parseNumber(firstNonEmpty(r, [
@@ -773,8 +705,11 @@
           "vuelos_totales", "total_vuelos", "totalvuelos", "operaciones", "frecuencias"
         ]));
 
+        stats.matchedSourceRows += 1;
+
         matches.forEach(match => {
-          const segment = explicitSegment || inferSegmentFromRoute(routeRaw, match.termIndex, domesticAliasMap);
+          const otherEndpoint = endpoints[match.termIndex === 0 ? 1 : 0];
+          const segment = explicitSegment || inferSegmentLikeLamina(otherEndpoint?.iata);
           const iata = match.iata;
 
           stats.byIata[iata].matched += 1;
@@ -1105,7 +1040,7 @@
       if (!fdoJson) warnings.push("fuente FDO de Aeropuertos Argentina no cargada");
 
       const extraStatsText = extraTrafficRouteStats
-        ? `<br><span>Fuente extra: <strong>rutasaereas.csv</strong>, ${extraTrafficRouteStats.matchedSourceRows} filas de rutas coincidentes para 12 aeropuertos; ${extraTrafficRouteStats.paxRows} registros de pasajeros y ${extraTrafficRouteStats.movRows} registros de movimientos generados. Para esos 12 aeropuertos se reemplaza la fuente base desde 2015.</span>`
+        ? `<br><span>Fuente extra: <strong>rutasaereas.csv</strong>, ${extraTrafficRouteStats.matchedSourceRows} filas de rutas coincidentes para 12 aeropuertos; ${extraTrafficRouteStats.paxRows} registros de pasajeros y ${extraTrafficRouteStats.movRows} registros de movimientos generados. Criterio: ${extraTrafficRouteStats.criterio}. Para esos 12 aeropuertos se reemplaza la fuente base desde 2015.</span>`
         : "";
 
       const msg = `Tabla generada: <strong>${tableRows.length}</strong> aeropuertos, <strong>${pasajerosMensualRows.length}</strong> registros de pasajeros y <strong>${movimientosMensualRows.length}</strong> registros de movimientos.${extraStatsText}`;
