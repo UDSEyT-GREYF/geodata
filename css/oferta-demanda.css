@@ -936,7 +936,10 @@
 .od-panel-connectivity {
   grid-column: 1 / -1;
   min-height: 0;
-  background: #ffffff;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
 }
 
 .od-connectivity-text {
