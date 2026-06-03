@@ -477,10 +477,25 @@
     }
 
     function classifyRouteSegmentLikeLamina(selected, otherCodeRaw) {
-      const otherMeta = getRouteMeta(otherCodeRaw);
-      const otherNormalizedCode = clean(otherMeta?.iata || otherCodeRaw).toUpperCase();
-      const destinationCode = getEquivalentDestinationCode(selected, otherNormalizedCode);
-      if (!destinationCode || destinationCode === selected) return "";
+      const selectedCode = clean(selected).toUpperCase();
+      const otherRaw = clean(otherCodeRaw).toUpperCase();
+
+      /*
+        Importante para coincidir con la sección PRINCIPALES AEROLÍNEAS Y RUTAS:
+        getRoutesSummary() suma primero r.volume en airlineMap para TODA fila donde
+        endpointA o endpointB sea el aeropuerto seleccionado. Recién después intenta
+        armar destinos, y allí descarta self-pairs/locales.
+
+        Para esta tabla necesitamos que paxcab+paxinter reproduzca ese total de
+        airlineMap. Por eso las filas locales, self-pair o sin otro extremo usable
+        no se descartan: se computan como cabotaje / operación local.
+      */
+      if (!otherRaw || otherRaw === selectedCode) return "cabotaje";
+
+      const otherMeta = getRouteMeta(otherRaw);
+      const otherNormalizedCode = clean(otherMeta?.iata || otherRaw).toUpperCase();
+      const destinationCode = getEquivalentDestinationCode(selectedCode, otherNormalizedCode);
+      if (!destinationCode || destinationCode === selectedCode) return "cabotaje";
 
       let isCabotaje;
       if (otherMeta) isCabotaje = isArgentinaCountry(otherMeta.pais);
@@ -769,7 +784,7 @@
 
       const lgs = tableRows.find(r => r.iata === "LGS");
       const lgsText = lgs
-        ? ` LGS control: pax cab ${YEARS.map(y => `${y}=${formatNumber(lgs[`paxcab${y}`])}`).join(", ")}.`
+        ? ` LGS control total pax: ${YEARS.map(y => `${y}=${formatNumber((lgs[`paxcab${y}`] || 0) + (lgs[`paxinter${y}`] || 0))}`).join(", ")}.`
         : "";
 
       const matchedRows = routeStats
