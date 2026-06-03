@@ -594,8 +594,13 @@
 
       getMatchingRouteRows(selected, year).forEach(r => {
         const otherCodeRaw = r.endpointA === selected ? r.endpointB : r.endpointA;
-        if (!otherCodeRaw || otherCodeRaw === selected) return;
 
+        /*
+          No descartamos self-pairs/locales (ej.: LGS-LGS) ni extremos vacíos.
+          En datos-clave-lamina, el total de “Líneas aéreas” se suma antes
+          de armar los destinos visibles; por eso esas filas deben computar.
+          classifyRouteSegmentLikeLamina() las envía a cabotaje/operación local.
+        */
         const segment = classifyRouteSegmentLikeLamina(selected, otherCodeRaw);
         if (segment !== segmentWanted) return;
 
