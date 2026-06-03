@@ -6489,9 +6489,19 @@ function buildHistoricRouteNarrative(iata) {
     return `<p>La evolución histórica por rutas muestra una red amplia y distribuida. Por ese motivo, en los nodos metropolitanos se representan las diez principales conexiones históricas y el resto de rutas, evitando interpretar el comportamiento del aeropuerto a partir de una única ruta dominante.</p>`;
   }
 
-  if (code === "FDO") {
-    return `<p>La evolución por rutas de San Fernando debe interpretarse en el marco de su perfil de aviación general, ejecutiva y privada: los destinos operados y la frecuencia de movimientos resultan más representativos que la oferta aerocomercial regular tradicional.</p>`;
-  }
+if (code === "FDO") {
+  const firstRouteLabel = buildHistoricRouteLegendLabel(code, first);
+
+  const otherShare = totalAll > 0
+    ? (Number(data.otherTotalPax || 0) / totalAll) * 100
+    : 0;
+
+  const otherText = data.hasOtherRoutes
+    ? ` La mayor parte de la actividad se distribuyó en un conjunto amplio de destinos agrupados como <strong>Otras rutas</strong>, que concentraron <strong>${formatShareShort(otherShare)}</strong> de los pasajeros registrados.`
+    : "";
+
+  return `<p>La evolución histórica por destinos de San Fernando refleja un patrón característico de la <strong>aviación general, ejecutiva y privada</strong>. A diferencia de una red aerocomercial regular, la lectura debe centrarse en la dispersión y diversidad de destinos operados.${otherText} Entre los destinos individualizados se destaca <strong>${escapeHtml(firstRouteLabel)}</strong>, con <strong>${formatShareShort(firstShare)}</strong> del total histórico. Esta estructura evidencia una operación flexible y diversificada, asociada a vuelos no regulares, demanda ejecutiva, turismo selectivo y movilidad privada.</p>`;
+}
 
   if (data.hasOnlyOneSignificantRoute) {
     const dominancePhrase = firstShare >= HISTORIC_ROUTE_DOMINANT_SHARE_PCT
