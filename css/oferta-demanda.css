@@ -1535,8 +1535,9 @@
   border: 1px solid #d8e1ea;
   border-radius: 10px;
   background: #ffffff;
-  padding: 6px 6px 7px;
+  padding: 6px 6px 15px;
   box-sizing: border-box;
+  overflow: visible;
 }
 
 .od-connectivity-maps--single {
