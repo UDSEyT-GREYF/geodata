@@ -75,8 +75,8 @@ const CHART_COLORS = {
   passengersLineDark: "#1E5A94",
   passengersArea: "#DCE9F7",
 
-  aircraftBar: "#C6923A",
-  aircraftBarFill: "rgba(198, 146, 58, 0.34)",
+  aircraftBar: "#2E7D32",
+  aircraftBarFill: "rgba(46, 125, 50, 0.24)",
 
   grid: "#E4EAF1",
   axis: "#C9D3DF",
@@ -86,8 +86,8 @@ const CHART_COLORS = {
 
   paxCab: "#2A6FB0",
   paxInt: "#8FC7F7",
-  movCab: "#C6923A",
-  movInt: "#E87532"
+  movCab: "#2E7D32",
+  movInt: "#00A651"
 };
   function clean(v) {
     return v === null || v === undefined ? "" : String(v).trim();
@@ -1559,7 +1559,7 @@ function renderAnnualSplitChart(paxCabSeries, paxIntSeries, movCabSeries, movInt
   });
 
   const W = 820, H = 260;
-  const padL = 66, padR = 56, padT = 22, padB = 34;
+  const padL = 66, padR = 56, padT = 18, padB = 34;
   const innerW = W - padL - padR;
   const innerH = H - padT - padB;
   const baseY = padT + innerH;
@@ -1663,22 +1663,9 @@ function renderAnnualSplitChart(paxCabSeries, paxIntSeries, movCabSeries, movInt
     currentLabel = `<text x="${xx}" y="${Math.max(padT + 10, yy - 8)}" text-anchor="middle" font-size="10" font-weight="700" fill="${CHART_COLORS.value}">${formatNumber(Math.round(current.paxTotal))}</text>`;
   }
 
-  const legend = `
-    <g transform="translate(${padL + 4}, 4)">
-      <rect x="0" y="2" width="8" height="8" fill="${CHART_COLORS.paxCab}" opacity="0.78"></rect>
-      <text x="12" y="10" font-size="9" fill="${CHART_COLORS.label}">Pax cab.</text>
-      <rect x="66" y="2" width="8" height="8" fill="${CHART_COLORS.paxInt}" opacity="0.85"></rect>
-      <text x="78" y="10" font-size="9" fill="${CHART_COLORS.label}">Pax int.</text>
-      <line x1="132" y1="6" x2="148" y2="6" stroke="${CHART_COLORS.movCab}" stroke-width="2.4"></line>
-      <text x="152" y="10" font-size="9" fill="${CHART_COLORS.label}">Mov. cab.</text>
-      <line x1="218" y1="6" x2="234" y2="6" stroke="${CHART_COLORS.movInt}" stroke-width="2.4" stroke-dasharray="5 4"></line>
-      <text x="238" y="10" font-size="9" fill="${CHART_COLORS.label}">Mov. int.</text>
-    </g>
-  `;
 
   svg.innerHTML = `
     <rect x="0" y="0" width="${W}" height="${H}" fill="#ffffff"></rect>
-    ${legend}
     ${grid}
     ${xLabels}
     <line x1="${padL}" y1="${baseY}" x2="${W - padR}" y2="${baseY}" stroke="${CHART_COLORS.axis}" stroke-width="1"></line>
