@@ -46,6 +46,8 @@
   EXT: { ciudad: "Otros destinos internacionales", pais: "" }
 };
   const YEAR_REF = 2024;
+  const FLIGHTS_TITLE_AIRPORT = "MOVIMIENTOS DE AERONAVES COMERCIALES 2024 (ATERRIZAJES Y DESPEGUES)";
+  const FLIGHTS_TITLE_SNA = "VUELOS DE AERONAVES COMERCIALES 2024";
   const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
   const PAX_DATASET_INT = "pasajeros_comerciales_internacional_aeropuerto";
   const PAX_DATASET_TOTAL = "pasajeros_comerciales_total_aeropuerto";
@@ -75,8 +77,8 @@ const CHART_COLORS = {
   passengersLineDark: "#1E5A94",
   passengersArea: "#DCE9F7",
 
-  aircraftBar: "#C6923A",
-  aircraftBarFill: "rgba(198, 146, 58, 0.34)",
+  aircraftBar: "#2E7D32",
+  aircraftBarFill: "rgba(46, 125, 50, 0.24)",
 
   grid: "#E4EAF1",
   axis: "#C9D3DF",
@@ -86,8 +88,8 @@ const CHART_COLORS = {
 
   paxCab: "#2A6FB0",
   paxInt: "#8FC7F7",
-  movCab: "#C6923A",
-  movInt: "#E87532"
+  movCab: "#2E7D32",
+  movInt: "#00A651"
 };
   function clean(v) {
     return v === null || v === undefined ? "" : String(v).trim();
@@ -1442,6 +1444,55 @@ if (terminalFeats.length) {
     if (el) el.innerHTML = value;
   }
 
+  function getDaysInReferenceYear() {
+    return (YEAR_REF % 4 === 0 && (YEAR_REF % 100 !== 0 || YEAR_REF % 400 === 0)) ? 366 : 365;
+  }
+
+  function formatMovementValue(value, fallback = "–") {
+    const n = Number(value) || 0;
+    return n ? formatNumber(Math.round(n)) : fallback;
+  }
+
+  function setFlightsSectionTitle(isSNA = false) {
+    setText("flightsSectionTitle", isSNA ? FLIGHTS_TITLE_SNA : FLIGHTS_TITLE_AIRPORT);
+  }
+
+  function renderFlightMetricValues(total, cab, intl, options = {}) {
+    const totalValue = Number(total) || 0;
+    const cabValue = Number(cab) || 0;
+    const intlValue = Number(intl) || 0;
+    const hasData = options.hasData !== false && (totalValue > 0 || cabValue > 0 || intlValue > 0);
+    const noDataText = options.noDataText || "sin vuelos regulares";
+
+    if (!hasData) {
+      setText("vuelosAnuales", noDataText);
+      setText("vuelosAnualesCab", "–");
+      setText("vuelosAnualesInt", "–");
+      setText("vuelosSemanales", "–");
+      setText("vuelosSemanalesCab", "–");
+      setText("vuelosSemanalesInt", "–");
+      setText("vuelosDiarios", "–");
+      setText("vuelosDiariosCab", "–");
+      setText("vuelosDiariosInt", "–");
+      return;
+    }
+
+    const daysInYear = getDaysInReferenceYear();
+    const weeksInYear = daysInYear / 7;
+
+    setText("vuelosAnuales", formatMovementValue(totalValue));
+    setText("vuelosAnualesCab", formatMovementValue(cabValue));
+    setText("vuelosAnualesInt", formatMovementValue(intlValue));
+
+    setText("vuelosSemanales", formatMovementValue(totalValue / weeksInYear));
+    setText("vuelosSemanalesCab", formatMovementValue(cabValue / weeksInYear));
+    setText("vuelosSemanalesInt", formatMovementValue(intlValue / weeksInYear));
+
+    setText("vuelosDiarios", formatMovementValue(totalValue / daysInYear));
+    setText("vuelosDiariosCab", formatMovementValue(cabValue / daysInYear));
+    setText("vuelosDiariosInt", formatMovementValue(intlValue / daysInYear));
+  }
+
   function setBadgeNumber(id, value) {
     const el = q(id);
     if (!el) return;
@@ -1559,7 +1610,7 @@ function renderAnnualSplitChart(paxCabSeries, paxIntSeries, movCabSeries, movInt
   });
 
   const W = 820, H = 260;
-  const padL = 66, padR = 56, padT = 22, padB = 34;
+  const padL = 66, padR = 56, padT = 18, padB = 34;
   const innerW = W - padL - padR;
   const innerH = H - padT - padB;
   const baseY = padT + innerH;
@@ -1663,22 +1714,9 @@ function renderAnnualSplitChart(paxCabSeries, paxIntSeries, movCabSeries, movInt
     currentLabel = `<text x="${xx}" y="${Math.max(padT + 10, yy - 8)}" text-anchor="middle" font-size="10" font-weight="700" fill="${CHART_COLORS.value}">${formatNumber(Math.round(current.paxTotal))}</text>`;
   }
 
-  const legend = `
-    <g transform="translate(${padL + 4}, 4)">
-      <rect x="0" y="2" width="8" height="8" fill="${CHART_COLORS.paxCab}" opacity="0.78"></rect>
-      <text x="12" y="10" font-size="9" fill="${CHART_COLORS.label}">Pax cab.</text>
-      <rect x="66" y="2" width="8" height="8" fill="${CHART_COLORS.paxInt}" opacity="0.85"></rect>
-      <text x="78" y="10" font-size="9" fill="${CHART_COLORS.label}">Pax int.</text>
-      <line x1="132" y1="6" x2="148" y2="6" stroke="${CHART_COLORS.movCab}" stroke-width="2.4"></line>
-      <text x="152" y="10" font-size="9" fill="${CHART_COLORS.label}">Mov. cab.</text>
-      <line x1="218" y1="6" x2="234" y2="6" stroke="${CHART_COLORS.movInt}" stroke-width="2.4" stroke-dasharray="5 4"></line>
-      <text x="238" y="10" font-size="9" fill="${CHART_COLORS.label}">Mov. int.</text>
-    </g>
-  `;
 
   svg.innerHTML = `
     <rect x="0" y="0" width="${W}" height="${H}" fill="#ffffff"></rect>
-    ${legend}
     ${grid}
     ${xLabels}
     <line x1="${padL}" y1="${baseY}" x2="${W - padR}" y2="${baseY}" stroke="${CHART_COLORS.axis}" stroke-width="1"></line>
@@ -1700,35 +1738,68 @@ function renderAnnualSplitChart(paxCabSeries, paxIntSeries, movCabSeries, movInt
 
 
 function getFlightsStats(iata) {
-  const movSeries = buildMovSeries(iata, "total");
+  const movCabSeries = buildMovSeries(iata, "cabotaje");
+  const movIntSeries = buildMovSeries(iata, "internacional");
+  const movTotalSeries = buildMovSeries(iata, "total");
 
-  if (movSeries.length) {
-    const total = sumYear(movSeries, YEAR_REF);
-    const daysInYear = (YEAR_REF % 4 === 0 && (YEAR_REF % 100 !== 0 || YEAR_REF % 400 === 0)) ? 366 : 365;
+  const cab = sumYear(movCabSeries, YEAR_REF);
+  const intl = sumYear(movIntSeries, YEAR_REF);
+  const segmentedTotal = cab + intl;
+  const totalFromDataset = sumYear(movTotalSeries, YEAR_REF);
+  const total = segmentedTotal || totalFromDataset;
+
+  if (segmentedTotal || totalFromDataset) {
+    const daysInYear = getDaysInReferenceYear();
     const weeksInYear = daysInYear / 7;
 
     return {
       total: total || null,
+      cab: cab || null,
+      intl: intl || null,
       weekly: total ? Math.round(total / weeksInYear) : null,
-      daily: total ? Math.round(total / daysInYear) : null
+      weeklyCab: cab ? Math.round(cab / weeksInYear) : null,
+      weeklyInt: intl ? Math.round(intl / weeksInYear) : null,
+      daily: total ? Math.round(total / daysInYear) : null,
+      dailyCab: cab ? Math.round(cab / daysInYear) : null,
+      dailyInt: intl ? Math.round(intl / daysInYear) : null
     };
   }
 
   const rowsAll = vuelosRows.filter(r => r.iata === iata);
-  if (!rowsAll.length) return { total: null, weekly: null, daily: null };
+  if (!rowsAll.length) {
+    return {
+      total: null,
+      cab: null,
+      intl: null,
+      weekly: null,
+      weeklyCab: null,
+      weeklyInt: null,
+      daily: null,
+      dailyCab: null,
+      dailyInt: null
+    };
+  }
 
   let rows = rowsAll;
   const yearRows = rowsAll.filter(r => r.year === YEAR_REF);
   if (yearRows.length) rows = yearRows;
 
-  const total = rows.reduce((acc, r) => acc + (Number(r.valor) || 0), 0);
+  const totalFallback = rows.reduce((acc, r) => acc + (Number(r.valor) || 0), 0);
+  const daysInYear = getDaysInReferenceYear();
+  const weeksInYear = daysInYear / 7;
+
   return {
-    total,
-    weekly: total ? Math.round(total / 52) : null,
-    daily: total ? Math.round(total / 365) : null
+    total: totalFallback || null,
+    cab: null,
+    intl: null,
+    weekly: totalFallback ? Math.round(totalFallback / weeksInYear) : null,
+    weeklyCab: null,
+    weeklyInt: null,
+    daily: totalFallback ? Math.round(totalFallback / daysInYear) : null,
+    dailyCab: null,
+    dailyInt: null
   };
 }
-
 
 function normalizeFDORouteRowKeys(row) {
   const out = {};
@@ -1998,19 +2069,22 @@ function hasRegularFlightsData(iata, year = YEAR_REF) {
   return paxRows.length > 0 || movRows.length > 0;
 }
 function renderFlights(iata) {
+  setFlightsSectionTitle(false);
+
   const stats = getFlightsStats(iata);
   const hasRegularData = hasRegularFlightsData(iata, YEAR_REF);
 
   if (!hasRegularData) {
-    setText("vuelosAnuales", "sin vuelos regulares");
-    setText("vuelosSemanales", "–");
-    setText("vuelosDiarios", "–");
+    renderFlightMetricValues(0, 0, 0, {
+      hasData: false,
+      noDataText: "sin vuelos regulares"
+    });
     return;
   }
 
-  setText("vuelosAnuales", stats.total ? formatNumber(Math.round(stats.total)) : "–");
-  setText("vuelosSemanales", stats.weekly ? formatNumber(stats.weekly) : "–");
-  setText("vuelosDiarios", stats.daily ? formatNumber(stats.daily) : "–");
+  renderFlightMetricValues(stats.total, stats.cab, stats.intl, {
+    hasData: true
+  });
 }
 
   function renderRoutes(iata) {
@@ -2294,6 +2368,7 @@ renderAnnualSplitChart(
   function renderSNAView() {
     currentIATA = SNA_IATA;
     q("sheetA4")?.classList.add("is-sna-mode");
+    setFlightsSectionTitle(true);
 
     if (q("sheetTitle")) q("sheetTitle").textContent = "Datos clave del Sistema Nacional de Aeropuertos";
     if (q("airportName")) {
@@ -2310,9 +2385,10 @@ renderAnnualSplitChart(
       setText("paxInt2024", "–");
       setText("paxPromSemanal", "–");
       setText("paxPromDiario", "–");
-      setText("vuelosAnuales", "sin datos SNA");
-      setText("vuelosSemanales", "–");
-      setText("vuelosDiarios", "–");
+      renderFlightMetricValues(0, 0, 0, {
+        hasData: false,
+        noDataText: "sin datos SNA"
+      });
       renderPassengerMixDonut(0, 0);
       renderAnnualSplitChart([], [], [], [], YEAR_REF, `Fuente: ${SNA_HISTORICO_SOURCE}.`);
       return;
@@ -2336,9 +2412,9 @@ renderAnnualSplitChart(
 
     renderPassengerMixDonut(paxCab, paxInter);
 
-    setText("vuelosAnuales", movTotal ? formatNumber(Math.round(movTotal)) : "–");
-    setText("vuelosSemanales", movTotal ? formatNumber(Math.round(movTotal / weeksInYear)) : "–");
-    setText("vuelosDiarios", movTotal ? formatNumber(Math.round(movTotal / daysInYear)) : "–");
+    renderFlightMetricValues(movTotal, movCab, movInter, {
+      hasData: true
+    });
 
     renderAnnualSplitChart(
       buildSNAAnnualSeries("paxCab"),
@@ -2359,6 +2435,7 @@ renderAnnualSplitChart(
     }
 
     q("sheetA4")?.classList.remove("is-sna-mode");
+    setFlightsSectionTitle(false);
 
     const a = aeropuertos.find(x => clean(x.IATA).toUpperCase() === iata);
     if (!a) return;
