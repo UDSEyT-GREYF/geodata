@@ -1574,7 +1574,23 @@ function mergeAnnualYears(...seriesList) {
     seriesList.flatMap(series => (series || []).map(d => Number(d.year)).filter(Number.isFinite))
   )).sort((a, b) => a - b);
 }
+function updateHistorySplitTitle(options = {}) {
+  const title = document.querySelector(".history-title-split");
+  if (!title) return;
 
+  const hasPaxInt = options.hasPaxInt !== false;
+  const hasMovInt = options.hasMovInt !== false;
+
+  title.innerHTML = `
+    <span class="history-mini-icon history-mini-icon-bars" aria-hidden="true"></span>
+    Evolución histórica de
+    <span class="history-title-pax-cab">pasajeros de cabotaje</span>
+    ${hasPaxInt ? `e <span class="history-title-pax-int">internacional</span>` : ``}
+    <span class="history-mini-icon history-mini-icon-line" aria-hidden="true"></span>
+    y <span class="history-title-mov-cab">aeronaves de cabotaje</span>
+    ${hasMovInt ? `e <span class="history-title-mov-int">internacional</span>` : ``}
+  `;
+}
 function renderAnnualSplitChart(paxCabSeries, paxIntSeries, movCabSeries, movIntSeries, currentYear, sourceText = "") {
   const svg = q("paxHistoryChart");
   const note = q("paxHistoryNote");
@@ -1582,11 +1598,12 @@ function renderAnnualSplitChart(paxCabSeries, paxIntSeries, movCabSeries, movInt
 
   const years = mergeAnnualYears(paxCabSeries, paxIntSeries, movCabSeries, movIntSeries);
 
-  if (!years.length) {
-    svg.innerHTML = "";
-    if (note) note.textContent = "No hay datos históricos de pasajeros y movimientos.";
-    return;
-  }
+if (!years.length) {
+  svg.innerHTML = "";
+  updateHistorySplitTitle({ hasPaxInt: false, hasMovInt: false });
+  if (note) note.textContent = "No hay datos históricos de pasajeros y movimientos.";
+  return;
+}
 
   const paxCabMap = seriesToYearMap(paxCabSeries);
   const paxIntMap = seriesToYearMap(paxIntSeries);
@@ -1608,7 +1625,10 @@ function renderAnnualSplitChart(paxCabSeries, paxIntSeries, movCabSeries, movInt
       movInt
     };
   });
+const hasPaxInt = data.some(d => Number(d.paxInt) > 0);
+const hasMovInt = data.some(d => Number(d.movInt) > 0);
 
+updateHistorySplitTitle({ hasPaxInt, hasMovInt });
   const W = 820, H = 260;
   const padL = 66, padR = 56, padT = 18, padB = 34;
   const innerW = W - padL - padR;
@@ -1673,9 +1693,9 @@ function renderAnnualSplitChart(paxCabSeries, paxIntSeries, movCabSeries, movInt
       paxBars += `<rect x="${xx}" y="${cabTopY}" width="${barWidth}" height="${cabHeight}" rx="1.5" fill="${CHART_COLORS.paxCab}" opacity="0.78"></rect>`;
     }
 
-    if (d.paxInt > 0) {
-      paxBars += `<rect x="${xx}" y="${totalTopY}" width="${barWidth}" height="${intHeight}" rx="1.5" fill="${CHART_COLORS.paxInt}" opacity="0.85"></rect>`;
-    }
+if (hasPaxInt && d.paxInt > 0) {
+  paxBars += `<rect x="${xx}" y="${totalTopY}" width="${barWidth}" height="${intHeight}" rx="1.5" fill="${CHART_COLORS.paxInt}" opacity="0.85"></rect>`;
+}
   });
 
   const linePoints = (field) => data
@@ -1690,9 +1710,9 @@ function renderAnnualSplitChart(paxCabSeries, paxIntSeries, movCabSeries, movInt
     ? `<polyline points="${movCabPoints}" fill="none" stroke="${CHART_COLORS.movCab}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></polyline>`
     : "";
 
-  const movIntLine = movIntPoints
-    ? `<polyline points="${movIntPoints}" fill="none" stroke="${CHART_COLORS.movInt}" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4"></polyline>`
-    : "";
+const movIntLine = hasMovInt && movIntPoints
+  ? `<polyline points="${movIntPoints}" fill="none" stroke="${CHART_COLORS.movInt}" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4"></polyline>`
+  : "";
 
   let movMarkers = "";
   data.forEach((d, i) => {
@@ -1700,9 +1720,9 @@ function renderAnnualSplitChart(paxCabSeries, paxIntSeries, movCabSeries, movInt
     if (d.movCab > 0) {
       movMarkers += `<circle cx="${xx}" cy="${yMov(d.movCab)}" r="2.8" fill="${CHART_COLORS.movCab}"></circle>`;
     }
-    if (d.movInt > 0) {
-      movMarkers += `<circle cx="${xx}" cy="${yMov(d.movInt)}" r="2.6" fill="${CHART_COLORS.movInt}"></circle>`;
-    }
+if (hasMovInt && d.movInt > 0) {
+  movMarkers += `<circle cx="${xx}" cy="${yMov(d.movInt)}" r="2.6" fill="${CHART_COLORS.movInt}"></circle>`;
+}
   });
 
   const current = data.find(d => Number(d.year) === Number(currentYear));
