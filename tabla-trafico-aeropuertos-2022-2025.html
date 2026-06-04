@@ -80,7 +80,7 @@
 
     <div class="note">
       Ubicación esperada: guardar este archivo en la raíz de la web, al mismo nivel que la carpeta <strong>fuentes</strong>.
-      Esta versión usa <code>fuentes/rutasaereas.csv</code> como fuente extra para <strong>TTG, RYO, SST, NEC, LPG, GNR, JNI, PMQ, AOL, LGS, EPA y COC</strong>.
+      Esta versión usa <code>fuentes/rutasaereas.csv</code> como fuente extra para <strong>TTG, RYO, SST, NEC, LPG, GNR, JNI, PMQ, AOL, LGS, EPA, COC, RCQ, RLO, TDL, VLG y VME</strong>.
       La coincidencia principal se hace con <code>citypair_iata</code>, separando la ruta en <code>endpointA</code> y <code>endpointB</code>, igual que en <code>datos-clave-lamina.js</code>.
       <code>Ruta_completa</code> queda solo como respaldo si no existe <code>citypair_iata</code>.
     </div>
@@ -91,8 +91,10 @@
     "use strict";
 
     const YEARS = [2022, 2023, 2024, 2025];
-    const EXTRA_ROUTE_IATAS = new Set(["TTG", "RYO", "SST", "NEC", "LPG", "GNR", "JNI", "PMQ", "AOL", "LGS", "EPA", "COC"]);
-
+const EXTRA_ROUTE_IATAS = new Set([
+  "TTG", "RYO", "SST", "NEC", "LPG", "GNR", "JNI", "PMQ", "AOL", "LGS", "EPA", "COC",
+  "RCQ", "RLO", "TDL", "VLG", "VME"
+]);
     const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
     const PAX_DATASET_INT = "pasajeros_comerciales_internacional_aeropuerto";
     const MOV_DATASET_CAB = "movimientos_comerciales_cabotaje_aeropuerto";
@@ -367,20 +369,26 @@
         });
       });
 
-      const manual = {
-        TTG: ["Tartagal", "General Enrique Mosconi", "Gral Enrique Mosconi"],
-        RYO: ["Rio Turbio", "Río Turbio", "28 de Noviembre"],
-        SST: ["Santa Teresita"],
-        NEC: ["Necochea"],
-        LPG: ["La Plata"],
-        GNR: ["General Roca", "Gral Roca"],
-        JNI: ["Junin", "Junín"],
-        PMQ: ["Perito Moreno"],
-        AOL: ["Paso de los Libres"],
-        LGS: ["Malargue", "Malargüe"],
-        EPA: ["El Palomar", "Palomar"],
-        COC: ["Concordia"]
-      };
+const manual = {
+  TTG: ["Tartagal", "General Enrique Mosconi", "Gral Enrique Mosconi"],
+  RYO: ["Rio Turbio", "Río Turbio", "28 de Noviembre"],
+  SST: ["Santa Teresita"],
+  NEC: ["Necochea"],
+  LPG: ["La Plata"],
+  GNR: ["General Roca", "Gral Roca"],
+  JNI: ["Junin", "Junín"],
+  PMQ: ["Perito Moreno"],
+  AOL: ["Paso de los Libres"],
+  LGS: ["Malargue", "Malargüe"],
+  EPA: ["El Palomar", "Palomar"],
+  COC: ["Concordia"],
+
+  RCQ: ["Reconquista"],
+  RLO: ["Valle del Conlara", "Conlara", "Merlo", "Villa de Merlo"],
+  TDL: ["Tandil"],
+  VLG: ["Villa Gesell"],
+  VME: ["Villa Mercedes"]
+};
       Object.entries(manual).forEach(([iata, arr]) => {
         arr.forEach(v => {
           const key = normalizeRouteTerm(v);
@@ -783,7 +791,7 @@
       const warnings = [];
       if (!paxText) warnings.push("pasajeros_aeropuerto_mensual.csv no cargado");
       if (!movText) warnings.push("movimientos_aeropuerto_mensual.csv no cargado");
-      if (!rutasText) warnings.push("rutasaereas.csv no cargado para los 12 aeropuertos extra");
+      if (!rutasText) warnings.push("rutasaereas.csv no cargado para los 17 aeropuertos extra");
       if (!iataWorldText) warnings.push("ListadoIATAmundo.csv no cargado: la clasificación internacional puede quedar limitada a IATA domésticos");
       if (!fdoJson) warnings.push("fuente FDO de Aeropuertos Argentina no cargada");
 
@@ -796,7 +804,7 @@
         ? Array.from(EXTRA_ROUTE_IATAS).reduce((acc, iata) => acc + (routeStats[iata]?.rows || 0), 0)
         : 0;
 
-      const msg = `Tabla generada: <strong>${tableRows.length}</strong> aeropuertos. Para los 12 aeropuertos extra se usaron <strong>${matchedRows}</strong> coincidencias de endpoint desde <strong>rutasaereas.csv</strong>, calculadas directamente como en la sección de rutas.${lgsText}`;
+      const msg = `Tabla generada: <strong>${tableRows.length}</strong> aeropuertos. Para los 17 aeropuertos extra se usaron <strong>${matchedRows}</strong> coincidencias de endpoint desde <strong>rutasaereas.csv</strong>, calculadas directamente como en la sección de rutas.${lgsText}`;
       setStatus(warnings.length ? `${msg}<br><span>Advertencias: ${warnings.join("; ")}.</span>` : msg, warnings.length ? "warn" : "ok");
     }
 
