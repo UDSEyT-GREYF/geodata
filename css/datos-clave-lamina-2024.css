@@ -1832,3 +1832,70 @@ body.page-informe-impacto .sheet-wrap {
   background: #E87532;
   box-shadow: -8px 4px 0 #C6923A;
 }
+
+
+/* =========================================================
+   Ajuste sección vuelos/movimientos segmentados
+   ========================================================= */
+.flights-grid-segmented {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.flight-card-segmented {
+  min-width: 0;
+}
+
+.flight-card-segmented .flight-label {
+  margin-bottom: 5px;
+  padding: 4px 4px 3px;
+  font-size: 0.62rem;
+  line-height: 1.05;
+  border-top-color: #2E7D32;
+}
+
+.flight-metric-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px;
+  align-items: baseline;
+  min-height: 15px;
+  padding: 1px 0;
+  border-top: 1px dashed rgba(48, 111, 176, 0.10);
+  line-height: 1;
+}
+
+.flight-metric-row:first-of-type {
+  border-top: none;
+}
+
+.flight-metric-row span {
+  min-width: 0;
+  font-size: 0.58rem;
+  color: #6f7d8c;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.flight-metric-row strong {
+  font-size: 0.72rem;
+  color: var(--blue-dark);
+  font-weight: 800;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.flight-metric-total strong {
+  font-size: 0.84rem;
+  color: #2E7D32;
+}
+
+.flight-metric-cab strong {
+  color: #2E7D32;
+}
+
+.flight-metric-int strong {
+  color: #00A651;
+}
