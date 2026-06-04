@@ -13,8 +13,8 @@
   --bg: #f5f5f5;
   --chart-passengers: #2A6FB0;
   --chart-passengers-dark: #1E5A94;
-  --chart-aircraft: #C6923A;
-  --chart-aircraft-fill: rgba(198, 146, 58, 0.34);
+  --chart-aircraft: #2E7D32;
+  --chart-aircraft-fill: rgba(46, 125, 50, 0.24);
   --chart-grid: #E4EAF1;
   --chart-axis: #C9D3DF;
   --chart-label: #6F7D8C;
@@ -1057,7 +1057,7 @@ body.page-informe-impacto .sheet-wrap {
 }
 
 .history-title {
-  font-size: 0.7rem;
+  font-size: 0.82rem;
   margin: 0 0 1px;
   color: var(--chart-label);
 }
@@ -1769,12 +1769,12 @@ body.page-informe-impacto .sheet-wrap {
 }
 
 .history-title-mov-cab {
-  color: #C6923A;
+  color: #2E7D32;
   font-weight: 700;
 }
 
 .history-title-mov-int {
-  color: #E87532;
+  color: #00A651;
   font-weight: 700;
 }
 
@@ -1815,7 +1815,7 @@ body.page-informe-impacto .sheet-wrap {
   right: 1px;
   top: 7px;
   height: 2px;
-  background: #C6923A;
+  background: #2E7D32;
   transform: rotate(-25deg);
   transform-origin: center;
   border-radius: 999px;
@@ -1829,8 +1829,8 @@ body.page-informe-impacto .sheet-wrap {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #E87532;
-  box-shadow: -8px 4px 0 #C6923A;
+  background: #00A651;
+  box-shadow: -8px 4px 0 #2E7D32;
 }
 
 
