@@ -1746,3 +1746,89 @@ body.page-informe-impacto .sheet-wrap {
     overflow: hidden;
   }
 }
+
+/* =========================================================
+   AJUSTE 2024: gráfico histórico discriminado CAB / INT
+   ========================================================= */
+.history-title-split {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3px;
+  line-height: 1.12;
+}
+
+.history-title-pax-cab {
+  color: #2A6FB0;
+  font-weight: 700;
+}
+
+.history-title-pax-int {
+  color: #5FAFE8;
+  font-weight: 700;
+}
+
+.history-title-mov-cab {
+  color: #C6923A;
+  font-weight: 700;
+}
+
+.history-title-mov-int {
+  color: #E87532;
+  font-weight: 700;
+}
+
+.history-mini-icon {
+  display: inline-block;
+  width: 18px;
+  height: 13px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.history-mini-icon-bars::before,
+.history-mini-icon-bars::after {
+  content: "";
+  position: absolute;
+  bottom: 1px;
+  width: 4px;
+  background: #2A6FB0;
+  border-radius: 1px;
+}
+
+.history-mini-icon-bars::before {
+  left: 3px;
+  height: 7px;
+  box-shadow: 6px -3px 0 #8FC7F7;
+}
+
+.history-mini-icon-bars::after {
+  left: 15px;
+  height: 10px;
+  background: #2A6FB0;
+}
+
+.history-mini-icon-line::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  right: 1px;
+  top: 7px;
+  height: 2px;
+  background: #C6923A;
+  transform: rotate(-25deg);
+  transform-origin: center;
+  border-radius: 999px;
+}
+
+.history-mini-icon-line::after {
+  content: "";
+  position: absolute;
+  right: 1px;
+  top: 3px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #E87532;
+  box-shadow: -8px 4px 0 #C6923A;
+}
