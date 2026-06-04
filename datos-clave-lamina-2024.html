@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="img/icons/iconoClaveLamina.png">
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="css/datos-clave-lamina-2024.css?v=2024">
+  <link rel="stylesheet" href="css/datos-clave-lamina-2024.css?v=20240604-seg-final">
 </head>
 <body class="page-lamina">
   <div class="lamina-toolbar no-print">
@@ -333,23 +333,56 @@
           </article>
 
           <article class="section-card section-flights">
-            <div class="section-title">MOVIMIENTOS DE AERONAVES COMERCIALES 2024 (ATERRIZAJES Y DESPEGUES)</div>
+            <div class="section-title" id="flightsSectionTitle">MOVIMIENTOS DE AERONAVES COMERCIALES 2024 (ATERRIZAJES Y DESPEGUES)</div>
             <div class="flights-wrap">
               <div class="flights-icon-block">
                 <img src="img/icons/vuelos.png" alt="Movimientos de aeronaves">
               </div>
-              <div class="flights-grid">
-                <div class="flight-card">
+              <div class="flights-grid flights-grid-segmented">
+                <div class="flight-card flight-card-segmented">
                   <div class="flight-label">Anual</div>
-                  <div class="flight-value" id="vuelosAnuales">–</div>
+                  <div class="flight-metric-row flight-metric-total">
+                    <span>Total</span>
+                    <strong id="vuelosAnuales">–</strong>
+                  </div>
+                  <div class="flight-metric-row flight-metric-cab">
+                    <span>Cabotaje</span>
+                    <strong id="vuelosAnualesCab">–</strong>
+                  </div>
+                  <div class="flight-metric-row flight-metric-int">
+                    <span>Internacional</span>
+                    <strong id="vuelosAnualesInt">–</strong>
+                  </div>
                 </div>
-                <div class="flight-card">
+                <div class="flight-card flight-card-segmented">
                   <div class="flight-label">Promedio semanal</div>
-                  <div class="flight-value" id="vuelosSemanales">–</div>
+                  <div class="flight-metric-row flight-metric-total">
+                    <span>Total</span>
+                    <strong id="vuelosSemanales">–</strong>
+                  </div>
+                  <div class="flight-metric-row flight-metric-cab">
+                    <span>Cabotaje</span>
+                    <strong id="vuelosSemanalesCab">–</strong>
+                  </div>
+                  <div class="flight-metric-row flight-metric-int">
+                    <span>Internacional</span>
+                    <strong id="vuelosSemanalesInt">–</strong>
+                  </div>
                 </div>
-                <div class="flight-card">
+                <div class="flight-card flight-card-segmented">
                   <div class="flight-label">Promedio diario</div>
-                  <div class="flight-value" id="vuelosDiarios">–</div>
+                  <div class="flight-metric-row flight-metric-total">
+                    <span>Total</span>
+                    <strong id="vuelosDiarios">–</strong>
+                  </div>
+                  <div class="flight-metric-row flight-metric-cab">
+                    <span>Cabotaje</span>
+                    <strong id="vuelosDiariosCab">–</strong>
+                  </div>
+                  <div class="flight-metric-row flight-metric-int">
+                    <span>Internacional</span>
+                    <strong id="vuelosDiariosInt">–</strong>
+                  </div>
                 </div>
               </div>
             </div>
@@ -377,6 +410,6 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script src="js/datos-clave-lamina-2024.js?v=2024"></script>
+  <script src="js/datos-clave-lamina-2024.js?v=20240604-seg-final"></script>
 </body>
 </html>
