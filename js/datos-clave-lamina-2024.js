@@ -1581,14 +1581,20 @@ function updateHistorySplitTitle(options = {}) {
   const hasPaxInt = options.hasPaxInt !== false;
   const hasMovInt = options.hasMovInt !== false;
 
+  const paxIntText = hasPaxInt
+    ? ` e <span class="history-title-pax-int">internacional</span>`
+    : "";
+
+  const movIntText = hasMovInt
+    ? ` e <span class="history-title-mov-int">internacional</span>`
+    : "";
+
   title.innerHTML = `
-    <span class="history-mini-icon history-mini-icon-bars" aria-hidden="true"></span>
     Evolución histórica de
-    <span class="history-title-pax-cab">pasajeros de cabotaje</span>
-    ${hasPaxInt ? `e <span class="history-title-pax-int">internacional</span>` : ``}
+    <span class="history-title-pax-cab">pasajeros de cabotaje</span>${paxIntText}
+    <span class="history-mini-icon history-mini-icon-bars" aria-hidden="true"></span>
+    y <span class="history-title-mov-cab">aeronaves de cabotaje</span>${movIntText}
     <span class="history-mini-icon history-mini-icon-line" aria-hidden="true"></span>
-    y <span class="history-title-mov-cab">aeronaves de cabotaje</span>
-    ${hasMovInt ? `e <span class="history-title-mov-int">internacional</span>` : ``}
   `;
 }
 function renderAnnualSplitChart(paxCabSeries, paxIntSeries, movCabSeries, movIntSeries, currentYear, sourceText = "") {
