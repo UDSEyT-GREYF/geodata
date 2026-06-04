@@ -12,11 +12,14 @@
   const FDO_AA_SOURCE = "fuentes/fdo_trafico_aeropuertos_argentina.json";
   let fdoRoutesAA = [];
   const FDO_ROUTES_AA_SOURCE = "fuentes/fdo_rutas_aeropuertos_argentina.json";
+  const SNA_IATA = "SNA";
+  const SNA_HISTORICO_SOURCE = "fuentes/SNA_grafico_historico.csv";
   let vuelosRows = [];
   let rutasRows = [];
   let transportePorIATA = {};
   let domesticIATAs = new Set();
   let currentIATA = "";
+  let snaHistoricoRows = [];
   let laminaBooted = false;
   let airportSearchIndex = new Map();
   
@@ -79,7 +82,12 @@ const CHART_COLORS = {
   axis: "#C9D3DF",
   label: "#6F7D8C",
   note: "#7A838C",
-  value: "#5C6670"
+  value: "#5C6670",
+
+  paxCab: "#2A6FB0",
+  paxInt: "#8FC7F7",
+  movCab: "#C6923A",
+  movInt: "#E87532"
 };
   function clean(v) {
     return v === null || v === undefined ? "" : String(v).trim();
@@ -248,6 +256,11 @@ function populateAirportSelect(select, airports) {
 
   select.innerHTML = `<option value="">Seleccionar aeropuerto…</option>`;
 
+  const snaOpt = document.createElement("option");
+  snaOpt.value = SNA_IATA;
+  snaOpt.textContent = "Sistema Nacional de Aeropuertos (SNA)";
+  select.appendChild(snaOpt);
+
   airports.forEach((a) => {
     const airport = getLaminaAirportSearchRecord(a);
     if (!airport.iata) return;
@@ -258,7 +271,10 @@ function populateAirportSelect(select, airports) {
     select.appendChild(opt);
   });
 
-  if (currentValue && airports.some((a) => clean(a.IATA).toUpperCase() === currentValue)) {
+  if (
+    currentValue &&
+    (currentValue === SNA_IATA || airports.some((a) => clean(a.IATA).toUpperCase() === currentValue))
+  ) {
     select.value = currentValue;
   }
 }
@@ -736,6 +752,38 @@ function parseMovimientosMensualCSV(text) {
     date: parseFechaFlexible(firstNonEmpty(r, ["fecha"])),
     valor: parseNumber(firstNonEmpty(r, ["valor_movimientos", "valor", "movimientos"]))
   })).filter(r => r.iata && r.date && Number.isFinite(r.valor)).sort((a, b) => a.date - b.date);
+}
+
+function parseSNAHistoricoCSV(text) {
+  const rows = parseCSV(text);
+
+  return rows.map(r => ({
+    year: Number(firstNonEmpty(r, ["ano", "anio", "año", "year"])),
+    paxCab: parseNumber(firstNonEmpty(r, ["paxcab", "pax_cab", "pax_cabotaje", "pasajeros_cab", "pasajeros_cabotaje"])),
+    paxInter: parseNumber(firstNonEmpty(r, ["paxinter", "pax_int", "pax_internacional", "pasajeros_inter", "pasajeros_internacional"])),
+    movCab: parseNumber(firstNonEmpty(r, ["vueloscab", "vuelos_cab", "movcab", "mov_cab", "movimientos_cab", "movimientos_cabotaje"])),
+    movInter: parseNumber(firstNonEmpty(r, ["vuelosinter", "vuelos_inter", "movinter", "mov_inter", "movimientos_inter", "movimientos_internacional"]))
+  })).filter(r =>
+    Number.isFinite(r.year)
+  ).sort((a, b) => a.year - b.year);
+}
+
+function getSNAHistoricoRow(year = YEAR_REF) {
+  return snaHistoricoRows.find(r => Number(r.year) === Number(year)) || null;
+}
+
+function buildSNAAnnualSeries(field) {
+  return (snaHistoricoRows || [])
+    .map(r => ({
+      year: Number(r.year),
+      valor: Number(r[field]) || 0
+    }))
+    .filter(r => Number.isFinite(r.year))
+    .sort((a, b) => a.year - b.year);
+}
+
+function hasSNAHistoricoData() {
+  return Array.isArray(snaHistoricoRows) && snaHistoricoRows.length > 0;
 }
 
 function normalizeTrafficSegment(value) {
@@ -1464,34 +1512,69 @@ function renderRunways(runways) {
 
 
 
-function renderAnnualChart(passengerSeries, flightSeries, currentYear, iata = currentIATA) {
+function seriesToYearMap(series) {
+  return new Map(
+    (series || []).map(d => [Number(d.year), Number(d.valor) || 0])
+  );
+}
+
+function mergeAnnualYears(...seriesList) {
+  return Array.from(new Set(
+    seriesList.flatMap(series => (series || []).map(d => Number(d.year)).filter(Number.isFinite))
+  )).sort((a, b) => a - b);
+}
+
+function renderAnnualSplitChart(paxCabSeries, paxIntSeries, movCabSeries, movIntSeries, currentYear, sourceText = "") {
   const svg = q("paxHistoryChart");
   const note = q("paxHistoryNote");
   if (!svg) return;
 
-  if (!passengerSeries.length) {
+  const years = mergeAnnualYears(paxCabSeries, paxIntSeries, movCabSeries, movIntSeries);
+
+  if (!years.length) {
     svg.innerHTML = "";
-    if (note) note.textContent = "No hay datos históricos de pasajeros.";
+    if (note) note.textContent = "No hay datos históricos de pasajeros y movimientos.";
     return;
   }
 
+  const paxCabMap = seriesToYearMap(paxCabSeries);
+  const paxIntMap = seriesToYearMap(paxIntSeries);
+  const movCabMap = seriesToYearMap(movCabSeries);
+  const movIntMap = seriesToYearMap(movIntSeries);
+
+  const data = years.map(year => {
+    const paxCab = paxCabMap.get(year) || 0;
+    const paxInt = paxIntMap.get(year) || 0;
+    const movCab = movCabMap.get(year) || 0;
+    const movInt = movIntMap.get(year) || 0;
+
+    return {
+      year,
+      paxCab,
+      paxInt,
+      paxTotal: paxCab + paxInt,
+      movCab,
+      movInt
+    };
+  });
+
   const W = 820, H = 260;
-  const padL = 66, padR = 56, padT = 18, padB = 34;
+  const padL = 66, padR = 56, padT = 22, padB = 34;
   const innerW = W - padL - padR;
   const innerH = H - padT - padB;
+  const baseY = padT + innerH;
 
-  const years = passengerSeries.map(s => s.year);
-  const fltMap = new Map((flightSeries || []).map(d => [d.year, d.valor]));
-
-  const paxMax = Math.max(...passengerSeries.map(s => s.valor), 1);
-  const fltMax = Math.max(...(flightSeries?.length ? flightSeries : [{ valor: 1 }]).map(s => s.valor), 1);
+  const paxMax = Math.max(...data.map(d => d.paxTotal), 1);
+  const movMax = Math.max(...data.map(d => Math.max(d.movCab, d.movInt)), 1);
 
   const paxScale = buildNiceScale(paxMax, 4);
-  const fltScale = buildNiceScale(fltMax, 4);
+  const movScale = buildNiceScale(movMax, 4);
 
-  const x = i => padL + (innerW * i / Math.max(1, years.length - 1));
+  const x = i => years.length === 1
+    ? padL + innerW / 2
+    : padL + (innerW * i / Math.max(1, years.length - 1));
   const yPax = v => padT + innerH - (innerH * (v / paxScale.niceMax));
-  const yFlt = v => padT + innerH - (innerH * (v / fltScale.niceMax));
+  const yMov = v => padT + innerH - (innerH * (v / movScale.niceMax));
 
   let grid = "";
   paxScale.values.forEach(v => {
@@ -1501,87 +1584,120 @@ function renderAnnualChart(passengerSeries, flightSeries, currentYear, iata = cu
   });
 
   let rightAxis = "";
-  fltScale.values.forEach(v => {
-    const yy = yFlt(v);
-    rightAxis += `<text x="${W - padR + 8}" y="${yy + 4}" text-anchor="start" font-size="10" fill="${CHART_COLORS.label}">${formatNumber(Math.round(v))}</text>`;  });
-const leftAxisLabel = `
-  <text x="10" y="${padT + innerH / 2}" transform="rotate(-90 10 ${padT + innerH / 2})"
-        text-anchor="middle" font-size="14" fill="#7a838c">Pasajeros</text>
-`;
+  movScale.values.forEach(v => {
+    const yy = yMov(v);
+    rightAxis += `<text x="${W - padR + 8}" y="${yy + 4}" text-anchor="start" font-size="10" fill="${CHART_COLORS.label}">${formatNumber(Math.round(v))}</text>`;
+  });
 
-const rightAxisLabel = `
-  <text x="${W - 12}" y="${padT + innerH / 2}" transform="rotate(90 ${W - 12} ${padT + innerH / 2})"
-        text-anchor="middle" font-size="14" fill="${CHART_COLORS.label}">Movimientos</text>
-`;
+  const leftAxisLabel = `
+    <text x="10" y="${padT + innerH / 2}" transform="rotate(-90 10 ${padT + innerH / 2})"
+          text-anchor="middle" font-size="14" fill="#7a838c">Pasajeros</text>
+  `;
+
+  const rightAxisLabel = `
+    <text x="${W - 12}" y="${padT + innerH / 2}" transform="rotate(90 ${W - 12} ${padT + innerH / 2})"
+          text-anchor="middle" font-size="14" fill="${CHART_COLORS.label}">Movimientos</text>
+  `;
+
   let xLabels = "";
-  passengerSeries.forEach((d, i) => {
+  data.forEach((d, i) => {
     const xx = x(i);
-xLabels += `<text x="${xx}" y="${H - 12}" text-anchor="middle" font-size="10" fill="${CHART_COLORS.label}">${d.year}</text>`;
-if (i > 0 && i < passengerSeries.length - 1) {
-  xLabels += `<line x1="${xx}" y1="${padT}" x2="${xx}" y2="${padT + innerH}" stroke="${CHART_COLORS.grid}" stroke-width="1"></line>`;
-}
+    xLabels += `<text x="${xx}" y="${H - 12}" text-anchor="middle" font-size="10" fill="${CHART_COLORS.label}">${d.year}</text>`;
+    if (i > 0 && i < data.length - 1) {
+      xLabels += `<line x1="${xx}" y1="${padT}" x2="${xx}" y2="${baseY}" stroke="${CHART_COLORS.grid}" stroke-width="1"></line>`;
+    }
   });
 
-  const paxPoints = passengerSeries.map((d, i) => `${x(i)},${yPax(d.valor)}`).join(" ");
-  const paxArea = `${padL},${padT + innerH} ${paxPoints} ${x(passengerSeries.length - 1)},${padT + innerH}`;
+  const barWidth = Math.max(7, Math.min(16, innerW / Math.max(1, years.length) * 0.48));
 
-const flightBarsData = years
-  .filter(y => fltMap.has(y))
-  .map(y => {
-    const i = years.indexOf(y);
-    const value = fltMap.get(y);
-    return {
-      x: x(i),
-      y: yFlt(value),
-      value,
-      year: y
-    };
+  let paxBars = "";
+  data.forEach((d, i) => {
+    const xx = x(i) - barWidth / 2;
+    const cabTopY = yPax(d.paxCab);
+    const totalTopY = yPax(d.paxTotal);
+    const cabHeight = Math.max(0, baseY - cabTopY);
+    const intHeight = Math.max(0, cabTopY - totalTopY);
+
+    if (d.paxCab > 0) {
+      paxBars += `<rect x="${xx}" y="${cabTopY}" width="${barWidth}" height="${cabHeight}" rx="1.5" fill="${CHART_COLORS.paxCab}" opacity="0.78"></rect>`;
+    }
+
+    if (d.paxInt > 0) {
+      paxBars += `<rect x="${xx}" y="${totalTopY}" width="${barWidth}" height="${intHeight}" rx="1.5" fill="${CHART_COLORS.paxInt}" opacity="0.85"></rect>`;
+    }
   });
 
-const flightBarWidth = Math.max(6, Math.min(14, innerW / Math.max(1, years.length) * 0.42));
+  const linePoints = (field) => data
+    .filter(d => Number(d[field]) > 0)
+    .map(d => `${x(years.indexOf(d.year))},${yMov(d[field])}`)
+    .join(" ");
 
-let flightBars = "";
-if (flightBarsData.length) {
-  flightBars = flightBarsData.map(p => {
-    const barHeight = (padT + innerH) - p.y;
-    return `<rect x="${p.x - flightBarWidth / 2}" y="${p.y}" width="${flightBarWidth}" height="${barHeight}" rx="1.5" fill="${CHART_COLORS.aircraftBarFill}" stroke="${CHART_COLORS.aircraftBar}" stroke-width="1"></rect>`;  }).join("");
-}
+  const movCabPoints = linePoints("movCab");
+  const movIntPoints = linePoints("movInt");
 
-  let markers = "";
-  passengerSeries.forEach((d, i) => {
+  const movCabLine = movCabPoints
+    ? `<polyline points="${movCabPoints}" fill="none" stroke="${CHART_COLORS.movCab}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></polyline>`
+    : "";
+
+  const movIntLine = movIntPoints
+    ? `<polyline points="${movIntPoints}" fill="none" stroke="${CHART_COLORS.movInt}" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4"></polyline>`
+    : "";
+
+  let movMarkers = "";
+  data.forEach((d, i) => {
     const xx = x(i);
-    const yy = yPax(d.valor);
-    const isCurrent = d.year === currentYear;
-    const isLast = i === passengerSeries.length - 1;
-
-    markers += `<circle cx="${xx}" cy="${yy}" r="${isCurrent ? 4.3 : 3.2}" fill="${isCurrent ? CHART_COLORS.passengersLineDark : CHART_COLORS.passengersLine}"></circle>`;
-if (isCurrent) {
-  markers += `<text x="${xx}" y="${yy - 8}" text-anchor="middle" font-size="10" fill="${CHART_COLORS.value}">${formatNumber(Math.round(d.valor))}</text>`;
-}
+    if (d.movCab > 0) {
+      movMarkers += `<circle cx="${xx}" cy="${yMov(d.movCab)}" r="2.8" fill="${CHART_COLORS.movCab}"></circle>`;
+    }
+    if (d.movInt > 0) {
+      movMarkers += `<circle cx="${xx}" cy="${yMov(d.movInt)}" r="2.6" fill="${CHART_COLORS.movInt}"></circle>`;
+    }
   });
+
+  const current = data.find(d => Number(d.year) === Number(currentYear));
+  let currentLabel = "";
+  if (current && current.paxTotal > 0) {
+    const idx = data.indexOf(current);
+    const xx = x(idx);
+    const yy = yPax(current.paxTotal);
+    currentLabel = `<text x="${xx}" y="${Math.max(padT + 10, yy - 8)}" text-anchor="middle" font-size="10" font-weight="700" fill="${CHART_COLORS.value}">${formatNumber(Math.round(current.paxTotal))}</text>`;
+  }
+
+  const legend = `
+    <g transform="translate(${padL + 4}, 4)">
+      <rect x="0" y="2" width="8" height="8" fill="${CHART_COLORS.paxCab}" opacity="0.78"></rect>
+      <text x="12" y="10" font-size="9" fill="${CHART_COLORS.label}">Pax cab.</text>
+      <rect x="66" y="2" width="8" height="8" fill="${CHART_COLORS.paxInt}" opacity="0.85"></rect>
+      <text x="78" y="10" font-size="9" fill="${CHART_COLORS.label}">Pax int.</text>
+      <line x1="132" y1="6" x2="148" y2="6" stroke="${CHART_COLORS.movCab}" stroke-width="2.4"></line>
+      <text x="152" y="10" font-size="9" fill="${CHART_COLORS.label}">Mov. cab.</text>
+      <line x1="218" y1="6" x2="234" y2="6" stroke="${CHART_COLORS.movInt}" stroke-width="2.4" stroke-dasharray="5 4"></line>
+      <text x="238" y="10" font-size="9" fill="${CHART_COLORS.label}">Mov. int.</text>
+    </g>
+  `;
 
   svg.innerHTML = `
     <rect x="0" y="0" width="${W}" height="${H}" fill="#ffffff"></rect>
+    ${legend}
     ${grid}
     ${xLabels}
-    <line x1="${padL}" y1="${padT + innerH}" x2="${W - padR}" y2="${padT + innerH}" stroke="${CHART_COLORS.axis}" stroke-width="1"></line>
-    <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT + innerH}" stroke="${CHART_COLORS.axis}" stroke-width="1"></line>
-${leftAxisLabel}
-${rightAxisLabel}
-${rightAxis}
-${flightBars}
-<polygon points="${paxArea}" fill="${CHART_COLORS.passengersArea}" opacity="0.72"></polygon>
-<polyline points="${paxPoints}" fill="none" stroke="${CHART_COLORS.passengersLine}" stroke-width="3"></polyline>
-${markers}
+    <line x1="${padL}" y1="${baseY}" x2="${W - padR}" y2="${baseY}" stroke="${CHART_COLORS.axis}" stroke-width="1"></line>
+    <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${baseY}" stroke="${CHART_COLORS.axis}" stroke-width="1"></line>
+    ${leftAxisLabel}
+    ${rightAxisLabel}
+    ${rightAxis}
+    ${paxBars}
+    ${movCabLine}
+    ${movIntLine}
+    ${movMarkers}
+    ${currentLabel}
   `;
 
   if (note) {
-    const isFdoWithAA = isFDO(iata) && fdoTrafficAA;
-    note.textContent = isFdoWithAA
-      ? "Fuente: elaborado por GREyF ORSNA con datos de Aeropuertos Argentina."
-      : "Fuente: elaborado por GREyF ORSNA con datos de SIAC ANAC.";
+    note.textContent = sourceText || "Fuente: elaborado por GREyF ORSNA con datos de SIAC ANAC.";
   }
 }
+
 
 function getFlightsStats(iata) {
   const movSeries = buildMovSeries(iata, "total");
@@ -2096,16 +2212,154 @@ const weeksInYear = daysInYear / 7;
 setText("paxPromSemanal", total ? formatNumber(Math.round(total / weeksInYear)) : "–");
 setText("paxPromDiario", total ? formatNumber(Math.round(total / daysInYear)) : "–");
 
-renderAnnualChart(
-  annualTotals(totalSeries),
-  annualMovementTotals(iata),
+const sourceText = isFDO(iata) && fdoTrafficAA
+  ? "Fuente: elaborado por GREyF ORSNA con datos de Aeropuertos Argentina."
+  : "Fuente: elaborado por GREyF ORSNA con datos de SIAC ANAC.";
+
+renderAnnualSplitChart(
+  annualTotals(cabSeries),
+  annualTotals(intSeries),
+  annualTotals(buildMovSeries(iata, "cabotaje")),
+  annualTotals(buildMovSeries(iata, "internacional")),
   YEAR_REF,
-  iata
+  sourceText
 );
 }
 
+  function clearPredioMapForSNA() {
+    if (!mapPredio) return;
+
+    [predioLayer, pistasLayer, terminalesLayer, predioMarker].forEach(layer => {
+      if (layer) mapPredio.removeLayer(layer);
+    });
+
+    predioLayer = null;
+    pistasLayer = null;
+    terminalesLayer = null;
+    predioMarker = null;
+
+    mapPredio.setView([-38.4161, -63.6167], 4);
+  }
+
+  function clearAirportSpecificFieldsForSNA() {
+    const textIds = [
+      "sumSupPredio",
+      "sumTerminal",
+      "predioExplotador",
+      "predioCodigos",
+      "predioHabilitacion",
+      "predioSupAreasConcesionadas",
+      "predioAreasConcesionadas",
+      "predioConcesionHasta",
+      "predioGrupoConcesion",
+      "psnDetalleCompacto",
+      "horarioOperacion",
+      "claveRef",
+      "radioayudas",
+      "ayudasVisuales",
+      "mostradoresCheckin",
+      "kioscosSelf",
+      "psaDetalle",
+      "psaTotal",
+      "aduanaPuestos",
+      "migracionesDetalle",
+      "migracionesTotal",
+      "puertasDetalle",
+      "puertasEmbarque",
+      "mangasValorBottom",
+      "cintasDetalle",
+      "cintasEquipaje",
+      "carritos",
+      "estacionamientoVeh",
+      "transportePublico"
+    ];
+
+    textIds.forEach(id => setText(id, "–"));
+    setBadgeNumber("badgePsnTotal", "–");
+    renderRunways([]);
+
+    const img = q("imgTerminal");
+    if (img) {
+      img.removeAttribute("src");
+      img.classList.add("is-hidden");
+    }
+
+    clearPredioMapForSNA();
+
+    setText("airlinesCount", "–");
+    setHTML("topAirlinesList", '<div class="airline-empty">No aplica para vista agregada SNA</div>');
+    setHTML("topDestinationsList", '<div class="destination-text">No aplica para vista agregada SNA</div>');
+  }
+
+  function renderSNAView() {
+    currentIATA = SNA_IATA;
+    q("sheetA4")?.classList.add("is-sna-mode");
+
+    if (q("sheetTitle")) q("sheetTitle").textContent = "Datos clave del Sistema Nacional de Aeropuertos";
+    if (q("airportName")) {
+      q("airportName").innerHTML = `Sistema Nacional de Aeropuertos <span class="sheet-title-year-inline">${YEAR_REF}</span>`;
+    }
+
+    clearAirportSpecificFieldsForSNA();
+
+    const row = getSNAHistoricoRow(YEAR_REF);
+
+    if (!row) {
+      setText("paxTotal2024", "sin datos SNA");
+      setText("paxCab2024", "–");
+      setText("paxInt2024", "–");
+      setText("paxPromSemanal", "–");
+      setText("paxPromDiario", "–");
+      setText("vuelosAnuales", "sin datos SNA");
+      setText("vuelosSemanales", "–");
+      setText("vuelosDiarios", "–");
+      renderPassengerMixDonut(0, 0);
+      renderAnnualSplitChart([], [], [], [], YEAR_REF, `Fuente: ${SNA_HISTORICO_SOURCE}.`);
+      return;
+    }
+
+    const paxCab = Number(row.paxCab) || 0;
+    const paxInter = Number(row.paxInter) || 0;
+    const paxTotal = paxCab + paxInter;
+    const movCab = Number(row.movCab) || 0;
+    const movInter = Number(row.movInter) || 0;
+    const movTotal = movCab + movInter;
+
+    const daysInYear = (YEAR_REF % 4 === 0 && (YEAR_REF % 100 !== 0 || YEAR_REF % 400 === 0)) ? 366 : 365;
+    const weeksInYear = daysInYear / 7;
+
+    setText("paxTotal2024", paxTotal ? formatNumber(Math.round(paxTotal)) : "–");
+    setText("paxCab2024", paxCab ? formatNumber(Math.round(paxCab)) : "–");
+    setText("paxInt2024", paxInter ? formatNumber(Math.round(paxInter)) : "–");
+    setText("paxPromSemanal", paxTotal ? formatNumber(Math.round(paxTotal / weeksInYear)) : "–");
+    setText("paxPromDiario", paxTotal ? formatNumber(Math.round(paxTotal / daysInYear)) : "–");
+
+    renderPassengerMixDonut(paxCab, paxInter);
+
+    setText("vuelosAnuales", movTotal ? formatNumber(Math.round(movTotal)) : "–");
+    setText("vuelosSemanales", movTotal ? formatNumber(Math.round(movTotal / weeksInYear)) : "–");
+    setText("vuelosDiarios", movTotal ? formatNumber(Math.round(movTotal / daysInYear)) : "–");
+
+    renderAnnualSplitChart(
+      buildSNAAnnualSeries("paxCab"),
+      buildSNAAnnualSeries("paxInter"),
+      buildSNAAnnualSeries("movCab"),
+      buildSNAAnnualSeries("movInter"),
+      YEAR_REF,
+      `Fuente: elaborado por GREyF ORSNA con datos de ${SNA_HISTORICO_SOURCE}.`
+    );
+  }
+
   function renderAirport(iataCode) {
     const iata = clean(iataCode).toUpperCase();
+
+    if (iata === SNA_IATA) {
+      renderSNAView();
+      return;
+    }
+
+    q("sheetA4")?.classList.remove("is-sna-mode");
+
     const a = aeropuertos.find(x => clean(x.IATA).toUpperCase() === iata);
     if (!a) return;
     currentIATA = iata;
@@ -2290,7 +2544,8 @@ const [
   iataWorldResp,
   extraTrafficResp,
   fdoAAResp,
-  fdoRoutesAAResp
+  fdoRoutesAAResp,
+  snaHistoricoResp
 ] = await Promise.all([
   fetch("fuentes/Datos_aeropuertos.geojson"),
   fetch("fuentes/poligonos_aeropuertos.geojson").catch(() => null),
@@ -2304,7 +2559,8 @@ const [
   fetch("fuentes/ListadoIATAmundo.csv").catch(() => null),
   fetch("fuentes/pasajeros_movimientos_extra_9aeropuertos.csv").catch(() => null),
   fetch(FDO_AA_SOURCE).catch(() => null),
-  fetch(FDO_ROUTES_AA_SOURCE).catch(() => null)
+  fetch(FDO_ROUTES_AA_SOURCE).catch(() => null),
+  fetch(SNA_HISTORICO_SOURCE).catch(() => null)
 ]);
 
       const geojson = await airportsResp.json();
@@ -2376,6 +2632,10 @@ if (rutasResp && rutasResp.ok) {
 if (fdoRoutesAAResp && fdoRoutesAAResp.ok) {
   fdoRoutesAA = parseFDORoutesAAJSON(await fdoRoutesAAResp.json());
 }
+
+if (snaHistoricoResp && snaHistoricoResp.ok) {
+  snaHistoricoRows = parseSNAHistoricoCSV(await readTextSmart(snaHistoricoResp));
+}
       
 if (iataWorldResp && iataWorldResp.ok) {
   const parsedWorld = parseIATAMundoCSV(await readTextSmart(iataWorldResp));
@@ -2383,6 +2643,16 @@ if (iataWorldResp && iataWorldResp.ok) {
   routeCodeIndex = parsedWorld.byCode;
 }
 airportSearchIndex = new Map();
+
+airportSearchIndex.set(SNA_IATA, {
+  iata: SNA_IATA,
+  nombre: "Sistema Nacional de Aeropuertos",
+  properties: {
+    IATA: SNA_IATA,
+    Aeropuerto: "Sistema Nacional de Aeropuertos",
+    Ciudad: "SNA"
+  }
+});
 
 aeropuertos.forEach(a => {
   const airport = getLaminaAirportSearchRecord(a);
