@@ -1851,7 +1851,6 @@ body.page-informe-impacto .sheet-wrap {
   padding: 4px 4px 3px;
   font-size: 0.62rem;
   line-height: 1.05;
-  border-top-color: #2E7D32;
 }
 
 .flight-metric-row {
@@ -1889,13 +1888,9 @@ body.page-informe-impacto .sheet-wrap {
 
 .flight-metric-total strong {
   font-size: 0.84rem;
-  color: #2E7D32;
 }
 
-.flight-metric-cab strong {
-  color: #2E7D32;
-}
 
 .flight-metric-int strong {
-  color: #00A651;
+  color: #2E7D32;
 }
