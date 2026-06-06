@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mapa animado de vuelos - Argentina</title>
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background: #111;
+    }
+
+    #map {
+      width: 100%;
+      height: 100vh;
+    }
+
+    .control-panel {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background: rgba(20, 20, 20, 0.88);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.35);
+    }
+
+    .control-panel button {
+      border: 0;
+      border-radius: 6px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .control-panel input[type="range"] {
+      width: 260px;
+    }
+
+    #clock {
+      min-width: 52px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    #activeCount {
+      min-width: 90px;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="control-panel">
+    <button id="btnPlay">Pausar</button>
+    <span id="clock">00:00</span>
+    <input id="timeRange" type="range" min="0" max="86400000" value="0" step="60000" />
+    <span id="activeCount">0 vuelos</span>
+  </div>
+
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script>
+    // =========================================================
+    // 1. CONFIGURACIÓN GENERAL
+    // =========================================================
+
+    const DAY_START = new Date("2025-01-01T00:00:00-03:00").getTime();
+
+    const SIM_DAY_MS = 24 * 60 * 60 * 1000;
+    const REAL_DURATION_MS = 60 * 1000;
+    const SPEED_FACTOR = SIM_DAY_MS / REAL_DURATION_MS; // 1440
+
+    let playing = true;
+    let simTime = 0;
+    let lastFrame = performance.now();
+
+    // =========================================================
+    // 2. VUELOS DE EJEMPLO
+    // Después reemplazamos esto por tu JSON real.
+    // Formato de coordenadas Leaflet: [latitud, longitud]
+    // =========================================================
+
+    const flights = [
+      {
+        id: "AR1400",
+        airline: "AR",
+        origin: "AEP",
+        destination: "MDZ",
+        dep: "2025-01-01T06:05:00-03:00",
+        arr: "2025-01-01T07:55:00-03:00",
+        from: [-34.5592, -58.4156],
+        to: [-32.8317, -68.7929]
+      },
+      {
+        id: "FO5220",
+        airline: "FO",
+        origin: "AEP",
+        destination: "BRC",
+        dep: "2025-01-01T08:30:00-03:00",
+        arr: "2025-01-01T10:45:00-03:00",
+        from: [-34.5592, -58.4156],
+        to: [-41.1512, -71.1575]
+      },
+      {
+        id: "AR1508",
+        airline: "AR",
+        origin: "COR",
+        destination: "SLA",
+        dep: "2025-01-01T11:15:00-03:00",
+        arr: "2025-01-01T12:40:00-03:00",
+        from: [-31.3236, -64.2080],
+        to: [-24.8560, -65.4862]
+      },
+      {
+        id: "JA3840",
+        airline: "JA",
+        origin: "EZE",
+        destination: "IGR",
+        dep: "2025-01-01T14:20:00-03:00",
+        arr: "2025-01-01T16:05:00-03:00",
+        from: [-34.8222, -58.5358],
+        to: [-25.7373, -54.4734]
+      },
+      {
+        id: "AR1882",
+        airline: "AR",
+        origin: "AEP",
+        destination: "USH",
+        dep: "2025-01-01T19:10:00-03:00",
+        arr: "2025-01-01T22:45:00-03:00",
+        from: [-34.5592, -58.4156],
+        to: [-54.8433, -68.2958]
+      }
+    ];
+
+    // =========================================================
+    // 3. MAPA
+    // =========================================================
+
+    const map = L.map("map", {
+      center: [-38.5, -63.5],
+      zoom: 4,
+      minZoom: 3,
+      maxZoom: 10,
+      preferCanvas: true,
+      renderer: L.canvas({ padding: 0.5 }),
+      maxBounds: [
+        [-56.5, -76.5],
+        [-20.0, -48.0]
+      ],
+      maxBoundsViscosity: 0.8
+    });
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "&copy; OpenStreetMap contributors"
+    }).addTo(map);
+
+    // Paneles visuales por orden de dibujo
+    map.createPane("routesPane");
+    map.getPane("routesPane").style.zIndex = 410;
+
+    map.createPane("flightsPane");
+    map.getPane("flightsPane").style.zIndex = 620;
+
+    const routeRenderer = L.canvas({ padding: 0.5 });
+    const flightRenderer = L.canvas({ padding: 0.5 });
+
+    const routesLayer = L.layerGroup().addTo(map);
+    const flightsLayer = L.layerGroup().addTo(map);
+
+    // =========================================================
+    // 4. PREPROCESAMIENTO
+    // =========================================================
+
+    const processedFlights = flights.map(f => {
+      let depOffset = new Date(f.dep).getTime() - DAY_START;
+      let arrOffset = new Date(f.arr).getTime() - DAY_START;
+
+      // Si un vuelo cruza la medianoche
+      if (arrOffset < depOffset) {
+        arrOffset += SIM_DAY_MS;
+      }
+
+      return {
+        ...f,
+        depOffset,
+        arrOffset,
+        duration: arrOffset - depOffset
+      };
+    });
+
+    // Dibujo de rutas completas como referencia
+    processedFlights.forEach(f => {
+      L.polyline([f.from, f.to], {
+        pane: "routesPane",
+        renderer: routeRenderer,
+        color: "#66ccff",
+        weight: 1,
+        opacity: 0.18,
+        interactive: false
+      }).addTo(routesLayer);
+    });
+
+    // =========================================================
+    // 5. INTERPOLACIÓN DE POSICIÓN
+    // =========================================================
+
+    function interpolateCurved(from, to, p) {
+      const lat1 = from[0];
+      const lng1 = from[1];
+      const lat2 = to[0];
+      const lng2 = to[1];
+
+      const lat = lat1 + (lat2 - lat1) * p;
+      const lng = lng1 + (lng2 - lng1) * p;
+
+      // Curva visual simple para que la ruta no parezca tan plana.
+      // No es geodésica exacta; es una curva estética.
+      const dLat = lat2 - lat1;
+      const dLng = lng2 - lng1;
+      const len = Math.sqrt(dLat * dLat + dLng * dLng) || 1;
+
+      const curveSize = Math.min(2.4, len * 0.08);
+      const curve = Math.sin(Math.PI * p) * curveSize;
+
+      const offsetLat = (-dLng / len) * curve;
+      const offsetLng = (dLat / len) * curve;
+
+      return [lat + offsetLat, lng + offsetLng];
+    }
+
+    function formatClock(ms) {
+      const totalMinutes = Math.floor(ms / 60000) % 1440;
+      const hh = String(Math.floor(totalMinutes / 60)).padStart(2, "0");
+      const mm = String(totalMinutes % 60).padStart(2, "0");
+      return `${hh}:${mm}`;
+    }
+
+    // =========================================================
+    // 6. ACTUALIZACIÓN DE VUELOS
+    // =========================================================
+
+    const activeMarkers = new Map();
+
+    function getFlightColor(f) {
+      if (f.airline === "AR") return "#ffffff";
+      if (f.airline === "FO") return "#ffcc66";
+      if (f.airline === "JA") return "#ff7777";
+      return "#66ffcc";
+    }
+
+    function updateFlights(currentTime) {
+      let activeCount = 0;
+
+      processedFlights.forEach(f => {
+        const visibleUntil = Math.min(f.arrOffset, SIM_DAY_MS);
+        const isActive = currentTime >= f.depOffset && currentTime <= visibleUntil;
+
+        if (!isActive) {
+          const existing = activeMarkers.get(f.id);
+          if (existing) {
+            flightsLayer.removeLayer(existing);
+            activeMarkers.delete(f.id);
+          }
+          return;
+        }
+
+        activeCount++;
+
+        const p = Math.max(0, Math.min(1, (currentTime - f.depOffset) / f.duration));
+        const position = interpolateCurved(f.from, f.to, p);
+
+        let marker = activeMarkers.get(f.id);
+
+        if (!marker) {
+          marker = L.circleMarker(position, {
+            pane: "flightsPane",
+            renderer: flightRenderer,
+            radius: 4.5,
+            color: getFlightColor(f),
+            fillColor: getFlightColor(f),
+            fillOpacity: 0.95,
+            opacity: 1,
+            weight: 1,
+            interactive: true
+          });
+
+          marker.bindTooltip(
+            `${f.id} | ${f.origin} → ${f.destination}<br>${f.dep.slice(11,16)} - ${f.arr.slice(11,16)}`,
+            { direction: "top", opacity: 0.9 }
+          );
+
+          marker.addTo(flightsLayer);
+          activeMarkers.set(f.id, marker);
+        } else {
+          marker.setLatLng(position);
+        }
+      });
+
+      document.getElementById("clock").textContent = formatClock(currentTime);
+      document.getElementById("activeCount").textContent = `${activeCount} vuelos`;
+      document.getElementById("timeRange").value = Math.floor(currentTime);
+    }
+
+    // =========================================================
+    // 7. LOOP DE ANIMACIÓN
+    // =========================================================
+
+    function animate(now) {
+      const delta = now - lastFrame;
+      lastFrame = now;
+
+      if (playing) {
+        simTime += delta * SPEED_FACTOR;
+
+        if (simTime > SIM_DAY_MS) {
+          simTime = 0;
+        }
+
+        updateFlights(simTime);
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
+
+    // =========================================================
+    // 8. CONTROLES
+    // =========================================================
+
+    const btnPlay = document.getElementById("btnPlay");
+    const timeRange = document.getElementById("timeRange");
+
+    btnPlay.addEventListener("click", () => {
+      playing = !playing;
+      btnPlay.textContent = playing ? "Pausar" : "Reproducir";
+    });
+
+    timeRange.addEventListener("input", e => {
+      simTime = Number(e.target.value);
+      updateFlights(simTime);
+    });
+
+    updateFlights(0);
+  </script>
+
+</body>
+</html>
