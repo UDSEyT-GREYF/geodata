@@ -1,0 +1,2 @@
+id,airline,origin,destination,dep,arr,passengers,seats
+AR1400,AR,AEP,MDZ,2025-01-01T06:05:00-03:00,2025-01-01T07:55:00-03:00,143,170

@@ -1,4 +1,5 @@
 {
+  "data_kind": "demo",
   "source": "Plantilla de datos para reemplazar por exportación SIAC / Power BI",
   "date": "2025-01-01",
   "time_zone": "America/Argentina/Buenos_Aires",
@@ -8,8 +9,9 @@
   },
   "notes": [
     "Este archivo ya está separado del JS para poder reemplazarlo por un día real completo.",
-    "Cada registro representa un vuelo. Las coordenadas pueden venir por from/to o por catálogo interno de IATA incluido en rutasaereas.js.",
-    "Para datos reales, reemplazar el array flights por la exportación del SIAC del día elegido."
+    "Cada registro representa un vuelo.",
+    "Las coordenadas pueden venir por from/to, por campos de latitud/longitud de origen/destino, o por el catálogo SIGA fuentes/Datos_aeropuertos.geojson si existe en el proyecto.",
+    "Para datos reales, reemplazar el array flights por la exportación del SIAC del día elegido. No inventar vuelos."
   ],
   "flights": [
     {"id": "AR1400", "airline": "AR", "origin": "AEP", "destination": "MDZ", "dep": "2025-01-01T06:05:00-03:00", "arr": "2025-01-01T07:55:00-03:00", "passengers": 143, "seats": 170},
