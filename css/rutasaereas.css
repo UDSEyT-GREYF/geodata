@@ -7,12 +7,12 @@
   --siga-muted: #6c757d;
   --siga-bg: #f5f5f5;
   --siga-card: #ffffff;
+  --siga-green: #16c41e;
+  --siga-purple: #6b2f82;
   --siga-link: #0072bb;
+  --siga-kpi-blue: #2a5fa0;
   --siga-value-blue: #004b80;
-  --rutas-plane: #004b80;
   --rutas-trail: #00a3e0;
-  --rutas-route: #306fb0;
-  --rutas-airport: #002855;
 }
 
 * { box-sizing: border-box; }
@@ -46,8 +46,17 @@ body {
   font-weight: 800;
   letter-spacing: .04em;
 }
-.siga-brand h1 { margin: 0; font-size: 1.05rem; color: #002855; line-height: 1.15; }
-.siga-brand p { margin: 3px 0 0; font-size: .78rem; color: var(--siga-muted); }
+.siga-brand h1 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #002855;
+  line-height: 1.15;
+}
+.siga-brand p {
+  margin: 3px 0 0;
+  font-size: .78rem;
+  color: var(--siga-muted);
+}
 .siga-header-actions { display: flex; gap: 8px; align-items: center; }
 
 .siga-layout {
@@ -77,12 +86,17 @@ body {
   letter-spacing: .04em;
   color: var(--siga-blue-dark);
 }
-.siga-label { display: block; margin-bottom: 4px; font-size: .72rem; color: var(--siga-muted); }
+.siga-label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: .72rem;
+  color: var(--siga-muted);
+}
 .siga-button-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
 .siga-btn {
-  border: 1px solid transparent;
+  border: 1px solid #b8c9dc;
   border-radius: 7px;
-  padding: 4px 8px;
+  padding: 4px 7px;
   font-size: .68rem;
   font-weight: 700;
   cursor: pointer;
@@ -93,8 +107,9 @@ body {
 .siga-btn-secondary { background: #fff; color: var(--siga-blue); border-color: #b8c9dc; }
 .siga-btn-secondary:hover { background: var(--siga-blue-soft); }
 .siga-btn-light { background: #f6f9fc; color: var(--siga-blue-dark); border-color: #d4deea; }
-.siga-hint { margin-top: 6px; font-size: .68rem; color: var(--siga-muted); line-height: 1.3; }
-.siga-hint code { color: var(--siga-blue-dark); font-weight: 700; }
+.siga-hint { margin-top: 6px; font-size: .66rem; color: var(--siga-muted); line-height: 1.3; }
+.siga-hint code { color: #002855; font-weight: 700; }
+
 .siga-map-shell { position: relative; min-width: 0; }
 .siga-map { width: 100%; height: 100%; background: #eef2f7; }
 .map-status {
@@ -102,7 +117,7 @@ body {
   left: 12px;
   bottom: 12px;
   z-index: 600;
-  background: rgba(255,255,255,.92);
+  background: rgba(255,255,255,.94);
   border: 1px solid var(--siga-border);
   border-radius: 8px;
   padding: 5px 8px;
@@ -110,56 +125,142 @@ body {
   color: #4b5563;
   box-shadow: 0 4px 18px rgba(15, 23, 42, .12);
 }
-.feature-info { min-height: 82px; font-size: .76rem; color: #374151; line-height: 1.35; }
-.feature-title { font-weight: 800; color: #002855; margin-bottom: 6px; }
-.feature-table { width: 100%; border-collapse: collapse; }
-.feature-table td { padding: 3px 2px; border-bottom: 1px dashed #e5e7eb; vertical-align: top; }
-.feature-table td:first-child { color: #6b7280; width: 42%; }
-.feature-table td:last-child { color: #111827; font-weight: 650; word-break: break-word; }
 
 .rutas-clock-box {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2px;
-  padding: 9px 10px;
-  margin-bottom: 8px;
-  border: 1px solid #dbe5f0;
-  border-radius: 9px;
-  background: linear-gradient(180deg, #f8fbff, #eef5ff);
+  border: 1px solid #d7e2ee;
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin-bottom: 9px;
+  background: linear-gradient(180deg, #ffffff, #f1f7ff);
 }
-.rutas-clock-label { color: var(--siga-muted); font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
-.rutas-clock { color: var(--siga-blue-dark); font-size: 1.85rem; line-height: 1; font-weight: 850; letter-spacing: .03em; }
-.rutas-range { width: 100%; accent-color: var(--siga-blue); }
-.rutas-kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
-.rutas-kpi { min-height: 58px; padding: 8px; border: 1px solid #e3e9f1; border-radius: 9px; background: #f8fafc; }
-.rutas-kpi-label { display: block; margin-bottom: 3px; color: #6b7280; font-size: .66rem; font-weight: 750; text-transform: uppercase; letter-spacing: .03em; }
-.rutas-kpi strong { color: var(--siga-value-blue); font-size: 1.22rem; line-height: 1; }
-.rutas-layer-row { display: grid; grid-template-columns: 18px 14px minmax(0, 1fr); gap: 6px; align-items: center; padding: 5px 0; font-size: .76rem; color: #374151; }
+.rutas-clock-label {
+  font-size: .64rem;
+  color: var(--siga-muted);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  font-weight: 800;
+}
+.rutas-clock {
+  font-size: 1.9rem;
+  line-height: 1.05;
+  color: #002855;
+  font-weight: 850;
+  letter-spacing: .02em;
+}
+.rutas-range {
+  width: 100%;
+  accent-color: var(--siga-blue);
+}
+.rutas-kpi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+.rutas-kpi {
+  border: 1px solid #e1e8f1;
+  border-radius: 9px;
+  padding: 7px;
+  background: #f8fafc;
+}
+.rutas-kpi-label {
+  display: block;
+  font-size: .62rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-weight: 750;
+}
+.rutas-kpi strong {
+  display: block;
+  margin-top: 3px;
+  color: var(--siga-value-blue);
+  font-size: 1.12rem;
+  line-height: 1;
+}
+.rutas-layer-row {
+  display: grid;
+  grid-template-columns: 18px 14px minmax(0, 1fr);
+  gap: 6px;
+  align-items: center;
+  padding: 4px 0;
+  font-size: .76rem;
+  color: #374151;
+  cursor: pointer;
+}
 .rutas-layer-row input { margin: 0; accent-color: var(--siga-blue); }
-.layer-swatch { width: 12px; height: 12px; border-radius: 3px; border: 1px solid rgba(0,0,0,.25); }
-.rutas-swatch-route { background: var(--rutas-route); }
-.rutas-swatch-trail { background: var(--rutas-trail); }
-.rutas-swatch-airport { background: var(--rutas-airport); }
+.layer-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,.25);
+}
+.rutas-swatch-route { background: #306fb0; }
+.rutas-swatch-trail { background: #00a3e0; }
+.rutas-swatch-airport { background: #ffffff; border-color: #306fb0; }
 
-.base-layer-tree { display: flex; flex-direction: column; gap: 2px; margin-bottom: 2px; }
+.base-layer-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 4px;
+}
 .basemap-row {
   display: grid;
   grid-template-columns: 14px 26px minmax(0, 1fr);
   align-items: center;
   gap: 5px;
-  padding: 4px 5px;
+  padding: 3px 5px;
   border: 1px solid #e1e8f1;
   border-radius: 6px;
-  min-height: 28px;
+  min-height: 27px;
   background: #f8fafc;
   cursor: pointer;
   transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
 }
 .basemap-row:hover { background: #eef5ff; border-color: #b8c9dc; }
-.basemap-row:has(input:checked) { background: #e8f1fc; border-color: var(--siga-blue); box-shadow: 0 1px 4px rgba(48, 111, 176, .15); }
+.basemap-row:has(input:checked) {
+  background: #e8f1fc;
+  border-color: var(--siga-blue);
+  box-shadow: 0 1px 4px rgba(48, 111, 176, .15);
+}
 .basemap-row input { margin: 0; width: 13px; height: 13px; accent-color: var(--siga-blue); }
-.basemap-thumb { width: 26px; height: 18px; border-radius: 4px; border: 1px solid rgba(0, 40, 85, .18); overflow: hidden; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35); }
-.basemap-name { min-width: 0; color: #374151; font-size: .68rem; font-weight: 650; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.basemap-thumb {
+  width: 26px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 40, 85, .18);
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35);
+}
+.basemap-name {
+  min-width: 0;
+  color: #374151;
+  font-size: .68rem;
+  font-weight: 620;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.feature-info {
+  min-height: 82px;
+  font-size: .76rem;
+  color: #374151;
+  line-height: 1.35;
+}
+.feature-title {
+  font-weight: 800;
+  color: #002855;
+  margin-bottom: 6px;
+}
+.feature-table { width: 100%; border-collapse: collapse; }
+.feature-table td {
+  padding: 3px 2px;
+  border-bottom: 1px dashed #e5e7eb;
+  vertical-align: top;
+}
+.feature-table td:first-child { color: #6b7280; width: 38%; }
+.feature-table td:last-child { color: #111827; font-weight: 650; word-break: break-word; }
 
 .rutas-airport-label-marker { pointer-events: none; }
 .rutas-airport-center-icon {
@@ -200,29 +301,53 @@ body {
   padding: 0;
   text-shadow: 0 0 2px #ffffff, 0 0 3px #ffffff;
 }
-.rutas-plane-marker { background: transparent !important; border: 0 !important; }
+.rutas-airport-floating-text span {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rutas-plane-marker {
+  background: transparent !important;
+  border: 0 !important;
+}
 .rutas-plane-icon {
+  display: block;
   width: 28px;
   height: 28px;
-  display: block;
-  transform-origin: center center;
-  filter: drop-shadow(0 1px 2px rgba(0, 40, 85, .55)) drop-shadow(0 0 3px rgba(255, 255, 255, .95));
-  pointer-events: none;
+  transform-origin: 50% 50%;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .65));
 }
-.rutas-plane-icon svg { display: block; width: 28px; height: 28px; }
-.rutas-flight-trail { filter: drop-shadow(0 0 3px rgba(0, 163, 224, .55)); }
+.rutas-plane-icon svg {
+  display: block;
+  width: 28px;
+  height: 28px;
+}
+.rutas-flight-trail {
+  filter: drop-shadow(0 0 3px rgba(0, 163, 224, .7));
+}
 .rutas-tooltip {
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(143, 164, 189, 0.75);
+  background: rgba(255, 255, 255, .94);
+  border: 1px solid rgba(143, 164, 189, .7);
   color: #111827;
   border-radius: 6px;
   padding: 4px 6px;
   font-size: 11px;
-  font-weight: 600;
-  box-shadow: 0 3px 10px rgba(15, 23, 42, .14);
+  font-weight: 650;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, .18);
 }
-.rutas-tooltip-title { font-weight: 850; color: #002855; margin-bottom: 2px; }
-.rutas-tooltip-muted { color: #6b7280; font-weight: 650; }
+.rutas-tooltip-title {
+  font-weight: 850;
+  color: #002855;
+  margin-bottom: 2px;
+}
+.rutas-tooltip-muted {
+  color: #6b7280;
+  font-size: 10px;
+  margin-top: 2px;
+}
 .siga-zoom-indicator {
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid #b8c9dc;
@@ -237,7 +362,96 @@ body {
 @media (max-width: 880px) {
   body { overflow: auto; }
   .siga-header { height: auto; align-items: flex-start; flex-direction: column; }
-  .siga-layout, .rutas-layout { height: auto; min-height: calc(100vh - 64px); grid-template-columns: 1fr; }
+  .siga-layout { height: auto; min-height: calc(100vh - 64px); grid-template-columns: 1fr; }
   .siga-sidebar { max-height: 42vh; }
   .siga-map-shell { height: 58vh; }
+}
+
+/* =========================================================
+   RUTAS AÉREAS – Categorías de aeropuertos
+   ========================================================= */
+.rutas-airport-center-icon.is-sna {
+  width: 24px;
+  height: 24px;
+  background: #306fb0;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  font-size: 13px;
+}
+
+.rutas-airport-center-icon.is-national {
+  width: 18px;
+  height: 18px;
+  background: #ffffff;
+  color: #306fb0;
+  border: 2px solid #306fb0;
+  font-size: 9px;
+}
+
+.rutas-airport-center-icon.is-international {
+  width: 18px;
+  height: 18px;
+  background: #16c41e;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  font-size: 9px;
+}
+
+.rutas-airport-floating-text.is-sna {
+  top: -28px;
+  font-size: 8px;
+  color: #002855;
+}
+
+.rutas-airport-floating-text.is-national,
+.rutas-airport-floating-text.is-international {
+  top: -21px;
+  font-size: 7px;
+  color: #111827;
+}
+
+.rutas-airport-marker-interactive {
+  cursor: pointer;
+}
+
+.rutas-legend-row {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 7px;
+  align-items: center;
+  margin: 5px 0;
+  font-size: .72rem;
+  color: #374151;
+}
+
+.rutas-legend-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 9px;
+  font-weight: 850;
+  line-height: 1;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, .18);
+}
+
+.rutas-legend-dot.is-sna {
+  width: 20px;
+  height: 20px;
+  background: #306fb0;
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+.rutas-legend-dot.is-national {
+  background: #fff;
+  color: #306fb0;
+  border: 2px solid #306fb0;
+}
+
+.rutas-legend-dot.is-international {
+  background: #16c41e;
+  color: #fff;
+  border: 2px solid #fff;
 }
