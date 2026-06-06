@@ -4,8 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rutas aéreas animadas – Argentina</title>
-  <link rel="icon" type="image/png" href="../img/icons/vuelos.png">
+  <link rel="icon" type="image/png" href="img/icons/vuelos.png">
+
+  <!-- Leaflet base -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
   <link rel="stylesheet" href="css/rutasaereas.css" />
 </head>
 <body>
@@ -19,6 +22,7 @@
     </div>
     <div class="siga-header-actions">
       <button type="button" id="btnArgentinaTop" class="siga-btn siga-btn-light">Ver Argentina</button>
+      <button type="button" id="btnFirstFlightTop" class="siga-btn siga-btn-secondary">Primer vuelo</button>
       <button type="button" id="btnResetTop" class="siga-btn siga-btn-primary">Reiniciar</button>
     </div>
   </header>
@@ -31,13 +35,17 @@
           <div class="rutas-clock-label">Hora simulada</div>
           <div id="clock" class="rutas-clock">00:00</div>
         </div>
+
         <label class="siga-label" for="timeRange">Recorrido del día</label>
         <input id="timeRange" class="rutas-range" type="range" min="0" max="86400000" value="0" step="60000" />
+
         <div class="siga-button-row">
           <button type="button" id="btnPlay" class="siga-btn siga-btn-primary">Pausar</button>
           <button type="button" id="btnReset" class="siga-btn siga-btn-secondary">Reiniciar</button>
+          <button type="button" id="btnFirstFlight" class="siga-btn siga-btn-secondary">Primer vuelo</button>
           <button type="button" id="btnSpeed" class="siga-btn siga-btn-secondary">1 min/día</button>
         </div>
+
         <div class="siga-hint">La escala inicial comprime 24 horas de operación en 60 segundos de reproducción.</div>
       </section>
 
@@ -59,18 +67,25 @@
       </section>
 
       <section class="siga-card">
+        <div class="siga-section-title">Leyenda aeropuertos</div>
+        <div class="rutas-legend-row"><span class="rutas-legend-dot is-sna">✈</span><span>57 aeropuertos del SNA</span></div>
+        <div class="rutas-legend-row"><span class="rutas-legend-dot is-national">N</span><span>Otros aeropuertos nacionales presentes en los vuelos</span></div>
+        <div class="rutas-legend-row"><span class="rutas-legend-dot is-international">I</span><span>Aeropuertos internacionales presentes en los vuelos</span></div>
+      </section>
+
+      <section class="siga-card">
         <div class="siga-section-title">Mapas base</div>
         <div id="baseLayerTree" class="base-layer-tree"></div>
       </section>
 
       <section class="siga-card">
         <div class="siga-section-title">Información</div>
-        <div id="featureInfo" class="feature-info">Pasá el mouse por un avión para ver el vuelo, origen, destino y horario.</div>
+        <div id="featureInfo" class="feature-info">Pasá el mouse por un avión o aeropuerto para ver sus atributos principales.</div>
       </section>
 
       <section class="siga-card">
         <div class="siga-section-title">Datos</div>
-        <div id="dataStatus" class="siga-hint">Cargando archivo <code>fuentes/rutasaereas.json</code>…</div>
+        <div id="dataStatus" class="siga-hint">Cargando catálogos y archivo <code>fuentes/rutasaereas.json</code>…</div>
       </section>
     </aside>
 
@@ -80,6 +95,7 @@
     </section>
   </main>
 
+  <!-- Leaflet base -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="js/rutasaereas.js"></script>
 </body>
