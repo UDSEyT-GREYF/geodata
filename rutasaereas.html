@@ -2,82 +2,85 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GeoData – Rutas aéreas animadas</title>
-
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  />
-  <link rel="stylesheet" href="css/rutasaereas.css?v=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rutas aéreas animadas – Argentina</title>
+  <link rel="icon" type="image/png" href="../img/icons/iconoSIGA.png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="css/rutasaereas.css" />
 </head>
-<body class="page-rutasaereas">
-  <header class="ra-topbar">
-    <a href="./index.html">← Inicio</a>
-    <div>GeoData – Rutas aéreas</div>
+<body>
+  <header class="siga-header rutas-header">
+    <div class="siga-brand">
+      <div class="siga-logo">SIGA</div>
+      <div>
+        <h1>Rutas aéreas animadas</h1>
+        <p>Vuelos de un día en Argentina reproducidos en 1 minuto</p>
+      </div>
+    </div>
+    <div class="siga-header-actions">
+      <button type="button" id="btnArgentinaTop" class="siga-btn siga-btn-light">Ver Argentina</button>
+      <button type="button" id="btnResetTop" class="siga-btn siga-btn-primary">Reiniciar</button>
+    </div>
   </header>
 
-  <section class="ra-banner">
-    <h1>✈️ Rutas aéreas animadas</h1>
-    <p>Vuelos de un día en Argentina comprimidos en 1 minuto</p>
-  </section>
-
-  <main class="ra-layout">
-    <section class="ra-panel" aria-label="Controles de animación">
-      <div class="ra-panel-title">
-        <h2>Animación diaria</h2>
-        <span id="speedLabel" class="ra-pill">24 h → 1 min</span>
-      </div>
-
-      <div class="ra-controls">
-        <button id="btnPlay" class="ra-button" type="button">Pausar</button>
-        <button id="btnRestart" class="ra-button ra-button-secondary" type="button">Reiniciar</button>
-
-        <div class="ra-clock-box">
-          <span class="ra-label">Hora simulada</span>
-          <strong id="clock">00:00</strong>
+  <main class="siga-layout rutas-layout">
+    <aside class="siga-sidebar rutas-sidebar">
+      <section class="siga-card">
+        <div class="siga-section-title">Animación diaria</div>
+        <div class="rutas-clock-box">
+          <div class="rutas-clock-label">Hora simulada</div>
+          <div id="clock" class="rutas-clock">00:00</div>
         </div>
-
-        <div class="ra-slider-wrap">
-          <input
-            id="timeRange"
-            type="range"
-            min="0"
-            max="86400000"
-            value="0"
-            step="60000"
-            aria-label="Control de hora simulada"
-          />
-          <div class="ra-slider-labels">
-            <span>00:00</span>
-            <span>12:00</span>
-            <span>24:00</span>
-          </div>
+        <label class="siga-label" for="timeRange">Recorrido del día</label>
+        <input id="timeRange" class="rutas-range" type="range" min="0" max="86400000" value="0" step="60000" />
+        <div class="siga-button-row">
+          <button type="button" id="btnPlay" class="siga-btn siga-btn-primary">Pausar</button>
+          <button type="button" id="btnReset" class="siga-btn siga-btn-secondary">Reiniciar</button>
+          <button type="button" id="btnSpeed" class="siga-btn siga-btn-secondary">1 min/día</button>
         </div>
+        <div class="siga-hint">La escala inicial comprime 24 horas de operación en 60 segundos de reproducción.</div>
+      </section>
 
-        <div class="ra-counter-box">
-          <span class="ra-label">Activos</span>
-          <strong id="activeCount">0 vuelos</strong>
+      <section class="siga-card rutas-kpi-card">
+        <div class="siga-section-title">Resumen</div>
+        <div class="rutas-kpi-grid">
+          <div class="rutas-kpi"><span class="rutas-kpi-label">Vuelos totales</span><strong id="kpiTotalFlights">–</strong></div>
+          <div class="rutas-kpi"><span class="rutas-kpi-label">En vuelo</span><strong id="kpiActiveFlights">0</strong></div>
+          <div class="rutas-kpi"><span class="rutas-kpi-label">Rutas</span><strong id="kpiRoutes">–</strong></div>
+          <div class="rutas-kpi"><span class="rutas-kpi-label">Aerolíneas</span><strong id="kpiAirlines">–</strong></div>
         </div>
-      </div>
+      </section>
 
-      <p class="ra-help">
-        Las líneas tenues muestran la ruta completa. La estela coloreada muestra el tramo ya recorrido por cada vuelo activo.
-      </p>
-    </section>
+      <section class="siga-card">
+        <div class="siga-section-title">Capas</div>
+        <label class="rutas-layer-row"><input type="checkbox" id="chkRoutes" checked><span class="layer-swatch rutas-swatch-route"></span><span>Rutas base</span></label>
+        <label class="rutas-layer-row"><input type="checkbox" id="chkTrails" checked><span class="layer-swatch rutas-swatch-trail"></span><span>Estelas activas</span></label>
+        <label class="rutas-layer-row"><input type="checkbox" id="chkAirports" checked><span class="layer-swatch rutas-swatch-airport"></span><span>Aeropuertos</span></label>
+      </section>
 
-    <section class="ra-map-card" aria-label="Mapa animado de rutas aéreas">
-      <div id="map"></div>
-      <div id="mapStatus" class="ra-map-status">Cargando vuelos de ejemplo…</div>
+      <section class="siga-card">
+        <div class="siga-section-title">Mapas base</div>
+        <div id="baseLayerTree" class="base-layer-tree"></div>
+      </section>
+
+      <section class="siga-card">
+        <div class="siga-section-title">Información</div>
+        <div id="featureInfo" class="feature-info">Pasá el mouse por un avión para ver el vuelo, origen, destino y horario.</div>
+      </section>
+
+      <section class="siga-card">
+        <div class="siga-section-title">Datos</div>
+        <div id="dataStatus" class="siga-hint">Cargando archivo <code>fuentes/rutasaereas.json</code>…</div>
+      </section>
+    </aside>
+
+    <section class="siga-map-shell">
+      <div id="rutasMap" class="siga-map rutas-map" aria-label="Mapa animado de rutas aéreas"></div>
+      <div id="mapStatus" class="map-status">Inicializando mapa…</div>
     </section>
   </main>
 
-  <footer class="ra-footer">
-    <span>Fuente: prototipo ORSNA con datos de ejemplo. Reemplazar por fuentes/rutasaereas.json cuando se incorporen vuelos reales.</span>
-    <a href="#top">Volver arriba ↑</a>
-  </footer>
-
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="js/rutasaereas.js?v=1"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="js/rutasaereas.js"></script>
 </body>
 </html>
