@@ -107,10 +107,12 @@
     staticRoutes: [],
     airports: new Map(),
     routesLayer: null,
-    trailsLayer: null,
-    planesLayer: null,
-    airportsLayer: null,
-    activeFlights: new Map(),
+trailsLayer: null,
+completedFlightsLayer: null,
+planesLayer: null,
+airportsLayer: null,
+activeFlights: new Map(),
+completedFlights: new Map(),
     playing: true,
     simTime: 0,
     lastFrame: performance.now(),
@@ -388,17 +390,21 @@
 
     state.map.createPane("rutasBasePane");
     state.map.getPane("rutasBasePane").style.zIndex = 410;
-    state.map.createPane("rutasTrailPane");
-    state.map.getPane("rutasTrailPane").style.zIndex = 520;
+state.map.createPane("rutasCompletedPane");
+state.map.getPane("rutasCompletedPane").style.zIndex = 505;
+
+state.map.createPane("rutasTrailPane");
+state.map.getPane("rutasTrailPane").style.zIndex = 520;
     state.map.createPane("rutasAirportPane");
     state.map.getPane("rutasAirportPane").style.zIndex = 560;
     state.map.createPane("rutasPlanePane");
     state.map.getPane("rutasPlanePane").style.zIndex = 650;
 
-    state.routesLayer = L.layerGroup().addTo(state.map);
-    state.trailsLayer = L.layerGroup().addTo(state.map);
-    state.airportsLayer = L.layerGroup().addTo(state.map);
-    state.planesLayer = L.layerGroup().addTo(state.map);
+state.routesLayer = L.layerGroup().addTo(state.map);
+state.completedFlightsLayer = L.layerGroup().addTo(state.map);
+state.trailsLayer = L.layerGroup().addTo(state.map);
+state.airportsLayer = L.layerGroup().addTo(state.map);
+state.planesLayer = L.layerGroup().addTo(state.map);
 
     BASEMAP_CONFIGS.forEach((cfg) => state.baseLayers.set(cfg.id, { cfg, layer: makeBaseLayer(cfg) }));
     setBaseLayer("argenmap");
@@ -987,7 +993,7 @@ state.staticRoutes.forEach((r) => {
 
       rotatePlane(active.marker, bearing);
     });
-
+syncCompletedFlights(currentTime);
     q("clock").textContent = formatClock(currentTime);
     q("kpiActiveFlights").textContent = activeCount.toLocaleString("es-AR");
     q("timeRange").value = Math.floor(currentTime);
@@ -1000,7 +1006,80 @@ state.staticRoutes.forEach((r) => {
     state.trailsLayer.removeLayer(active.trail);
     state.activeFlights.delete(id);
   }
+function syncCompletedFlights(currentTime) {
+  state.flights.forEach((f) => {
+    const completedInsideDay = f.arrOffset <= SIM_DAY_MS;
+    const shouldBeCompleted = completedInsideDay && currentTime > f.arrOffset;
 
+    if (shouldBeCompleted) {
+      addCompletedFlight(f);
+    } else {
+      removeCompletedFlight(f.id);
+    }
+  });
+}
+
+function addCompletedFlight(f) {
+  if (state.completedFlights.has(f.id)) return;
+
+  const color = getFlightColor(f);
+
+  const trail = L.polyline(getArcLatLngs(f.from, f.to, 44, 1), {
+    pane: "rutasCompletedPane",
+    color,
+    weight: 2.1,
+    opacity: 0.30,
+    interactive: false,
+    lineCap: "round",
+    lineJoin: "round",
+    className: "rutas-flight-trail-completed"
+  });
+
+  const marker = L.marker(f.to, {
+    pane: "rutasCompletedPane",
+    icon: createPlaneIcon(color),
+    interactive: true,
+    keyboard: false,
+    title: `${f.id} completado | ${f.origin} → ${f.destination}`,
+    opacity: 0.55
+  });
+
+  marker.bindTooltip(
+    `<div class="rutas-tooltip-title">${escapeHtml(f.id)} · vuelo completado</div>
+     <div>${escapeHtml(f.origin)} → ${escapeHtml(f.destination)}</div>
+     <div class="rutas-tooltip-muted">${formatTime(f.dep)} - ${formatTime(f.arr)}</div>`,
+    { direction: "top", opacity: 1, className: "rutas-tooltip" }
+  );
+
+  marker.on("mouseover", () => setFeatureInfo(f));
+  marker.on("click", () => setFeatureInfo(f));
+
+  trail.addTo(state.completedFlightsLayer);
+  marker.addTo(state.completedFlightsLayer);
+
+  const bearing = calculateBearing(
+    interpolateCurved(f.from, f.to, 0.98),
+    interpolateCurved(f.from, f.to, 1)
+  );
+
+  // Espera a que Leaflet inserte el elemento del marcador en el DOM.
+  setTimeout(() => rotatePlane(marker, bearing), 0);
+
+  state.completedFlights.set(f.id, { trail, marker });
+}
+
+function removeCompletedFlight(id) {
+  const completed = state.completedFlights.get(id);
+  if (!completed) return;
+
+  state.completedFlightsLayer.removeLayer(completed.trail);
+  state.completedFlightsLayer.removeLayer(completed.marker);
+  state.completedFlights.delete(id);
+}
+
+function clearCompletedFlights() {
+  Array.from(state.completedFlights.keys()).forEach(removeCompletedFlight);
+}
   function buildFlightTooltip(f) {
     return `<div class="rutas-tooltip-title">${escapeHtml(f.id)}</div><div>${escapeHtml(f.origin)} → ${escapeHtml(f.destination)}</div><div class="rutas-tooltip-muted">${formatTime(f.dep)} - ${formatTime(f.arr)}</div>`;
   }
@@ -1035,11 +1114,18 @@ state.staticRoutes.forEach((r) => {
     if (state.playing && state.flights.length) {
       const speedFactor = SIM_DAY_MS / state.realDurationMs;
       state.simTime += delta * speedFactor;
-      if (state.simTime > SIM_DAY_MS) {
-        state.simTime = 0;
-        clearActiveFlights();
-      }
-      updateFlights(state.simTime);
+if (state.simTime >= SIM_DAY_MS) {
+  state.simTime = SIM_DAY_MS;
+  state.playing = false;
+
+  const btnPlay = q("btnPlay");
+  if (btnPlay) btnPlay.textContent = "Reproducir";
+
+  updateFlights(state.simTime);
+  return;
+}
+
+updateFlights(state.simTime);
     }
 
     requestAnimationFrame(animate);
@@ -1053,11 +1139,18 @@ state.staticRoutes.forEach((r) => {
     state.map.setView(DEFAULT_CENTER, DEFAULT_ZOOM);
   }
 
-  function resetAnimation() {
-    state.simTime = 0;
-    clearActiveFlights();
-    updateFlights(0);
-  }
+function resetAnimation() {
+  state.simTime = 0;
+  state.playing = false;
+
+  clearActiveFlights();
+  clearCompletedFlights();
+
+  updateFlights(0);
+
+  const btnPlay = q("btnPlay");
+  if (btnPlay) btnPlay.textContent = "Reproducir";
+}
 
   function goToFirstFlight(opts = {}) {
     const { keepPlaying = false } = opts;
@@ -1065,9 +1158,10 @@ state.staticRoutes.forEach((r) => {
       resetAnimation();
       return;
     }
-    state.simTime = Math.max(0, Math.min(SIM_DAY_MS, state.flights[0].depOffset));
-    clearActiveFlights();
-    updateFlights(state.simTime);
+state.simTime = Math.max(0, Math.min(SIM_DAY_MS, state.flights[0].depOffset));
+clearActiveFlights();
+clearCompletedFlights();
+updateFlights(state.simTime);
     if (!keepPlaying) {
       state.playing = false;
       q("btnPlay").textContent = "Reproducir";
@@ -1087,16 +1181,14 @@ state.staticRoutes.forEach((r) => {
     }
   }
 
-  function applyLayerVisibility() {
-    if (!state.map) return;
-    toggleMapLayer(state.routesLayer, state.showRoutes);
-    toggleMapLayer(state.airportsLayer, state.showAirports);
+function applyLayerVisibility() {
+  if (!state.map) return;
 
-    state.activeFlights.forEach((active) => {
-      if (state.showTrails && !state.trailsLayer.hasLayer(active.trail)) active.trail.addTo(state.trailsLayer);
-      else if (!state.showTrails && state.trailsLayer.hasLayer(active.trail)) state.trailsLayer.removeLayer(active.trail);
-    });
-  }
+  toggleMapLayer(state.routesLayer, state.showRoutes);
+  toggleMapLayer(state.airportsLayer, state.showAirports);
+  toggleMapLayer(state.trailsLayer, state.showTrails);
+  toggleMapLayer(state.completedFlightsLayer, state.showTrails);
+}
 
   function toggleMapLayer(layer, visible) {
     const has = state.map.hasLayer(layer);
