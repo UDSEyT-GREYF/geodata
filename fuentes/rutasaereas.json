@@ -10,25 +10,130 @@
   "notes": [
     "Este archivo ya está separado del JS para poder reemplazarlo por un día real completo.",
     "Cada registro representa un vuelo.",
-    "Las coordenadas pueden venir por from/to, por campos de latitud/longitud de origen/destino, o por el catálogo SIGA fuentes/Datos_aeropuertos.geojson si existe en el proyecto.",
+    "Las coordenadas se resuelven principalmente desde fuentes/ourairports.csv; Datos_aeropuertos.geojson se usa para identificar los 57 aeropuertos del SNA por IATA.",
     "Para datos reales, reemplazar el array flights por la exportación del SIAC del día elegido. No inventar vuelos."
   ],
   "flights": [
-    {"id": "AR1400", "airline": "AR", "origin": "AEP", "destination": "MDZ", "dep": "2025-01-01T06:05:00-03:00", "arr": "2025-01-01T07:55:00-03:00", "passengers": 143, "seats": 170},
-    {"id": "FO5220", "airline": "FO", "origin": "AEP", "destination": "BRC", "dep": "2025-01-01T08:30:00-03:00", "arr": "2025-01-01T10:45:00-03:00", "passengers": 176, "seats": 189},
-    {"id": "AR1508", "airline": "AR", "origin": "COR", "destination": "SLA", "dep": "2025-01-01T11:15:00-03:00", "arr": "2025-01-01T12:40:00-03:00", "passengers": 91, "seats": 128},
-    {"id": "JA3840", "airline": "JA", "origin": "EZE", "destination": "IGR", "dep": "2025-01-01T14:20:00-03:00", "arr": "2025-01-01T16:05:00-03:00", "passengers": 155, "seats": 186},
-    {"id": "AR1882", "airline": "AR", "origin": "AEP", "destination": "USH", "dep": "2025-01-01T19:10:00-03:00", "arr": "2025-01-01T22:45:00-03:00", "passengers": 161, "seats": 170},
-    {"id": "AR1531", "airline": "AR", "origin": "SLA", "destination": "AEP", "dep": "2025-01-01T07:10:00-03:00", "arr": "2025-01-01T09:15:00-03:00", "passengers": 132, "seats": 170},
-    {"id": "FO5051", "airline": "FO", "origin": "COR", "destination": "AEP", "dep": "2025-01-01T09:40:00-03:00", "arr": "2025-01-01T10:55:00-03:00", "passengers": 178, "seats": 189},
-    {"id": "JA3102", "airline": "JA", "origin": "AEP", "destination": "NQN", "dep": "2025-01-01T12:05:00-03:00", "arr": "2025-01-01T14:00:00-03:00", "passengers": 150, "seats": 186},
-    {"id": "AR1826", "airline": "AR", "origin": "AEP", "destination": "FTE", "dep": "2025-01-01T13:25:00-03:00", "arr": "2025-01-01T16:40:00-03:00", "passengers": 164, "seats": 170},
-    {"id": "AR1855", "airline": "AR", "origin": "USH", "destination": "AEP", "dep": "2025-01-01T17:45:00-03:00", "arr": "2025-01-01T21:10:00-03:00", "passengers": 158, "seats": 170},
-    {"id": "FO5310", "airline": "FO", "origin": "AEP", "destination": "TUC", "dep": "2025-01-01T18:00:00-03:00", "arr": "2025-01-01T20:00:00-03:00", "passengers": 171, "seats": 189},
-    {"id": "AR1672", "airline": "AR", "origin": "AEP", "destination": "BHI", "dep": "2025-01-01T21:50:00-03:00", "arr": "2025-01-01T23:15:00-03:00", "passengers": 88, "seats": 128},
     {
-  "day": "2025-01-01",
-  "flights": [
+      "id": "AR1400",
+      "airline": "AR",
+      "origin": "AEP",
+      "destination": "MDZ",
+      "dep": "2025-01-01T06:05:00-03:00",
+      "arr": "2025-01-01T07:55:00-03:00",
+      "passengers": 143,
+      "seats": 170
+    },
+    {
+      "id": "FO5220",
+      "airline": "FO",
+      "origin": "AEP",
+      "destination": "BRC",
+      "dep": "2025-01-01T08:30:00-03:00",
+      "arr": "2025-01-01T10:45:00-03:00",
+      "passengers": 176,
+      "seats": 189
+    },
+    {
+      "id": "AR1508",
+      "airline": "AR",
+      "origin": "COR",
+      "destination": "SLA",
+      "dep": "2025-01-01T11:15:00-03:00",
+      "arr": "2025-01-01T12:40:00-03:00",
+      "passengers": 91,
+      "seats": 128
+    },
+    {
+      "id": "JA3840",
+      "airline": "JA",
+      "origin": "EZE",
+      "destination": "IGR",
+      "dep": "2025-01-01T14:20:00-03:00",
+      "arr": "2025-01-01T16:05:00-03:00",
+      "passengers": 155,
+      "seats": 186
+    },
+    {
+      "id": "AR1882",
+      "airline": "AR",
+      "origin": "AEP",
+      "destination": "USH",
+      "dep": "2025-01-01T19:10:00-03:00",
+      "arr": "2025-01-01T22:45:00-03:00",
+      "passengers": 161,
+      "seats": 170
+    },
+    {
+      "id": "AR1531",
+      "airline": "AR",
+      "origin": "SLA",
+      "destination": "AEP",
+      "dep": "2025-01-01T07:10:00-03:00",
+      "arr": "2025-01-01T09:15:00-03:00",
+      "passengers": 132,
+      "seats": 170
+    },
+    {
+      "id": "FO5051",
+      "airline": "FO",
+      "origin": "COR",
+      "destination": "AEP",
+      "dep": "2025-01-01T09:40:00-03:00",
+      "arr": "2025-01-01T10:55:00-03:00",
+      "passengers": 178,
+      "seats": 189
+    },
+    {
+      "id": "JA3102",
+      "airline": "JA",
+      "origin": "AEP",
+      "destination": "NQN",
+      "dep": "2025-01-01T12:05:00-03:00",
+      "arr": "2025-01-01T14:00:00-03:00",
+      "passengers": 150,
+      "seats": 186
+    },
+    {
+      "id": "AR1826",
+      "airline": "AR",
+      "origin": "AEP",
+      "destination": "FTE",
+      "dep": "2025-01-01T13:25:00-03:00",
+      "arr": "2025-01-01T16:40:00-03:00",
+      "passengers": 164,
+      "seats": 170
+    },
+    {
+      "id": "AR1855",
+      "airline": "AR",
+      "origin": "USH",
+      "destination": "AEP",
+      "dep": "2025-01-01T17:45:00-03:00",
+      "arr": "2025-01-01T21:10:00-03:00",
+      "passengers": 158,
+      "seats": 170
+    },
+    {
+      "id": "FO5310",
+      "airline": "FO",
+      "origin": "AEP",
+      "destination": "TUC",
+      "dep": "2025-01-01T18:00:00-03:00",
+      "arr": "2025-01-01T20:00:00-03:00",
+      "passengers": 171,
+      "seats": 189
+    },
+    {
+      "id": "AR1672",
+      "airline": "AR",
+      "origin": "AEP",
+      "destination": "BHI",
+      "dep": "2025-01-01T21:50:00-03:00",
+      "arr": "2025-01-01T23:15:00-03:00",
+      "passengers": 88,
+      "seats": 128
+    },
     {
       "id": "AR1300",
       "airline": "AR",
@@ -77,7 +182,5 @@
       "dep": "2025-01-01T23:55:00-03:00",
       "arr": "2025-01-02T16:30:00+01:00"
     }
-  ]
-}
   ]
 }
