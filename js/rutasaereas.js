@@ -104,6 +104,7 @@
     snaAirports: new Map(),
     flightsRaw: [],
     flights: [],
+    staticRoutes: [],
     airports: new Map(),
     routesLayer: null,
     trailsLayer: null,
@@ -549,9 +550,14 @@
       }
     }
 
-    state.flights = normalizeFlights(state.flightsRaw);
-    buildAirportIndex();
-    renderStaticLayers();
+state.flights = normalizeFlights(state.flightsRaw);
+
+// Rutas base y aeropuertos adicionales:
+// se construyen desde flightsRaw para no depender de que el vuelo sea animable.
+state.staticRoutes = buildStaticRoutesFromRaw(state.flightsRaw);
+
+buildAirportIndex();
+renderStaticLayers();
     updateKpis();
     goToFirstFlight({ keepPlaying: true });
 
@@ -623,7 +629,50 @@
 
     return normalized.sort((a, b) => a.depOffset - b.depOffset);
   }
+function buildStaticRoutesFromRaw(rows) {
+  const routes = [];
+  const rendered = new Set();
 
+  (rows || []).forEach((row) => {
+    const rawOrigin = clean(getFirst(row, FIELD_ALIASES.origin)).toUpperCase();
+    const rawDestination = clean(getFirst(row, FIELD_ALIASES.destination)).toUpperCase();
+
+    if (!rawOrigin || !rawDestination || rawOrigin === rawDestination) return;
+
+    const origin = resolveSpecialAirportCode(rawOrigin, rawDestination);
+    const destination = resolveSpecialAirportCode(rawDestination, rawOrigin);
+
+    const from = getLatLngFromRow(row, "from", "origin", origin);
+    const to = getLatLngFromRow(row, "to", "destination", destination);
+
+    if (!from || !to) {
+      console.warn("Ruta base omitida por falta de coordenadas:", {
+        origin,
+        destination,
+        rawOrigin,
+        rawDestination,
+        row
+      });
+      return;
+    }
+
+    const key = [origin, destination].sort().join("-");
+    if (rendered.has(key)) return;
+
+    rendered.add(key);
+
+    routes.push({
+      origin,
+      destination,
+      rawOrigin,
+      rawDestination,
+      from,
+      to
+    });
+  });
+
+  return routes;
+}
   function getLatLngFromRow(row, pairKey, role, iata) {
     if (Array.isArray(row[pairKey]) && row[pairKey].length >= 2) {
       const lat = Number(row[pairKey][0]);
@@ -685,10 +734,12 @@
     });
 
     // 2) Además dibuja los endpoints reales del día, sean nacionales fuera del SNA o internacionales.
-    state.flights.forEach((f) => {
-      addAirportEndpoint(f.origin, f.from);
-      addAirportEndpoint(f.destination, f.to);
-    });
+// 2) Además dibuja todos los endpoints presentes en el archivo del día,
+// aunque el vuelo no haya podido animarse por problemas de horario.
+state.staticRoutes.forEach((r) => {
+  addAirportEndpoint(r.origin, r.from);
+  addAirportEndpoint(r.destination, r.to);
+});
   }
 
   function addAirportEndpoint(iata, latlng) {
@@ -717,22 +768,17 @@
     state.routesLayer.clearLayers();
     state.airportsLayer.clearLayers();
 
-    const renderedRoutes = new Set();
-    state.flights.forEach((f) => {
-      const key = [f.origin, f.destination].sort().join("-");
-      if (renderedRoutes.has(key)) return;
-      renderedRoutes.add(key);
-
-      L.polyline(getArcLatLngs(f.from, f.to, 44), {
-        pane: "rutasBasePane",
-        color: getRouteColorByEndpoints(f),
-        weight: 2.1,
-        opacity: 0.58,
-        interactive: false,
-        lineCap: "round",
-        lineJoin: "round"
-      }).addTo(state.routesLayer);
-    });
+state.staticRoutes.forEach((r) => {
+  L.polyline(getArcLatLngs(r.from, r.to, 44), {
+    pane: "rutasBasePane",
+    color: getRouteColorByEndpoints(r),
+    weight: 2.1,
+    opacity: 0.58,
+    interactive: false,
+    lineCap: "round",
+    lineJoin: "round"
+  }).addTo(state.routesLayer);
+});
 
     state.airports.forEach((airport) => {
       const marker = L.marker(airport.latlng, {
