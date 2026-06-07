@@ -114,7 +114,7 @@
     simTime: 0,
     lastFrame: performance.now(),
     realDurationMs: DEFAULT_REAL_DURATION_MS,
-    showRoutes: true,
+    showRoutes: false,
     showTrails: true,
     showAirports: true,
     skippedRows: 0,
