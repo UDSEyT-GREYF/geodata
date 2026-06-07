@@ -382,7 +382,7 @@
       wheelPxPerZoomLevel: 150,
       preferCanvas: true,
       renderer: L.canvas({ padding: 0.5 }),
-      maxBounds: [[-58.0, -86.0], [16.0, -32.0]],
+      maxBounds: [[-60.0, -180.0], [75.0, 40.0]],
       maxBoundsViscosity: 0.55
     });
 
