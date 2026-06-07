@@ -455,3 +455,10 @@ body {
   color: #fff;
   border: 2px solid #fff;
 }
+.rutas-flight-trail-completed {
+  filter: drop-shadow(0 0 2px rgba(48, 111, 176, 0.25));
+}
+
+.rutasCompletedPane .rutas-plane-icon {
+  opacity: 0.65;
+}
