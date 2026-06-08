@@ -5,7 +5,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "AEP",
+                "IATA": "AEP",
                 "Aeropuerto": "Aeroparque",
                 "X": -58.413419023899898,
                 "Y": -34.560585538399899,
@@ -38,7 +38,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "AFA",
+                "IATA": "AFA",
                 "Aeropuerto": "San Rafael",
                 "X": -68.403199868200005,
                 "Y": -34.588315369599897,
@@ -71,7 +71,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "AOL",
+                "IATA": "AOL",
                 "Aeropuerto": "Paso de los Libres",
                 "X": -57.152067419399899,
                 "Y": -29.6892685077,
@@ -104,7 +104,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "BHI",
+                "IATA": "BHI",
                 "Aeropuerto": "Bahía Blanca",
                 "X": -62.153798479300001,
                 "Y": -38.723675342200004,
@@ -137,7 +137,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "BRC",
+                "IATA": "BRC",
                 "Aeropuerto": "Bariloche",
                 "X": -71.159307878999897,
                 "Y": -41.1503194338,
@@ -170,7 +170,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "CNQ",
+                "IATA": "CNQ",
                 "Aeropuerto": "Corrientes",
                 "X": -58.762013252099898,
                 "Y": -27.448163737600002,
@@ -203,7 +203,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "COR",
+                "IATA": "COR",
                 "Aeropuerto": "Córdoba",
                 "X": -64.2082032341999,
                 "Y": -31.315580877599899,
@@ -236,7 +236,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "CPC",
+                "IATA": "CPC",
                 "Aeropuerto": "Chapelco",
                 "X": -71.140680852000003,
                 "Y": -40.076701042400003,
@@ -269,7 +269,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "CRD",
+                "IATA": "CRD",
                 "Aeropuerto": "Comodoro Rivadavia",
                 "X": -67.465532794599895,
                 "Y": -45.7849424865,
@@ -302,7 +302,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "CTC",
+                "IATA": "CTC",
                 "Aeropuerto": "Catamarca",
                 "X": -65.752710789999895,
                 "Y": -28.594315545499899,
@@ -335,7 +335,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "EPA",
+                "IATA": "EPA",
                 "Aeropuerto": "El Palomar",
                 "X": -58.6045279022999,
                 "Y": -34.610235197999899,
@@ -368,7 +368,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "EQS",
+                "IATA": "EQS",
                 "Aeropuerto": "Esquel",
                 "X": -71.136651782200005,
                 "Y": -42.904708310700002,
@@ -401,7 +401,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "EZE",
+                "IATA": "EZE",
                 "Aeropuerto": "Ezeiza",
                 "X": -58.542461865600004,
                 "Y": -34.812287473399898,
@@ -434,7 +434,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "FDO",
+                "IATA": "FDO",
                 "Aeropuerto": "San Fernando",
                 "X": -58.589139553000003,
                 "Y": -34.453093584900003,
@@ -467,7 +467,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "FMA",
+                "IATA": "FMA",
                 "Aeropuerto": "Formosa",
                 "X": -58.226786455800003,
                 "Y": -26.2140763278999,
@@ -500,7 +500,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "FTE",
+                "IATA": "FTE",
                 "Aeropuerto": "El Calafate",
                 "X": -72.0530451841,
                 "Y": -50.280348889499898,
@@ -533,7 +533,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "IGR",
+                "IATA": "IGR",
                 "Aeropuerto": "Iguazú",
                 "X": -54.4758314486999,
                 "Y": -25.734474947500001,
@@ -566,7 +566,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "IRJ",
+                "IATA": "IRJ",
                 "Aeropuerto": "La Rioja",
                 "X": -66.792348893600007,
                 "Y": -29.3745246691999,
@@ -599,7 +599,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "JUJ",
+                "IATA": "JUJ",
                 "Aeropuerto": "Jujuy",
                 "X": -65.099109424399899,
                 "Y": -24.3898594023999,
@@ -632,7 +632,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "LGS",
+                "IATA": "LGS",
                 "Aeropuerto": "Malargüe",
                 "X": -69.580199225200005,
                 "Y": -35.486410589400002,
@@ -665,7 +665,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "LUQ",
+                "IATA": "LUQ",
                 "Aeropuerto": "San Luis",
                 "X": -66.3562805328,
                 "Y": -33.2730870448,
@@ -698,7 +698,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "MDQ",
+                "IATA": "MDQ",
                 "Aeropuerto": "Mar del Plata",
                 "X": -57.574044997900003,
                 "Y": -37.9321130177999,
@@ -731,7 +731,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "MDZ",
+                "IATA": "MDZ",
                 "Aeropuerto": "Mendoza",
                 "X": -68.7938610498,
                 "Y": -32.830402840700003,
@@ -764,7 +764,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "NQN",
+                "IATA": "NQN",
                 "Aeropuerto": "Neuquén",
                 "X": -68.154436188299897,
                 "Y": -38.948946217299898,
@@ -797,7 +797,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "PMY",
+                "IATA": "PMY",
                 "Aeropuerto": "Puerto Madryn",
                 "X": -65.103519789499899,
                 "Y": -42.758812708800001,
@@ -830,7 +830,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "PRA",
+                "IATA": "PRA",
                 "Aeropuerto": "Paraná",
                 "X": -60.4804791456,
                 "Y": -31.7960258365,
@@ -863,7 +863,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "PSS",
+                "IATA": "PSS",
                 "Aeropuerto": "Posadas",
                 "X": -55.971222085400001,
                 "Y": -27.389104,
@@ -896,7 +896,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "RCU",
+                "IATA": "RCU",
                 "Aeropuerto": "Río Cuarto",
                 "X": -64.269288258299895,
                 "Y": -33.094335975699899,
@@ -929,7 +929,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "REL",
+                "IATA": "REL",
                 "Aeropuerto": "Trelew",
                 "X": -65.268698906400004,
                 "Y": -43.211830378899897,
@@ -962,7 +962,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "RES",
+                "IATA": "RES",
                 "Aeropuerto": "Resistencia",
                 "X": -59.057236735799897,
                 "Y": -27.452767278100001,
@@ -995,7 +995,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "RGA",
+                "IATA": "RGA",
                 "Aeropuerto": "Río Grande",
                 "X": -67.753082977099893,
                 "Y": -53.777840238800003,
@@ -1028,7 +1028,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "RGL",
+                "IATA": "RGL",
                 "Aeropuerto": "Río Gallegos",
                 "X": -69.307918902599894,
                 "Y": -51.608950796199899,
@@ -1061,7 +1061,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "RHD",
+                "IATA": "RHD",
                 "Aeropuerto": "Termas de Rio Hondo",
                 "X": -64.937940096199895,
                 "Y": -27.509027634199899,
@@ -1094,7 +1094,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "ROS",
+                "IATA": "ROS",
                 "Aeropuerto": "Rosario",
                 "X": -60.785231554699898,
                 "Y": -32.9097209663,
@@ -1127,7 +1127,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "RSA",
+                "IATA": "RSA",
                 "Aeropuerto": "La Pampa",
                 "X": -64.274845073899897,
                 "Y": -36.585780043100002,
@@ -1160,7 +1160,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "SDE",
+                "IATA": "SDE",
                 "Aeropuerto": "Santiago del Estero",
                 "X": -64.310021115799898,
                 "Y": -27.766069669299899,
@@ -1193,7 +1193,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "SFN",
+                "IATA": "SFN",
                 "Aeropuerto": "Sauce Viejo",
                 "X": -60.811801488500002,
                 "Y": -31.7114170681999,
@@ -1226,7 +1226,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "SLA",
+                "IATA": "SLA",
                 "Aeropuerto": "Salta",
                 "X": -65.484387244700002,
                 "Y": -24.853779839000001,
@@ -1259,7 +1259,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "TUC",
+                "IATA": "TUC",
                 "Aeropuerto": "Tucumán",
                 "X": -65.102254466700003,
                 "Y": -26.835503409000001,
@@ -1292,7 +1292,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "UAQ",
+                "IATA": "UAQ",
                 "Aeropuerto": "San Juan",
                 "X": -68.418775254099899,
                 "Y": -31.5699102341,
@@ -1325,7 +1325,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "USH",
+                "IATA": "USH",
                 "Aeropuerto": "Ushuaia ",
                 "X": -68.308104986100005,
                 "Y": -54.843586400900001,
@@ -1358,7 +1358,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "VDM",
+                "IATA": "VDM",
                 "Aeropuerto": "Viedma",
                 "X": -62.999267214600003,
                 "Y": -40.8698946722999,
@@ -1391,7 +1391,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "VME",
+                "IATA": "VME",
                 "Aeropuerto": "Villa Mercedes",
                 "X": -65.386128104899896,
                 "Y": -33.7298068286999,
@@ -1424,7 +1424,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "RCQ",
+                "IATA": "RCQ",
                 "Aeropuerto": "Reconquista",
                 "X": -59.681389081699898,
                 "Y": -29.210457071099899,
@@ -1457,7 +1457,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "COC",
+                "IATA": "COC",
                 "Aeropuerto": "Concordia",
                 "X": -57.997305,
                 "Y": -31.2970201284,
@@ -1490,7 +1490,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "GNR",
+                "IATA": "GNR",
                 "Aeropuerto": "General Roca",
                 "X": -67.618892555100004,
                 "Y": -38.999443251999899,
@@ -1523,7 +1523,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "GPO",
+                "IATA": "GPO",
                 "Aeropuerto": "General Pico",
                 "X": -63.759723222200002,
                 "Y": -35.691260944699899,
@@ -1556,7 +1556,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "JNI",
+                "IATA": "JNI",
                 "Aeropuerto": "Junin",
                 "X": -60.930123580599897,
                 "Y": -34.545676024300001,
@@ -1589,7 +1589,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "LPG",
+                "IATA": "LPG",
                 "Aeropuerto": "La Plata",
                 "X": -57.895380790300003,
                 "Y": -34.976109331099899,
@@ -1622,7 +1622,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "NEC",
+                "IATA": "NEC",
                 "Aeropuerto": "Necochea",
                 "X": -58.813893876800002,
                 "Y": -38.489014031300002,
@@ -1655,7 +1655,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "RYO",
+                "IATA": "RYO",
                 "Aeropuerto": "El Turbio/28 de Noviembre",
                 "X": -72.223713739900006,
                 "Y": -51.604785792999898,
@@ -1688,7 +1688,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "SST",
+                "IATA": "SST",
                 "Aeropuerto": "Santa Teresita",
                 "X": -56.720305778099899,
                 "Y": -36.542573415100001,
@@ -1721,7 +1721,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "TDL",
+                "IATA": "TDL",
                 "Aeropuerto": "Tandil",
                 "X": -59.228812894400001,
                 "Y": -37.236220579799898,
@@ -1754,7 +1754,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "TTG",
+                "IATA": "TTG",
                 "Aeropuerto": "Tartagal",
                 "X": -63.79372687,
                 "Y": -22.6186382952,
@@ -1787,7 +1787,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "VLG",
+                "IATA": "VLG",
                 "Aeropuerto": "Villa Gesell",
                 "X": -57.029123948100001,
                 "Y": -37.234915202499899,
@@ -1820,7 +1820,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "PMQ",
+                "IATA": "PMQ",
                 "Aeropuerto": "Perito Moreno",
                 "X": -70.978272072899898,
                 "Y": -46.5379547665,
@@ -1853,7 +1853,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": "RLO",
+                "IATA": "RLO",
                 "Aeropuerto": "Valle del Conlara/Merlo",
                 "X": -65.1857694216,
                 "Y": -32.384382170400002,
@@ -1886,7 +1886,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": null,
+                "IATA": null,
                 "Aeropuerto": null,
                 "X": null,
                 "Y": null,
@@ -1919,7 +1919,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": null,
+                "IATA": null,
                 "Aeropuerto": null,
                 "X": null,
                 "Y": null,
@@ -1952,7 +1952,7 @@
         {
             "type": "Feature",
             "properties": {
-                "Aeropuerto IATA": null,
+                "IATA": null,
                 "Aeropuerto": null,
                 "X": null,
                 "Y": null,
