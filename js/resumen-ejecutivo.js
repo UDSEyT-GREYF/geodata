@@ -25,10 +25,10 @@
   const MOV_ALT_URL = "data/4movxaeropuerto2021a2025SinSIIAC.geojson";
   const FDO_TRAFFIC_AA_URL = "fuentes/fdo_trafico_aeropuertos_argentina.json";
   
-  const ALT_IATAS = new Set([
-    "RLO", "AOL", "COC", "GNR", "JNI", "LPG", "NEC",
-    "PMQ", "RYO", "SST", "TDL", "TTG", "VLG"
-  ]);
+const ALT_IATAS = new Set([
+  "TTG", "RYO", "SST", "NEC", "LPG", "GNR", "JNI", "PMQ", "AOL",
+  "LGS", "EPA", "COC", "RCQ", "RLO", "TDL", "VLG", "VME"
+]);
 
   const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
   const PAX_DATASET_INT = "pasajeros_comerciales_internacional_aeropuerto";
