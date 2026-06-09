@@ -141,11 +141,33 @@ body {
   font-weight: 800;
 }
 .rutas-clock {
-  font-size: 1.9rem;
-  line-height: 1.05;
+  font-size: 1.45rem;
+  line-height: 1.08;
   color: #002855;
   font-weight: 850;
-  letter-spacing: .02em;
+  letter-spacing: .01em;
+}
+.rutas-period-label {
+  margin-top: 3px;
+  font-size: .68rem;
+  color: var(--siga-muted);
+  font-weight: 700;
+  line-height: 1.25;
+}
+.rutas-day-select {
+  width: 100%;
+  margin: 0 0 8px;
+  padding: 6px 8px;
+  border: 1px solid #b8c9dc;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #002855;
+  font-size: .76rem;
+  font-weight: 650;
+}
+.rutas-day-select:focus {
+  outline: 2px solid rgba(48, 111, 176, .18);
+  border-color: var(--siga-blue);
 }
 .rutas-range {
   width: 100%;
