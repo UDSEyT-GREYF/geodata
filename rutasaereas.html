@@ -17,7 +17,7 @@
       <div class="siga-logo">SIGA</div>
       <div>
         <h1>Rutas aéreas animadas</h1>
-        <p>Vuelos de un día en Argentina reproducidos en 1 minuto</p>
+        <p>Vuelos reales de una semana en Argentina con selector de día</p>
       </div>
     </div>
     <div class="siga-header-actions">
@@ -30,13 +30,19 @@
   <main class="siga-layout rutas-layout">
     <aside class="siga-sidebar rutas-sidebar">
       <section class="siga-card">
-        <div class="siga-section-title">Animación diaria</div>
+        <div class="siga-section-title">Animación de vuelos</div>
         <div class="rutas-clock-box">
-          <div class="rutas-clock-label">Hora simulada</div>
+          <div class="rutas-clock-label">Fecha y hora simulada</div>
           <div id="clock" class="rutas-clock">00:00</div>
+          <div id="periodLabel" class="rutas-period-label">Semana completa</div>
         </div>
 
-        <label class="siga-label" for="timeRange">Recorrido del día</label>
+        <label class="siga-label" for="daySelect">Día de operación</label>
+        <select id="daySelect" class="rutas-day-select">
+          <option value="all">Semana completa</option>
+        </select>
+
+        <label class="siga-label" id="timeRangeLabel" for="timeRange">Recorrido de la semana</label>
         <input id="timeRange" class="rutas-range" type="range" min="0" max="86400000" value="0" step="60000" />
 
         <div class="siga-button-row">
@@ -46,7 +52,7 @@
           <button type="button" id="btnSpeed" class="siga-btn siga-btn-secondary">1 min/día</button>
         </div>
 
-        <div class="siga-hint">La escala inicial comprime 24 horas de operación en 60 segundos de reproducción.</div>
+        <div id="speedHint" class="siga-hint">La escala inicial comprime toda la semana seleccionada en 60 segundos de reproducción.</div>
       </section>
 
       <section class="siga-card rutas-kpi-card">
@@ -100,7 +106,7 @@
 
       <section class="siga-card">
         <div class="siga-section-title">Datos</div>
-        <div id="dataStatus" class="siga-hint">Cargando catálogos y archivo <code>fuentes/rutasaereas.json</code>…</div>
+        <div id="dataStatus" class="siga-hint">Cargando catálogos y archivo <code>fuentes/Vuelos_semana_28_07_2025.csv</code>…</div>
       </section>
     </aside>
 
