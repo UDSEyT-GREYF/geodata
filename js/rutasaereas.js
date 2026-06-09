@@ -2,7 +2,7 @@
 (() => {
   "use strict";
 
-  const DATA_SOURCE = "fuentes/rutasaereas.json";
+  const DATA_SOURCE = "fuentes/Vuelos_semana_28_07_2025.csv";
   const SNA_AIRPORTS_SOURCE = "fuentes/Datos_aeropuertos.geojson";
   const OURAIRPORTS_SOURCE = "fuentes/ourairports.csv";
 
@@ -16,15 +16,22 @@
   const PLANE_ROTATION_OFFSET_DEG = 0;
 
   const FIELD_ALIASES = {
-    id: ["id", "vuelo", "flight", "flight_id", "nro_vuelo", "numero_vuelo", "Nro Vuelo", "Vuelo", "Nº Vuelo", "N° Vuelo"],
-    airline: ["airline", "aerolinea", "aerolínea", "linea_aerea", "empresa", "carrier", "Aerolínea", "Aerolinea", "Empresa", "Línea Aérea"],
+    id: ["id", "vuelo", "flight", "flight_id", "nro_vuelo", "numero_vuelo", "Nro Vuelo", "Vuelo", "Nº Vuelo", "N° Vuelo", "Callsign", "callsign"],
+    airline: ["airline", "aerolinea", "aerolínea", "linea_aerea", "empresa", "carrier", "Aerolínea", "Aerolinea", "Empresa", "Línea Aérea", "Aerolinea Nombre", "aerolinea_nombre"],
     origin: ["origin", "origen", "origen_iata", "Origen IATA", "Origen", "IATA_ORIGEN", "Origen_IATA", "origin_iata"],
     destination: ["destination", "destino", "destino_iata", "Destino IATA", "Destino", "IATA_DESTINO", "Destino_IATA", "destination_iata"],
-    dep: ["dep", "departure", "salida", "hora_salida", "fecha_hora_salida", "FechaHoraSalida", "STD", "Salida", "Hora Salida", "Fecha Hora Salida"],
-    arr: ["arr", "arrival", "llegada", "hora_llegada", "fecha_hora_llegada", "FechaHoraLlegada", "STA", "Llegada", "Hora Llegada", "Fecha Hora Llegada"],
-    date: ["date", "fecha", "Fecha", "Fecha Local", "Fecha_Local", "Día", "Dia"],
+    dep: ["dep", "departure", "salida", "hora_salida", "fecha_hora_salida", "FechaHoraSalida", "STD", "Salida", "Hora Salida", "Fecha Hora Salida", "FechaHora_Local", "fechahora_local"],
+    arr: ["arr", "arrival", "llegada", "hora_llegada", "fecha_hora_llegada", "FechaHoraLlegada", "STA", "Llegada", "Hora Llegada", "Fecha Hora Llegada", "9 FechaHora_Llegada_Estimada", "9_fechahora_llegada_estimada"],
+    date: ["date", "fecha", "Fecha", "Fecha Local", "Fecha_Local", "Día", "Dia", "FechaHora_Local", "fechahora_local"],
     passengers: ["passengers", "pasajeros", "Pax", "PAX", "Pasajeros", "pax"],
-    seats: ["seats", "asientos", "Asientos", "Capacidad"]
+    seats: ["seats", "asientos", "Asientos", "Capacidad", "Asientos_Pax", "asientos_pax"],
+    route: ["RutaCompleta", "rutacompleta", "route", "ruta"],
+    weekday: ["DíaSemana", "DiaSemana", "dia_semana", "diasemana"],
+    movementType: ["Tipo de Movimiento", "tipo_de_movimiento"],
+    flightClass: ["Clase de vuelo regular o no regular y av. gral", "clase_de_vuelo_regular_o_no_regular_y_av_gral"],
+    aircraft: ["9 Modelo aeronave matricula AA2000", "9_modelo_aeronave_matricula_aa2000", "modelo_aeronave", "aircraft"],
+    distanceKm: ["DistanciaKM", "distanciakm", "distancia_km"],
+    durationMinutes: ["9 Tiempo_Vuelo_Estimado_Min", "9_tiempo_vuelo_estimado_min", "tiempo_vuelo_estimado_min", "duration_minutes"]
   };
 
   // Respaldo mínimo para que el demo funcione si todavía no están los catálogos del proyecto.
@@ -103,7 +110,13 @@
     ourAirportsIndex: {},
     snaAirports: new Map(),
     flightsRaw: [],
+    flightsAll: [],
     flights: [],
+    availableDays: [],
+    selectedDay: "all",
+    simStartDate: null,
+    simEndDate: null,
+    simPeriodMs: SIM_DAY_MS,
     staticRoutes: [],
     airports: new Map(),
     routesLayer: null,
@@ -166,9 +179,7 @@ completedFlights: new Map(),
   }
 
   function toNumberOrNull(value) {
-    const text = clean(value).replace(/\./g, "").replace(",", ".");
-    if (!text) return null;
-    const n = Number(text);
+    const n = parseNumber(value);
     return Number.isFinite(n) ? n : null;
   }
 
@@ -258,6 +269,93 @@ completedFlights: new Map(),
     const resp = await fetch(url, { cache: "no-store" });
     if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
     return readTextSmart(resp);
+  }
+
+  async function loadFlightDataSource(url) {
+    const lower = clean(url).toLowerCase();
+
+    if (lower.endsWith(".csv")) {
+      const text = await loadText(url);
+      return {
+        rows: parseCSV(text),
+        sourceText: url,
+        dateText: "",
+        kindText: "Archivo CSV de vuelos reales"
+      };
+    }
+
+    const data = await loadJson(url);
+    return {
+      rows: Array.isArray(data) ? data : (data.flights || []),
+      sourceText: data.source || data.fuente || url,
+      dateText: data.date || data.fecha || "",
+      kindText: data.data_kind === "demo" ? "Muestra de prueba" : "Archivo de vuelos"
+    };
+  }
+
+  function getRouteCodesFromRow(row) {
+    const route = clean(getFirst(row, FIELD_ALIASES.route));
+    if (!route) return { origin: "", destination: "" };
+
+    const parts = route
+      .split(/\s*[-–—>→]+\s*/g)
+      .map(v => clean(v).toUpperCase())
+      .filter(Boolean);
+
+    if (parts.length < 2) return { origin: "", destination: "" };
+
+    return {
+      origin: parts[0],
+      destination: parts[parts.length - 1]
+    };
+  }
+
+  function getLocalDateKey(date) {
+    if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "";
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, "0");
+    const d = String(date.getDate()).padStart(2, "0");
+    return `${y}-${m}-${d}`;
+  }
+
+  function getDateFromKey(key) {
+    const m = clean(key).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!m) return null;
+    return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]), 0, 0, 0, 0);
+  }
+
+  function formatDayLong(date) {
+    if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "";
+    return date.toLocaleDateString("es-AR", {
+      weekday: "long",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric"
+    });
+  }
+
+  function formatPeriodLabel() {
+    if (state.selectedDay !== "all") {
+      const d = getDateFromKey(state.selectedDay);
+      return d ? formatDayLong(d) : "Día seleccionado";
+    }
+
+    if (!state.availableDays.length) return "Semana completa";
+
+    const first = state.availableDays[0]?.date;
+    const last = state.availableDays[state.availableDays.length - 1]?.date;
+    if (!first || !last) return "Semana completa";
+
+    return `Semana completa · ${first.toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit" })} al ${last.toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric" })}`;
+  }
+
+  function setTimeRangeMax() {
+    const range = q("timeRange");
+    if (!range) return;
+    const max = Math.max(1, Math.floor(state.simPeriodMs || SIM_DAY_MS));
+    range.max = String(max);
+    range.step = max > SIM_DAY_MS ? "300000" : "60000";
+    range.value = String(Math.max(0, Math.min(max, Math.floor(state.simTime || 0))));
   }
 
   function parseCoordinateNumber(value, type = "lat", context = {}) {
@@ -532,55 +630,54 @@ state.planesLayer = L.layerGroup().addTo(state.map);
 
   async function loadFlights() {
     const dataStatus = q("dataStatus");
-    const mapStatus = q("mapStatus");
     const catalogs = await loadCatalogs();
 
     try {
-      const data = await loadJson(DATA_SOURCE);
-      state.flightsRaw = Array.isArray(data) ? data : (data.flights || []);
-      const sourceText = data.source || data.fuente || DATA_SOURCE;
-      const dateText = data.date || data.fecha || "";
-      const kindText = data.data_kind === "demo" ? "Muestra de prueba" : "Archivo de vuelos";
+      const loaded = await loadFlightDataSource(DATA_SOURCE);
+      state.flightsRaw = loaded.rows;
       if (dataStatus) {
         dataStatus.innerHTML = `
-          ${escapeHtml(kindText)} cargado: <code>${escapeHtml(DATA_SOURCE)}</code><br>
-          Fuente: ${escapeHtml(sourceText)}${dateText ? `<br>Fecha: ${escapeHtml(dateText)}` : ""}<br>
+          ${escapeHtml(loaded.kindText)} cargado: <code>${escapeHtml(DATA_SOURCE)}</code><br>
+          Fuente: ${escapeHtml(loaded.sourceText)}${loaded.dateText ? `<br>Fecha: ${escapeHtml(loaded.dateText)}` : ""}<br>
+          Registros leídos: ${state.flightsRaw.length.toLocaleString("es-AR")}<br>
           SNA: ${catalogs.snaCount.toLocaleString("es-AR")} aeropuertos · ourairports: ${catalogs.ourCount.toLocaleString("es-AR")} códigos
         `;
       }
     } catch (err) {
-      console.warn("No se pudo cargar el JSON externo; se usa demo embebida.", err);
+      console.warn("No se pudo cargar el archivo externo; se usa demo embebida.", err);
       state.flightsRaw = DEMO_FLIGHTS;
       if (dataStatus) {
         dataStatus.innerHTML = `No se pudo cargar <code>${escapeHtml(DATA_SOURCE)}</code>.<br>Se usa una muestra interna para probar la animación.<br>SNA: ${catalogs.snaCount.toLocaleString("es-AR")} aeropuertos · ourairports: ${catalogs.ourCount.toLocaleString("es-AR")} códigos`;
       }
     }
 
-state.flights = normalizeFlights(state.flightsRaw);
-
-// Rutas base y aeropuertos adicionales:
-// se construyen desde flightsRaw para no depender de que el vuelo sea animable.
-state.staticRoutes = buildStaticRoutesFromRaw(state.flightsRaw);
-
-buildAirportIndex();
-renderStaticLayers();
-    updateKpis();
-    goToFirstFlight({ keepPlaying: true });
-
-    if (mapStatus) {
-      const skipped = state.skippedRows ? ` Registros omitidos: ${state.skippedRows}.` : "";
-      const missing = state.catalogWarnings.length ? ` Sin coordenadas: ${state.catalogWarnings.join(", ")}.` : "";
-      mapStatus.textContent = state.flights.length ? `Vuelos cargados: ${state.flights.length}.${skipped}${missing}` : `No hay vuelos válidos para animar.${skipped}${missing}`;
-    }
+    state.flightsAll = normalizeFlights(state.flightsRaw);
+    buildAvailableDays();
+    renderDaySelector();
+    applyDayFilter({ keepPlaying: true });
   }
 
   function normalizeFlights(rows) {
     state.skippedRows = 0;
+    state.catalogWarnings = [];
     const normalized = [];
 
     rows.forEach((row, index) => {
-      const rawOrigin = clean(getFirst(row, FIELD_ALIASES.origin)).toUpperCase();
-      const rawDestination = clean(getFirst(row, FIELD_ALIASES.destination)).toUpperCase();
+      const routeCodes = getRouteCodesFromRow(row);
+
+      let rawOrigin = clean(getFirst(row, FIELD_ALIASES.origin)).toUpperCase();
+      let rawDestination = clean(getFirst(row, FIELD_ALIASES.destination)).toUpperCase();
+
+      if (!rawOrigin && routeCodes.origin) rawOrigin = routeCodes.origin;
+      if (!rawDestination && routeCodes.destination) rawDestination = routeCodes.destination;
+
+      // Si RutaCompleta contiene dos códigos y uno coincide con el origen conocido,
+      // usamos el otro como destino. Esto ayuda en registros con Destino IATA vacío.
+      if ((!rawDestination || rawDestination === rawOrigin) && routeCodes.origin && routeCodes.destination) {
+        if (routeCodes.origin === rawOrigin && routeCodes.destination !== rawOrigin) rawDestination = routeCodes.destination;
+        else if (routeCodes.destination === rawOrigin && routeCodes.origin !== rawOrigin) rawDestination = routeCodes.origin;
+      }
+
       if (!rawOrigin || !rawDestination || rawOrigin === rawDestination) {
         state.skippedRows += 1;
         return;
@@ -599,23 +696,28 @@ renderStaticLayers();
 
       const fallbackDate = clean(getFirst(row, FIELD_ALIASES.date)) || "2025-01-01";
       const dep = normalizeDateTime(getFirst(row, FIELD_ALIASES.dep), fallbackDate);
-      const arr = normalizeDateTime(getFirst(row, FIELD_ALIASES.arr), fallbackDate);
+
+      let arr = normalizeDateTime(getFirst(row, FIELD_ALIASES.arr), fallbackDate);
+      if (!arr && dep) {
+        const durationMinutes = parseNumber(getFirst(row, FIELD_ALIASES.durationMinutes));
+        if (Number.isFinite(durationMinutes) && durationMinutes > 0) {
+          arr = new Date(dep.getTime() + durationMinutes * 60 * 1000);
+        }
+      }
+
       if (!dep || !arr) {
         state.skippedRows += 1;
         console.warn("Vuelo omitido por falta de horarios:", row);
         return;
       }
 
-      const dayStart = getDayStart(dep);
-      let depOffset = dep.getTime() - dayStart.getTime();
-      let arrOffset = arr.getTime() - dayStart.getTime();
-      if (arrOffset < depOffset) arrOffset += SIM_DAY_MS;
-
-      const id = clean(getFirst(row, FIELD_ALIASES.id)) || `${origin}-${destination}-${index + 1}`;
+      const displayId = clean(getFirst(row, FIELD_ALIASES.id)) || `${origin}-${destination}`;
+      const id = `${displayId}-${index + 1}`;
       const airline = clean(getFirst(row, FIELD_ALIASES.airline)) || "Sin dato";
 
       normalized.push({
         id,
+        displayId,
         airline,
         origin,
         destination,
@@ -623,18 +725,25 @@ renderStaticLayers();
         rawDestination,
         dep,
         arr,
-        depOffset,
-        arrOffset,
-        duration: Math.max(1, arrOffset - depOffset),
+        depOffset: 0,
+        arrOffset: 0,
+        duration: Math.max(1, arr.getTime() - dep.getTime()),
         from,
         to,
         passengers: toNumberOrNull(getFirst(row, FIELD_ALIASES.passengers)),
-        seats: toNumberOrNull(getFirst(row, FIELD_ALIASES.seats))
+        seats: toNumberOrNull(getFirst(row, FIELD_ALIASES.seats)),
+        route: clean(getFirst(row, FIELD_ALIASES.route)) || `${rawOrigin} - ${rawDestination}`,
+        weekday: clean(getFirst(row, FIELD_ALIASES.weekday)),
+        movementType: clean(getFirst(row, FIELD_ALIASES.movementType)),
+        flightClass: clean(getFirst(row, FIELD_ALIASES.flightClass)),
+        aircraft: clean(getFirst(row, FIELD_ALIASES.aircraft)),
+        distanceKm: toNumberOrNull(getFirst(row, FIELD_ALIASES.distanceKm))
       });
     });
 
-    return normalized.sort((a, b) => a.depOffset - b.depOffset);
+    return normalized.sort((a, b) => a.dep - b.dep);
   }
+
 function buildStaticRoutesFromRaw(rows) {
   const routes = [];
   const rendered = new Set();
@@ -727,6 +836,176 @@ function buildStaticRoutesFromRaw(rows) {
     const d = new Date(date);
     d.setHours(0, 0, 0, 0);
     return d;
+  }
+
+  function buildStaticRoutesFromFlights(flights) {
+    const routes = [];
+    const rendered = new Set();
+
+    (flights || []).forEach((f) => {
+      if (!f.origin || !f.destination || !f.from || !f.to) return;
+      const key = [f.origin, f.destination].sort().join("-");
+      if (rendered.has(key)) return;
+      rendered.add(key);
+
+      routes.push({
+        origin: f.origin,
+        destination: f.destination,
+        rawOrigin: f.rawOrigin,
+        rawDestination: f.rawDestination,
+        from: f.from,
+        to: f.to
+      });
+    });
+
+    return routes;
+  }
+
+  function buildAvailableDays() {
+    const byDay = new Map();
+
+    state.flightsAll.forEach((f) => {
+      const key = getLocalDateKey(f.dep);
+      if (!key) return;
+      if (!byDay.has(key)) byDay.set(key, { key, date: getDateFromKey(key), count: 0 });
+      byDay.get(key).count += 1;
+    });
+
+    state.availableDays = Array.from(byDay.values())
+      .filter(d => d.date)
+      .sort((a, b) => a.date - b.date);
+  }
+
+  function renderDaySelector() {
+    const select = q("daySelect");
+    if (!select) return;
+
+    const current = state.selectedDay || "all";
+    const options = [
+      `<option value="all">Semana completa</option>`,
+      ...state.availableDays.map((d) => {
+        const label = `${formatDayLong(d.date)} · ${d.count.toLocaleString("es-AR")} vuelos`;
+        return `<option value="${escapeHtml(d.key)}">${escapeHtml(label)}</option>`;
+      })
+    ];
+
+    select.innerHTML = options.join("");
+    select.value = state.availableDays.some(d => d.key === current) ? current : "all";
+
+    if (!select.dataset.bound) {
+      select.dataset.bound = "1";
+      select.addEventListener("change", () => {
+        state.selectedDay = select.value || "all";
+        applyDayFilter({ keepPlaying: false });
+      });
+    }
+  }
+
+  function applyDayFilter(opts = {}) {
+    const { keepPlaying = false } = opts;
+
+    if (state.selectedDay === "all") {
+      state.flights = [...state.flightsAll];
+    } else {
+      state.flights = state.flightsAll.filter(f => getLocalDateKey(f.dep) === state.selectedDay);
+    }
+
+    rebuildSimulationWindow();
+
+    state.staticRoutes = buildStaticRoutesFromFlights(state.flights);
+    buildAirportIndex();
+    renderStaticLayers();
+    updateKpis();
+    updatePeriodUi();
+
+    clearActiveFlights();
+    clearCompletedFlights();
+
+    if (state.flights.length) {
+      goToFirstFlight({ keepPlaying });
+    } else {
+      resetAnimation();
+    }
+
+    updateMapStatus();
+  }
+
+  function rebuildSimulationWindow() {
+    if (!state.flights.length) {
+      state.simStartDate = null;
+      state.simEndDate = null;
+      state.simPeriodMs = SIM_DAY_MS;
+      state.simTime = 0;
+      setTimeRangeMax();
+      return;
+    }
+
+    if (state.selectedDay === "all") {
+      const minDep = new Date(Math.min(...state.flights.map(f => f.dep.getTime())));
+      const maxArr = new Date(Math.max(...state.flights.map(f => f.arr.getTime())));
+
+      const start = new Date(minDep);
+      start.setHours(0, 0, 0, 0);
+
+      const end = new Date(maxArr);
+      end.setHours(24, 0, 0, 0);
+
+      state.simStartDate = start;
+      state.simEndDate = end;
+    } else {
+      const start = getDateFromKey(state.selectedDay) || getDayStart(state.flights[0].dep);
+      const end = new Date(start);
+      end.setDate(end.getDate() + 1);
+
+      state.simStartDate = start;
+      state.simEndDate = end;
+    }
+
+    state.simPeriodMs = Math.max(1, state.simEndDate.getTime() - state.simStartDate.getTime());
+
+    state.flights.forEach((f) => {
+      f.depOffset = f.dep.getTime() - state.simStartDate.getTime();
+      f.arrOffset = f.arr.getTime() - state.simStartDate.getTime();
+      f.duration = Math.max(1, f.arrOffset - f.depOffset);
+    });
+
+    state.flights.sort((a, b) => a.depOffset - b.depOffset);
+    setTimeRangeMax();
+  }
+
+  function updatePeriodUi() {
+    const periodLabel = q("periodLabel");
+    if (periodLabel) periodLabel.textContent = formatPeriodLabel();
+
+    const rangeLabel = q("timeRangeLabel");
+    if (rangeLabel) {
+      rangeLabel.textContent = state.selectedDay === "all"
+        ? "Recorrido de la semana"
+        : "Recorrido del día";
+    }
+
+    const hint = q("speedHint");
+    if (hint) {
+      hint.textContent = state.selectedDay === "all"
+        ? "La escala inicial comprime toda la semana seleccionada en 60 segundos de reproducción."
+        : "La escala inicial comprime 24 horas de operación en 60 segundos de reproducción.";
+    }
+
+    const speedBtn = q("btnSpeed");
+    if (speedBtn) speedBtn.textContent = speedLabel();
+  }
+
+  function updateMapStatus() {
+    const mapStatus = q("mapStatus");
+    if (!mapStatus) return;
+
+    const skipped = state.skippedRows ? ` Registros omitidos: ${state.skippedRows}.` : "";
+    const missing = state.catalogWarnings.length ? ` Sin coordenadas: ${state.catalogWarnings.join(", ")}.` : "";
+    const period = formatPeriodLabel();
+
+    mapStatus.textContent = state.flights.length
+      ? `${period}. Vuelos cargados: ${state.flights.length}.${skipped}${missing}`
+      : `${period}. No hay vuelos válidos para animar.${skipped}${missing}`;
   }
 
   function buildAirportIndex() {
@@ -935,9 +1214,10 @@ state.staticRoutes.forEach((r) => {
 
   function updateFlights(currentTime) {
     let activeCount = 0;
+    const periodEnd = state.simPeriodMs || SIM_DAY_MS;
 
     state.flights.forEach((f) => {
-      const visibleUntil = Math.min(f.arrOffset, SIM_DAY_MS);
+      const visibleUntil = Math.min(f.arrOffset, periodEnd);
       const isActive = currentTime >= f.depOffset && currentTime <= visibleUntil;
 
       if (!isActive) {
@@ -974,7 +1254,7 @@ state.staticRoutes.forEach((r) => {
           icon: createPlaneIcon(color),
           interactive: true,
           keyboard: false,
-          title: `${f.id} | ${f.origin} → ${f.destination}`
+          title: `${f.displayId || f.id} | ${f.origin} → ${f.destination}`
         });
 
         marker.bindTooltip(buildFlightTooltip(f), { direction: "top", opacity: 1, className: "rutas-tooltip" });
@@ -993,10 +1273,17 @@ state.staticRoutes.forEach((r) => {
 
       rotatePlane(active.marker, bearing);
     });
-syncCompletedFlights(currentTime);
-    q("clock").textContent = formatClock(currentTime);
-    q("kpiActiveFlights").textContent = activeCount.toLocaleString("es-AR");
-    q("timeRange").value = Math.floor(currentTime);
+
+    syncCompletedFlights(currentTime);
+
+    const clock = q("clock");
+    if (clock) clock.textContent = formatClock(currentTime);
+
+    const activeKpi = q("kpiActiveFlights");
+    if (activeKpi) activeKpi.textContent = activeCount.toLocaleString("es-AR");
+
+    const range = q("timeRange");
+    if (range) range.value = Math.floor(currentTime);
   }
 
   function removeActiveFlight(id) {
@@ -1008,8 +1295,8 @@ syncCompletedFlights(currentTime);
   }
 function syncCompletedFlights(currentTime) {
   state.flights.forEach((f) => {
-    const completedInsideDay = f.arrOffset <= SIM_DAY_MS;
-    const shouldBeCompleted = completedInsideDay && currentTime > f.arrOffset;
+    const completedInsidePeriod = f.arrOffset <= (state.simPeriodMs || SIM_DAY_MS);
+    const shouldBeCompleted = completedInsidePeriod && currentTime > f.arrOffset;
 
     if (shouldBeCompleted) {
       addCompletedFlight(f);
@@ -1040,14 +1327,14 @@ function addCompletedFlight(f) {
     icon: createPlaneIcon(color),
     interactive: true,
     keyboard: false,
-    title: `${f.id} completado | ${f.origin} → ${f.destination}`,
+    title: `${f.displayId || f.id} completado | ${f.origin} → ${f.destination}`,
     opacity: 0.55
   });
 
   marker.bindTooltip(
-    `<div class="rutas-tooltip-title">${escapeHtml(f.id)} · vuelo completado</div>
+    `<div class="rutas-tooltip-title">${escapeHtml(f.displayId || f.id)} · vuelo completado</div>
      <div>${escapeHtml(f.origin)} → ${escapeHtml(f.destination)}</div>
-     <div class="rutas-tooltip-muted">${formatTime(f.dep)} - ${formatTime(f.arr)}</div>`,
+     <div class="rutas-tooltip-muted">${formatDateTimeBrief(f.dep)} - ${formatDateTimeBrief(f.arr)}</div>`,
     { direction: "top", opacity: 1, className: "rutas-tooltip" }
   );
 
@@ -1081,20 +1368,24 @@ function clearCompletedFlights() {
   Array.from(state.completedFlights.keys()).forEach(removeCompletedFlight);
 }
   function buildFlightTooltip(f) {
-    return `<div class="rutas-tooltip-title">${escapeHtml(f.id)}</div><div>${escapeHtml(f.origin)} → ${escapeHtml(f.destination)}</div><div class="rutas-tooltip-muted">${formatTime(f.dep)} - ${formatTime(f.arr)}</div>`;
+    return `<div class="rutas-tooltip-title">${escapeHtml(f.displayId || f.id)}</div><div>${escapeHtml(f.origin)} → ${escapeHtml(f.destination)}</div><div class="rutas-tooltip-muted">${formatDateTimeBrief(f.dep)} - ${formatDateTimeBrief(f.arr)}</div>`;
   }
 
   function setFeatureInfo(f) {
     const el = q("featureInfo");
     if (!el) return;
     el.innerHTML = `
-      <div class="feature-title">${escapeHtml(f.id)} · ${escapeHtml(f.origin)} → ${escapeHtml(f.destination)}</div>
+      <div class="feature-title">${escapeHtml(f.displayId || f.id)} · ${escapeHtml(f.origin)} → ${escapeHtml(f.destination)}</div>
       <table class="feature-table">
         <tr><td>Aerolínea</td><td>${escapeHtml(f.airline)}</td></tr>
-        <tr><td>Salida</td><td>${escapeHtml(formatTime(f.dep))}</td></tr>
-        <tr><td>Llegada</td><td>${escapeHtml(formatTime(f.arr))}</td></tr>
-        ${f.passengers ? `<tr><td>Pasajeros</td><td>${f.passengers.toLocaleString("es-AR")}</td></tr>` : ""}
-        ${f.seats ? `<tr><td>Asientos</td><td>${f.seats.toLocaleString("es-AR")}</td></tr>` : ""}
+        <tr><td>Salida</td><td>${escapeHtml(formatDateTimeBrief(f.dep))}</td></tr>
+        <tr><td>Llegada est.</td><td>${escapeHtml(formatDateTimeBrief(f.arr))}</td></tr>
+        ${f.weekday ? `<tr><td>Día informado</td><td>${escapeHtml(f.weekday)}</td></tr>` : ""}
+        ${f.flightClass ? `<tr><td>Clase</td><td>${escapeHtml(f.flightClass)}</td></tr>` : ""}
+        ${f.aircraft ? `<tr><td>Aeronave</td><td>${escapeHtml(f.aircraft)}</td></tr>` : ""}
+        ${f.distanceKm ? `<tr><td>Distancia</td><td>${f.distanceKm.toLocaleString("es-AR")} km</td></tr>` : ""}
+        ${f.passengers !== null ? `<tr><td>Pasajeros</td><td>${f.passengers.toLocaleString("es-AR")}</td></tr>` : ""}
+        ${f.seats !== null ? `<tr><td>Asientos</td><td>${f.seats.toLocaleString("es-AR")}</td></tr>` : ""}
       </table>`;
   }
 
@@ -1102,9 +1393,34 @@ function clearCompletedFlights() {
     return date.toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit", hour12: false });
   }
 
+  function formatDateTimeBrief(date) {
+    if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "–";
+    return date.toLocaleString("es-AR", {
+      weekday: "short",
+      day: "2-digit",
+      month: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    }).replace(",", " ·");
+  }
+
   function formatClock(ms) {
-    const totalMinutes = Math.floor(ms / 60000) % 1440;
-    return `${String(Math.floor(totalMinutes / 60)).padStart(2, "0")}:${String(totalMinutes % 60).padStart(2, "0")}`;
+    if (!state.simStartDate) {
+      const totalMinutes = Math.floor(ms / 60000) % 1440;
+      return `${String(Math.floor(totalMinutes / 60)).padStart(2, "0")}:${String(totalMinutes % 60).padStart(2, "0")}`;
+    }
+
+    const d = new Date(state.simStartDate.getTime() + Number(ms || 0));
+
+    return d.toLocaleString("es-AR", {
+      weekday: "short",
+      day: "2-digit",
+      month: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    }).replace(",", " ·");
   }
 
   function animate(now) {
@@ -1112,20 +1428,23 @@ function clearCompletedFlights() {
     state.lastFrame = now;
 
     if (state.playing && state.flights.length) {
-      const speedFactor = SIM_DAY_MS / state.realDurationMs;
+      const periodMs = state.simPeriodMs || SIM_DAY_MS;
+      const speedFactor = periodMs / state.realDurationMs;
       state.simTime += delta * speedFactor;
-if (state.simTime >= SIM_DAY_MS) {
-  state.simTime = SIM_DAY_MS;
-  state.playing = false;
 
-  const btnPlay = q("btnPlay");
-  if (btnPlay) btnPlay.textContent = "Reproducir";
+      if (state.simTime >= periodMs) {
+        state.simTime = periodMs;
+        state.playing = false;
 
-  updateFlights(state.simTime);
-  return;
-}
+        const btnPlay = q("btnPlay");
+        if (btnPlay) btnPlay.textContent = "Reproducir";
 
-updateFlights(state.simTime);
+        updateFlights(state.simTime);
+        requestAnimationFrame(animate);
+        return;
+      }
+
+      updateFlights(state.simTime);
     }
 
     requestAnimationFrame(animate);
@@ -1158,27 +1477,36 @@ function resetAnimation() {
       resetAnimation();
       return;
     }
-state.simTime = Math.max(0, Math.min(SIM_DAY_MS, state.flights[0].depOffset));
-clearActiveFlights();
-clearCompletedFlights();
-updateFlights(state.simTime);
-    if (!keepPlaying) {
-      state.playing = false;
-      q("btnPlay").textContent = "Reproducir";
-    }
+
+    const periodMs = state.simPeriodMs || SIM_DAY_MS;
+    state.simTime = Math.max(0, Math.min(periodMs, state.flights[0].depOffset));
+
+    clearActiveFlights();
+    clearCompletedFlights();
+    updateFlights(state.simTime);
+
+    state.playing = !!keepPlaying;
+    const btnPlay = q("btnPlay");
+    if (btnPlay) btnPlay.textContent = state.playing ? "Pausar" : "Reproducir";
+  }
+
+  function speedLabel() {
+    if (state.realDurationMs === 60 * 1000) return "1 min/período";
+    if (state.realDurationMs === 2 * 60 * 1000) return "2 min/período";
+    return "30 s/período";
   }
 
   function toggleSpeed() {
     if (state.realDurationMs === 60 * 1000) {
       state.realDurationMs = 2 * 60 * 1000;
-      q("btnSpeed").textContent = "2 min/día";
     } else if (state.realDurationMs === 2 * 60 * 1000) {
       state.realDurationMs = 30 * 1000;
-      q("btnSpeed").textContent = "30 s/día";
     } else {
       state.realDurationMs = 60 * 1000;
-      q("btnSpeed").textContent = "1 min/día";
     }
+
+    const btn = q("btnSpeed");
+    if (btn) btn.textContent = speedLabel();
   }
 
 function applyLayerVisibility() {
