@@ -55,7 +55,24 @@
     SCL: { name: "Santiago de Chile", latitude: -33.3930, longitude: -70.7858, countryCode: "CL" },
     MVD: { name: "Montevideo", latitude: -34.8384, longitude: -56.0308, countryCode: "UY" }
   };
-
+const AIRPORT_COORD_OVERRIDES = {
+  AMS: {
+    name: "Amsterdam Schiphol",
+    latitude: 52.308601,
+    longitude: 4.76389,
+    countryCode: "NL",
+    continent: "EU",
+    municipality: "Amsterdam"
+  },
+  RAI: {
+    name: "Praia Nelson Mandela",
+    latitude: 14.941126,
+    longitude: -23.484728,
+    countryCode: "CV",
+    continent: "AF",
+    municipality: "Praia"
+  }
+};
   const BASEMAP_CONFIGS = [
     {
       id: "argenmap",
@@ -384,7 +401,10 @@ completedFlights: new Map(),
       US: { lat: [18, 72], lon: [-170, -60] },
       MX: { lat: [14, 33], lon: [-119, -86] },
       PA: { lat: [7, 10], lon: [-83, -77] },
-      ES: { lat: [35, 44.5], lon: [-10, 5] }
+      ES: { lat: [35, 44.5], lon: [-10, 5] },
+      // Correcciones para evitar errores de decimal en ourairports.csv
+      NL: { lat: [50, 54], lon: [3, 8] },
+      CV: { lat: [14, 18], lon: [-26, -22] }
     };
 
     const CONTINENT_COORD_BOUNDS = {
@@ -586,11 +606,11 @@ state.planesLayer = L.layerGroup().addTo(state.map);
     return { snaCount, ourCount };
   }
 
-  function getAirportMeta(code) {
-    const key = clean(code).toUpperCase();
-    if (!key) return null;
-    return state.ourAirportsIndex[key] || AIRPORT_CATALOG_FALLBACK[key] || null;
-  }
+function getAirportMeta(code) {
+  const key = clean(code).toUpperCase();
+  if (!key) return null;
+  return AIRPORT_COORD_OVERRIDES[key] || state.ourAirportsIndex[key] || AIRPORT_CATALOG_FALLBACK[key] || null;
+}
 
   function getAirportLatLngByCode(code) {
     const key = clean(code).toUpperCase();
