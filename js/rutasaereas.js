@@ -2,7 +2,7 @@
 (() => {
   "use strict";
 
-  const DATA_SOURCE = "fuentes/Vuelos_semana_28_07_2025.csv";
+  const DATA_SOURCE = "fuentes/rutasaereas/Vuelos_semana_28_07_2025.csv";
   const SNA_AIRPORTS_SOURCE = "fuentes/Datos_aeropuertos.geojson";
   const OURAIRPORTS_SOURCE = "fuentes/ourairports.csv";
 
