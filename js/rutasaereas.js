@@ -1049,26 +1049,27 @@ function renderDaySelector() {
       return;
     }
 
-    if (state.selectedDay === "all") {
-      const minDep = new Date(Math.min(...state.flights.map(f => f.dep.getTime())));
-      const maxArr = new Date(Math.max(...state.flights.map(f => f.arr.getTime())));
+if (state.selectedDay === "all") {
+  const minDep = new Date(Math.min(...state.flights.map(f => f.dep.getTime())));
+  const maxArr = new Date(Math.max(...state.flights.map(f => f.arr.getTime())));
 
-      const start = new Date(minDep);
-      start.setHours(0, 0, 0, 0);
+  const start = new Date(minDep);
+  start.setHours(0, 0, 0, 0);
 
-      const end = new Date(maxArr);
-      end.setHours(24, 0, 0, 0);
+  // Semana completa: termina en la última llegada real,
+  // no en la medianoche posterior.
+  const end = new Date(maxArr);
 
-      state.simStartDate = start;
-      state.simEndDate = end;
-    } else {
-      const start = getDateFromKey(state.selectedDay) || getDayStart(state.flights[0].dep);
-      const end = new Date(start);
-      end.setDate(end.getDate() + 1);
+  state.simStartDate = start;
+  state.simEndDate = end;
+} else {
+  const start = getDateFromKey(state.selectedDay) || getDayStart(state.flights[0].dep);
+  const end = new Date(start);
+  end.setDate(end.getDate() + 1);
 
-      state.simStartDate = start;
-      state.simEndDate = end;
-    }
+  state.simStartDate = start;
+  state.simEndDate = end;
+}
 
     state.simPeriodMs = Math.max(1, state.simEndDate.getTime() - state.simStartDate.getTime());
 
