@@ -73,6 +73,152 @@ const AIRPORT_COORD_OVERRIDES = {
     municipality: "Praia"
   }
 };
+  const AIRLINE_COLOR_RULES = [
+  {
+    label: "Aerolíneas Argentinas / Austral",
+    color: "#004B80",
+    names: ["AEROLINEAS ARGENTINAS", "AUSTRAL"],
+    exact: ["AR"]
+  },
+  {
+    label: "JetSMART Airlines",
+    color: "#B22222",
+    names: ["JETSMART", "JETSMART AIRLINES", "JA"]
+  },
+  {
+    label: "Flybondi",
+    color: "#F6C500",
+    names: ["FLYBONDI", "FB", "FO"]
+  },
+  {
+    label: "Gol Transportes Aéreos",
+    color: "#F37021",
+    names: ["GOL", "GOL TRANSPORTES AEREOS"]
+  },
+  {
+    label: "LATAM",
+    color: "#5A2D82",
+    names: ["LATAM"]
+  },
+  {
+    label: "Copa Airlines",
+    color: "#003DA6",
+    names: ["COPA", "COPA AIRLINES"]
+  },
+  {
+    label: "Iberia Airlines",
+    color: "#C60C30",
+    names: ["IBERIA", "IBERIA AIRLINES"]
+  },
+  {
+    label: "LATAM Perú",
+    color: "#C2185B",
+    names: ["LATAM PERU", "LATAM PERÚ"]
+  },
+  {
+    label: "TAM Linhas Aéreas",
+    color: "#E30613",
+    names: ["TAM", "TAM LINHAS AEREAS", "TAM LINHAS AÉREAS"]
+  },
+  {
+    label: "American Airlines",
+    color: "#0078D2",
+    names: ["AMERICAN", "AMERICAN AIRLINES"]
+  },
+  {
+    label: "Avianca",
+    color: "#D50032",
+    names: ["AVIANCA"]
+  },
+  {
+    label: "Sky Airline",
+    color: "#E6007E",
+    names: ["SKY", "SKY AIRLINE"]
+  },
+  {
+    label: "Air Europa",
+    color: "#183A8D",
+    names: ["AIR EUROPA"]
+  },
+  {
+    label: "KLM",
+    color: "#00AEEF",
+    names: ["KLM"]
+  },
+  {
+    label: "ITA Airways",
+    color: "#0066CC",
+    names: ["ITA", "ITA AIRWAYS"]
+  },
+  {
+    label: "Delta Air Lines",
+    color: "#862633",
+    names: ["DELTA", "DELTA AIR LINES"]
+  },
+  {
+    label: "United Airlines",
+    color: "#005DAA",
+    names: ["UNITED", "UNITED AIRLINES"]
+  },
+  {
+    label: "Lufthansa",
+    color: "#05164D",
+    names: ["LUFTHANSA"]
+  },
+  {
+    label: "Andes Líneas Aéreas",
+    color: "#2E7D32",
+    names: ["ANDES", "ANDES LINEAS AEREAS", "ANDES LÍNEAS AÉREAS"]
+  },
+  {
+    label: "Aeroméxico",
+    color: "#003B5C",
+    names: ["AEROMEXICO", "AEROMÉXICO"]
+  },
+  {
+    label: "Air France",
+    color: "#002157",
+    names: ["AIR FRANCE"]
+  },
+  {
+    label: "Boliviana de Aviación",
+    color: "#009739",
+    names: ["BOLIVIANA", "BOLIVIANA DE AVIACION", "BOLIVIANA DE AVIACIÓN", "BOA"]
+  },
+  {
+    label: "Turkish Airlines",
+    color: "#C70A0C",
+    names: ["TURKISH", "TURKISH AIRLINES"]
+  },
+  {
+    label: "Arajet",
+    color: "#25B7A0",
+    names: ["ARAJET"]
+  },
+  {
+    label: "British Airways",
+    color: "#2E5AAC",
+    names: ["BRITISH", "BRITISH AIRWAYS"]
+  },
+  {
+    label: "Ethiopian Airlines",
+    color: "#078930",
+    names: ["ETHIOPIAN", "ETHIOPIAN AIRLINES"]
+  },
+  {
+    label: "Emirates Airlines",
+    color: "#B8860B",
+    names: ["EMIRATES", "EMIRATES AIRLINES"]
+  },
+  {
+    label: "Air Canada",
+    color: "#E31B23",
+    names: ["AIR CANADA"]
+  }
+];
+
+const DEFAULT_FLIGHT_COLOR = "#0072BB";
+  
   const BASEMAP_CONFIGS = [
     {
       id: "argenmap",
@@ -1259,14 +1405,33 @@ el.innerHTML = `
     q("kpiAirlines").textContent = airlineSet.size.toLocaleString("es-AR");
   }
 
-  function getFlightColor(f) {
-    const airline = clean(f.airline).toUpperCase();
-    if (airline.includes("AR") || airline.includes("AEROL")) return "#004b80";
-    if (airline.includes("FO") || airline.includes("FLY")) return "#7a4e00";
-    if (airline.includes("JA") || airline.includes("JET")) return "#b22222";
-    if (airline.includes("WJ") || airline.includes("FB")) return "#6b2f82";
-    return "#0072bb";
-  }
+  function normalizeAirlineText(value) {
+  return clean(value)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toUpperCase();
+}
+
+function getAirlineColorRule(airlineName) {
+  const airline = normalizeAirlineText(airlineName);
+  if (!airline) return null;
+
+  return AIRLINE_COLOR_RULES.find(rule => {
+    const exact = Array.isArray(rule.exact) ? rule.exact : [];
+    const names = Array.isArray(rule.names) ? rule.names : [];
+
+    if (exact.some(code => airline === normalizeAirlineText(code))) return true;
+
+    return names.some(name => {
+      const key = normalizeAirlineText(name);
+      return key && airline.includes(key);
+    });
+  }) || null;
+}
+function getFlightColor(f) {
+  const rule = getAirlineColorRule(f.airline);
+  return rule ? rule.color : DEFAULT_FLIGHT_COLOR;
+}
 
   function interpolateCurved(from, to, p) {
     const lat1 = from[0];
