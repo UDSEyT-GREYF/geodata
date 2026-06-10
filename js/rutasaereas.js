@@ -1169,9 +1169,10 @@ function renderDaySelector() {
 
     state.staticRoutes = buildStaticRoutesFromFlights(state.flights);
     buildAirportIndex();
-    renderStaticLayers();
-    updateKpis();
-    updatePeriodUi();
+renderStaticLayers();
+updateKpis();
+renderAirlineLegend();
+updatePeriodUi();
 
     clearActiveFlights();
     clearCompletedFlights();
@@ -1392,7 +1393,44 @@ el.innerHTML = `
     if (!text) return "";
     return text.length > 26 ? `${text.slice(0, 24)}…` : text;
   }
+function renderAirlineLegend() {
+  const root = q("airlineLegend");
+  if (!root) return;
 
+  const used = new Map();
+  let hasOther = false;
+
+  (state.flights || []).forEach(f => {
+    const rule = getAirlineColorRule(f.airline);
+
+    if (rule) {
+      used.set(rule.label, rule);
+    } else if (clean(f.airline)) {
+      hasOther = true;
+    }
+  });
+
+  const items = AIRLINE_COLOR_RULES.filter(rule => used.has(rule.label));
+
+  if (hasOther) {
+    items.push({
+      label: "Otras / sin clasificar",
+      color: DEFAULT_FLIGHT_COLOR
+    });
+  }
+
+  if (!items.length) {
+    root.innerHTML = `<div class="siga-hint">Sin aerolíneas identificadas para el período seleccionado.</div>`;
+    return;
+  }
+
+  root.innerHTML = items.map(item => `
+    <div class="rutas-airline-row">
+      <span class="rutas-airline-swatch" style="background:${escapeHtml(item.color)}"></span>
+      <span class="rutas-airline-name">${escapeHtml(item.label)}</span>
+    </div>
+  `).join("");
+}
   function updateKpis() {
     const routeSet = new Set();
     const airlineSet = new Set();
