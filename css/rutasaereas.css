@@ -308,8 +308,8 @@ body {
   left: 0;
   top: -25px;
   transform: translateX(-50%);
-  width: 96px;
-  max-width: 96px;
+  width: 70px;
+  max-width: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -393,42 +393,45 @@ body {
    RUTAS AÉREAS – Categorías de aeropuertos
    ========================================================= */
 .rutas-airport-center-icon.is-sna {
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
   background: #306fb0;
   color: #ffffff;
-  border: 2px solid #ffffff;
-  font-size: 13px;
+  border: 1.5px solid #ffffff;
+  font-size: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .28);
 }
 
 .rutas-airport-center-icon.is-national {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   background: #ffffff;
   color: #306fb0;
-  border: 2px solid #306fb0;
-  font-size: 9px;
+  border: 1.5px solid #306fb0;
+  font-size: 7px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .22);
 }
 
 .rutas-airport-center-icon.is-international {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   background: #16c41e;
   color: #ffffff;
-  border: 2px solid #ffffff;
-  font-size: 9px;
+  border: 1.5px solid #ffffff;
+  font-size: 7px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .22);
 }
 
 .rutas-airport-floating-text.is-sna {
-  top: -28px;
-  font-size: 8px;
+  top: -22px;
+  font-size: 7px;
   color: #002855;
 }
 
 .rutas-airport-floating-text.is-national,
 .rutas-airport-floating-text.is-international {
-  top: -21px;
-  font-size: 7px;
+  top: -17px;
+  font-size: 6px;
   color: #111827;
 }
 
