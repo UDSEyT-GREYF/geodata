@@ -1149,14 +1149,13 @@ state.staticRoutes.forEach((r) => {
       : airport.category === "national"
         ? "Otro aeropuerto nacional"
         : "Aeropuerto internacional";
-    el.innerHTML = `
-      <div class="feature-title">${escapeHtml(airport.iata)} · ${escapeHtml(category)}</div>
-      <table class="feature-table">
-        <tr><td>Nombre</td><td>${escapeHtml(airport.name || "–")}</td></tr>
-        <tr><td>Municipio</td><td>${escapeHtml(airport.municipality || "–")}</td></tr>
-        <tr><td>País</td><td>${escapeHtml(airport.countryCode || "–")}</td></tr>
-        <tr><td>Fuente coord.</td><td>ourairports.csv</td></tr>
-      </table>`;
+el.innerHTML = `
+  <div class="feature-title">${escapeHtml(airport.iata)} · ${escapeHtml(category)}</div>
+  <table class="feature-table">
+    <tr><td>Nombre</td><td>${escapeHtml(airport.name || "–")}</td></tr>
+    <tr><td>Municipio</td><td>${escapeHtml(airport.municipality || "–")}</td></tr>
+    <tr><td>País</td><td>${escapeHtml(airport.countryCode || "–")}</td></tr>
+  </table>`;
   }
 
   function getRouteColorByEndpoints(f) {
