@@ -1554,11 +1554,20 @@ function getFlightColor(f) {
           color,
           weight: 3.0,
           opacity: 0.82,
-          interactive: false,
+          interactive: true,
           lineCap: "round",
           lineJoin: "round",
           className: "rutas-flight-trail"
         });
+        trail.bindTooltip(buildFlightTooltip(f), {
+  direction: "top",
+  opacity: 1,
+  className: "rutas-tooltip"
+});
+
+trail.on("mouseover", () => setFeatureInfo(f));
+trail.on("click", () => setFeatureInfo(f));
+        
         if (state.showTrails) trail.addTo(state.trailsLayer);
 
         const marker = L.marker(position, {
@@ -1646,12 +1655,18 @@ function addCompletedFlight(f) {
     opacity: 0.55
   });
 
-  marker.bindTooltip(
-    `<div class="rutas-tooltip-title">${escapeHtml(f.displayId || f.id)} · vuelo completado</div>
-     <div>${escapeHtml(f.origin)} → ${escapeHtml(f.destination)}</div>
-     <div class="rutas-tooltip-muted">${formatDateTimeBrief(f.dep)} - ${formatDateTimeBrief(f.arr)}</div>`,
-    { direction: "top", opacity: 1, className: "rutas-tooltip" }
-  );
+const completedFlightId = clean(f.displayId || f.id);
+const completedAirline = clean(f.airline);
+const completedTitle = completedAirline && completedAirline !== "Sin dato"
+  ? `${completedFlightId} · ${completedAirline} · vuelo completado`
+  : `${completedFlightId} · vuelo completado`;
+
+marker.bindTooltip(
+  `<div class="rutas-tooltip-title">${escapeHtml(completedTitle)}</div>
+   <div>${escapeHtml(f.origin)} → ${escapeHtml(f.destination)}</div>
+   <div class="rutas-tooltip-muted">${formatDateTimeBrief(f.dep)} - ${formatDateTimeBrief(f.arr)}</div>`,
+  { direction: "top", opacity: 1, className: "rutas-tooltip" }
+);
 
   marker.on("mouseover", () => setFeatureInfo(f));
   marker.on("click", () => setFeatureInfo(f));
@@ -1682,9 +1697,19 @@ function removeCompletedFlight(id) {
 function clearCompletedFlights() {
   Array.from(state.completedFlights.keys()).forEach(removeCompletedFlight);
 }
-  function buildFlightTooltip(f) {
-    return `<div class="rutas-tooltip-title">${escapeHtml(f.displayId || f.id)}</div><div>${escapeHtml(f.origin)} → ${escapeHtml(f.destination)}</div><div class="rutas-tooltip-muted">${formatDateTimeBrief(f.dep)} - ${formatDateTimeBrief(f.arr)}</div>`;
-  }
+function buildFlightTooltip(f) {
+  const flightId = clean(f.displayId || f.id);
+  const airline = clean(f.airline);
+  const title = airline && airline !== "Sin dato"
+    ? `${flightId} · ${airline}`
+    : flightId;
+
+  return `
+    <div class="rutas-tooltip-title">${escapeHtml(title)}</div>
+    <div>${escapeHtml(f.origin)} → ${escapeHtml(f.destination)}</div>
+    <div class="rutas-tooltip-muted">${formatDateTimeBrief(f.dep)} - ${formatDateTimeBrief(f.arr)}</div>
+  `;
+}
 
   function setFeatureInfo(f) {
     const el = q("featureInfo");
