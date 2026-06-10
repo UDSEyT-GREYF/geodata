@@ -1393,7 +1393,8 @@ el.innerHTML = `
 
 const range = q("timeRange");
 if (range) {
-  range.max = String(state.simPeriodMs);
+  const max = Math.max(1, Math.floor(state.simPeriodMs || SIM_DAY_MS));
+  range.max = String(max);
   range.value = String(Math.max(0, Math.min(max, Math.floor(currentTime || 0))));
 }
   }
