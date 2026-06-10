@@ -487,3 +487,7 @@ body {
 .rutasCompletedPane .rutas-plane-icon {
   opacity: 0.65;
 }
+/* Oculta el bloque técnico de carga de datos */
+.rutas-data-card.is-hidden {
+  display: none !important;
+}
