@@ -1391,9 +1391,11 @@ el.innerHTML = `
     const activeKpi = q("kpiActiveFlights");
     if (activeKpi) activeKpi.textContent = activeCount.toLocaleString("es-AR");
 
-    const range = q("timeRange");
-    if (range) range.value = Math.floor(currentTime);
-  }
+const range = q("timeRange");
+if (range) {
+  range.max = String(state.simPeriodMs);
+  range.value = "0";
+}
 
   function removeActiveFlight(id) {
     const active = state.activeFlights.get(id);
@@ -1526,6 +1528,7 @@ function clearCompletedFlights() {
       weekday: "short",
       day: "2-digit",
       month: "2-digit",
+      year: "numeric",
       hour: "2-digit",
       minute: "2-digit",
       hour12: false
