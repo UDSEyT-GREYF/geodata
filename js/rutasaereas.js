@@ -130,7 +130,7 @@ const AIRPORT_COORD_OVERRIDES = {
     flightsAll: [],
     flights: [],
     availableDays: [],
-    selectedDay: "all",
+    selectedDay: "",
     simStartDate: null,
     simEndDate: null,
     simPeriodMs: SIM_DAY_MS,
@@ -334,7 +334,34 @@ completedFlights: new Map(),
     const d = String(date.getDate()).padStart(2, "0");
     return `${y}-${m}-${d}`;
   }
+function formatDaySelectLabel(date) {
+  return date.toLocaleDateString("es-AR", {
+    weekday: "long",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
+  });
+}
 
+function buildWeekSelectLabel(days) {
+  if (!days || !days.length) return "";
+
+  const first = days[0].date;
+  const last = days[days.length - 1].date;
+
+  const firstTxt = first.toLocaleDateString("es-AR", {
+    day: "numeric",
+    month: "numeric"
+  });
+
+  const lastTxt = last.toLocaleDateString("es-AR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
+  });
+
+  return `${firstTxt} al ${lastTxt}`;
+}
   function getDateFromKey(key) {
     const m = clean(key).match(/^(\d{4})-(\d{2})-(\d{2})$/);
     if (!m) return null;
@@ -671,10 +698,17 @@ function getAirportMeta(code) {
       }
     }
 
-    state.flightsAll = normalizeFlights(state.flightsRaw);
-    buildAvailableDays();
-    renderDaySelector();
-    applyDayFilter({ keepPlaying: true });
+state.flightsAll = normalizeFlights(state.flightsRaw);
+
+const days = buildAvailableDays();
+state.availableDays = Array.isArray(days) ? days : (state.availableDays || []);
+
+// Al entrar al mapa, arranca en el primer día disponible.
+// En tu caso debería ser lunes.
+state.selectedDay = state.availableDays[0]?.key || "all";
+
+renderDaySelector();
+applyDayFilter({ keepPlaying: true });
   }
 
   function normalizeFlights(rows) {
@@ -894,45 +928,87 @@ if (!origin || !destination || origin === destination) {
     return routes;
   }
 
-  function buildAvailableDays() {
-    const byDay = new Map();
+function buildAvailableDays() {
+  const map = new Map();
 
-    state.flightsAll.forEach((f) => {
-      const key = getLocalDateKey(f.dep);
-      if (!key) return;
-      if (!byDay.has(key)) byDay.set(key, { key, date: getDateFromKey(key), count: 0 });
-      byDay.get(key).count += 1;
-    });
+  (state.flightsAll || []).forEach(f => {
+    const key = getLocalDateKey(f.dep);
 
-    state.availableDays = Array.from(byDay.values())
-      .filter(d => d.date)
-      .sort((a, b) => a.date - b.date);
-  }
+    if (!map.has(key)) {
+      const d = new Date(f.dep);
+      d.setHours(0, 0, 0, 0);
 
-  function renderDaySelector() {
-    const select = q("daySelect");
-    if (!select) return;
-
-    const current = state.selectedDay || "all";
-    const options = [
-      `<option value="all">Semana completa</option>`,
-      ...state.availableDays.map((d) => {
-        const label = `${formatDayLong(d.date)} · ${d.count.toLocaleString("es-AR")} vuelos`;
-        return `<option value="${escapeHtml(d.key)}">${escapeHtml(label)}</option>`;
-      })
-    ];
-
-    select.innerHTML = options.join("");
-    select.value = state.availableDays.some(d => d.key === current) ? current : "all";
-
-    if (!select.dataset.bound) {
-      select.dataset.bound = "1";
-      select.addEventListener("change", () => {
-        state.selectedDay = select.value || "all";
-        applyDayFilter({ keepPlaying: false });
+      map.set(key, {
+        key,
+        date: d,
+        count: 0
       });
     }
+
+    map.get(key).count += 1;
+  });
+
+  const days = Array.from(map.values()).sort((a, b) => a.date - b.date);
+
+  state.availableDays = days;
+  return days;
+}
+
+function renderDaySelector() {
+  const select = q("daySelect");
+  if (!select) return;
+
+  const days = state.availableDays || buildAvailableDays();
+
+  const dayOptions = days.map(day => {
+    const label = day.date.toLocaleDateString("es-AR", {
+      weekday: "long",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric"
+    });
+
+    const countText = Number.isFinite(day.count)
+      ? ` · ${day.count.toLocaleString("es-AR")} vuelos`
+      : "";
+
+    return `<option value="${escapeHtml(day.key)}">${escapeHtml(label + countText)}</option>`;
+  });
+
+  const first = days[0]?.date;
+  const last = days[days.length - 1]?.date;
+
+  let weekLabel = "";
+  if (first && last) {
+    const firstTxt = first.toLocaleDateString("es-AR", {
+      day: "numeric",
+      month: "numeric"
+    });
+
+    const lastTxt = last.toLocaleDateString("es-AR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric"
+    });
+
+    weekLabel = `${firstTxt} al ${lastTxt}`;
   }
+
+  select.innerHTML = `
+    ${dayOptions.join("")}
+    <option value="all">Semana completa${weekLabel ? ` · ${escapeHtml(weekLabel)}` : ""}</option>
+  `;
+
+  select.value = state.selectedDay || days[0]?.key || "all";
+
+  if (select.dataset.bound === "1") return;
+  select.dataset.bound = "1";
+
+  select.addEventListener("change", () => {
+    state.selectedDay = select.value;
+    applyDayFilter({ keepPlaying: false });
+  });
+}
 
   function applyDayFilter(opts = {}) {
     const { keepPlaying = false } = opts;
