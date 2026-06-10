@@ -703,11 +703,14 @@ function getAirportMeta(code) {
         return;
       }
 
-      const origin = resolveSpecialAirportCode(rawOrigin, rawDestination);
-      const destination = resolveSpecialAirportCode(rawDestination, rawOrigin);
+const origin = resolveSpecialAirportCode(rawOrigin, rawDestination);
+const destination = resolveSpecialAirportCode(rawDestination, rawOrigin);
 
-      const from = getLatLngFromRow(row, "from", "origin", origin);
-      const to = getLatLngFromRow(row, "to", "destination", destination);
+// No dibujar rutas base con mismo origen y destino.
+if (!origin || !destination || origin === destination) return;
+
+const from = getLatLngFromRow(row, "from", "origin", origin);
+const to = getLatLngFromRow(row, "to", "destination", destination);
       if (!from || !to) {
         state.skippedRows += 1;
         console.warn("Vuelo omitido por falta de coordenadas:", row);
@@ -769,13 +772,23 @@ function buildStaticRoutesFromRaw(rows) {
   const rendered = new Set();
 
   (rows || []).forEach((row) => {
-    const rawOrigin = clean(getFirst(row, FIELD_ALIASES.origin)).toUpperCase();
-    const rawDestination = clean(getFirst(row, FIELD_ALIASES.destination)).toUpperCase();
+const rawOrigin = clean(getFirst(row, FIELD_ALIASES.origin)).toUpperCase();
+const rawDestination = clean(getFirst(row, FIELD_ALIASES.destination)).toUpperCase();
 
-    if (!rawOrigin || !rawDestination || rawOrigin === rawDestination) return;
+if (!rawOrigin || !rawDestination || rawOrigin === rawDestination) {
+  state.skippedRows += 1;
+  return;
+}
 
-    const origin = resolveSpecialAirportCode(rawOrigin, rawDestination);
-    const destination = resolveSpecialAirportCode(rawDestination, rawOrigin);
+const origin = resolveSpecialAirportCode(rawOrigin, rawDestination);
+const destination = resolveSpecialAirportCode(rawDestination, rawOrigin);
+
+// Excluye también casos que quedan iguales después de resolver códigos agregados,
+// por ejemplo BUE → AEP/EZE.
+if (!origin || !destination || origin === destination) {
+  state.skippedRows += 1;
+  return;
+}
 
     const from = getLatLngFromRow(row, "from", "origin", origin);
     const to = getLatLngFromRow(row, "to", "destination", destination);
@@ -1219,8 +1232,8 @@ state.staticRoutes.forEach((r) => {
     return L.divIcon({
       className: "rutas-plane-marker",
       html: `<span class="rutas-plane-icon" style="color:${escapeHtml(color)};"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M16 2.3c1.2 0 2.1 1 2.1 2.4v7.6l10.1 6.4c.7.4 1.1 1.2 1 2l-.2 2.1-10.9-3.4v5.3l3.1 2.5-.3 1.8L16 27.5 11.1 29l-.3-1.8 3.1-2.5v-5.3L3 22.8l-.2-2.1c-.1-.8.3-1.6 1-2l10.1-6.4V4.7c0-1.4.9-2.4 2.1-2.4Z" fill="currentColor" stroke="#ffffff" stroke-width="1.4" stroke-linejoin="round"/></svg></span>`,
-      iconSize: [28, 28],
-      iconAnchor: [14, 14]
+      iconSize: [24, 24],
+      iconAnchor: [12, 12]
     });
   }
 
