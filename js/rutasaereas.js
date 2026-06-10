@@ -1604,9 +1604,9 @@ function resetAnimation() {
   }
 
   function speedLabel() {
-    if (state.realDurationMs === 60 * 1000) return "1 min/período";
-    if (state.realDurationMs === 2 * 60 * 1000) return "2 min/período";
-    return "30 s/período";
+    if (state.realDurationMs === 60 * 1000) return "Velocidda de reproducción 1 min";
+    if (state.realDurationMs === 2 * 60 * 1000) return "Velocidad de reproducción 2 min";
+    return "Velocidad de reproducción 30 segundos";
   }
 
   function toggleSpeed() {
