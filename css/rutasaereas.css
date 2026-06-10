@@ -492,3 +492,36 @@ body {
 .rutas-data-card.is-hidden {
   display: none !important;
 }
+.rutas-airline-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 210px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.rutas-airline-row {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  align-items: center;
+  gap: 7px;
+  font-size: .70rem;
+  color: #374151;
+  line-height: 1.2;
+}
+
+.rutas-airline-swatch {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, .24);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, .18);
+}
+
+.rutas-airline-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
