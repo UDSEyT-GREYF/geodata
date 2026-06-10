@@ -1394,9 +1394,9 @@ el.innerHTML = `
 const range = q("timeRange");
 if (range) {
   range.max = String(state.simPeriodMs);
-  range.value = "0";
+  range.value = String(Math.max(0, Math.min(max, Math.floor(currentTime || 0))));
 }
-
+  }
   function removeActiveFlight(id) {
     const active = state.activeFlights.get(id);
     if (!active) return;
