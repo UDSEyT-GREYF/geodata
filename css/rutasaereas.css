@@ -451,8 +451,8 @@ body {
 }
 
 .rutas-legend-dot {
-  width: 18px;
-  height: 18px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   display: grid;
   place-items: center;
