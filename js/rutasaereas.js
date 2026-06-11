@@ -1424,12 +1424,20 @@ function renderAirlineLegend() {
     return;
   }
 
-  root.innerHTML = items.map(item => `
-    <div class="rutas-airline-row">
-      <span class="rutas-airline-swatch" style="background:${escapeHtml(item.color)}"></span>
-      <span class="rutas-airline-name">${escapeHtml(item.label)}</span>
-    </div>
-  `).join("");
+root.innerHTML = items.map(item => `
+  <div class="rutas-airline-row">
+    <span class="rutas-airline-plane" style="color:${escapeHtml(item.color)}">
+      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <path d="M16 2.3c1.2 0 2.1 1 2.1 2.4v7.6l10.1 6.4c.7.4 1.1 1.2 1 2l-.2 2.1-10.9-3.4v5.3l3.1 2.5-.3 1.8L16 27.5 11.1 29l-.3-1.8 3.1-2.5v-5.3L3 22.8l-.2-2.1c-.1-.8.3-1.6 1-2l10.1-6.4V4.7c0-1.4.9-2.4 2.1-2.4Z"
+          fill="currentColor"
+          stroke="#ffffff"
+          stroke-width="1.4"
+          stroke-linejoin="round"/>
+      </svg>
+    </span>
+    <span class="rutas-airline-name">${escapeHtml(item.label)}</span>
+  </div>
+`).join("");
 }
   function updateKpis() {
     const routeSet = new Set();
