@@ -676,3 +676,40 @@ body {
   font-size: .62rem;
   line-height: 1.25;
 }
+.rutas-map-shell {
+  position: relative;
+}
+
+.rutas-map-topbar {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 800;
+  width: min(760px, calc(100% - 32px));
+  pointer-events: none;
+}
+
+.rutas-map-topbar .rutas-day-range-box {
+  margin: 0;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, .18);
+  border-radius: 10px;
+  pointer-events: auto;
+}
+
+.rutas-day-range-box--map {
+  backdrop-filter: blur(2px);
+}
+
+.rutas-day-playhead {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e11d48;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.55);
+  transform: translateX(-50%);
+  z-index: 5;
+  pointer-events: none;
+}
