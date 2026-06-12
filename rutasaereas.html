@@ -37,34 +37,7 @@
           <div id="periodLabel" class="rutas-period-label">Semana completa</div>
         </div>
 
-        <div class="rutas-day-range-box">
-          <div class="rutas-day-range-head">
-            <span>Fechas de operación</span>
-            <strong id="dayRangeLabel">Cargando fechas…</strong>
-          </div>
-
-          <div class="rutas-day-timeline-row">
-            <button type="button" id="btnDayRangePrev" class="rutas-day-step" title="Retroceder un día">‹</button>
-
-            <div id="dayTimelineWrap" class="rutas-day-timeline-wrap">
-              <svg id="dayTimelineSvg" class="rutas-day-timeline-svg" viewBox="0 0 300 64" preserveAspectRatio="none"></svg>
-
-              <div id="dayTlShadeL" class="rutas-day-shade"></div>
-              <div id="dayTlWindow" class="rutas-day-window"></div>
-              <div id="dayTlShadeR" class="rutas-day-shade"></div>
-
-              <button type="button" id="dayTlHandleL" class="rutas-day-handle" aria-label="Mover fecha inicial"></button>
-              <button type="button" id="dayTlHandleR" class="rutas-day-handle" aria-label="Mover fecha final"></button>
-            </div>
-
-            <button type="button" id="btnDayRangeNext" class="rutas-day-step" title="Avanzar un día">›</button>
-          </div>
-
-          <div class="rutas-day-range-help">
-            Arrastrá los extremos para elegir uno o varios días. Usá ‹ y › para mover la ventana día por día.
-          </div>
-        </div>
-
+       
         <label id="timeRangeLabel" class="siga-label" for="timeRange">Recorrido del día</label>
         <input id="timeRange" class="rutas-range" type="range" min="0" max="86400000" value="0" step="60000" />
 
@@ -141,6 +114,39 @@
     </aside>
 
     <section class="siga-map-shell">
+      <div class="rutas-map-topbar">
+        <div class="rutas-day-range-box rutas-day-range-box--map">
+          <div class="rutas-day-range-head">
+            <span>Fechas de operación</span>
+            <strong id="dayRangeLabel">Cargando fechas…</strong>
+          </div>
+
+          <div class="rutas-day-timeline-row">
+            <button type="button" id="btnDayRangePrev" class="rutas-day-step" title="Retroceder un día">‹</button>
+
+            <div id="dayTimelineWrap" class="rutas-day-timeline-wrap">
+              <svg id="dayTimelineSvg" class="rutas-day-timeline-svg" viewBox="0 0 300 64" preserveAspectRatio="none"></svg>
+
+              <div id="dayTlShadeL" class="rutas-day-shade"></div>
+              <div id="dayTlWindow" class="rutas-day-window"></div>
+              <div id="dayTlShadeR" class="rutas-day-shade"></div>
+
+              <!-- indicador de avance de la animación -->
+              <div id="dayTlPlayhead" class="rutas-day-playhead"></div>
+
+              <button type="button" id="dayTlHandleL" class="rutas-day-handle" aria-label="Mover fecha inicial"></button>
+              <button type="button" id="dayTlHandleR" class="rutas-day-handle" aria-label="Mover fecha final"></button>
+            </div>
+
+            <button type="button" id="btnDayRangeNext" class="rutas-day-step" title="Avanzar un día">›</button>
+          </div>
+
+          <div class="rutas-day-range-help">
+            Arrastrá los extremos para elegir uno o varios días. Usá ‹ y › para mover la ventana día por día.
+          </div>
+        </div>
+      </div>
+
       <div id="rutasMap" class="siga-map rutas-map" aria-label="Mapa de rutas aéreas"></div>
       <div id="mapStatus" class="map-status">Inicializando mapa…</div>
     </section>
