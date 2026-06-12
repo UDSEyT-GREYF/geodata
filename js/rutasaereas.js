@@ -275,9 +275,11 @@ const DEFAULT_FLIGHT_COLOR = "#FFFFFF";
     flightsRaw: [],
     flightsAll: [],
     flights: [],
-    availableDays: [],
-    selectedDay: "",
-    simStartDate: null,
+availableDays: [],
+selectedDay: "",
+selectedDayFromIdx: 0,
+selectedDayToIdx: 0,
+simStartDate: null,
     simEndDate: null,
     simPeriodMs: SIM_DAY_MS,
     staticRoutes: [],
@@ -524,20 +526,9 @@ function buildWeekSelectLabel(days) {
     });
   }
 
-  function formatPeriodLabel() {
-    if (state.selectedDay !== "all") {
-      const d = getDateFromKey(state.selectedDay);
-      return d ? formatDayLong(d) : "Día seleccionado";
-    }
-
-    if (!state.availableDays.length) return "Semana completa";
-
-    const first = state.availableDays[0]?.date;
-    const last = state.availableDays[state.availableDays.length - 1]?.date;
-    if (!first || !last) return "Semana completa";
-
-    return `Semana completa · ${first.toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit" })} al ${last.toLocaleDateString("es-AR", { day: "2-digit", month: "2-digit", year: "numeric" })}`;
-  }
+function formatPeriodLabel() {
+  return formatDayRangeLabelFromState();
+}
 
   function setTimeRangeMax() {
     const range = q("timeRange");
@@ -851,9 +842,11 @@ state.availableDays = Array.isArray(days) ? days : (state.availableDays || []);
 
 // Al entrar al mapa, arranca en el primer día disponible.
 // En tu caso debería ser lunes.
-state.selectedDay = state.availableDays[0]?.key || "all";
+state.selectedDayFromIdx = 0;
+state.selectedDayToIdx = 0;
+state.selectedDay = state.availableDays[0]?.key || "";
 
-renderDaySelector();
+renderDayTimeline();
 applyDayFilter({ keepPlaying: true });
   }
 
@@ -1100,153 +1093,382 @@ function buildAvailableDays() {
   return days;
 }
 
-function renderDaySelector() {
-  const select = q("daySelect");
-  if (!select) return;
+function clampDayIndex(idx) {
+  const days = state.availableDays || [];
+  const max = Math.max(0, days.length - 1);
+  const n = Number(idx);
+
+  return Math.max(0, Math.min(max, Number.isFinite(n) ? Math.round(n) : 0));
+}
+
+function getSelectedDayRange() {
+  const days = state.availableDays || [];
+
+  if (!days.length) {
+    return {
+      fromIdx: 0,
+      toIdx: 0,
+      from: null,
+      to: null,
+      isSingle: true,
+      isFull: false
+    };
+  }
+
+  let fromIdx = clampDayIndex(state.selectedDayFromIdx);
+  let toIdx = clampDayIndex(state.selectedDayToIdx);
+
+  if (fromIdx > toIdx) {
+    const aux = fromIdx;
+    fromIdx = toIdx;
+    toIdx = aux;
+  }
+
+  return {
+    fromIdx,
+    toIdx,
+    from: days[fromIdx],
+    to: days[toIdx],
+    isSingle: fromIdx === toIdx,
+    isFull: fromIdx === 0 && toIdx === days.length - 1
+  };
+}
+
+function formatDayCompact(date) {
+  if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "";
+
+  return date.toLocaleDateString("es-AR", {
+    weekday: "short",
+    day: "2-digit",
+    month: "2-digit"
+  }).replace(".", "");
+}
+
+function formatDayRangeLabelFromState() {
+  const r = getSelectedDayRange();
+
+  if (!r.from || !r.to) return "Sin fechas disponibles";
+
+  if (r.isFull && state.availableDays.length > 1) {
+    return `Semana completa · ${formatDayCompact(r.from.date)} — ${formatDayCompact(r.to.date)}`;
+  }
+
+  if (r.isSingle) {
+    return formatDayLong(r.from.date);
+  }
+
+  return `${formatDayCompact(r.from.date)} — ${formatDayCompact(r.to.date)}`;
+}
+
+function updateDayTimelineOverlay() {
+  const days = state.availableDays || [];
+  const label = q("dayRangeLabel");
+  const shadeL = q("dayTlShadeL");
+  const shadeR = q("dayTlShadeR");
+  const win = q("dayTlWindow");
+  const handleL = q("dayTlHandleL");
+  const handleR = q("dayTlHandleR");
+
+  if (label) label.textContent = formatDayRangeLabelFromState();
+
+  if (!days.length || !shadeL || !shadeR || !win || !handleL || !handleR) return;
+
+  const r = getSelectedDayRange();
+  const denom = Math.max(1, days.length - 1);
+
+  const leftPct = days.length === 1 ? 0 : (r.fromIdx / denom) * 100;
+  const rightPct = days.length === 1 ? 100 : (r.toIdx / denom) * 100;
+
+  shadeL.style.left = "0";
+  shadeL.style.width = `${leftPct}%`;
+
+  win.style.left = `${leftPct}%`;
+  win.style.width = `${Math.max(0, rightPct - leftPct)}%`;
+
+  shadeR.style.left = `${rightPct}%`;
+  shadeR.style.width = `${Math.max(0, 100 - rightPct)}%`;
+
+  handleL.style.left = `${leftPct}%`;
+  handleR.style.left = `${rightPct}%`;
+}
+
+function setSelectedDayRange(fromIdx, toIdx, opts = {}) {
+  const { keepPlaying = false } = opts;
+  const days = state.availableDays || [];
+  if (!days.length) return;
+
+  let f = clampDayIndex(fromIdx);
+  let t = clampDayIndex(toIdx);
+
+  if (f > t) {
+    const aux = f;
+    f = t;
+    t = aux;
+  }
+
+  state.selectedDayFromIdx = f;
+  state.selectedDayToIdx = t;
+
+  state.selectedDay = f === t
+    ? days[f].key
+    : `${days[f].key}_${days[t].key}`;
+
+  updateDayTimelineOverlay();
+  applyDayFilter({ keepPlaying });
+}
+
+function shiftSelectedDayRange(delta) {
+  const days = state.availableDays || [];
+  if (!days.length) return;
+
+  const r = getSelectedDayRange();
+  const span = r.toIdx - r.fromIdx;
+  let nextFrom = r.fromIdx + delta;
+
+  nextFrom = Math.max(0, Math.min(days.length - 1 - span, nextFrom));
+
+  setSelectedDayRange(nextFrom, nextFrom + span, { keepPlaying: false });
+}
+
+function renderDayTimeline() {
+  const wrap = q("dayTimelineWrap");
+  const svg = q("dayTimelineSvg");
+  if (!wrap || !svg) return;
 
   const days = state.availableDays || buildAvailableDays();
 
-  const dayOptions = days.map(day => {
-    const label = day.date.toLocaleDateString("es-AR", {
-      weekday: "long",
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric"
-    });
-
-    const countText = Number.isFinite(day.count)
-      ? ` · ${day.count.toLocaleString("es-AR")} vuelos`
-      : "";
-
-    return `<option value="${escapeHtml(day.key)}">${escapeHtml(label + countText)}</option>`;
-  });
-
-  const first = days[0]?.date;
-  const last = days[days.length - 1]?.date;
-
-  let weekLabel = "";
-  if (first && last) {
-    const firstTxt = first.toLocaleDateString("es-AR", {
-      day: "numeric",
-      month: "numeric"
-    });
-
-    const lastTxt = last.toLocaleDateString("es-AR", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric"
-    });
-
-    weekLabel = `${firstTxt} al ${lastTxt}`;
+  if (!days.length) {
+    svg.innerHTML = "";
+    updateDayTimelineOverlay();
+    return;
   }
 
-  select.innerHTML = `
-    ${dayOptions.join("")}
-    <option value="all">Semana completa${weekLabel ? ` · ${escapeHtml(weekLabel)}` : ""}</option>
+  const W = 300;
+  const H = 64;
+  const padX = 12;
+  const padTop = 8;
+  const padBottom = 16;
+  const innerW = W - padX * 2;
+  const innerH = H - padTop - padBottom;
+  const maxCount = Math.max(...days.map(d => Number(d.count) || 0), 1);
+
+  const x = (idx) => {
+    if (days.length === 1) return W / 2;
+    return padX + innerW * (idx / (days.length - 1));
+  };
+
+  let bars = "";
+  let labels = "";
+
+  days.forEach((day, idx) => {
+    const cx = x(idx);
+    const h = Math.max(4, innerH * ((Number(day.count) || 0) / maxCount));
+    const y = padTop + innerH - h;
+    const barW = Math.max(8, Math.min(22, innerW / Math.max(1, days.length) * 0.55));
+
+    bars += `
+      <rect x="${cx - barW / 2}" y="${y}" width="${barW}" height="${h}" rx="2"
+        class="rutas-day-bar">
+        <title>${escapeHtml(formatDayLong(day.date))} · ${day.count.toLocaleString("es-AR")} vuelos</title>
+      </rect>
+    `;
+
+    labels += `
+      <text x="${cx}" y="${H - 4}" text-anchor="middle" class="rutas-day-label">
+        ${escapeHtml(day.date.toLocaleDateString("es-AR", { weekday: "short" }).replace(".", ""))}
+      </text>
+    `;
+  });
+
+  svg.innerHTML = `
+    <line x1="${padX}" y1="${padTop + innerH}" x2="${W - padX}" y2="${padTop + innerH}" class="rutas-day-axis"/>
+    ${bars}
+    ${labels}
   `;
 
-  select.value = state.selectedDay || days[0]?.key || "all";
+  updateDayTimelineOverlay();
 
-  if (select.dataset.bound === "1") return;
-  select.dataset.bound = "1";
+  if (wrap.dataset.bound === "1") return;
+  wrap.dataset.bound = "1";
 
-  select.addEventListener("change", () => {
-    state.selectedDay = select.value;
-    applyDayFilter({ keepPlaying: false });
+  let dragMode = null;
+
+  function clientXToDayIdx(clientX) {
+    const rect = wrap.getBoundingClientRect();
+    const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+    return Math.round(pct * Math.max(0, (state.availableDays || []).length - 1));
+  }
+
+  function onMove(e) {
+    if (!dragMode) return;
+
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const idx = clientXToDayIdx(clientX);
+    const r = getSelectedDayRange();
+
+    if (dragMode === "left") {
+      setSelectedDayRange(idx, r.toIdx, { keepPlaying: false });
+    } else if (dragMode === "right") {
+      setSelectedDayRange(r.fromIdx, idx, { keepPlaying: false });
+    }
+  }
+
+  function onUp() {
+    dragMode = null;
+    document.removeEventListener("mousemove", onMove);
+    document.removeEventListener("touchmove", onMove);
+  }
+
+  q("dayTlHandleL")?.addEventListener("mousedown", e => {
+    e.preventDefault();
+    dragMode = "left";
+    document.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseup", onUp, { once: true });
   });
+
+  q("dayTlHandleR")?.addEventListener("mousedown", e => {
+    e.preventDefault();
+    dragMode = "right";
+    document.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseup", onUp, { once: true });
+  });
+
+  q("dayTlHandleL")?.addEventListener("touchstart", e => {
+    e.preventDefault();
+    dragMode = "left";
+    document.addEventListener("touchmove", onMove, { passive: false });
+    document.addEventListener("touchend", onUp, { once: true });
+  }, { passive: false });
+
+  q("dayTlHandleR")?.addEventListener("touchstart", e => {
+    e.preventDefault();
+    dragMode = "right";
+    document.addEventListener("touchmove", onMove, { passive: false });
+    document.addEventListener("touchend", onUp, { once: true });
+  }, { passive: false });
+
+  wrap.addEventListener("click", e => {
+    if (e.target && e.target.classList.contains("rutas-day-handle")) return;
+
+    const idx = clientXToDayIdx(e.clientX);
+    setSelectedDayRange(idx, idx, { keepPlaying: false });
+  });
+
+  q("btnDayRangePrev")?.addEventListener("click", () => shiftSelectedDayRange(-1));
+  q("btnDayRangeNext")?.addEventListener("click", () => shiftSelectedDayRange(1));
 }
 
-  function applyDayFilter(opts = {}) {
-    const { keepPlaying = false } = opts;
+function applyDayFilter(opts = {}) {
+  const { keepPlaying = false } = opts;
 
-    if (state.selectedDay === "all") {
-      state.flights = [...state.flightsAll];
-    } else {
-      state.flights = state.flightsAll.filter(f => getLocalDateKey(f.dep) === state.selectedDay);
-    }
+  const days = state.availableDays || [];
+  const r = getSelectedDayRange();
 
-    rebuildSimulationWindow();
+  if (!days.length || !r.from || !r.to) {
+    state.flights = [];
+  } else {
+    const fromKey = r.from.key;
+    const toKey = r.to.key;
 
-    state.staticRoutes = buildStaticRoutesFromFlights(state.flights);
-    buildAirportIndex();
-renderStaticLayers();
-updateKpis();
-renderAirlineLegend();
-updatePeriodUi();
-
-    clearActiveFlights();
-    clearCompletedFlights();
-
-    if (state.flights.length) {
-      goToFirstFlight({ keepPlaying });
-    } else {
-      resetAnimation();
-    }
-
-    updateMapStatus();
-  }
-
-  function rebuildSimulationWindow() {
-    if (!state.flights.length) {
-      state.simStartDate = null;
-      state.simEndDate = null;
-      state.simPeriodMs = SIM_DAY_MS;
-      state.simTime = 0;
-      setTimeRangeMax();
-      return;
-    }
-
-if (state.selectedDay === "all") {
-  const minDep = new Date(Math.min(...state.flights.map(f => f.dep.getTime())));
-  const maxArr = new Date(Math.max(...state.flights.map(f => f.arr.getTime())));
-
-  const start = new Date(minDep);
-  start.setHours(0, 0, 0, 0);
-
-  // Semana completa: termina en la última llegada real,
-  // no en la medianoche posterior.
-  const end = new Date(maxArr);
-
-  state.simStartDate = start;
-  state.simEndDate = end;
-} else {
-  const start = getDateFromKey(state.selectedDay) || getDayStart(state.flights[0].dep);
-  const end = new Date(start);
-  end.setDate(end.getDate() + 1);
-
-  state.simStartDate = start;
-  state.simEndDate = end;
-}
-
-    state.simPeriodMs = Math.max(1, state.simEndDate.getTime() - state.simStartDate.getTime());
-
-    state.flights.forEach((f) => {
-      f.depOffset = f.dep.getTime() - state.simStartDate.getTime();
-      f.arrOffset = f.arr.getTime() - state.simStartDate.getTime();
-      f.duration = Math.max(1, f.arrOffset - f.depOffset);
+    state.flights = state.flightsAll.filter(f => {
+      const key = getLocalDateKey(f.dep);
+      return key >= fromKey && key <= toKey;
     });
-
-    state.flights.sort((a, b) => a.depOffset - b.depOffset);
-    setTimeRangeMax();
   }
+
+  rebuildSimulationWindow();
+
+  state.staticRoutes = buildStaticRoutesFromFlights(state.flights);
+  buildAirportIndex();
+  renderStaticLayers();
+  updateKpis();
+  renderAirlineLegend();
+  updateDayTimelineOverlay();
+  updatePeriodUi();
+
+  clearActiveFlights();
+  clearCompletedFlights();
+
+  if (state.flights.length) {
+    goToFirstFlight({ keepPlaying });
+  } else {
+    resetAnimation();
+  }
+
+  updateMapStatus();
+}
+
+function rebuildSimulationWindow() {
+  if (!state.flights.length) {
+    state.simStartDate = null;
+    state.simEndDate = null;
+    state.simPeriodMs = SIM_DAY_MS;
+    state.simTime = 0;
+    setTimeRangeMax();
+    return;
+  }
+
+  const r = getSelectedDayRange();
+
+  if (r.isSingle && r.from) {
+    const start = new Date(r.from.date);
+    start.setHours(0, 0, 0, 0);
+
+    const end = new Date(start);
+    end.setDate(end.getDate() + 1);
+
+    state.simStartDate = start;
+    state.simEndDate = end;
+  } else if (r.from && r.to) {
+    const start = new Date(r.from.date);
+    start.setHours(0, 0, 0, 0);
+
+    const maxArr = new Date(Math.max(...state.flights.map(f => f.arr.getTime())));
+
+    state.simStartDate = start;
+    state.simEndDate = maxArr;
+  } else {
+    const minDep = new Date(Math.min(...state.flights.map(f => f.dep.getTime())));
+    const maxArr = new Date(Math.max(...state.flights.map(f => f.arr.getTime())));
+
+    const start = new Date(minDep);
+    start.setHours(0, 0, 0, 0);
+
+    state.simStartDate = start;
+    state.simEndDate = maxArr;
+  }
+
+  state.simPeriodMs = Math.max(1, state.simEndDate.getTime() - state.simStartDate.getTime());
+
+  state.flights.forEach((f) => {
+    f.depOffset = f.dep.getTime() - state.simStartDate.getTime();
+    f.arrOffset = f.arr.getTime() - state.simStartDate.getTime();
+    f.duration = Math.max(1, f.arrOffset - f.depOffset);
+  });
+
+  state.flights.sort((a, b) => a.depOffset - b.depOffset);
+  setTimeRangeMax();
+}
 
   function updatePeriodUi() {
     const periodLabel = q("periodLabel");
     if (periodLabel) periodLabel.textContent = formatPeriodLabel();
 
-    const rangeLabel = q("timeRangeLabel");
-    if (rangeLabel) {
-      rangeLabel.textContent = state.selectedDay === "all"
-        ? "Recorrido de la semana"
-        : "Recorrido del día";
-    }
+const r = getSelectedDayRange();
 
-    const hint = q("speedHint");
-    if (hint) {
-      hint.textContent = state.selectedDay === "all"
-        ? "La escala inicial comprime toda la semana seleccionada en 60 segundos de reproducción."
-        : "La escala inicial comprime 24 horas de operación en 60 segundos de reproducción.";
-    }
+const rangeLabel = q("timeRangeLabel");
+if (rangeLabel) {
+  rangeLabel.textContent = r.isSingle
+    ? "Recorrido del día"
+    : "Recorrido del período seleccionado";
+}
+
+const hint = q("speedHint");
+if (hint) {
+  hint.textContent = r.isSingle
+    ? "La escala inicial comprime 24 horas de operación en 60 segundos de reproducción."
+    : "La escala inicial comprime el período seleccionado en 60 segundos de reproducción.";
+}
 
     const speedBtn = q("btnSpeed");
     if (speedBtn) speedBtn.textContent = speedLabel();
