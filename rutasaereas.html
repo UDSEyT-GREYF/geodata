@@ -37,12 +37,35 @@
           <div id="periodLabel" class="rutas-period-label">Semana completa</div>
         </div>
 
-        <label class="siga-label" for="daySelect">Día de operación</label>
-        <select id="daySelect" class="rutas-day-select">
-          <option value="all">Semana completa</option>
-        </select>
+        <div class="rutas-day-range-box">
+          <div class="rutas-day-range-head">
+            <span>Fechas de operación</span>
+            <strong id="dayRangeLabel">Cargando fechas…</strong>
+          </div>
 
-        <label class="siga-label" id="timeRangeLabel" for="timeRange">Recorrido de la semana</label>
+          <div class="rutas-day-timeline-row">
+            <button type="button" id="btnDayRangePrev" class="rutas-day-step" title="Retroceder un día">‹</button>
+
+            <div id="dayTimelineWrap" class="rutas-day-timeline-wrap">
+              <svg id="dayTimelineSvg" class="rutas-day-timeline-svg" viewBox="0 0 300 64" preserveAspectRatio="none"></svg>
+
+              <div id="dayTlShadeL" class="rutas-day-shade"></div>
+              <div id="dayTlWindow" class="rutas-day-window"></div>
+              <div id="dayTlShadeR" class="rutas-day-shade"></div>
+
+              <button type="button" id="dayTlHandleL" class="rutas-day-handle" aria-label="Mover fecha inicial"></button>
+              <button type="button" id="dayTlHandleR" class="rutas-day-handle" aria-label="Mover fecha final"></button>
+            </div>
+
+            <button type="button" id="btnDayRangeNext" class="rutas-day-step" title="Avanzar un día">›</button>
+          </div>
+
+          <div class="rutas-day-range-help">
+            Arrastrá los extremos para elegir uno o varios días. Usá ‹ y › para mover la ventana día por día.
+          </div>
+        </div>
+
+        <label id="timeRangeLabel" class="siga-label" for="timeRange">Recorrido del día</label>
         <input id="timeRange" class="rutas-range" type="range" min="0" max="86400000" value="0" step="60000" />
 
         <div class="siga-button-row">
@@ -50,6 +73,10 @@
           <button type="button" id="btnReset" class="siga-btn siga-btn-secondary">Reiniciar</button>
           <button type="button" id="btnFirstFlight" class="siga-btn siga-btn-secondary">Primer vuelo</button>
           <button type="button" id="btnSpeed" class="siga-btn siga-btn-secondary">Velocidad de reproducción</button>
+        </div>
+
+        <div id="speedHint" class="siga-hint">
+          La escala inicial comprime 24 horas de operación en 60 segundos de reproducción.
         </div>
       </section>
 
