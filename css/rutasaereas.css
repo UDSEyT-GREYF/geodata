@@ -713,15 +713,46 @@ body {
   z-index: 5;
   pointer-events: none;
 }
-/* Header general más útil para integrar controles */
+/* =========================================================
+   HEADER COMPACTO – controles integrados sin invadir el mapa
+   ========================================================= */
+
 .rutas-header {
+  height: 64px;
+  min-height: 64px;
+  max-height: 64px;
   display: grid;
-  grid-template-columns: auto minmax(760px, 1fr) auto;
-  align-items: start;
+  grid-template-columns: 300px minmax(0, 1fr) 105px;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  overflow: hidden;
+}
+
+.rutas-header .siga-brand {
+  min-width: 0;
   gap: 10px;
 }
 
-/* Bloque central del header */
+.rutas-header .siga-logo {
+  width: 46px;
+  height: 36px;
+  flex: 0 0 auto;
+}
+
+.rutas-header .siga-brand h1 {
+  font-size: 1rem;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.rutas-header .siga-brand p {
+  font-size: .72rem;
+  line-height: 1.1;
+  margin: 2px 0 0;
+  white-space: nowrap;
+}
+
 .rutas-header-center {
   min-width: 0;
   width: 100%;
@@ -729,42 +760,61 @@ body {
 }
 
 .rutas-top-control-card {
+  height: 54px;
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr) 390px;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
   background: #ffffff;
   border: 1px solid #d7e2ee;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(15, 23, 42, .08);
-  padding: 8px 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 7px rgba(15, 23, 42, .08);
+  overflow: hidden;
 }
 
+/* Convierte el bloque reloj + timeline en columnas reales del grid principal */
 .rutas-top-main {
-  display: grid;
-  grid-template-columns: 250px minmax(0, 1fr);
-  gap: 14px;
-  align-items: center;
+  display: contents;
 }
 
+/* Reloj compacto */
 .rutas-clock-box--top {
+  height: 44px;
+  min-height: 0;
   margin: 0;
-  min-height: auto;
-  padding: 8px 10px;
+  padding: 4px 7px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .rutas-clock-box--top .rutas-clock-label {
-  margin-bottom: 2px;
+  font-size: .50rem;
+  line-height: 1;
+  margin: 0 0 1px;
 }
 
 .rutas-clock-box--top .rutas-clock {
-  font-size: 0.9rem;
-  line-height: 1;
+  font-size: .84rem;
+  line-height: 1.05;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .rutas-clock-box--top .rutas-period-label {
-  margin-top: 2px;
-  font-size: .8rem;
-  line-height: 1;
+  margin-top: 1px;
+  font-size: .55rem;
+  line-height: 1.05;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* Timeline compacto */
 .rutas-day-range-box--header {
+  min-width: 0;
   margin: 0;
   padding: 0;
   border: 0;
@@ -773,41 +823,60 @@ body {
 }
 
 .rutas-day-range-head {
-  margin-bottom: 4px;
+  height: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 2px;
 }
 
 .rutas-day-range-head span {
-  font-size: .5rem;
+  font-size: .50rem;
+  line-height: 1;
+  color: var(--siga-muted);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  font-weight: 800;
 }
 
 .rutas-day-range-head strong {
-  font-size: .7rem;
+  font-size: .62rem;
+  line-height: 1;
   color: #002855;
+  text-align: right;
+  white-space: nowrap;
 }
 
 .rutas-day-timeline-row {
   display: grid;
-  grid-template-columns: 28px minmax(0, 1fr) 28px;
-  gap: 8px;
+  grid-template-columns: 24px minmax(0, 1fr) 24px;
+  gap: 6px;
   align-items: center;
 }
 
 .rutas-day-step {
-  width: 28px;
-  height: 42px;
-  border-radius: 8px;
+  width: 24px;
+  height: 34px;
+  border-radius: 7px;
   border: 1px solid #b8c9dc;
   background: #ffffff;
   color: var(--siga-blue);
-  font-weight: 700;
+  font-size: .88rem;
+  font-weight: 800;
   line-height: 1;
+  cursor: pointer;
+}
+
+.rutas-day-step:hover {
+  background: var(--siga-blue-soft);
 }
 
 .rutas-day-timeline-wrap {
   position: relative;
-  height: 42px;
+  height: 34px;
   border: 1px solid #d0d7e2;
-  border-radius: 8px;
+  border-radius: 7px;
   background: linear-gradient(180deg, #ffffff, #f7fbff);
   overflow: hidden;
   cursor: default;
@@ -827,13 +896,13 @@ body {
 
 .rutas-day-bar {
   fill: #2a5fa0;
-  opacity: .72;
+  opacity: .74;
 }
 
 .rutas-day-label {
-  font-size: 8px;
-  fill: #5b6470;
-  font-weight: 700;
+  font-size: 15px;
+  fill: #4b5563;
+  font-weight: 800;
   text-transform: uppercase;
 }
 
@@ -841,7 +910,7 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  background: rgba(230, 235, 242, .60);
+  background: rgba(230, 235, 242, .58);
   pointer-events: none;
 }
 
@@ -870,7 +939,7 @@ body {
 .rutas-day-handle {
   position: absolute;
   top: 0;
-  width: 10px;
+  width: 8px;
   height: 100%;
   transform: translateX(-50%);
   border: 0;
@@ -885,35 +954,83 @@ body {
   background: rgba(15, 68, 191, .28);
 }
 
-/* Oculta la ayuda larga */
 .rutas-day-range-help {
   display: none;
 }
 
-/* Segunda fila de controles */
+/* Slider + botones dentro del mismo alto del header */
 .rutas-top-controls-row {
+  min-width: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 12px;
-  align-items: end;
-  margin-top: 6px;
+  grid-template-columns: minmax(110px, 1fr) auto;
+  gap: 7px;
+  align-items: center;
+  margin: 0;
 }
 
 .rutas-playback-box {
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
 .rutas-playback-box .siga-label {
   margin: 0;
-  font-size: .7rem;
+  font-size: .54rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.rutas-playback-box .rutas-range {
+  height: 14px;
+  margin: 0;
 }
 
 .rutas-top-buttons {
+  display: flex;
   justify-content: flex-end;
-  gap: 6px;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: nowrap;
+  margin: 0;
+}
+
+.rutas-top-buttons .siga-btn {
+  min-height: 22px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  font-size: .58rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Ocultar texto explicativo largo */
+#speedHint {
+  display: none !important;
+}
+
+/* Evitar duplicados arriba a la derecha */
+#btnFirstFlightTop,
+#btnResetTop {
+  display: none !important;
+}
+
+.siga-header-actions {
+  min-width: 100px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+}
+
+.siga-header-actions .siga-btn {
+  min-height: 24px;
+  padding: 5px 7px;
+  border-radius: 7px;
+  font-size: .62rem;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 /* Si todavía quedara la topbar vieja del mapa por error */
