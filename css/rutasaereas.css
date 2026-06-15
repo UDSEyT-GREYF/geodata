@@ -713,3 +713,210 @@ body {
   z-index: 5;
   pointer-events: none;
 }
+/* Header general más útil para integrar controles */
+.rutas-header {
+  display: grid;
+  grid-template-columns: auto minmax(760px, 1fr) auto;
+  align-items: start;
+  gap: 12px;
+}
+
+/* Bloque central del header */
+.rutas-header-center {
+  min-width: 0;
+  width: 100%;
+  align-self: center;
+}
+
+.rutas-top-control-card {
+  background: #ffffff;
+  border: 1px solid #d7e2ee;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(15, 23, 42, .08);
+  padding: 8px 12px;
+}
+
+.rutas-top-main {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+}
+
+.rutas-clock-box--top {
+  margin: 0;
+  min-height: auto;
+  padding: 8px 10px;
+}
+
+.rutas-clock-box--top .rutas-clock-label {
+  margin-bottom: 2px;
+}
+
+.rutas-clock-box--top .rutas-clock {
+  font-size: 1.7rem;
+  line-height: 1.05;
+}
+
+.rutas-clock-box--top .rutas-period-label {
+  margin-top: 2px;
+  font-size: .82rem;
+  line-height: 1.2;
+}
+
+.rutas-day-range-box--header {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.rutas-day-range-head {
+  margin-bottom: 4px;
+}
+
+.rutas-day-range-head span {
+  font-size: .62rem;
+}
+
+.rutas-day-range-head strong {
+  font-size: .84rem;
+  color: #002855;
+}
+
+.rutas-day-timeline-row {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) 28px;
+  gap: 8px;
+  align-items: center;
+}
+
+.rutas-day-step {
+  width: 28px;
+  height: 42px;
+  border-radius: 8px;
+  border: 1px solid #b8c9dc;
+  background: #ffffff;
+  color: var(--siga-blue);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.rutas-day-timeline-wrap {
+  position: relative;
+  height: 42px;
+  border: 1px solid #d0d7e2;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #ffffff, #f7fbff);
+  overflow: hidden;
+  cursor: default;
+}
+
+.rutas-day-timeline-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.rutas-day-axis {
+  stroke: #cfd8e3;
+  stroke-width: 1;
+}
+
+.rutas-day-bar {
+  fill: #2a5fa0;
+  opacity: .72;
+}
+
+.rutas-day-label {
+  font-size: 10px;
+  fill: #5b6470;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.rutas-day-shade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: rgba(230, 235, 242, .60);
+  pointer-events: none;
+}
+
+.rutas-day-window {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-left: 2px solid #0f44bf;
+  border-right: 2px solid #0f44bf;
+  background: rgba(15, 68, 191, .08);
+  pointer-events: none;
+}
+
+.rutas-day-playhead {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e11d48;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.55);
+  transform: translateX(-50%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.rutas-day-handle {
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 100%;
+  transform: translateX(-50%);
+  border: 0;
+  border-left: 2px solid #0f44bf;
+  border-right: 2px solid #0f44bf;
+  background: rgba(15, 68, 191, .18);
+  cursor: ew-resize;
+  z-index: 6;
+}
+
+.rutas-day-handle:hover {
+  background: rgba(15, 68, 191, .28);
+}
+
+/* Oculta la ayuda larga */
+.rutas-day-range-help {
+  display: none;
+}
+
+/* Segunda fila de controles */
+.rutas-top-controls-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: end;
+  margin-top: 6px;
+}
+
+.rutas-playback-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rutas-playback-box .siga-label {
+  margin: 0;
+  font-size: .78rem;
+}
+
+.rutas-top-buttons {
+  justify-content: flex-end;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* Si todavía quedara la topbar vieja del mapa por error */
+.rutas-map-topbar {
+  display: none !important;
+}
