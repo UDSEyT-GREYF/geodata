@@ -20,6 +20,57 @@
         <p>Vuelos reales de una semana en Argentina</p>
       </div>
     </div>
+
+        <div class="rutas-header-center">
+      <div class="rutas-top-control-card">
+        <div class="rutas-top-main">
+          <div class="rutas-clock-box rutas-clock-box--top">
+            <div class="rutas-clock-label">Fecha y hora</div>
+            <div id="clock" class="rutas-clock">00:00</div>
+            <div id="periodLabel" class="rutas-period-label">Semana completa</div>
+          </div>
+
+          <div class="rutas-day-range-box rutas-day-range-box--header">
+            <div class="rutas-day-range-head">
+              <span>Fechas de operación</span>
+              <strong id="dayRangeLabel">Cargando fechas…</strong>
+            </div>
+
+            <div class="rutas-day-timeline-row">
+              <button type="button" id="btnDayRangePrev" class="rutas-day-step" title="Retroceder un día">‹</button>
+
+              <div id="dayTimelineWrap" class="rutas-day-timeline-wrap">
+                <svg id="dayTimelineSvg" class="rutas-day-timeline-svg" viewBox="0 0 300 64" preserveAspectRatio="none"></svg>
+
+                <div id="dayTlShadeL" class="rutas-day-shade"></div>
+                <div id="dayTlWindow" class="rutas-day-window"></div>
+                <div id="dayTlShadeR" class="rutas-day-shade"></div>
+                <div id="dayTlPlayhead" class="rutas-day-playhead"></div>
+
+                <button type="button" id="dayTlHandleL" class="rutas-day-handle" aria-label="Mover fecha inicial"></button>
+                <button type="button" id="dayTlHandleR" class="rutas-day-handle" aria-label="Mover fecha final"></button>
+              </div>
+
+              <button type="button" id="btnDayRangeNext" class="rutas-day-step" title="Avanzar un día">›</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="rutas-top-controls-row">
+          <div class="rutas-playback-box">
+            <label id="timeRangeLabel" class="siga-label" for="timeRange">Recorrido del día</label>
+            <input id="timeRange" class="rutas-range" type="range" min="0" max="86400000" value="0" step="60000" />
+          </div>
+
+          <div class="siga-button-row rutas-top-buttons">
+            <button type="button" id="btnPlay" class="siga-btn siga-btn-primary">Pausar</button>
+            <button type="button" id="btnReset" class="siga-btn siga-btn-secondary">Reiniciar</button>
+            <button type="button" id="btnFirstFlight" class="siga-btn siga-btn-secondary">Primer vuelo</button>
+            <button type="button" id="btnSpeed" class="siga-btn siga-btn-secondary">1 min/período</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="siga-header-actions">
       <button type="button" id="btnArgentinaTop" class="siga-btn siga-btn-light">Ver Argentina</button>
       <button type="button" id="btnFirstFlightTop" class="siga-btn siga-btn-secondary">Primer vuelo</button>
@@ -29,31 +80,7 @@
 
   <main class="siga-layout rutas-layout">
     <aside class="siga-sidebar rutas-sidebar">
-      <section class="siga-card">
-        <div class="siga-section-title">Vuelos realizados</div>
-        <div class="rutas-clock-box">
-          <div class="rutas-clock-label">Fecha y hora</div>
-          <div id="clock" class="rutas-clock">00:00</div>
-          <div id="periodLabel" class="rutas-period-label">Semana completa</div>
-        </div>
-
-       
-        <label id="timeRangeLabel" class="siga-label" for="timeRange">Recorrido del día</label>
-        <input id="timeRange" class="rutas-range" type="range" min="0" max="86400000" value="0" step="60000" />
-
-        <div class="siga-button-row">
-          <button type="button" id="btnPlay" class="siga-btn siga-btn-primary">Pausar</button>
-          <button type="button" id="btnReset" class="siga-btn siga-btn-secondary">Reiniciar</button>
-          <button type="button" id="btnFirstFlight" class="siga-btn siga-btn-secondary">Primer vuelo</button>
-          <button type="button" id="btnSpeed" class="siga-btn siga-btn-secondary">Velocidad de reproducción</button>
-        </div>
-
-        <div id="speedHint" class="siga-hint">
-          La escala inicial comprime 24 horas de operación en 60 segundos de reproducción.
-        </div>
-      </section>
-
-      <section class="siga-card rutas-kpi-card">
+            <section class="siga-card rutas-kpi-card">
         <div class="siga-section-title">Resumen</div>
         <div class="rutas-kpi-grid">
           <div class="rutas-kpi"><span class="rutas-kpi-label">Vuelos totales</span><strong id="kpiTotalFlights">–</strong></div>
@@ -113,40 +140,8 @@
 </section>
     </aside>
 
+
     <section class="siga-map-shell">
-      <div class="rutas-map-topbar">
-        <div class="rutas-day-range-box rutas-day-range-box--map">
-          <div class="rutas-day-range-head">
-            <span>Fechas de operación</span>
-            <strong id="dayRangeLabel">Cargando fechas…</strong>
-          </div>
-
-          <div class="rutas-day-timeline-row">
-            <button type="button" id="btnDayRangePrev" class="rutas-day-step" title="Retroceder un día">‹</button>
-
-            <div id="dayTimelineWrap" class="rutas-day-timeline-wrap">
-              <svg id="dayTimelineSvg" class="rutas-day-timeline-svg" viewBox="0 0 300 64" preserveAspectRatio="none"></svg>
-
-              <div id="dayTlShadeL" class="rutas-day-shade"></div>
-              <div id="dayTlWindow" class="rutas-day-window"></div>
-              <div id="dayTlShadeR" class="rutas-day-shade"></div>
-
-              <!-- indicador de avance de la animación -->
-              <div id="dayTlPlayhead" class="rutas-day-playhead"></div>
-
-              <button type="button" id="dayTlHandleL" class="rutas-day-handle" aria-label="Mover fecha inicial"></button>
-              <button type="button" id="dayTlHandleR" class="rutas-day-handle" aria-label="Mover fecha final"></button>
-            </div>
-
-            <button type="button" id="btnDayRangeNext" class="rutas-day-step" title="Avanzar un día">›</button>
-          </div>
-
-          <div class="rutas-day-range-help">
-            Arrastrá los extremos para elegir uno o varios días. Usá ‹ y › para mover la ventana día por día.
-          </div>
-        </div>
-      </div>
-
       <div id="rutasMap" class="siga-map rutas-map" aria-label="Mapa de rutas aéreas"></div>
       <div id="mapStatus" class="map-status">Inicializando mapa…</div>
     </section>
