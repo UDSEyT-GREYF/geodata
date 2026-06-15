@@ -718,7 +718,7 @@ body {
   display: grid;
   grid-template-columns: auto minmax(760px, 1fr) auto;
   align-items: start;
-  gap: 12px;
+  gap: 10px;
 }
 
 /* Bloque central del header */
@@ -754,14 +754,14 @@ body {
 }
 
 .rutas-clock-box--top .rutas-clock {
-  font-size: 1.7rem;
-  line-height: 1.05;
+  font-size: 0.9rem;
+  line-height: 1;
 }
 
 .rutas-clock-box--top .rutas-period-label {
   margin-top: 2px;
-  font-size: .82rem;
-  line-height: 1.2;
+  font-size: .8rem;
+  line-height: 1;
 }
 
 .rutas-day-range-box--header {
@@ -777,11 +777,11 @@ body {
 }
 
 .rutas-day-range-head span {
-  font-size: .62rem;
+  font-size: .5rem;
 }
 
 .rutas-day-range-head strong {
-  font-size: .84rem;
+  font-size: .7rem;
   color: #002855;
 }
 
@@ -799,7 +799,7 @@ body {
   border: 1px solid #b8c9dc;
   background: #ffffff;
   color: var(--siga-blue);
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1;
 }
 
@@ -831,9 +831,9 @@ body {
 }
 
 .rutas-day-label {
-  font-size: 10px;
+  font-size: 8px;
   fill: #5b6470;
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -907,7 +907,7 @@ body {
 
 .rutas-playback-box .siga-label {
   margin: 0;
-  font-size: .78rem;
+  font-size: .7rem;
 }
 
 .rutas-top-buttons {
