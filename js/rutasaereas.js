@@ -515,7 +515,10 @@ function buildWeekSelectLabel(days) {
     if (!m) return null;
     return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]), 0, 0, 0, 0);
   }
-
+function formatWeekdayTick(date) {
+  const days = ["DOM", "LUN", "MAR", "MIÉ", "JUE", "VIE", "SÁB"];
+  return days[date.getDay()] || "";
+}
   function formatDayLong(date) {
     if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "";
     return date.toLocaleDateString("es-AR", {
@@ -527,7 +530,19 @@ function buildWeekSelectLabel(days) {
   }
 
 function formatPeriodLabel() {
-  return formatDayRangeLabelFromState();
+  const r = getSelectedDayRange();
+  if (!r.from || !r.to) return "";
+
+  if (r.isFull && state.availableDays.length > 1) {
+    return "Semana completa";
+  }
+
+  if (r.isSingle) {
+    return "";
+  }
+
+  const count = r.toIdx - r.fromIdx + 1;
+  return `${count} días seleccionados`;
 }
 
   function setTimeRangeMax() {
@@ -1190,8 +1205,54 @@ function updateDayTimelineOverlay() {
 
   handleL.style.left = `${leftPct}%`;
   handleR.style.left = `${rightPct}%`;
+  
+  updateDayTimelinePlayhead();
 }
+function updateDayTimelinePlayhead() {
+  const playhead = q("dayTlPlayhead");
+  const days = state.availableDays || [];
 
+  if (!playhead || !days.length || !state.simStartDate) {
+    if (playhead) playhead.style.display = "none";
+    return;
+  }
+
+  const simMs = Math.max(0, Math.min(state.simPeriodMs || 0, Number(state.simTime || 0)));
+  const current = new Date(state.simStartDate.getTime() + simMs);
+
+  const r = getSelectedDayRange();
+  if (!r.from || !r.to) {
+    playhead.style.display = "none";
+    return;
+  }
+
+  const msOfDay =
+    (current.getHours() * 60 * 60 * 1000) +
+    (current.getMinutes() * 60 * 1000) +
+    (current.getSeconds() * 1000) +
+    current.getMilliseconds();
+
+  const dayProgress = Math.max(0, Math.min(0.9999, msOfDay / SIM_DAY_MS));
+  const slotWidth = 100 / days.length;
+
+  let leftPct = 0;
+
+  if (r.isSingle) {
+    // Un solo día: avanza solamente dentro del espacio de ese día.
+    leftPct = (r.fromIdx * slotWidth) + (dayProgress * slotWidth);
+  } else {
+    // Semana completa o rango: avanza desde el inicio hasta el fin del período seleccionado.
+    const currentKey = getLocalDateKey(current);
+    let dayIndex = days.findIndex(d => d.key === currentKey);
+    if (dayIndex < 0) dayIndex = r.fromIdx;
+
+    dayIndex = Math.max(r.fromIdx, Math.min(r.toIdx, dayIndex));
+    leftPct = (dayIndex * slotWidth) + (dayProgress * slotWidth);
+  }
+
+  playhead.style.display = "block";
+  playhead.style.left = `${leftPct}%`;
+}
 function setSelectedDayRange(fromIdx, toIdx, opts = {}) {
   const { keepPlaying = false } = opts;
   const days = state.availableDays || [];
@@ -1273,11 +1334,11 @@ function renderDayTimeline() {
       </rect>
     `;
 
-    labels += `
-      <text x="${cx}" y="${H - 4}" text-anchor="middle" class="rutas-day-label">
-        ${escapeHtml(day.date.toLocaleDateString("es-AR", { weekday: "short" }).replace(".", ""))}
-      </text>
-    `;
+labels += `
+  <text x="${cx}" y="${H - 4}" text-anchor="middle" class="rutas-day-label">
+    ${escapeHtml(formatWeekdayTick(day.date))}
+  </text>
+`;
   });
 
   svg.innerHTML = `
@@ -1450,29 +1511,30 @@ function rebuildSimulationWindow() {
   setTimeRangeMax();
 }
 
-  function updatePeriodUi() {
-    const periodLabel = q("periodLabel");
-    if (periodLabel) periodLabel.textContent = formatPeriodLabel();
+function updatePeriodUi() {
+  const r = getSelectedDayRange();
 
-const r = getSelectedDayRange();
-
-const rangeLabel = q("timeRangeLabel");
-if (rangeLabel) {
-  rangeLabel.textContent = r.isSingle
-    ? "Recorrido del día"
-    : "Recorrido del período seleccionado";
-}
-
-const hint = q("speedHint");
-if (hint) {
-  hint.textContent = r.isSingle
-    ? "La escala inicial comprime 24 horas de operación en 60 segundos de reproducción."
-    : "La escala inicial comprime el período seleccionado en 60 segundos de reproducción.";
-}
-
-    const speedBtn = q("btnSpeed");
-    if (speedBtn) speedBtn.textContent = speedLabel();
+  const periodLabel = q("periodLabel");
+  if (periodLabel) {
+    const txt = formatPeriodLabel();
+    periodLabel.textContent = txt;
+    periodLabel.style.display = txt ? "" : "none";
   }
+
+  const rangeLabel = q("timeRangeLabel");
+  if (rangeLabel) {
+    if (r.isFull) {
+      rangeLabel.textContent = "Recorrido de la semana completa";
+    } else if (r.isSingle) {
+      rangeLabel.textContent = "Recorrido del día";
+    } else {
+      rangeLabel.textContent = "Recorrido del período seleccionado";
+    }
+  }
+
+  const speedBtn = q("btnSpeed");
+  if (speedBtn) speedBtn.textContent = speedLabel();
+}
 
   function updateMapStatus() {
     const mapStatus = q("mapStatus");
@@ -1838,7 +1900,8 @@ if (range) {
   const max = Math.max(1, Math.floor(state.simPeriodMs || SIM_DAY_MS));
   range.max = String(max);
   range.value = String(Math.max(0, Math.min(max, Math.floor(currentTime || 0))));
-}
+  }
+    updateDayTimelinePlayhead();
   }
   function removeActiveFlight(id) {
     const active = state.activeFlights.get(id);
