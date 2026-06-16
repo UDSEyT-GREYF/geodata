@@ -584,31 +584,13 @@ body {
   align-items: center;
 }
 
-.rutas-day-step {
-  width: 22px;
-  height: 46px;
-  border-radius: 7px;
-  border: 1px solid #b8c9dc;
-  background: #ffffff;
-  color: var(--siga-blue);
-  font-weight: 900;
-  cursor: pointer;
-  line-height: 1;
-}
+
 
 .rutas-day-step:hover {
   background: var(--siga-blue-soft);
 }
 
-.rutas-day-timeline-wrap {
-  position: relative;
-  height: 56px;
-  border: 1px solid #d0d7e2;
-  border-radius: 8px;
-  background: linear-gradient(180deg, #ffffff, #f7fbff);
-  overflow: hidden;
-  cursor: default;
-}
+
 
 .rutas-day-timeline-svg {
   position: absolute;
@@ -844,8 +826,8 @@ body {
   border: 1px solid #b8c9dc;
   background: #ffffff;
   color: var(--siga-blue);
-  font-size: .85rem;
-  font-weight: 800;
+  font-size: .8rem;
+  font-weight: 700;
   line-height: 1;
   cursor: pointer;
 }
@@ -856,7 +838,7 @@ body {
 
 .rutas-day-timeline-wrap {
   position: relative;
-  height: 30px;
+  height: 34px;
   border: 1px solid #d0d7e2;
   border-radius: 7px;
   background: linear-gradient(180deg, #ffffff, #f7fbff);
