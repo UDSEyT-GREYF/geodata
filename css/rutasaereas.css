@@ -577,12 +577,7 @@ body {
   text-align: right;
 }
 
-.rutas-day-timeline-row {
-  display: grid;
-  grid-template-columns: 22px minmax(0, 1fr) 22px;
-  gap: 6px;
-  align-items: center;
-}
+
 
 
 
@@ -604,17 +599,9 @@ body {
   stroke-width: 1;
 }
 
-.rutas-day-bar {
-  fill: #2a5fa0;
-  opacity: .65;
-}
 
-.rutas-day-label {
-  font-size: 7px;
-  fill: #6b7280;
-  font-weight: 700;
-  text-transform: uppercase;
-}
+
+
 
 .rutas-day-shade {
   position: absolute;
@@ -624,33 +611,6 @@ body {
   pointer-events: none;
 }
 
-.rutas-day-window {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  border-left: 2px solid #0f44bf;
-  border-right: 2px solid #0f44bf;
-  background: rgba(15, 68, 191, .08);
-  pointer-events: none;
-}
-
-.rutas-day-handle {
-  position: absolute;
-  top: 0;
-  width: 10px;
-  height: 100%;
-  transform: translateX(-50%);
-  border: 0;
-  border-left: 2px solid #0f44bf;
-  border-right: 2px solid #0f44bf;
-  background: rgba(15, 68, 191, .18);
-  cursor: ew-resize;
-  z-index: 4;
-}
-
-.rutas-day-handle:hover {
-  background: rgba(15, 68, 191, .28);
-}
 
 .rutas-day-range-help {
   margin-top: 5px;
@@ -814,20 +774,20 @@ body {
 
 .rutas-day-timeline-row {
   display: grid;
-  grid-template-columns: 22px minmax(0, 1fr) 22px;
-  gap: 6px;
+  grid-template-columns: 22px minmax(0, 1fr) 22px 50px;
+  gap: 5px;
   align-items: center;
 }
 
 .rutas-day-step {
   width: 22px;
-  height: 30px;
+  height: 34px;
   border-radius: 7px;
   border: 1px solid #b8c9dc;
   background: #ffffff;
   color: var(--siga-blue);
-  font-size: .8rem;
-  font-weight: 700;
+  font-size: .86rem;
+  font-weight: 800;
   line-height: 1;
   cursor: pointer;
 }
@@ -843,7 +803,7 @@ body {
   border-radius: 7px;
   background: linear-gradient(180deg, #ffffff, #f7fbff);
   overflow: hidden;
-  cursor: default;
+  cursor: pointer;
 }
 
 .rutas-day-timeline-svg {
@@ -859,15 +819,19 @@ body {
 }
 
 .rutas-day-bar {
-  fill: #2a5fa0;
-  opacity: .74;
+  fill: #7f9fc6;
+  opacity: .62;
 }
 
 .rutas-day-label {
-  font-size: 11px;
-  fill: #4b5563;
-  font-weight: 800;
+  font-size: 15px;
+  fill: #263f5c;
+  font-weight: 900;
+  letter-spacing: .05em;
   text-transform: uppercase;
+  paint-order: stroke;
+  stroke: rgba(255,255,255,.92);
+  stroke-width: 2px;
 }
 
 .rutas-day-shade {
@@ -884,7 +848,7 @@ body {
   bottom: 0;
   border-left: 2px solid #0f44bf;
   border-right: 2px solid #0f44bf;
-  background: rgba(15, 68, 191, .08);
+  background: rgba(15, 68, 191, .12);
   pointer-events: none;
 }
 
@@ -903,19 +867,19 @@ body {
 .rutas-day-handle {
   position: absolute;
   top: 0;
-  width: 8px;
+  width: 12px;
   height: 100%;
   transform: translateX(-50%);
   border: 0;
   border-left: 2px solid #0f44bf;
   border-right: 2px solid #0f44bf;
-  background: rgba(15, 68, 191, .18);
+  background: rgba(15, 68, 191, .22);
   cursor: ew-resize;
   z-index: 6;
 }
 
 .rutas-day-handle:hover {
-  background: rgba(15, 68, 191, .28);
+  background: rgba(15, 68, 191, .34);
 }
 
 .rutas-day-range-help {
