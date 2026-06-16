@@ -800,8 +800,8 @@ body {
 }
 
 .rutas-clock-box--top .rutas-clock {
-  font-size: .84rem;
-  line-height: 1.05;
+  font-size: .7rem;
+  line-height: 1.0;
   letter-spacing: 0;
   white-space: nowrap;
   overflow: hidden;
