@@ -1189,10 +1189,10 @@ function updateDayTimelineOverlay() {
   if (!days.length || !shadeL || !shadeR || !win || !handleL || !handleR) return;
 
   const r = getSelectedDayRange();
-  const denom = Math.max(1, days.length - 1);
+  const slotWidth = 100 / Math.max(1, days.length);
 
-  const leftPct = days.length === 1 ? 0 : (r.fromIdx / denom) * 100;
-  const rightPct = days.length === 1 ? 100 : (r.toIdx / denom) * 100;
+  const leftPct = days.length === 1 ? 0 : r.fromIdx * slotWidth;
+  const rightPct = days.length === 1 ? 100 : (r.toIdx + 1) * slotWidth;
 
   shadeL.style.left = "0";
   shadeL.style.width = `${leftPct}%`;
@@ -1205,6 +1205,9 @@ function updateDayTimelineOverlay() {
 
   handleL.style.left = `${leftPct}%`;
   handleR.style.left = `${rightPct}%`;
+
+  const allBtn = q("btnDayRangeAll");
+  if (allBtn) allBtn.classList.toggle("is-active", r.isFull);
   
   updateDayTimelinePlayhead();
 }
@@ -1306,16 +1309,16 @@ function renderDayTimeline() {
 
   const W = 300;
   const H = 64;
-  const padX = 12;
-  const padTop = 8;
-  const padBottom = 16;
+  const padX = 8;
+  const padTop = 4;
+  const padBottom = 22;
   const innerW = W - padX * 2;
   const innerH = H - padTop - padBottom;
   const maxCount = Math.max(...days.map(d => Number(d.count) || 0), 1);
 
   const x = (idx) => {
     if (days.length === 1) return W / 2;
-    return padX + innerW * (idx / (days.length - 1));
+    return padX + innerW * ((idx + 0.5) / days.length);
   };
 
   let bars = "";
@@ -1323,9 +1326,9 @@ function renderDayTimeline() {
 
   days.forEach((day, idx) => {
     const cx = x(idx);
-    const h = Math.max(4, innerH * ((Number(day.count) || 0) / maxCount));
+    const h = Math.max(6, innerH * ((Number(day.count) || 0) / maxCount));
     const y = padTop + innerH - h;
-    const barW = Math.max(8, Math.min(22, innerW / Math.max(1, days.length) * 0.55));
+    const barW = Math.max(26, Math.min(46, innerW / Math.max(1, days.length) * 0.62));
 
     bars += `
       <rect x="${cx - barW / 2}" y="${y}" width="${barW}" height="${h}" rx="2"
@@ -1417,6 +1420,12 @@ labels += `
 
   q("btnDayRangePrev")?.addEventListener("click", () => shiftSelectedDayRange(-1));
   q("btnDayRangeNext")?.addEventListener("click", () => shiftSelectedDayRange(1));
+
+  q("btnDayRangeAll")?.addEventListener("click", () => {
+    const days = state.availableDays || [];
+    if (!days.length) return;
+    setSelectedDayRange(0, days.length - 1, { keepPlaying: false });
+  });
 }
 
 function applyDayFilter(opts = {}) {
@@ -2055,7 +2064,6 @@ function buildFlightTooltip(f) {
       minute: "2-digit",
       hour12: false
     }).replace(",", " ·");
-  }
 
   function animate(now) {
     const delta = now - state.lastFrame;
