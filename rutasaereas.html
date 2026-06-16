@@ -34,17 +34,22 @@
             <div class="rutas-day-timeline-row">
               <button type="button" id="btnDayRangePrev" class="rutas-day-step" title="Retroceder un día">‹</button>
 
-              <div id="dayTimelineWrap" class="rutas-day-timeline-wrap">
-                <svg id="dayTimelineSvg" class="rutas-day-timeline-svg" viewBox="0 0 300 64" preserveAspectRatio="none"></svg>
+<div id="dayTimelineWrap" class="rutas-day-timeline-wrap"
+     title="Click en un día = seleccionar un solo día. Arrastrá los extremos = seleccionar varios días. Abrí todo el rango = semana completa.">
+  <svg id="dayTimelineSvg" class="rutas-day-timeline-svg" viewBox="0 0 300 64" preserveAspectRatio="none"></svg>
 
-                <div id="dayTlShadeL" class="rutas-day-shade"></div>
-                <div id="dayTlWindow" class="rutas-day-window"></div>
-                <div id="dayTlShadeR" class="rutas-day-shade"></div>
-                <div id="dayTlPlayhead" class="rutas-day-playhead"></div>
+  <div id="dayTlShadeL" class="rutas-day-shade"></div>
+  <div id="dayTlWindow" class="rutas-day-window"></div>
+  <div id="dayTlShadeR" class="rutas-day-shade"></div>
+  <div id="dayTlPlayhead" class="rutas-day-playhead"></div>
 
-                <button type="button" id="dayTlHandleL" class="rutas-day-handle" aria-label="Mover fecha inicial"></button>
-                <button type="button" id="dayTlHandleR" class="rutas-day-handle" aria-label="Mover fecha final"></button>
-              </div>
+  <button type="button" id="dayTlHandleL" class="rutas-day-handle"
+          aria-label="Mover fecha inicial"
+          title="Mover inicio de la selección"></button>
+  <button type="button" id="dayTlHandleR" class="rutas-day-handle"
+          aria-label="Mover fecha final"
+          title="Mover fin de la selección"></button>
+</div>
 
               <button type="button" id="btnDayRangeNext" class="rutas-day-step" title="Avanzar un día">›</button>
             </div>
