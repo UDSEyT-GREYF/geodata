@@ -2064,7 +2064,7 @@ function buildFlightTooltip(f) {
       minute: "2-digit",
       hour12: false
     }).replace(",", " ·");
-
+ }
   function animate(now) {
     const delta = now - state.lastFrame;
     state.lastFrame = now;
