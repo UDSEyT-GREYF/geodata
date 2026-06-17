@@ -644,17 +644,7 @@ body {
   backdrop-filter: blur(2px);
 }
 
-.rutas-day-playhead {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: #e11d48;
-  box-shadow: 0 0 0 1px rgba(255,255,255,.55);
-  transform: translateX(-50%);
-  z-index: 5;
-  pointer-events: none;
-}
+
 /* =========================================================
    HEADER COMPACTO – controles integrados sin invadir el mapa
    ========================================================= */
@@ -774,7 +764,7 @@ body {
 
 .rutas-day-timeline-row {
   display: grid;
-  grid-template-columns: 22px minmax(0, 1fr) 22px 50px;
+  grid-template-columns: 22px minmax(0, 1fr) 22px 58px;
   gap: 5px;
   align-items: center;
 }
@@ -796,18 +786,15 @@ body {
   background: var(--siga-blue-soft);
 }
 
-
-
-
 .rutas-day-all {
-  width: 50px;
+  width: 58px;
   height: 34px;
-  border-radius: 7px;
+  border-radius: 8px;
   border: 1px solid #b8c9dc;
   background: #ffffff;
   color: var(--siga-blue-dark);
-  font-size: .58rem;
-  font-weight: 850;
+  font-size: .62rem;
+  font-weight: 900;
   line-height: 1;
   cursor: pointer;
   text-transform: uppercase;
@@ -885,10 +872,27 @@ body {
   bottom: 0;
   width: 2px;
   background: #e11d48;
-  box-shadow: 0 0 0 1px rgba(255,255,255,.55);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.65);
   transform: translateX(-50%);
-  z-index: 5;
+  z-index: 8;
   pointer-events: none;
+}
+
+.rutas-day-playhead-plane {
+  position: absolute;
+  left: 50%;
+  top: -2px;
+  transform: translateX(-50%) rotate(90deg);
+  width: 16px;
+  height: 16px;
+  display: grid;
+  place-items: center;
+  color: #e11d48;
+  font-size: 15px;
+  line-height: 1;
+  text-shadow:
+    0 0 2px #ffffff,
+    0 0 4px #ffffff;
 }
 
 .rutas-day-handle {
