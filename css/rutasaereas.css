@@ -1005,3 +1005,8 @@ body {
 .rutas-map-topbar {
   display: none !important;
 }
+.rutas-flight-hitline {
+  stroke-opacity: 0 !important;
+  opacity: 0 !important;
+  pointer-events: stroke !important;
+}
