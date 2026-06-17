@@ -2245,6 +2245,10 @@ function applyLayerVisibility() {
       state.showAirports = e.target.checked;
       applyLayerVisibility();
     });
+    window.addEventListener("resize", () => {
+  renderDayTimeline();
+  updateDayTimelineOverlay();
+});
   }
 
   async function init() {
