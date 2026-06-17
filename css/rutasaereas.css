@@ -692,15 +692,12 @@ body {
 }
 
 .rutas-top-control-card {
-  height: 54px;
+  height: 46px;
   display: grid;
-  grid-template-columns: 160px minmax(0, 1fr) auto;
-  grid-template-areas:
-    "clock days buttons"
-    "clock playback buttons";
+  grid-template-columns: 170px minmax(0, 1fr) auto;
+  grid-template-areas: "clock days buttons";
   align-items: center;
   column-gap: 8px;
-  row-gap: 2px;
   padding: 4px 8px;
   background: #ffffff;
   border: 1px solid #d7e2ee;
@@ -882,12 +879,12 @@ body {
   position: absolute;
   left: 50%;
   top: -2px;
-  transform: translateX(-50%) rotate(90deg);
+  transform: translateX(-50%) rotate(0deg);
   width: 16px;
   height: 16px;
   display: grid;
   place-items: center;
-  color: #e11d48;
+  color: #111111;
   font-size: 15px;
   line-height: 1;
   text-shadow:
@@ -919,17 +916,13 @@ body {
 
 /* ahora el slider va debajo del timeline */
 .rutas-top-controls-row {
-  display: contents;
+  grid-area: buttons;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 0;
 }
 
-.rutas-playback-box {
-  grid-area: playback;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  align-self: start;
-}
 
 .rutas-playback-box .siga-label {
   margin: 0;
