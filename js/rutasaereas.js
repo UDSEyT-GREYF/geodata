@@ -291,6 +291,7 @@ completedFlightsLayer: null,
 flightHitLayer: null,
 planesLayer: null,
 airportsLayer: null,
+hitRenderer: null,
 activeFlights: new Map(),
 completedFlights: new Map(),
     playing: true,
@@ -699,6 +700,9 @@ state.map.getPane("rutasTrailPane").style.zIndex = 520;
    pero por debajo de aeropuertos y aviones. */
 state.map.createPane("rutasFlightHitPane");
 state.map.getPane("rutasFlightHitPane").style.zIndex = 545;
+    state.hitRenderer = L.svg({
+  pane: "rutasFlightHitPane"
+});
 
 state.map.createPane("rutasAirportPane");
 state.map.getPane("rutasAirportPane").style.zIndex = 560;
@@ -1705,17 +1709,18 @@ function renderFlightHitLayer() {
   (state.flights || []).forEach((f) => {
     if (!f.from || !f.to) return;
 
-    const hitLine = L.polyline(getArcLatLngs(f.from, f.to, 44, 1), {
-      pane: "rutasFlightHitPane",
-      color: "#000000",
-      weight: 14,
-      opacity: 0.01,
-      interactive: true,
-      bubblingMouseEvents: false,
-      lineCap: "round",
-      lineJoin: "round",
-      className: "rutas-flight-hitline"
-    });
+const hitLine = L.polyline(getArcLatLngs(f.from, f.to, 44, 1), {
+  pane: "rutasFlightHitPane",
+  renderer: state.hitRenderer,
+  color: "#000000",
+  weight: 16,
+  opacity: 0,
+  interactive: true,
+  bubblingMouseEvents: false,
+  lineCap: "round",
+  lineJoin: "round",
+  className: "rutas-flight-hitline"
+});
 
     hitLine.bindTooltip(buildFlightTooltip(f), {
       direction: "top",
