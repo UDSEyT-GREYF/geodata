@@ -9,6 +9,7 @@
   const DEFAULT_CENTER = [-38.4, -63.6];
   const DEFAULT_ZOOM = 4;
   const SIM_DAY_MS = 24 * 60 * 60 * 1000;
+  const DAY_TIME_SEGMENTS = 6; // 6 = cada 4 h; 8 = cada 3 h; 4 = cada 6 h
   const DEFAULT_REAL_DURATION_MS = 60 * 1000;
 
   // El SVG del avión está dibujado con la nariz hacia arriba/norte.
@@ -1324,44 +1325,54 @@ function renderDayTimeline() {
 
   const W = 300;
   const H = 64;
-  const padX = 8;
-  const padTop = 4;
-  const padBottom = 22;
-  const innerW = W - padX * 2;
-  const innerH = H - padTop - padBottom;
-  const maxCount = Math.max(...days.map(d => Number(d.count) || 0), 1);
+  const axisY = 42;
+  const slotW = W / days.length;
 
-  const x = (idx) => {
-    if (days.length === 1) return W / 2;
-    return padX + innerW * ((idx + 0.5) / days.length);
-  };
-
-  let bars = "";
+  let cells = "";
+  let ticks = "";
   let labels = "";
 
   days.forEach((day, idx) => {
-    const cx = x(idx);
-    const h = Math.max(6, innerH * ((Number(day.count) || 0) / maxCount));
-    const y = padTop + innerH - h;
-    const barW = Math.max(26, Math.min(46, innerW / Math.max(1, days.length) * 0.62));
+    const x0 = idx * slotW;
+    const xMid = x0 + slotW / 2;
+    const altClass = idx % 2 ? " is-alt" : "";
 
-    bars += `
-      <rect x="${cx - barW / 2}" y="${y}" width="${barW}" height="${h}" rx="2"
-        class="rutas-day-bar">
-        <title>${escapeHtml(formatDayLong(day.date))} · ${day.count.toLocaleString("es-AR")} vuelos</title>
-      </rect>
+    // Fondo uniforme de cada día: no representa cantidad de vuelos.
+    cells += `
+      <rect x="${x0}" y="0" width="${slotW}" height="${H}" rx="0"
+        class="rutas-day-cell${altClass}"></rect>
     `;
 
-labels += `
-  <text x="${cx}" y="${H - 4}" text-anchor="middle" class="rutas-day-label">
-    ${escapeHtml(formatWeekdayTick(day.date))}
-  </text>
-`;
+    // Separador entre días.
+    if (idx > 0) {
+      ticks += `
+        <line x1="${x0}" y1="3" x2="${x0}" y2="${H - 3}"
+          class="rutas-day-boundary"></line>
+      `;
+    }
+
+    // Marcas horarias internas del día.
+    for (let s = 1; s < DAY_TIME_SEGMENTS; s++) {
+      const xTick = x0 + slotW * (s / DAY_TIME_SEGMENTS);
+      const isMajor = DAY_TIME_SEGMENTS % 2 === 0 && s === DAY_TIME_SEGMENTS / 2;
+
+      ticks += `
+        <line x1="${xTick}" y1="${isMajor ? 8 : 15}" x2="${xTick}" y2="${axisY}"
+          class="rutas-day-time-tick${isMajor ? " is-major" : ""}"></line>
+      `;
+    }
+
+    labels += `
+      <text x="${xMid}" y="${H - 6}" text-anchor="middle" class="rutas-day-label">
+        ${escapeHtml(formatWeekdayTick(day.date))}
+      </text>
+    `;
   });
 
   svg.innerHTML = `
-    <line x1="${padX}" y1="${padTop + innerH}" x2="${W - padX}" y2="${padTop + innerH}" class="rutas-day-axis"/>
-    ${bars}
+    ${cells}
+    <line x1="0" y1="${axisY}" x2="${W}" y2="${axisY}" class="rutas-day-axis"></line>
+    ${ticks}
     ${labels}
   `;
 
@@ -1375,7 +1386,9 @@ labels += `
   function clientXToDayIdx(clientX) {
     const rect = wrap.getBoundingClientRect();
     const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-    return Math.round(pct * Math.max(0, (state.availableDays || []).length - 1));
+    const daysCount = Math.max(1, (state.availableDays || []).length);
+
+    return Math.max(0, Math.min(daysCount - 1, Math.floor(pct * daysCount)));
   }
 
   function onMove(e) {
@@ -1386,9 +1399,9 @@ labels += `
     const r = getSelectedDayRange();
 
     if (dragMode === "left") {
-      setSelectedDayRange(idx, r.toIdx, { keepPlaying: false });
+      setSelectedDayRange(idx, r.toIdx, { keepPlaying: true });
     } else if (dragMode === "right") {
-      setSelectedDayRange(r.fromIdx, idx, { keepPlaying: false });
+      setSelectedDayRange(r.fromIdx, idx, { keepPlaying: true });
     }
   }
 
@@ -1426,47 +1439,39 @@ labels += `
     document.addEventListener("touchend", onUp, { once: true });
   }, { passive: false });
 
-wrap.addEventListener("click", e => {
-  if (e.target && e.target.classList.contains("rutas-day-handle")) return;
+  wrap.addEventListener("click", e => {
+    if (e.target && e.target.classList.contains("rutas-day-handle")) return;
 
-  const idx = clientXToDayIdx(e.clientX);
-  setSelectedDayRange(idx, idx, { keepPlaying: true });
+    const idx = clientXToDayIdx(e.clientX);
+    setSelectedDayRange(idx, idx, { keepPlaying: true });
 
-  state.simTime = 0;
-  state.playing = true;
+    const btnPlay = q("btnPlay");
+    if (btnPlay) btnPlay.textContent = "Pausar";
+  });
 
-  const btnPlay = q("btnPlay");
-  if (btnPlay) btnPlay.textContent = "Pausar";
-});
+  q("btnDayRangePrev")?.addEventListener("click", () => {
+    shiftSelectedDayRange(-1);
+    state.playing = true;
+    const btnPlay = q("btnPlay");
+    if (btnPlay) btnPlay.textContent = "Pausar";
+  });
 
-q("btnDayRangePrev")?.addEventListener("click", () => {
-  shiftSelectedDayRange(-1);
-  state.simTime = 0;
-  state.playing = true;
-  const btnPlay = q("btnPlay");
-  if (btnPlay) btnPlay.textContent = "Pausar";
-});
+  q("btnDayRangeNext")?.addEventListener("click", () => {
+    shiftSelectedDayRange(1);
+    state.playing = true;
+    const btnPlay = q("btnPlay");
+    if (btnPlay) btnPlay.textContent = "Pausar";
+  });
 
-q("btnDayRangeNext")?.addEventListener("click", () => {
-  shiftSelectedDayRange(1);
-  state.simTime = 0;
-  state.playing = true;
-  const btnPlay = q("btnPlay");
-  if (btnPlay) btnPlay.textContent = "Pausar";
-});
+  q("btnDayRangeAll")?.addEventListener("click", () => {
+    const days = state.availableDays || [];
+    if (!days.length) return;
 
-q("btnDayRangeAll")?.addEventListener("click", () => {
-  const days = state.availableDays || [];
-  if (!days.length) return;
+    setSelectedDayRange(0, days.length - 1, { keepPlaying: true });
 
-  setSelectedDayRange(0, days.length - 1, { keepPlaying: true });
-
-  state.simTime = 0;
-  state.playing = true;
-
-  const btnPlay = q("btnPlay");
-  if (btnPlay) btnPlay.textContent = "Pausar";
-});
+    const btnPlay = q("btnPlay");
+    if (btnPlay) btnPlay.textContent = "Pausar";
+  });
 }
 
 function applyDayFilter(opts = {}) {
