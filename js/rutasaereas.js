@@ -1426,15 +1426,34 @@ labels += `
     document.addEventListener("touchend", onUp, { once: true });
   }, { passive: false });
 
-  wrap.addEventListener("click", e => {
-    if (e.target && e.target.classList.contains("rutas-day-handle")) return;
+wrap.addEventListener("click", e => {
+  if (e.target && e.target.classList.contains("rutas-day-handle")) return;
 
-    const idx = clientXToDayIdx(e.clientX);
-    setSelectedDayRange(idx, idx, { keepPlaying: false });
-  });
+  const idx = clientXToDayIdx(e.clientX);
+  setSelectedDayRange(idx, idx, { keepPlaying: true });
 
-  q("btnDayRangePrev")?.addEventListener("click", () => shiftSelectedDayRange(-1));
-  q("btnDayRangeNext")?.addEventListener("click", () => shiftSelectedDayRange(1));
+  state.simTime = 0;
+  state.playing = true;
+
+  const btnPlay = q("btnPlay");
+  if (btnPlay) btnPlay.textContent = "Pausar";
+});
+
+q("btnDayRangePrev")?.addEventListener("click", () => {
+  shiftSelectedDayRange(-1);
+  state.simTime = 0;
+  state.playing = true;
+  const btnPlay = q("btnPlay");
+  if (btnPlay) btnPlay.textContent = "Pausar";
+});
+
+q("btnDayRangeNext")?.addEventListener("click", () => {
+  shiftSelectedDayRange(1);
+  state.simTime = 0;
+  state.playing = true;
+  const btnPlay = q("btnPlay");
+  if (btnPlay) btnPlay.textContent = "Pausar";
+});
 
 q("btnDayRangeAll")?.addEventListener("click", () => {
   const days = state.availableDays || [];
