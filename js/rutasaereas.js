@@ -1533,34 +1533,35 @@ function rebuildSimulationWindow() {
 
   const r = getSelectedDayRange();
 
-  if (r.isSingle && r.from) {
-    const start = new Date(r.from.date);
+  let start;
+  let selectedEnd;
+
+  if (r.from && r.to) {
+    start = new Date(r.from.date);
     start.setHours(0, 0, 0, 0);
 
-    const end = new Date(start);
-    end.setDate(end.getDate() + 1);
-
-    state.simStartDate = start;
-    state.simEndDate = end;
-  } else if (r.from && r.to) {
-    const start = new Date(r.from.date);
-    start.setHours(0, 0, 0, 0);
-
-    const maxArr = new Date(Math.max(...state.flights.map(f => f.arr.getTime())));
-
-    state.simStartDate = start;
-    state.simEndDate = maxArr;
+    selectedEnd = new Date(r.to.date);
+    selectedEnd.setHours(0, 0, 0, 0);
+    selectedEnd.setDate(selectedEnd.getDate() + 1);
+    selectedEnd.setMilliseconds(selectedEnd.getMilliseconds() - 1);
   } else {
     const minDep = new Date(Math.min(...state.flights.map(f => f.dep.getTime())));
-    const maxArr = new Date(Math.max(...state.flights.map(f => f.arr.getTime())));
-
-    const start = new Date(minDep);
+    start = new Date(minDep);
     start.setHours(0, 0, 0, 0);
 
-    state.simStartDate = start;
-    state.simEndDate = maxArr;
+    selectedEnd = new Date(Math.max(...state.flights.map(f => f.arr.getTime())));
   }
 
+  const selectedEndMs = selectedEnd.getTime();
+
+  const lastVisibleEventMs = Math.max(
+    ...state.flights.map(f => Math.min(f.arr.getTime(), selectedEndMs))
+  );
+
+  const safeEndMs = Math.max(start.getTime() + 1, lastVisibleEventMs);
+
+  state.simStartDate = start;
+  state.simEndDate = new Date(safeEndMs);
   state.simPeriodMs = Math.max(1, state.simEndDate.getTime() - state.simStartDate.getTime());
 
   state.flights.forEach((f) => {
@@ -1987,16 +1988,26 @@ function addCompletedFlight(f) {
 
   const color = getFlightColor(f);
 
-  const trail = L.polyline(getArcLatLngs(f.from, f.to, 44, 1), {
-    pane: "rutasCompletedPane",
-    color,
-    weight: 2.1,
-    opacity: 0.30,
-    interactive: false,
-    lineCap: "round",
-    lineJoin: "round",
-    className: "rutas-flight-trail-completed"
-  });
+const trail = L.polyline(getArcLatLngs(f.from, f.to, 44, 1), {
+  pane: "rutasCompletedPane",
+  color,
+  weight: 3.0,
+  opacity: 0.34,
+  interactive: true,
+  bubblingMouseEvents: false,
+  lineCap: "round",
+  lineJoin: "round",
+  className: "rutas-flight-trail-completed"
+});
+
+trail.bindTooltip(buildFlightTooltip(f), {
+  direction: "top",
+  opacity: 1,
+  className: "rutas-tooltip"
+});
+
+trail.on("mouseover", () => setFeatureInfo(f));
+trail.on("click", () => setFeatureInfo(f));
 
   const marker = L.marker(f.to, {
     pane: "rutasCompletedPane",
