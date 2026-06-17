@@ -1241,8 +1241,10 @@ function updateDayTimelinePlayhead() {
   let leftPct = 0;
 
   if (r.isSingle) {
+    // Un solo día: avanza solo dentro del espacio de ese día.
     leftPct = (r.fromIdx * slotWidth) + (dayProgress * slotWidth);
   } else {
+    // Semana completa o rango: avanza a lo largo de todo el período seleccionado.
     const currentKey = getLocalDateKey(current);
     let dayIndex = days.findIndex(d => d.key === currentKey);
     if (dayIndex < 0) dayIndex = r.fromIdx;
@@ -1550,19 +1552,16 @@ function updatePeriodUi() {
     periodLabel.style.display = txt ? "" : "none";
   }
 
-  const rangeLabel = q("timeRangeLabel");
-  if (rangeLabel) {
-    if (r.isFull) {
-      rangeLabel.textContent = "Recorrido de la semana completa";
-    } else if (r.isSingle) {
-      rangeLabel.textContent = "Recorrido del día";
-    } else {
-      rangeLabel.textContent = "Recorrido del período seleccionado";
-    }
+  const speedBtn = q("btnSpeed");
+  if (speedBtn) {
+    speedBtn.style.display = "";
+    speedBtn.textContent = r.isSingle ? "1 min/día" : "1 min/período";
   }
 
-  const speedBtn = q("btnSpeed");
-  if (speedBtn) speedBtn.textContent = speedLabel();
+  const allBtn = q("btnDayRangeAll");
+  if (allBtn) {
+    allBtn.classList.toggle("is-active", r.isFull);
+  }
 }
 
   function updateMapStatus() {
