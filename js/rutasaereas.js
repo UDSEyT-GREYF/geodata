@@ -288,6 +288,7 @@ simStartDate: null,
     routesLayer: null,
 trailsLayer: null,
 completedFlightsLayer: null,
+flightHitLayer: null,
 planesLayer: null,
 airportsLayer: null,
 activeFlights: new Map(),
@@ -693,14 +694,22 @@ state.map.getPane("rutasCompletedPane").style.zIndex = 505;
 
 state.map.createPane("rutasTrailPane");
 state.map.getPane("rutasTrailPane").style.zIndex = 520;
-    state.map.createPane("rutasAirportPane");
-    state.map.getPane("rutasAirportPane").style.zIndex = 560;
-    state.map.createPane("rutasPlanePane");
-    state.map.getPane("rutasPlanePane").style.zIndex = 650;
+
+/* Capa invisible de consulta: queda por encima de las rutas,
+   pero por debajo de aeropuertos y aviones. */
+state.map.createPane("rutasFlightHitPane");
+state.map.getPane("rutasFlightHitPane").style.zIndex = 545;
+
+state.map.createPane("rutasAirportPane");
+state.map.getPane("rutasAirportPane").style.zIndex = 560;
+
+state.map.createPane("rutasPlanePane");
+state.map.getPane("rutasPlanePane").style.zIndex = 650;
 
 state.routesLayer = L.layerGroup().addTo(state.map);
 state.completedFlightsLayer = L.layerGroup().addTo(state.map);
 state.trailsLayer = L.layerGroup().addTo(state.map);
+state.flightHitLayer = L.layerGroup().addTo(state.map);
 state.airportsLayer = L.layerGroup().addTo(state.map);
 state.planesLayer = L.layerGroup().addTo(state.map);
 
@@ -1504,6 +1513,7 @@ function applyDayFilter(opts = {}) {
   state.staticRoutes = buildStaticRoutesFromFlights(state.flights);
   buildAirportIndex();
   renderStaticLayers();
+  renderFlightHitLayer();
   updateKpis();
   renderAirlineLegend();
   updateDayTimelineOverlay();
@@ -1687,7 +1697,39 @@ state.staticRoutes.forEach((r) => {
 
     applyLayerVisibility();
   }
+function renderFlightHitLayer() {
+  if (!state.flightHitLayer) return;
 
+  state.flightHitLayer.clearLayers();
+
+  (state.flights || []).forEach((f) => {
+    if (!f.from || !f.to) return;
+
+    const hitLine = L.polyline(getArcLatLngs(f.from, f.to, 44, 1), {
+      pane: "rutasFlightHitPane",
+      color: "#000000",
+      weight: 14,
+      opacity: 0.01,
+      interactive: true,
+      bubblingMouseEvents: false,
+      lineCap: "round",
+      lineJoin: "round",
+      className: "rutas-flight-hitline"
+    });
+
+    hitLine.bindTooltip(buildFlightTooltip(f), {
+      direction: "top",
+      opacity: 1,
+      className: "rutas-tooltip",
+      sticky: true
+    });
+
+    hitLine.on("mouseover", () => setFeatureInfo(f));
+    hitLine.on("click", () => setFeatureInfo(f));
+
+    hitLine.addTo(state.flightHitLayer);
+  });
+}
   function buildAirportMarkerHtml(airport) {
     const categoryClass = airport.category === "sna" ? "is-sna" : airport.category === "national" ? "is-national" : "is-international";
     const symbol = airport.category === "sna" ? "✈" : airport.category === "national" ? "N" : "I";
