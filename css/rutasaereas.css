@@ -594,13 +594,41 @@ body {
   height: 100%;
 }
 
+.rutas-day-cell {
+  fill: #f8fbff;
+}
+
+.rutas-day-cell.is-alt {
+  fill: #eef4fb;
+}
+
 .rutas-day-axis {
-  stroke: #cfd8e3;
+  stroke: #b9c8d8;
   stroke-width: 1;
 }
 
+.rutas-day-boundary {
+  stroke: #aebfd3;
+  stroke-width: 1;
+}
 
+.rutas-day-time-tick {
+  stroke: #c8d5e4;
+  stroke-width: .55;
+}
 
+.rutas-day-time-tick.is-major {
+  stroke: #9fb3ca;
+  stroke-width: .85;
+}
+
+.rutas-day-label {
+  font-size: 10px;
+  fill: #4a5f76;
+  font-weight: 700;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
 
 
 .rutas-day-shade {
@@ -829,18 +857,6 @@ body {
   stroke-width: 1;
 }
 
-.rutas-day-bar {
-  fill: #7f9fc6;
-  opacity: .62;
-}
-
-.rutas-day-label {
-  font-size: 11px;
-  fill: #50657d;
-  font-weight: 700;
-  letter-spacing: .02em;
-  text-transform: uppercase;
-}
 
 .rutas-day-shade {
   position: absolute;
@@ -875,19 +891,19 @@ body {
 .rutas-day-playhead-plane {
   position: absolute;
   left: 50%;
-  top: -4px;
+  top: -5px;
   transform: translateX(-50%) rotate(0deg);
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   display: grid;
   place-items: center;
   color: #111111;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1;
   text-shadow:
     0 0 2px #ffffff,
     0 0 4px #ffffff,
-    0 0 6px #ffffff;
+    0 0 7px #ffffff;
 }
 
 .rutas-day-handle {
