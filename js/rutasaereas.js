@@ -1323,10 +1323,17 @@ function renderDayTimeline() {
     return;
   }
 
-  const W = 300;
-  const H = 64;
-  const axisY = 42;
-  const slotW = W / days.length;
+const rect = wrap.getBoundingClientRect();
+
+const W = Math.max(300, Math.round(rect.width || 300));
+const H = Math.max(34, Math.round(rect.height || 34));
+
+svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+svg.setAttribute("preserveAspectRatio", "none");
+
+const axisY = Math.round(H * 0.62);
+const labelY = H - 5;
+const slotW = W / days.length;
 
   let cells = "";
   let ticks = "";
@@ -1362,11 +1369,11 @@ function renderDayTimeline() {
       `;
     }
 
-    labels += `
-      <text x="${xMid}" y="${H - 6}" text-anchor="middle" class="rutas-day-label">
-        ${escapeHtml(formatWeekdayTick(day.date))}
-      </text>
-    `;
+labels += `
+  <text x="${xMid}" y="${labelY}" text-anchor="middle" class="rutas-day-label">
+    ${escapeHtml(formatWeekdayTick(day.date))}
+  </text>
+`;
   });
 
   svg.innerHTML = `
