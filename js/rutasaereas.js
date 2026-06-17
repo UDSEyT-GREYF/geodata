@@ -858,8 +858,8 @@ state.availableDays = Array.isArray(days) ? days : (state.availableDays || []);
 // Al entrar al mapa, arranca en el primer día disponible.
 // En tu caso debería ser lunes.
 state.selectedDayFromIdx = 0;
-state.selectedDayToIdx = 0;
-state.selectedDay = state.availableDays[0]?.key || "";
+state.selectedDayToIdx = Math.max(0, state.availableDays.length - 1);
+state.selectedDay = "all";
 
 renderDayTimeline();
 applyDayFilter({ keepPlaying: true });
@@ -1241,10 +1241,8 @@ function updateDayTimelinePlayhead() {
   let leftPct = 0;
 
   if (r.isSingle) {
-    // Un solo día: avanza solamente dentro del espacio de ese día.
     leftPct = (r.fromIdx * slotWidth) + (dayProgress * slotWidth);
   } else {
-    // Semana completa o rango: avanza desde el inicio hasta el fin del período seleccionado.
     const currentKey = getLocalDateKey(current);
     let dayIndex = days.findIndex(d => d.key === currentKey);
     if (dayIndex < 0) dayIndex = r.fromIdx;
@@ -1254,7 +1252,20 @@ function updateDayTimelinePlayhead() {
   }
 
   playhead.style.display = "block";
-  playhead.style.left = `${leftPct}%`;
+  playhead.style.left = `${Math.max(0, Math.min(100, leftPct))}%`;
+
+  const plane = playhead.querySelector(".rutas-day-playhead-plane");
+  if (plane) {
+    plane.title = current.toLocaleString("es-AR", {
+      weekday: "long",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    });
+  }
 }
 function setSelectedDayRange(fromIdx, toIdx, opts = {}) {
   const { keepPlaying = false } = opts;
@@ -1273,7 +1284,9 @@ function setSelectedDayRange(fromIdx, toIdx, opts = {}) {
   state.selectedDayFromIdx = f;
   state.selectedDayToIdx = t;
 
-  state.selectedDay = f === t
+state.selectedDay = (f === 0 && t === days.length - 1)
+  ? "all"
+  : f === t
     ? days[f].key
     : `${days[f].key}_${days[t].key}`;
 
@@ -1421,11 +1434,18 @@ labels += `
   q("btnDayRangePrev")?.addEventListener("click", () => shiftSelectedDayRange(-1));
   q("btnDayRangeNext")?.addEventListener("click", () => shiftSelectedDayRange(1));
 
-  q("btnDayRangeAll")?.addEventListener("click", () => {
-    const days = state.availableDays || [];
-    if (!days.length) return;
-    setSelectedDayRange(0, days.length - 1, { keepPlaying: false });
-  });
+q("btnDayRangeAll")?.addEventListener("click", () => {
+  const days = state.availableDays || [];
+  if (!days.length) return;
+
+  setSelectedDayRange(0, days.length - 1, { keepPlaying: true });
+
+  state.simTime = 0;
+  state.playing = true;
+
+  const btnPlay = q("btnPlay");
+  if (btnPlay) btnPlay.textContent = "Pausar";
+});
 }
 
 function applyDayFilter(opts = {}) {
