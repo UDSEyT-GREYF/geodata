@@ -835,14 +835,11 @@ body {
 }
 
 .rutas-day-label {
-  font-size: 15px;
-  fill: #263f5c;
-  font-weight: 900;
-  letter-spacing: .05em;
+  font-size: 11px;
+  fill: #50657d;
+  font-weight: 700;
+  letter-spacing: .02em;
   text-transform: uppercase;
-  paint-order: stroke;
-  stroke: rgba(255,255,255,.92);
-  stroke-width: 2px;
 }
 
 .rutas-day-shade {
@@ -878,18 +875,19 @@ body {
 .rutas-day-playhead-plane {
   position: absolute;
   left: 50%;
-  top: -2px;
+  top: -4px;
   transform: translateX(-50%) rotate(0deg);
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   display: grid;
   place-items: center;
   color: #111111;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1;
   text-shadow:
     0 0 2px #ffffff,
-    0 0 4px #ffffff;
+    0 0 4px #ffffff,
+    0 0 6px #ffffff;
 }
 
 .rutas-day-handle {
