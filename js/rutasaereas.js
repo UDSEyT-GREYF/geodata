@@ -218,7 +218,7 @@ const AIRPORT_COORD_OVERRIDES = {
   }
 ];
 
-const DEFAULT_FLIGHT_COLOR = "#00A3AD";
+const DEFAULT_FLIGHT_COLOR = "#2E5AAC";
   
   const BASEMAP_CONFIGS = [
     {
