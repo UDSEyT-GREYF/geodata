@@ -1939,7 +1939,7 @@ function renderRoundTripPanel(originCode) {
   if (!origin) {
     root.innerHTML = `
       <div class="rutas-roundtrip-empty">
-        Hacé clic en un aeropuerto del SNA para consultar destinos con ida y vuelta en el día.
+        Haga clic en un aeropuerto del SNA para consultar destinos con ida y vuelta en el día.
       </div>
     `;
     return;
