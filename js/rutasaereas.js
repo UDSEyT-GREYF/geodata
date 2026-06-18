@@ -1971,7 +1971,7 @@ function renderRoundTripPanel(originCode) {
     <div class="rutas-roundtrip-head">
       <div class="rutas-roundtrip-airport">${escapeHtml(origin)} · ${escapeHtml(airportName)}</div>
       <div class="rutas-roundtrip-subtitle">
-        Vuelos regulares. Regreso saliendo el mismo día. Estadía mínima:
+        Vuelos regulares. Ida y vuelta en el día. Estadía mínima:
         ${formatDurationMinutes(ROUNDTRIP_MIN_STAY_MINUTES)}.
       </div>
     </div>
