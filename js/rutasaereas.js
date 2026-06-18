@@ -219,7 +219,7 @@ const AIRPORT_COORD_OVERRIDES = {
 ];
 
 const DEFAULT_FLIGHT_COLOR = "#2E5AAC";
-  
+  const BASE_ROUTE_COLOR = "#5f80a1";
   const BASEMAP_CONFIGS = [
     {
       id: "argenmap",
@@ -1671,7 +1671,7 @@ state.staticRoutes.forEach((r) => {
 state.staticRoutes.forEach((r) => {
   L.polyline(getArcLatLngs(r.from, r.to, 44), {
     pane: "rutasBasePane",
-    color: getRouteColorByEndpoints(r),
+    color: BASE_ROUTE_COLOR,
     weight: 2.1,
     opacity: 0.58,
     interactive: false,
