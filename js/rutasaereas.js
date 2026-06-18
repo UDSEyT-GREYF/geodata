@@ -11,7 +11,8 @@
   const SIM_DAY_MS = 24 * 60 * 60 * 1000;
   const DAY_TIME_SEGMENTS = 6; // 6 = cada 4 h; 8 = cada 3 h; 4 = cada 6 h
   const DEFAULT_REAL_DURATION_MS = 60 * 1000;
-
+  const ROUNDTRIP_MIN_STAY_MINUTES = 120;
+  
   // El SVG del avión está dibujado con la nariz hacia arriba/norte.
   // El bearing calculado también usa 0° = norte, así que no necesita compensación.
   const PLANE_ROTATION_OFFSET_DEG = 0;
@@ -280,6 +281,7 @@ availableDays: [],
 selectedDay: "",
 selectedDayFromIdx: 0,
 selectedDayToIdx: 0,
+    selectedRoundTripAirport: "",
 simStartDate: null,
     simEndDate: null,
     simPeriodMs: SIM_DAY_MS,
@@ -1536,7 +1538,9 @@ function applyDayFilter(opts = {}) {
   } else {
     resetAnimation();
   }
-
+if (state.selectedRoundTripAirport) {
+  renderRoundTripPanel(state.selectedRoundTripAirport);
+}
   updateMapStatus();
 }
 
@@ -1698,10 +1702,16 @@ state.staticRoutes.forEach((r) => {
         })
       });
 
-      marker.bindTooltip(buildAirportTooltip(airport), { direction: "top", opacity: 1, className: "rutas-tooltip" });
-      marker.on("mouseover", () => setAirportInfo(airport));
-      marker.on("click", () => setAirportInfo(airport));
-      marker.addTo(state.airportsLayer);
+marker.bindTooltip(buildAirportTooltip(airport), { direction: "top", opacity: 1, className: "rutas-tooltip" });
+
+marker.on("mouseover", () => setAirportInfo(airport));
+
+marker.on("click", () => {
+  setAirportInfo(airport);
+  setRoundTripAirport(airport);
+});
+
+marker.addTo(state.airportsLayer);
     });
 
     applyLayerVisibility();
@@ -1778,6 +1788,264 @@ el.innerHTML = `
   </table>`;
   }
 
+  function setRoundTripAirport(airport) {
+  if (!airport || !airport.iata) return;
+
+  state.selectedRoundTripAirport = airport.iata;
+  renderRoundTripPanel(airport.iata);
+}
+
+function isRegularCommercialFlight(f) {
+  const cls = normalizeAirlineText(f.flightClass);
+
+  if (!cls) return false;
+
+  if (cls.includes("NO REGULAR")) return false;
+  if (cls.includes("AV GRAL")) return false;
+  if (cls.includes("AVIACION GENERAL")) return false;
+  if (cls.includes("AVIACIÓN GENERAL")) return false;
+
+  return cls.includes("REGULAR");
+}
+
+function airportHasRegularFlights(iata) {
+  const code = clean(iata).toUpperCase();
+
+  return (state.flightsAll || []).some(f =>
+    isRegularCommercialFlight(f) &&
+    (f.origin === code || f.destination === code)
+  );
+}
+
+function formatDurationMinutes(minutes) {
+  const m = Math.max(0, Math.round(Number(minutes) || 0));
+  const h = Math.floor(m / 60);
+  const mm = m % 60;
+
+  if (h && mm) return `${h} h ${String(mm).padStart(2, "0")}`;
+  if (h) return `${h} h`;
+  return `${mm} min`;
+}
+
+function formatDateShort(date) {
+  if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "";
+
+  return date.toLocaleDateString("es-AR", {
+    day: "2-digit",
+    month: "2-digit"
+  });
+}
+
+function getAirportDisplayName(iata) {
+  const code = clean(iata).toUpperCase();
+  const sna = state.snaAirports.get(code);
+  const meta = getAirportMeta(code) || {};
+
+  return sna?.name || meta.name || meta.municipality || code;
+}
+
+function formatRoundTripFlightCell(f) {
+  const flightId = clean(f.displayId || f.id) || "Vuelo";
+  const airline = clean(f.airline);
+
+  return `
+    <span class="rutas-roundtrip-flight">${escapeHtml(flightId)}</span>
+    <span class="rutas-roundtrip-time">${formatTime(f.dep)} → ${formatTime(f.arr)}</span>
+    ${airline && airline !== "Sin dato" ? `<span class="rutas-roundtrip-muted">${escapeHtml(airline)}</span>` : ""}
+  `;
+}
+
+function findSameDayRoundTrips(originCode) {
+  const origin = clean(originCode).toUpperCase();
+  if (!origin) return [];
+
+  const regularFlights = (state.flightsAll || []).filter(isRegularCommercialFlight);
+
+  const outboundFlights = regularFlights
+    .filter(f => f.origin === origin && f.destination && f.destination !== origin)
+    .sort((a, b) => a.dep - b.dep);
+
+  const returnsByDestinationDay = new Map();
+
+  regularFlights
+    .filter(f => f.destination === origin && f.origin && f.origin !== origin)
+    .forEach(f => {
+      const dayKey = getLocalDateKey(f.dep);
+      const key = `${f.origin}|${dayKey}`;
+
+      if (!returnsByDestinationDay.has(key)) {
+        returnsByDestinationDay.set(key, []);
+      }
+
+      returnsByDestinationDay.get(key).push(f);
+    });
+
+  returnsByDestinationDay.forEach(list => {
+    list.sort((a, b) => a.dep - b.dep);
+  });
+
+  const bestByDestinationDay = new Map();
+
+  outboundFlights.forEach(out => {
+    const dayKey = getLocalDateKey(out.dep);
+    const destination = out.destination;
+    const returnCandidates = returnsByDestinationDay.get(`${destination}|${dayKey}`) || [];
+
+    returnCandidates.forEach(back => {
+      const stayMinutes = Math.round((back.dep.getTime() - out.arr.getTime()) / 60000);
+
+      if (stayMinutes < ROUNDTRIP_MIN_STAY_MINUTES) return;
+
+      /*
+        Sin pernocte:
+        el vuelo de regreso sale el mismo día calendario que la ida.
+        Puede aterrizar después de medianoche, pero no obliga a dormir en destino.
+      */
+      if (getLocalDateKey(back.dep) !== dayKey) return;
+
+      const item = {
+        origin,
+        destination,
+        dayKey,
+        date: getDayStart(out.dep),
+        out,
+        back,
+        stayMinutes
+      };
+
+      const key = `${dayKey}|${destination}`;
+      const previous = bestByDestinationDay.get(key);
+
+      // Para cada destino y día se conserva la combinación con mayor tiempo útil en destino.
+      if (!previous || item.stayMinutes > previous.stayMinutes) {
+        bestByDestinationDay.set(key, item);
+      }
+    });
+  });
+
+  return Array.from(bestByDestinationDay.values())
+    .sort((a, b) => {
+      if (a.date.getTime() !== b.date.getTime()) return a.date - b.date;
+      return a.destination.localeCompare(b.destination);
+    });
+}
+
+function renderRoundTripPanel(originCode) {
+  const root = q("roundTripPanel");
+  if (!root) return;
+
+  const origin = clean(originCode).toUpperCase();
+
+  if (!origin) {
+    root.innerHTML = `
+      <div class="rutas-roundtrip-empty">
+        Hacé clic en un aeropuerto del SNA para consultar destinos con ida y vuelta en el día.
+      </div>
+    `;
+    return;
+  }
+
+  if (!state.snaAirports.has(origin)) {
+    root.innerHTML = `
+      <div class="rutas-roundtrip-head">
+        <div class="rutas-roundtrip-airport">${escapeHtml(origin)}</div>
+        <div class="rutas-roundtrip-subtitle">
+          El análisis se calcula solo para aeropuertos del SNA.
+        </div>
+      </div>
+      <div class="rutas-roundtrip-empty">
+        Seleccioná un aeropuerto del SNA para ver combinaciones ida y vuelta sin pernocte.
+      </div>
+    `;
+    return;
+  }
+
+  const airportName = getAirportDisplayName(origin);
+  const hasRegular = airportHasRegularFlights(origin);
+  const rows = hasRegular ? findSameDayRoundTrips(origin) : [];
+
+  const destinations = new Set(rows.map(r => r.destination));
+  const days = new Set(rows.map(r => r.dayKey));
+
+  const header = `
+    <div class="rutas-roundtrip-head">
+      <div class="rutas-roundtrip-airport">${escapeHtml(origin)} · ${escapeHtml(airportName)}</div>
+      <div class="rutas-roundtrip-subtitle">
+        Vuelos regulares. Regreso saliendo el mismo día. Estadía mínima:
+        ${formatDurationMinutes(ROUNDTRIP_MIN_STAY_MINUTES)}.
+      </div>
+    </div>
+
+    <div class="rutas-roundtrip-kpis">
+      <div class="rutas-roundtrip-kpi">
+        <span>Destinos posibles</span>
+        <strong>${destinations.size.toLocaleString("es-AR")}</strong>
+      </div>
+      <div class="rutas-roundtrip-kpi">
+        <span>Días con opción</span>
+        <strong>${days.size.toLocaleString("es-AR")}</strong>
+      </div>
+    </div>
+  `;
+
+  if (!hasRegular) {
+    root.innerHTML = `
+      ${header}
+      <div class="rutas-roundtrip-empty">
+        No se identificaron vuelos regulares asociados a este aeropuerto en la semana cargada.
+      </div>
+    `;
+    return;
+  }
+
+  if (!rows.length) {
+    root.innerHTML = `
+      ${header}
+      <div class="rutas-roundtrip-empty">
+        No se encontraron combinaciones de ida y vuelta sin pernocte para este aeropuerto,
+        con el criterio actual de estadía mínima.
+      </div>
+    `;
+    return;
+  }
+
+  root.innerHTML = `
+    ${header}
+
+    <div class="rutas-roundtrip-table-wrap">
+      <table class="rutas-roundtrip-table">
+        <thead>
+          <tr>
+            <th>Día</th>
+            <th>Destino</th>
+            <th>Ida</th>
+            <th>Regreso</th>
+            <th>Estadía</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map(r => `
+            <tr>
+              <td>
+                <span class="rutas-roundtrip-day">${escapeHtml(formatWeekdayTick(r.date))}</span>
+                <span class="rutas-roundtrip-muted">${escapeHtml(formatDateShort(r.date))}</span>
+              </td>
+              <td>
+                <span class="rutas-roundtrip-code">${escapeHtml(r.destination)}</span>
+                <span class="rutas-roundtrip-muted">${escapeHtml(getAirportDisplayName(r.destination))}</span>
+              </td>
+              <td>${formatRoundTripFlightCell(r.out)}</td>
+              <td>${formatRoundTripFlightCell(r.back)}</td>
+              <td>
+                <span class="rutas-roundtrip-stay">${escapeHtml(formatDurationMinutes(r.stayMinutes))}</span>
+              </td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
   function getRouteColorByEndpoints(f) {
     if (!isArgentinaAirport(f.origin) || !isArgentinaAirport(f.destination)) return "#16c41e";
     if (state.snaAirports.has(f.origin) && state.snaAirports.has(f.destination)) return "#0072bb";
