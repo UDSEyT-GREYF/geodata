@@ -62,7 +62,7 @@ body {
 .siga-layout {
   height: calc(100vh - 64px);
   display: grid;
-  grid-template-columns: 300px minmax(0, 1fr);
+  grid-template-columns: 300px minmax(0, 1fr) 380px;
 }
 .siga-sidebar {
   background: #f7f9fc;
@@ -382,12 +382,31 @@ body {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.20);
 }
 
-@media (max-width: 880px) {
+@media (max-width: 1000px) {
   body { overflow: auto; }
   .siga-header { height: auto; align-items: flex-start; flex-direction: column; }
-  .siga-layout { height: auto; min-height: calc(100vh - 64px); grid-template-columns: 1fr; }
+
+  .siga-layout {
+    height: auto;
+    min-height: calc(100vh - 64px);
+    grid-template-columns: 1fr;
+  }
+
   .siga-sidebar { max-height: 42vh; }
   .siga-map-shell { height: 58vh; }
+
+  .rutas-right-panel {
+    border-left: 0;
+    border-top: 1px solid var(--siga-border);
+  }
+
+  .rutas-roundtrip-card {
+    height: auto;
+  }
+
+  .rutas-roundtrip-table-wrap {
+    max-height: 42vh;
+  }
 }
 
 /* =========================================================
@@ -672,7 +691,175 @@ body {
   backdrop-filter: blur(2px);
 }
 
+.rutas-right-panel {
+  background: #f7f9fc;
+  border-left: 1px solid var(--siga-border);
+  overflow: auto;
+  padding: 12px;
+}
 
+.rutas-roundtrip-card {
+  height: calc(100vh - 88px);
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.rutas-roundtrip-panel {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rutas-roundtrip-empty {
+  padding: 12px;
+  border: 1px dashed #cbd5e1;
+  border-radius: 9px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: .76rem;
+  line-height: 1.35;
+}
+
+.rutas-roundtrip-head {
+  border: 1px solid #d9e4f1;
+  border-radius: 9px;
+  padding: 8px;
+  background: linear-gradient(180deg, #ffffff, #f4f8fd);
+}
+
+.rutas-roundtrip-airport {
+  color: var(--siga-blue-dark);
+  font-size: .95rem;
+  font-weight: 850;
+  line-height: 1.15;
+}
+
+.rutas-roundtrip-subtitle {
+  margin-top: 3px;
+  color: #64748b;
+  font-size: .68rem;
+  line-height: 1.3;
+}
+
+.rutas-roundtrip-kpis {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+
+.rutas-roundtrip-kpi {
+  border: 1px solid #e1e8f1;
+  border-radius: 8px;
+  padding: 7px;
+  background: #ffffff;
+}
+
+.rutas-roundtrip-kpi span {
+  display: block;
+  color: #64748b;
+  font-size: .58rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-weight: 800;
+}
+
+.rutas-roundtrip-kpi strong {
+  display: block;
+  margin-top: 2px;
+  color: var(--siga-value-blue);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.rutas-roundtrip-table-wrap {
+  min-height: 0;
+  max-height: calc(100vh - 245px);
+  overflow: auto;
+  border: 1px solid #d9e4f1;
+  border-radius: 9px;
+  background: #ffffff;
+}
+
+.rutas-roundtrip-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .68rem;
+}
+
+.rutas-roundtrip-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #eef5ff;
+  color: var(--siga-blue-dark);
+  text-align: left;
+  padding: 6px 5px;
+  border-bottom: 1px solid #d9e4f1;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.rutas-roundtrip-table td {
+  padding: 6px 5px;
+  border-bottom: 1px solid #edf2f7;
+  vertical-align: top;
+  color: #1f2937;
+}
+
+.rutas-roundtrip-table tr:hover td {
+  background: #f8fbff;
+}
+
+.rutas-roundtrip-day {
+  display: inline-block;
+  min-width: 32px;
+  padding: 2px 5px;
+  border-radius: 999px;
+  background: var(--siga-blue-soft);
+  color: var(--siga-blue-dark);
+  font-weight: 850;
+  text-align: center;
+}
+
+.rutas-roundtrip-code {
+  font-weight: 850;
+  color: var(--siga-blue-dark);
+}
+
+.rutas-roundtrip-muted {
+  display: block;
+  margin-top: 1px;
+  color: #64748b;
+  font-size: .62rem;
+  line-height: 1.25;
+}
+
+.rutas-roundtrip-flight {
+  font-weight: 800;
+  color: #111827;
+  white-space: nowrap;
+}
+
+.rutas-roundtrip-time {
+  display: block;
+  color: #475569;
+  font-size: .62rem;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.rutas-roundtrip-stay {
+  color: #0f766e;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.rutas-airport-label-marker.rutas-airport-marker-interactive {
+  pointer-events: auto !important;
+}
 /* =========================================================
    HEADER COMPACTO – controles integrados sin invadir el mapa
    ========================================================= */
