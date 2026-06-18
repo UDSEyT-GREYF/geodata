@@ -1073,28 +1073,33 @@ if (!origin || !destination || origin === destination) {
     return d;
   }
 
-  function buildStaticRoutesFromFlights(flights) {
-    const routes = [];
-    const rendered = new Set();
+function buildStaticRoutesFromFlights(flights) {
+  const routes = [];
+  const rendered = new Set();
 
-    (flights || []).forEach((f) => {
-      if (!f.origin || !f.destination || !f.from || !f.to) return;
-      const key = [f.origin, f.destination].sort().join("-");
-      if (rendered.has(key)) return;
-      rendered.add(key);
+  (flights || []).forEach((f) => {
+    if (!f.origin || !f.destination || !f.from || !f.to) return;
 
-      routes.push({
-        origin: f.origin,
-        destination: f.destination,
-        rawOrigin: f.rawOrigin,
-        rawDestination: f.rawDestination,
-        from: f.from,
-        to: f.to
-      });
+    // Importante: clave direccional.
+    // AEP-COR y COR-AEP deben ser rutas distintas,
+    // porque la curva de la animación depende del sentido del vuelo.
+    const key = `${f.origin}-${f.destination}`;
+
+    if (rendered.has(key)) return;
+    rendered.add(key);
+
+    routes.push({
+      origin: f.origin,
+      destination: f.destination,
+      rawOrigin: f.rawOrigin,
+      rawDestination: f.rawDestination,
+      from: f.from,
+      to: f.to
     });
+  });
 
-    return routes;
-  }
+  return routes;
+}
 
 function buildAvailableDays() {
   const map = new Map();
@@ -1669,7 +1674,7 @@ state.staticRoutes.forEach((r) => {
     state.airportsLayer.clearLayers();
 
 state.staticRoutes.forEach((r) => {
-  L.polyline(getArcLatLngs(r.from, r.to, 44), {
+  L.polyline(getFlightArcLatLngs(r, 1), {
     pane: "rutasBasePane",
     color: BASE_ROUTE_COLOR,
     weight: 2.1,
@@ -1709,7 +1714,7 @@ function renderFlightHitLayer() {
   (state.flights || []).forEach((f) => {
     if (!f.from || !f.to) return;
 
-const hitLine = L.polyline(getArcLatLngs(f.from, f.to, 44, 1), {
+const hitLine = L.polyline(getFlightArcLatLngs(f, 1), {
   pane: "rutasFlightHitPane",
   renderer: state.hitRenderer,
   color: "#000000",
@@ -1897,6 +1902,10 @@ function getFlightColor(f) {
     return points;
   }
 
+function getFlightArcLatLngs(f, endP = 1) {
+  return getArcLatLngs(f.from, f.to, 44, endP);
+}
+
   function calculateBearing(from, to) {
     const lat1 = from[0] * Math.PI / 180;
     const lat2 = to[0] * Math.PI / 180;
@@ -1948,8 +1957,8 @@ function getFlightColor(f) {
 
       let active = state.activeFlights.get(f.id);
       if (!active) {
-        const trail = L.polyline(getArcLatLngs(f.from, f.to, 36, p), {
-          pane: "rutasTrailPane",
+const trail = L.polyline(getFlightArcLatLngs(f, p), {
+  pane: "rutasTrailPane",
           color,
           weight: 3.0,
           opacity: 0.82,
@@ -1986,7 +1995,7 @@ trail.on("click", () => setFeatureInfo(f));
         state.activeFlights.set(f.id, active);
       } else {
         active.marker.setLatLng(position);
-        active.trail.setLatLngs(getArcLatLngs(f.from, f.to, 36, p));
+        active.trail.setLatLngs(getFlightArcLatLngs(f, p));
         if (state.showTrails && !state.trailsLayer.hasLayer(active.trail)) active.trail.addTo(state.trailsLayer);
         else if (!state.showTrails && state.trailsLayer.hasLayer(active.trail)) state.trailsLayer.removeLayer(active.trail);
       }
@@ -2035,7 +2044,7 @@ function addCompletedFlight(f) {
 
   const color = getFlightColor(f);
 
-const trail = L.polyline(getArcLatLngs(f.from, f.to, 44, 1), {
+const trail = L.polyline(getFlightArcLatLngs(f, 1), {
   pane: "rutasCompletedPane",
   color,
   weight: 3.0,
