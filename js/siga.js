@@ -12,7 +12,7 @@ if (EMBED_MODE) document.body.classList.add("embed");
 if (MINI_MODE) document.body.classList.add("mini");
 
   const AIRPORTS_SOURCE = "fuentes/Datos_aeropuertos.geojson";
-
+  const PARADAS_APP_CSV_SOURCE = "fuentes/Paradasapp.csv";
   const DEFAULT_CENTER = [-38.4, -63.6];
   const DEFAULT_ZOOM = 4;
 
@@ -440,21 +440,35 @@ polygonIcon: {
         fillOpacity: 0.48
       }
     },
-    {
-      id: "paradasapp",
-      group: "Servicios y apoyo",
-      name: "Paradas transporte público",
-      url: "fuentes/paradasapp.geojson",
-      active: true,
-      opacity: 1,
-      color: SIGA_COLORS.verdeInternacional,
-      point: {
-        radius: 4.8,
-        color: "#1a7a3e",
-        fillColor: SIGA_COLORS.verdeInternacional,
-        fillOpacity: 0.9
-      }
-    },
+{
+  id: "paradasapp",
+  group: "Servicios y apoyo",
+  name: "Paradas transporte público",
+  url: "fuentes/paradasapp.geojson",
+  active: true,
+  opacity: 1,
+  color: SIGA_COLORS.verdeInternacional,
+
+  tooltipTitle: "Parada de transporte público",
+  tooltipFields: [
+    { label: "IATA", keys: ["IATA", "iata"] },
+    { label: "Línea", keys: ["LINEA", "Linea", "linea", "Línea"] },
+    { label: "Parada", keys: ["Parada", "PARADA", "parada"] }
+  ],
+
+  popupFields: [
+    { label: "IATA", keys: ["IATA", "iata"] },
+    { label: "Línea", keys: ["LINEA", "Linea", "linea", "Línea"] },
+    { label: "Parada", keys: ["Parada", "PARADA", "parada"] }
+  ],
+
+  point: {
+    radius: 4.8,
+    color: "#1a7a3e",
+    fillColor: SIGA_COLORS.verdeInternacional,
+    fillOpacity: 0.9
+  }
+},
     {
       id: "smn",
       group: "Servicios y apoyo",
@@ -494,7 +508,8 @@ const LAYER_GROUP_ORDER = [
     airportIndex: new Map(),
     selectedAirport: "",
     airportLabelLayer: null,
-    drawnItems: null
+    drawnItems: null,
+    paradasAppRowsByIata: new Map()
   };
 
   const q = (id) => document.getElementById(id);
@@ -551,7 +566,9 @@ const byLayer = {
   ],
 
   psn: ["posicion", "Posicion", "posición", "Posición", "POSICION"],
-  terminales2026: ["tipo", "Tipo", "TIPO"]
+  terminales2026: ["tipo", "Tipo", "TIPO"],
+
+  paradasapp: ["LINEA", "Linea", "linea", "Línea"]
 };
 
     const candidates = byLayer[cfg.id];
@@ -740,7 +757,123 @@ map.on("zoomend", () => {
     if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
     return resp.json();
   }
+async function loadText(url) {
+  const resp = await fetch(url);
+  if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
+  return resp.text();
+}
 
+function parseCsvLine(line, separator = ";") {
+  const out = [];
+  let current = "";
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i += 1) {
+    const ch = line[i];
+    const next = line[i + 1];
+
+    if (ch === '"' && inQuotes && next === '"') {
+      current += '"';
+      i += 1;
+      continue;
+    }
+
+    if (ch === '"') {
+      inQuotes = !inQuotes;
+      continue;
+    }
+
+    if (ch === separator && !inQuotes) {
+      out.push(current.trim());
+      current = "";
+      continue;
+    }
+
+    current += ch;
+  }
+
+  out.push(current.trim());
+  return out;
+}
+
+function parseSemicolonCsv(text) {
+  const lines = String(text || "")
+    .replace(/^\uFEFF/, "")
+    .split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(Boolean);
+
+  if (!lines.length) return [];
+
+  const headers = parseCsvLine(lines[0], ";").map(h => clean(h));
+
+  return lines.slice(1).map(line => {
+    const values = parseCsvLine(line, ";");
+    const row = {};
+
+    headers.forEach((header, idx) => {
+      row[header] = clean(values[idx]);
+    });
+
+    return row;
+  });
+}
+
+async function loadParadasAppCsv() {
+  state.paradasAppRowsByIata = new Map();
+
+  try {
+    const text = await loadText(PARADAS_APP_CSV_SOURCE);
+    const rows = parseSemicolonCsv(text);
+
+    rows.forEach((row) => {
+      const iata = clean(row.IATA || row.iata).toUpperCase();
+      if (!iata) return;
+
+      if (!state.paradasAppRowsByIata.has(iata)) {
+        state.paradasAppRowsByIata.set(iata, []);
+      }
+
+      state.paradasAppRowsByIata.get(iata).push({
+        IATA: iata,
+        LINEA: clean(row.LINEA || row.Linea || row.linea || row["Línea"]),
+        Parada: clean(row.Parada || row.PARADA || row.parada)
+      });
+    });
+  } catch (e) {
+    console.warn("No se pudo cargar Paradasapp.csv", e);
+  }
+}
+
+function enrichParadasAppGeojson(geojson) {
+  if (!geojson?.features?.length) return geojson;
+
+  const assignedByIata = new Map();
+
+  geojson.features.forEach((feature) => {
+    const props = feature.properties || {};
+    const iata = clean(props.IATA || props.iata || getFeatureIata(feature)).toUpperCase();
+
+    if (!iata) return;
+
+    const rows = state.paradasAppRowsByIata.get(iata) || [];
+    if (!rows.length) return;
+
+    const used = assignedByIata.get(iata) || 0;
+    const row = rows[used] || rows[0];
+
+    assignedByIata.set(iata, used + 1);
+
+    feature.properties = {
+      ...props,
+      IATA: props.IATA || iata,
+      LINEA: props.LINEA || row.LINEA || "",
+      Parada: props.Parada || row.Parada || ""
+    };
+  });
+
+  return geojson;
+}
   async function loadAirports() {
     const gj = await loadJson(AIRPORTS_SOURCE);
     state.airports = (gj.features || [])
@@ -1429,8 +1562,13 @@ function setFeatureInfo(cfg, feature) {
 
     for (const cfg of LAYER_CONFIGS) {
       try {
-        const gj = await loadJson(cfg.url);
-        const layer = makeLayer(cfg, gj);
+        let gj = await loadJson(cfg.url);
+
+if (cfg.id === "paradasapp") {
+  gj = enrichParadasAppGeojson(gj);
+}
+
+const layer = makeLayer(cfg, gj);
         const def = { cfg, geojson: gj, layer, active: false, opacity: cfg.opacity ?? 1 };
         state.layerDefs.set(cfg.id, def);
 
@@ -1740,8 +1878,9 @@ function renderLayerTree() {
     renderBaseLayerTree();
 
     try {
-      await loadAirports();
-      await loadConfiguredLayers();
+await loadAirports();
+await loadParadasAppCsv();
+await loadConfiguredLayers();
       createAirportLabels();
       state.map.on("zoomend", () => {
       updateZoomDependentLabels();
