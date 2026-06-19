@@ -1223,7 +1223,7 @@ if (cfg.polygonIcon && isPolygonGeometry(feature)) {
 
     layer.on("click", () => setFeatureInfo(cfg, feature));
 
-});layer.on("mouseover", () => {
+layer.on("mouseover", () => {
   if (!layer.setStyle || cfg.id === "provincias") return;
 
   // Predios y aeroplantas: solo engrosar borde, sin relleno
