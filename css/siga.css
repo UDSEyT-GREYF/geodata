@@ -59,7 +59,7 @@ body {
 .siga-header-actions { display: flex; gap: 8px; align-items: center; }
 
 .siga-layout {
-  height: calc(100vh - 64px);
+  height: calc(100vh - 54px);
   display: grid;
   grid-template-columns: 300px minmax(0, 1fr);
 }
