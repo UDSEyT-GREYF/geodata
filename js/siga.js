@@ -649,7 +649,7 @@ function getLayerPaneId(layerId) {
         zoomSnap: 0.25,
         zoomDelta: 0.25,
         wheelPxPerZoomLevel: 150,
-      preferCanvas: true,
+      preferCanvas: false,
       fullscreenControl: !!L.Control.FullScreen
     });
 
@@ -1121,6 +1121,7 @@ const paneId = getLayerPaneId(cfg.id);
 
 const options = {
   pane: paneId,
+  interactive: true,
   style: (feature) => featureStyle(cfg, feature),
   pointToLayer: (feature, latlng) => {
     const p = cfg.point || {
@@ -1130,14 +1131,15 @@ const options = {
       fillOpacity: 0.9
     };
 
-    return L.circleMarker(latlng, {
-      pane: paneId,
-      radius: p.radius,
-      color: p.color,
-      weight: 1,
-      fillColor: p.fillColor,
-      fillOpacity: p.fillOpacity
-    });
+return L.circleMarker(latlng, {
+  pane: paneId,
+  interactive: true,
+  radius: p.radius,
+  color: p.color,
+  weight: 1,
+  fillColor: p.fillColor,
+  fillOpacity: p.fillOpacity
+});
   },
   onEachFeature: (feature, layer) => bindFeature(cfg, feature, layer)
 };
