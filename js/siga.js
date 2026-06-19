@@ -1188,65 +1188,67 @@ function buildHoverTooltip(cfg, feature) {
     <div class="siga-tooltip-title">${escapeHtml(title)}</div>
     ${rows}
   `;
-}
-  function bindFeature(cfg, feature, layer) {
-    const title = featureTitle(feature, cfg.name);
-    const iata = getFeatureIata(feature);
+}function bindFeature(cfg, feature, layer) {
+  const title = featureTitle(feature, cfg.name);
+  const iata = getFeatureIata(feature);
 
-const detailLabel = getDetailLabelValue(cfg, feature);
+  const detailLabel = getDetailLabelValue(cfg, feature);
 
-if (cfg.polygonIcon && isPolygonGeometry(feature)) {
-  layer.bindTooltip(cfg.polygonIcon.html || "", {
-    permanent: true,
-    direction: "center",
-    className: cfg.polygonIcon.className || "siga-poly-center-icon"
-  });
-} else if (detailLabel) {
-  layer.bindTooltip(detailLabel, {
-    permanent: true,
-    direction: cfg.id === "psn" ? "top" : "center",
-    className: `siga-tooltip siga-label-detail siga-label-detail-${cfg.id}`
-  });
-} else {
-  const hoverTooltip = buildHoverTooltip(cfg, feature);
-
-  if (hoverTooltip) {
-    layer.bindTooltip(hoverTooltip, {
-      sticky: true,
-      direction: cfg.tooltipDirection || "top",
-      className: "siga-tooltip siga-tooltip-rich"
+  if (cfg.polygonIcon && isPolygonGeometry(feature)) {
+    layer.bindTooltip(cfg.polygonIcon.html || "", {
+      permanent: true,
+      direction: "center",
+      className: cfg.polygonIcon.className || "siga-poly-center-icon"
     });
+  } else if (detailLabel) {
+    layer.bindTooltip(detailLabel, {
+      permanent: true,
+      direction: cfg.id === "psn" ? "top" : "center",
+      className: `siga-tooltip siga-label-detail siga-label-detail-${cfg.id}`
+    });
+  } else {
+    const hoverTooltip = buildHoverTooltip(cfg, feature);
+
+    if (hoverTooltip) {
+      layer.bindTooltip(hoverTooltip, {
+        sticky: true,
+        direction: cfg.tooltipDirection || "top",
+        className: "siga-tooltip siga-tooltip-rich"
+      });
+    }
   }
-}
 
-    layer.bindPopup(buildPopupHtml(cfg, feature), { className: "siga-popup", maxWidth: 360 });
+  layer.bindPopup(buildPopupHtml(cfg, feature), {
+    className: "siga-popup",
+    maxWidth: 360
+  });
 
-    layer.on("click", () => setFeatureInfo(cfg, feature));
+  layer.on("click", () => setFeatureInfo(cfg, feature));
 
-layer.on("mouseover", () => {
-  if (!layer.setStyle || cfg.id === "provincias") return;
+  layer.on("mouseover", () => {
+    if (!layer.setStyle || cfg.id === "provincias") return;
 
-  // Predios y aeroplantas: solo engrosar borde, sin relleno
-  if (cfg.id === "predios" || cfg.id === "aeroplantas") {
+    // Predios y aeroplantas: solo engrosar borde, sin relleno.
+    if (cfg.id === "predios" || cfg.id === "aeroplantas") {
+      layer.setStyle({
+        weight: Math.max(3, Number((cfg.style || {}).weight || 1.4) + 1.4),
+        fill: false,
+        fillOpacity: 0
+      });
+      return;
+    }
+
     layer.setStyle({
-      weight: Math.max(3, Number((cfg.style || {}).weight || 1.4) + 1.4),
-      fill: false,
-      fillOpacity: 0
+      weight: Math.max(3, Number((cfg.style || {}).weight || 1.5) + 1.5),
+      fillOpacity: Math.min(0.72, Number((cfg.style || {}).fillOpacity ?? 0.35) + 0.18)
     });
-    return;
-  }
-
-  layer.setStyle({
-    weight: Math.max(3, Number((cfg.style || {}).weight || 1.5) + 1.5),
-    fillOpacity: Math.min(0.72, Number((cfg.style || {}).fillOpacity ?? 0.35) + 0.18)
   });
-});
 
-    layer.on("mouseout", () => {
-      const def = state.layerDefs.get(cfg.id);
-      if (layer.setStyle && def) layer.setStyle(featureStyle(cfg, feature));
-    });
-  }
+  layer.on("mouseout", () => {
+    const def = state.layerDefs.get(cfg.id);
+    if (layer.setStyle && def) layer.setStyle(featureStyle(cfg, feature));
+  });
+}
 
 function getImportantProps(feature, cfg = {}) {
   const props = feature?.properties || {};
