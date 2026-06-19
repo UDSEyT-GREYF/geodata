@@ -1347,9 +1347,13 @@ function buildHoverTooltip(cfg, feature) {
   const base = layerNames[cfg.id] || cfg.tooltipTitle || cfg.name || "Elemento";
   const title = featureTitle(feature, "");
 
-  if (detailLabel) {
-    return `${base}: ${detailLabel}`;
+if (detailLabel) {
+  if (cfg.id === "paradasapp") {
+    return `${base} líneas: ${detailLabel}`;
   }
+
+  return `${base}: ${detailLabel}`;
+}
 
   if (
     title &&
