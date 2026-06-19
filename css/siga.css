@@ -773,9 +773,11 @@ body.mini .leaflet-control-easyPrint {
    SIGA – Cursor e identificación al hover
    ============================== */
 
-.siga-map .leaflet-interactive,
-.siga-map .leaflet-marker-icon,
-.siga-map .leaflet-tooltip {
+.siga-map.is-feature-hovering,
+.siga-map.is-feature-hovering .leaflet-interactive,
+.siga-map.is-feature-hovering .leaflet-marker-icon,
+.siga-map.is-feature-hovering .leaflet-tooltip,
+.siga-map.is-feature-hovering .leaflet-pane canvas {
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M5 3 L22 14 L14 16 L18 25 L14 27 L10 18 L5 24 Z' fill='%230072bb' stroke='white' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E") 4 3, default !important;
 }
 
