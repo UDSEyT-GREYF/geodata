@@ -1557,7 +1557,7 @@ function renderLayerTree() {
       state.map.fitBounds(bounds, { padding: [35, 35], maxZoom: 17 });
       // No dibujamos polígono de predio seleccionado: entorpece la lectura de capas internas.
       const hint = q("airportHint");
-      if (hint) hint.textContent = `Vista centrada en ${code}. Podés seguir explorando o volver a la vista nacional.`;
+      if (hint) hint.textContent = `Vista centrada en ${code}.`;
       updateUrl(true);
       return;
     }
