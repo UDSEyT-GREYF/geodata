@@ -305,42 +305,36 @@ body.embed .leaflet-control-attribution {
 .siga-label-detail {
   display: none;
   pointer-events: none;
-  background: rgba(255, 255, 255, 0.30);
-  border: 1px solid rgba(143, 164, 189, 0.50);
-  color: rgba(0, 40, 85, 0.72);
-  font-size: 9px;
-  font-weight: 600;
-  padding: 1px 4px;
-  box-shadow: none;
+  background: transparent !important;
+  border: 0 !important;
+  color: #7CFF4D;
+  font-size: 10px;
+  font-weight: 850;
+  padding: 0;
+  box-shadow: none !important;
+  text-shadow:
+    -1px -1px 0 #103800,
+     1px -1px 0 #103800,
+    -1px  1px 0 #103800,
+     1px  1px 0 #103800,
+     0 0 3px #ffffff;
 }
 
 .siga-show-detail-labels .siga-label-detail {
   display: block;
 }
 
-.siga-label-detail-psn {
-  color: rgba(107, 47, 130, 0.85);
-  border-color: rgba(107, 47, 130, 0.42);
-  font-size: 8px;
-}
-
-.siga-label-detail-pistas {
-  color: rgba(34, 34, 34, 0.85);
-  border-color: rgba(34, 34, 34, 0.38);
-}
-
-.siga-label-detail-cabeceras {
-  color: rgba(0, 40, 85, 0.85);
-  border-color: rgba(0, 40, 85, 0.38);
-}
-
-.siga-label-detail-terminales2026 {
-  color: rgba(138, 31, 31, 0.85);
-  border-color: rgba(178, 34, 34, 0.38);
-}
+.siga-label-detail-psn,
+.siga-label-detail-pistas,
+.siga-label-detail-cabeceras,
+.siga-label-detail-terminales2026,
 .siga-label-detail-plataformas {
-  color: rgba(0, 114, 187, 0.85);
-  border-color: rgba(0, 114, 187, 0.38);
+  color: #7CFF4D;
+  border: 0 !important;
+}
+
+.siga-label-detail-psn,
+.siga-label-detail-plataformas {
   font-size: 8px;
 }
 /* ==============================
