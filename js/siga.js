@@ -1305,10 +1305,11 @@ function bindFeature(cfg, feature, layer) {
     setFeatureInfo(cfg, feature);
   });
 
-  layer.on("mouseover", (e) => {
-    showHoverLabel(cfg, feature, e.originalEvent);
+layer.on("mouseover", (e) => {
+  showHoverLabel(cfg, feature, e.originalEvent);
+  state.map?.getContainer()?.classList.add("is-feature-hovering");
 
-    if (!layer.setStyle || cfg.id === "provincias") return;
+  if (!layer.setStyle || cfg.id === "provincias") return;
 
     // Predios y aeroplantas: solo engrosar borde, sin relleno.
     if (cfg.id === "predios" || cfg.id === "aeroplantas") {
@@ -1330,10 +1331,11 @@ function bindFeature(cfg, feature, layer) {
     moveHoverLabel(e.originalEvent);
   });
 
-  layer.on("mouseout", () => {
-    hideHoverLabel();
+layer.on("mouseout", () => {
+  hideHoverLabel();
+  state.map?.getContainer()?.classList.remove("is-feature-hovering");
 
-    const def = state.layerDefs.get(cfg.id);
+  const def = state.layerDefs.get(cfg.id);
     if (layer.setStyle && def) {
       layer.setStyle(featureStyle(cfg, feature));
     }
