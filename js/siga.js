@@ -208,7 +208,7 @@ if (MINI_MODE) document.body.classList.add("mini");
       url: "fuentes/poligonos_aeropuertos.geojson",
       active: true,
       opacity: 0.95,
-      color: SIGA_COLORS.azulLink,
+      color: "#5DFF3A",
       tooltipTitle: "Predio aeroportuario",
       tooltipFields: [
       { label: "Aeropuerto", keys: ["Aeropuerto", "aeropuerto", "nombre", "Nombre"] },
@@ -226,12 +226,14 @@ if (MINI_MODE) document.body.classList.add("mini");
     { label: "Sup. Kilómetros", keys: ["SupKm2Text", "SupKm2"], suffix: "km²" },
     { label: "Descripción", keys: ["Descrip"] }
   ],
-      style: {
-        color: SIGA_COLORS.azulLink,
-        weight: 2.2,
-        fillColor: SIGA_COLORS.azulClaro,
-        fillOpacity: 0.18
-      }
+style: {
+  color: "#5DFF3A",
+  weight: 2.4,
+  opacity: 0.95,
+  fill: false,
+  fillColor: "transparent",
+  fillOpacity: 0
+}
     },
     {
       id: "pistas",
@@ -589,7 +591,56 @@ function getAirportShortName(airport) {
       attribution: cfg.attribution || ""
     });
   }
+function createSigaPanes(map) {
+  const panes = [
+    ["sigaContextPane", 410],
+    ["sigaPredioPane", 430],
+    ["sigaMovimientoPane", 470],
+    ["sigaInfraPane", 510],
+    ["sigaServiciosPane", 540],
+    ["sigaLabelsPane", 650]
+  ];
 
+  panes.forEach(([name, zIndex]) => {
+    if (!map.getPane(name)) map.createPane(name);
+    map.getPane(name).style.zIndex = zIndex;
+  });
+}
+
+function getLayerPaneId(layerId) {
+  if (layerId === "provincias") return "sigaContextPane";
+
+  if (layerId === "predios") return "sigaPredioPane";
+
+  if ([
+    "pistas",
+    "cabeceras",
+    "plataformas",
+    "psn"
+  ].includes(layerId)) {
+    return "sigaMovimientoPane";
+  }
+
+  if ([
+    "terminales2026",
+    "hangares",
+    "otros",
+    "estacionamientos",
+    "aeroplantas"
+  ].includes(layerId)) {
+    return "sigaInfraPane";
+  }
+
+  if ([
+    "torres",
+    "paradasapp",
+    "smn"
+  ].includes(layerId)) {
+    return "sigaServiciosPane";
+  }
+
+  return "overlayPane";
+}
   function createMap() {
     const map = L.map("sigaMap", {
       center: DEFAULT_CENTER,
@@ -608,8 +659,11 @@ function getAirportShortName(airport) {
       state.baseLayerConfigs.set(cfg.id, { ...cfg, layer });
     });
 
-    state.map = map;
-    setBaseLayer(DEFAULT_BASEMAP_ID, { auto: true, silent: true });
+state.map = map;
+
+createSigaPanes(map);
+
+setBaseLayer(DEFAULT_BASEMAP_ID, { auto: true, silent: true });
 
     map.on("baselayerchange", (e) => {
       if (state.autoSwitchingBaseLayer) return;
@@ -1063,21 +1117,30 @@ function refreshZoomDependentLayers() {
   renderLegend();
 }
   function makeLayer(cfg, geojson) {
-    const options = {
-      pane: cfg.id === "provincias" ? "overlayPane" : "overlayPane",
-      style: (feature) => featureStyle(cfg, feature),
-      pointToLayer: (feature, latlng) => {
-        const p = cfg.point || { radius: 4, color: cfg.color, fillColor: cfg.color, fillOpacity: 0.9 };
-        return L.circleMarker(latlng, {
-          radius: p.radius,
-          color: p.color,
-          weight: 1,
-          fillColor: p.fillColor,
-          fillOpacity: p.fillOpacity
-        });
-      },
-      onEachFeature: (feature, layer) => bindFeature(cfg, feature, layer)
+const paneId = getLayerPaneId(cfg.id);
+
+const options = {
+  pane: paneId,
+  style: (feature) => featureStyle(cfg, feature),
+  pointToLayer: (feature, latlng) => {
+    const p = cfg.point || {
+      radius: 4,
+      color: cfg.color,
+      fillColor: cfg.color,
+      fillOpacity: 0.9
     };
+
+    return L.circleMarker(latlng, {
+      pane: paneId,
+      radius: p.radius,
+      color: p.color,
+      weight: 1,
+      fillColor: p.fillColor,
+      fillOpacity: p.fillOpacity
+    });
+  },
+  onEachFeature: (feature, layer) => bindFeature(cfg, feature, layer)
+};
 
     return L.geoJSON(geojson, options);
   }
@@ -1160,13 +1223,13 @@ if (cfg.polygonIcon && isPolygonGeometry(feature)) {
 
     layer.on("click", () => setFeatureInfo(cfg, feature));
 
-layer.on("mouseover", () => {
+});layer.on("mouseover", () => {
   if (!layer.setStyle || cfg.id === "provincias") return;
 
-  // Aeroplantas: solo engrosar borde, sin relleno
-  if (cfg.id === "aeroplantas") {
+  // Predios y aeroplantas: solo engrosar borde, sin relleno
+  if (cfg.id === "predios" || cfg.id === "aeroplantas") {
     layer.setStyle({
-      weight: Math.max(3, Number((cfg.style || {}).weight || 1.4) + 1.6),
+      weight: Math.max(3, Number((cfg.style || {}).weight || 1.4) + 1.4),
       fill: false,
       fillOpacity: 0
     });
