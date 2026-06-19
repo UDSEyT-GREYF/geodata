@@ -1188,12 +1188,97 @@ function buildHoverTooltip(cfg, feature) {
     <div class="siga-tooltip-title">${escapeHtml(title)}</div>
     ${rows}
   `;
-}function bindFeature(cfg, feature, layer) {
-  const title = featureTitle(feature, cfg.name);
-  const iata = getFeatureIata(feature);
-
+}
+  function getFeatureHoverName(cfg, feature) {
   const detailLabel = getDetailLabelValue(cfg, feature);
 
+  const layerNames = {
+    predios: "Predio aeroportuario",
+    pistas: "Pista",
+    cabeceras: "Cabecera",
+    plataformas: "Plataforma",
+    psn: "Posición de aeronave",
+    aeroplantas: "Aeroplanta",
+    terminales2026: "Terminal",
+    torres: "Torre de control",
+    hangares: "Hangar",
+    otros: "Edificio",
+    estacionamientos: "Estacionamiento vehicular",
+    paradasapp: "Parada de transporte público",
+    smn: "Estación meteorológica SMN",
+    provincias: "Provincia"
+  };
+
+  const base = layerNames[cfg.id] || cfg.tooltipTitle || cfg.name || "Elemento";
+  const title = featureTitle(feature, "");
+
+  if (detailLabel) {
+    return `${base}: ${detailLabel}`;
+  }
+
+  if (
+    title &&
+    title !== "Elemento" &&
+    title !== cfg.name &&
+    title !== base
+  ) {
+    return `${base}: ${title}`;
+  }
+
+  return base;
+}
+
+function ensureHoverLabel() {
+  if (!state.map) return null;
+
+  let el = document.getElementById("sigaHoverLabel");
+
+  if (!el) {
+    el = document.createElement("div");
+    el.id = "sigaHoverLabel";
+    el.className = "siga-map-hover-label";
+    state.map.getContainer().appendChild(el);
+  }
+
+  return el;
+}
+
+function moveHoverLabel(originalEvent) {
+  const el = ensureHoverLabel();
+  if (!el || !originalEvent || !state.map) return;
+
+  const rect = state.map.getContainer().getBoundingClientRect();
+  const x = originalEvent.clientX - rect.left;
+  const y = originalEvent.clientY - rect.top;
+
+  el.style.left = `${x}px`;
+  el.style.top = `${y}px`;
+}
+
+function showHoverLabel(cfg, feature, originalEvent) {
+  const el = ensureHoverLabel();
+  if (!el) return;
+
+  el.textContent = getFeatureHoverName(cfg, feature);
+  el.style.display = "block";
+
+  moveHoverLabel(originalEvent);
+}
+
+function hideHoverLabel() {
+  const el = document.getElementById("sigaHoverLabel");
+  if (el) el.style.display = "none";
+}
+
+  
+function bindFeature(cfg, feature, layer) {
+  const detailLabel = getDetailLabelValue(cfg, feature);
+
+  /*
+    Mantiene etiquetas permanentes para los elementos que ya las tienen,
+    pero la identificación al pasar el mouse ahora se maneja con
+    la etiqueta flotante siga-map-hover-label.
+  */
   if (cfg.polygonIcon && isPolygonGeometry(feature)) {
     layer.bindTooltip(cfg.polygonIcon.html || "", {
       permanent: true,
@@ -1206,26 +1291,23 @@ function buildHoverTooltip(cfg, feature) {
       direction: cfg.id === "psn" ? "top" : "center",
       className: `siga-tooltip siga-label-detail siga-label-detail-${cfg.id}`
     });
-  } else {
-    const hoverTooltip = buildHoverTooltip(cfg, feature);
-
-    if (hoverTooltip) {
-      layer.bindTooltip(hoverTooltip, {
-        sticky: true,
-        direction: cfg.tooltipDirection || "top",
-        className: "siga-tooltip siga-tooltip-rich"
-      });
-    }
   }
 
-  layer.bindPopup(buildPopupHtml(cfg, feature), {
-    className: "siga-popup",
-    maxWidth: 360
+  /*
+    Clic: la información va al panel lateral izquierdo.
+    No dependemos del popup del mapa.
+  */
+  layer.on("click", (e) => {
+    if (e?.originalEvent) {
+      L.DomEvent.stopPropagation(e.originalEvent);
+    }
+
+    setFeatureInfo(cfg, feature);
   });
 
-  layer.on("click", () => setFeatureInfo(cfg, feature));
+  layer.on("mouseover", (e) => {
+    showHoverLabel(cfg, feature, e.originalEvent);
 
-  layer.on("mouseover", () => {
     if (!layer.setStyle || cfg.id === "provincias") return;
 
     // Predios y aeroplantas: solo engrosar borde, sin relleno.
@@ -1244,9 +1326,17 @@ function buildHoverTooltip(cfg, feature) {
     });
   });
 
+  layer.on("mousemove", (e) => {
+    moveHoverLabel(e.originalEvent);
+  });
+
   layer.on("mouseout", () => {
+    hideHoverLabel();
+
     const def = state.layerDefs.get(cfg.id);
-    if (layer.setStyle && def) layer.setStyle(featureStyle(cfg, feature));
+    if (layer.setStyle && def) {
+      layer.setStyle(featureStyle(cfg, feature));
+    }
   });
 }
 
