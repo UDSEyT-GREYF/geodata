@@ -350,7 +350,9 @@ style: {
   color: "#d71920",
   weight: 1.4,
   fillColor: "#d71920",
-  fillOpacity: 0
+  // Relleno prácticamente invisible, pero mantiene
+  // toda la superficie del polígono consultable.
+  fillOpacity: 0.015
 },
 polygonIcon: {
   html: `
@@ -1452,14 +1454,24 @@ layer.on("mouseover", (e) => {
   if (!layer.setStyle || cfg.id === "provincias") return;
 
     // Predios y aeroplantas: solo engrosar borde, sin relleno.
-    if (cfg.id === "predios" || cfg.id === "aeroplantas") {
-      layer.setStyle({
-        weight: Math.max(3, Number((cfg.style || {}).weight || 1.4) + 1.4),
-        fill: false,
-        fillOpacity: 0
-      });
-      return;
-    }
+if (cfg.id === "predios") {
+  layer.setStyle({
+    weight: Math.max(3, Number((cfg.style || {}).weight || 1.4) + 1.4),
+    fill: false,
+    fillOpacity: 0
+  });
+  return;
+}
+
+if (cfg.id === "aeroplantas") {
+  layer.setStyle({
+    weight: Math.max(3, Number((cfg.style || {}).weight || 1.4) + 1.4),
+    fill: true,
+    fillColor: "#d71920",
+    fillOpacity: 0.06
+  });
+  return;
+}
 
     layer.setStyle({
       weight: Math.max(3, Number((cfg.style || {}).weight || 1.5) + 1.5),
