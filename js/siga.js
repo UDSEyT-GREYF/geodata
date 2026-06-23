@@ -553,29 +553,30 @@ function isPolygonGeometry(feature) {
   return type === "Polygon" || type === "MultiPolygon";
 }
 
-  function getDetailLabelValue(cfg, feature) {
-    const props = feature?.properties || {};
-const byLayer = {
-  cabeceras: ["Cabecera", "cabecera", "CABECERA", "etiqueta", "ETIQUETA"],
-  pistas: ["tipo", "Tipo", "TIPO"],
+function getDetailLabelValue(cfg, feature) {
+  const props = feature?.properties || {};
 
-  plataformas: [
-    "etiqueta", "Etiqueta", "ETIQUETA",
-    "tipo", "Tipo", "TIPO",
-    "nombre", "Nombre", "NOMBRE"
-  ],
+  if (cfg.id === "paradasapp") return "Parada TP";
 
-  psn: ["posicion", "Posicion", "posición", "Posición", "POSICION"],
-  terminales2026: ["tipo", "Tipo", "TIPO"],
+  const byLayer = {
+    cabeceras: ["Cabecera", "cabecera", "CABECERA", "etiqueta", "ETIQUETA"],
+    pistas: ["tipo", "Tipo", "TIPO"],
 
-  paradasapp: ["LINEA", "Linea", "linea", "Línea"]
-};
+    plataformas: [
+      "etiqueta", "Etiqueta", "ETIQUETA",
+      "tipo", "Tipo", "TIPO",
+      "nombre", "Nombre", "NOMBRE"
+    ],
 
-    const candidates = byLayer[cfg.id];
-    if (!candidates) return "";
+    psn: ["posicion", "Posicion", "posición", "Posición", "POSICION"],
+    terminales2026: ["tipo", "Tipo", "TIPO"]
+  };
 
-    return clean(getFirstProp(props, candidates));
-  }
+  const candidates = byLayer[cfg.id];
+  if (!candidates) return "";
+
+  return clean(getFirstProp(props, candidates));
+}
 
 function getAirportShortName(airport) {
   const p = airport?.properties || {};
