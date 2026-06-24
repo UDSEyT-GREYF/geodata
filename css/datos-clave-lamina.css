@@ -1344,7 +1344,7 @@ body.page-informe-impacto .sheet-wrap {
 }
 
 .airline-name-fallback {
-  font-size: 0.62rem;
+  font-size: 0.5rem;
   color: var(--blue-dark);
   font-weight: 700;
   line-height: 0.95;
