@@ -165,16 +165,6 @@ if (MINI_MODE) document.body.classList.add("mini");
       swatch: "#c4d7ef"
     },
     {
-      id: "esri_hillshade",
-      name: "Esri sombra de montaña",
-      url: "https://server.arcgisonline.com/ArcGIS/rest/services/Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}",
-      minZoom: 0,
-      maxZoom: 20,
-      nativeMaxZoom: 13,
-      attribution: "Sombra de montaña © Esri y proveedores de datos de elevación",
-      swatchImage: "https://server.arcgisonline.com/ArcGIS/rest/services/Elevation/World_Hillshade/MapServer/tile/0/0/0"
-    },
-    {
       id: "esri_gris",
       name: "Esri gris claro",
       url: "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
@@ -193,8 +183,20 @@ if (MINI_MODE) document.body.classList.add("mini");
     }
   ];
 
-  const DEFAULT_BASEMAP_ID = "esri_hillshade";
-  const AIRPORT_BASEMAP_ID = "esri_hillshade";
+  // Relieve permanente: no forma parte del selector de mapas base.
+  // Se dibuja siempre sobre el mapa base elegido y debajo de las capas vectoriales.
+  const PERMANENT_HILLSHADE_CONFIG = {
+    url: "https://server.arcgisonline.com/ArcGIS/rest/services/Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}",
+    minZoom: 0,
+    maxZoom: 20,
+    nativeMaxZoom: 13,
+    opacity: 0.52,
+    pane: "sigaHillshadePane",
+    attribution: "Sombra de montaña © Esri y proveedores de datos de elevación"
+  };
+
+  const DEFAULT_BASEMAP_ID = "argenmap";
+  const AIRPORT_BASEMAP_ID = "esri_imagery";
 
   const LAYER_CONFIGS = [
     {
@@ -698,6 +700,7 @@ const LAYER_GROUP_ORDER = [
     activeBaseLayerId: "",
     userChangedBaseLayer: false,
     autoSwitchingBaseLayer: false,
+    hillshadeLayer: null,
     layerDefs: new Map(),
     airports: [],
     airportIndex: new Map(),
@@ -868,8 +871,37 @@ function getAirportShortName(airport) {
       attribution: cfg.attribution || ""
     });
   }
+
+  function addPermanentHillshade(map) {
+    const cfg = PERMANENT_HILLSHADE_CONFIG;
+
+    const layer = L.tileLayer(cfg.url, {
+      pane: cfg.pane,
+      minZoom: cfg.minZoom,
+      maxZoom: cfg.maxZoom,
+      maxNativeZoom: cfg.nativeMaxZoom,
+      opacity: cfg.opacity,
+      attribution: cfg.attribution
+    });
+
+    layer.addTo(map);
+    state.hillshadeLayer = layer;
+
+    // Protección adicional: si alguna rutina externa intenta quitarla,
+    // se vuelve a agregar automáticamente.
+    map.on("layerremove", (event) => {
+      if (event.layer !== state.hillshadeLayer) return;
+      window.requestAnimationFrame(() => {
+        if (state.map && state.hillshadeLayer && !state.map.hasLayer(state.hillshadeLayer)) {
+          state.hillshadeLayer.addTo(state.map);
+        }
+      });
+    });
+  }
+
 function createSigaPanes(map) {
   const panes = [
+    ["sigaHillshadePane", 250],
     ["sigaContextPane", 410],
     ["sigaHazardAreaPane", 420],
     ["sigaPredioPane", 430],
@@ -884,6 +916,12 @@ function createSigaPanes(map) {
     if (!map.getPane(name)) map.createPane(name);
     map.getPane(name).style.zIndex = zIndex;
   });
+
+  const hillshadePane = map.getPane("sigaHillshadePane");
+  if (hillshadePane) {
+    hillshadePane.style.pointerEvents = "none";
+    hillshadePane.style.mixBlendMode = "multiply";
+  }
 }
 
 function getLayerPaneId(layerId) {
@@ -954,6 +992,7 @@ state.map = map;
 createSigaPanes(map);
 
 setBaseLayer(DEFAULT_BASEMAP_ID, { auto: true, silent: true });
+addPermanentHillshade(map);
 
     map.on("baselayerchange", (e) => {
       if (state.autoSwitchingBaseLayer) return;
