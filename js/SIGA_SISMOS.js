@@ -16,6 +16,7 @@ if (MINI_MODE) document.body.classList.add("mini");
   const USGS_EARTHQUAKES_SOURCE = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minlatitude=-56&maxlatitude=-20&minlongitude=-76&maxlongitude=-50&eventtype=earthquake&orderby=time";
   const DEFAULT_CENTER = [-38.4, -63.6];
   const DEFAULT_ZOOM = 4;
+  const LOCAL_IDENTIFICATION_MIN_ZOOM = 12;
 
   const FIELD_IATA_CANDIDATES = [
     "IATA", "iata", "iata_code", "cod_iata", "COD_IATA", "codigo_iata", "Código IATA"
@@ -453,9 +454,11 @@ style: {
   color: "#5DFF3A",
   weight: 2.4,
   opacity: 0.95,
-  fill: false,
-  fillColor: "transparent",
-  fillOpacity: 0
+  // Relleno casi transparente: no cambia la apariencia, pero permite
+  // seleccionar el predio haciendo clic en cualquier parte del polígono.
+  fill: true,
+  fillColor: "#5DFF3A",
+  fillOpacity: 0.001
 }
     },
     {
@@ -1859,13 +1862,25 @@ function hideHoverLabel() {
 }
 
   
+function isNationalCrossLayer(cfg) {
+  return cfg?.id === "inpres_sismos_zonificacion" || cfg?.id === "predios";
+}
+
+function isLocalIdentificationEnabled() {
+  return !!state.map && state.map.getZoom() >= LOCAL_IDENTIFICATION_MIN_ZOOM;
+}
+
+function canIdentifyFeature(cfg) {
+  return isNationalCrossLayer(cfg) || isLocalIdentificationEnabled();
+}
+
 function bindFeature(cfg, feature, layer) {
   const detailLabel = getDetailLabelValue(cfg, feature);
 
   /*
-    Mantiene etiquetas permanentes para los elementos que ya las tienen,
-    pero la identificación al pasar el mouse ahora se maneja con
-    la etiqueta flotante siga-map-hover-label.
+    Mantiene etiquetas permanentes para los elementos que ya las tienen.
+    La identificación interactiva del resto de las capas solo se habilita
+    a escala local (zoom 12 o superior).
   */
   if (cfg.polygonIcon && isPolygonGeometry(feature)) {
     layer.bindTooltip(cfg.polygonIcon.html || "", {
@@ -1881,48 +1896,54 @@ function bindFeature(cfg, feature, layer) {
     });
   }
 
-  /*
-    Clic: la información se muestra en el panel flotante derecho.
-    No dependemos del popup del mapa.
-  */
   layer.on("click", (e) => {
+    if (!canIdentifyFeature(cfg)) return;
+
     if (e?.originalEvent) {
       L.DomEvent.stopPropagation(e.originalEvent);
     }
 
     if (cfg.id === "inpres_sismos_zonificacion") {
       setSeismicZoneInfo(cfg, feature);
-    } else {
-      setFeatureInfo(cfg, feature);
+      return;
     }
+
+    if (cfg.id === "predios") {
+      setAirportSeismicInfo(cfg, feature);
+      return;
+    }
+
+    setFeatureInfo(cfg, feature);
   });
 
-layer.on("mouseover", (e) => {
-  showHoverLabel(cfg, feature, e.originalEvent);
-  state.map?.getContainer()?.classList.add("is-feature-hovering");
-  layer.getElement?.()?.classList.add("is-symbol-hovered");
+  layer.on("mouseover", (e) => {
+    if (!canIdentifyFeature(cfg)) return;
 
-  if (!layer.setStyle || cfg.id === "provincias") return;
+    showHoverLabel(cfg, feature, e.originalEvent);
+    state.map?.getContainer()?.classList.add("is-feature-hovering");
+    layer.getElement?.()?.classList.add("is-symbol-hovered");
 
-    // Predios y aeroplantas: solo engrosar borde, sin relleno.
-if (cfg.id === "predios") {
-  layer.setStyle({
-    weight: Math.max(3, Number((cfg.style || {}).weight || 1.4) + 1.4),
-    fill: false,
-    fillOpacity: 0
-  });
-  return;
-}
+    if (!layer.setStyle || cfg.id === "provincias") return;
 
-if (cfg.id === "aeroplantas") {
-  layer.setStyle({
-    weight: Math.max(3, Number((cfg.style || {}).weight || 1.4) + 1.4),
-    fill: true,
-    fillColor: "#d71920",
-    fillOpacity: 0.06
-  });
-  return;
-}
+    if (cfg.id === "predios") {
+      layer.setStyle({
+        weight: Math.max(3, Number((cfg.style || {}).weight || 1.4) + 1.4),
+        fill: true,
+        fillColor: "#5DFF3A",
+        fillOpacity: 0.025
+      });
+      return;
+    }
+
+    if (cfg.id === "aeroplantas") {
+      layer.setStyle({
+        weight: Math.max(3, Number((cfg.style || {}).weight || 1.4) + 1.4),
+        fill: true,
+        fillColor: "#d71920",
+        fillOpacity: 0.06
+      });
+      return;
+    }
 
     const baseStyle = isPointGeometry(feature)
       ? pointFeatureStyle(cfg, feature)
@@ -1935,15 +1956,16 @@ if (cfg.id === "aeroplantas") {
   });
 
   layer.on("mousemove", (e) => {
+    if (!canIdentifyFeature(cfg)) return;
     moveHoverLabel(e.originalEvent);
   });
 
-layer.on("mouseout", () => {
-  hideHoverLabel();
-  state.map?.getContainer()?.classList.remove("is-feature-hovering");
-  layer.getElement?.()?.classList.remove("is-symbol-hovered");
+  layer.on("mouseout", () => {
+    hideHoverLabel();
+    state.map?.getContainer()?.classList.remove("is-feature-hovering");
+    layer.getElement?.()?.classList.remove("is-symbol-hovered");
 
-  const def = state.layerDefs.get(cfg.id);
+    const def = state.layerDefs.get(cfg.id);
     if (layer.setStyle && def) {
       const baseStyle = isPointGeometry(feature)
         ? pointFeatureStyle(cfg, feature)
@@ -2083,45 +2105,231 @@ function pointInGeoJsonPolygon(point, geometry) {
   return false;
 }
 
-function getAirportPointCoordinates(airport) {
-  const geometry = airport?.feature?.geometry;
+function geometryPolygons(geometry) {
+  if (!geometry) return [];
+  if (geometry.type === "Polygon") return [geometry.coordinates];
+  if (geometry.type === "MultiPolygon") return geometry.coordinates || [];
+  return [];
+}
 
-  if (geometry?.type === "Point" && Array.isArray(geometry.coordinates)) {
-    const lon = Number(geometry.coordinates[0]);
-    const lat = Number(geometry.coordinates[1]);
-    if (Number.isFinite(lon) && Number.isFinite(lat)) return [lon, lat];
+function ringSignedArea(ring) {
+  if (!Array.isArray(ring) || ring.length < 3) return 0;
+  let area = 0;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i, i += 1) {
+    const a = ring[j];
+    const b = ring[i];
+    if (!Array.isArray(a) || !Array.isArray(b)) continue;
+    area += Number(a[0]) * Number(b[1]) - Number(b[0]) * Number(a[1]);
+  }
+  return area / 2;
+}
+
+function ringCentroid(ring) {
+  const signedArea = ringSignedArea(ring);
+  if (!signedArea) return null;
+
+  let cx = 0;
+  let cy = 0;
+
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i, i += 1) {
+    const a = ring[j];
+    const b = ring[i];
+    if (!Array.isArray(a) || !Array.isArray(b)) continue;
+    const cross = Number(a[0]) * Number(b[1]) - Number(b[0]) * Number(a[1]);
+    cx += (Number(a[0]) + Number(b[0])) * cross;
+    cy += (Number(a[1]) + Number(b[1])) * cross;
   }
 
-  const center = getAirportCenterFromFeature(airport?.feature, airport?.properties);
-  if (center && Number.isFinite(center.lng) && Number.isFinite(center.lat)) {
-    return [center.lng, center.lat];
+  const factor = 1 / (6 * signedArea);
+  const point = [cx * factor, cy * factor];
+  return point.every(Number.isFinite) ? point : null;
+}
+
+function getPolygonRepresentativePoint(feature) {
+  const geometry = feature?.geometry;
+  const polygons = geometryPolygons(geometry);
+  if (!polygons.length) return null;
+
+  const outerRings = polygons
+    .map((polygon) => polygon?.[0])
+    .filter((ring) => Array.isArray(ring) && ring.length >= 3)
+    .sort((a, b) => Math.abs(ringSignedArea(b)) - Math.abs(ringSignedArea(a)));
+
+  for (const ring of outerRings) {
+    const centroid = ringCentroid(ring);
+    if (centroid && pointInGeoJsonPolygon(centroid, geometry)) return centroid;
+  }
+
+  for (const ring of outerRings) {
+    for (const coordinate of ring) {
+      const point = [Number(coordinate?.[0]), Number(coordinate?.[1])];
+      if (point.every(Number.isFinite) && pointInGeoJsonPolygon(point, geometry)) return point;
+    }
   }
 
   return null;
 }
 
-function getAirportsInsideSeismicZone(feature) {
-  const geometry = feature?.geometry;
-  if (!geometry || !Array.isArray(state.airports)) return [];
+function orientation(a, b, c, tolerance = 1e-12) {
+  const value = (Number(b[1]) - Number(a[1])) * (Number(c[0]) - Number(b[0])) -
+    (Number(b[0]) - Number(a[0])) * (Number(c[1]) - Number(b[1]));
+  if (Math.abs(value) <= tolerance) return 0;
+  return value > 0 ? 1 : 2;
+}
 
-  return state.airports
-    .filter((airport) => {
-      const coordinates = getAirportPointCoordinates(airport);
-      return coordinates && pointInGeoJsonPolygon(coordinates, geometry);
-    })
-    .sort((a, b) => {
-      const byName = clean(a.nombre).localeCompare(clean(b.nombre), "es", { sensitivity: "base" });
-      return byName || clean(a.iata).localeCompare(clean(b.iata));
-    });
+function segmentsIntersect(a1, a2, b1, b2) {
+  const o1 = orientation(a1, a2, b1);
+  const o2 = orientation(a1, a2, b2);
+  const o3 = orientation(b1, b2, a1);
+  const o4 = orientation(b1, b2, a2);
+
+  if (o1 !== o2 && o3 !== o4) return true;
+  if (o1 === 0 && pointOnSegment(b1, a1, a2)) return true;
+  if (o2 === 0 && pointOnSegment(b2, a1, a2)) return true;
+  if (o3 === 0 && pointOnSegment(a1, b1, b2)) return true;
+  if (o4 === 0 && pointOnSegment(a2, b1, b2)) return true;
+  return false;
+}
+
+function ringsHaveSegmentIntersection(ringA, ringB) {
+  if (!Array.isArray(ringA) || !Array.isArray(ringB)) return false;
+  for (let i = 0; i < ringA.length - 1; i += 1) {
+    for (let j = 0; j < ringB.length - 1; j += 1) {
+      if (segmentsIntersect(ringA[i], ringA[i + 1], ringB[j], ringB[j + 1])) return true;
+    }
+  }
+  return false;
+}
+
+function polygonGeometriesIntersect(geometryA, geometryB) {
+  const polygonsA = geometryPolygons(geometryA);
+  const polygonsB = geometryPolygons(geometryB);
+  if (!polygonsA.length || !polygonsB.length) return false;
+
+  for (const polygonA of polygonsA) {
+    const outerA = polygonA?.[0];
+    if (!Array.isArray(outerA)) continue;
+
+    for (const point of outerA) {
+      if (pointInGeoJsonPolygon(point, geometryB)) return true;
+    }
+
+    for (const polygonB of polygonsB) {
+      const outerB = polygonB?.[0];
+      if (!Array.isArray(outerB)) continue;
+
+      for (const point of outerB) {
+        if (pointInGeoJsonPolygon(point, geometryA)) return true;
+      }
+
+      if (ringsHaveSegmentIntersection(outerA, outerB)) return true;
+    }
+  }
+
+  return false;
+}
+
+function getPredioFeatures() {
+  return state.layerDefs.get("predios")?.geojson?.features || [];
+}
+
+function getSeismicZoneFeatures() {
+  return state.layerDefs.get("inpres_sismos_zonificacion")?.geojson?.features || [];
+}
+
+function getPredioAirportData(feature) {
+  const props = feature?.properties || {};
+  const iata = getFeatureIata(feature);
+  const airportFromSelector = iata ? state.airportIndex.get(iata) : null;
+  const selectorProps = airportFromSelector?.properties || {};
+
+  const airportName = clean(getFirstProp(props, [
+    "Nom_aerop", "NOM_AEROP", "nom_aerop", "Aeropuerto", "aeropuerto", "AEROPUERTO",
+    "Nombre", "nombre", "NOMBRE"
+  ])) || clean(airportFromSelector?.nombre) || iata || "Aeropuerto";
+
+  const city = clean(getFirstProp(props, [
+    "Ciudad", "ciudad", "CIUDAD", "Localidad", "localidad", "LOCALIDAD",
+    "Ciudad/Localidad", "NOM_LOC", "nom_loc", "nombre_ciudad"
+  ])) || clean(getFirstProp(selectorProps, [
+    "Ciudad", "ciudad", "CIUDAD", "Localidad", "localidad", "LOCALIDAD", "Ciudad/Localidad"
+  ]));
+
+  return { iata, airportName, city, properties: props, feature };
+}
+
+function getSeismicZonesForPredio(predioFeature) {
+  const zones = getSeismicZoneFeatures();
+  const representativePoint = getPolygonRepresentativePoint(predioFeature);
+
+  let matches = representativePoint
+    ? zones.filter((zoneFeature) => pointInGeoJsonPolygon(representativePoint, zoneFeature?.geometry))
+    : [];
+
+  if (!matches.length) {
+    matches = zones.filter((zoneFeature) =>
+      polygonGeometriesIntersect(predioFeature?.geometry, zoneFeature?.geometry)
+    );
+  }
+
+  const byZone = new Map();
+  matches.forEach((zoneFeature) => {
+    const zone = getSeismicZone(zoneFeature);
+    const key = zone === null ? `feature-${byZone.size}` : String(zone);
+    if (!byZone.has(key)) byZone.set(key, zoneFeature);
+  });
+
+  return Array.from(byZone.values()).sort((a, b) =>
+    (getSeismicZone(a) ?? 99) - (getSeismicZone(b) ?? 99)
+  );
+}
+
+function getPrediosInsideSeismicZone(zoneFeature) {
+  const recordsByIata = new Map();
+  const recordsWithoutIata = [];
+
+  getPredioFeatures().forEach((predioFeature) => {
+    if (!isPolygonGeometry(predioFeature)) return;
+
+    const representativePoint = getPolygonRepresentativePoint(predioFeature);
+    const belongsToZone = representativePoint
+      ? pointInGeoJsonPolygon(representativePoint, zoneFeature?.geometry)
+      : polygonGeometriesIntersect(predioFeature?.geometry, zoneFeature?.geometry);
+
+    if (!belongsToZone) return;
+
+    const record = getPredioAirportData(predioFeature);
+    if (record.iata) {
+      if (!recordsByIata.has(record.iata)) recordsByIata.set(record.iata, record);
+    } else {
+      recordsWithoutIata.push(record);
+    }
+  });
+
+  return [...recordsByIata.values(), ...recordsWithoutIata].sort((a, b) => {
+    const cityOrder = clean(a.city).localeCompare(clean(b.city), "es", { sensitivity: "base" });
+    if (cityOrder) return cityOrder;
+    const nameOrder = clean(a.airportName).localeCompare(clean(b.airportName), "es", { sensitivity: "base" });
+    return nameOrder || clean(a.iata).localeCompare(clean(b.iata));
+  });
 }
 
 function showFeatureInfoPanel() {
   q("featureInfoPanel")?.classList.remove("is-hidden");
 }
 
+function hideFeatureInfoPanel() {
+  q("featureInfoPanel")?.classList.add("is-hidden");
+}
+
+function getSeismicZoneDescription(feature) {
+  const props = feature?.properties || {};
+  return clean(getFirstProp(props, ["p_sismica", "P_sismica", "P_SISMICA", "peligrosidad"]));
+}
+
 function buildAirportZoneListHtml(airports, zoneLabel) {
   if (!airports.length) {
-    return `<div class="feature-empty">No se identificaron aeropuertos del SNA dentro de ${escapeHtml(zoneLabel)}.</div>`;
+    return `<div class="feature-empty">No se identificaron predios aeroportuarios dentro de ${escapeHtml(zoneLabel)}.</div>`;
   }
 
   return `
@@ -2130,17 +2338,13 @@ function buildAirportZoneListHtml(airports, zoneLabel) {
       <span class="feature-count">${airports.length}</span>
     </div>
     <div class="feature-airport-list">
-      ${airports.map((airport) => {
-        const p = airport.properties || {};
-        const place = clean(getFirstProp(p, ["Ciudad", "ciudad", "Localidad", "localidad", "Provincia", "provincia"]));
-        return `
-          <button type="button" class="feature-airport-item" data-airport-iata="${escapeHtml(airport.iata)}">
-            <span class="feature-airport-code">${escapeHtml(airport.iata)}</span>
-            <span class="feature-airport-name">${escapeHtml(airport.nombre)}</span>
-            ${place ? `<span class="feature-airport-place">${escapeHtml(place)}</span>` : ""}
-          </button>
-        `;
-      }).join("")}
+      ${airports.map((airport) => `
+        <button type="button" class="feature-airport-item" ${airport.iata ? `data-airport-iata="${escapeHtml(airport.iata)}"` : ""}>
+          <span class="feature-airport-code">${escapeHtml(airport.iata || "—")}</span>
+          <span class="feature-airport-name">${escapeHtml(airport.city || airport.airportName)}</span>
+          ${airport.city && airport.airportName !== airport.city ? `<span class="feature-airport-place">${escapeHtml(airport.airportName)}</span>` : ""}
+        </button>
+      `).join("")}
     </div>
   `;
 }
@@ -2150,14 +2354,15 @@ function setSeismicZoneInfo(cfg, feature) {
   if (!el) return;
 
   const zone = getSeismicZone(feature);
-  const zoneLabel = zone === null ? "la zona seleccionada" : `Zona ${zone}`;
-  const rows = getImportantProps(feature, cfg);
-  const airports = getAirportsInsideSeismicZone(feature);
+  const zoneLabel = zone === null ? "Zona sin identificar" : `Zona ${zone}`;
+  const danger = getSeismicZoneDescription(feature);
+  const airports = getPrediosInsideSeismicZone(feature);
 
   el.innerHTML = `
-    <div class="feature-title">${escapeHtml(cfg.popupTitle || cfg.name)} · ${escapeHtml(zoneLabel)}</div>
+    <div class="feature-title">Zonificación sísmica INPRES · ${escapeHtml(zoneLabel)}</div>
     <table class="feature-table">
-      ${rows.map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td>${escapeHtml(formatValue(v))}</td></tr>`).join("")}
+      <tr><td>Zona sísmica</td><td>${escapeHtml(zoneLabel)}</td></tr>
+      ${danger ? `<tr><td>Peligrosidad</td><td>${escapeHtml(danger)}</td></tr>` : ""}
     </table>
     ${buildAirportZoneListHtml(airports, zoneLabel)}
   `;
@@ -2165,6 +2370,31 @@ function setSeismicZoneInfo(cfg, feature) {
   el.querySelectorAll("[data-airport-iata]").forEach((button) => {
     button.addEventListener("click", () => zoomToAirport(button.dataset.airportIata));
   });
+
+  showFeatureInfoPanel();
+}
+
+function setAirportSeismicInfo(cfg, predioFeature) {
+  const el = q("featureInfo");
+  if (!el) return;
+
+  const airport = getPredioAirportData(predioFeature);
+  const zones = getSeismicZonesForPredio(predioFeature);
+  const zoneLabels = zones.map((zoneFeature) => {
+    const zone = getSeismicZone(zoneFeature);
+    return zone === null ? "Zona sin identificar" : `Zona ${zone}`;
+  });
+  const dangerLabels = [...new Set(zones.map(getSeismicZoneDescription).filter(Boolean))];
+
+  el.innerHTML = `
+    <div class="feature-title">${escapeHtml(airport.airportName)}${airport.iata ? ` (${escapeHtml(airport.iata)})` : ""}</div>
+    <table class="feature-table">
+      ${airport.city ? `<tr><td>Ciudad</td><td>${escapeHtml(airport.city)}</td></tr>` : ""}
+      ${airport.iata ? `<tr><td>IATA</td><td>${escapeHtml(airport.iata)}</td></tr>` : ""}
+      <tr><td>Zona sísmica</td><td>${escapeHtml(zoneLabels.length ? zoneLabels.join(" / ") : "No identificada")}</td></tr>
+      ${dangerLabels.length ? `<tr><td>Peligrosidad</td><td>${escapeHtml(dangerLabels.join(" / "))}</td></tr>` : ""}
+    </table>
+  `;
 
   showFeatureInfoPanel();
 }
@@ -2540,9 +2770,7 @@ function renderLayerTree() {
     q("btnDefaultLayers")?.addEventListener("click", setDefaultLayers);
     q("btnAllLayers")?.addEventListener("click", () => setAllLayers(true));
     q("btnNoLayers")?.addEventListener("click", () => setAllLayers(false));
-    q("btnCloseFeatureInfo")?.addEventListener("click", () => {
-      q("featureInfoPanel")?.classList.add("is-hidden");
-    });
+    q("btnCloseFeatureInfo")?.addEventListener("click", hideFeatureInfoPanel);
 
     const openFull = () => {
       const iata = state.selectedAirport || q("airportSelect")?.value || q("airportSelectEmbed")?.value || "";
