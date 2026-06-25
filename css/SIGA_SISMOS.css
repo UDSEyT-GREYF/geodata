@@ -834,3 +834,59 @@ body.mini .leaflet-control-easyPrint {
   margin: 0 2px;
   border-radius: 50%;
 }
+
+
+/* ==============================
+   SIGA SISMOS – Símbolos geodinámicos
+   ============================== */
+.siga-hazard-div-icon {
+  background: transparent !important;
+  border: 0 !important;
+}
+
+.siga-hazard-symbol {
+  display: block;
+  transform-origin: 50% 90%;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .42));
+  transition: transform .12s ease, filter .12s ease;
+}
+
+.siga-hazard-symbol svg {
+  display: block;
+  overflow: visible;
+}
+
+.siga-hazard-div-icon.is-symbol-hovered .siga-hazard-symbol,
+.siga-hazard-div-icon:hover .siga-hazard-symbol {
+  transform: scale(1.22);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .58));
+}
+
+.layer-swatch-triangle,
+.legend-swatch-triangle {
+  border: 0 !important;
+  border-radius: 0 !important;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  box-shadow: inset 0 0 0 1px rgba(69, 10, 10, .55);
+}
+
+.layer-swatch-triangle {
+  width: 11px;
+  height: 11px;
+}
+
+.legend-swatch-triangle {
+  width: 14px;
+  height: 13px;
+  margin: 0;
+}
+
+.layer-swatch-volcano-risk,
+.legend-swatch-volcano-risk {
+  background: #fb923c !important;
+}
+
+.layer-swatch-volcano,
+.legend-swatch-volcano {
+  background: #b91c1c !important;
+}
