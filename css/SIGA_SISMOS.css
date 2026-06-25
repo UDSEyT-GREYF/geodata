@@ -1043,3 +1043,29 @@ body.mini .siga-info-panel { display: none !important; }
     max-height: calc(100% - 16px);
   }
 }
+
+
+/* Cruce espacial: zonificación sísmica × predios aeroportuarios */
+.feature-airport-name {
+  color: #111827;
+  font-size: .75rem;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.feature-airport-place {
+  color: #64748b;
+  font-size: .65rem;
+  line-height: 1.15;
+}
+
+.feature-empty {
+  margin-top: 9px;
+  padding: 8px;
+  border: 1px dashed #c7d3e1;
+  border-radius: 7px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: .7rem;
+  line-height: 1.35;
+}
