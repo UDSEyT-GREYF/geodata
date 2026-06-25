@@ -983,8 +983,8 @@ body.mini .leaflet-control-easyPrint {
 
 .feature-airport-item {
   display: grid;
-  grid-template-columns: 38px minmax(0, 1fr);
-  gap: 2px 7px;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 7px;
   width: 100%;
   padding: 6px 7px;
   text-align: left;
@@ -1001,7 +1001,6 @@ body.mini .leaflet-control-easyPrint {
 }
 
 .feature-airport-code {
-  grid-row: 1 / span 2;
   align-self: center;
   color: #2a5fa0;
   font-size: .72rem;
@@ -1011,22 +1010,18 @@ body.mini .leaflet-control-easyPrint {
 .feature-airport-name {
   min-width: 0;
   color: #111827;
-  font-size: .71rem;
-  font-weight: 700;
+  font-size: .73rem;
+  font-weight: 800;
   line-height: 1.15;
 }
 
-.feature-airport-place {
-  color: #6b7280;
-  font-size: .62rem;
-  line-height: 1.15;
-}
 
 .feature-empty {
-  margin-top: 10px;
+  margin-top: 9px;
   padding: 8px;
+  border: 1px dashed #c7d3e1;
   border-radius: 7px;
-  background: #f7f9fc;
+  background: #f8fafc;
   color: #6b7280;
   font-size: .7rem;
   line-height: 1.3;
@@ -1045,27 +1040,45 @@ body.mini .siga-info-panel { display: none !important; }
 }
 
 
-/* Cruce espacial: zonificación sísmica × predios aeroportuarios */
-.feature-airport-name {
-  color: #111827;
-  font-size: .75rem;
-  font-weight: 800;
-  line-height: 1.15;
+/* ==============================
+   SIGA SISMOS – Contexto del aeropuerto seleccionado
+   ============================== */
+.feature-instruction {
+  padding: 9px 10px;
+  border: 1px solid #dbe5f0;
+  border-radius: 8px;
+  background: #f7faff;
+  color: #44546a;
+  font-size: .74rem;
+  line-height: 1.4;
 }
 
-.feature-airport-place {
-  color: #64748b;
-  font-size: .65rem;
-  line-height: 1.15;
+.feature-instruction-local {
+  margin-top: 10px;
 }
 
-.feature-empty {
-  margin-top: 9px;
-  padding: 8px;
-  border: 1px dashed #c7d3e1;
-  border-radius: 7px;
-  background: #f8fafc;
-  color: #64748b;
-  font-size: .7rem;
-  line-height: 1.35;
+.feature-context {
+  padding-bottom: 8px;
+}
+
+.feature-context-title {
+  margin-bottom: 6px;
+  color: #002855;
+  font-size: .84rem;
+  font-weight: 850;
+  line-height: 1.2;
+}
+
+.feature-detail {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #dbe3ec;
+}
+
+.feature-detail-title {
+  margin-bottom: 6px;
+  color: #002855;
+  font-size: .76rem;
+  font-weight: 850;
+  line-height: 1.25;
 }
