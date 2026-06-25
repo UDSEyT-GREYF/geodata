@@ -74,16 +74,13 @@
   </div>
 
   <div id="layerTree" class="layer-tree"></div>
-      <section class="siga-card">
-        <div class="siga-section-title">Leyenda</div>
-        <div id="mapLegend" class="map-legend"></div>
-      </section>
+
+  <div class="siga-subsection-title siga-subsection-title-overlays">Leyenda</div>
+  <div id="mapLegend" class="map-legend"></div>
 
   <div class="siga-subsection-title siga-subsection-title-overlays">Mapas base</div>
   <div id="baseLayerTree" class="base-layer-tree"></div>
 </section>
-      
-
     </aside>
 
     <section class="siga-map-shell">
@@ -94,13 +91,15 @@
       </div>
       <div id="sigaMap" class="siga-map" aria-label="Mapa SIGA"></div>
 
-      <aside id="featureInfoPanel" class="siga-info-panel is-hidden" aria-label="Información del elemento seleccionado" aria-live="polite">
+      <aside id="featureInfoPanel" class="siga-info-panel" aria-label="Información del elemento seleccionado" aria-live="polite">
         <div class="siga-info-panel-header">
           <div class="siga-section-title">Información</div>
           <button type="button" id="btnCloseFeatureInfo" class="siga-info-close" aria-label="Cerrar información">×</button>
         </div>
         <div id="featureInfo" class="feature-info">
-          Seleccioná una zona sísmica o un predio aeroportuario.
+          <div class="feature-instruction">
+            Haga clic en una zona sísmica para ver qué aeropuertos se encuentran dentro de ella.
+          </div>
         </div>
       </aside>
 
