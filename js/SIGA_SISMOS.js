@@ -310,7 +310,6 @@ if (MINI_MODE) document.body.classList.add("mini");
         { label: "Profundidad", keys: ["profundidad", "depth"], suffix: "km" },
         { label: "Ubicación", keys: ["place", "lugar", "Lugar"] },
         { label: "Estado", keys: ["status", "estado", "Estado"] },
-        { label: "Código", keys: ["code", "id"] },
         { label: "Fuente", keys: ["fuente", "Fuente"] }
       ],
       legendItems: [
@@ -351,8 +350,16 @@ if (MINI_MODE) document.body.classList.add("mini");
       tooltipFields: [
         { label: "Volcán", keys: ["nombre", "Nombre", "NOMBRE", "volcan", "Volcan", "VOLCAN", "nam", "NAM"] },
         { label: "Riesgo", keys: ["riesgo", "Riesgo", "RIESGO", "riesgo_rel", "nivel_ries"] },
-        { label: "Ranking", keys: ["ranking", "Ranking", "RANKING", "rango", "Rango"] },
         { label: "Provincia", keys: ["provincia", "Provincia", "PROVINCIA"] }
+      ],
+      popupTitle: "Riesgo volcánico relativo SEGEMAR 2025",
+      popupFields: [
+        { label: "Nombre", keys: ["nombre", "Nombre", "NOMBRE", "volcan", "Volcan", "VOLCAN", "nam", "NAM"] },
+        { label: "Tipo", keys: ["tipo", "Tipo", "TIPO"] },
+        { label: "Provincia", keys: ["provincia", "Provincia", "PROVINCIA"] },
+        { label: "Riesgo", keys: ["riesgo", "Riesgo", "RIESGO", "riesgo_rel", "nivel_ries"] },
+        { label: "Fuente", keys: ["fuente", "Fuente", "FUENTE"] },
+        { label: "Elevación", keys: ["elevacion", "Elevacion", "ELEVACION", "elevación", "altitud", "Altitud", "ALTITUD"] }
       ],
       legendItems: [
         { label: "Volcán con riesgo relativo evaluado", color: "#fb923c", shape: "triangle", variant: "volcano-risk" }
@@ -387,10 +394,16 @@ if (MINI_MODE) document.body.classList.add("mini");
       },
       tooltipTitle: "Volcán",
       tooltipFields: [
-        { label: "Nombre", keys: ["nombre", "Nombre", "NOMBRE", "volcan", "Volcan", "VOLCAN", "nam", "NAM"] },
-        { label: "Provincia", keys: ["provincia", "Provincia", "PROVINCIA"] },
-        { label: "Estado", keys: ["estado", "Estado", "ESTADO", "actividad", "Actividad"] },
-        { label: "Tipo", keys: ["tipo", "Tipo", "TIPO"] }
+        { label: "Nombre", keys: ["nombre_vol", "Nombre_vol", "NOMBRE_VOL", "nombre", "Nombre", "NOMBRE", "volcan", "Volcan", "VOLCAN", "nam", "NAM"] },
+        { label: "País", keys: ["pais", "Pais", "PAIS", "país", "País"] },
+        { label: "Altitud", keys: ["altitud", "Altitud", "ALTITUD", "elevacion", "Elevacion", "ELEVACION"] }
+      ],
+      popupTitle: "Volcanes SEGEMAR",
+      popupFields: [
+        { label: "Nombre", keys: ["nombre_vol", "Nombre_vol", "NOMBRE_VOL", "nombre", "Nombre", "NOMBRE", "volcan", "Volcan", "VOLCAN", "nam", "NAM"] },
+        { label: "País", keys: ["pais", "Pais", "PAIS", "país", "País"] },
+        { label: "Altitud", keys: ["altitud", "Altitud", "ALTITUD", "elevacion", "Elevacion", "ELEVACION"] },
+        { label: "Fuente", keys: ["fuente", "Fuente", "FUENTE"] }
       ],
       legendItems: [
         { label: "Volcán", color: "#b91c1c", shape: "triangle", variant: "volcano" }
@@ -817,7 +830,7 @@ const LAYER_GROUP_ORDER = [
     return clean(getFirstProp(p, [
       "nombre", "Nombre", "NOMBRE", "name", "Name", "Aeropuerto", "aeropuerto",
       "etiqueta", "ETIQUETA", "tipo", "Tipo", "descripcion", "Descripción",
-      "volcan", "Volcan", "VOLCAN", "nombre_volcan", "Nombre_volcan",
+      "volcan", "Volcan", "VOLCAN", "nombre_vol", "Nombre_vol", "NOMBRE_VOL", "nombre_volcan", "Nombre_volcan",
       "lugar", "Lugar", "ubicacion", "Ubicacion", "nam", "NAM", "fecha", "Fecha",
       "IATA", "iata"
     ])) || fallback || "Elemento";
@@ -1869,7 +1882,7 @@ function bindFeature(cfg, feature, layer) {
   }
 
   /*
-    Clic: la información va al panel lateral izquierdo.
+    Clic: la información se muestra en el panel flotante derecho.
     No dependemos del popup del mapa.
   */
   layer.on("click", (e) => {
@@ -1877,7 +1890,11 @@ function bindFeature(cfg, feature, layer) {
       L.DomEvent.stopPropagation(e.originalEvent);
     }
 
-    setFeatureInfo(cfg, feature);
+    if (cfg.id === "inpres_sismos_zonificacion") {
+      setSeismicZoneInfo(cfg, feature);
+    } else {
+      setFeatureInfo(cfg, feature);
+    }
   });
 
 layer.on("mouseover", (e) => {
@@ -1936,6 +1953,26 @@ layer.on("mouseout", () => {
   });
 }
 
+const HIDDEN_INFO_FIELDS = new Set([
+  "id", "gid", "grid", "fid", "objectid", "object_id", "globalid", "uuid",
+  "shape_leng", "shape_length", "shape_area", "geom", "geometry",
+  "num_regist", "num_registro", "num_hoja", "nombre_hoj", "nombre_hoja",
+  "ficha", "titularidad", "perdidas_e", "perdidas", "muertos"
+]);
+
+function normalizeInfoFieldName(value) {
+  return clean(value)
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9_]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+}
+
+function isHiddenInfoField(key) {
+  return HIDDEN_INFO_FIELDS.has(normalizeInfoFieldName(key));
+}
+
 function getImportantProps(feature, cfg = {}) {
   const props = feature?.properties || {};
 
@@ -1943,9 +1980,12 @@ function getImportantProps(feature, cfg = {}) {
     return cfg.popupFields
       .map((field) => {
         const label = field.label || field.key || "";
-        const keys = Array.isArray(field.keys) ? field.keys : [field.key];
-        const value = getFirstProp(props, keys);
+        const keys = (Array.isArray(field.keys) ? field.keys : [field.key]).filter(Boolean);
+        const visibleKeys = keys.filter((key) => !isHiddenInfoField(key));
 
+        if (!visibleKeys.length) return null;
+
+        const value = getFirstProp(props, visibleKeys);
         if (value === undefined || value === null || String(value).trim() === "") return null;
 
         const suffix = field.suffix ? ` ${field.suffix}` : "";
@@ -1956,29 +1996,177 @@ function getImportantProps(feature, cfg = {}) {
 
   const preferred = [
     "IATA", "iata", "OACI", "oaci", "ANAC", "Aeropuerto", "nombre", "Nombre", "NOMBRE",
-    "tipo", "Tipo", "etiqueta", "ETIQUETA", "orientacion", "Orientacion", "PistaOrientacion",
-    "longitud", "Longitud", "dimensiones", "Dimensiones", "superficie", "Superficie", "metros2", "m2",
-    "posicion", "Posicion", "clase", "Clase", "estado", "Estado",
-    "fecha", "Fecha", "magnitud", "Magnitud", "profund", "profundidad", "intensidad", "categoria",
-    "nam", "provincia", "Provincia", "zona_sismo", "p_sismica", "acelerac",
-    "volcan", "Volcan", "riesgo", "Riesgo", "ranking", "Ranking", "fuente", "Fuente"
+    "nombre_vol", "Nombre_vol", "NOMBRE_VOL", "tipo", "Tipo", "etiqueta", "ETIQUETA",
+    "orientacion", "Orientacion", "PistaOrientacion", "longitud", "Longitud", "dimensiones",
+    "Dimensiones", "superficie", "Superficie", "metros2", "m2", "posicion", "Posicion",
+    "clase", "Clase", "estado", "Estado", "fecha", "Fecha", "magnitud", "Magnitud",
+    "profund", "profundidad", "intensidad", "categoria", "nam", "provincia", "Provincia",
+    "zona_sismo", "p_sismica", "acelerac", "volcan", "Volcan", "riesgo", "Riesgo",
+    "ranking", "Ranking", "pais", "Pais", "altitud", "elevacion", "fuente", "Fuente"
   ];
 
   const out = [];
   preferred.forEach((key) => {
+    if (isHiddenInfoField(key)) return;
     if (props[key] !== undefined && props[key] !== null && String(props[key]).trim() !== "") {
       out.push([key, props[key]]);
     }
   });
 
   Object.keys(props).forEach((key) => {
-    if (out.length >= 12) return;
-    if (preferred.includes(key)) return;
+    if (out.length >= 12 || preferred.includes(key) || isHiddenInfoField(key)) return;
     const val = props[key];
     if (val !== undefined && val !== null && String(val).trim() !== "") out.push([key, val]);
   });
 
   return out.slice(0, 12);
+}
+
+function pointOnSegment(point, start, end, tolerance = 1e-10) {
+  const [px, py] = point;
+  const [ax, ay] = start;
+  const [bx, by] = end;
+  const cross = (px - ax) * (by - ay) - (py - ay) * (bx - ax);
+
+  if (Math.abs(cross) > tolerance) return false;
+
+  const dot = (px - ax) * (px - bx) + (py - ay) * (py - by);
+  return dot <= tolerance;
+}
+
+function pointInRing(point, ring) {
+  if (!Array.isArray(ring) || ring.length < 3) return false;
+
+  let inside = false;
+  const [x, y] = point;
+
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i, i += 1) {
+    const a = ring[j];
+    const b = ring[i];
+    if (!Array.isArray(a) || !Array.isArray(b)) continue;
+
+    if (pointOnSegment(point, a, b)) return true;
+
+    const [xi, yi] = b;
+    const [xj, yj] = a;
+    const intersects = ((yi > y) !== (yj > y)) &&
+      (x < ((xj - xi) * (y - yi)) / ((yj - yi) || Number.EPSILON) + xi);
+
+    if (intersects) inside = !inside;
+  }
+
+  return inside;
+}
+
+function pointInPolygonCoordinates(point, polygonCoordinates) {
+  if (!Array.isArray(polygonCoordinates) || !polygonCoordinates.length) return false;
+  if (!pointInRing(point, polygonCoordinates[0])) return false;
+
+  for (let i = 1; i < polygonCoordinates.length; i += 1) {
+    if (pointInRing(point, polygonCoordinates[i])) return false;
+  }
+
+  return true;
+}
+
+function pointInGeoJsonPolygon(point, geometry) {
+  if (!Array.isArray(point) || point.length < 2 || !geometry) return false;
+
+  if (geometry.type === "Polygon") {
+    return pointInPolygonCoordinates(point, geometry.coordinates);
+  }
+
+  if (geometry.type === "MultiPolygon") {
+    return geometry.coordinates.some((polygon) => pointInPolygonCoordinates(point, polygon));
+  }
+
+  return false;
+}
+
+function getAirportPointCoordinates(airport) {
+  const geometry = airport?.feature?.geometry;
+
+  if (geometry?.type === "Point" && Array.isArray(geometry.coordinates)) {
+    const lon = Number(geometry.coordinates[0]);
+    const lat = Number(geometry.coordinates[1]);
+    if (Number.isFinite(lon) && Number.isFinite(lat)) return [lon, lat];
+  }
+
+  const center = getAirportCenterFromFeature(airport?.feature, airport?.properties);
+  if (center && Number.isFinite(center.lng) && Number.isFinite(center.lat)) {
+    return [center.lng, center.lat];
+  }
+
+  return null;
+}
+
+function getAirportsInsideSeismicZone(feature) {
+  const geometry = feature?.geometry;
+  if (!geometry || !Array.isArray(state.airports)) return [];
+
+  return state.airports
+    .filter((airport) => {
+      const coordinates = getAirportPointCoordinates(airport);
+      return coordinates && pointInGeoJsonPolygon(coordinates, geometry);
+    })
+    .sort((a, b) => {
+      const byName = clean(a.nombre).localeCompare(clean(b.nombre), "es", { sensitivity: "base" });
+      return byName || clean(a.iata).localeCompare(clean(b.iata));
+    });
+}
+
+function showFeatureInfoPanel() {
+  q("featureInfoPanel")?.classList.remove("is-hidden");
+}
+
+function buildAirportZoneListHtml(airports, zoneLabel) {
+  if (!airports.length) {
+    return `<div class="feature-empty">No se identificaron aeropuertos del SNA dentro de ${escapeHtml(zoneLabel)}.</div>`;
+  }
+
+  return `
+    <div class="feature-airport-heading">
+      <span>Aeropuertos dentro de ${escapeHtml(zoneLabel)}</span>
+      <span class="feature-count">${airports.length}</span>
+    </div>
+    <div class="feature-airport-list">
+      ${airports.map((airport) => {
+        const p = airport.properties || {};
+        const place = clean(getFirstProp(p, ["Ciudad", "ciudad", "Localidad", "localidad", "Provincia", "provincia"]));
+        return `
+          <button type="button" class="feature-airport-item" data-airport-iata="${escapeHtml(airport.iata)}">
+            <span class="feature-airport-code">${escapeHtml(airport.iata)}</span>
+            <span class="feature-airport-name">${escapeHtml(airport.nombre)}</span>
+            ${place ? `<span class="feature-airport-place">${escapeHtml(place)}</span>` : ""}
+          </button>
+        `;
+      }).join("")}
+    </div>
+  `;
+}
+
+function setSeismicZoneInfo(cfg, feature) {
+  const el = q("featureInfo");
+  if (!el) return;
+
+  const zone = getSeismicZone(feature);
+  const zoneLabel = zone === null ? "la zona seleccionada" : `Zona ${zone}`;
+  const rows = getImportantProps(feature, cfg);
+  const airports = getAirportsInsideSeismicZone(feature);
+
+  el.innerHTML = `
+    <div class="feature-title">${escapeHtml(cfg.popupTitle || cfg.name)} · ${escapeHtml(zoneLabel)}</div>
+    <table class="feature-table">
+      ${rows.map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td>${escapeHtml(formatValue(v))}</td></tr>`).join("")}
+    </table>
+    ${buildAirportZoneListHtml(airports, zoneLabel)}
+  `;
+
+  el.querySelectorAll("[data-airport-iata]").forEach((button) => {
+    button.addEventListener("click", () => zoomToAirport(button.dataset.airportIata));
+  });
+
+  showFeatureInfoPanel();
 }
 
 function buildPopupHtml(cfg, feature) {
@@ -2006,6 +2194,8 @@ function setFeatureInfo(cfg, feature) {
       ${rows.map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td>${escapeHtml(formatValue(v))}</td></tr>`).join("")}
     </table>
   `;
+
+  showFeatureInfoPanel();
 }
 
   function escapeHtml(value) {
@@ -2350,6 +2540,9 @@ function renderLayerTree() {
     q("btnDefaultLayers")?.addEventListener("click", setDefaultLayers);
     q("btnAllLayers")?.addEventListener("click", () => setAllLayers(true));
     q("btnNoLayers")?.addEventListener("click", () => setAllLayers(false));
+    q("btnCloseFeatureInfo")?.addEventListener("click", () => {
+      q("featureInfoPanel")?.classList.add("is-hidden");
+    });
 
     const openFull = () => {
       const iata = state.selectedAirport || q("airportSelect")?.value || q("airportSelectEmbed")?.value || "";
