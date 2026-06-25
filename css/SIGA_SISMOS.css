@@ -1,0 +1,836 @@
+:root {
+  --siga-blue: #306fb0;
+  --siga-blue-dark: #002855;
+  --siga-blue-soft: #eef5ff;
+  --siga-border: #d0d7e2;
+  --siga-text: #333333;
+  --siga-muted: #6c757d;
+  --siga-bg: #f5f5f5;
+  --siga-card: #ffffff;
+  --siga-green: #16c41e;
+  --siga-purple: #6b2f82;
+  --siga-link: #0072bb;
+  --siga-kpi-blue: #2a5fa0;
+  --siga-value-blue: #004b80;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--siga-bg);
+  color: var(--siga-text);
+  overflow: hidden;
+}
+
+.siga-header {
+  height: 54px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+  background: #fff;
+  border-bottom: 1px solid var(--siga-border);
+}
+.siga-brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.siga-logo {
+  width: 48px;
+  height: 38px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #00a3e0, #0072bb);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+.siga-brand h1 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #002855;
+  line-height: 1.15;
+}
+.siga-brand p {
+  margin: 3px 0 0;
+  font-size: .78rem;
+  color: var(--siga-muted);
+}
+.siga-header-actions { display: flex; gap: 8px; align-items: center; }
+
+.siga-layout {
+  height: calc(100vh - 54px);
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+}
+.siga-sidebar {
+  background: #f7f9fc;
+  border-right: 1px solid var(--siga-border);
+  overflow: auto;
+  padding: 12px;
+}
+.siga-card {
+  background: var(--siga-card);
+  border: 1px solid var(--siga-border);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, .05);
+}
+.siga-intro h2 {
+  margin: 0 0 6px;
+  font-size: .95rem;
+  color: #002855;
+}
+.siga-intro p {
+  margin: 0;
+  font-size: .78rem;
+  line-height: 1.35;
+  color: #4b5563;
+}
+.siga-section-title {
+  margin-bottom: 8px;
+  font-size: .78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--siga-blue-dark);
+}
+.siga-label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: .72rem;
+  color: var(--siga-muted);
+}
+.siga-select {
+  width: 100%;
+  min-height: 32px;
+  border: 1px solid #b9c6d6;
+  border-radius: 7px;
+  padding: 3px 5px;
+  font-size: .74rem;
+  color: #111827;
+  background: #fff;
+}
+.siga-select-embed { min-width: 220px; width: auto; max-width: 340px; }
+.siga-button-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.siga-button-row-tight { gap: 4px; }
+.siga-btn {
+  border-radius: 7px;
+  padding: 2px 3px;
+  font-size: .65rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.siga-btn-primary { background: var(--siga-blue); color: #fff; border-color: var(--siga-blue); }
+.siga-btn-primary:hover { background: var(--siga-blue-dark); }
+.siga-btn-secondary { background: #fff; color: var(--siga-blue); border-color: #b8c9dc; }
+.siga-btn-secondary:hover { background: var(--siga-blue-soft); }
+.siga-btn-light { background: #f6f9fc; color: var(--siga-blue-dark); border-color: #d4deea; }
+.siga-hint { margin-top: 6px; font-size: .62rem; color: var(--siga-muted); line-height: 1.25; }
+
+.siga-map-shell { position: relative; min-width: 0; }
+.siga-map { width: 100%; height: 100%; background: #eef2f7; }
+.map-status {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 600;
+  background: rgba(255,255,255,.92);
+  border: 1px solid var(--siga-border);
+  border-radius: 8px;
+  padding: 5px 8px;
+  font-size: .72rem;
+  color: #4b5563;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, .12);
+}
+.embed-toolbar {
+  display: none;
+  position: absolute;
+  z-index: 700;
+  top: 8px;
+  left: 48px;
+  right: 8px;
+  gap: 6px;
+  align-items: center;
+  pointer-events: auto;
+}
+
+.layer-group { margin-bottom: 10px; }
+.layer-group-title {
+  margin: 8px 0 4px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #e3e9f1;
+  font-size: .74rem;
+  font-weight: 800;
+  color: #374151;
+}
+.layer-row {
+  display: grid;
+  grid-template-columns: 18px 14px minmax(0, 1fr);
+  gap: 6px;
+  align-items: center;
+  padding: 4px 0;
+  font-size: .76rem;
+}
+.layer-row input[type="checkbox"] { margin: 0; }
+.layer-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,.25);
+}
+.layer-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.layer-opacity {
+  grid-column: 3 / 4;
+  width: 100%;
+  margin: -2px 0 4px;
+  accent-color: var(--siga-blue);
+}
+.feature-info {
+  min-height: 82px;
+  font-size: .76rem;
+  color: #374151;
+  line-height: 1.35;
+}
+.feature-title {
+  font-weight: 800;
+  color: #002855;
+  margin-bottom: 6px;
+}
+.feature-table { width: 100%; border-collapse: collapse; }
+.feature-table td {
+  padding: 3px 2px;
+  border-bottom: 1px dashed #e5e7eb;
+  vertical-align: top;
+}
+.feature-table td:first-child { color: #6b7280; width: 38%; }
+.feature-table td:last-child { color: #111827; font-weight: 600; word-break: break-word; }
+.map-legend { display: grid; grid-template-columns: 1fr; gap: 4px; }
+.legend-item { display: flex; align-items: center; gap: 7px; font-size: .73rem; color: #374151; }
+.legend-swatch { width: 14px; height: 10px; border: 1px solid rgba(0,0,0,.25); border-radius: 3px; }
+
+.siga-tooltip {
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(143, 164, 189, 0.55);
+  color: rgba(15, 23, 42, 0.76);
+  border-radius: 4px;
+  padding: 2px 5px;
+  font-size: 10px;
+  font-weight: 600;
+}
+.siga-popup .leaflet-popup-content { margin: 10px 12px; font-size: 12px; line-height: 1.35; }
+.siga-popup-title { font-weight: 800; color: #002855; margin-bottom: 5px; }
+.siga-popup-table { border-collapse: collapse; width: 100%; }
+.siga-popup-table td { padding: 2px 4px; border-bottom: 1px dashed #e5e7eb; }
+.siga-popup-table td:first-child { color: #6b7280; }
+.siga-popup-table td:last-child { font-weight: 650; }
+
+@media (max-width: 880px) {
+  body { overflow: auto; }
+  .siga-header { height: auto; align-items: flex-start; flex-direction: column; }
+  .siga-layout { height: auto; min-height: calc(100vh - 64px); grid-template-columns: 1fr; }
+  .siga-sidebar { max-height: 42vh; }
+  .siga-map-shell { height: 58vh; }
+}
+
+body.embed {
+  overflow: hidden;
+  background: #fff;
+}
+body.embed .siga-header,
+body.embed .siga-sidebar,
+body.embed .map-status {
+  display: none;
+}
+body.embed .siga-layout {
+  height: 100vh;
+  grid-template-columns: 1fr;
+}
+body.embed .embed-toolbar {
+  display: flex;
+}
+body.embed .siga-map-shell {
+  height: 100vh;
+}
+body.embed .leaflet-control-attribution {
+  font-size: 9px;
+}
+
+/* ==============================
+   SIGA – Etiquetas dinámicas
+   ============================== */
+.siga-airport-label-marker {
+  pointer-events: none;
+}
+
+.siga-airport-label-box {
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 7px 3px 5px;
+  border: 1px solid rgba(0, 40, 85, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #002855;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.18);
+}
+
+.siga-airport-label-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #306fb0;
+  color: #ffffff;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.siga-airport-label-text {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Las etiquetas de detalle existen como tooltips permanentes,
+   pero solo se muestran cuando el zoom es cercano al aeropuerto. */
+.siga-label-detail {
+  display: none;
+  pointer-events: none;
+  background: transparent !important;
+  border: 0 !important;
+  color: #7CFF4D;
+  font-size: 10px;
+  font-weight: 850;
+  padding: 0;
+  box-shadow: none !important;
+  text-shadow:
+    -1px -1px 0 #103800,
+     1px -1px 0 #103800,
+    -1px  1px 0 #103800,
+     1px  1px 0 #103800,
+     0 0 3px #ffffff;
+}
+
+.siga-show-detail-labels .siga-label-detail {
+  display: block;
+}
+
+.siga-label-detail-psn,
+.siga-label-detail-pistas,
+.siga-label-detail-cabeceras,
+.siga-label-detail-terminales2026,
+.siga-label-detail-plataformas {
+  color: #7CFF4D;
+  border: 0 !important;
+}
+
+.siga-label-detail-psn,
+.siga-label-detail-plataformas {
+  font-size: 8px;
+}
+/* ==============================
+   SIGA – Selector + mapas base en panel lateral
+   ============================== */
+.siga-airport-card .siga-section-title {
+  font-size: .7rem;
+  line-height: 0.9;
+}
+
+.siga-subsection-title {
+  margin: 10px 0 6px;
+  padding-top: 2px;
+  font-size: .72rem;
+  font-weight: 800;
+  color: var(--siga-blue-dark);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.siga-subsection-title:first-of-type {
+  margin-top: 0;
+}
+
+.siga-subsection-title-overlays {
+  border-top: 1px solid #e3e9f1;
+  padding-top: 10px;
+}
+
+.base-layer-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.basemap-row {
+  display: grid;
+  grid-template-columns: 18px 40px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 6px 7px;
+  border: 1px solid #e1e8f1;
+  border-radius: 8px;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+
+.basemap-row:hover {
+  background: #eef5ff;
+  border-color: #b8c9dc;
+}
+
+.basemap-row:has(input:checked) {
+  background: #e8f1fc;
+  border-color: var(--siga-blue);
+  box-shadow: 0 1px 4px rgba(48, 111, 176, .15);
+}
+
+.basemap-row input {
+  margin: 0;
+  accent-color: var(--siga-blue);
+}
+
+.basemap-thumb {
+  width: 40px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 40, 85, .18);
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35);
+}
+
+.basemap-name {
+  min-width: 0;
+  color: #374151;
+  font-size: .76rem;
+  font-weight: 650;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body.embed .base-layer-tree,
+body.embed .siga-subsection-title {
+  display: none;
+}
+
+
+/* ==============================
+   SIGA – Compactación de listas y etiquetas nacionales
+   ============================== */
+.layer-group {
+  margin-bottom: 6px;
+}
+.layer-group-title {
+  margin: 6px 0 3px;
+  padding-bottom: 2px;
+  font-size: .68rem;
+}
+.layer-row {
+  grid-template-columns: 15px 10px minmax(0, 1fr) 46px;
+  gap: 4px;
+  padding: 2px 0;
+  font-size: .69rem;
+  min-height: 20px;
+}
+.layer-row input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+}
+.layer-swatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+}
+.layer-opacity {
+  grid-column: auto;
+  width: 46px;
+  margin: 0;
+  height: 14px;
+}
+.base-layer-tree {
+  gap: 2px;
+  margin-bottom: 8px;
+}
+.basemap-row {
+  grid-template-columns: 14px 26px minmax(0, 1fr);
+  gap: 5px;
+  padding: 3px 5px;
+  border-radius: 6px;
+  min-height: 27px;
+}
+.basemap-row input {
+  width: 13px;
+  height: 13px;
+}
+.basemap-thumb {
+  width: 26px;
+  height: 18px;
+  border-radius: 4px;
+}
+.basemap-name {
+  font-size: .68rem;
+  font-weight: 620;
+}
+.siga-subsection-title {
+  margin: 7px 0 4px;
+  font-size: .67rem;
+}
+.siga-subsection-title-overlays {
+  padding-top: 7px;
+}
+
+/* Etiquetas de aeropuerto: icono centrado en el predio y texto flotante sin fondo */
+.siga-airport-label-marker {
+  pointer-events: none;
+}
+.siga-airport-center-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #306fb0;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .35);
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 800;
+}
+.siga-airport-floating-text {
+  position: absolute;
+  left: 0;
+  top: -25px;
+  transform: translateX(-50%);
+  width: 96px;
+  max-width: 96px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: #111111;
+  font-size: 8px;
+  font-weight: 500;
+  line-height: 1.05;
+  text-align: center;
+
+  background: transparent;
+  border: 0;
+  padding: 0;
+
+  text-shadow:
+    0 0 2px #ffffff,
+    0 0 3px #ffffff;
+}
+
+.siga-airport-label-line {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.siga-airport-label-line-1,
+.siga-airport-label-line-2 {
+  white-space: nowrap;
+}
+
+.siga-airport-label-line-1 {
+  font-weight: 600;
+}
+
+.siga-airport-label-line-2 {
+  font-weight: 600;
+}
+
+/* Anula el estilo anterior de etiqueta-píldora si quedó en caché o en versiones previas */
+.siga-airport-label-box,
+.siga-airport-label-icon,
+.siga-airport-label-text {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+/* =========================================================
+   SIGA MINI | EMBEBIDO SOLO MAPA
+   ========================================================= */
+
+body.mini .embed-toolbar {
+  display: none !important;
+}
+
+body.mini .siga-header,
+body.mini .siga-sidebar,
+body.mini .map-status {
+  display: none !important;
+}
+
+body.mini .siga-layout {
+  height: 100vh !important;
+  grid-template-columns: 1fr !important;
+}
+
+body.mini .siga-map-shell {
+  height: 100vh !important;
+}
+
+body.mini #sigaMap {
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+/* Opcional: ocultar controles de Leaflet en la miniatura */
+body.mini .leaflet-control-zoom,
+body.mini .leaflet-control-layers,
+body.mini .leaflet-control-fullscreen,
+body.mini .leaflet-control-locate,
+body.mini .leaflet-control-geocoder,
+body.mini .leaflet-control-measure,
+body.mini .leaflet-draw,
+body.mini .leaflet-control-minimap,
+body.mini .leaflet-control-mouseposition,
+body.mini .leaflet-control-easyPrint {
+  display: none !important;
+}
+.siga-poly-center-icon-aeroplanta {
+  background: rgba(85, 107, 47, 0.88);
+  border: 1px solid rgba(63, 79, 35, 0.95);
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.30);
+}
+/* ==============================
+   SIGA – Aeroplantas: ícono por zoom
+   ============================== */
+
+/* Oculto por defecto: no aparece en vista nacional */
+.siga-zoom-detail-icon {
+  display: none !important;
+}
+
+/* Aparece junto con PSN, pistas, cabeceras y terminales */
+.siga-show-detail-labels .siga-zoom-detail-icon {
+  display: grid !important;
+}
+
+/* Tooltip usado como contenedor del ícono centrado */
+.siga-poly-center-icon {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  pointer-events: none;
+  padding: 0 !important;
+}
+
+/* Ícono de aeroplanta */
+.siga-poly-center-icon-aeroplanta {
+  width: 20px;
+  height: 20px;
+  place-items: center;
+
+  background: rgba(215, 25, 32, 0.88) !important;
+  border: 1px solid rgba(150, 0, 0, 0.95) !important;
+  border-radius: 50%;
+
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.30) !important;
+}
+/* ==============================
+   SIGA – Indicador de zoom
+   ============================== */
+
+.siga-zoom-indicator {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #b8c9dc;
+  border-radius: 6px;
+  padding: 3px 7px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #002855;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.20);
+}
+/* ==============================
+   SIGA – Tooltips configurables
+   ============================== */
+
+.siga-tooltip-rich {
+  min-width: 120px;
+  max-width: 220px;
+  white-space: normal;
+}
+
+.siga-tooltip-title {
+  font-weight: 800;
+  color: #002855;
+  margin-bottom: 3px;
+  border-bottom: 1px solid rgba(0, 40, 85, 0.18);
+  padding-bottom: 2px;
+}
+
+.siga-tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  line-height: 1.25;
+}
+
+.siga-tooltip-key {
+  color: #5f6b7a;
+  font-weight: 600;
+}
+
+.siga-tooltip-value {
+  color: #111827;
+  font-weight: 700;
+  text-align: right;
+}
+/* ==============================
+   SIGA – Selector buscable integrado
+   ============================== */
+
+.siga-airport-combobox {
+  position: relative;
+}
+
+.siga-select-hidden {
+  display: none;
+}
+
+.siga-search-input {
+  margin-bottom: 0;
+}
+
+.siga-search-results {
+  display: none;
+  position: absolute;
+  z-index: 900;
+  top: calc(100% + 3px);
+  left: 0;
+  right: 0;
+
+  max-height: 220px;
+  overflow-y: auto;
+
+  background: #ffffff;
+  border: 1px solid #b9c6d6;
+  border-radius: 7px;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.18);
+}
+
+.siga-search-results.is-open {
+  display: block;
+}
+
+.siga-search-result {
+  padding: 5px 7px;
+  font-size: .72rem;
+  color: #111827;
+  cursor: pointer;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.siga-search-result:last-child {
+  border-bottom: 0;
+}
+
+.siga-search-result:hover,
+.siga-search-result.is-highlighted {
+  background: #eef5ff;
+  color: #002855;
+}
+
+.siga-search-result-code {
+  font-weight: 800;
+  color: #2a5fa0;
+  margin-right: 4px;
+}
+/* ==============================
+   SIGA – Cursor e identificación al hover
+   ============================== */
+
+.siga-map .leaflet-interactive,
+.siga-map .leaflet-marker-icon,
+.siga-map .leaflet-tooltip,
+.siga-map.is-feature-hovering,
+.siga-map.is-feature-hovering .leaflet-interactive,
+.siga-map.is-feature-hovering .leaflet-marker-icon,
+.siga-map.is-feature-hovering .leaflet-tooltip {
+  cursor: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='28'%20height='28'%20viewBox='0%200%2028%2028'%3E%3Cpath%20d='M5%203%20L22%2014%20L14%2016%20L18%2025%20L14%2027%20L10%2018%20L5%2024%20Z'%20fill='%230072bb'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='round'/%3E%3C/svg%3E") 4 3, default !important;
+}
+
+.siga-map-hover-label {
+  position: absolute;
+  z-index: 900;
+  display: none;
+  pointer-events: none;
+
+  max-width: 240px;
+  padding: 4px 8px;
+  border-radius: 6px;
+
+  background: rgba(0, 40, 85, 0.92);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.15;
+  white-space: nowrap;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  transform: translate(12px, -20px);
+}
+
+
+/* ==============================
+   SIGA – Leyendas de amenazas geodinámicas
+   ============================== */
+.legend-layer {
+  display: grid;
+  gap: 3px;
+  padding: 3px 0 5px;
+}
+
+.legend-layer + .legend-layer {
+  border-top: 1px solid #e5e7eb;
+}
+
+.legend-layer-title {
+  margin-bottom: 1px;
+  color: var(--siga-blue-dark);
+  font-size: .7rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.legend-swatch-point {
+  width: 10px;
+  height: 10px;
+  margin: 0 2px;
+  border-radius: 50%;
+}
