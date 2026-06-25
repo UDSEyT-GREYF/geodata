@@ -819,7 +819,9 @@ const LAYER_GROUP_ORDER = [
     else if (magnitude !== null && magnitude >= 3) fillColor = "#ff9800";
 
     return {
-      radius: magnitude === null ? 4.5 : Math.max(3.5, Math.min(10, 2.2 + magnitude * 1.25)),
+      radius: magnitude === null
+  ? 2.2
+  : Math.max(2, Math.min(6, 1 + magnitude * 0.7)),
       color: "#7f1d1d",
       weight: 1.15,
       opacity: 0.95,
