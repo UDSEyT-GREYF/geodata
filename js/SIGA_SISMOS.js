@@ -17,6 +17,12 @@ if (MINI_MODE) document.body.classList.add("mini");
   const DEFAULT_CENTER = [-38.4, -63.6];
   const DEFAULT_ZOOM = 4;
   const LOCAL_IDENTIFICATION_MIN_ZOOM = 12;
+  const HAZARD_IDENTIFICATION_LAYER_IDS = new Set([
+    "inpres_sismos",
+    "usgs_sismos_recientes",
+    "segemar_riesgo_volcanico_2025",
+    "segemar_volcanes"
+  ]);
 
   const FIELD_IATA_CANDIDATES = [
     "IATA", "iata", "iata_code", "cod_iata", "COD_IATA", "codigo_iata", "Código IATA"
@@ -821,8 +827,8 @@ const LAYER_GROUP_ORDER = [
 
     return {
       radius: magnitude === null
-  ? 2.2
-  : Math.max(2, Math.min(6, 1 + magnitude * 0.7)),
+        ? 2.2
+        : Math.max(2, Math.min(6, 1 + magnitude * 0.7)),
       color: "#7f1d1d",
       weight: 0.8,
       opacity: 0.9,
@@ -1786,6 +1792,31 @@ function buildHoverTooltip(cfg, feature) {
     return zone === null ? "Zona sísmica" : `Zona sísmica: Zona ${zone}`;
   }
 
+  const props = feature?.properties || {};
+
+  if (cfg.id === "inpres_sismos") {
+    const mag = clean(getFirstProp(props, ["magnitud", "Magnitud", "MAGNITUD", "mag"]));
+    const fecha = clean(getFirstProp(props, ["fecha", "Fecha", "FECHA"]));
+    return ["Sismo sentido INPRES", mag ? `M ${mag}` : "", fecha].filter(Boolean).join(" · ");
+  }
+
+  if (cfg.id === "usgs_sismos_recientes") {
+    const mag = clean(getFirstProp(props, ["mag", "magnitud", "Magnitud"]));
+    const place = clean(getFirstProp(props, ["place", "lugar", "Lugar", "ubicacion", "Ubicacion"]));
+    return ["Sismo reciente USGS", mag ? `M ${mag}` : "", place].filter(Boolean).join(" · ");
+  }
+
+  if (cfg.id === "segemar_riesgo_volcanico_2025") {
+    const name = clean(getFirstProp(props, ["nombre", "Nombre", "NOMBRE", "volcan", "Volcan", "VOLCAN", "nam", "NAM"]));
+    const risk = clean(getFirstProp(props, ["riesgo", "Riesgo", "RIESGO", "riesgo_rel", "nivel_ries"]));
+    return ["Riesgo volcánico", name, risk ? `Riesgo: ${risk}` : ""].filter(Boolean).join(" · ");
+  }
+
+  if (cfg.id === "segemar_volcanes") {
+    const name = clean(getFirstProp(props, ["nombre_vol", "Nombre_vol", "NOMBRE_VOL", "nombre", "Nombre", "NOMBRE", "volcan", "Volcan", "VOLCAN", "nam", "NAM"]));
+    return ["Volcán SEGEMAR", name].filter(Boolean).join(" · ");
+  }
+
   const detailLabel = getDetailLabelValue(cfg, feature);
 
   const layerNames = {
@@ -1882,8 +1913,14 @@ function isLocalIdentificationEnabled() {
     state.map.getZoom() >= LOCAL_IDENTIFICATION_MIN_ZOOM;
 }
 
+function isHazardIdentificationLayer(cfg) {
+  return HAZARD_IDENTIFICATION_LAYER_IDS.has(cfg?.id);
+}
+
 function canIdentifyFeature(cfg) {
-  return isNationalCrossLayer(cfg) || isLocalIdentificationEnabled();
+  return isNationalCrossLayer(cfg) ||
+    isHazardIdentificationLayer(cfg) ||
+    isLocalIdentificationEnabled();
 }
 
 function bindFeature(cfg, feature, layer) {
@@ -1891,8 +1928,8 @@ function bindFeature(cfg, feature, layer) {
 
   /*
     Mantiene etiquetas permanentes para los elementos que ya las tienen.
-    La identificación interactiva del resto de las capas solo se habilita
-    a escala local (zoom 12 o superior).
+    Las amenazas geodinámicas se consultan a cualquier escala; las capas
+    operativas aeroportuarias restantes se habilitan desde la escala local.
   */
   if (cfg.polygonIcon && isPolygonGeometry(feature)) {
     layer.bindTooltip(cfg.polygonIcon.html || "", {
@@ -1991,7 +2028,9 @@ const HIDDEN_INFO_FIELDS = new Set([
   "id", "gid", "grid", "fid", "objectid", "object_id", "globalid", "uuid",
   "shape_leng", "shape_length", "shape_area", "geom", "geometry",
   "num_regist", "num_registro", "num_hoja", "nombre_hoj", "nombre_hoja",
-  "ficha", "titularidad", "perdidas_e", "perdidas", "muertos"
+  "ficha", "titularidad", "perdidas_e", "perdidas", "muertos",
+  "x", "y", "x_coord", "y_coord", "coord_x", "coord_y",
+  "bbox", "created_at", "updated_at", "last_edited_date", "shape"
 ]);
 
 function normalizeInfoFieldName(value) {
@@ -2492,20 +2531,40 @@ function buildPopupHtml(cfg, feature) {
   `;
 }
 
-function setFeatureInfo(cfg, feature) {
-  if (!state.airportFocusMode || !state.selectedAirport) return;
-
+function buildFeatureDetailHtml(cfg, feature) {
   const title = featureTitle(feature, cfg.name);
   const rows = getImportantProps(feature, cfg);
-  const detailHtml = `
+
+  return `
     <section class="feature-detail">
-      <div class="feature-detail-title">${escapeHtml(cfg.popupTitle || cfg.name)} · ${escapeHtml(title)}</div>
-      <table class="feature-table">
-        ${rows.map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td>${escapeHtml(formatValue(v))}</td></tr>`).join("")}
-      </table>
+      <div class="feature-detail-title">${escapeHtml(cfg.popupTitle || cfg.name)}${title && title !== cfg.name ? ` · ${escapeHtml(title)}` : ""}</div>
+      ${rows.length ? `
+        <table class="feature-table">
+          ${rows.map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td>${escapeHtml(formatValue(v))}</td></tr>`).join("")}
+        </table>
+      ` : `<div class="feature-empty">No hay información descriptiva disponible para este elemento.</div>`}
     </section>
   `;
+}
 
+function setFeatureInfo(cfg, feature) {
+  const detailHtml = buildFeatureDetailHtml(cfg, feature);
+
+  // Las capas de amenaza se consultan tanto a escala nacional como local.
+  // En modo aeropuerto, la ficha se presenta debajo del contexto sísmico del predio.
+  if (isHazardIdentificationLayer(cfg)) {
+    if (state.airportFocusMode && state.selectedAirport) {
+      renderAirportFocusInfo(state.selectedAirport, detailHtml);
+    } else {
+      const el = q("featureInfo");
+      if (!el) return;
+      el.innerHTML = detailHtml;
+      showFeatureInfoPanel();
+    }
+    return;
+  }
+
+  if (!state.airportFocusMode || !state.selectedAirport) return;
   renderAirportFocusInfo(state.selectedAirport, detailHtml);
 }
 
