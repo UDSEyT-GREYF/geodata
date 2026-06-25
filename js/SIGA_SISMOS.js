@@ -737,6 +737,7 @@ const LAYER_GROUP_ORDER = [
     airports: [],
     airportIndex: new Map(),
     selectedAirport: "",
+    airportFocusMode: false,
     airportLabelLayer: null,
     drawnItems: null,
     paradasAppRowsByIata: new Map()
@@ -819,9 +820,7 @@ const LAYER_GROUP_ORDER = [
     else if (magnitude !== null && magnitude >= 3) fillColor = "#ff9800";
 
     return {
-      radius: magnitude === null
-  ? 2.2
-  : Math.max(2, Math.min(6, 1 + magnitude * 0.7)),
+      radius: magnitude === null ? 4.5 : Math.max(3.5, Math.min(10, 2.2 + magnitude * 1.25)),
       color: "#7f1d1d",
       weight: 1.15,
       opacity: 0.95,
@@ -1595,6 +1594,12 @@ const html = `
 function layerPassesZoom(def) {
   if (!def?.cfg) return false;
 
+  // En la vista local de un aeropuerto, la zonificación se oculta
+  // automáticamente para no tapar las capas operativas.
+  if (state.airportFocusMode && def.cfg.id === "inpres_sismos_zonificacion") {
+    return false;
+  }
+
   const minZoom = def.cfg.minVisibleZoom;
 
   // Si la capa no tiene minVisibleZoom, se comporta como siempre.
@@ -1869,7 +1874,10 @@ function isNationalCrossLayer(cfg) {
 }
 
 function isLocalIdentificationEnabled() {
-  return !!state.map && state.map.getZoom() >= LOCAL_IDENTIFICATION_MIN_ZOOM;
+  return !!state.map &&
+    !!state.selectedAirport &&
+    state.airportFocusMode &&
+    state.map.getZoom() >= LOCAL_IDENTIFICATION_MIN_ZOOM;
 }
 
 function canIdentifyFeature(cfg) {
@@ -2250,12 +2258,15 @@ function getPredioAirportData(feature) {
     "Nombre", "nombre", "NOMBRE"
   ])) || clean(airportFromSelector?.nombre) || iata || "Aeropuerto";
 
-  const city = clean(getFirstProp(props, [
+  let city = clean(getFirstProp(props, [
     "Ciudad", "ciudad", "CIUDAD", "Localidad", "localidad", "LOCALIDAD",
     "Ciudad/Localidad", "NOM_LOC", "nom_loc", "nombre_ciudad"
   ])) || clean(getFirstProp(selectorProps, [
     "Ciudad", "ciudad", "CIUDAD", "Localidad", "localidad", "LOCALIDAD", "Ciudad/Localidad"
   ]));
+
+  // Para la lista compacta nacional, AEP se identifica como Aeroparque.
+  if (iata === "AEP") city = "Aeroparque";
 
   return { iata, airportName, city, properties: props, feature };
 }
@@ -2324,9 +2335,28 @@ function hideFeatureInfoPanel() {
   q("featureInfoPanel")?.classList.add("is-hidden");
 }
 
+function showInitialFeatureInfo() {
+  const el = q("featureInfo");
+  if (!el) return;
+
+  el.innerHTML = `
+    <div class="feature-instruction">
+      Haga clic en una zona sísmica para ver qué aeropuertos se encuentran dentro de ella.
+    </div>
+  `;
+
+  showFeatureInfoPanel();
+}
+
 function getSeismicZoneDescription(feature) {
   const props = feature?.properties || {};
   return clean(getFirstProp(props, ["p_sismica", "P_sismica", "P_SISMICA", "peligrosidad"]));
+}
+
+function getPredioFeatureByIata(iata) {
+  const code = clean(iata).toUpperCase();
+  if (!code) return null;
+  return getPredioFeatures().find((feature) => getFeatureIata(feature) === code) || null;
 }
 
 function buildAirportZoneListHtml(airports, zoneLabel) {
@@ -2343,12 +2373,60 @@ function buildAirportZoneListHtml(airports, zoneLabel) {
       ${airports.map((airport) => `
         <button type="button" class="feature-airport-item" ${airport.iata ? `data-airport-iata="${escapeHtml(airport.iata)}"` : ""}>
           <span class="feature-airport-code">${escapeHtml(airport.iata || "—")}</span>
-          <span class="feature-airport-name">${escapeHtml(airport.city || airport.airportName)}</span>
-          ${airport.city && airport.airportName !== airport.city ? `<span class="feature-airport-place">${escapeHtml(airport.airportName)}</span>` : ""}
+          <span class="feature-airport-name">${escapeHtml(airport.city || "Ciudad no informada")}</span>
         </button>
       `).join("")}
     </div>
   `;
+}
+
+function buildAirportSeismicContextHtml(iata, predioFeature = null) {
+  const code = clean(iata).toUpperCase();
+  const predio = predioFeature || getPredioFeatureByIata(code);
+  const airport = predio
+    ? getPredioAirportData(predio)
+    : {
+        iata: code,
+        city: code === "AEP"
+          ? "Aeroparque"
+          : clean(getFirstProp(state.airportIndex.get(code)?.properties || {}, [
+              "Ciudad", "ciudad", "CIUDAD", "Localidad", "localidad", "LOCALIDAD", "Ciudad/Localidad"
+            ]))
+      };
+
+  const zones = predio ? getSeismicZonesForPredio(predio) : [];
+  const zoneLabels = zones.map((zoneFeature) => {
+    const zone = getSeismicZone(zoneFeature);
+    return zone === null ? "Zona sin identificar" : `Zona ${zone}`;
+  });
+  const dangerLabels = [...new Set(zones.map(getSeismicZoneDescription).filter(Boolean))];
+  const airportLabel = [airport.iata, airport.city].filter(Boolean).join(" — ") || "Aeropuerto";
+
+  return `
+    <section class="feature-context">
+      <div class="feature-context-title">${escapeHtml(airportLabel)}</div>
+      <table class="feature-table">
+        <tr><td>Zona sísmica</td><td>${escapeHtml(zoneLabels.length ? zoneLabels.join(" / ") : "No identificada")}</td></tr>
+        ${dangerLabels.length ? `<tr><td>Peligrosidad</td><td>${escapeHtml(dangerLabels.join(" / "))}</td></tr>` : ""}
+      </table>
+    </section>
+  `;
+}
+
+function renderAirportFocusInfo(iata, detailHtml = "") {
+  const el = q("featureInfo");
+  if (!el) return;
+
+  el.innerHTML = `
+    ${buildAirportSeismicContextHtml(iata)}
+    ${detailHtml || `
+      <div class="feature-instruction feature-instruction-local">
+        Haga clic en un elemento del aeropuerto para consultar su información.
+      </div>
+    `}
+  `;
+
+  showFeatureInfoPanel();
 }
 
 function setSeismicZoneInfo(cfg, feature) {
@@ -2377,27 +2455,26 @@ function setSeismicZoneInfo(cfg, feature) {
 }
 
 function setAirportSeismicInfo(cfg, predioFeature) {
+  const airport = getPredioAirportData(predioFeature);
+  const code = airport.iata || state.selectedAirport;
+
+  if (state.airportFocusMode && state.selectedAirport) {
+    const rows = getImportantProps(predioFeature, cfg);
+    const detailHtml = `
+      <section class="feature-detail">
+        <div class="feature-detail-title">Información del predio aeroportuario</div>
+        <table class="feature-table">
+          ${rows.map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td>${escapeHtml(formatValue(v))}</td></tr>`).join("")}
+        </table>
+      </section>
+    `;
+    renderAirportFocusInfo(state.selectedAirport, detailHtml);
+    return;
+  }
+
   const el = q("featureInfo");
   if (!el) return;
-
-  const airport = getPredioAirportData(predioFeature);
-  const zones = getSeismicZonesForPredio(predioFeature);
-  const zoneLabels = zones.map((zoneFeature) => {
-    const zone = getSeismicZone(zoneFeature);
-    return zone === null ? "Zona sin identificar" : `Zona ${zone}`;
-  });
-  const dangerLabels = [...new Set(zones.map(getSeismicZoneDescription).filter(Boolean))];
-
-  el.innerHTML = `
-    <div class="feature-title">${escapeHtml(airport.airportName)}${airport.iata ? ` (${escapeHtml(airport.iata)})` : ""}</div>
-    <table class="feature-table">
-      ${airport.city ? `<tr><td>Ciudad</td><td>${escapeHtml(airport.city)}</td></tr>` : ""}
-      ${airport.iata ? `<tr><td>IATA</td><td>${escapeHtml(airport.iata)}</td></tr>` : ""}
-      <tr><td>Zona sísmica</td><td>${escapeHtml(zoneLabels.length ? zoneLabels.join(" / ") : "No identificada")}</td></tr>
-      ${dangerLabels.length ? `<tr><td>Peligrosidad</td><td>${escapeHtml(dangerLabels.join(" / "))}</td></tr>` : ""}
-    </table>
-  `;
-
+  el.innerHTML = buildAirportSeismicContextHtml(code, predioFeature);
   showFeatureInfoPanel();
 }
 
@@ -2414,20 +2491,20 @@ function buildPopupHtml(cfg, feature) {
 }
 
 function setFeatureInfo(cfg, feature) {
-  const el = q("featureInfo");
-  if (!el) return;
+  if (!state.airportFocusMode || !state.selectedAirport) return;
 
   const title = featureTitle(feature, cfg.name);
   const rows = getImportantProps(feature, cfg);
-
-  el.innerHTML = `
-    <div class="feature-title">${escapeHtml(cfg.popupTitle || cfg.name)} · ${escapeHtml(title)}</div>
-    <table class="feature-table">
-      ${rows.map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td>${escapeHtml(formatValue(v))}</td></tr>`).join("")}
-    </table>
+  const detailHtml = `
+    <section class="feature-detail">
+      <div class="feature-detail-title">${escapeHtml(cfg.popupTitle || cfg.name)} · ${escapeHtml(title)}</div>
+      <table class="feature-table">
+        ${rows.map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td>${escapeHtml(formatValue(v))}</td></tr>`).join("")}
+      </table>
+    </section>
   `;
 
-  showFeatureInfoPanel();
+  renderAirportFocusInfo(state.selectedAirport, detailHtml);
 }
 
   function escapeHtml(value) {
@@ -2680,7 +2757,11 @@ function renderLayerTree() {
     maybeSwitchBaseLayerForArgentina();
     clearAirportHighlight();
     state.selectedAirport = "";
+    state.airportFocusMode = false;
     syncAirportSelects("");
+    refreshZoomDependentLayers();
+    renderLayerTree();
+    showInitialFeatureInfo();
 
     const prov = state.layerDefs.get("provincias")?.layer;
     if (prov) {
@@ -2695,8 +2776,15 @@ function renderLayerTree() {
     const code = clean(iata).toUpperCase();
     if (!code) return;
     state.selectedAirport = code;
+    state.airportFocusMode = true;
     syncAirportSelects(code);
     maybeSwitchBaseLayerForAirport();
+
+    // La zonificación permanece activa en el selector, pero se oculta
+    // automáticamente mientras se consulta un aeropuerto en escala local.
+    refreshZoomDependentLayers();
+    renderLayerTree();
+    renderAirportFocusInfo(code);
 
     const bounds = findAirportBounds(code);
     if (bounds && bounds.isValid()) {
