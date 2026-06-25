@@ -13,6 +13,7 @@ if (MINI_MODE) document.body.classList.add("mini");
 
   const AIRPORTS_SOURCE = "fuentes/Datos_aeropuertos.geojson";
   const PARADAS_APP_CSV_SOURCE = "fuentes/Paradasapp.csv";
+  const USGS_EARTHQUAKES_SOURCE = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minlatitude=-56&maxlatitude=-20&minlongitude=-76&maxlongitude=-50&eventtype=earthquake&orderby=time";
   const DEFAULT_CENTER = [-38.4, -63.6];
   const DEFAULT_ZOOM = 4;
 
@@ -192,8 +193,8 @@ if (MINI_MODE) document.body.classList.add("mini");
     }
   ];
 
-  const DEFAULT_BASEMAP_ID = "argenmap";
-  const AIRPORT_BASEMAP_ID = "esri_imagery";
+  const DEFAULT_BASEMAP_ID = "esri_hillshade";
+  const AIRPORT_BASEMAP_ID = "esri_hillshade";
 
   const LAYER_CONFIGS = [
     {
@@ -214,7 +215,7 @@ if (MINI_MODE) document.body.classList.add("mini");
       styleByFeature: seismicZoneStyle,
       tooltipTitle: "Zonificación sísmica",
       tooltipFields: [
-        { label: "Zona", keys: ["zona_sismo", "Zona_sismo", "ZONA_SISMO", "zona"] },
+        { label: "Zona sísmica", keys: ["zona_sismo", "Zona_sismo", "ZONA_SISMO", "zona", "Zona"] },
         { label: "Peligrosidad", keys: ["p_sismica", "P_sismica", "P_SISMICA", "peligrosidad"] },
         { label: "Aceleración", keys: ["acelerac", "Acelerac", "ACELERAC", "aceleracion"] }
       ],
@@ -226,11 +227,11 @@ if (MINI_MODE) document.body.classList.add("mini");
         { label: "Fuente", keys: ["fuente", "Fuente", "FUENTE"] }
       ],
       legendItems: [
-        { label: "Zona 0 · Muy reducida", color: "#ffffcc" },
-        { label: "Zona 1 · Reducida", color: "#ffeda0" },
-        { label: "Zona 2 · Moderada", color: "#feb24c" },
-        { label: "Zona 3 · Elevada", color: "#f03b20" },
-        { label: "Zona 4 · Muy elevada", color: "#bd0026" }
+        { label: "Zona 0 — Peligrosidad muy reducida", color: "#ffffcc" },
+        { label: "Zona 1 — Peligrosidad reducida", color: "#ffeda0" },
+        { label: "Zona 2 — Peligrosidad moderada", color: "#feb24c" },
+        { label: "Zona 3 — Peligrosidad elevada", color: "#f03b20" },
+        { label: "Zona 4 — Peligrosidad muy elevada", color: "#bd0026" }
       ]
     },
     {
@@ -268,6 +269,47 @@ if (MINI_MODE) document.body.classList.add("mini");
         { label: "Latitud", keys: ["lat", "Lat", "LAT"] },
         { label: "Longitud", keys: ["long", "Long", "LONG", "lon"] },
         { label: "Fuente", keys: ["fuente", "Fuente", "FUENTE"] }
+      ],
+      legendItems: [
+        { label: "Magnitud menor a 3", color: "#ffd54f", shape: "point" },
+        { label: "Magnitud 3,0–3,9", color: "#ff9800", shape: "point" },
+        { label: "Magnitud 4,0–4,9", color: "#f4511e", shape: "point" },
+        { label: "Magnitud 5 o más", color: "#b71c1c", shape: "point" }
+      ]
+    },
+    {
+      id: "usgs_sismos_recientes",
+      group: "Amenazas geodinámicas",
+      name: "Sismos recientes USGS",
+      url: USGS_EARTHQUAKES_SOURCE,
+      active: true,
+      opacity: 0.96,
+      color: "#7f1d1d",
+      point: {
+        radius: 4.5,
+        color: "#4c0519",
+        weight: 1.2,
+        fillColor: "#ef4444",
+        fillOpacity: 0.88
+      },
+      pointStyle: earthquakePointStyle,
+      tooltipTitle: "Sismo reciente USGS",
+      tooltipFields: [
+        { label: "Fecha y hora", keys: ["fecha", "Fecha"] },
+        { label: "Magnitud", keys: ["mag", "magnitud", "Magnitud"] },
+        { label: "Profundidad", keys: ["profundidad", "depth"] },
+        { label: "Ubicación", keys: ["place", "lugar", "Lugar"] },
+        { label: "Estado", keys: ["status", "estado", "Estado"] }
+      ],
+      popupTitle: "Sismo reciente USGS",
+      popupFields: [
+        { label: "Fecha y hora", keys: ["fecha", "Fecha"] },
+        { label: "Magnitud", keys: ["mag", "magnitud", "Magnitud"] },
+        { label: "Profundidad", keys: ["profundidad", "depth"], suffix: "km" },
+        { label: "Ubicación", keys: ["place", "lugar", "Lugar"] },
+        { label: "Estado", keys: ["status", "estado", "Estado"] },
+        { label: "Código", keys: ["code", "id"] },
+        { label: "Fuente", keys: ["fuente", "Fuente"] }
       ],
       legendItems: [
         { label: "Magnitud menor a 3", color: "#ffd54f", shape: "point" },
@@ -851,6 +893,7 @@ function getLayerPaneId(layerId) {
 
   if ([
     "inpres_sismos",
+    "usgs_sismos_recientes",
     "segemar_riesgo_volcanico_2025",
     "segemar_volcanes"
   ].includes(layerId)) {
@@ -1099,6 +1142,32 @@ function enrichParadasAppGeojson(geojson) {
       IATA: props.IATA || iata,
       LINEA: props.LINEA || row.LINEA || "",
       Parada: props.Parada || row.Parada || ""
+    };
+  });
+
+  return geojson;
+}
+
+function enrichUsgsGeojson(geojson) {
+  if (!geojson?.features?.length) return geojson;
+
+  const dateFormatter = new Intl.DateTimeFormat("es-AR", {
+    dateStyle: "short",
+    timeStyle: "medium",
+    timeZone: "America/Argentina/Buenos_Aires"
+  });
+
+  geojson.features.forEach((feature) => {
+    const props = feature.properties || {};
+    const coordinates = feature?.geometry?.coordinates || [];
+    const timestamp = Number(props.time);
+
+    feature.properties = {
+      ...props,
+      fecha: Number.isFinite(timestamp) ? dateFormatter.format(new Date(timestamp)) : "",
+      profundidad: coordinates.length > 2 ? coordinates[2] : "",
+      fuente: "USGS",
+      id: feature.id || props.id || ""
     };
   });
 
@@ -1574,6 +1643,11 @@ function buildHoverTooltip(cfg, feature) {
   `;
 }
   function getFeatureHoverName(cfg, feature) {
+  if (cfg.id === "inpres_sismos_zonificacion") {
+    const zone = getSeismicZone(feature);
+    return zone === null ? "Zona sísmica" : `Zona sísmica: Zona ${zone}`;
+  }
+
   const detailLabel = getDetailLabelValue(cfg, feature);
 
   const layerNames = {
@@ -1839,6 +1913,10 @@ function setFeatureInfo(cfg, feature) {
 
 if (cfg.id === "paradasapp") {
   gj = enrichParadasAppGeojson(gj);
+}
+
+if (cfg.id === "usgs_sismos_recientes") {
+  gj = enrichUsgsGeojson(gj);
 }
 
 const layer = makeLayer(cfg, gj);
