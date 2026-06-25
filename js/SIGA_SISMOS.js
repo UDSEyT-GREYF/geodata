@@ -342,12 +342,20 @@ if (MINI_MODE) document.body.classList.add("mini");
         fillColor: "#fb923c",
         fillOpacity: 0.9
       },
+      pointSymbol: {
+        shape: "triangle",
+        variant: "volcano-risk",
+        size: 25
+      },
       tooltipTitle: "Riesgo volcánico relativo 2025",
       tooltipFields: [
         { label: "Volcán", keys: ["nombre", "Nombre", "NOMBRE", "volcan", "Volcan", "VOLCAN", "nam", "NAM"] },
         { label: "Riesgo", keys: ["riesgo", "Riesgo", "RIESGO", "riesgo_rel", "nivel_ries"] },
         { label: "Ranking", keys: ["ranking", "Ranking", "RANKING", "rango", "Rango"] },
         { label: "Provincia", keys: ["provincia", "Provincia", "PROVINCIA"] }
+      ],
+      legendItems: [
+        { label: "Volcán con riesgo relativo evaluado", color: "#fb923c", shape: "triangle", variant: "volcano-risk" }
       ]
     },
     {
@@ -372,12 +380,20 @@ if (MINI_MODE) document.body.classList.add("mini");
         fillColor: "#b91c1c",
         fillOpacity: 0.9
       },
+      pointSymbol: {
+        shape: "triangle",
+        variant: "volcano",
+        size: 22
+      },
       tooltipTitle: "Volcán",
       tooltipFields: [
         { label: "Nombre", keys: ["nombre", "Nombre", "NOMBRE", "volcan", "Volcan", "VOLCAN", "nam", "NAM"] },
         { label: "Provincia", keys: ["provincia", "Provincia", "PROVINCIA"] },
         { label: "Estado", keys: ["estado", "Estado", "ESTADO", "actividad", "Actividad"] },
         { label: "Tipo", keys: ["tipo", "Tipo", "TIPO"] }
+      ],
+      legendItems: [
+        { label: "Volcán", color: "#b91c1c", shape: "triangle", variant: "volcano" }
       ]
     },
     {
@@ -1587,6 +1603,77 @@ function refreshZoomDependentLayers() {
 
   renderLegend();
 }
+  function buildTriangleSymbolHtml(cfg, pointStyle) {
+    const symbol = cfg.pointSymbol || {};
+    const size = Math.max(16, Number(symbol.size || 22));
+    const fill = pointStyle.fillColor || cfg.color || "#b91c1c";
+    const stroke = pointStyle.color || "#450a0a";
+    const strokeWidth = Math.max(1, Number(pointStyle.weight || 1.4));
+    const variant = symbol.variant || "triangle";
+
+    let detail = "";
+
+    if (variant === "volcano-risk") {
+      detail = `
+        <path d="M12 7.2v6.6" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="12" cy="17" r="1.25" fill="#ffffff"/>
+      `;
+    } else if (variant === "volcano") {
+      detail = `
+        <path d="M6.6 18.2 10.7 9.8l1.8 3.2 1.9-3.9 3.2 9.1Z"
+              fill="rgba(255,255,255,.82)" stroke="rgba(69,10,10,.42)" stroke-width=".65" stroke-linejoin="round"/>
+        <path d="M10.7 9.8c.75.55 1.48.55 2.18 0 .66-.5 1.27-.5 1.86 0"
+              fill="none" stroke="#ffffff" stroke-width="1.15" stroke-linecap="round"/>
+        <path d="M11.25 6.4c-.55-.72-.42-1.5.4-2.12M13.05 6.2c.65-.73.67-1.48.08-2.2"
+              fill="none" stroke="#ffffff" stroke-width="1.15" stroke-linecap="round" opacity=".92"/>
+      `;
+    }
+
+    return `
+      <span class="siga-hazard-symbol siga-hazard-symbol-${escapeHtml(variant)}" style="width:${size}px;height:${size}px;">
+        <svg viewBox="0 0 24 24" width="${size}" height="${size}" aria-hidden="true" focusable="false">
+          <path d="M12 1.8 22 21.2H2Z"
+                fill="${escapeHtml(fill)}" stroke="${escapeHtml(stroke)}" stroke-width="${strokeWidth}"
+                stroke-linejoin="round"/>
+          ${detail}
+        </svg>
+      </span>
+    `;
+  }
+
+  function makePointFeatureLayer(cfg, feature, latlng, paneId) {
+    const p = pointFeatureStyle(cfg, feature);
+
+    if (cfg.pointSymbol?.shape === "triangle") {
+      const size = Math.max(16, Number(cfg.pointSymbol.size || 22));
+
+      return L.marker(latlng, {
+        pane: paneId,
+        interactive: true,
+        keyboard: true,
+        opacity: p.opacity ?? 1,
+        icon: L.divIcon({
+          className: "siga-hazard-div-icon",
+          html: buildTriangleSymbolHtml(cfg, p),
+          iconSize: [size, size],
+          iconAnchor: [size / 2, size * 0.92],
+          tooltipAnchor: [0, -size * 0.55]
+        })
+      });
+    }
+
+    return L.circleMarker(latlng, {
+      pane: paneId,
+      interactive: true,
+      radius: p.radius,
+      color: p.color,
+      weight: p.weight ?? 1,
+      opacity: p.opacity ?? 1,
+      fillColor: p.fillColor,
+      fillOpacity: p.fillOpacity
+    });
+  }
+
   function makeLayer(cfg, geojson) {
 const paneId = getLayerPaneId(cfg.id);
 
@@ -1594,20 +1681,7 @@ const options = {
   pane: paneId,
   interactive: true,
   style: (feature) => featureStyle(cfg, feature),
-  pointToLayer: (feature, latlng) => {
-    const p = pointFeatureStyle(cfg, feature);
-
-return L.circleMarker(latlng, {
-  pane: paneId,
-  interactive: true,
-  radius: p.radius,
-  color: p.color,
-  weight: p.weight ?? 1,
-  opacity: p.opacity ?? 1,
-  fillColor: p.fillColor,
-  fillOpacity: p.fillOpacity
-});
-  },
+  pointToLayer: (feature, latlng) => makePointFeatureLayer(cfg, feature, latlng, paneId),
   onEachFeature: (feature, layer) => bindFeature(cfg, feature, layer)
 };
 
@@ -1809,6 +1883,7 @@ function bindFeature(cfg, feature, layer) {
 layer.on("mouseover", (e) => {
   showHoverLabel(cfg, feature, e.originalEvent);
   state.map?.getContainer()?.classList.add("is-feature-hovering");
+  layer.getElement?.()?.classList.add("is-symbol-hovered");
 
   if (!layer.setStyle || cfg.id === "provincias") return;
 
@@ -1849,6 +1924,7 @@ if (cfg.id === "aeroplantas") {
 layer.on("mouseout", () => {
   hideHoverLabel();
   state.map?.getContainer()?.classList.remove("is-feature-hovering");
+  layer.getElement?.()?.classList.remove("is-symbol-hovered");
 
   const def = state.layerDefs.get(cfg.id);
     if (layer.setStyle && def) {
@@ -2101,9 +2177,13 @@ function renderLayerTree() {
         const def = state.layerDefs.get(cfg.id);
         const row = document.createElement("label");
         row.className = "layer-row";
+        const swatchClass = cfg.pointSymbol?.shape === "triangle"
+          ? `layer-swatch layer-swatch-triangle layer-swatch-${cfg.pointSymbol.variant || "triangle"}`
+          : "layer-swatch";
+
         row.innerHTML = `
           <input type="checkbox" ${def?.active ? "checked" : ""} ${def?.error ? "disabled" : ""} data-layer-id="${cfg.id}">
-          <span class="layer-swatch" style="background:${cfg.color};"></span>
+          <span class="${swatchClass}" style="background:${cfg.color};"></span>
           <span class="layer-name" title="${escapeHtml(cfg.name)}">${escapeHtml(cfg.name)}${def?.error ? " (no disponible)" : ""}</span>
           <input class="layer-opacity" type="range" min="0.1" max="1" step="0.05" value="${def?.opacity ?? cfg.opacity ?? 1}" data-opacity-id="${cfg.id}" ${def?.error ? "disabled" : ""}>
         `;
@@ -2147,7 +2227,7 @@ function renderLayerTree() {
               <div class="legend-layer-title">${escapeHtml(def.cfg.name)}</div>
               ${items.map((item) => `
                 <div class="legend-item">
-                  <span class="legend-swatch ${item.shape === "point" ? "legend-swatch-point" : ""}" style="background:${item.color};"></span>
+                  <span class="legend-swatch ${item.shape === "point" ? "legend-swatch-point" : ""} ${item.shape === "triangle" ? `legend-swatch-triangle legend-swatch-${item.variant || "triangle"}` : ""}" style="background:${item.color};"></span>
                   <span>${escapeHtml(item.label)}</span>
                 </div>
               `).join("")}
@@ -2155,7 +2235,11 @@ function renderLayerTree() {
           `;
         }
 
-        return `<div class="legend-item"><span class="legend-swatch" style="background:${def.cfg.color};"></span><span>${escapeHtml(def.cfg.name)}</span></div>`;
+        const genericShapeClass = def.cfg.pointSymbol?.shape === "triangle"
+          ? `legend-swatch-triangle legend-swatch-${def.cfg.pointSymbol.variant || "triangle"}`
+          : "";
+
+        return `<div class="legend-item"><span class="legend-swatch ${genericShapeClass}" style="background:${def.cfg.color};"></span><span>${escapeHtml(def.cfg.name)}</span></div>`;
       })
       .join("");
   }
