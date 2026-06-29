@@ -202,13 +202,69 @@ saldoImpacto: [
   "Saldo de impactos totales USD"
 ],
 
-    empleoDirecto: ["EmpleoDirecto", "empleo_directo", "Empleo directo", "EmpleoDirecto2024", "EmpleoDirecto2025"],
-    empleoIndirecto: ["EmpleoIndirecto", "empleo_indirecto", "Empleo indirecto"],
-    empleoInducido: ["EmpleoInducido", "empleo_inducido", "Empleo inducido"],
-    empleoCatalitico: ["EmpleoCatalitico", "EmpleoCatalítico", "empleo_catalitico", "Empleo catalítico"],
-    empleoTotal: ["EmpleoTotal", "empleo_total", "EmpleosTotal", "PuestosEmpleoTotal", "Total empleos", "Empleo total"],
-    empleoMujeres: ["EmpleoDirectoMujeres", "empleo_directo_mujeres", "Mujeres", "PorcentajeMujeres", "pct_mujeres", "% Mujeres"],
-    empleoVarones: ["EmpleoDirectoVarones", "empleo_directo_varones", "Varones", "PorcentajeVarones", "pct_varones", "% Varones"],
+empleoDirecto: [
+  "EmpleoDirecto",
+  "empleo_directo",
+  "Empleo directo",
+  "EmpleoDirecto2024",
+  "EmpleoDirecto2025"
+],
+
+empleoIndirecto: [
+  "EmpleoIndirecto",
+  "empleo_indirecto",
+  "Empleo indirecto",
+  "EmpleoIndirecto2025"
+],
+
+empleoInducido: [
+  "EmpleoInducido",
+  "empleo_inducido",
+  "Empleo inducido",
+  "EmpleoInducido2025"
+],
+
+empleoCatalitico: [
+  "EmpleoCatalitico",
+  "EmpleoCatalítico",
+  "empleo_catalitico",
+  "Empleo catalítico",
+  "EmpleoCatalitico2025",
+  "EmpleoCatalítico2025"
+],
+
+empleoTotal: [
+  "EmpleoTotal",
+  "empleo_total",
+  "EmpleosTotal",
+  "PuestosEmpleoTotal",
+  "Total empleos",
+  "Empleo total",
+  "EmpleoAeropTotal2025",
+  "EmpleoAeroTotal2025"
+],
+
+empleoMujeres: [
+  "EmpleoDirectoMujeres",
+  "empleo_directo_mujeres",
+  "Mujeres",
+  "mujeres",
+  "pct_mujeres",
+  "PorcentajeMujeres",
+  "pct_mujeres_directo",
+  "% Mujeres"
+],
+
+empleoVarones: [
+  "EmpleoDirectoVarones",
+  "empleo_directo_varones",
+  "Varones",
+  "varones",
+  "pct_varones",
+  "PorcentajeVarones",
+  "pct_varones_directo",
+  "% Varones"
+],
     poblacionInfluencia: ["PoblacionAreaInfluencia", "PoblaciónAreaInfluencia", "poblacion_area_influencia", "Población del Área de Influencia (Censo 2022)", "Población del área de influencia", "PoblacionInfluencia"],
 
     passengersH12026: ["PasajerosPrimerSemestre2026", "Pax1Sem2026", "PaxH12026", "pasajeros_h1_2026", "pasajeros_1sem_2026"],
@@ -218,15 +274,20 @@ saldoImpacto: [
     summaryImage: ["ImagenResumenImpacto", "imagen_resumen_impacto", "ImagenResumenEjecutivo", "imagen_resumen_ejecutivo", "summaryImage", "summary_image", "imagenImpacto", "imagen_impacto"]
   };
 
-  let root = null;
-  let geojson = null;
-  let currentFeature = null;
-  let initializationPromise = null;
-  const passengerCacheByUrl = new Map();
+let root = null;
+let geojson = null;
+let currentFeature = null;
+let initializationPromise = null;
 
-  const NO_AERO_DATA_URL = "data/ingresos_no_aeronauticos_2025_web.geojson";
-  const PASSENGER_MAIN_URL = "fuentes/pasajeros_aeropuerto_mensual.csv";
-  const PASSENGER_EXTRA_URL = "fuentes/pasajeros_movimientos_extra_9aeropuertos.csv";
+const passengerCacheByUrl = new Map();
+let employmentGenderByIata = new Map();
+
+const NO_AERO_DATA_URL = "data/ingresos_no_aeronauticos_2025_web.geojson";
+const AIRPORT_DATA_URL = "fuentes/Datos_aeropuertos.geojson";
+const EMPLOYMENT_GENDER_URL = "data/empleo_genero_2025.json";
+
+const PASSENGER_MAIN_URL = "fuentes/pasajeros_aeropuerto_mensual.csv";
+const PASSENGER_EXTRA_URL = "fuentes/pasajeros_movimientos_extra_9aeropuertos.csv";
 
   // Misma regla usada en Oferta y demanda / tabla de tráfico:
   // estos aeropuertos no deben depender únicamente de la serie mensual principal.
@@ -568,13 +629,23 @@ saldoImpacto: [
     renderHorizontalBars(container, items, formatCompact);
   }
 
-  function normalizePercentOrCount(value, total) {
-    if (!Number.isFinite(value)) return null;
-    if (value >= 0 && value <= 100 && Number.isFinite(total) && total > 100) return (value / 100) * total;
-    return value;
+function normalizeShareOrCount(value, total) {
+  if (!Number.isFinite(value)) return null;
+
+  if (Number.isFinite(total) && total > 0) {
+    // Proporción: 0,1946 = 19,46%
+    if (value >= 0 && value <= 1) return value * total;
+
+    // Porcentaje: 19,46 = 19,46%
+    if (value > 1 && value <= 100) return (value / 100) * total;
   }
 
+  // Cantidad absoluta
+  return value;
+}
+
   function buildData(properties) {
+    const iata = String(readRaw(properties, "iata") || "").trim().toUpperCase();
     const pbaConexas = readNumber(properties, "pbaConexas");
     const pbaComercial = readNumber(properties, "pbaComercial");
     const pbaSecundarias = readNumber(properties, "pbaSecundarias");
@@ -598,17 +669,30 @@ saldoImpacto: [
       : turismoEmisivo;
     const saldoImpacto = valueOrDifference(readNumber(properties, "saldoImpacto"), impactoPositivo, impactoNegativo);
 
-    const empleoDirecto = readNumber(properties, "empleoDirecto");
-    const empleoIndirecto = readNumber(properties, "empleoIndirecto");
-    const empleoInducido = readNumber(properties, "empleoInducido");
-    const empleoCatalitico = readNumber(properties, "empleoCatalitico");
-    const empleoTotal = valueOrSum(readNumber(properties, "empleoTotal"), [empleoDirecto, empleoIndirecto, empleoInducido, empleoCatalitico]);
+const empleoDirecto = readNumber(properties, "empleoDirecto");
+const empleoIndirecto = readNumber(properties, "empleoIndirecto");
+const empleoInducido = readNumber(properties, "empleoInducido");
+const empleoCatalitico = readNumber(properties, "empleoCatalitico");
 
-    const empleoMujeres = normalizePercentOrCount(readNumber(properties, "empleoMujeres"), empleoDirecto);
-    const empleoVarones = normalizePercentOrCount(readNumber(properties, "empleoVarones"), empleoDirecto);
+const empleoTotal = valueOrSum(
+  readNumber(properties, "empleoTotal"),
+  [empleoDirecto, empleoIndirecto, empleoInducido, empleoCatalitico]
+);
+
+const gender = getEmploymentGenderForIata(iata);
+
+const empleoMujeres = normalizeShareOrCount(
+  readNumber(properties, "empleoMujeres") ?? gender.mujeres,
+  empleoDirecto
+);
+
+const empleoVarones = normalizeShareOrCount(
+  readNumber(properties, "empleoVarones") ?? gender.varones,
+  empleoDirecto
+);
 
     return {
-      iata: String(readRaw(properties, "iata") || "").trim().toUpperCase(),
+      iata,
       airportName: String(readRaw(properties, "airportName") || "Aeropuerto").trim(),
       year: readRaw(properties, "year") || 2025,
       pbaTotal,
@@ -1244,7 +1328,153 @@ function getFeatureIata(feature) {
 
   return "";
 }
+async function loadOptionalJson(url, label = "archivo JSON") {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      console.warn(`[Impacto] No se pudo cargar ${url} (${response.status}). Se continúa sin ${label}.`);
+      return null;
+    }
+    return await response.json();
+  } catch (error) {
+    console.warn(`[Impacto] No se pudo cargar ${url}. Se continúa sin ${label}.`, error);
+    return null;
+  }
+}
 
+function readAnyNumber(object, keys) {
+  if (!object) return null;
+
+  const index = buildPropertyIndex(object);
+
+  for (const key of keys) {
+    const originalKey = index.get(normalizeKey(key));
+    if (!originalKey) continue;
+
+    const value = parseNumber(object[originalKey]);
+    if (Number.isFinite(value)) return value;
+  }
+
+  return null;
+}
+
+function mergeAirportPopulationData(baseGeojson, airportGeojson) {
+  if (!baseGeojson?.features?.length || !airportGeojson?.features?.length) {
+    console.warn("[Impacto] No se incorporó población: archivo base o fuente de aeropuertos vacía.");
+    return;
+  }
+
+  const airportByIata = new Map();
+
+  airportGeojson.features.forEach((feature) => {
+    const iata = getFeatureIata(feature);
+    if (!iata) return;
+    airportByIata.set(iata, feature.properties || {});
+  });
+
+  let matched = 0;
+  let withPopulation = 0;
+
+  baseGeojson.features.forEach((feature) => {
+    const iata = getFeatureIata(feature);
+    if (!iata) return;
+
+    const airportProps = airportByIata.get(iata);
+    if (!airportProps) return;
+
+    matched += 1;
+
+    const population = readAnyNumber(airportProps, [
+      "Población del Área de Influencia (Censo 2022)",
+      "Poblacion del Area de Influencia Censo 2022",
+      "PoblacionAreaInfluencia",
+      "PoblaciónAreaInfluencia",
+      "poblacion_area_influencia",
+      "Población del área de influencia",
+      "PoblacionInfluencia"
+    ]);
+
+    if (Number.isFinite(population)) {
+      feature.properties = {
+        ...(feature.properties || {}),
+        "Población del Área de Influencia (Censo 2022)": population
+      };
+      withPopulation += 1;
+    }
+  });
+
+  console.info(
+    `[Impacto] Población por IATA: ${matched} aeropuertos cruzados; ${withPopulation} con población válida.`
+  );
+}
+
+function buildEmploymentGenderIndex(json) {
+  employmentGenderByIata = new Map();
+
+  if (!json) {
+    console.warn("[Impacto] No se cargó empleo_genero_2025.json.");
+    return;
+  }
+
+  let rows = [];
+
+  if (Array.isArray(json)) {
+    rows = json;
+  } else if (Array.isArray(json.features)) {
+    rows = json.features.map((feature) => feature.properties || {});
+  } else if (typeof json === "object") {
+    rows = Object.entries(json).map(([key, value]) => ({
+      iata: key,
+      ...(value || {})
+    }));
+  }
+
+  rows.forEach((row) => {
+    const iata = String(
+      row.iata ||
+      row.IATA ||
+      row.codigo_iata ||
+      row.cod_iata ||
+      ""
+    ).trim().toUpperCase();
+
+    if (!iata) return;
+
+    employmentGenderByIata.set(iata, row);
+  });
+
+  console.info(
+    "[Impacto] IATA disponibles en empleo_genero_2025.json:",
+    [...employmentGenderByIata.keys()].sort()
+  );
+}
+
+function getEmploymentGenderForIata(iata) {
+  const row = employmentGenderByIata.get(String(iata || "").trim().toUpperCase());
+  if (!row) return { mujeres: null, varones: null };
+
+  const mujeres = readAnyNumber(row, [
+    "mujeres",
+    "Mujeres",
+    "pct_mujeres",
+    "PctMujeres",
+    "PorcentajeMujeres",
+    "porcentaje_mujeres",
+    "% Mujeres"
+  ]);
+
+  const varones = readAnyNumber(row, [
+    "varones",
+    "Varones",
+    "pct_varones",
+    "PctVarones",
+    "PorcentajeVarones",
+    "porcentaje_varones",
+    "% Varones"
+  ]);
+
+  return { mujeres, varones };
+}
 function mergeNoAeroData(baseGeojson, noAeroGeojson) {
   if (!baseGeojson?.features?.length || !noAeroGeojson?.features?.length) {
     console.warn("[Impacto] No se incorporaron datos no aeronáuticos: archivo base o archivo adicional vacío.");
@@ -1346,6 +1576,14 @@ geojson = await response.json();
 const noAeroUrl = root.dataset.noAeroUrl || NO_AERO_DATA_URL;
 const noAeroGeojson = await loadOptionalGeojson(noAeroUrl);
 mergeNoAeroData(geojson, noAeroGeojson);
+
+const airportDataUrl = root.dataset.airportDataUrl || AIRPORT_DATA_URL;
+const airportGeojson = await loadOptionalGeojson(airportDataUrl);
+mergeAirportPopulationData(geojson, airportGeojson);
+
+const employmentGenderUrl = root.dataset.employmentGenderUrl || EMPLOYMENT_GENDER_URL;
+const employmentGenderJson = await loadOptionalJson(employmentGenderUrl, "género del empleo directo");
+buildEmploymentGenderIndex(employmentGenderJson);
 
 fillAirportSelect();
 await renderAirport(resolveInitialIata());
