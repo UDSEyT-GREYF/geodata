@@ -1,0 +1,475 @@
+/* ============================================================
+   CAPÍTULO: IMPACTO SOCIOECONÓMICO Y TERRITORIAL
+   Todos los selectores están encapsulados para no pisar el CSS
+   general de informe-impacto.html.
+   ============================================================ */
+
+.impacto-report {
+  --impacto-navy: #002855;
+  --impacto-blue: #2f77c8;
+  --impacto-sky: #48b9dc;
+  --impacto-cyan: #35c3d4;
+  --impacto-teal: #42cda7;
+  --impacto-lime: #9bd633;
+  --impacto-orange: #e9943a;
+  --impacto-red: #c94e55;
+  --impacto-ink: #252a31;
+  --impacto-muted: #66717e;
+  --impacto-border: #d7dee7;
+  --impacto-panel: #f4f7fa;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--impacto-ink);
+}
+
+.impacto-report *,
+.impacto-report *::before,
+.impacto-report *::after {
+  box-sizing: border-box;
+}
+
+.impacto-sheet {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto 12mm;
+  background: #ffffff;
+  break-after: page;
+  page-break-after: always;
+  overflow: hidden;
+}
+
+.impacto-sheet:last-child {
+  break-after: auto;
+  page-break-after: auto;
+}
+
+.impacto-sheet-inner {
+  min-height: 297mm;
+  padding: 13mm 15mm 12mm;
+  display: flex;
+  flex-direction: column;
+  gap: 5mm;
+}
+
+.impacto-page-header {
+  border-bottom: 1.2mm solid var(--impacto-navy);
+  padding-bottom: 4mm;
+}
+
+.impacto-page-header-compact {
+  padding-bottom: 3mm;
+}
+
+.impacto-kicker {
+  color: var(--impacto-blue);
+  font-size: 9.5pt;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.impacto-airport-line {
+  margin-top: 1.2mm;
+  color: var(--impacto-muted);
+  font-size: 9.5pt;
+  font-weight: 650;
+}
+
+.impacto-page-header h1 {
+  margin: 1.8mm 0 0;
+  color: var(--impacto-navy);
+  font-size: 22pt;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.impacto-lead,
+.impacto-section-intro,
+.impacto-pba-intro p,
+.impacto-method-card p,
+.impacto-insight,
+.impacto-conclusion-box p {
+  margin: 0;
+  font-size: 10.1pt;
+  line-height: 1.48;
+  text-align: justify;
+}
+
+.impacto-lead {
+  padding: 4mm 5mm;
+  background: linear-gradient(90deg, #eef7fb 0%, #f7fbfd 100%);
+  border-left: 1.5mm solid var(--impacto-sky);
+}
+
+.impacto-concept-figure,
+.impacto-pba-diagram,
+.impacto-summary-figure,
+.impacto-chart-card {
+  margin: 0;
+}
+
+.impacto-concept-figure {
+  height: 106mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.impacto-concept-figure img {
+  display: block;
+  width: 100%;
+  max-height: 106mm;
+  object-fit: contain;
+}
+
+.impacto-method-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4mm;
+}
+
+.impacto-method-card {
+  padding: 4mm;
+  background: var(--impacto-panel);
+  border: 0.35mm solid var(--impacto-border);
+  border-radius: 2mm;
+}
+
+.impacto-method-card h2,
+.impacto-conclusion-box h2 {
+  margin: 0 0 2mm;
+  color: var(--impacto-navy);
+  font-size: 12pt;
+}
+
+.impacto-small-note,
+.impacto-source {
+  margin: auto 0 0;
+  color: var(--impacto-muted);
+  font-size: 7.8pt;
+  line-height: 1.35;
+}
+
+.impacto-pba-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 5mm;
+  align-items: center;
+}
+
+.impacto-pba-diagram {
+  height: 61mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.impacto-pba-diagram img {
+  display: block;
+  width: 100%;
+  max-height: 61mm;
+  object-fit: contain;
+}
+
+.impacto-kpi-row {
+  display: grid;
+  gap: 3mm;
+}
+
+.impacto-kpi-row-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.impacto-kpi-row-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.impacto-kpi-card {
+  min-height: 26mm;
+  padding: 3.5mm;
+  background: #ffffff;
+  border: 0.35mm solid var(--impacto-border);
+  border-top: 1.2mm solid var(--impacto-sky);
+  border-radius: 1.8mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.3mm;
+}
+
+.impacto-kpi-card span {
+  color: var(--impacto-muted);
+  font-size: 7.8pt;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.impacto-kpi-card strong {
+  color: var(--impacto-navy);
+  font-size: 13.5pt;
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+.impacto-kpi-card small {
+  color: var(--impacto-muted);
+  font-size: 7.4pt;
+  line-height: 1.2;
+}
+
+.impacto-kpi-accent {
+  background: #eef6ff;
+  border-top-color: var(--impacto-blue);
+}
+
+.impacto-chart-grid {
+  display: grid;
+  gap: 4mm;
+  align-items: stretch;
+}
+
+.impacto-chart-grid-pba {
+  grid-template-columns: 0.85fr 1.15fr;
+  min-height: 84mm;
+}
+
+.impacto-chart-grid-tourism,
+.impacto-chart-grid-employment {
+  grid-template-columns: 1.45fr 0.75fr;
+  min-height: 112mm;
+}
+
+.impacto-chart-card {
+  min-width: 0;
+  padding: 3mm;
+  background: #ffffff;
+  border: 0.35mm solid var(--impacto-border);
+  border-radius: 2mm;
+  display: flex;
+  flex-direction: column;
+}
+
+.impacto-chart-card figcaption {
+  margin-bottom: 2mm;
+  color: var(--impacto-navy);
+  font-size: 9pt;
+  font-weight: 750;
+  line-height: 1.25;
+}
+
+.impacto-chart {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.impacto-chart svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.impacto-insight {
+  padding: 3.2mm 4mm;
+  background: var(--impacto-panel);
+  border-left: 1.2mm solid var(--impacto-teal);
+  font-size: 9.4pt;
+}
+
+.impacto-summary-figure {
+  height: 112mm;
+  padding: 2.5mm;
+  border: 0.35mm solid var(--impacto-border);
+  border-radius: 2mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.impacto-summary-figure img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.impacto-summary-fallback {
+  width: 100%;
+  height: 100%;
+}
+
+.impacto-summary-fallback svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.impacto-summary-kpis {
+  margin-top: 1mm;
+}
+
+.impacto-2026-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4mm;
+  padding: 4mm;
+  background: linear-gradient(90deg, #e9f7fb 0%, #edf4ff 100%);
+  border-radius: 2mm;
+}
+
+.impacto-2026-strip div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1mm 3mm;
+  align-items: baseline;
+}
+
+.impacto-2026-strip span {
+  color: var(--impacto-muted);
+  font-size: 8pt;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+
+.impacto-2026-strip strong {
+  color: var(--impacto-navy);
+  font-size: 15pt;
+}
+
+.impacto-2026-strip small {
+  grid-column: 1 / -1;
+  color: var(--impacto-muted);
+  font-size: 7.6pt;
+}
+
+.impacto-conclusion-box {
+  padding: 4mm 5mm;
+  background: #ffffff;
+  border: 0.5mm solid var(--impacto-blue);
+  border-radius: 2mm;
+}
+
+.impacto-conclusion-box p {
+  font-size: 9.8pt;
+}
+
+.impacto-chart-empty {
+  color: var(--impacto-muted);
+  font-size: 8.5pt;
+  text-align: center;
+}
+
+.impacto-load-error {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  font: 16px/1.5 system-ui, sans-serif;
+  color: #7a1f25;
+  background: #fff4f4;
+  border: 1px solid #e1aeb2;
+}
+
+.impacto-preview-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  max-width: 210mm;
+  margin: 0 auto 8mm;
+  padding: 10px 14px;
+  background: #002855;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-family: system-ui, sans-serif;
+  box-shadow: 0 4px 16px rgba(0, 40, 85, 0.22);
+}
+
+.impacto-preview-toolbar div,
+.impacto-preview-toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.impacto-preview-toolbar span {
+  opacity: 0.78;
+  font-size: 13px;
+}
+
+.impacto-preview-toolbar select {
+  min-width: 250px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid #b7c8dc;
+  background: #ffffff;
+  color: #1f2933;
+}
+
+body.impacto-standalone {
+  margin: 0;
+  padding: 8mm 0 16mm;
+  background: #e9edf2;
+}
+
+@media screen and (max-width: 850px) {
+  .impacto-sheet {
+    width: 100%;
+    min-height: auto;
+    margin-bottom: 20px;
+  }
+
+  .impacto-sheet-inner {
+    min-height: auto;
+    padding: 24px 18px;
+  }
+
+  .impacto-method-grid,
+  .impacto-pba-intro,
+  .impacto-kpi-row-3,
+  .impacto-kpi-row-4,
+  .impacto-chart-grid-pba,
+  .impacto-chart-grid-tourism,
+  .impacto-chart-grid-employment,
+  .impacto-2026-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .impacto-concept-figure,
+  .impacto-pba-diagram,
+  .impacto-summary-figure {
+    height: auto;
+  }
+
+  .impacto-preview-toolbar,
+  .impacto-preview-toolbar div,
+  .impacto-preview-toolbar label {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  .impacto-preview-toolbar {
+    display: none !important;
+  }
+
+  body.impacto-standalone {
+    padding: 0;
+    background: #ffffff;
+  }
+
+  .impacto-sheet {
+    margin: 0;
+    box-shadow: none;
+  }
+}
