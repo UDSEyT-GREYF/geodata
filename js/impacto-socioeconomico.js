@@ -44,13 +44,48 @@ pbaNoAeronautico: [
   "PBANoAeronautico",
   "PBA_No_Aeronautico",
   "PBANoAeronáutico",
+  "pba_no_aeronautico",
   "ServiciosNoAeronauticos",
   "Servicios no aeronáuticos",
-  "ingresos no aeronáuticos 2025 USD"
+  "servicios_no_aeronauticos",
+  "ingresos_no_aeronauticos_2025_usd",
+  "Ingresos no aeronáuticos 2025 USD"
 ],
-    pbaConexas: ["PBAConexas", "PBA_Conexas", "pba_conexas", "ActividadesConexas", "Actividades conexas al transporte aerocomercial", "Conexas"],
-    pbaComercial: ["PBAExplotacionComercial", "PBA_Explotacion_Comercial", "pba_explotacion_comercial", "ExplotacionComercial", "Explotación comercial"],
-    pbaSecundarias: ["PBAActividadesSecundarias", "PBA_Actividades_Secundarias", "pba_actividades_secundarias", "ActividadesSecundarias", "Actividades secundarias"],
+
+pbaConexas: [
+  "PBAConexas",
+  "PBA_Conexas",
+  "pba_conexas",
+  "ActividadesConexas",
+  "Actividades conexas al transporte aerocomercial",
+  "Conexas",
+  "actividades_conexas_transporte_aerocomercial_2025_usd",
+  "actividades_conexas_al_transporte_aerocomercial_2025_usd",
+  "Actividades conexas transporte aerocomercial 2025 USD",
+  "Actividades conexas al transporte aerocomercial 2025 USD"
+],
+
+pbaComercial: [
+  "PBAExplotacionComercial",
+  "PBA_Explotacion_Comercial",
+  "pba_explotacion_comercial",
+  "ExplotacionComercial",
+  "Explotación comercial",
+  "explotacion_comercial_aeropuerto_2025_usd",
+  "Explotación comercial aeropuerto 2025 USD",
+  "Explotacion comercial aeropuerto 2025 USD"
+],
+
+pbaSecundarias: [
+  "PBAActividadesSecundarias",
+  "PBA_Actividades_Secundarias",
+  "pba_actividades_secundarias",
+  "ActividadesSecundarias",
+  "Actividades secundarias",
+  "actividades_secundarias_aeropuerto_2025_usd",
+  "Actividades secundarias aeropuerto 2025 USD",
+  "Actividades secundarias desarrolladas en el aeropuerto 2025 USD"
+],
 
     turismoReceptivo: ["TurismoReceptivo", "turismo_receptivo", "ImpactoTurismoReceptivo", "Impacto turismo receptivo", "Turismo receptivo total"],
     turismoReceptivoNacional: ["TurismoReceptivoNacional", "TurismoInternoReceptivo", "turismo_receptivo_nacional", "turismo_interno_receptivo", "GastoTurismoInternoReceptivo"],
@@ -86,7 +121,7 @@ pbaNoAeronautico: [
   let currentFeature = null;
   let initializationPromise = null;
   let passengersPromise = null;
-
+const NO_AERO_DATA_URL = "geodata/data/ingresos_no_aeronauticos_2025_web.min.geojson";
   function normalizeKey(value) {
     return String(value ?? "")
       .normalize("NFD")
@@ -941,19 +976,77 @@ pbaNoAeronautico: [
 
     document.dispatchEvent(new CustomEvent("impacto:rendered", { detail: { iata: data.iata, feature, data } }));
   }
+async function loadOptionalGeojson(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      console.warn(`[Impacto] No se pudo cargar ${url} (${response.status}). Se continúa con el GeoJSON principal.`);
+      return null;
+    }
+    return await response.json();
+  } catch (error) {
+    console.warn(`[Impacto] No se pudo cargar ${url}. Se continúa con el GeoJSON principal.`, error);
+    return null;
+  }
+}
 
+function getFeatureIata(feature) {
+  return String(readRaw(feature.properties || {}, "iata") || "")
+    .trim()
+    .toUpperCase();
+}
+
+function mergeNoAeroData(baseGeojson, noAeroGeojson) {
+  if (!baseGeojson?.features?.length || !noAeroGeojson?.features?.length) return;
+
+  const noAeroByIata = new Map();
+
+  noAeroGeojson.features.forEach((feature) => {
+    const iata = getFeatureIata(feature);
+    if (iata) noAeroByIata.set(iata, feature.properties || {});
+  });
+
+  let matched = 0;
+
+  baseGeojson.features.forEach((feature) => {
+    const iata = getFeatureIata(feature);
+    const noAeroProps = noAeroByIata.get(iata);
+    if (!noAeroProps) return;
+
+    feature.properties = {
+      ...(feature.properties || {}),
+      ingresos_no_aeronauticos_2025_usd: noAeroProps.ingresos_no_aeronauticos_2025_usd,
+      actividades_conexas_transporte_aerocomercial_2025_usd: noAeroProps.actividades_conexas_transporte_aerocomercial_2025_usd,
+      actividades_secundarias_aeropuerto_2025_usd: noAeroProps.actividades_secundarias_aeropuerto_2025_usd,
+      explotacion_comercial_aeropuerto_2025_usd: noAeroProps.explotacion_comercial_aeropuerto_2025_usd,
+      metodo_proporciones: noAeroProps.metodo_proporciones,
+      iata_proporcion_usada: noAeroProps.iata_proporcion_usada,
+      aeropuerto_proporcion_usada: noAeroProps.aeropuerto_proporcion_usada
+    };
+
+    matched += 1;
+  });
+
+  console.info(`[Impacto] Datos no aeronáuticos 2025 incorporados en ${matched} aeropuertos.`);
+}
   async function initialize() {
     root = document.querySelector("#impactoSocioeconomico");
     if (!root) return;
     if (initializationPromise) return initializationPromise;
 
     initializationPromise = (async () => {
-      const dataUrl = root.dataset.url || "data/ResumenImpacto2025.geojson";
-      const response = await fetch(dataUrl);
-      if (!response.ok) throw new Error(`No se pudo cargar ${dataUrl} (${response.status})`);
-      geojson = await response.json();
-      fillAirportSelect();
-      await renderAirport(resolveInitialIata());
+const dataUrl = root.dataset.url || "data/ResumenImpacto2025.geojson";
+const response = await fetch(dataUrl);
+if (!response.ok) throw new Error(`No se pudo cargar ${dataUrl} (${response.status})`);
+
+geojson = await response.json();
+
+const noAeroUrl = root.dataset.noAeroUrl || NO_AERO_DATA_URL;
+const noAeroGeojson = await loadOptionalGeojson(noAeroUrl);
+mergeNoAeroData(geojson, noAeroGeojson);
+
+fillAirportSelect();
+await renderAirport(resolveInitialIata());
     })().catch((error) => {
       console.error("[Impacto] Error de inicialización:", error);
       root.querySelectorAll(".impacto-chart").forEach((container) => clearChart(container, "No se pudo cargar el archivo de datos"));
