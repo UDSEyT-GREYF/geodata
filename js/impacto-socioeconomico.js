@@ -991,43 +991,122 @@ async function loadOptionalGeojson(url) {
 }
 
 function getFeatureIata(feature) {
-  return String(readRaw(feature.properties || {}, "iata") || "")
-    .trim()
-    .toUpperCase();
+  const properties = feature.properties || {};
+  const index = buildPropertyIndex(properties);
+
+  const possibleIataFields = [
+    "iata",
+    "IATA",
+    "codigo_iata",
+    "cod_iata",
+    "Código IATA",
+    "Codigo IATA",
+    "codigoIATA",
+    "codIATA"
+  ];
+
+  for (const field of possibleIataFields) {
+    const originalKey = index.get(normalizeKey(field));
+    if (!originalKey) continue;
+
+    const value = properties[originalKey];
+    if (value === null || value === undefined) continue;
+
+    const iata = String(value).trim().toUpperCase();
+
+    if (/^[A-Z0-9]{3}$/.test(iata)) {
+      return iata;
+    }
+  }
+
+  return "";
 }
 
 function mergeNoAeroData(baseGeojson, noAeroGeojson) {
-  if (!baseGeojson?.features?.length || !noAeroGeojson?.features?.length) return;
+  if (!baseGeojson?.features?.length || !noAeroGeojson?.features?.length) {
+    console.warn("[Impacto] No se incorporaron datos no aeronáuticos: archivo base o archivo adicional vacío.");
+    return;
+  }
 
   const noAeroByIata = new Map();
 
   noAeroGeojson.features.forEach((feature) => {
     const iata = getFeatureIata(feature);
-    if (iata) noAeroByIata.set(iata, feature.properties || {});
+
+    if (!iata) {
+      console.warn("[Impacto] Feature del GeoJSON no aeronáutico sin IATA válido:", feature.properties);
+      return;
+    }
+
+    noAeroByIata.set(iata, feature.properties || {});
   });
 
   let matched = 0;
+  let matchedWithCategories = 0;
+  const missingInNoAero = [];
 
   baseGeojson.features.forEach((feature) => {
     const iata = getFeatureIata(feature);
+
+    if (!iata) {
+      console.warn("[Impacto] Feature del GeoJSON principal sin IATA válido:", feature.properties);
+      return;
+    }
+
     const noAeroProps = noAeroByIata.get(iata);
-    if (!noAeroProps) return;
+
+    if (!noAeroProps) {
+      missingInNoAero.push(iata);
+      return;
+    }
+
+    const totalNoAero = readNumber(noAeroProps, "pbaNoAeronautico");
+    const conexas = readNumber(noAeroProps, "pbaConexas");
+    const comercial = readNumber(noAeroProps, "pbaComercial");
+    const secundarias = readNumber(noAeroProps, "pbaSecundarias");
 
     feature.properties = {
       ...(feature.properties || {}),
-      ingresos_no_aeronauticos_2025_usd: noAeroProps.ingresos_no_aeronauticos_2025_usd,
-      actividades_conexas_transporte_aerocomercial_2025_usd: noAeroProps.actividades_conexas_transporte_aerocomercial_2025_usd,
-      actividades_secundarias_aeropuerto_2025_usd: noAeroProps.actividades_secundarias_aeropuerto_2025_usd,
-      explotacion_comercial_aeropuerto_2025_usd: noAeroProps.explotacion_comercial_aeropuerto_2025_usd,
-      metodo_proporciones: noAeroProps.metodo_proporciones,
-      iata_proporcion_usada: noAeroProps.iata_proporcion_usada,
-      aeropuerto_proporcion_usada: noAeroProps.aeropuerto_proporcion_usada
+
+      ...(Number.isFinite(totalNoAero)
+        ? { ingresos_no_aeronauticos_2025_usd: totalNoAero }
+        : {}),
+
+      ...(Number.isFinite(conexas)
+        ? { actividades_conexas_transporte_aerocomercial_2025_usd: conexas }
+        : {}),
+
+      ...(Number.isFinite(comercial)
+        ? { explotacion_comercial_aeropuerto_2025_usd: comercial }
+        : {}),
+
+      ...(Number.isFinite(secundarias)
+        ? { actividades_secundarias_aeropuerto_2025_usd: secundarias }
+        : {})
     };
 
     matched += 1;
+
+    if ([conexas, comercial, secundarias].some(Number.isFinite)) {
+      matchedWithCategories += 1;
+    }
   });
 
-  console.info(`[Impacto] Datos no aeronáuticos 2025 incorporados en ${matched} aeropuertos.`);
+  console.info(
+    `[Impacto] Merge no aeronáutico por IATA: ${matched} aeropuertos cruzados; ${matchedWithCategories} con categorías válidas.`
+  );
+
+  if (missingInNoAero.length) {
+    console.warn(
+      "[Impacto] IATA presentes en el GeoJSON principal pero no encontrados en ingresos_no_aeronauticos_2025_web.geojson:",
+      missingInNoAero
+    );
+  }
+
+  console.info(
+    "[Impacto] IATA disponibles en ingresos_no_aeronauticos_2025_web.geojson:",
+    [...noAeroByIata.keys()].sort()
+  );
 }
   async function initialize() {
     root = document.querySelector("#impactoSocioeconomico");
