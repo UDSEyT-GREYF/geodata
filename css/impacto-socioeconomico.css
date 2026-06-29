@@ -473,3 +473,89 @@ body.impacto-standalone {
     box-shadow: none;
   }
 }
+
+/* ============================================================
+   Integración visual con informe-impacto.html
+   Usa la misma lógica de montaje, A4 vertical, sombra en pantalla
+   y página limpia al imprimir/exportar.
+   ============================================================ */
+#impactoMount {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.page-informe-impacto #impactoMount {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.page-informe-impacto #impactoMount .impacto-report {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.page-informe-impacto #impactoMount .impacto-sheet,
+body.impacto-standalone .impacto-sheet {
+  width: 210mm;
+  min-width: 210mm;
+  height: 297mm;
+  min-height: 297mm;
+  max-width: none;
+  page: reportPortrait;
+  border: 1px solid #d7dee8;
+  box-shadow: 0 10px 26px rgba(33, 45, 68, 0.12);
+}
+
+.page-informe-impacto #impactoMount .impacto-sheet {
+  margin: 0;
+  break-after: page;
+  page-break-after: always;
+}
+
+/* Paleta más cercana al CSS general del informe */
+.impacto-report {
+  --impacto-navy: var(--cover-dark, #17344A);
+  --impacto-blue: var(--cover-main, #234B6B);
+  --impacto-border: #d7dee8;
+  --impacto-panel: var(--cover-soft, #E8EFF4);
+  --impacto-muted: #5f6d78;
+}
+
+.impacto-page-header {
+  border-bottom-color: var(--cover-main, #234B6B);
+}
+
+.impacto-kicker {
+  color: var(--cover-main, #234B6B);
+}
+
+.impacto-kpi-card,
+.impacto-chart-card,
+.impacto-summary-figure,
+.impacto-method-card {
+  border-color: #d7dee8;
+}
+
+@media print {
+  #impactoMount,
+  .page-informe-impacto #impactoMount,
+  .page-informe-impacto #impactoMount .impacto-report {
+    gap: 0;
+  }
+
+  .page-informe-impacto #impactoMount .impacto-sheet,
+  body.impacto-standalone .impacto-sheet {
+    box-shadow: none;
+    border: none;
+    margin: 0;
+  }
+}
