@@ -1608,11 +1608,26 @@ await renderAirport(resolveInitialIata());
     if (iata) renderAirport(iata);
   });
 
-  window.ImpactoSocioeconomico = {
-    initialize,
-    render: renderAirport,
-    getCurrentFeature: () => currentFeature,
-    getAvailableFields: () => Object.keys(currentFeature?.properties || {}),
-    aliases: FIELD_ALIASES
-  };
+window.ImpactoSocioeconomico = {
+  initialize,
+  render: renderAirport,
+  getCurrentFeature: () => currentFeature,
+  getAvailableFields: () => Object.keys(currentFeature?.properties || {}),
+  getEmploymentDebug: () => {
+    const data = buildData(currentFeature?.properties || {});
+    return {
+      iata: data.iata,
+      empleoDirecto: data.empleoDirecto,
+      empleoIndirecto: data.empleoIndirecto,
+      empleoInducido: data.empleoInducido,
+      empleoCatalitico: data.empleoCatalitico,
+      empleoTotal: data.empleoTotal,
+      poblacionInfluencia: data.poblacionInfluencia,
+      empleoMujeres: data.empleoMujeres,
+      empleoVarones: data.empleoVarones,
+      generoFuente: employmentGenderByIata.get(data.iata) || null
+    };
+  },
+  aliases: FIELD_ALIASES
+};
 })();
