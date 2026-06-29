@@ -87,18 +87,120 @@ pbaSecundarias: [
   "Actividades secundarias desarrolladas en el aeropuerto 2025 USD"
 ],
 
-    turismoReceptivo: ["TurismoReceptivo", "turismo_receptivo", "ImpactoTurismoReceptivo", "Impacto turismo receptivo", "Turismo receptivo total"],
-    turismoReceptivoNacional: ["TurismoReceptivoNacional", "TurismoInternoReceptivo", "turismo_receptivo_nacional", "turismo_interno_receptivo", "GastoTurismoInternoReceptivo"],
-    turismoReceptivoInternacional: ["TurismoReceptivoInternacional", "TurismoExtranjeroReceptivo", "turismo_receptivo_internacional", "turismo_extranjero_receptivo", "GastoTurismoExtranjeroReceptivo"],
-    turismoEmisivo: ["TurismoEmisivo", "turismo_emisivo", "ImpactoTurismoEmisivo", "Impacto turismo emisivo", "Turismo emisivo total", "ImpactoNegativoTurismo"],
-    turismoEmisivoNacional: ["TurismoEmisivoNacional", "TurismoInternoEmisivo", "turismo_emisivo_nacional", "turismo_interno_emisivo", "GastoTurismoInternoEmisivo"],
-    turismoEmisivoInternacional: ["TurismoEmisivoInternacional", "TurismoExtranjeroEmisivo", "turismo_emisivo_internacional", "turismo_extranjero_emisivo", "GastoTurismoExtranjeroEmisivo"],
-    saldoTurismo: ["SaldoTurismo", "saldo_turismo", "Saldo de turismo", "SaldoTuristico", "saldo_turistico"],
-    beneficioPasajeros: ["BeneficioPasajeros", "BeneficiosPasajeros", "beneficio_pasajeros", "beneficios_pasajeros", "ExcedenteConsumidor", "excedente_consumidor", "Excedente del consumidor"],
+turismoReceptivo: [
+  "TurismoReceptivo",
+  "turismo_receptivo",
+  "ImpactoTurismoReceptivo",
+  "Impacto turismo receptivo",
+  "Turismo receptivo total",
+  "Saldo del Turismo Receptivo (USD)2025",
+  "Saldo del Turismo Receptivo USD 2025"
+],
 
-    impactoPositivo: ["ImpactoPositivoTotal", "ImpactoTotalPositivo", "impacto_positivo_total", "impacto_total_positivo", "Impactos positivos", "Impacto positivo total"],
-    impactoNegativo: ["ImpactoNegativoTotal", "ImpactoTotalNegativo", "impacto_negativo_total", "impacto_total_negativo", "Impactos negativos", "Impacto negativo total"],
-    saldoImpacto: ["SaldoImpacto", "saldo_impacto", "Saldo de impactos", "ImpactoNeto", "impacto_neto", "Saldo total"],
+turismoReceptivoNacional: [
+  "TurismoReceptivoNacional",
+  "TurismoInternoReceptivo",
+  "turismo_receptivo_nacional",
+  "turismo_interno_receptivo",
+  "GastoTurismoInternoReceptivo",
+  "TNR (USD)2025",
+  "TNR USD 2025"
+],
+
+turismoReceptivoInternacional: [
+  "TurismoReceptivoInternacional",
+  "TurismoExtranjeroReceptivo",
+  "turismo_receptivo_internacional",
+  "turismo_extranjero_receptivo",
+  "GastoTurismoExtranjeroReceptivo",
+  "TIR (USD)2025",
+  "TIR USD 2025"
+],
+
+turismoEmisivo: [
+  "TurismoEmisivo",
+  "turismo_emisivo",
+  "ImpactoTurismoEmisivo",
+  "Impacto turismo emisivo",
+  "Turismo emisivo total",
+  "ImpactoNegativoTurismo",
+  "Saldo del Turismo Emisivo (USD)2025",
+  "Saldo del Turismo Emisivo USD 2025"
+],
+
+turismoEmisivoNacional: [
+  "TurismoEmisivoNacional",
+  "TurismoInternoEmisivo",
+  "turismo_emisivo_nacional",
+  "turismo_interno_emisivo",
+  "GastoTurismoInternoEmisivo",
+  "TNE (USD)2025",
+  "TNE USD 2025"
+],
+
+turismoEmisivoInternacional: [
+  "TurismoEmisivoInternacional",
+  "TurismoExtranjeroEmisivo",
+  "turismo_emisivo_internacional",
+  "turismo_extranjero_emisivo",
+  "GastoTurismoExtranjeroEmisivo",
+  "TIE (USD)2025",
+  "TIE USD 2025"
+],
+
+saldoTurismo: [
+  "SaldoTurismo",
+  "saldo_turismo",
+  "Saldo de turismo",
+  "SaldoTuristico",
+  "saldo_turistico",
+  "Saldo del Turismo (USD)2025",
+  "Saldo del Turismo USD 2025"
+],
+
+beneficioPasajeros: [
+  "BeneficioPasajeros",
+  "BeneficiosPasajeros",
+  "beneficio_pasajeros",
+  "beneficios_pasajeros",
+  "ExcedenteConsumidor",
+  "excedente_consumidor",
+  "Excedente del consumidor",
+  "Beneficios al pax 2025 (USD)",
+  "Beneficios al pax 2025 USD"
+],
+
+impactoPositivo: [
+  "ImpactoPositivoTotal",
+  "ImpactoTotalPositivo",
+  "impacto_positivo_total",
+  "impacto_total_positivo",
+  "Impactos positivos",
+  "Impacto positivo total",
+  "Impacto económico positivo"
+],
+
+impactoNegativo: [
+  "ImpactoNegativoTotal",
+  "ImpactoTotalNegativo",
+  "impacto_negativo_total",
+  "impacto_total_negativo",
+  "Impactos negativos",
+  "Impacto negativo total",
+  "Impacto económico negativo (USD)",
+  "Impacto económico negativo USD"
+],
+
+saldoImpacto: [
+  "SaldoImpacto",
+  "saldo_impacto",
+  "Saldo de impactos",
+  "ImpactoNeto",
+  "impacto_neto",
+  "Saldo total",
+  "Saldo de impactos totales (USD)",
+  "Saldo de impactos totales USD"
+],
 
     empleoDirecto: ["EmpleoDirecto", "empleo_directo", "Empleo directo", "EmpleoDirecto2024", "EmpleoDirecto2025"],
     empleoIndirecto: ["EmpleoIndirecto", "empleo_indirecto", "Empleo indirecto"],
