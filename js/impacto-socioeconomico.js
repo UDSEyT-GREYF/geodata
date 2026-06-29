@@ -20,9 +20,34 @@
     airportName: ["Aeropuerto", "aeropuerto", "NombreAeropuerto", "nombre_aeropuerto", "Nombre del Aeropuerto", "Nombre del aeropuerto"],
     year: ["Año", "año", "anio", "year", "AñoImpacto", "anio_impacto", "Año de referencia"],
 
-    pbaTotal: ["PBA", "pba", "PBATotal", "PBA_Total", "pba_total", "ProductoBrutoAeroportuario", "Producto Bruto Aeroportuario", "Producto Bruto Aeroportuario Total"],
-    pbaAeronautico: ["PBAAeronautico", "PBA_Aeronautico", "PBAAeronáutico", "pba_aeronautico", "ServiciosAeronauticos", "Servicios Aeronáuticos", "servicios_aeronauticos"],
-    pbaNoAeronautico: ["PBANoAeronautico", "PBA_No_Aeronautico", "PBANoAeronáutico", "pba_no_aeronautico", "ServiciosNoAeronauticos", "Servicios no aeronáuticos", "servicios_no_aeronauticos"],
+pbaTotal: [
+  "PBA",
+  "PBATotal",
+  "PBA_Total",
+  "pba_total",
+  "ProductoBrutoAeroportuario",
+  "Producto Bruto Aeroportuario",
+  "Producto Bruto Aeroportuario Total",
+  "PBA 2025 USD"
+],
+
+pbaAeronautico: [
+  "PBAAeronautico",
+  "PBA_Aeronautico",
+  "PBAAeronáutico",
+  "ServiciosAeronauticos",
+  "Servicios Aeronáuticos",
+  "ingresos aeronáuticos 2025 USD"
+],
+
+pbaNoAeronautico: [
+  "PBANoAeronautico",
+  "PBA_No_Aeronautico",
+  "PBANoAeronáutico",
+  "ServiciosNoAeronauticos",
+  "Servicios no aeronáuticos",
+  "ingresos no aeronáuticos 2025 USD"
+],
     pbaConexas: ["PBAConexas", "PBA_Conexas", "pba_conexas", "ActividadesConexas", "Actividades conexas al transporte aerocomercial", "Conexas"],
     pbaComercial: ["PBAExplotacionComercial", "PBA_Explotacion_Comercial", "pba_explotacion_comercial", "ExplotacionComercial", "Explotación comercial"],
     pbaSecundarias: ["PBAActividadesSecundarias", "PBA_Actividades_Secundarias", "pba_actividades_secundarias", "ActividadesSecundarias", "Actividades secundarias"],
