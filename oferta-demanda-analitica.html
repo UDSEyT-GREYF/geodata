@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Oferta y demanda analítica 2025 – GeoData ORSNA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  >
+
+  <link rel="stylesheet" href="css/oferta-demanda-analitica.css">
+</head>
+
+<body class="page-oferta-demanda-analitica">
+  <header class="od-standalone-toolbar">
+    <div class="od-standalone-toolbar-inner">
+      <div class="od-standalone-title">
+        <strong>Vista analítica</strong>
+        <span>Oferta y demanda de transporte aéreo 2025</span>
+      </div>
+
+      <label class="od-standalone-selector">
+        <span>Aeropuerto</span>
+        <select id="airportSelect">
+          <option value="">Cargando aeropuertos…</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <main class="od-standalone-stack" id="offerDemandAnalyticMount">
+<!-- ============================================================
+     PARTIAL: OFERTA Y DEMANDA
+     Reemplazar el archivo del repositorio: partials/oferta-demanda.html
+     Estructura final: Página 1 síntesis, Página 2 rutas 2025, Página 3 histórico.
+     ============================================================ -->
+
+<!-- ============================================================
+     PÁGINA 1: KPIs + gráficos generales + perfil operativo/conectividad
+     ============================================================ -->
+<section class="sheet-a4 oferta-demanda-sheet offer-demand-page" id="sheetOfertaDemanda">
+  <div class="od-page">
+
+    <!-- ENCABEZADO: título de la hoja y aeropuerto seleccionado -->
+    <header class="sheet-header od-sheet-header">
+      <h1 id="odSheetTitle" class="sheet-title-main">
+        Oferta y demanda de transporte aéreo
+      </h1>
+
+      <div class="sheet-airport-name" id="odAirportHeader">
+        <span id="odAirportName">Aeropuerto</span>
+        <span id="odYearRef">2025</span>
+      </div>
+    </header>
+
+    <!-- KPIs SUPERIORES: resumen anual 2025 -->
+    <section class="od-kpis">
+      <article class="od-kpi">
+        <div class="od-kpi-label">Pasajeros</div>
+        <div class="od-kpi-value" id="odTotalPax">–</div>
+      </article>
+
+      <article class="od-kpi">
+        <div class="od-kpi-label">Asientos</div>
+        <div class="od-kpi-value" id="odTotalAsientos">–</div>
+      </article>
+
+      <article class="od-kpi">
+        <div class="od-kpi-label">Vuelos</div>
+        <div class="od-kpi-value" id="odTotalVuelos">–</div>
+      </article>
+
+      <article class="od-kpi">
+        <div class="od-kpi-label">Frecuencia semanal</div>
+        <div class="od-kpi-value" id="odFrecuenciaSemanal">–</div>
+      </article>
+
+      <article class="od-kpi">
+        <div class="od-kpi-label">Aerolíneas</div>
+        <div class="od-kpi-value" id="odAirlinesCount">–</div>
+      </article>
+
+      <article class="od-kpi">
+        <div class="od-kpi-label">Ocupación</div>
+        <div class="od-kpi-value" id="odLoadFactor">–</div>
+      </article>
+
+      <article class="od-kpi">
+        <div class="od-kpi-label">Posición SNA</div>
+        <div class="od-kpi-value od-kpi-rank" id="odSnaRank">–</div>
+      </article>
+    </section>
+
+    <!-- GRID PRINCIPAL: gráficos generales + texto analítico 2025 -->
+    <section class="od-main-grid">
+
+      <!-- Gráfico mensual: pasajeros y asientos por mes y segmento -->
+      <div class="od-col od-col-main">
+        <section class="od-panel od-panel-chart">
+          <div class="od-panel-head">
+            <div class="od-panel-title">OFERTA Y DEMANDA MENSUAL 2025</div>
+            <div class="od-panel-subtitle" id="odMonthlySubtitle">
+              Asientos ofrecidos cabotaje e internacional y pasajeros transportados cabotaje e internacional
+            </div>
+          </div>
+
+          <div class="od-chart-wrap">
+            <canvas id="odMonthlyChart"></canvas>
+          </div>
+
+          <div class="od-note od-note-tight">
+            La serie muestra la relación entre capacidad ofrecida y demanda observada a lo largo del año.
+          </div>
+        </section>
+      </div>
+
+      <!-- Gráfico de participación por aerolínea/operador -->
+      <div class="od-col od-col-side">
+        <section class="od-panel od-panel-airlines">
+          <div class="od-panel-head">
+            <div class="od-panel-title">PARTICIPACIÓN POR AEROLÍNEA 2025</div>
+            <div class="od-panel-subtitle" id="odAirlinesSubtitle">
+              Asientos ofrecidos cabotaje e internacional por operador
+            </div>
+          </div>
+
+          <div class="od-chart-wrap-airlines">
+            <canvas id="odAirlinesChart"></canvas>
+          </div>
+
+          <div class="od-note od-note-tight">
+            Participación sobre oferta anual de asientos del aeropuerto.
+          </div>
+        </section>
+      </div>
+
+<!-- Síntesis narrativa: oferta, rutas y estacionalidad 2025 -->
+<section class="od-panel od-panel-connectivity od-panel-routes-full od-narrative-panel">
+  <div class="od-connectivity-text od-connectivity-text-3">
+
+    <div class="od-connectivity-block od-connectivity-block-wide">
+      <div class="od-connectivity-kicker">OFERTA DE TRANSPORTE AÉREO Y CONECTIVIDAD 2025</div>
+
+      <div class="od-card-text od-card-text-columns" id="odIntroText">
+        Calculando síntesis de oferta y conectividad…
+      </div>
+    </div>
+
+  </div>
+</section>
+         
+<!-- Síntesis narrativa: estructura de rutas y estacionalidad 2025 -->
+<section class="od-panel od-panel-connectivity od-panel-routes-full">
+  <div class="od-connectivity-text" id="odConnectivityProfileText">
+    Calculando estructura de rutas y estacionalidad…
+  </div>
+</section>
+
+    </section>
+  </div>
+</section>
+
+<!-- ============================================================
+     PÁGINA 2: 6 principales rutas 2025
+     ============================================================ -->
+<section class="sheet-a4 oferta-demanda-sheet offer-demand-page od-routes-extra-page" id="odRoutesExtraPage">
+  <div class="od-page">
+
+    <!-- Encabezado de la hoja de rutas -->
+    <header class="sheet-header od-sheet-header">
+      <h1 id="odSheetTitleRoutes" class="sheet-title-main">
+        Oferta y demanda de transporte aéreo
+      </h1>
+
+      <div class="sheet-airport-name">
+        Principales rutas 2025
+      </div>
+    </header>
+
+    <!-- Panel de rutas: JS inserta hasta 6 tarjetas con gráfico mensual -->
+    <section class="od-panel od-panel-routes od-panel-routes-full od-panel-routes-extra od-panel-routes-page">
+      <div class="od-panel-head">
+        <div class="od-panel-title">PRINCIPALES RUTAS</div>
+      </div>
+
+      <div class="od-list od-routes-list od-routes-list-page" id="odTopRoutes">
+        <div class="od-empty">Sin datos</div>
+      </div>
+
+      <div class="od-routes-source">
+        Fuente: elaborado por ORSNA con datos de SIAC ANAC.
+      </div>
+
+      <div class="od-routes-method-note" id="odIntlRoutesNoteMain">
+        Nota: en las rutas internacionales, los destinos se registran hasta el primer tramo operado y no necesariamente representan el destino final de los pasajeros.
+      </div>
+
+      <!-- Nodo de compatibilidad: el JS anterior lo buscaba para paginar rutas. -->
+      <div class="od-list od-routes-list od-routes-list-extra is-hidden" id="odTopRoutesExtra"></div>
+      <div class="od-routes-method-note is-hidden" id="odIntlRoutesNoteExtra"></div>
+    </section>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     PÁGINA 3: histórico de rutas + análisis histórico total
+     ============================================================ -->
+<section class="sheet-a4 oferta-demanda-sheet offer-demand-page od-historic-page is-hidden" id="odHistoricPage">
+  <div class="od-page">
+
+    <header class="sheet-header od-sheet-header">
+      <h1 class="sheet-title-main">
+        Oferta y demanda de transporte aéreo
+      </h1>
+
+      <div class="sheet-airport-name">
+        Evolución histórica
+      </div>
+    </header>
+
+    <!-- Gráfico histórico apilado de rutas principales -->
+    <section class="od-panel od-panel-routes od-panel-routes-full od-historic-routes-panel">
+      <div class="od-panel-head">
+        <div class="od-panel-title">EVOLUCIÓN HISTÓRICA DE PASAJEROS EN LAS RUTAS AÉREAS</div>
+      </div>
+
+      <div class="od-historic-routes-chart-wrap">
+        <canvas id="odHistoricRoutesChart"></canvas>
+      </div>
+
+      <div class="od-routes-source od-historic-source">
+        Fuente: elaborado por ORSNA con datos de SIAC ANAC.
+      </div>
+    </section>
+
+    <!-- Bloque histórico textual: TMCA prepandemia, TMCA reciente y recuperación vs 2019 -->
+    <section class="historic-traffic-block" id="historicTrafficBlock">
+      <div class="historic-traffic-header">
+        <div class="od-panel-title historic-traffic-title">TRÁFICO HISTÓRICO</div>
+      </div>
+
+      <div class="historic-traffic-metrics">
+        <div class="historic-metric">
+          <span class="historic-metric-label" id="historicLabelTmcaLongTerm">TMCA 2001-2019</span>
+          <span class="historic-metric-value" id="historicTmcaPrepandemia">–</span>
+        </div>
+
+        <div class="historic-metric">
+          <span class="historic-metric-label" id="historicLabelTmcaRecent">TMCA 2023-2025</span>
+          <span class="historic-metric-value" id="historicTmcaRecent">–</span>
+        </div>
+
+        <div class="historic-metric">
+          <span class="historic-metric-label">Variación 2019-2025</span>
+          <span class="historic-metric-value" id="historicVarVs2019">–</span>
+        </div>
+      </div>
+
+      <div class="historic-traffic-text" id="historicTrafficText">
+        Calculando análisis histórico…
+      </div>
+    </section>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PÁGINA 4: TEMPORADA ALTA / BAJA Y TABLA RUTA-MES
+     ============================================================ -->
+<section class="sheet-a4 oferta-demanda-sheet offer-demand-page od-analytics-page" id="odAdvancedSeasonalityPage">
+  <div class="od-page">
+
+    <header class="sheet-header od-sheet-header">
+      <h1 class="sheet-title-main">Oferta y demanda de transporte aéreo</h1>
+      <div class="sheet-airport-name">
+        Estacionalidad y detalle mensual 2025
+      </div>
+    </header>
+
+    <section class="od-panel od-analytics-panel">
+      <div class="od-panel-head">
+        <div class="od-panel-title">TEMPORADA ALTA Y BAJA POR AEROPUERTO</div>
+        <div class="od-panel-subtitle" id="odAdvancedAirportName">Aeropuerto</div>
+      </div>
+
+      <div class="od-analytics-season-grid">
+        <article class="od-analytics-card od-analytics-card-high">
+          <div class="od-analytics-card-label">Temporada alta</div>
+          <div class="od-analytics-card-value" id="odHighSeasonMonths">–</div>
+          <div class="od-analytics-card-sub">
+            <span id="odHighSeasonPax">–</span> · <span id="odHighSeasonShare">–</span> del año
+          </div>
+        </article>
+
+        <article class="od-analytics-card od-analytics-card-low">
+          <div class="od-analytics-card-label">Temporada baja</div>
+          <div class="od-analytics-card-value" id="odLowSeasonMonths">–</div>
+          <div class="od-analytics-card-sub">
+            <span id="odLowSeasonPax">–</span> · <span id="odLowSeasonShare">–</span> del año
+          </div>
+        </article>
+
+        <div class="od-analytics-season-text" id="odAdvancedSeasonalityText">
+          Calculando estacionalidad…
+        </div>
+      </div>
+
+      <div class="od-seasonality-chart-wrap">
+        <canvas id="odSeasonalityChart"></canvas>
+      </div>
+
+      <div class="od-table-wrap od-table-wrap-compact">
+        <table class="od-data-table">
+          <thead>
+            <tr>
+              <th>Mes</th>
+              <th>Pasajeros</th>
+              <th>Vuelos</th>
+              <th>Asientos</th>
+              <th>Ocupación</th>
+            </tr>
+          </thead>
+          <tbody id="odSeasonalityMonthlyBody">
+            <tr><td colspan="5">Calculando…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="od-panel od-analytics-panel od-analytics-table-panel">
+      <div class="od-panel-head od-panel-head-with-actions">
+        <div>
+          <div class="od-panel-title">PASAJEROS, VUELOS Y OCUPACIÓN POR RUTA Y MES</div>
+          <div class="od-panel-subtitle">Vista agregada mensual por ruta. La descarga incluye todas las filas disponibles.</div>
+        </div>
+        <button type="button" class="od-download-btn" id="odDownloadRouteMonthly">Descargar CSV</button>
+      </div>
+
+      <div class="od-table-wrap">
+        <table class="od-data-table">
+          <thead>
+            <tr>
+              <th>Mes</th>
+              <th>Ruta</th>
+              <th>Mercado</th>
+              <th>Pasajeros</th>
+              <th>Vuelos</th>
+              <th>Asientos</th>
+              <th>Ocupación</th>
+            </tr>
+          </thead>
+          <tbody id="odRouteMonthlyBody">
+            <tr><td colspan="7">Calculando…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     PÁGINA 5: DESAGREGACIÓN POR AEROLÍNEA Y SENTIDO
+     ============================================================ -->
+<section class="sheet-a4 oferta-demanda-sheet offer-demand-page od-analytics-page" id="odAdvancedAirlinePage">
+  <div class="od-page">
+
+    <header class="sheet-header od-sheet-header">
+      <h1 class="sheet-title-main">Oferta y demanda de transporte aéreo</h1>
+      <div class="sheet-airport-name">
+        Detalle por aerolínea y sentido 2025
+      </div>
+    </header>
+
+    <section class="od-panel od-analytics-panel od-analytics-table-panel od-airline-detail-panel">
+      <div class="od-panel-head od-panel-head-with-actions">
+        <div>
+          <div class="od-panel-title">DESAGREGACIÓN MENSUAL POR RUTA Y AEROLÍNEA</div>
+          <div class="od-panel-subtitle" id="odAdvancedAirportName2">Aeropuerto</div>
+          <div class="od-panel-subtitle od-analytic-count" id="odAnalyticRowsCount">–</div>
+        </div>
+        <button type="button" class="od-download-btn" id="odDownloadAirlineMonthly">Descargar CSV</button>
+      </div>
+
+      <div class="od-table-wrap od-table-wrap-large">
+        <table class="od-data-table">
+          <thead>
+            <tr>
+              <th>Mes</th>
+              <th>Ruta</th>
+              <th>Mercado</th>
+              <th>Aerolínea</th>
+              <th>Pasajeros</th>
+              <th>Vuelos</th>
+              <th>Asientos</th>
+              <th>Ocupación</th>
+            </tr>
+          </thead>
+          <tbody id="odAirlineMonthlyBody">
+            <tr><td colspan="8">Calculando…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="od-panel od-analytics-panel od-analytics-table-panel od-direction-detail-panel">
+      <div class="od-panel-head od-panel-head-with-actions">
+        <div>
+          <div class="od-panel-title">ARRIBOS Y PARTIDAS, SI LA FUENTE LO PERMITE</div>
+          <div class="od-panel-subtitle" id="odDirectionAvailabilityNote">
+            Verificando disponibilidad de origen/destino o tipo de movimiento…
+          </div>
+        </div>
+        <button type="button" class="od-download-btn" id="odDownloadDirectionMonthly">Descargar CSV</button>
+      </div>
+
+      <div class="od-table-wrap od-table-wrap-direction">
+        <table class="od-data-table">
+          <thead>
+            <tr>
+              <th>Mes</th>
+              <th>Sentido</th>
+              <th>Ruta</th>
+              <th>Mercado</th>
+              <th>Aerolínea</th>
+              <th>Pasajeros</th>
+              <th>Vuelos</th>
+              <th>Asientos</th>
+              <th>Ocupación</th>
+            </tr>
+          </thead>
+          <tbody id="odDirectionMonthlyBody">
+            <tr><td colspan="9">Calculando…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+</section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin="">
+  </script>
+  <script src="js/oferta-demanda-analitica.js"></script>
+</body>
+</html>
