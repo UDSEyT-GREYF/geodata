@@ -120,8 +120,20 @@ pbaSecundarias: [
   let geojson = null;
   let currentFeature = null;
   let initializationPromise = null;
-  let passengersPromise = null;
-const NO_AERO_DATA_URL = "data/ingresos_no_aeronauticos_2025_web.geojson";
+  const passengerCacheByUrl = new Map();
+
+  const NO_AERO_DATA_URL = "data/ingresos_no_aeronauticos_2025_web.geojson";
+  const PASSENGER_MAIN_URL = "fuentes/pasajeros_aeropuerto_mensual.csv";
+  const PASSENGER_EXTRA_URL = "fuentes/pasajeros_movimientos_extra_9aeropuertos.csv";
+
+  // Misma regla usada en Oferta y demanda / tabla de tráfico:
+  // estos aeropuertos no deben depender únicamente de la serie mensual principal.
+  const EXTRA_PASSENGER_IATAS = new Set([
+    "TTG", "RYO", "SST", "NEC", "LPG", "GNR", "JNI", "PMQ", "AOL",
+    "LGS", "EPA", "COC", "RCQ", "RLO", "TDL", "VLG", "VME"
+  ]);
+
+  const FDO_IATA = "FDO";
   function normalizeKey(value) {
     return String(value ?? "")
       .normalize("NFD")
@@ -745,15 +757,22 @@ const NO_AERO_DATA_URL = "data/ingresos_no_aeronauticos_2025_web.geojson";
   }
 
   async function loadPassengerCsv(url) {
-    if (passengersPromise) return passengersPromise;
-    passengersPromise = fetch(url)
+    if (!url) return [];
+    if (passengerCacheByUrl.has(url)) return passengerCacheByUrl.get(url);
+
+    const promise = fetch(url)
       .then((response) => {
-        if (!response.ok) throw new Error(`Pasajeros: ${response.status}`);
+        if (!response.ok) throw new Error(`Pasajeros: ${response.status} (${url})`);
         return response.text();
       })
       .then(parseCsv)
-      .catch(() => []);
-    return passengersPromise;
+      .catch((error) => {
+        console.warn(`[Impacto] No se pudo cargar la fuente de pasajeros ${url}.`, error);
+        return [];
+      });
+
+    passengerCacheByUrl.set(url, promise);
+    return promise;
   }
 
   function detectDelimiter(header) {
@@ -803,33 +822,104 @@ const NO_AERO_DATA_URL = "data/ingresos_no_aeronauticos_2025_web.geojson";
     });
   }
 
+  function readFirstRowValue(row, aliases) {
+    for (const alias of aliases) {
+      const key = normalizeKey(alias);
+      if (row[key] !== undefined && row[key] !== null && String(row[key]).trim() !== "") {
+        return row[key];
+      }
+    }
+    return "";
+  }
+
   function parseDateFlexible(value) {
     const text = String(value || "").trim();
     let match = text.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
     if (match) return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
     match = text.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
     if (match) return new Date(Number(match[3]), Number(match[2]) - 1, Number(match[1]));
+    match = text.match(/^(\d{4})-(\d{1,2})$/);
+    if (match) return new Date(Number(match[1]), Number(match[2]) - 1, 1);
+    match = text.match(/^(\d{1,2})\/(\d{4})$/);
+    if (match) return new Date(Number(match[2]), Number(match[1]) - 1, 1);
     const date = new Date(text);
     return Number.isNaN(date.getTime()) ? null : date;
   }
 
-  function summarizePassengerRows(rows, iata) {
-    const target = String(iata || "").toUpperCase();
+  function passengerRowIata(row, target) {
+    const direct = readFirstRowValue(row, [
+      "iata", "IATA", "codigo_iata", "cod_iata", "codIATA", "Código IATA",
+      "aeropuerto_iata", "iata_aeropuerto"
+    ]);
+    if (direct) return String(direct).trim().toUpperCase();
+
+    // Fallback para fuentes de vuelos/movimientos: cuenta el registro si el aeropuerto
+    // aparece como origen o destino. No se usa si la fuente ya trae IATA de aeropuerto.
+    const origin = String(readFirstRowValue(row, ["origen_iata", "Origen IATA", "origen", "iata_origen"])).trim().toUpperCase();
+    const dest = String(readFirstRowValue(row, ["destino_iata", "Destino IATA", "destino", "iata_destino"])).trim().toUpperCase();
+    if (origin === target || dest === target) return target;
+    return "";
+  }
+
+  function passengerRowDate(row) {
+    return parseDateFlexible(readFirstRowValue(row, [
+      "fecha", "Fecha", "date", "Date", "periodo", "Periodo", "mes", "Mes",
+      "fecha_hora", "FechaHora", "FechaHora_Local", "Fecha Hora Local", "fechaHoraLocal"
+    ]));
+  }
+
+  function passengerRowValue(row) {
+    return parseNumber(readFirstRowValue(row, [
+      "valor_pax", "valor pax", "Valor_Pax", "pasajeros", "Pasajeros", "pax", "Pax",
+      "total_pax", "total pasajeros", "valor", "Valor", "Asientos_Pax"
+    ]));
+  }
+
+  function passengerRowDataset(row) {
+    return normalizeKey(readFirstRowValue(row, ["dataset", "Dataset", "serie", "Serie", "tipo", "Tipo"]));
+  }
+
+  function passengerRowClass(row) {
+    return normalizeKey(readFirstRowValue(row, [
+      "clase", "Clase", "tipo_de_trafico", "Tipo de tráfico", "tipo_trafico",
+      "tipo_de_vuelo", "Tipo de vuelo", "servicio", "Servicio"
+    ]));
+  }
+
+  function isValidPassengerTrafficRow(row) {
+    const cls = passengerRowClass(row);
+    const dataset = passengerRowDataset(row);
+    const joined = `${cls} ${dataset}`;
+
+    // Misma consideración aplicada a FDO: se excluyen cargas/correo.
+    if (joined.includes("carga") || joined.includes("correo")) return false;
+
+    // Si la fuente identifica explícitamente pasajeros comerciales, se admite.
+    // Si no lo identifica, no se descarta: varias fuentes extra no traen dataset SIAC.
+    return true;
+  }
+
+  function normalizePassengerRows(rows, iata) {
+    const target = String(iata || "").trim().toUpperCase();
     const validDatasets = new Set([
       "pasajeroscomercialescabotajeaeropuerto",
       "pasajeroscomercialesinternacionalaeropuerto"
     ]);
 
     const parsed = rows.map((row) => {
-      const rowIata = String(row.iata || row.codigoiata || row.codiata || "").trim().toUpperCase();
-      const date = parseDateFlexible(row.fecha || row.date || row.periodo);
-      const value = parseNumber(row.valorpax || row.pasajeros || row.valor || row.pax);
-      const dataset = normalizeKey(row.dataset || row.serie || "");
-      return { rowIata, date, value, dataset };
-    }).filter((row) => row.rowIata === target && row.date && Number.isFinite(row.value));
+      const rowIata = passengerRowIata(row, target);
+      const date = passengerRowDate(row);
+      const value = passengerRowValue(row);
+      const dataset = passengerRowDataset(row);
+      return { rowIata, date, value, dataset, row };
+    }).filter((row) => row.rowIata === target && row.date && Number.isFinite(row.value) && isValidPassengerTrafficRow(row.row));
 
     const hasKnownDatasets = parsed.some((row) => validDatasets.has(row.dataset));
-    const filtered = hasKnownDatasets ? parsed.filter((row) => validDatasets.has(row.dataset)) : parsed;
+    return hasKnownDatasets ? parsed.filter((row) => validDatasets.has(row.dataset)) : parsed;
+  }
+
+  function summarizePassengerRows(rows, iata) {
+    const filtered = normalizePassengerRows(rows, iata);
 
     function period(year) {
       const monthly = new Map();
@@ -880,6 +970,36 @@ const NO_AERO_DATA_URL = "data/ingresos_no_aeronauticos_2025_web.geojson";
     return new Date(2026, index, 1).toLocaleString("es-AR", { month: "long" });
   }
 
+  async function resolvePassengerRowsForAirport(iata) {
+    const target = String(iata || "").trim().toUpperCase();
+    const mainUrl = root?.dataset?.passengerUrl || PASSENGER_MAIN_URL;
+    const extraUrl = root?.dataset?.passengerExtraUrl || PASSENGER_EXTRA_URL;
+    const fdoUrl = root?.dataset?.passengerFdoUrl || extraUrl;
+
+    const mainRowsPromise = loadPassengerCsv(mainUrl);
+
+    if (target === FDO_IATA) {
+      const fdoRows = await loadPassengerCsv(fdoUrl);
+      if (normalizePassengerRows(fdoRows, target).length) {
+        return { rows: fdoRows, source: "aeropuertos_argentina_fdo", url: fdoUrl };
+      }
+      const mainRows = await mainRowsPromise;
+      return { rows: mainRows, source: "siac_anac", url: mainUrl };
+    }
+
+    if (EXTRA_PASSENGER_IATAS.has(target)) {
+      const extraRows = await loadPassengerCsv(extraUrl);
+      if (normalizePassengerRows(extraRows, target).length) {
+        return { rows: extraRows, source: "fuente_extra", url: extraUrl };
+      }
+      const mainRows = await mainRowsPromise;
+      return { rows: mainRows, source: "siac_anac", url: mainUrl };
+    }
+
+    const mainRows = await mainRowsPromise;
+    return { rows: mainRows, source: "siac_anac", url: mainUrl };
+  }
+
   async function resolvePassengerData(data) {
     if (Number.isFinite(data.passengersH12026)) {
       const yoy = Number.isFinite(data.passengersH1Yoy)
@@ -891,13 +1011,14 @@ const NO_AERO_DATA_URL = "data/ingresos_no_aeronauticos_2025_web.geojson";
         current: data.passengersH12026,
         previous: data.passengersH12025,
         yoy,
-        lastMonth: 5
+        lastMonth: 5,
+        source: "ResumenImpacto2025.geojson"
       };
     }
 
-    const passengerUrl = root?.dataset?.passengerUrl || "fuentes/pasajeros_aeropuerto_mensual.csv";
-    const rows = await loadPassengerCsv(passengerUrl);
-    return summarizePassengerRows(rows, data.iata);
+    const passengerSource = await resolvePassengerRowsForAirport(data.iata);
+    const summary = summarizePassengerRows(passengerSource.rows, data.iata);
+    return { ...summary, source: passengerSource.source, url: passengerSource.url };
   }
 
   function buildPerspective(yoy) {
