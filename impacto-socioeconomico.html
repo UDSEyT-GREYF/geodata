@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impacto socioeconómico y territorial</title>
+  <link rel="stylesheet" href="css/impacto-socioeconomico.css">
+</head>
+<body class="impacto-standalone">
+  <header class="impacto-preview-toolbar">
+    <div>
+      <strong>Vista previa del capítulo</strong>
+      <span>Impacto socioeconómico y territorial</span>
+    </div>
+    <label>
+      Aeropuerto
+      <select id="impactoAirportSelect" aria-label="Seleccionar aeropuerto">
+        <option value="">Cargando…</option>
+      </select>
+    </label>
+  </header>
+
+  <main id="impactoStandaloneMount"></main>
+
+  <script src="js/impacto-socioeconomico.js"></script>
+  <script>
+    fetch("partials/impacto-socioeconomico-body.html")
+      .then((response) => {
+        if (!response.ok) throw new Error(`No se pudo cargar el capítulo (${response.status})`);
+        return response.text();
+      })
+      .then((html) => {
+        document.getElementById("impactoStandaloneMount").innerHTML = html;
+        document.dispatchEvent(new CustomEvent("impacto:mounted"));
+      })
+      .catch((error) => {
+        document.getElementById("impactoStandaloneMount").innerHTML =
+          `<p class="impacto-load-error">${error.message}. Abra la página desde un servidor local o GitHub Pages.</p>`;
+      });
+  </script>
+</body>
+</html>
