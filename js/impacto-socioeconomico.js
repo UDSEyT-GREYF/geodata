@@ -121,7 +121,7 @@ pbaSecundarias: [
   let currentFeature = null;
   let initializationPromise = null;
   let passengersPromise = null;
-const NO_AERO_DATA_URL = "geodata/data/ingresos_no_aeronauticos_2025_web.geojson";
+const NO_AERO_DATA_URL = "data/ingresos_no_aeronauticos_2025_web.geojson";
   function normalizeKey(value) {
     return String(value ?? "")
       .normalize("NFD")
