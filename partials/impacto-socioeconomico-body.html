@@ -1,0 +1,275 @@
+<section
+  id="impactoSocioeconomico"
+  class="impacto-report"
+  data-url="data/ResumenImpacto2025.geojson"
+  data-passenger-url="fuentes/pasajeros_aeropuerto_mensual.csv"
+  aria-label="Impacto socioeconómico y territorial"
+>
+  <!-- PÁGINA 1 · MARCO CONCEPTUAL -->
+  <article class="impacto-sheet impacto-sheet-conceptual">
+    <div class="impacto-sheet-inner">
+      <header class="impacto-page-header">
+        <div class="impacto-kicker">IMPACTO SOCIOECONÓMICO Y TERRITORIAL</div>
+        <div class="impacto-airport-line" data-bind="airportLine">Aeropuerto</div>
+        <h1>El transporte aéreo como factor de desarrollo territorial</h1>
+      </header>
+
+      <p class="impacto-lead">
+        <strong>El transporte aerocomercial es un componente esencial de la economía y un factor clave del desarrollo territorial.</strong>
+        La provisión de servicios aerocomerciales y la infraestructura aeroportuaria constituyen elementos de cohesión territorial que
+        permiten generar oportunidades de atracción, retención y expansión de la actividad económica en el área de influencia de cada aeropuerto.
+      </p>
+
+      <figure class="impacto-concept-figure">
+        <img
+          src="img/impacto/impacto.png"
+          alt="Esquema conceptual de impactos directos, indirectos, inducidos, catalíticos y de empleo"
+        >
+      </figure>
+
+      <div class="impacto-method-grid">
+        <section class="impacto-method-card">
+          <h2>Base metodológica</h2>
+          <p>
+            La estimación toma como referencia metodologías estandarizadas por organismos internacionales y equipos académicos,
+            entre ellos Airports Council International (ACI), IATA, Oxford Economics y Air Transport Action Group (ATAG).
+          </p>
+        </section>
+
+        <section class="impacto-method-card">
+          <h2>Aplicación ORSNA</h2>
+          <p>
+            Estas referencias conforman la base técnica para estimar impactos directos, indirectos, inducidos y catalíticos sobre
+            la economía y el empleo. El Producto Bruto Aeroportuario integra los tres primeros; el turismo y la conectividad expresan
+            buena parte del efecto catalítico.
+          </p>
+        </section>
+      </div>
+
+      <p class="impacto-small-note">
+        Referencia principal: IATA, <em>El valor del transporte aéreo para Argentina</em> (2019), junto con publicaciones económicas
+        de ACI, Oxford Economics y ATAG.
+      </p>
+    </div>
+  </article>
+
+  <!-- PÁGINA 2 · PRODUCTO BRUTO AEROPORTUARIO -->
+  <article class="impacto-sheet">
+    <div class="impacto-sheet-inner">
+      <header class="impacto-page-header impacto-page-header-compact">
+        <div class="impacto-kicker">IMPACTO ECONÓMICO DIRECTO, INDIRECTO E INDUCIDO</div>
+        <div class="impacto-airport-line" data-bind="airportLine">Aeropuerto</div>
+        <h1>Producto Bruto Aeroportuario</h1>
+      </header>
+
+      <div class="impacto-pba-intro">
+        <div>
+          <p>
+            El Producto Bruto Aeroportuario (PBA) representa la facturación anual de las actividades aerocomerciales y aeroportuarias
+            desarrolladas en el predio, incluidos salarios e impuestos. Se organiza en servicios aeronáuticos y no aeronáuticos.
+          </p>
+        </div>
+        <figure class="impacto-pba-diagram">
+          <img src="img/impacto/PBA.png" alt="Composición conceptual del Producto Bruto Aeroportuario">
+        </figure>
+      </div>
+
+      <div class="impacto-kpi-row impacto-kpi-row-3">
+        <div class="impacto-kpi-card">
+          <span>Producto Bruto Aeroportuario</span>
+          <strong data-bind="pbaTotal">–</strong>
+          <small data-bind="impactYear">Año de referencia</small>
+        </div>
+        <div class="impacto-kpi-card">
+          <span>Servicios aeronáuticos</span>
+          <strong data-bind="pbaAeronautico">–</strong>
+          <small data-bind="pbaAeronauticoPct">–</small>
+        </div>
+        <div class="impacto-kpi-card">
+          <span>Servicios no aeronáuticos</span>
+          <strong data-bind="pbaNoAeronautico">–</strong>
+          <small data-bind="pbaNoAeronauticoPct">–</small>
+        </div>
+      </div>
+
+      <div class="impacto-chart-grid impacto-chart-grid-pba">
+        <figure class="impacto-chart-card">
+          <figcaption>Distribución del PBA</figcaption>
+          <div id="impactoPbaDonut" class="impacto-chart impacto-chart-donut"></div>
+        </figure>
+        <figure class="impacto-chart-card">
+          <figcaption>Composición de los servicios no aeronáuticos</figcaption>
+          <div id="impactoPbaNoAeroBars" class="impacto-chart impacto-chart-bars"></div>
+        </figure>
+      </div>
+
+      <p id="impactoPbaInsight" class="impacto-insight">Los datos del aeropuerto se completarán desde el archivo GeoJSON.</p>
+      <p class="impacto-source">Fuente: elaboración ORSNA con datos de administradores aeroportuarios.</p>
+    </div>
+  </article>
+
+  <!-- PÁGINA 3 · TURISMO Y BENEFICIO DEL PASAJERO -->
+  <article class="impacto-sheet">
+    <div class="impacto-sheet-inner">
+      <header class="impacto-page-header impacto-page-header-compact">
+        <div class="impacto-kicker">IMPACTO CATALÍTICO</div>
+        <div class="impacto-airport-line" data-bind="airportLine">Aeropuerto</div>
+        <h1>Turismo facilitado y beneficios para los pasajeros</h1>
+      </header>
+
+      <p class="impacto-section-intro">
+        La conectividad aérea facilita el ingreso de visitantes y su gasto en el área de influencia. Para evitar duplicaciones,
+        el resultado se presenta como un balance entre turismo receptivo y emisivo, complementado por el excedente del consumidor.
+      </p>
+
+      <div class="impacto-kpi-row impacto-kpi-row-4">
+        <div class="impacto-kpi-card">
+          <span>Turismo receptivo</span>
+          <strong data-bind="turismoReceptivo">–</strong>
+          <small>Impacto positivo</small>
+        </div>
+        <div class="impacto-kpi-card">
+          <span>Turismo emisivo</span>
+          <strong data-bind="turismoEmisivo">–</strong>
+          <small>Gasto fuera del área</small>
+        </div>
+        <div class="impacto-kpi-card">
+          <span>Saldo turístico</span>
+          <strong data-bind="saldoTurismo">–</strong>
+          <small>Receptivo menos emisivo</small>
+        </div>
+        <div class="impacto-kpi-card impacto-kpi-accent">
+          <span>Beneficio para pasajeros</span>
+          <strong data-bind="beneficioPasajeros">–</strong>
+          <small>Excedente del consumidor</small>
+        </div>
+      </div>
+
+      <div class="impacto-chart-grid impacto-chart-grid-tourism">
+        <figure class="impacto-chart-card impacto-chart-card-wide">
+          <figcaption>Balance económico del turismo facilitado por el transporte aéreo</figcaption>
+          <div id="impactoTourismBalance" class="impacto-chart impacto-chart-waterfall"></div>
+        </figure>
+        <figure class="impacto-chart-card">
+          <figcaption>Composición nacional e internacional</figcaption>
+          <div id="impactoTourismComposition" class="impacto-chart impacto-chart-stacked"></div>
+        </figure>
+      </div>
+
+      <p id="impactoTourismInsight" class="impacto-insight">El balance turístico se calculará con los valores disponibles.</p>
+      <p class="impacto-source">Fuente: ORSNA, SIAC-ANAC, OAG y estadísticas de turismo utilizadas en la estimación.</p>
+    </div>
+  </article>
+
+  <!-- PÁGINA 4 · EMPLEO Y TERRITORIO -->
+  <article class="impacto-sheet">
+    <div class="impacto-sheet-inner">
+      <header class="impacto-page-header impacto-page-header-compact">
+        <div class="impacto-kicker">EMPLEO Y ÁREA DE INFLUENCIA</div>
+        <div class="impacto-airport-line" data-bind="airportLine">Aeropuerto</div>
+        <h1>Generación de empleo y alcance territorial</h1>
+      </header>
+
+      <p class="impacto-section-intro">
+        El empleo asociado a la actividad aeroportuaria comprende puestos directos dentro del aeropuerto y empleos indirectos,
+        inducidos y catalíticos vinculados con proveedores, consumo, turismo y actividades favorecidas por la conectividad.
+      </p>
+
+      <div class="impacto-kpi-row impacto-kpi-row-3">
+        <div class="impacto-kpi-card impacto-kpi-accent">
+          <span>Empleo total vinculado</span>
+          <strong data-bind="empleoTotal">–</strong>
+          <small>Puestos de trabajo</small>
+        </div>
+        <div class="impacto-kpi-card">
+          <span>Empleo directo</span>
+          <strong data-bind="empleoDirecto">–</strong>
+          <small>Actividad aeroportuaria</small>
+        </div>
+        <div class="impacto-kpi-card">
+          <span>Población del área de influencia</span>
+          <strong data-bind="poblacionInfluencia">–</strong>
+          <small>Censo 2022</small>
+        </div>
+      </div>
+
+      <div class="impacto-chart-grid impacto-chart-grid-employment">
+        <figure class="impacto-chart-card impacto-chart-card-wide">
+          <figcaption>Empleo por tipo de impacto</figcaption>
+          <div id="impactoEmploymentBars" class="impacto-chart impacto-chart-employment"></div>
+        </figure>
+        <figure class="impacto-chart-card">
+          <figcaption>Distribución del empleo directo por género</figcaption>
+          <div id="impactoGenderDonut" class="impacto-chart impacto-chart-donut"></div>
+        </figure>
+      </div>
+
+      <p id="impactoEmploymentInsight" class="impacto-insight">La composición del empleo se completará con los datos disponibles.</p>
+      <p class="impacto-source">Fuente: ORSNA, registros de credencialización aeroportuaria y estimaciones de impacto.</p>
+    </div>
+  </article>
+
+  <!-- PÁGINA 5 · SÍNTESIS Y CONCLUSIÓN -->
+  <article class="impacto-sheet impacto-sheet-conclusion">
+    <div class="impacto-sheet-inner">
+      <header class="impacto-page-header impacto-page-header-compact">
+        <div class="impacto-kicker">SÍNTESIS DEL IMPACTO</div>
+        <div class="impacto-airport-line" data-bind="airportLine">Aeropuerto</div>
+        <h1>Balance socioeconómico y perspectiva</h1>
+      </header>
+
+      <figure class="impacto-summary-figure">
+        <img id="impactoSummaryImg" alt="Gráfico resumen de impactos utilizado en el Resumen ejecutivo" hidden>
+        <div id="impactoSummaryFallback" class="impacto-summary-fallback" aria-label="Resumen gráfico de impactos"></div>
+      </figure>
+
+      <div class="impacto-kpi-row impacto-kpi-row-4 impacto-summary-kpis">
+        <div class="impacto-kpi-card">
+          <span>Impactos positivos</span>
+          <strong data-bind="impactoPositivo">–</strong>
+          <small>PBA, turismo y pasajeros</small>
+        </div>
+        <div class="impacto-kpi-card">
+          <span>Impacto emisivo</span>
+          <strong data-bind="impactoNegativo">–</strong>
+          <small>Turismo emisivo</small>
+        </div>
+        <div class="impacto-kpi-card impacto-kpi-accent">
+          <span>Saldo de impactos</span>
+          <strong data-bind="saldoImpacto">–</strong>
+          <small>Resultado neto</small>
+        </div>
+        <div class="impacto-kpi-card">
+          <span>Empleo total</span>
+          <strong data-bind="empleoTotal">–</strong>
+          <small>Puestos vinculados</small>
+        </div>
+      </div>
+
+      <section class="impacto-2026-strip" aria-label="Pasajeros 2026">
+        <div>
+          <span data-bind="passengerPeriodLabel">Primer semestre de 2026</span>
+          <strong data-bind="passengers2026">–</strong>
+          <small>pasajeros comerciales</small>
+        </div>
+        <div>
+          <span>Variación interanual</span>
+          <strong data-bind="passengers2026Yoy">–</strong>
+          <small data-bind="passengers2026Comparison">Respecto de 2025</small>
+        </div>
+      </section>
+
+      <section class="impacto-conclusion-box">
+        <h2>Conclusión</h2>
+        <p id="impactoConclusionText">
+          La conclusión se generará a partir de los impactos de 2025 y de la evolución de pasajeros de 2026 disponible para el aeropuerto.
+        </p>
+      </section>
+
+      <p class="impacto-source">
+        Fuente: elaboración ORSNA a partir de <code>data/ResumenImpacto2025.geojson</code>. Para la actualización de pasajeros 2026,
+        se utiliza la serie mensual disponible del informe.
+      </p>
+    </div>
+  </article>
+</section>
