@@ -7558,29 +7558,272 @@ function odAggregateAnalyticRows(rows, groupKeys) {
     );
 }
 
-function odRowsToCsv(rows, columns) {
-  const header = columns.map(c => c.label).join(";");
-  const lines = (rows || []).map(row => columns.map(c => {
-    let value = typeof c.value === "function" ? c.value(row) : row[c.key];
-    if (value === null || value === undefined) value = "";
-    const str = String(value).replace(/"/g, '""');
-    return `"${str}"`;
-  }).join(";"));
+function odResolveColumnValue(row, col) {
+  if (!row || !col) return "";
 
-  return ["\uFEFF" + header, ...lines].join("\r\n");
+  if (typeof col.excelValue === "function") {
+    const value = col.excelValue(row);
+    return value === null || value === undefined ? "" : value;
+  }
+
+  if (col.key === "ocupacion" || col.key === "paxShare") {
+    const value = Number(row[col.key]);
+    return Number.isFinite(value) ? value : "";
+  }
+
+  if (typeof col.value === "function") {
+    const value = col.value(row);
+    return value === null || value === undefined ? "" : value;
+  }
+
+  const value = row[col.key];
+  return value === null || value === undefined ? "" : value;
 }
 
-function odDownloadCsv(filename, rows, columns) {
-  const csv = odRowsToCsv(rows, columns);
-  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = filename;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(url);
+function odGetExcelCellFormat(col) {
+  if (!col) return null;
+
+  if (col.key === "ocupacion" || col.key === "paxShare") {
+    return "0.0%";
+  }
+
+  if (["pax", "vuelos", "asientos"].includes(col.key)) {
+    return "#,##0";
+  }
+
+  return null;
+}
+
+function odAutoColumnWidths(columns, rows) {
+  return (columns || []).map(col => {
+    const headerLength = clean(col.label).length;
+
+    const maxBodyLength = Math.max(
+      8,
+      ...(rows || []).slice(0, 500).map(row => {
+        const value = odResolveColumnValue(row, col);
+        return clean(value).length;
+      })
+    );
+
+    const width = Math.min(Math.max(headerLength, maxBodyLength) + 2, 42);
+
+    return { wch: width };
+  });
+}
+
+function odBuildExcelSheet(rows, columns, options = {}) {
+  const title = clean(options.title) || "Oferta y demanda de transporte aéreo";
+  const subtitle = clean(options.subtitle) || "";
+  const source = clean(options.source) || "Fuente: elaborado por GREyF ORSNA con datos de SIAC ANAC.";
+  const notes = Array.isArray(options.notes) ? options.notes : [];
+
+  const aoa = [];
+
+  aoa.push([title]);
+  if (subtitle) aoa.push([subtitle]);
+  aoa.push([source]);
+  aoa.push([`Fecha de descarga: ${new Date().toLocaleString("es-AR")}`]);
+  aoa.push([]);
+  aoa.push(columns.map(col => col.label));
+
+  const headerRowIndex = aoa.length;
+
+  (rows || []).forEach(row => {
+    aoa.push(columns.map(col => odResolveColumnValue(row, col)));
+  });
+
+  const ws = XLSX.utils.aoa_to_sheet(aoa);
+
+  const lastCol = Math.max(columns.length - 1, 0);
+
+  ws["!merges"] = [
+    { s: { r: 0, c: 0 }, e: { r: 0, c: lastCol } },
+    { s: { r: 1, c: 0 }, e: { r: 1, c: lastCol } },
+    { s: { r: 2, c: 0 }, e: { r: 2, c: lastCol } },
+    { s: { r: 3, c: 0 }, e: { r: 3, c: lastCol } }
+  ];
+
+  ws["!cols"] = odAutoColumnWidths(columns, rows);
+
+  ws["!freeze"] = {
+    xSplit: 0,
+    ySplit: headerRowIndex,
+    topLeftCell: `A${headerRowIndex + 1}`,
+    activePane: "bottomLeft",
+    state: "frozen"
+  };
+
+  const range = XLSX.utils.decode_range(ws["!ref"]);
+
+  const titleStyle = {
+    font: { bold: true, sz: 14, color: { rgb: "1F4F82" } },
+    alignment: { horizontal: "left" }
+  };
+
+  const subtitleStyle = {
+    font: { bold: false, sz: 11, color: { rgb: "5F6E7D" } },
+    alignment: { horizontal: "left" }
+  };
+
+  const headerStyle = {
+    font: { bold: true, color: { rgb: "FFFFFF" } },
+    fill: { fgColor: { rgb: "1F4F82" } },
+    alignment: { horizontal: "center", vertical: "center", wrapText: true },
+    border: {
+      top: { style: "thin", color: { rgb: "D9E2EC" } },
+      bottom: { style: "thin", color: { rgb: "D9E2EC" } },
+      left: { style: "thin", color: { rgb: "D9E2EC" } },
+      right: { style: "thin", color: { rgb: "D9E2EC" } }
+    }
+  };
+
+  const bodyStyle = {
+    alignment: { vertical: "center", wrapText: true },
+    border: {
+      top: { style: "thin", color: { rgb: "E6EEF6" } },
+      bottom: { style: "thin", color: { rgb: "E6EEF6" } },
+      left: { style: "thin", color: { rgb: "E6EEF6" } },
+      right: { style: "thin", color: { rgb: "E6EEF6" } }
+    }
+  };
+
+  const totalStyle = {
+    font: { bold: true },
+    fill: { fgColor: { rgb: "E8EFF6" } },
+    alignment: { vertical: "center", wrapText: true },
+    border: {
+      top: { style: "thin", color: { rgb: "B8C7D9" } },
+      bottom: { style: "thin", color: { rgb: "B8C7D9" } },
+      left: { style: "thin", color: { rgb: "B8C7D9" } },
+      right: { style: "thin", color: { rgb: "B8C7D9" } }
+    }
+  };
+
+  ["A1"].forEach(addr => {
+    if (ws[addr]) ws[addr].s = titleStyle;
+  });
+
+  ["A2", "A3", "A4"].forEach(addr => {
+    if (ws[addr]) ws[addr].s = subtitleStyle;
+  });
+
+  for (let c = 0; c <= lastCol; c++) {
+    const addr = XLSX.utils.encode_cell({ r: headerRowIndex - 1, c });
+    if (ws[addr]) ws[addr].s = headerStyle;
+  }
+
+  for (let r = headerRowIndex; r <= range.e.r; r++) {
+    const isTotalRow = clean(ws[XLSX.utils.encode_cell({ r, c: 1 })]?.v)
+      .toLowerCase()
+      .includes("total");
+
+    for (let c = 0; c <= lastCol; c++) {
+      const addr = XLSX.utils.encode_cell({ r, c });
+      if (!ws[addr]) continue;
+
+      ws[addr].s = isTotalRow ? totalStyle : bodyStyle;
+
+      const col = columns[c];
+      const z = odGetExcelCellFormat(col);
+      if (z) {
+        ws[addr].z = z;
+      }
+
+      if (["pax", "vuelos", "asientos", "ocupacion", "paxShare"].includes(col.key)) {
+        ws[addr].s = {
+          ...(ws[addr].s || {}),
+          alignment: { horizontal: "right", vertical: "center" },
+          border: ws[addr].s?.border,
+          font: ws[addr].s?.font,
+          fill: ws[addr].s?.fill
+        };
+      }
+    }
+  }
+
+  return ws;
+}
+
+function odBuildNotesSheet(options = {}) {
+  const title = clean(options.title) || "Aclaraciones metodológicas";
+  const notes = Array.isArray(options.notes) ? options.notes : [];
+
+  const rows = [
+    [title],
+    [],
+    ["Campo", "Aclaración"],
+    ["Pasajeros", "Cantidad de pasajeros registrados en el período informado."],
+    ["Vuelos", "Cantidad de operaciones/vuelos registrados para la ruta y período."],
+    ["Asientos", "Asientos disponibles informados en la fuente."],
+    ["Factor de ocupación", "Se calcula como pasajeros / asientos disponibles."],
+    ["% pax mes", "Participación de la fila sobre el total de pasajeros del mes correspondiente, según el filtro aplicado."],
+    ["Movimiento", "Permite distinguir todos los movimientos, partidas/despegues y arribos/aterrizajes cuando la fuente lo informa."],
+    ...notes.map(note => ["Nota", note])
+  ];
+
+  const ws = XLSX.utils.aoa_to_sheet(rows);
+
+  ws["!cols"] = [
+    { wch: 24 },
+    { wch: 110 }
+  ];
+
+  const range = XLSX.utils.decode_range(ws["!ref"]);
+
+  for (let r = 0; r <= range.e.r; r++) {
+    for (let c = 0; c <= range.e.c; c++) {
+      const addr = XLSX.utils.encode_cell({ r, c });
+      if (!ws[addr]) continue;
+
+      ws[addr].s = {
+        alignment: { vertical: "top", wrapText: true },
+        border: {
+          top: { style: "thin", color: { rgb: "E6EEF6" } },
+          bottom: { style: "thin", color: { rgb: "E6EEF6" } },
+          left: { style: "thin", color: { rgb: "E6EEF6" } },
+          right: { style: "thin", color: { rgb: "E6EEF6" } }
+        }
+      };
+    }
+  }
+
+  if (ws["A1"]) {
+    ws["A1"].s = {
+      font: { bold: true, sz: 14, color: { rgb: "1F4F82" } }
+    };
+  }
+
+  ["A3", "B3"].forEach(addr => {
+    if (ws[addr]) {
+      ws[addr].s = {
+        font: { bold: true, color: { rgb: "FFFFFF" } },
+        fill: { fgColor: { rgb: "1F4F82" } },
+        alignment: { horizontal: "center", vertical: "center", wrapText: true }
+      };
+    }
+  });
+
+  return ws;
+}
+
+function odDownloadExcel(filename, rows, columns, options = {}) {
+  if (typeof XLSX === "undefined") {
+    console.warn("No se cargó la librería XLSX. No se puede exportar a Excel.");
+    return;
+  }
+
+  const safeFilename = clean(filename).replace(/\.csv$/i, ".xlsx").replace(/\.xlsx$/i, "") + ".xlsx";
+
+  const wb = XLSX.utils.book_new();
+
+  const wsDatos = odBuildExcelSheet(rows, columns, options);
+  const wsNotas = odBuildNotesSheet(options);
+
+  XLSX.utils.book_append_sheet(wb, wsDatos, "Datos");
+  XLSX.utils.book_append_sheet(wb, wsNotas, "Aclaraciones");
+
+  XLSX.writeFile(wb, safeFilename);
 }
 
 function odSafeFilePart(value) {
@@ -7609,12 +7852,14 @@ function odRenderTable(tbodyId, rows, columns, emptyText = "Sin datos disponible
   }).join("");
 }
 
-function odSetDownloadButton(id, filename, rows, columns) {
+function odSetDownloadButton(id, filename, rows, columns, options = {}) {
   const btn = q(id);
   if (!btn) return;
 
+  btn.textContent = "Descargar Excel";
   btn.disabled = !(rows && rows.length);
-  btn.onclick = () => odDownloadCsv(filename, rows, columns);
+
+  btn.onclick = () => odDownloadExcel(filename, rows, columns, options);
 }
 function odGetAirlineDirectionFilterValue() {
   const select = q("odAirlineDirectionFilter");
@@ -7770,42 +8015,60 @@ function odRenderAdvancedTables(iata) {
       ? "todos"
       : odSafeFilePart(selectedAirlineDirection);
 
-  odSetDownloadButton(
-    "odDownloadRouteMonthly",
-    `oferta_demanda_ruta_mensual_${routeDirectionFileSuffix}_${filePart}_${YEAR_REF}.csv`,
-    routeRows.concat(routeTotalRow),
-    [
-      { key: "anioMes", label: "anio_mes" },
-      { key: "mes", label: "mes" },
-      { key: "direction", label: "movimiento" },
-      { key: "route", label: "ruta" },
-      { key: "market", label: "mercado" },
-      { key: "pax", label: "pasajeros", value: r => Math.round(r.pax) },
-      { key: "paxShare", label: "participacion_pax_mensual", value: r => r.paxShare !== null && r.paxShare !== undefined ? Number(r.paxShare).toFixed(4) : "" },
-      { key: "vuelos", label: "vuelos", value: r => Math.round(r.vuelos) },
-      { key: "asientos", label: "asientos", value: r => Number(r.asientos || 0) > 0 ? Math.round(r.asientos) : "" },
-      { key: "ocupacion", label: "factor_ocupacion", value: r => r.ocupacion !== null ? Number(r.ocupacion).toFixed(4) : "" }
+odSetDownloadButton(
+  "odDownloadRouteMonthly",
+  `oferta_demanda_ruta_mensual_${routeDirectionFileSuffix}_${filePart}_${YEAR_REF}.xlsx`,
+  routeRows.concat(routeTotalRow),
+  [
+    { key: "anioMes", label: "Año-mes" },
+    { key: "mes", label: "Mes" },
+    { key: "direction", label: "Movimiento" },
+    { key: "route", label: "Ruta" },
+    { key: "market", label: "Mercado" },
+    { key: "pax", label: "Pasajeros", excelValue: r => Math.round(Number(r.pax || 0)) },
+    { key: "paxShare", label: "% pax mes", excelValue: r => Number.isFinite(Number(r.paxShare)) ? Number(r.paxShare) : "" },
+    { key: "vuelos", label: "Vuelos", excelValue: r => Math.round(Number(r.vuelos || 0)) },
+    { key: "asientos", label: "Asientos", excelValue: r => Number(r.asientos || 0) > 0 ? Math.round(Number(r.asientos || 0)) : "" },
+    { key: "ocupacion", label: "Factor ocupación", excelValue: r => Number.isFinite(Number(r.ocupacion)) ? Number(r.ocupacion) : "" }
+  ],
+  {
+    title: "Pasajeros, vuelos, asientos y ocupación por ruta y mes 2025",
+    subtitle: `${getAirportSheetTitle(odGetAirportRecordByIata(iata) || { IATA: iata })} · Movimiento: ${selectedRouteDirection === "todos" ? "Todos los movimientos" : selectedRouteDirection}`,
+    notes: [
+      "La tabla se encuentra agregada por mes, ruta y tipo de movimiento.",
+      "El porcentaje de pasajeros mensual se calcula contra el total mensual del aeropuerto, de acuerdo con el filtro de movimiento seleccionado.",
+      "El factor de ocupación se calcula como pasajeros / asientos disponibles."
     ]
-  );
+  }
+);
 
-  odSetDownloadButton(
-    "odDownloadAirlineMonthly",
-    `oferta_demanda_ruta_aerolinea_mensual_${airlineDirectionFileSuffix}_${filePart}_${YEAR_REF}.csv`,
-    airlineRows.concat(airlineTotalRow),
-    [
-      { key: "anioMes", label: "anio_mes" },
-      { key: "mes", label: "mes" },
-      { key: "direction", label: "movimiento" },
-      { key: "route", label: "ruta" },
-      { key: "market", label: "mercado" },
-      { key: "airline", label: "aerolinea" },
-      { key: "pax", label: "pasajeros", value: r => Math.round(r.pax) },
-      { key: "paxShare", label: "participacion_pax_mensual", value: r => r.paxShare !== null && r.paxShare !== undefined ? Number(r.paxShare).toFixed(4) : "" },
-      { key: "vuelos", label: "vuelos", value: r => Math.round(r.vuelos) },
-      { key: "asientos", label: "asientos", value: r => Number(r.asientos || 0) > 0 ? Math.round(r.asientos) : "" },
-      { key: "ocupacion", label: "factor_ocupacion", value: r => r.ocupacion !== null ? Number(r.ocupacion).toFixed(4) : "" }
+odSetDownloadButton(
+  "odDownloadAirlineMonthly",
+  `oferta_demanda_ruta_aerolinea_mensual_${airlineDirectionFileSuffix}_${filePart}_${YEAR_REF}.xlsx`,
+  airlineRows.concat(airlineTotalRow),
+  [
+    { key: "anioMes", label: "Año-mes" },
+    { key: "mes", label: "Mes" },
+    { key: "direction", label: "Movimiento" },
+    { key: "route", label: "Ruta" },
+    { key: "market", label: "Mercado" },
+    { key: "airline", label: "Aerolínea" },
+    { key: "pax", label: "Pasajeros", excelValue: r => Math.round(Number(r.pax || 0)) },
+    { key: "paxShare", label: "% pax mes", excelValue: r => Number.isFinite(Number(r.paxShare)) ? Number(r.paxShare) : "" },
+    { key: "vuelos", label: "Vuelos", excelValue: r => Math.round(Number(r.vuelos || 0)) },
+    { key: "asientos", label: "Asientos", excelValue: r => Number(r.asientos || 0) > 0 ? Math.round(Number(r.asientos || 0)) : "" },
+    { key: "ocupacion", label: "Factor ocupación", excelValue: r => Number.isFinite(Number(r.ocupacion)) ? Number(r.ocupacion) : "" }
+  ],
+  {
+    title: "Desagregación mensual por ruta, aerolínea y movimiento 2025",
+    subtitle: `${getAirportSheetTitle(odGetAirportRecordByIata(iata) || { IATA: iata })} · Movimiento: ${selectedAirlineDirection === "todos" ? "Todos los movimientos" : selectedAirlineDirection}`,
+    notes: [
+      "La tabla se encuentra agregada por mes, ruta, aerolínea y tipo de movimiento.",
+      "El porcentaje de pasajeros mensual se calcula contra el total mensual del aeropuerto, de acuerdo con el filtro de movimiento seleccionado.",
+      "El factor de ocupación se calcula como pasajeros / asientos disponibles."
     ]
-  );
+  }
+);
 }
 
 function renderAnaliticaAvanzada(iata, summary) {
