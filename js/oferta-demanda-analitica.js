@@ -7386,7 +7386,60 @@ function odDrawPolarRadialTickLabels(chart) {
 
   ctx.restore();
 }
+function odDrawPolarMonthLabels(chart) {
+  const meta = chart?.getDatasetMeta?.(0);
+  const arcs = meta?.data || [];
+  const labels = chart?.data?.labels || [];
+  const ctx = chart.ctx;
 
+  if (!arcs.length || !labels.length) return;
+
+  ctx.save();
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.font = "700 11px Roboto, Arial, sans-serif";
+
+  arcs.forEach((arc, index) => {
+    const label = clean(labels[index]);
+    if (!label) return;
+
+    const startAngle = Number(arc.startAngle || 0);
+    const endAngle = Number(arc.endAngle || 0);
+    const outerRadius = Number(arc.outerRadius || 0);
+    const innerRadius = Number(arc.innerRadius || 0);
+    const cx = Number(arc.x || 0);
+    const cy = Number(arc.y || 0);
+
+    if (!outerRadius) return;
+
+    const midAngle = (startAngle + endAngle) / 2;
+
+    /*
+      Ubicación: centro del "triángulo".
+      62% del radio funciona bien: ni demasiado al centro ni demasiado al borde.
+    */
+    const labelRadius = innerRadius + (outerRadius - innerRadius) * 0.62;
+
+    const x = cx + Math.cos(midAngle) * labelRadius;
+    const y = cy + Math.sin(midAngle) * labelRadius;
+
+    const textW = ctx.measureText(label).width;
+    const boxW = textW + 10;
+    const boxH = 16;
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.92)";
+    ctx.fillRect(x - boxW / 2, y - boxH / 2, boxW, boxH);
+
+    ctx.strokeStyle = "rgba(31, 79, 130, 0.18)";
+    ctx.lineWidth = 1;
+    ctx.strokeRect(x - boxW / 2, y - boxH / 2, boxW, boxH);
+
+    ctx.fillStyle = "#173a68";
+    ctx.fillText(label, x, y + 0.5);
+  });
+
+  ctx.restore();
+}
 function odRenderSeasonalityChart(rows) {
   const canvas = q("odSeasonalityChart");
   if (!canvas || typeof Chart === "undefined") return;
@@ -7407,12 +7460,13 @@ function odRenderSeasonalityChart(rows) {
   const backgroundColor = chartRows.map(row => odGetSeasonColor(row.mesNum, 0.42));
   const borderColor = chartRows.map(row => odGetSeasonBorderColor(row.mesNum));
 
-  const polarTickOverlayPlugin = {
-    id: "polarTickOverlayPlugin",
-    afterDraw(chart) {
-      odDrawPolarRadialTickLabels(chart);
-    }
-  };
+const polarTickOverlayPlugin = {
+  id: "polarTickOverlayPlugin",
+  afterDraw(chart) {
+    odDrawPolarRadialTickLabels(chart);
+    odDrawPolarMonthLabels(chart);
+  }
+};
 
   canvas._odChart = new Chart(canvas, {
     type: "polarArea",
@@ -7493,7 +7547,7 @@ function odRenderSeasonalityChart(rows) {
             color: "rgba(0,0,0,0.12)"
           },
           pointLabels: {
-            display: true,
+            display: false,
             centerPointLabels: false,
             color: "#34506f",
             font: {
