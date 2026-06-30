@@ -1219,14 +1219,14 @@ function odBuildRegularConnectedDestinationStats(iata, year = YEAR_REF, minMonth
   const destinosMap = new Map();
 
 const rows = (rutasOfertaRows || []).filter(row =>
-  (row.endpointA === selected || row.endpointB === selected) &&
+  odRouteIncludesAirport(row, selected) &&
   Number(row.year) === Number(year) &&
   odRouteRowIsCommercial(row) &&
   odRouteRowHasConnectivityActivity(row)
 );
 
   rows.forEach(row => {
-    const otherCodeRaw = row.endpointA === selected ? row.endpointB : row.endpointA;
+    const otherCodeRaw = getOtherEndpointForSelected(row, selected);
     if (!otherCodeRaw || otherCodeRaw === selected) return;
 
     const otherMeta = getRouteMeta(otherCodeRaw);
@@ -3663,31 +3663,64 @@ function movementJsonRowToOfertaRow(row) {
   };
 }
 
-function routeMovementBelongsToAirport(row, selectedIata) {
-  const selected = clean(selectedIata).toUpperCase();
-  const mov = normalizeTextKey(row.tipoMovimientoNorm || row.tipoMovimiento);
-
-  if (mov.includes("despeg")) {
-    return clean(row.endpointA).toUpperCase() === selected;
-  }
-
-  if (mov.includes("aterriz")) {
-    return clean(row.endpointB).toUpperCase() === selected;
-  }
-
-  return (
-    clean(row.endpointA).toUpperCase() === selected ||
-    clean(row.endpointB).toUpperCase() === selected
+function odGetRoutePairCodes(row) {
+  const pair = normalizeRoutePair(
+    row?.cityPair ||
+    row?.rutaCompleta ||
+    row?.RutaCompleta ||
+    ""
   );
+
+  const codes = [];
+
+  if (pair) {
+    pair
+      .split("-")
+      .map(code => clean(code).toUpperCase())
+      .filter(code => /^[A-Z0-9]{3}$/.test(code))
+      .forEach(code => {
+        if (!codes.includes(code)) codes.push(code);
+      });
+  }
+
+  [
+    row?.endpointA,
+    row?.endpointB,
+    row?.origenIata,
+    row?.destinoIata
+  ].forEach(codeRaw => {
+    const code = clean(codeRaw).toUpperCase();
+    if (/^[A-Z0-9]{3}$/.test(code) && !codes.includes(code)) {
+      codes.push(code);
+    }
+  });
+
+  return codes;
+}
+
+function odRouteIncludesAirport(row, selectedIata) {
+  const selected = clean(selectedIata).toUpperCase();
+  if (!selected) return false;
+
+  return odGetRoutePairCodes(row).includes(selected);
+}
+
+/*
+  Se mantiene el nombre viejo para no tener que cambiar todas las llamadas.
+  Importante: ya NO filtra por tipo de movimiento.
+  Solo verifica si el IATA seleccionado aparece en el par de ruta.
+*/
+function routeMovementBelongsToAirport(row, selectedIata) {
+  return odRouteIncludesAirport(row, selectedIata);
 }
 
 function getOtherEndpointForSelected(row, selectedIata) {
   const selected = clean(selectedIata).toUpperCase();
+  const codes = odGetRoutePairCodes(row);
 
-  if (row.endpointA === selected) return row.endpointB;
-  if (row.endpointB === selected) return row.endpointA;
+  if (!selected || !codes.includes(selected)) return "";
 
-  return "";
+  return codes.find(code => code !== selected) || "";
 }
 function parseRutasKmCSV(text) {
   return parseCSV(text).map(r => ({
@@ -4545,7 +4578,7 @@ function buildFdoOfertaDemandaSummary(year = YEAR_REF) {
 
 let rows = rutasOfertaRows.filter(r =>
   Number(r.year) === Number(year) &&
-  routeMovementBelongsToAirport(r, selected)
+  odRouteIncludesAirport(r, selected)
 );
 
 if (soloComercial) {
@@ -4589,7 +4622,7 @@ const freqByRouteAirline = new Map();
 let totalFrecuenciaSemanal = 0;
 
     rows.forEach(r => {
-      const otherCodeRaw = (r.endpointA === selected) ? r.endpointB : r.endpointA;
+      const otherCodeRaw = getOtherEndpointForSelected(r, selected);
       if (!otherCodeRaw || otherCodeRaw === selected) return;
 
       const otherMeta = getRouteMeta(otherCodeRaw);
@@ -5836,12 +5869,12 @@ function buildHistoricRouteSeriesFromGeneral(iata) {
   const acc = { routes: new Map(), years: new Set(), totalByYear: new Map() };
 
 const rows = (odGetHistoricRouteRows() || []).filter(r =>
-  (r.endpointA === selected || r.endpointB === selected) &&
+  odRouteIncludesAirport(r, selected) &&
   clean(r.tipoOperacion).toLowerCase().includes("comercial")
 );
 
   rows.forEach(r => {
-    const otherCodeRaw = (r.endpointA === selected) ? r.endpointB : r.endpointA;
+    const otherCodeRaw = getOtherEndpointForSelected(r, selected);
     if (!otherCodeRaw || otherCodeRaw === selected) return;
 
     const otherMeta = getRouteMeta(otherCodeRaw);
@@ -7668,11 +7701,11 @@ function odBuildRouteAnalyticRows(iata, year = YEAR_REF) {
     return odBuildFdoAnalyticRows(year);
   }
 
-  let rows = (rutasOfertaRows || []).filter(r =>
-    (r.endpointA === selected || r.endpointB === selected) &&
-    Number(r.year) === Number(year) &&
-    clean(r.tipoOperacion).toLowerCase().includes("comercial")
-  );
+let rows = (rutasOfertaRows || []).filter(r =>
+  odRouteIncludesAirport(r, selected) &&
+  Number(r.year) === Number(year) &&
+  clean(r.tipoOperacion).toLowerCase().includes("comercial")
+);
 
   return rows
     .map(r => odBuildRouteAnalyticRowFromOfferRow(r, selected))
