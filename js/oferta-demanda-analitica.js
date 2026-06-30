@@ -22,8 +22,9 @@
   const PERFIL_OPERATIVO_PATH = "/geodata/fuentes/perfil_operativo_impacto_2025.json";
   const DESCRIPTIVO_AEROPUERTOS_GEOJSON_PATH = "/geodata/fuentes/Descriptivo_aeropuertos.geojson";
   const PAX_MENSUAL_PATH = "/geodata/fuentes/pasajeros_aeropuerto_mensual.csv";
-const MOV_MENSUAL_PATH = "/geodata/fuentes/movimientos_aeropuerto_mensual.csv";
-const EXTRA_TRAFFIC_PATH = "/geodata/fuentes/pasajeros_movimientos_extra_9aeropuertos.csv";
+  const MOV_MENSUAL_PATH = "/geodata/fuentes/movimientos_aeropuerto_mensual.csv";
+  const EXTRA_TRAFFIC_PATH = "/geodata/fuentes/pasajeros_movimientos_extra_9aeropuertos.csv";
+  const ROUTES_MOVEMENTS_2025_JSON_PATH = "data/rutas_aereas_movimientos_2025.json";
 
 const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
 const PAX_DATASET_INT = "pasajeros_comerciales_internacional_aeropuerto";
@@ -80,6 +81,7 @@ const OD_AIRPORTS_WITHOUT_REGULAR_COMMERCIAL_SERVICE_2025 = new Set([
   let provinciasFeatures = [];
   let odConnectivityMaps = {};
   let currentIATA = "";
+  let rutasMovimientos2025Rows = [];
   let rutasKmRows = [];
   let rutasKmIndex = new Map();
   let airlineAliasIndex = {};
@@ -3578,6 +3580,84 @@ function parseRutasOfertaCSV(text) {
     r.endpointB &&
     Number.isFinite(r.year)
   );
+}
+
+  async function loadRoutesMovements2025Json(url) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`No se pudo cargar ${url} (${response.status})`);
+  }
+
+  const json = await response.json();
+  return Array.isArray(json.records) ? json.records : [];
+}
+
+function normalizeRoutePair(value) {
+  return clean(value)
+    .toUpperCase()
+    .replace(/\s*-\s*/g, "-")
+    .trim();
+}
+
+function movementJsonRowToOfertaRow(row) {
+  const cityPair = normalizeRoutePair(row.citypair_iata || row.rutaCompleta);
+
+  let endpointA = clean(row.endpointA).toUpperCase();
+  let endpointB = clean(row.endpointB).toUpperCase();
+
+  if ((!endpointA || !endpointB) && cityPair.includes("-")) {
+    const parts = cityPair.split("-").map(x => clean(x).toUpperCase());
+    endpointA = endpointA || parts[0] || "";
+    endpointB = endpointB || parts[1] || "";
+  }
+
+  return {
+    anioMes: clean(row.anioMes),
+    date: parseFechaFlexible(row.anioMes),
+    year: Number(row.year || 2025),
+
+    cityPair,
+    endpointA,
+    endpointB,
+
+    airline: clean(row.aerolineaNombre || row.aerolineaDisplay),
+    clasificacion: clean(row.clasificacionVuelo),
+    tipoOperacion: clean(row.claseVuelo),
+
+    pax: parseNumber(row.pax),
+    asientos: parseNumber(row.asientosPax),
+    vuelos: parseNumber(row.vuelos),
+    frecuenciaSemanal: parseNumber(row.frecuenciaSemanal),
+
+    tipoMovimiento: clean(row.tipoMovimiento),
+    tipoMovimientoNorm: clean(row.tipoMovimientoNorm).toLowerCase(),
+
+    distanciaKm: NaN
+  };
+}
+
+function routeMovementBelongsToAirport(row, selectedIata) {
+  const selected = clean(selectedIata).toUpperCase();
+  const mov = clean(row.tipoMovimientoNorm).toLowerCase();
+
+  if (mov === "despegue") {
+    return row.endpointA === selected;
+  }
+
+  if (mov === "aterrizaje") {
+    return row.endpointB === selected;
+  }
+
+  return row.endpointA === selected || row.endpointB === selected;
+}
+
+function getOtherEndpointForSelected(row, selectedIata) {
+  const selected = clean(selectedIata).toUpperCase();
+
+  if (row.endpointA === selected) return row.endpointB;
+  if (row.endpointB === selected) return row.endpointA;
+
+  return "";
 }
 function parseRutasKmCSV(text) {
   return parseCSV(text).map(r => ({
