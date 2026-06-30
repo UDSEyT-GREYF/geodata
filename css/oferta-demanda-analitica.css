@@ -2035,3 +2035,21 @@ body {
   padding: 4px 8px;
   font-size: 0.78rem;
 }
+.od-malvinas-label {
+  background: transparent;
+  border: none;
+}
+
+.od-malvinas-label div {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.05;
+  text-align: center;
+  color: #1f4f82;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2px 5px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(31, 79, 130, 0.15);
+  white-space: nowrap;
+}
