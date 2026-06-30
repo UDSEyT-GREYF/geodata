@@ -6974,6 +6974,11 @@ function odFormatSeasonList(seasons) {
   return odJoinList(seasons.map(s => `${s.icon} ${s.label}`));
 }
 
+function odFormatSeasonListPlain(seasons) {
+  if (!seasons || !seasons.length) return "sin estación definida";
+  return odJoinList(seasons.map(s => s.label.toLowerCase()));
+}
+
 function odBuildSeasonalityStationNote(highRows, lowRows) {
   const highSeasons = odGetDistinctSeasons(highRows);
   const lowSeasons = odGetDistinctSeasons(lowRows);
@@ -6982,19 +6987,19 @@ function odBuildSeasonalityStationNote(highRows, lowRows) {
   let lowText = "";
 
   if (highSeasons.length === 1) {
-    highText = `La temporada alta coincide principalmente con ${odFormatSeasonList(highSeasons)}.`;
+    highText = `La demanda presenta su mayor intensidad durante el ${odFormatSeasonListPlain(highSeasons)}.`;
   } else if (highSeasons.length > 1) {
-    highText = `La temporada alta se distribuye entre ${odFormatSeasonList(highSeasons)}, por lo que no responde a una única estación.`;
+    highText = `La temporada alta combina meses de ${odFormatSeasonListPlain(highSeasons)}, lo que indica una estacionalidad distribuida entre más de una estación del año.`;
   } else {
-    highText = "No fue posible asociar la temporada alta con una estación.";
+    highText = "No fue posible asociar con precisión la temporada alta a una estación del año.";
   }
 
   if (lowSeasons.length === 1) {
-    lowText = `La temporada baja coincide principalmente con ${odFormatSeasonList(lowSeasons)}.`;
+    lowText = `En cambio, la menor demanda se concentra principalmente en el ${odFormatSeasonListPlain(lowSeasons)}.`;
   } else if (lowSeasons.length > 1) {
-    lowText = `La temporada baja se reparte entre ${odFormatSeasonList(lowSeasons)}.`;
+    lowText = `La temporada baja se reparte entre meses de ${odFormatSeasonListPlain(lowSeasons)}.`;
   } else {
-    lowText = "No fue posible asociar la temporada baja con una estación.";
+    lowText = "Tampoco fue posible identificar con claridad la estacionalidad de los meses de menor demanda.";
   }
 
   return `${highText} ${lowText}`;
@@ -7156,7 +7161,7 @@ function odRenderSeasonalityChart(rows) {
   });
 
   const pax = chartRows.map(row => Math.round(Number(row.pax || 0)));
-  const backgroundColor = chartRows.map(row => odGetSeasonColor(row.mesNum, 0.82));
+  const backgroundColor = chartRows.map(row => odGetSeasonColor(row.mesNum, 0.74));
   const borderColor = chartRows.map(row => odGetSeasonBorderColor(row.mesNum));
 
   canvas._odChart = new Chart(canvas, {
@@ -7177,16 +7182,30 @@ function odRenderSeasonalityChart(rows) {
       responsive: true,
       maintainAspectRatio: false,
       animation: false,
+      layout: {
+        padding: {
+          top: 10,
+          right: 12,
+          bottom: 6,
+          left: 12
+        }
+      },
       plugins: {
-        legend: {
+        title: {
           display: true,
-          position: "right",
-          labels: {
-            boxWidth: 12,
-            boxHeight: 12,
-            padding: 10,
-            font: { size: 10 }
+          text: "Pasajeros por mes 2025",
+          color: "#1f4f82",
+          font: {
+            size: 14,
+            weight: "700"
+          },
+          padding: {
+            top: 4,
+            bottom: 10
           }
+        },
+        legend: {
+          display: false
         },
         tooltip: {
           callbacks: {
@@ -7209,15 +7228,19 @@ function odRenderSeasonalityChart(rows) {
         r: {
           beginAtZero: true,
           ticks: {
-            backdropColor: "transparent",
-            font: { size: 9 },
+            color: "#516072",
+            z: 100,
+            backdropColor: "rgba(255,255,255,0.92)",
+            showLabelBackdrop: true,
+            backdropPadding: 4,
+            font: { size: 10, weight: "600" },
             callback: value => formatNumber(value)
           },
           grid: {
-            color: "rgba(0,0,0,0.10)"
+            color: "rgba(0,0,0,0.12)"
           },
           angleLines: {
-            color: "rgba(0,0,0,0.10)"
+            color: "rgba(0,0,0,0.12)"
           },
           pointLabels: {
             display: false
