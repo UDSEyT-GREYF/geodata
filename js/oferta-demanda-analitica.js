@@ -2049,7 +2049,22 @@ function odGetMapRouteColor(route) {
   if (route.mapKind === "southamerica") return OD_MAP_COLORS.southamerica;
   return OD_MAP_COLORS.extra;
 }
+function odAddMalvinasOverlayLabel(map, mode) {
+  // Solo en mapas internacionales / regionales
+  if (mode === "argentina") return;
 
+  L.marker([-51.7, -59.0], {
+    interactive: false,
+    keyboard: false,
+    zIndexOffset: 1000,
+    icon: L.divIcon({
+      className: "od-malvinas-label",
+      html: '<div>Malvinas<br>Argentinas</div>',
+      iconSize: [120, 34],
+      iconAnchor: [60, 17]
+    })
+  }).addTo(map);
+}
 function odBuildConnectivityMapLegendHtml(routes, mapCfg = null) {
   const sourceRoutes = (routes || []).filter(route => Number(route.pax || 0) > 0);
 
@@ -2271,6 +2286,7 @@ if (mapCfg.mode === "argentina") {
 odConnectivityMaps[mapCfg.id] = map;
 
 odAddConnectivityBaseMap(map, mapCfg.mode);
+odAddMalvinasOverlayLabel(map, mapCfg.mode);
 
     const maxPax = Math.max(
       ...mapCfg.routes.map(r => Number(r.pax || 0)),
