@@ -2010,3 +2010,28 @@ body {
     width: min(100%, 360px);
   }
 }
+.od-table-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 6px 0 8px;
+  font-size: 0.78rem;
+  color: #5f6e7d;
+}
+
+.od-table-controls label {
+  font-weight: 700;
+  color: #1f4f82;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.od-table-controls select {
+  border: 1px solid #cfd8e3;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #334150;
+  padding: 4px 8px;
+  font-size: 0.78rem;
+}
