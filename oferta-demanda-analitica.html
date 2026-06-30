@@ -396,8 +396,20 @@
     <section class="od-panel od-analytics-panel od-analytics-table-panel">
       <div class="od-panel-head od-panel-head-with-actions">
         <div>
-          <div class="od-panel-title">PASAJEROS, VUELOS Y OCUPACIÓN POR RUTA Y MES</div>
-          <div class="od-panel-subtitle">Vista agregada mensual por ruta. La descarga CSV incluye todas las filas disponibles; la hoja muestra una vista de lectura.</div>
+<div class="od-panel-title">PASAJEROS, VUELOS Y OCUPACIÓN POR RUTA Y MES</div>
+
+<div class="od-table-controls">
+  <label for="odRouteDirectionFilter">Movimiento</label>
+  <select id="odRouteDirectionFilter">
+    <option value="todos">Todos los movimientos</option>
+    <option value="Partidas">Partidas / despegues</option>
+    <option value="Arribos">Arribos / aterrizajes</option>
+  </select>
+</div>
+
+<div class="od-panel-subtitle">
+  Vista agregada mensual por ruta. La descarga CSV incluye todas las filas disponibles; la hoja muestra una vista de lectura.
+</div>
         </div>
         <button type="button" class="od-download-btn" id="odDownloadRouteMonthly">Descargar CSV</button>
       </div>
@@ -405,19 +417,20 @@
       <div class="od-table-wrap od-route-monthly-wrap">
         <table class="od-data-table od-route-monthly-table">
           <thead>
-            <tr>
-              <th>Mes</th>
-              <th>Ruta</th>
-              <th>Mercado</th>
-              <th>Pasajeros</th>
-              <th>% pax anual</th>
-              <th>Vuelos</th>
-              <th>Asientos</th>
-              <th>Ocupación</th>
-            </tr>
+<tr>
+  <th>Mes</th>
+  <th>Movimiento</th>
+  <th>Ruta</th>
+  <th>Mercado</th>
+  <th>Pasajeros</th>
+  <th>% pax mes</th>
+  <th>Vuelos</th>
+  <th>Asientos</th>
+  <th>Ocupación</th>
+</tr>
           </thead>
           <tbody id="odRouteMonthlyBody">
-            <tr><td colspan="8">Calculando…</td></tr>
+            <tr><td colspan="9">Calculando…</td></tr>
           </tbody>
         </table>
       </div>
@@ -442,7 +455,7 @@
     <section class="od-panel od-analytics-panel od-analytics-table-panel od-airline-detail-panel">
       <div class="od-panel-head od-panel-head-with-actions">
         <div>
-          <div class="od-panel-title">DESAGREGACIÓN MENSUAL POR RUTA Y AEROLÍNEA</div>
+          <div class="od-panel-title">PASAJEROS, VUELOS Y OCUPACIÓN POR RUTA, AEROLÍNEA POR MES</div>
           <div class="od-table-controls">
   <label for="odAirlineDirectionFilter">Movimiento</label>
   <select id="odAirlineDirectionFilter">
@@ -467,7 +480,7 @@
               <th>Mercado</th>
               <th>Aerolínea</th>
               <th>Pasajeros</th>
-              <th>% pax anual</th>
+              <th>% pax mes</th>
               <th>Vuelos</th>
               <th>Asientos</th>
               <th>Ocupación</th>
