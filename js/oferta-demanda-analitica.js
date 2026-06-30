@@ -6973,7 +6973,28 @@ function odAttachPaxShare(rows, totalPax) {
     paxShare: odMetricShare(row.pax, totalPax)
   }));
 }
+function odAttachPaxShareByMonth(rows) {
+  const totalsByMonth = new Map();
 
+  (rows || []).forEach(row => {
+    const key = clean(row.anioMes);
+    if (!key) return;
+
+    totalsByMonth.set(
+      key,
+      (totalsByMonth.get(key) || 0) + Number(row.pax || 0)
+    );
+  });
+
+  return (rows || []).map(row => {
+    const totalMonthPax = totalsByMonth.get(clean(row.anioMes)) || 0;
+
+    return {
+      ...row,
+      paxShare: odMetricShare(row.pax, totalMonthPax)
+    };
+  });
+}
 function odRowsForPreviewWithTotal(rows, totalRow, limit = 34) {
   const source = rows || [];
   const preview = source.slice(0, Math.max(0, limit));
@@ -7599,31 +7620,47 @@ function odGetAirlineDirectionFilterValue() {
   const select = q("odAirlineDirectionFilter");
   return select ? clean(select.value) : "todos";
 }
+  function odGetRouteDirectionFilterValue() {
+  const select = q("odRouteDirectionFilter");
+  return select ? clean(select.value) : "todos";
+}
 function odRenderAdvancedTables(iata) {
   const rows = odBuildRouteAnalyticRows(iata, YEAR_REF);
 
   const hasDirection = odHasDirectionalSourceData(rows);
-  const selectedDirection = odGetAirlineDirectionFilterValue();
 
-  const routeRowsRaw = odAggregateAnalyticRows(rows, [
+  const selectedRouteDirection = odGetRouteDirectionFilterValue();
+  const selectedAirlineDirection = odGetAirlineDirectionFilterValue();
+
+  const routeSourceRows =
+    hasDirection && selectedRouteDirection !== "todos"
+      ? rows.filter(r => clean(r.direction) === selectedRouteDirection)
+      : rows;
+
+  const routeRowsRaw = odAggregateAnalyticRows(routeSourceRows, [
     "anioMes",
     "mes",
+    "direction",
     "route",
     "market"
   ]);
 
-  const routeTotalPax = routeRowsRaw.reduce((acc, row) => acc + Number(row.pax || 0), 0);
-  const routeRows = odAttachPaxShare(routeRowsRaw, routeTotalPax);
+  const routeRows = odAttachPaxShareByMonth(routeRowsRaw);
+
   const routeTotalRow = odBuildRowsTotal(routeRowsRaw, {
     anioMes: "9999-12",
     mes: "Total 2025",
+    direction: selectedRouteDirection === "todos" ? "Todos" : selectedRouteDirection,
     route: "Total aeropuerto",
     market: ""
   });
 
+  // El total anual no tiene sentido como % mensual.
+  routeTotalRow.paxShare = null;
+
   const airlineSourceRows =
-    hasDirection && selectedDirection !== "todos"
-      ? rows.filter(r => clean(r.direction) === selectedDirection)
+    hasDirection && selectedAirlineDirection !== "todos"
+      ? rows.filter(r => clean(r.direction) === selectedAirlineDirection)
       : rows;
 
   const airlineRowsRaw = odAggregateAnalyticRows(airlineSourceRows, [
@@ -7635,23 +7672,26 @@ function odRenderAdvancedTables(iata) {
     "airline"
   ]);
 
-  const airlineTotalPax = airlineRowsRaw.reduce((acc, row) => acc + Number(row.pax || 0), 0);
-  const airlineRows = odAttachPaxShare(airlineRowsRaw, airlineTotalPax);
+  const airlineRows = odAttachPaxShareByMonth(airlineRowsRaw);
+
   const airlineTotalRow = odBuildRowsTotal(airlineRowsRaw, {
     anioMes: "9999-12",
     mes: "Total 2025",
-    direction: selectedDirection === "todos" ? "Todos" : selectedDirection,
+    direction: selectedAirlineDirection === "todos" ? "Todos" : selectedAirlineDirection,
     route: "Total aeropuerto",
     market: "",
     airline: "Todas"
   });
 
+  // El total anual no tiene sentido como % mensual.
+  airlineTotalRow.paxShare = null;
+
   const totalRowsEl = q("odAnalyticRowsCount");
   if (totalRowsEl) {
     const selectedDirectionText =
-      selectedDirection === "todos"
+      selectedAirlineDirection === "todos"
         ? "todos los movimientos"
-        : selectedDirection.toLowerCase();
+        : selectedAirlineDirection.toLowerCase();
 
     totalRowsEl.textContent =
       `${formatNumber(rows.length)} registros base · ` +
@@ -7659,71 +7699,98 @@ function odRenderAdvancedTables(iata) {
       `${formatNumber(airlineRows.length)} filas ruta-mes-aerolínea (${selectedDirectionText})`;
   }
 
-  const directionFilter = q("odAirlineDirectionFilter");
-  if (directionFilter) {
-    directionFilter.disabled = !hasDirection;
-    directionFilter.onchange = () => {
+  const routeDirectionFilter = q("odRouteDirectionFilter");
+  if (routeDirectionFilter) {
+    routeDirectionFilter.disabled = !hasDirection;
+    routeDirectionFilter.onchange = () => {
       odRenderAdvancedTables(iata);
     };
   }
 
-  const commonCols = [
+  const airlineDirectionFilter = q("odAirlineDirectionFilter");
+  if (airlineDirectionFilter) {
+    airlineDirectionFilter.disabled = !hasDirection;
+    airlineDirectionFilter.onchange = () => {
+      odRenderAdvancedTables(iata);
+    };
+  }
+
+  const routeCols = [
     { key: "mes", label: "Mes" },
+    { key: "direction", label: "Movimiento" },
     { key: "route", label: "Ruta" },
     { key: "market", label: "Mercado" },
     { key: "pax", label: "Pasajeros", num: true, value: r => formatNumber(Math.round(r.pax)) },
-    { key: "paxShare", label: "% pax anual", num: true, value: r => r.paxShare !== null && r.paxShare !== undefined ? odFormatPctPlain(r.paxShare) : "–" },
+    { key: "paxShare", label: "% pax mes", num: true, value: r => r.paxShare !== null && r.paxShare !== undefined ? odFormatPctPlain(r.paxShare) : "–" },
     { key: "vuelos", label: "Vuelos", num: true, value: r => formatNumber(Math.round(r.vuelos)) },
     { key: "asientos", label: "Asientos", num: true, value: r => Number(r.asientos || 0) > 0 ? formatNumber(Math.round(r.asientos)) : "–" },
     { key: "ocupacion", label: "Factor ocupación", num: true, value: r => r.ocupacion !== null ? odFormatPctPlain(r.ocupacion) : "–" }
   ];
 
-  const csvCommonCols = [
-    { key: "anioMes", label: "anio_mes" },
-    { key: "mes", label: "mes" },
-    { key: "route", label: "ruta" },
-    { key: "market", label: "mercado" },
-    { key: "pax", label: "pasajeros", value: r => Math.round(r.pax) },
-    { key: "paxShare", label: "participacion_pax_anual", value: r => r.paxShare !== null && r.paxShare !== undefined ? Number(r.paxShare).toFixed(4) : "" },
-    { key: "vuelos", label: "vuelos", value: r => Math.round(r.vuelos) },
-    { key: "asientos", label: "asientos", value: r => Number(r.asientos || 0) > 0 ? Math.round(r.asientos) : "" },
-    { key: "ocupacion", label: "factor_ocupacion", value: r => r.ocupacion !== null ? Number(r.ocupacion).toFixed(4) : "" }
-  ];
-
-  const routePreview = odRowsForPreviewWithTotal(routeRows, routeTotalRow, 52);
-  const airlinePreview = odRowsForPreviewWithTotal(airlineRows, airlineTotalRow, 46);
-
-  odRenderTable("odRouteMonthlyBody", routePreview, commonCols);
-
-  odRenderTable("odAirlineMonthlyBody", airlinePreview, [
+  const airlineCols = [
     { key: "mes", label: "Mes" },
     { key: "direction", label: "Movimiento" },
     { key: "route", label: "Ruta" },
     { key: "market", label: "Mercado" },
     { key: "airline", label: "Aerolínea" },
     { key: "pax", label: "Pasajeros", num: true, value: r => formatNumber(Math.round(r.pax)) },
-    { key: "paxShare", label: "% pax anual", num: true, value: r => r.paxShare !== null && r.paxShare !== undefined ? odFormatPctPlain(r.paxShare) : "–" },
+    { key: "paxShare", label: "% pax mes", num: true, value: r => r.paxShare !== null && r.paxShare !== undefined ? odFormatPctPlain(r.paxShare) : "–" },
     { key: "vuelos", label: "Vuelos", num: true, value: r => formatNumber(Math.round(r.vuelos)) },
     { key: "asientos", label: "Asientos", num: true, value: r => Number(r.asientos || 0) > 0 ? formatNumber(Math.round(r.asientos)) : "–" },
     { key: "ocupacion", label: "Factor ocupación", num: true, value: r => r.ocupacion !== null ? odFormatPctPlain(r.ocupacion) : "–" }
-  ]);
+  ];
+
+  /*
+    Antes se usaba odRowsForPreviewWithTotal(..., 52/46).
+    Eso hacía que, al estar ordenadas por mes, los aeropuertos con muchas
+    rutas en enero mostraran solo enero. Ahora se renderizan todas las filas
+    en el contenedor con scroll.
+  */
+  odRenderTable(
+    "odRouteMonthlyBody",
+    routeRows.concat(routeTotalRow),
+    routeCols
+  );
+
+  odRenderTable(
+    "odAirlineMonthlyBody",
+    airlineRows.concat(airlineTotalRow),
+    airlineCols
+  );
 
   const filePart = odSafeFilePart(iata);
-  const directionFileSuffix =
-    selectedDirection === "todos"
+
+  const routeDirectionFileSuffix =
+    selectedRouteDirection === "todos"
       ? "todos"
-      : odSafeFilePart(selectedDirection);
+      : odSafeFilePart(selectedRouteDirection);
+
+  const airlineDirectionFileSuffix =
+    selectedAirlineDirection === "todos"
+      ? "todos"
+      : odSafeFilePart(selectedAirlineDirection);
 
   odSetDownloadButton(
     "odDownloadRouteMonthly",
-    `oferta_demanda_ruta_mensual_${filePart}_${YEAR_REF}.csv`,
+    `oferta_demanda_ruta_mensual_${routeDirectionFileSuffix}_${filePart}_${YEAR_REF}.csv`,
     routeRows.concat(routeTotalRow),
-    csvCommonCols
+    [
+      { key: "anioMes", label: "anio_mes" },
+      { key: "mes", label: "mes" },
+      { key: "direction", label: "movimiento" },
+      { key: "route", label: "ruta" },
+      { key: "market", label: "mercado" },
+      { key: "pax", label: "pasajeros", value: r => Math.round(r.pax) },
+      { key: "paxShare", label: "participacion_pax_mensual", value: r => r.paxShare !== null && r.paxShare !== undefined ? Number(r.paxShare).toFixed(4) : "" },
+      { key: "vuelos", label: "vuelos", value: r => Math.round(r.vuelos) },
+      { key: "asientos", label: "asientos", value: r => Number(r.asientos || 0) > 0 ? Math.round(r.asientos) : "" },
+      { key: "ocupacion", label: "factor_ocupacion", value: r => r.ocupacion !== null ? Number(r.ocupacion).toFixed(4) : "" }
+    ]
   );
 
   odSetDownloadButton(
     "odDownloadAirlineMonthly",
-    `oferta_demanda_ruta_aerolinea_mensual_${directionFileSuffix}_${filePart}_${YEAR_REF}.csv`,
+    `oferta_demanda_ruta_aerolinea_mensual_${airlineDirectionFileSuffix}_${filePart}_${YEAR_REF}.csv`,
     airlineRows.concat(airlineTotalRow),
     [
       { key: "anioMes", label: "anio_mes" },
@@ -7733,7 +7800,7 @@ function odRenderAdvancedTables(iata) {
       { key: "market", label: "mercado" },
       { key: "airline", label: "aerolinea" },
       { key: "pax", label: "pasajeros", value: r => Math.round(r.pax) },
-      { key: "paxShare", label: "participacion_pax_anual", value: r => r.paxShare !== null && r.paxShare !== undefined ? Number(r.paxShare).toFixed(4) : "" },
+      { key: "paxShare", label: "participacion_pax_mensual", value: r => r.paxShare !== null && r.paxShare !== undefined ? Number(r.paxShare).toFixed(4) : "" },
       { key: "vuelos", label: "vuelos", value: r => Math.round(r.vuelos) },
       { key: "asientos", label: "asientos", value: r => Number(r.asientos || 0) > 0 ? Math.round(r.asientos) : "" },
       { key: "ocupacion", label: "factor_ocupacion", value: r => r.ocupacion !== null ? Number(r.ocupacion).toFixed(4) : "" }
