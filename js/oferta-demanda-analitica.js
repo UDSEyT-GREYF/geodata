@@ -7053,30 +7053,133 @@ function odFormatSeasonListPlain(seasons) {
   return odJoinList(seasons.map(s => s.label.toLowerCase()));
 }
 
-function odBuildSeasonalityStationNote(highRows, lowRows) {
-  const highSeasons = odGetDistinctSeasons(highRows);
-  const lowSeasons = odGetDistinctSeasons(lowRows);
+function odFormatSeasonWithArticle(season) {
+  if (!season) return "la estación correspondiente";
 
-  let highText = "";
-  let lowText = "";
+  const key = clean(season.key);
+  const label = clean(season.label).toLowerCase();
+
+  if (key === "primavera") return `la ${label}`;
+  return `el ${label}`;
+}
+
+function odFormatSeasonListWithArticle(seasons) {
+  const values = (seasons || [])
+    .filter(Boolean)
+    .map(odFormatSeasonWithArticle);
+
+  return odJoinList(values);
+}
+
+function odBuildSeasonalityIntensity(rows, highRows, lowRows) {
+  const paxValues = (rows || [])
+    .map(row => Number(row.pax || 0))
+    .filter(value => Number.isFinite(value) && value > 0);
+
+  if (paxValues.length < 4) {
+    return {
+      level: "insuficiente",
+      top3Share: null,
+      coefficientVariation: null,
+      peakVsAvg: null,
+      peakValleyGap: null
+    };
+  }
+
+  const totalPax = paxValues.reduce((acc, value) => acc + value, 0);
+  const avgPax = totalPax / paxValues.length;
+  const maxPax = Math.max(...paxValues);
+  const minPax = Math.min(...paxValues);
+
+  const variance = paxValues.reduce((acc, value) => {
+    return acc + Math.pow(value - avgPax, 2);
+  }, 0) / paxValues.length;
+
+  const coefficientVariation = avgPax > 0
+    ? Math.sqrt(variance) / avgPax
+    : null;
+
+  const highPax = (highRows || []).reduce((acc, row) => acc + Number(row.pax || 0), 0);
+  const top3Share = totalPax > 0 ? highPax / totalPax : null;
+
+  const peakVsAvg = avgPax > 0 ? maxPax / avgPax : null;
+  const peakValleyGap = avgPax > 0 ? (maxPax - minPax) / avgPax : null;
+
+  /*
+    Criterio interpretativo:
+    - homogénea: variaciones bajas respecto del promedio mensual.
+    - moderada: hay meses altos/bajos, pero sin concentración extrema.
+    - marcada: la demanda se concentra claramente en algunos meses.
+  */
+  let level = "homogenea";
+
+  if (
+    Number(top3Share || 0) >= 0.38 ||
+    Number(coefficientVariation || 0) >= 0.22 ||
+    Number(peakVsAvg || 0) >= 1.50 ||
+    Number(peakValleyGap || 0) >= 0.75
+  ) {
+    level = "marcada";
+  } else if (
+    Number(top3Share || 0) >= 0.31 ||
+    Number(coefficientVariation || 0) >= 0.12 ||
+    Number(peakVsAvg || 0) >= 1.25 ||
+    Number(peakValleyGap || 0) >= 0.40
+  ) {
+    level = "moderada";
+  }
+
+  return {
+    level,
+    top3Share,
+    coefficientVariation,
+    peakVsAvg,
+    peakValleyGap
+  };
+}
+
+function odBuildHighSeasonInterpretation(highSeasons) {
+  if (!highSeasons || !highSeasons.length) {
+    return "No fue posible asociar con precisión los meses de mayor actividad a una estación del año.";
+  }
 
   if (highSeasons.length === 1) {
-    highText = `La demanda presenta su mayor intensidad durante el ${odFormatSeasonListPlain(highSeasons)}.`;
-  } else if (highSeasons.length > 1) {
-    highText = `La temporada alta combina meses de ${odFormatSeasonListPlain(highSeasons)}, lo que indica una estacionalidad distribuida entre más de una estación del año.`;
-  } else {
-    highText = "No fue posible asociar con precisión la temporada alta a una estación del año.";
+    return `La mayor actividad se concentra principalmente durante ${odFormatSeasonWithArticle(highSeasons[0])}.`;
+  }
+
+  return `Los meses de mayor actividad se distribuyen entre ${odFormatSeasonListWithArticle(highSeasons)}, por lo que la temporada alta no responde a una única estación del año.`;
+}
+
+function odBuildLowSeasonInterpretation(lowSeasons) {
+  if (!lowSeasons || !lowSeasons.length) {
+    return "No fue posible asociar con precisión los meses de menor actividad a una estación del año.";
   }
 
   if (lowSeasons.length === 1) {
-    lowText = `En cambio, la menor demanda se concentra principalmente en el ${odFormatSeasonListPlain(lowSeasons)}.`;
-  } else if (lowSeasons.length > 1) {
-    lowText = `La temporada baja se reparte entre meses de ${odFormatSeasonListPlain(lowSeasons)}.`;
-  } else {
-    lowText = "Tampoco fue posible identificar con claridad la estacionalidad de los meses de menor demanda.";
+    return `La menor demanda se ubica principalmente durante ${odFormatSeasonWithArticle(lowSeasons[0])}.`;
   }
 
-  return `${highText} ${lowText}`;
+  return `La menor demanda se reparte entre ${odFormatSeasonListWithArticle(lowSeasons)}.`;
+}
+
+function odBuildSeasonalityStationNote(rows, highRows, lowRows) {
+  const highSeasons = odGetDistinctSeasons(highRows);
+  const lowSeasons = odGetDistinctSeasons(lowRows);
+  const intensity = odBuildSeasonalityIntensity(rows, highRows, lowRows);
+
+  if (intensity.level === "insuficiente") {
+    return "No hay datos mensuales suficientes para caracterizar con precisión la estacionalidad del aeropuerto.";
+  }
+
+  if (intensity.level === "homogenea") {
+    return "La demanda mensual presenta un comportamiento relativamente homogéneo a lo largo del año. Aunque se identifican meses de mayor y menor actividad, la diferencia entre ellos no permite caracterizar una estacionalidad marcada; por lo tanto, la temporada alta y baja deben leerse como variaciones relativas dentro de un patrón anual estable.";
+  }
+
+  if (intensity.level === "moderada") {
+    return `La demanda mensual muestra variaciones moderadas a lo largo del año. ${odBuildHighSeasonInterpretation(highSeasons)} ${odBuildLowSeasonInterpretation(lowSeasons)} La estacionalidad existe, aunque no configura una concentración extrema de la demanda.`;
+  }
+
+  return `La distribución mensual evidencia una estacionalidad definida, con una concentración relativa de pasajeros en los meses de mayor actividad. ${odBuildHighSeasonInterpretation(highSeasons)} ${odBuildLowSeasonInterpretation(lowSeasons)}`;
 }
 
 function odGetSeasonColor(monthNum, alpha = 0.82) {
@@ -7167,7 +7270,7 @@ function odBuildAdvancedSeasonality(summary) {
     valley: byPaxAsc[0],
     highShare: totalPax > 0 ? highPax / totalPax : null,
     lowShare: totalPax > 0 ? lowPax / totalPax : null,
-    note: odBuildSeasonalityStationNote(high, low)
+    note: odBuildSeasonalityStationNote(rows, high, low)
   };
 }
 function odRenderSeasonalityAdvanced(iata, summary) {
