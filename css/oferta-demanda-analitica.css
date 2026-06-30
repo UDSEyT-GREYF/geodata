@@ -2053,3 +2053,33 @@ body {
   box-shadow: 0 0 0 1px rgba(31, 79, 130, 0.15);
   white-space: nowrap;
 }
+.od-seasonality-chart-wrap-polar {
+  min-height: 340px;
+}
+
+.od-season-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #173a68;
+}
+
+.od-season-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 1px solid #c7d3e3;
+  border-radius: 999px;
+  background: #f8fbff;
+}
+
+.od-season-legend-icon {
+  font-size: 14px;
+  line-height: 1;
+}
