@@ -2054,7 +2054,8 @@ body {
   white-space: nowrap;
 }
 .od-seasonality-chart-wrap-polar {
-  min-height: 340px;
+  min-height: 370px;
+  padding: 8px 10px 0;
 }
 
 .od-season-legend {
@@ -2073,13 +2074,43 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 8px;
+  padding: 4px 10px;
   border: 1px solid #c7d3e3;
   border-radius: 999px;
   background: #f8fbff;
+  font-weight: 600;
+}
+
+.od-season-legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,0.15);
 }
 
 .od-season-legend-icon {
   font-size: 14px;
   line-height: 1;
+}
+
+/* mismos colores que el gráfico */
+.od-season-legend-item.is-verano .od-season-legend-swatch {
+  background: rgba(244, 180, 0, 0.82);
+  border-color: #d79a00;
+}
+
+.od-season-legend-item.is-otono .od-season-legend-swatch {
+  background: rgba(201, 122, 43, 0.82);
+  border-color: #9f5e19;
+}
+
+.od-season-legend-item.is-invierno .od-season-legend-swatch {
+  background: rgba(79, 134, 198, 0.82);
+  border-color: #2f5f96;
+}
+
+.od-season-legend-item.is-primavera .od-season-legend-swatch {
+  background: rgba(98, 181, 107, 0.82);
+  border-color: #4c9e57;
 }
