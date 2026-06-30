@@ -411,7 +411,7 @@
   Vista agregada mensual por ruta. La descarga CSV incluye todas las filas disponibles; la hoja muestra una vista de lectura.
 </div>
         </div>
-        <button type="button" class="od-download-btn" id="odDownloadRouteMonthly">Descargar CSV</button>
+        <button type="button" class="od-download-btn" id="odDownloadRouteMonthly">Descargar Excel</button>
       </div>
 
       <div class="od-table-wrap od-route-monthly-wrap">
@@ -467,7 +467,7 @@
           <div class="od-panel-subtitle" id="odAdvancedAirportName2">Aeropuerto</div>
           <div class="od-panel-subtitle od-analytic-count" id="odAnalyticRowsCount">–</div>
         </div>
-        <button type="button" class="od-download-btn" id="odDownloadAirlineMonthly">Descargar CSV</button>
+        <button type="button" class="od-download-btn" id="odDownloadAirlineMonthly">Descargar Excel</button>
       </div>
 
       <div class="od-table-wrap od-table-wrap-large od-airline-monthly-wrap">
@@ -499,12 +499,17 @@
 
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin="">
-  </script>
-  <script src="js/oferta-demanda-analitica.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin="">
+</script>
+
+<!-- Exportación Excel con formato -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
+
+<script src="js/oferta-demanda-analitica.js"></script>
 </body>
 </html>
