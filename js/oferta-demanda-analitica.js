@@ -4576,7 +4576,7 @@ function buildFdoOfertaDemandaSummary(year = YEAR_REF) {
       return buildFdoOfertaDemandaSummary(year);
     }
 
-let rows = rutasOfertaRows.filter(r =>
+let rows = odGetSummaryRouteRows(year).filter(r =>
   Number(r.year) === Number(year) &&
   odRouteIncludesAirport(r, selected)
 );
@@ -4584,7 +4584,6 @@ let rows = rutasOfertaRows.filter(r =>
 if (soloComercial) {
   rows = rows.filter(r => clean(r.tipoOperacion).toLowerCase().includes("comercial"));
 }
-const odFrequencyDirectionFactor = odGetFrequencyDirectionFactor(rows);
     if (!rows.length) {
       return {
         totalPax: 0,
@@ -4830,7 +4829,7 @@ totalFrecuenciaSemanal = Array.from(freqByRouteAirline.values())
   .reduce((acc, item) => {
     if (!item.count) return acc;
     return acc + (item.sum / item.count);
-  }, 0) * odFrequencyDirectionFactor;
+  }, 0);
     const destinos = Array.from(destinosMap.values())
       .filter(d => (d.pax > 0 || d.asientos > 0 || d.vuelos > 0))
       .sort((a, b) => b.pax - a.pax);
@@ -4875,7 +4874,7 @@ const frecuenciaSemanalRuta = Array.from(route.freqByRouteAirline?.values?.() ||
   .reduce((acc, item) => {
     if (!item.count) return acc;
     return acc + (item.sum / item.count);
-  }, 0) * odFrequencyDirectionFactor;
+  }, 0);
 
 return {
   key: route.key,
@@ -5863,6 +5862,20 @@ function odGetHistoricRouteRows() {
   return rutasOfertaHistoricasRows && rutasOfertaHistoricasRows.length
     ? rutasOfertaHistoricasRows
     : rutasOfertaRows;
+}
+  function odGetSummaryRouteRows(year = YEAR_REF) {
+  const historicRows = (rutasOfertaHistoricasRows || []).filter(r =>
+    Number(r.year) === Number(year)
+  );
+
+  /*
+    Para los KPIs y gráficos generales se usa la misma fuente que
+    oferta-demanda original: rutasaereas.csv.
+    El JSON con arribos/partidas queda para las tablas analíticas.
+  */
+  if (historicRows.length) return historicRows;
+
+  return rutasOfertaRows || [];
 }
 function buildHistoricRouteSeriesFromGeneral(iata) {
   const selected = clean(iata).toUpperCase();
@@ -8359,8 +8372,8 @@ const odLoadFactorForKpi = odGetLoadFactorForDisplay(summary);
 
 setText(
   "odLoadFactor",
-  odLoadFactorForKpi !== null
-    ? odFormatPctPlain(odLoadFactorForKpi)
+  summary.loadFactorWeighted !== null
+    ? `${(summary.loadFactorWeighted * 100).toLocaleString("es-AR", { maximumFractionDigits: 1 })}%`
     : "–"
 );
 const snaRank = getSNAPassengerRanking(iata, YEAR_REF);
