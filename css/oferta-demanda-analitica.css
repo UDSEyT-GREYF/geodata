@@ -2169,3 +2169,237 @@ body {
 .od-seasonality-col-small {
   width: 14%;
 }
+
+
+/* ==========================================================
+   CORRECCIÓN A4 / TABLAS ANALÍTICAS / NUMERACIÓN SIMPLE
+   ========================================================== */
+.page-oferta-demanda-analitica {
+  counter-reset: od-page-counter;
+}
+
+.oferta-demanda-sheet,
+.page-oferta-demanda-analitica .oferta-demanda-sheet {
+  position: relative;
+  width: 210mm;
+  min-width: 210mm;
+  height: 297mm;
+  min-height: 297mm;
+  max-height: 297mm;
+  overflow: hidden;
+  break-after: page;
+  page-break-after: always;
+  counter-increment: od-page-counter;
+}
+
+.oferta-demanda-sheet::after {
+  content: counter(od-page-counter);
+  position: absolute;
+  right: 5mm;
+  bottom: 3mm;
+  font-size: 9px;
+  line-height: 1;
+  font-weight: 600;
+  color: #5f6e7d;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.oferta-demanda-sheet.is-hidden,
+.od-routes-extra-page.is-hidden,
+.od-historic-page.is-hidden {
+  display: none !important;
+  counter-increment: none;
+}
+
+.oferta-demanda-sheet > .od-page {
+  height: 297mm;
+  min-height: 297mm;
+  max-height: 297mm;
+  padding: 3mm 5mm 8mm 5mm;
+  overflow: hidden;
+}
+
+.od-analytics-page .od-page {
+  gap: 5px;
+}
+
+.od-seasonality-chart-wrap-polar {
+  height: 95mm;
+  min-height: 0;
+  padding: 4px 10px 0;
+}
+
+.od-season-legend {
+  margin-top: 4px;
+  margin-bottom: 6px;
+  gap: 7px 12px;
+  font-size: 10.5px;
+}
+
+.od-season-legend-item {
+  padding: 3px 8px;
+}
+
+.od-seasonality-table-title {
+  margin: 6px 0 4px;
+  padding: 0 10px;
+  font-size: 10.5px;
+}
+
+.od-seasonality-monthly-table-wrap {
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+.od-seasonality-monthly-table {
+  table-layout: fixed;
+}
+
+.od-seasonality-monthly-table th,
+.od-seasonality-monthly-table td {
+  padding: 3px 6px;
+  font-size: 8.2px;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.od-seasonality-monthly-table th:first-child,
+.od-seasonality-monthly-table td:first-child {
+  text-align: left;
+}
+
+.od-seasonality-col-month { width: 30%; }
+.od-seasonality-col-value { width: 21%; }
+.od-seasonality-col-small { width: 14%; }
+
+.od-route-month-page .od-analytics-table-panel,
+.od-airline-detail-panel {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.od-route-month-page .od-panel-head,
+.od-airline-detail-panel .od-panel-head {
+  padding: 6px 8px 5px;
+}
+
+.od-route-month-page .od-panel-subtitle,
+.od-airline-detail-panel .od-panel-subtitle {
+  font-size: 8.6px;
+}
+
+.od-route-monthly-wrap,
+.od-airline-monthly-wrap {
+  max-height: none !important;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.od-route-monthly-table,
+.od-airline-monthly-table {
+  table-layout: fixed;
+  font-size: 7.35px;
+  line-height: 1.12;
+}
+
+.od-route-monthly-table th,
+.od-route-monthly-table td,
+.od-airline-monthly-table th,
+.od-airline-monthly-table td {
+  padding: 2.6px 3.5px;
+}
+
+.od-route-monthly-table th,
+.od-airline-monthly-table th {
+  position: static;
+  font-size: 7.2px;
+  line-height: 1.08;
+}
+
+.od-route-monthly-table td:nth-child(2),
+.od-airline-monthly-table td:nth-child(2) {
+  min-width: 0 !important;
+}
+
+.od-route-monthly-table th:nth-child(1),
+.od-route-monthly-table td:nth-child(1) { width: 13%; }
+.od-route-monthly-table th:nth-child(2),
+.od-route-monthly-table td:nth-child(2) { width: 35%; }
+.od-route-monthly-table th:nth-child(3),
+.od-route-monthly-table td:nth-child(3) { width: 10%; }
+.od-route-monthly-table th:nth-child(4),
+.od-route-monthly-table td:nth-child(4) { width: 11%; }
+.od-route-monthly-table th:nth-child(5),
+.od-route-monthly-table td:nth-child(5) { width: 9%; }
+.od-route-monthly-table th:nth-child(6),
+.od-route-monthly-table td:nth-child(6) { width: 8%; }
+.od-route-monthly-table th:nth-child(7),
+.od-route-monthly-table td:nth-child(7) { width: 8%; }
+.od-route-monthly-table th:nth-child(8),
+.od-route-monthly-table td:nth-child(8) { width: 6%; }
+
+.od-airline-monthly-table th:nth-child(1),
+.od-airline-monthly-table td:nth-child(1) { width: 10%; }
+.od-airline-monthly-table th:nth-child(2),
+.od-airline-monthly-table td:nth-child(2) { width: 8%; }
+.od-airline-monthly-table th:nth-child(3),
+.od-airline-monthly-table td:nth-child(3) { width: 27%; }
+.od-airline-monthly-table th:nth-child(4),
+.od-airline-monthly-table td:nth-child(4) { width: 8%; }
+.od-airline-monthly-table th:nth-child(5),
+.od-airline-monthly-table td:nth-child(5) { width: 14%; }
+.od-airline-monthly-table th:nth-child(6),
+.od-airline-monthly-table td:nth-child(6) { width: 9%; }
+.od-airline-monthly-table th:nth-child(7),
+.od-airline-monthly-table td:nth-child(7) { width: 7%; }
+.od-airline-monthly-table th:nth-child(8),
+.od-airline-monthly-table td:nth-child(8) { width: 6%; }
+.od-airline-monthly-table th:nth-child(9),
+.od-airline-monthly-table td:nth-child(9) { width: 6%; }
+.od-airline-monthly-table th:nth-child(10),
+.od-airline-monthly-table td:nth-child(10) { width: 5%; }
+
+.od-data-table .od-total-row td,
+.od-total-row td {
+  font-weight: 800;
+  color: #002855;
+  background: #f2f6fb;
+  border-top: 2px solid #c7d6e7;
+}
+
+.od-data-table td.num,
+.od-data-table th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media print {
+  .oferta-demanda-sheet,
+  .page-oferta-demanda-analitica .oferta-demanda-sheet {
+    width: 210mm;
+    height: 297mm;
+    min-height: 297mm;
+    max-height: 297mm;
+    overflow: hidden;
+    box-shadow: none;
+    border: none;
+    margin: 0;
+  }
+
+  .oferta-demanda-sheet > .od-page {
+    height: 297mm;
+    min-height: 297mm;
+    max-height: 297mm;
+    overflow: hidden;
+  }
+
+  .od-route-monthly-wrap,
+  .od-airline-monthly-wrap,
+  .od-table-wrap {
+    overflow: hidden !important;
+  }
+}
