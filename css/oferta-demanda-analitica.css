@@ -2114,3 +2114,58 @@ body {
   background: rgba(98, 181, 107, 0.82);
   border-color: #4c9e57;
 }
+/* Tabla mensual de estacionalidad */
+.od-seasonality-table-title {
+  margin: 10px 0 6px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #003b70;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.od-seasonality-monthly-table-wrap {
+  max-height: none !important;
+  height: auto !important;
+  overflow: visible !important;
+  border-radius: 8px;
+}
+
+.od-seasonality-monthly-table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.od-seasonality-monthly-table th,
+.od-seasonality-monthly-table td {
+  padding: 5px 8px;
+  vertical-align: middle;
+}
+
+.od-seasonality-monthly-table th {
+  text-align: center;
+  font-size: 9px;
+}
+
+.od-seasonality-monthly-table td {
+  text-align: center;
+  font-size: 9px;
+}
+
+.od-seasonality-monthly-table th:first-child,
+.od-seasonality-monthly-table td:first-child {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.od-seasonality-col-month {
+  width: 34%;
+}
+
+.od-seasonality-col-value {
+  width: 19%;
+}
+
+.od-seasonality-col-small {
+  width: 14%;
+}
