@@ -344,22 +344,35 @@
 </div>
 
 
-      <div class="od-table-wrap od-table-wrap-compact">
-        <table class="od-data-table">
-          <thead>
-            <tr>
-              <th>Mes</th>
-              <th>Pasajeros</th>
-              <th>Vuelos</th>
-              <th>Asientos</th>
-              <th>Ocupación</th>
-            </tr>
-          </thead>
-          <tbody id="odSeasonalityMonthlyBody">
-            <tr><td colspan="5">Calculando…</td></tr>
-          </tbody>
-        </table>
-      </div>
+<div class="od-seasonality-table-title">
+  Pasajeros, vuelos, asientos y ocupación por mes 2025
+</div>
+
+<div class="od-table-wrap od-table-wrap-compact od-seasonality-monthly-table-wrap">
+  <table class="od-data-table od-seasonality-monthly-table">
+    <colgroup>
+      <col class="od-seasonality-col-month">
+      <col class="od-seasonality-col-value">
+      <col class="od-seasonality-col-small">
+      <col class="od-seasonality-col-value">
+      <col class="od-seasonality-col-small">
+    </colgroup>
+
+    <thead>
+      <tr>
+        <th>Mes</th>
+        <th>Pasajeros</th>
+        <th>Vuelos</th>
+        <th>Asientos</th>
+        <th>Ocupación</th>
+      </tr>
+    </thead>
+
+    <tbody id="odSeasonalityMonthlyBody">
+      <tr><td colspan="5">Calculando…</td></tr>
+    </tbody>
+  </table>
+</div>
     </section>
 
     <section class="od-panel od-analytics-panel od-analytics-table-panel">
