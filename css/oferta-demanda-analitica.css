@@ -2295,7 +2295,7 @@ body {
   max-height: none !important;
   flex: 1 1 auto;
   min-height: 0;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .od-route-monthly-table,
@@ -2325,21 +2325,31 @@ body {
 }
 
 .od-route-monthly-table th:nth-child(1),
-.od-route-monthly-table td:nth-child(1) { width: 13%; }
+.od-route-monthly-table td:nth-child(1) { width: 10%; }
+
 .od-route-monthly-table th:nth-child(2),
-.od-route-monthly-table td:nth-child(2) { width: 35%; }
+.od-route-monthly-table td:nth-child(2) { width: 8%; }
+
 .od-route-monthly-table th:nth-child(3),
-.od-route-monthly-table td:nth-child(3) { width: 10%; }
+.od-route-monthly-table td:nth-child(3) { width: 30%; }
+
 .od-route-monthly-table th:nth-child(4),
-.od-route-monthly-table td:nth-child(4) { width: 11%; }
+.od-route-monthly-table td:nth-child(4) { width: 9%; }
+
 .od-route-monthly-table th:nth-child(5),
-.od-route-monthly-table td:nth-child(5) { width: 9%; }
+.od-route-monthly-table td:nth-child(5) { width: 10%; }
+
 .od-route-monthly-table th:nth-child(6),
 .od-route-monthly-table td:nth-child(6) { width: 8%; }
+
 .od-route-monthly-table th:nth-child(7),
-.od-route-monthly-table td:nth-child(7) { width: 8%; }
+.od-route-monthly-table td:nth-child(7) { width: 7%; }
+
 .od-route-monthly-table th:nth-child(8),
-.od-route-monthly-table td:nth-child(8) { width: 6%; }
+.od-route-monthly-table td:nth-child(8) { width: 9%; }
+
+.od-route-monthly-table th:nth-child(9),
+.od-route-monthly-table td:nth-child(9) { width: 9%; }
 
 .od-airline-monthly-table th:nth-child(1),
 .od-airline-monthly-table td:nth-child(1) { width: 10%; }
