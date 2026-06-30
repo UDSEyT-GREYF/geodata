@@ -3611,10 +3611,20 @@ function movementJsonRowToOfertaRow(row) {
     endpointB = endpointB || parts[1] || "";
   }
 
+  const year = Number(row.year || row.anio || row.año || YEAR_REF);
+  const month = Number(row.month || row.mes);
+
+  const anioMes = clean(row.anioMes) ||
+    (
+      Number.isFinite(year) && Number.isFinite(month)
+        ? `${year}-${String(month).padStart(2, "0")}`
+        : ""
+    );
+
   return {
-    anioMes: clean(row.anioMes),
-    date: parseFechaFlexible(row.anioMes),
-    year: Number(row.year || 2025),
+    anioMes,
+    date: parseFechaFlexible(anioMes),
+    year,
 
     cityPair,
     endpointA,
@@ -3630,7 +3640,7 @@ function movementJsonRowToOfertaRow(row) {
     frecuenciaSemanal: parseNumber(row.frecuenciaSemanal),
 
     tipoMovimiento: clean(row.tipoMovimiento),
-    tipoMovimientoNorm: clean(row.tipoMovimientoNorm).toLowerCase(),
+    tipoMovimientoNorm: clean(row.tipoMovimientoNorm || row.tipoMovimiento).toLowerCase(),
 
     distanciaKm: NaN
   };
@@ -3638,17 +3648,20 @@ function movementJsonRowToOfertaRow(row) {
 
 function routeMovementBelongsToAirport(row, selectedIata) {
   const selected = clean(selectedIata).toUpperCase();
-  const mov = clean(row.tipoMovimientoNorm).toLowerCase();
+  const mov = normalizeTextKey(row.tipoMovimientoNorm || row.tipoMovimiento);
 
-  if (mov === "despegue") {
-    return row.endpointA === selected;
+  if (mov.includes("despeg")) {
+    return clean(row.endpointA).toUpperCase() === selected;
   }
 
-  if (mov === "aterrizaje") {
-    return row.endpointB === selected;
+  if (mov.includes("aterriz")) {
+    return clean(row.endpointB).toUpperCase() === selected;
   }
 
-  return row.endpointA === selected || row.endpointB === selected;
+  return (
+    clean(row.endpointA).toUpperCase() === selected ||
+    clean(row.endpointB).toUpperCase() === selected
+  );
 }
 
 function getOtherEndpointForSelected(row, selectedIata) {
@@ -4513,10 +4526,10 @@ function buildFdoOfertaDemandaSummary(year = YEAR_REF) {
       return buildFdoOfertaDemandaSummary(year);
     }
 
-    let rows = rutasOfertaRows.filter(r =>
-      (r.endpointA === selected || r.endpointB === selected) &&
-      r.year === year
-    );
+let rows = rutasOfertaRows.filter(r =>
+  Number(r.year) === Number(year) &&
+  routeMovementBelongsToAirport(r, selected)
+);
 
 if (soloComercial) {
   rows = rows.filter(r => clean(r.tipoOperacion).toLowerCase().includes("comercial"));
@@ -7504,25 +7517,32 @@ ensureHistoricSectionOrder();
     const select = q("airportSelect");
 
     try {
+const rootAnalitica = document.querySelector("#ofertaDemandaAnalitica");
+
+const routesMovementsUrl =
+  rootAnalitica?.dataset?.routesMovementsUrl ||
+  document.body?.dataset?.routesMovementsUrl ||
+  ROUTES_MOVEMENTS_2025_JSON_PATH;
+
 const [
   airportsResp,
-  rutasOfertaResp,
+  rutasMovimientosResp,
   rutasKmResp,
   iataWorldResp,
   ourAirportsResp,
   provinciasResp,
   airlineAliasResp,
-fdoTrafficResp,
-fdoRoutesMonthlyResp,
-fdoRoutesAnnualResp,
-operationalProfileResp,
+  fdoTrafficResp,
+  fdoRoutesMonthlyResp,
+  fdoRoutesAnnualResp,
+  operationalProfileResp,
   descriptivoResp,
   paxMensualResp,
   movMensualResp,
   extraTrafficResp
 ] = await Promise.all([
   fetch(AEROPUERTOS_GEOJSON_PATH),
-  fetch(RUTAS_CSV_PATH).catch(() => null),
+  fetch(routesMovementsUrl).catch(() => null),
   fetch(RUTAS_KM_CSV_PATH).catch(() => null),
   fetch(IATA_MUNDO_CSV_PATH).catch(() => null),
   fetch(OURAIRPORTS_CSV_PATH).catch(() => null),
@@ -7559,10 +7579,31 @@ aeropuertos = (geojson.features || [])
         clean(firstNonEmpty(a, ["IATA"])).localeCompare(clean(firstNonEmpty(b, ["IATA"])), "es")
       );
 
-if (rutasOfertaResp && rutasOfertaResp.ok) {
-  rutasOfertaRows = parseRutasOfertaCSV(await readTextSmart(rutasOfertaResp));
+if (rutasMovimientosResp && rutasMovimientosResp.ok) {
+  const routesMovementsJson = await rutasMovimientosResp.json();
+
+  rutasMovimientos2025Rows = Array.isArray(routesMovementsJson.records)
+    ? routesMovementsJson.records
+    : [];
+
+  rutasOfertaRows = rutasMovimientos2025Rows
+    .map(movementJsonRowToOfertaRow)
+    .filter(row =>
+      row.endpointA &&
+      row.endpointB &&
+      row.endpointA !== row.endpointB &&
+      Number(row.year) === Number(YEAR_REF)
+    );
+
+  console.info("[OD Analítica] Rutas 2025 desde JSON:", {
+    fuente: routesMovementsUrl,
+    registrosJson: rutasMovimientos2025Rows.length,
+    registrosUsables: rutasOfertaRows.length
+  });
 } else {
+  rutasMovimientos2025Rows = [];
   rutasOfertaRows = [];
+  console.warn("[OD Analítica] No se pudo cargar rutas_aereas_movimientos_2025.json");
 }
 
 if (rutasKmResp && rutasKmResp.ok) {
