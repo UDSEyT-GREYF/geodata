@@ -2301,8 +2301,8 @@ body {
 .od-route-monthly-table,
 .od-airline-monthly-table {
   table-layout: fixed;
-  font-size: 7.35px;
-  line-height: 1.12;
+  font-size: 10.5px;
+  line-height: 1.5;
 }
 
 .od-route-monthly-table th,
