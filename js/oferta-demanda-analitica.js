@@ -6921,7 +6921,11 @@ renderHistoricAirportTrafficChart(code);
 function odFormatMonthLabelFromKey(anioMes) {
   const d = parseFechaFlexible(anioMes);
   if (!d) return clean(anioMes);
-  return d.toLocaleDateString("es-AR", { month: "long", year: "numeric" });
+
+  const mes = d.toLocaleDateString("es-AR", { month: "long" });
+  const anio = d.getFullYear();
+
+  return `${mes} ${anio}`;
 }
 
 function odFormatPctPlain(value) {
