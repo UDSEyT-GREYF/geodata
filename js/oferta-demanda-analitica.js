@@ -7155,14 +7155,17 @@ function odRenderSeasonalityChart(rows) {
     return am - bm;
   });
 
-  const labels = chartRows.map(row => {
-    const season = odGetSeasonInfo(row.mesNum);
-    return `${formatMonthShort(row.anioMes)} ${season ? season.icon : ""}`.trim();
-  });
-
+  const labels = chartRows.map(row => formatMonthShort(row.anioMes));
   const pax = chartRows.map(row => Math.round(Number(row.pax || 0)));
-  const backgroundColor = chartRows.map(row => odGetSeasonColor(row.mesNum, 0.74));
+  const backgroundColor = chartRows.map(row => odGetSeasonColor(row.mesNum, 0.52));
   const borderColor = chartRows.map(row => odGetSeasonBorderColor(row.mesNum));
+
+  const polarTickOverlayPlugin = {
+    id: "polarTickOverlayPlugin",
+    afterDatasetsDraw(chart) {
+      odDrawPolarRadialTickLabels(chart);
+    }
+  };
 
   canvas._odChart = new Chart(canvas, {
     type: "polarArea",
@@ -7174,10 +7177,11 @@ function odRenderSeasonalityChart(rows) {
           data: pax,
           backgroundColor,
           borderColor,
-          borderWidth: 1.2
+          borderWidth: 1.3
         }
       ]
     },
+    plugins: [polarTickOverlayPlugin],
     options: {
       responsive: true,
       maintainAspectRatio: false,
@@ -7185,9 +7189,9 @@ function odRenderSeasonalityChart(rows) {
       layout: {
         padding: {
           top: 10,
-          right: 12,
+          right: 16,
           bottom: 6,
-          left: 12
+          left: 16
         }
       },
       plugins: {
@@ -7201,7 +7205,7 @@ function odRenderSeasonalityChart(rows) {
           },
           padding: {
             top: 4,
-            bottom: 10
+            bottom: 12
           }
         },
         legend: {
@@ -7228,13 +7232,7 @@ function odRenderSeasonalityChart(rows) {
         r: {
           beginAtZero: true,
           ticks: {
-            color: "#516072",
-            z: 100,
-            backdropColor: "rgba(255,255,255,0.92)",
-            showLabelBackdrop: true,
-            backdropPadding: 4,
-            font: { size: 10, weight: "600" },
-            callback: value => formatNumber(value)
+            display: false
           },
           grid: {
             color: "rgba(0,0,0,0.12)"
@@ -7243,7 +7241,16 @@ function odRenderSeasonalityChart(rows) {
             color: "rgba(0,0,0,0.12)"
           },
           pointLabels: {
-            display: false
+            display: true,
+            centerPointLabels: false,
+            color: "#34506f",
+            font: {
+              size: 11,
+              weight: "600"
+            },
+            callback(label) {
+              return label;
+            }
           }
         }
       }
