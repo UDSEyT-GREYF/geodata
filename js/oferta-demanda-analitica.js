@@ -82,6 +82,7 @@ const OD_AIRPORTS_WITHOUT_REGULAR_COMMERCIAL_SERVICE_2025 = new Set([
   let odConnectivityMaps = {};
   let currentIATA = "";
   let rutasMovimientos2025Rows = [];
+  let rutasOfertaHistoricasRows = [];
   let rutasKmRows = [];
   let rutasKmIndex = new Map();
   let airlineAliasIndex = {};
@@ -5825,15 +5826,19 @@ function addHistoricRouteRow(acc, row) {
   acc.years.add(year);
   acc.totalByYear.set(year, (acc.totalByYear.get(year) || 0) + pax);
 }
-
+function odGetHistoricRouteRows() {
+  return rutasOfertaHistoricasRows && rutasOfertaHistoricasRows.length
+    ? rutasOfertaHistoricasRows
+    : rutasOfertaRows;
+}
 function buildHistoricRouteSeriesFromGeneral(iata) {
   const selected = clean(iata).toUpperCase();
   const acc = { routes: new Map(), years: new Set(), totalByYear: new Map() };
 
-  const rows = (rutasOfertaRows || []).filter(r =>
-    (r.endpointA === selected || r.endpointB === selected) &&
-    clean(r.tipoOperacion).toLowerCase().includes("comercial")
-  );
+const rows = (odGetHistoricRouteRows() || []).filter(r =>
+  (r.endpointA === selected || r.endpointB === selected) &&
+  clean(r.tipoOperacion).toLowerCase().includes("comercial")
+);
 
   rows.forEach(r => {
     const otherCodeRaw = (r.endpointA === selected) ? r.endpointB : r.endpointA;
@@ -6277,6 +6282,27 @@ function annualTotalsFromMonthlyRows(rows) {
     .sort((a, b) => a.year - b.year);
 }
 
+function odAnnualPaxFromHistoricJson(iata) {
+  const code = clean(iata).toUpperCase();
+  const d = getHistoricTrafficDataForAirport(code);
+
+  const series = Array.isArray(d?.annual_series)
+    ? d.annual_series
+    : [];
+
+  return series
+    .map(row => ({
+      year: Number(row.year),
+      valor: parseNumber(row.pax ?? row.pasajeros ?? row.valor)
+    }))
+    .filter(row =>
+      Number.isFinite(row.year) &&
+      Number.isFinite(row.valor) &&
+      row.valor > 0
+    )
+    .sort((a, b) => a.year - b.year);
+}
+
 function buildHistoricAirportTrafficChartData(iata) {
   const code = clean(iata).toUpperCase();
 
@@ -6288,14 +6314,27 @@ function buildHistoricAirportTrafficChartData(iata) {
     buildTrafficMonthlySeries(code, "internacional", "pax")
   );
 
+  let paxTotal = annualTotalsFromMonthlyRows(
+    buildTrafficMonthlySeries(code, "total", "pax")
+  );
+
+  if (!paxTotal.length) {
+    paxTotal = odAnnualPaxFromHistoricJson(code);
+  }
+
   const movTotal = annualTotalsFromMonthlyRows(
     buildTrafficMonthlySeries(code, "total", "mov")
   );
+
+  const hasSegmentedPax =
+    paxCab.some(r => Number(r.valor || 0) > 0) ||
+    paxInt.some(r => Number(r.valor || 0) > 0);
 
   const yearsSet = new Set();
 
   paxCab.forEach(r => yearsSet.add(r.year));
   paxInt.forEach(r => yearsSet.add(r.year));
+  paxTotal.forEach(r => yearsSet.add(r.year));
   movTotal.forEach(r => yearsSet.add(r.year));
 
   const years = Array.from(yearsSet)
@@ -6304,14 +6343,33 @@ function buildHistoricAirportTrafficChartData(iata) {
 
   const cabMap = new Map(paxCab.map(r => [r.year, r.valor]));
   const intMap = new Map(paxInt.map(r => [r.year, r.valor]));
+  const totalPaxMap = new Map(paxTotal.map(r => [r.year, r.valor]));
   const movMap = new Map(movTotal.map(r => [r.year, r.valor]));
+
+  const paxCabSeries = years.map(y => {
+    if (hasSegmentedPax) return Math.round(cabMap.get(y) || 0);
+    return Math.round(totalPaxMap.get(y) || 0);
+  });
+
+  const paxIntSeries = hasSegmentedPax
+    ? years.map(y => Math.round(intMap.get(y) || 0))
+    : years.map(() => 0);
+
+  const movSeries = years.map(y => Math.round(movMap.get(y) || 0));
 
   return {
     years,
-    paxCab: years.map(y => Math.round(cabMap.get(y) || 0)),
-    paxInt: years.map(y => Math.round(intMap.get(y) || 0)),
-    movTotal: years.map(y => Math.round(movMap.get(y) || 0)),
-    hasData: years.length > 0
+    paxCab: paxCabSeries,
+    paxInt: paxIntSeries,
+    movTotal: movSeries,
+    isPaxTotalOnly: !hasSegmentedPax,
+    hasData:
+      years.length > 0 &&
+      (
+        paxCabSeries.some(v => v > 0) ||
+        paxIntSeries.some(v => v > 0) ||
+        movSeries.some(v => v > 0)
+      )
   };
 }
 
@@ -6393,18 +6451,21 @@ const subtitleEl = q("odHistoricAirportTrafficSubtitle");
 
   wrap.style.display = "";
 
-  const hasInt = data.paxInt.some(v => v > 0);
-  const hasMov = data.movTotal.some(v => v > 0);
+const hasInt = data.paxInt.some(v => v > 0);
+const hasMov = data.movTotal.some(v => v > 0);
+
 if (subtitleEl) {
-  subtitleEl.innerHTML =
-    `Pasajeros <span class="od-sub-pax-cab">cabotaje</span>` +
-    (hasInt ? ` e <span class="od-sub-pax-int">internacional</span>` : ``) +
-    (hasMov ? ` y <span class="od-sub-mov-total">movimientos totales</span>` : ``);
+  subtitleEl.innerHTML = data.isPaxTotalOnly
+    ? `Pasajeros <span class="od-sub-pax-cab">totales</span>` +
+      (hasMov ? ` y <span class="od-sub-mov-total">movimientos totales</span>` : ``)
+    : `Pasajeros <span class="od-sub-pax-cab">cabotaje</span>` +
+      (hasInt ? ` e <span class="od-sub-pax-int">internacional</span>` : ``) +
+      (hasMov ? ` y <span class="od-sub-mov-total">movimientos totales</span>` : ``);
 }
   const datasets = [
     {
       type: "bar",
-      label: "Pasajeros cabotaje",
+      label: data.isPaxTotalOnly ? "Pasajeros total" : "Pasajeros cabotaje",
       data: data.paxCab,
       backgroundColor: "rgba(117, 170, 219, 0.38)",
       borderColor: "#75AADB",
@@ -7557,6 +7618,7 @@ const routesMovementsUrl =
 const [
   airportsResp,
   rutasMovimientosResp,
+  rutasHistoricasResp,
   rutasKmResp,
   iataWorldResp,
   ourAirportsResp,
@@ -7571,9 +7633,10 @@ const [
   movMensualResp,
   extraTrafficResp
 ] = await Promise.all([
-  fetch(AEROPUERTOS_GEOJSON_PATH),
-  fetch(routesMovementsUrl).catch(() => null),
-  fetch(RUTAS_KM_CSV_PATH).catch(() => null),
+fetch(AEROPUERTOS_GEOJSON_PATH),
+fetch(routesMovementsUrl).catch(() => null),
+fetch(RUTAS_CSV_PATH).catch(() => null),
+fetch(RUTAS_KM_CSV_PATH).catch(() => null),
   fetch(IATA_MUNDO_CSV_PATH).catch(() => null),
   fetch(OURAIRPORTS_CSV_PATH).catch(() => null),
   fetch(PROVINCIAS_GEOJSON_PATH).catch(() => null),
@@ -7635,7 +7698,14 @@ if (rutasMovimientosResp && rutasMovimientosResp.ok) {
   rutasOfertaRows = [];
   console.warn("[OD Analítica] No se pudo cargar rutas_aereas_movimientos_2025.json");
 }
-
+if (rutasHistoricasResp && rutasHistoricasResp.ok) {
+  rutasOfertaHistoricasRows = parseRutasOfertaCSV(
+    await readTextSmart(rutasHistoricasResp)
+  );
+} else {
+  rutasOfertaHistoricasRows = [];
+  console.warn("[OD Analítica] No se pudo cargar rutasaereas.csv para histórico de rutas.");
+}
 if (rutasKmResp && rutasKmResp.ok) {
   rutasKmRows = parseRutasKmCSV(await readTextSmart(rutasKmResp));
   rutasKmIndex = buildRutasKmIndex(rutasKmRows);
@@ -7648,7 +7718,10 @@ rutasOfertaRows = rutasOfertaRows.map(r => ({
   ...r,
   distanciaKm: getDistanciaForRuta(r)
 }));
-
+rutasOfertaHistoricasRows = rutasOfertaHistoricasRows.map(r => ({
+  ...r,
+  distanciaKm: getDistanciaForRuta(r)
+}));
       if (iataWorldResp && iataWorldResp.ok) {
         const parsedWorld = parseIATAMundoCSV(await readTextSmart(iataWorldResp));
         iataWorldIndex = parsedWorld.byIata;
