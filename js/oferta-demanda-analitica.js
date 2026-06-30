@@ -7281,12 +7281,7 @@ function odRenderAdvancedTables(iata) {
     "airline"
   ]);
 
-  const directionRows = hasDirection
-    ? odAggregateAnalyticRows(
-        rows.filter(r => r.direction !== "No discriminado"),
-        ["anioMes", "mes", "direction", "route", "market", "airline"]
-      )
-    : [];
+
 
   const totalRowsEl = q("odAnalyticRowsCount");
   if (totalRowsEl) {
@@ -7301,12 +7296,6 @@ totalRowsEl.textContent =
   `${formatNumber(airlineRows.length)} filas ruta-mes-aerolínea (${selectedDirectionText})`;
   }
 
-  const directionNote = q("odDirectionAvailabilityNote");
-  if (directionNote) {
-    directionNote.textContent = hasDirection
-      ? "La fuente contiene campos de origen/destino o tipo de movimiento; por eso se genera una tabla separada de arribos y partidas."
-      : "La fuente disponible para esta página está agregada por citypair mensual. No permite separar pasajeros arribados/partidos ni aterrizajes/despegues; se informa la ruta sin sentido.";
-  }
 const directionFilter = q("odAirlineDirectionFilter");
 if (directionFilter) {
   directionFilter.disabled = !hasDirection;
@@ -7352,17 +7341,6 @@ odRenderTable("odAirlineMonthlyBody", airlinePreview, [
   { key: "ocupacion", label: "Factor ocupación", num: true, value: r => r.ocupacion !== null ? odFormatPctPlain(r.ocupacion) : "–" }
 ]);
 
-  odRenderTable("odDirectionMonthlyBody", directionRows.slice(0, 120), [
-    { key: "mes", label: "Mes" },
-    { key: "direction", label: "Sentido" },
-    { key: "route", label: "Ruta" },
-    { key: "market", label: "Mercado" },
-    { key: "airline", label: "Aerolínea" },
-    { key: "pax", label: "Pasajeros", num: true, value: r => formatNumber(Math.round(r.pax)) },
-    { key: "vuelos", label: "Vuelos", num: true, value: r => formatNumber(Math.round(r.vuelos)) },
-    { key: "asientos", label: "Asientos", num: true, value: r => Number(r.asientos || 0) > 0 ? formatNumber(Math.round(r.asientos)) : "–" },
-    { key: "ocupacion", label: "Factor ocupación", num: true, value: r => r.ocupacion !== null ? odFormatPctPlain(r.ocupacion) : "–" }
-  ], "No hay datos de sentido en la fuente cargada.");
 
   const filePart = odSafeFilePart(iata);
 
@@ -7371,23 +7349,6 @@ const directionFileSuffix =
     ? "todos"
     : odSafeFilePart(selectedDirection);
 
-odSetDownloadButton(
-  "odDownloadAirlineMonthly",
-  `oferta_demanda_ruta_aerolinea_mensual_${directionFileSuffix}_${filePart}_${YEAR_REF}.csv`,
-  airlineRows,
-  [
-    { key: "anioMes", label: "anio_mes" },
-    { key: "mes", label: "mes" },
-    { key: "direction", label: "movimiento" },
-    { key: "route", label: "ruta" },
-    { key: "market", label: "mercado" },
-    { key: "airline", label: "aerolinea" },
-    { key: "pax", label: "pasajeros", value: r => Math.round(r.pax) },
-    { key: "vuelos", label: "vuelos", value: r => Math.round(r.vuelos) },
-    { key: "asientos", label: "asientos", value: r => Number(r.asientos || 0) > 0 ? Math.round(r.asientos) : "" },
-    { key: "ocupacion", label: "factor_ocupacion", value: r => r.ocupacion !== null ? Number(r.ocupacion).toFixed(4) : "" }
-  ]
-);
 
   odSetDownloadButton(
     "odDownloadDirectionMonthly",
