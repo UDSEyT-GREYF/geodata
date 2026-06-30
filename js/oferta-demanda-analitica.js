@@ -7505,7 +7505,7 @@ function odDrawPolarMonthLabels(chart) {
       Ubicación: centro del "triángulo".
       62% del radio funciona bien: ni demasiado al centro ni demasiado al borde.
     */
-    const labelRadius = innerRadius + (outerRadius - innerRadius) * 0.62;
+    const labelRadius = innerRadius + (outerRadius - innerRadius) * 0.95;
 
     const x = cx + Math.cos(midAngle) * labelRadius;
     const y = cy + Math.sin(midAngle) * labelRadius;
