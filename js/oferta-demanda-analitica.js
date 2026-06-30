@@ -6940,21 +6940,118 @@ function odGetMonthNumberFromKey(anioMes) {
   const d = parseFechaFlexible(anioMes);
   return d ? d.getMonth() + 1 : null;
 }
+function odGetSeasonInfo(monthNum) {
+  const m = Number(monthNum);
 
+  if ([12, 1, 2].includes(m)) {
+    return { key: "verano", label: "Verano", icon: "☀️", order: 1 };
+  }
+  if ([3, 4, 5].includes(m)) {
+    return { key: "otono", label: "Otoño", icon: "🍂", order: 2 };
+  }
+  if ([6, 7, 8].includes(m)) {
+    return { key: "invierno", label: "Invierno", icon: "❄️", order: 3 };
+  }
+  if ([9, 10, 11].includes(m)) {
+    return { key: "primavera", label: "Primavera", icon: "🌸", order: 4 };
+  }
+  return null;
+}
+
+function odGetDistinctSeasons(rows) {
+  const map = new Map();
+
+  (rows || []).forEach(row => {
+    const info = odGetSeasonInfo(row?.mesNum);
+    if (info) map.set(info.key, info);
+  });
+
+  return Array.from(map.values()).sort((a, b) => a.order - b.order);
+}
+
+function odFormatSeasonList(seasons) {
+  if (!seasons || !seasons.length) return "sin estación definida";
+  return odJoinList(seasons.map(s => `${s.icon} ${s.label}`));
+}
+
+function odBuildSeasonalityStationNote(highRows, lowRows) {
+  const highSeasons = odGetDistinctSeasons(highRows);
+  const lowSeasons = odGetDistinctSeasons(lowRows);
+
+  let highText = "";
+  let lowText = "";
+
+  if (highSeasons.length === 1) {
+    highText = `La temporada alta coincide principalmente con ${odFormatSeasonList(highSeasons)}.`;
+  } else if (highSeasons.length > 1) {
+    highText = `La temporada alta se distribuye entre ${odFormatSeasonList(highSeasons)}, por lo que no responde a una única estación.`;
+  } else {
+    highText = "No fue posible asociar la temporada alta con una estación.";
+  }
+
+  if (lowSeasons.length === 1) {
+    lowText = `La temporada baja coincide principalmente con ${odFormatSeasonList(lowSeasons)}.`;
+  } else if (lowSeasons.length > 1) {
+    lowText = `La temporada baja se reparte entre ${odFormatSeasonList(lowSeasons)}.`;
+  } else {
+    lowText = "No fue posible asociar la temporada baja con una estación.";
+  }
+
+  return `${highText} ${lowText}`;
+}
+
+function odGetSeasonColor(monthNum, alpha = 0.82) {
+  const season = odGetSeasonInfo(monthNum);
+  if (!season) return `rgba(120, 120, 120, ${alpha})`;
+
+  switch (season.key) {
+    case "verano":
+      return `rgba(244, 180, 0, ${alpha})`;      // amarillo
+    case "otono":
+      return `rgba(201, 122, 43, ${alpha})`;     // naranja/ocre
+    case "invierno":
+      return `rgba(79, 134, 198, ${alpha})`;     // azul
+    case "primavera":
+      return `rgba(98, 181, 107, ${alpha})`;     // verde
+    default:
+      return `rgba(120, 120, 120, ${alpha})`;
+  }
+}
+
+function odGetSeasonBorderColor(monthNum) {
+  const season = odGetSeasonInfo(monthNum);
+  if (!season) return "#7a7a7a";
+
+  switch (season.key) {
+    case "verano":
+      return "#d79a00";
+    case "otono":
+      return "#9f5e19";
+    case "invierno":
+      return "#2f5f96";
+    case "primavera":
+      return "#4c9e57";
+    default:
+      return "#7a7a7a";
+  }
+}
 function odBuildAdvancedSeasonality(summary) {
   const rows = (summary?.monthly || [])
     .map(row => {
       const pax = Number(row.paxTotal || 0);
       const vuelos = Number(row.vuelosTotal || 0);
       const asientos = Number(row.asientosTotal || 0);
+      const mesNum = odGetMonthNumberFromKey(row.anioMes);
+
       return {
         anioMes: clean(row.anioMes),
         mes: odFormatMonthLabelFromKey(row.anioMes),
-        mesNum: odGetMonthNumberFromKey(row.anioMes),
+        mesNum,
         pax,
         vuelos,
         asientos,
-        ocupacion: asientos > 0 ? pax / asientos : null
+        ocupacion: asientos > 0 ? pax / asientos : null,
+        season: odGetSeasonInfo(mesNum)
       };
     })
     .filter(row => row.pax > 0 || row.vuelos > 0 || row.asientos > 0)
@@ -6967,6 +7064,8 @@ function odBuildAdvancedSeasonality(summary) {
       low: [],
       peak: null,
       valley: null,
+      highShare: null,
+      lowShare: null,
       note: "No hay datos mensuales suficientes para identificar temporada alta y baja."
     };
   }
@@ -6989,10 +7088,9 @@ function odBuildAdvancedSeasonality(summary) {
     valley: byPaxAsc[0],
     highShare: totalPax > 0 ? highPax / totalPax : null,
     lowShare: totalPax > 0 ? lowPax / totalPax : null,
-    note: `Temporada alta: ${odJoinList(high.map(r => r.mes))}. Temporada baja: ${odJoinList(low.map(r => r.mes))}.`
+    note: odBuildSeasonalityStationNote(high, low)
   };
 }
-
 function odRenderSeasonalityAdvanced(iata, summary) {
   const data = odBuildAdvancedSeasonality(summary);
 
@@ -7046,31 +7144,32 @@ function odRenderSeasonalityChart(rows) {
     canvas._odChart = null;
   }
 
-  const labels = (rows || []).map(row => formatMonthShort(row.anioMes));
-  const pax = (rows || []).map(row => Math.round(Number(row.pax || 0)));
-  const vuelos = (rows || []).map(row => Math.round(Number(row.vuelos || 0)));
+  const chartRows = (rows || []).slice().sort((a, b) => {
+    const am = Number(a.mesNum || 0);
+    const bm = Number(b.mesNum || 0);
+    return am - bm;
+  });
+
+  const labels = chartRows.map(row => {
+    const season = odGetSeasonInfo(row.mesNum);
+    return `${formatMonthShort(row.anioMes)} ${season ? season.icon : ""}`.trim();
+  });
+
+  const pax = chartRows.map(row => Math.round(Number(row.pax || 0)));
+  const backgroundColor = chartRows.map(row => odGetSeasonColor(row.mesNum, 0.82));
+  const borderColor = chartRows.map(row => odGetSeasonBorderColor(row.mesNum));
 
   canvas._odChart = new Chart(canvas, {
-    type: "bar",
+    type: "polarArea",
     data: {
       labels,
       datasets: [
         {
           label: "Pasajeros",
           data: pax,
-          backgroundColor: "rgba(31, 79, 130, 0.78)",
-          yAxisID: "y"
-        },
-        {
-          label: "Vuelos",
-          data: vuelos,
-          type: "line",
-          borderColor: "#C6923A",
-          backgroundColor: "#C6923A",
-          borderWidth: 2,
-          pointRadius: 2.4,
-          tension: 0.25,
-          yAxisID: "y1"
+          backgroundColor,
+          borderColor,
+          borderWidth: 1.2
         }
       ]
     },
@@ -7081,35 +7180,47 @@ function odRenderSeasonalityChart(rows) {
       plugins: {
         legend: {
           display: true,
-          labels: { boxWidth: 10, font: { size: 10 } }
+          position: "right",
+          labels: {
+            boxWidth: 12,
+            boxHeight: 12,
+            padding: 10,
+            font: { size: 10 }
+          }
         },
         tooltip: {
           callbacks: {
+            title(items) {
+              const item = items?.[0];
+              if (!item) return "";
+              const row = chartRows[item.dataIndex];
+              return row ? row.mes : "";
+            },
             label(context) {
-              return `${context.dataset.label}: ${formatNumber(context.raw)}`;
+              const row = chartRows[context.dataIndex];
+              const season = odGetSeasonInfo(row?.mesNum);
+              const seasonText = season ? `${season.icon} ${season.label}` : "Sin estación";
+              return `Pasajeros: ${formatNumber(context.raw)} · ${seasonText}`;
             }
           }
         }
       },
       scales: {
-        x: {
-          ticks: { font: { size: 10 } },
-          grid: { display: false }
-        },
-        y: {
+        r: {
           beginAtZero: true,
           ticks: {
+            backdropColor: "transparent",
             font: { size: 9 },
             callback: value => formatNumber(value)
-          }
-        },
-        y1: {
-          beginAtZero: true,
-          position: "right",
-          grid: { drawOnChartArea: false },
-          ticks: {
-            font: { size: 9 },
-            callback: value => formatNumber(value)
+          },
+          grid: {
+            color: "rgba(0,0,0,0.10)"
+          },
+          angleLines: {
+            color: "rgba(0,0,0,0.10)"
+          },
+          pointLabels: {
+            display: false
           }
         }
       }
