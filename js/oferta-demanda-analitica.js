@@ -4584,7 +4584,7 @@ let rows = rutasOfertaRows.filter(r =>
 if (soloComercial) {
   rows = rows.filter(r => clean(r.tipoOperacion).toLowerCase().includes("comercial"));
 }
-
+const odFrequencyDirectionFactor = odGetFrequencyDirectionFactor(rows);
     if (!rows.length) {
       return {
         totalPax: 0,
@@ -4830,7 +4830,7 @@ totalFrecuenciaSemanal = Array.from(freqByRouteAirline.values())
   .reduce((acc, item) => {
     if (!item.count) return acc;
     return acc + (item.sum / item.count);
-  }, 0);
+  }, 0) * odFrequencyDirectionFactor;
     const destinos = Array.from(destinosMap.values())
       .filter(d => (d.pax > 0 || d.asientos > 0 || d.vuelos > 0))
       .sort((a, b) => b.pax - a.pax);
@@ -4871,11 +4871,11 @@ const mainRoutes = Array.from(mainRoutesMap.values())
     });
 
     // Frecuencia semanal de la ruta: suma de promedios mensuales por ruta-operador.
-    const frecuenciaSemanalRuta = Array.from(route.freqByRouteAirline?.values?.() || [])
-      .reduce((acc, item) => {
-        if (!item.count) return acc;
-        return acc + (item.sum / item.count);
-      }, 0);
+const frecuenciaSemanalRuta = Array.from(route.freqByRouteAirline?.values?.() || [])
+  .reduce((acc, item) => {
+    if (!item.count) return acc;
+    return acc + (item.sum / item.count);
+  }, 0) * odFrequencyDirectionFactor;
 
 return {
   key: route.key,
@@ -6968,7 +6968,48 @@ function odFormatPctPlain(value) {
     maximumFractionDigits: 1
   })}%`;
 }
+function odGetLoadFactorForDisplay(summary) {
+  const weighted = Number(summary?.loadFactorWeighted);
+  if (Number.isFinite(weighted) && weighted > 0) return weighted;
 
+  const simple = Number(summary?.loadFactor);
+  if (Number.isFinite(simple) && simple > 0) return simple;
+
+  const pax = Number(summary?.totalPax || 0);
+  const asientos = Number(summary?.totalAsientos || 0);
+
+  if (asientos > 0 && pax >= 0) return pax / asientos;
+
+  return null;
+}
+
+function odGetMovementKeyForFrequency(row) {
+  const raw = normalizeTextKey(row?.tipoMovimientoNorm || row?.tipoMovimiento);
+
+  if (raw.includes("arribo") || raw.includes("aterriz")) return "arribos";
+  if (raw.includes("partida") || raw.includes("despeg")) return "partidas";
+
+  return "";
+}
+
+function odGetFrequencyDirectionFactor(rows) {
+  const movementKeys = new Set(
+    (rows || [])
+      .map(odGetMovementKeyForFrequency)
+      .filter(Boolean)
+  );
+
+  /*
+    La fuente nueva puede traer registros separados de arribos y partidas.
+    Para que el KPI "Frecuencia semanal" sea comparable con el original
+    —frecuencia ida/vuelta por ruta— se corrige el doble conteo direccional.
+  */
+  if (movementKeys.has("arribos") && movementKeys.has("partidas")) {
+    return 0.5;
+  }
+
+  return 1;
+}
 function odFormatValueWithShare(value, total) {
   const n = Number(value || 0);
   const t = Number(total || 0);
@@ -8315,9 +8356,12 @@ setText(
 );
 
 setText(
+const odLoadFactorForKpi = odGetLoadFactorForDisplay(summary);
+
+setText(
   "odLoadFactor",
-  summary.loadFactorWeighted !== null
-    ? `${(summary.loadFactorWeighted * 100).toLocaleString("es-AR", { maximumFractionDigits: 1 })}%`
+  odLoadFactorForKpi !== null
+    ? odFormatPctPlain(odLoadFactorForKpi)
     : "–"
 );
 const snaRank = getSNAPassengerRanking(iata, YEAR_REF);
