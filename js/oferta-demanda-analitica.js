@@ -6932,6 +6932,55 @@ function odFormatPctPlain(value) {
   })}%`;
 }
 
+function odFormatValueWithShare(value, total) {
+  const n = Number(value || 0);
+  const t = Number(total || 0);
+  const valueText = formatNumber(Math.round(n));
+  if (!Number.isFinite(n) || !Number.isFinite(t) || t <= 0) return valueText;
+  return `${valueText} (${odFormatPctPlain(n / t)})`;
+}
+
+function odMetricShare(value, total) {
+  const n = Number(value || 0);
+  const t = Number(total || 0);
+  if (!Number.isFinite(n) || !Number.isFinite(t) || t <= 0) return null;
+  return n / t;
+}
+
+function odBuildRowsTotal(rows, extra = {}) {
+  const source = rows || [];
+  const total = source.reduce((acc, row) => {
+    acc.pax += Number(row.pax || 0);
+    acc.vuelos += Number(row.vuelos || 0);
+    acc.asientos += Number(row.asientos || 0);
+    return acc;
+  }, { pax: 0, vuelos: 0, asientos: 0 });
+
+  return {
+    ...extra,
+    isTotal: true,
+    pax: total.pax,
+    vuelos: total.vuelos,
+    asientos: total.asientos,
+    ocupacion: total.asientos > 0 ? total.pax / total.asientos : null,
+    paxShare: total.pax > 0 ? 1 : null
+  };
+}
+
+function odAttachPaxShare(rows, totalPax) {
+  return (rows || []).map(row => ({
+    ...row,
+    paxShare: odMetricShare(row.pax, totalPax)
+  }));
+}
+
+function odRowsForPreviewWithTotal(rows, totalRow, limit = 34) {
+  const source = rows || [];
+  const preview = source.slice(0, Math.max(0, limit));
+  return totalRow ? preview.concat(totalRow) : preview;
+}
+
+
 function odMakeMonthKey(year, month) {
   return `${year}-${String(month).padStart(2, "0")}`;
 }
@@ -7126,18 +7175,88 @@ function odRenderSeasonalityAdvanced(iata, summary) {
 
   const tbody = q("odSeasonalityMonthlyBody");
   if (tbody) {
-    tbody.innerHTML = data.rows.map(row => `
+    const totals = data.rows.reduce((acc, row) => {
+      acc.pax += Number(row.pax || 0);
+      acc.vuelos += Number(row.vuelos || 0);
+      acc.asientos += Number(row.asientos || 0);
+      return acc;
+    }, { pax: 0, vuelos: 0, asientos: 0 });
+
+    const totalOcupacion = totals.asientos > 0 ? totals.pax / totals.asientos : null;
+
+    const bodyRows = data.rows.map(row => `
       <tr>
         <td>${escapeHtml(row.mes)}</td>
-        <td class="num">${escapeHtml(formatNumber(Math.round(row.pax)))}</td>
-        <td class="num">${escapeHtml(formatNumber(Math.round(row.vuelos)))}</td>
-        <td class="num">${escapeHtml(formatNumber(Math.round(row.asientos)))}</td>
+        <td class="num">${escapeHtml(odFormatValueWithShare(row.pax, totals.pax))}</td>
+        <td class="num">${escapeHtml(odFormatValueWithShare(row.vuelos, totals.vuelos))}</td>
+        <td class="num">${escapeHtml(odFormatValueWithShare(row.asientos, totals.asientos))}</td>
         <td class="num">${escapeHtml(row.ocupacion !== null ? odFormatPctPlain(row.ocupacion) : "–")}</td>
       </tr>
-    `).join("") || `<tr><td colspan="5">Sin datos mensuales disponibles.</td></tr>`;
+    `).join("");
+
+    const totalRow = data.rows.length ? `
+      <tr class="od-total-row">
+        <td>Total 2025</td>
+        <td class="num">${escapeHtml(odFormatValueWithShare(totals.pax, totals.pax))}</td>
+        <td class="num">${escapeHtml(odFormatValueWithShare(totals.vuelos, totals.vuelos))}</td>
+        <td class="num">${escapeHtml(odFormatValueWithShare(totals.asientos, totals.asientos))}</td>
+        <td class="num">${escapeHtml(totalOcupacion !== null ? odFormatPctPlain(totalOcupacion) : "–")}</td>
+      </tr>
+    ` : "";
+
+    tbody.innerHTML = bodyRows || `<tr><td colspan="5">Sin datos mensuales disponibles.</td></tr>`;
+    if (bodyRows) tbody.innerHTML += totalRow;
   }
 
   odRenderSeasonalityChart(data.rows);
+}
+
+
+function odDrawPolarRadialTickLabels(chart) {
+  const scale = chart?.scales?.r;
+  if (!scale) return;
+
+  const ctx = chart.ctx;
+  const rawValues = chart.data?.datasets?.[0]?.data || [];
+  const maxDataValue = Math.max(...rawValues.map(v => Number(v) || 0), 0);
+  if (!maxDataValue) return;
+
+  let tickValues = (scale.ticks || [])
+    .map(tick => Number(tick.value))
+    .filter(value => Number.isFinite(value) && value > 0);
+
+  if (!tickValues.length) {
+    tickValues = [maxDataValue * 0.25, maxDataValue * 0.5, maxDataValue * 0.75, maxDataValue];
+  }
+
+  tickValues = tickValues.slice(-4);
+
+  ctx.save();
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.font = "700 10px Roboto, Arial, sans-serif";
+
+  tickValues.forEach(value => {
+    const radius = scale.getDistanceFromCenterForValue(value);
+    const x = scale.xCenter;
+    const y = scale.yCenter - radius;
+    const label = formatNumber(Math.round(value));
+    const textW = ctx.measureText(label).width;
+    const boxW = textW + 10;
+    const boxH = 15;
+
+    ctx.fillStyle = "rgba(255,255,255,0.96)";
+    ctx.fillRect(x - boxW / 2, y - boxH / 2, boxW, boxH);
+
+    ctx.strokeStyle = "rgba(31,79,130,0.24)";
+    ctx.lineWidth = 1;
+    ctx.strokeRect(x - boxW / 2, y - boxH / 2, boxW, boxH);
+
+    ctx.fillStyle = "#173a68";
+    ctx.fillText(label, x, y + 0.5);
+  });
+
+  ctx.restore();
 }
 
 function odRenderSeasonalityChart(rows) {
@@ -7157,12 +7276,12 @@ function odRenderSeasonalityChart(rows) {
 
   const labels = chartRows.map(row => formatMonthShort(row.anioMes));
   const pax = chartRows.map(row => Math.round(Number(row.pax || 0)));
-  const backgroundColor = chartRows.map(row => odGetSeasonColor(row.mesNum, 0.52));
+  const backgroundColor = chartRows.map(row => odGetSeasonColor(row.mesNum, 0.42));
   const borderColor = chartRows.map(row => odGetSeasonBorderColor(row.mesNum));
 
   const polarTickOverlayPlugin = {
     id: "polarTickOverlayPlugin",
-    afterDatasetsDraw(chart) {
+    afterDraw(chart) {
       odDrawPolarRadialTickLabels(chart);
     }
   };
@@ -7188,10 +7307,10 @@ function odRenderSeasonalityChart(rows) {
       animation: false,
       layout: {
         padding: {
-          top: 10,
-          right: 16,
-          bottom: 6,
-          left: 16
+          top: 8,
+          right: 18,
+          bottom: 4,
+          left: 18
         }
       },
       plugins: {
@@ -7205,7 +7324,7 @@ function odRenderSeasonalityChart(rows) {
           },
           padding: {
             top: 4,
-            bottom: 12
+            bottom: 8
           }
         },
         legend: {
@@ -7232,7 +7351,12 @@ function odRenderSeasonalityChart(rows) {
         r: {
           beginAtZero: true,
           ticks: {
-            display: false
+            display: true,
+            color: "rgba(0,0,0,0)",
+            backdropColor: "rgba(0,0,0,0)",
+            showLabelBackdrop: false,
+            maxTicksLimit: 4,
+            callback: value => formatNumber(value)
           },
           grid: {
             color: "rgba(0,0,0,0.12)"
@@ -7451,14 +7575,17 @@ function odRenderTable(tbodyId, rows, columns, emptyText = "Sin datos disponible
     return;
   }
 
-  tbody.innerHTML = rows.map(row => `
-    <tr>
-      ${columns.map(col => {
-        const value = typeof col.value === "function" ? col.value(row) : row[col.key];
-        return `<td class="${col.num ? "num" : ""}">${escapeHtml(value ?? "")}</td>`;
-      }).join("")}
-    </tr>
-  `).join("");
+  tbody.innerHTML = rows.map(row => {
+    const rowClass = row?.isTotal ? " class=\"od-total-row\"" : "";
+    return `
+      <tr${rowClass}>
+        ${columns.map(col => {
+          const value = typeof col.value === "function" ? col.value(row) : row[col.key];
+          return `<td class="${col.num ? "num" : ""}">${escapeHtml(value ?? "")}</td>`;
+        }).join("")}
+      </tr>
+    `;
+  }).join("");
 }
 
 function odSetDownloadButton(id, filename, rows, columns) {
@@ -7478,19 +7605,28 @@ function odRenderAdvancedTables(iata) {
   const hasDirection = odHasDirectionalSourceData(rows);
   const selectedDirection = odGetAirlineDirectionFilterValue();
 
-  const routeRows = odAggregateAnalyticRows(rows, [
+  const routeRowsRaw = odAggregateAnalyticRows(rows, [
     "anioMes",
     "mes",
     "route",
     "market"
   ]);
 
+  const routeTotalPax = routeRowsRaw.reduce((acc, row) => acc + Number(row.pax || 0), 0);
+  const routeRows = odAttachPaxShare(routeRowsRaw, routeTotalPax);
+  const routeTotalRow = odBuildRowsTotal(routeRowsRaw, {
+    anioMes: "9999-12",
+    mes: "Total 2025",
+    route: "Total aeropuerto",
+    market: ""
+  });
+
   const airlineSourceRows =
     hasDirection && selectedDirection !== "todos"
       ? rows.filter(r => clean(r.direction) === selectedDirection)
       : rows;
 
-  const airlineRows = odAggregateAnalyticRows(airlineSourceRows, [
+  const airlineRowsRaw = odAggregateAnalyticRows(airlineSourceRows, [
     "anioMes",
     "mes",
     "direction",
@@ -7499,34 +7635,44 @@ function odRenderAdvancedTables(iata) {
     "airline"
   ]);
 
-
+  const airlineTotalPax = airlineRowsRaw.reduce((acc, row) => acc + Number(row.pax || 0), 0);
+  const airlineRows = odAttachPaxShare(airlineRowsRaw, airlineTotalPax);
+  const airlineTotalRow = odBuildRowsTotal(airlineRowsRaw, {
+    anioMes: "9999-12",
+    mes: "Total 2025",
+    direction: selectedDirection === "todos" ? "Todos" : selectedDirection,
+    route: "Total aeropuerto",
+    market: "",
+    airline: "Todas"
+  });
 
   const totalRowsEl = q("odAnalyticRowsCount");
   if (totalRowsEl) {
     const selectedDirectionText =
-  selectedDirection === "todos"
-    ? "todos los movimientos"
-    : selectedDirection.toLowerCase();
+      selectedDirection === "todos"
+        ? "todos los movimientos"
+        : selectedDirection.toLowerCase();
 
-totalRowsEl.textContent =
-  `${formatNumber(rows.length)} registros base · ` +
-  `${formatNumber(routeRows.length)} filas ruta-mes · ` +
-  `${formatNumber(airlineRows.length)} filas ruta-mes-aerolínea (${selectedDirectionText})`;
+    totalRowsEl.textContent =
+      `${formatNumber(rows.length)} registros base · ` +
+      `${formatNumber(routeRows.length)} filas ruta-mes · ` +
+      `${formatNumber(airlineRows.length)} filas ruta-mes-aerolínea (${selectedDirectionText})`;
   }
 
-const directionFilter = q("odAirlineDirectionFilter");
-if (directionFilter) {
-  directionFilter.disabled = !hasDirection;
+  const directionFilter = q("odAirlineDirectionFilter");
+  if (directionFilter) {
+    directionFilter.disabled = !hasDirection;
+    directionFilter.onchange = () => {
+      odRenderAdvancedTables(iata);
+    };
+  }
 
-  directionFilter.onchange = () => {
-    odRenderAdvancedTables(iata);
-  };
-}
   const commonCols = [
     { key: "mes", label: "Mes" },
     { key: "route", label: "Ruta" },
     { key: "market", label: "Mercado" },
     { key: "pax", label: "Pasajeros", num: true, value: r => formatNumber(Math.round(r.pax)) },
+    { key: "paxShare", label: "% pax anual", num: true, value: r => r.paxShare !== null && r.paxShare !== undefined ? odFormatPctPlain(r.paxShare) : "–" },
     { key: "vuelos", label: "Vuelos", num: true, value: r => formatNumber(Math.round(r.vuelos)) },
     { key: "asientos", label: "Asientos", num: true, value: r => Number(r.asientos || 0) > 0 ? formatNumber(Math.round(r.asientos)) : "–" },
     { key: "ocupacion", label: "Factor ocupación", num: true, value: r => r.ocupacion !== null ? odFormatPctPlain(r.ocupacion) : "–" }
@@ -7538,48 +7684,56 @@ if (directionFilter) {
     { key: "route", label: "ruta" },
     { key: "market", label: "mercado" },
     { key: "pax", label: "pasajeros", value: r => Math.round(r.pax) },
+    { key: "paxShare", label: "participacion_pax_anual", value: r => r.paxShare !== null && r.paxShare !== undefined ? Number(r.paxShare).toFixed(4) : "" },
     { key: "vuelos", label: "vuelos", value: r => Math.round(r.vuelos) },
     { key: "asientos", label: "asientos", value: r => Number(r.asientos || 0) > 0 ? Math.round(r.asientos) : "" },
     { key: "ocupacion", label: "factor_ocupacion", value: r => r.ocupacion !== null ? Number(r.ocupacion).toFixed(4) : "" }
   ];
 
-  const routePreview = routeRows.slice(0, 120);
-  const airlinePreview = airlineRows.slice(0, 120);
+  const routePreview = odRowsForPreviewWithTotal(routeRows, routeTotalRow, 52);
+  const airlinePreview = odRowsForPreviewWithTotal(airlineRows, airlineTotalRow, 46);
 
   odRenderTable("odRouteMonthlyBody", routePreview, commonCols);
-odRenderTable("odAirlineMonthlyBody", airlinePreview, [
-  { key: "mes", label: "Mes" },
-  { key: "direction", label: "Movimiento" },
-  { key: "route", label: "Ruta" },
-  { key: "market", label: "Mercado" },
-  { key: "airline", label: "Aerolínea" },
-  { key: "pax", label: "Pasajeros", num: true, value: r => formatNumber(Math.round(r.pax)) },
-  { key: "vuelos", label: "Vuelos", num: true, value: r => formatNumber(Math.round(r.vuelos)) },
-  { key: "asientos", label: "Asientos", num: true, value: r => Number(r.asientos || 0) > 0 ? formatNumber(Math.round(r.asientos)) : "–" },
-  { key: "ocupacion", label: "Factor ocupación", num: true, value: r => r.ocupacion !== null ? odFormatPctPlain(r.ocupacion) : "–" }
-]);
 
+  odRenderTable("odAirlineMonthlyBody", airlinePreview, [
+    { key: "mes", label: "Mes" },
+    { key: "direction", label: "Movimiento" },
+    { key: "route", label: "Ruta" },
+    { key: "market", label: "Mercado" },
+    { key: "airline", label: "Aerolínea" },
+    { key: "pax", label: "Pasajeros", num: true, value: r => formatNumber(Math.round(r.pax)) },
+    { key: "paxShare", label: "% pax anual", num: true, value: r => r.paxShare !== null && r.paxShare !== undefined ? odFormatPctPlain(r.paxShare) : "–" },
+    { key: "vuelos", label: "Vuelos", num: true, value: r => formatNumber(Math.round(r.vuelos)) },
+    { key: "asientos", label: "Asientos", num: true, value: r => Number(r.asientos || 0) > 0 ? formatNumber(Math.round(r.asientos)) : "–" },
+    { key: "ocupacion", label: "Factor ocupación", num: true, value: r => r.ocupacion !== null ? odFormatPctPlain(r.ocupacion) : "–" }
+  ]);
 
   const filePart = odSafeFilePart(iata);
-
-const directionFileSuffix =
-  selectedDirection === "todos"
-    ? "todos"
-    : odSafeFilePart(selectedDirection);
-
+  const directionFileSuffix =
+    selectedDirection === "todos"
+      ? "todos"
+      : odSafeFilePart(selectedDirection);
 
   odSetDownloadButton(
-    "odDownloadDirectionMonthly",
-    `oferta_demanda_arribos_partidas_${filePart}_${YEAR_REF}.csv`,
-    directionRows,
+    "odDownloadRouteMonthly",
+    `oferta_demanda_ruta_mensual_${filePart}_${YEAR_REF}.csv`,
+    routeRows.concat(routeTotalRow),
+    csvCommonCols
+  );
+
+  odSetDownloadButton(
+    "odDownloadAirlineMonthly",
+    `oferta_demanda_ruta_aerolinea_mensual_${directionFileSuffix}_${filePart}_${YEAR_REF}.csv`,
+    airlineRows.concat(airlineTotalRow),
     [
       { key: "anioMes", label: "anio_mes" },
       { key: "mes", label: "mes" },
-      { key: "direction", label: "sentido" },
+      { key: "direction", label: "movimiento" },
       { key: "route", label: "ruta" },
       { key: "market", label: "mercado" },
       { key: "airline", label: "aerolinea" },
       { key: "pax", label: "pasajeros", value: r => Math.round(r.pax) },
+      { key: "paxShare", label: "participacion_pax_anual", value: r => r.paxShare !== null && r.paxShare !== undefined ? Number(r.paxShare).toFixed(4) : "" },
       { key: "vuelos", label: "vuelos", value: r => Math.round(r.vuelos) },
       { key: "asientos", label: "asientos", value: r => Number(r.asientos || 0) > 0 ? Math.round(r.asientos) : "" },
       { key: "ocupacion", label: "factor_ocupacion", value: r => r.ocupacion !== null ? Number(r.ocupacion).toFixed(4) : "" }
