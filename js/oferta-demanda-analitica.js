@@ -8355,7 +8355,6 @@ setText(
     : "–"
 );
 
-setText(
 const odLoadFactorForKpi = odGetLoadFactorForDisplay(summary);
 
 setText(
