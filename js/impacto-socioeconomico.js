@@ -958,15 +958,16 @@ if (iconCount > 0) {
     iconCount: getEmploymentIconCount(induced, maxCategory, 10, 3),
     iconX: 395,
     lines: [
-      "Generados por el consumo de trabajadores de las empresas incluidas",
-      "en el impacto directo e indirecto",
-      "Ej.: comercios y servicios donde consumen los empleados directos e indirectos"
+      "Generados por el consumo de trabajadores de las empresas",
+      "incluidas en el impacto directo e indirecto",
+      "Ej.: comercios y servicios donde consumen los empleados",
+      "directos e indirectos"
     ]
   });
 
   makeNode({
     x: 280,
-    y: 222,
+    y: 250,
     w: 332,
     h: 120,
     title: "EMPLEO CATALÍTICO",
