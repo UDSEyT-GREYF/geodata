@@ -981,7 +981,7 @@ makeNode({
   y: 330,
   w: 584,
   h: 76,
-  title: "EMPLEO TOTAL ASOCIADO",
+  title: "EMPLEO TOTAL",
   value: total,
   color: COLORS.navy,
   fill: "#eef6ff",
