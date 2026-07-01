@@ -430,7 +430,7 @@ body.impacto-standalone {
 .impacto-chart-employment {
   align-items: stretch;
   justify-content: stretch;
-  min-height: 300px;
+  min-height: 360px;
 }
 
 .impacto-chart-waterfall svg,
