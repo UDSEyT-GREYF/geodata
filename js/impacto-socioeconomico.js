@@ -435,6 +435,19 @@ const PASSENGER_EXTRA_URL = "fuentes/pasajeros_movimientos_extra_9aeropuertos.cs
     return element;
   }
 
+  function appendMultilineText(parent, x, y, lines, attributes = {}, lineHeight = 13) {
+    const text = svgElement("text", { x, y, ...attributes });
+    const rows = Array.isArray(lines) ? lines : [lines];
+    rows.filter(Boolean).forEach((line, index) => {
+      text.appendChild(svgElement("tspan", {
+        x,
+        dy: index === 0 ? 0 : lineHeight
+      }, String(line)));
+    });
+    parent.appendChild(text);
+    return text;
+  }
+
   function clearChart(container, message = "Sin datos disponibles") {
     if (!container) return;
     container.innerHTML = `<div class="impacto-chart-empty">${escapeHtml(message)}</div>`;
@@ -542,45 +555,75 @@ const PASSENGER_EXTRA_URL = "fuentes/pasajeros_movimientos_extra_9aeropuertos.cs
     const maxAbs = Math.max(Math.abs(positive), Math.abs(negative), Math.abs(net), 1);
 
     container.innerHTML = "";
-    const svg = svgElement("svg", { viewBox: "0 0 620 300", role: "img" });
-    const baseline = 170;
-    const scale = 110 / maxAbs;
+    const svg = svgElement("svg", { viewBox: "0 0 640 320", role: "img" });
+    const chartLeft = 58;
+    const chartRight = 598;
+    const baseline = 166;
+    const chartBottom = 282;
+    const scale = 102 / maxAbs;
+    const barWidth = 96;
     const bars = [
-      { label: "Turismo receptivo", value: positive, x: 85, color: COLORS.teal },
-      { label: "Turismo emisivo", value: -negative, x: 275, color: COLORS.red },
-      { label: "Saldo turístico", value: net, x: 465, color: net >= 0 ? COLORS.blue : COLORS.orange }
+      { label: "Turismo receptivo", note: "Ingreso al área", value: positive, x: 88, color: COLORS.teal },
+      { label: "Turismo emisivo", note: "Gasto fuera del área", value: -negative, x: 272, color: COLORS.red },
+      { label: "Saldo turístico", note: "Resultado neto", value: net, x: 456, color: net >= 0 ? COLORS.blue : COLORS.orange }
     ];
 
-    svg.appendChild(svgElement("line", { x1: 35, y1: baseline, x2: 585, y2: baseline, stroke: COLORS.grid, "stroke-width": 2 }));
+    [-maxAbs, -maxAbs / 2, 0, maxAbs / 2, maxAbs].forEach((tick) => {
+      const y = baseline - (tick * scale);
+      svg.appendChild(svgElement("line", {
+        x1: chartLeft,
+        y1: y,
+        x2: chartRight,
+        y2: y,
+        stroke: tick === 0 ? COLORS.grid : "#e7edf4",
+        "stroke-width": tick === 0 ? 2 : 1
+      }));
+      svg.appendChild(svgElement("text", {
+        x: chartLeft - 8,
+        y: y + 4,
+        "text-anchor": "end",
+        fill: COLORS.muted,
+        "font-size": 10
+      }, tick === 0 ? "0" : formatCompact(Math.abs(tick))));
+    });
 
     bars.forEach((bar) => {
       const barHeight = Math.abs(bar.value) * scale;
       const y = bar.value >= 0 ? baseline - barHeight : baseline;
-      svg.appendChild(svgElement("rect", { x: bar.x, y, width: 90, height: Math.max(2, barHeight), rx: 6, fill: bar.color }));
-      svg.appendChild(svgElement("text", { x: bar.x + 45, y: bar.value >= 0 ? y - 10 : y + barHeight + 18, "text-anchor": "middle", fill: COLORS.navy, "font-size": 13, "font-weight": 800 }, formatCompact(Math.abs(bar.value))));
-      const label = svgElement("text", { x: bar.x + 45, y: 265, "text-anchor": "middle", fill: COLORS.navy, "font-size": 12, "font-weight": 700 });
-      const words = bar.label.split(" ");
-      label.appendChild(svgElement("tspan", { x: bar.x + 45, dy: 0 }, words.slice(0, 2).join(" ")));
-      if (words.length > 2) label.appendChild(svgElement("tspan", { x: bar.x + 45, dy: 15 }, words.slice(2).join(" ")));
-      svg.appendChild(label);
+      svg.appendChild(svgElement("rect", {
+        x: bar.x,
+        y,
+        width: barWidth,
+        height: Math.max(2, barHeight),
+        rx: 8,
+        fill: bar.color,
+        opacity: 0.96
+      }));
+      svg.appendChild(svgElement("text", {
+        x: bar.x + (barWidth / 2),
+        y: bar.value >= 0 ? y - 12 : y + barHeight + 22,
+        "text-anchor": "middle",
+        fill: COLORS.navy,
+        "font-size": 15,
+        "font-weight": 800
+      }, formatCompact(Math.abs(bar.value))));
+      appendMultilineText(svg, bar.x + (barWidth / 2), chartBottom - 18, [bar.label, bar.note], {
+        "text-anchor": "middle",
+        fill: COLORS.navy,
+        "font-size": 11.5,
+        "font-weight": 700
+      }, 14);
     });
 
     container.appendChild(svg);
   }
 
+
   function renderTourismComposition(container, data) {
     if (!container) return;
     const categories = [
-      {
-        label: "Receptivo",
-        national: data.receptiveNational,
-        international: data.receptiveInternational
-      },
-      {
-        label: "Emisivo",
-        national: data.emissiveNational,
-        international: data.emissiveInternational
-      }
+      { shortLabel: "Receptivo", national: data.receptiveNational, international: data.receptiveInternational },
+      { shortLabel: "Emisivo", national: data.emissiveNational, international: data.emissiveInternational }
     ];
 
     const hasData = categories.some((category) => Number.isFinite(category.national) || Number.isFinite(category.international));
@@ -590,33 +633,82 @@ const PASSENGER_EXTRA_URL = "fuentes/pasajeros_movimientos_extra_9aeropuertos.cs
     }
 
     container.innerHTML = "";
-    const svg = svgElement("svg", { viewBox: "0 0 300 300", role: "img" });
-    const maxTotal = Math.max(...categories.map((category) => (category.national || 0) + (category.international || 0)), 1);
+    const svg = svgElement("svg", { viewBox: "0 0 320 320", role: "img" });
 
-    categories.forEach((category, index) => {
-      const x = 58 + index * 132;
-      const total = (category.national || 0) + (category.international || 0);
-      const nationalHeight = ((category.national || 0) / maxTotal) * 155;
-      const internationalHeight = ((category.international || 0) / maxTotal) * 155;
-      const yBase = 225;
-
-      svg.appendChild(svgElement("rect", { x, y: yBase - nationalHeight, width: 68, height: Math.max(0, nationalHeight), fill: COLORS.sky }));
-      svg.appendChild(svgElement("rect", { x, y: yBase - nationalHeight - internationalHeight, width: 68, height: Math.max(0, internationalHeight), fill: COLORS.orange }));
-      svg.appendChild(svgElement("text", { x: x + 34, y: yBase - nationalHeight - internationalHeight - 9, "text-anchor": "middle", fill: COLORS.navy, "font-size": 11, "font-weight": 800 }, formatCompact(total)));
-      svg.appendChild(svgElement("text", { x: x + 34, y: 247, "text-anchor": "middle", fill: COLORS.navy, "font-size": 11, "font-weight": 700 }, category.label));
+    [
+      { label: "Nacional", color: COLORS.sky, x: 22 },
+      { label: "Internacional", color: COLORS.orange, x: 156 }
+    ].forEach((item) => {
+      svg.appendChild(svgElement("rect", { x: item.x, y: 18, width: 12, height: 12, rx: 2, fill: item.color }));
+      svg.appendChild(svgElement("text", { x: item.x + 18, y: 28, fill: COLORS.muted, "font-size": 10.5 }, item.label));
     });
 
-    const legend = [
-      { label: "Nacional", color: COLORS.sky, y: 275 },
-      { label: "Internacional", color: COLORS.orange, y: 292 }
-    ];
-    legend.forEach((item) => {
-      svg.appendChild(svgElement("rect", { x: 66, y: item.y - 10, width: 10, height: 10, fill: item.color }));
-      svg.appendChild(svgElement("text", { x: 82, y: item.y, fill: COLORS.muted, "font-size": 10 }, item.label));
+    categories.forEach((category, index) => {
+      const yTop = 76 + index * 122;
+      const xBar = 22;
+      const barWidth = 238;
+      const barHeight = 28;
+      const national = Number.isFinite(category.national) ? category.national : 0;
+      const international = Number.isFinite(category.international) ? category.international : 0;
+      const total = national + international;
+      const nationalShare = total > 0 ? national / total : 0;
+      const internationalShare = total > 0 ? international / total : 0;
+      const nationalWidth = barWidth * nationalShare;
+      const internationalWidth = barWidth * internationalShare;
+
+      svg.appendChild(svgElement("text", {
+        x: xBar,
+        y: yTop - 16,
+        fill: COLORS.navy,
+        "font-size": 12,
+        "font-weight": 800
+      }, category.shortLabel));
+      svg.appendChild(svgElement("text", {
+        x: xBar + barWidth,
+        y: yTop - 16,
+        "text-anchor": "end",
+        fill: COLORS.navy,
+        "font-size": 13,
+        "font-weight": 800
+      }, formatCompact(total)));
+
+      svg.appendChild(svgElement("rect", { x: xBar, y: yTop, width: barWidth, height: barHeight, rx: 6, fill: COLORS.light }));
+      if (nationalWidth > 0) svg.appendChild(svgElement("rect", { x: xBar, y: yTop, width: nationalWidth, height: barHeight, rx: 6, fill: COLORS.sky }));
+      if (internationalWidth > 0) svg.appendChild(svgElement("rect", { x: xBar + nationalWidth, y: yTop, width: internationalWidth, height: barHeight, rx: 6, fill: COLORS.orange }));
+
+      if (nationalWidth > 42) {
+        svg.appendChild(svgElement("text", {
+          x: xBar + nationalWidth / 2,
+          y: yTop + 18,
+          "text-anchor": "middle",
+          fill: "#ffffff",
+          "font-size": 11,
+          "font-weight": 800
+        }, `${ratioPercent(national, total).toLocaleString("es-AR", { maximumFractionDigits: 0 })}%`));
+      }
+      if (internationalWidth > 42) {
+        svg.appendChild(svgElement("text", {
+          x: xBar + nationalWidth + internationalWidth / 2,
+          y: yTop + 18,
+          "text-anchor": "middle",
+          fill: COLORS.navy,
+          "font-size": 11,
+          "font-weight": 800
+        }, `${ratioPercent(international, total).toLocaleString("es-AR", { maximumFractionDigits: 0 })}%`));
+      }
+
+      appendMultilineText(svg, xBar, yTop + 48, [
+        `Nacional: ${formatCompact(national)} (${ratioPercent(national, total).toLocaleString("es-AR", { maximumFractionDigits: 1 })}%)`,
+        `Internacional: ${formatCompact(international)} (${ratioPercent(international, total).toLocaleString("es-AR", { maximumFractionDigits: 1 })}%)`
+      ], {
+        fill: COLORS.muted,
+        "font-size": 10.4
+      }, 14);
     });
 
     container.appendChild(svg);
   }
+
 
   function renderSummaryFallback(container, data) {
     if (!container) return;
@@ -625,8 +717,204 @@ const PASSENGER_EXTRA_URL = "fuentes/pasajeros_movimientos_extra_9aeropuertos.cs
       { label: "Turismo receptivo", value: data.turismoReceptivo, color: COLORS.teal },
       { label: "Beneficios para pasajeros", value: data.beneficioPasajeros, color: COLORS.blue },
       { label: "Turismo emisivo", value: data.turismoEmisivo, color: COLORS.red }
-    ];
-    renderHorizontalBars(container, items, formatCompact);
+    ].filter((item) => Number.isFinite(item.value) && item.value >= 0);
+
+    if (!items.length) {
+      clearChart(container);
+      return;
+    }
+
+    container.innerHTML = "";
+    const svg = svgElement("svg", { viewBox: "0 0 760 320", role: "img" });
+    const maxValue = Math.max(...items.map((item) => item.value), 1);
+    const left = 300;
+    const width = 410;
+    const top = 76;
+    const rowGap = 52;
+
+    appendMultilineText(svg, 28, 34, [
+      "No se encontró la imagen resumen del Resumen Ejecutivo.",
+      "Se muestra una síntesis gráfica reconstruida con los datos disponibles."
+    ], {
+      fill: COLORS.muted,
+      "font-size": 11.5
+    }, 15);
+
+    items.forEach((item, index) => {
+      const y = top + index * rowGap;
+      const barWidth = (item.value / maxValue) * width;
+      svg.appendChild(svgElement("text", {
+        x: 28,
+        y: y + 13,
+        fill: COLORS.navy,
+        "font-size": 13,
+        "font-weight": 700
+      }, item.label));
+      svg.appendChild(svgElement("rect", { x: left, y, width, height: 18, rx: 6, fill: COLORS.light }));
+      svg.appendChild(svgElement("rect", { x: left, y, width: Math.max(2, barWidth), height: 18, rx: 6, fill: item.color }));
+      svg.appendChild(svgElement("text", {
+        x: 736,
+        y: y + 13,
+        "text-anchor": "end",
+        fill: COLORS.navy,
+        "font-size": 13,
+        "font-weight": 800
+      }, formatCompact(item.value)));
+    });
+
+    container.appendChild(svg);
+  }
+
+
+  function renderEmploymentTree(container, data) {
+    if (!container) return;
+    const direct = Number.isFinite(data.empleoDirecto) ? data.empleoDirecto : 0;
+    const indirect = Number.isFinite(data.empleoIndirecto) ? data.empleoIndirecto : 0;
+    const induced = Number.isFinite(data.empleoInducido) ? data.empleoInducido : 0;
+    const catalytic = Number.isFinite(data.empleoCatalitico) ? data.empleoCatalitico : 0;
+    const total = Number.isFinite(data.empleoTotal) ? data.empleoTotal : direct + indirect + induced + catalytic;
+
+    if (![direct, indirect, induced, catalytic, total].some((value) => Number.isFinite(value) && value > 0)) {
+      clearChart(container);
+      return;
+    }
+
+    const additional = indirect + induced + catalytic;
+    const multiplier = direct > 0 && total > 0 ? total / direct : null;
+
+    container.innerHTML = "";
+    const svg = svgElement("svg", { viewBox: "0 0 620 340", role: "img" });
+
+    const defs = svgElement("defs");
+    const marker = svgElement("marker", {
+      id: "impactoArrowHead",
+      markerWidth: 8,
+      markerHeight: 8,
+      refX: 7,
+      refY: 4,
+      orient: "auto",
+      markerUnits: "strokeWidth"
+    });
+    marker.appendChild(svgElement("path", { d: "M 0 0 L 8 4 L 0 8 z", fill: COLORS.blue }));
+    defs.appendChild(marker);
+    svg.appendChild(defs);
+
+    const connector = (d, stroke = COLORS.blue) => {
+      svg.appendChild(svgElement("path", {
+        d,
+        fill: "none",
+        stroke,
+        "stroke-width": 2.2,
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "marker-end": "url(#impactoArrowHead)"
+      }));
+    };
+
+    const makeNode = ({ x, y, w, h, title, value, color, lines = [], light = false, valueSize = 20 }) => {
+      svg.appendChild(svgElement("rect", {
+        x, y, width: w, height: h, rx: 12,
+        fill: light ? "#eef6ff" : "#ffffff",
+        stroke: color,
+        "stroke-width": 2
+      }));
+      appendMultilineText(svg, x + 14, y + 20, title, {
+        fill: color,
+        "font-size": 11,
+        "font-weight": 800
+      }, 12);
+      if (value !== null && value !== undefined) {
+        svg.appendChild(svgElement("text", {
+          x: x + 14,
+          y: y + 45,
+          fill: COLORS.navy,
+          "font-size": valueSize,
+          "font-weight": 900
+        }, formatInteger(value)));
+      }
+      appendMultilineText(svg, x + 14, y + 62, lines, {
+        fill: COLORS.muted,
+        "font-size": 10.1
+      }, 12.5);
+    };
+
+    makeNode({
+      x: 16, y: 124, w: 126, h: 88,
+      title: ["ACTIVIDAD", "AEROPORTUARIA"],
+      value: null,
+      color: COLORS.blue,
+      light: true,
+      lines: ["Base operativa y económica", "del aeropuerto"]
+    });
+
+    makeNode({
+      x: 168, y: 112, w: 162, h: 112,
+      title: "EMPLEO DIRECTO",
+      value: direct,
+      color: COLORS.lime,
+      lines: ["Dentro del aeropuerto.", "Ej.: administración, líneas", "aéreas, handling, control,", "rampa y catering."]
+    });
+
+    makeNode({
+      x: 380, y: 14, w: 214, h: 92,
+      title: "EMPLEO INDIRECTO",
+      value: indirect,
+      color: COLORS.teal,
+      lines: ["Cadena de abastecimiento.", "Ej.: insumos, mercaderías,", "publicidad y logística."]
+    });
+
+    makeNode({
+      x: 380, y: 124, w: 214, h: 92,
+      title: "EMPLEO INDUCIDO",
+      value: induced,
+      color: COLORS.cyan,
+      lines: ["Consumo de trabajadores.", "Ej.: comercios y servicios", "donde gastan sus ingresos."]
+    });
+
+    makeNode({
+      x: 380, y: 234, w: 214, h: 92,
+      title: "EMPLEO CATALÍTICO",
+      value: catalytic,
+      color: COLORS.blue,
+      lines: ["Actividad facilitada por la", "conectividad aérea. Ej.: turismo,", "inversiones y nuevas empresas."]
+    });
+
+    makeNode({
+      x: 168, y: 258, w: 200, h: 62,
+      title: "EMPLEO TOTAL ASOCIADO",
+      value: total,
+      color: COLORS.navy,
+      light: true,
+      valueSize: 18,
+      lines: [
+        multiplier ? `${multiplier.toLocaleString("es-AR", { maximumFractionDigits: 1 })} veces el empleo directo` : "Síntesis de los impactos laborales"
+      ]
+    });
+
+    connector("M 142 168 C 154 168, 160 168, 168 168");
+    connector("M 330 168 C 350 168, 358 68, 380 60");
+    connector("M 330 168 C 350 168, 358 170, 380 170");
+    connector("M 330 168 C 350 168, 358 280, 380 280");
+
+    svg.appendChild(svgElement("path", {
+      d: "M 594 60 C 608 60, 608 170, 594 170 M 594 170 C 608 170, 608 280, 594 280",
+      fill: "none",
+      stroke: COLORS.border,
+      "stroke-width": 2
+    }));
+    connector("M 594 170 C 608 170, 618 170, 618 288 C 618 304, 390 304, 368 288", COLORS.navy);
+
+    appendMultilineText(svg, 355, 244, [
+      `Empleos adicionales: ${formatInteger(additional)}`,
+      "La conectividad aérea amplía el efecto inicial",
+      "del empleo directo sobre la economía local."
+    ], {
+      fill: COLORS.muted,
+      "font-size": 10.4,
+      "text-anchor": "middle"
+    }, 13);
+
+    container.appendChild(svg);
   }
 
 function normalizeShareOrCount(value, total) {
@@ -792,7 +1080,9 @@ const empleoVarones = normalizeShareOrCount(
       ].filter((item) => Number.isFinite(item.value));
       const main = employmentParts.sort((a, b) => b.value - a.value)[0];
       if (Number.isFinite(data.empleoTotal)) {
-        employmentInsight.textContent = `La actividad aerocomercial y aeroportuaria se vinculó con ${formatInteger(data.empleoTotal)} puestos de trabajo${main ? `; la categoría con mayor participación fue la de empleos ${main.label}` : ""}.`;
+        const additional = [data.empleoIndirecto, data.empleoInducido, data.empleoCatalitico].filter(Number.isFinite).reduce((sum, value) => sum + value, 0);
+        const multiplier = Number.isFinite(data.empleoDirecto) && data.empleoDirecto > 0 ? data.empleoTotal / data.empleoDirecto : null;
+        employmentInsight.textContent = `La actividad aerocomercial y aeroportuaria se vinculó con ${formatInteger(data.empleoTotal)} puestos de trabajo. A los ${formatInteger(data.empleoDirecto)} empleos directos se sumaron ${formatInteger(additional)} empleos adicionales asociados a la cadena de abastecimiento, el consumo de los trabajadores y las actividades favorecidas por la conectividad aérea${multiplier ? `, equivalente a ${multiplier.toLocaleString("es-AR", { maximumFractionDigits: 1 })} veces el empleo directo` : ""}.`;
       } else {
         employmentInsight.textContent = "No se encontró una estimación completa del empleo vinculado al aeropuerto seleccionado.";
       }
@@ -827,16 +1117,7 @@ const empleoVarones = normalizeShareOrCount(
       emissiveInternational: data.turismoEmisivoInternacional
     });
 
-    renderHorizontalBars(
-      root.querySelector("#impactoEmploymentBars"),
-      [
-        { label: "Directo", value: data.empleoDirecto, color: COLORS.lime },
-        { label: "Indirecto", value: data.empleoIndirecto, color: COLORS.teal },
-        { label: "Inducido", value: data.empleoInducido, color: COLORS.cyan },
-        { label: "Catalítico", value: data.empleoCatalitico, color: COLORS.blue }
-      ],
-      formatInteger
-    );
+    renderEmploymentTree(root.querySelector("#impactoEmploymentBars"), data);
 
     renderDonut(
       root.querySelector("#impactoGenderDonut"),
@@ -852,9 +1133,17 @@ const empleoVarones = normalizeShareOrCount(
   }
 
   function trySummaryImages(candidates, image, fallback, index = 0) {
-    if (!image || !fallback || index >= candidates.length) {
-      if (image) image.hidden = true;
-      if (fallback) fallback.hidden = false;
+    if (!image || !fallback) return;
+
+    if (index === 0) {
+      image.hidden = true;
+      image.removeAttribute("src");
+      fallback.hidden = false;
+    }
+
+    if (index >= candidates.length) {
+      image.hidden = true;
+      fallback.hidden = false;
       return;
     }
 
@@ -864,12 +1153,14 @@ const empleoVarones = normalizeShareOrCount(
       return;
     }
 
-    image.onload = () => {
+    const probe = new Image();
+    probe.onload = () => {
+      image.src = src;
       image.hidden = false;
       fallback.hidden = true;
     };
-    image.onerror = () => trySummaryImages(candidates, image, fallback, index + 1);
-    image.src = src;
+    probe.onerror = () => trySummaryImages(candidates, image, fallback, index + 1);
+    probe.src = src;
   }
 
   function renderSummaryImage(data) {
@@ -891,6 +1182,7 @@ const empleoVarones = normalizeShareOrCount(
 
     trySummaryImages([...new Set(candidates)], image, fallback);
   }
+
 
   function findFeature(iata) {
     const features = geojson?.features || [];
