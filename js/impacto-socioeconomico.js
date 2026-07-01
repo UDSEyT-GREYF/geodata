@@ -447,7 +447,44 @@ const PASSENGER_EXTRA_URL = "fuentes/pasajeros_movimientos_extra_9aeropuertos.cs
     parent.appendChild(text);
     return text;
   }
+function getEmploymentIconCount(value, maxValue, maxIcons = 7) {
+  if (!Number.isFinite(value) || value <= 0 || !Number.isFinite(maxValue) || maxValue <= 0) {
+    return 0;
+  }
+  return Math.max(1, Math.round((value / maxValue) * maxIcons));
+}
 
+function drawEmploymentPeople(parent, x, y, count, color, options = {}) {
+  const cols = options.cols || 4;
+  const scale = options.scale || 1;
+  const gapX = options.gapX || 18;
+  const gapY = options.gapY || 18;
+
+  for (let i = 0; i < count; i += 1) {
+    const col = i % cols;
+    const row = Math.floor(i / cols);
+    const tx = x + col * gapX;
+    const ty = y + row * gapY;
+
+    const g = svgElement("g", {
+      transform: `translate(${tx} ${ty}) scale(${scale})`
+    });
+
+    g.appendChild(svgElement("circle", {
+      cx: 8,
+      cy: 5,
+      r: 4.2,
+      fill: color
+    }));
+
+    g.appendChild(svgElement("path", {
+      d: "M 1 24 C 1 16, 6 11, 14 11 C 22 11, 27 16, 27 24 L 27 28 L 1 28 Z",
+      fill: color
+    }));
+
+    parent.appendChild(g);
+  }
+}
   function clearChart(container, message = "Sin datos disponibles") {
     if (!container) return;
     container.innerHTML = `<div class="impacto-chart-empty">${escapeHtml(message)}</div>`;
@@ -766,156 +803,220 @@ const PASSENGER_EXTRA_URL = "fuentes/pasajeros_movimientos_extra_9aeropuertos.cs
   }
 
 
-  function renderEmploymentTree(container, data) {
-    if (!container) return;
-    const direct = Number.isFinite(data.empleoDirecto) ? data.empleoDirecto : 0;
-    const indirect = Number.isFinite(data.empleoIndirecto) ? data.empleoIndirecto : 0;
-    const induced = Number.isFinite(data.empleoInducido) ? data.empleoInducido : 0;
-    const catalytic = Number.isFinite(data.empleoCatalitico) ? data.empleoCatalitico : 0;
-    const total = Number.isFinite(data.empleoTotal) ? data.empleoTotal : direct + indirect + induced + catalytic;
+function renderEmploymentTree(container, data) {
+  if (!container) return;
 
-    if (![direct, indirect, induced, catalytic, total].some((value) => Number.isFinite(value) && value > 0)) {
-      clearChart(container);
-      return;
-    }
+  const direct = Number.isFinite(data.empleoDirecto) ? data.empleoDirecto : 0;
+  const indirect = Number.isFinite(data.empleoIndirecto) ? data.empleoIndirecto : 0;
+  const induced = Number.isFinite(data.empleoInducido) ? data.empleoInducido : 0;
+  const catalytic = Number.isFinite(data.empleoCatalitico) ? data.empleoCatalitico : 0;
+  const total = Number.isFinite(data.empleoTotal)
+    ? data.empleoTotal
+    : direct + indirect + induced + catalytic;
 
-    const additional = indirect + induced + catalytic;
-    const multiplier = direct > 0 && total > 0 ? total / direct : null;
+  if (![direct, indirect, induced, catalytic, total].some((v) => Number.isFinite(v) && v > 0)) {
+    clearChart(container);
+    return;
+  }
 
-    container.innerHTML = "";
-    const svg = svgElement("svg", { viewBox: "0 0 620 340", role: "img" });
+  const maxValue = Math.max(direct, indirect, induced, catalytic, total, 1);
+  const additional = indirect + induced + catalytic;
+  const multiplier = direct > 0 && total > 0 ? total / direct : null;
 
-    const defs = svgElement("defs");
-    const marker = svgElement("marker", {
-      id: "impactoArrowHead",
-      markerWidth: 8,
-      markerHeight: 8,
-      refX: 7,
-      refY: 4,
-      orient: "auto",
-      markerUnits: "strokeWidth"
-    });
-    marker.appendChild(svgElement("path", { d: "M 0 0 L 8 4 L 0 8 z", fill: COLORS.blue }));
-    defs.appendChild(marker);
-    svg.appendChild(defs);
+  container.innerHTML = "";
+  const svg = svgElement("svg", {
+    viewBox: "0 0 620 300",
+    role: "img"
+  });
 
-    const connector = (d, stroke = COLORS.blue) => {
-      svg.appendChild(svgElement("path", {
-        d,
-        fill: "none",
-        stroke,
-        "stroke-width": 2.2,
-        "stroke-linecap": "round",
-        "stroke-linejoin": "round",
-        "marker-end": "url(#impactoArrowHead)"
-      }));
-    };
+  const defs = svgElement("defs");
+  const marker = svgElement("marker", {
+    id: "impactoArrowHead",
+    markerWidth: 8,
+    markerHeight: 8,
+    refX: 7,
+    refY: 4,
+    orient: "auto",
+    markerUnits: "strokeWidth"
+  });
+  marker.appendChild(svgElement("path", {
+    d: "M 0 0 L 8 4 L 0 8 z",
+    fill: COLORS.blue
+  }));
+  defs.appendChild(marker);
+  svg.appendChild(defs);
 
-    const makeNode = ({ x, y, w, h, title, value, color, lines = [], light = false, valueSize = 20 }) => {
-      svg.appendChild(svgElement("rect", {
-        x, y, width: w, height: h, rx: 12,
-        fill: light ? "#eef6ff" : "#ffffff",
-        stroke: color,
-        "stroke-width": 2
-      }));
-      appendMultilineText(svg, x + 14, y + 20, title, {
-        fill: color,
-        "font-size": 11,
-        "font-weight": 800
-      }, 12);
-      if (value !== null && value !== undefined) {
-        svg.appendChild(svgElement("text", {
-          x: x + 14,
-          y: y + 45,
-          fill: COLORS.navy,
-          "font-size": valueSize,
-          "font-weight": 900
-        }, formatInteger(value)));
-      }
-      appendMultilineText(svg, x + 14, y + 62, lines, {
-        fill: COLORS.muted,
-        "font-size": 10.1
-      }, 12.5);
-    };
-
-    makeNode({
-      x: 16, y: 124, w: 126, h: 88,
-      title: ["ACTIVIDAD", "AEROPORTUARIA"],
-      value: null,
-      color: COLORS.blue,
-      light: true,
-      lines: ["Base operativa y económica", "del aeropuerto"]
-    });
-
-    makeNode({
-      x: 168, y: 112, w: 162, h: 112,
-      title: "EMPLEO DIRECTO",
-      value: direct,
-      color: COLORS.lime,
-      lines: ["Dentro del aeropuerto.", "Ej.: administración, líneas", "aéreas, handling, control,", "rampa y catering."]
-    });
-
-    makeNode({
-      x: 380, y: 14, w: 214, h: 92,
-      title: "EMPLEO INDIRECTO",
-      value: indirect,
-      color: COLORS.teal,
-      lines: ["Cadena de abastecimiento.", "Ej.: insumos, mercaderías,", "publicidad y logística."]
-    });
-
-    makeNode({
-      x: 380, y: 124, w: 214, h: 92,
-      title: "EMPLEO INDUCIDO",
-      value: induced,
-      color: COLORS.cyan,
-      lines: ["Consumo de trabajadores.", "Ej.: comercios y servicios", "donde gastan sus ingresos."]
-    });
-
-    makeNode({
-      x: 380, y: 234, w: 214, h: 92,
-      title: "EMPLEO CATALÍTICO",
-      value: catalytic,
-      color: COLORS.blue,
-      lines: ["Actividad facilitada por la", "conectividad aérea. Ej.: turismo,", "inversiones y nuevas empresas."]
-    });
-
-    makeNode({
-      x: 168, y: 258, w: 200, h: 62,
-      title: "EMPLEO TOTAL ASOCIADO",
-      value: total,
-      color: COLORS.navy,
-      light: true,
-      valueSize: 18,
-      lines: [
-        multiplier ? `${multiplier.toLocaleString("es-AR", { maximumFractionDigits: 1 })} veces el empleo directo` : "Síntesis de los impactos laborales"
-      ]
-    });
-
-    connector("M 142 168 C 154 168, 160 168, 168 168");
-    connector("M 330 168 C 350 168, 358 68, 380 60");
-    connector("M 330 168 C 350 168, 358 170, 380 170");
-    connector("M 330 168 C 350 168, 358 280, 380 280");
-
+  const connector = (d, stroke = COLORS.blue) => {
     svg.appendChild(svgElement("path", {
-      d: "M 594 60 C 608 60, 608 170, 594 170 M 594 170 C 608 170, 608 280, 594 280",
+      d,
       fill: "none",
-      stroke: COLORS.border,
+      stroke,
+      "stroke-width": 2.2,
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round",
+      "marker-end": "url(#impactoArrowHead)"
+    }));
+  };
+
+  function makeNode({
+    x, y, w, h, title, value, color, lines = [], iconCount = 0, fill = "#ffffff",
+    valueSize = 17
+  }) {
+    svg.appendChild(svgElement("rect", {
+      x,
+      y,
+      width: w,
+      height: h,
+      rx: 12,
+      fill,
+      stroke: color,
       "stroke-width": 2
     }));
-    connector("M 594 170 C 608 170, 618 170, 618 288 C 618 304, 390 304, 368 288", COLORS.navy);
 
-    appendMultilineText(svg, 355, 244, [
-      `Empleos adicionales: ${formatInteger(additional)}`,
-      "La conectividad aérea amplía el efecto inicial",
-      "del empleo directo sobre la economía local."
-    ], {
+    appendMultilineText(svg, x + 14, y + 20, title, {
+      fill: color,
+      "font-size": 11,
+      "font-weight": 800
+    }, 12);
+
+    svg.appendChild(svgElement("text", {
+      x: x + 14,
+      y: y + 47,
+      fill: COLORS.navy,
+      "font-size": valueSize,
+      "font-weight": 900
+    }, formatInteger(value)));
+
+    if (iconCount > 0) {
+      drawEmploymentPeople(
+        svg,
+        x + w - 92,
+        y + 16,
+        iconCount,
+        color,
+        { cols: 4, scale: 0.68, gapX: 17, gapY: 17 }
+      );
+    }
+
+    appendMultilineText(svg, x + 14, y + 66, lines, {
       fill: COLORS.muted,
-      "font-size": 10.4,
-      "text-anchor": "middle"
-    }, 13);
-
-    container.appendChild(svg);
+      "font-size": 10.1
+    }, 12.3);
   }
+
+  makeNode({
+    x: 18,
+    y: 74,
+    w: 218,
+    h: 106,
+    title: ["EMPLEO DIRECTO", "AEROPORTUARIO"],
+    value: direct,
+    color: COLORS.lime,
+    iconCount: getEmploymentIconCount(direct, maxValue),
+    lines: [
+      "Dentro del aeropuerto.",
+      "Ej.: administración, líneas",
+      "aéreas, handling, control,",
+      "rampa y catering."
+    ]
+  });
+
+  makeNode({
+    x: 274,
+    y: 16,
+    w: 328,
+    h: 78,
+    title: "EMPLEO INDIRECTO",
+    value: indirect,
+    color: COLORS.teal,
+    iconCount: getEmploymentIconCount(indirect, maxValue),
+    lines: [
+      "Cadena de abastecimiento.",
+      "Ej.: insumos, mercaderías,",
+      "publicidad y logística."
+    ]
+  });
+
+  makeNode({
+    x: 274,
+    y: 110,
+    w: 328,
+    h: 78,
+    title: "EMPLEO INDUCIDO",
+    value: induced,
+    color: COLORS.cyan,
+    iconCount: getEmploymentIconCount(induced, maxValue),
+    lines: [
+      "Consumo de trabajadores.",
+      "Ej.: comercios y servicios",
+      "donde gastan sus ingresos."
+    ]
+  });
+
+  makeNode({
+    x: 274,
+    y: 204,
+    w: 328,
+    h: 78,
+    title: "EMPLEO CATALÍTICO",
+    value: catalytic,
+    color: COLORS.blue,
+    iconCount: getEmploymentIconCount(catalytic, maxValue),
+    lines: [
+      "Actividad facilitada por la",
+      "conectividad aérea. Ej.: turismo,",
+      "inversiones y nuevas empresas."
+    ]
+  });
+
+  makeNode({
+    x: 18,
+    y: 212,
+    w: 218,
+    h: 70,
+    title: "EMPLEO TOTAL ASOCIADO",
+    value: total,
+    color: COLORS.navy,
+    fill: "#eef6ff",
+    valueSize: 16,
+    iconCount: getEmploymentIconCount(total, maxValue),
+    lines: [
+      multiplier
+        ? `${multiplier.toLocaleString("es-AR", { maximumFractionDigits: 1 })} veces el empleo directo`
+        : "Síntesis de los impactos laborales"
+    ]
+  });
+
+  connector("M 236 128 C 250 128, 258 54, 274 54");
+  connector("M 236 128 C 252 128, 258 149, 274 149");
+  connector("M 236 128 C 250 128, 258 243, 274 243");
+
+  svg.appendChild(svgElement("text", {
+    x: 252,
+    y: 196,
+    "text-anchor": "middle",
+    fill: COLORS.muted,
+    "font-size": 10.5
+  }, `Empleos adicionales: ${formatInteger(additional)}`));
+
+  svg.appendChild(svgElement("text", {
+    x: 252,
+    y: 210,
+    "text-anchor": "middle",
+    fill: COLORS.muted,
+    "font-size": 10.1
+  }, "La conectividad aérea amplía el efecto"));
+
+  svg.appendChild(svgElement("text", {
+    x: 252,
+    y: 223,
+    "text-anchor": "middle",
+    fill: COLORS.muted,
+    "font-size": 10.1
+  }, "del empleo directo sobre la economía local."));
+
+  container.appendChild(svg);
+}
 
 function normalizeShareOrCount(value, total) {
   if (!Number.isFinite(value)) return null;
