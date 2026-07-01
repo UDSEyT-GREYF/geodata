@@ -909,8 +909,8 @@ if (iconCount > 0) {
   makeNode({
     x: 18,
     y: 42,
-    w: 220,
-    h: 126,
+    w: 300,
+    h: 140,
     title: ["EMPLEO DIRECTO", "AEROPORTUARIO"],
     value: direct,
     color: COLORS.lime,
