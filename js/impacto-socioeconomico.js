@@ -927,7 +927,7 @@ if (iconCount > 0) {
 
   makeNode({
     x: 280,
-    y: 18,
+    y: 3,
     w: 332,
     h: 120,
     title: "EMPLEO INDIRECTO",
@@ -945,7 +945,7 @@ if (iconCount > 0) {
   });
 
   makeNode({
-    x: 270,
+    x: 280,
     y: 120,
     w: 332,
     h: 120,
@@ -963,7 +963,7 @@ if (iconCount > 0) {
   });
 
   makeNode({
-    x: 270,
+    x: 280,
     y: 222,
     w: 332,
     h: 120,
