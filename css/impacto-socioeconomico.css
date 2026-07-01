@@ -416,6 +416,30 @@ body.impacto-standalone {
   background: #e9edf2;
 }
 
+
+.impacto-report [hidden] {
+  display: none !important;
+}
+
+.impacto-chart-card-wide {
+  min-width: 0;
+}
+
+.impacto-chart-waterfall,
+.impacto-chart-stacked,
+.impacto-chart-employment {
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.impacto-chart-waterfall svg,
+.impacto-chart-stacked svg,
+.impacto-chart-employment svg,
+.impacto-summary-fallback svg {
+  width: 100%;
+  height: 100%;
+}
+
 @media screen and (max-width: 850px) {
   .impacto-sheet {
     width: 100%;
