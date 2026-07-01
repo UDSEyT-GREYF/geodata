@@ -927,7 +927,7 @@ if (iconCount > 0) {
 
   makeNode({
     x: 280,
-    y: -25,
+    y: -45,
     w: 332,
     h: 130,
     title: "EMPLEO INDIRECTO",
@@ -937,10 +937,12 @@ if (iconCount > 0) {
     iconCount: getEmploymentIconCount(indirect, maxCategory, 10, 3),
     iconX: 395,
     lines: [
-      "Originados en la economía del área de influencia aeroportuaria, que forman", 
-      "parte de la cadena de proveedores de bienes y servicios a las actividades directas.",
-      "Estos empleos no tendrían lugar sin la infraestructura aeroportuaria y la conectividad ofrecida",
-      "Ej.: insumos, mercaderías, publicidad y logística vinculadas al aeropuerto"
+      "Originados en la economía del área de influencia aeroportuaria,"
+      "que forman parte de la cadena de proveedores de bienes y",
+      "servicios a las actividades directas. Estos empleos no tendrían",
+      "lugar sin la infraestructura aeroportuaria y la conectividad aérea",
+      "Ej.: insumos, mercaderías, publicidad y logística vinculadas",
+      "al aeropuerto"
     ]
   });
 
