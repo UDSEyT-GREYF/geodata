@@ -455,16 +455,12 @@ function getEmploymentIconCount(value, maxValue, maxIcons = 10, minIcons = 2) {
 }
 
 function drawEmploymentPeopleInline(parent, x, y, count, color, options = {}) {
-  const cols = options.cols || 5;
-  const scale = options.scale || 0.62;
-  const gapX = options.gapX || 13;
-  const gapY = options.gapY || 13;
+  const scale = options.scale || 0.54;
+  const gapX = options.gapX || 11;
 
   for (let i = 0; i < count; i += 1) {
-    const col = i % cols;
-    const row = Math.floor(i / cols);
-    const tx = x + col * gapX;
-    const ty = y + row * gapY;
+    const tx = x + i * gapX;
+    const ty = y;
 
     const g = svgElement("g", {
       transform: `translate(${tx} ${ty}) scale(${scale})`
@@ -824,10 +820,10 @@ function renderEmploymentTree(container, data) {
   const multiplier = direct > 0 && total > 0 ? total / direct : null;
 
   container.innerHTML = "";
-  const svg = svgElement("svg", {
-    viewBox: "0 0 620 360",
-    role: "img"
-  });
+const svg = svgElement("svg", {
+  viewBox: "0 0 620 380",
+  role: "img"
+});
 
   const defs = svgElement("defs");
   const marker = svgElement("marker", {
@@ -879,32 +875,30 @@ function renderEmploymentTree(container, data) {
       "font-weight": 800
     }, 12.5);
 
-    const numberX = x + 14;
-    const numberY = y + 48;
+const numberX = x + 14;
+const numberY = y + 48;
 
-    svg.appendChild(svgElement("text", {
-      x: numberX,
-      y: numberY,
-      fill: COLORS.navy,
-      "font-size": valueSize,
-      "font-weight": 900
-    }, formatInteger(value)));
+svg.appendChild(svgElement("text", {
+  x: numberX,
+  y: numberY,
+  fill: COLORS.navy,
+  "font-size": valueSize,
+  "font-weight": 900
+}, formatInteger(value)));
 
-    if (iconCount > 0) {
-      drawEmploymentPeopleInline(
-        svg,
-        iconX !== null ? iconX : x + 108,
-        y + 23,
-        iconCount,
-        color,
-        {
-          cols: 5,
-          scale: 0.62,
-          gapX: 13,
-          gapY: 13
-        }
-      );
+if (iconCount > 0) {
+  drawEmploymentPeopleInline(
+    svg,
+    iconX !== null ? iconX : x + 108,
+    numberY - 13,
+    iconCount,
+    color,
+    {
+      scale: 0.54,
+      gapX: 11
     }
+  );
+}
 
     appendMultilineText(svg, x + 14, y + 70, lines, {
       fill: COLORS.muted,
@@ -982,29 +976,25 @@ function renderEmploymentTree(container, data) {
     ]
   });
 
-  makeNode({
-    x: 18,
-    y: 296,
-    w: 584,
-    h: 52,
-    title: "EMPLEO TOTAL ASOCIADO",
-    value: total,
-    color: COLORS.navy,
-    fill: "#eef6ff",
-    valueSize: 18,
-    iconCount: 12,
-    iconX: 176,
-    lines: [
-      multiplier
-        ? `${formatInteger(additional)} empleos adicionales · ${multiplier.toLocaleString("es-AR", { maximumFractionDigits: 1 })} veces el empleo directo`
-        : `${formatInteger(additional)} empleos adicionales asociados`
-    ]
-  });
+makeNode({
+  x: 18,
+  y: 286,
+  w: 584,
+  h: 76,
+  title: "EMPLEO TOTAL ASOCIADO",
+  value: total,
+  color: COLORS.navy,
+  fill: "#eef6ff",
+  valueSize: 18,
+  iconCount: 12,
+  iconX: 160,
+
+});
 
   connector("M 238 105 C 252 105, 258 56, 270 56");
   connector("M 238 105 C 252 105, 258 146, 270 146");
   connector("M 238 105 C 252 105, 258 236, 270 236");
-  connector("M 310 274 C 310 286, 310 292, 310 296");
+  connector("M 310 274 C 310 280, 310 283, 310 286");
 
   container.appendChild(svg);
 }
