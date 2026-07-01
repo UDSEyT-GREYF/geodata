@@ -926,7 +926,7 @@ if (iconCount > 0) {
   });
 
   makeNode({
-    x: 270,
+    x: 280,
     y: 18,
     w: 332,
     h: 120,
