@@ -1005,6 +1005,8 @@ function renderEmploymentTree(container, data) {
   connector("M 238 105 C 252 105, 258 146, 270 146");
   connector("M 238 105 C 252 105, 258 236, 270 236");
   connector("M 310 274 C 310 286, 310 292, 310 296");
+
+  container.appendChild(svg);
 }
 
 function normalizeShareOrCount(value, total) {
