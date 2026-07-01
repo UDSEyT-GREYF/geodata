@@ -821,7 +821,7 @@ function renderEmploymentTree(container, data) {
 
   container.innerHTML = "";
 const svg = svgElement("svg", {
-  viewBox: "0 0 620 380",
+  viewBox: "0 0 620 420",
   role: "img"
 });
 
@@ -900,7 +900,7 @@ if (iconCount > 0) {
   );
 }
 
-    appendMultilineText(svg, x + 14, y + 70, lines, {
+    appendMultilineText(svg, x + 14, y + 64, lines, {
       fill: COLORS.muted,
       "font-size": 11.1
     }, 13.5);
@@ -929,7 +929,7 @@ if (iconCount > 0) {
     x: 270,
     y: 18,
     w: 332,
-    h: 76,
+    h: 88,
     title: "EMPLEO INDIRECTO",
     value: indirect,
     color: COLORS.teal,
@@ -944,9 +944,9 @@ if (iconCount > 0) {
 
   makeNode({
     x: 270,
-    y: 108,
+    y: 120,
     w: 332,
-    h: 76,
+    h: 88,
     title: "EMPLEO INDUCIDO",
     value: induced,
     color: COLORS.cyan,
@@ -961,9 +961,9 @@ if (iconCount > 0) {
 
   makeNode({
     x: 270,
-    y: 198,
+    y: 222,
     w: 332,
-    h: 76,
+    h: 88,
     title: "EMPLEO CATALÍTICO",
     value: catalytic,
     color: COLORS.blue,
@@ -978,7 +978,7 @@ if (iconCount > 0) {
 
 makeNode({
   x: 18,
-  y: 286,
+  y: 330,
   w: 584,
   h: 76,
   title: "EMPLEO TOTAL ASOCIADO",
@@ -991,10 +991,10 @@ makeNode({
 
 });
 
-  connector("M 238 105 C 252 105, 258 56, 270 56");
-  connector("M 238 105 C 252 105, 258 146, 270 146");
-  connector("M 238 105 C 252 105, 258 236, 270 236");
-  connector("M 310 274 C 310 280, 310 283, 310 286");
+connector("M 238 105 C 252 105, 258 62, 270 62");
+connector("M 238 105 C 252 105, 258 164, 270 164");
+connector("M 238 105 C 252 105, 258 266, 270 266");
+connector("M 310 310 C 310 318, 310 324, 310 330");
 
   container.appendChild(svg);
 }
