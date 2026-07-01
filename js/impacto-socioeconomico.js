@@ -937,8 +937,8 @@ if (iconCount > 0) {
     iconCount: getEmploymentIconCount(indirect, maxCategory, 10, 3),
     iconX: 395,
     lines: [
-      "Originados en la economía del área de influencia aeroportuaria, que forman" 
-      "parte de la cadena de proveedores de bienes y servicios a las actividades directas."
+      "Originados en la economía del área de influencia aeroportuaria, que forman", 
+      "parte de la cadena de proveedores de bienes y servicios a las actividades directas.",
       "Estos empleos no tendrían lugar sin la infraestructura aeroportuaria y la conectividad ofrecida",
       "Ej.: insumos, mercaderías, publicidad y logística vinculadas al aeropuerto"
     ]
@@ -956,7 +956,7 @@ if (iconCount > 0) {
     iconCount: getEmploymentIconCount(induced, maxCategory, 10, 3),
     iconX: 395,
     lines: [
-      "Generados por el consumo de trabajadores de las empresas incluidas"
+      "Generados por el consumo de trabajadores de las empresas incluidas",
       "en el impacto directo e indirecto",
       "Ej.: comercios y servicios donde consumen los empleados directos e indirectos"
     ]
@@ -974,7 +974,7 @@ if (iconCount > 0) {
     iconCount: getEmploymentIconCount(catalytic, maxCategory, 10, 3),
     iconX: 395,
     lines: [
-      "Generados por la atracción, retención y expansión de la actividad económica del área"
+      "Generados por la atracción, retención y expansión de la actividad económica del área",
       "de influencia como resultado de la accesibilidad a los mercados provista por la conectividad aérea",
       "Ej.: turismo receptivo, inversiones atraídas y nuevas empresas, incremento de productividad"
     ]
