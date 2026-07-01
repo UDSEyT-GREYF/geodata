@@ -927,7 +927,7 @@ if (iconCount > 0) {
 
   makeNode({
     x: 280,
-    y: 3,
+    y: -15,
     w: 332,
     h: 120,
     title: "EMPLEO INDIRECTO",
