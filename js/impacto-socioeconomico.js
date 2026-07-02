@@ -907,9 +907,9 @@ if (iconCount > 0) {
   }
 // MARCO GENERAL DE EMPLEO TOTAL (detrás de todas las cajas)
 svg.appendChild(svgElement("rect", {
-  x: 2,
+  x: 0,
   y: -45,
-  width: 608,
+  width: 610,
   height: 450,
   rx: 14,
   fill: "none",
@@ -963,7 +963,7 @@ drawEmploymentPeopleInline(
   });
 
   makeNode({
-    x: 280,
+    x: 275,
     y: -45,
     w: 332,
     h: 140,
@@ -984,7 +984,7 @@ drawEmploymentPeopleInline(
   });
 
   makeNode({
-    x: 280,
+    x: 275,
     y: 120,
     w: 332,
     h: 120,
@@ -1003,7 +1003,7 @@ drawEmploymentPeopleInline(
   });
 
   makeNode({
-    x: 280,
+    x: 275,
     y: 250,
     w: 332,
     h: 120,
