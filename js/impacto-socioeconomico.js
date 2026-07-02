@@ -905,7 +905,45 @@ if (iconCount > 0) {
       "font-size": 11.1
     }, 13.5);
   }
+// MARCO GENERAL DE EMPLEO TOTAL (detrás de todas las cajas)
+svg.appendChild(svgElement("rect", {
+  x: 2,
+  y: 12,
+  width: 610,
+  height: 448,
+  rx: 14,
+  fill: "none",
+  stroke: COLORS.navy,
+  "stroke-width": 2.2
+}));
 
+appendMultilineText(svg, 18, 34, "EMPLEO TOTAL", {
+  fill: COLORS.navy,
+  "font-size": 12.5,
+  "font-weight": 800
+}, 12);
+
+const totalNumberY = 60;
+
+svg.appendChild(svgElement("text", {
+  x: 18,
+  y: totalNumberY,
+  fill: COLORS.navy,
+  "font-size": 18,
+  "font-weight": 900
+}, formatInteger(total)));
+
+drawEmploymentPeopleInline(
+  svg,
+  135,
+  totalNumberY - 13,
+  12,
+  COLORS.navy,
+  {
+    scale: 0.54,
+    gapX: 11
+  }
+);
   makeNode({
     x: 5,
     y: 42,
@@ -984,19 +1022,6 @@ if (iconCount > 0) {
     ]
   });
 
-makeNode({
-  x: 0,
-  y: 360,
-  w: 600,
-  h: 76,
-  title: "EMPLEO TOTAL",
-  value: total,
-  color: COLORS.navy,
-  valueSize: 18,
-  iconCount: 12,
-  iconX: 160,
-
-});
 
 connector("M 238 105 C 252 105, 258 62, 270 62");
 connector("M 238 105 C 252 105, 258 164, 270 164");
