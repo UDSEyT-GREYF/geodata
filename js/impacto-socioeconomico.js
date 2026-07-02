@@ -948,7 +948,7 @@ drawEmploymentPeopleInline(
     x: 20,
     y: 205,
     w: 230,
-    h: 140,
+    h: 150,
     title: ["EMPLEO DIRECTO AEROPORTUARIO"],
     value: direct,
     color: COLORS.lime,
@@ -957,9 +957,10 @@ drawEmploymentPeopleInline(
     iconX: 140,
     lines: [
       "Dentro del aeropuerto.",
-      "Ej.: administración aeroportuaria, líneas aéreas", 
-      "locales comerciales, handling, control aéreo,",
-      "aerocombustibles, la logística y los depósitos,",
+      "Ej.: administración aeroportuaria, ", 
+      "líneas aéreas, locales comerciales,",
+      "control aéreo, aerocombustibles,",
+      "handling, logística, depósitos,",
       "rampa y catering."
     ]
   });
@@ -968,7 +969,7 @@ drawEmploymentPeopleInline(
     x: 270,
     y: 88,
     w: 330,
-    h: 130,
+    h: 140,
     title: "EMPLEO INDIRECTO",
     value: indirect,
     color: COLORS.teal,
@@ -988,7 +989,7 @@ drawEmploymentPeopleInline(
   makeNode({
     x: 270,
     y: 235,
-    w: 320,
+    w: 330,
     h: 112,
     title: "EMPLEO INDUCIDO",
     value: induced,
