@@ -821,7 +821,7 @@ function renderEmploymentTree(container, data) {
 
   container.innerHTML = "";
 const svg = svgElement("svg", {
-  viewBox: "0 0 620 420",
+  viewBox: "0 0 620 470",
   role: "img"
 });
 
@@ -909,8 +909,8 @@ if (iconCount > 0) {
 svg.appendChild(svgElement("rect", {
   x: 2,
   y: 12,
-  width: 610,
-  height: 448,
+  width: 608,
+  height: 450,
   rx: 14,
   fill: "none",
   stroke: COLORS.navy,
@@ -1026,7 +1026,6 @@ drawEmploymentPeopleInline(
 connector("M 238 105 C 252 105, 258 62, 270 62");
 connector("M 238 105 C 252 105, 258 164, 270 164");
 connector("M 238 105 C 252 105, 258 266, 270 266");
-connector("M 310 310 C 310 318, 310 324, 310 330");
 
   container.appendChild(svg);
 }
