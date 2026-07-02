@@ -909,19 +909,18 @@ if (iconCount > 0) {
   makeNode({
     x: 5,
     y: 42,
-    w: 260,
+    w: 230,
     h: 120,
     title: ["EMPLEO DIRECTO AEROPORTUARIO"],
     value: direct,
     color: COLORS.lime,
     valueSize: 18,
     iconCount: getEmploymentIconCount(direct, maxCategory, 10, 3),
-    iconX: 130,
+    iconX: 125,
     lines: [
       "Dentro del aeropuerto.",
-      "Ej.: administración, líneas",
-      "aéreas, handling, control,",
-      "rampa y catering."
+      "Ej.: administración, líneas, aéreas", 
+      "handling, control, rampa y catering."
     ]
   });
 
@@ -935,7 +934,7 @@ if (iconCount > 0) {
     color: COLORS.teal,
     valueSize: 17,
     iconCount: getEmploymentIconCount(indirect, maxCategory, 10, 3),
-    iconX: 395,
+    iconX: 385,
     lines: [
       "Originados en la economía del área de influencia aeroportuaria",
       "como parte de la cadena de proveedores de bienes y servicios",
@@ -956,7 +955,7 @@ if (iconCount > 0) {
     color: COLORS.cyan,
     valueSize: 17,
     iconCount: getEmploymentIconCount(induced, maxCategory, 10, 3),
-    iconX: 395,
+    iconX: 385,
     lines: [
       "Generados por el consumo de trabajadores de las empresas",
       "incluidas en el impacto directo e indirecto",
@@ -975,11 +974,13 @@ if (iconCount > 0) {
     color: COLORS.blue,
     valueSize: 17,
     iconCount: getEmploymentIconCount(catalytic, maxCategory, 10, 3),
-    iconX: 395,
+    iconX: 385,
     lines: [
-      "Generados por la atracción, retención y expansión de la actividad económica del área",
-      "de influencia como resultado de la accesibilidad a los mercados provista por la conectividad aérea",
-      "Ej.: turismo receptivo, inversiones atraídas y nuevas empresas, incremento de productividad"
+      "Generados por la atracción, retención y expansión de la",
+      "actividad económica del área de influencia, fruto de la",
+      "accesibilidad a los mercados provista por la conectividad aérea",
+      "Ej.: turismo receptivo, inversiones atraídas y nuevas empresas,", 
+      "incremento de productividad"
     ]
   });
 
