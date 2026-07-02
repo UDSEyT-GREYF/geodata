@@ -821,7 +821,7 @@ function renderEmploymentTree(container, data) {
 
   container.innerHTML = "";
 const svg = svgElement("svg", {
-  viewBox: "0 0 620 500",
+  viewBox: "0 0 620 510",
   role: "img"
 });
 
@@ -910,7 +910,7 @@ svg.appendChild(svgElement("rect", {
   x: 0,
   y: 8,
   width: 610,
-  height: 450,
+  height: 480,
   rx: 14,
   fill: "none",
   stroke: COLORS.navy,
@@ -923,7 +923,7 @@ appendMultilineText(svg, 18, 34, "EMPLEO TOTAL", {
   "font-weight": 800
 }, 12);
 
-const totalNumberY = 56;
+const totalNumberY = 62;
 
 svg.appendChild(svgElement("text", {
   x: 18,
@@ -935,7 +935,7 @@ svg.appendChild(svgElement("text", {
 
 drawEmploymentPeopleInline(
   svg,
-  135,
+  115,
   totalNumberY - 13,
   12,
   COLORS.navy,
@@ -945,8 +945,8 @@ drawEmploymentPeopleInline(
   }
 );
   makeNode({
-    x: 5,
-    y: 42,
+    x: 20,
+    y: 205,
     w: 230,
     h: 120,
     title: ["EMPLEO DIRECTO AEROPORTUARIO"],
@@ -954,7 +954,7 @@ drawEmploymentPeopleInline(
     color: COLORS.lime,
     valueSize: 18,
     iconCount: getEmploymentIconCount(direct, maxCategory, 10, 3),
-    iconX: 125,
+    iconX: 140,
     lines: [
       "Dentro del aeropuerto.",
       "Ej.: administración, líneas, aéreas", 
@@ -963,16 +963,16 @@ drawEmploymentPeopleInline(
   });
 
   makeNode({
-    x: 275,
-    y: 78,
-    w: 332,
-    h: 140,
+    x: 285,
+    y: 88,
+    w: 320,
+    h: 130,
     title: "EMPLEO INDIRECTO",
     value: indirect,
     color: COLORS.teal,
     valueSize: 17,
     iconCount: getEmploymentIconCount(indirect, maxCategory, 10, 3),
-    iconX: 385,
+    iconX: 395,
     lines: [
       "Originados en la economía del área de influencia aeroportuaria",
       "como parte de la cadena de proveedores de bienes y servicios",
@@ -984,16 +984,16 @@ drawEmploymentPeopleInline(
   });
 
   makeNode({
-    x: 275,
-    y: 232,
-    w: 332,
-    h: 120,
+    x: 285,
+    y: 234,
+    w: 320,
+    h: 112,
     title: "EMPLEO INDUCIDO",
     value: induced,
     color: COLORS.cyan,
     valueSize: 17,
     iconCount: getEmploymentIconCount(induced, maxCategory, 10, 3),
-    iconX: 385,
+    iconX: 395,
     lines: [
       "Generados por el consumo de trabajadores de las empresas",
       "incluidas en el impacto directo e indirecto",
@@ -1003,16 +1003,16 @@ drawEmploymentPeopleInline(
   });
 
   makeNode({
-    x: 275,
-    y: 360,
-    w: 332,
-    h: 120,
+    x: 285,
+    y: 362,
+    w: 320,
+    h: 116,
     title: "EMPLEO CATALÍTICO",
     value: catalytic,
     color: COLORS.blue,
     valueSize: 17,
     iconCount: getEmploymentIconCount(catalytic, maxCategory, 10, 3),
-    iconX: 385,
+    iconX: 395,
     lines: [
       "Generados por la atracción, retención y expansión de la",
       "actividad económica del área de influencia, fruto de la",
@@ -1023,9 +1023,9 @@ drawEmploymentPeopleInline(
   });
 
 
-connector("M 238 105 C 252 105, 258 148, 275 148");
-connector("M 238 105 C 252 105, 258 292, 275 292");
-connector("M 238 105 C 252 105, 258 420, 275 420");
+connector("M 250 265 C 265 265, 268 153, 285 153");
+connector("M 250 265 C 265 265, 268 290, 285 290");
+connector("M 250 265 C 265 265, 268 420, 285 420");
 
   container.appendChild(svg);
 }
