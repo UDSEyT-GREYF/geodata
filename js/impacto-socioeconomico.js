@@ -908,7 +908,7 @@ if (iconCount > 0) {
 // MARCO GENERAL DE EMPLEO TOTAL (detrás de todas las cajas)
 svg.appendChild(svgElement("rect", {
   x: 2,
-  y: 12,
+  y: -45,
   width: 608,
   height: 450,
   rx: 14,
