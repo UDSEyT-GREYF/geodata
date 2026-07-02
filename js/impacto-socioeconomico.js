@@ -985,14 +985,13 @@ if (iconCount > 0) {
   });
 
 makeNode({
-  x: 18,
+  x: 0,
   y: 360,
   w: 600,
   h: 76,
   title: "EMPLEO TOTAL",
   value: total,
   color: COLORS.navy,
-  fill: "#eef6ff",
   valueSize: 18,
   iconCount: 12,
   iconX: 160,
