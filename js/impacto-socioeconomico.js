@@ -986,8 +986,8 @@ if (iconCount > 0) {
 
 makeNode({
   x: 18,
-  y: 330,
-  w: 584,
+  y: 360,
+  w: 600,
   h: 76,
   title: "EMPLEO TOTAL",
   value: total,
@@ -1260,15 +1260,24 @@ const empleoVarones = normalizeShareOrCount(
     const existingSrc = existingSummary && (existingSummary.currentSrc || existingSummary.getAttribute("src"));
     const iata = data.iata;
 
-    const candidates = [
-      existingSrc,
-      data.summaryImage,
-      iata ? `img/resumenejecutivo/${iata}.png` : null,
-      iata ? `img/resumenejecutivo/${iata}_impacto.png` : null,
-      iata ? `img/resumenejecutivo/impacto_${iata}.png` : null,
-      iata ? `img/resumenejecutivo/Impacto_${iata}.png` : null,
-      iata ? `img/resumenejecutivo/${iata.toLowerCase()}.png` : null
-    ].filter(Boolean);
+const candidates = [
+  existingSrc,
+  data.summaryImage,
+
+  // Nombre actual de tus imágenes en GitHub:
+  iata ? `img/resumenejecutivo/resumen(${iata}).PNG` : null,
+  iata ? `img/resumenejecutivo/resumen(${iata}).png` : null,
+
+  // Alternativas por si algún archivo quedó con otra convención:
+  iata ? `img/resumenejecutivo/Resumen(${iata}).PNG` : null,
+  iata ? `img/resumenejecutivo/Resumen(${iata}).png` : null,
+  iata ? `img/resumenejecutivo/${iata}.png` : null,
+  iata ? `img/resumenejecutivo/${iata}.PNG` : null,
+  iata ? `img/resumenejecutivo/${iata}_impacto.png` : null,
+  iata ? `img/resumenejecutivo/impacto_${iata}.png` : null,
+  iata ? `img/resumenejecutivo/Impacto_${iata}.png` : null,
+  iata ? `img/resumenejecutivo/${iata.toLowerCase()}.png` : null
+].filter(Boolean);
 
     trySummaryImages([...new Set(candidates)], image, fallback);
   }
