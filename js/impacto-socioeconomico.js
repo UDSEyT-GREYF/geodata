@@ -821,7 +821,7 @@ function renderEmploymentTree(container, data) {
 
   container.innerHTML = "";
 const svg = svgElement("svg", {
-  viewBox: "0 0 620 470",
+  viewBox: "0 0 620 500",
   role: "img"
 });
 
@@ -908,7 +908,7 @@ if (iconCount > 0) {
 // MARCO GENERAL DE EMPLEO TOTAL (detrás de todas las cajas)
 svg.appendChild(svgElement("rect", {
   x: 0,
-  y: -45,
+  y: 8,
   width: 610,
   height: 450,
   rx: 14,
@@ -923,7 +923,7 @@ appendMultilineText(svg, 18, 34, "EMPLEO TOTAL", {
   "font-weight": 800
 }, 12);
 
-const totalNumberY = 30;
+const totalNumberY = 56;
 
 svg.appendChild(svgElement("text", {
   x: 18,
@@ -964,7 +964,7 @@ drawEmploymentPeopleInline(
 
   makeNode({
     x: 275,
-    y: -45,
+    y: 78,
     w: 332,
     h: 140,
     title: "EMPLEO INDIRECTO",
@@ -985,7 +985,7 @@ drawEmploymentPeopleInline(
 
   makeNode({
     x: 275,
-    y: 120,
+    y: 232,
     w: 332,
     h: 120,
     title: "EMPLEO INDUCIDO",
@@ -1004,7 +1004,7 @@ drawEmploymentPeopleInline(
 
   makeNode({
     x: 275,
-    y: 250,
+    y: 360,
     w: 332,
     h: 120,
     title: "EMPLEO CATALÍTICO",
@@ -1023,9 +1023,9 @@ drawEmploymentPeopleInline(
   });
 
 
-connector("M 238 105 C 252 105, 258 62, 270 62");
-connector("M 238 105 C 252 105, 258 164, 270 164");
-connector("M 238 105 C 252 105, 258 266, 270 266");
+connector("M 238 105 C 252 105, 258 148, 275 148");
+connector("M 238 105 C 252 105, 258 292, 275 292");
+connector("M 238 105 C 252 105, 258 420, 275 420");
 
   container.appendChild(svg);
 }
