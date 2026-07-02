@@ -900,10 +900,26 @@ if (iconCount > 0) {
   );
 }
 
-    appendMultilineText(svg, x + 14, y + 64, lines, {
-      fill: COLORS.muted,
-      "font-size": 11.1
-    }, 13.5);
+const textLines = Array.isArray(lines) ? lines : [lines];
+let exampleStarted = false;
+
+textLines.filter(Boolean).forEach((line, index) => {
+  const text = String(line);
+
+  if (text.trim().startsWith("Ej.:")) {
+    exampleStarted = true;
+  }
+
+  const isExample = exampleStarted;
+
+  svg.appendChild(svgElement("text", {
+    x: x + 14,
+    y: y + 64 + index * 13.5,
+    fill: isExample ? COLORS.blue : COLORS.muted,
+    "font-size": isExample ? 10.4 : 11.1,
+    "font-weight": isExample ? 700 : 400
+  }, text));
+});
   }
 // MARCO GENERAL DE EMPLEO TOTAL (detrás de todas las cajas)
 svg.appendChild(svgElement("rect", {
