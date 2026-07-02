@@ -929,7 +929,7 @@ if (iconCount > 0) {
     x: 280,
     y: -45,
     w: 332,
-    h: 130,
+    h: 140,
     title: "EMPLEO INDIRECTO",
     value: indirect,
     color: COLORS.teal,
@@ -938,9 +938,9 @@ if (iconCount > 0) {
     iconX: 395,
     lines: [
       "Originados en la economía del área de influencia aeroportuaria",
-      "que forman parte de la cadena de proveedores de bienes y",
-      "servicios a las actividades directas. Estos empleos no tendrían",
-      "lugar sin la infraestructura aeroportuaria y la conectividad aérea",
+      "como parte de la cadena de proveedores de bienes y servicios",
+      "de las actividades directas. Estos empleos no tendrían lugar",
+      "sin la infraestructura aeroportuaria y la conectividad aérea",
       "Ej.: insumos, mercaderías, publicidad y logística vinculadas",
       "al aeropuerto"
     ]
