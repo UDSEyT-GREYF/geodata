@@ -923,7 +923,7 @@ appendMultilineText(svg, 18, 34, "EMPLEO TOTAL", {
   "font-weight": 800
 }, 12);
 
-const totalNumberY = 60;
+const totalNumberY = 30;
 
 svg.appendChild(svgElement("text", {
   x: 18,
