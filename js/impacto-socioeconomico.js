@@ -991,7 +991,7 @@ drawEmploymentPeopleInline(
     x: 270,
     y: 65,
     w: 330,
-    h: 145,
+    h: 140,
     title: "EMPLEO INDIRECTO",
     value: indirect,
     color: COLORS.teal,
@@ -1002,8 +1002,8 @@ drawEmploymentPeopleInline(
       "Originados en la cadena de proveedores de bienes y servicios",
       "vinculados a las actividades directas. No existirían sin",
       "la infraestructura aeroportuaria y la conectividad aérea",
-      "Ej.: insumos, mercaderías, publicidad y logística vinculadas",
-      "al aeropuerto"
+      "Ej.: insumos, mercaderías, publicidad y",
+      " logística vinculadas al aeropuerto"
     ]
   });
 
@@ -1021,8 +1021,8 @@ drawEmploymentPeopleInline(
     lines: [
       "Generados por el consumo de trabajadores de las empresas",
       "incluidas en el impacto directo e indirecto",
-      "Ej.: comercios y servicios donde consumen los empleados",
-      "directos e indirectos"
+      "Ej.: comercios y servicios donde consumen los",
+      "empleados directos e indirectos"
     ]
   });
 
@@ -1041,8 +1041,8 @@ drawEmploymentPeopleInline(
       "Generados por la atracción, retención y expansión de la",
       "actividad económica del área de influencia, fruto de la",
       "accesibilidad provista por la conectividad aérea",
-      "Ej.: turismo receptivo, inversiones atraídas, nuevas empresas", 
-      "e incremento de productividad"
+      "Ej.: turismo receptivo, inversiones atraídas, nuevas", 
+      "empresas e incremento de productividad"
     ]
   });
 
