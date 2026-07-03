@@ -234,8 +234,9 @@
 
 .impacto-chart-grid-tourism,
 .impacto-chart-grid-employment {
-  grid-template-columns: 1.45fr 0.75fr;
+  grid-template-columns: 1.72fr 0.58fr;
   min-height: 112mm;
+  align-items: stretch;
 }
 
 .impacto-chart-card {
