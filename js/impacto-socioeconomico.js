@@ -559,7 +559,7 @@ function renderGenderDonut(container, items, centerTop, centerBottom) {
   container.innerHTML = "";
 
   const svg = svgElement("svg", {
-    viewBox: "0 0 260 300",
+    viewBox: "0 0 220 300",
     role: "img"
   });
 
