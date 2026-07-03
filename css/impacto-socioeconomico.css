@@ -648,3 +648,19 @@ body.impacto-standalone .impacto-sheet {
   display: block;
   margin-top: 3mm;
 }
+.impacto-chart-grid-employment {
+  grid-template-columns: 1fr !important;
+}
+
+.impacto-chart-grid-employment .impacto-chart-card-wide {
+  grid-column: 1 / -1;
+}
+
+.impacto-chart-employment {
+  min-height: 520px;
+}
+
+.impacto-chart-employment svg {
+  width: 100%;
+  height: 100%;
+}
