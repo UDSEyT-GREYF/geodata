@@ -983,7 +983,7 @@ drawEmploymentPeopleInline(
 
   makeNode({
     x: 270,
-    y: 88,
+    y: 70,
     w: 330,
     h: 145,
     title: "EMPLEO INDIRECTO",
