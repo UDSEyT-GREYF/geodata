@@ -922,7 +922,7 @@ textLines.filter(Boolean).forEach((line, index) => {
     x: x + 14,
     y: y + 66 + index * 13.4,
     fill: isExample ? color : COLORS.muted,
-    "font-size": isExample ? 10.8 : 11.2,
+    "font-size": isExample ? 11.8 : 12.2,
     "font-weight": isExample ? 700 : 400
   }, text));
 });
