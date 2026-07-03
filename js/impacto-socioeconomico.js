@@ -1121,7 +1121,7 @@ drawEmploymentPeopleInline(
 
   makeNode({
     x: 270,
-    y: 362,
+    y: 370,
     w: 340,
     h: 130,
     title: "EMPLEO CATALÍTICO",
