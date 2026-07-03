@@ -629,7 +629,7 @@ function renderGenderDonut(container, items, centerTop, centerBottom) {
       x: 84,
       y: y + 16,
       fill: COLORS.muted,
-      "font-size": 12
+      "font-size": 13
     }, `${pct.toLocaleString("es-AR", {
       maximumFractionDigits: 1
     })}%`));
