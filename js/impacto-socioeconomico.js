@@ -1023,7 +1023,7 @@ svg.appendChild(svgElement("rect", {
   x: 4,
   y: 8,
   width: 615,
-  height: 520,
+  height: 530,
   rx: 14,
   fill: "none",
   stroke: COLORS.navy,
@@ -1061,7 +1061,7 @@ drawEmploymentPeopleInline(
     x: 20,
     y: 205,
     w: 230,
-    h: 150,
+    h: 170,
     title: ["EMPLEO DIRECTO AEROPORTUARIO"],
     value: direct,
     color: COLORS.lime,
@@ -1082,7 +1082,7 @@ drawEmploymentPeopleInline(
     x: 270,
     y: 65,
     w: 340,
-    h: 140,
+    h: 150,
     title: "EMPLEO INDIRECTO",
     value: indirect,
     color: COLORS.teal,
@@ -1090,12 +1090,12 @@ drawEmploymentPeopleInline(
     iconCount: getEmploymentIconCount(indirect, maxCategory, 10, 3),
     iconX: 385,
     lines: [
-      "Originados en la economía del área de influencia aeroportuaria",
-      "como parte de la cadena de proveedores de bienes y servicios.", 
-      "de las actividades directas. Estos empleos no tendrían lugar",
+      "Originados en la economía del área de influencia como",
+      "parte de la cadena de bienes y servicios de las ", 
+      "actividades directas. Estos empleos no tendrían lugar",
       "sin la infraestructura aeroportuaria y la conectividad aérea",
-      "Ej.: insumos, mercaderías, publicidad y",
-      " logística vinculadas al aeropuerto"
+      "Ej.: insumos, mercaderías, publicidad y logística",
+      "vinculadas al funcionamiento del aeropuerto"
     ]
   });
 
@@ -1103,7 +1103,7 @@ drawEmploymentPeopleInline(
     x: 270,
     y: 230,
     w: 340,
-    h: 120,
+    h: 130,
     title: "EMPLEO INDUCIDO",
     value: induced,
     color: COLORS.cyan,
