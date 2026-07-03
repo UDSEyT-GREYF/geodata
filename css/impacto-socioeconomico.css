@@ -599,11 +599,6 @@ body.impacto-standalone .impacto-sheet {
   min-height: 78mm;
 }
 
-.impacto-chart-card-gender canvas {
-  max-width: 58mm;
-  max-height: 58mm;
-  margin: 2mm auto 0;
-}
 #impactoGenderDonut {
   min-height: 82mm;
   display: flex;
@@ -614,6 +609,41 @@ body.impacto-standalone .impacto-sheet {
 #impactoGenderDonut svg {
   width: 100%;
   max-width: 62mm;
+  height: auto;
+  display: block;
+}
+/* Página 4: empleo + género en dos columnas */
+.impacto-chart-grid-employment {
+  display: grid !important;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 0.52fr) !important;
+  gap: 4mm !important;
+  align-items: stretch !important;
+}
+
+/* Gráfico principal de empleo */
+.impacto-chart-grid-employment > .impacto-chart-card-employment {
+  grid-column: 1 !important;
+  min-width: 0 !important;
+}
+
+/* Dona de género */
+.impacto-chart-grid-employment > .impacto-chart-card-gender {
+  grid-column: 2 !important;
+  min-width: 0 !important;
+  padding: 3mm 2mm;
+}
+
+/* Ajuste de la dona SVG de género */
+#impactoGenderDonut {
+  min-height: 76mm;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#impactoGenderDonut svg {
+  width: 100%;
+  max-width: 52mm;
   height: auto;
   display: block;
 }
