@@ -842,18 +842,24 @@ const svg = svgElement("svg", {
   defs.appendChild(marker);
   svg.appendChild(defs);
 
-  const connector = (d, stroke = COLORS.blue) => {
-    svg.appendChild(svgElement("path", {
-      d,
-      fill: "none",
-      stroke,
-      "stroke-width": 2.2,
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round",
-      "marker-end": "url(#impactoArrowHead)"
-    }));
-  };
-
+const connector = (d, stroke = "#4f8bd6") => {
+  svg.appendChild(svgElement("path", {
+    d,
+    fill: "none",
+    stroke,
+    "stroke-width": 2,
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round"
+  }));
+};
+const connectorDot = (cx, cy, fill = COLORS.blue, r = 3.2) => {
+  svg.appendChild(svgElement("circle", {
+    cx,
+    cy,
+    r,
+    fill
+  }));
+};
   function makeNode({
     x, y, w, h, title, value, color, lines = [], fill = "#ffffff",
     valueSize = 17, iconCount = 0, iconX = null
@@ -993,10 +999,9 @@ drawEmploymentPeopleInline(
     iconCount: getEmploymentIconCount(indirect, maxCategory, 10, 3),
     iconX: 385,
     lines: [
-      "Originados en la economía del área de influencia aeroportuaria",
-      "como parte de la cadena de proveedores de bienes y servicios",
-      "de las actividades directas. Estos empleos no tendrían lugar",
-      "sin la infraestructura aeroportuaria y la conectividad aérea",
+      "Originados en la cadena de proveedores de bienes y servicios",
+      "vinculados a las actividades directas. No existirían sin",
+      "la infraestructura aeroportuaria y la conectividad aérea",
       "Ej.: insumos, mercaderías, publicidad y logística vinculadas",
       "al aeropuerto"
     ]
