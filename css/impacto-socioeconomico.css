@@ -585,3 +585,22 @@ body.impacto-standalone .impacto-sheet {
     margin: 0;
   }
 }
+.impacto-chart-card-gender {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 3mm 2.5mm;
+}
+
+.impacto-chart-card-gender .impacto-chart {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 78mm;
+}
+
+.impacto-chart-card-gender canvas {
+  max-width: 58mm;
+  max-height: 58mm;
+  margin: 2mm auto 0;
+}
