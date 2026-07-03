@@ -563,9 +563,9 @@ function renderGenderDonut(container, items, centerTop, centerBottom) {
     role: "img"
   });
 
-  const cx = 130;
-  const cy = 108;
-  const radius = 60;
+  const cx = 110;
+  const cy = 100;
+  const radius = 58;
   const circumference = 2 * Math.PI * radius;
   let offset = 0;
 
@@ -605,11 +605,11 @@ function renderGenderDonut(container, items, centerTop, centerBottom) {
   }, centerBottom));
 
   validItems.forEach((item, index) => {
-    const y = 214 + index * 34;
+    const y = 210 + index * 34;
     const pct = ratioPercent(item.value, total);
 
     svg.appendChild(svgElement("rect", {
-      x: 64,
+      x: 58,
       y: y - 11,
       width: 12,
       height: 12,
@@ -618,7 +618,7 @@ function renderGenderDonut(container, items, centerTop, centerBottom) {
     }));
 
     svg.appendChild(svgElement("text", {
-      x: 84,
+      x: 78,
       y,
       fill: COLORS.navy,
       "font-size": 11.5,
