@@ -1123,7 +1123,7 @@ drawEmploymentPeopleInline(
     x: 270,
     y: 380,
     w: 340,
-    h: 130,
+    h: 140,
     title: "EMPLEO CATALÍTICO",
     value: catalytic,
     color: COLORS.blue,
