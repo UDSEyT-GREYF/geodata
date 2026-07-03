@@ -1022,8 +1022,8 @@ textLines.filter(Boolean).forEach((line, index) => {
 svg.appendChild(svgElement("rect", {
   x: 4,
   y: 8,
-  width: 608,
-  height: 500,
+  width: 615,
+  height: 520,
   rx: 14,
   fill: "none",
   stroke: COLORS.navy,
@@ -1081,7 +1081,7 @@ drawEmploymentPeopleInline(
   makeNode({
     x: 270,
     y: 65,
-    w: 330,
+    w: 340,
     h: 140,
     title: "EMPLEO INDIRECTO",
     value: indirect,
@@ -1102,8 +1102,8 @@ drawEmploymentPeopleInline(
   makeNode({
     x: 270,
     y: 230,
-    w: 330,
-    h: 118,
+    w: 340,
+    h: 120,
     title: "EMPLEO INDUCIDO",
     value: induced,
     color: COLORS.cyan,
@@ -1111,8 +1111,8 @@ drawEmploymentPeopleInline(
     iconCount: getEmploymentIconCount(induced, maxCategory, 10, 3),
     iconX: 385,
     lines: [
-      "Generados por el consumo de trabajadores de las empresas",
-      "incluidas en el impacto directo e indirecto",
+      "Generados por el consumo de trabajadores de las",
+      "empresas incluidas en el impacto directo e indirecto",
       "Ej.: comercios y servicios donde consumen los",
       "empleados directos e indirectos"
     ]
@@ -1121,7 +1121,7 @@ drawEmploymentPeopleInline(
   makeNode({
     x: 270,
     y: 362,
-    w: 330,
+    w: 340,
     h: 130,
     title: "EMPLEO CATALÍTICO",
     value: catalytic,
