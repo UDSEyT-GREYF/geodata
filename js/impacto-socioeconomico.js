@@ -545,7 +545,98 @@ function drawEmploymentPeopleInline(parent, x, y, count, color, options = {}) {
 
     container.appendChild(svg);
   }
+function renderGenderDonut(container, items, centerTop, centerBottom) {
+  if (!container) return;
 
+  const validItems = items.filter((item) => Number.isFinite(item.value) && item.value > 0);
+  const total = validItems.reduce((sum, item) => sum + item.value, 0);
+
+  if (!validItems.length || total <= 0) {
+    clearChart(container);
+    return;
+  }
+
+  container.innerHTML = "";
+
+  const svg = svgElement("svg", {
+    viewBox: "0 0 260 300",
+    role: "img"
+  });
+
+  const cx = 130;
+  const cy = 108;
+  const radius = 60;
+  const circumference = 2 * Math.PI * radius;
+  let offset = 0;
+
+  validItems.forEach((item) => {
+    const fraction = item.value / total;
+
+    svg.appendChild(svgElement("circle", {
+      cx,
+      cy,
+      r: radius,
+      fill: "none",
+      stroke: item.color,
+      "stroke-width": 28,
+      "stroke-dasharray": `${fraction * circumference} ${circumference}`,
+      "stroke-dashoffset": -offset,
+      transform: `rotate(-90 ${cx} ${cy})`
+    }));
+
+    offset += fraction * circumference;
+  });
+
+  svg.appendChild(svgElement("text", {
+    x: cx,
+    y: cy - 2,
+    "text-anchor": "middle",
+    fill: COLORS.navy,
+    "font-size": 16,
+    "font-weight": 900
+  }, centerTop));
+
+  svg.appendChild(svgElement("text", {
+    x: cx,
+    y: cy + 17,
+    "text-anchor": "middle",
+    fill: COLORS.muted,
+    "font-size": 10.5
+  }, centerBottom));
+
+  validItems.forEach((item, index) => {
+    const y = 214 + index * 34;
+    const pct = ratioPercent(item.value, total);
+
+    svg.appendChild(svgElement("rect", {
+      x: 64,
+      y: y - 11,
+      width: 12,
+      height: 12,
+      rx: 2,
+      fill: item.color
+    }));
+
+    svg.appendChild(svgElement("text", {
+      x: 84,
+      y,
+      fill: COLORS.navy,
+      "font-size": 11.5,
+      "font-weight": 800
+    }, item.label));
+
+    svg.appendChild(svgElement("text", {
+      x: 84,
+      y: y + 16,
+      fill: COLORS.muted,
+      "font-size": 10.5
+    }, `${pct.toLocaleString("es-AR", {
+      maximumFractionDigits: 1
+    })}%`));
+  });
+
+  container.appendChild(svg);
+}
   function renderHorizontalBars(container, items, valueFormatter = formatCompact) {
     if (!container) return;
     const validItems = items.filter((item) => Number.isFinite(item.value) && item.value >= 0);
@@ -1257,15 +1348,15 @@ const empleoVarones = normalizeShareOrCount(
 
     renderEmploymentTree(root.querySelector("#impactoEmploymentBars"), data);
 
-    renderDonut(
-      root.querySelector("#impactoGenderDonut"),
-      [
-        { label: "Mujeres", value: data.empleoMujeres, color: COLORS.sky },
-        { label: "Varones", value: data.empleoVarones, color: COLORS.blue }
-      ],
-      Number.isFinite(data.empleoDirecto) ? formatInteger(data.empleoDirecto) : "–",
-      "empleos directos"
-    );
+renderGenderDonut(
+  root.querySelector("#impactoGenderDonut"),
+  [
+    { label: "Mujeres", value: data.empleoMujeres, color: COLORS.sky },
+    { label: "Varones", value: data.empleoVarones, color: COLORS.blue }
+  ],
+  Number.isFinite(data.empleoDirecto) ? formatInteger(data.empleoDirecto) : "–",
+  "empleos directos"
+);
 
     renderSummaryFallback(root.querySelector("#impactoSummaryFallback"), data);
   }
