@@ -511,7 +511,7 @@ function drawEmploymentPeopleInline(parent, x, y, count, color, options = {}) {
         r: radius,
         fill: "none",
         stroke: item.color,
-        "stroke-width": 28,
+        "stroke-width": 32,
         "stroke-dasharray": `${fraction * circumference} ${circumference}`,
         "stroke-dashoffset": -offset,
         transform: `rotate(-90 ${cx} ${cy})`
@@ -525,7 +525,7 @@ function drawEmploymentPeopleInline(parent, x, y, count, color, options = {}) {
       y: cy - 3,
       "text-anchor": "middle",
       fill: COLORS.navy,
-      "font-size": 14,
+      "font-size": 18,
       "font-weight": 800
     }, centerTop));
     svg.appendChild(svgElement("text", {
@@ -564,8 +564,8 @@ function renderGenderDonut(container, items, centerTop, centerBottom) {
   });
 
   const cx = 110;
-  const cy = 100;
-  const radius = 58;
+  const cy = 98;
+  const radius = 66;
   const circumference = 2 * Math.PI * radius;
   let offset = 0;
 
@@ -592,7 +592,7 @@ function renderGenderDonut(container, items, centerTop, centerBottom) {
     y: cy - 2,
     "text-anchor": "middle",
     fill: COLORS.navy,
-    "font-size": 16,
+    "font-size": 18,
     "font-weight": 900
   }, centerTop));
 
@@ -601,18 +601,18 @@ function renderGenderDonut(container, items, centerTop, centerBottom) {
     y: cy + 17,
     "text-anchor": "middle",
     fill: COLORS.muted,
-    "font-size": 10.5
+    "font-size": 12
   }, centerBottom));
 
   validItems.forEach((item, index) => {
-    const y = 210 + index * 34;
+    const y = 222 + index * 38;
     const pct = ratioPercent(item.value, total);
 
     svg.appendChild(svgElement("rect", {
       x: 58,
       y: y - 11,
-      width: 12,
-      height: 12,
+      width: 14,
+      height: 14,
       rx: 2,
       fill: item.color
     }));
@@ -621,7 +621,7 @@ function renderGenderDonut(container, items, centerTop, centerBottom) {
       x: 78,
       y,
       fill: COLORS.navy,
-      "font-size": 11.5,
+      "font-size": 13,
       "font-weight": 800
     }, item.label));
 
@@ -629,7 +629,7 @@ function renderGenderDonut(container, items, centerTop, centerBottom) {
       x: 84,
       y: y + 16,
       fill: COLORS.muted,
-      "font-size": 10.5
+      "font-size": 12
     }, `${pct.toLocaleString("es-AR", {
       maximumFractionDigits: 1
     })}%`));
