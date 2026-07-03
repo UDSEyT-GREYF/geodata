@@ -615,7 +615,7 @@ body.impacto-standalone .impacto-sheet {
 /* Página 4: empleo + género en dos columnas */
 .impacto-chart-grid-employment {
   display: grid !important;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 0.52fr) !important;
+  grid-template-columns: minmax(0, 1fr) 42mm !important;
   gap: 4mm !important;
   align-items: stretch !important;
 }
@@ -635,7 +635,7 @@ body.impacto-standalone .impacto-sheet {
 
 /* Ajuste de la dona SVG de género */
 #impactoGenderDonut {
-  min-height: 76mm;
+  min-height: 82mm;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -643,7 +643,8 @@ body.impacto-standalone .impacto-sheet {
 
 #impactoGenderDonut svg {
   width: 100%;
-  max-width: 52mm;
+  max-width: 40mm;
   height: auto;
   display: block;
+  margin-top: 4mm;
 }
