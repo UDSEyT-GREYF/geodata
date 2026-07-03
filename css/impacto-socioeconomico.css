@@ -643,8 +643,8 @@ body.impacto-standalone .impacto-sheet {
 
 #impactoGenderDonut svg {
   width: 100%;
-  max-width: 40mm;
+  max-width: 46mm;
   height: auto;
   display: block;
-  margin-top: 4mm;
+  margin-top: 3mm;
 }
