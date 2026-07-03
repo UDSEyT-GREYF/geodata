@@ -234,10 +234,10 @@
 
 .impacto-chart-grid-tourism,
 .impacto-chart-grid-employment {
-  grid-template-columns: 1.72fr 0.58fr;
-  min-height: 112mm;
+  grid-template-columns: 1.85fr 0.55fr;
   align-items: stretch;
 }
+
 
 .impacto-chart-card {
   min-width: 0;
@@ -603,4 +603,17 @@ body.impacto-standalone .impacto-sheet {
   max-width: 58mm;
   max-height: 58mm;
   margin: 2mm auto 0;
+}
+#impactoGenderDonut {
+  min-height: 82mm;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#impactoGenderDonut svg {
+  width: 100%;
+  max-width: 62mm;
+  height: auto;
+  display: block;
 }
