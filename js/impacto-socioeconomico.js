@@ -914,9 +914,9 @@ textLines.filter(Boolean).forEach((line, index) => {
 
   svg.appendChild(svgElement("text", {
     x: x + 14,
-    y: y + 64 + index * 13.5,
-    fill: isExample ? COLORS.blue : COLORS.muted,
-    "font-size": isExample ? 10.4 : 11.1,
+    y: y + 66 + index * 13.4,
+    fill: isExample ? color : COLORS.muted,
+    "font-size": isExample ? 10.8 : 11.2,
     "font-weight": isExample ? 700 : 400
   }, text));
 });
@@ -985,7 +985,7 @@ drawEmploymentPeopleInline(
     x: 270,
     y: 88,
     w: 330,
-    h: 140,
+    h: 145,
     title: "EMPLEO INDIRECTO",
     value: indirect,
     color: COLORS.teal,
