@@ -890,7 +890,105 @@ function renderGenderDonut(container, items, centerTop, centerBottom) {
     container.appendChild(svg);
   }
 
+function drawGenderDonutInEmploymentSvg(parent, x, y, data) {
+  const items = [
+    { label: "Mujeres", value: data.empleoMujeres, color: COLORS.sky },
+    { label: "Varones", value: data.empleoVarones, color: COLORS.blue }
+  ].filter(item => Number.isFinite(item.value) && item.value > 0);
 
+  const total = items.reduce((sum, item) => sum + item.value, 0);
+
+  appendMultilineText(parent, x, y, [
+    "Distribución del empleo",
+    "directo por género"
+  ], {
+    fill: COLORS.navy,
+    "font-size": 13.5,
+    "font-weight": 900
+  }, 15);
+
+  if (!items.length || total <= 0) {
+    appendMultilineText(parent, x, y + 40, [
+      "Sin datos disponibles"
+    ], {
+      fill: COLORS.muted,
+      "font-size": 12
+    }, 14);
+
+    return;
+  }
+
+  const cx = x + 96;
+  const cy = y + 92;
+  const radius = 42;
+  const circumference = 2 * Math.PI * radius;
+  let offset = 0;
+
+  items.forEach(item => {
+    const fraction = item.value / total;
+
+    parent.appendChild(svgElement("circle", {
+      cx,
+      cy,
+      r: radius,
+      fill: "none",
+      stroke: item.color,
+      "stroke-width": 24,
+      "stroke-dasharray": `${fraction * circumference} ${circumference}`,
+      "stroke-dashoffset": -offset,
+      transform: `rotate(-90 ${cx} ${cy})`
+    }));
+
+    offset += fraction * circumference;
+  });
+
+  parent.appendChild(svgElement("text", {
+    x: cx,
+    y: cy - 2,
+    "text-anchor": "middle",
+    fill: COLORS.navy,
+    "font-size": 13,
+    "font-weight": 900
+  }, formatInteger(data.empleoDirecto)));
+
+  parent.appendChild(svgElement("text", {
+    x: cx,
+    y: cy + 13,
+    "text-anchor": "middle",
+    fill: COLORS.muted,
+    "font-size": 9.5
+  }, "empleos directos"));
+
+  items.forEach((item, index) => {
+    const pct = ratioPercent(item.value, total);
+    const legendY = y + 66 + index * 28;
+    const legendX = x + 160;
+
+    parent.appendChild(svgElement("rect", {
+      x: legendX,
+      y: legendY - 10,
+      width: 12,
+      height: 12,
+      rx: 2,
+      fill: item.color
+    }));
+
+    parent.appendChild(svgElement("text", {
+      x: legendX + 18,
+      y: legendY,
+      fill: COLORS.navy,
+      "font-size": 11.5,
+      "font-weight": 800
+    }, item.label));
+
+    parent.appendChild(svgElement("text", {
+      x: legendX + 18,
+      y: legendY + 14,
+      fill: COLORS.muted,
+      "font-size": 11
+    }, `${pct.toLocaleString("es-AR", { maximumFractionDigits: 1 })}%`));
+  });
+}
 function renderEmploymentTree(container, data) {
   if (!container) return;
 
@@ -908,53 +1006,42 @@ function renderEmploymentTree(container, data) {
   }
 
   const maxCategory = Math.max(direct, indirect, induced, catalytic, 1);
-  const additional = indirect + induced + catalytic;
-  const multiplier = direct > 0 && total > 0 ? total / direct : null;
 
   container.innerHTML = "";
-const svg = svgElement("svg", {
-  viewBox: "0 0 620 525",
-  role: "img"
-});
 
-  const defs = svgElement("defs");
-  const marker = svgElement("marker", {
-    id: "impactoArrowHead",
-    markerWidth: 8,
-    markerHeight: 8,
-    refX: 7,
-    refY: 4,
-    orient: "auto",
-    markerUnits: "strokeWidth"
+  const svg = svgElement("svg", {
+    viewBox: "0 0 620 525",
+    role: "img"
   });
-  marker.appendChild(svgElement("path", {
-    d: "M 0 0 L 8 4 L 0 8 z",
-    fill: COLORS.blue
-  }));
-  defs.appendChild(marker);
-  svg.appendChild(defs);
 
-const connector = (d, stroke = "#4f8bd6") => {
-  svg.appendChild(svgElement("path", {
-    d,
-    fill: "none",
-    stroke,
-    "stroke-width": 2,
-    "stroke-linecap": "round",
-    "stroke-linejoin": "round"
-  }));
-};
-const connectorDot = (cx, cy, fill = COLORS.blue, r = 3.2) => {
-  svg.appendChild(svgElement("circle", {
-    cx,
-    cy,
-    r,
-    fill
-  }));
-};
+  const connector = (d, stroke = "#4f8bd6") => {
+    svg.appendChild(svgElement("path", {
+      d,
+      fill: "none",
+      stroke,
+      "stroke-width": 2,
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round"
+    }));
+  };
+
   function makeNode({
-    x, y, w, h, title, value, color, lines = [], fill = "#ffffff",
-    valueSize = 17, iconCount = 0, iconX = null
+    x,
+    y,
+    w,
+    h,
+    title,
+    value,
+    color,
+    lines = [],
+    fill = "#ffffff",
+    valueSize = 19,
+    iconCount = 0,
+    iconX = null,
+    titleSize = 12.8,
+    textSize = 12.4,
+    exampleSize = 12.4,
+    lineHeight = 14.4
   }) {
     svg.appendChild(svgElement("rect", {
       x,
@@ -967,111 +1054,115 @@ const connectorDot = (cx, cy, fill = COLORS.blue, r = 3.2) => {
       "stroke-width": 2
     }));
 
-    appendMultilineText(svg, x + 14, y + 20, title, {
+    appendMultilineText(svg, x + 14, y + 22, title, {
       fill: color,
-      "font-size": 11.5,
-      "font-weight": 800
-    }, 12.5);
+      "font-size": titleSize,
+      "font-weight": 900
+    }, 14);
 
-const numberX = x + 14;
-const numberY = y + 48;
+    const numberX = x + 14;
+    const numberY = y + 52;
 
-svg.appendChild(svgElement("text", {
-  x: numberX,
-  y: numberY,
-  fill: COLORS.navy,
-  "font-size": valueSize,
-  "font-weight": 900
-}, formatInteger(value)));
+    svg.appendChild(svgElement("text", {
+      x: numberX,
+      y: numberY,
+      fill: COLORS.navy,
+      "font-size": valueSize,
+      "font-weight": 900
+    }, formatInteger(value)));
 
-if (iconCount > 0) {
-  drawEmploymentPeopleInline(
-    svg,
-    iconX !== null ? iconX : x + 108,
-    numberY - 13,
-    iconCount,
-    color,
-    {
-      scale: 0.54,
-      gapX: 11
+    if (iconCount > 0) {
+      drawEmploymentPeopleInline(
+        svg,
+        iconX !== null ? iconX : x + 120,
+        numberY - 14,
+        iconCount,
+        color,
+        {
+          scale: 0.56,
+          gapX: 12
+        }
+      );
     }
-  );
-}
 
-const textLines = Array.isArray(lines) ? lines : [lines];
-let exampleStarted = false;
+    const textLines = Array.isArray(lines) ? lines : [lines];
+    let exampleStarted = false;
 
-textLines.filter(Boolean).forEach((line, index) => {
-  const text = String(line);
+    textLines.filter(Boolean).forEach((line, index) => {
+      const text = String(line);
 
-  if (text.trim().startsWith("Ej.:")) {
-    exampleStarted = true;
+      if (text.trim().startsWith("Ej.:")) {
+        exampleStarted = true;
+      }
+
+      const isExample = exampleStarted;
+
+      svg.appendChild(svgElement("text", {
+        x: x + 14,
+        y: y + 78 + index * lineHeight,
+        fill: isExample ? color : COLORS.muted,
+        "font-size": isExample ? exampleSize : textSize,
+        "font-weight": isExample ? 800 : 500
+      }, text));
+    });
   }
 
-  const isExample = exampleStarted;
+  // Marco general de empleo total
+  svg.appendChild(svgElement("rect", {
+    x: 4,
+    y: 8,
+    width: 612,
+    height: 510,
+    rx: 14,
+    fill: "none",
+    stroke: COLORS.navy,
+    "stroke-width": 2.2
+  }));
+
+  appendMultilineText(svg, 18, 34, "EMPLEO TOTAL", {
+    fill: COLORS.navy,
+    "font-size": 13,
+    "font-weight": 900
+  }, 13);
 
   svg.appendChild(svgElement("text", {
-    x: x + 14,
-    y: y + 66 + index * 13.4,
-    fill: isExample ? color : COLORS.muted,
-    "font-size": isExample ? 11.8 : 12.2,
-    "font-weight": isExample ? 700 : 400
-  }, text));
-});
-  }
-// MARCO GENERAL DE EMPLEO TOTAL (detrás de todas las cajas)
-svg.appendChild(svgElement("rect", {
-  x: 4,
-  y: 8,
-  width: 615,
-  height: 530,
-  rx: 14,
-  fill: "none",
-  stroke: COLORS.navy,
-  "stroke-width": 2.2
-}));
+    x: 18,
+    y: 64,
+    fill: COLORS.navy,
+    "font-size": 20,
+    "font-weight": 900
+  }, formatInteger(total)));
 
-appendMultilineText(svg, 18, 34, "EMPLEO TOTAL", {
-  fill: COLORS.navy,
-  "font-size": 12.5,
-  "font-weight": 800
-}, 12);
+  drawEmploymentPeopleInline(
+    svg,
+    116,
+    50,
+    14,
+    COLORS.navy,
+    {
+      scale: 0.56,
+      gapX: 12
+    }
+  );
 
-const totalNumberY = 62;
-
-svg.appendChild(svgElement("text", {
-  x: 18,
-  y: totalNumberY,
-  fill: COLORS.navy,
-  "font-size": 18,
-  "font-weight": 900
-}, formatInteger(total)));
-
-drawEmploymentPeopleInline(
-  svg,
-  115,
-  totalNumberY - 13,
-  12,
-  COLORS.navy,
-  {
-    scale: 0.54,
-    gapX: 11
-  }
-);
   makeNode({
     x: 20,
     y: 205,
-    w: 230,
-    h: 170,
-    title: ["EMPLEO DIRECTO AEROPORTUARIO"],
+    w: 245,
+    h: 155,
+    title: ["EMPLEO DIRECTO", "AEROPORTUARIO"],
     value: direct,
     color: COLORS.lime,
-    valueSize: 18,
-    iconCount: getEmploymentIconCount(direct, maxCategory, 10, 3),
-    iconX: 140,
+    valueSize: 20,
+    titleSize: 12.8,
+    textSize: 12.2,
+    exampleSize: 12.2,
+    lineHeight: 14,
+    iconCount: getEmploymentIconCount(direct, maxCategory, 12, 4),
+    iconX: 142,
     lines: [
       "Dentro del aeropuerto.",
-      "Ej.: administración aeroportuaria, ", 
+      "Ej.: administración aeroportuaria,",
       "líneas aéreas, locales comerciales,",
       "control aéreo, aerocombustibles,",
       "handling, logística, depósitos,",
@@ -1079,70 +1170,81 @@ drawEmploymentPeopleInline(
     ]
   });
 
+  drawGenderDonutInEmploymentSvg(svg, 24, 378, data);
+
   makeNode({
-    x: 270,
-    y: 65,
-    w: 340,
-    h: 150,
+    x: 292,
+    y: 64,
+    w: 310,
+    h: 140,
     title: "EMPLEO INDIRECTO",
     value: indirect,
     color: COLORS.teal,
-    valueSize: 17,
-    iconCount: getEmploymentIconCount(indirect, maxCategory, 10, 3),
-    iconX: 385,
+    valueSize: 20,
+    titleSize: 12.8,
+    textSize: 12.2,
+    exampleSize: 12.2,
+    lineHeight: 14.2,
+    iconCount: getEmploymentIconCount(indirect, maxCategory, 12, 4),
+    iconX: 410,
     lines: [
-      "Originados en la economía del área de influencia como",
-      "parte de la cadena de bienes y servicios de las ", 
-      "actividades directas. Estos empleos no tendrían lugar",
-      "sin la infraestructura aeroportuaria y la conectividad aérea",
-      "Ej.: insumos, mercaderías, publicidad y logística",
-      "vinculadas al funcionamiento del aeropuerto"
+      "Originados en el área de influencia,",
+      "como parte de proveedores de bienes",
+      "y servicios a actividades directas.",
+      "Ej.: insumos, mercaderías, publicidad",
+      "y logística vinculada al aeropuerto."
     ]
   });
 
   makeNode({
-    x: 270,
-    y: 230,
-    w: 340,
-    h: 130,
+    x: 292,
+    y: 220,
+    w: 310,
+    h: 125,
     title: "EMPLEO INDUCIDO",
     value: induced,
     color: COLORS.cyan,
-    valueSize: 17,
-    iconCount: getEmploymentIconCount(induced, maxCategory, 10, 3),
-    iconX: 385,
+    valueSize: 20,
+    titleSize: 12.8,
+    textSize: 12.2,
+    exampleSize: 12.2,
+    lineHeight: 14.2,
+    iconCount: getEmploymentIconCount(induced, maxCategory, 12, 4),
+    iconX: 410,
     lines: [
-      "Generados por el consumo de trabajadores de las",
-      "empresas incluidas en el impacto directo e indirecto",
-      "Ej.: comercios y servicios donde consumen los",
-      "empleados directos e indirectos"
+      "Generados por el consumo de",
+      "trabajadores directos e indirectos.",
+      "Ej.: comercios y servicios donde",
+      "gastan sus ingresos."
     ]
   });
 
   makeNode({
-    x: 270,
-    y: 380,
-    w: 340,
-    h: 140,
+    x: 292,
+    y: 360,
+    w: 310,
+    h: 145,
     title: "EMPLEO CATALÍTICO",
     value: catalytic,
     color: COLORS.blue,
-    valueSize: 17,
-    iconCount: getEmploymentIconCount(catalytic, maxCategory, 10, 3),
-    iconX: 385,
+    valueSize: 20,
+    titleSize: 12.8,
+    textSize: 12.2,
+    exampleSize: 12.2,
+    lineHeight: 14.2,
+    iconCount: getEmploymentIconCount(catalytic, maxCategory, 12, 4),
+    iconX: 410,
     lines: [
-      "Generados por la atracción, retención y expansión de la",
-      "actividad económica del área de influencia, fruto de la",
-      "accesibilidad provista por la conectividad aérea",
-      "Ej.: turismo receptivo, inversiones atraídas, nuevas", 
-      "empresas e incremento de productividad"
+      "Atracción, retención y expansión",
+      "de la actividad económica local.",
+      "Ej.: turismo receptivo, inversiones,",
+      "nuevas empresas y productividad."
     ]
   });
 
-
-connector("M 250 265 C 262 265, 262 153, 270 153");
-connector("M 250 265 C 262 265, 262 291, 270 291");
-connector("M 250 265 C 262 265, 262 425, 270 425");
+  connector("M 265 282 C 280 282, 280 134, 292 134");
+  connector("M 265 282 C 280 282, 280 282, 292 282");
+  connector("M 265 282 C 280 282, 280 432, 292 432");
 
   container.appendChild(svg);
 }
@@ -1349,15 +1451,7 @@ const empleoVarones = normalizeShareOrCount(
 
     renderEmploymentTree(root.querySelector("#impactoEmploymentBars"), data);
 
-renderGenderDonut(
-  root.querySelector("#impactoGenderDonut"),
-  [
-    { label: "Mujeres", value: data.empleoMujeres, color: COLORS.sky },
-    { label: "Varones", value: data.empleoVarones, color: COLORS.blue }
-  ],
-  Number.isFinite(data.empleoDirecto) ? formatInteger(data.empleoDirecto) : "–",
-  "empleos directos"
-);
+
 
     renderSummaryFallback(root.querySelector("#impactoSummaryFallback"), data);
   }
