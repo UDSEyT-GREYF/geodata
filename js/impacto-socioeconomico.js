@@ -15,6 +15,7 @@
     light: "#eef3f7"
   };
 
+  
   const FIELD_ALIASES = {
     iata: ["IATA", "iata", "codigo_iata", "cod_iata", "Código IATA"],
     airportName: ["Aeropuerto", "aeropuerto", "NombreAeropuerto", "nombre_aeropuerto", "Nombre del Aeropuerto", "Nombre del aeropuerto"],
