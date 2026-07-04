@@ -1151,13 +1151,13 @@ svg.appendChild(svgElement("rect", {
   makeNode({
     x: 10,
     y: 208,
-    w: 220,
-    h: 160,
+    w: 225,
+    h: 170,
     title: ["EMPLEO DIRECTO AEROPORTUARIO"],
     value: direct,
     color: COLORS.lime,
     valueSize: 20,
-    titleSize: 12.8,
+    titleSize: 12.1, //aca
     textSize: 12.2,
     exampleSize: 12.2,
     lineHeight: 14,
@@ -1168,7 +1168,7 @@ svg.appendChild(svgElement("rect", {
       "dentro del aeropuerto.",
       "Ej.: administración aeroportuaria,",
       "líneas aéreas, locales comerciales,",
-      "control aéreo, aerocombustibles,,",
+      "control aéreo, aerocombustibles,",
       "handling, logística, depósitos,",
       "rampa y catering."
       ]
@@ -1190,7 +1190,7 @@ h: 150,
     exampleSize: 12.2,
     lineHeight: 13.4,
     iconCount: getEmploymentIconCount(indirect, maxCategory, 12, 4),
-    iconX: 410,
+    iconX: 310,
     lines: [
       "Originados en el área de influencia, como parte de la",
       "cadena de bienes y servicios de las actividades directas.",
@@ -1248,9 +1248,9 @@ h: 146,
     ]
   });
 
-connector("M 238 288 C 246 288, 246 153, 248 153");
-connector("M 238 288 C 246 288, 246 306, 248 306");
-connector("M 238 288 C 246 288, 246 459, 248 459");
+//connector("M 238 288 C 246 288, 246 153, 248 153");
+//connector("M 238 288 C 246 288, 246 306, 248 306");
+//connector("M 238 288 C 246 288, 246 459, 248 459");
 
   container.appendChild(svg);
 }
