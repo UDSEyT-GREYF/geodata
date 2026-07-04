@@ -1163,9 +1163,9 @@ function renderEmploymentTree(container, data) {
     lines: [
       "Empleo generado por las actividades dentro del aeropuerto.",
       "Ej.: administración aeroportuaria, líneas aéreas,",
-      " locales comerciales, control aéreo, ",
+      "locales comerciales, control aéreo,",
       "aerocombustibles, handling, logística,",
-      " depósitos, rampa y catering."
+      "depósitos, rampa y catering."
       ]
   });
 
@@ -1191,8 +1191,8 @@ function renderEmploymentTree(container, data) {
       "cadena de bienes y servicios de las actividades directas.",
       "Estos empleos no tendrían lugar sin la infraestructura",
       "aeroportuaria y la conectividad aérea",
-      "Ej.: insumos, mercaderías, publicidad",
-      "y logística vinculada al aeropuerto."
+      "Ej.: insumos, mercaderías, publicidad y logística",
+      "vinculados al funcionamientos aeropuerto."
     ]
   });
 
@@ -1214,8 +1214,8 @@ function renderEmploymentTree(container, data) {
     lines: [
       "Generados por el consumo de trabajadores de las",
       "empresas incluidas en el impacto directo e indirecto.",
-      "Ej.: comercios y servicios donde",
-      "gastan sus ingresos."
+      "Ej.: comercios y servicios donde consumen los",
+      "empleados directos e indirectos."
     ]
   });
 
@@ -1237,9 +1237,9 @@ function renderEmploymentTree(container, data) {
     lines: [
       "Generados por la atracción, retención y expansión",
       "de la actividad económica local, fruto de la",
-      "accesibilidad provista por la conectividad aérea."
-      "Ej.: turismo receptivo, inversiones,",
-      "nuevas empresas y productividad."
+      "accesibilidad provista por la conectividad aérea.",
+      "Ej.: turismo receptivo, inversiones atraídas,",
+      "nuevas empresas e incremento de la productividad."
     ]
   });
 
