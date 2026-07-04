@@ -1149,11 +1149,11 @@ svg.appendChild(svgElement("rect", {
   );
 
   makeNode({
-    x: 18,
+    x: 10,
     y: 208,
     w: 220,
     h: 160,
-    title: ["EMPLEO DIRECTO", "AEROPORTUARIO"],
+    title: ["EMPLEO DIRECTO AEROPORTUARIO"],
     value: direct,
     color: COLORS.lime,
     valueSize: 20,
