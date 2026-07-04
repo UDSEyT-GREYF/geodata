@@ -1148,7 +1148,7 @@ function renderEmploymentTree(container, data) {
   makeNode({
     x: 20,
     y: 205,
-    w: 245,
+    w: 250,
     h: 155,
     title: ["EMPLEO DIRECTO", "AEROPORTUARIO"],
     value: direct,
@@ -1161,11 +1161,13 @@ function renderEmploymentTree(container, data) {
     iconCount: getEmploymentIconCount(direct, maxCategory, 12, 4),
     iconX: 142,
     lines: [
-      "Empleo generado por las actividades dentro del aeropuerto.",
-      "Ej.: administración aeroportuaria, líneas aéreas,",
-      "locales comerciales, control aéreo,",
-      "aerocombustibles, handling, logística,",
-      "depósitos, rampa y catering."
+      "Empleo generado por las actividades",
+      "dentro del aeropuerto.",
+      "Ej.: administración aeroportuaria,",
+      "líneas aéreas, locales comerciales,",
+      "control aéreo, aerocombustibles,,",
+      "handling, logística, depósitos,",
+      "rampa y catering."
       ]
   });
 
