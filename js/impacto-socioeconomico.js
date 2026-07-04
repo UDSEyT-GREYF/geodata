@@ -1157,12 +1157,12 @@ svg.appendChild(svgElement("rect", {
     value: direct,
     color: COLORS.lime,
     valueSize: 20,
-    titleSize: 12.1, //aca
+    titleSize: 12 //aca
     textSize: 12.2,
     exampleSize: 12.2,
     lineHeight: 14,
-    iconCount: getEmploymentIconCount(direct, maxCategory, 12, 4),
-    iconX: 142,
+    iconCount: getEmploymentIconCount(direct, maxCategory, 15, 4),
+    iconX: 42,
     lines: [
       "Empleo generado por las actividades",
       "dentro del aeropuerto.",
@@ -1174,7 +1174,7 @@ svg.appendChild(svgElement("rect", {
       ]
   });
 
-  drawGenderDonutInEmploymentSvg(svg, 22, 396, data);
+  drawGenderDonutInEmploymentSvg(svg, 22, 320, data);
 
   makeNode({
 x: 248,
@@ -1189,8 +1189,8 @@ h: 150,
     textSize: 12.2,
     exampleSize: 12.2,
     lineHeight: 13.4,
-    iconCount: getEmploymentIconCount(indirect, maxCategory, 12, 4),
-    iconX: 310,
+    iconCount: getEmploymentIconCount(indirect, maxCategory, 15, 5),
+    iconX: 410,
     lines: [
       "Originados en el área de influencia, como parte de la",
       "cadena de bienes y servicios de las actividades directas.",
@@ -1214,7 +1214,7 @@ h: 132,
     textSize: 12.2,
     exampleSize: 12.2,
     lineHeight: 13.4,
-    iconCount: getEmploymentIconCount(induced, maxCategory, 12, 4),
+    iconCount: getEmploymentIconCount(induced, maxCategory, 15, 5),
     iconX: 410,
     lines: [
       "Generados por el consumo de trabajadores de las",
@@ -1237,7 +1237,7 @@ h: 146,
     textSize: 12.2,
     exampleSize: 12.2,
     lineHeight: 13.4,
-    iconCount: getEmploymentIconCount(catalytic, maxCategory, 12, 4),
+    iconCount: getEmploymentIconCount(catalytic, maxCategory, 15, 5),
     iconX: 410,
     lines: [
       "Generados por la atracción, retención y expansión",
