@@ -1165,7 +1165,7 @@ function renderEmploymentTree(container, data) {
       "Ej.: administración aeroportuaria, líneas aéreas,",
       " locales comerciales, control aéreo, ",
       "aerocombustibles, handling, logística,",
-      " depósitos, rampa y catering.",
+      " depósitos, rampa y catering."
       ]
   });
 
@@ -1189,7 +1189,7 @@ function renderEmploymentTree(container, data) {
     lines: [
       "Originados en el área de influencia, como parte de la",
       "cadena de bienes y servicios de las actividades directas.",
-      "Estos empleos no tendrían lugar sin la infraestructura
+      "Estos empleos no tendrían lugar sin la infraestructura",
       "aeroportuaria y la conectividad aérea",
       "Ej.: insumos, mercaderías, publicidad",
       "y logística vinculada al aeropuerto."
