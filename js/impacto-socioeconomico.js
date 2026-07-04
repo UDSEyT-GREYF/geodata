@@ -1150,7 +1150,7 @@ svg.appendChild(svgElement("rect", {
 
   makeNode({
     x: 10,
-    y: 208,
+    y: 150,
     w: 225,
     h: 170,
     title: ["EMPLEO DIRECTO AEROPORTUARIO"],
