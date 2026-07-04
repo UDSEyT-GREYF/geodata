@@ -1241,7 +1241,7 @@ function renderEmploymentTree(container, data) {
       "de la actividad económica local, fruto de la",
       "accesibilidad provista por la conectividad aérea.",
       "Ej.: turismo receptivo, inversiones atraídas,",
-      "nuevas empresas e incremento de la productividad."
+      "nuevas empresas e incremento de productividad."
     ]
   });
 
