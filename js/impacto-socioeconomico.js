@@ -1162,7 +1162,7 @@ svg.appendChild(svgElement("rect", {
     exampleSize: 12.2,
     lineHeight: 14,
     iconCount: getEmploymentIconCount(direct, maxCategory, 15, 4),
-    iconX: 62,
+    iconX: 100,
     lines: [
       "Empleo generado por las actividades",
       "dentro del aeropuerto.",
