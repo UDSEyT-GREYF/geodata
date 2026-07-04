@@ -1024,34 +1024,34 @@ function renderEmploymentTree(container, data) {
     }));
   };
 
-  function makeNode({
+function makeNode({
+  x,
+  y,
+  w,
+  h,
+  title,
+  value,
+  color,
+  lines = [],
+  fill = "#ffffff",
+  valueSize = 19,
+  iconCount = 0,
+  iconX = null,
+  titleSize = 12.8,
+  textSize = 12.4,
+  exampleSize = 12.4,
+  lineHeight = 14.4
+}) {
+  svg.appendChild(svgElement("rect", {
     x,
     y,
-    w,
-    h,
-    title,
-    value,
-    color,
-    lines = [],
-    fill = "#ffffff",
-    valueSize = 19,
-    iconCount = 0,
-    iconX = null,
-    titleSize = 12.8,
-    textSize = 12.4,
-    exampleSize = 12.4,
-    lineHeight = 14.4
-  }) {
-svg.appendChild(svgElement("rect", {
-  x: 4,
-  y: 8,
-  width: 640,
-  height: 548,
-  rx: 14,
-  fill: "none",
-  stroke: COLORS.navy,
-  "stroke-width": 2.2
-}));
+    width: w,
+    height: h,
+    rx: 12,
+    fill,
+    stroke: color,
+    "stroke-width": 2
+  }));
 
     appendMultilineText(svg, x + 14, y + 22, title, {
       fill: color,
@@ -1107,16 +1107,16 @@ svg.appendChild(svgElement("rect", {
   }
 
   // Marco general de empleo total
-  svg.appendChild(svgElement("rect", {
-    x: 4,
-    y: 8,
-    width: 612,
-    height: 510,
-    rx: 14,
-    fill: "none",
-    stroke: COLORS.navy,
-    "stroke-width": 2.2
-  }));
+svg.appendChild(svgElement("rect", {
+  x: 4,
+  y: 8,
+  width: 640,
+  height: 548,
+  rx: 14,
+  fill: "none",
+  stroke: COLORS.navy,
+  "stroke-width": 2.2
+}));
 
   appendMultilineText(svg, 18, 34, "EMPLEO TOTAL", {
     fill: COLORS.navy,
