@@ -1162,7 +1162,7 @@ svg.appendChild(svgElement("rect", {
     exampleSize: 12.2,
     lineHeight: 14,
     iconCount: getEmploymentIconCount(direct, maxCategory, 15, 4),
-    iconX: 42,
+    iconX: 62,
     lines: [
       "Empleo generado por las actividades",
       "dentro del aeropuerto.",
@@ -1174,7 +1174,7 @@ svg.appendChild(svgElement("rect", {
       ]
   });
 
-  drawGenderDonutInEmploymentSvg(svg, 22, 320, data);
+  drawGenderDonutInEmploymentSvg(svg, 30, 400, data);
 
   makeNode({
 x: 248,
