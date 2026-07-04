@@ -1009,7 +1009,10 @@ function renderEmploymentTree(container, data) {
   }
 
   const maxCategory = Math.max(direct, indirect, induced, catalytic, 1);
-
+const directIcons = getEmploymentIconCount(direct, maxCategory, 15, 4);
+const indirectIcons = getEmploymentIconCount(indirect, maxCategory, 15, 5);
+const inducedIcons = getEmploymentIconCount(induced, maxCategory, 15, 5);
+const catalyticIcons = getEmploymentIconCount(catalytic, maxCategory, 15, 5);
   container.innerHTML = "";
 
   const svg = svgElement("svg", {
@@ -1136,17 +1139,34 @@ svg.appendChild(svgElement("rect", {
     "font-weight": 900
   }, formatInteger(total)));
 
+let totalIconX = 116;
+const totalIconY = 50;
+const totalIconScale = 0.42;
+const totalIconGap = 7;
+const totalSegmentGap = 6;
+
+[
+  { count: directIcons, color: COLORS.lime },
+  { count: indirectIcons, color: COLORS.teal },
+  { count: inducedIcons, color: COLORS.cyan },
+  { count: catalyticIcons, color: COLORS.blue }
+].forEach((item) => {
+  if (!Number.isFinite(item.count) || item.count <= 0) return;
+
   drawEmploymentPeopleInline(
     svg,
-    116,
-    50,
-    14,
-    COLORS.navy,
+    totalIconX,
+    totalIconY,
+    item.count,
+    item.color,
     {
-      scale: 0.56,
-      gapX: 12
+      scale: totalIconScale,
+      gapX: totalIconGap
     }
   );
+
+  totalIconX += item.count * totalIconGap + totalSegmentGap;
+});
 
   makeNode({
     x: 10,
@@ -1161,7 +1181,7 @@ svg.appendChild(svgElement("rect", {
     textSize: 12.2,
     exampleSize: 12.2,
     lineHeight: 14,
-    iconCount: getEmploymentIconCount(direct, maxCategory, 15, 4),
+    iconCount: directIcons,
     iconX: 100,
     lines: [
       "Empleo generado por las actividades",
@@ -1189,7 +1209,7 @@ h: 150,
     textSize: 12.2,
     exampleSize: 12.2,
     lineHeight: 13.4,
-    iconCount: getEmploymentIconCount(indirect, maxCategory, 15, 5),
+    iconCount: indirectIcons,
     iconX: 410,
     lines: [
       "Originados en el área de influencia, como parte de la",
@@ -1214,7 +1234,7 @@ h: 132,
     textSize: 12.2,
     exampleSize: 12.2,
     lineHeight: 13.4,
-    iconCount: getEmploymentIconCount(induced, maxCategory, 15, 5),
+    iconCount: inducedIcons,
     iconX: 410,
     lines: [
       "Generados por el consumo de trabajadores de las",
@@ -1237,7 +1257,7 @@ h: 146,
     textSize: 12.2,
     exampleSize: 12.2,
     lineHeight: 13.4,
-    iconCount: getEmploymentIconCount(catalytic, maxCategory, 15, 5),
+    iconCount: catalyticIcons,
     iconX: 410,
     lines: [
       "Generados por la atracción, retención y expansión",
