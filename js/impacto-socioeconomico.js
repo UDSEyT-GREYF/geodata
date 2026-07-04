@@ -899,7 +899,7 @@ function drawGenderDonutInEmploymentSvg(parent, x, y, data) {
   const total = items.reduce((sum, item) => sum + item.value, 0);
 
   appendMultilineText(parent, x, y, [
-    "Empleo irecto por género"
+    "Empleo directo por género"
     ], {
     fill: COLORS.navy,
     "font-size": 13.5,
