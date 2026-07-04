@@ -1009,7 +1009,7 @@ function renderEmploymentTree(container, data) {
   container.innerHTML = "";
 
   const svg = svgElement("svg", {
-    viewBox: "0 0 620 525",
+    viewBox: "0 0 650 575",
     role: "img"
   });
 
@@ -1042,16 +1042,16 @@ function renderEmploymentTree(container, data) {
     exampleSize = 12.4,
     lineHeight = 14.4
   }) {
-    svg.appendChild(svgElement("rect", {
-      x,
-      y,
-      width: w,
-      height: h,
-      rx: 12,
-      fill,
-      stroke: color,
-      "stroke-width": 2
-    }));
+svg.appendChild(svgElement("rect", {
+  x: 4,
+  y: 8,
+  width: 640,
+  height: 548,
+  rx: 14,
+  fill: "none",
+  stroke: COLORS.navy,
+  "stroke-width": 2.2
+}));
 
     appendMultilineText(svg, x + 14, y + 22, title, {
       fill: color,
@@ -1145,10 +1145,10 @@ function renderEmploymentTree(container, data) {
   );
 
   makeNode({
-    x: 20,
-    y: 205,
-    w: 250,
-    h: 155,
+    x: 18,
+    y: 208,
+    w: 220,
+    h: 160,
     title: ["EMPLEO DIRECTO", "AEROPORTUARIO"],
     value: direct,
     color: COLORS.lime,
@@ -1170,13 +1170,13 @@ function renderEmploymentTree(container, data) {
       ]
   });
 
-  drawGenderDonutInEmploymentSvg(svg, 24, 378, data);
+  drawGenderDonutInEmploymentSvg(svg, 22, 396, data);
 
   makeNode({
-    x: 292,
+    x: 258,
     y: 64,
-    w: 310,
-    h: 140,
+    w: 372,
+    h: 150,
     title: "EMPLEO INDIRECTO",
     value: indirect,
     color: COLORS.teal,
@@ -1184,7 +1184,7 @@ function renderEmploymentTree(container, data) {
     titleSize: 12.8,
     textSize: 12.2,
     exampleSize: 12.2,
-    lineHeight: 14.2,
+    lineHeight: 13.4,
     iconCount: getEmploymentIconCount(indirect, maxCategory, 12, 4),
     iconX: 410,
     lines: [
@@ -1198,10 +1198,10 @@ function renderEmploymentTree(container, data) {
   });
 
   makeNode({
-    x: 292,
-    y: 220,
-    w: 310,
-    h: 125,
+    x: 258,
+    y: 226,
+    w: 372,
+    h: 132,
     title: "EMPLEO INDUCIDO",
     value: induced,
     color: COLORS.cyan,
@@ -1209,7 +1209,7 @@ function renderEmploymentTree(container, data) {
     titleSize: 12.8,
     textSize: 12.2,
     exampleSize: 12.2,
-    lineHeight: 14.2,
+    lineHeight: 13.4,
     iconCount: getEmploymentIconCount(induced, maxCategory, 12, 4),
     iconX: 410,
     lines: [
@@ -1221,10 +1221,10 @@ function renderEmploymentTree(container, data) {
   });
 
   makeNode({
-    x: 292,
-    y: 360,
-    w: 310,
-    h: 145,
+    x: 258,
+    y: 372,
+    w: 372,
+    h: 160,
     title: "EMPLEO CATALÍTICO",
     value: catalytic,
     color: COLORS.blue,
@@ -1232,7 +1232,7 @@ function renderEmploymentTree(container, data) {
     titleSize: 12.8,
     textSize: 12.2,
     exampleSize: 12.2,
-    lineHeight: 14.2,
+    lineHeight: 13.4,
     iconCount: getEmploymentIconCount(catalytic, maxCategory, 12, 4),
     iconX: 410,
     lines: [
@@ -1244,9 +1244,9 @@ function renderEmploymentTree(container, data) {
     ]
   });
 
-  connector("M 265 282 C 280 282, 280 134, 292 134");
-  connector("M 265 282 C 280 282, 280 282, 292 282");
-  connector("M 265 282 C 280 282, 280 432, 292 432");
+connector("M 238 288 C 248 288, 248 139, 258 139");
+connector("M 238 288 C 248 288, 248 292, 258 292");
+connector("M 238 288 C 248 288, 248 452, 258 452");
 
   container.appendChild(svg);
 }
