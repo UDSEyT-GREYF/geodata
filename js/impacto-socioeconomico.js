@@ -1161,13 +1161,12 @@ function renderEmploymentTree(container, data) {
     iconCount: getEmploymentIconCount(direct, maxCategory, 12, 4),
     iconX: 142,
     lines: [
-      "Dentro del aeropuerto.",
-      "Ej.: administración aeroportuaria,",
-      "líneas aéreas, locales comerciales,",
-      "control aéreo, aerocombustibles,",
-      "handling, logística, depósitos,",
-      "rampa y catering."
-    ]
+      "Empleo generado por las actividades dentro del aeropuerto.",
+      "Ej.: administración aeroportuaria, líneas aéreas,",
+      " locales comerciales, control aéreo, ",
+      "aerocombustibles, handling, logística,",
+      " depósitos, rampa y catering.",
+      ]
   });
 
   drawGenderDonutInEmploymentSvg(svg, 24, 378, data);
@@ -1188,9 +1187,10 @@ function renderEmploymentTree(container, data) {
     iconCount: getEmploymentIconCount(indirect, maxCategory, 12, 4),
     iconX: 410,
     lines: [
-      "Originados en el área de influencia,",
-      "como parte de proveedores de bienes",
-      "y servicios a actividades directas.",
+      "Originados en el área de influencia, como parte de la",
+      "cadena de bienes y servicios de las actividades directas.",
+      "Estos empleos no tendrían lugar sin la infraestructura
+      "aeroportuaria y la conectividad aérea",
       "Ej.: insumos, mercaderías, publicidad",
       "y logística vinculada al aeropuerto."
     ]
@@ -1212,8 +1212,8 @@ function renderEmploymentTree(container, data) {
     iconCount: getEmploymentIconCount(induced, maxCategory, 12, 4),
     iconX: 410,
     lines: [
-      "Generados por el consumo de",
-      "trabajadores directos e indirectos.",
+      "Generados por el consumo de trabajadores de las",
+      "empresas incluidas en el impacto directo e indirecto.",
       "Ej.: comercios y servicios donde",
       "gastan sus ingresos."
     ]
@@ -1235,8 +1235,9 @@ function renderEmploymentTree(container, data) {
     iconCount: getEmploymentIconCount(catalytic, maxCategory, 12, 4),
     iconX: 410,
     lines: [
-      "Atracción, retención y expansión",
-      "de la actividad económica local.",
+      "Generados por la atracción, retención y expansión",
+      "de la actividad económica local, fruto de la",
+      "accesibilidad provista por la conectividad aérea."
       "Ej.: turismo receptivo, inversiones,",
       "nuevas empresas y productividad."
     ]
