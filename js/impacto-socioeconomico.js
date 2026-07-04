@@ -1174,7 +1174,7 @@ svg.appendChild(svgElement("rect", {
       ]
   });
 
-  drawGenderDonutInEmploymentSvg(svg, 30, 400, data);
+  drawGenderDonutInEmploymentSvg(svg, 30, 350, data);
 
   makeNode({
 x: 248,
