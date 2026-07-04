@@ -893,14 +893,14 @@ function renderGenderDonut(container, items, centerTop, centerBottom) {
 function drawGenderDonutInEmploymentSvg(parent, x, y, data) {
   const items = [
     { label: "Mujeres", value: data.empleoMujeres, color: COLORS.sky },
-    { label: "Varones", value: data.empleoVarones, color: COLORS.blue }
+    { label: "Hombres", value: data.empleoVarones, color: COLORS.blue }
   ].filter(item => Number.isFinite(item.value) && item.value > 0);
 
   const total = items.reduce((sum, item) => sum + item.value, 0);
 
   appendMultilineText(parent, x, y, [
     "Empleo directo por género"
-    ], {
+  ], {
     fill: COLORS.navy,
     "font-size": 13.5,
     "font-weight": 900
@@ -913,15 +913,16 @@ function drawGenderDonutInEmploymentSvg(parent, x, y, data) {
       fill: COLORS.muted,
       "font-size": 12
     }, 14);
-
     return;
   }
 
-  const cx = x + 96;
+  const cx = x + 92;
   const cy = y + 92;
-  const radius = 42;
+  const radius = 46;
+  const strokeWidth = 26;
   const circumference = 2 * Math.PI * radius;
   let offset = 0;
+  let startFraction = 0;
 
   items.forEach(item => {
     const fraction = item.value / total;
@@ -932,18 +933,43 @@ function drawGenderDonutInEmploymentSvg(parent, x, y, data) {
       r: radius,
       fill: "none",
       stroke: item.color,
-      "stroke-width": 24,
+      "stroke-width": strokeWidth,
       "stroke-dasharray": `${fraction * circumference} ${circumference}`,
       "stroke-dashoffset": -offset,
       transform: `rotate(-90 ${cx} ${cy})`
     }));
 
+    const midAngle = (-Math.PI / 2) + ((startFraction + fraction / 2) * Math.PI * 2);
+    const labelRadius = radius + 22;
+    const lx = cx + Math.cos(midAngle) * labelRadius;
+    const ly = cy + Math.sin(midAngle) * labelRadius;
+    const anchor = lx >= cx ? "start" : "end";
+    const pct = ratioPercent(item.value, total);
+
+    parent.appendChild(svgElement("text", {
+      x: lx,
+      y: ly - 2,
+      "text-anchor": anchor,
+      fill: item.color,
+      "font-size": 11.5,
+      "font-weight": 800
+    }, item.label));
+
+    parent.appendChild(svgElement("text", {
+      x: lx,
+      y: ly + 13,
+      "text-anchor": anchor,
+      fill: COLORS.navy,
+      "font-size": 11
+    }, `${pct.toLocaleString("es-AR", { maximumFractionDigits: 1 })}%`));
+
     offset += fraction * circumference;
+    startFraction += fraction;
   });
 
   parent.appendChild(svgElement("text", {
     x: cx,
-    y: cy - 2,
+    y: cy - 4,
     "text-anchor": "middle",
     fill: COLORS.navy,
     "font-size": 13,
@@ -952,41 +978,19 @@ function drawGenderDonutInEmploymentSvg(parent, x, y, data) {
 
   parent.appendChild(svgElement("text", {
     x: cx,
-    y: cy + 13,
+    y: cy + 12,
     "text-anchor": "middle",
     fill: COLORS.muted,
     "font-size": 9.5
-  }, "empleos directos"));
+  }, "empleos"));
 
-  items.forEach((item, index) => {
-    const pct = ratioPercent(item.value, total);
-    const legendY = y + 66 + index * 28;
-    const legendX = x + 160;
-
-    parent.appendChild(svgElement("rect", {
-      x: legendX,
-      y: legendY - 10,
-      width: 12,
-      height: 12,
-      rx: 2,
-      fill: item.color
-    }));
-
-    parent.appendChild(svgElement("text", {
-      x: legendX + 18,
-      y: legendY,
-      fill: COLORS.navy,
-      "font-size": 11.5,
-      "font-weight": 800
-    }, item.label));
-
-    parent.appendChild(svgElement("text", {
-      x: legendX + 18,
-      y: legendY + 14,
-      fill: COLORS.muted,
-      "font-size": 11
-    }, `${pct.toLocaleString("es-AR", { maximumFractionDigits: 1 })}%`));
-  });
+  parent.appendChild(svgElement("text", {
+    x: cx,
+    y: cy + 24,
+    "text-anchor": "middle",
+    fill: COLORS.muted,
+    "font-size": 9.5
+  }, "directos"));
 }
 function renderEmploymentTree(container, data) {
   if (!container) return;
@@ -1173,10 +1177,10 @@ svg.appendChild(svgElement("rect", {
   drawGenderDonutInEmploymentSvg(svg, 22, 396, data);
 
   makeNode({
-    x: 258,
-    y: 64,
-    w: 372,
-    h: 150,
+x: 248,
+y: 78,
+w: 388,
+h: 150,
     title: "EMPLEO INDIRECTO",
     value: indirect,
     color: COLORS.teal,
@@ -1198,10 +1202,10 @@ svg.appendChild(svgElement("rect", {
   });
 
   makeNode({
-    x: 258,
-    y: 226,
-    w: 372,
-    h: 132,
+x: 248,
+y: 240,
+w: 388,
+h: 132,
     title: "EMPLEO INDUCIDO",
     value: induced,
     color: COLORS.cyan,
@@ -1221,10 +1225,10 @@ svg.appendChild(svgElement("rect", {
   });
 
   makeNode({
-    x: 258,
-    y: 372,
-    w: 372,
-    h: 160,
+x: 248,
+y: 386,
+w: 388,
+h: 146,
     title: "EMPLEO CATALÍTICO",
     value: catalytic,
     color: COLORS.blue,
@@ -1244,9 +1248,9 @@ svg.appendChild(svgElement("rect", {
     ]
   });
 
-connector("M 238 288 C 248 288, 248 139, 258 139");
-connector("M 238 288 C 248 288, 248 292, 258 292");
-connector("M 238 288 C 248 288, 248 452, 258 452");
+connector("M 238 288 C 246 288, 246 153, 248 153");
+connector("M 238 288 C 246 288, 246 306, 248 306");
+connector("M 238 288 C 246 288, 246 459, 248 459");
 
   container.appendChild(svg);
 }
