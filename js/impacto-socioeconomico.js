@@ -1157,7 +1157,7 @@ svg.appendChild(svgElement("rect", {
     value: direct,
     color: COLORS.lime,
     valueSize: 20,
-    titleSize: 12 //aca
+    titleSize: 12, //aca
     textSize: 12.2,
     exampleSize: 12.2,
     lineHeight: 14,
