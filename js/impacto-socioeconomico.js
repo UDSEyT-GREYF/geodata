@@ -1197,7 +1197,7 @@ const totalSegmentGap = 6;
   drawGenderDonutInEmploymentSvg(svg, 30, 350, data);
 
   makeNode({
-x: 260,
+x: 280,
 y: 78,
 w: 370,
 h: 150,
@@ -1222,7 +1222,7 @@ h: 150,
   });
 
   makeNode({
-x: 260,
+x: 280,
 y: 240,
 w: 370,
 h: 132,
@@ -1245,7 +1245,7 @@ h: 132,
   });
 
   makeNode({
-x: 260,
+x: 280,
 y: 386,
 w: 370,
 h: 146,
