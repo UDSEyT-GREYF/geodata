@@ -1177,7 +1177,7 @@ const totalSegmentGap = 6;
     value: direct,
     color: COLORS.lime,
     valueSize: 20,
-    titleSize: 12,8 //aca
+    titleSize: 12.8, //aca
     textSize: 12.2,
     exampleSize: 12.2,
     lineHeight: 14,
