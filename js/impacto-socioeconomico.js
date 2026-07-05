@@ -1141,8 +1141,8 @@ svg.appendChild(svgElement("rect", {
 
 let totalIconX = 116;
 const totalIconY = 50;
-const totalIconScale = 0.42;
-const totalIconGap = 7;
+const totalIconScale = 0.54;
+const totalIconGap = 9.5;
 const totalSegmentGap = 6;
 
 [
