@@ -1177,7 +1177,7 @@ const totalSegmentGap = 6;
     value: direct,
     color: COLORS.lime,
     valueSize: 20,
-    titleSize: 12, //aca
+    titleSize: 12,8 //aca
     textSize: 12.2,
     exampleSize: 12.2,
     lineHeight: 14,
@@ -1197,7 +1197,7 @@ const totalSegmentGap = 6;
   drawGenderDonutInEmploymentSvg(svg, 30, 350, data);
 
   makeNode({
-x: 248,
+x: 260,
 y: 78,
 w: 370,
 h: 150,
@@ -1222,7 +1222,7 @@ h: 150,
   });
 
   makeNode({
-x: 248,
+x: 260,
 y: 240,
 w: 370,
 h: 132,
@@ -1245,7 +1245,7 @@ h: 132,
   });
 
   makeNode({
-x: 248,
+x: 260,
 y: 386,
 w: 370,
 h: 146,
