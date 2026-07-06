@@ -664,3 +664,13 @@ body.impacto-standalone .impacto-sheet {
   width: 100%;
   height: 100%;
 }
+.impacto-pba-widebox {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid #cbd8e6;
+  border-radius: 8px;
+}
+
+.impacto-pba-widebox p {
+  margin: 0;
+}
