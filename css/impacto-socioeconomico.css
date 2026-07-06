@@ -42,6 +42,14 @@
   page-break-after: auto;
 }
 
+.impacto-sheet-inner {
+  min-height: 297mm;
+  padding: 13mm 15mm 12mm;
+  display: flex;
+  flex-direction: column;
+  gap: 5mm;
+}
+
 .impacto-sheet-pba .impacto-sheet-inner {
   gap: 2.6mm;
 }
