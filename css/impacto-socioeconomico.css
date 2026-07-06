@@ -664,3 +664,52 @@ body.impacto-standalone .impacto-sheet {
   width: 100%;
   height: 100%;
 }
+.impacto-pba-top {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.35fr);
+  gap: 18px 24px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.impacto-pba-intro {
+  min-width: 0;
+}
+
+.impacto-pba-intro p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.impacto-pba-diagrama {
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.impacto-pba-diagrama img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.impacto-pba-widebox {
+  grid-column: 1 / -1;
+  border: 1px solid #c8d3df;
+  border-left: 4px solid #44c7b3;
+  border-radius: 10px;
+  background: #f7fafc;
+  padding: 14px 18px;
+  margin-top: 2px;
+}
+
+.impacto-pba-widebox p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: justify;
+}
