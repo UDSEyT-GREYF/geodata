@@ -1169,7 +1169,7 @@ const totalSegmentGap = 6;
 });
 
   makeNode({
-    x: 10,
+    x: 15,
     y: 150,
     w: 250,
     h: 170,
