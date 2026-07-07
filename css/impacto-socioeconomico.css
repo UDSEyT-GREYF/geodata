@@ -161,7 +161,7 @@
 }
 
 .impacto-pba-diagram {
-  height: 70mm;
+  height: auto;
   display: flex;
   align-items: flex-start;
   justify-content: center;
