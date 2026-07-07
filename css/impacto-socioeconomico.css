@@ -51,7 +51,7 @@
 }
 
 .impacto-sheet-pba .impacto-sheet-inner {
-  gap: 2.2mm;
+  gap: 1.2mm;
 }
 
 .impacto-page-header {
@@ -171,9 +171,11 @@
 .impacto-pba-diagram img {
   display: block;
   width: 100%;
-  max-height: 70mm;
+  height: auto;
+  max-height: none;
   object-fit: contain;
 }
+
 .impacto-report .impacto-pba-widebox {
   margin-top: 0px;
   margin-bottom: 0px;
