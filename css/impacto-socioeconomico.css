@@ -155,8 +155,8 @@
 
 .impacto-pba-intro {
   display: grid;
-  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
-  gap: 5mm;
+  grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.28fr);
+  gap: 3mm;
   align-items: start;
 }
 
@@ -165,6 +165,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
+   overflow: visible;
 }
 
 .impacto-pba-diagram img {
