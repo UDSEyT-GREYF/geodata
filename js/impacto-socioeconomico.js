@@ -688,29 +688,29 @@ function renderPbaStacked100(container, items, totalValue) {
   container.innerHTML = "";
 
   const svg = svgElement("svg", {
-    viewBox: "0 0 620 250",
+    viewBox: "0 0 620 160",
     role: "img"
   });
 
   const barX = 28;
-  const barY = 72;
+  const barY = 58;
   const barW = 564;
-  const barH = 34;
+  const barH = 28;
 
   svg.appendChild(svgElement("text", {
     x: barX,
-    y: 34,
+    y: 24,
     fill: COLORS.navy,
-    "font-size": 18,
+    "font-size": 16.5,
     "font-weight": 900
   }, formatCompact(total)));
 
   svg.appendChild(svgElement("text", {
     x: barX,
-    y: 53,
+    y: 42,
     fill: COLORS.muted,
-    "font-size": 11.5,
-    "font-weight": 600
+    "font-size": 10.8,
+    "font-weight": 650
   }, "Producto Bruto Aeroportuario total"));
 
   svg.appendChild(svgElement("rect", {
@@ -718,7 +718,7 @@ function renderPbaStacked100(container, items, totalValue) {
     y: barY,
     width: barW,
     height: barH,
-    rx: 9,
+    rx: 8,
     fill: COLORS.light
   }));
 
@@ -733,17 +733,17 @@ function renderPbaStacked100(container, items, totalValue) {
       y: barY,
       width: segmentW,
       height: barH,
-      rx: index === 0 || index === validItems.length - 1 ? 9 : 0,
+      rx: index === 0 || index === validItems.length - 1 ? 8 : 0,
       fill: item.color
     }));
 
-    if (segmentW > 66) {
+    if (segmentW > 54) {
       svg.appendChild(svgElement("text", {
         x: cursorX + segmentW / 2,
-        y: barY + 22,
+        y: barY + 18,
         "text-anchor": "middle",
         fill: "#ffffff",
-        "font-size": 12,
+        "font-size": 10.8,
         "font-weight": 900
       }, `${pct.toLocaleString("es-AR", { maximumFractionDigits: 1 })}%`));
     }
@@ -753,30 +753,31 @@ function renderPbaStacked100(container, items, totalValue) {
 
   validItems.forEach((item, index) => {
     const pct = ratioPercent(item.value, total);
-    const legendY = 135 + index * 44;
+    const legendX = index === 0 ? barX : barX + 300;
+    const legendY = 118;
 
     svg.appendChild(svgElement("rect", {
-      x: barX,
-      y: legendY - 13,
-      width: 14,
-      height: 14,
+      x: legendX,
+      y: legendY - 12,
+      width: 12,
+      height: 12,
       rx: 3,
       fill: item.color
     }));
 
     svg.appendChild(svgElement("text", {
-      x: barX + 22,
+      x: legendX + 18,
       y: legendY,
       fill: COLORS.navy,
-      "font-size": 12.5,
+      "font-size": 11.3,
       "font-weight": 850
     }, item.label));
 
     svg.appendChild(svgElement("text", {
-      x: barX + 22,
-      y: legendY + 18,
+      x: legendX + 18,
+      y: legendY + 16,
       fill: COLORS.muted,
-      "font-size": 11.5,
+      "font-size": 10.5,
       "font-weight": 650
     }, `${formatCompact(item.value)} · ${pct.toLocaleString("es-AR", {
       maximumFractionDigits: 1
@@ -786,7 +787,7 @@ function renderPbaStacked100(container, items, totalValue) {
   container.appendChild(svg);
 }
 
-  function renderNoAeroRankBars(container, items) {
+function renderNoAeroRankBars(container, items) {
   if (!container) return;
 
   const validItems = items
@@ -804,17 +805,17 @@ function renderPbaStacked100(container, items, totalValue) {
   container.innerHTML = "";
 
   const svg = svgElement("svg", {
-    viewBox: "0 0 720 250",
+    viewBox: "0 0 720 165",
     role: "img"
   });
 
   const labelX = 22;
   const barX = 250;
-  const barW = 345;
+  const barW = 340;
   const valueX = 690;
-  const top = 42;
-  const rowGap = 62;
-  const barH = 22;
+  const top = 24;
+  const rowGap = 43;
+  const barH = 18;
 
   validItems.forEach((item, index) => {
     const y = top + index * rowGap;
@@ -823,17 +824,17 @@ function renderPbaStacked100(container, items, totalValue) {
 
     svg.appendChild(svgElement("text", {
       x: labelX,
-      y: y + 14,
+      y: y + 12,
       fill: COLORS.navy,
-      "font-size": 12,
+      "font-size": 11.6,
       "font-weight": 850
     }, item.label));
 
     svg.appendChild(svgElement("text", {
       x: labelX,
-      y: y + 31,
+      y: y + 28,
       fill: COLORS.muted,
-      "font-size": 10.5,
+      "font-size": 10,
       "font-weight": 650
     }, `${pct.toLocaleString("es-AR", {
       maximumFractionDigits: 1
@@ -844,7 +845,7 @@ function renderPbaStacked100(container, items, totalValue) {
       y,
       width: barW,
       height: barH,
-      rx: 6,
+      rx: 5,
       fill: COLORS.light
     }));
 
@@ -853,16 +854,16 @@ function renderPbaStacked100(container, items, totalValue) {
       y,
       width: barWidth,
       height: barH,
-      rx: 6,
+      rx: 5,
       fill: item.color
     }));
 
     svg.appendChild(svgElement("text", {
       x: valueX,
-      y: y + 14,
+      y: y + 12,
       "text-anchor": "end",
       fill: COLORS.navy,
-      "font-size": 11.5,
+      "font-size": 11,
       "font-weight": 900
     }, formatCompact(item.value)));
   });
