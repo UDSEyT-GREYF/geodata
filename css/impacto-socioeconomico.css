@@ -253,11 +253,11 @@
 }
 
 .impacto-chart-pba-stacked {
-  min-height: 22mm;
+  min-height: 18mm;
 }
 
 .impacto-chart-pba-rank {
-  min-height: 38mm;
+  min-height: 30mm;
 }
 
 .impacto-chart-pba-stacked svg,
@@ -267,11 +267,11 @@
 }
 
 .impacto-chart-grid-pba .impacto-chart-card {
-  padding: 2.6mm 3mm;
+  padding: 2mm 3mm 2mm;
 }
 
 .impacto-chart-grid-pba .impacto-chart-card figcaption {
-  margin-bottom: 1mm;
+  margin-bottom: 0.5mm;
 }
 
 .impacto-chart-grid-tourism,
