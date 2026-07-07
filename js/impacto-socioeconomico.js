@@ -688,30 +688,14 @@ function renderPbaStacked100(container, items, totalValue) {
   container.innerHTML = "";
 
   const svg = svgElement("svg", {
-    viewBox: "0 0 620 160",
+    viewBox: "0 0 620 115",
     role: "img"
   });
 
   const barX = 28;
-  const barY = 58;
+  const barY = 34;
   const barW = 564;
-  const barH = 28;
-
-  svg.appendChild(svgElement("text", {
-    x: barX,
-    y: 24,
-    fill: COLORS.navy,
-    "font-size": 16.5,
-    "font-weight": 900
-  }, formatCompact(total)));
-
-  svg.appendChild(svgElement("text", {
-    x: barX,
-    y: 42,
-    fill: COLORS.muted,
-    "font-size": 10.8,
-    "font-weight": 650
-  }, "Producto Bruto Aeroportuario total"));
+  const barH = 30;
 
   svg.appendChild(svgElement("rect", {
     x: barX,
@@ -740,10 +724,10 @@ function renderPbaStacked100(container, items, totalValue) {
     if (segmentW > 54) {
       svg.appendChild(svgElement("text", {
         x: cursorX + segmentW / 2,
-        y: barY + 18,
+        y: barY + 20,
         "text-anchor": "middle",
         fill: "#ffffff",
-        "font-size": 10.8,
+        "font-size": 11,
         "font-weight": 900
       }, `${pct.toLocaleString("es-AR", { maximumFractionDigits: 1 })}%`));
     }
@@ -754,11 +738,11 @@ function renderPbaStacked100(container, items, totalValue) {
   validItems.forEach((item, index) => {
     const pct = ratioPercent(item.value, total);
     const legendX = index === 0 ? barX : barX + 300;
-    const legendY = 118;
+    const legendY = 92;
 
     svg.appendChild(svgElement("rect", {
       x: legendX,
-      y: legendY - 12,
+      y: legendY - 11,
       width: 12,
       height: 12,
       rx: 3,
@@ -769,17 +753,17 @@ function renderPbaStacked100(container, items, totalValue) {
       x: legendX + 18,
       y: legendY,
       fill: COLORS.navy,
-      "font-size": 11.3,
+      "font-size": 11.5,
       "font-weight": 850
     }, item.label));
 
     svg.appendChild(svgElement("text", {
       x: legendX + 18,
-      y: legendY + 16,
+      y: legendY + 15,
       fill: COLORS.muted,
       "font-size": 10.5,
       "font-weight": 650
-    }, `${formatCompact(item.value)} · ${pct.toLocaleString("es-AR", {
+    }, `${pct.toLocaleString("es-AR", {
       maximumFractionDigits: 1
     })}% del PBA`));
   });
