@@ -666,7 +666,209 @@ function renderGenderDonut(container, items, centerTop, centerBottom) {
 
     container.appendChild(svg);
   }
+function renderPbaStacked100(container, items, totalValue) {
+  if (!container) return;
 
+  const validItems = items
+    .map(item => ({
+      ...item,
+      value: Number.isFinite(item.value) ? item.value : 0
+    }))
+    .filter(item => item.value > 0);
+
+  const total = Number.isFinite(totalValue) && totalValue > 0
+    ? totalValue
+    : validItems.reduce((sum, item) => sum + item.value, 0);
+
+  if (!validItems.length || total <= 0) {
+    clearChart(container);
+    return;
+  }
+
+  container.innerHTML = "";
+
+  const svg = svgElement("svg", {
+    viewBox: "0 0 620 250",
+    role: "img"
+  });
+
+  const barX = 28;
+  const barY = 72;
+  const barW = 564;
+  const barH = 34;
+
+  svg.appendChild(svgElement("text", {
+    x: barX,
+    y: 34,
+    fill: COLORS.navy,
+    "font-size": 18,
+    "font-weight": 900
+  }, formatCompact(total)));
+
+  svg.appendChild(svgElement("text", {
+    x: barX,
+    y: 53,
+    fill: COLORS.muted,
+    "font-size": 11.5,
+    "font-weight": 600
+  }, "Producto Bruto Aeroportuario total"));
+
+  svg.appendChild(svgElement("rect", {
+    x: barX,
+    y: barY,
+    width: barW,
+    height: barH,
+    rx: 9,
+    fill: COLORS.light
+  }));
+
+  let cursorX = barX;
+
+  validItems.forEach((item, index) => {
+    const pct = ratioPercent(item.value, total);
+    const segmentW = Math.max(3, (item.value / total) * barW);
+
+    svg.appendChild(svgElement("rect", {
+      x: cursorX,
+      y: barY,
+      width: segmentW,
+      height: barH,
+      rx: index === 0 || index === validItems.length - 1 ? 9 : 0,
+      fill: item.color
+    }));
+
+    if (segmentW > 66) {
+      svg.appendChild(svgElement("text", {
+        x: cursorX + segmentW / 2,
+        y: barY + 22,
+        "text-anchor": "middle",
+        fill: "#ffffff",
+        "font-size": 12,
+        "font-weight": 900
+      }, `${pct.toLocaleString("es-AR", { maximumFractionDigits: 1 })}%`));
+    }
+
+    cursorX += segmentW;
+  });
+
+  validItems.forEach((item, index) => {
+    const pct = ratioPercent(item.value, total);
+    const legendY = 135 + index * 44;
+
+    svg.appendChild(svgElement("rect", {
+      x: barX,
+      y: legendY - 13,
+      width: 14,
+      height: 14,
+      rx: 3,
+      fill: item.color
+    }));
+
+    svg.appendChild(svgElement("text", {
+      x: barX + 22,
+      y: legendY,
+      fill: COLORS.navy,
+      "font-size": 12.5,
+      "font-weight": 850
+    }, item.label));
+
+    svg.appendChild(svgElement("text", {
+      x: barX + 22,
+      y: legendY + 18,
+      fill: COLORS.muted,
+      "font-size": 11.5,
+      "font-weight": 650
+    }, `${formatCompact(item.value)} · ${pct.toLocaleString("es-AR", {
+      maximumFractionDigits: 1
+    })}% del PBA`));
+  });
+
+  container.appendChild(svg);
+}
+
+  function renderNoAeroRankBars(container, items) {
+  if (!container) return;
+
+  const validItems = items
+    .filter(item => Number.isFinite(item.value) && item.value >= 0)
+    .sort((a, b) => b.value - a.value);
+
+  const total = validItems.reduce((sum, item) => sum + item.value, 0);
+  const maxValue = Math.max(...validItems.map(item => item.value), 1);
+
+  if (!validItems.length || total <= 0) {
+    clearChart(container);
+    return;
+  }
+
+  container.innerHTML = "";
+
+  const svg = svgElement("svg", {
+    viewBox: "0 0 720 250",
+    role: "img"
+  });
+
+  const labelX = 22;
+  const barX = 250;
+  const barW = 345;
+  const valueX = 690;
+  const top = 42;
+  const rowGap = 62;
+  const barH = 22;
+
+  validItems.forEach((item, index) => {
+    const y = top + index * rowGap;
+    const barWidth = Math.max(3, (item.value / maxValue) * barW);
+    const pct = ratioPercent(item.value, total);
+
+    svg.appendChild(svgElement("text", {
+      x: labelX,
+      y: y + 14,
+      fill: COLORS.navy,
+      "font-size": 12,
+      "font-weight": 850
+    }, item.label));
+
+    svg.appendChild(svgElement("text", {
+      x: labelX,
+      y: y + 31,
+      fill: COLORS.muted,
+      "font-size": 10.5,
+      "font-weight": 650
+    }, `${pct.toLocaleString("es-AR", {
+      maximumFractionDigits: 1
+    })}% del no aeronáutico`));
+
+    svg.appendChild(svgElement("rect", {
+      x: barX,
+      y,
+      width: barW,
+      height: barH,
+      rx: 6,
+      fill: COLORS.light
+    }));
+
+    svg.appendChild(svgElement("rect", {
+      x: barX,
+      y,
+      width: barWidth,
+      height: barH,
+      rx: 6,
+      fill: item.color
+    }));
+
+    svg.appendChild(svgElement("text", {
+      x: valueX,
+      y: y + 14,
+      "text-anchor": "end",
+      fill: COLORS.navy,
+      "font-size": 11.5,
+      "font-weight": 900
+    }, formatCompact(item.value)));
+  });
+
+  container.appendChild(svg);
+}
   function renderTourismBalance(container, receptive, emissive, balance) {
     if (!container) return;
     if (![receptive, emissive].some(Number.isFinite)) {
@@ -1448,24 +1650,23 @@ const empleoVarones = normalizeShareOrCount(
   }
 
   function renderCharts(data) {
-    renderDonut(
-      root.querySelector("#impactoPbaDonut"),
-      [
-        { label: "Aeronáuticos", value: data.pbaAeronautico, color: COLORS.teal },
-        { label: "No aeronáuticos", value: data.pbaNoAeronautico, color: COLORS.sky }
-      ],
-      formatCompact(data.pbaTotal),
-      "PBA total"
-    );
+renderPbaStacked100(
+  root.querySelector("#impactoPbaDonut"),
+  [
+    { label: "Servicios aeronáuticos", value: data.pbaAeronautico, color: COLORS.teal },
+    { label: "Servicios no aeronáuticos", value: data.pbaNoAeronautico, color: COLORS.sky }
+  ],
+  data.pbaTotal
+);
 
-    renderHorizontalBars(
-      root.querySelector("#impactoPbaNoAeroBars"),
-      [
-        { label: "Actividades conexas", value: data.pbaConexas, color: COLORS.teal },
-        { label: "Explotación comercial", value: data.pbaComercial, color: COLORS.sky },
-        { label: "Actividades secundarias", value: data.pbaSecundarias, color: COLORS.blue }
-      ]
-    );
+renderNoAeroRankBars(
+  root.querySelector("#impactoPbaNoAeroBars"),
+  [
+    { label: "Actividades conexas", value: data.pbaConexas, color: COLORS.teal },
+    { label: "Explotación comercial", value: data.pbaComercial, color: COLORS.sky },
+    { label: "Actividades secundarias", value: data.pbaSecundarias, color: COLORS.blue }
+  ]
+);
 
     renderTourismBalance(root.querySelector("#impactoTourismBalance"), data.turismoReceptivo, data.turismoEmisivo, data.saldoTurismo);
     renderTourismComposition(root.querySelector("#impactoTourismComposition"), {
