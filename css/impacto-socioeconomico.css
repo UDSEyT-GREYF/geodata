@@ -53,7 +53,10 @@
 .impacto-sheet-pba .impacto-sheet-inner {
   gap: 1.2mm;
 }
-
+.impacto-sheet-pba .impacto-kpi-row {
+  margin-top: 3mm;
+  margin-bottom: 3mm;
+}
 .impacto-page-header {
   border-bottom: 1.2mm solid var(--impacto-navy);
   padding-bottom: 4mm;
