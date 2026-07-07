@@ -51,7 +51,7 @@
 }
 
 .impacto-sheet-pba .impacto-sheet-inner {
-  gap: 2.6mm;
+  gap: 2.2mm;
 }
 
 .impacto-page-header {
@@ -155,22 +155,22 @@
 
 .impacto-pba-intro {
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-  gap: 4mm;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: 5mm;
   align-items: start;
 }
 
 .impacto-pba-diagram {
-  height: 52mm;
+  height: 60mm;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
 .impacto-pba-diagram img {
   display: block;
   width: 100%;
-  max-height: 52mm;
+  max-height: 60mm;
   object-fit: contain;
 }
 .impacto-report .impacto-pba-widebox {
