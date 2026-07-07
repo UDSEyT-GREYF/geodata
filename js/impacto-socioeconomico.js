@@ -688,14 +688,14 @@ function renderPbaStacked100(container, items, totalValue) {
   container.innerHTML = "";
 
   const svg = svgElement("svg", {
-    viewBox: "0 0 620 115",
+    viewBox: "0 0 620 88",
     role: "img"
   });
 
   const barX = 28;
-  const barY = 34;
+  const barY = 16;
   const barW = 564;
-  const barH = 30;
+  const barH = 24;
 
   svg.appendChild(svgElement("rect", {
     x: barX,
@@ -724,7 +724,7 @@ function renderPbaStacked100(container, items, totalValue) {
     if (segmentW > 54) {
       svg.appendChild(svgElement("text", {
         x: cursorX + segmentW / 2,
-        y: barY + 20,
+        y: barY + 16,
         "text-anchor": "middle",
         fill: "#ffffff",
         "font-size": 11,
@@ -738,7 +738,7 @@ function renderPbaStacked100(container, items, totalValue) {
   validItems.forEach((item, index) => {
     const pct = ratioPercent(item.value, total);
     const legendX = index === 0 ? barX : barX + 300;
-    const legendY = 92;
+    const legendY = 64;
 
     svg.appendChild(svgElement("rect", {
       x: legendX,
@@ -759,7 +759,7 @@ function renderPbaStacked100(container, items, totalValue) {
 
     svg.appendChild(svgElement("text", {
       x: legendX + 18,
-      y: legendY + 15,
+      y: legendY + 13,
       fill: COLORS.muted,
       "font-size": 10.5,
       "font-weight": 650
