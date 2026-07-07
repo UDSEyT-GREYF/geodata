@@ -688,14 +688,14 @@ function renderPbaStacked100(container, items, totalValue) {
   container.innerHTML = "";
 
   const svg = svgElement("svg", {
-    viewBox: "0 0 620 88",
+    viewBox: "0 0 620 68",
     role: "img"
   });
 
   const barX = 28;
-  const barY = 16;
+  const barY = 6;
   const barW = 564;
-  const barH = 24;
+  const barH = 22;
 
   svg.appendChild(svgElement("rect", {
     x: barX,
@@ -724,7 +724,7 @@ function renderPbaStacked100(container, items, totalValue) {
     if (segmentW > 54) {
       svg.appendChild(svgElement("text", {
         x: cursorX + segmentW / 2,
-        y: barY + 16,
+        y: barY + 15,
         "text-anchor": "middle",
         fill: "#ffffff",
         "font-size": 11,
@@ -738,7 +738,7 @@ function renderPbaStacked100(container, items, totalValue) {
   validItems.forEach((item, index) => {
     const pct = ratioPercent(item.value, total);
     const legendX = index === 0 ? barX : barX + 300;
-    const legendY = 64;
+    const legendY = 48;
 
     svg.appendChild(svgElement("rect", {
       x: legendX,
@@ -759,7 +759,7 @@ function renderPbaStacked100(container, items, totalValue) {
 
     svg.appendChild(svgElement("text", {
       x: legendX + 18,
-      y: legendY + 13,
+      y: legendY + 12,
       fill: COLORS.muted,
       "font-size": 10.5,
       "font-weight": 650
@@ -789,7 +789,7 @@ function renderNoAeroRankBars(container, items) {
   container.innerHTML = "";
 
   const svg = svgElement("svg", {
-    viewBox: "0 0 720 165",
+    viewBox: "0 0 720 118",
     role: "img"
   });
 
@@ -797,9 +797,9 @@ function renderNoAeroRankBars(container, items) {
   const barX = 250;
   const barW = 340;
   const valueX = 690;
-  const top = 24;
-  const rowGap = 43;
-  const barH = 18;
+  const top = 7;
+  const rowGap = 36;
+  const barH = 16;
 
   validItems.forEach((item, index) => {
     const y = top + index * rowGap;
@@ -816,7 +816,7 @@ function renderNoAeroRankBars(container, items) {
 
     svg.appendChild(svgElement("text", {
       x: labelX,
-      y: y + 28,
+      y: y + 24,
       fill: COLORS.muted,
       "font-size": 10,
       "font-weight": 650
