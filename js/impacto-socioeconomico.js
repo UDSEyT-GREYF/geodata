@@ -969,51 +969,51 @@ function renderTourismComposition(container, data) {
 
   const svg = svgElement("svg", {
     viewBox: "0 0 720 160",
-    role: "img"
+    role: "img",
+    preserveAspectRatio: "xMidYMin meet"
   });
-
-
-  
-legend.forEach((item, index) => {
-  const x = legendStartX + index * (legendItemWidth + legendGap);
-
-  svg.appendChild(svgElement("rect", {
-    x,
-    y: 18,
-    width: 12,
-    height: 12,
-    rx: 2,
-    fill: item.color
-  }));
-
-  svg.appendChild(svgElement("text", {
-    x: x + 18,
-    y: 28,
-    fill: COLORS.muted,
-    "font-size": 11,
-    "font-weight": 650
-  }, item.label));
-});
 
   const labelX = 32;
   const barX = 230;
   const barW = 380;
   const valueX = 690;
-const top = 38;
-const rowGap = 56;
-const barH = 18;
+  const top = 38;
+  const rowGap = 56;
+  const barH = 18;
 
   const legend = [
-  { label: "Nacional", color: COLORS.sky },
-  { label: "Internacional", color: COLORS.orange }
-];
+    { label: "Nacional", color: COLORS.sky },
+    { label: "Internacional", color: COLORS.orange }
+  ];
 
-const legendItemWidth = 120;   // ancho estimado de cada item
-const legendGap = 26;          // separación entre items
-const legendTotalWidth =
-  (legend.length * legendItemWidth) + ((legend.length - 1) * legendGap);
+  const legendItemWidth = 120;
+  const legendGap = 26;
+  const legendTotalWidth =
+    (legend.length * legendItemWidth) + ((legend.length - 1) * legendGap);
 
-const legendStartX = barX + ((barW - legendTotalWidth) / 2);
+  const legendStartX = barX + ((barW - legendTotalWidth) / 2);
+
+  legend.forEach((item, index) => {
+    const x = legendStartX + index * (legendItemWidth + legendGap);
+
+    svg.appendChild(svgElement("rect", {
+      x,
+      y: 18,
+      width: 12,
+      height: 12,
+      rx: 2,
+      fill: item.color
+    }));
+
+    svg.appendChild(svgElement("text", {
+      x: x + 18,
+      y: 28,
+      fill: COLORS.muted,
+      "font-size": 11,
+      "font-weight": 650
+    }, item.label));
+  });
+
   categories.forEach((category, index) => {
     const y = top + index * rowGap;
     const national = Number.isFinite(category.national) ? category.national : 0;
