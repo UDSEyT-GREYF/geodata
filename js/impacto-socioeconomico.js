@@ -1666,9 +1666,17 @@ const empleoVarones = normalizeShareOrCount(
   }
 
   function renderText(data) {
-    const airportLine = data.iata ? `${data.airportName} (${data.iata})` : data.airportName;
-    setText("airportLine", airportLine);
-    setText("impactYear", `Año ${data.year}`);
+const airportNameOverrides = {
+  AEP: "Aeroparque Jorge Newbery"
+};
+
+const airportNameOnly = airportNameOverrides[data.iata] || data.airportName;
+const airportLine = data.iata ? `${airportNameOnly} (${data.iata})` : airportNameOnly;
+
+setText("airportLine", airportLine);
+setText("airportNameOnly", airportNameOnly);
+setText("impactYear", `Año ${data.year}`);
+setText("impactYearNumber", data.year);
 
     setText("pbaTotal", formatCurrency(data.pbaTotal));
     setText("pbaAeronautico", formatCurrency(data.pbaAeronautico));
