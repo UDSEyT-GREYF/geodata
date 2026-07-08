@@ -867,12 +867,12 @@ function renderNoAeroRankBars(container, items) {
     const maxAbs = Math.max(Math.abs(positive), Math.abs(negative), Math.abs(net), 1);
 
     container.innerHTML = "";
-    const svg = svgElement("svg", { viewBox: "0 0 640 320", role: "img" });
-    const chartLeft = 58;
-    const chartRight = 598;
-    const baseline = 166;
-    const chartBottom = 282;
-    const scale = 102 / maxAbs;
+const svg = svgElement("svg", { viewBox: "0 0 640 240", role: "img" });
+const chartLeft = 58;
+const chartRight = 598;
+const baseline = 114;
+const chartBottom = 220;
+const scale = 66 / maxAbs;
     const barWidth = 96;
     const bars = [
       { label: "Turismo receptivo", note: "Ingreso al área", value: positive, x: 88, color: COLORS.teal },
@@ -911,14 +911,21 @@ function renderNoAeroRankBars(container, items) {
         fill: bar.color,
         opacity: 0.96
       }));
-      svg.appendChild(svgElement("text", {
-        x: bar.x + (barWidth / 2),
-        y: bar.value >= 0 ? y - 12 : y + barHeight + 22,
-        "text-anchor": "middle",
-        fill: COLORS.navy,
-        "font-size": 15,
-        "font-weight": 800
-      }, formatCompact(Math.abs(bar.value))));
+const valueInsideBar = bar.value < 0 && barHeight > 28;
+const valueY = bar.value >= 0
+  ? y - 8
+  : valueInsideBar
+    ? y + barHeight - 9
+    : y + barHeight + 14;
+
+svg.appendChild(svgElement("text", {
+  x: bar.x + (barWidth / 2),
+  y: valueY,
+  "text-anchor": "middle",
+  fill: valueInsideBar ? "#ffffff" : COLORS.navy,
+  "font-size": 14,
+  "font-weight": 800
+}, formatCompact(Math.abs(bar.value))));
       appendMultilineText(svg, bar.x + (barWidth / 2), chartBottom - 18, [bar.label, bar.note], {
         "text-anchor": "middle",
         fill: COLORS.navy,
@@ -961,7 +968,7 @@ function renderTourismComposition(container, data) {
   container.innerHTML = "";
 
   const svg = svgElement("svg", {
-    viewBox: "0 0 720 230",
+    viewBox: "0 0 720 160",
     role: "img"
   });
 
@@ -993,9 +1000,9 @@ function renderTourismComposition(container, data) {
   const barX = 230;
   const barW = 380;
   const valueX = 690;
-  const top = 68;
-  const rowGap = 78;
-  const barH = 24;
+const top = 38;
+const rowGap = 56;
+const barH = 18;
 
   categories.forEach((category, index) => {
     const y = top + index * rowGap;
@@ -1038,7 +1045,7 @@ function renderTourismComposition(container, data) {
 
     svg.appendChild(svgElement("rect", {
       x: barX,
-      y: y + 10,
+      y: y + 16,
       width: barW,
       height: barH,
       rx: 6,
@@ -1048,7 +1055,7 @@ function renderTourismComposition(container, data) {
     if (nationalW > 0) {
       svg.appendChild(svgElement("rect", {
         x: barX,
-        y: y + 10,
+        y: y + 16,
         width: nationalW,
         height: barH,
         rx: 6,
@@ -1059,7 +1066,7 @@ function renderTourismComposition(container, data) {
     if (internationalW > 0) {
       svg.appendChild(svgElement("rect", {
         x: barX + nationalW,
-        y: y + 10,
+        y: y + 16,
         width: internationalW,
         height: barH,
         rx: 6,
@@ -1070,7 +1077,7 @@ function renderTourismComposition(container, data) {
     if (nationalW > 44) {
       svg.appendChild(svgElement("text", {
         x: barX + nationalW / 2,
-        y: y + 27,
+        y: y + 29,
         "text-anchor": "middle",
         fill: "#ffffff",
         "font-size": 10.5,
@@ -1081,7 +1088,7 @@ function renderTourismComposition(container, data) {
     if (internationalW > 44) {
       svg.appendChild(svgElement("text", {
         x: barX + nationalW + internationalW / 2,
-        y: y + 27,
+        y: y + 29,
         "text-anchor": "middle",
         fill: COLORS.navy,
         "font-size": 10.5,
@@ -1091,7 +1098,7 @@ function renderTourismComposition(container, data) {
 
     svg.appendChild(svgElement("text", {
       x: barX,
-      y: y + 55,
+      y: y + 45,
       fill: COLORS.muted,
       "font-size": 10.5,
       "font-weight": 650
@@ -1099,7 +1106,7 @@ function renderTourismComposition(container, data) {
 
     svg.appendChild(svgElement("text", {
       x: barX + 210,
-      y: y + 55,
+      y: y + 45,
       fill: COLORS.muted,
       "font-size": 10.5,
       "font-weight": 650
