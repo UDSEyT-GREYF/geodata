@@ -281,7 +281,7 @@
 
 .impacto-chart-grid-tourism {
   grid-template-columns: 1fr;
-  gap: 3mm;
+  gap: 2mm;
   align-items: stretch;
 }
 
@@ -494,19 +494,19 @@ body.impacto-standalone {
   height: 100%;
 }
 .impacto-sheet-tourism .impacto-chart-waterfall {
-  min-height: 58mm;
+  min-height: 46mm;
 }
 
 .impacto-sheet-tourism .impacto-chart-stacked {
-  min-height: 48mm;
+  min-height: 35mm;
 }
 
 .impacto-sheet-tourism .impacto-chart-card {
-  padding: 2.8mm 3mm;
+  padding: 1.8mm 3mm 1.6mm;
 }
 
 .impacto-sheet-tourism .impacto-chart-card figcaption {
-  margin-bottom: 1mm;
+  margin-bottom: 0.4mm;
 }
 @media screen and (max-width: 850px) {
   .impacto-sheet {
