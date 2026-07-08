@@ -931,95 +931,183 @@ function renderNoAeroRankBars(container, items) {
   }
 
 
-  function renderTourismComposition(container, data) {
-    if (!container) return;
-    const categories = [
-      { shortLabel: "Receptivo", national: data.receptiveNational, international: data.receptiveInternational },
-      { shortLabel: "Emisivo", national: data.emissiveNational, international: data.emissiveInternational }
-    ];
+function renderTourismComposition(container, data) {
+  if (!container) return;
 
-    const hasData = categories.some((category) => Number.isFinite(category.national) || Number.isFinite(category.international));
-    if (!hasData) {
-      clearChart(container, "No hay desagregación nacional/internacional");
-      return;
+  const categories = [
+    {
+      label: "Turismo receptivo",
+      note: "Ingreso al área",
+      national: data.receptiveNational,
+      international: data.receptiveInternational
+    },
+    {
+      label: "Turismo emisivo",
+      note: "Gasto fuera del área",
+      national: data.emissiveNational,
+      international: data.emissiveInternational
+    }
+  ];
+
+  const hasData = categories.some((category) =>
+    Number.isFinite(category.national) || Number.isFinite(category.international)
+  );
+
+  if (!hasData) {
+    clearChart(container, "No hay desagregación nacional/internacional");
+    return;
+  }
+
+  container.innerHTML = "";
+
+  const svg = svgElement("svg", {
+    viewBox: "0 0 720 230",
+    role: "img"
+  });
+
+  const legend = [
+    { label: "Nacional", color: COLORS.sky, x: 32 },
+    { label: "Internacional", color: COLORS.orange, x: 150 }
+  ];
+
+  legend.forEach((item) => {
+    svg.appendChild(svgElement("rect", {
+      x: item.x,
+      y: 18,
+      width: 12,
+      height: 12,
+      rx: 2,
+      fill: item.color
+    }));
+
+    svg.appendChild(svgElement("text", {
+      x: item.x + 18,
+      y: 28,
+      fill: COLORS.muted,
+      "font-size": 11,
+      "font-weight": 650
+    }, item.label));
+  });
+
+  const labelX = 32;
+  const barX = 230;
+  const barW = 380;
+  const valueX = 690;
+  const top = 68;
+  const rowGap = 78;
+  const barH = 24;
+
+  categories.forEach((category, index) => {
+    const y = top + index * rowGap;
+    const national = Number.isFinite(category.national) ? category.national : 0;
+    const international = Number.isFinite(category.international) ? category.international : 0;
+    const total = national + international;
+
+    if (total <= 0) return;
+
+    const nationalPct = ratioPercent(national, total);
+    const internationalPct = ratioPercent(international, total);
+
+    const nationalW = (national / total) * barW;
+    const internationalW = (international / total) * barW;
+
+    svg.appendChild(svgElement("text", {
+      x: labelX,
+      y: y + 2,
+      fill: COLORS.navy,
+      "font-size": 13,
+      "font-weight": 900
+    }, category.label));
+
+    svg.appendChild(svgElement("text", {
+      x: labelX,
+      y: y + 18,
+      fill: COLORS.muted,
+      "font-size": 10.7,
+      "font-weight": 650
+    }, category.note));
+
+    svg.appendChild(svgElement("text", {
+      x: valueX,
+      y: y + 2,
+      "text-anchor": "end",
+      fill: COLORS.navy,
+      "font-size": 13,
+      "font-weight": 900
+    }, formatCompact(total)));
+
+    svg.appendChild(svgElement("rect", {
+      x: barX,
+      y: y + 10,
+      width: barW,
+      height: barH,
+      rx: 6,
+      fill: COLORS.light
+    }));
+
+    if (nationalW > 0) {
+      svg.appendChild(svgElement("rect", {
+        x: barX,
+        y: y + 10,
+        width: nationalW,
+        height: barH,
+        rx: 6,
+        fill: COLORS.sky
+      }));
     }
 
-    container.innerHTML = "";
-    const svg = svgElement("svg", { viewBox: "0 0 320 320", role: "img" });
+    if (internationalW > 0) {
+      svg.appendChild(svgElement("rect", {
+        x: barX + nationalW,
+        y: y + 10,
+        width: internationalW,
+        height: barH,
+        rx: 6,
+        fill: COLORS.orange
+      }));
+    }
 
-    [
-      { label: "Nacional", color: COLORS.sky, x: 22 },
-      { label: "Internacional", color: COLORS.orange, x: 156 }
-    ].forEach((item) => {
-      svg.appendChild(svgElement("rect", { x: item.x, y: 18, width: 12, height: 12, rx: 2, fill: item.color }));
-      svg.appendChild(svgElement("text", { x: item.x + 18, y: 28, fill: COLORS.muted, "font-size": 10.5 }, item.label));
-    });
-
-    categories.forEach((category, index) => {
-      const yTop = 76 + index * 122;
-      const xBar = 22;
-      const barWidth = 238;
-      const barHeight = 28;
-      const national = Number.isFinite(category.national) ? category.national : 0;
-      const international = Number.isFinite(category.international) ? category.international : 0;
-      const total = national + international;
-      const nationalShare = total > 0 ? national / total : 0;
-      const internationalShare = total > 0 ? international / total : 0;
-      const nationalWidth = barWidth * nationalShare;
-      const internationalWidth = barWidth * internationalShare;
-
+    if (nationalW > 44) {
       svg.appendChild(svgElement("text", {
-        x: xBar,
-        y: yTop - 16,
-        fill: COLORS.navy,
-        "font-size": 12,
-        "font-weight": 800
-      }, category.shortLabel));
+        x: barX + nationalW / 2,
+        y: y + 27,
+        "text-anchor": "middle",
+        fill: "#ffffff",
+        "font-size": 10.5,
+        "font-weight": 900
+      }, `${nationalPct.toLocaleString("es-AR", { maximumFractionDigits: 0 })}%`));
+    }
+
+    if (internationalW > 44) {
       svg.appendChild(svgElement("text", {
-        x: xBar + barWidth,
-        y: yTop - 16,
-        "text-anchor": "end",
+        x: barX + nationalW + internationalW / 2,
+        y: y + 27,
+        "text-anchor": "middle",
         fill: COLORS.navy,
-        "font-size": 13,
-        "font-weight": 800
-      }, formatCompact(total)));
+        "font-size": 10.5,
+        "font-weight": 900
+      }, `${internationalPct.toLocaleString("es-AR", { maximumFractionDigits: 0 })}%`));
+    }
 
-      svg.appendChild(svgElement("rect", { x: xBar, y: yTop, width: barWidth, height: barHeight, rx: 6, fill: COLORS.light }));
-      if (nationalWidth > 0) svg.appendChild(svgElement("rect", { x: xBar, y: yTop, width: nationalWidth, height: barHeight, rx: 6, fill: COLORS.sky }));
-      if (internationalWidth > 0) svg.appendChild(svgElement("rect", { x: xBar + nationalWidth, y: yTop, width: internationalWidth, height: barHeight, rx: 6, fill: COLORS.orange }));
+    svg.appendChild(svgElement("text", {
+      x: barX,
+      y: y + 55,
+      fill: COLORS.muted,
+      "font-size": 10.5,
+      "font-weight": 650
+    }, `Nacional: ${formatCompact(national)} · ${nationalPct.toLocaleString("es-AR", { maximumFractionDigits: 1 })}%`));
 
-      if (nationalWidth > 42) {
-        svg.appendChild(svgElement("text", {
-          x: xBar + nationalWidth / 2,
-          y: yTop + 18,
-          "text-anchor": "middle",
-          fill: "#ffffff",
-          "font-size": 11,
-          "font-weight": 800
-        }, `${ratioPercent(national, total).toLocaleString("es-AR", { maximumFractionDigits: 0 })}%`));
-      }
-      if (internationalWidth > 42) {
-        svg.appendChild(svgElement("text", {
-          x: xBar + nationalWidth + internationalWidth / 2,
-          y: yTop + 18,
-          "text-anchor": "middle",
-          fill: COLORS.navy,
-          "font-size": 11,
-          "font-weight": 800
-        }, `${ratioPercent(international, total).toLocaleString("es-AR", { maximumFractionDigits: 0 })}%`));
-      }
+    svg.appendChild(svgElement("text", {
+      x: barX + 210,
+      y: y + 55,
+      fill: COLORS.muted,
+      "font-size": 10.5,
+      "font-weight": 650
+    }, `Internacional: ${formatCompact(international)} · ${internationalPct.toLocaleString("es-AR", { maximumFractionDigits: 1 })}%`));
+  });
 
-      appendMultilineText(svg, xBar, yTop + 48, [
-        `Nacional: ${formatCompact(national)} (${ratioPercent(national, total).toLocaleString("es-AR", { maximumFractionDigits: 1 })}%)`,
-        `Internacional: ${formatCompact(international)} (${ratioPercent(international, total).toLocaleString("es-AR", { maximumFractionDigits: 1 })}%)`
-      ], {
-        fill: COLORS.muted,
-        "font-size": 10.4
-      }, 14);
-    });
-
-    container.appendChild(svg);
-  }
+  container.appendChild(svg);
+}
 
 
   function renderSummaryFallback(container, data) {
