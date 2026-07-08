@@ -1713,7 +1713,7 @@ const empleoVarones = normalizeShareOrCount(
     if (tourismInsight) {
       if (Number.isFinite(data.saldoTurismo)) {
         const direction = data.saldoTurismo >= 0 ? "positivo" : "negativo";
-        tourismInsight.textContent = `El turismo facilitado por la conectividad aérea produjo un saldo ${direction} de ${formatCurrency(Math.abs(data.saldoTurismo))}. El excedente del consumidor se presenta por separado porque constituye un beneficio del pasajero y no un derrame económico local.`;
+        tourismInsight.textContent = `El turismo facilitado por la conectividad aérea produjo un saldo ${direction}, entendido como la diferencia entre el turismo receptivo y el emisivo, de ${formatCurrency(Math.abs(data.saldoTurismo))}.`;
       } else {
         tourismInsight.textContent = "No se dispone de valores suficientes para calcular el saldo entre turismo receptivo y emisivo.";
       }
