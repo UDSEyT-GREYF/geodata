@@ -972,29 +972,38 @@ function renderTourismComposition(container, data) {
     role: "img"
   });
 
-  const legend = [
-    { label: "Nacional", color: COLORS.sky, x: 32 },
-    { label: "Internacional", color: COLORS.orange, x: 150 }
-  ];
+const legend = [
+  { label: "Nacional", color: COLORS.sky },
+  { label: "Internacional", color: COLORS.orange }
+];
 
-  legend.forEach((item) => {
-    svg.appendChild(svgElement("rect", {
-      x: item.x,
-      y: 18,
-      width: 12,
-      height: 12,
-      rx: 2,
-      fill: item.color
-    }));
+const legendItemWidth = 120;   // ancho estimado de cada item
+const legendGap = 26;          // separación entre items
+const legendTotalWidth =
+  (legend.length * legendItemWidth) + ((legend.length - 1) * legendGap);
 
-    svg.appendChild(svgElement("text", {
-      x: item.x + 18,
-      y: 28,
-      fill: COLORS.muted,
-      "font-size": 11,
-      "font-weight": 650
-    }, item.label));
-  });
+const legendStartX = (720 - legendTotalWidth) / 2; // 720 = ancho del viewBox
+
+legend.forEach((item, index) => {
+  const x = legendStartX + index * (legendItemWidth + legendGap);
+
+  svg.appendChild(svgElement("rect", {
+    x,
+    y: 18,
+    width: 12,
+    height: 12,
+    rx: 2,
+    fill: item.color
+  }));
+
+  svg.appendChild(svgElement("text", {
+    x: x + 18,
+    y: 28,
+    fill: COLORS.muted,
+    "font-size": 11,
+    "font-weight": 650
+  }, item.label));
+});
 
   const labelX = 32;
   const barX = 230;
