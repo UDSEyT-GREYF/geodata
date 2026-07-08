@@ -972,18 +972,8 @@ function renderTourismComposition(container, data) {
     role: "img"
   });
 
-const legend = [
-  { label: "Nacional", color: COLORS.sky },
-  { label: "Internacional", color: COLORS.orange }
-];
 
-const legendItemWidth = 120;   // ancho estimado de cada item
-const legendGap = 26;          // separación entre items
-const legendTotalWidth =
-  (legend.length * legendItemWidth) + ((legend.length - 1) * legendGap);
-
-const legendStartX = (720 - legendTotalWidth) / 2; // 720 = ancho del viewBox
-
+  
 legend.forEach((item, index) => {
   const x = legendStartX + index * (legendItemWidth + legendGap);
 
@@ -1013,6 +1003,17 @@ const top = 38;
 const rowGap = 56;
 const barH = 18;
 
+  const legend = [
+  { label: "Nacional", color: COLORS.sky },
+  { label: "Internacional", color: COLORS.orange }
+];
+
+const legendItemWidth = 120;   // ancho estimado de cada item
+const legendGap = 26;          // separación entre items
+const legendTotalWidth =
+  (legend.length * legendItemWidth) + ((legend.length - 1) * legendGap);
+
+const legendStartX = barX + ((barW - legendTotalWidth) / 2);
   categories.forEach((category, index) => {
     const y = top + index * rowGap;
     const national = Number.isFinite(category.national) ? category.national : 0;
