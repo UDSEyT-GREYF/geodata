@@ -191,19 +191,32 @@
 
     <header class="impacto-passenger-header">
       <h1>BENEFICIOS ECONÓMICOS PARA LOS PASAJEROS</h1>
+      <div class="impacto-passenger-airport-line" data-bind="airportLine">Aeropuerto</div>
     </header>
 
     <div class="impacto-passenger-text">
       <p>
-        Los pasajeros valorizarán su viaje por el propio placer de la visita turística o del valor del negocio logrado, más que por el costo del mismo (IATA, 2008). A esta valorización se la denomina <strong>excedente del consumidor</strong>. Se toma en cuenta la cantidad de pasajeros en función de la tarifa promedio de viaje del año bajo análisis teniendo en cuenta que la elasticidad de la demanda en Argentina es igual a -1, lo que implica que cambios porcentuales en la tarifa promedio de viaje generan un cambio porcentual de igual magnitud en sentido contrario en la cantidad de pasajes vendidos (IATA, 2008).
+        Los pasajeros valorizarán su viaje por el propio placer de la visita turística o del valor
+        del negocio logrado, más que por el costo del mismo (IATA, 2008). A esta valorización
+        se la denomina <strong>excedente del consumidor</strong>. Se toma en cuenta la cantidad
+        de pasajeros en función de la tarifa promedio de viaje del año bajo análisis teniendo en cuenta
+        que la elasticidad de la demanda en Argentina es igual a -1, lo que implica que cambios
+        porcentuales en la tarifa promedio de viaje generan un cambio porcentual de igual magnitud
+        en sentido contrario en la cantidad de pasajes vendidos (IATA, 2008).
       </p>
 
       <p>
-        El cálculo se realizó teniendo en cuenta la cantidad de pasajeros que tuvieron como origen el <span data-bind="beneficioAeropuertoNombre">Aeropuerto de San Rafael</span> y la tarifa promedio de dicho aeropuerto en el año <span data-bind="beneficioAnioTarifa">2022</span>. Así, el excedente del consumidor registrado alcanzó la suma de <strong data-bind="beneficioPasajerosMonto">$ 62.191.180</strong>.
+        El cálculo se realizó teniendo en cuenta la cantidad de pasajeros que tuvieron como origen
+        <strong data-bind="airportLine">Aeropuerto</strong> y la tarifa promedio de dicho aeropuerto
+        en el año <span data-bind="impactYearNumber">2025</span>. Así, el excedente del consumidor
+        registrado alcanzó la suma de <strong data-bind="beneficioPasajeros">–</strong>.
       </p>
 
       <p>
-        Si bien el excedente del consumidor es uno de los impactos positivos económicos generados por el transporte aéreo, el mismo tiene efectos solamente sobre los pasajeros. No se relaciona con ninguna fase redistributiva, catalítica o de derrame económico propio de la actividad aérea, ni en el aeropuerto, ni en su área de influencia.
+        Si bien el excedente del consumidor es uno de los impactos positivos económicos generados
+        por el transporte aéreo, el mismo tiene efectos solamente sobre los pasajeros. No se relaciona
+        con ninguna fase redistributiva, catalítica o de derrame económico propio de la actividad aérea,
+        ni en el aeropuerto, ni en su área de influencia.
       </p>
     </div>
 
@@ -216,8 +229,8 @@
         Beneficios económicos para los pasajeros
       </div>
 
-      <div class="impacto-passenger-summary-value" data-bind="beneficioPasajerosMonto">
-        $ 62.191.180
+      <div class="impacto-passenger-summary-value" data-bind="beneficioPasajeros">
+        –
       </div>
     </div>
 
