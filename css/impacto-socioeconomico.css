@@ -739,34 +739,41 @@ body.impacto-standalone .impacto-sheet {
    ========================================================= */
 
 .impacto-sheet-passenger-benefits .impacto-sheet-inner {
-  padding-top: 10mm;
-  padding-bottom: 10mm;
+  padding: 14mm 17mm 12mm;
+  gap: 0;
 }
 
 .impacto-passenger-header {
-  margin-bottom: 8mm;
+  margin-bottom: 7mm;
 }
 
 .impacto-passenger-header h1 {
   margin: 0;
-  font-size: 16pt;
-  line-height: 1.05;
-  font-weight: 900;
-  letter-spacing: 0.2px;
-  text-transform: uppercase;
   color: #111111;
+  font-size: 16pt;
+  line-height: 1.08;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.impacto-passenger-airport-line {
+  margin-top: 2mm;
+  color: #333333;
+  font-size: 10pt;
+  font-weight: 600;
 }
 
 .impacto-passenger-text {
-  margin-bottom: 9mm;
+  margin: 0;
 }
 
 .impacto-passenger-text p {
-  margin: 0 0 7mm 0;
-  font-size: 10.8pt;
-  line-height: 1.42;
-  text-align: justify;
+  margin: 0 0 6.2mm;
   color: #222222;
+  font-size: 11pt;
+  line-height: 1.48;
+  text-align: justify;
 }
 
 .impacto-passenger-text p:last-child {
@@ -774,19 +781,18 @@ body.impacto-standalone .impacto-sheet {
 }
 
 .impacto-passenger-text strong {
-  font-weight: 800;
+  font-weight: 850;
 }
 
 .impacto-passenger-summary {
   display: grid;
-  grid-template-columns: 62px 1fr 240px;
+  grid-template-columns: 20mm 1fr 56mm;
   align-items: center;
   width: 100%;
-  min-height: 56px;
-  border-radius: 0;
-  overflow: hidden;
+  min-height: 15mm;
+  margin-top: 9mm;
   background: #d9f4f5;
-  margin-top: 8mm;
+  overflow: hidden;
 }
 
 .impacto-passenger-summary-icon {
@@ -794,22 +800,21 @@ body.impacto-standalone .impacto-sheet {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #79dfe0;
+  background: #58d1d2;
 }
 
 .impacto-passenger-summary-ring {
-  width: 28px;
-  height: 28px;
-  border: 7px solid #ffffff;
+  width: 10mm;
+  height: 10mm;
+  border: 2.3mm solid #ffffff;
   border-radius: 50%;
-  box-sizing: border-box;
 }
 
 .impacto-passenger-summary-label {
-  padding: 0 14px;
-  font-size: 10.8pt;
-  font-weight: 800;
-  color: #202020;
+  padding: 0 6mm;
+  color: #111111;
+  font-size: 11.2pt;
+  font-weight: 850;
 }
 
 .impacto-passenger-summary-value {
@@ -817,19 +822,17 @@ body.impacto-standalone .impacto-sheet {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 14px;
-  border-left: 4px solid #eef9fa;
-  font-size: 18pt;
+  border-left: 1.2mm solid #f4ffff;
+  color: #111111;
+  font-size: 19pt;
   line-height: 1;
   font-weight: 900;
-  color: #111111;
-  background: #d9f4f5;
   white-space: nowrap;
 }
 
 .impacto-passenger-source {
   margin-top: 5mm;
   text-align: center;
-  font-size: 9pt;
   color: #333333;
+  font-size: 9.2pt;
 }
