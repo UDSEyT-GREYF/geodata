@@ -483,6 +483,9 @@ body.impacto-standalone {
 .impacto-chart-employment {
   align-items: stretch;
   justify-content: stretch;
+}
+
+.impacto-chart-employment {
   min-height: 360px;
 }
 
@@ -494,11 +497,11 @@ body.impacto-standalone {
   height: 100%;
 }
 .impacto-sheet-tourism .impacto-chart-waterfall {
-  min-height: 46mm;
+  min-height: 43mm;
 }
 
 .impacto-sheet-tourism .impacto-chart-stacked {
-  min-height: 35mm;
+  min-height: 34mm;
 }
 
 .impacto-sheet-tourism .impacto-chart-card {
