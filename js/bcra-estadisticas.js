@@ -119,15 +119,26 @@
     return rows;
   }
 
-  async function fetchJson(url) {
-    const response = await fetch(url);
+async function fetchJson(url) {
+  const response = await fetch(url);
 
-    if (!response.ok) {
-      throw new Error(`Error API BCRA ${response.status}: ${url}`);
+  if (!response.ok) {
+    let detail = "";
+
+    try {
+      const errorJson = await response.json();
+      detail = errorJson.errorMessages
+        ? ` · ${errorJson.errorMessages.join(" / ")}`
+        : "";
+    } catch (error) {
+      detail = "";
     }
 
-    return await response.json();
+    throw new Error(`Error API BCRA ${response.status}${detail}: ${url}`);
   }
+
+  return await response.json();
+}
 
   function fillFilterOptions() {
     fillSelect(els.bcraCategory, uniqueValues(catalog.map((v) => v.categoria)));
@@ -269,31 +280,38 @@
     els.bcraSeriesTable.innerHTML = "";
   }
 
-  function selectUvaCer() {
-    selectedVariables.clear();
+function selectUvaCer() {
+  selectedVariables.clear();
 
-    catalog.forEach((variable) => {
-      const desc = normalizeText(variable.descripcion || "");
+  const candidatas = catalog.filter((variable) => {
+    const desc = normalizeText(variable.descripcion || "");
 
-      if (
-        desc.includes("uva") ||
-        desc.includes("unidad de valor adquisitivo") ||
-        desc.includes("cer") ||
-        desc.includes("coeficiente de estabilizacion de referencia")
-      ) {
-        selectedVariables.set(String(variable.idVariable), variable);
-      }
-    });
+    return (
+      desc === "unidad de valor adquisitivo" ||
+      desc === "unidad de valor adquisitivo uva" ||
+      desc.includes("unidad de valor adquisitivo") ||
+      desc === "coeficiente de estabilizacion de referencia" ||
+      desc === "coeficiente de estabilizacion de referencia cer" ||
+      desc.includes("coeficiente de estabilizacion de referencia")
+    );
+  });
 
-    updateSelectedCount();
-    renderVariableList();
+  candidatas.forEach((variable) => {
+    selectedVariables.set(String(variable.idVariable), variable);
+  });
 
-    els.bcraSearch.value = "";
-    els.bcraCategory.value = "";
-    els.bcraCurrency.value = "";
-    els.bcraPeriodicity.value = "";
-    applyFilters();
+  els.bcraSearch.value = "";
+  els.bcraCategory.value = "";
+  els.bcraCurrency.value = "";
+  els.bcraPeriodicity.value = "";
+
+  applyFilters();
+  updateSelectedCount();
+
+  if (!candidatas.length) {
+    clearChart("No se encontraron variables exactas para UVA y CER. Probá buscar manualmente “Unidad de Valor Adquisitivo” o “Coeficiente de Estabilización de Referencia”.");
   }
+}
 
   async function drawSelectedSeries() {
     const variables = [...selectedVariables.values()];
@@ -346,30 +364,36 @@
     }
   }
 
-  async function fetchSerie(idVariable, desde, hasta) {
-    const pageSize = 5000;
-    let offset = 0;
-    let all = [];
+async function fetchSerie(idVariable, desde, hasta) {
+  const pageSize = 1000;
+  let offset = 0;
+  let all = [];
 
-    while (true) {
-      const params = new URLSearchParams();
-      if (desde) params.set("Desde", desde);
-      if (hasta) params.set("Hasta", hasta);
-      params.set("Limit", String(pageSize));
-      params.set("Offset", String(offset));
+  const desdeDateTime = desde ? `${desde}T00:00:00` : "";
+  const hastaDateTime = hasta ? `${hasta}T23:59:59` : "";
 
-      const url = `${API_BASE}/estadisticas/v4.0/Monetarias/${idVariable}?${params.toString()}`;
-      const json = await fetchJson(url);
+  while (true) {
+    const params = new URLSearchParams();
 
-      const detail = json.results?.[0]?.detalle || [];
-      all = all.concat(detail);
+    if (desdeDateTime) params.set("Desde", desdeDateTime);
+    if (hastaDateTime) params.set("Hasta", hastaDateTime);
 
-      if (detail.length < pageSize) break;
-      offset += pageSize;
-    }
+    params.set("Limit", String(pageSize));
+    params.set("Offset", String(offset));
 
-    return all;
+    const url = `${API_BASE}/estadisticas/v4.0/Monetarias/${idVariable}?${params.toString()}`;
+    const json = await fetchJson(url);
+
+    const detail = json.results?.[0]?.detalle || [];
+    all = all.concat(detail);
+
+    if (detail.length < pageSize) break;
+
+    offset += pageSize;
   }
+
+  return all;
+}
 
   function prepareSerie(detail, frequency, mode) {
     const rows = detail
