@@ -1,0 +1,130 @@
+<!-- bcra-estadisticas.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorador BCRA · Estadísticas monetarias</title>
+
+  <link rel="stylesheet" href="css/bcra-estadisticas.css">
+</head>
+<body>
+  <main class="bcra-page">
+    <header class="bcra-header">
+      <div class="bcra-kicker">API BCRA · Estadísticas monetarias</div>
+      <h1>Explorador de variables monetarias</h1>
+      <p>
+        Consulte variables publicadas por el Banco Central de la República Argentina,
+        seleccione una o varias series y visualice su evolución en el tiempo.
+      </p>
+    </header>
+
+    <section class="bcra-status-grid">
+      <div class="bcra-status-card">
+        <span>Variables disponibles</span>
+        <strong id="bcraTotalVariables">–</strong>
+      </div>
+
+      <div class="bcra-status-card">
+        <span>Variables cargadas</span>
+        <strong id="bcraLoadedVariables">–</strong>
+      </div>
+
+      <div class="bcra-status-card">
+        <span>Seleccionadas</span>
+        <strong id="bcraSelectedCount">0</strong>
+      </div>
+    </section>
+
+    <section class="bcra-controls">
+      <div class="bcra-control">
+        <label for="bcraSearch">Buscar variable</label>
+        <input id="bcraSearch" type="search" placeholder="Ej.: UVA, CER, tasa, dólar, reservas">
+      </div>
+
+      <div class="bcra-control">
+        <label for="bcraCategory">Categoría</label>
+        <select id="bcraCategory">
+          <option value="">Todas</option>
+        </select>
+      </div>
+
+      <div class="bcra-control">
+        <label for="bcraCurrency">Moneda</label>
+        <select id="bcraCurrency">
+          <option value="">Todas</option>
+        </select>
+      </div>
+
+      <div class="bcra-control">
+        <label for="bcraPeriodicity">Periodicidad</label>
+        <select id="bcraPeriodicity">
+          <option value="">Todas</option>
+        </select>
+      </div>
+
+      <div class="bcra-control">
+        <label for="bcraDesde">Desde</label>
+        <input id="bcraDesde" type="date" value="2024-01-01">
+      </div>
+
+      <div class="bcra-control">
+        <label for="bcraHasta">Hasta</label>
+        <input id="bcraHasta" type="date">
+      </div>
+
+      <div class="bcra-control">
+        <label for="bcraFrequency">Frecuencia del gráfico</label>
+        <select id="bcraFrequency">
+          <option value="daily">Diaria</option>
+          <option value="monthly" selected>Mensual · primer dato disponible</option>
+        </select>
+      </div>
+
+      <div class="bcra-control">
+        <label for="bcraMode">Modo de comparación</label>
+        <select id="bcraMode">
+          <option value="index" selected>Índice base 100</option>
+          <option value="absolute">Valor original</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="bcra-actions">
+      <button id="bcraQuickUvaCer" type="button">Seleccionar UVA y CER</button>
+      <button id="bcraClearSelection" type="button">Limpiar selección</button>
+      <button id="bcraDrawChart" type="button" class="bcra-primary">Graficar selección</button>
+    </section>
+
+    <section class="bcra-layout">
+      <aside class="bcra-variable-panel">
+        <div class="bcra-panel-title">
+          <h2>Variables</h2>
+          <span id="bcraVisibleCount">–</span>
+        </div>
+
+        <div id="bcraVariableList" class="bcra-variable-list">
+          <p class="bcra-muted">Cargando catálogo de variables...</p>
+        </div>
+      </aside>
+
+      <section class="bcra-chart-panel">
+        <div class="bcra-chart-header">
+          <h2 id="bcraChartTitle">Evolución de variables seleccionadas</h2>
+          <p id="bcraChartSubtitle">Seleccione una o varias variables para graficar.</p>
+        </div>
+
+        <div id="bcraChart" class="bcra-chart"></div>
+
+        <div id="bcraSeriesTable" class="bcra-table"></div>
+      </section>
+    </section>
+
+    <footer class="bcra-footer">
+      Fuente: Banco Central de la República Argentina, API de Estadísticas Monetarias.
+    </footer>
+  </main>
+
+  <script src="js/bcra-estadisticas.js"></script>
+</body>
+</html>
