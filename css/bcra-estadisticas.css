@@ -92,7 +92,7 @@ body {
 
 .bcra-controls {
   display: grid;
-  grid-template-columns: 2fr repeat(3, 1fr) repeat(2, 150px) 190px 160px;
+  grid-template-columns: 2fr repeat(3, 1fr) repeat(2, 110px) 190px 160px;
   gap: 12px;
   background: #ffffff;
   border: 1px solid var(--bcra-border);
