@@ -33,30 +33,31 @@
   }
 
   function bindElements() {
-    [
-      "bcraTotalVariables",
-      "bcraLoadedVariables",
-      "bcraSelectedCount",
-      "bcraSearch",
-      "bcraCategory",
-      "bcraCurrency",
-      "bcraPeriodicity",
-      "bcraDesde",
-      "bcraHasta",
-      "bcraFrequency",
-      "bcraMode",
-      "bcraQuickUvaCer",
-      "bcraClearSelection",
-      "bcraDrawChart",
-      "bcraVariableList",
-      "bcraVisibleCount",
-      "bcraChart",
-      "bcraChartTitle",
-      "bcraChartSubtitle",
-      "bcraSeriesTable"
-    ].forEach((id) => {
-      els[id] = document.getElementById(id);
-    });
+[
+  "bcraTotalVariables",
+  "bcraLoadedVariables",
+  "bcraSelectedCount",
+  "bcraVariableSelect",
+  "bcraSearch",
+  "bcraCategory",
+  "bcraCurrency",
+  "bcraPeriodicity",
+  "bcraDesde",
+  "bcraHasta",
+  "bcraFrequency",
+  "bcraMode",
+  "bcraQuickUvaCer",
+  "bcraClearSelection",
+  "bcraDrawChart",
+  "bcraVariableList",
+  "bcraVisibleCount",
+  "bcraChart",
+  "bcraChartTitle",
+  "bcraChartSubtitle",
+  "bcraSeriesTable"
+].forEach((id) => {
+  els[id] = document.getElementById(id);
+});
   }
 
   function setDefaultDates() {
@@ -80,6 +81,7 @@
     els.bcraDrawChart?.addEventListener("click", drawSelectedSeries);
     els.bcraClearSelection?.addEventListener("click", clearSelection);
     els.bcraQuickUvaCer?.addEventListener("click", selectUvaCer);
+    els.bcraVariableSelect?.addEventListener("change", handleVariableDropdownChange);
   }
 
   async function loadCatalog() {
@@ -96,8 +98,9 @@
 
       els.bcraLoadedVariables.textContent = catalog.length.toLocaleString("es-AR");
 
-      fillFilterOptions();
-      applyFilters();
+fillFilterOptions();
+fillVariableDropdown();
+applyFilters();
     } catch (error) {
       console.error(error);
       setVariableListMessage("No se pudo cargar el catálogo del BCRA. Revisá la consola del navegador.");
@@ -172,7 +175,52 @@ async function fetchJson(url) {
       .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase();
   }
+function fillVariableDropdown() {
+  if (!els.bcraVariableSelect) return;
 
+  els.bcraVariableSelect.innerHTML = "";
+
+  const firstOption = document.createElement("option");
+  firstOption.value = "";
+  firstOption.textContent = "Seleccionar una variable del catálogo...";
+  els.bcraVariableSelect.appendChild(firstOption);
+
+  catalog.forEach((variable) => {
+    const option = document.createElement("option");
+    const id = String(variable.idVariable);
+
+    option.value = id;
+    option.textContent = [
+      variable.descripcion || "Variable sin descripción",
+      `ID ${id}`,
+      variable.categoria || null,
+      variable.periodicidad ? `Periodicidad: ${variable.periodicidad}` : null,
+      variable.moneda ? `Moneda: ${variable.moneda}` : null,
+      variable.unidadExpresion ? `Unidad: ${variable.unidadExpresion}` : null
+    ].filter(Boolean).join(" · ");
+
+    els.bcraVariableSelect.appendChild(option);
+  });
+}
+
+function handleVariableDropdownChange() {
+  const id = String(els.bcraVariableSelect?.value || "");
+
+  if (!id) return;
+
+  const variable = catalog.find((item) => String(item.idVariable) === id);
+
+  if (!variable) return;
+
+  selectedVariables.set(id, variable);
+
+  updateSelectedCount();
+  renderVariableList();
+
+  els.bcraVariableSelect.value = "";
+
+  els.bcraChartSubtitle.textContent = "Variable agregada a la selección. Podés elegir más variables o graficar la selección actual.";
+}
   function applyFilters() {
     const query = normalizeText(els.bcraSearch?.value || "");
     const category = els.bcraCategory?.value || "";
