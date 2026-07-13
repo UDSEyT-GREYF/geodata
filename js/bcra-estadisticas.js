@@ -149,6 +149,11 @@ async function fetchJson(url) {
     fillSelect(els.bcraPeriodicity, uniqueValues(catalog.map((v) => v.periodicidad)));
   }
 function fillYearFilters() {
+  if (!els.bcraDesdeYear || !els.bcraHastaYear) {
+    console.warn("No se encontraron los selectores de año: bcraDesdeYear / bcraHastaYear");
+    return;
+  }
+
   const currentYear = new Date().getFullYear();
 
   const years = catalog
