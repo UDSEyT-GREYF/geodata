@@ -31,33 +31,33 @@ function init() {
   loadCatalog();
 }
 
-  function bindElements() {
-[
-  "bcraTotalVariables",
-  "bcraLoadedVariables",
-  "bcraSelectedCount",
-  "bcraVariableSelect",
-  "bcraSearch",
-  "bcraCategory",
-  "bcraCurrency",
-  "bcraPeriodicity",
-  "bcraDesde",
-  "bcraHasta",
-  "bcraFrequency",
-  "bcraMode",
-  "bcraQuickUvaCer",
-  "bcraClearSelection",
-  "bcraDrawChart",
-  "bcraVariableList",
-  "bcraVisibleCount",
-  "bcraChart",
-  "bcraChartTitle",
-  "bcraChartSubtitle",
-  "bcraSeriesTable"
-].forEach((id) => {
-  els[id] = document.getElementById(id);
-});
-  }
+function bindElements() {
+  [
+    "bcraTotalVariables",
+    "bcraLoadedVariables",
+    "bcraSelectedCount",
+    "bcraVariableSelect",
+    "bcraSearch",
+    "bcraCategory",
+    "bcraCurrency",
+    "bcraPeriodicity",
+    "bcraDesdeYear",
+    "bcraHastaYear",
+    "bcraFrequency",
+    "bcraMode",
+    "bcraQuickUvaCer",
+    "bcraClearSelection",
+    "bcraDrawChart",
+    "bcraVariableList",
+    "bcraVisibleCount",
+    "bcraChart",
+    "bcraChartTitle",
+    "bcraChartSubtitle",
+    "bcraSeriesTable"
+  ].forEach((id) => {
+    els[id] = document.getElementById(id);
+  });
+}
 
   function setDefaultDates() {
     const today = new Date();
