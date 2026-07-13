@@ -25,12 +25,11 @@
 
   document.addEventListener("DOMContentLoaded", init);
 
-  function init() {
-    bindElements();
-    setDefaultDates();
-    bindEvents();
-    loadCatalog();
-  }
+function init() {
+  bindElements();
+  bindEvents();
+  loadCatalog();
+}
 
   function bindElements() {
 [
@@ -98,6 +97,7 @@
 
       els.bcraLoadedVariables.textContent = catalog.length.toLocaleString("es-AR");
 
+fillYearFilters();
 fillFilterOptions();
 fillVariableDropdown();
 applyFilters();
@@ -148,7 +148,75 @@ async function fetchJson(url) {
     fillSelect(els.bcraCurrency, uniqueValues(catalog.map((v) => v.moneda)));
     fillSelect(els.bcraPeriodicity, uniqueValues(catalog.map((v) => v.periodicidad)));
   }
+function fillYearFilters() {
+  const currentYear = new Date().getFullYear();
 
+  const years = catalog
+    .flatMap((variable) => [
+      extractYear(variable.primerFechaInformada),
+      extractYear(variable.ultFechaInformada)
+    ])
+    .filter((year) => Number.isFinite(year));
+
+  const minYear = years.length ? Math.min(...years) : currentYear - 10;
+  const maxYear = years.length ? Math.max(...years) : currentYear;
+
+  fillYearSelect(els.bcraDesdeYear, minYear, maxYear);
+  fillYearSelect(els.bcraHastaYear, minYear, maxYear);
+
+  const preferredFromYear = 2014;
+
+  els.bcraDesdeYear.value = String(
+    Math.min(Math.max(preferredFromYear, minYear), maxYear)
+  );
+
+  els.bcraHastaYear.value = String(
+    Math.min(currentYear, maxYear)
+  );
+}
+
+function extractYear(value) {
+  const match = String(value || "").match(/^(\d{4})/);
+  return match ? Number(match[1]) : NaN;
+}
+
+function fillYearSelect(select, minYear, maxYear) {
+  if (!select) return;
+
+  select.innerHTML = "";
+
+  for (let year = maxYear; year >= minYear; year -= 1) {
+    const option = document.createElement("option");
+    option.value = String(year);
+    option.textContent = String(year);
+    select.appendChild(option);
+  }
+}
+  function getSelectedDateRange() {
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const todayIso = currentDate.toISOString().slice(0, 10);
+
+  const desdeYear = Number(els.bcraDesdeYear?.value);
+  const hastaYear = Number(els.bcraHastaYear?.value);
+
+  if (!Number.isFinite(desdeYear) || !Number.isFinite(hastaYear)) {
+    clearChart("Seleccioná un año desde y un año hasta.");
+    return null;
+  }
+
+  if (desdeYear > hastaYear) {
+    clearChart("El año desde no puede ser mayor que el año hasta.");
+    return null;
+  }
+
+  const desde = `${desdeYear}-01-01`;
+  const hasta = hastaYear >= currentYear
+    ? todayIso
+    : `${hastaYear}-12-31`;
+
+  return { desde, hasta };
+}
   function fillSelect(select, values) {
     if (!select) return;
 
@@ -369,10 +437,13 @@ function selectUvaCer() {
       return;
     }
 
-    const desde = els.bcraDesde.value;
-    const hasta = els.bcraHasta.value;
-    const frequency = els.bcraFrequency.value;
-    const mode = els.bcraMode.value;
+const range = getSelectedDateRange();
+
+if (!range) return;
+
+const { desde, hasta } = range;
+const frequency = els.bcraFrequency.value;
+const mode = els.bcraMode.value;
 
     clearChart("Cargando series seleccionadas...");
 
