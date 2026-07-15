@@ -689,26 +689,54 @@ function replaceRowsForFDO(baseRows, replacementRows) {
       console.warn("No se pudo cargar tiempos de viaje para", iataUpper, e);
     }
 
-    // 2) Área de influencia (polígono amarillo sin relleno)
-    if (areasInfluenciaFeatures && areasInfluenciaFeatures.length) {
-      const featsInfl = areasInfluenciaFeatures.filter(f => {
-        const code = String(f.properties?.IATA || f.properties?.iata || "")
-          .trim()
-          .toUpperCase();
-        return code === iataUpper;
-      });
+// 2) Área de influencia aeroportuaria
+let hasInfluenciaArea = false;
 
-      if (featsInfl.length) {
-        influenciaLayer = L.geoJSON(featsInfl, {
-          style: {
-            color: "#FFD700",
-            weight: 2,
-            dashArray: "6 4",
-            fillOpacity: 0.0
-          }
-        }).addTo(mapInfluencia);
+if (areasInfluenciaFeatures && areasInfluenciaFeatures.length) {
+  const featsInfl = areasInfluenciaFeatures.filter(f => {
+    const props = f.properties || {};
+
+    const code = String(
+      props.Areas2022 ||
+      props.areas2022 ||
+      props.AREAS2022 ||
+      props.IATA ||
+      props.iata ||
+      props.iata_code ||
+      props.IATA_CODE ||
+      ""
+    )
+      .trim()
+      .toUpperCase();
+
+    return code === iataUpper;
+  });
+
+  if (featsInfl.length) {
+    hasInfluenciaArea = true;
+
+    influenciaLayer = L.geoJSON(featsInfl, {
+      interactive: false,
+      style: {
+        color: "#ffb000",
+        opacity: 1,
+        weight: 3,
+        dashArray: "8 5",
+        lineCap: "round",
+        lineJoin: "round",
+        fill: false,
+        fillOpacity: 0
       }
-    }
+    }).addTo(mapInfluencia);
+
+    influenciaLayer.bringToFront();
+  } else {
+    console.warn(
+      `No se encontró área de influencia para ${iataUpper}. Campos disponibles:`,
+      areasInfluenciaFeatures[0]?.properties
+    );
+  }
+}
 
     // 3) Punto del aeropuerto
     if (center) {
