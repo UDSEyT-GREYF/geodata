@@ -1308,7 +1308,7 @@ const catalyticIcons = getEmploymentIconCount(catalytic, maxCategory, 15, 5);
   container.innerHTML = "";
 
   const svg = svgElement("svg", {
-    viewBox: "0 0 650 525",
+    viewBox: "0 0 650 555",
     role: "img"
   });
 
