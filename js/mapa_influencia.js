@@ -24,7 +24,20 @@ function clean(text) {
   if (text === null || text === undefined) return "";
   return String(text).trim();
 }
-
+function getInfluenceAreaCode(props) {
+  return String(
+    props?.Areas2022 ||
+    props?.areas2022 ||
+    props?.AREAS2022 ||
+    props?.IATA ||
+    props?.iata ||
+    props?.iata_code ||
+    props?.IATA_CODE ||
+    ""
+  )
+    .trim()
+    .toUpperCase();
+}
 /* =============================
    MAPA BASE
    ============================= */
@@ -134,30 +147,46 @@ function updateInfluenciaMapForAirport(a) {
       ajustarVista(a);
     });
 
-  /* ----------- 2) Área de influencia ----------- */
-  if (Array.isArray(areasInfluenciaFeatures) && areasInfluenciaFeatures.length) {
-    const featsInfl = areasInfluenciaFeatures.filter(f => {
-      const props = f.properties || {};
-      const code = String(props.IATA || props.iata || "").toUpperCase();
-      return code === iataUpper;
-    });
+/* ----------- 2) Área de influencia ----------- */
+if (Array.isArray(areasInfluenciaFeatures) && areasInfluenciaFeatures.length) {
+  const featsInfl = areasInfluenciaFeatures.filter(f => {
+    const props = f.properties || {};
+    const code = getInfluenceAreaCode(props);
+    return code === iataUpper;
+  });
 
-    if (featsInfl.length) {
-      influenciaLayer = L.geoJSON(featsInfl, {
-        style: {
-          color: "#FFD700",       // borde amarillo
-          weight: 2,
-          dashArray: "6 4",       // línea segmentada
-          fillOpacity: 0.0        // sin relleno
-        }
-      }).addTo(mapInfluencia);
-    }
+  if (featsInfl.length) {
+    influenciaLayer = L.geoJSON(featsInfl, {
+      interactive: false,
+      style: {
+        color: "#ffb000",
+        opacity: 1,
+        weight: 3,
+        dashArray: "8 5",
+        lineCap: "round",
+        lineJoin: "round",
+        fill: false,
+        fillOpacity: 0
+      }
+    }).addTo(mapInfluencia);
+
+    influenciaLayer.bringToFront();
+     ajustarVista(a);
+  } else {
+    console.warn(
+      `No se encontró área de influencia para ${iataUpper}. Campos disponibles:`,
+      areasInfluenciaFeatures[0]?.properties
+    );
   }
+}
 
   /* ----------- 3) Punto del aeropuerto ----------- */
   const center = getAirportCenterLatLng(a);
   if (center) {
-    influenciaMarker = L.marker(center, { icon: airportIcon }).addTo(mapInfluencia);
+    influenciaMarker = L.marker(center, {
+  icon: airportIcon,
+  zIndexOffset: 1000
+}).addTo(mapInfluencia);
 
     const iataLabel = a["IATA"] ? String(a["IATA"]).toUpperCase() : "";
     if (iataLabel) {
