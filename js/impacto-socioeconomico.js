@@ -1740,7 +1740,7 @@ setText("impactYearNumber", data.year);
       if (Number.isFinite(data.empleoTotal)) {
         const additional = [data.empleoIndirecto, data.empleoInducido, data.empleoCatalitico].filter(Number.isFinite).reduce((sum, value) => sum + value, 0);
         const multiplier = Number.isFinite(data.empleoDirecto) && data.empleoDirecto > 0 ? data.empleoTotal / data.empleoDirecto : null;
-        employmentInsight.textContent = `La actividad aerocomercial y aeroportuaria se vinculó con ${formatInteger(data.empleoTotal)} puestos de trabajo. A los ${formatInteger(data.empleoDirecto)} empleos directos se sumaron ${formatInteger(additional)} empleos adicionales asociados a la cadena de abastecimiento, el consumo de los trabajadores y las actividades favorecidas por la conectividad aérea${multiplier ? `, equivalente a ${multiplier.toLocaleString("es-AR", { maximumFractionDigits: 1 })} veces el empleo directo` : ""}.`;
+        employmentInsight.textContent = `La actividad aerocomercial y aeroportuaria se vinculó con ${formatInteger(data.empleoTotal)} puestos de trabajo. A los ${formatInteger(data.empleoDirecto)} empleos directos se sumaron ${formatInteger(additional)} empleos adicionales asociados a la cadena de abastecimiento, el consumo de las personas trabajadoras y las actividades favorecidas por la conectividad aérea${multiplier ? `, equivalente a ${multiplier.toLocaleString("es-AR", { maximumFractionDigits: 1 })} veces el empleo directo` : ""}.`;
       } else {
         employmentInsight.textContent = "No se encontró una estimación completa del empleo vinculado al aeropuerto seleccionado.";
       }
