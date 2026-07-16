@@ -12,6 +12,7 @@ let areasInfluenciaFeatures = [];
 
 const urlParams = new URLSearchParams(window.location.search);
 const IATA_PARAM = (urlParams.get("airport") || "").toUpperCase();
+const EMBED_MODE = urlParams.get("embed") === "1";
 
 const airportIcon = L.icon({
   iconUrl: "img/icons/AeropuertosSNA.png",
@@ -305,6 +306,10 @@ async function loadDataAndRender() {
    INICIO
    ============================= */
 document.addEventListener("DOMContentLoaded", () => {
+  if (EMBED_MODE) {
+    document.body.classList.add("is-embed");
+  }
+
   initMapInfluencia();
   loadDataAndRender();
 });
