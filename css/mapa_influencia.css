@@ -105,3 +105,21 @@ header p {
   font-size: 0.6rem;
   color: #111;
 }
+
+body.is-embed {
+  margin: 0;
+  overflow: hidden;
+}
+
+body.is-embed header,
+body.is-embed .map-header,
+body.is-embed #mapHeader {
+  display: none !important;
+}
+
+body.is-embed #map,
+body.is-embed .map-container {
+  height: 100vh !important;
+}
+
+
