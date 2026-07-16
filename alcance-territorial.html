@@ -6,11 +6,34 @@
 
   <title>Área de influencia aeroportuaria</title>
 
+  <!-- Leaflet -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    crossorigin=""
+  />
+
+  <!-- Mismo estilo base del informe de impacto -->
+  <link rel="stylesheet" href="css/impacto-socioeconomico.css" />
+
+  <!-- Ajustes propios de esta página -->
   <link rel="stylesheet" href="css/alcance-territorial.css" />
 </head>
-<body>
-  <main id="alcanceTerritorialMount"></main>
 
+<body class="alcance-territorial-page">
+
+  <div class="alcance-preview-toolbar">
+    <label for="alcanceAirportSelect">
+      Aeropuerto
+    </label>
+    <select id="alcanceAirportSelect">
+      <option value="">Cargando aeropuertos...</option>
+    </select>
+  </div>
+
+  <main id="alcanceTerritorialMount" class="impacto-report"></main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="js/alcance-territorial.js"></script>
 </body>
 </html>
