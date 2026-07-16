@@ -1,179 +1,113 @@
-:root {
-  --territorial-navy: #002855;
-  --territorial-blue: #2f77c8;
-  --territorial-sky: #48b9dc;
-  --territorial-border: #d6dee8;
-  --territorial-soft: #eef4fb;
-  --territorial-muted: #66717e;
-  --territorial-ink: #1f2933;
-}
+/* =========================================================
+   PÁGINA INDEPENDIENTE · ALCANCE TERRITORIAL
+   Usa la base visual de impacto-socioeconomico.css
+   ========================================================= */
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
+.alcance-territorial-page {
   background: #e9edf2;
-  color: var(--territorial-ink);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
-.territorial-page {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 28px 22px 42px;
-}
-
-.territorial-header,
-.territorial-intro,
-.territorial-map-card,
-.territorial-insight {
-  background: #ffffff;
-  border: 1px solid var(--territorial-border);
-  border-radius: 14px;
-}
-
-.territorial-header {
-  padding: 24px 28px;
-  margin-bottom: 16px;
-}
-
-.territorial-kicker {
-  color: var(--territorial-blue);
-  font-size: 13px;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.territorial-topbar {
+/* Barra solo para probar la página independiente.
+   Después, cuando se monte dentro del informe, no se usa. */
+.alcance-preview-toolbar {
+  max-width: 210mm;
+  margin: 12px auto 8px;
+  padding: 8px 10px;
   display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 24px;
-  margin-top: 8px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px solid #d6dee8;
+  border-radius: 8px;
 }
 
-.territorial-header h1 {
-  margin: 0;
-  color: var(--territorial-navy);
-  font-size: 34px;
-  line-height: 1.05;
-}
-
-.territorial-header p {
-  margin: 7px 0 0;
-  color: var(--territorial-muted);
-  font-size: 15px;
-}
-
-.territorial-selector {
-  min-width: 280px;
-}
-
-.territorial-selector span {
-  display: block;
-  margin-bottom: 6px;
-  color: var(--territorial-muted);
-  font-size: 12px;
+.alcance-preview-toolbar label {
+  color: #66717e;
+  font-size: 9pt;
   font-weight: 800;
   text-transform: uppercase;
 }
 
-.territorial-selector select {
-  width: 100%;
-  height: 38px;
-  border: 1px solid var(--territorial-border);
-  border-radius: 8px;
-  padding: 0 10px;
-  color: var(--territorial-ink);
+.alcance-preview-toolbar select {
+  min-width: 280px;
+  height: 32px;
+  border: 1px solid #d6dee8;
+  border-radius: 6px;
+  padding: 0 8px;
+  color: #1f2933;
   background: #ffffff;
 }
 
-.territorial-intro {
-  padding: 20px 24px;
-  margin-bottom: 16px;
+/* =========================================================
+   HOJA A4 · ÁREA DE INFLUENCIA
+   ========================================================= */
+
+.impacto-sheet-territorial .impacto-sheet-inner {
+  gap: 3.2mm;
 }
 
-.territorial-intro p {
-  margin: 0 0 12px;
-  font-size: 15px;
-  line-height: 1.55;
-  text-align: justify;
+.impacto-sheet-territorial .impacto-section-intro {
+  font-size: 9.6pt;
+  line-height: 1.38;
 }
 
-.territorial-intro p:last-child {
-  margin-bottom: 0;
+.impacto-territorial-map-card {
+  margin: 1mm 0 0;
+  padding: 2.5mm;
+  border: 1px solid #d6dee8;
+  border-radius: 3mm;
+  background: #ffffff;
 }
 
-.territorial-map-card {
-  padding: 16px;
-  margin-bottom: 16px;
+.impacto-territorial-map-card figcaption {
+  margin: 0 0 2mm;
+  color: #002855;
+  font-size: 9pt;
+  line-height: 1.2;
+  font-weight: 850;
 }
 
-.territorial-map-header {
-  margin-bottom: 12px;
-}
-
-.territorial-map-header h2 {
-  margin: 0;
-  color: var(--territorial-navy);
-  font-size: 19px;
-}
-
-.territorial-map-header p {
-  margin: 4px 0 0;
-  color: var(--territorial-muted);
-  font-size: 13px;
-}
-
-.territorial-map-frame-wrap {
+.impacto-territorial-map {
   width: 100%;
-  height: 620px;
+  height: 118mm;
   overflow: hidden;
-  border: 1px solid var(--territorial-border);
-  border-radius: 10px;
-  background: var(--territorial-soft);
+  border: 1px solid #d6dee8;
+  border-radius: 2mm;
+  background: #eef3f8;
 }
 
-.territorial-map-frame {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: 0;
+.impacto-territorial-insight {
+  margin-top: 1mm;
 }
 
-.territorial-insight {
-  padding: 16px 20px;
-  border-left: 5px solid var(--territorial-sky);
+/* Leaflet dentro de hoja A4 */
+.impacto-territorial-map .leaflet-control-attribution {
+  display: none;
 }
 
-.territorial-insight p {
-  margin: 0;
-  font-size: 14.5px;
-  line-height: 1.55;
-  text-align: justify;
+.impacto-territorial-map .leaflet-control-zoom {
+  display: none;
 }
 
-.territorial-source {
-  margin-top: 14px;
-  color: var(--territorial-muted);
-  font-size: 12px;
-  text-align: center;
+.impacto-territorial-map .leaflet-tooltip {
+  font-size: 7pt;
+  line-height: 1;
 }
 
-@media (max-width: 800px) {
-  .territorial-topbar {
-    display: block;
-  }
+.impacto-territorial-map .info.legend {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #d0d7e2;
+  border-radius: 4px;
+  padding: 5px 7px;
+  color: #111111;
+  font-size: 7.4pt;
+  line-height: 1.35;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+}
 
-  .territorial-selector {
-    margin-top: 16px;
-    min-width: 0;
-  }
-
-  .territorial-map-frame-wrap {
-    height: 520px;
+@media print {
+  .alcance-preview-toolbar {
+    display: none !important;
   }
 }
