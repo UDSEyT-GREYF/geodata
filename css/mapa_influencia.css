@@ -122,4 +122,12 @@ body.is-embed .map-container {
   height: 100vh !important;
 }
 
-
+.localidad-tooltip {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(31, 41, 51, 0.25);
+  color: #1f2933;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 4px;
+  box-shadow: none;
+}
