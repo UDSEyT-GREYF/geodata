@@ -5,6 +5,8 @@ let mapInfluencia;
 let tiemposLayer = null;
 let influenciaLayer = null;
 let influenciaMarker = null;
+let localidadesFeatures = [];
+let localidadesLayer = null;
 
 let aeropuertos = [];
 let aeropuertosPoligonos = [];
@@ -44,6 +46,8 @@ function getInfluenceAreaCode(props) {
    ============================= */
 function initMapInfluencia() {
   mapInfluencia = L.map("map").setView([-38, -64], 4);
+   mapInfluencia.createPane("pane_localidades");
+mapInfluencia.getPane("pane_localidades").style.zIndex = 440;
 
   L.tileLayer(
     "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG:3857@png/{z}/{x}/{-y}.png",
@@ -102,6 +106,10 @@ function updateInfluenciaMapForAirport(a) {
     mapInfluencia.removeLayer(influenciaLayer);
     influenciaLayer = null;
   }
+   if (localidadesLayer) {
+  mapInfluencia.removeLayer(localidadesLayer);
+  localidadesLayer = null;
+}
   if (influenciaMarker) {
     mapInfluencia.removeLayer(influenciaMarker);
     influenciaMarker = null;
@@ -140,8 +148,10 @@ function updateInfluenciaMapForAirport(a) {
           };
         }
       }).addTo(mapInfluencia);
-
-      ajustarVista(a);
+       
+drawLocalidadesLayer(a);
+ajustarVista(a);
+return;
     })
     .catch(() => {
       console.warn("No se pudo cargar tiempos de viaje:", tiemposPath);
@@ -201,6 +211,111 @@ if (Array.isArray(areasInfluenciaFeatures) && areasInfluenciaFeatures.length) {
   }
 }
 
+function drawLocalidadesLayer(a) {
+  if (!mapInfluencia || !localidadesFeatures.length) return;
+
+  const bounds = getCurrentMapDataBounds(a);
+  if (!bounds || !bounds.isValid()) return;
+
+  const paddedBounds = bounds.pad(0.08);
+
+  const features = localidadesFeatures.filter(feature =>
+    featureIntersectsBounds(feature, paddedBounds)
+  );
+
+  if (!features.length) return;
+
+  const showPermanentLabels = features.length <= 45;
+
+  localidadesLayer = L.geoJSON(features, {
+    pane: "pane_localidades",
+    interactive: true,
+
+    pointToLayer: (feature, latlng) => {
+      return L.circleMarker(latlng, {
+        radius: 2.8,
+        color: "#1f2933",
+        weight: 1,
+        fillColor: "#ffffff",
+        fillOpacity: 0.95
+      });
+    },
+
+    style: {
+      color: "#1f2933",
+      weight: 0.8,
+      fillColor: "#ffffff",
+      fillOpacity: 0.65
+    },
+
+    onEachFeature: (feature, layer) => {
+      const label = getLocalidadLabel(feature.properties || "");
+
+      if (label) {
+        layer.bindTooltip(label, {
+          permanent: showPermanentLabels,
+          direction: "top",
+          offset: [0, -3],
+          className: "localidad-tooltip"
+        });
+      }
+    }
+  }).addTo(mapInfluencia);
+}
+
+function getCurrentMapDataBounds(a) {
+  let bounds = null;
+
+  if (tiemposLayer) {
+    const b = tiemposLayer.getBounds();
+    if (b.isValid()) bounds = b;
+  }
+
+  if (influenciaLayer) {
+    const b = influenciaLayer.getBounds();
+    if (b.isValid()) bounds = bounds ? bounds.extend(b) : b;
+  }
+
+  if (influenciaMarker) {
+    const p = influenciaMarker.getLatLng();
+    const b = L.latLngBounds(p, p);
+    bounds = bounds ? bounds.extend(b) : b;
+  }
+
+  if (!bounds) {
+    const center = getAirportCenterLatLng(a);
+    if (center) bounds = L.latLngBounds(center, center);
+  }
+
+  return bounds;
+}
+
+function featureIntersectsBounds(feature, bounds) {
+  try {
+    const tempLayer = L.geoJSON(feature);
+    const featureBounds = tempLayer.getBounds();
+
+    if (!featureBounds || !featureBounds.isValid()) return false;
+
+    return bounds.intersects(featureBounds);
+  } catch (error) {
+    return false;
+  }
+}
+
+function getLocalidadLabel(props) {
+  return clean(
+    props.nombre ||
+    props.NOMBRE ||
+    props.localidad ||
+    props.LOCALIDAD ||
+    props.nomloc ||
+    props.NOMLOC ||
+    props.name ||
+    props.NAME ||
+    ""
+  );
+}
 /* =============================
    AJUSTAR VISTA
    ============================= */
@@ -274,7 +389,14 @@ async function loadDataAndRender() {
       console.warn("No se pudieron cargar Areasinfluencia39.geojson:", e);
       areasInfluenciaFeatures = [];
     }
-
+try {
+  const respLoc = await fetch("fuentes/INDEC/localidades_censales.geojson");
+  const gjLoc = await respLoc.json();
+  localidadesFeatures = gjLoc.features || [];
+} catch (e) {
+  console.warn("No se pudieron cargar localidades_censales.geojson:", e);
+  localidadesFeatures = [];
+}
     const a = aeropuertos.find(x =>
       String(x.IATA).toUpperCase() === IATA_PARAM
     );
