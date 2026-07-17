@@ -131,3 +131,16 @@ body.is-embed .map-container {
   padding: 1px 4px;
   box-shadow: none;
 }
+.localidad-tooltip {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(31, 41, 51, 0.28);
+  color: #1f2933;
+  font-size: 10px;
+  font-weight: 750;
+  padding: 1px 4px;
+  box-shadow: none;
+}
+
+.localidad-tooltip::before {
+  display: none;
+}
