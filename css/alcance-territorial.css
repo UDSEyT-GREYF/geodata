@@ -111,3 +111,43 @@
     display: none !important;
   }
 }
+.impacto-territorial-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3mm;
+  margin: 0;
+}
+
+.impacto-territorial-kpi-card {
+  padding: 3.3mm 4mm;
+  border: 1px solid #d6dee8;
+  border-radius: 3mm;
+  background: #eef4fb;
+}
+
+.impacto-territorial-kpi-card span {
+  display: block;
+  color: #002855;
+  font-size: 8.2pt;
+  line-height: 1.15;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.impacto-territorial-kpi-card strong {
+  display: block;
+  margin-top: 1.8mm;
+  color: #002855;
+  font-size: 17pt;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.impacto-territorial-kpi-card small {
+  display: block;
+  margin-top: 1.8mm;
+  color: #66717e;
+  font-size: 8pt;
+  line-height: 1.2;
+}
