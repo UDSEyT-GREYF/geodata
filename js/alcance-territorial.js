@@ -24,6 +24,7 @@
   let airportMarker = null;
   let legendControl = null;
 
+  let currentIata = "";
   let airportSelect = null;
 
   const airportIcon = L.icon({
@@ -150,11 +151,19 @@ poblacionUnaHoraPorIATA = parsePoblacionUnaHora(pob1hora);
     const mapEl = document.getElementById("alcanceTerritorialMap");
     if (!mapEl) return;
 
-    map = L.map(mapEl, {
-      zoomControl: false,
-      attributionControl: false,
-      scrollWheelZoom: false
-    }).setView([-38, -64], 4);
+map = L.map(mapEl, {
+  zoomControl: false,
+  attributionControl: false,
+  scrollWheelZoom: false,
+  dragging: false,
+  touchZoom: false,
+  doubleClickZoom: false,
+  boxZoom: false,
+  keyboard: false
+}).setView([-38, -64], 4);
+
+mapEl.classList.add("is-clickable-map");
+map.on("click", openFullInfluenceMap);
 
     map.createPane("pane_tiempos");
     map.getPane("pane_tiempos").style.zIndex = 410;
@@ -178,23 +187,32 @@ poblacionUnaHoraPorIATA = parsePoblacionUnaHora(pob1hora);
     ).addTo(map);
   }
 
-  async function renderAirport(iata) {
-    if (!map || !iata) return;
+  function openFullInfluenceMap() {
+  if (!currentIata) return;
 
-    const airport = aeropuertos.find(a => getAirportIata(a) === iata);
+  const url = `mapa_influencia.html?airport=${encodeURIComponent(currentIata)}`;
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+  
+async function renderAirport(iata) {
+  if (!map || !iata) return;
+
+  currentIata = String(iata || "").trim().toUpperCase();
+
+  const airport = aeropuertos.find(a => getAirportIata(a) === currentIata);
     if (!airport) return;
 
     clearMapLayers();
 
     const airportLabel = getAirportLabel(airport);
     setBind("airportLine", airportLabel);
-    renderTerritorialKpis(airport, iata);
+renderTerritorialKpis(airport, currentIata);
 
-    await drawTravelTimeLayer(iata);
-    drawInfluenceAreaLayer(iata);
+await drawTravelTimeLayer(currentIata);
+drawInfluenceAreaLayer(currentIata);
     drawAirportMarker(airport);
     drawLocalidadesLayer(airport);
-    drawLegend(Boolean(influenciaLayer));
+    drawLegend(Boolean(influenciaLayer), Boolean(localidadesLayer));
     fitMapToLayers(airport);
 
     setTimeout(() => {
@@ -362,8 +380,6 @@ function drawLocalidadesLayer(airport) {
 
   if (!features.length) return;
 
-  const showPermanentLabels = features.length <= 45;
-
   localidadesLayer = L.geoJSON(features, {
     pane: "pane_localidades",
     interactive: true,
@@ -389,12 +405,15 @@ function drawLocalidadesLayer(airport) {
       const label = getLocalidadLabel(feature.properties || {});
 
       if (label) {
-        layer.bindTooltip(label, {
-          permanent: showPermanentLabels,
-          direction: "top",
-          offset: [0, -3],
-          className: "localidad-tooltip"
-        });
+layer.bindTooltip(label, {
+  permanent: false,
+  sticky: true,
+  direction: "top",
+  offset: [0, -3],
+  className: "localidad-tooltip"
+});
+
+layer.on("click", openFullInfluenceMap);
       }
     }
   }).addTo(map);
@@ -442,6 +461,8 @@ function featureIntersectsBounds(feature, bounds) {
 
 function getLocalidadLabel(props) {
   return clean(
+    props.nam ||
+    props.NAM ||
     props.nombre ||
     props.NOMBRE ||
     props.localidad ||
@@ -477,58 +498,85 @@ function formatNumber(value) {
   });
 }
   
-  function drawLegend(hasInfluenceArea) {
-    legendControl = L.control({ position: "bottomleft" });
+function drawLegend(hasInfluenceArea, hasLocalidades) {
+  legendControl = L.control({ position: "bottomleft" });
 
-    legendControl.onAdd = function () {
-      const div = L.DomUtil.create("div", "info legend");
+  legendControl.onAdd = function () {
+    const div = L.DomUtil.create("div", "info legend");
 
-      div.innerHTML = `
-        <div style="font-weight:800; margin-bottom:3px;">Tiempos de viaje</div>
-        <div><span style="display:inline-block;width:10px;height:10px;background:#08306b;margin-right:4px;border:1px solid #08306b;"></span>Hasta 1 h</div>
-        <div><span style="display:inline-block;width:10px;height:10px;background:#2171b5;margin-right:4px;border:1px solid #2171b5;"></span>Entre 1 y 2 h</div>
-        <div><span style="display:inline-block;width:10px;height:10px;background:#6baed6;margin-right:4px;border:1px solid #6baed6;"></span>Entre 2 y 3 h</div>
-        ${hasInfluenceArea ? `
-          <div style="margin-top:4px;">
-            <span style="display:inline-block;width:18px;height:0;border-top:2px dashed #ffb000;margin-right:4px;vertical-align:middle;"></span>
-            Área de influencia aeroportuaria
-          </div>
-        ` : ""}
-      `;
+    div.innerHTML = `
+      <div style="font-weight:800; margin-bottom:3px;">Tiempos de viaje</div>
 
-      return div;
-    };
+      <div>
+        <span style="display:inline-block;width:10px;height:10px;background:#08306b;margin-right:4px;border:1px solid #08306b;"></span>
+        Hasta 1 h
+      </div>
 
-    legendControl.addTo(map);
+      <div>
+        <span style="display:inline-block;width:10px;height:10px;background:#2171b5;margin-right:4px;border:1px solid #2171b5;"></span>
+        Entre 1 y 2 h
+      </div>
+
+      <div>
+        <span style="display:inline-block;width:10px;height:10px;background:#6baed6;margin-right:4px;border:1px solid #6baed6;"></span>
+        Entre 2 y 3 h
+      </div>
+
+      ${hasInfluenceArea ? `
+        <div style="margin-top:4px;">
+          <span style="display:inline-block;width:18px;height:0;border-top:2px dashed #ffb000;margin-right:4px;vertical-align:middle;"></span>
+          Área de influencia aeroportuaria
+        </div>
+      ` : ""}
+
+      ${hasLocalidades ? `
+        <div style="margin-top:4px;">
+          <span style="display:inline-block;width:8px;height:8px;background:#ffffff;border:1.4px solid #1f2933;border-radius:50%;margin-right:6px;"></span>
+          Localidades censales
+        </div>
+      ` : ""}
+    `;
+
+    return div;
+  };
+
+  legendControl.addTo(map);
+}
+
+function fitMapToLayers(airport) {
+  let bounds = null;
+
+  if (tiemposLayer) {
+    const b = tiemposLayer.getBounds();
+    if (b.isValid()) {
+      bounds = b;
+    }
   }
 
-  function fitMapToLayers(airport) {
-    let bounds = null;
-
-    if (tiemposLayer) {
-      const b = tiemposLayer.getBounds();
-      if (b.isValid()) bounds = b;
-    }
-
-    if (influenciaLayer) {
-      const b = influenciaLayer.getBounds();
-      if (b.isValid()) bounds = bounds ? bounds.extend(b) : b;
-    }
-
-    if (airportMarker) {
-      const p = airportMarker.getLatLng();
-      const b = L.latLngBounds(p, p);
+  if (influenciaLayer) {
+    const b = influenciaLayer.getBounds();
+    if (b.isValid()) {
       bounds = bounds ? bounds.extend(b) : b;
     }
-
-    if (bounds && bounds.isValid()) {
-      map.fitBounds(bounds, { padding: [14, 14] });
-      return;
-    }
-
-    const center = getAirportCenterLatLng(airport) || [-38, -64];
-    map.setView(center, 7);
   }
+
+  if (airportMarker) {
+    const p = airportMarker.getLatLng();
+    const b = L.latLngBounds(p, p);
+    bounds = bounds ? bounds.extend(b) : b;
+  }
+
+  if (bounds && bounds.isValid()) {
+    map.fitBounds(bounds, {
+      padding: [14, 14],
+      maxZoom: 9
+    });
+    return;
+  }
+
+  const center = getAirportCenterLatLng(airport) || [-38, -64];
+  map.setView(center, 7);
+}
 
   function getAirportCenterLatLng(airport) {
     const iata = getAirportIata(airport);
