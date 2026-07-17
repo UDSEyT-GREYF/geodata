@@ -8,10 +8,15 @@
   const AIRPORTS_URL = "fuentes/Datos_aeropuertos.geojson";
   const AIRPORT_POLYGONS_URL = "fuentes/poligonos_aeropuertos.geojson";
   const AREAS_URL = "fuentes/Areasinfluencia39.geojson";
-
+  const LOCALIDADES_URL = "fuentes/INDEC/localidades_censales.geojson";
+  const POBLACION_1H_URL = "fuentes/PoblacionDentro1hora.geojson";
+  
   let aeropuertos = [];
   let aeropuertosPoligonos = [];
   let areasInfluenciaFeatures = [];
+  let localidadesFeatures = [];
+  let localidadesLayer = null;
+  let poblacionUnaHoraPorIATA = {};
 
   let map = null;
   let tiemposLayer = null;
@@ -77,19 +82,23 @@
   }
 
   async function loadData() {
-    const [airports, polygons, areas] = await Promise.all([
-      fetchJson(AIRPORTS_URL),
-      fetchJsonSafe(AIRPORT_POLYGONS_URL),
-      fetchJsonSafe(AREAS_URL)
-    ]);
+const [airports, polygons, areas, localidades, pob1hora] = await Promise.all([
+  fetchJson(AIRPORTS_URL),
+  fetchJsonSafe(AIRPORT_POLYGONS_URL),
+  fetchJsonSafe(AREAS_URL),
+  fetchJsonSafe(LOCALIDADES_URL),
+  fetchJsonSafe(POBLACION_1H_URL)
+]);
 
-    aeropuertos = (airports.features || [])
-      .map(feature => feature.properties || {})
-      .filter(props => props.IATA)
-      .sort((a, b) => getAirportLabel(a).localeCompare(getAirportLabel(b), "es"));
+aeropuertos = (airports.features || [])
+  .map(feature => feature.properties || {})
+  .filter(props => props.IATA)
+  .sort((a, b) => getAirportLabel(a).localeCompare(getAirportLabel(b), "es"));
 
-    aeropuertosPoligonos = polygons?.features || [];
-    areasInfluenciaFeatures = areas?.features || [];
+aeropuertosPoligonos = polygons?.features || [];
+areasInfluenciaFeatures = areas?.features || [];
+localidadesFeatures = localidades?.features || [];
+poblacionUnaHoraPorIATA = parsePoblacionUnaHora(pob1hora);
   }
 
   async function fetchJson(url) {
@@ -153,6 +162,9 @@
     map.createPane("pane_influencia");
     map.getPane("pane_influencia").style.zIndex = 430;
 
+    map.createPane("pane_localidades");
+    map.getPane("pane_localidades").style.zIndex = 440;
+
     map.createPane("pane_aeropuerto");
     map.getPane("pane_aeropuerto").style.zIndex = 450;
 
@@ -176,10 +188,12 @@
 
     const airportLabel = getAirportLabel(airport);
     setBind("airportLine", airportLabel);
+    renderTerritorialKpis(airport, iata);
 
     await drawTravelTimeLayer(iata);
     drawInfluenceAreaLayer(iata);
     drawAirportMarker(airport);
+    drawLocalidadesLayer(airport);
     drawLegend(Boolean(influenciaLayer));
     fitMapToLayers(airport);
 
@@ -199,7 +213,11 @@
       map.removeLayer(influenciaLayer);
       influenciaLayer = null;
     }
-
+    
+if (localidadesLayer) {
+  map.removeLayer(localidadesLayer);
+  localidadesLayer = null;
+}
     if (airportMarker) {
       map.removeLayer(airportMarker);
       airportMarker = null;
@@ -300,6 +318,165 @@
     });
   }
 
+function renderTerritorialKpis(airport, iata) {
+  const poblacionRaw = airport?.["Población del Área de Influencia (Censo 2022)"];
+  const poblacion = parseNumberFlexible(poblacionRaw);
+
+  setBind(
+    "poblacionInfluencia",
+    Number.isFinite(poblacion) ? formatNumber(poblacion) : "–"
+  );
+
+  setBind(
+    "poblacionUnaHoraPct",
+    poblacionUnaHoraPorIATA[iata] || "–"
+  );
+}
+
+function parsePoblacionUnaHora(geojson) {
+  const result = {};
+
+  (geojson?.features || []).forEach(feature => {
+    const props = feature.properties || {};
+    const iata = String(props.IATA || props.iata || "").trim().toUpperCase();
+
+    if (!iata) return;
+
+    result[iata] = String(props.Pob1hora || props.pob1hora || "–").trim();
+  });
+
+  return result;
+}
+
+function drawLocalidadesLayer(airport) {
+  if (!map || !localidadesFeatures.length) return;
+
+  const bounds = getCurrentMapDataBounds(airport);
+  if (!bounds || !bounds.isValid()) return;
+
+  const paddedBounds = bounds.pad(0.08);
+
+  const features = localidadesFeatures.filter(feature =>
+    featureIntersectsBounds(feature, paddedBounds)
+  );
+
+  if (!features.length) return;
+
+  const showPermanentLabels = features.length <= 45;
+
+  localidadesLayer = L.geoJSON(features, {
+    pane: "pane_localidades",
+    interactive: true,
+
+    pointToLayer: (feature, latlng) => {
+      return L.circleMarker(latlng, {
+        radius: 2.6,
+        color: "#1f2933",
+        weight: 1,
+        fillColor: "#ffffff",
+        fillOpacity: 0.95
+      });
+    },
+
+    style: {
+      color: "#1f2933",
+      weight: 0.8,
+      fillColor: "#ffffff",
+      fillOpacity: 0.65
+    },
+
+    onEachFeature: (feature, layer) => {
+      const label = getLocalidadLabel(feature.properties || {});
+
+      if (label) {
+        layer.bindTooltip(label, {
+          permanent: showPermanentLabels,
+          direction: "top",
+          offset: [0, -3],
+          className: "localidad-tooltip"
+        });
+      }
+    }
+  }).addTo(map);
+}
+
+function getCurrentMapDataBounds(airport) {
+  let bounds = null;
+
+  if (tiemposLayer) {
+    const b = tiemposLayer.getBounds();
+    if (b.isValid()) bounds = b;
+  }
+
+  if (influenciaLayer) {
+    const b = influenciaLayer.getBounds();
+    if (b.isValid()) bounds = bounds ? bounds.extend(b) : b;
+  }
+
+  if (airportMarker) {
+    const p = airportMarker.getLatLng();
+    const b = L.latLngBounds(p, p);
+    bounds = bounds ? bounds.extend(b) : b;
+  }
+
+  if (!bounds) {
+    const center = getAirportCenterLatLng(airport);
+    if (center) bounds = L.latLngBounds(center, center);
+  }
+
+  return bounds;
+}
+
+function featureIntersectsBounds(feature, bounds) {
+  try {
+    const tempLayer = L.geoJSON(feature);
+    const featureBounds = tempLayer.getBounds();
+
+    if (!featureBounds || !featureBounds.isValid()) return false;
+
+    return bounds.intersects(featureBounds);
+  } catch (error) {
+    return false;
+  }
+}
+
+function getLocalidadLabel(props) {
+  return clean(
+    props.nombre ||
+    props.NOMBRE ||
+    props.localidad ||
+    props.LOCALIDAD ||
+    props.nomloc ||
+    props.NOMLOC ||
+    props.name ||
+    props.NAME ||
+    ""
+  );
+}
+
+function parseNumberFlexible(value) {
+  if (value === null || value === undefined || value === "") return NaN;
+
+  if (typeof value === "number") return value;
+
+  const cleanValue = String(value)
+    .replace(/\./g, "")
+    .replace(/,/g, ".")
+    .trim();
+
+  const number = Number(cleanValue);
+
+  return Number.isFinite(number) ? number : NaN;
+}
+
+function formatNumber(value) {
+  if (!Number.isFinite(Number(value))) return "–";
+
+  return Number(value).toLocaleString("es-AR", {
+    maximumFractionDigits: 0
+  });
+}
+  
   function drawLegend(hasInfluenceArea) {
     legendControl = L.control({ position: "bottomleft" });
 
