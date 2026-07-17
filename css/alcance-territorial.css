@@ -151,3 +151,12 @@
   font-size: 8pt;
   line-height: 1.2;
 }
+.impacto-territorial-map .localidad-tooltip {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(31, 41, 51, 0.25);
+  color: #1f2933;
+  font-size: 6.8pt;
+  font-weight: 750;
+  padding: 1px 3px;
+  box-shadow: none;
+}
