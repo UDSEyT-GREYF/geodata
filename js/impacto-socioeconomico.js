@@ -281,6 +281,7 @@ let currentFeature = null;
 let initializationPromise = null;
 
 const passengerCacheByUrl = new Map();
+let passengerSemesterData = null;
 let employmentGenderByIata = new Map();
 
 const NO_AERO_DATA_URL = "data/ingresos_no_aeronauticos_2025_web.geojson";
@@ -289,6 +290,7 @@ const EMPLOYMENT_GENDER_URL = "data/empleo_genero_2025.json";
 
 const PASSENGER_MAIN_URL = "fuentes/pasajeros_aeropuerto_mensual.csv";
 const PASSENGER_EXTRA_URL = "fuentes/pasajeros_movimientos_extra_9aeropuertos.csv";
+const PASSENGER_SEMESTER_URL = "data/pasajeros_semestre_2025_2026.json";
 
   // Misma regla usada en Oferta y demanda / tabla de tráfico:
   // estos aeropuertos no deben depender únicamente de la serie mensual principal.
@@ -2106,6 +2108,90 @@ const candidates = [
     return new Date(2026, index, 1).toLocaleString("es-AR", { month: "long" });
   }
 
+  async function loadPassengerSemesterData() {
+  if (passengerSemesterData) return passengerSemesterData;
+
+  const url = root?.dataset?.passengerSemesterUrl || PASSENGER_SEMESTER_URL;
+  const json = await loadOptionalJson(url, "pasajeros del primer semestre 2025/2026");
+
+  passengerSemesterData = json || { aeropuertos: {} };
+
+  return passengerSemesterData;
+}
+
+function semesterNumber(item, year, field) {
+  const block = item?.[String(year)];
+  if (!block) return null;
+
+  const value = Number(block[field]);
+  return Number.isFinite(value) ? value : null;
+}
+
+function semesterPctChange(current, previous) {
+  if (!Number.isFinite(current) || !Number.isFinite(previous) || previous === 0) {
+    return null;
+  }
+
+  return ((current - previous) / previous) * 100;
+}
+
+function semesterMetric(item, field) {
+  const current = semesterNumber(item, 2026, field);
+  const previous = semesterNumber(item, 2025, field);
+
+  return {
+    current,
+    previous,
+    yoy: semesterPctChange(current, previous)
+  };
+}
+
+function buildSemesterPassengerData(item) {
+  const metrics = {
+    total: semesterMetric(item, "pax_total"),
+    commercial: semesterMetric(item, "pax_comercial"),
+    avGeneral: semesterMetric(item, "pax_av_general"),
+
+    cabotaje: semesterMetric(item, "pax_cabotaje"),
+    international: semesterMetric(item, "pax_internacional"),
+
+    commercialCabotaje: semesterMetric(item, "pax_comercial_cabotaje"),
+    commercialInternational: semesterMetric(item, "pax_comercial_internacional"),
+
+    avGeneralCabotaje: semesterMetric(item, "pax_av_general_cabotaje"),
+    avGeneralInternational: semesterMetric(item, "pax_av_general_internacional")
+  };
+
+  return {
+    current: metrics.total.current,
+    previous: metrics.total.previous,
+    yoy: metrics.total.yoy,
+    lastMonth: 5,
+    source: "pasajeros_semestre_2025_2026",
+    trafficLabel: "pasajeros totales registrados",
+    metrics
+  };
+}
+
+function setPassengerMetric(prefix, metric) {
+  setText(`${prefix}2026`, formatInteger(metric?.current));
+  setText(`${prefix}Yoy`, formatPercent(metric?.yoy));
+}
+
+function renderPassengerTrafficKpis(passengerData) {
+  const metrics = passengerData?.metrics || {};
+
+  setPassengerMetric("passengerTotal", metrics.total);
+  setPassengerMetric("passengerCommercial", metrics.commercial);
+  setPassengerMetric("passengerAvGeneral", metrics.avGeneral);
+
+  setPassengerMetric("passengerCommercialCabotaje", metrics.commercialCabotaje);
+  setPassengerMetric("passengerCommercialInternational", metrics.commercialInternational);
+
+  setPassengerMetric("passengerAvGeneralCabotaje", metrics.avGeneralCabotaje);
+  setPassengerMetric("passengerAvGeneralInternational", metrics.avGeneralInternational);
+}
+  
   async function resolvePassengerRowsForAirport(iata) {
     const target = String(iata || "").trim().toUpperCase();
     const mainUrl = root?.dataset?.passengerUrl || PASSENGER_MAIN_URL;
@@ -2136,26 +2222,69 @@ const candidates = [
     return { rows: mainRows, source: "siac_anac", url: mainUrl };
   }
 
-  async function resolvePassengerData(data) {
-    if (Number.isFinite(data.passengersH12026)) {
-      const yoy = Number.isFinite(data.passengersH1Yoy)
-        ? data.passengersH1Yoy
-        : (Number.isFinite(data.passengersH12025) && data.passengersH12025 !== 0
-          ? ((data.passengersH12026 - data.passengersH12025) / data.passengersH12025) * 100
-          : null);
-      return {
-        current: data.passengersH12026,
-        previous: data.passengersH12025,
-        yoy,
-        lastMonth: 5,
-        source: "ResumenImpacto2025.geojson"
-      };
-    }
+async function resolvePassengerData(data) {
+  const iata = String(data?.iata || "").trim().toUpperCase();
 
-    const passengerSource = await resolvePassengerRowsForAirport(data.iata);
-    const summary = summarizePassengerRows(passengerSource.rows, data.iata);
-    return { ...summary, source: passengerSource.source, url: passengerSource.url };
+  const semesterData = await loadPassengerSemesterData();
+  const semesterItem = semesterData?.aeropuertos?.[iata];
+
+  if (semesterItem) {
+    return buildSemesterPassengerData(semesterItem);
   }
+
+  if (Number.isFinite(data.passengersH12026)) {
+    const yoy = Number.isFinite(data.passengersH1Yoy)
+      ? data.passengersH1Yoy
+      : (Number.isFinite(data.passengersH12025) && data.passengersH12025 !== 0
+        ? ((data.passengersH12026 - data.passengersH12025) / data.passengersH12025) * 100
+        : null);
+
+    const fallback = {
+      current: data.passengersH12026,
+      previous: data.passengersH12025,
+      yoy,
+      lastMonth: 5,
+      source: "ResumenImpacto2025.geojson",
+      trafficLabel: "pasajeros comerciales",
+      metrics: {
+        total: {
+          current: data.passengersH12026,
+          previous: data.passengersH12025,
+          yoy
+        },
+        commercial: {
+          current: data.passengersH12026,
+          previous: data.passengersH12025,
+          yoy
+        }
+      }
+    };
+
+    return fallback;
+  }
+
+  const passengerSource = await resolvePassengerRowsForAirport(data.iata);
+  const summary = summarizePassengerRows(passengerSource.rows, data.iata);
+
+  return {
+    ...summary,
+    source: passengerSource.source,
+    url: passengerSource.url,
+    trafficLabel: "pasajeros comerciales",
+    metrics: {
+      total: {
+        current: summary.current,
+        previous: summary.previous,
+        yoy: summary.yoy
+      },
+      commercial: {
+        current: summary.current,
+        previous: summary.previous,
+        yoy: summary.yoy
+      }
+    }
+  };
+}
 
   function buildPerspective(yoy) {
     if (!Number.isFinite(yoy)) {
@@ -2178,13 +2307,22 @@ const candidates = [
   }
 
   async function renderConclusion(data) {
-    const passengerData = await resolvePassengerData(data);
-    const periodEnd = monthName(passengerData.lastMonth);
-    const isFullSemester = passengerData.lastMonth === 5;
-    setText("passengerPeriodLabel", isFullSemester ? "Primer semestre de 2026" : `Enero–${periodEnd} de 2026`);
-    setText("passengers2026", formatInteger(passengerData.current));
-    setText("passengers2026Yoy", formatPercent(passengerData.yoy));
-    setText("passengers2026Comparison", Number.isFinite(passengerData.previous) ? `Comparación con enero–${periodEnd} de 2025` : "Sin base comparable disponible");
+const passengerData = await resolvePassengerData(data);
+const periodEnd = monthName(passengerData.lastMonth);
+const isFullSemester = passengerData.lastMonth === 5;
+const periodLabel = isFullSemester ? "Primer semestre de 2026" : `Enero–${periodEnd} de 2026`;
+const comparisonLabel = Number.isFinite(passengerData.previous)
+  ? `Comparación con enero–${periodEnd} de 2025`
+  : "Sin base comparable disponible";
+
+setText("passengerPeriodLabel", periodLabel);
+setText("passengerComparisonLabel", comparisonLabel);
+
+setText("passengers2026", formatInteger(passengerData.current));
+setText("passengers2026Yoy", formatPercent(passengerData.yoy));
+setText("passengers2026Comparison", comparisonLabel);
+
+renderPassengerTrafficKpis(passengerData);
 
     const conclusion = root.querySelector("#impactoConclusionText");
     if (!conclusion) return;
@@ -2198,10 +2336,45 @@ const candidates = [
     if (Number.isFinite(data.empleoTotal)) sentences.push(`La actividad se vinculó con ${formatInteger(data.empleoTotal)} puestos de trabajo.`);
     const mainImpact = buildMainImpactSentence(data);
     if (mainImpact) sentences.push(mainImpact);
-    if (Number.isFinite(passengerData.current)) {
-      const variationText = Number.isFinite(passengerData.yoy) ? `, una variación interanual de ${formatPercent(passengerData.yoy)}` : "";
-      sentences.push(`Entre enero y ${periodEnd} de 2026 se registraron ${formatInteger(passengerData.current)} pasajeros comerciales${variationText}.`);
-    }
+if (Number.isFinite(passengerData.current)) {
+  const metrics = passengerData.metrics || {};
+
+  const totalText = Number.isFinite(metrics.total?.current)
+    ? `${formatInteger(metrics.total.current)} pasajeros totales registrados`
+    : `${formatInteger(passengerData.current)} ${passengerData.trafficLabel || "pasajeros registrados"}`;
+
+  const totalVariation = Number.isFinite(metrics.total?.yoy)
+    ? `, con una variación interanual de ${formatPercent(metrics.total.yoy)}`
+    : "";
+
+  sentences.push(`Entre enero y ${periodEnd} de 2026 se registraron ${totalText}${totalVariation}.`);
+
+  const commercialText = Number.isFinite(metrics.commercial?.current)
+    ? `${formatInteger(metrics.commercial.current)} comerciales`
+    : null;
+
+  const avGeneralText = Number.isFinite(metrics.avGeneral?.current)
+    ? `${formatInteger(metrics.avGeneral.current)} de aviación general`
+    : null;
+
+  if (commercialText || avGeneralText) {
+    sentences.push(`La apertura por clase de vuelo muestra ${[commercialText, avGeneralText].filter(Boolean).join(" y ")}.`);
+  }
+
+  const commercialCabotaje = metrics.commercialCabotaje?.current;
+  const commercialInternational = metrics.commercialInternational?.current;
+  const avGeneralCabotaje = metrics.avGeneralCabotaje?.current;
+  const avGeneralInternational = metrics.avGeneralInternational?.current;
+
+  if (
+    [commercialCabotaje, commercialInternational, avGeneralCabotaje, avGeneralInternational]
+      .some(Number.isFinite)
+  ) {
+    sentences.push(
+      `Dentro del total, el tráfico comercial se distribuyó en ${formatInteger(commercialCabotaje)} pasajeros de cabotaje y ${formatInteger(commercialInternational)} internacionales; la aviación general registró ${formatInteger(avGeneralCabotaje)} pasajeros de cabotaje y ${formatInteger(avGeneralInternational)} internacionales.`
+    );
+  }
+}
     sentences.push(buildPerspective(passengerData.yoy));
     conclusion.textContent = sentences.join(" ");
   }
