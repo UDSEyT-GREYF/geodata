@@ -1,6 +1,7 @@
 from pathlib import Path
 import csv
 import json
+import math
 import re
 import unicodedata
 from datetime import date
@@ -70,12 +71,45 @@ def parse_number(value):
     if value is None:
         return 0.0
 
+    # Si viene desde JSON como número real o entero, no tocar separadores.
+    # Ej.: 32964.0 debe seguir siendo 32964.0, no 329640.
+    if isinstance(value, (int, float)):
+        number = float(value)
+        return number if math.isfinite(number) else 0.0
+
     text = str(value).strip()
+
     if not text:
         return 0.0
 
-    # Formato argentino: 32.964,0 -> 32964.0
-    text = text.replace(".", "").replace(",", ".")
+    text = text.replace(" ", "")
+
+    # Caso 1: formato argentino con miles y decimal
+    # Ej.: 32.964,0 -> 32964.0
+    if "." in text and "," in text:
+        if text.rfind(",") > text.rfind("."):
+            text = text.replace(".", "").replace(",", ".")
+        else:
+            # Formato inglés: 32,964.0 -> 32964.0
+            text = text.replace(",", "")
+
+    # Caso 2: solo coma
+    # Ej.: 32964,0 -> 32964.0
+    elif "," in text:
+        text = text.replace(".", "").replace(",", ".")
+
+    # Caso 3: solo punto
+    # Puede ser decimal inglés: 32964.0
+    # O miles: 32.964
+    elif "." in text:
+        parts = text.split(".")
+
+        # Si parece separador de miles, lo quitamos.
+        # Ej.: 32.964 -> 32964
+        if len(parts) > 1 and all(len(part) == 3 for part in parts[1:]):
+            text = text.replace(".", "")
+        # Si no, lo dejamos como decimal normal.
+        # Ej.: 32964.0 -> 32964.0
 
     try:
         return float(text)
@@ -416,7 +450,7 @@ def build_output():
             "fuente_2025": str(INPUTS[2025].relative_to(BASE_DIR)).replace("\\", "/"),
             "fuente_2026": str(INPUTS[2026].relative_to(BASE_DIR)).replace("\\", "/"),
             "generado": date.today().isoformat(),
-            "nota": "Cada registro se asigna a los aeropuertos cuyo código IATA aparece en RutaCompleta. Si el mismo IATA aparece dos veces en una ruta local, se cuenta una sola vez para ese aeropuerto."
+            "nota": "Para 2025 se asignan registros a cada aeropuerto según endpointA/endpointB del archivo integrado de rutas aéreas. Para 2026 se identifica el código IATA de cada aeropuerto en RutaCompleta. Si el mismo IATA aparece dos veces en una ruta local, se cuenta una sola vez para ese aeropuerto."
         },
         "aeropuertos": {}
     }
