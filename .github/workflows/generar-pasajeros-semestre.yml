@@ -1,0 +1,44 @@
+name: Generar pasajeros semestre 2025-2026
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Ejecutar script
+        run: |
+          python scripts/generar_pasajeros_semestre_2025_2026.py
+
+      - name: Confirmar archivos generados
+        run: |
+          ls -lah data || true
+          ls -lah fuentes || true
+
+      - name: Guardar resultados en el repositorio
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add data/pasajeros_semestre_2025_2026.json
+          git add fuentes/pasajeros_semestre_2025_2026_aeropuerto.csv
+
+          if git diff --cached --quiet; then
+            echo "No hay cambios para guardar."
+          else
+            git commit -m "Genera pasajeros primer semestre 2025-2026"
+            git push
+          fi
