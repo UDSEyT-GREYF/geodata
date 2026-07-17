@@ -836,3 +836,69 @@ body.impacto-standalone .impacto-sheet {
   color: #333333;
   font-size: 9.2pt;
 }
+/* KPIs de pasajeros y actividad aérea 2026 */
+.impacto-traffic-strip {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2.4mm;
+  padding: 3mm;
+}
+
+.impacto-traffic-strip-header {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  gap: 3mm;
+  align-items: baseline;
+  padding-bottom: 1mm;
+  border-bottom: 0.25mm solid rgba(0, 51, 102, 0.16);
+}
+
+.impacto-traffic-strip-header span {
+  color: var(--impacto-navy);
+  font-size: 8.2pt;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.impacto-traffic-strip-header small {
+  color: var(--impacto-muted);
+  font-size: 7.4pt;
+  font-weight: 650;
+}
+
+.impacto-traffic-kpi {
+  min-height: 18mm;
+  padding: 2.2mm 2.4mm;
+  background: rgba(255, 255, 255, 0.82);
+  border: 0.25mm solid rgba(0, 51, 102, 0.12);
+  border-radius: 1.5mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.8mm;
+}
+
+.impacto-traffic-kpi span {
+  color: var(--impacto-muted);
+  font-size: 7pt;
+  font-weight: 800;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.impacto-traffic-kpi strong {
+  color: var(--impacto-navy);
+  font-size: 12.2pt;
+  line-height: 1;
+}
+
+.impacto-traffic-kpi small {
+  color: var(--impacto-muted);
+  font-size: 6.8pt;
+  line-height: 1.1;
+}
+
+.impacto-traffic-kpi small b {
+  color: var(--impacto-blue);
+  font-weight: 850;
+}
