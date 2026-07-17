@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parents[1]
 AIRPORTS_PATH = BASE_DIR / "fuentes" / "Datos_aeropuertos.geojson"
 
 INPUTS = {
-    2025: BASE_DIR / "fuentes" / "rutasaereas.csv",
+    2025: BASE_DIR / "data" / "rutas_aereas_movimientos_2025.json",
     2026: BASE_DIR / "fuentes" / "Tabla rutasaereas2026_semestre1.csv",
 }
 
@@ -115,10 +115,19 @@ def normalize_flight_class(value):
 def normalize_service_class(value):
     text = normalize_key(value)
 
-    if "avgeneral" in text or "aviaciongeneral" in text or "general" in text:
+    if (
+        "avgeneral" in text
+        or "aviaciongeneral" in text
+        or text == "general"
+    ):
         return "av_general"
 
-    if "comercial" in text:
+    if (
+        "comercial" in text
+        or "regular" in text
+        or "noregular" in text
+        or "noreg" in text
+    ):
         return "comercial"
 
     return "sin_clase"
@@ -205,12 +214,117 @@ def round_record_values(record):
 
 def process_source(year, path, airports):
     valid_iatas = set(airports.keys())
-    rows = read_csv_rows(path)
 
     result = {
         iata: empty_record(iata, airports[iata])
         for iata in sorted(valid_iatas)
     }
+
+    print(f"\nProcesando {year}: {path}")
+
+    # ======================================================
+    # CASO 2025: JSON ya integrado y agregado
+    # data/rutas_aereas_movimientos_2025.json
+    # ======================================================
+    if path.suffix.lower() == ".json":
+        data = json.loads(read_text(path))
+        rows = data.get("records", [])
+
+        print(f"Formato detectado: JSON")
+        print(f"Registros leídos: {len(rows)}")
+
+        for row in rows:
+            try:
+                year_value = int(row.get("year") or 0)
+            except ValueError:
+                year_value = None
+
+            try:
+                month = int(row.get("month") or 0)
+            except ValueError:
+                month = None
+
+            if year_value != year:
+                continue
+
+            if month is None or month < 1 or month > 6:
+                continue
+
+            endpoint_a = str(row.get("endpointA") or "").strip().upper()
+            endpoint_b = str(row.get("endpointB") or "").strip().upper()
+
+            matched_iatas = sorted(set(
+                code for code in [endpoint_a, endpoint_b]
+                if code in valid_iatas
+            ))
+
+            # Fallback por si algún registro no trae endpointA/endpointB
+            if not matched_iatas:
+                route = row.get("rutaCompleta") or row.get("citypair_iata") or ""
+                matched_iatas = extract_iatas_from_route(route, valid_iatas)
+
+            if not matched_iatas:
+                continue
+
+            pax = parse_number(row.get("pax"))
+
+            flight_class = normalize_flight_class(
+                row.get("clasificacionVuelo")
+            )
+
+            service_class = normalize_service_class(
+                row.get("claseVuelo")
+            )
+
+            for iata in matched_iatas:
+                rec = result[iata]
+
+                rec["pax_total"] += pax
+                rec["registros"] += 1
+
+                if flight_class == "cabotaje":
+                    rec["pax_cabotaje"] += pax
+                elif flight_class == "internacional":
+                    rec["pax_internacional"] += pax
+                else:
+                    rec["pax_sin_clasificacion"] += pax
+
+                if service_class == "comercial":
+                    rec["pax_comercial"] += pax
+                elif service_class == "av_general":
+                    rec["pax_av_general"] += pax
+                else:
+                    rec["pax_sin_clase"] += pax
+
+                if service_class == "comercial" and flight_class == "cabotaje":
+                    rec["pax_comercial_cabotaje"] += pax
+
+                if service_class == "comercial" and flight_class == "internacional":
+                    rec["pax_comercial_internacional"] += pax
+
+                if service_class == "av_general" and flight_class == "cabotaje":
+                    rec["pax_av_general_cabotaje"] += pax
+
+                if service_class == "av_general" and flight_class == "internacional":
+                    rec["pax_av_general_internacional"] += pax
+
+        total_registros = sum(item["registros"] for item in result.values())
+        total_pax = sum(item["pax_total"] for item in result.values())
+
+        print(f"Registros asignados {year}: {total_registros}")
+        print(f"Pasajeros asignados {year}: {round(total_pax, 1)}")
+
+        return result
+
+    # ======================================================
+    # CASO 2026: CSV del primer semestre
+    # fuentes/Tabla rutasaereas2026_semestre1.csv
+    # ======================================================
+    rows = read_csv_rows(path)
+
+    print(f"Formato detectado: CSV")
+    print(f"Columnas detectadas: {list(rows[0].keys()) if rows else 'sin filas'}")
+    print(f"Filas leídas: {len(rows)}")
 
     for row in rows:
         year_value, month = parse_year_month(
@@ -230,9 +344,11 @@ def process_source(year, path, airports):
             continue
 
         pax = parse_number(get_value(row, ["Pax", "Pasajeros", "pasajeros"]))
+
         flight_class = normalize_flight_class(
             get_value(row, ["Clasificación Vuelo", "Clasificacion Vuelo", "clasificacion_vuelo"])
         )
+
         service_class = normalize_service_class(
             get_value(row, [
                 "Clase de vuelo Comercial Av. Gral",
@@ -275,6 +391,12 @@ def process_source(year, path, airports):
 
             if service_class == "av_general" and flight_class == "internacional":
                 rec["pax_av_general_internacional"] += pax
+
+    total_registros = sum(item["registros"] for item in result.values())
+    total_pax = sum(item["pax_total"] for item in result.values())
+
+    print(f"Registros asignados {year}: {total_registros}")
+    print(f"Pasajeros asignados {year}: {round(total_pax, 1)}")
 
     return result
 
