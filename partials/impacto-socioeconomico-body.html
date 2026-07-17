@@ -5,6 +5,7 @@
   data-no-aero-url="data/ingresos_no_aeronauticos_2025_web.geojson"
   data-airport-data-url="fuentes/Datos_aeropuertos.geojson"
   data-employment-gender-url="data/empleo_genero_2025.json"
+  data-passenger-semester-url="data/pasajeros_semestre_2025_2026.json"
   data-passenger-url="fuentes/pasajeros_aeropuerto_mensual.csv"
   data-passenger-extra-url="fuentes/pasajeros_movimientos_extra_9aeropuertos.csv"
   data-passenger-fdo-url="fuentes/pasajeros_movimientos_extra_9aeropuertos.csv"
@@ -304,18 +305,54 @@
         </div>
       </div>
 
-      <section class="impacto-2026-strip" aria-label="Pasajeros 2026">
-        <div>
-          <span data-bind="passengerPeriodLabel">Primer semestre de 2026</span>
-          <strong data-bind="passengers2026">–</strong>
-          <small>pasajeros comerciales</small>
-        </div>
-        <div>
-          <span>Variación interanual</span>
-          <strong data-bind="passengers2026Yoy">–</strong>
-          <small data-bind="passengers2026Comparison">Respecto de 2025</small>
-        </div>
-      </section>
+<section class="impacto-2026-strip impacto-traffic-strip" aria-label="Pasajeros y actividad aérea primer semestre 2026">
+  <header class="impacto-traffic-strip-header">
+    <span data-bind="passengerPeriodLabel">Primer semestre de 2026</span>
+    <small data-bind="passengerComparisonLabel">Comparación con enero–junio de 2025</small>
+  </header>
+
+  <article class="impacto-traffic-kpi">
+    <span>Comercial</span>
+    <strong data-bind="passengerCommercial2026">–</strong>
+    <small><b data-bind="passengerCommercialYoy">–</b> interanual</small>
+  </article>
+
+  <article class="impacto-traffic-kpi">
+    <span>Av. General</span>
+    <strong data-bind="passengerAvGeneral2026">–</strong>
+    <small><b data-bind="passengerAvGeneralYoy">–</b> interanual</small>
+  </article>
+
+  <article class="impacto-traffic-kpi">
+    <span>Total registrado</span>
+    <strong data-bind="passengerTotal2026">–</strong>
+    <small><b data-bind="passengerTotalYoy">–</b> interanual</small>
+  </article>
+
+  <article class="impacto-traffic-kpi">
+    <span>Comercial cabotaje</span>
+    <strong data-bind="passengerCommercialCabotaje2026">–</strong>
+    <small><b data-bind="passengerCommercialCabotajeYoy">–</b> interanual</small>
+  </article>
+
+  <article class="impacto-traffic-kpi">
+    <span>Comercial internacional</span>
+    <strong data-bind="passengerCommercialInternational2026">–</strong>
+    <small><b data-bind="passengerCommercialInternationalYoy">–</b> interanual</small>
+  </article>
+
+  <article class="impacto-traffic-kpi">
+    <span>Av. Gral. cabotaje</span>
+    <strong data-bind="passengerAvGeneralCabotaje2026">–</strong>
+    <small><b data-bind="passengerAvGeneralCabotajeYoy">–</b> interanual</small>
+  </article>
+
+  <article class="impacto-traffic-kpi">
+    <span>Av. Gral. internacional</span>
+    <strong data-bind="passengerAvGeneralInternational2026">–</strong>
+    <small><b data-bind="passengerAvGeneralInternationalYoy">–</b> interanual</small>
+  </article>
+</section>
 
       <section class="impacto-conclusion-box">
         <h2>Conclusión</h2>
@@ -325,8 +362,7 @@
       </section>
 
       <p class="impacto-source">
-        Fuente: elaboración ORSNA a partir de <code>data/ResumenImpacto2025.geojson</code>. Para la actualización de pasajeros 2026,
-        se utiliza la serie mensual disponible del informe.
+        Fuente: elaborado por GREyF ORSNA con datos de SIAC ANAC.
       </p>
     </div>
   </article>
