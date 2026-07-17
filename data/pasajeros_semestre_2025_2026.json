@@ -2,7 +2,7 @@
   "metadata": {
     "titulo": "Pasajeros por aeropuerto - primer semestre 2025/2026",
     "periodo": "enero-junio",
-    "fuente_2025": "fuentes/rutasaereas.csv",
+    "fuente_2025": "data/rutas_aereas_movimientos_2025.json",
     "fuente_2026": "fuentes/Tabla rutasaereas2026_semestre1.csv",
     "generado": "2026-07-17",
     "nota": "Cada registro se asigna a los aeropuertos cuyo código IATA aparece en RutaCompleta. Si el mismo IATA aparece dos veces en una ruta local, se cuenta una sola vez para ese aeropuerto."
@@ -14,18 +14,18 @@
       "2025": {
         "iata": "AEP",
         "aeropuerto": "Aeroparque Jorge Newbery",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 37075705.0,
+        "pax_cabotaje": 34554951.0,
+        "pax_internacional": 2520754.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 37056520.0,
+        "pax_av_general": 19185.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 34536778.0,
+        "pax_comercial_internacional": 2519742.0,
+        "pax_av_general_cabotaje": 18173.0,
+        "pax_av_general_internacional": 1012.0,
+        "registros": 2717
       },
       "2026": {
         "iata": "AEP",
@@ -44,11 +44,11 @@
         "registros": 3284
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -77.3,
+        "pax_comercial_pct": -77.3,
+        "pax_av_general_pct": -71.4,
+        "pax_cabotaje_pct": -83.8,
+        "pax_internacional_pct": 11.9
       }
     },
     "AFA": {
@@ -57,18 +57,18 @@
       "2025": {
         "iata": "AFA",
         "aeropuerto": "San Rafael",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 130799.0,
+        "pax_cabotaje": 130799.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 130555.0,
+        "pax_av_general": 244.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 130555.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 244.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 195
       },
       "2026": {
         "iata": "AFA",
@@ -87,10 +87,10 @@
         "registros": 181
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_total_pct": -82.6,
+        "pax_comercial_pct": -82.6,
+        "pax_av_general_pct": -72.7,
+        "pax_cabotaje_pct": -82.7,
         "pax_internacional_pct": null
       }
     },
@@ -100,18 +100,18 @@
       "2025": {
         "iata": "AOL",
         "aeropuerto": "Paso de los Libres",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 2.0,
+        "pax_cabotaje": 2.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
         "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_av_general": 2.0,
         "pax_sin_clase": 0.0,
         "pax_comercial_cabotaje": 0.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 2.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 3
       },
       "2026": {
         "iata": "AOL",
@@ -130,10 +130,10 @@
         "registros": 5
       },
       "variaciones": {
-        "pax_total_pct": null,
+        "pax_total_pct": -75.0,
         "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_av_general_pct": -75.0,
+        "pax_cabotaje_pct": -75.0,
         "pax_internacional_pct": null
       }
     },
@@ -143,18 +143,18 @@
       "2025": {
         "iata": "BHI",
         "aeropuerto": "Bahía Blanca",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 586055.0,
+        "pax_cabotaje": 586050.0,
+        "pax_internacional": 5.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 572551.0,
+        "pax_av_general": 13504.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 572546.0,
+        "pax_comercial_internacional": 5.0,
+        "pax_av_general_cabotaje": 13504.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 405
       },
       "2026": {
         "iata": "BHI",
@@ -173,11 +173,11 @@
         "registros": 480
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -78.6,
+        "pax_comercial_pct": -78.5,
+        "pax_av_general_pct": -80.5,
+        "pax_cabotaje_pct": -78.6,
+        "pax_internacional_pct": 1420.0
       }
     },
     "BRC": {
@@ -186,18 +186,18 @@
       "2025": {
         "iata": "BRC",
         "aeropuerto": "Bariloche",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 7055846.0,
+        "pax_cabotaje": 7023142.0,
+        "pax_internacional": 32704.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 7045189.0,
+        "pax_av_general": 10657.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 7012691.0,
+        "pax_comercial_internacional": 32498.0,
+        "pax_av_general_cabotaje": 10451.0,
+        "pax_av_general_internacional": 206.0,
+        "registros": 700
       },
       "2026": {
         "iata": "BRC",
@@ -216,11 +216,11 @@
         "registros": 730
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -86.0,
+        "pax_comercial_pct": -86.0,
+        "pax_av_general_pct": -78.9,
+        "pax_cabotaje_pct": -86.4,
+        "pax_internacional_pct": -7.1
       }
     },
     "CNQ": {
@@ -229,18 +229,18 @@
       "2025": {
         "iata": "CNQ",
         "aeropuerto": "Corrientes",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 522404.0,
+        "pax_cabotaje": 522129.0,
+        "pax_internacional": 275.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 519589.0,
+        "pax_av_general": 2815.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 519585.0,
+        "pax_comercial_internacional": 4.0,
+        "pax_av_general_cabotaje": 2544.0,
+        "pax_av_general_internacional": 271.0,
+        "registros": 303
       },
       "2026": {
         "iata": "CNQ",
@@ -259,11 +259,11 @@
         "registros": 364
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -83.3,
+        "pax_comercial_pct": -83.4,
+        "pax_av_general_pct": -70.0,
+        "pax_cabotaje_pct": -83.4,
+        "pax_internacional_pct": -37.1
       }
     },
     "COC": {
@@ -315,18 +315,18 @@
       "2025": {
         "iata": "COR",
         "aeropuerto": "Córdoba",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 6172795.0,
+        "pax_cabotaje": 5742723.0,
+        "pax_internacional": 430072.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 6155022.0,
+        "pax_av_general": 17773.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 5725549.0,
+        "pax_comercial_internacional": 429473.0,
+        "pax_av_general_cabotaje": 17174.0,
+        "pax_av_general_internacional": 599.0,
+        "registros": 1208
       },
       "2026": {
         "iata": "COR",
@@ -345,11 +345,11 @@
         "registros": 1462
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -72.0,
+        "pax_comercial_pct": -72.0,
+        "pax_av_general_pct": -75.6,
+        "pax_cabotaje_pct": -81.3,
+        "pax_internacional_pct": 53.1
       }
     },
     "CPC": {
@@ -358,18 +358,18 @@
       "2025": {
         "iata": "CPC",
         "aeropuerto": "San Martín de los Andes",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 1032149.0,
+        "pax_cabotaje": 1032017.0,
+        "pax_internacional": 132.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 1030657.0,
+        "pax_av_general": 1492.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 1030554.0,
+        "pax_comercial_internacional": 103.0,
+        "pax_av_general_cabotaje": 1463.0,
+        "pax_av_general_internacional": 29.0,
+        "registros": 295
       },
       "2026": {
         "iata": "CPC",
@@ -388,11 +388,11 @@
         "registros": 322
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -85.5,
+        "pax_comercial_pct": -85.5,
+        "pax_av_general_pct": -84.8,
+        "pax_cabotaje_pct": -85.5,
+        "pax_internacional_pct": -25.8
       }
     },
     "CRD": {
@@ -401,18 +401,18 @@
       "2025": {
         "iata": "CRD",
         "aeropuerto": "Comodoro Rivadavia",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 1582608.0,
+        "pax_cabotaje": 1582563.0,
+        "pax_internacional": 45.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 1574067.0,
+        "pax_av_general": 8541.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 1574067.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_av_general_cabotaje": 8496.0,
+        "pax_av_general_internacional": 45.0,
+        "registros": 497
       },
       "2026": {
         "iata": "CRD",
@@ -431,11 +431,11 @@
         "registros": 511
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -83.9,
+        "pax_comercial_pct": -83.9,
+        "pax_av_general_pct": -79.8,
+        "pax_cabotaje_pct": -83.9,
+        "pax_internacional_pct": 624.4
       }
     },
     "CTC": {
@@ -444,18 +444,18 @@
       "2025": {
         "iata": "CTC",
         "aeropuerto": "Catamarca",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 273472.0,
+        "pax_cabotaje": 273471.0,
+        "pax_internacional": 1.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 270294.0,
+        "pax_av_general": 3178.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 270294.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_av_general_cabotaje": 3177.0,
+        "pax_av_general_internacional": 1.0,
+        "registros": 195
       },
       "2026": {
         "iata": "CTC",
@@ -474,11 +474,11 @@
         "registros": 218
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -85.0,
+        "pax_comercial_pct": -85.2,
+        "pax_av_general_pct": -67.5,
+        "pax_cabotaje_pct": -85.0,
+        "pax_internacional_pct": -100.0
       }
     },
     "EPA": {
@@ -487,18 +487,18 @@
       "2025": {
         "iata": "EPA",
         "aeropuerto": "El Palomar",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 8946.0,
+        "pax_cabotaje": 8764.0,
+        "pax_internacional": 182.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 20.0,
+        "pax_av_general": 8926.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 20.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_av_general_cabotaje": 8744.0,
+        "pax_av_general_internacional": 182.0,
+        "registros": 401
       },
       "2026": {
         "iata": "EPA",
@@ -517,11 +517,11 @@
         "registros": 365
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -84.6,
+        "pax_comercial_pct": -12.5,
+        "pax_av_general_pct": -84.7,
+        "pax_cabotaje_pct": -84.7,
+        "pax_internacional_pct": -81.3
       }
     },
     "EQS": {
@@ -530,18 +530,18 @@
       "2025": {
         "iata": "EQS",
         "aeropuerto": "Esquel",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 227781.0,
+        "pax_cabotaje": 227730.0,
+        "pax_internacional": 51.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 226531.0,
+        "pax_av_general": 1250.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 226531.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_av_general_cabotaje": 1199.0,
+        "pax_av_general_internacional": 51.0,
+        "registros": 240
       },
       "2026": {
         "iata": "EQS",
@@ -560,11 +560,11 @@
         "registros": 331
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -83.2,
+        "pax_comercial_pct": -83.5,
+        "pax_av_general_pct": -29.9,
+        "pax_cabotaje_pct": -83.2,
+        "pax_internacional_pct": 51.0
       }
     },
     "EZE": {
@@ -573,18 +573,18 @@
       "2025": {
         "iata": "EZE",
         "aeropuerto": "Ezeiza",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 12525718.0,
+        "pax_cabotaje": 8253531.0,
+        "pax_internacional": 4272187.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 12521761.0,
+        "pax_av_general": 3957.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 8250095.0,
+        "pax_comercial_internacional": 4271666.0,
+        "pax_av_general_cabotaje": 3436.0,
+        "pax_av_general_internacional": 521.0,
+        "registros": 2790
       },
       "2026": {
         "iata": "EZE",
@@ -603,11 +603,11 @@
         "registros": 3217
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -50.0,
+        "pax_comercial_pct": -50.0,
+        "pax_av_general_pct": -56.0,
+        "pax_cabotaje_pct": -80.7,
+        "pax_internacional_pct": 9.3
       }
     },
     "FDO": {
@@ -616,18 +616,18 @@
       "2025": {
         "iata": "FDO",
         "aeropuerto": "San Fernando",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 50813.0,
+        "pax_cabotaje": 45763.0,
+        "pax_internacional": 5050.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 20268.0,
+        "pax_av_general": 30545.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 18593.0,
+        "pax_comercial_internacional": 1675.0,
+        "pax_av_general_cabotaje": 27170.0,
+        "pax_av_general_internacional": 3375.0,
+        "registros": 1894
       },
       "2026": {
         "iata": "FDO",
@@ -646,11 +646,11 @@
         "registros": 2578
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -73.2,
+        "pax_comercial_pct": -70.1,
+        "pax_av_general_pct": -75.3,
+        "pax_cabotaje_pct": -80.0,
+        "pax_internacional_pct": -11.5
       }
     },
     "FMA": {
@@ -659,18 +659,18 @@
       "2025": {
         "iata": "FMA",
         "aeropuerto": "Formosa",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 276196.0,
+        "pax_cabotaje": 276167.0,
+        "pax_internacional": 29.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 275614.0,
+        "pax_av_general": 582.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 275612.0,
+        "pax_comercial_internacional": 2.0,
+        "pax_av_general_cabotaje": 555.0,
+        "pax_av_general_internacional": 27.0,
+        "registros": 170
       },
       "2026": {
         "iata": "FMA",
@@ -689,11 +689,11 @@
         "registros": 182
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -86.4,
+        "pax_comercial_pct": -86.5,
+        "pax_av_general_pct": -73.7,
+        "pax_cabotaje_pct": -86.4,
+        "pax_internacional_pct": 27.6
       }
     },
     "FTE": {
@@ -702,18 +702,18 @@
       "2025": {
         "iata": "FTE",
         "aeropuerto": "El Calafate",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 2721608.0,
+        "pax_cabotaje": 2716152.0,
+        "pax_internacional": 5456.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 2716602.0,
+        "pax_av_general": 5006.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 2711180.0,
+        "pax_comercial_internacional": 5422.0,
+        "pax_av_general_cabotaje": 4972.0,
+        "pax_av_general_internacional": 34.0,
+        "registros": 427
       },
       "2026": {
         "iata": "FTE",
@@ -732,11 +732,11 @@
         "registros": 369
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -82.0,
+        "pax_comercial_pct": -82.0,
+        "pax_av_general_pct": -90.9,
+        "pax_cabotaje_pct": -82.1,
+        "pax_internacional_pct": -4.8
       }
     },
     "GNR": {
@@ -745,18 +745,18 @@
       "2025": {
         "iata": "GNR",
         "aeropuerto": "General Roca",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 314.0,
+        "pax_cabotaje": 314.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 161.0,
+        "pax_av_general": 153.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 161.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 153.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 58
       },
       "2026": {
         "iata": "GNR",
@@ -775,10 +775,10 @@
         "registros": 82
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_total_pct": -77.2,
+        "pax_comercial_pct": -73.0,
+        "pax_av_general_pct": -81.7,
+        "pax_cabotaje_pct": -77.2,
         "pax_internacional_pct": null
       }
     },
@@ -788,18 +788,18 @@
       "2025": {
         "iata": "GPO",
         "aeropuerto": "General Pico",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 523.0,
+        "pax_cabotaje": 523.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 83.0,
+        "pax_av_general": 440.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 83.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 440.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 122
       },
       "2026": {
         "iata": "GPO",
@@ -818,10 +818,10 @@
         "registros": 111
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_total_pct": -58.6,
+        "pax_comercial_pct": 115.7,
+        "pax_av_general_pct": -91.5,
+        "pax_cabotaje_pct": -58.6,
         "pax_internacional_pct": null
       }
     },
@@ -831,18 +831,18 @@
       "2025": {
         "iata": "IGR",
         "aeropuerto": "Iguazú",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 4906776.0,
+        "pax_cabotaje": 4905142.0,
+        "pax_internacional": 1634.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 4905932.0,
+        "pax_av_general": 844.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 4904333.0,
+        "pax_comercial_internacional": 1599.0,
+        "pax_av_general_cabotaje": 809.0,
+        "pax_av_general_internacional": 35.0,
+        "registros": 362
       },
       "2026": {
         "iata": "IGR",
@@ -861,11 +861,11 @@
         "registros": 396
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -83.9,
+        "pax_comercial_pct": -83.9,
+        "pax_av_general_pct": -84.8,
+        "pax_cabotaje_pct": -84.0,
+        "pax_internacional_pct": 213.0
       }
     },
     "IRJ": {
@@ -874,18 +874,18 @@
       "2025": {
         "iata": "IRJ",
         "aeropuerto": "La Rioja",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 190203.0,
+        "pax_cabotaje": 190125.0,
+        "pax_internacional": 78.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 188630.0,
+        "pax_av_general": 1573.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 188559.0,
+        "pax_comercial_internacional": 71.0,
+        "pax_av_general_cabotaje": 1566.0,
+        "pax_av_general_internacional": 7.0,
+        "registros": 170
       },
       "2026": {
         "iata": "IRJ",
@@ -904,11 +904,11 @@
         "registros": 202
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -80.3,
+        "pax_comercial_pct": -80.3,
+        "pax_av_general_pct": -86.4,
+        "pax_cabotaje_pct": -80.3,
+        "pax_internacional_pct": -88.5
       }
     },
     "JNI": {
@@ -917,18 +917,18 @@
       "2025": {
         "iata": "JNI",
         "aeropuerto": "Junín",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 192.0,
+        "pax_cabotaje": 192.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 85.0,
+        "pax_av_general": 107.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 85.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 107.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 46
       },
       "2026": {
         "iata": "JNI",
@@ -947,10 +947,10 @@
         "registros": 41
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_total_pct": -70.3,
+        "pax_comercial_pct": -42.4,
+        "pax_av_general_pct": -92.5,
+        "pax_cabotaje_pct": -70.3,
         "pax_internacional_pct": null
       }
     },
@@ -960,18 +960,18 @@
       "2025": {
         "iata": "JUJ",
         "aeropuerto": "Jujuy",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 1481048.0,
+        "pax_cabotaje": 1479468.0,
+        "pax_internacional": 1580.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 1478887.0,
+        "pax_av_general": 2161.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 1477328.0,
+        "pax_comercial_internacional": 1559.0,
+        "pax_av_general_cabotaje": 2140.0,
+        "pax_av_general_internacional": 21.0,
+        "registros": 282
       },
       "2026": {
         "iata": "JUJ",
@@ -990,11 +990,11 @@
         "registros": 303
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -85.6,
+        "pax_comercial_pct": -85.6,
+        "pax_av_general_pct": -76.3,
+        "pax_cabotaje_pct": -85.7,
+        "pax_internacional_pct": 26.8
       }
     },
     "LGS": {
@@ -1003,18 +1003,18 @@
       "2025": {
         "iata": "LGS",
         "aeropuerto": "Malargüe",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 197.0,
+        "pax_cabotaje": 197.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 65.0,
+        "pax_av_general": 132.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 65.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 132.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 78
       },
       "2026": {
         "iata": "LGS",
@@ -1033,10 +1033,10 @@
         "registros": 59
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_total_pct": -71.1,
+        "pax_comercial_pct": -68.5,
+        "pax_av_general_pct": -72.3,
+        "pax_cabotaje_pct": -71.1,
         "pax_internacional_pct": null
       }
     },
@@ -1046,18 +1046,18 @@
       "2025": {
         "iata": "LPG",
         "aeropuerto": "La Plata",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 844.0,
+        "pax_cabotaje": 844.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 276.0,
+        "pax_av_general": 568.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 276.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 568.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 155
       },
       "2026": {
         "iata": "LPG",
@@ -1076,10 +1076,10 @@
         "registros": 175
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_total_pct": -79.6,
+        "pax_comercial_pct": -79.9,
+        "pax_av_general_pct": -79.5,
+        "pax_cabotaje_pct": -79.6,
         "pax_internacional_pct": null
       }
     },
@@ -1089,18 +1089,18 @@
       "2025": {
         "iata": "LUQ",
         "aeropuerto": "San Luis",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 147771.0,
+        "pax_cabotaje": 147771.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 147070.0,
+        "pax_av_general": 701.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 147070.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 701.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 157
       },
       "2026": {
         "iata": "LUQ",
@@ -1119,10 +1119,10 @@
         "registros": 154
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_total_pct": -80.7,
+        "pax_comercial_pct": -80.7,
+        "pax_av_general_pct": -80.4,
+        "pax_cabotaje_pct": -80.7,
         "pax_internacional_pct": null
       }
     },
@@ -1132,18 +1132,18 @@
       "2025": {
         "iata": "MDQ",
         "aeropuerto": "Mar del Plata",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 1031322.0,
+        "pax_cabotaje": 1031080.0,
+        "pax_internacional": 242.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 1019330.0,
+        "pax_av_general": 11992.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 1019197.0,
+        "pax_comercial_internacional": 133.0,
+        "pax_av_general_cabotaje": 11883.0,
+        "pax_av_general_internacional": 109.0,
+        "registros": 506
       },
       "2026": {
         "iata": "MDQ",
@@ -1162,11 +1162,11 @@
         "registros": 528
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -84.8,
+        "pax_comercial_pct": -84.9,
+        "pax_av_general_pct": -75.8,
+        "pax_cabotaje_pct": -84.8,
+        "pax_internacional_pct": 39.7
       }
     },
     "MDZ": {
@@ -1175,18 +1175,18 @@
       "2025": {
         "iata": "MDZ",
         "aeropuerto": "Mendoza",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 5430961.0,
+        "pax_cabotaje": 5084553.0,
+        "pax_internacional": 346408.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 5421337.0,
+        "pax_av_general": 9624.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 5075650.0,
+        "pax_comercial_internacional": 345687.0,
+        "pax_av_general_cabotaje": 8903.0,
+        "pax_av_general_internacional": 721.0,
+        "registros": 981
       },
       "2026": {
         "iata": "MDZ",
@@ -1205,11 +1205,11 @@
         "registros": 1101
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -78.1,
+        "pax_comercial_pct": -78.1,
+        "pax_av_general_pct": -70.3,
+        "pax_cabotaje_pct": -83.9,
+        "pax_internacional_pct": 6.9
       }
     },
     "NEC": {
@@ -1218,18 +1218,18 @@
       "2025": {
         "iata": "NEC",
         "aeropuerto": "Necochea",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 62.0,
+        "pax_cabotaje": 62.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 7.0,
+        "pax_av_general": 55.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 7.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 55.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 31
       },
       "2026": {
         "iata": "NEC",
@@ -1248,10 +1248,10 @@
         "registros": 40
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_total_pct": -53.2,
+        "pax_comercial_pct": 21.4,
+        "pax_av_general_pct": -62.7,
+        "pax_cabotaje_pct": -53.2,
         "pax_internacional_pct": null
       }
     },
@@ -1261,18 +1261,18 @@
       "2025": {
         "iata": "NQN",
         "aeropuerto": "Neuquén",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 3505771.0,
+        "pax_cabotaje": 3505708.0,
+        "pax_internacional": 63.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 3501479.0,
+        "pax_av_general": 4292.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 3501441.0,
+        "pax_comercial_internacional": 38.0,
+        "pax_av_general_cabotaje": 4267.0,
+        "pax_av_general_internacional": 25.0,
+        "registros": 690
       },
       "2026": {
         "iata": "NQN",
@@ -1291,11 +1291,11 @@
         "registros": 889
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -80.9,
+        "pax_comercial_pct": -80.9,
+        "pax_av_general_pct": -67.0,
+        "pax_cabotaje_pct": -81.1,
+        "pax_internacional_pct": 12668.3
       }
     },
     "PMQ": {
@@ -1304,18 +1304,18 @@
       "2025": {
         "iata": "PMQ",
         "aeropuerto": "Perito Moreno",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 13415.0,
+        "pax_cabotaje": 13415.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 11409.0,
+        "pax_av_general": 2006.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 11409.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 2006.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 98
       },
       "2026": {
         "iata": "PMQ",
@@ -1334,10 +1334,10 @@
         "registros": 106
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_total_pct": -82.3,
+        "pax_comercial_pct": -84.0,
+        "pax_av_general_pct": -72.6,
+        "pax_cabotaje_pct": -82.3,
         "pax_internacional_pct": null
       }
     },
@@ -1347,18 +1347,18 @@
       "2025": {
         "iata": "PMY",
         "aeropuerto": "Puerto Madryn",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 390341.0,
+        "pax_cabotaje": 390341.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 389892.0,
+        "pax_av_general": 449.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 389892.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 449.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 189
       },
       "2026": {
         "iata": "PMY",
@@ -1377,10 +1377,10 @@
         "registros": 209
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_total_pct": -84.6,
+        "pax_comercial_pct": -84.6,
+        "pax_av_general_pct": -89.5,
+        "pax_cabotaje_pct": -84.6,
         "pax_internacional_pct": null
       }
     },
@@ -1390,18 +1390,18 @@
       "2025": {
         "iata": "PRA",
         "aeropuerto": "Paraná",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 152253.0,
+        "pax_cabotaje": 152214.0,
+        "pax_internacional": 39.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 149821.0,
+        "pax_av_general": 2432.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 149799.0,
+        "pax_comercial_internacional": 22.0,
+        "pax_av_general_cabotaje": 2415.0,
+        "pax_av_general_internacional": 17.0,
+        "registros": 366
       },
       "2026": {
         "iata": "PRA",
@@ -1420,11 +1420,11 @@
         "registros": 402
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -85.8,
+        "pax_comercial_pct": -86.0,
+        "pax_av_general_pct": -75.3,
+        "pax_cabotaje_pct": -85.8,
+        "pax_internacional_pct": -15.4
       }
     },
     "PSS": {
@@ -1433,18 +1433,18 @@
       "2025": {
         "iata": "PSS",
         "aeropuerto": "Posadas",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 666710.0,
+        "pax_cabotaje": 666543.0,
+        "pax_internacional": 167.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 664236.0,
+        "pax_av_general": 2474.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 664210.0,
+        "pax_comercial_internacional": 26.0,
+        "pax_av_general_cabotaje": 2333.0,
+        "pax_av_general_internacional": 141.0,
+        "registros": 368
       },
       "2026": {
         "iata": "PSS",
@@ -1463,11 +1463,11 @@
         "registros": 393
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -79.3,
+        "pax_comercial_pct": -79.3,
+        "pax_av_general_pct": -80.8,
+        "pax_cabotaje_pct": -79.3,
+        "pax_internacional_pct": -30.5
       }
     },
     "RCQ": {
@@ -1476,18 +1476,18 @@
       "2025": {
         "iata": "RCQ",
         "aeropuerto": "Reconquista",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 2514.0,
+        "pax_cabotaje": 2514.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 470.0,
+        "pax_av_general": 2044.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 470.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 2044.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 215
       },
       "2026": {
         "iata": "RCQ",
@@ -1506,10 +1506,10 @@
         "registros": 193
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_total_pct": -89.0,
+        "pax_comercial_pct": -84.9,
+        "pax_av_general_pct": -89.9,
+        "pax_cabotaje_pct": -89.0,
         "pax_internacional_pct": null
       }
     },
@@ -1519,18 +1519,18 @@
       "2025": {
         "iata": "RCU",
         "aeropuerto": "Río Cuarto",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 47430.0,
+        "pax_cabotaje": 47430.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 45700.0,
+        "pax_av_general": 1730.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 45700.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 1730.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 216
       },
       "2026": {
         "iata": "RCU",
@@ -1549,10 +1549,10 @@
         "registros": 242
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_total_pct": -73.7,
+        "pax_comercial_pct": -74.1,
+        "pax_av_general_pct": -63.8,
+        "pax_cabotaje_pct": -73.7,
         "pax_internacional_pct": null
       }
     },
@@ -1562,18 +1562,18 @@
       "2025": {
         "iata": "REL",
         "aeropuerto": "Trelew",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 755744.0,
+        "pax_cabotaje": 755743.0,
+        "pax_internacional": 1.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 754194.0,
+        "pax_av_general": 1550.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 754194.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_av_general_cabotaje": 1549.0,
+        "pax_av_general_internacional": 1.0,
+        "registros": 323
       },
       "2026": {
         "iata": "REL",
@@ -1592,11 +1592,11 @@
         "registros": 365
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -80.6,
+        "pax_comercial_pct": -80.6,
+        "pax_av_general_pct": -71.9,
+        "pax_cabotaje_pct": -80.6,
+        "pax_internacional_pct": -100.0
       }
     },
     "RES": {
@@ -1605,18 +1605,18 @@
       "2025": {
         "iata": "RES",
         "aeropuerto": "Resistencia",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 536297.0,
+        "pax_cabotaje": 536019.0,
+        "pax_internacional": 278.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 534211.0,
+        "pax_av_general": 2086.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 533974.0,
+        "pax_comercial_internacional": 237.0,
+        "pax_av_general_cabotaje": 2045.0,
+        "pax_av_general_internacional": 41.0,
+        "registros": 315
       },
       "2026": {
         "iata": "RES",
@@ -1635,11 +1635,11 @@
         "registros": 315
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -75.3,
+        "pax_comercial_pct": -75.2,
+        "pax_av_general_pct": -87.9,
+        "pax_cabotaje_pct": -75.5,
+        "pax_internacional_pct": 235.6
       }
     },
     "RGA": {
@@ -1648,18 +1648,18 @@
       "2025": {
         "iata": "RGA",
         "aeropuerto": "Río Grande",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 333151.0,
+        "pax_cabotaje": 333147.0,
+        "pax_internacional": 4.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 331550.0,
+        "pax_av_general": 1601.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 331546.0,
+        "pax_comercial_internacional": 4.0,
+        "pax_av_general_cabotaje": 1601.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 239
       },
       "2026": {
         "iata": "RGA",
@@ -1678,11 +1678,11 @@
         "registros": 117
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -92.7,
+        "pax_comercial_pct": -92.7,
+        "pax_av_general_pct": -95.5,
+        "pax_cabotaje_pct": -92.7,
+        "pax_internacional_pct": 50.0
       }
     },
     "RGL": {
@@ -1691,18 +1691,18 @@
       "2025": {
         "iata": "RGL",
         "aeropuerto": "Río Gallegos",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 471175.0,
+        "pax_cabotaje": 470549.0,
+        "pax_internacional": 626.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 462725.0,
+        "pax_av_general": 8450.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 462125.0,
+        "pax_comercial_internacional": 600.0,
+        "pax_av_general_cabotaje": 8424.0,
+        "pax_av_general_internacional": 26.0,
+        "registros": 456
       },
       "2026": {
         "iata": "RGL",
@@ -1721,11 +1721,11 @@
         "registros": 463
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -84.5,
+        "pax_comercial_pct": -84.6,
+        "pax_av_general_pct": -81.6,
+        "pax_cabotaje_pct": -84.8,
+        "pax_internacional_pct": 109.6
       }
     },
     "RHD": {
@@ -1734,18 +1734,18 @@
       "2025": {
         "iata": "RHD",
         "aeropuerto": "Termas de Río Hondo",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 73206.0,
+        "pax_cabotaje": 73180.0,
+        "pax_internacional": 26.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 72763.0,
+        "pax_av_general": 443.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 72743.0,
+        "pax_comercial_internacional": 20.0,
+        "pax_av_general_cabotaje": 437.0,
+        "pax_av_general_internacional": 6.0,
+        "registros": 99
       },
       "2026": {
         "iata": "RHD",
@@ -1764,11 +1764,11 @@
         "registros": 101
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -88.6,
+        "pax_comercial_pct": -88.6,
+        "pax_av_general_pct": -87.5,
+        "pax_cabotaje_pct": -88.6,
+        "pax_internacional_pct": -65.4
       }
     },
     "RLO": {
@@ -1777,18 +1777,18 @@
       "2025": {
         "iata": "RLO",
         "aeropuerto": "Merlo",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 24515.0,
+        "pax_cabotaje": 24510.0,
+        "pax_internacional": 5.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 24395.0,
+        "pax_av_general": 120.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 24390.0,
+        "pax_comercial_internacional": 5.0,
+        "pax_av_general_cabotaje": 120.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 84
       },
       "2026": {
         "iata": "RLO",
@@ -1807,11 +1807,11 @@
         "registros": 121
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -66.7,
+        "pax_comercial_pct": -66.8,
+        "pax_av_general_pct": -46.2,
+        "pax_cabotaje_pct": -66.7,
+        "pax_internacional_pct": -100.0
       }
     },
     "ROS": {
@@ -1820,18 +1820,18 @@
       "2025": {
         "iata": "ROS",
         "aeropuerto": "Rosario",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 801343.0,
+        "pax_cabotaje": 644491.0,
+        "pax_internacional": 156852.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 796359.0,
+        "pax_av_general": 4984.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 640153.0,
+        "pax_comercial_internacional": 156206.0,
+        "pax_av_general_cabotaje": 4338.0,
+        "pax_av_general_internacional": 646.0,
+        "registros": 686
       },
       "2026": {
         "iata": "ROS",
@@ -1850,11 +1850,11 @@
         "registros": 831
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -57.9,
+        "pax_comercial_pct": -57.9,
+        "pax_av_general_pct": -66.5,
+        "pax_cabotaje_pct": -83.5,
+        "pax_internacional_pct": 47.0
       }
     },
     "RSA": {
@@ -1863,18 +1863,18 @@
       "2025": {
         "iata": "RSA",
         "aeropuerto": "Santa Rosa",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 119111.0,
+        "pax_cabotaje": 119098.0,
+        "pax_internacional": 13.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 115048.0,
+        "pax_av_general": 4063.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 115035.0,
+        "pax_comercial_internacional": 13.0,
+        "pax_av_general_cabotaje": 4063.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 248
       },
       "2026": {
         "iata": "RSA",
@@ -1893,11 +1893,11 @@
         "registros": 269
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -83.5,
+        "pax_comercial_pct": -83.3,
+        "pax_av_general_pct": -89.8,
+        "pax_cabotaje_pct": -83.5,
+        "pax_internacional_pct": -100.0
       }
     },
     "RYO": {
@@ -1906,18 +1906,18 @@
       "2025": {
         "iata": "RYO",
         "aeropuerto": "El Turbio/28 de noviembre",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 39.0,
+        "pax_cabotaje": 39.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 38.0,
+        "pax_av_general": 1.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 38.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 1.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 12
       },
       "2026": {
         "iata": "RYO",
@@ -1936,10 +1936,10 @@
         "registros": 23
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_total_pct": 125.6,
+        "pax_comercial_pct": 110.5,
+        "pax_av_general_pct": 700.0,
+        "pax_cabotaje_pct": 125.6,
         "pax_internacional_pct": null
       }
     },
@@ -1949,18 +1949,18 @@
       "2025": {
         "iata": "SDE",
         "aeropuerto": "Santiago del Estero",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 755980.0,
+        "pax_cabotaje": 755616.0,
+        "pax_internacional": 364.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 750807.0,
+        "pax_av_general": 5173.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 750452.0,
+        "pax_comercial_internacional": 355.0,
+        "pax_av_general_cabotaje": 5164.0,
+        "pax_av_general_internacional": 9.0,
+        "registros": 362
       },
       "2026": {
         "iata": "SDE",
@@ -1979,11 +1979,11 @@
         "registros": 340
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -88.4,
+        "pax_comercial_pct": -88.4,
+        "pax_av_general_pct": -81.2,
+        "pax_cabotaje_pct": -88.4,
+        "pax_internacional_pct": -97.3
       }
     },
     "SFN": {
@@ -1992,18 +1992,18 @@
       "2025": {
         "iata": "SFN",
         "aeropuerto": "Santa Fe",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 179021.0,
+        "pax_cabotaje": 178113.0,
+        "pax_internacional": 908.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 177579.0,
+        "pax_av_general": 1442.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 176947.0,
+        "pax_comercial_internacional": 632.0,
+        "pax_av_general_cabotaje": 1166.0,
+        "pax_av_general_internacional": 276.0,
+        "registros": 275
       },
       "2026": {
         "iata": "SFN",
@@ -2022,11 +2022,11 @@
         "registros": 327
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -78.4,
+        "pax_comercial_pct": -78.5,
+        "pax_av_general_pct": -75.2,
+        "pax_cabotaje_pct": -78.4,
+        "pax_internacional_pct": -92.4
       }
     },
     "SLA": {
@@ -2035,18 +2035,18 @@
       "2025": {
         "iata": "SLA",
         "aeropuerto": "Salta",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 4150292.0,
+        "pax_cabotaje": 4107984.0,
+        "pax_internacional": 42308.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 4143100.0,
+        "pax_av_general": 7192.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 4100978.0,
+        "pax_comercial_internacional": 42122.0,
+        "pax_av_general_cabotaje": 7006.0,
+        "pax_av_general_internacional": 186.0,
+        "registros": 654
       },
       "2026": {
         "iata": "SLA",
@@ -2065,11 +2065,11 @@
         "registros": 726
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -83.0,
+        "pax_comercial_pct": -83.0,
+        "pax_av_general_pct": -78.4,
+        "pax_cabotaje_pct": -84.2,
+        "pax_internacional_pct": 34.6
       }
     },
     "SST": {
@@ -2078,18 +2078,18 @@
       "2025": {
         "iata": "SST",
         "aeropuerto": "Santa Teresita",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 12.0,
+        "pax_cabotaje": 12.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
         "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_av_general": 12.0,
         "pax_sin_clase": 0.0,
         "pax_comercial_cabotaje": 0.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 12.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 23
       },
       "2026": {
         "iata": "SST",
@@ -2108,10 +2108,10 @@
         "registros": 24
       },
       "variaciones": {
-        "pax_total_pct": null,
+        "pax_total_pct": -41.7,
         "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_av_general_pct": -58.3,
+        "pax_cabotaje_pct": -41.7,
         "pax_internacional_pct": null
       }
     },
@@ -2121,18 +2121,18 @@
       "2025": {
         "iata": "TDL",
         "aeropuerto": "Tandil",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 2914.0,
+        "pax_cabotaje": 2914.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 682.0,
+        "pax_av_general": 2232.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 682.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 2232.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 131
       },
       "2026": {
         "iata": "TDL",
@@ -2151,10 +2151,10 @@
         "registros": 43
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_total_pct": -91.2,
+        "pax_comercial_pct": -99.8,
+        "pax_av_general_pct": -88.6,
+        "pax_cabotaje_pct": -91.2,
         "pax_internacional_pct": null
       }
     },
@@ -2164,18 +2164,18 @@
       "2025": {
         "iata": "TTG",
         "aeropuerto": "Tartagal",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 1199.0,
+        "pax_cabotaje": 1199.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 167.0,
+        "pax_av_general": 1032.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 167.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 1032.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 36
       },
       "2026": {
         "iata": "TTG",
@@ -2194,10 +2194,10 @@
         "registros": 43
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_total_pct": -86.0,
+        "pax_comercial_pct": -38.3,
+        "pax_av_general_pct": -93.7,
+        "pax_cabotaje_pct": -86.0,
         "pax_internacional_pct": null
       }
     },
@@ -2207,18 +2207,18 @@
       "2025": {
         "iata": "TUC",
         "aeropuerto": "Tucumán",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 2194074.0,
+        "pax_cabotaje": 2186356.0,
+        "pax_internacional": 7718.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 2188573.0,
+        "pax_av_general": 5501.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 2180998.0,
+        "pax_comercial_internacional": 7575.0,
+        "pax_av_general_cabotaje": 5358.0,
+        "pax_av_general_internacional": 143.0,
+        "registros": 495
       },
       "2026": {
         "iata": "TUC",
@@ -2237,11 +2237,11 @@
         "registros": 541
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -78.9,
+        "pax_comercial_pct": -78.9,
+        "pax_av_general_pct": -76.3,
+        "pax_cabotaje_pct": -80.7,
+        "pax_internacional_pct": 440.2
       }
     },
     "UAQ": {
@@ -2250,18 +2250,18 @@
       "2025": {
         "iata": "UAQ",
         "aeropuerto": "San Juan",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 663967.0,
+        "pax_cabotaje": 663929.0,
+        "pax_internacional": 38.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 663312.0,
+        "pax_av_general": 655.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 663312.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_av_general_cabotaje": 617.0,
+        "pax_av_general_internacional": 38.0,
+        "registros": 211
       },
       "2026": {
         "iata": "UAQ",
@@ -2280,11 +2280,11 @@
         "registros": 296
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -84.7,
+        "pax_comercial_pct": -84.8,
+        "pax_av_general_pct": -38.8,
+        "pax_cabotaje_pct": -84.7,
+        "pax_internacional_pct": 515.8
       }
     },
     "USH": {
@@ -2293,18 +2293,18 @@
       "2025": {
         "iata": "USH",
         "aeropuerto": "Ushuaia",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
-        "pax_internacional": 0.0,
+        "pax_total": 2529279.0,
+        "pax_cabotaje": 2528079.0,
+        "pax_internacional": 1200.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 2525229.0,
+        "pax_av_general": 4050.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
-        "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
-        "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "pax_comercial_cabotaje": 2524077.0,
+        "pax_comercial_internacional": 1152.0,
+        "pax_av_general_cabotaje": 4002.0,
+        "pax_av_general_internacional": 48.0,
+        "registros": 404
       },
       "2026": {
         "iata": "USH",
@@ -2323,11 +2323,11 @@
         "registros": 404
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
-        "pax_internacional_pct": null
+        "pax_total_pct": -77.7,
+        "pax_comercial_pct": -77.6,
+        "pax_av_general_pct": -86.6,
+        "pax_cabotaje_pct": -77.7,
+        "pax_internacional_pct": 83.2
       }
     },
     "VDM": {
@@ -2336,18 +2336,18 @@
       "2025": {
         "iata": "VDM",
         "aeropuerto": "Viedma",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 106868.0,
+        "pax_cabotaje": 106868.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 106363.0,
+        "pax_av_general": 505.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 106363.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 505.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 184
       },
       "2026": {
         "iata": "VDM",
@@ -2366,10 +2366,10 @@
         "registros": 240
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_total_pct": -83.6,
+        "pax_comercial_pct": -83.6,
+        "pax_av_general_pct": -69.2,
+        "pax_cabotaje_pct": -83.6,
         "pax_internacional_pct": null
       }
     },
@@ -2379,18 +2379,18 @@
       "2025": {
         "iata": "VLG",
         "aeropuerto": "Villa Gesell",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 300.0,
+        "pax_cabotaje": 300.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 78.0,
+        "pax_av_general": 222.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 78.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 222.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 31
       },
       "2026": {
         "iata": "VLG",
@@ -2409,10 +2409,10 @@
         "registros": 92
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_total_pct": 59.0,
+        "pax_comercial_pct": 389.1,
+        "pax_av_general_pct": -57.0,
+        "pax_cabotaje_pct": 59.0,
         "pax_internacional_pct": null
       }
     },
@@ -2422,18 +2422,18 @@
       "2025": {
         "iata": "VME",
         "aeropuerto": "Villa Mercedes",
-        "pax_total": 0.0,
-        "pax_cabotaje": 0.0,
+        "pax_total": 869.0,
+        "pax_cabotaje": 869.0,
         "pax_internacional": 0.0,
         "pax_sin_clasificacion": 0.0,
-        "pax_comercial": 0.0,
-        "pax_av_general": 0.0,
+        "pax_comercial": 85.0,
+        "pax_av_general": 784.0,
         "pax_sin_clase": 0.0,
-        "pax_comercial_cabotaje": 0.0,
+        "pax_comercial_cabotaje": 85.0,
         "pax_comercial_internacional": 0.0,
-        "pax_av_general_cabotaje": 0.0,
+        "pax_av_general_cabotaje": 784.0,
         "pax_av_general_internacional": 0.0,
-        "registros": 0
+        "registros": 150
       },
       "2026": {
         "iata": "VME",
@@ -2452,10 +2452,10 @@
         "registros": 145
       },
       "variaciones": {
-        "pax_total_pct": null,
-        "pax_comercial_pct": null,
-        "pax_av_general_pct": null,
-        "pax_cabotaje_pct": null,
+        "pax_total_pct": -66.7,
+        "pax_comercial_pct": 85.9,
+        "pax_av_general_pct": -83.3,
+        "pax_cabotaje_pct": -66.7,
         "pax_internacional_pct": null
       }
     }
