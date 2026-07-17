@@ -7,6 +7,7 @@ let influenciaLayer = null;
 let influenciaMarker = null;
 let localidadesFeatures = [];
 let localidadesLayer = null;
+let influenciaLegend = null;
 
 let aeropuertos = [];
 let aeropuertosPoligonos = [];
@@ -114,7 +115,10 @@ function updateInfluenciaMapForAirport(a) {
     mapInfluencia.removeLayer(influenciaMarker);
     influenciaMarker = null;
   }
-
+if (influenciaLegend) {
+  mapInfluencia.removeControl(influenciaLegend);
+  influenciaLegend = null;
+}
   const iataUpper = a.IATA ? String(a.IATA).trim().toUpperCase() : "";
   if (!iataUpper) return;
 
@@ -124,10 +128,12 @@ function updateInfluenciaMapForAirport(a) {
   fetch(tiemposPath)
     .then(resp => (resp.ok ? resp.json() : null))
     .then(gj => {
-      if (!gj || !gj.features || !gj.features.length) {
-        ajustarVista(a);
-        return;
-      }
+if (!gj || !gj.features || !gj.features.length) {
+  drawLocalidadesLayer(a);
+  drawInfluenciaLegend(Boolean(influenciaLayer), Boolean(localidadesLayer));
+  ajustarVista(a);
+  return;
+}
 
       tiemposLayer = L.geoJSON(gj, {
         style: (feature) => {
@@ -153,10 +159,12 @@ drawLocalidadesLayer(a);
 ajustarVista(a);
 return;
     })
-    .catch(() => {
-      console.warn("No se pudo cargar tiempos de viaje:", tiemposPath);
-      ajustarVista(a);
-    });
+.catch(() => {
+  console.warn("No se pudo cargar tiempos de viaje:", tiemposPath);
+  drawLocalidadesLayer(a);
+  drawInfluenciaLegend(Boolean(influenciaLayer), Boolean(localidadesLayer));
+  ajustarVista(a);
+});
 
 /* ----------- 2) Área de influencia ----------- */
 if (Array.isArray(areasInfluenciaFeatures) && areasInfluenciaFeatures.length) {
@@ -225,8 +233,7 @@ function drawLocalidadesLayer(a) {
 
   if (!features.length) return;
 
-  const showPermanentLabels = features.length <= 45;
-
+ 
   localidadesLayer = L.geoJSON(features, {
     pane: "pane_localidades",
     interactive: true,
@@ -252,12 +259,13 @@ function drawLocalidadesLayer(a) {
       const label = getLocalidadLabel(feature.properties || "");
 
       if (label) {
-        layer.bindTooltip(label, {
-          permanent: showPermanentLabels,
-          direction: "top",
-          offset: [0, -3],
-          className: "localidad-tooltip"
-        });
+layer.bindTooltip(label, {
+  permanent: false,
+  sticky: true,
+  direction: "top",
+  offset: [0, -3],
+  className: "localidad-tooltip"
+});
       }
     }
   }).addTo(mapInfluencia);
@@ -305,6 +313,8 @@ function featureIntersectsBounds(feature, bounds) {
 
 function getLocalidadLabel(props) {
   return clean(
+    props.nam ||
+    props.NAM ||
     props.nombre ||
     props.NOMBRE ||
     props.localidad ||
@@ -316,6 +326,66 @@ function getLocalidadLabel(props) {
     ""
   );
 }
+
+function drawInfluenciaLegend(hasInfluenceArea, hasLocalidades) {
+  if (influenciaLegend) {
+    mapInfluencia.removeControl(influenciaLegend);
+    influenciaLegend = null;
+  }
+
+  influenciaLegend = L.control({ position: "bottomleft" });
+
+  influenciaLegend.onAdd = function () {
+    const div = L.DomUtil.create("div", "info legend");
+
+    div.style.background = "rgba(255, 255, 255, 0.96)";
+    div.style.border = "1px solid #d0d7e2";
+    div.style.borderRadius = "4px";
+    div.style.padding = "5px 7px";
+    div.style.fontSize = "11px";
+    div.style.lineHeight = "1.35";
+    div.style.color = "#111111";
+    div.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.16)";
+
+    div.innerHTML = `
+      <div style="font-weight:800; margin-bottom:3px;">Tiempos de viaje</div>
+
+      <div>
+        <span style="display:inline-block;width:10px;height:10px;background:#08306b;margin-right:4px;border:1px solid #08306b;"></span>
+        Hasta 1 h
+      </div>
+
+      <div>
+        <span style="display:inline-block;width:10px;height:10px;background:#2171b5;margin-right:4px;border:1px solid #2171b5;"></span>
+        Entre 1 y 2 h
+      </div>
+
+      <div>
+        <span style="display:inline-block;width:10px;height:10px;background:#6baed6;margin-right:4px;border:1px solid #6baed6;"></span>
+        Entre 2 y 3 h
+      </div>
+
+      ${hasInfluenceArea ? `
+        <div style="margin-top:4px;">
+          <span style="display:inline-block;width:18px;height:0;border-top:2px dashed #ffb000;margin-right:4px;vertical-align:middle;"></span>
+          Área de influencia aeroportuaria
+        </div>
+      ` : ""}
+
+      ${hasLocalidades ? `
+        <div style="margin-top:4px;">
+          <span style="display:inline-block;width:8px;height:8px;background:#ffffff;border:1.4px solid #1f2933;border-radius:50%;margin-right:6px;"></span>
+          Localidades censales
+        </div>
+      ` : ""}
+    `;
+
+    return div;
+  };
+
+  influenciaLegend.addTo(mapInfluencia);
+}
+
 /* =============================
    AJUSTAR VISTA
    ============================= */
