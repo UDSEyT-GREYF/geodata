@@ -2173,9 +2173,78 @@ function buildSemesterPassengerData(item) {
   };
 }
 
+function passengerMetricChangeView(metric) {
+  const current = Number(metric?.current);
+  const previous = Number(metric?.previous);
+  const yoy = Number(metric?.yoy);
+
+  // Sin dato comparable o base demasiado chica:
+  // evita casos engañosos como -100% cuando había 1 pasajero en 2025 y 0 en 2026.
+  if (
+    !Number.isFinite(current)
+    || !Number.isFinite(previous)
+    || !Number.isFinite(yoy)
+    || previous <= 0
+    || previous < 10
+  ) {
+    return {
+      text: "—",
+      state: "empty"
+    };
+  }
+
+  if (Math.abs(yoy) < 0.05) {
+    return {
+      text: `● ${formatPercent(0)}`,
+      state: "flat"
+    };
+  }
+
+  if (yoy > 0) {
+    return {
+      text: `▲ ${formatPercent(yoy)}`,
+      state: "positive"
+    };
+  }
+
+  return {
+    text: `▼ ${formatPercent(yoy)}`,
+    state: "negative"
+  };
+}
+
+function setBoundTextAndState(bindName, text, state) {
+  const scope = root || document;
+
+  scope.querySelectorAll(`[data-bind="${bindName}"]`).forEach((node) => {
+    node.textContent = text;
+
+    node.classList.remove(
+      "is-positive",
+      "is-negative",
+      "is-flat",
+      "is-empty"
+    );
+
+    node.classList.add(`is-${state}`);
+  });
+}
+
 function setPassengerMetric(prefix, metric) {
-  setText(`${prefix}2026`, formatInteger(metric?.current));
-  setText(`${prefix}Yoy`, formatPercent(metric?.yoy));
+  const current = Number(metric?.current);
+
+  setText(
+    `${prefix}2026`,
+    Number.isFinite(current) ? formatInteger(current) : "–"
+  );
+
+  const change = passengerMetricChangeView(metric);
+
+  setBoundTextAndState(
+    `${prefix}Yoy`,
+    change.text,
+    change.state
+  );
 }
 
 function renderPassengerTrafficKpis(passengerData) {
@@ -2313,9 +2382,7 @@ const passengerData = await resolvePassengerData(data);
 const periodEnd = monthName(passengerData.lastMonth);
 const isFullSemester = passengerData.lastMonth === 5;
 const periodLabel = isFullSemester ? "Primer semestre de 2026" : `Enero–${periodEnd} de 2026`;
-const comparisonLabel = Number.isFinite(passengerData.previous)
-  ? `Comparación con enero–${periodEnd} de 2025`
-  : "Sin base comparable disponible";
+const comparisonLabel = "Δ primer semestre de 2025";
 
 setText("passengerPeriodLabel", periodLabel);
 setText("passengerComparisonLabel", comparisonLabel);
