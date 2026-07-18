@@ -219,11 +219,18 @@
 select.addEventListener("change", () => {
   syncFromSelect();
 
+  const iata = String(select.value || "").trim().toUpperCase();
+  if (!iata) return;
+
+  window.REPORT_AIRPORT_IATA = iata;
+
   document.dispatchEvent(new CustomEvent("report:airport-changed", {
-    detail: {
-      iata: select.value
-    }
+    detail: { iata }
   }));
+
+  const url = new URL(window.location.href);
+  url.searchParams.set("airport", iata);
+  window.history.replaceState({}, "", url);
 
   scheduleInformeImpactoPageNumbers();
 });
@@ -877,11 +884,23 @@ await mountImpactoSocioeconomicoPartial();
 
 document.dispatchEvent(new CustomEvent("report:partials-ready"));
 
-document.dispatchEvent(new CustomEvent("report:airport-changed", {
-  detail: {
-    iata: q("airportSelect")?.value || ""
-  }
-}));
+const initialIata = String(q("airportSelect")?.value || "").trim().toUpperCase();
+
+if (initialIata) {
+  window.REPORT_AIRPORT_IATA = initialIata;
+
+  document.dispatchEvent(new CustomEvent("report:airport-changed", {
+    detail: { iata: initialIata }
+  }));
+
+  setTimeout(() => {
+    document.dispatchEvent(new CustomEvent("report:airport-changed", {
+      detail: { iata: initialIata }
+    }));
+
+    scheduleInformeImpactoPageNumbers();
+  }, 600);
+}
 
 scheduleInformeImpactoPageNumbers();
   } catch (err) {
