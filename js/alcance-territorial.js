@@ -35,10 +35,32 @@
     tooltipAnchor: [0, -18]
   });
 
-  document.addEventListener("DOMContentLoaded", init);
+ const IS_REPORT_MODE = document.body?.classList.contains("page-informe-impacto");
+
+document.addEventListener("DOMContentLoaded", () => {
+  // En la página independiente, el propio JS carga el partial.
+  // Dentro del informe, espera a que informe-impacto.js monte el partial.
+  if (!IS_REPORT_MODE) {
+    init();
+  }
+});
 
 document.addEventListener("alcance:mounted", () => {
   initializationPromise = null;
+
+  // Si el informe vuelve a montar el partial, el contenedor del mapa anterior
+  // queda descartado. Hay que destruir el mapa Leaflet antes de recrearlo.
+  if (map) {
+    map.remove();
+    map = null;
+  }
+
+  tiemposLayer = null;
+  influenciaLayer = null;
+  localidadesLayer = null;
+  airportMarker = null;
+  legendControl = null;
+
   init();
 });
 
@@ -104,15 +126,21 @@ async function loadPartial() {
   const mount = document.getElementById("alcanceTerritorialMount");
   if (!mount) return;
 
+  // Si el partial ya fue montado por informe-impacto.js,
+  // no lo volvemos a pedir ni lo pisamos.
   if (mount.querySelector("#alcanceTerritorialMap")) {
     return;
   }
 
   const response = await fetch(PARTIAL_URL);
-    }
 
-    mount.innerHTML = await response.text();
+  if (!response.ok) {
+    mount.innerHTML = "<p>No se pudo cargar el contenido de alcance territorial.</p>";
+    throw new Error(`No se pudo cargar ${PARTIAL_URL}`);
   }
+
+  mount.innerHTML = await response.text();
+}
 
   async function loadData() {
 const [airports, polygons, areas, localidades, pob1hora] = await Promise.all([
@@ -190,9 +218,14 @@ if (fromUrl && aeropuertos.some(a => getAirportIata(a) === fromUrl)) {
     return getAirportIata(aeropuertos[0]);
   }
 
-  function initMap() {
-    const mapEl = document.getElementById("alcanceTerritorialMap");
-    if (!mapEl) return;
+function initMap() {
+  const mapEl = document.getElementById("alcanceTerritorialMap");
+  if (!mapEl) return;
+
+  if (map) {
+    map.remove();
+    map = null;
+  }
 
 map = L.map(mapEl, {
   zoomControl: false,
