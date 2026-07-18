@@ -2333,14 +2333,14 @@ renderPassengerTrafficKpis(passengerData);
     } else if (Number.isFinite(data.impactoPositivo)) {
       sentences.push(`En ${data.year}, los impactos positivos estimados del aeropuerto alcanzaron ${formatCurrency(data.impactoPositivo)}.`);
     }
-    if (Number.isFinite(data.empleoTotal)) sentences.push(`La actividad se vinculó con ${formatInteger(data.empleoTotal)} puestos de trabajo.`);
+    if (Number.isFinite(data.empleoTotal)) sentences.push(`La actividad aerocomercial y aeroportuaria se vinculó con ${formatInteger(data.empleoTotal)} puestos de trabajo.`);
     const mainImpact = buildMainImpactSentence(data);
     if (mainImpact) sentences.push(mainImpact);
 if (Number.isFinite(passengerData.current)) {
   const metrics = passengerData.metrics || {};
 
   const totalText = Number.isFinite(metrics.total?.current)
-    ? `${formatInteger(metrics.total.current)} pasajeros totales registrados`
+    ? `${formatInteger(metrics.total.current)} pasajeros totales`
     : `${formatInteger(passengerData.current)} ${passengerData.trafficLabel || "pasajeros registrados"}`;
 
   const totalVariation = Number.isFinite(metrics.total?.yoy)
