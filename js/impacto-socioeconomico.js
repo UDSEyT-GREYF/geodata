@@ -2182,12 +2182,14 @@ function renderPassengerTrafficKpis(passengerData) {
   const metrics = passengerData?.metrics || {};
 
   setPassengerMetric("passengerTotal", metrics.total);
-  setPassengerMetric("passengerCommercial", metrics.commercial);
-  setPassengerMetric("passengerAvGeneral", metrics.avGeneral);
+  setPassengerMetric("passengerCabotaje", metrics.cabotaje);
+  setPassengerMetric("passengerInternational", metrics.international);
 
+  setPassengerMetric("passengerCommercial", metrics.commercial);
   setPassengerMetric("passengerCommercialCabotaje", metrics.commercialCabotaje);
   setPassengerMetric("passengerCommercialInternational", metrics.commercialInternational);
 
+  setPassengerMetric("passengerAvGeneral", metrics.avGeneral);
   setPassengerMetric("passengerAvGeneralCabotaje", metrics.avGeneralCabotaje);
   setPassengerMetric("passengerAvGeneralInternational", metrics.avGeneralInternational);
 }
