@@ -290,8 +290,8 @@
       <span data-bind="airportLine">Aeropuerto</span>
     </div>
     <small>
-      <span data-bind="passengerPeriodLabel">Primer semestre de 2026</span> ·
-      <span data-bind="passengerComparisonLabel">Comparación con enero–junio de 2025</span>
+      <span data-bind="passengerPeriodLabel">Primer semestre de 2026</span>
+      <span class="impacto-pax-delta-label" data-bind="passengerComparisonLabel">Δ primer semestre de 2025</span>
     </small>
   </header>
 
@@ -301,20 +301,26 @@
 
       <article class="impacto-pax-card">
         <span>Total registrado</span>
-        <strong data-bind="passengerTotal2026">–</strong>
-        <small><b data-bind="passengerTotalYoy">–</b> interanual</small>
+        <div class="impacto-pax-value-row">
+          <strong data-bind="passengerTotal2026">–</strong>
+          <em class="impacto-pax-change is-empty" data-bind="passengerTotalYoy">—</em>
+        </div>
       </article>
 
       <article class="impacto-pax-card">
         <span>Comercial</span>
-        <strong data-bind="passengerCommercial2026">–</strong>
-        <small><b data-bind="passengerCommercialYoy">–</b> interanual</small>
+        <div class="impacto-pax-value-row">
+          <strong data-bind="passengerCommercial2026">–</strong>
+          <em class="impacto-pax-change is-empty" data-bind="passengerCommercialYoy">—</em>
+        </div>
       </article>
 
       <article class="impacto-pax-card">
         <span>Av. General</span>
-        <strong data-bind="passengerAvGeneral2026">–</strong>
-        <small><b data-bind="passengerAvGeneralYoy">–</b> interanual</small>
+        <div class="impacto-pax-value-row">
+          <strong data-bind="passengerAvGeneral2026">–</strong>
+          <em class="impacto-pax-change is-empty" data-bind="passengerAvGeneralYoy">—</em>
+        </div>
       </article>
     </section>
 
@@ -323,20 +329,26 @@
 
       <article class="impacto-pax-card">
         <span>Total cabotaje</span>
-        <strong data-bind="passengerCabotaje2026">–</strong>
-        <small><b data-bind="passengerCabotajeYoy">–</b> interanual</small>
+        <div class="impacto-pax-value-row">
+          <strong data-bind="passengerCabotaje2026">–</strong>
+          <em class="impacto-pax-change is-empty" data-bind="passengerCabotajeYoy">—</em>
+        </div>
       </article>
 
       <article class="impacto-pax-card">
         <span>Comercial cabotaje</span>
-        <strong data-bind="passengerCommercialCabotaje2026">–</strong>
-        <small><b data-bind="passengerCommercialCabotajeYoy">–</b> interanual</small>
+        <div class="impacto-pax-value-row">
+          <strong data-bind="passengerCommercialCabotaje2026">–</strong>
+          <em class="impacto-pax-change is-empty" data-bind="passengerCommercialCabotajeYoy">—</em>
+        </div>
       </article>
 
       <article class="impacto-pax-card">
         <span>Av. Gral. cabotaje</span>
-        <strong data-bind="passengerAvGeneralCabotaje2026">–</strong>
-        <small><b data-bind="passengerAvGeneralCabotajeYoy">–</b> interanual</small>
+        <div class="impacto-pax-value-row">
+          <strong data-bind="passengerAvGeneralCabotaje2026">–</strong>
+          <em class="impacto-pax-change is-empty" data-bind="passengerAvGeneralCabotajeYoy">—</em>
+        </div>
       </article>
     </section>
 
@@ -345,20 +357,26 @@
 
       <article class="impacto-pax-card">
         <span>Total internacional</span>
-        <strong data-bind="passengerInternational2026">–</strong>
-        <small><b data-bind="passengerInternationalYoy">–</b> interanual</small>
+        <div class="impacto-pax-value-row">
+          <strong data-bind="passengerInternational2026">–</strong>
+          <em class="impacto-pax-change is-empty" data-bind="passengerInternationalYoy">—</em>
+        </div>
       </article>
 
       <article class="impacto-pax-card">
         <span>Comercial internacional</span>
-        <strong data-bind="passengerCommercialInternational2026">–</strong>
-        <small><b data-bind="passengerCommercialInternationalYoy">–</b> interanual</small>
+        <div class="impacto-pax-value-row">
+          <strong data-bind="passengerCommercialInternational2026">–</strong>
+          <em class="impacto-pax-change is-empty" data-bind="passengerCommercialInternationalYoy">—</em>
+        </div>
       </article>
 
       <article class="impacto-pax-card">
         <span>Av. Gral. internacional</span>
-        <strong data-bind="passengerAvGeneralInternational2026">–</strong>
-        <small><b data-bind="passengerAvGeneralInternationalYoy">–</b> interanual</small>
+        <div class="impacto-pax-value-row">
+          <strong data-bind="passengerAvGeneralInternational2026">–</strong>
+          <em class="impacto-pax-change is-empty" data-bind="passengerAvGeneralInternationalYoy">—</em>
+        </div>
       </article>
     </section>
   </div>
