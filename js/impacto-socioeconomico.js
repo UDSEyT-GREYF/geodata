@@ -2499,10 +2499,17 @@ const commercialCurrent = metricCurrent(commercial);
 const avGeneralCurrent = metricCurrent(avGeneral);
 const cabotajeCurrent = metricCurrent(cabotaje);
 const internationalCurrent = metricCurrent(international);
+const airportName = data.iata === "AEP"
+  ? "Aeroparque Jorge Newbery"
+  : (data.airportNameOnly || data.airportName || data.aeropuerto || data.name || "El aeropuerto");
 
+const airportLabel = data.iata
+  ? `${airportName} (${data.iata})`
+  : airportName;
+    
 if (Number.isFinite(totalCurrent)) {
   sentences.push(
-    `En el primer semestre de 2026 se registraron ${formatInteger(totalCurrent)} pasajeros totales registrados, lo que representa ${trendPhrase(total)} respecto del primer semestre de 2025.`
+    `En ${airportLabel}, durante el primer semestre de 2026 se registraron <strong>${formatInteger(totalCurrent)} pasajeros totales</strong>, lo que representa ${trendPhrase(total)} respecto del primer semestre de 2025.`
   );
 }
 
@@ -2513,13 +2520,13 @@ if (
   const commercialShare = shareText(commercialCurrent, totalCurrent);
   const avGeneralShare = shareText(avGeneralCurrent, totalCurrent);
 
-  const commercialPart = Number.isFinite(commercialCurrent)
-    ? `${formatInteger(commercialCurrent)} pasajeros comerciales${commercialShare ? ` (${commercialShare} del total)` : ""}`
-    : null;
+const commercialPart = Number.isFinite(commercialCurrent)
+  ? `<strong>${formatInteger(commercialCurrent)} pasajeros comerciales</strong>${commercialShare ? ` (${commercialShare} del total)` : ""}`
+  : null;
 
-  const avGeneralPart = Number.isFinite(avGeneralCurrent)
-    ? `${formatInteger(avGeneralCurrent)} asociados a aviación general${avGeneralShare ? ` (${avGeneralShare} del total)` : ""}`
-    : null;
+const avGeneralPart = Number.isFinite(avGeneralCurrent)
+  ? `<strong>${formatInteger(avGeneralCurrent)} de aviación general</strong>${avGeneralShare ? ` (${avGeneralShare} del total)` : ""}`
+  : null;
 
   sentences.push(
     `La apertura por clase de vuelo muestra ${[commercialPart, avGeneralPart].filter(Boolean).join(" y ")}.`
@@ -2533,13 +2540,13 @@ if (
   const cabotajeShare = shareText(cabotajeCurrent, totalCurrent);
   const internationalShare = shareText(internationalCurrent, totalCurrent);
 
-  const cabotajePart = Number.isFinite(cabotajeCurrent)
-    ? `${formatInteger(cabotajeCurrent)} de cabotaje${cabotajeShare ? ` (${cabotajeShare} del total)` : ""}`
-    : null;
+const cabotajePart = Number.isFinite(cabotajeCurrent)
+  ? `<strong>${formatInteger(cabotajeCurrent)} de cabotaje</strong>${cabotajeShare ? ` (${cabotajeShare} del total)` : ""}`
+  : null;
 
-  const internationalPart = Number.isFinite(internationalCurrent)
-    ? `${formatInteger(internationalCurrent)} internacionales${internationalShare ? ` (${internationalShare} del total)` : ""}`
-    : null;
+const internationalPart = Number.isFinite(internationalCurrent)
+  ? `<strong>${formatInteger(internationalCurrent)} internacionales</strong>${internationalShare ? ` (${internationalShare} del total)` : ""}`
+  : null;
 
   sentences.push(
     `Por alcance de vuelo, la actividad se distribuyó en ${[cabotajePart, internationalPart].filter(Boolean).join(" y ")}.`
@@ -2579,7 +2586,7 @@ if (!sentences.length) {
   );
 }
 
-conclusion.textContent = sentences.join(" ");
+conclusion.innerHTML = sentences.join(" ");
   }
 
   async function renderAirport(iata) {
