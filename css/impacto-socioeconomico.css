@@ -1211,3 +1211,7 @@ body.impacto-standalone .impacto-sheet {
 .impacto-pax-change.is-empty {
   color: #64748b;
 }
+.impacto-conclusion-box p strong {
+  color: var(--impacto-navy);
+  font-weight: 850;
+}
