@@ -26,7 +26,8 @@
 
   let currentIata = "";
   let airportSelect = null;
-
+  let initializationPromise = null;
+  
   const airportIcon = L.icon({
     iconUrl: "img/icons/AeropuertosSNA.png",
     iconSize: [32, 32],
@@ -36,7 +37,25 @@
 
   document.addEventListener("DOMContentLoaded", init);
 
-  async function init() {
+document.addEventListener("alcance:mounted", () => {
+  initializationPromise = null;
+  init();
+});
+
+document.addEventListener("report:airport-changed", async (event) => {
+  const iata = String(event.detail?.iata || event.detail?.airport || "").trim().toUpperCase();
+  if (!iata) return;
+
+  window.REPORT_AIRPORT_IATA = iata;
+
+  await init();
+  await renderAirport(iata);
+});
+
+async function init() {
+  if (initializationPromise) return initializationPromise;
+
+  initializationPromise = (async () => {
     await loadPartial();
 
     airportSelect = document.getElementById("alcanceAirportSelect");
@@ -45,19 +64,26 @@
 
     fillAirportSelect();
 
-    initMap();
+    if (!map) {
+      initMap();
+    }
 
     const initialIata = getInitialAirport();
+
     if (initialIata && airportSelect) {
       airportSelect.value = initialIata;
     }
 
-    renderAirport(initialIata);
+    await renderAirport(initialIata);
 
-    if (airportSelect) {
+    if (airportSelect && airportSelect.dataset.bound !== "1") {
+      airportSelect.dataset.bound = "1";
+
       airportSelect.addEventListener("change", () => {
         const iata = String(airportSelect.value || "").trim().toUpperCase();
         if (!iata) return;
+
+        window.REPORT_AIRPORT_IATA = iata;
 
         renderAirport(iata);
 
@@ -66,17 +92,23 @@
         window.history.replaceState({}, "", url);
       });
     }
+  })().catch((error) => {
+    console.error("[Alcance territorial] Error de inicialización:", error);
+    initializationPromise = null;
+  });
+
+  return initializationPromise;
+}
+
+async function loadPartial() {
+  const mount = document.getElementById("alcanceTerritorialMount");
+  if (!mount) return;
+
+  if (mount.querySelector("#alcanceTerritorialMap")) {
+    return;
   }
 
-  async function loadPartial() {
-    const mount = document.getElementById("alcanceTerritorialMount");
-    if (!mount) return;
-
-    const response = await fetch(PARTIAL_URL);
-
-    if (!response.ok) {
-      mount.innerHTML = "<p>No se pudo cargar el contenido de alcance territorial.</p>";
-      throw new Error(`No se pudo cargar ${PARTIAL_URL}`);
+  const response = await fetch(PARTIAL_URL);
     }
 
     mount.innerHTML = await response.text();
@@ -133,12 +165,23 @@ poblacionUnaHoraPorIATA = parsePoblacionUnaHora(pob1hora);
   }
 
   function getInitialAirport() {
-    const params = new URLSearchParams(window.location.search);
-    const fromUrl = String(params.get("airport") || "").trim().toUpperCase();
+const params = new URLSearchParams(window.location.search);
 
-    if (fromUrl && aeropuertos.some(a => getAirportIata(a) === fromUrl)) {
-      return fromUrl;
-    }
+const fromReport = String(
+  window.REPORT_AIRPORT_IATA ||
+  document.querySelector("#airportSelect")?.value ||
+  ""
+).trim().toUpperCase();
+
+if (fromReport && aeropuertos.some(a => getAirportIata(a) === fromReport)) {
+  return fromReport;
+}
+
+const fromUrl = String(params.get("airport") || "").trim().toUpperCase();
+
+if (fromUrl && aeropuertos.some(a => getAirportIata(a) === fromUrl)) {
+  return fromUrl;
+}
 
     if (aeropuertos.some(a => getAirportIata(a) === "AEP")) {
       return "AEP";
@@ -651,9 +694,11 @@ function fitMapToLayers(airport) {
     return String(value).trim();
   }
 
-  function setBind(name, value) {
-    document.querySelectorAll(`[data-bind="${name}"]`).forEach(el => {
-      el.textContent = value ?? "–";
-    });
-  }
+function setBind(name, value) {
+  const scope = document.getElementById("alcanceTerritorialMount") || document;
+
+  scope.querySelectorAll(`[data-bind="${name}"]`).forEach(el => {
+    el.textContent = value ?? "–";
+  });
+}
 })();
