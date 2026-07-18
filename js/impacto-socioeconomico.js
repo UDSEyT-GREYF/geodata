@@ -2393,59 +2393,193 @@ setText("passengers2026Comparison", comparisonLabel);
 
 renderPassengerTrafficKpis(passengerData);
 
-    const conclusion = root.querySelector("#impactoConclusionText");
-    if (!conclusion) return;
+   const conclusion = root.querySelector("#impactoConclusionText");
+if (!conclusion) return;
 
-    const sentences = [];
-    if (Number.isFinite(data.saldoImpacto)) {
-      sentences.push(`En ${data.year}, ${data.airportName}${data.iata ? ` (${data.iata})` : ""} generó un saldo socioeconómico estimado de ${formatCurrency(data.saldoImpacto)}.`);
-    } else if (Number.isFinite(data.impactoPositivo)) {
-      sentences.push(`En ${data.year}, los impactos positivos estimados del aeropuerto alcanzaron ${formatCurrency(data.impactoPositivo)}.`);
-    }
-    if (Number.isFinite(data.empleoTotal)) sentences.push(`La actividad aerocomercial y aeroportuaria se vinculó con ${formatInteger(data.empleoTotal)} puestos de trabajo.`);
-    const mainImpact = buildMainImpactSentence(data);
-    if (mainImpact) sentences.push(mainImpact);
-if (Number.isFinite(passengerData.current)) {
-  const metrics = passengerData.metrics || {};
+const metrics = passengerData?.metrics || {};
+const sentences = [];
 
-  const totalText = Number.isFinite(metrics.total?.current)
-    ? `${formatInteger(metrics.total.current)} pasajeros totales`
-    : `${formatInteger(passengerData.current)} ${passengerData.trafficLabel || "pasajeros registrados"}`;
-
-  const totalVariation = Number.isFinite(metrics.total?.yoy)
-    ? `, con una variación interanual de ${formatPercent(metrics.total.yoy)}`
-    : "";
-
-  sentences.push(`Entre enero y ${periodEnd} de 2026 se registraron ${totalText}${totalVariation}.`);
-
-  const commercialText = Number.isFinite(metrics.commercial?.current)
-    ? `${formatInteger(metrics.commercial.current)} comerciales`
-    : null;
-
-  const avGeneralText = Number.isFinite(metrics.avGeneral?.current)
-    ? `${formatInteger(metrics.avGeneral.current)} de aviación general`
-    : null;
-
-  if (commercialText || avGeneralText) {
-    sentences.push(`La apertura por clase de vuelo muestra ${[commercialText, avGeneralText].filter(Boolean).join(" y ")}.`);
-  }
-
-  const commercialCabotaje = metrics.commercialCabotaje?.current;
-  const commercialInternational = metrics.commercialInternational?.current;
-  const avGeneralCabotaje = metrics.avGeneralCabotaje?.current;
-  const avGeneralInternational = metrics.avGeneralInternational?.current;
-
-  if (
-    [commercialCabotaje, commercialInternational, avGeneralCabotaje, avGeneralInternational]
-      .some(Number.isFinite)
-  ) {
-    sentences.push(
-      `Dentro del total, el tráfico comercial se distribuyó en ${formatInteger(commercialCabotaje)} pasajeros de cabotaje y ${formatInteger(commercialInternational)} internacionales; la aviación general registró ${formatInteger(avGeneralCabotaje)} pasajeros de cabotaje y ${formatInteger(avGeneralInternational)} internacionales.`
-    );
-  }
+function metricCurrent(metric) {
+  const value = Number(metric?.current);
+  return Number.isFinite(value) ? value : null;
 }
-    sentences.push(buildPerspective(passengerData.yoy));
-    conclusion.textContent = sentences.join(" ");
+
+function metricPrevious(metric) {
+  const value = Number(metric?.previous);
+  return Number.isFinite(value) ? value : null;
+}
+
+function metricYoy(metric) {
+  const value = Number(metric?.yoy);
+  return Number.isFinite(value) ? value : null;
+}
+
+function isComparable(metric, minPrevious = 10) {
+  const previous = metricPrevious(metric);
+  const yoy = metricYoy(metric);
+
+  return (
+    Number.isFinite(previous) &&
+    previous >= minPrevious &&
+    Number.isFinite(yoy)
+  );
+}
+
+function formatAbsPercent(value) {
+  if (!Number.isFinite(value)) return "–";
+  return formatPercent(Math.abs(value)).replace("+", "");
+}
+
+function trendPhrase(metric) {
+  const yoy = metricYoy(metric);
+
+  if (!isComparable(metric)) {
+    return "sin una base interanual suficiente para calcular una variación porcentual robusta";
+  }
+
+  if (yoy > 0.05) {
+    return `un aumento de ${formatAbsPercent(yoy)}`;
+  }
+
+  if (yoy < -0.05) {
+    return `una disminución de ${formatAbsPercent(yoy)}`;
+  }
+
+  return "una variación prácticamente estable";
+}
+
+function shareText(value, total) {
+  if (!Number.isFinite(value) || !Number.isFinite(total) || total <= 0) {
+    return null;
+  }
+
+  return formatPercent((value / total) * 100);
+}
+
+function metricDelta(metric) {
+  const current = metricCurrent(metric);
+  const previous = metricPrevious(metric);
+
+  if (!Number.isFinite(current) || !Number.isFinite(previous)) {
+    return null;
+  }
+
+  return current - previous;
+}
+
+function dominantVariation(candidates) {
+  const valid = candidates
+    .map((item) => ({
+      ...item,
+      delta: metricDelta(item.metric),
+      yoy: metricYoy(item.metric)
+    }))
+    .filter((item) => (
+      Number.isFinite(item.delta) &&
+      isComparable(item.metric)
+    ))
+    .sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
+
+  return valid[0] || null;
+}
+
+const total = metrics.total || {
+  current: passengerData.current,
+  previous: passengerData.previous,
+  yoy: passengerData.yoy
+};
+
+const commercial = metrics.commercial;
+const avGeneral = metrics.avGeneral;
+const cabotaje = metrics.cabotaje;
+const international = metrics.international;
+
+const totalCurrent = metricCurrent(total);
+const commercialCurrent = metricCurrent(commercial);
+const avGeneralCurrent = metricCurrent(avGeneral);
+const cabotajeCurrent = metricCurrent(cabotaje);
+const internationalCurrent = metricCurrent(international);
+
+if (Number.isFinite(totalCurrent)) {
+  sentences.push(
+    `En el primer semestre de 2026 se registraron ${formatInteger(totalCurrent)} pasajeros totales registrados, lo que representa ${trendPhrase(total)} respecto del primer semestre de 2025.`
+  );
+}
+
+if (
+  Number.isFinite(commercialCurrent) ||
+  Number.isFinite(avGeneralCurrent)
+) {
+  const commercialShare = shareText(commercialCurrent, totalCurrent);
+  const avGeneralShare = shareText(avGeneralCurrent, totalCurrent);
+
+  const commercialPart = Number.isFinite(commercialCurrent)
+    ? `${formatInteger(commercialCurrent)} pasajeros comerciales${commercialShare ? ` (${commercialShare} del total)` : ""}`
+    : null;
+
+  const avGeneralPart = Number.isFinite(avGeneralCurrent)
+    ? `${formatInteger(avGeneralCurrent)} asociados a aviación general${avGeneralShare ? ` (${avGeneralShare} del total)` : ""}`
+    : null;
+
+  sentences.push(
+    `La apertura por clase de vuelo muestra ${[commercialPart, avGeneralPart].filter(Boolean).join(" y ")}.`
+  );
+}
+
+if (
+  Number.isFinite(cabotajeCurrent) ||
+  Number.isFinite(internationalCurrent)
+) {
+  const cabotajeShare = shareText(cabotajeCurrent, totalCurrent);
+  const internationalShare = shareText(internationalCurrent, totalCurrent);
+
+  const cabotajePart = Number.isFinite(cabotajeCurrent)
+    ? `${formatInteger(cabotajeCurrent)} de cabotaje${cabotajeShare ? ` (${cabotajeShare} del total)` : ""}`
+    : null;
+
+  const internationalPart = Number.isFinite(internationalCurrent)
+    ? `${formatInteger(internationalCurrent)} internacionales${internationalShare ? ` (${internationalShare} del total)` : ""}`
+    : null;
+
+  sentences.push(
+    `Por alcance de vuelo, la actividad se distribuyó en ${[cabotajePart, internationalPart].filter(Boolean).join(" y ")}.`
+  );
+}
+
+const dominantScope = dominantVariation([
+  { label: "cabotaje", metric: cabotaje },
+  { label: "internacional", metric: international }
+]);
+
+if (dominantScope) {
+  const delta = dominantScope.delta;
+  const movement = delta >= 0 ? "creció" : "retrocedió";
+
+  sentences.push(
+    `La diferencia interanual estuvo explicada principalmente por el componente ${dominantScope.label}, que ${movement} en ${formatInteger(Math.abs(delta))} pasajeros frente al primer semestre de 2025.`
+  );
+}
+
+if (
+  Number.isFinite(totalCurrent) &&
+  Number.isFinite(commercialCurrent) &&
+  Number.isFinite(avGeneralCurrent) &&
+  totalCurrent > 0 &&
+  commercialCurrent < 10 &&
+  avGeneralCurrent > 0
+) {
+  sentences.push(
+    "En este caso, la lectura debe centrarse en la actividad total registrada y en la aviación general, dado que la base comercial regular es reducida o inexistente."
+  );
+}
+
+if (!sentences.length) {
+  sentences.push(
+    "No se dispone de información suficiente para construir una comparación interanual del primer semestre de 2026."
+  );
+}
+
+conclusion.textContent = sentences.join(" ");
   }
 
   async function renderAirport(iata) {
