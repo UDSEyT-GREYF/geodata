@@ -216,8 +216,15 @@
       input.focus();
     });
 
-    select.addEventListener("change", () => {
+select.addEventListener("change", () => {
   syncFromSelect();
+
+  document.dispatchEvent(new CustomEvent("report:airport-changed", {
+    detail: {
+      iata: select.value
+    }
+  }));
+
   scheduleInformeImpactoPageNumbers();
 });
 
@@ -283,6 +290,28 @@ async function mountOfferDemandPartial() {
   if (mount) mount.innerHTML = html;
 }
 
+  async function mountTerritorialPartial() {
+  const html = await loadText("partials/alcance-territorial-body.html");
+  const mount = q("alcanceTerritorialMount");
+
+  if (mount) {
+    mount.innerHTML = html;
+  }
+
+  document.dispatchEvent(new CustomEvent("alcance:mounted"));
+}
+
+async function mountImpactoSocioeconomicoPartial() {
+  const html = await loadText("partials/impacto-socioeconomico-body.html");
+  const mount = q("impactoMount");
+
+  if (mount) {
+    mount.innerHTML = html;
+  }
+
+  document.dispatchEvent(new CustomEvent("impacto:mounted"));
+}
+  
 function isVisibleReportPage(page) {
   if (!page) return false;
 
@@ -323,7 +352,21 @@ function getInformeImpactoPagesForNumbering() {
   offerDemandPages.forEach(page => {
     pages.push({ el: page, orientation: "portrait" });
   });
+const territorialPages = Array.from(
+  document.querySelectorAll("#alcanceTerritorialMount .impacto-sheet")
+).filter(isVisibleReportPage);
 
+territorialPages.forEach(page => {
+  pages.push({ el: page, orientation: "portrait" });
+});
+
+const impactoPages = Array.from(
+  document.querySelectorAll("#impactoMount .impacto-sheet")
+).filter(isVisibleReportPage);
+
+impactoPages.forEach(page => {
+  pages.push({ el: page, orientation: "portrait" });
+});
   return pages;
 }
 
@@ -776,6 +819,40 @@ for (const page of offerDemandPages) {
   );
 }
 
+const territorialPages = Array.from(
+  document.querySelectorAll("#alcanceTerritorialMount .impacto-sheet")
+).filter(page => {
+  return page.offsetParent !== null && !page.classList.contains("is-hidden");
+});
+
+for (const page of territorialPages) {
+  const raster = await rasterizeElement(page, 2);
+
+  addRasterPage(
+    pdf,
+    raster,
+    "portrait",
+    false
+  );
+}
+
+const impactoPages = Array.from(
+  document.querySelectorAll("#impactoMount .impacto-sheet")
+).filter(page => {
+  return page.offsetParent !== null && !page.classList.contains("is-hidden");
+});
+
+for (const page of impactoPages) {
+  const raster = await rasterizeElement(page, 2);
+
+  addRasterPage(
+    pdf,
+    raster,
+    "portrait",
+    false
+  );
+}
+
 pdf.save(`informe-impacto-${airport}.pdf`);
       } catch (err) {
         console.error("No se pudo exportar el informe en PDF.", err);
@@ -795,8 +872,16 @@ await mountCoverPartial();
 await mountSummaryPartial();
 await mountLaminaFromCurrentHtml();
 await mountOfferDemandPartial();
+await mountTerritorialPartial();
+await mountImpactoSocioeconomicoPartial();
 
 document.dispatchEvent(new CustomEvent("report:partials-ready"));
+
+document.dispatchEvent(new CustomEvent("report:airport-changed", {
+  detail: {
+    iata: q("airportSelect")?.value || ""
+  }
+}));
 
 scheduleInformeImpactoPageNumbers();
   } catch (err) {
