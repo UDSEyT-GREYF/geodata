@@ -902,3 +902,142 @@ body.impacto-standalone .impacto-sheet {
   color: var(--impacto-blue);
   font-weight: 850;
 }
+/* Matriz compacta de pasajeros 2026 - estilo Datos Clave */
+.impacto-pax-panel {
+  margin: 0;
+  border: 0.25mm solid #cfd8e6;
+  border-radius: 1.6mm;
+  overflow: hidden;
+  background: #f5f9fe;
+}
+
+.impacto-pax-panel-header {
+  min-height: 7mm;
+  padding: 1.6mm 3mm;
+  background: #2f73b7;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4mm;
+}
+
+.impacto-pax-panel-header div {
+  display: flex;
+  align-items: baseline;
+  gap: 2mm;
+  min-width: 0;
+}
+
+.impacto-pax-panel-header strong {
+  font-size: 9.2pt;
+  font-weight: 850;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.impacto-pax-panel-header span {
+  font-size: 6.7pt;
+  font-weight: 650;
+  opacity: 0.9;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.impacto-pax-panel-header small {
+  font-size: 6.6pt;
+  font-weight: 650;
+  opacity: 0.95;
+  white-space: nowrap;
+}
+
+.impacto-pax-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.2mm;
+  padding: 2.4mm;
+}
+
+.impacto-pax-group {
+  --pax-color: #1d4ed8;
+  display: grid;
+  grid-template-rows: auto repeat(3, minmax(0, 1fr));
+  gap: 1.5mm;
+  min-width: 0;
+}
+
+.impacto-pax-group-total {
+  --pax-color: #1d4ed8;
+}
+
+.impacto-pax-group-cabotaje {
+  --pax-color: #5aa7df;
+}
+
+.impacto-pax-group-international {
+  --pax-color: #16a34a;
+}
+
+.impacto-pax-group h3 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 1.4mm;
+  color: #003366;
+  font-size: 7.4pt;
+  font-weight: 850;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.impacto-pax-group h3 span {
+  width: 2.4mm;
+  height: 2.4mm;
+  border-radius: 999px;
+  background: var(--pax-color);
+  flex: 0 0 auto;
+}
+
+.impacto-pax-card {
+  min-height: 13.2mm;
+  padding: 1.6mm 2mm;
+  background: #ffffff;
+  border: 0.25mm solid #cfd8e6;
+  border-top: 0.65mm solid var(--pax-color);
+  border-radius: 1.5mm;
+  box-shadow: 0 0.6mm 1.2mm rgba(0, 31, 84, 0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.6mm;
+  min-width: 0;
+}
+
+.impacto-pax-card span {
+  color: #5f6f83;
+  font-size: 6.3pt;
+  font-weight: 750;
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.impacto-pax-card strong {
+  color: #003366;
+  font-size: 12.2pt;
+  font-weight: 850;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.impacto-pax-card small {
+  color: #5f6f83;
+  font-size: 6.2pt;
+  line-height: 1;
+}
+
+.impacto-pax-card small b {
+  color: var(--pax-color);
+  font-weight: 850;
+}
