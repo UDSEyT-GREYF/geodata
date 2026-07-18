@@ -279,7 +279,8 @@ let root = null;
 let geojson = null;
 let currentFeature = null;
 let initializationPromise = null;
-
+let summaryImageRequestId = 0;
+  
 const passengerCacheByUrl = new Map();
 let passengerSemesterData = null;
 let employmentGenderByIata = new Map();
@@ -1783,65 +1784,73 @@ renderNoAeroRankBars(
     renderSummaryFallback(root.querySelector("#impactoSummaryFallback"), data);
   }
 
-  function trySummaryImages(candidates, image, fallback, index = 0) {
-    if (!image || !fallback) return;
+function trySummaryImages(candidates, image, fallback, requestId, index = 0) {
+  if (!image || !fallback) return;
+  if (requestId !== summaryImageRequestId) return;
 
-    if (index === 0) {
-      image.hidden = true;
-      image.removeAttribute("src");
-      fallback.hidden = false;
-    }
-
-    if (index >= candidates.length) {
-      image.hidden = true;
-      fallback.hidden = false;
-      return;
-    }
-
-    const src = candidates[index];
-    if (!src) {
-      trySummaryImages(candidates, image, fallback, index + 1);
-      return;
-    }
-
-    const probe = new Image();
-    probe.onload = () => {
-      image.src = src;
-      image.hidden = false;
-      fallback.hidden = true;
-    };
-    probe.onerror = () => trySummaryImages(candidates, image, fallback, index + 1);
-    probe.src = src;
+  if (index === 0) {
+    image.hidden = true;
+    image.removeAttribute("src");
+    fallback.hidden = false;
   }
 
-  function renderSummaryImage(data) {
-    const image = root.querySelector("#impactoSummaryImg");
-    const fallback = root.querySelector("#impactoSummaryFallback");
-    const existingSummary = document.querySelector("#summaryImgAirport");
-    const existingSrc = existingSummary && (existingSummary.currentSrc || existingSummary.getAttribute("src"));
-    const iata = data.iata;
-
-const candidates = [
-  existingSrc,
-  data.summaryImage,
-
-  // Nombre actual de tus imágenes en GitHub:
-  iata ? `img/resumenejecutivo/resumen(${iata}).PNG` : null,
-  iata ? `img/resumenejecutivo/resumen(${iata}).png` : null,
-
-  // Alternativas por si algún archivo quedó con otra convención:
-  iata ? `img/resumenejecutivo/Resumen(${iata}).PNG` : null,
-  iata ? `img/resumenejecutivo/Resumen(${iata}).png` : null,
-  iata ? `img/resumenejecutivo/${iata}.png` : null,
-  iata ? `img/resumenejecutivo/${iata}.PNG` : null,
-  iata ? `img/resumenejecutivo/${iata}_impacto.png` : null,
-  iata ? `img/resumenejecutivo/impacto_${iata}.png` : null,
-  iata ? `img/resumenejecutivo/Impacto_${iata}.png` : null,
-  iata ? `img/resumenejecutivo/${iata.toLowerCase()}.png` : null
-].filter(Boolean);
-
-    trySummaryImages([...new Set(candidates)], image, fallback);
+  if (index >= candidates.length) {
+    image.hidden = true;
+    fallback.hidden = false;
+    return;
   }
+
+  const src = candidates[index];
+
+  if (!src) {
+    trySummaryImages(candidates, image, fallback, requestId, index + 1);
+    return;
+  }
+
+  const probe = new Image();
+
+  probe.onload = () => {
+    if (requestId !== summaryImageRequestId) return;
+
+    image.src = src;
+    image.hidden = false;
+    fallback.hidden = true;
+  };
+
+  probe.onerror = () => {
+    if (requestId !== summaryImageRequestId) return;
+
+    trySummaryImages(candidates, image, fallback, requestId, index + 1);
+  };
+
+  probe.src = src;
+}
+
+function renderSummaryImage(data) {
+  const image = root.querySelector("#impactoSummaryImg");
+  const fallback = root.querySelector("#impactoSummaryFallback");
+  const iata = String(data?.iata || "").trim().toUpperCase();
+
+  const candidates = [
+    iata ? `img/resumenejecutivo/resumen(${iata}).PNG` : null,
+    iata ? `img/resumenejecutivo/resumen(${iata}).png` : null,
+
+    iata ? `img/resumenejecutivo/Resumen(${iata}).PNG` : null,
+    iata ? `img/resumenejecutivo/Resumen(${iata}).png` : null,
+    iata ? `img/resumenejecutivo/${iata}.png` : null,
+    iata ? `img/resumenejecutivo/${iata}.PNG` : null,
+    iata ? `img/resumenejecutivo/${iata}_impacto.png` : null,
+    iata ? `img/resumenejecutivo/impacto_${iata}.png` : null,
+    iata ? `img/resumenejecutivo/Impacto_${iata}.png` : null,
+    iata ? `img/resumenejecutivo/${iata.toLowerCase()}.png` : null,
+
+    data.summaryImage
+  ].filter(Boolean);
+
+  const requestId = ++summaryImageRequestId;
+
+  trySummaryImages([...new Set(candidates)], image, fallback, requestId);
+}
 
 
   function findFeature(iata) {
@@ -2936,10 +2945,15 @@ await renderAirport(resolveInitialIata());
     initializationPromise = null;
     initialize();
   });
-  document.addEventListener("report:airport-changed", (event) => {
-    const iata = event.detail?.iata || event.detail?.airport || "";
-    if (iata) renderAirport(iata);
-  });
+document.addEventListener("report:airport-changed", async (event) => {
+  const iata = String(event.detail?.iata || event.detail?.airport || "").trim().toUpperCase();
+  if (!iata) return;
+
+  window.REPORT_AIRPORT_IATA = iata;
+
+  await initialize();
+  await renderAirport(iata);
+});
 
 window.ImpactoSocioeconomico = {
   initialize,
