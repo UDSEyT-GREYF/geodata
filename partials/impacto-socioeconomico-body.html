@@ -283,53 +283,85 @@
       </figure>
 
 
-<section class="impacto-2026-strip impacto-traffic-strip" aria-label="Pasajeros y actividad aérea primer semestre 2026">
-  <header class="impacto-traffic-strip-header">
-    <span data-bind="passengerPeriodLabel">Primer semestre de 2026</span>
-    <small data-bind="passengerComparisonLabel">Comparación con enero–junio de 2025</small>
+<section class="impacto-pax-panel" aria-label="Pasajeros y actividad aérea primer semestre 2026">
+  <header class="impacto-pax-panel-header">
+    <div>
+      <strong>Pasajeros y actividad aérea</strong>
+      <span data-bind="airportLine">Aeropuerto</span>
+    </div>
+    <small>
+      <span data-bind="passengerPeriodLabel">Primer semestre de 2026</span> ·
+      <span data-bind="passengerComparisonLabel">Comparación con enero–junio de 2025</span>
+    </small>
   </header>
 
-  <article class="impacto-traffic-kpi">
-    <span>Comercial</span>
-    <strong data-bind="passengerCommercial2026">–</strong>
-    <small><b data-bind="passengerCommercialYoy">–</b> interanual</small>
-  </article>
+  <div class="impacto-pax-grid">
+    <section class="impacto-pax-group impacto-pax-group-total">
+      <h3><span></span>Total</h3>
 
-  <article class="impacto-traffic-kpi">
-    <span>Av. General</span>
-    <strong data-bind="passengerAvGeneral2026">–</strong>
-    <small><b data-bind="passengerAvGeneralYoy">–</b> interanual</small>
-  </article>
+      <article class="impacto-pax-card">
+        <span>Total registrado</span>
+        <strong data-bind="passengerTotal2026">–</strong>
+        <small><b data-bind="passengerTotalYoy">–</b> interanual</small>
+      </article>
 
-  <article class="impacto-traffic-kpi">
-    <span>Total registrado</span>
-    <strong data-bind="passengerTotal2026">–</strong>
-    <small><b data-bind="passengerTotalYoy">–</b> interanual</small>
-  </article>
+      <article class="impacto-pax-card">
+        <span>Comercial</span>
+        <strong data-bind="passengerCommercial2026">–</strong>
+        <small><b data-bind="passengerCommercialYoy">–</b> interanual</small>
+      </article>
 
-  <article class="impacto-traffic-kpi">
-    <span>Comercial cabotaje</span>
-    <strong data-bind="passengerCommercialCabotaje2026">–</strong>
-    <small><b data-bind="passengerCommercialCabotajeYoy">–</b> interanual</small>
-  </article>
+      <article class="impacto-pax-card">
+        <span>Av. General</span>
+        <strong data-bind="passengerAvGeneral2026">–</strong>
+        <small><b data-bind="passengerAvGeneralYoy">–</b> interanual</small>
+      </article>
+    </section>
 
-  <article class="impacto-traffic-kpi">
-    <span>Comercial internacional</span>
-    <strong data-bind="passengerCommercialInternational2026">–</strong>
-    <small><b data-bind="passengerCommercialInternationalYoy">–</b> interanual</small>
-  </article>
+    <section class="impacto-pax-group impacto-pax-group-cabotaje">
+      <h3><span></span>Cabotaje</h3>
 
-  <article class="impacto-traffic-kpi">
-    <span>Av. Gral. cabotaje</span>
-    <strong data-bind="passengerAvGeneralCabotaje2026">–</strong>
-    <small><b data-bind="passengerAvGeneralCabotajeYoy">–</b> interanual</small>
-  </article>
+      <article class="impacto-pax-card">
+        <span>Total cabotaje</span>
+        <strong data-bind="passengerCabotaje2026">–</strong>
+        <small><b data-bind="passengerCabotajeYoy">–</b> interanual</small>
+      </article>
 
-  <article class="impacto-traffic-kpi">
-    <span>Av. Gral. internacional</span>
-    <strong data-bind="passengerAvGeneralInternational2026">–</strong>
-    <small><b data-bind="passengerAvGeneralInternationalYoy">–</b> interanual</small>
-  </article>
+      <article class="impacto-pax-card">
+        <span>Comercial cabotaje</span>
+        <strong data-bind="passengerCommercialCabotaje2026">–</strong>
+        <small><b data-bind="passengerCommercialCabotajeYoy">–</b> interanual</small>
+      </article>
+
+      <article class="impacto-pax-card">
+        <span>Av. Gral. cabotaje</span>
+        <strong data-bind="passengerAvGeneralCabotaje2026">–</strong>
+        <small><b data-bind="passengerAvGeneralCabotajeYoy">–</b> interanual</small>
+      </article>
+    </section>
+
+    <section class="impacto-pax-group impacto-pax-group-international">
+      <h3><span></span>Internacional</h3>
+
+      <article class="impacto-pax-card">
+        <span>Total internacional</span>
+        <strong data-bind="passengerInternational2026">–</strong>
+        <small><b data-bind="passengerInternationalYoy">–</b> interanual</small>
+      </article>
+
+      <article class="impacto-pax-card">
+        <span>Comercial internacional</span>
+        <strong data-bind="passengerCommercialInternational2026">–</strong>
+        <small><b data-bind="passengerCommercialInternationalYoy">–</b> interanual</small>
+      </article>
+
+      <article class="impacto-pax-card">
+        <span>Av. Gral. internacional</span>
+        <strong data-bind="passengerAvGeneralInternational2026">–</strong>
+        <small><b data-bind="passengerAvGeneralInternationalYoy">–</b> interanual</small>
+      </article>
+    </section>
+  </div>
 </section>
 
       <section class="impacto-conclusion-box">
