@@ -364,17 +364,25 @@ if (localidadesLayer) {
   }
 
   function drawInfluenceAreaLayer(iata) {
-    const features = (areasInfluenciaFeatures || []).filter(feature => {
-      const code = getInfluenceAreaCode(feature.properties || {});
-      return code === iata;
-    });
+let features = (areasInfluenciaFeatures || []).filter(feature => {
+  const code = getInfluenceAreaCode(feature.properties || {});
+  return code === iata;
+});
 
-    if (!features.length) {
-      console.warn(`No se encontró área de influencia para ${iata}.`);
-      return;
-    }
+if (!features.length) {
+  console.warn(`No se encontró área de influencia para ${iata}.`);
+  return;
+}
 
-    influenciaLayer = L.geoJSON(features, {
+const airport = aeropuertos.find(a => getAirportIata(a) === iata);
+features = filterInfluenceFeaturesForDisplay(features, iata, airport);
+
+if (!features.length) {
+  console.warn(`No quedaron geometrías válidas para el área de influencia de ${iata}.`);
+  return;
+}
+
+influenciaLayer = L.geoJSON(features, {
       pane: "pane_influencia",
       interactive: false,
       style: {
@@ -565,7 +573,99 @@ function parseNumberFlexible(value) {
 
   return Number.isFinite(number) ? number : NaN;
 }
+function isFuegianAirport(iata) {
+  return iata === "USH" || iata === "RGA";
+}
 
+function getMalvinasBounds() {
+  return L.latLngBounds(
+    [-52.9, -61.9],   // sudoeste aprox.
+    [-50.4, -56.0]    // noreste aprox.
+  );
+}
+
+function getSpecialFocusBounds(iata, airport) {
+  if (!isFuegianAirport(iata)) return null;
+
+  const airportCenter = getAirportCenterLatLng(airport);
+  const bounds = getMalvinasBounds();
+
+  if (airportCenter) {
+    bounds.extend(airportCenter);
+  }
+
+  if (tiemposLayer) {
+    const tb = tiemposLayer.getBounds();
+    if (tb.isValid()) bounds.extend(tb);
+  }
+
+  if (influenciaLayer) {
+    const ib = influenciaLayer.getBounds();
+    if (ib.isValid()) bounds.extend(ib);
+  }
+
+  return bounds;
+}
+
+function filterInfluenceFeaturesForDisplay(features, iata, airport) {
+  if (!isFuegianAirport(iata)) return features;
+
+  const specialBounds = getSpecialFocusBounds(iata, airport);
+  if (!specialBounds) return features;
+
+  return features
+    .map(feature => filterFeatureToBounds(feature, specialBounds.pad(0.15)))
+    .filter(Boolean);
+}
+
+function filterFeatureToBounds(feature, bounds) {
+  if (!feature?.geometry) return null;
+
+  const geom = feature.geometry;
+
+  if (geom.type === "Polygon") {
+    const temp = {
+      type: "Feature",
+      properties: feature.properties || {},
+      geometry: {
+        type: "Polygon",
+        coordinates: geom.coordinates
+      }
+    };
+
+    const b = L.geoJSON(temp).getBounds();
+    return b.isValid() && bounds.intersects(b) ? temp : null;
+  }
+
+  if (geom.type === "MultiPolygon") {
+    const kept = (geom.coordinates || []).filter(coords => {
+      const temp = {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          type: "Polygon",
+          coordinates: coords
+        }
+      };
+
+      const b = L.geoJSON(temp).getBounds();
+      return b.isValid() && bounds.intersects(b);
+    });
+
+    if (!kept.length) return null;
+
+    return {
+      type: "Feature",
+      properties: feature.properties || {},
+      geometry: {
+        type: "MultiPolygon",
+        coordinates: kept
+      }
+    };
+  }
+
+  return feature;
+}
 function formatNumber(value) {
   if (!Number.isFinite(Number(value))) return "–";
 
@@ -621,7 +721,7 @@ function drawLegend(hasInfluenceArea, hasLocalidades) {
 
 function fitMapToLayers(airport) {
   let bounds = null;
-
+const iata = getAirportIata(airport);
   if (tiemposLayer) {
     const b = tiemposLayer.getBounds();
     if (b.isValid()) {
@@ -642,13 +742,23 @@ function fitMapToLayers(airport) {
     bounds = bounds ? bounds.extend(b) : b;
   }
 
-  if (bounds && bounds.isValid()) {
-    map.fitBounds(bounds, {
-      padding: [14, 14],
-      maxZoom: 9
-    });
-    return;
-  }
+const specialBounds = getSpecialFocusBounds(iata, airport);
+
+if (specialBounds && specialBounds.isValid()) {
+  map.fitBounds(specialBounds, {
+    padding: [16, 16],
+    maxZoom: 7
+  });
+  return;
+}
+
+if (bounds && bounds.isValid()) {
+  map.fitBounds(bounds, {
+    padding: [14, 14],
+    maxZoom: 9
+  });
+  return;
+}
 
   const center = getAirportCenterLatLng(airport) || [-38, -64];
   map.setView(center, 7);
