@@ -577,10 +577,10 @@ function isFuegianAirport(iata) {
   return iata === "USH" || iata === "RGA";
 }
 
-function getMalvinasBounds() {
+function getFuegianFocusBounds() {
   return L.latLngBounds(
-    [-52.9, -61.9],   // sudoeste aprox.
-    [-50.4, -56.0]    // noreste aprox.
+    [-55.7, -70.4],  // sudoeste: incluye Isla Grande de Tierra del Fuego
+    [-49.8, -55.2]   // noreste: incluye Islas Malvinas con aire
   );
 }
 
@@ -745,11 +745,10 @@ const iata = getAirportIata(airport);
 const specialBounds = getSpecialFocusBounds(iata, airport);
 
 if (specialBounds && specialBounds.isValid()) {
-  map.fitBounds(specialBounds, {
-    padding: [16, 16],
-    maxZoom: 7
-  });
-  return;
+  setTimeout(() => {
+    mapInfluencia.invalidateSize();
+    mapInfluencia.fitBounds(specialBounds, { padding: [24, 24] });
+  }, 0);
 }
 
 if (bounds && bounds.isValid()) {
