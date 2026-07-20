@@ -740,7 +740,7 @@ body.impacto-standalone .impacto-sheet {
 
 .impacto-sheet-passenger-benefits .impacto-sheet-inner {
   padding: 14mm 17mm 12mm;
-  gap: 0;
+  gap: 5mm;
 }
 
 .impacto-passenger-header {
