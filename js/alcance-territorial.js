@@ -579,19 +579,28 @@ function isFuegianAirport(iata) {
 
 function getFuegianFocusBounds() {
   return L.latLngBounds(
-    [-55.7, -70.4],  // sudoeste: incluye Isla Grande de Tierra del Fuego
-    [-49.8, -55.2]   // noreste: incluye Islas Malvinas con aire
+    [-55.7, -70.4],  // sudoeste: Isla Grande de Tierra del Fuego
+    [-49.8, -55.2]   // noreste: Islas Malvinas con aire
   );
 }
 
 function getSpecialFocusBounds(iata, airport) {
   if (!isFuegianAirport(iata)) return null;
 
+  const bounds = getFuegianFocusBounds();
+
   const airportCenter = getAirportCenterLatLng(airport);
-  const bounds = getMalvinasBounds();
 
   if (airportCenter) {
-    bounds.extend(airportCenter);
+    bounds.extend([
+      airportCenter[0] - 0.25,
+      airportCenter[1] - 0.35
+    ]);
+
+    bounds.extend([
+      airportCenter[0] + 0.25,
+      airportCenter[1] + 0.35
+    ]);
   }
 
   if (tiemposLayer) {
@@ -720,8 +729,21 @@ function drawLegend(hasInfluenceArea, hasLocalidades) {
 }
 
 function fitMapToLayers(airport) {
+  if (!map) return;
+
+  const iata = getAirportIata(airport);
+  const specialBounds = getSpecialFocusBounds(iata, airport);
+
+  if (specialBounds && specialBounds.isValid()) {
+    map.fitBounds(specialBounds, {
+      padding: [8, 8],
+      maxZoom: 6
+    });
+    return;
+  }
+
   let bounds = null;
-const iata = getAirportIata(airport);
+
   if (tiemposLayer) {
     const b = tiemposLayer.getBounds();
     if (b.isValid()) {
@@ -742,22 +764,13 @@ const iata = getAirportIata(airport);
     bounds = bounds ? bounds.extend(b) : b;
   }
 
-const specialBounds = getSpecialFocusBounds(iata, airport);
-
-if (specialBounds && specialBounds.isValid()) {
-  setTimeout(() => {
-    mapInfluencia.invalidateSize();
-    mapInfluencia.fitBounds(specialBounds, { padding: [24, 24] });
-  }, 0);
-}
-
-if (bounds && bounds.isValid()) {
-  map.fitBounds(bounds, {
-    padding: [14, 14],
-    maxZoom: 9
-  });
-  return;
-}
+  if (bounds && bounds.isValid()) {
+    map.fitBounds(bounds, {
+      padding: [14, 14],
+      maxZoom: 9
+    });
+    return;
+  }
 
   const center = getAirportCenterLatLng(airport) || [-38, -64];
   map.setView(center, 7);
