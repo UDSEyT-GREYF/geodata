@@ -2523,7 +2523,7 @@ const airportLabel = data.iata
     
 if (Number.isFinite(totalCurrent)) {
   sentences.push(
-    `En ${airportLabel}, durante el primer semestre de 2026 se registraron <strong>${formatInteger(totalCurrent)} pasajeros totales</strong>, lo que representa ${trendPhrase(total)} respecto del primer semestre de 2025.`
+    `En el ${airportLabel}, durante el primer semestre de 2026 se registraron <strong>${formatInteger(totalCurrent)} pasajeros totales</strong>, lo que representa ${trendPhrase(total)} respecto del primer semestre de 2025.`
   );
 }
 
