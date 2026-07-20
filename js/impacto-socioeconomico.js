@@ -2462,7 +2462,12 @@ function shareText(value, total) {
     return null;
   }
 
-  return formatPercent((value / total) * 100);
+  const share = (value / total) * 100;
+
+  return `${share.toLocaleString("es-AR", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1
+  })}%`;
 }
 
 function metricDelta(metric) {
