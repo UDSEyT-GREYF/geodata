@@ -8,6 +8,7 @@ let influenciaMarker = null;
 let localidadesFeatures = [];
 let localidadesLayer = null;
 let influenciaLegend = null;
+let legendControl = null;
 
 let aeropuertos = [];
 let aeropuertosPoligonos = [];
@@ -41,6 +42,100 @@ function getInfluenceAreaCode(props) {
   )
     .trim()
     .toUpperCase();
+}
+
+function isFuegianAirport(iata) {
+  return iata === "USH" || iata === "RGA";
+}
+
+function getMalvinasBounds() {
+  return L.latLngBounds(
+    [-52.9, -61.9],
+    [-50.4, -56.0]
+  );
+}
+
+function getSpecialFocusBounds(iata, airport) {
+  if (!isFuegianAirport(iata)) return null;
+
+  const airportCenter = getAirportCenterLatLng(airport);
+  const bounds = getMalvinasBounds();
+
+  if (airportCenter) {
+    bounds.extend(airportCenter);
+  }
+
+  if (tiemposLayer) {
+    const tb = tiemposLayer.getBounds();
+    if (tb.isValid()) bounds.extend(tb);
+  }
+
+  if (influenciaLayer) {
+    const ib = influenciaLayer.getBounds();
+    if (ib.isValid()) bounds.extend(ib);
+  }
+
+  return bounds;
+}
+
+function filterInfluenceFeaturesForDisplay(features, iata, airport) {
+  if (!isFuegianAirport(iata)) return features;
+
+  const specialBounds = getSpecialFocusBounds(iata, airport);
+  if (!specialBounds) return features;
+
+  return features
+    .map(feature => filterFeatureToBounds(feature, specialBounds.pad(0.15)))
+    .filter(Boolean);
+}
+
+function filterFeatureToBounds(feature, bounds) {
+  if (!feature?.geometry) return null;
+
+  const geom = feature.geometry;
+
+  if (geom.type === "Polygon") {
+    const temp = {
+      type: "Feature",
+      properties: feature.properties || {},
+      geometry: {
+        type: "Polygon",
+        coordinates: geom.coordinates
+      }
+    };
+
+    const b = L.geoJSON(temp).getBounds();
+    return b.isValid() && bounds.intersects(b) ? temp : null;
+  }
+
+  if (geom.type === "MultiPolygon") {
+    const kept = (geom.coordinates || []).filter(coords => {
+      const temp = {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          type: "Polygon",
+          coordinates: coords
+        }
+      };
+
+      const b = L.geoJSON(temp).getBounds();
+      return b.isValid() && bounds.intersects(b);
+    });
+
+    if (!kept.length) return null;
+
+    return {
+      type: "Feature",
+      properties: feature.properties || {},
+      geometry: {
+        type: "MultiPolygon",
+        coordinates: kept
+      }
+    };
+  }
+
+  return feature;
 }
 /* =============================
    MAPA BASE
@@ -111,10 +206,14 @@ function updateInfluenciaMapForAirport(a) {
   mapInfluencia.removeLayer(localidadesLayer);
   localidadesLayer = null;
 }
-  if (influenciaMarker) {
-    mapInfluencia.removeLayer(influenciaMarker);
-    influenciaMarker = null;
-  }
+if (legendControl) {
+  mapInfluencia.removeControl(legendControl);
+  legendControl = null;
+}
+   if (influenciaMarker) {
+  mapInfluencia.removeLayer(influenciaMarker);
+  influenciaMarker = null;
+}
 if (influenciaLegend) {
   mapInfluencia.removeControl(influenciaLegend);
   influenciaLegend = null;
@@ -156,6 +255,7 @@ if (!gj || !gj.features || !gj.features.length) {
       }).addTo(mapInfluencia);
        
 drawLocalidadesLayer(a);
+drawLegend(Boolean(influenciaLayer), Boolean(localidadesLayer));
 ajustarVista(a);
 return;
     })
@@ -163,16 +263,19 @@ return;
   console.warn("No se pudo cargar tiempos de viaje:", tiemposPath);
   drawLocalidadesLayer(a);
   drawInfluenciaLegend(Boolean(influenciaLayer), Boolean(localidadesLayer));
+   drawLegend(Boolean(influenciaLayer), Boolean(localidadesLayer));
   ajustarVista(a);
 });
 
 /* ----------- 2) Área de influencia ----------- */
 if (Array.isArray(areasInfluenciaFeatures) && areasInfluenciaFeatures.length) {
-  const featsInfl = areasInfluenciaFeatures.filter(f => {
-    const props = f.properties || {};
-    const code = getInfluenceAreaCode(props);
-    return code === iataUpper;
-  });
+let featsInfl = areasInfluenciaFeatures.filter(f => {
+  const props = f.properties || {};
+  const code = getInfluenceAreaCode(props);
+  return code === iataUpper;
+});
+
+featsInfl = filterInfluenceFeaturesForDisplay(featsInfl, iataUpper, a);
 
   if (featsInfl.length) {
     influenciaLayer = L.geoJSON(featsInfl, {
@@ -389,6 +492,63 @@ function drawInfluenciaLegend(hasInfluenceArea, hasLocalidades) {
 /* =============================
    AJUSTAR VISTA
    ============================= */
+function drawLegend(hasInfluenceArea, hasLocalidades) {
+  if (legendControl) {
+    mapInfluencia.removeControl(legendControl);
+    legendControl = null;
+  }
+
+  legendControl = L.control({ position: "bottomleft" });
+
+  legendControl.onAdd = function () {
+    const div = L.DomUtil.create("div", "info legend");
+    div.style.background = "rgba(255, 255, 255, 0.95)";
+    div.style.border = "1px solid #d0d7e2";
+    div.style.borderRadius = "6px";
+    div.style.padding = "8px 10px";
+    div.style.fontSize = "0.95rem";
+    div.style.lineHeight = "1.35";
+    div.style.color = "#111";
+
+    div.innerHTML = `
+      <div style="font-weight:800; margin-bottom:4px;">Tiempos de viaje</div>
+
+      <div>
+        <span style="display:inline-block;width:10px;height:10px;background:#08306b;margin-right:5px;border:1px solid #08306b;"></span>
+        Hasta 1 h
+      </div>
+
+      <div>
+        <span style="display:inline-block;width:10px;height:10px;background:#2171b5;margin-right:5px;border:1px solid #2171b5;"></span>
+        Entre 1 y 2 h
+      </div>
+
+      <div>
+        <span style="display:inline-block;width:10px;height:10px;background:#6baed6;margin-right:5px;border:1px solid #6baed6;"></span>
+        Entre 2 y 3 h
+      </div>
+
+      ${hasInfluenceArea ? `
+        <div style="margin-top:5px;">
+          <span style="display:inline-block;width:18px;height:0;border-top:2px dashed #ffb000;margin-right:5px;vertical-align:middle;"></span>
+          Área de influencia aeroportuaria
+        </div>
+      ` : ""}
+
+      ${hasLocalidades ? `
+        <div style="margin-top:5px;">
+          <span style="display:inline-block;width:8px;height:8px;background:#ffffff;border:1.4px solid #1f2933;border-radius:50%;margin-right:6px;"></span>
+          Localidades censales
+        </div>
+      ` : ""}
+    `;
+
+    return div;
+  };
+
+  legendControl.addTo(mapInfluencia);
+}
+
 function ajustarVista(a) {
   if (!mapInfluencia) return;
 
@@ -412,14 +572,21 @@ function ajustarVista(a) {
     bounds = bounds ? bounds.extend(b) : b;
   }
 
-  const fallbackCenter = getAirportCenterLatLng(a) || [-38, -64];
+const fallbackCenter = getAirportCenterLatLng(a) || [-38, -64];
+const iata = String(a?.IATA || "").trim().toUpperCase();
+const specialBounds = getSpecialFocusBounds(iata, a);
 
-  if (bounds && bounds.isValid()) {
-    setTimeout(() => {
-      mapInfluencia.invalidateSize();
-      mapInfluencia.fitBounds(bounds, { padding: [10, 10] });
-    }, 0);
-  } else {
+if (specialBounds && specialBounds.isValid()) {
+  setTimeout(() => {
+    mapInfluencia.invalidateSize();
+    mapInfluencia.fitBounds(specialBounds, { padding: [16, 16] });
+  }, 0);
+} else if (bounds && bounds.isValid()) {
+  setTimeout(() => {
+    mapInfluencia.invalidateSize();
+    mapInfluencia.fitBounds(bounds, { padding: [10, 10] });
+  }, 0);
+} else {
     setTimeout(() => {
       mapInfluencia.invalidateSize();
       mapInfluencia.setView(fallbackCenter, 7);
