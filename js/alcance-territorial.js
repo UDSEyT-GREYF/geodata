@@ -23,6 +23,7 @@
   let influenciaLayer = null;
   let airportMarker = null;
   let legendControl = null;
+  let staticLegendEl = null;
 
   let currentIata = "";
   let airportSelect = null;
@@ -321,6 +322,10 @@ if (localidadesLayer) {
       map.removeControl(legendControl);
       legendControl = null;
     }
+    if (staticLegendEl) {
+  staticLegendEl.remove();
+  staticLegendEl = null;
+}
   }
 
   async function drawTravelTimeLayer(iata) {
@@ -683,45 +688,73 @@ function formatNumber(value) {
   });
 }
   
+function buildTerritorialLegendHtml(hasInfluenceArea, hasLocalidades) {
+  return `
+    <div class="impacto-territorial-legend-title">Tiempos de viaje</div>
+
+    <div class="impacto-territorial-legend-row">
+      <span style="background:#08306b;border-color:#08306b;"></span>
+      Hasta 1 h
+    </div>
+
+    <div class="impacto-territorial-legend-row">
+      <span style="background:#2171b5;border-color:#2171b5;"></span>
+      Entre 1 y 2 h
+    </div>
+
+    <div class="impacto-territorial-legend-row">
+      <span style="background:#6baed6;border-color:#6baed6;"></span>
+      Entre 2 y 3 h
+    </div>
+
+    ${hasInfluenceArea ? `
+      <div class="impacto-territorial-legend-row impacto-territorial-legend-line">
+        <span></span>
+        Área de influencia aeroportuaria
+      </div>
+    ` : ""}
+
+    ${hasLocalidades ? `
+      <div class="impacto-territorial-legend-row impacto-territorial-legend-dot">
+        <span></span>
+        Localidades censales
+      </div>
+    ` : ""}
+  `;
+}
+
+function drawStaticLegend(hasInfluenceArea, hasLocalidades) {
+  if (staticLegendEl) {
+    staticLegendEl.remove();
+    staticLegendEl = null;
+  }
+
+  const mapCard = document.querySelector("#alcanceTerritorialMount .impacto-territorial-map-card");
+  if (!mapCard) return;
+
+  staticLegendEl = document.createElement("div");
+  staticLegendEl.className = "impacto-territorial-static-legend";
+  staticLegendEl.innerHTML = buildTerritorialLegendHtml(hasInfluenceArea, hasLocalidades);
+
+  mapCard.appendChild(staticLegendEl);
+}
+
 function drawLegend(hasInfluenceArea, hasLocalidades) {
+  if (IS_REPORT_MODE) {
+    drawStaticLegend(hasInfluenceArea, hasLocalidades);
+    return;
+  }
+
+  if (legendControl) {
+    map.removeControl(legendControl);
+    legendControl = null;
+  }
+
   legendControl = L.control({ position: "bottomleft" });
 
   legendControl.onAdd = function () {
     const div = L.DomUtil.create("div", "info legend");
-
-    div.innerHTML = `
-      <div style="font-weight:800; margin-bottom:3px;">Tiempos de viaje</div>
-
-      <div>
-        <span style="display:inline-block;width:10px;height:10px;background:#08306b;margin-right:4px;border:1px solid #08306b;"></span>
-        Hasta 1 h
-      </div>
-
-      <div>
-        <span style="display:inline-block;width:10px;height:10px;background:#2171b5;margin-right:4px;border:1px solid #2171b5;"></span>
-        Entre 1 y 2 h
-      </div>
-
-      <div>
-        <span style="display:inline-block;width:10px;height:10px;background:#6baed6;margin-right:4px;border:1px solid #6baed6;"></span>
-        Entre 2 y 3 h
-      </div>
-
-      ${hasInfluenceArea ? `
-        <div style="margin-top:4px;">
-          <span style="display:inline-block;width:18px;height:0;border-top:2px dashed #ffb000;margin-right:4px;vertical-align:middle;"></span>
-          Área de influencia aeroportuaria
-        </div>
-      ` : ""}
-
-      ${hasLocalidades ? `
-        <div style="margin-top:4px;">
-          <span style="display:inline-block;width:8px;height:8px;background:#ffffff;border:1.4px solid #1f2933;border-radius:50%;margin-right:6px;"></span>
-          Localidades censales
-        </div>
-      ` : ""}
-    `;
-
+    div.innerHTML = buildTerritorialLegendHtml(hasInfluenceArea, hasLocalidades);
     return div;
   };
 
