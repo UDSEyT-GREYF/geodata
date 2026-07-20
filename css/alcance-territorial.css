@@ -177,3 +177,60 @@
 .impacto-territorial-map .localidad-tooltip::before {
   display: none;
 }
+/* Leyenda fija del mapa territorial dentro del informe A4 */
+.impacto-territorial-map-card {
+  position: relative;
+}
+
+.impacto-territorial-static-legend {
+  position: absolute;
+  left: 5mm;
+  bottom: 7mm;
+  z-index: 900;
+  background: rgba(255, 255, 255, 0.96);
+  border: 0.25mm solid #d0d7e2;
+  border-radius: 1.6mm;
+  padding: 1.9mm 2.3mm;
+  color: #111;
+  font-size: 6.6pt;
+  line-height: 1.25;
+  box-shadow: 0 1mm 3mm rgba(0, 0, 0, 0.14);
+  pointer-events: none;
+}
+
+.impacto-territorial-legend-title {
+  font-weight: 850;
+  margin-bottom: 1mm;
+  color: #003366;
+}
+
+.impacto-territorial-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 1.2mm;
+  margin-top: 0.7mm;
+  white-space: nowrap;
+}
+
+.impacto-territorial-legend-row > span {
+  display: inline-block;
+  width: 2.6mm;
+  height: 2.6mm;
+  border: 0.25mm solid currentColor;
+  flex: 0 0 auto;
+}
+
+.impacto-territorial-legend-line > span {
+  width: 5.4mm;
+  height: 0;
+  border: 0;
+  border-top: 0.55mm dashed #ffb000;
+}
+
+.impacto-territorial-legend-dot > span {
+  width: 2.4mm;
+  height: 2.4mm;
+  background: #ffffff;
+  border: 0.35mm solid #1f2933;
+  border-radius: 999px;
+}
