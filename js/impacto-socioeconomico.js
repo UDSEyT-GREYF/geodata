@@ -2563,7 +2563,7 @@ const internationalPart = Number.isFinite(internationalCurrent)
   : null;
 
   sentences.push(
-    `Por alcance de vuelo, la actividad se distribuyó en ${[cabotajePart, internationalPart].filter(Boolean).join(" y ")}.`
+    `Por alcance de vuelo, los pasajeros se distribuyeron en ${[cabotajePart, internationalPart].filter(Boolean).join(" y ")}.`
   );
 }
 
