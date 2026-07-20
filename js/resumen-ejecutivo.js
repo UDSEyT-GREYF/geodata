@@ -635,7 +635,7 @@ const pasajeros2024 = getResumenPassengerYearTotal(iata, YEAR_REF - 1);
 
     return `
       <p>
-        <strong>El transporte aerocomercial es un componente esencial de la economía argentina e incide en el desarrollo y el bienestar de las poblaciones y los territorios</strong>. Los servicios aerocomerciales y la infraestructura aeroportuaria cumplen un papel central en la cohesión territorial, al generar condiciones para la atracción, retención y expansión de la actividad económica.
+        <strong>El transporte aerocomercial es un componente esencial de la economía e incide en el desarrollo y el bienestar de las poblaciones y los territorios</strong>. Los servicios aerocomerciales y la infraestructura aeroportuaria cumplen un papel central en la cohesión territorial, al generar condiciones para la atracción, retención y expansión de la actividad económica.
       </p>
 
 <p>
