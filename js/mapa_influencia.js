@@ -216,6 +216,8 @@ if (legendControl) {
   mapInfluencia.removeControl(legendControl);
   legendControl = null;
 }
+   removeAllLegendControlsFromDom();
+   
    if (influenciaMarker) {
   mapInfluencia.removeLayer(influenciaMarker);
   influenciaMarker = null;
@@ -436,11 +438,18 @@ function getLocalidadLabel(props) {
 /* =============================
    AJUSTAR VISTA
    ============================= */
+function removeAllLegendControlsFromDom() {
+  document
+    .querySelectorAll("#map .info.legend, #map .leaflet-control.info.legend")
+    .forEach(el => el.remove());
+}
 function drawLegend(hasInfluenceArea, hasLocalidades) {
   if (legendControl) {
     mapInfluencia.removeControl(legendControl);
     legendControl = null;
   }
+
+  removeAllLegendControlsFromDom();
 
   legendControl = L.control({ position: "bottomright" });
 
