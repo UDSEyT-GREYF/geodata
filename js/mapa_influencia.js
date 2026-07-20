@@ -7,7 +7,6 @@ let influenciaLayer = null;
 let influenciaMarker = null;
 let localidadesFeatures = [];
 let localidadesLayer = null;
-let influenciaLegend = null;
 let legendControl = null;
 
 let aeropuertos = [];
@@ -48,21 +47,28 @@ function isFuegianAirport(iata) {
   return iata === "USH" || iata === "RGA";
 }
 
-function getMalvinasBounds() {
+function getFuegianFocusBounds() {
   return L.latLngBounds(
-    [-52.9, -61.9],
-    [-50.4, -56.0]
+    [-55.7, -70.4],  // sudoeste: incluye Isla Grande de Tierra del Fuego
+    [-49.8, -55.2]   // noreste: incluye Islas Malvinas con aire
   );
 }
 
 function getSpecialFocusBounds(iata, airport) {
   if (!isFuegianAirport(iata)) return null;
 
-  const airportCenter = getAirportCenterLatLng(airport);
-  const bounds = getMalvinasBounds();
+  const bounds = getFuegianFocusBounds();
 
+  const airportCenter = getAirportCenterLatLng(airport);
   if (airportCenter) {
-    bounds.extend(airportCenter);
+    bounds.extend([
+      airportCenter[0] - 0.25,
+      airportCenter[1] - 0.35
+    ]);
+    bounds.extend([
+      airportCenter[0] + 0.25,
+      airportCenter[1] + 0.35
+    ]);
   }
 
   if (tiemposLayer) {
@@ -214,10 +220,7 @@ if (legendControl) {
   mapInfluencia.removeLayer(influenciaMarker);
   influenciaMarker = null;
 }
-if (influenciaLegend) {
-  mapInfluencia.removeControl(influenciaLegend);
-  influenciaLegend = null;
-}
+
   const iataUpper = a.IATA ? String(a.IATA).trim().toUpperCase() : "";
   if (!iataUpper) return;
 
@@ -229,7 +232,7 @@ if (influenciaLegend) {
     .then(gj => {
 if (!gj || !gj.features || !gj.features.length) {
   drawLocalidadesLayer(a);
-  drawInfluenciaLegend(Boolean(influenciaLayer), Boolean(localidadesLayer));
+  drawLegend(Boolean(influenciaLayer), Boolean(localidadesLayer));
   ajustarVista(a);
   return;
 }
@@ -262,8 +265,7 @@ return;
 .catch(() => {
   console.warn("No se pudo cargar tiempos de viaje:", tiemposPath);
   drawLocalidadesLayer(a);
-  drawInfluenciaLegend(Boolean(influenciaLayer), Boolean(localidadesLayer));
-   drawLegend(Boolean(influenciaLayer), Boolean(localidadesLayer));
+  drawLegend(Boolean(influenciaLayer), Boolean(localidadesLayer));
   ajustarVista(a);
 });
 
@@ -430,64 +432,6 @@ function getLocalidadLabel(props) {
   );
 }
 
-function drawInfluenciaLegend(hasInfluenceArea, hasLocalidades) {
-  if (influenciaLegend) {
-    mapInfluencia.removeControl(influenciaLegend);
-    influenciaLegend = null;
-  }
-
-  influenciaLegend = L.control({ position: "bottomleft" });
-
-  influenciaLegend.onAdd = function () {
-    const div = L.DomUtil.create("div", "info legend");
-
-    div.style.background = "rgba(255, 255, 255, 0.96)";
-    div.style.border = "1px solid #d0d7e2";
-    div.style.borderRadius = "4px";
-    div.style.padding = "5px 7px";
-    div.style.fontSize = "11px";
-    div.style.lineHeight = "1.35";
-    div.style.color = "#111111";
-    div.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.16)";
-
-    div.innerHTML = `
-      <div style="font-weight:800; margin-bottom:3px;">Tiempos de viaje</div>
-
-      <div>
-        <span style="display:inline-block;width:10px;height:10px;background:#08306b;margin-right:4px;border:1px solid #08306b;"></span>
-        Hasta 1 h
-      </div>
-
-      <div>
-        <span style="display:inline-block;width:10px;height:10px;background:#2171b5;margin-right:4px;border:1px solid #2171b5;"></span>
-        Entre 1 y 2 h
-      </div>
-
-      <div>
-        <span style="display:inline-block;width:10px;height:10px;background:#6baed6;margin-right:4px;border:1px solid #6baed6;"></span>
-        Entre 2 y 3 h
-      </div>
-
-      ${hasInfluenceArea ? `
-        <div style="margin-top:4px;">
-          <span style="display:inline-block;width:18px;height:0;border-top:2px dashed #ffb000;margin-right:4px;vertical-align:middle;"></span>
-          Área de influencia aeroportuaria
-        </div>
-      ` : ""}
-
-      ${hasLocalidades ? `
-        <div style="margin-top:4px;">
-          <span style="display:inline-block;width:8px;height:8px;background:#ffffff;border:1.4px solid #1f2933;border-radius:50%;margin-right:6px;"></span>
-          Localidades censales
-        </div>
-      ` : ""}
-    `;
-
-    return div;
-  };
-
-  influenciaLegend.addTo(mapInfluencia);
-}
 
 /* =============================
    AJUSTAR VISTA
@@ -498,47 +442,53 @@ function drawLegend(hasInfluenceArea, hasLocalidades) {
     legendControl = null;
   }
 
-  legendControl = L.control({ position: "bottomleft" });
+  legendControl = L.control({ position: "bottomright" });
 
   legendControl.onAdd = function () {
     const div = L.DomUtil.create("div", "info legend");
-    div.style.background = "rgba(255, 255, 255, 0.95)";
+
+    div.style.background = "rgba(255, 255, 255, 0.96)";
     div.style.border = "1px solid #d0d7e2";
     div.style.borderRadius = "6px";
-    div.style.padding = "8px 10px";
-    div.style.fontSize = "0.95rem";
-    div.style.lineHeight = "1.35";
+    div.style.padding = "7px 9px";
+    div.style.fontSize = "12px";
+    div.style.lineHeight = "1.25";
     div.style.color = "#111";
+    div.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.16)";
+    div.style.whiteSpace = "nowrap";
+    div.style.minWidth = "190px";
+    div.style.maxWidth = "230px";
+    div.style.boxSizing = "border-box";
 
     div.innerHTML = `
-      <div style="font-weight:800; margin-bottom:4px;">Tiempos de viaje</div>
+      <div style="font-weight:800; margin-bottom:5px;">Tiempos de viaje</div>
 
-      <div>
-        <span style="display:inline-block;width:10px;height:10px;background:#08306b;margin-right:5px;border:1px solid #08306b;"></span>
-        Hasta 1 h
+      <div style="display:flex; align-items:center; gap:6px; margin-top:2px;">
+        <span style="display:inline-block;width:10px;height:10px;background:#08306b;border:1px solid #08306b;flex:0 0 auto;"></span>
+        <span>Hasta 1 h</span>
       </div>
 
-      <div>
-        <span style="display:inline-block;width:10px;height:10px;background:#2171b5;margin-right:5px;border:1px solid #2171b5;"></span>
-        Entre 1 y 2 h
+      <div style="display:flex; align-items:center; gap:6px; margin-top:2px;">
+        <span style="display:inline-block;width:10px;height:10px;background:#2171b5;border:1px solid #2171b5;flex:0 0 auto;"></span>
+        <span>Entre 1 y 2 h</span>
       </div>
 
-      <div>
-        <span style="display:inline-block;width:10px;height:10px;background:#6baed6;margin-right:5px;border:1px solid #6baed6;"></span>
-        Entre 2 y 3 h
+      <div style="display:flex; align-items:center; gap:6px; margin-top:2px;">
+        <span style="display:inline-block;width:10px;height:10px;background:#6baed6;border:1px solid #6baed6;flex:0 0 auto;"></span>
+        <span>Entre 2 y 3 h</span>
       </div>
 
       ${hasInfluenceArea ? `
-        <div style="margin-top:5px;">
-          <span style="display:inline-block;width:18px;height:0;border-top:2px dashed #ffb000;margin-right:5px;vertical-align:middle;"></span>
-          Área de influencia aeroportuaria
+        <div style="display:flex; align-items:center; gap:6px; margin-top:5px;">
+          <span style="display:inline-block;width:20px;height:0;border-top:2px dashed #ffb000;flex:0 0 auto;"></span>
+          <span>Área de influencia aeroportuaria</span>
         </div>
       ` : ""}
 
       ${hasLocalidades ? `
-        <div style="margin-top:5px;">
-          <span style="display:inline-block;width:8px;height:8px;background:#ffffff;border:1.4px solid #1f2933;border-radius:50%;margin-right:6px;"></span>
-          Localidades censales
+        <div style="display:flex; align-items:center; gap:6px; margin-top:5px;">
+          <span style="display:inline-block;width:8px;height:8px;background:#ffffff;border:1.4px solid #1f2933;border-radius:50%;flex:0 0 auto;"></span>
+          <span>Localidades censales</span>
         </div>
       ` : ""}
     `;
