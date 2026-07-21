@@ -461,7 +461,7 @@ function drawLocalidadesLayer(airport) {
   const bounds = getCurrentMapDataBounds(airport);
   if (!bounds || !bounds.isValid()) return;
 
-  const paddedBounds = bounds.pad(0.22);
+  const paddedBounds = bounds.pad(0.42);
 
   const features = localidadesFeatures.filter(feature =>
     featureIntersectsBounds(feature, paddedBounds)
