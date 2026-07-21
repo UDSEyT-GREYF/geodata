@@ -332,7 +332,7 @@ function drawLocalidadesLayer(a) {
   const bounds = getCurrentMapDataBounds(a);
   if (!bounds || !bounds.isValid()) return;
 
-  const paddedBounds = bounds.pad(0.32);
+  const paddedBounds = bounds.pad(0.42);
 
   const features = localidadesFeatures.filter(feature =>
     featureIntersectsBounds(feature, paddedBounds)
