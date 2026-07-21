@@ -251,19 +251,20 @@ select.addEventListener("change", () => {
     syncFromSelect();
   }
   
-  async function loadText(url) {
-    const sep = url.includes("?") ? "&" : "?";
-    const cacheBust = `v=impacto9-${Date.now()}`;
+const REPORT_ASSET_VERSION = "rev-integral-20260721";
 
-    const resp = await fetch(`${url}${sep}${cacheBust}`, {
-      cache: "no-store"
-    });
+async function loadText(url) {
+  const sep = url.includes("?") ? "&" : "?";
+  const versionedUrl = `${url}${sep}v=${REPORT_ASSET_VERSION}`;
 
-    if (!resp.ok) {
-      throw new Error(`No se pudo cargar ${url}`);
-    }
-    return resp.text();
+  const resp = await fetch(versionedUrl);
+
+  if (!resp.ok) {
+    throw new Error(`No se pudo cargar ${url}`);
   }
+
+  return resp.text();
+}
 
   async function mountCoverPartial() {
     const html = await loadText("partials/portada-informe.html");
