@@ -151,17 +151,24 @@ const ALT_IATAS = new Set([
     return Number.isNaN(d.getTime()) ? null : d;
   }
 
-  async function fetchJSON(url) {
-    const resp = await fetch(url, { cache: "no-store" });
-    if (!resp.ok) throw new Error(`No se pudo cargar ${url}`);
-    return resp.json();
-  }
+const RESUMEN_DATA_VERSION = "rev-integral-20260721";
 
-  async function fetchText(url) {
-    const resp = await fetch(url, { cache: "no-store" });
-    if (!resp.ok) throw new Error(`No se pudo cargar ${url}`);
-    return resp.text();
-  }
+function versionedResumenUrl(url) {
+  const sep = url.includes("?") ? "&" : "?";
+  return `${url}${sep}v=${RESUMEN_DATA_VERSION}`;
+}
+
+async function fetchJSON(url) {
+  const resp = await fetch(versionedResumenUrl(url));
+  if (!resp.ok) throw new Error(`No se pudo cargar ${url}`);
+  return resp.json();
+}
+
+async function fetchText(url) {
+  const resp = await fetch(versionedResumenUrl(url));
+  if (!resp.ok) throw new Error(`No se pudo cargar ${url}`);
+  return resp.text();
+}
 
   function detectSep(headerLine) {
     if (headerLine.includes("\t")) return "\t";
