@@ -2408,6 +2408,72 @@ if (!conclusion) return;
 const metrics = passengerData?.metrics || {};
 const sentences = [];
 
+function cleanSelectorAirportName(label, iata) {
+  const code = String(iata || "").trim().toUpperCase();
+
+  let text = String(label || "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (code) {
+    text = text.replace(new RegExp(`\\s*\\(${code}\\)\\s*$`, "i"), "").trim();
+  }
+
+  text = text.replace(/\s*\([A-Z0-9]{3}\)\s*$/i, "").trim();
+
+  return text;
+}
+
+function getAirportNameFromMainSelector(iata) {
+  const code = String(iata || "").trim().toUpperCase();
+  const select = document.querySelector("#airportSelect");
+
+  if (!select || !code) return "";
+
+  const option = Array.from(select.options).find(opt =>
+    String(opt.value || "").trim().toUpperCase() === code
+  );
+
+  return cleanSelectorAirportName(option?.textContent || "", code);
+}
+
+function buildPerspectiveAirportName(data) {
+  const iata = String(data?.iata || "").trim().toUpperCase();
+
+  if (iata === "AEP") {
+    return "Aeroparque Jorge Newbery";
+  }
+
+  const selectorName = getAirportNameFromMainSelector(iata);
+
+  const baseName = cleanSelectorAirportName(
+    selectorName ||
+    data?.airportNameOnly ||
+    data?.airportName ||
+    data?.aeropuerto ||
+    data?.name ||
+    "aeropuerto",
+    iata
+  );
+
+  if (!baseName) {
+    return "Aeropuerto";
+  }
+
+  if (/^aeropuerto\b/i.test(baseName) || /^aeroparque\b/i.test(baseName)) {
+    return baseName;
+  }
+
+  return `Aeropuerto de ${baseName}`;
+}
+
+function buildPerspectiveAirportLabel(data) {
+  const iata = String(data?.iata || "").trim().toUpperCase();
+  const name = buildPerspectiveAirportName(data);
+
+  return iata ? `${name} (${iata})` : name;
+}
+    
 function metricCurrent(metric) {
   const value = Number(metric?.current);
   return Number.isFinite(value) ? value : null;
@@ -2448,8 +2514,8 @@ function buildTotalPassengerSentence(metric, current, airportLabel) {
     `<strong>${formatInteger(current)} pasajeros totales</strong>`;
 
   if (Number.isFinite(previous) && previous > 0 && current > 0 && trend) {
-    return `${baseText}, lo que representa ${trend} respecto del primer semestre de 2025 que alcanzó ` +
-      `${formatInteger(previous)} pasajeros totales.`;
+    return `${baseText}, lo que representa ${trend} respecto del primer semestre de 2025 ` +
+      `(<strong>${formatInteger(previous)} pasajeros totales</strong>).`;
   }
 
   if (Number.isFinite(previous) && previous === 0 && current > 0) {
@@ -2547,13 +2613,10 @@ const commercialCurrent = metricCurrent(commercial);
 const avGeneralCurrent = metricCurrent(avGeneral);
 const cabotajeCurrent = metricCurrent(cabotaje);
 const internationalCurrent = metricCurrent(international);
-const airportName = data.iata === "AEP"
-  ? "Aeroparque Jorge Newbery"
-  : (data.airportNameOnly || data.airportName || data.aeropuerto || data.name || "El aeropuerto");
-
-const airportLabel = data.iata
-  ? `${airportName} (${data.iata})`
-  : airportName;
+const airportBaseLabel = buildPerspectiveAirportLabel(data);
+const airportLabel = String(data.iata || "").trim().toUpperCase() === "AEP"
+  ? airportBaseLabel
+  : `el ${airportBaseLabel}`;
     
 if (Number.isFinite(totalCurrent)) {
   sentences.push(
