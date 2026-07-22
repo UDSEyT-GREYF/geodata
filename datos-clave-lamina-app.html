@@ -1,1 +1,375 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lámina infográfica de datos clave por aeropuerto – ORSNA</title>
+
+  <link rel="icon" type="image/png" href="img/icons/iconoClaveLamina.png">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <link rel="stylesheet" href="css/datos-clave-lamina.css?v=triptico7">
+</head>
+<body class="page-lamina">
+  <div class="lamina-toolbar no-print">
+    <div class="toolbar-left">
+      <div class="toolbar-title">Datos clave por aeropuerto</div>
+    </div>
+    <div class="toolbar-actions">
+<div class="siga-airport-combobox lamina-airport-combobox">
+  <label for="airportSearch">Buscar / seleccionar aeropuerto</label>
+
+  <div class="lamina-airport-search-row">
+    <input
+      id="airportSearch"
+      class="lamina-airport-search-input"
+      type="search"
+      autocomplete="off"
+      placeholder="Buscar por ciudad, aeropuerto o IATA..."
+    >
+
+    <select id="airportSelect" class="lamina-hidden-airport-select">
+      <option value="">Cargando aeropuertos...</option>
+    </select>
+
+    <div id="airportSearchResults" class="siga-search-results lamina-airport-search-results"></div>
+  </div>
+</div>
+      <button id="btnExportPng" class="toolbar-btn" type="button">Exportar PNG A4</button>
+    </div>
+  </div>
+
+  <main class="sheet-wrap">
+    <section id="sheetA4" class="sheet-a4">
+<header class="sheet-header">
+  <h1 id="sheetTitle" class="sheet-title-main">Datos clave del aeropuerto</h1>
+  <div class="sheet-airport-name" id="airportName"></div>
+</header>
+
+      <section class="triptych-grid">
+        <section class="triptych-col col-infra">
+          <div class="col-header">INFRAESTRUCTURA</div>
+
+          <article class="section-card section-superficie">
+            <div class="section-title">EXPLOTACION</div>
+            <div class="surface-top-kpis">
+              <div class="mini-kpi">
+                <div class="mini-kpi-label">Tamaño del predio</div>
+                <div class="mini-kpi-value"><span id="sumSupPredio">–</span> <span>hectáreas</span></div>
+              </div>
+              <div class="mini-kpi">
+                <div class="mini-kpi-label">Terminal de pasajeros</div>
+                <div class="mini-kpi-value"><span id="sumTerminal">–</span> <span>m²</span></div>
+              </div>
+            </div>
+
+            <div class="surface-visual-row">
+              <div class="predio-map-frame">
+                <div id="mapPredio" class="predio-map" aria-label="Mapa del predio aeroportuario"></div>
+              </div>
+              <div class="terminal-photo-frame">
+                <img id="imgTerminal" alt="Imagen de la terminal del aeropuerto">
+              </div>
+            </div>
+
+<div class="explotacion-meta-grid">
+  <div class="explotacion-meta-col">
+    <div class="explotacion-meta-row">
+      <div class="explotacion-meta-label">Explotador</div>
+      <div class="explotacion-meta-value" id="predioExplotador">–</div>
+    </div>
+
+    <div class="explotacion-meta-row">
+      <div class="explotacion-meta-label">Códigos</div>
+      <div class="explotacion-meta-value" id="predioCodigos">–</div>
+    </div>
+
+    <div class="explotacion-meta-row">
+      <div class="explotacion-meta-label">Habilitación</div>
+      <div class="explotacion-meta-value" id="predioHabilitacion">–</div>
+    </div>
+  </div>
+
+  <div class="explotacion-meta-col">
+    <div class="explotacion-meta-row explotacion-meta-row-stack">
+      <div class="explotacion-meta-label">Áreas concesionadas</div>
+      <div class="explotacion-meta-value explotacion-meta-value-stack">
+        <div id="predioSupAreasConcesionadas">–</div>
+        <div class="explotacion-meta-detail" id="predioAreasConcesionadas">–</div>
+      </div>
+    </div>
+
+    <div class="explotacion-meta-row">
+      <div class="explotacion-meta-label">Concesionado hasta</div>
+      <div class="explotacion-meta-value" id="predioConcesionHasta">–</div>
+    </div>
+
+    <div class="explotacion-meta-row">
+      <div class="explotacion-meta-label">Grupo de concesión</div>
+      <div class="explotacion-meta-value" id="predioGrupoConcesion">–</div>
+    </div>
+  </div>
+</div>
+          </article>
+
+          <article class="section-card section-movimiento">
+            <div class="section-title">ÁREA DE MOVIMIENTO</div>
+            <div class="movement-wrap">
+<div class="movement-box movement-box-runways">
+  <div class="movement-box-title movement-box-title-inline">Pistas de aterrizaje</div>
+
+  <div class="movement-runways-head">
+    <div class="movement-runways-col movement-runways-col-label">Orientación</div>
+    <div class="movement-runways-col movement-runways-col-length">Longitudes</div>
+  </div>
+
+  <div class="movement-runway-list" id="runwaysList"></div>
+</div>
+
+<div class="movement-box movement-box-positions">
+    <div class="story-block-title movement-kpi-title">PLATAFORMA COMERCIAL</div>
+
+  <div class="movement-box-head">
+    <div class="movement-box-icon">
+      <img src="img/icons/PSN.png" alt="Plataforma comercial">
+    </div>
+    <div class="movement-box-text">
+      <div class="movement-box-sub">Puestos estacionamiento de aeronaves</div>
+      <div class="movement-position-detail" id="psnDetalleCompacto">
+      Comerciales (–) - Av. General (–)
+      </div>
+    </div>
+    <div class="movement-badge movement-badge-large" id="badgePsnTotal">–</div>
+   </div>
+</div>
+<div class="movement-extra-kpi">
+  <div class="story-block-title movement-kpi-title">OPERACIÓN Y AYUDAS</div>
+                <div class="movement-extra-grid">
+                  <div class="extra-kpi">
+                    <img src="img/icons/runway.png" alt="Horario de operación">
+                    <div>
+                      <div class="extra-kpi-value" id="horarioOperacion">–</div>
+                      <div class="extra-kpi-label">Horario de operación</div>
+                    </div>
+                  </div>
+                  <div class="extra-kpi">
+                    <img src="img/icons/Clave.png" alt="Clave de referencia">
+                    <div>
+                      <div class="extra-kpi-value" id="claveRef">–</div>
+                      <div class="extra-kpi-label">Clave de referencia</div>
+                    </div>
+                  </div>
+                  <div class="extra-kpi extra-kpi-wide extra-kpi-aids">
+                    <img src="img/icons/ILS.png" alt="Radioayudas y ayudas visuales">
+                    <div class="aids-kpi-stack">
+                      <div class="aids-kpi-item">
+                        <div class="aids-kpi-value" id="radioayudas">–</div>
+                        <div class="aids-kpi-name">Radioayudas</div>
+                      </div>
+                      <div class="aids-kpi-item">
+                        <div class="aids-kpi-value" id="ayudasVisuales">–</div>
+                        <div class="aids-kpi-name">Ayudas visuales</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+
+        <section class="triptych-col col-terminal">
+          <div class="col-header">TERMINAL DE PASAJEROS</div>
+
+          <article class="section-card story-card">
+            <div class="story-block">
+              <div class="story-block-title">LLEGADA Y CHECK-IN</div>
+              <div class="story-item">
+                <div class="story-icon"><img src="img/icons/checkin.png" alt=""></div>
+                <div class="story-text">
+                  <div class="story-name">Mostradores check-in</div>
+                  <div class="story-sub">Para atención presencial</div>
+                </div>
+                <div class="story-badge" id="mostradoresCheckin">–</div>
+              </div>
+              <div class="story-item">
+                <div class="story-icon"><img src="img/icons/kiosko.png" alt=""></div>
+                <div class="story-text">
+                  <div class="story-name">Kioscos self check-in</div>
+                  <div class="story-sub">Equipos de autoatención</div>
+                </div>
+                <div class="story-badge" id="kioscosSelf">–</div>
+              </div>
+            </div>
+
+            <div class="story-block">
+              <div class="story-block-title">CONTROL DE SEGURIDAD Y FRONTERIZO</div>
+              <div class="story-item">
+                <div class="story-icon"><img src="img/icons/PSA.png" alt=""></div>
+                <div class="story-text">
+                  <div class="story-name">Puestos de Seguridad</div>
+                  <div class="story-sub" id="psaDetalle">–</div>
+                </div>
+                <div class="story-badge" id="psaTotal">–</div>
+              </div>
+              <div class="story-item">
+                <div class="story-icon"><img src="img/icons/Aduana.png" alt=""></div>
+                <div class="story-text">
+                  <div class="story-name">Puestos de Aduanas</div>
+                  <div class="story-sub">Puestos de control aduanero</div>
+                </div>
+                <div class="story-badge" id="aduanaPuestos">–</div>
+              </div>
+              <div class="story-item">
+                <div class="story-icon"><img src="img/icons/migraciones.png" alt=""></div>
+                <div class="story-text">
+                  <div class="story-name">Puestos de Migraciones</div>
+                  <div class="story-sub" id="migracionesDetalle">–</div>
+                </div>
+                <div class="story-badge" id="migracionesTotal">–</div>
+              </div>
+            </div>
+
+            <div class="story-block">
+              <div class="story-block-title">EMBARQUE</div>
+              <div class="story-item">
+                <div class="story-icon"><img src="img/icons/boarding.png" alt=""></div>
+                <div class="story-text">
+                  <div class="story-name">Puertas de embarque</div>
+                  <div class="story-sub" id="puertasDetalle">–</div>
+                </div>
+                <div class="story-badge" id="puertasEmbarque">–</div>
+              </div>
+              <div class="story-item">
+                <div class="story-icon"><img src="img/icons/manga.png" alt=""></div>
+                <div class="story-text">
+                  <div class="story-name">Mangas telescópicas</div>
+                  <div class="story-sub">Conexión directa aeronave–terminal</div>
+                </div>
+                <div class="story-badge" id="mangasValorBottom">–</div>
+              </div>
+            </div>
+
+            <div class="story-block">
+              <div class="story-block-title">ARRIBO Y EQUIPAJE</div>
+              <div class="story-item">
+                <div class="story-icon"><img src="img/icons/baggage.png" alt=""></div>
+                <div class="story-text">
+                  <div class="story-name">Cintas de equipaje</div>
+                  <div class="story-sub" id="cintasDetalle">–</div>
+                </div>
+                <div class="story-badge" id="cintasEquipaje">–</div>
+              </div>
+              <div class="story-item">
+                <div class="story-icon"><img src="img/icons/Carrito.png" alt=""></div>
+                <div class="story-text">
+                  <div class="story-name">Carros portaequipajes</div>
+                  <div class="story-sub">Disponibles para el pasajero</div>
+                </div>
+                <div class="story-badge" id="carritos">–</div>
+              </div>
+            </div>
+
+            <div class="story-block">
+              <div class="story-block-title">APOYO AL PASAJERO</div>
+              <div class="story-item">
+                <div class="story-icon"><img src="img/icons/estacionamiento.png" alt=""></div>
+                <div class="story-text">
+                  <div class="story-name">Plazas de estacionamiento</div>
+                </div>
+                <div class="story-badge" id="estacionamientoVeh">–</div>
+              </div>
+              <div class="story-item story-item-transport">
+                <div class="story-icon"><img src="img/icons/Transporte.png" alt=""></div>
+                <div class="story-text">
+                  <div class="story-name">Transporte público</div>
+                  <div class="story-sub story-sub-transport" id="transportePublico">–</div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="triptych-col col-trafico">
+          <div class="col-header">TRÁFICO Y CONECTIVIDAD</div>
+
+          <article class="section-card section-passengers">
+            <div class="section-title" id="passengersTitle">PASAJEROS COMERCIALES 2025 (EMBARCADOS Y DESEMBARCADOS)</div>
+            <div class="passengers-top-row">
+              <div class="passengers-icon-block">
+                <img src="img/icons/pax.png" alt="Pasajeros">
+              </div>
+<div class="passengers-hero-pill">
+  <div class="passengers-kpi-kicker">Total anual de pasajeros</div>
+  <div class="passengers-total" id="paxTotal2025">–</div>
+  <div class="passengers-breakdown">
+    <div class="passengers-breakdown-item">Cabotaje <span id="paxCab2025">–</span></div>
+    <div class="passengers-breakdown-item">Internacional <span id="paxInt2025">–</span></div>
+  </div>
+</div>
+              <div class="passengers-side-column">
+                <div class="passenger-side-kpi">
+                  <div class="passenger-side-value" id="paxPromSemanal">–</div>
+                  <div class="passenger-side-label">Promedio semanal</div>
+                </div>
+                <div class="passenger-side-kpi">
+                  <div class="passenger-side-value" id="paxPromDiario">–</div>
+                  <div class="passenger-side-label">Promedio diario</div>
+                </div>
+              </div>
+            </div>
+            <div class="history-title">Evolución histórica de <span class="history-title-passengers">pasajeros</span> y <span class="history-title-aircraft">aeronaves</span></div>
+            <svg id="paxHistoryChart" class="history-chart" viewBox="0 0 820 260" preserveAspectRatio="none" aria-label="Gráfico histórico de pasajeros"></svg>
+            <div class="history-note" id="paxHistoryNote">Fuente: elaborado por ORSNA con datos de SIAC ANAC.</div>
+          </article>
+
+          <article class="section-card section-flights">
+            <div class="section-title">MOVIMIENTOS DE AERONAVES COMERCIALES 2025 (ATERRIZAJES Y DESPEGUES)</div>
+            <div class="flights-wrap">
+              <div class="flights-icon-block">
+                <img src="img/icons/vuelos.png" alt="Movimientos de aeronaves">
+              </div>
+              <div class="flights-grid">
+                <div class="flight-card">
+                  <div class="flight-label">Anual</div>
+                  <div class="flight-value" id="vuelosAnuales">–</div>
+                </div>
+                <div class="flight-card">
+                  <div class="flight-label">Promedio semanal</div>
+                  <div class="flight-value" id="vuelosSemanales">–</div>
+                </div>
+                <div class="flight-card">
+                  <div class="flight-label">Promedio diario</div>
+                  <div class="flight-value" id="vuelosDiarios">–</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="section-card section-routes">
+            <div class="section-title">PRINCIPALES AEROLÍNEAS Y RUTAS 2025 (INCLUYE AV. GENERAL)</div>
+            <div class="routes-grid">
+              <div class="routes-left">
+                <div class="routes-subtitle">Líneas aéreas</div>
+                <div class="airlines-count-pill" id="airlinesCount">–</div>
+                <div class="airlines-summary">
+                  <div class="airlines-list" id="topAirlinesList">Sin datos</div>
+                </div>
+              </div>
+              <div class="routes-right">
+                <div class="destinations-list" id="topDestinationsList"></div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="js/datos-clave-lamina.js?v=triptico7"></script>
+</body>
+</html>
