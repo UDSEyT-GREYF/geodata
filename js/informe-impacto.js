@@ -279,13 +279,13 @@ async function loadText(url) {
   }
 
   async function mountLaminaFromCurrentHtml() {
-    const html = await loadText("datos-clave-lamina.html");
+    const html = await loadText("datos-clave-lamina-app.html");
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
     const sheet = doc.querySelector("#sheetA4");
 
     if (!sheet) {
-      throw new Error("No se encontró #sheetA4 dentro de datos-clave-lamina.html");
+      throw new Error("No se encontró #sheetA4 dentro de datos-clave-lamina-app.html");
     }
 
     const mount = q("laminaMount");
