@@ -5545,14 +5545,16 @@ function odSetTopRoutesTitles(iata, summary) {
   const routesPage = q("odRoutesExtraPage");
   const topRoutesEl = q("odTopRoutes");
 
-  // Título grande de la hoja: antes decía "Principales rutas 2025".
-  // Lo dejamos más corto para que no se corte en el encabezado.
-  const pageTitle =
-    routesPage?.querySelector(".od-sheet-header .sheet-airport-name") ||
-    routesPage?.querySelector(".sheet-airport-name");
-
+  const pageTitle = q("odSheetTitleRoutes");
   if (pageTitle) {
-    pageTitle.textContent = `Principales rutas · ${airportName} ${YEAR_REF}`;
+    pageTitle.textContent = `Principales rutas ${YEAR_REF}`;
+  }
+
+  const pageAirportLine = q("odAirportNameRoutes");
+  if (pageAirportLine) {
+    pageAirportLine.textContent = getAirportSheetTitle(
+      odGetAirportRecordByIata(iata) || { IATA: iata }
+    );
   }
 
   // Título interno del panel: antes decía "PRINCIPALES RUTAS".
@@ -6863,10 +6865,12 @@ function renderAirport(iataCode) {
 
   currentIATA = iata;
 
-  const airportName = getAirportSheetTitle(a);
+const airportName = getAirportSheetTitle(a);
 
-  setText("odAirportName", airportName);
-  setText("odYearRef", String(YEAR_REF));
+setText("odAirportName", airportName);
+setText("odAirportNameRoutes", airportName);
+setText("odAirportNameHistoric", airportName);
+setText("odYearRef", String(YEAR_REF));
 
 renderHistoricTrafficBlock(iata, airportName);
 renderOfertaDemanda(iata);
