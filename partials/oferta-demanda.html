@@ -10,17 +10,18 @@
 <section class="sheet-a4 oferta-demanda-sheet offer-demand-page" id="sheetOfertaDemanda">
   <div class="od-page">
 
-    <!-- ENCABEZADO: título de la hoja y aeropuerto seleccionado -->
-    <header class="sheet-header od-sheet-header">
-      <h1 id="odSheetTitle" class="sheet-title-main">
-        Oferta y demanda de transporte aéreo
-      </h1>
+<!-- ENCABEZADO: título de la hoja y aeropuerto seleccionado -->
+<header class="sheet-header od-sheet-header">
+  <div class="od-page-kicker">OFERTA Y DEMANDA DE TRANSPORTE AÉREO</div>
 
-      <div class="sheet-airport-name" id="odAirportHeader">
-        <span id="odAirportName">Aeropuerto</span>
-        <span id="odYearRef">2025</span>
-      </div>
-    </header>
+  <div class="od-page-airport-line" id="odAirportHeader">
+    <span id="odAirportName">Aeropuerto</span>
+  </div>
+
+  <h1 id="odSheetTitle" class="sheet-title-main">
+    Oferta y demanda <span id="odYearRef">2025</span>
+  </h1>
+</header>
 
     <!-- KPIs SUPERIORES: resumen anual 2025 -->
     <section class="od-kpis">
@@ -135,16 +136,18 @@
 <section class="sheet-a4 oferta-demanda-sheet offer-demand-page od-routes-extra-page" id="odRoutesExtraPage">
   <div class="od-page">
 
-    <!-- Encabezado de la hoja de rutas -->
-    <header class="sheet-header od-sheet-header">
-      <h1 id="odSheetTitleRoutes" class="sheet-title-main">
-        Oferta y demanda de transporte aéreo
-      </h1>
+<!-- Encabezado de la hoja de rutas -->
+<header class="sheet-header od-sheet-header">
+  <div class="od-page-kicker">OFERTA Y DEMANDA DE TRANSPORTE AÉREO</div>
 
-      <div class="sheet-airport-name">
-        Principales rutas 2025
-      </div>
-    </header>
+  <div class="od-page-airport-line">
+    <span id="odAirportNameRoutes">Aeropuerto</span>
+  </div>
+
+  <h1 id="odSheetTitleRoutes" class="sheet-title-main">
+    Principales rutas 2025
+  </h1>
+</header>
 
     <!-- Panel de rutas: JS inserta hasta 6 tarjetas con gráfico mensual -->
     <section class="od-panel od-panel-routes od-panel-routes-full od-panel-routes-extra od-panel-routes-page">
@@ -178,15 +181,17 @@
 <section class="sheet-a4 oferta-demanda-sheet offer-demand-page od-historic-page is-hidden" id="odHistoricPage">
   <div class="od-page">
 
-    <header class="sheet-header od-sheet-header">
-      <h1 class="sheet-title-main">
-        Oferta y demanda de transporte aéreo
-      </h1>
+<header class="sheet-header od-sheet-header">
+  <div class="od-page-kicker">OFERTA Y DEMANDA DE TRANSPORTE AÉREO</div>
 
-      <div class="sheet-airport-name">
-        Evolución histórica
-      </div>
-    </header>
+  <div class="od-page-airport-line">
+    <span id="odAirportNameHistoric">Aeropuerto</span>
+  </div>
+
+  <h1 class="sheet-title-main">
+    Evolución histórica
+  </h1>
+</header>
 
     <!-- Gráfico histórico apilado de rutas principales -->
     <section class="od-panel od-panel-routes od-panel-routes-full od-historic-routes-panel">
