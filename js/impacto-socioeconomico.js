@@ -1667,14 +1667,105 @@ const empleoVarones = normalizeShareOrCount(
       summaryImage: readRaw(properties, "summaryImage")
     };
   }
+/* ============================================================
+   Nombre institucional del aeropuerto
+   Se usa en encabezados, KPI y perspectiva 2026.
+   ============================================================ */
 
+function getAirportIataFromData(data) {
+  return String(data?.iata || "").trim().toUpperCase();
+}
+
+function cleanAirportDisplayName(label, iata) {
+  const code = String(iata || "").trim().toUpperCase();
+
+  let text = String(label || "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (code) {
+    text = text.replace(new RegExp(`\\s*\\(${code}\\)\\s*$`, "i"), "").trim();
+  }
+
+  text = text.replace(/\s*\([A-Z0-9]{3}\)\s*$/i, "").trim();
+
+  return text;
+}
+
+function getAirportNameFromVisibleSelectors(iata) {
+  const code = String(iata || "").trim().toUpperCase();
+  if (!code) return "";
+
+  const selectors = [
+    "#airportSelect",
+    "#impactoAirportSelect"
+  ];
+
+  for (const selectorId of selectors) {
+    const select = document.querySelector(selectorId);
+    if (!select) continue;
+
+    const option = Array.from(select.options).find(opt =>
+      String(opt.value || "").trim().toUpperCase() === code
+    );
+
+    const name = cleanAirportDisplayName(option?.textContent || "", code);
+    if (name) return name;
+  }
+
+  return "";
+}
+
+function getAirportRawName(data) {
+  const iata = getAirportIataFromData(data);
+
+  return cleanAirportDisplayName(
+    getAirportNameFromVisibleSelectors(iata) ||
+    data?.airportNameOnly ||
+    data?.airportName ||
+    data?.aeropuerto ||
+    data?.name ||
+    "Aeropuerto",
+    iata
+  );
+}
+
+function getAirportDisplayName(data) {
+  const iata = getAirportIataFromData(data);
+
+  if (iata === "AEP") {
+    return "Aeroparque Jorge Newbery";
+  }
+
+  const baseName = getAirportRawName(data);
+
+  if (!baseName) {
+    return "Aeropuerto";
+  }
+
+  if (/^aeropuerto\b/i.test(baseName) || /^aeroparque\b/i.test(baseName)) {
+    return baseName;
+  }
+
+  return `Aeropuerto de ${baseName}`;
+}
+
+function getAirportDisplayLabel(data) {
+  const iata = getAirportIataFromData(data);
+  const name = getAirportDisplayName(data);
+
+  return iata ? `${name} (${iata})` : name;
+}
+
+function getAirportSentenceLabel(data) {
+  const iata = getAirportIataFromData(data);
+  const label = getAirportDisplayLabel(data);
+
+  return iata === "AEP" ? label : `el ${label}`;
+}
   function renderText(data) {
-const airportNameOverrides = {
-  AEP: "Aeroparque Jorge Newbery"
-};
-
-const airportNameOnly = airportNameOverrides[data.iata] || data.airportName;
-const airportLine = data.iata ? `${airportNameOnly} (${data.iata})` : airportNameOnly;
+const airportNameOnly = getAirportDisplayName(data);
+const airportLine = getAirportDisplayLabel(data);
 
 setText("airportLine", airportLine);
 setText("airportNameOnly", airportNameOnly);
@@ -2408,64 +2499,6 @@ if (!conclusion) return;
 const metrics = passengerData?.metrics || {};
 const sentences = [];
 
-function cleanSelectorAirportName(label, iata) {
-  const code = String(iata || "").trim().toUpperCase();
-
-  let text = String(label || "")
-    .replace(/\s+/g, " ")
-    .trim();
-
-  if (code) {
-    text = text.replace(new RegExp(`\\s*\\(${code}\\)\\s*$`, "i"), "").trim();
-  }
-
-  text = text.replace(/\s*\([A-Z0-9]{3}\)\s*$/i, "").trim();
-
-  return text;
-}
-
-function getAirportNameFromMainSelector(iata) {
-  const code = String(iata || "").trim().toUpperCase();
-  const select = document.querySelector("#airportSelect");
-
-  if (!select || !code) return "";
-
-  const option = Array.from(select.options).find(opt =>
-    String(opt.value || "").trim().toUpperCase() === code
-  );
-
-  return cleanSelectorAirportName(option?.textContent || "", code);
-}
-
-function buildPerspectiveAirportName(data) {
-  const iata = String(data?.iata || "").trim().toUpperCase();
-
-  if (iata === "AEP") {
-    return "Aeroparque Jorge Newbery";
-  }
-
-  const selectorName = getAirportNameFromMainSelector(iata);
-
-  const baseName = cleanSelectorAirportName(
-    selectorName ||
-    data?.airportNameOnly ||
-    data?.airportName ||
-    data?.aeropuerto ||
-    data?.name ||
-    "aeropuerto",
-    iata
-  );
-
-  if (!baseName) {
-    return "Aeropuerto";
-  }
-
-  if (/^aeropuerto\b/i.test(baseName) || /^aeroparque\b/i.test(baseName)) {
-    return baseName;
-  }
-
-  return `Aeropuerto de ${baseName}`;
-}
 
 function buildPerspectiveAirportLabel(data) {
   const iata = String(data?.iata || "").trim().toUpperCase();
@@ -2613,10 +2646,7 @@ const commercialCurrent = metricCurrent(commercial);
 const avGeneralCurrent = metricCurrent(avGeneral);
 const cabotajeCurrent = metricCurrent(cabotaje);
 const internationalCurrent = metricCurrent(international);
-const airportBaseLabel = buildPerspectiveAirportLabel(data);
-const airportLabel = String(data.iata || "").trim().toUpperCase() === "AEP"
-  ? airportBaseLabel
-  : `el ${airportBaseLabel}`;
+const airportLabel = getAirportSentenceLabel(data);
     
 if (Number.isFinite(totalCurrent)) {
   sentences.push(
