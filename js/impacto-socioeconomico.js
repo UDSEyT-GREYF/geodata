@@ -2449,7 +2449,7 @@ function buildTotalPassengerSentence(metric, current, airportLabel) {
 
   if (Number.isFinite(previous) && previous > 0 && current > 0 && trend) {
     return `${baseText}, lo que representa ${trend} respecto del primer semestre de 2025 que alcanzó ` +
-      `(${formatInteger(previous)} pasajeros totales.`;
+      `${formatInteger(previous)} pasajeros totales.`;
   }
 
   if (Number.isFinite(previous) && previous === 0 && current > 0) {
