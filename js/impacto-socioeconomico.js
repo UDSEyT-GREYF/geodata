@@ -2554,16 +2554,20 @@ if (
   const cabotajeShare = shareText(cabotajeCurrent, totalCurrent);
   const internationalShare = shareText(internationalCurrent, totalCurrent);
 
-const cabotajePart = Number.isFinite(cabotajeCurrent)
-  ? `<strong>${formatInteger(cabotajeCurrent)} de cabotaje</strong>${cabotajeShare ? ` (${cabotajeShare} del total)` : ""}`
-  : null;
+  const cabotajePart = Number.isFinite(cabotajeCurrent)
+    ? cabotajeCurrent > 0
+      ? `<strong>${formatInteger(cabotajeCurrent)} de cabotaje</strong>${cabotajeShare ? ` (${cabotajeShare} del total)` : ""}`
+      : `<strong>sin pasajeros de cabotaje</strong>`
+    : null;
 
-const internationalPart = Number.isFinite(internationalCurrent)
-  ? `<strong>${formatInteger(internationalCurrent)} internacionales</strong>${internationalShare ? ` (${internationalShare} del total)` : ""}`
-  : null;
+  const internationalPart = Number.isFinite(internationalCurrent)
+    ? internationalCurrent > 0
+      ? `<strong>${formatInteger(internationalCurrent)} internacionales</strong>${internationalShare ? ` (${internationalShare} del total)` : ""}`
+      : `<strong>sin pasajeros internacionales</strong>`
+    : null;
 
   sentences.push(
-    `Por alcance de vuelo, los pasajeros se distribuyeron en ${[cabotajePart, internationalPart].filter(Boolean).join(" y ")}.`
+    `Por alcance de vuelo, la actividad se distribuyó en ${[cabotajePart, internationalPart].filter(Boolean).join(" y ")}.`
   );
 }
 
@@ -2572,12 +2576,45 @@ const dominantScope = dominantVariation([
   { label: "internacional", metric: international }
 ]);
 
-if (dominantScope) {
-  const delta = dominantScope.delta;
-  const movement = delta >= 0 ? "creció" : "retrocedió";
+const cabotajeDelta = metricDelta(cabotaje);
+const internationalPrevious = metricPrevious(international);
+const noInternationalCurrent =
+  Number.isFinite(internationalCurrent) && internationalCurrent <= 0;
+const noInternationalPrevious =
+  Number.isFinite(internationalPrevious) && internationalPrevious <= 0;
+
+function deltaMovementText(delta) {
+  if (!Number.isFinite(delta)) return null;
+
+  if (delta > 0) {
+    return `creció en ${formatInteger(Math.abs(delta))} pasajeros`;
+  }
+
+  if (delta < 0) {
+    return `retrocedió en ${formatInteger(Math.abs(delta))} pasajeros`;
+  }
+
+  return "no registró variación";
+}
+
+if (noInternationalCurrent && noInternationalPrevious && Number.isFinite(cabotajeDelta)) {
+  const movementText = deltaMovementText(cabotajeDelta);
 
   sentences.push(
-    `La diferencia interanual estuvo explicada principalmente por el componente ${dominantScope.label}, que ${movement} en ${formatInteger(Math.abs(delta))} pasajeros frente al primer semestre de 2025.`
+    `Al no registrarse pasajeros internacionales en ninguno de los dos semestres comparados, la diferencia interanual se explica por el componente cabotaje, que ${movementText} frente al primer semestre de 2025.`
+  );
+} else if (noInternationalCurrent && Number.isFinite(cabotajeDelta)) {
+  const movementText = deltaMovementText(cabotajeDelta);
+
+  sentences.push(
+    `Al no registrarse pasajeros internacionales en el primer semestre de 2026, la lectura interanual se concentra en el componente cabotaje, que ${movementText} frente al primer semestre de 2025.`
+  );
+} else if (dominantScope) {
+  const delta = dominantScope.delta;
+  const movementText = deltaMovementText(delta);
+
+  sentences.push(
+    `La diferencia interanual estuvo explicada principalmente por el componente ${dominantScope.label}, que ${movementText} frente al primer semestre de 2025.`
   );
 }
 
