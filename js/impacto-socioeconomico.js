@@ -2439,11 +2439,45 @@ function formatAbsPercent(value) {
   return formatPercent(Math.abs(value)).replace("+", "");
 }
 
+function buildTotalPassengerSentence(metric, current, airportLabel) {
+  const previous = metricPrevious(metric);
+  const trend = trendPhrase(metric);
+
+  const baseText =
+    `En ${airportLabel}, durante el primer semestre de 2026 se registraron ` +
+    `<strong>${formatInteger(current)} pasajeros totales</strong>`;
+
+  if (Number.isFinite(previous) && previous > 0 && current > 0 && trend) {
+    return `${baseText}, lo que representa ${trend} respecto del primer semestre de 2025 ` +
+      `(<strong>${formatInteger(previous)} pasajeros totales</strong>).`;
+  }
+
+  if (Number.isFinite(previous) && previous === 0 && current > 0) {
+    return `${baseText}, frente a un primer semestre de 2025 sin pasajeros registrados.`;
+  }
+
+  if (Number.isFinite(previous) && previous > 0 && current === 0) {
+    return `En ${airportLabel}, durante el primer semestre de 2026 no se registraron pasajeros, ` +
+      `frente a <strong>${formatInteger(previous)} pasajeros totales</strong> en el primer semestre de 2025.`;
+  }
+
+  if (Number.isFinite(previous) && previous === 0 && current === 0) {
+    return `En ${airportLabel}, no se registraron pasajeros en el primer semestre de 2026 ni en el primer semestre de 2025.`;
+  }
+
+  return `${baseText}. No se dispone de una base interanual completa para comparar con el primer semestre de 2025.`;
+}
+    
 function trendPhrase(metric) {
+  const previous = metricPrevious(metric);
   const yoy = metricYoy(metric);
 
-  if (!isComparable(metric)) {
-    return "sin una base interanual suficiente para calcular una variación porcentual robusta";
+  if (!Number.isFinite(previous) || previous <= 0) {
+    return null;
+  }
+
+  if (!Number.isFinite(yoy)) {
+    return null;
   }
 
   if (yoy > 0.05) {
@@ -2523,7 +2557,7 @@ const airportLabel = data.iata
     
 if (Number.isFinite(totalCurrent)) {
   sentences.push(
-    `En el ${airportLabel}, durante el primer semestre de 2026 se registraron <strong>${formatInteger(totalCurrent)} pasajeros totales</strong>, lo que representa ${trendPhrase(total)} respecto del primer semestre de 2025.`
+    buildTotalPassengerSentence(total, totalCurrent, airportLabel)
   );
 }
 
