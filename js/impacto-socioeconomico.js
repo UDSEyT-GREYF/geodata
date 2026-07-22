@@ -2514,8 +2514,8 @@ function buildTotalPassengerSentence(metric, current, airportLabel) {
     `<strong>${formatInteger(current)} pasajeros totales</strong>`;
 
   if (Number.isFinite(previous) && previous > 0 && current > 0 && trend) {
-    return `${baseText}, lo que representa ${trend} respecto del primer semestre de 2025 ` +
-      `(<strong>${formatInteger(previous)} pasajeros totales</strong>).`;
+    return `${baseText}, lo que representa ${trend} respecto del primer semestre de 2025, que alcanzó ` +
+      `${formatInteger(previous)} pasajeros totales.`;
   }
 
   if (Number.isFinite(previous) && previous === 0 && current > 0) {
