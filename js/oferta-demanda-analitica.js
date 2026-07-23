@@ -807,35 +807,75 @@ function odOperationalVerbShort(event) {
     : "cierre";
 }
 
-function odOperationalReasonShort(event) {
-  const reason = clean(event?.motivo).replace(/\.$/, "");
+function odInclusiveDays(startValue, endValue) {
+  const start = odParseIsoDate(startValue);
+  const end = odParseIsoDate(endValue);
 
-  if (!reason) return "";
+  if (!start || !end) return null;
 
-  return reason
-    .replace(/^Obras de\s+/i, "obras de ")
-    .replace(/^Trabajos esenciales de\s+/i, "mantenimiento de ")
-    .replace(/^Rehabilitación integral de\s+/i, "rehabilitación de ")
-    .replace(/^Modernización de\s+/i, "modernización de ")
-    .toLowerCase();
+  const ms = end.getTime() - start.getTime();
+  if (ms < 0) return null;
+
+  return Math.round(ms / 86400000) + 1;
 }
 
-function odFormatOperationalEventShort(event) {
+function odOperationalReasonForSentence(event) {
+  const motivo = clean(event?.motivo).replace(/\.$/, "");
+  const key = normalizeTextKey(motivo);
+
+  if (key.includes("rehabilitacion integral")) {
+    return "obras de rehabilitación integral de la pista principal";
+  }
+
+  if (key.includes("remodelacion")) {
+    return "obras de remodelación de la pista";
+  }
+
+  if (key.includes("modernizacion")) {
+    return "obras de modernización de pista y plataforma comercial";
+  }
+
+  if (key.includes("mantenimiento")) {
+    return "trabajos de mantenimiento en pista y calles de rodaje";
+  }
+
+  return motivo ? motivo.toLowerCase() : "obras o tareas operativas";
+}
+
+function odFormatOperationalEventSentence(event, index = 0) {
   const start = odFormatShortDate(event.fecha_inicio);
   const end = odFormatShortDate(event.fecha_fin);
-  const reason = odOperationalReasonShort(event);
 
-  return `${odOperationalVerbShort(event)} ${start}–${end}${reason ? ` por ${reason}` : ""}`;
+  const days =
+    Number(event?.duracion_dias_informada) ||
+    odInclusiveDays(event.fecha_inicio, event.fecha_fin);
+
+  const daysText = Number.isFinite(days)
+    ? ` durante ${formatNumber(days)} días`
+    : "";
+
+  const reason = odOperationalReasonForSentence(event);
+
+  const prefix = index === 0
+    ? "el aeropuerto estuvo cerrado"
+    : "también estuvo cerrado";
+
+  return `${prefix} por ${reason}${daysText}, entre el ${start} y el ${end}`;
 }
 
 function odBuildMonthlyOperationalNoteHtml(events) {
   const items = (events || [])
-    .map(odFormatOperationalEventShort)
+    .map((event, index) => odFormatOperationalEventSentence(event, index))
     .filter(Boolean);
 
-  if (!items.length) return "";
+  const baseText =
+    "La serie muestra la relación entre capacidad ofrecida y demanda observada a lo largo del año.";
 
-  return `<strong>Nota operativa 2025:</strong> ${items.join("; ")}. Considerar esta afectación al interpretar la evolución mensual de pasajeros, vuelos y asientos.`;
+  if (!items.length) {
+    return baseText;
+  }
+
+  return `${baseText} <strong>Nota operativa:</strong> ${items.join("; ")}.`;
 }
 
 async function odRenderMonthlyOperationalNote2025(iata) {
