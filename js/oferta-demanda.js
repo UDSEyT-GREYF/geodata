@@ -32,7 +32,7 @@ const PAX_DATASET_TOTAL = "pasajeros_comerciales_total_aeropuerto";
 const MOV_DATASET_CAB = "movimientos_comerciales_cabotaje_aeropuerto";
 const MOV_DATASET_INT = "movimientos_comerciales_internacional_aeropuerto";
 const MOV_DATASET_TOTAL = "movimientos_comerciales_total_aeropuerto";
-
+const OD_OPERATIONAL_CLOSURES_PATH = "fuentes/cierres_aeropuertos_anac_2025_2026.json";
 const EXTRA_TRAFFIC_SOURCE = "extra_9_aeropuertos";
 
 const EXTRA_TRAFFIC_IATAS = new Set([
@@ -88,7 +88,8 @@ const OD_AIRPORTS_WITHOUT_REGULAR_COMMERCIAL_SERVICE_2025 = new Set([
   let fdoRoutesMonthlyAA = [];
   let fdoRoutesAnnualAA = [];
   let pasajerosMensualRows = [];
-let movimientosMensualRows = [];
+  let movimientosMensualRows = [];
+  let odOperationalClosuresPromise = null;
   // Índice por IATA construido a partir de perfil_operativo_impacto_2025.json.
   let operationalProfileByIata = {};
   // Índice por IATA construido a partir de Descriptivo_aeropuertos.geojson.
@@ -744,7 +745,117 @@ function fdoAAToMovementRows(data) {
     const el = q(id);
     if (el) el.innerHTML = value;
   }
+/* ============================================================
+   NOTA OPERATIVA 2025 · CIERRES / SUSPENSIÓN DE OPERACIONES
+   Se muestra dentro de la nota inferior del gráfico mensual.
+   ============================================================ */
 
+function odParseIsoDate(value) {
+  const m = clean(value).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!m) return null;
+  return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+}
+
+function odFormatShortDate(value) {
+  const date = odParseIsoDate(value);
+  if (!date) return clean(value);
+
+  return date.toLocaleDateString("es-AR", {
+    day: "2-digit",
+    month: "2-digit"
+  });
+}
+
+async function odLoadOperationalClosures() {
+  if (!odOperationalClosuresPromise) {
+    odOperationalClosuresPromise = fetch(OD_OPERATIONAL_CLOSURES_PATH)
+      .then(resp => {
+        if (!resp.ok) {
+          console.warn(`[Oferta/Demanda] No se pudo cargar ${OD_OPERATIONAL_CLOSURES_PATH}`);
+          return { eventos: [] };
+        }
+        return resp.json();
+      })
+      .catch(error => {
+        console.warn("[Oferta/Demanda] No se pudieron cargar las notas operativas ANAC.", error);
+        return { eventos: [] };
+      });
+  }
+
+  return odOperationalClosuresPromise;
+}
+
+function odGetOperationalEventsForYear(data, iata, year) {
+  const code = clean(iata).toUpperCase();
+  const yearPrefix = `${year}-`;
+
+  return (data?.eventos || [])
+    .filter(event => event?.usar_en_informe !== false)
+    .filter(event => clean(event?.iata).toUpperCase() === code)
+    .filter(event =>
+      Array.isArray(event?.meses_afectados) &&
+      event.meses_afectados.some(month => clean(month).startsWith(yearPrefix))
+    );
+}
+
+function odOperationalVerbShort(event) {
+  return clean(event?.tipo_evento) === "suspension_operaciones"
+    ? "suspensión de operaciones"
+    : "cierre";
+}
+
+function odOperationalReasonShort(event) {
+  const reason = clean(event?.motivo).replace(/\.$/, "");
+
+  if (!reason) return "";
+
+  return reason
+    .replace(/^Obras de\s+/i, "obras de ")
+    .replace(/^Trabajos esenciales de\s+/i, "mantenimiento de ")
+    .replace(/^Rehabilitación integral de\s+/i, "rehabilitación de ")
+    .replace(/^Modernización de\s+/i, "modernización de ")
+    .toLowerCase();
+}
+
+function odFormatOperationalEventShort(event) {
+  const start = odFormatShortDate(event.fecha_inicio);
+  const end = odFormatShortDate(event.fecha_fin);
+  const reason = odOperationalReasonShort(event);
+
+  return `${odOperationalVerbShort(event)} ${start}–${end}${reason ? ` por ${reason}` : ""}`;
+}
+
+function odBuildMonthlyOperationalNoteHtml(events) {
+  const items = (events || [])
+    .map(odFormatOperationalEventShort)
+    .filter(Boolean);
+
+  if (!items.length) return "";
+
+  return `<strong>Nota operativa 2025:</strong> ${items.join("; ")}. Considerar esta afectación al interpretar la evolución mensual de pasajeros, vuelos y asientos.`;
+}
+
+async function odRenderMonthlyOperationalNote2025(iata) {
+  const note = q("odMonthlyChartNote");
+  if (!note) return;
+
+  const panel = note.closest(".od-panel-chart");
+
+  note.classList.remove("od-note-operational");
+  if (panel) panel.classList.remove("has-operational-note");
+
+  note.innerHTML = "La serie muestra la relación entre capacidad ofrecida y demanda observada a lo largo del año.";
+
+  const data = await odLoadOperationalClosures();
+  const events = odGetOperationalEventsForYear(data, iata, YEAR_REF);
+
+  if (!events.length) return;
+
+  note.innerHTML = odBuildMonthlyOperationalNoteHtml(events);
+  note.classList.add("od-note-operational");
+
+  if (panel) panel.classList.add("has-operational-note");
+}
 function getAirportDisplayName(a) {
   const iata = clean(firstNonEmpty(a, ["IATA"])).toUpperCase();
 
@@ -6874,6 +6985,7 @@ setText("odYearRef", String(YEAR_REF));
 
 renderHistoricTrafficBlock(iata, airportName);
 renderOfertaDemanda(iata);
+odRenderMonthlyOperationalNote2025(iata);
 ensureHistoricSectionOrder();
 }
 
