@@ -2498,7 +2498,19 @@ if (!conclusion) return;
 
 const metrics = passengerData?.metrics || {};
 const sentences = [];
+const PERSPECTIVE_SIGNIFICANT_SCOPE_SHARE_PCT = 15;
 
+const PERSPECTIVE_LOW_VOLUME_IATAS = new Set([
+  "AOL",
+  "LGS",
+  "LPG",
+  "RYO",
+  "SST",
+  "TDL",
+  "TTG"
+]);
+
+const PERSPECTIVE_LOW_VOLUME_TOTAL_THRESHOLD = 300;
 
 function buildPerspectiveAirportLabel(data) {
   const iata = String(data?.iata || "").trim().toUpperCase();
@@ -2522,13 +2534,13 @@ function metricYoy(metric) {
   return Number.isFinite(value) ? value : null;
 }
 
-function isComparable(metric, minPrevious = 10) {
+function isComparable(metric) {
   const previous = metricPrevious(metric);
   const yoy = metricYoy(metric);
 
   return (
     Number.isFinite(previous) &&
-    previous >= minPrevious &&
+    previous > 0 &&
     Number.isFinite(yoy)
   );
 }
@@ -2629,7 +2641,87 @@ function dominantVariation(candidates) {
 
   return valid[0] || null;
 }
+function metricSharePct(metric, total) {
+  const current = metricCurrent(metric);
 
+  if (!Number.isFinite(current) || !Number.isFinite(total) || total <= 0) {
+    return null;
+  }
+
+  return (current / total) * 100;
+}
+
+function deltaMovementText(delta) {
+  if (!Number.isFinite(delta)) return null;
+
+  if (delta > 0) {
+    return `creció en ${formatInteger(Math.abs(delta))} pasajeros`;
+  }
+
+  if (delta < 0) {
+    return `retrocedió en ${formatInteger(Math.abs(delta))} pasajeros`;
+  }
+
+  return "no registró variación";
+}
+
+function buildScopeMovementText(item, totalCurrent, includeShare = false) {
+  const delta = metricDelta(item.metric);
+  const movementText = deltaMovementText(delta);
+  const share = metricSharePct(item.metric, totalCurrent);
+
+  if (!movementText) return "";
+
+  const shareTextPart =
+    includeShare && Number.isFinite(share)
+      ? `, que representa ${share.toLocaleString("es-AR", {
+          minimumFractionDigits: 1,
+          maximumFractionDigits: 1
+        })}% del total del semestre,`
+      : "";
+
+  return `el componente ${item.label}${shareTextPart} ${movementText}`;
+}
+
+function shouldMentionSecondaryScope(item, totalCurrent) {
+  if (!item) return false;
+
+  const delta = metricDelta(item.metric);
+  const share = metricSharePct(item.metric, totalCurrent);
+
+  return (
+    Number.isFinite(delta) &&
+    delta !== 0 &&
+    Number.isFinite(share) &&
+    share >= PERSPECTIVE_SIGNIFICANT_SCOPE_SHARE_PCT
+  );
+}
+
+function isLowVolumePerspectiveCase(iata, totalCurrent) {
+  const code = String(iata || "").trim().toUpperCase();
+
+  return (
+    PERSPECTIVE_LOW_VOLUME_IATAS.has(code) ||
+    (
+      Number.isFinite(totalCurrent) &&
+      totalCurrent > 0 &&
+      totalCurrent < PERSPECTIVE_LOW_VOLUME_TOTAL_THRESHOLD
+    )
+  );
+}
+
+function buildLowVolumePerspectiveNote(totalCurrent, commercialCurrent, avGeneralCurrent) {
+  const avGeneralPredominates =
+    Number.isFinite(avGeneralCurrent) &&
+    Number.isFinite(commercialCurrent) &&
+    avGeneralCurrent > commercialCurrent;
+
+  if (avGeneralPredominates) {
+    return "Dado el bajo volumen absoluto y la predominancia de la aviación general, la lectura debe hacerse principalmente en cantidad de pasajeros, evitando sobredimensionar la variación porcentual.";
+  }
+
+  return "Dado el bajo volumen absoluto, la lectura debe hacerse principalmente en cantidad de pasajeros, evitando sobredimensionar la variación porcentual.";
+}
 const total = metrics.total || {
   current: passengerData.current,
   previous: passengerData.previous,
@@ -2698,63 +2790,71 @@ if (
   );
 }
 
-const dominantScope = dominantVariation([
-  { label: "cabotaje", metric: cabotaje },
-  { label: "internacional", metric: international }
-]);
+const scopeItems = [
+  { key: "cabotaje", label: "cabotaje", metric: cabotaje },
+  { key: "internacional", label: "internacional", metric: international }
+];
+
+const dominantScope = dominantVariation(scopeItems);
 
 const cabotajeDelta = metricDelta(cabotaje);
 const internationalPrevious = metricPrevious(international);
+
 const noInternationalCurrent =
   Number.isFinite(internationalCurrent) && internationalCurrent <= 0;
+
 const noInternationalPrevious =
   Number.isFinite(internationalPrevious) && internationalPrevious <= 0;
-
-function deltaMovementText(delta) {
-  if (!Number.isFinite(delta)) return null;
-
-  if (delta > 0) {
-    return `creció en ${formatInteger(Math.abs(delta))} pasajeros`;
-  }
-
-  if (delta < 0) {
-    return `retrocedió en ${formatInteger(Math.abs(delta))} pasajeros`;
-  }
-
-  return "no registró variación";
-}
 
 if (noInternationalCurrent && noInternationalPrevious && Number.isFinite(cabotajeDelta)) {
   const movementText = deltaMovementText(cabotajeDelta);
 
   sentences.push(
-    `Al no registrarse pasajeros internacionales en ninguno de los dos semestres comparados, la diferencia interanual se explica por el componente cabotaje, que ${movementText} frente al primer semestre de 2025.`
+    `Al no registrarse pasajeros internacionales en ninguno de los dos semestres comparados, la variación interanual corresponde al cabotaje, que ${movementText} frente al primer semestre de 2025.`
   );
 } else if (noInternationalCurrent && Number.isFinite(cabotajeDelta)) {
   const movementText = deltaMovementText(cabotajeDelta);
+  const previousIntlText =
+    Number.isFinite(internationalPrevious) && internationalPrevious > 0
+      ? ` frente a ${formatInteger(internationalPrevious)} pasajeros internacionales en el primer semestre de 2025`
+      : "";
 
   sentences.push(
-    `Al no registrarse pasajeros internacionales en el primer semestre de 2026, la lectura interanual se concentra en el componente cabotaje, que ${movementText} frente al primer semestre de 2025.`
+    `Al no registrarse pasajeros internacionales en el primer semestre de 2026${previousIntlText}, la lectura interanual se concentra en el cabotaje, que ${movementText} frente al primer semestre de 2025.`
   );
 } else if (dominantScope) {
-  const delta = dominantScope.delta;
-  const movementText = deltaMovementText(delta);
+  const secondaryScope = scopeItems.find(item => item.key !== dominantScope.key);
 
-  sentences.push(
-    `La diferencia interanual estuvo explicada principalmente por el componente ${dominantScope.label}, que ${movementText} frente al primer semestre de 2025.`
+  const dominantText = buildScopeMovementText(
+    dominantScope,
+    totalCurrent,
+    false
   );
+
+  if (shouldMentionSecondaryScope(secondaryScope, totalCurrent)) {
+    const secondaryText = buildScopeMovementText(
+      secondaryScope,
+      totalCurrent,
+      true
+    );
+
+    sentences.push(
+      `La diferencia interanual estuvo explicada principalmente por ${dominantText}; a la vez, ${secondaryText} frente al primer semestre de 2025.`
+    );
+  } else {
+    sentences.push(
+      `La diferencia interanual estuvo explicada principalmente por ${dominantText} frente al primer semestre de 2025.`
+    );
+  }
 }
 
-if (
-  Number.isFinite(totalCurrent) &&
-  Number.isFinite(commercialCurrent) &&
-  Number.isFinite(avGeneralCurrent) &&
-  totalCurrent > 0 &&
-  commercialCurrent < 10 &&
-  avGeneralCurrent > 0
-) {
+if (isLowVolumePerspectiveCase(data.iata, totalCurrent)) {
   sentences.push(
-    "En este caso, la lectura debe centrarse en la actividad total registrada y en la aviación general, dado que la base comercial regular es reducida o inexistente."
+    buildLowVolumePerspectiveNote(
+      totalCurrent,
+      commercialCurrent,
+      avGeneralCurrent
+    )
   );
 }
 
