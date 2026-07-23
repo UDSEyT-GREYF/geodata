@@ -2665,22 +2665,17 @@ function deltaMovementText(delta) {
   return "no registró variación";
 }
 
-function buildScopeMovementText(item, totalCurrent, includeShare = false) {
+function buildScopeMovementText(item, mode = "dominant") {
   const delta = metricDelta(item.metric);
   const movementText = deltaMovementText(delta);
-  const share = metricSharePct(item.metric, totalCurrent);
 
   if (!movementText) return "";
 
-  const shareTextPart =
-    includeShare && Number.isFinite(share)
-      ? `, que representa ${share.toLocaleString("es-AR", {
-          minimumFractionDigits: 1,
-          maximumFractionDigits: 1
-        })}% del total del semestre,`
-      : "";
+  if (mode === "secondary") {
+    return `el componente ${item.label} ${movementText}`;
+  }
 
-  return `el componente ${item.label}${shareTextPart} ${movementText}`;
+  return `el componente ${item.label} que ${movementText}`;
 }
 
 function shouldMentionSecondaryScope(item, totalCurrent) {
@@ -2790,72 +2785,64 @@ if (
   );
 }
 
-const scopeItems = [
-  { key: "cabotaje", label: "cabotaje", metric: cabotaje },
-  { key: "internacional", label: "internacional", metric: international }
-];
+const isLowVolumeCase = isLowVolumePerspectiveCase(data.iata, totalCurrent);
 
-const dominantScope = dominantVariation(scopeItems);
+if (!isLowVolumeCase) {
+  const scopeItems = [
+    { key: "cabotaje", label: "cabotaje", metric: cabotaje },
+    { key: "internacional", label: "internacional", metric: international }
+  ];
 
-const cabotajeDelta = metricDelta(cabotaje);
-const internationalPrevious = metricPrevious(international);
+  const dominantScope = dominantVariation(scopeItems);
 
-const noInternationalCurrent =
-  Number.isFinite(internationalCurrent) && internationalCurrent <= 0;
+  const cabotajeDelta = metricDelta(cabotaje);
+  const internationalPrevious = metricPrevious(international);
 
-const noInternationalPrevious =
-  Number.isFinite(internationalPrevious) && internationalPrevious <= 0;
+  const noInternationalCurrent =
+    Number.isFinite(internationalCurrent) && internationalCurrent <= 0;
 
-if (noInternationalCurrent && noInternationalPrevious && Number.isFinite(cabotajeDelta)) {
-  const movementText = deltaMovementText(cabotajeDelta);
+  const noInternationalPrevious =
+    Number.isFinite(internationalPrevious) && internationalPrevious <= 0;
 
-  sentences.push(
-    `Al no registrarse pasajeros internacionales en ninguno de los dos semestres comparados, la variación interanual corresponde al cabotaje, que ${movementText} frente al primer semestre de 2025.`
-  );
-} else if (noInternationalCurrent && Number.isFinite(cabotajeDelta)) {
-  const movementText = deltaMovementText(cabotajeDelta);
-  const previousIntlText =
-    Number.isFinite(internationalPrevious) && internationalPrevious > 0
-      ? ` frente a ${formatInteger(internationalPrevious)} pasajeros internacionales en el primer semestre de 2025`
-      : "";
-
-  sentences.push(
-    `Al no registrarse pasajeros internacionales en el primer semestre de 2026${previousIntlText}, la lectura interanual se concentra en el cabotaje, que ${movementText} frente al primer semestre de 2025.`
-  );
-} else if (dominantScope) {
-  const secondaryScope = scopeItems.find(item => item.key !== dominantScope.key);
-
-  const dominantText = buildScopeMovementText(
-    dominantScope,
-    totalCurrent,
-    false
-  );
-
-  if (shouldMentionSecondaryScope(secondaryScope, totalCurrent)) {
-    const secondaryText = buildScopeMovementText(
-      secondaryScope,
-      totalCurrent,
-      true
-    );
+  if (noInternationalCurrent && noInternationalPrevious && Number.isFinite(cabotajeDelta)) {
+    const movementText = deltaMovementText(cabotajeDelta);
 
     sentences.push(
-      `La diferencia interanual estuvo explicada principalmente por ${dominantText}; a la vez, ${secondaryText} frente al primer semestre de 2025.`
+      `Al no registrarse pasajeros internacionales en ninguno de los dos semestres comparados, la variación interanual corresponde al cabotaje, que ${movementText} frente al primer semestre de 2025.`
     );
-  } else {
+  } else if (noInternationalCurrent && Number.isFinite(cabotajeDelta)) {
+    const movementText = deltaMovementText(cabotajeDelta);
+    const previousIntlText =
+      Number.isFinite(internationalPrevious) && internationalPrevious > 0
+        ? ` frente a ${formatInteger(internationalPrevious)} pasajeros internacionales en el primer semestre de 2025`
+        : "";
+
     sentences.push(
-      `La diferencia interanual estuvo explicada principalmente por ${dominantText} frente al primer semestre de 2025.`
+      `Al no registrarse pasajeros internacionales en el primer semestre de 2026${previousIntlText}, la lectura interanual se concentra en el cabotaje, que ${movementText} frente al primer semestre de 2025.`
     );
+  } else if (dominantScope) {
+    const secondaryScope = scopeItems.find(item => item.key !== dominantScope.key);
+
+    const dominantText = buildScopeMovementText(
+      dominantScope,
+      "dominant"
+    );
+
+    if (shouldMentionSecondaryScope(secondaryScope, totalCurrent)) {
+      const secondaryText = buildScopeMovementText(
+        secondaryScope,
+        "secondary"
+      );
+
+      sentences.push(
+        `La diferencia interanual estuvo explicada principalmente por ${dominantText}; a la vez, ${secondaryText} frente al primer semestre de 2025.`
+      );
+    } else {
+      sentences.push(
+        `La diferencia interanual estuvo explicada principalmente por ${dominantText} frente al primer semestre de 2025.`
+      );
+    }
   }
-}
-
-if (isLowVolumePerspectiveCase(data.iata, totalCurrent)) {
-  sentences.push(
-    buildLowVolumePerspectiveNote(
-      totalCurrent,
-      commercialCurrent,
-      avGeneralCurrent
-    )
-  );
 }
 
 if (!sentences.length) {
