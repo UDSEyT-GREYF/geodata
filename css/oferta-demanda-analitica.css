@@ -2485,3 +2485,24 @@ body {
 .oferta-demanda-sheet .od-kpi-value {
   margin-top: 4px;
 }
+/* ============================================================
+   NOTA OPERATIVA 2025 DENTRO DEL GRÁFICO MENSUAL
+   No agrega bloque nuevo: reutiliza la nota inferior existente.
+   ============================================================ */
+
+.oferta-demanda-sheet #odMonthlyChartNote strong {
+  color: #002855;
+  font-weight: 850;
+}
+
+.oferta-demanda-sheet #odMonthlyChartNote.od-note-operational {
+  color: #3f4955;
+  font-size: 8.4px;
+  line-height: 1.12;
+  padding-bottom: 2px;
+}
+
+/* Solo en aeropuertos con nota operativa, se achica mínimamente el gráfico mensual */
+.oferta-demanda-sheet .od-panel-chart.has-operational-note .od-chart-wrap {
+  height: 230px !important;
+}
