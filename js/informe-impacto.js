@@ -277,7 +277,11 @@ async function loadText(url) {
     const mount = q("summaryMount");
     if (mount) mount.innerHTML = html;
   }
-
+async function mountIndexPartial() {
+  const html = await loadText("partials/indice-informe.html");
+  const mount = q("indexMount");
+  if (mount) mount.innerHTML = html;
+}
   async function mountLaminaFromCurrentHtml() {
     const html = await loadText("datos-clave-lamina-app.html");
     const parser = new DOMParser();
@@ -337,9 +341,10 @@ function isVisibleReportPage(page) {
 function getInformeImpactoPagesForNumbering() {
   const pages = [];
 
-  const coverEl = document.querySelector("#coverMount .report-cover-page");
-  const summaryEl = document.querySelector("#summaryMount .summary-page");
-  const laminaEl = document.querySelector("#laminaMount #sheetA4");
+const coverEl = document.querySelector("#coverMount .report-cover-page");
+const summaryEl = document.querySelector("#summaryMount .summary-page");
+const indexEl = document.querySelector("#indexMount .report-index-page");
+const laminaEl = document.querySelector("#laminaMount #sheetA4");
 
   if (isVisibleReportPage(coverEl)) {
     pages.push({ el: coverEl, orientation: "portrait" });
@@ -348,7 +353,9 @@ function getInformeImpactoPagesForNumbering() {
   if (isVisibleReportPage(summaryEl)) {
     pages.push({ el: summaryEl, orientation: "portrait" });
   }
-
+if (isVisibleReportPage(indexEl)) {
+  pages.push({ el: indexEl, orientation: "portrait" });
+}
   if (isVisibleReportPage(laminaEl)) {
     pages.push({ el: laminaEl, orientation: "landscape" });
   }
@@ -377,7 +384,47 @@ impactoPages.forEach(page => {
 });
   return pages;
 }
+function findReportPageNumberForTarget(selector, pages) {
+  const target = document.querySelector(selector);
+  if (!target) return null;
 
+  const index = pages.findIndex(item =>
+    item.el === target ||
+    item.el.contains(target) ||
+    target.contains(item.el)
+  );
+
+  return index >= 0 ? index + 1 : null;
+}
+
+function renderReportIndexLinks(pages) {
+  const indexPage = document.querySelector("#indexMount .report-index-page");
+  if (!indexPage) return;
+
+  const airportLine =
+    q("summaryAirportLine")?.textContent?.trim() ||
+    q("airportSearchInput")?.value?.trim() ||
+    q("airportSelect")?.selectedOptions?.[0]?.textContent?.trim() ||
+    "Aeropuerto";
+
+  const airportEl = q("indexAirportLine");
+  if (airportEl) airportEl.textContent = airportLine;
+
+  indexPage.querySelectorAll("[data-index-target]").forEach(row => {
+    const selector = row.dataset.indexTarget;
+    const pageNumber = findReportPageNumberForTarget(selector, pages);
+    const pageEl = row.querySelector("[data-index-page]");
+
+    row.classList.toggle("is-hidden", !pageNumber);
+    row.setAttribute("aria-hidden", pageNumber ? "false" : "true");
+
+    if (pageEl) {
+      pageEl.textContent = pageNumber
+        ? String(pageNumber).padStart(2, "0")
+        : "–";
+    }
+  });
+}
 function renderInformeImpactoPageNumbers() {
   const root = q("reportStack");
   if (!root) return;
@@ -393,10 +440,7 @@ function renderInformeImpactoPageNumbers() {
     const pageNumber = index + 1;
     const page = item.el;
 
-    // La portada cuenta pero no muestra número.
     if (pageNumber === 1) return;
-
-    // La página apaisada cuenta pero no muestra número.
     if (item.orientation === "landscape") return;
 
     page.classList.add("impact-numbered-page");
@@ -407,6 +451,8 @@ function renderInformeImpactoPageNumbers() {
 
     page.appendChild(numberEl);
   });
+
+  renderReportIndexLinks(pages);
 }
 
 function scheduleInformeImpactoPageNumbers() {
@@ -762,6 +808,7 @@ async function addSummaryNativePage(pdf, useCurrentPage = false) {
       const { jsPDF } = window.jspdf;
 
 const coverEl = document.querySelector("#coverMount .report-cover-page");
+const indexEl = document.querySelector("#indexMount .report-index-page");
 const laminaEl = document.querySelector("#laminaMount #sheetA4");
 
 
@@ -796,6 +843,19 @@ if (coverEl) {
 }
 
 await addSummaryNativePage(pdf, !usedFirstPage);
+
+renderInformeImpactoPageNumbers();
+
+await new Promise(resolve => {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(resolve);
+  });
+});
+
+if (indexEl) {
+  const indexRaster = await rasterizeElement(indexEl, 2);
+  addRasterPage(pdf, indexRaster, "portrait", false);
+}
 
 if (laminaEl) {
   const laminaRaster = await rasterizeElement(laminaEl, 2);
@@ -878,6 +938,7 @@ async function bootReport() {
 
 await mountCoverPartial();
 await mountSummaryPartial();
+await mountIndexPartial();
 await mountLaminaFromCurrentHtml();
 await mountOfferDemandPartial();
 await mountTerritorialPartial();
