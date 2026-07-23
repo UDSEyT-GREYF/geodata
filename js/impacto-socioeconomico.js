@@ -301,6 +301,11 @@ const PASSENGER_SEMESTER_URL = "data/pasajeros_semestre_2025_2026.json";
   ]);
 
   const FDO_IATA = "FDO";
+
+  const IMPACT_OPERATIONAL_CLOSURES_PATH = "fuentes/cierres_aeropuertos_anac_2025_2026.json";
+let impactOperationalClosuresPromise = null;
+
+  
   function normalizeKey(value) {
     return String(value ?? "")
       .normalize("NFD")
@@ -2477,6 +2482,87 @@ async function resolvePassengerData(data) {
     return components.length ? `El principal componente positivo fue ${components[0].label}.` : "";
   }
 
+/* ============================================================
+   NOTA OPERATIVA 2026 · PERSPECTIVA RGA
+   ============================================================ */
+
+function impactParseIsoDate(value) {
+  const m = String(value || "").trim().match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!m) return null;
+  return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+}
+
+function impactFormatLongDate(value) {
+  const date = impactParseIsoDate(value);
+  if (!date) return String(value || "").trim();
+
+  return date.toLocaleDateString("es-AR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  });
+}
+
+function impactInclusiveDays(startValue, endValue) {
+  const start = impactParseIsoDate(startValue);
+  const end = impactParseIsoDate(endValue);
+
+  if (!start || !end) return null;
+
+  const ms = end.getTime() - start.getTime();
+  if (ms < 0) return null;
+
+  return Math.round(ms / 86400000) + 1;
+}
+
+async function impactLoadOperationalClosures() {
+  if (!impactOperationalClosuresPromise) {
+    impactOperationalClosuresPromise = fetch(IMPACT_OPERATIONAL_CLOSURES_PATH)
+      .then(resp => {
+        if (!resp.ok) {
+          console.warn(`[Impacto] No se pudo cargar ${IMPACT_OPERATIONAL_CLOSURES_PATH}`);
+          return { eventos: [] };
+        }
+        return resp.json();
+      })
+      .catch(error => {
+        console.warn("[Impacto] No se pudieron cargar las notas operativas ANAC.", error);
+        return { eventos: [] };
+      });
+  }
+
+  return impactOperationalClosuresPromise;
+}
+
+async function getPerspectiveOperationalClosureEvent(iata) {
+  const code = String(iata || "").trim().toUpperCase();
+
+  if (code !== "RGA") return null;
+
+  const data = await impactLoadOperationalClosures();
+
+  return (data?.eventos || []).find(event =>
+    event?.usar_en_informe !== false &&
+    String(event?.iata || "").trim().toUpperCase() === "RGA" &&
+    Array.isArray(event?.meses_afectados) &&
+    event.meses_afectados.some(month => String(month).startsWith("2026-"))
+  ) || null;
+}
+
+function buildPerspectiveClosureSentence(event) {
+  if (!event) return "";
+
+  const days =
+    Number(event?.duracion_dias_informada) ||
+    impactInclusiveDays(event.fecha_inicio, event.fecha_fin);
+
+  const daysText = Number.isFinite(days)
+    ? ` durante ${formatInteger(days)} días`
+    : "";
+
+  return `Esta variación se debe a que el aeropuerto estuvo cerrado por obras de modernización de pista y plataforma comercial${daysText}, entre el ${impactFormatLongDate(event.fecha_inicio)} y el ${impactFormatLongDate(event.fecha_fin)}.`;
+}
+  
   async function renderConclusion(data) {
 const passengerData = await resolvePassengerData(data);
 const periodEnd = monthName(passengerData.lastMonth);
@@ -2498,6 +2584,7 @@ if (!conclusion) return;
 
 const metrics = passengerData?.metrics || {};
 const sentences = [];
+const perspectiveClosureEvent = await getPerspectiveOperationalClosureEvent(data.iata);
 const PERSPECTIVE_SIGNIFICANT_SCOPE_SHARE_PCT = 15;
 
 const PERSPECTIVE_LOW_VOLUME_IATAS = new Set([
@@ -2550,9 +2637,13 @@ function formatAbsPercent(value) {
   return formatPercent(Math.abs(value)).replace("+", "");
 }
 
-function buildTotalPassengerSentence(metric, current, airportLabel) {
+function buildTotalPassengerSentence(metric, current, airportLabel, closureEvent = null) {
   const previous = metricPrevious(metric);
   const trend = trendPhrase(metric);
+
+  const closureText = closureEvent
+    ? ` ${buildPerspectiveClosureSentence(closureEvent)}`
+    : "";
 
   const baseText =
     `En ${airportLabel}, durante el primer semestre de 2026 se registraron ` +
@@ -2560,23 +2651,23 @@ function buildTotalPassengerSentence(metric, current, airportLabel) {
 
   if (Number.isFinite(previous) && previous > 0 && current > 0 && trend) {
     return `${baseText}, lo que representa ${trend} respecto del primer semestre de 2025, que alcanzó ` +
-      `${formatInteger(previous)} pasajeros totales.`;
+      `${formatInteger(previous)} pasajeros totales.${closureText}`;
   }
 
   if (Number.isFinite(previous) && previous === 0 && current > 0) {
-    return `${baseText}, frente a un primer semestre de 2025 sin pasajeros registrados.`;
+    return `${baseText}, frente a un primer semestre de 2025 sin pasajeros registrados.${closureText}`;
   }
 
   if (Number.isFinite(previous) && previous > 0 && current === 0) {
     return `En ${airportLabel}, durante el primer semestre de 2026 no se registraron pasajeros, ` +
-      `frente a <strong>${formatInteger(previous)} pasajeros totales</strong> en el primer semestre de 2025.`;
+      `frente a <strong>${formatInteger(previous)} pasajeros totales</strong> en el primer semestre de 2025.${closureText}`;
   }
 
   if (Number.isFinite(previous) && previous === 0 && current === 0) {
-    return `En ${airportLabel}, no se registraron pasajeros en el primer semestre de 2026 ni en el primer semestre de 2025.`;
+    return `En ${airportLabel}, no se registraron pasajeros en el primer semestre de 2026 ni en el primer semestre de 2025.${closureText}`;
   }
 
-  return `${baseText}. No se dispone de una base interanual completa para comparar con el primer semestre de 2025.`;
+  return `${baseText}. No se dispone de una base interanual completa para comparar con el primer semestre de 2025.${closureText}`;
 }
     
 function trendPhrase(metric) {
@@ -2737,7 +2828,7 @@ const airportLabel = getAirportSentenceLabel(data);
     
 if (Number.isFinite(totalCurrent)) {
   sentences.push(
-    buildTotalPassengerSentence(total, totalCurrent, airportLabel)
+    buildTotalPassengerSentence(total, totalCurrent, airportLabel, perspectiveClosureEvent)
   );
 }
 
@@ -2787,7 +2878,7 @@ if (
 
 const isLowVolumeCase = isLowVolumePerspectiveCase(data.iata, totalCurrent);
 
-if (!isLowVolumeCase) {
+if (!perspectiveClosureEvent && !isLowVolumeCase) {
   const scopeItems = [
     { key: "cabotaje", label: "cabotaje", metric: cabotaje },
     { key: "internacional", label: "internacional", metric: international }
