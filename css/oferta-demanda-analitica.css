@@ -2455,3 +2455,33 @@ body {
 .oferta-demanda-sheet .od-historic-routes-chart-wrap {
   height: 346px !important;
 }
+/* Ajuste fino A4: compactar KPI y espacio bajo gráficos principales */
+.oferta-demanda-sheet .od-main-grid {
+  row-gap: 4px;
+  column-gap: 10px;
+}
+
+.oferta-demanda-sheet .od-panel-chart .od-note,
+.oferta-demanda-sheet .od-panel-airlines .od-note {
+  padding-bottom: 3px;
+  line-height: 1.12;
+}
+
+.oferta-demanda-sheet .od-note-tight {
+  padding-bottom: 3px;
+}
+
+.oferta-demanda-sheet .od-kpi {
+  min-height: 42px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.oferta-demanda-sheet .od-kpi-label {
+  min-height: 10px;
+  line-height: 1.05;
+}
+
+.oferta-demanda-sheet .od-kpi-value {
+  margin-top: 4px;
+}
