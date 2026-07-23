@@ -465,7 +465,47 @@ function scheduleInformeImpactoPageNumbers() {
   });
 }
 
+function observeOfferDemandPageVisibility() {
+  const mount = q("offerDemandMount");
 
+  if (!mount || mount.dataset.pageNumberObserverBound === "1") {
+    return;
+  }
+
+  mount.dataset.pageNumberObserverBound = "1";
+
+  const observer = new MutationObserver(records => {
+    const visibilityChanged = records.some(record => {
+      if (
+        record.type !== "attributes" ||
+        record.attributeName !== "class" ||
+        !record.target.classList.contains("offer-demand-page")
+      ) {
+        return false;
+      }
+
+      const previousClasses = String(record.oldValue || "")
+        .split(/\s+/)
+        .filter(Boolean);
+
+      const wasHidden = previousClasses.includes("is-hidden");
+      const isHidden = record.target.classList.contains("is-hidden");
+
+      return wasHidden !== isHidden;
+    });
+
+    if (visibilityChanged) {
+      scheduleInformeImpactoPageNumbers();
+    }
+  });
+
+  observer.observe(mount, {
+    subtree: true,
+    attributes: true,
+    attributeFilter: ["class"],
+    attributeOldValue: true
+  });
+}
 
 
   function fitIntoBox(srcW, srcH, boxW, boxH) {
@@ -943,6 +983,8 @@ await mountLaminaFromCurrentHtml();
 await mountOfferDemandPartial();
 await mountTerritorialPartial();
 await mountImpactoSocioeconomicoPartial();
+
+observeOfferDemandPageVisibility();
 
 document.dispatchEvent(new CustomEvent("report:partials-ready"));
 
