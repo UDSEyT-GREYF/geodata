@@ -1,0 +1,171 @@
+{
+  "metadata": {
+    "nombre": "cierres_aeropuertos_anac_2025_2026",
+    "descripcion": "Cierres o suspensión de operaciones aeroportuarias identificados en las notas de los informes mensuales ANAC 2025 y primer semestre 2026.",
+    "version": "2026-07-23",
+    "periodo_revisado": {
+      "desde": "2025-01",
+      "hasta": "2026-06"
+    },
+    "criterio_inclusion": [
+      "Se incluyen cierres aeroportuarios, suspensión de operaciones o inoperatividad de aeropuerto informados en notas ANAC.",
+      "No se incluyen menciones a cierres de 2024 usadas como nota comparativa en gráficos de 2025.",
+      "No se incluyen paros generales como cierre aeroportuario, salvo en la sección afectaciones_generales_no_aeropuerto."
+    ],
+    "fuentes_consultadas": [
+      {
+        "anio": 2025,
+        "tipo": "canal ANAC informes mensuales",
+        "url": "https://consultas-publicas.anac.gob.ar/estadisticas-dnta/canal/663392f56aaf494caedb88e9a44d0a44",
+        "meses_publicados": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ]
+      },
+      {
+        "anio": 2026,
+        "tipo": "canal ANAC informes mensuales",
+        "url": "https://consultas-publicas.anac.gob.ar/estadisticas-dnta/canal/fd59bb1f-3151-49cd-acbe-30bdc22606c0",
+        "meses_publicados": [
+          "2026-01",
+          "2026-02",
+          "2026-03",
+          "2026-04",
+          "2026-05",
+          "2026-06"
+        ]
+      }
+    ]
+  },
+  "eventos": [
+    {
+      "id": "RGL_2025_01_mantenimiento_pista",
+      "iata": "RGL",
+      "oaci": "SAWG",
+      "aeropuerto": "Aeropuerto Internacional de Río Gallegos Piloto Civil Norberto Fernández",
+      "localidad": "Río Gallegos",
+      "provincia": "Santa Cruz",
+      "tipo_evento": "cierre_total",
+      "causa_categoria": "mantenimiento",
+      "motivo": "Trabajos esenciales de mantenimiento en pista y calles de rodaje.",
+      "fecha_inicio": "2025-01-28",
+      "fecha_fin": "2025-01-31",
+      "fecha_fin_inclusive": true,
+      "meses_afectados": [
+        "2025-01"
+      ],
+      "informes_anac": [
+        "2025-01"
+      ],
+      "texto_fuente_resumido": "El aeropuerto de Río Gallegos permaneció cerrado del 28 al 31 de enero de 2025 debido a trabajos esenciales de mantenimiento en pista y calles de rodaje.",
+      "usar_en_informe": true,
+      "nivel_confianza": "alto"
+    },
+    {
+      "id": "RGL_2025_09_12_rehabilitacion_pista",
+      "iata": "RGL",
+      "oaci": "SAWG",
+      "aeropuerto": "Aeropuerto Internacional de Río Gallegos Piloto Civil Norberto Fernández",
+      "localidad": "Río Gallegos",
+      "provincia": "Santa Cruz",
+      "tipo_evento": "cierre_total",
+      "causa_categoria": "obra",
+      "motivo": "Rehabilitación integral de la pista principal.",
+      "fecha_inicio": "2025-09-01",
+      "fecha_fin": "2025-12-23",
+      "fecha_fin_inclusive": true,
+      "duracion_dias_informada": 113,
+      "meses_afectados": [
+        "2025-09",
+        "2025-10",
+        "2025-11",
+        "2025-12"
+      ],
+      "informes_anac": [
+        "2025-12"
+      ],
+      "texto_fuente_resumido": "El Aeropuerto Internacional de Río Gallegos permaneció cerrado por 113 días, desde el 1 de septiembre hasta el 23 de diciembre de 2025, para rehabilitación integral de su pista principal.",
+      "usar_en_informe": true,
+      "nivel_confianza": "alto"
+    },
+    {
+      "id": "ROS_2025_09_12_remodelacion_pista",
+      "iata": "ROS",
+      "oaci": "SAAR",
+      "aeropuerto": "Aeropuerto Internacional de Rosario Islas Malvinas",
+      "localidad": "Rosario",
+      "provincia": "Santa Fe",
+      "tipo_evento": "suspension_operaciones",
+      "causa_categoria": "obra",
+      "motivo": "Obras de remodelación en la pista.",
+      "fecha_inicio": "2025-09-20",
+      "fecha_fin": "2025-12-29",
+      "fecha_fin_inclusive": true,
+      "duracion_dias_informada": 90,
+      "meses_afectados": [
+        "2025-09",
+        "2025-10",
+        "2025-11",
+        "2025-12"
+      ],
+      "informes_anac": [
+        "2025-12"
+      ],
+      "texto_fuente_resumido": "El Aeropuerto Internacional de Rosario suspendió sus operaciones durante 90 días, entre el 20 de septiembre y el 29 de diciembre de 2025, para ejecutar obras de remodelación en la pista.",
+      "usar_en_informe": true,
+      "nivel_confianza": "alto"
+    },
+    {
+      "id": "RGA_2026_01_04_modernizacion_pista_plataforma",
+      "iata": "RGA",
+      "oaci": "SAWE",
+      "aeropuerto": "Aeropuerto Internacional de Río Grande Gobernador Ramón Trejo Noel",
+      "localidad": "Río Grande",
+      "provincia": "Tierra del Fuego",
+      "tipo_evento": "cierre_total",
+      "causa_categoria": "obra",
+      "motivo": "Obras de modernización en la pista y plataforma comercial.",
+      "fecha_inicio": "2026-01-05",
+      "fecha_fin": "2026-04-15",
+      "fecha_fin_inclusive": true,
+      "meses_afectados": [
+        "2026-01",
+        "2026-02",
+        "2026-03",
+        "2026-04"
+      ],
+      "informes_anac": [
+        "2026-01",
+        "2026-02",
+        "2026-03",
+        "2026-04"
+      ],
+      "texto_fuente_resumido": "El Aeropuerto Internacional de Río Grande permanecerá cerrado desde el 5 de enero hasta el 15 de abril de 2026 por obras de modernización en la pista y plataforma comercial.",
+      "usar_en_informe": true,
+      "nivel_confianza": "alto"
+    }
+  ],
+  "afectaciones_generales_no_aeropuerto": [
+    {
+      "id": "ARG_2026_02_19_paro_general",
+      "fecha": "2026-02-19",
+      "ambito": "Argentina",
+      "tipo_evento": "paro_general",
+      "descripcion": "Paro general de 24 horas convocado por la CGT, con adhesión de gremios del transporte y del sector aeronáutico; afectó fuertemente el servicio de aviación comercial.",
+      "informes_anac": [
+        "2026-02"
+      ],
+      "usar_como_cierre_aeropuerto": false
+    }
+  ]
+}
