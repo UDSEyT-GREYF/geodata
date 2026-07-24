@@ -329,9 +329,9 @@ footer {
 .card .tag {
   margin: 0 0 14px;
   color: #0072bc;
-  font-size: 13px;
+  font-size: 0.8rem;
   line-height: 1.2;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
@@ -339,15 +339,15 @@ footer {
 .card .title {
   margin: 0 0 12px;
   color: #002855;
-  font-size: 21px;
+  font-size: 1.1rem;
   line-height: 1.28;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .card .desc {
   margin: 0 0 18px;
-  color: #333333;
-  font-size: 15px;
+  color: #555;
+  font-size: 0.8rem;
   line-height: 1.48;
 }
 
