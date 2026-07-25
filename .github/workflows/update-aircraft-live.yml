@@ -51,9 +51,6 @@ jobs:
               "Accept-Encoding": "gzip",
           }
 
-          # Si ADSBiq requiere token, guardarlo como secret en GitHub:
-          # Settings > Secrets and variables > Actions > New repository secret
-          # Nombre: ADSBIQ_TOKEN
           token = os.environ.get("ADSBIQ_TOKEN", "").strip()
           if token:
               headers["Authorization"] = f"Bearer {token}"
@@ -68,14 +65,6 @@ jobs:
               return ""
 
           def in_bbox(lat, lon):
-              try:
-                  lat = float(lat)
-                  lon = float(lon)
-              except Exception:
-                  return False
-
-              return (
-                  BBOX["lat_min"] <= lat <= BBOX["          def in_bbox(lat, lon):
               try:
                   lat = float(lat)
                   lon = float(lon)
