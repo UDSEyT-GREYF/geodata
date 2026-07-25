@@ -1,153 +1,181 @@
-name: Actualizar aviones en vuelo
-
-on:
-  schedule:
-    # cada 10 minutos
-    - cron: '*/10 * * * *'
-  workflow_dispatch: {}
-
-permissions:
-  contents: write
-
-jobs:
-  update:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Descargar aviones en vuelo desde OpenSky
+      - name: Descargar aviones en vuelo con origen y destino
         run: |
           mkdir -p data/aircraft
 
           python3 - <<'EOF'
           import json
-          import urllib.parse
           import urllib.request
           import datetime
+          import gzip
+          import os
           from pathlib import Path
 
-          # Bounding box aproximado Argentina + entorno inmediato.
-          # OpenSky usa WGS84:
-          # lamin = latitud mínima
-          # lomin = longitud mínima
-          # lamax = latitud máxima
-          # lomax = longitud máxima
-          bbox = {
-              "lamin": -56.5,
-              "lomin": -76.5,
-              "lamax": -20.0,
-              "lomax": -50.0,
-          }
-
-          base_url = "https://opensky-network.org/api/states/all"
-          url = base_url + "?" + urllib.parse.urlencode(bbox)
+          # Fuente con campos de ruta:
+          # route_origin = aeropuerto origen IATA
+          # route_dest   = aeropuerto destino IATA
+          ADSB_URL = "https://api.adsbiq.com/v2/all"
 
           output_path = Path("data/aircraft/latest.geojson")
-          fallback_path = output_path
 
-          headers = {
-              "User-Agent": "Mozilla/5.0 (compatible; geodata-aircraft-updater/1.0)"
+          # Bounding box aproximado Argentina + entorno regional
+          BBOX = {
+              "lat_min": -56.5,
+              "lon_min": -76.5,
+              "lat_max": -20.0,
+              "lon_max": -50.0,
           }
 
-          def meters_to_feet(value):
+          headers = {
+              "User-Agent": "Mozilla/5.0 (compatible; geodata-aircraft-updater/1.0)",
+              "Accept-Encoding": "gzip",
+          }
+
+          # Si alguna vez la API requiere token, lo podés guardar como secret:
+          # ADSBIQ_TOKEN
+          token = os.environ.get("ADSBIQ_TOKEN", "").strip()
+          if token:
+              headers["Authorization"] = f"Bearer {token}"
+
+          def in_bbox(lat, lon):
+              try:
+                  lat = float(lat)
+                  lon = float(lon)
+              except Exception:
+                  return False
+
+              return (
+                  BBOX["lat_min"] <= lat <= BBOX["lat_max"] and
+                  BBOX["lon_min"] <= lon <= BBOX["lon_max"]
+              )
+
+          def knots_to_kmh(value):
               if value is None:
                   return None
               try:
-                  return round(float(value) * 3.28084)
+                  return round(float(value) * 1.852, 1)
               except Exception:
                   return None
 
-          def ms_to_kmh(value):
+          def feet_to_meters(value):
               if value is None:
                   return None
+              if isinstance(value, str) and value.lower() == "ground":
+                  return 0
               try:
-                  return round(float(value) * 3.6, 1)
+                  return round(float(value) * 0.3048, 1)
               except Exception:
                   return None
 
-          def safe_get(row, index, default=None):
-              try:
-                  return row[index]
-              except Exception:
-                  return default
+          def clean_text(value):
+              return str(value or "").strip()
 
-          def build_feature(row):
-              icao24 = safe_get(row, 0)
-              callsign = safe_get(row, 1)
-              origin_country = safe_get(row, 2)
-              time_position = safe_get(row, 3)
-              last_contact = safe_get(row, 4)
-              lon = safe_get(row, 5)
-              lat = safe_get(row, 6)
-              baro_altitude = safe_get(row, 7)
-              on_ground = safe_get(row, 8)
-              velocity = safe_get(row, 9)
-              true_track = safe_get(row, 10)
-              vertical_rate = safe_get(row, 11)
-              geo_altitude = safe_get(row, 13)
-              squawk = safe_get(row, 14)
-              spi = safe_get(row, 15)
-              position_source = safe_get(row, 16)
-              category = safe_get(row, 17)
+          def clean_iata(value):
+              text = clean_text(value).upper()
+              if len(text) == 3 and text.isalnum():
+                  return text
+              return ""
+
+          def build_route_label(origin, dest):
+              if origin and dest:
+                  return f"{origin} → {dest}"
+              if origin:
+                  return f"{origin} → s/d"
+              if dest:
+                  return f"s/d → {dest}"
+              return ""
+
+          def build_feature(ac):
+              lat = ac.get("lat")
+              lon = ac.get("lon")
 
               if lat is None or lon is None:
                   return None
 
-              # Para “aviones en vuelo” excluimos aeronaves en tierra.
-              if on_ground is True:
+              if not in_bbox(lat, lon):
                   return None
+
+              alt_baro = ac.get("alt_baro")
+              gs = ac.get("gs")
+
+              origin_iata = clean_iata(ac.get("route_origin"))
+              destination_iata = clean_iata(ac.get("route_dest"))
+              route_label = build_route_label(origin_iata, destination_iata)
+
+              callsign = clean_text(ac.get("flight"))
 
               return {
                   "type": "Feature",
                   "geometry": {
                       "type": "Point",
-                      "coordinates": [lon, lat]
+                      "coordinates": [float(lon), float(lat)]
                   },
                   "properties": {
-                      "icao24": icao24,
-                      "callsign": (callsign or "").strip(),
-                      "origin_country": origin_country,
-                      "time_position": time_position,
-                      "last_contact": last_contact,
-                      "baro_altitude_m": baro_altitude,
-                      "baro_altitude_ft": meters_to_feet(baro_altitude),
-                      "geo_altitude_m": geo_altitude,
-                      "geo_altitude_ft": meters_to_feet(geo_altitude),
-                      "velocity_ms": velocity,
-                      "velocity_kmh": ms_to_kmh(velocity),
-                      "true_track": true_track,
-                      "vertical_rate_ms": vertical_rate,
-                      "squawk": squawk,
-                      "spi": spi,
-                      "position_source": position_source,
-                      "category": category,
-                      "on_ground": on_ground
+                      "icao24": clean_text(ac.get("hex")).lower(),
+                      "callsign": callsign,
+                      "registration": clean_text(ac.get("r")),
+                      "aircraft_type": clean_text(ac.get("t")),
+
+                      "origin_iata": origin_iata or None,
+                      "destination_iata": destination_iata or None,
+                      "route_label": route_label or None,
+                      "route_available": bool(origin_iata or destination_iata),
+                      "route_source": "ADSBiq route_origin/route_dest" if route_label else None,
+
+                      "baro_altitude_ft": alt_baro if alt_baro != "ground" else 0,
+                      "baro_altitude_m": feet_to_meters(alt_baro),
+                      "velocity_kt": gs,
+                      "velocity_kmh": knots_to_kmh(gs),
+                      "true_track": ac.get("track"),
+                      "vertical_rate_fpm": ac.get("baro_rate"),
+
+                      "squawk": clean_text(ac.get("squawk")),
+                      "category": clean_text(ac.get("category")),
+                      "source": clean_text(ac.get("type")),
+                      "seen_seconds": ac.get("seen"),
+                      "seen_position_seconds": ac.get("seen_pos")
                   }
               }
 
           try:
-              req = urllib.request.Request(url, headers=headers)
+              req = urllib.request.Request(ADSB_URL, headers=headers)
 
-              with urllib.request.urlopen(req, timeout=30) as resp:
-                  raw = json.loads(resp.read().decode("utf-8"))
+              with urllib.request.urlopen(req, timeout=45) as resp:
+                  raw_bytes = resp.read()
+                  encoding = resp.headers.get("Content-Encoding", "")
 
-              states = raw.get("states") or []
+              if "gzip" in encoding.lower():
+                  raw_bytes = gzip.decompress(raw_bytes)
+
+              raw = json.loads(raw_bytes.decode("utf-8"))
+
+              aircraft = raw.get("ac") or []
 
               features = []
-              for row in states:
-                  feature = build_feature(row)
-                  if feature:
-                      features.append(feature)
+              total_with_position_in_bbox = 0
+              total_with_route = 0
+
+              for ac in aircraft:
+                  feature = build_feature(ac)
+
+                  if not feature:
+                      continue
+
+                  total_with_position_in_bbox += 1
+
+                  if feature["properties"].get("route_available"):
+                      total_with_route += 1
+
+                  features.append(feature)
 
               geojson = {
                   "type": "FeatureCollection",
                   "name": "aviones_en_vuelo_argentina",
                   "updated_utc": datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z",
-                  "source": "OpenSky Network /states/all",
-                  "bbox_query": bbox,
+                  "source": "ADSBiq /v2/all",
+                  "bbox_query": BBOX,
                   "total_features": len(features),
+                  "total_with_route": total_with_route,
+                  "route_note": "Los campos origin_iata y destination_iata dependen de disponibilidad en la fuente. Pueden venir vacíos.",
                   "features": features
               }
 
@@ -156,17 +184,18 @@ jobs:
                   encoding="utf-8"
               )
 
-              print(f"OK, escrito {output_path} con {len(features)} aeronaves.")
+              print(f"OK, escrito {output_path}")
+              print(f"Aeronaves en bbox: {total_with_position_in_bbox}")
+              print(f"Aeronaves con origen/destino: {total_with_route}")
 
           except Exception as e:
-              print(f"Error descargando OpenSky: {e}")
+              print(f"Error descargando datos ADSBiq: {e}")
 
-              # Si falla la descarga, mantiene el archivo anterior y marca error.
-              if fallback_path.exists():
-                  previous = json.loads(fallback_path.read_text(encoding="utf-8"))
+              if output_path.exists():
+                  previous = json.loads(output_path.read_text(encoding="utf-8"))
                   previous["last_error"] = str(e)
                   previous["last_error_utc"] = datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
-                  fallback_path.write_text(
+                  output_path.write_text(
                       json.dumps(previous, ensure_ascii=False, separators=(",", ":")),
                       encoding="utf-8"
                   )
@@ -176,9 +205,10 @@ jobs:
                       "type": "FeatureCollection",
                       "name": "aviones_en_vuelo_argentina",
                       "updated_utc": datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z",
-                      "source": "OpenSky Network /states/all",
-                      "bbox_query": bbox,
+                      "source": "ADSBiq /v2/all",
+                      "bbox_query": BBOX,
                       "total_features": 0,
+                      "total_with_route": 0,
                       "last_error": str(e),
                       "features": []
                   }
