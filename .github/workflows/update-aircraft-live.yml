@@ -1,4 +1,25 @@
+name: Actualizar aviones en vuelo
+
+on:
+  schedule:
+    # cada 10 minutos
+    - cron: '*/10 * * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Descargar aviones en vuelo con origen y destino
+        env:
+          ADSBIQ_TOKEN: ${{ secrets.ADSBIQ_TOKEN }}
         run: |
           mkdir -p data/aircraft
 
@@ -10,9 +31,9 @@
           import os
           from pathlib import Path
 
-          # Fuente con campos de ruta:
-          # route_origin = aeropuerto origen IATA
-          # route_dest   = aeropuerto destino IATA
+          # Fuente ADS-B con campos de ruta:
+          # route_origin = aeropuerto de origen IATA
+          # route_dest   = aeropuerto de destino IATA
           ADSB_URL = "https://api.adsbiq.com/v2/all"
 
           output_path = Path("data/aircraft/latest.geojson")
@@ -30,13 +51,31 @@
               "Accept-Encoding": "gzip",
           }
 
-          # Si alguna vez la API requiere token, lo podés guardar como secret:
-          # ADSBIQ_TOKEN
+          # Si ADSBiq requiere token, guardarlo como secret en GitHub:
+          # Settings > Secrets and variables > Actions > New repository secret
+          # Nombre: ADSBIQ_TOKEN
           token = os.environ.get("ADSBIQ_TOKEN", "").strip()
           if token:
               headers["Authorization"] = f"Bearer {token}"
 
+          def clean_text(value):
+              return str(value or "").strip()
+
+          def clean_iata(value):
+              text = clean_text(value).upper()
+              if len(text) == 3 and text.isalnum():
+                  return text
+              return ""
+
           def in_bbox(lat, lon):
+              try:
+                  lat = float(lat)
+                  lon = float(lon)
+              except Exception:
+                  return False
+
+              return (
+                  BBOX["lat_min"] <= lat <= BBOX["          def in_bbox(lat, lon):
               try:
                   lat = float(lat)
                   lon = float(lon)
@@ -48,40 +87,34 @@
                   BBOX["lon_min"] <= lon <= BBOX["lon_max"]
               )
 
-          def knots_to_kmh(value):
-              if value is None:
-                  return None
-              try:
-                  return round(float(value) * 1.852, 1)
-              except Exception:
-                  return None
-
           def feet_to_meters(value):
               if value is None:
                   return None
+
               if isinstance(value, str) and value.lower() == "ground":
                   return 0
+
               try:
                   return round(float(value) * 0.3048, 1)
               except Exception:
                   return None
 
-          def clean_text(value):
-              return str(value or "").strip()
+          def knots_to_kmh(value):
+              if value is None:
+                  return None
 
-          def clean_iata(value):
-              text = clean_text(value).upper()
-              if len(text) == 3 and text.isalnum():
-                  return text
-              return ""
+              try:
+                  return round(float(value) * 1.852, 1)
+              except Exception:
+                  return None
 
-          def build_route_label(origin, dest):
-              if origin and dest:
-                  return f"{origin} → {dest}"
+          def build_route_label(origin, destination):
+              if origin and destination:
+                  return f"{origin} → {destination}"
               if origin:
                   return f"{origin} → s/d"
-              if dest:
-                  return f"s/d → {dest}"
+              if destination:
+                  return f"s/d → {destination}"
               return ""
 
           def build_feature(ac):
@@ -97,11 +130,13 @@
               alt_baro = ac.get("alt_baro")
               gs = ac.get("gs")
 
+              # Excluimos aeronaves en tierra para este mapa
+              if isinstance(alt_baro, str) and alt_baro.lower() == "ground":
+                  return None
+
               origin_iata = clean_iata(ac.get("route_origin"))
               destination_iata = clean_iata(ac.get("route_dest"))
               route_label = build_route_label(origin_iata, destination_iata)
-
-              callsign = clean_text(ac.get("flight"))
 
               return {
                   "type": "Feature",
@@ -111,9 +146,11 @@
                   },
                   "properties": {
                       "icao24": clean_text(ac.get("hex")).lower(),
-                      "callsign": callsign,
+                      "callsign": clean_text(ac.get("flight")),
                       "registration": clean_text(ac.get("r")),
                       "aircraft_type": clean_text(ac.get("t")),
+                      "category": clean_text(ac.get("category")),
+                      "source_type": clean_text(ac.get("type")),
 
                       "origin_iata": origin_iata or None,
                       "destination_iata": destination_iata or None,
@@ -121,16 +158,17 @@
                       "route_available": bool(origin_iata or destination_iata),
                       "route_source": "ADSBiq route_origin/route_dest" if route_label else None,
 
-                      "baro_altitude_ft": alt_baro if alt_baro != "ground" else 0,
+                      "baro_altitude_ft": alt_baro,
                       "baro_altitude_m": feet_to_meters(alt_baro),
+                      "geo_altitude_ft": ac.get("alt_geom"),
+                      "geo_altitude_m": feet_to_meters(ac.get("alt_geom")),
                       "velocity_kt": gs,
                       "velocity_kmh": knots_to_kmh(gs),
                       "true_track": ac.get("track"),
                       "vertical_rate_fpm": ac.get("baro_rate"),
 
                       "squawk": clean_text(ac.get("squawk")),
-                      "category": clean_text(ac.get("category")),
-                      "source": clean_text(ac.get("type")),
+                      "emergency": clean_text(ac.get("emergency")),
                       "seen_seconds": ac.get("seen"),
                       "seen_position_seconds": ac.get("seen_pos")
                   }
@@ -147,20 +185,15 @@
                   raw_bytes = gzip.decompress(raw_bytes)
 
               raw = json.loads(raw_bytes.decode("utf-8"))
-
               aircraft = raw.get("ac") or []
 
               features = []
-              total_with_position_in_bbox = 0
               total_with_route = 0
 
               for ac in aircraft:
                   feature = build_feature(ac)
-
                   if not feature:
                       continue
-
-                  total_with_position_in_bbox += 1
 
                   if feature["properties"].get("route_available"):
                       total_with_route += 1
@@ -175,7 +208,7 @@
                   "bbox_query": BBOX,
                   "total_features": len(features),
                   "total_with_route": total_with_route,
-                  "route_note": "Los campos origin_iata y destination_iata dependen de disponibilidad en la fuente. Pueden venir vacíos.",
+                  "route_note": "Los campos origin_iata y destination_iata dependen de la disponibilidad de route_origin y route_dest en la fuente. Pueden venir vacíos.",
                   "features": features
               }
 
@@ -185,11 +218,11 @@
               )
 
               print(f"OK, escrito {output_path}")
-              print(f"Aeronaves en bbox: {total_with_position_in_bbox}")
-              print(f"Aeronaves con origen/destino: {total_with_route}")
+              print(f"Aeronaves en vuelo dentro del bbox: {len(features)}")
+              print(f"Aeronaves con origen/destino disponible: {total_with_route}")
 
           except Exception as e:
-              print(f"Error descargando datos ADSBiq: {e}")
+              print(f"Error descargando ADSBiq: {e}")
 
               if output_path.exists():
                   previous = json.loads(output_path.read_text(encoding="utf-8"))
@@ -212,6 +245,7 @@
                       "last_error": str(e),
                       "features": []
                   }
+
                   output_path.write_text(
                       json.dumps(empty, ensure_ascii=False, separators=(",", ":")),
                       encoding="utf-8"
