@@ -5,7 +5,7 @@ on:
   schedule:
     # Una vez por mes, el día 5 a las 08:00 UTC.
     # Ajustalo si querés correrlo con otra frecuencia.
-    - cron: "0 8 5 * *"
+    - cron: "0 8 15 * *"
 
 permissions:
   contents: write
