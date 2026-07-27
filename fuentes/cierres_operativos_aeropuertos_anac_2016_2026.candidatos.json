@@ -1,0 +1,3374 @@
+{
+  "metadata": {
+    "nombre": "cierres_operativos_aeropuertos_anac_2016_2026_candidatos",
+    "descripcion": "Candidatos extraídos automáticamente desde informes mensuales ANAC. Requieren validación manual antes de incorporarse a eventos confirmados.",
+    "fuente": "https://consultas-publicas.anac.gob.ar/estadisticas-dnta/",
+    "criterio": {
+      "incluye": [
+        "cierre/cese/suspensión/inoperatividad",
+        "obra/mantenimiento/infraestructura"
+      ],
+      "excluye": [
+        "paros",
+        "pandemia",
+        "meteorología puntual",
+        "cambios comerciales"
+      ]
+    },
+    "total_candidatos": 93,
+    "generado_utc": "2026-07-27T18:25:45Z"
+  },
+  "fuentes_revisadas": [
+    {
+      "anio": 2016,
+      "mes": "08",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-agosto-2016-eana.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-agosto-2016-eana.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-agosto-2016-eana.pdf/download"
+    },
+    {
+      "anio": 2016,
+      "mes": "09",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-septiembre-2016-eana.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-septiembre-2016-eana.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-septiembre-2016-eana.pdf/download"
+    },
+    {
+      "anio": 2016,
+      "mes": "10",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-octubre-2016-eana.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-octubre-2016-eana.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-octubre-2016-eana.pdf/download"
+    },
+    {
+      "anio": 2016,
+      "mes": "11",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-noviembre-2016-eana.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-noviembre-2016-eana.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-noviembre-2016-eana.pdf/download"
+    },
+    {
+      "anio": 2016,
+      "mes": "12",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-diciembre-2016-eana.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-diciembre-2016-eana.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-diciembre-2016-eana.pdf/download"
+    },
+    {
+      "anio": 2017,
+      "mes": "01",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-enero-2017-eana.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-enero-2017-eana.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-enero-2017-eana.pdf/download"
+    },
+    {
+      "anio": 2017,
+      "mes": "02",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-febrero-2017-eana.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-febrero-2017-eana.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-febrero-2017-eana.pdf/download"
+    },
+    {
+      "anio": 2017,
+      "mes": "03",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-marzo-2017-eana.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-marzo-2017-eana.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-marzo-2017-eana.pdf/download"
+    },
+    {
+      "anio": 2017,
+      "mes": "04",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-abril-2017-eana.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-abril-2017-eana.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-abril-2017-eana.pdf/download"
+    },
+    {
+      "anio": 2017,
+      "mes": "05",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-mayo-2017-eana.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-mayo-2017-eana.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-mayo-2017-eana.pdf/download"
+    },
+    {
+      "anio": 2017,
+      "mes": "06",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-junio-2017-eana.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-junio-2017-eana.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-junio-2017-eana.pdf/download"
+    },
+    {
+      "anio": 2017,
+      "mes": "07",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-201707-eana-se.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-201707-eana-se.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-201707-eana-se.pdf/download"
+    },
+    {
+      "anio": 2017,
+      "mes": "08",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-agosto-2017-eana.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-agosto-2017-eana.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-agosto-2017-eana.pdf/download"
+    },
+    {
+      "anio": 2017,
+      "mes": "09",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-septiembre-2017-eana.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-septiembre-2017-eana.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-septiembre-2017-eana.pdf/download"
+    },
+    {
+      "anio": 2017,
+      "mes": "10",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-06/021117-informe-mensual-octubre-2017-online-1.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-06/021117-informe-mensual-octubre-2017-online-1.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-06/021117-informe-mensual-octubre-2017-online-1.pdf/download"
+    },
+    {
+      "anio": 2017,
+      "mes": "11",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-noviembre-2017-eana.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-noviembre-2017-eana.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-noviembre-2017-eana.pdf/download"
+    },
+    {
+      "anio": 2017,
+      "mes": "12",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-diciembre-2017-eana.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-diciembre-2017-eana.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-diciembre-2017-eana.pdf/download"
+    },
+    {
+      "anio": 2018,
+      "mes": "01",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-enero-online.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-enero-online.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-enero-online.pdf/download"
+    },
+    {
+      "anio": 2018,
+      "mes": "02",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-febrero-2018-online.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-febrero-2018-online.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-febrero-2018-online.pdf/download"
+    },
+    {
+      "anio": 2018,
+      "mes": "03",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-201803-online.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-201803-online.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-201803-online.pdf/download"
+    },
+    {
+      "anio": 2018,
+      "mes": "04",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-201804-online-1.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-201804-online-1.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-201804-online-1.pdf/download"
+    },
+    {
+      "anio": 2018,
+      "mes": "05",
+      "documento": "informe-mensual-201805-online.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/k43He7Dcm6HfXgS",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/k43He7Dcm6HfXgS/download/informe-mensual-201805-online.pdf"
+    },
+    {
+      "anio": 2018,
+      "mes": "06",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-08/Informe_Mensual_201806_Online.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-08/Informe_Mensual_201806_Online.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-08/Informe_Mensual_201806_Online.pdf/download"
+    },
+    {
+      "anio": 2018,
+      "mes": "07",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-08/Informe_Mensual_201807_Online.01.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-08/Informe_Mensual_201807_Online.01.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-08/Informe_Mensual_201807_Online.01.pdf/download"
+    },
+    {
+      "anio": 2018,
+      "mes": "08",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-09/Informe%20Mensual%20201808%20-%20Online_2.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-09/Informe%20Mensual%20201808%20-%20Online_2.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-09/Informe%20Mensual%20201808%20-%20Online_2.pdf/download"
+    },
+    {
+      "anio": 2018,
+      "mes": "09",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-10/Informe%20Mensual%20201809_1.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-10/Informe%20Mensual%20201809_1.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-10/Informe%20Mensual%20201809_1.pdf/download"
+    },
+    {
+      "anio": 2018,
+      "mes": "10",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-11/Informe%20Mensual%20201810.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-11/Informe%20Mensual%20201810.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-11/Informe%20Mensual%20201810.pdf/download"
+    },
+    {
+      "anio": 2018,
+      "mes": "11",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-12/Informe%20Mensual%20201811.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2018-12/Informe%20Mensual%20201811.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-12/Informe%20Mensual%20201811.pdf/download"
+    },
+    {
+      "anio": 2018,
+      "mes": "12",
+      "documento": "informe_anac.pdf",
+      "estado": "error",
+      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2019-01/Informe%20Mensual%20201812_1.pdf/download",
+      "url": "https://www.eana.com.ar/sites/default/files/2019-01/Informe%20Mensual%20201812_1.pdf",
+      "download_url": "https://www.eana.com.ar/sites/default/files/2019-01/Informe%20Mensual%20201812_1.pdf/download"
+    },
+    {
+      "anio": 2019,
+      "mes": "01",
+      "documento": "Informe_Mensual_201901.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/sokAtSHXKjS7cod",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/sokAtSHXKjS7cod/download/Informe_Mensual_201901.pdf"
+    },
+    {
+      "anio": 2019,
+      "mes": "02",
+      "documento": "Informe_Mensual_201902.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/EoMtao9cbffxTJC",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/EoMtao9cbffxTJC/download/Informe_Mensual_201902.pdf"
+    },
+    {
+      "anio": 2019,
+      "mes": "03",
+      "documento": "Informe_Mensual_201903.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 4,
+      "url": "https://docs.anac.gob.ar/index.php/s/MFdr4znN7iCqBaN",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/MFdr4znN7iCqBaN/download/Informe_Mensual_201903.pdf"
+    },
+    {
+      "anio": 2019,
+      "mes": "04",
+      "documento": "Informe_Mensual_201904.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/m227gftB4qB445t",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/m227gftB4qB445t/download/Informe_Mensual_201904.pdf"
+    },
+    {
+      "anio": 2019,
+      "mes": "05",
+      "documento": "Informe_Mensual_201905.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 4,
+      "url": "https://docs.anac.gob.ar/index.php/s/FpSoFxgWf2Ga4yo",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/FpSoFxgWf2Ga4yo/download/Informe_Mensual_201905.pdf"
+    },
+    {
+      "anio": 2019,
+      "mes": "06",
+      "documento": "Informe_Mensual_201906.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/REbr73xmbpLbKnp",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/REbr73xmbpLbKnp/download/Informe_Mensual_201906.pdf"
+    },
+    {
+      "anio": 2019,
+      "mes": "07",
+      "documento": "Informe_Mensual_201907.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/j37SoP9CH6Wybg8",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/j37SoP9CH6Wybg8/download/Informe_Mensual_201907.pdf"
+    },
+    {
+      "anio": 2019,
+      "mes": "08",
+      "documento": "Informe_Mensual_201908.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/4PZGrjGJHy24wfk",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/4PZGrjGJHy24wfk/download/Informe_Mensual_201908.pdf"
+    },
+    {
+      "anio": 2019,
+      "mes": "09",
+      "documento": "Informe_Mensual_201909.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/7ZwfEAX6DaTdrxf",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/7ZwfEAX6DaTdrxf/download/Informe_Mensual_201909.pdf"
+    },
+    {
+      "anio": 2019,
+      "mes": "10",
+      "documento": "Informe_Mensual_201910.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/B8Ek9xp2wSKfqJB",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/B8Ek9xp2wSKfqJB/download/Informe_Mensual_201910.pdf"
+    },
+    {
+      "anio": 2019,
+      "mes": "11",
+      "documento": "Informe_Mensual_201911.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/3dHdw7BEgyqcC6j",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/3dHdw7BEgyqcC6j/download/Informe_Mensual_201911.pdf"
+    },
+    {
+      "anio": 2019,
+      "mes": "12",
+      "documento": "Informe_Mensual_201912.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/xjrC4akNqYZJZFw",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/xjrC4akNqYZJZFw/download/Informe_Mensual_201912.pdf"
+    },
+    {
+      "anio": 2020,
+      "mes": "01",
+      "documento": "Informe_Mensual_202001.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/exqw8zBtPBSpeWX",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/exqw8zBtPBSpeWX/download/Informe_Mensual_202001.pdf"
+    },
+    {
+      "anio": 2020,
+      "mes": "02",
+      "documento": "Informe_Mensual_202002.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/jBAZ3CRXqxwm84t",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/jBAZ3CRXqxwm84t/download/Informe_Mensual_202002.pdf"
+    },
+    {
+      "anio": 2020,
+      "mes": "03",
+      "documento": "Informe_Mensual_202003.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/Lor6Lk8ntNRYxC4",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/Lor6Lk8ntNRYxC4/download/Informe_Mensual_202003.pdf"
+    },
+    {
+      "anio": 2020,
+      "mes": "04",
+      "documento": "informe_mensual_202004.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/8eT7KP7XKQQ7LPJ",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/8eT7KP7XKQQ7LPJ/download/informe_mensual_202004.pdf"
+    },
+    {
+      "anio": 2020,
+      "mes": "05",
+      "documento": "Informe_Mensual_202005.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/E6oWFkq2KHzABtW",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/E6oWFkq2KHzABtW/download/Informe_Mensual_202005.pdf"
+    },
+    {
+      "anio": 2020,
+      "mes": "06",
+      "documento": "Informe_Mensual_202006.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/tYMMeB3oznXqKnq",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/tYMMeB3oznXqKnq/download/Informe_Mensual_202006.pdf"
+    },
+    {
+      "anio": 2020,
+      "mes": "07",
+      "documento": "Informe_Mensual_202007.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/4tetacMyoq468X8",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/4tetacMyoq468X8/download/Informe_Mensual_202007.pdf"
+    },
+    {
+      "anio": 2020,
+      "mes": "08",
+      "documento": "Informe_Mensual_202008.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/x8sqbrFpMtp28zE",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/x8sqbrFpMtp28zE/download/Informe_Mensual_202008.pdf"
+    },
+    {
+      "anio": 2020,
+      "mes": "09",
+      "documento": "Informe_Mensual_202009.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/XfYQ745sJdLFDaq",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/XfYQ745sJdLFDaq/download/Informe_Mensual_202009.pdf"
+    },
+    {
+      "anio": 2020,
+      "mes": "10",
+      "documento": "Informe_Mensual_202010.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/5C9otEsimsmPKQH",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/5C9otEsimsmPKQH/download/Informe_Mensual_202010.pdf"
+    },
+    {
+      "anio": 2020,
+      "mes": "11",
+      "documento": "Informe_Mensual_202011.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/eagBRjpTEMxTpsi",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/eagBRjpTEMxTpsi/download/Informe_Mensual_202011.pdf"
+    },
+    {
+      "anio": 2020,
+      "mes": "12",
+      "documento": "Informe_Mensual_202012.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/BTdan7nmqqjAra3",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/BTdan7nmqqjAra3/download/Informe_Mensual_202012.pdf"
+    },
+    {
+      "anio": 2021,
+      "mes": "01",
+      "documento": "Informe_Mensual_202101.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/34mDZ9b8Soaj6aA",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/34mDZ9b8Soaj6aA/download/Informe_Mensual_202101.pdf"
+    },
+    {
+      "anio": 2021,
+      "mes": "02",
+      "documento": "Informe_Mensual_202102.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/T4JZJ6Asi7GbNMg",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/T4JZJ6Asi7GbNMg/download/Informe_Mensual_202102.pdf"
+    },
+    {
+      "anio": 2021,
+      "mes": "03",
+      "documento": "Informe_Mensual_202103.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/kQjgxB4otwn9pjM",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/kQjgxB4otwn9pjM/download/Informe_Mensual_202103.pdf"
+    },
+    {
+      "anio": 2021,
+      "mes": "04",
+      "documento": "Informe_Mensual_202104.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/RgjND47AqyBzeR5",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/RgjND47AqyBzeR5/download/Informe_Mensual_202104.pdf"
+    },
+    {
+      "anio": 2021,
+      "mes": "05",
+      "documento": "Informe_Mensual_202105.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/cxenLTgi9iyjASE",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/cxenLTgi9iyjASE/download/Informe_Mensual_202105.pdf"
+    },
+    {
+      "anio": 2021,
+      "mes": "06",
+      "documento": "Informe_Mensual_202106.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/tZDa8JgwPXnpfoq",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/tZDa8JgwPXnpfoq/download/Informe_Mensual_202106.pdf"
+    },
+    {
+      "anio": 2021,
+      "mes": "07",
+      "documento": "Informe_Mensual_202107.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/CDwRLZFDHG54C2y",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/CDwRLZFDHG54C2y/download/Informe_Mensual_202107.pdf"
+    },
+    {
+      "anio": 2021,
+      "mes": "08",
+      "documento": "Informe_Mensual_202108.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/CzWtEZGMBpcKTSX",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/CzWtEZGMBpcKTSX/download/Informe_Mensual_202108.pdf"
+    },
+    {
+      "anio": 2021,
+      "mes": "09",
+      "documento": "Informe_Mensual_202109.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/oD34PDyiMg2KKgs",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/oD34PDyiMg2KKgs/download/Informe_Mensual_202109.pdf"
+    },
+    {
+      "anio": 2021,
+      "mes": "10",
+      "documento": "Informe_Mensual_202110.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/WST8H77D6GQBNWs",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/WST8H77D6GQBNWs/download/Informe_Mensual_202110.pdf"
+    },
+    {
+      "anio": 2021,
+      "mes": "11",
+      "documento": "Informe_Mensual_202111.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/bmkEFf8s3ozkcW5",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/bmkEFf8s3ozkcW5/download/Informe_Mensual_202111.pdf"
+    },
+    {
+      "anio": 2021,
+      "mes": "12",
+      "documento": "Informe_Mensual_202112.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/e7xEfnCLFDC4Qc3",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/e7xEfnCLFDC4Qc3/download/Informe_Mensual_202112.pdf"
+    },
+    {
+      "anio": 2022,
+      "mes": "01",
+      "documento": "Informe_Mensual_202201.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/QtRFQNbMyPbeACt",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/QtRFQNbMyPbeACt/download/Informe_Mensual_202201.pdf"
+    },
+    {
+      "anio": 2022,
+      "mes": "02",
+      "documento": "Informe_Mensual_202202.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/3HTATmr58edYjdj",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/3HTATmr58edYjdj/download/Informe_Mensual_202202.pdf"
+    },
+    {
+      "anio": 2022,
+      "mes": "03",
+      "documento": "Informe_Mensual_202203.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/KWRZfcTsJofFt82",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/KWRZfcTsJofFt82/download/Informe_Mensual_202203.pdf"
+    },
+    {
+      "anio": 2022,
+      "mes": "04",
+      "documento": "Informe_Mensual_202204.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/TJbCBWKE2q634q5",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/TJbCBWKE2q634q5/download/Informe_Mensual_202204.pdf"
+    },
+    {
+      "anio": 2022,
+      "mes": "05",
+      "documento": "Informe_Mensual_202205.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/rBb63MWKoCjKBrY",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/rBb63MWKoCjKBrY/download/Informe_Mensual_202205.pdf"
+    },
+    {
+      "anio": 2022,
+      "mes": "06",
+      "documento": "Informe_Mensual_202206.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/giD8xmmMWfHqtYw",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/giD8xmmMWfHqtYw/download/Informe_Mensual_202206.pdf"
+    },
+    {
+      "anio": 2022,
+      "mes": "07",
+      "documento": "Informe_Mensual_202207.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/rr7g6CKFGqLTQmN",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/rr7g6CKFGqLTQmN/download/Informe_Mensual_202207.pdf"
+    },
+    {
+      "anio": 2022,
+      "mes": "08",
+      "documento": "Informe_Mensual_202208.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/K3ABfzcNFmJ7gHW",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/K3ABfzcNFmJ7gHW/download/Informe_Mensual_202208.pdf"
+    },
+    {
+      "anio": 2022,
+      "mes": "09",
+      "documento": "Informe_Mensual_202209.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/inHSFSWnae39cQX",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/inHSFSWnae39cQX/download/Informe_Mensual_202209.pdf"
+    },
+    {
+      "anio": 2022,
+      "mes": "10",
+      "documento": "Informe_Mensual_202210.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/LTifyaAdGoP2JTB",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/LTifyaAdGoP2JTB/download/Informe_Mensual_202210.pdf"
+    },
+    {
+      "anio": 2022,
+      "mes": "11",
+      "documento": "Informe_Mensual_202211.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/Di8jiifAyMBTQc6",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/Di8jiifAyMBTQc6/download/Informe_Mensual_202211.pdf"
+    },
+    {
+      "anio": 2022,
+      "mes": "12",
+      "documento": "Informe_Mensual_202212.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/WcdaQ669y8TBLdd",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/WcdaQ669y8TBLdd/download/Informe_Mensual_202212.pdf"
+    },
+    {
+      "anio": 2023,
+      "mes": "01",
+      "documento": "Informe_Mensual_202301.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/wZGKBaGXEXpJf5A",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/wZGKBaGXEXpJf5A/download/Informe_Mensual_202301.pdf"
+    },
+    {
+      "anio": 2023,
+      "mes": "02",
+      "documento": "Informe_Mensual_202302.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/H4HpjspzSw7G5oe",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/H4HpjspzSw7G5oe/download/Informe_Mensual_202302.pdf"
+    },
+    {
+      "anio": 2023,
+      "mes": "03",
+      "documento": "Informe_Mensual_202303.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/HKzBZtjxXddTG85",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/HKzBZtjxXddTG85/download/Informe_Mensual_202303.pdf"
+    },
+    {
+      "anio": 2023,
+      "mes": "04",
+      "documento": "Informe_Mensual_202304.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/nebtW8xtBKLKRyQ",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/nebtW8xtBKLKRyQ/download/Informe_Mensual_202304.pdf"
+    },
+    {
+      "anio": 2023,
+      "mes": "05",
+      "documento": "Informe_Mensual_202305.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/3cQPEQwSZrF6MbH",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/3cQPEQwSZrF6MbH/download/Informe_Mensual_202305.pdf"
+    },
+    {
+      "anio": 2023,
+      "mes": "06",
+      "documento": "Informe_Mensual_202306.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/nkejfXL8LZEkwdF",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/nkejfXL8LZEkwdF/download/Informe_Mensual_202306.pdf"
+    },
+    {
+      "anio": 2023,
+      "mes": "07",
+      "documento": "Informe_Mensual_202307.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/pFgmbqNgKagHB7n",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/pFgmbqNgKagHB7n/download/Informe_Mensual_202307.pdf"
+    },
+    {
+      "anio": 2023,
+      "mes": "08",
+      "documento": "Informe_Mensual_202308.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/pj938DEPqC3FaSB",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/pj938DEPqC3FaSB/download/Informe_Mensual_202308.pdf"
+    },
+    {
+      "anio": 2023,
+      "mes": "09",
+      "documento": "Informe_Mensual_202309.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/KZKWbSYEFYBQa8a",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/KZKWbSYEFYBQa8a/download/Informe_Mensual_202309.pdf"
+    },
+    {
+      "anio": 2023,
+      "mes": "10",
+      "documento": "Informe_Mensual_202310.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/FNfXm2PjoT3JEys",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/FNfXm2PjoT3JEys/download/Informe_Mensual_202310.pdf"
+    },
+    {
+      "anio": 2023,
+      "mes": "11",
+      "documento": "Informe_Mensual_202311.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/DieBmKGoFGemyXx",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/DieBmKGoFGemyXx/download/Informe_Mensual_202311.pdf"
+    },
+    {
+      "anio": 2023,
+      "mes": "12",
+      "documento": "Informe_Mensual_202312.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/ajkH6LHDbfTQ6zZ",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/ajkH6LHDbfTQ6zZ/download/Informe_Mensual_202312.pdf"
+    },
+    {
+      "anio": 2024,
+      "mes": "01",
+      "documento": "Informe_Mensual_202401.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/9RxzRGCp7ZoEtbg",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/9RxzRGCp7ZoEtbg/download/Informe_Mensual_202401.pdf"
+    },
+    {
+      "anio": 2024,
+      "mes": "02",
+      "documento": "Informe_Mensual_202402.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/wdq3Ec8tWetoeTx",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/wdq3Ec8tWetoeTx/download/Informe_Mensual_202402.pdf"
+    },
+    {
+      "anio": 2024,
+      "mes": "03",
+      "documento": "Informe_Mensual_202403.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/JjWWqjSNazFcoK6",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/JjWWqjSNazFcoK6/download/Informe_Mensual_202403.pdf"
+    },
+    {
+      "anio": 2024,
+      "mes": "04",
+      "documento": "Informe_Mensual_202404.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/xyaNSXEcR6f2AsH",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/xyaNSXEcR6f2AsH/download/Informe_Mensual_202404.pdf"
+    },
+    {
+      "anio": 2024,
+      "mes": "05",
+      "documento": "Informe_Mensual_202405.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/LcabFx2mkxQzWjK",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/LcabFx2mkxQzWjK/download/Informe_Mensual_202405.pdf"
+    },
+    {
+      "anio": 2024,
+      "mes": "06",
+      "documento": "Informe_Mensual_202406.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/22KRcwYG2fJJjFo",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/22KRcwYG2fJJjFo/download/Informe_Mensual_202406.pdf"
+    },
+    {
+      "anio": 2024,
+      "mes": "07",
+      "documento": "Informe_Mensual_202407.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/JDpfwHcPkF7bCaD",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/JDpfwHcPkF7bCaD/download/Informe_Mensual_202407.pdf"
+    },
+    {
+      "anio": 2024,
+      "mes": "08",
+      "documento": "Informe_Mensual_202408.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/5m6ArzyYd7tC69X",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/5m6ArzyYd7tC69X/download/Informe_Mensual_202408.pdf"
+    },
+    {
+      "anio": 2024,
+      "mes": "09",
+      "documento": "Informe_Mensual_202409.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/SGkBNERrxHH8ZR4",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/SGkBNERrxHH8ZR4/download/Informe_Mensual_202409.pdf"
+    },
+    {
+      "anio": 2024,
+      "mes": "10",
+      "documento": "Informe_Mensual_202410.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/QAaP5LKJWgxSzK5",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/QAaP5LKJWgxSzK5/download/Informe_Mensual_202410.pdf"
+    },
+    {
+      "anio": 2024,
+      "mes": "11",
+      "documento": "Informe_Mensual_202411.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/AEMtLogD43cwFY6",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/AEMtLogD43cwFY6/download/Informe_Mensual_202411.pdf"
+    },
+    {
+      "anio": 2024,
+      "mes": "12",
+      "documento": "Informe_Mensual_202412.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/spLKHyE9YDLNMKH",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/spLKHyE9YDLNMKH/download/Informe_Mensual_202412.pdf"
+    },
+    {
+      "anio": 2025,
+      "mes": "01",
+      "documento": "Informe_Mensual_202501.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/yZDNLa7aB53x7Kz",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/yZDNLa7aB53x7Kz/download/Informe_Mensual_202501.pdf"
+    },
+    {
+      "anio": 2025,
+      "mes": "02",
+      "documento": "Informe_Mensual_202502.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/KArtzjtGCMs28fL",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/KArtzjtGCMs28fL/download/Informe_Mensual_202502.pdf"
+    },
+    {
+      "anio": 2025,
+      "mes": "03",
+      "documento": "Informe_Mensual_202503.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/9eeeJbxWCiHwz8e",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/9eeeJbxWCiHwz8e/download/Informe_Mensual_202503.pdf"
+    },
+    {
+      "anio": 2025,
+      "mes": "04",
+      "documento": "Informe_Mensual_202504.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/3KgN52ZEjwnXF7e",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/3KgN52ZEjwnXF7e/download/Informe_Mensual_202504.pdf"
+    },
+    {
+      "anio": 2025,
+      "mes": "05",
+      "documento": "Informe_Mensual_202505.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/cpra6NweaAJtj3D",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/cpra6NweaAJtj3D/download/Informe_Mensual_202505.pdf"
+    },
+    {
+      "anio": 2025,
+      "mes": "06",
+      "documento": "Informe_Mensual_202506.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/goyj4x4nAfSkCgB",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/goyj4x4nAfSkCgB/download/Informe_Mensual_202506.pdf"
+    },
+    {
+      "anio": 2025,
+      "mes": "07",
+      "documento": "Informe_Mensual_202507.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/cFFBf3cyBLKKWa5",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/cFFBf3cyBLKKWa5/download/Informe_Mensual_202507.pdf"
+    },
+    {
+      "anio": 2025,
+      "mes": "08",
+      "documento": "Informe_Mensual_202508.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/Ai3gajjQLfTc8aj",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/Ai3gajjQLfTc8aj/download/Informe_Mensual_202508.pdf"
+    },
+    {
+      "anio": 2025,
+      "mes": "09",
+      "documento": "Informe_Mensual_202509.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 3,
+      "url": "https://docs.anac.gob.ar/index.php/s/4jqbzgz9M2bmzcY",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/4jqbzgz9M2bmzcY/download/Informe_Mensual_202509.pdf"
+    },
+    {
+      "anio": 2025,
+      "mes": "10",
+      "documento": "Informe_Mensual_202510.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 3,
+      "url": "https://docs.anac.gob.ar/index.php/s/NsTFjpaH9Wyr5KE",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/NsTFjpaH9Wyr5KE/download/Informe_Mensual_202510.pdf"
+    },
+    {
+      "anio": 2025,
+      "mes": "11",
+      "documento": "Informe Mensual 202511.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 3,
+      "url": "https://docs.anac.gob.ar/index.php/s/qtzyM7E5nat7jYe",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/qtzyM7E5nat7jYe/download/Informe%20Mensual%20202511.pdf"
+    },
+    {
+      "anio": 2025,
+      "mes": "12",
+      "documento": "Informe Mensual Diciembre 2025.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 3,
+      "url": "https://docs.anac.gob.ar/index.php/s/pk8HDnYWX5X3aKL",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/pk8HDnYWX5X3aKL/download/Informe%20Mensual%20Diciembre%202025.pdf"
+    },
+    {
+      "anio": 2026,
+      "mes": "01",
+      "documento": "Informe Mensual Enero 2026.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/2EoFgk9Zc2anNHf",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/2EoFgk9Zc2anNHf/download/Informe%20Mensual%20Enero%202026.pdf"
+    },
+    {
+      "anio": 2026,
+      "mes": "02",
+      "documento": "Informe Mensual Febrero 2026.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
+      "url": "https://docs.anac.gob.ar/index.php/s/TdcEzwe7CNN44rS",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/TdcEzwe7CNN44rS/download/Informe%20Mensual%20Febrero%202026.pdf"
+    },
+    {
+      "anio": 2026,
+      "mes": "03",
+      "documento": "Informe Mensual Marzo 2026.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/e6YAromK7jjAJ3J",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/e6YAromK7jjAJ3J/download/Informe%20Mensual%20Marzo%202026.pdf"
+    },
+    {
+      "anio": 2026,
+      "mes": "04",
+      "documento": "Informe Mensual Abril 2026.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
+      "url": "https://docs.anac.gob.ar/index.php/s/mLb9FxkpweRKYmM",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/mLb9FxkpweRKYmM/download/Informe%20Mensual%20Abril%202026.pdf"
+    },
+    {
+      "anio": 2026,
+      "mes": "05",
+      "documento": "Informe Mensual Mayo 2026.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/jnFi7mksgAPWYEi",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/jnFi7mksgAPWYEi/download/Informe%20Mensual%20Mayo%202026.pdf"
+    },
+    {
+      "anio": 2026,
+      "mes": "06",
+      "documento": "Informe Mensual Junio 2026.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "url": "https://docs.anac.gob.ar/index.php/s/6E24xwN9ZbZCa4q",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/6E24xwN9ZbZCa4q/download/Informe%20Mensual%20Junio%202026.pdf"
+    }
+  ],
+  "candidatos": [
+    {
+      "id_candidato": "CAND_2019_01_001",
+      "iata": "COR",
+      "oaci": "SACO",
+      "aeropuerto_detectado": "Aeropuerto Internacional Ingeniero Ambrosio Taravella",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "Santa Fe cerrado por obras en Ene18. 87% 37% 34% 30% 27% 24% 20% 18% 17% 15% 15% 11% 10% 8% 8% 7% 6% Corrientes Mendoza Santiago del Estero Iguazú Posadas Neuquén Bariloche Jujuy Río Gallegos Ushuaia Tucumán El Calafate Córdoba Comod.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "01",
+        "mes_nombre": "enero",
+        "documento": "Informe_Mensual_201901.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/sokAtSHXKjS7cod",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/sokAtSHXKjS7cod/download/Informe_Mensual_201901.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_01_Informe_Mensual_201901.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_01_002",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 8 --- NOTAS:  Corresponde a la variación del mes de enero  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "01",
+        "mes_nombre": "enero",
+        "documento": "Informe_Mensual_201901.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/sokAtSHXKjS7cod",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/sokAtSHXKjS7cod/download/Informe_Mensual_201901.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_01_Informe_Mensual_201901.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_02_001",
+      "iata": "RGL",
+      "oaci": "SAWG",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Río Gallegos",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "Santa Fe cerrado por obras en Ene18. 303% 133% 34% 31% 31% 29% 26% 26% 18% 16% 16% 13% 12% 11% 10% 9% 8% 6% Santa Fe Corrientes Mendoza Santiago del Estero Posadas Iguazú Neuquén Río Gallegos Jujuy Bariloche Tucumán Ushuaia Comod.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "02",
+        "mes_nombre": "febrero",
+        "documento": "Informe_Mensual_201902.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/EoMtao9cbffxTJC",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/EoMtao9cbffxTJC/download/Informe_Mensual_201902.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_02_Informe_Mensual_201902.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_02_002",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 8 --- NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "02",
+        "mes_nombre": "febrero",
+        "documento": "Informe_Mensual_201902.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/EoMtao9cbffxTJC",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/EoMtao9cbffxTJC/download/Informe_Mensual_201902.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_02_Informe_Mensual_201902.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_03_001",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 7 --- DEPARTAMENTO DE ESTADÍSTICA Pasajeros por Aeropuerto NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "03",
+        "mes_nombre": "marzo",
+        "documento": "Informe_Mensual_201903.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/MFdr4znN7iCqBaN",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/MFdr4znN7iCqBaN/download/Informe_Mensual_201903.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_03_Informe_Mensual_201903.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_03_002",
+      "iata": "COR",
+      "oaci": "SACO",
+      "aeropuerto_detectado": "Aeropuerto Internacional Ingeniero Ambrosio Taravella",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "Santa Fe cerrado por obras en Ene18. 158% 125% 38% 36% 34% 29% 23% 22% 20% 20% 18% 15% Santa Fe Corrientes Mendoza Santiago del Estero Posadas Iguazú Neuquén Córdoba Río Gallegos Jujuy Bariloche Prom.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "03",
+        "mes_nombre": "marzo",
+        "documento": "Informe_Mensual_201903.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/MFdr4znN7iCqBaN",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/MFdr4znN7iCqBaN/download/Informe_Mensual_201903.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_03_Informe_Mensual_201903.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_03_003",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 13 --- DEPARTAMENTO DE ESTADÍSTICA Pasajeros TOTALES por Aeropuerto NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "03",
+        "mes_nombre": "marzo",
+        "documento": "Informe_Mensual_201903.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/MFdr4znN7iCqBaN",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/MFdr4znN7iCqBaN/download/Informe_Mensual_201903.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_03_Informe_Mensual_201903.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_03_004",
+      "iata": "COR",
+      "oaci": "SACO",
+      "aeropuerto_detectado": "Aeropuerto Internacional Ingeniero Ambrosio Taravella",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "Santa Fe cerrado por obras en Ene18. 158% 124% 36% 34% 29% 29% 21% 21% 17% 16% 14% 11% 9% 9% 8% 6% 6% 4% Santa Fe Corrientes Santiago del Estero Posadas Iguazú Mendoza Neuquén Río Gallegos Jujuy Bariloche Salta Ushuaia Tucumán Córdoba Comod.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "03",
+        "mes_nombre": "marzo",
+        "documento": "Informe_Mensual_201903.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/MFdr4znN7iCqBaN",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/MFdr4znN7iCqBaN/download/Informe_Mensual_201903.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_03_Informe_Mensual_201903.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_04_001",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 7 --- NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "04",
+        "mes_nombre": "abril",
+        "documento": "Informe_Mensual_201904.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/m227gftB4qB445t",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/m227gftB4qB445t/download/Informe_Mensual_201904.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_04_Informe_Mensual_201904.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_04_002",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 13 --- NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "04",
+        "mes_nombre": "abril",
+        "documento": "Informe_Mensual_201904.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/m227gftB4qB445t",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/m227gftB4qB445t/download/Informe_Mensual_201904.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_04_Informe_Mensual_201904.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_05_001",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 7 --- NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "05",
+        "mes_nombre": "mayo",
+        "documento": "Informe_Mensual_201905.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/FpSoFxgWf2Ga4yo",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/FpSoFxgWf2Ga4yo/download/Informe_Mensual_201905.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_05_Informe_Mensual_201905.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_05_002",
+      "iata": null,
+      "oaci": null,
+      "aeropuerto_detectado": null,
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 8 --- NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Santa Fe cerrado por obras en Ene18.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "05",
+        "mes_nombre": "mayo",
+        "documento": "Informe_Mensual_201905.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/FpSoFxgWf2Ga4yo",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/FpSoFxgWf2Ga4yo/download/Informe_Mensual_201905.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_05_Informe_Mensual_201905.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_05_003",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 13 --- NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "05",
+        "mes_nombre": "mayo",
+        "documento": "Informe_Mensual_201905.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/FpSoFxgWf2Ga4yo",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/FpSoFxgWf2Ga4yo/download/Informe_Mensual_201905.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_05_Informe_Mensual_201905.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_05_004",
+      "iata": null,
+      "oaci": null,
+      "aeropuerto_detectado": null,
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 14 --- NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Santa Fe cerrado por obras en Ene’18.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "05",
+        "mes_nombre": "mayo",
+        "documento": "Informe_Mensual_201905.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/FpSoFxgWf2Ga4yo",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/FpSoFxgWf2Ga4yo/download/Informe_Mensual_201905.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_05_Informe_Mensual_201905.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_06_001",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 7 --- DEPARTAMENTO DE ESTADÍSTICA Pasajeros por Aeropuerto NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "06",
+        "mes_nombre": "junio",
+        "documento": "Informe_Mensual_201906.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/REbr73xmbpLbKnp",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/REbr73xmbpLbKnp/download/Informe_Mensual_201906.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_06_Informe_Mensual_201906.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_06_002",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 13 --- DEPARTAMENTO DE ESTADÍSTICA Pasajeros TOTALES por Aeropuerto NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "06",
+        "mes_nombre": "junio",
+        "documento": "Informe_Mensual_201906.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/REbr73xmbpLbKnp",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/REbr73xmbpLbKnp/download/Informe_Mensual_201906.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_06_Informe_Mensual_201906.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_07_001",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 7 --- DEPARTAMENTO DE ESTADÍSTICA Pasajeros por Aeropuerto NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "07",
+        "mes_nombre": "julio",
+        "documento": "Informe_Mensual_201907.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/j37SoP9CH6Wybg8",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/j37SoP9CH6Wybg8/download/Informe_Mensual_201907.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_07_Informe_Mensual_201907.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_07_002",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 13 --- DEPARTAMENTO DE ESTADÍSTICA Pasajeros TOTALES por Aeropuerto NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "07",
+        "mes_nombre": "julio",
+        "documento": "Informe_Mensual_201907.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/j37SoP9CH6Wybg8",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/j37SoP9CH6Wybg8/download/Informe_Mensual_201907.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_07_Informe_Mensual_201907.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_08_001",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 7 --- DEPARTAMENTO DE ESTADÍSTICA Pasajeros por Aeropuerto NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "08",
+        "mes_nombre": "agosto",
+        "documento": "Informe_Mensual_201908.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/4PZGrjGJHy24wfk",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/4PZGrjGJHy24wfk/download/Informe_Mensual_201908.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_08_Informe_Mensual_201908.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_08_002",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 13 --- DEPARTAMENTO DE ESTADÍSTICA Pasajeros TOTALES por Aeropuerto NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "08",
+        "mes_nombre": "agosto",
+        "documento": "Informe_Mensual_201908.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/4PZGrjGJHy24wfk",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/4PZGrjGJHy24wfk/download/Informe_Mensual_201908.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_08_Informe_Mensual_201908.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_09_001",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 7 --- DEPARTAMENTO DE ESTADÍSTICA Pasajeros por Aeropuerto NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15  Se compara contra 2016.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "09",
+        "mes_nombre": "septiembre",
+        "documento": "Informe_Mensual_201909.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/7ZwfEAX6DaTdrxf",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/7ZwfEAX6DaTdrxf/download/Informe_Mensual_201909.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_09_Informe_Mensual_201909.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_09_002",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 13 --- DEPARTAMENTO DE ESTADÍSTICA Pasajeros TOTALES por Aeropuerto NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15  Se compara contra 2016.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "09",
+        "mes_nombre": "septiembre",
+        "documento": "Informe_Mensual_201909.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/7ZwfEAX6DaTdrxf",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/7ZwfEAX6DaTdrxf/download/Informe_Mensual_201909.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_09_Informe_Mensual_201909.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_10_001",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 7 --- DEPARTAMENTO DE ESTADÍSTICA Pasajeros por Aeropuerto NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15  Se compara contra 2016.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "10",
+        "mes_nombre": "octubre",
+        "documento": "Informe_Mensual_201910.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/B8Ek9xp2wSKfqJB",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/B8Ek9xp2wSKfqJB/download/Informe_Mensual_201910.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_10_Informe_Mensual_201910.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_10_002",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 13 --- DEPARTAMENTO DE ESTADÍSTICA Pasajeros TOTALES por Aeropuerto NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15  Se compara contra 2016.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "10",
+        "mes_nombre": "octubre",
+        "documento": "Informe_Mensual_201910.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/B8Ek9xp2wSKfqJB",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/B8Ek9xp2wSKfqJB/download/Informe_Mensual_201910.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_10_Informe_Mensual_201910.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_11_001",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 7 --- DEPARTAMENTO DE ESTADÍSTICA Pasajeros por Aeropuerto NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15  Se compara contra 2016.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "11",
+        "mes_nombre": "noviembre",
+        "documento": "Informe_Mensual_201911.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/3dHdw7BEgyqcC6j",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/3dHdw7BEgyqcC6j/download/Informe_Mensual_201911.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_11_Informe_Mensual_201911.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_11_002",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 13 --- DEPARTAMENTO DE ESTADÍSTICA Pasajeros TOTALES por Aeropuerto NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15  Se compara contra 2016.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "11",
+        "mes_nombre": "noviembre",
+        "documento": "Informe_Mensual_201911.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/3dHdw7BEgyqcC6j",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/3dHdw7BEgyqcC6j/download/Informe_Mensual_201911.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_11_Informe_Mensual_201911.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_12_001",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 7 --- DEPARTAMENTO DE ESTADÍSTICA Pasajeros por Aeropuerto NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15  Se compara contra 2016.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "12",
+        "mes_nombre": "diciembre",
+        "documento": "Informe_Mensual_201912.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/xjrC4akNqYZJZFw",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/xjrC4akNqYZJZFw/download/Informe_Mensual_201912.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_12_Informe_Mensual_201912.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2019_12_002",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 13 --- DEPARTAMENTO DE ESTADÍSTICA Pasajeros TOTALES por Aeropuerto NOTAS:  Corresponde a la variación acumulada en el año  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional, la columna derecha, aquellos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15  Se compara contra 2016.",
+      "fuente_anac": {
+        "anio": 2019,
+        "mes": "12",
+        "mes_nombre": "diciembre",
+        "documento": "Informe_Mensual_201912.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/xjrC4akNqYZJZFw",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/xjrC4akNqYZJZFw/download/Informe_Mensual_201912.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2019_12_Informe_Mensual_201912.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2022_01_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- DEPARTAMENTO DE ESTADÍSTICA Notas Generales  Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales.  A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2022,
+        "mes": "01",
+        "mes_nombre": "enero",
+        "documento": "Informe_Mensual_202201.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/QtRFQNbMyPbeACt",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/QtRFQNbMyPbeACt/download/Informe_Mensual_202201.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2022_01_Informe_Mensual_202201.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2022_02_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- DEPARTAMENTO DE ESTADÍSTICA Notas Generales  Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales.  A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2022,
+        "mes": "02",
+        "mes_nombre": "febrero",
+        "documento": "Informe_Mensual_202202.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/3HTATmr58edYjdj",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/3HTATmr58edYjdj/download/Informe_Mensual_202202.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2022_02_Informe_Mensual_202202.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2022_03_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- DEPARTAMENTO DE ESTADÍSTICA Notas Generales ▪ Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales. ▪ A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2022,
+        "mes": "03",
+        "mes_nombre": "marzo",
+        "documento": "Informe_Mensual_202203.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/KWRZfcTsJofFt82",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/KWRZfcTsJofFt82/download/Informe_Mensual_202203.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2022_03_Informe_Mensual_202203.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2022_04_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- DEPARTAMENTO DE ESTADÍSTICA Notas Generales  Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales.  A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2022,
+        "mes": "04",
+        "mes_nombre": "abril",
+        "documento": "Informe_Mensual_202204.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/TJbCBWKE2q634q5",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/TJbCBWKE2q634q5/download/Informe_Mensual_202204.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2022_04_Informe_Mensual_202204.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2022_05_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- DEPARTAMENTO DE ESTADÍSTICA Notas Generales  Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales.  A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2022,
+        "mes": "05",
+        "mes_nombre": "mayo",
+        "documento": "Informe_Mensual_202205.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/rBb63MWKoCjKBrY",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/rBb63MWKoCjKBrY/download/Informe_Mensual_202205.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2022_05_Informe_Mensual_202205.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2022_06_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- DEPARTAMENTO DE ESTADÍSTICA Notas Generales  Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales.  A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2022,
+        "mes": "06",
+        "mes_nombre": "junio",
+        "documento": "Informe_Mensual_202206.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/giD8xmmMWfHqtYw",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/giD8xmmMWfHqtYw/download/Informe_Mensual_202206.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2022_06_Informe_Mensual_202206.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2022_07_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- DEPARTAMENTO DE ESTADÍSTICA Notas Generales  Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales.  A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2022,
+        "mes": "07",
+        "mes_nombre": "julio",
+        "documento": "Informe_Mensual_202207.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/rr7g6CKFGqLTQmN",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/rr7g6CKFGqLTQmN/download/Informe_Mensual_202207.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2022_07_Informe_Mensual_202207.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2022_08_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- DEPARTAMENTO DE ESTADÍSTICA Notas Generales ▪ Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales. ▪ A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2022,
+        "mes": "08",
+        "mes_nombre": "agosto",
+        "documento": "Informe_Mensual_202208.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/K3ABfzcNFmJ7gHW",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/K3ABfzcNFmJ7gHW/download/Informe_Mensual_202208.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2022_08_Informe_Mensual_202208.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2022_08_002",
+      "iata": "PSS",
+      "oaci": "SARP",
+      "aeropuerto_detectado": "Aeropuerto Libertador General José de San Martín",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 17 --- DEPARTAMENTO DE ESTADÍSTICA Ranking aumento pasajeros [000] por Aeropuerto Cabotaje del mes Todos los aeropuertos del Sistema Nacional de Aeropuerto, excepto Posadas que se encuentra cerrado por obras, incrementaron la cantidad de pasajeros de cabotaje respecto al año.",
+      "fuente_anac": {
+        "anio": 2022,
+        "mes": "08",
+        "mes_nombre": "agosto",
+        "documento": "Informe_Mensual_202208.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/K3ABfzcNFmJ7gHW",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/K3ABfzcNFmJ7gHW/download/Informe_Mensual_202208.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2022_08_Informe_Mensual_202208.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2022_09_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- DEPARTAMENTO DE ESTADÍSTICA Notas Generales  Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales.  A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2022,
+        "mes": "09",
+        "mes_nombre": "septiembre",
+        "documento": "Informe_Mensual_202209.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/inHSFSWnae39cQX",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/inHSFSWnae39cQX/download/Informe_Mensual_202209.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2022_09_Informe_Mensual_202209.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2022_09_002",
+      "iata": "PSS",
+      "oaci": "SARP",
+      "aeropuerto_detectado": "Aeropuerto Libertador General José de San Martín",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "Es dable destacar que Posadas y Santa Rosa se encuentran cerrados por obras .",
+      "fuente_anac": {
+        "anio": 2022,
+        "mes": "09",
+        "mes_nombre": "septiembre",
+        "documento": "Informe_Mensual_202209.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/inHSFSWnae39cQX",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/inHSFSWnae39cQX/download/Informe_Mensual_202209.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2022_09_Informe_Mensual_202209.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2022_10_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- DEPARTAMENTO DE ESTADÍSTICA Notas Generales Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales. A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2022,
+        "mes": "10",
+        "mes_nombre": "octubre",
+        "documento": "Informe_Mensual_202210.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/LTifyaAdGoP2JTB",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/LTifyaAdGoP2JTB/download/Informe_Mensual_202210.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2022_10_Informe_Mensual_202210.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2022_10_002",
+      "iata": "RSA",
+      "oaci": "SAZR",
+      "aeropuerto_detectado": "Aeropuerto Santa Rosa",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 20 --- DEPARTAMENTO DE ESTADÍSTICA Ranking aumento pasajeros [000] por Aeropuerto Cabotaje del mes Todos los aeropuertos del Sistema Nacional de Aeropuertos, excepto Chapelco y Santa Rosa -que se encuentra cerrado por obras-, incrementaron la cantidad de pasajeros de cabotaje respecto al año anterior.",
+      "fuente_anac": {
+        "anio": 2022,
+        "mes": "10",
+        "mes_nombre": "octubre",
+        "documento": "Informe_Mensual_202210.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/LTifyaAdGoP2JTB",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/LTifyaAdGoP2JTB/download/Informe_Mensual_202210.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2022_10_Informe_Mensual_202210.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2022_11_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- Notas Generales  Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales.  A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2022,
+        "mes": "11",
+        "mes_nombre": "noviembre",
+        "documento": "Informe_Mensual_202211.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/Di8jiifAyMBTQc6",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/Di8jiifAyMBTQc6/download/Informe_Mensual_202211.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2022_11_Informe_Mensual_202211.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2022_11_002",
+      "iata": "RSA",
+      "oaci": "SAZR",
+      "aeropuerto_detectado": "Aeropuerto Santa Rosa",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 20 --- Ranking aumento pasajeros [000] por Aeropuerto Cabotaje del mes Todos los aeropuertos del Sistema Nacional de Aeropuertos, excepto Chapelco y Santa Rosa , este último se encontraba cerrado por obras y reanudó operaciones a mediados de noviembre, incrementaron la cantidad de pasajeros de cabotaje respecto al año anterior.",
+      "fuente_anac": {
+        "anio": 2022,
+        "mes": "11",
+        "mes_nombre": "noviembre",
+        "documento": "Informe_Mensual_202211.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/Di8jiifAyMBTQc6",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/Di8jiifAyMBTQc6/download/Informe_Mensual_202211.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2022_11_Informe_Mensual_202211.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2022_12_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- Notas Generales  Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales.  A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2022,
+        "mes": "12",
+        "mes_nombre": "diciembre",
+        "documento": "Informe_Mensual_202212.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/WcdaQ669y8TBLdd",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/WcdaQ669y8TBLdd/download/Informe_Mensual_202212.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2022_12_Informe_Mensual_202212.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2023_01_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- Notas Generales  Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales.  A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2023,
+        "mes": "01",
+        "mes_nombre": "enero",
+        "documento": "Informe_Mensual_202301.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/wZGKBaGXEXpJf5A",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/wZGKBaGXEXpJf5A/download/Informe_Mensual_202301.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2023_01_Informe_Mensual_202301.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2023_02_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- DEPARTAMENTO DE ESTADÍSTICA Notas Generales ▪ Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales. ▪ A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2023,
+        "mes": "02",
+        "mes_nombre": "febrero",
+        "documento": "Informe_Mensual_202302.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/H4HpjspzSw7G5oe",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/H4HpjspzSw7G5oe/download/Informe_Mensual_202302.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2023_02_Informe_Mensual_202302.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2023_03_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- Notas Generales  Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales.  A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2023,
+        "mes": "03",
+        "mes_nombre": "marzo",
+        "documento": "Informe_Mensual_202303.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/HKzBZtjxXddTG85",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/HKzBZtjxXddTG85/download/Informe_Mensual_202303.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2023_03_Informe_Mensual_202303.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2023_04_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- Notas Generales  Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales.  A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2023,
+        "mes": "04",
+        "mes_nombre": "abril",
+        "documento": "Informe_Mensual_202304.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/nebtW8xtBKLKRyQ",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/nebtW8xtBKLKRyQ/download/Informe_Mensual_202304.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2023_04_Informe_Mensual_202304.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2023_05_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- DEPARTAMENTO DE ESTADÍSTICA Notas Generales Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales. A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2023,
+        "mes": "05",
+        "mes_nombre": "mayo",
+        "documento": "Informe_Mensual_202305.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/3cQPEQwSZrF6MbH",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/3cQPEQwSZrF6MbH/download/Informe_Mensual_202305.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2023_05_Informe_Mensual_202305.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2023_06_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- Notas Generales Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales. A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2023,
+        "mes": "06",
+        "mes_nombre": "junio",
+        "documento": "Informe_Mensual_202306.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/nkejfXL8LZEkwdF",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/nkejfXL8LZEkwdF/download/Informe_Mensual_202306.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2023_06_Informe_Mensual_202306.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2023_07_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- Notas Generales  Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales.  A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2023,
+        "mes": "07",
+        "mes_nombre": "julio",
+        "documento": "Informe_Mensual_202307.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/pFgmbqNgKagHB7n",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/pFgmbqNgKagHB7n/download/Informe_Mensual_202307.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2023_07_Informe_Mensual_202307.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2023_07_002",
+      "iata": "ROS",
+      "oaci": "SAAR",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Rosario Islas Malvinas",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 13 --- Ranking disminución pasajeros [000] por Aeropuerto Cabotaje del mes -100% -26% -5% -4% -4% -3% -1% -120% -100% -80% -60% -40% -20% 0% 0 5 10 15 20 25 30 35 40 Termas Río Hondo San Fernando San Rafael Resistencia Trelew Viedma Rosario Top 10 Decrecimiento Pasajeros 2023 Pasajeros 2022 Variación Pax[%] Top 10 Decrecimiento Pasajeros Variación Pax [000] 2023 2022 Pax[#] Pax[%] Termas Río Hondo 0 2 -1,57 -100% San Fernando 1 1 -0,19 -26% San Rafael 4 4 -0,22 -5% Resistencia 25 26 -1,11 -4% Trelew 23 24 -0,97 -4% Viedma 3 3 -0,08 -3% Rosario 33 33 -0,22 -1% NOTA: El aeropuerto de Termas de Río Hondo se encuentra cerrado por obras en la pista.",
+      "fuente_anac": {
+        "anio": 2023,
+        "mes": "07",
+        "mes_nombre": "julio",
+        "documento": "Informe_Mensual_202307.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/pFgmbqNgKagHB7n",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/pFgmbqNgKagHB7n/download/Informe_Mensual_202307.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2023_07_Informe_Mensual_202307.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2023_08_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- Notas Generales Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales. A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2023,
+        "mes": "08",
+        "mes_nombre": "agosto",
+        "documento": "Informe_Mensual_202308.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/pj938DEPqC3FaSB",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/pj938DEPqC3FaSB/download/Informe_Mensual_202308.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2023_08_Informe_Mensual_202308.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2023_08_002",
+      "iata": null,
+      "oaci": null,
+      "aeropuerto_detectado": null,
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 13 --- Ranking disminución pasajeros [000] por Aeropuerto Cabotaje del mes NOTA: El aeropuerto de Termas de Río Hondo se encuentra cerrado por obras en la pista.",
+      "fuente_anac": {
+        "anio": 2023,
+        "mes": "08",
+        "mes_nombre": "agosto",
+        "documento": "Informe_Mensual_202308.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/pj938DEPqC3FaSB",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/pj938DEPqC3FaSB/download/Informe_Mensual_202308.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2023_08_Informe_Mensual_202308.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2023_09_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- Notas Generales Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales). A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2023,
+        "mes": "09",
+        "mes_nombre": "septiembre",
+        "documento": "Informe_Mensual_202309.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/KZKWbSYEFYBQa8a",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/KZKWbSYEFYBQa8a/download/Informe_Mensual_202309.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2023_09_Informe_Mensual_202309.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2023_09_002",
+      "iata": "REL",
+      "oaci": "SAVT",
+      "aeropuerto_detectado": "Aeropuerto Almirante Marcos A. Zar",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 13 --- Ranking disminución pasajeros [000] por Aeropuerto Cabotaje del mes NOTA: El aeropuerto de Termas de Río Hondo se encontraba cerrado por obras en la pista.-100%-14%-4%-2%-120%-100%-80%-60%-40%-20%0%051015202530Termas Río Hondo Resistencia San Rafael TrelewTop 10 DecrecimientoPasajeros 2023Pasajeros 2022Variación Pax[%]Top 10 Decrecimiento Pasajeros VariaciónPax [000] 2023 2022 Pax[#] Pax[%]Termas Río Hondo 0 2-1,69 -100%Resistencia 19 22-3,02 -14%San Rafael 4 5-0,18 -4%Trelew 27 28-0,68 -2%",
+      "fuente_anac": {
+        "anio": 2023,
+        "mes": "09",
+        "mes_nombre": "septiembre",
+        "documento": "Informe_Mensual_202309.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/KZKWbSYEFYBQa8a",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/KZKWbSYEFYBQa8a/download/Informe_Mensual_202309.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2023_09_Informe_Mensual_202309.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2023_10_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- Notas Generales Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales). A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2023,
+        "mes": "10",
+        "mes_nombre": "octubre",
+        "documento": "Informe_Mensual_202310.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/FNfXm2PjoT3JEys",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/FNfXm2PjoT3JEys/download/Informe_Mensual_202310.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2023_10_Informe_Mensual_202310.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2023_11_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- Notas Generales Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales). A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2023,
+        "mes": "11",
+        "mes_nombre": "noviembre",
+        "documento": "Informe_Mensual_202311.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/DieBmKGoFGemyXx",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/DieBmKGoFGemyXx/download/Informe_Mensual_202311.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2023_11_Informe_Mensual_202311.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2023_12_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cese_operaciones",
+      "causa_categoria_sugerida": "repavimentacion",
+      "fechas_detectadas": [
+        "01 de agosto de 2020",
+        "01 de agosto",
+        "15 de marzo",
+        "1 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- Notas Generales Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores (repavimentación, ensanchado y extendido de la pista (adecuarla a la normativa OACI), instalación de un nuevo sistema de balizamiento y adecuación de la terminal internacionales). A partir del 1 de diciembre 2020 Aerolíneas Argentinas y Austral completaron el proceso de fusión iniciado en mayo de 2020.",
+      "fuente_anac": {
+        "anio": 2023,
+        "mes": "12",
+        "mes_nombre": "diciembre",
+        "documento": "Informe_Mensual_202312.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/ajkH6LHDbfTQ6zZ",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/ajkH6LHDbfTQ6zZ/download/Informe_Mensual_202312.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2023_12_Informe_Mensual_202312.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2024_03_001",
+      "iata": "PMY",
+      "oaci": "SAVY",
+      "aeropuerto_detectado": "Aeropuerto El Tehuelche",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "rehabilitacion",
+      "fechas_detectadas": [
+        "15 de febrero"
+      ],
+      "texto_fuente": "--- PAGE 5 --- El aeropuerto de Puerto Madryn se encuentra cerrado desde el 15 de febrero por obras de rehabilitación integralde los pavimentos de la pista y de las calles de rodaje.",
+      "fuente_anac": {
+        "anio": 2024,
+        "mes": "03",
+        "mes_nombre": "marzo",
+        "documento": "Informe_Mensual_202403.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/JjWWqjSNazFcoK6",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/JjWWqjSNazFcoK6/download/Informe_Mensual_202403.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2024_03_Informe_Mensual_202403.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2024_03_002",
+      "iata": "RGA",
+      "oaci": "SAWE",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Río Grande",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "mantenimiento",
+      "fechas_detectadas": [
+        "8 de marzo",
+        "24 de marzo"
+      ],
+      "texto_fuente": "Los vuelos afectados fueron redirigidos hacia el aeropuertode Trelew.Durante el mes de febrero 2024 comenzó a operar con vuelos no regulares la aerolínea carguera NORTHERN AIRCARGO.El aeropuerto de Río Grande permaneció cerrado desde el 5 al 8 de marzo inclusive por tareas de mantenimiento.El aeropuerto de Viedma permaneció cerrado desde el 19 al 24 de marzo inclusive por tareas de mantenimiento enla pista.",
+      "fuente_anac": {
+        "anio": 2024,
+        "mes": "03",
+        "mes_nombre": "marzo",
+        "documento": "Informe_Mensual_202403.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/JjWWqjSNazFcoK6",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/JjWWqjSNazFcoK6/download/Informe_Mensual_202403.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2024_03_Informe_Mensual_202403.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2024_04_001",
+      "iata": "PMY",
+      "oaci": "SAVY",
+      "aeropuerto_detectado": "Aeropuerto El Tehuelche",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "rehabilitacion",
+      "fechas_detectadas": [
+        "15 de febrero"
+      ],
+      "texto_fuente": "--- PAGE 5 --- El aeropuerto de Puerto Madryn se encuentra cerrado desde el 15 de febrero por obras de rehabilitación integral de los pavimentos de la pista y de las calles de rodaje.",
+      "fuente_anac": {
+        "anio": 2024,
+        "mes": "04",
+        "mes_nombre": "abril",
+        "documento": "Informe_Mensual_202404.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/xyaNSXEcR6f2AsH",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/xyaNSXEcR6f2AsH/download/Informe_Mensual_202404.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2024_04_Informe_Mensual_202404.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2024_04_002",
+      "iata": "BRC",
+      "oaci": "SAZS",
+      "aeropuerto_detectado": "Aeropuerto Internacional de San Carlos de Bariloche",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "mantenimiento",
+      "fechas_detectadas": [
+        "12 de abril"
+      ],
+      "texto_fuente": "Los vuelos afectados fueron redirigidos hacia el aeropuerto de Trelew.Durante el mes de febrero 2024 comenzó a operar con vuelos no regulares la aerolínea carguera NORTHERN AIR CARGO.El aeropuerto de Bariloche permaneció cerrado desde el 9 al 12 de abril inclusive por tareas de mantenimiento de la pista y de la calle de rodaje.",
+      "fuente_anac": {
+        "anio": 2024,
+        "mes": "04",
+        "mes_nombre": "abril",
+        "documento": "Informe_Mensual_202404.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/xyaNSXEcR6f2AsH",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/xyaNSXEcR6f2AsH/download/Informe_Mensual_202404.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2024_04_Informe_Mensual_202404.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2024_05_001",
+      "iata": "PMY",
+      "oaci": "SAVY",
+      "aeropuerto_detectado": "Aeropuerto El Tehuelche",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "rehabilitacion",
+      "fechas_detectadas": [
+        "15 de febrero"
+      ],
+      "texto_fuente": "--- PAGE 5 --- DEPARTAMENTO DE ESTADÍSTICA  El aeropuerto de Puerto Madryn se encontraba cerrado desde el 15 de febrero por obras de rehabilitación integral de los pavimentos de la pista y de las calles de rodaje.",
+      "fuente_anac": {
+        "anio": 2024,
+        "mes": "05",
+        "mes_nombre": "mayo",
+        "documento": "Informe_Mensual_202405.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/LcabFx2mkxQzWjK",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/LcabFx2mkxQzWjK/download/Informe_Mensual_202405.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2024_05_Informe_Mensual_202405.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2024_06_001",
+      "iata": "LUQ",
+      "oaci": "SAOU",
+      "aeropuerto_detectado": "Aeropuerto Brigadier Mayor César Raúl Ojeda",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "mantenimiento",
+      "fechas_detectadas": [
+        "13 de mayo",
+        "11 de junio"
+      ],
+      "texto_fuente": "--- PAGE 5 --- DEPARTAMENTO DE ESTADÍSTICA  Durante el mes de febrero 2024 comenzó a operar con vuelos no regulares la aerolínea carguera NORTHERN AIR CARGO.  El aeropuerto de Termas de Río Hondo se encuentra cerrado desde el 13 de mayo por tareas de mantenimiento.  El aeropuerto de San Luis tuvo suspendida su operatividad desde el 5 al 11 de junio por la rotura de una de las autobombas aeroportuarias.",
+      "fuente_anac": {
+        "anio": 2024,
+        "mes": "06",
+        "mes_nombre": "junio",
+        "documento": "Informe_Mensual_202406.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/22KRcwYG2fJJjFo",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/22KRcwYG2fJJjFo/download/Informe_Mensual_202406.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2024_06_Informe_Mensual_202406.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2024_07_001",
+      "iata": null,
+      "oaci": null,
+      "aeropuerto_detectado": null,
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "mantenimiento",
+      "fechas_detectadas": [
+        "13 de mayo",
+        "4 de julio"
+      ],
+      "texto_fuente": "--- PAGE 5 --- Durante el mes de febrero 2024 comenzó a operar con vuelos no regulares la aerolínea carguera NORTHERN AIR CARGO.El aeropuerto de Termas de Río Hondo permaneció cerrado desde el 13 de mayo al 4 de julio por tareas de mantenimiento.Durante el mes de julio 2024 la aerolínea Azul Linhas Aéreas volvió a operar en Argentina luego de 4 años Notas Generales",
+      "fuente_anac": {
+        "anio": 2024,
+        "mes": "07",
+        "mes_nombre": "julio",
+        "documento": "Informe_Mensual_202407.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/JDpfwHcPkF7bCaD",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/JDpfwHcPkF7bCaD/download/Informe_Mensual_202407.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2024_07_Informe_Mensual_202407.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2024_07_002",
+      "iata": "EZE",
+      "oaci": "SAEZ",
+      "aeropuerto_detectado": "Aeropuerto Internacional Ministro Pistarini",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "remodelacion",
+      "fechas_detectadas": [
+        "12 de junio de 2023",
+        "26 de septiembre de 2023",
+        "12 de junio",
+        "26 de septiembre"
+      ],
+      "texto_fuente": "--- PAGE 11 --- NOTA: Sólo se informan las variaciones inferiores a 400%El aeropuerto de Termas de Río Hondo estuvo cerrado desde el 12 de junio de 2023 al 26 de septiembre de 2023 por trabajos de remodelación Ranking aumento pasajeros [000] por Aeropuerto Cabotaje del mesTop 10 Crecimiento Pasajeros VariaciónPax [000] 2024 2023 Pax[#] Pax[%]Viedma 3,4 2,6 0,88 35%Río Cuarto 2,8 2,4 0,41 18%Chapelco 43 39 3,59 9%Ezeiza 317 303 13,84 5%Catamarca 7,8 7,5 0,34 5%Jujuy 47,6 46,8 0,85 2% 35%18%9%5%5%2%0%10%20%30%40%0,050,0100,0150,0200,0250,0300,0Viedma Río Cuarto Chapelco Ezeiza Catamarca JujuyTop 10 CrecimientoPasajeros 2024 Pasajeros 2023Variación Pax[%]",
+      "fuente_anac": {
+        "anio": 2024,
+        "mes": "07",
+        "mes_nombre": "julio",
+        "documento": "Informe_Mensual_202407.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/JDpfwHcPkF7bCaD",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/JDpfwHcPkF7bCaD/download/Informe_Mensual_202407.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2024_07_Informe_Mensual_202407.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2024_08_001",
+      "iata": "USH",
+      "oaci": "SAWH",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Ushuaia Malvinas Argentinas",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "remodelacion",
+      "fechas_detectadas": [
+        "12 de junio de 2023",
+        "26 de septiembre de 2023",
+        "12 de junio",
+        "26 de septiembre"
+      ],
+      "texto_fuente": "--- PAGE 11 --- DEPARTAMENTO DE ESTADÍSTICA NOTA: Sólo se informan las variaciones inferiores a 400% El aeropuerto de Termas de Río Hondo estuvo cerrado desde el 12 de junio de 2023 al 26 de septiembre de 2023 por trabajos de remodelación Ranking aumento pasajeros [000] por Aeropuerto Cabotaje del mes Top 10 Crecimiento Pasajeros Variación Pax [000] 2024 2023 Pax[#] Pax[%] Viedma 3,0 2,3 0,69 29% Esquel 8 7 1,29 18% San Rafael 4,4 4,1 0,29 7% Río Cuarto 2,0 1,9 0,08 4% El Calafate 43 41 1,68 4% Ushuaia 89 87 1,91 2% 29% 18% 7% 4% 4% 2% 0% 10% 20% 30% 40% 0,0 25,0 50,0 75,0 Viedma Esquel Sab Rafael Río Cuarto El Calafate Ushuaia Top 10 Crecimiento Pasajeros 2024 Pasajeros 2023 Variación Pax[%]",
+      "fuente_anac": {
+        "anio": 2024,
+        "mes": "08",
+        "mes_nombre": "agosto",
+        "documento": "Informe_Mensual_202408.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/5m6ArzyYd7tC69X",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/5m6ArzyYd7tC69X/download/Informe_Mensual_202408.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2024_08_Informe_Mensual_202408.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2024_09_001",
+      "iata": "NQN",
+      "oaci": "SAZN",
+      "aeropuerto_detectado": "Aeropuerto Internacional Presidente Perón",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "remodelacion",
+      "fechas_detectadas": [
+        "12 de junio de 2023",
+        "26 de septiembre de 2023",
+        "12 de junio",
+        "26 de septiembre"
+      ],
+      "texto_fuente": "--- PAGE 11 --- DEPARTAMENTO DE ESTADÍSTICA NOTA: Sólo se informan las variaciones inferiores a 400%El aeropuerto de Termas de Río Hondo estuvo cerrado desde el 12 de junio de 2023 al 26 de septiembre de 2023 por trabajos de remodelación Ranking aumento pasajeros [000] por Aeropuerto Cabotaje del mesTop 10 Crecimiento Pasajeros VariaciónPax [000] 2024 2023 Pax[#] Pax[%]Viedma 3 2 0,97 40%Chapelco 30 27 3,42 13%Puerto Madryn 20 18 1,49 8%Esquel 8 7 0,43 6%Neuquen 94 93 0,84 1%Comodoro Rivadavia 46 45 0,19 0,4% 40%13%8%6%1%0.4%0%10%20%30%40%0255075100Viedma Chapelco PuertoMadrynEsquel Neuquen ComodoroRivadaviaTop 10 CrecimientoPasajeros 2024 Pasajeros 2023Variación Pax[%]",
+      "fuente_anac": {
+        "anio": 2024,
+        "mes": "09",
+        "mes_nombre": "septiembre",
+        "documento": "Informe_Mensual_202409.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/SGkBNERrxHH8ZR4",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/SGkBNERrxHH8ZR4/download/Informe_Mensual_202409.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2024_09_Informe_Mensual_202409.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2024_10_001",
+      "iata": "CPC",
+      "oaci": "SAZY",
+      "aeropuerto_detectado": "Aeropuerto Aviador Carlos Campos",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "mantenimiento",
+      "fechas_detectadas": [
+        "25 de octubre"
+      ],
+      "texto_fuente": "--- PAGE 11 --- NOTA: Sólo se informan las variaciones inferiores a 400%El Aeropuerto de Chapelco permaneció cerrados los días 17, 18, 24 y 25 de octubre 2023 por obras de mantenimiento.",
+      "fuente_anac": {
+        "anio": 2024,
+        "mes": "10",
+        "mes_nombre": "octubre",
+        "documento": "Informe_Mensual_202410.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/QAaP5LKJWgxSzK5",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/QAaP5LKJWgxSzK5/download/Informe_Mensual_202410.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2024_10_Informe_Mensual_202410.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2025_01_001",
+      "iata": "RGL",
+      "oaci": "SAWG",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Río Gallegos",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "mantenimiento",
+      "fechas_detectadas": [
+        "31 de enero de 2025",
+        "31 de enero"
+      ],
+      "texto_fuente": "Madryn 16 20-3,82 -20%Paraná 3 4-0,76 -19% -71%-41%-36%-34%-30%-25%-22%-22%-20%-19%-100%-90%-80%-70%-60%-50%-40%-30%-20%-10%0%0102030Top 10 Decrecimiento Pasajeros 2025 Pasajeros 2024Variación Pax[%]NOTA: El aeropuerto de Río Gallegos permaneció cerrado del 28 al 31 de enero de 2025 debido a trabajos esenciales de mantenimiento en pista y calles de rodaje",
+      "fuente_anac": {
+        "anio": 2025,
+        "mes": "01",
+        "mes_nombre": "enero",
+        "documento": "Informe_Mensual_202501.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/yZDNLa7aB53x7Kz",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/yZDNLa7aB53x7Kz/download/Informe_Mensual_202501.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2025_01_Informe_Mensual_202501.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2025_03_001",
+      "iata": "ROS",
+      "oaci": "SAAR",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Rosario Islas Malvinas",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "rehabilitacion",
+      "fechas_detectadas": [
+        "15 de febrero"
+      ],
+      "texto_fuente": "--- PAGE 12 --- Ranking disminución pasajeros [000] por Aeropuerto Cabotaje del mesTop 10 Decrecimiento Pasajeros VariaciónPax [000] 2025 2024 Pax[#] Pax[%]Trelew 18 33-15,03 -46%Formosa 6 11-5,10 -46%Resistencia 13 19-5,49 -30%San Luis 4 6-1,66 -27%Bahía Blanca 18 22-4,17 -19%Rosario 21 26-4,61 -18%La Rioja 5 6-0,92 -15%Esquel 7 8-0,97 -12%Río Cuarto 2 2-0,17 -8%San Rafael 4 5-0,30 -6% -46%-46%-30%-27%-19%-18%-15%-12%-8%-6%-100%-90%-80%-70%-60%-50%-40%-30%-20%-10%0%010203040Top 10 DecrecimientoPasajeros 2025 Pasajeros 2024Variación Pax[%]NOTA: El aeropuerto de Puerto Madryn, en 2024 se encontraba cerrado desde el 15 de febrero por obras de rehabilitación integral de los pavimentos de la pista y de las calles de rodaje.",
+      "fuente_anac": {
+        "anio": 2025,
+        "mes": "03",
+        "mes_nombre": "marzo",
+        "documento": "Informe_Mensual_202503.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/9eeeJbxWCiHwz8e",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/9eeeJbxWCiHwz8e/download/Informe_Mensual_202503.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2025_03_Informe_Mensual_202503.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2025_04_001",
+      "iata": "PMY",
+      "oaci": "SAVY",
+      "aeropuerto_detectado": "Aeropuerto El Tehuelche",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "rehabilitacion",
+      "fechas_detectadas": [
+        "15 de febrero"
+      ],
+      "texto_fuente": "--- PAGE 12 --- DEPARTAMENTO DE ESTADÍSTICA Ranking disminución pasajeros [000] por Aeropuerto Cabotaje del mes NOTA: El aeropuerto de Puerto Madryn, en 2024 se en contraba cerrado desde el 15 de febrero por obras d e rehabilitación integral de los pavimentos de la pista y de las calles de rodaje.",
+      "fuente_anac": {
+        "anio": 2025,
+        "mes": "04",
+        "mes_nombre": "abril",
+        "documento": "Informe_Mensual_202504.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/3KgN52ZEjwnXF7e",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/3KgN52ZEjwnXF7e/download/Informe_Mensual_202504.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2025_04_Informe_Mensual_202504.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2025_05_001",
+      "iata": "PMY",
+      "oaci": "SAVY",
+      "aeropuerto_detectado": "Aeropuerto El Tehuelche",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "rehabilitacion",
+      "fechas_detectadas": [
+        "18 de mayo"
+      ],
+      "texto_fuente": "--- PAGE 11 --- NOTA: Sólo se informan las variaciones inferiores a 400%El aeropuerto de Puerto Madryn, en 2024 estuvo cerrado hasta el 18 de mayo por obras de rehabilitación integral de los pavimentos de la pista y de las calles de rodaje.",
+      "fuente_anac": {
+        "anio": 2025,
+        "mes": "05",
+        "mes_nombre": "mayo",
+        "documento": "Informe_Mensual_202505.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/cpra6NweaAJtj3D",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/cpra6NweaAJtj3D/download/Informe_Mensual_202505.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2025_05_Informe_Mensual_202505.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2025_09_001",
+      "iata": "ROS",
+      "oaci": "SAAR",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Rosario Islas Malvinas",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "rehabilitacion",
+      "fechas_detectadas": [
+        "23 de diciembre de 2025",
+        "29 de diciembre de 2025",
+        "1 de septiembre",
+        "23 de diciembre",
+        "20 de septiembre",
+        "29 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- DEPARTAMENTO DE ESTADÍSTICA  Durante el mes de febrero 2024 comenzó a operar con vuelos no regulares la aerolínea carguera NORTHERN AIR CARGO.  Durante el mes de julio 2024 la aerolínea Azul Linhas Aéreas volvió a operar en Argentina luego de 4 años  El Aeropuerto Internacional de Río Gallegos “Piloto Civil Norberto Fernández” permanecerá cerrado por un período de 113 días, desde el 1 de septiembre hasta el 23 de diciembre de 2025, a fin de llevar a cabo la rehabilitación integral de su pista principal.  Por su parte, el Aeropuerto Internacional de Rosario “Islas Malvinas” suspenderá sus operaciones durante 90 días, entre el 20 de septiembre y el 29 de diciembre de 2025, para ejecutar obras de remodelación en la pista.",
+      "fuente_anac": {
+        "anio": 2025,
+        "mes": "09",
+        "mes_nombre": "septiembre",
+        "documento": "Informe_Mensual_202509.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/4jqbzgz9M2bmzcY",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/4jqbzgz9M2bmzcY/download/Informe_Mensual_202509.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2025_09_Informe_Mensual_202509.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2025_09_002",
+      "iata": "ROS",
+      "oaci": "SAAR",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Rosario Islas Malvinas",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [
+        "23 de Diciembre"
+      ],
+      "texto_fuente": "--- PAGE 12 --- DEPARTAMENTO DE ESTADÍSTICA Ranking disminución pasajeros [000] por Aeropuerto Cabotaje del mes Top10Decrecimiento Pasajeros Variación Pax[000] 2025 2024 Pax[#] Pax[%] Rosario 12,5 20,9 -8,38 -40% Viedma 3 3 -0,57 -17% Chapelco 26 30 -4,04 -13% SanJuan 16,7 17,9 -1,24 -7% Esquel 8 8 -0,10 -1% SantaRosa 4 4 -0,04 -1% -40% -17% -13% -7% -1% -1% Rosario Viedma Chapelco SanJuan Esquel SantaRosa 0 10 20 30 40 50 60 -45% -40% -35% -30% -25% -20% -15% -10% -5% 0% Top10Decrecimiento Pasajeros2025 Pasajeros2024 VariaciónPax[%] NOTA: El aeropuerto de Río Gallegos se encuentra cerrado por obras en curso desde el 1ro de Septiembre hasta el 23 de Diciembre.",
+      "fuente_anac": {
+        "anio": 2025,
+        "mes": "09",
+        "mes_nombre": "septiembre",
+        "documento": "Informe_Mensual_202509.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/4jqbzgz9M2bmzcY",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/4jqbzgz9M2bmzcY/download/Informe_Mensual_202509.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2025_09_Informe_Mensual_202509.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2025_09_003",
+      "iata": "ROS",
+      "oaci": "SAAR",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Rosario Islas Malvinas",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [
+        "20 de Septiembre",
+        "29 de Diciembre"
+      ],
+      "texto_fuente": "El aeropuerto de Rosario se encuentra cerrado desde el 20 de Septiembre por obras en pista, hasta el 29 de Diciembre",
+      "fuente_anac": {
+        "anio": 2025,
+        "mes": "09",
+        "mes_nombre": "septiembre",
+        "documento": "Informe_Mensual_202509.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/4jqbzgz9M2bmzcY",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/4jqbzgz9M2bmzcY/download/Informe_Mensual_202509.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2025_09_Informe_Mensual_202509.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2025_10_001",
+      "iata": "ROS",
+      "oaci": "SAAR",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Rosario Islas Malvinas",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "rehabilitacion",
+      "fechas_detectadas": [
+        "23 de diciembre de 2025",
+        "29 de diciembre de 2025",
+        "1 de septiembre",
+        "23 de diciembre",
+        "20 de septiembre",
+        "29 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 ---  Durante el mes de febrero 2024 comenzó a operar con vuelos no regulares la aerolínea carguera NORTHERN AIR CARGO.  Durante el mes de julio 2024 la aerolínea Azul Linhas Aéreas volvió a operar en Argentina luego de 4 años  El Aeropuerto Internacional de Río Gallegos “Piloto Civil Norberto Fernández” permanecerá cerrado por un período de 113 días, desde el 1 de septiembre hasta el 23 de diciembre de 2025, a fin de llevar a cabo la rehabilitación integral de su pista principal.  Por su parte, el Aeropuerto Internacional de Rosario “Islas Malvinas” suspenderá sus operaciones durante 90 días, entre el 20 de septiembre y el 29 de diciembre de 2025, para ejecutar obras de remodelación en la pista.",
+      "fuente_anac": {
+        "anio": 2025,
+        "mes": "10",
+        "mes_nombre": "octubre",
+        "documento": "Informe_Mensual_202510.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/NsTFjpaH9Wyr5KE",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/NsTFjpaH9Wyr5KE/download/Informe_Mensual_202510.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2025_10_Informe_Mensual_202510.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2025_10_002",
+      "iata": "RGL",
+      "oaci": "SAWG",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Río Gallegos",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [
+        "23 de Diciembre"
+      ],
+      "texto_fuente": "--- PAGE 12 --- Ranking disminución pasajeros [000] por Aeropuerto Cabotaje del mes NOTA: El aeropuerto de Río Gallegos se encuentra cerrado por obras en curso desde el 1ro de Septiembre hasta el 23 de Diciembre.",
+      "fuente_anac": {
+        "anio": 2025,
+        "mes": "10",
+        "mes_nombre": "octubre",
+        "documento": "Informe_Mensual_202510.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/NsTFjpaH9Wyr5KE",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/NsTFjpaH9Wyr5KE/download/Informe_Mensual_202510.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2025_10_Informe_Mensual_202510.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2025_10_003",
+      "iata": "ROS",
+      "oaci": "SAAR",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Rosario Islas Malvinas",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [
+        "20 de Septiembre",
+        "29 de Diciembre"
+      ],
+      "texto_fuente": "El aeropuerto de Rosario se encuentra cerrado desde el 20 de Septiembre por obras en pista, hasta el 29 de Diciembre Top 10 Decrecimiento Pasajeros Variación Pax [000] 2025 2024 Pax[#] Pax[%] Ushuaia 81,5 89,9 -8,42 -9% La Rioja 6 7 -0,40 -6% Chapelco 21 22 -0,41 -2% -9% -6% -2% -45% -40% -35% -30% -25% -20% -15% -10% -5% 0% 0 10 20 30 40 50 60 70 80 90 100 Ushuaia La Rioja Chapelco Top 10 Decrecimiento Pasajeros 2025 Pasajeros 2024 Variación Pax[%]",
+      "fuente_anac": {
+        "anio": 2025,
+        "mes": "10",
+        "mes_nombre": "octubre",
+        "documento": "Informe_Mensual_202510.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/NsTFjpaH9Wyr5KE",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/NsTFjpaH9Wyr5KE/download/Informe_Mensual_202510.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2025_10_Informe_Mensual_202510.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2025_11_001",
+      "iata": "ROS",
+      "oaci": "SAAR",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Rosario Islas Malvinas",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "rehabilitacion",
+      "fechas_detectadas": [
+        "23 de diciembre de 2025",
+        "29 de diciembre de 2025",
+        "1 de septiembre",
+        "23 de diciembre",
+        "20 de septiembre",
+        "29 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 5 --- DEPARTAMENTO DE ESTADÍSTICA  Durante el mes de febrero 2024 comenzó a operar con vuelos no regulares la aerolínea carguera NORTHERN AIR CARGO.  Durante el mes de julio 2024 la aerolínea Azul Linhas Aéreas volvió a operar en Argentina luego de 4 años  El Aeropuerto Internacional de Río Gallegos “Piloto Civil Norberto Fernández” permanecerá cerrado por un período de 113 días, desde el 1 de septiembre hasta el 23 de diciembre de 2025, a fin de llevar a cabo la rehabilitación integral de su pista principal.  Por su parte, el Aeropuerto Internacional de Rosario “Islas Malvinas” suspenderá sus operaciones durante 90 días, entre el 20 de septiembre y el 29 de diciembre de 2025, para ejecutar obras de remodelación en la pista.",
+      "fuente_anac": {
+        "anio": 2025,
+        "mes": "11",
+        "mes_nombre": "noviembre",
+        "documento": "Informe Mensual 202511.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/qtzyM7E5nat7jYe",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/qtzyM7E5nat7jYe/download/Informe%20Mensual%20202511.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2025_11_Informe_Mensual_202511.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2025_11_002",
+      "iata": "RGL",
+      "oaci": "SAWG",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Río Gallegos",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [
+        "23 de Diciembre"
+      ],
+      "texto_fuente": "--- PAGE 12 --- DEPARTAMENTO DE ESTADÍSTICA Ranking disminución pasajeros [000] por Aeropuerto Cabotaje del mes NOTA: El aeropuerto de Río Gallegos se encuentra cerrado por obras en curso desde el 1ro de Septiembre hasta el 23 de Diciembre.",
+      "fuente_anac": {
+        "anio": 2025,
+        "mes": "11",
+        "mes_nombre": "noviembre",
+        "documento": "Informe Mensual 202511.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/qtzyM7E5nat7jYe",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/qtzyM7E5nat7jYe/download/Informe%20Mensual%20202511.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2025_11_Informe_Mensual_202511.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2025_11_003",
+      "iata": "ROS",
+      "oaci": "SAAR",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Rosario Islas Malvinas",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [
+        "20 de Septiembre",
+        "29 de Diciembre"
+      ],
+      "texto_fuente": "El aeropuerto de Rosario se encuentra cerrado desde el 20 de Septiembre por obras en pista, hasta el 29 de Diciembre Top 10 Decrecimiento Pasajeros Variación Pax [000] 2025 2024 Pax[#] Pax[%] Río Cuarto 1,6 2,4 -0,86 -35% San Luis 5 6 -1,04 -17% San Juan 19 20 -1,39 -7% Puerto Madryn 17,8 19,1 -1,29 -7% Río Grande 10 11 -0,61 -6% Comod.",
+      "fuente_anac": {
+        "anio": 2025,
+        "mes": "11",
+        "mes_nombre": "noviembre",
+        "documento": "Informe Mensual 202511.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/qtzyM7E5nat7jYe",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/qtzyM7E5nat7jYe/download/Informe%20Mensual%20202511.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2025_11_Informe_Mensual_202511.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2025_12_001",
+      "iata": "ROS",
+      "oaci": "SAAR",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Rosario Islas Malvinas",
+      "tipo_evento_sugerido": "suspension_operaciones",
+      "causa_categoria_sugerida": "rehabilitacion",
+      "fechas_detectadas": [
+        "23 de diciembre de 2025",
+        "29 de diciembre de 2025",
+        "1 de septiembre",
+        "23 de diciembre",
+        "20 de septiembre",
+        "29 de diciembre"
+      ],
+      "texto_fuente": "--- PAGE 6 --- DEPARTAMENTO DE ESTADÍSTICA OTRAS NOVEDADES  El Aeropuerto Internacional de Río Gallegos “Piloto Civil Norberto Fernández” permaneció cerrado por un período de 113 días, desde el 1 de septiembre hasta el 23 de diciembre de 2025, a fin de llevar a cabo la rehabilitación integral de su pista principal.  Por su parte, el Aeropuerto Internacional de Rosario “Islas Malvinas” suspendió sus operaciones durante 90 días, entre el 20 de septiembre y el 29 de diciembre de 2025, para ejecutar obras de remodelación en la pista.",
+      "fuente_anac": {
+        "anio": 2025,
+        "mes": "12",
+        "mes_nombre": "diciembre",
+        "documento": "Informe Mensual Diciembre 2025.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/pk8HDnYWX5X3aKL",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/pk8HDnYWX5X3aKL/download/Informe%20Mensual%20Diciembre%202025.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2025_12_Informe_Mensual_Diciembre_2025.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2025_12_002",
+      "iata": "RGL",
+      "oaci": "SAWG",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Río Gallegos",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [
+        "23 de Diciembre"
+      ],
+      "texto_fuente": "--- PAGE 13 --- DEPARTAMENTO DE ESTADÍSTICA Ranking disminución pasajeros [000] por Aeropuerto Cabotaje del mes NOTA: El aeropuerto de Río Gallegos se encontraba cerrado por obras en curso desde el 1ro de Septiembre hasta el 23 de Diciembre.",
+      "fuente_anac": {
+        "anio": 2025,
+        "mes": "12",
+        "mes_nombre": "diciembre",
+        "documento": "Informe Mensual Diciembre 2025.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/pk8HDnYWX5X3aKL",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/pk8HDnYWX5X3aKL/download/Informe%20Mensual%20Diciembre%202025.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2025_12_Informe_Mensual_Diciembre_2025.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2025_12_003",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [
+        "20 de Septiembre",
+        "29 de Diciembre"
+      ],
+      "texto_fuente": "El aeropuerto de Rosario se encontraba cerrado desde el 20 de Septiembre por obras en pista, hasta el 29 de Diciembre NOTA: Con el objetivo de evitar la distorsión del gráfico y facilitar el análisis comparativo de la mayoría de los datos, el aeropuerto de Aeroparque ha sido omitido de la representación visual Top 10 Decrecimiento Pasajeros Variación Pax [000] 2025 2024 Pax[#] Pax[%] Puerto Madryn 15 18 -3,46 -19% Río Cuarto 3 4 -0,60 -16% Esquel 7 8 -1,10 -13% Posadas 28 30 -2,04 -7% Comod.",
+      "fuente_anac": {
+        "anio": 2025,
+        "mes": "12",
+        "mes_nombre": "diciembre",
+        "documento": "Informe Mensual Diciembre 2025.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/pk8HDnYWX5X3aKL",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/pk8HDnYWX5X3aKL/download/Informe%20Mensual%20Diciembre%202025.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2025_12_Informe_Mensual_Diciembre_2025.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2026_01_001",
+      "iata": "COR",
+      "oaci": "SACO",
+      "aeropuerto_detectado": "Aeropuerto Internacional Ingeniero Ambrosio Taravella",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "modernizacion",
+      "fechas_detectadas": [
+        "5 de enero",
+        "15 de abril"
+      ],
+      "texto_fuente": "--- PAGE 5 --- Notas Enero 2026 NUEVAS CONEXIONES  BUENOS AIRES- ARUBA: OPERADA POR AEROLINEAS ARGENTINAS  BUENOS AIRES – CABO FRIO: OPERADA POR AEROLINEAS ARGENTINAS  BUENOS AIRES - SANTO DOMINGO: REINICIA ARAJET LUEGO DE HABERLA OPERADO HASTA OCTUBRE 2024  CORDOBA – ARUBA: OPERADA POR AEROLINEAS ARGENTINAS  CORDOBA – PUNTA DEL ESTE: OPERADA POR AEROLINEAS ARGENTINAS  MENDOZA- ARUBA: OPERADA POR AEROLINEAS ARGENTINAS  ROSARIO – CABO FRIO: OPERADA POR AEROLINEAS ARGENTINAS  ROSARIO-SAN PABLO: REINICIA GOL LUEGO DE HABERLA OPERADO HASTA MARZO 2024 EN INICIA LATAM GROUP  SALTA – FLORIANOPOLIS: OPERADA POR AEROLINEAS ARGENTINAS  TUCUMAN- FLORIANOPOLIS: OPERADA POR AEROLINEAS ARGENTINAS NUEVOS OPERADORES EN RUTAS ACTIVAS  BUENOS AIRES-NATAL: OPERADA POR JETSMART ARGENTINA  BUENOS AIRES – FLORIANOPOLIS: OPERADA POR LATAM GROUP  MENDOZA – RIO DE JANEIRO: OPERADA POR GOL OTRAS NOVEDADES El Aeropuerto Internacional de Río Grande \"Gobernador Ramón Trejo Noel” permanecerá cerrado desde el 5 de enero hasta el 15 de abril, por obras de modernización en la pista y plataforma comercial",
+      "fuente_anac": {
+        "anio": 2026,
+        "mes": "01",
+        "mes_nombre": "enero",
+        "documento": "Informe Mensual Enero 2026.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/2EoFgk9Zc2anNHf",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/2EoFgk9Zc2anNHf/download/Informe%20Mensual%20Enero%202026.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2026_01_Informe_Mensual_Enero_2026.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2026_01_002",
+      "iata": "RGL",
+      "oaci": "SAWG",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Río Gallegos",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "modernizacion",
+      "fechas_detectadas": [
+        "5 de enero",
+        "15 de abril"
+      ],
+      "texto_fuente": "--- PAGE 13 --- Ranking disminución pasajeros [000] por Aeropuerto Cabotaje del mes NOTA: Con el objetivo de evitar la distorsión del gráfico y facilitar el análisis comparativo de la mayoría de los datos, los aeropuertos de Bariloche y Mendoza han sido omitidos de la representación visual • El Aeropuerto Internacional de Río Grande \"Gobernador Ramón Trejo Noel” permanecerá cerrado desde el 5 de enero hasta el 15 de abril, por obras de modernización en la pista y plataforma comercial Top 10 Decrecimiento Pasajeros Variación Pax [000] 2026 2025 Pax[#] Pax[%] Río Gallegos 10,8 12,7 -1,88 -15% Santa Rosa 3 3 -0,47 -15% Paraná 3 3 -0,43 -13% Puerto Madryn 14 16 -2,05 -13% Mar del Plata 37,4 42,5 -5,18 -12% Comodoro Rivadavia 43 47 -4,33 -9% Bariloche 227 247 -19,91 -8% Mendoza 138 149 -10,65 -7% Jujuy 39 41 -1,97 -5% Esquel 7,9 8,3 -0,38 -5% -15% -15% -13% -13% -12% -9% -5% -5% -20% -18% -16% -14% -12% -10% -8% -6% -4% -2% 0% 0 5 10 15 20 25 30 35 40 45 50 Top 10 Decrecimiento Pasajeros 2026 Pasajeros 2025 Variación Pax[%]",
+      "fuente_anac": {
+        "anio": 2026,
+        "mes": "01",
+        "mes_nombre": "enero",
+        "documento": "Informe Mensual Enero 2026.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/2EoFgk9Zc2anNHf",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/2EoFgk9Zc2anNHf/download/Informe%20Mensual%20Enero%202026.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2026_01_Informe_Mensual_Enero_2026.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2026_02_001",
+      "iata": "RGL",
+      "oaci": "SAWG",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Río Gallegos",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "modernizacion",
+      "fechas_detectadas": [
+        "5 de enero",
+        "15 de abril"
+      ],
+      "texto_fuente": "--- PAGE 13 --- Ranking disminución pasajeros [000] por Aeropuerto Cabotaje del mes NOTA: Con el objetivo de evitar la distorsión del gráfico y facilitar el análisis comparativo de la mayoría de los datos, los aeropuertos de Bariloche y Mendoza han sido omitidos de la representación visual • El Aeropuerto Internacional de Río Grande \"Gobernador Ramón Trejo Noel” permanecerá cerrado desde el 5 de enero hasta el 15 de abril, por obras de modernización en la pista y plataforma comercial Top 10 Decrecimiento Pasajeros Variación Pax [000] 2026 2025 Pax[#] Pax[%] Río Gallegos 9,6 17,6 -8,00 -45% Paraná 3 3 -0,51 -15% Mar del Plata 29 34 -4,98 -15% Río Hondo 1 1 -0,19 -15% Esquel 6,5 7,5 -1,03 -14% Comodoro Rivadavia 37 43 -5,15 -12% Bariloche 185 204 -19,09 -9% Santa Rosa 3 3 -0,26 -9% Mendoza 125 136 -10,93 -8% Santiago del Estero 14,8 15,8 -1,06 -7% -45% -15% -15% -15% -14% -12% -9% -7% -50% -45% -40% -35% -30% -25% -20% -15% -10% -5% 0% 0 5 10 15 20 25 30 35 40 45 50 Top 10 Decrecimiento Pasajeros 2026 Pasajeros 2025 Variación Pax[%]",
+      "fuente_anac": {
+        "anio": 2026,
+        "mes": "02",
+        "mes_nombre": "febrero",
+        "documento": "Informe Mensual Febrero 2026.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/TdcEzwe7CNN44rS",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/TdcEzwe7CNN44rS/download/Informe%20Mensual%20Febrero%202026.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2026_02_Informe_Mensual_Febrero_2026.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2026_03_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "modernizacion",
+      "fechas_detectadas": [
+        "5 de enero",
+        "15 de abril"
+      ],
+      "texto_fuente": "--- PAGE 5 --- Notas Marzo 2026 NUEVAS CONEXIONES  NEUQUÉN- SANTIAGO DE CHILE: OPERADA POR LATAM  AEROPARQUE - BRASILIA: GOL RETOMA SUS OPERACIONES, LUEGO DE HABER SIDO DISCONTINUADAS A PARTIR DE NOVIEMBRE DE 2025  CATAMARCA - LA RIOJA: DE AEROLÍNEAS ARGENTINAS RETOMA SUS OPERACIONES, LUEGO DE HABER SIDO DISCONTINUADAS A PARTIR DE DICIEMBRE DE 2025 NUEVOS OPERADORES EN RUTAS ACTIVAS  AEROPARQUE - RECIFE: OPERADA POR JETSMART ARGENTINA  AEROPARQUE - NATAL: OPERADA POR JETSMART ARGENTINA OTRAS NOVEDADES El Aeropuerto Internacional de Río Grande \"Gobernador Ramón Trejo Noel” permanecerá cerrado desde el 5 de enero hasta el 15 de abril, por obras de modernización en la pista y plataforma comercial",
+      "fuente_anac": {
+        "anio": 2026,
+        "mes": "03",
+        "mes_nombre": "marzo",
+        "documento": "Informe Mensual Marzo 2026.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/e6YAromK7jjAJ3J",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/e6YAromK7jjAJ3J/download/Informe%20Mensual%20Marzo%202026.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2026_03_Informe_Mensual_Marzo_2026.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2026_03_002",
+      "iata": "RGL",
+      "oaci": "SAWG",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Río Gallegos",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "modernizacion",
+      "fechas_detectadas": [
+        "5 de enero",
+        "15 de abril"
+      ],
+      "texto_fuente": "--- PAGE 13 --- Ranking disminución pasajeros [000] por Aeropuerto Cabotaje del mes NOTA: Con el objetivo de evitar la distorsión del gráfico y facilitar el análisis comparativo de la mayoría de los datos, el aeropuerto de Iguazú ha sido omitido de la representación visual • El Aeropuerto Internacional de Río Grande \"Gobernador Ramón Trejo Noel” permanecerá cerrado desde el 5 de enero hasta el 15 de abril, por obras de modernización en la pista y plataforma comercial Top 10 Decrecimiento Pasajeros Variación Pax [000] 2026 2025 Pax[#] Pax[%] Río Hondo 1,3 4,7 -3,41 -72% Río Gallegos 13 18 -4,74 -27% Corrientes 15 20 -5,34 -27% Jujuy 36 48 -11,94 -25% Santiago del Estero 14,4 18,7 -4,28 -23% Santa Rosa 3 4 -0,73 -19% Iguazú 153 176 -22,93 -13% Paraná 3 4 -0,46 -13% Posadas 23 27 -3,32 -12% Com.",
+      "fuente_anac": {
+        "anio": 2026,
+        "mes": "03",
+        "mes_nombre": "marzo",
+        "documento": "Informe Mensual Marzo 2026.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/e6YAromK7jjAJ3J",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/e6YAromK7jjAJ3J/download/Informe%20Mensual%20Marzo%202026.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2026_03_Informe_Mensual_Marzo_2026.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2026_04_001",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "modernizacion",
+      "fechas_detectadas": [
+        "5 de enero",
+        "15 de abril"
+      ],
+      "texto_fuente": "--- PAGE 5 --- Notas Abril 2026 NUEVAS CONEXIONES Y RUTAS RETOMADAS  CÓRDOBA - JUJUY: OPERADA POR FLYBONDI  SALTA - ROSARIO: AEROLÍNEAS ARGENTINAS RETOMA SUS OPERACIONES, LUEGO DE HABER SIDO DISCONTINUADAS A PARTIR DE SEPTIEMBRE DE 2025  SANTIAGO DE CHILE – AEROPARQUE – SALVADOR DE BAHÍA: OPERADA POR SKY AIRLINES  MEDELLÍN – PANAMÁ - AEROPARQUE: OPERADA POR WINGO (COPA AIRLINES)  AEROPARQUE – RÍO DE JANEIRO: LATAM RETOMA SUS OPERACIONES, LUEGO DE HABER SIDO DISCONTINUADAS A PARTIR DE AGOSTO DE 2024 NUEVOS OPERADORES  EMIRATES AIRLINES INICIÓ VUELOS NO REGULARES DE CARGA EXCLUSIVA OTRAS NOVEDADES El Aeropuerto Internacional de Río Grande \"Gobernador Ramón Trejo Noel” permanecerá cerrado desde el 5 de enero hasta el 15 de abril, por obras de modernización en la pista y plataforma comercial",
+      "fuente_anac": {
+        "anio": 2026,
+        "mes": "04",
+        "mes_nombre": "abril",
+        "documento": "Informe Mensual Abril 2026.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/mLb9FxkpweRKYmM",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/mLb9FxkpweRKYmM/download/Informe%20Mensual%20Abril%202026.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2026_04_Informe_Mensual_Abril_2026.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2026_04_002",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "tipo_evento_sugerido": "cierre_pista",
+      "causa_categoria_sugerida": "modernizacion",
+      "fechas_detectadas": [
+        "5 de enero",
+        "15 de abril"
+      ],
+      "texto_fuente": "--- PAGE 13 --- Ranking disminución pasajeros [000] por Aeropuerto Cabotaje del mes NOTA: Con el objetivo de evitar la distorsión del gráfico y facilitar el análisis comparativo de la mayoría de los datos, el aeropuerto de Iguazú ha sido omitido de la representación visual • El Aeropuerto Internacional de Río Grande \"Gobernador Ramón Trejo Noel” permanecerá cerrado desde el 5 de enero hasta el 15 de abril, por obras de modernización en la pista y plataforma comercial Top 10 Decrecimiento Pasajeros Variación Pax [000] 2026 2025 Pax[#] Pax[%] Río Grande 4,6 10,9 -6,30 -58% Río Gallegos 13 17 -4,27 -25% Puerto Madryn 9 12 -2,72 -23% Rosario 15 18 -3,02 -17% Corrientes 13,2 15,6 -2,42 -16% Formosa 6 7 -1,12 -15% Posadas 24 26 -2,97 -11% Aeroparque 961 1074 -113,52 -11% Mendoza 142 158 -15,97 -10% Bariloche 133,9 148,1 -14,18 -10% -58% -25% -23% -17% -16% -15% -11% -10% -10% -75% -65% -55% -45% -35% -25% -15% -5% 5% 0 20 40 60 80 100 120 140 160 Top 10 Decrecimiento Pasajeros 2026 Pasajeros 2025 Variación Pax[%]",
+      "fuente_anac": {
+        "anio": 2026,
+        "mes": "04",
+        "mes_nombre": "abril",
+        "documento": "Informe Mensual Abril 2026.pdf",
+        "pagina": "https://docs.anac.gob.ar/index.php/s/mLb9FxkpweRKYmM",
+        "download_url": "https://docs.anac.gob.ar/index.php/s/mLb9FxkpweRKYmM/download/Informe%20Mensual%20Abril%202026.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2026_04_Informe_Mensual_Abril_2026.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    }
+  ]
+}
