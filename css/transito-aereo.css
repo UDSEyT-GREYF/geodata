@@ -1,0 +1,424 @@
+:root {
+  --siga-navy: #002855;
+  --siga-blue: #0072bc;
+  --siga-light-blue: #e8f3fb;
+  --siga-border: #d8e1ea;
+  --siga-text: #1f2933;
+  --siga-muted: #5f6b7a;
+  --siga-bg: #f3f6f9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, Arial, sans-serif;
+  color: var(--siga-text);
+  background: var(--siga-bg);
+}
+
+.siga-airmap-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.siga-airmap-header {
+  min-height: 88px;
+  padding: 18px 26px 16px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--siga-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  z-index: 1000;
+}
+
+.siga-airmap-kicker {
+  margin: 0 0 4px;
+  color: var(--siga-blue);
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.siga-airmap-header h1 {
+  margin: 0;
+  color: var(--siga-navy);
+  font-size: 26px;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.siga-airmap-header p {
+  margin: 5px 0 0;
+  color: var(--siga-muted);
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.siga-airmap-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.siga-airmap-actions button,
+.siga-airmap-actions a {
+  border: 0;
+  border-radius: 999px;
+  padding: 9px 15px;
+  background: var(--siga-blue);
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.siga-airmap-actions a {
+  background: #eef4f9;
+  color: var(--siga-navy);
+}
+
+.siga-airmap-actions button:hover {
+  background: #005f96;
+}
+
+.siga-airmap-actions a:hover {
+  background: #dfeaf3;
+}
+
+.siga-airmap-main {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+}
+
+.siga-airmap-panel {
+  background: #ffffff;
+  border-right: 1px solid var(--siga-border);
+  padding: 16px;
+  overflow: auto;
+}
+
+.siga-airmap-card {
+  border: 1px solid var(--siga-border);
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 14px;
+  margin: 0 0 12px;
+}
+
+.siga-airmap-card-title {
+  margin: 0 0 10px;
+  color: var(--siga-navy);
+  font-size: 13px;
+  line-height: 1.15;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.siga-airmap-kpis {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.siga-airmap-kpis div {
+  border-radius: 8px;
+  background: var(--siga-light-blue);
+  padding: 10px 8px;
+}
+
+.siga-airmap-kpis strong {
+  display: block;
+  color: var(--siga-navy);
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 850;
+}
+
+.siga-airmap-kpis span {
+  display: block;
+  margin-top: 4px;
+  color: var(--siga-muted);
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.siga-airmap-muted {
+  margin: 10px 0 0;
+  color: var(--siga-muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.siga-airmap-note {
+  margin: 0 0 9px;
+  color: #3f4a56;
+  font-size: 12.5px;
+  line-height: 1.42;
+}
+
+.siga-airmap-note:last-child {
+  margin-bottom: 0;
+}
+
+.siga-airmap-check {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 9px 0;
+  color: var(--siga-text);
+  font-size: 13px;
+  line-height: 1.25;
+  cursor: pointer;
+}
+
+.siga-airmap-check input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--siga-blue);
+}
+
+.siga-airmap-search {
+  width: 100%;
+  border: 1px solid #cbd6e2;
+  border-radius: 999px;
+  padding: 9px 13px;
+  color: var(--siga-text);
+  font-size: 13px;
+  outline: none;
+}
+
+.siga-airmap-search:focus {
+  border-color: var(--siga-blue);
+  box-shadow: 0 0 0 3px rgba(0, 114, 188, 0.14);
+}
+
+.siga-airmap-map-wrap {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+}
+
+#sigaAirMap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.siga-airmap-legend {
+  position: absolute;
+  right: 16px;
+  bottom: 18px;
+  z-index: 600;
+  min-width: 210px;
+  border: 1px solid var(--siga-border);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 10px 12px;
+  color: var(--siga-text);
+  font-size: 12px;
+  line-height: 1.4;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+}
+
+.siga-airmap-legend-title {
+  margin: 0 0 6px;
+  color: var(--siga-navy);
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.siga-airmap-legend div:not(.siga-airmap-legend-title) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 5px 0;
+}
+
+.legend-aircraft,
+.legend-airport,
+.legend-route {
+  display: inline-block;
+  flex: 0 0 auto;
+}
+
+.legend-aircraft {
+  width: 14px;
+  height: 14px;
+  clip-path: polygon(50% 0, 82% 100%, 50% 78%, 18% 100%);
+  background: var(--siga-blue);
+}
+
+.legend-airport {
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--siga-navy);
+  border-radius: 999px;
+  background: #ffffff;
+}
+
+.legend-route {
+  width: 22px;
+  height: 0;
+  border-top: 2px solid rgba(0, 114, 188, 0.65);
+}
+
+/* Leaflet · aeronaves */
+
+.siga-aircraft-marker {
+  background: transparent;
+  border: 0;
+}
+
+.siga-aircraft-symbol {
+  width: 22px;
+  height: 22px;
+  transform-origin: center center;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+}
+
+.siga-aircraft-symbol svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+.siga-aircraft-symbol path {
+  fill: var(--siga-blue);
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.siga-aircraft-marker.is-filtered-out {
+  opacity: 0.12;
+}
+
+/* Leaflet · aeropuertos */
+
+.siga-airport-marker {
+  background: transparent;
+  border: 0;
+}
+
+.siga-airport-dot {
+  width: 13px;
+  height: 13px;
+  border: 2px solid var(--siga-navy);
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(0, 40, 85, 0.12);
+}
+
+.siga-airport-label {
+  margin-left: 6px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--siga-navy);
+  font-size: 10px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* Popup */
+
+.leaflet-popup-content-wrapper {
+  border-radius: 10px;
+}
+
+.leaflet-popup-content {
+  min-width: 230px;
+  margin: 12px 14px;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+.aircraft-popup-title {
+  color: var(--siga-navy);
+  font-size: 16px;
+  font-weight: 850;
+  line-height: 1.15;
+  margin: 0 0 8px;
+}
+
+.aircraft-popup-subtitle {
+  margin: -4px 0 8px;
+  color: var(--siga-muted);
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.aircraft-popup-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.aircraft-popup-table th,
+.aircraft-popup-table td {
+  padding: 4px 0;
+  border-bottom: 1px solid #eef2f6;
+  text-align: left;
+  vertical-align: top;
+}
+
+.aircraft-popup-table th {
+  width: 42%;
+  color: var(--siga-muted);
+  font-weight: 650;
+}
+
+.aircraft-popup-table td {
+  color: var(--siga-text);
+  font-weight: 700;
+}
+
+.aircraft-popup-note {
+  margin: 8px 0 0;
+  color: var(--siga-muted);
+  font-size: 11.5px;
+  line-height: 1.35;
+}
+
+@media (max-width: 900px) {
+  .siga-airmap-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .siga-airmap-main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(540px, 1fr);
+  }
+
+  .siga-airmap-panel {
+    max-height: 360px;
+    border-right: 0;
+    border-bottom: 1px solid var(--siga-border);
+  }
+
+  .siga-airmap-legend {
+    left: 14px;
+    right: auto;
+    bottom: 14px;
+  }
+}
