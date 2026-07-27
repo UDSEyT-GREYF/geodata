@@ -26,9 +26,9 @@
       "Cambios comerciales de aerolíneas o rutas sin cierre operativo del aeropuerto."
     ],
     "estado": "base preliminar; requiere extracción exhaustiva 2016-2026 y validación manual",
-    "fecha_actualizacion_candidatos_utc": "2026-07-27T18:25:46Z",
+    "fecha_actualizacion_candidatos_utc": "2026-07-27T20:11:45Z",
     "total_eventos_validados": 5,
-    "total_candidatos_pendientes_revision": 93
+    "total_candidatos_pendientes_revision": 98
   },
   "eventos": [
     {
@@ -226,10 +226,120 @@
   ],
   "candidatos_pendientes_revision": [
     {
+      "id_candidato": "CAND_2018_09_001",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "Rivadavia Esquel San Juan Resistencia Ushuaia Río Grande El Calafate Río Gallegos El Palomar Corrientes Río Cuarto Termas Río Hondo NOTAS:  Corresponde a la variación acumulada para el período Enero – Septiembre  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional (+39%), la columna derecha, aque llos por debajo del mismo.  Corrientes cerrado por obras desde Abr’14 a Ago’15.",
+      "fuente_anac": {
+        "anio": 2018,
+        "mes": "09",
+        "mes_nombre": "septiembre",
+        "documento": "Informe Mensual 201809_1.pdf",
+        "pagina": "https://www.eana.com.ar/sites/default/files/2018-10/Informe%20Mensual%20201809_1.pdf",
+        "download_url": "https://www.eana.com.ar/sites/default/files/2018-10/Informe%20Mensual%20201809_1.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2018_09_Informe_Mensual_201809_1.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2018_10_001",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "Rivadavia Esquel San Juan Ushuaia Resistencia Río Grande El Calafate Río Gallegos El Palomar Río Cuarto Termas Río Hondo NOTAS:  Corresponde a la variación acumulada para el período Enero – Octubre  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional (+39%), la columna derecha, aque llos por debajo del mismo.  * Corrientes cerrado por obras desde Abr’14 a Ago’15.",
+      "fuente_anac": {
+        "anio": 2018,
+        "mes": "10",
+        "mes_nombre": "octubre",
+        "documento": "Informe Mensual 201810.pdf",
+        "pagina": "https://www.eana.com.ar/sites/default/files/2018-11/Informe%20Mensual%20201810.pdf",
+        "download_url": "https://www.eana.com.ar/sites/default/files/2018-11/Informe%20Mensual%20201810.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2018_10_Informe_Mensual_201810.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2018_11_001",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "Rivadavia Esquel Resistencia San Juan Ushuaia Río Grande El Calafate Río Gallegos El Palomar Reconquista Corrientes Río Cuarto Termas Río Hondo NOTAS:  Corresponde a la variación acumulada para el período Enero – Noviembre  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional (+38%), la columna derecha, aque llos por debajo del mismo.  * Corrientes cerrado por obras desde Abr’14 a Ago’15.",
+      "fuente_anac": {
+        "anio": 2018,
+        "mes": "11",
+        "mes_nombre": "noviembre",
+        "documento": "Informe Mensual 201811.pdf",
+        "pagina": "https://www.eana.com.ar/sites/default/files/2018-12/Informe%20Mensual%20201811.pdf",
+        "download_url": "https://www.eana.com.ar/sites/default/files/2018-12/Informe%20Mensual%20201811.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2018_11_Informe_Mensual_201811.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2018_12_001",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "--- PAGE 7 --- DEPARTAMENTO DE ESTADÍSTICA Pasajeros TOTALES por Aeropuerto Departamento de Estadística NOTAS:  Corresponde a la variación acumulada para el período Enero – Diciembre  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional (+34%), la columna derecha, aque llos por debajo del mismo.  * Corrientes cerrado por obras desde Abr’14 a Ago’15.",
+      "fuente_anac": {
+        "anio": 2018,
+        "mes": "12",
+        "mes_nombre": "diciembre",
+        "documento": "Informe Mensual 201812_1.pdf",
+        "pagina": "https://www.eana.com.ar/sites/default/files/2019-01/Informe%20Mensual%20201812_1.pdf",
+        "download_url": "https://www.eana.com.ar/sites/default/files/2019-01/Informe%20Mensual%20201812_1.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2018_12_Informe_Mensual_201812_1.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
+      "id_candidato": "CAND_2018_12_002",
+      "iata": "CNQ",
+      "oaci": "SARC",
+      "aeropuerto_detectado": "Aeropuerto Internacional Doctor Fernando Piragine Niveyro",
+      "tipo_evento_sugerido": "cierre_operativo",
+      "causa_categoria_sugerida": "obra",
+      "fechas_detectadas": [],
+      "texto_fuente": "Rivadavia Esquel Resistencia Ushuaia Formosa San Juan Río Grande El Calafate Río Gallegos NOTAS:  Corresponde a la variación acumulada para el período Enero – Diciembre  La columna izquierda corresponde a aquellos con crecimiento por encima del promedio nacional (+38%), la columna derecha, aque llos por debajo del mismo.  * Corrientes cerrado por obras desde Abr’14 a Ago’15.",
+      "fuente_anac": {
+        "anio": 2018,
+        "mes": "12",
+        "mes_nombre": "diciembre",
+        "documento": "Informe Mensual 201812_1.pdf",
+        "pagina": "https://www.eana.com.ar/sites/default/files/2019-01/Informe%20Mensual%20201812_1.pdf",
+        "download_url": "https://www.eana.com.ar/sites/default/files/2019-01/Informe%20Mensual%20201812_1.pdf",
+        "archivo_local": ".cache/anac_informes_mensuales/2018_12_Informe_Mensual_201812_1.pdf"
+      },
+      "estado_revision": "pendiente",
+      "incluir_en_base": null,
+      "observaciones_revision": ""
+    },
+    {
       "id_candidato": "CAND_2019_01_001",
-      "iata": "COR",
-      "oaci": "SACO",
-      "aeropuerto_detectado": "Aeropuerto Internacional Ingeniero Ambrosio Taravella",
+      "iata": "SFN",
+      "oaci": "SAAV",
+      "aeropuerto_detectado": "Aeropuerto de Sauce Viejo",
       "tipo_evento_sugerido": "cierre_operativo",
       "causa_categoria_sugerida": "obra",
       "fechas_detectadas": [],
@@ -271,9 +381,9 @@
     },
     {
       "id_candidato": "CAND_2019_02_001",
-      "iata": "RGL",
-      "oaci": "SAWG",
-      "aeropuerto_detectado": "Aeropuerto Internacional de Río Gallegos",
+      "iata": "SFN",
+      "oaci": "SAAV",
+      "aeropuerto_detectado": "Aeropuerto de Sauce Viejo",
       "tipo_evento_sugerido": "cierre_operativo",
       "causa_categoria_sugerida": "obra",
       "fechas_detectadas": [],
@@ -337,9 +447,9 @@
     },
     {
       "id_candidato": "CAND_2019_03_002",
-      "iata": "COR",
-      "oaci": "SACO",
-      "aeropuerto_detectado": "Aeropuerto Internacional Ingeniero Ambrosio Taravella",
+      "iata": "SFN",
+      "oaci": "SAAV",
+      "aeropuerto_detectado": "Aeropuerto de Sauce Viejo",
       "tipo_evento_sugerido": "cierre_operativo",
       "causa_categoria_sugerida": "obra",
       "fechas_detectadas": [],
@@ -381,9 +491,9 @@
     },
     {
       "id_candidato": "CAND_2019_03_004",
-      "iata": "COR",
-      "oaci": "SACO",
-      "aeropuerto_detectado": "Aeropuerto Internacional Ingeniero Ambrosio Taravella",
+      "iata": "SFN",
+      "oaci": "SAAV",
+      "aeropuerto_detectado": "Aeropuerto de Sauce Viejo",
       "tipo_evento_sugerido": "cierre_operativo",
       "causa_categoria_sugerida": "obra",
       "fechas_detectadas": [],
@@ -469,9 +579,9 @@
     },
     {
       "id_candidato": "CAND_2019_05_002",
-      "iata": null,
-      "oaci": null,
-      "aeropuerto_detectado": null,
+      "iata": "SFN",
+      "oaci": "SAAV",
+      "aeropuerto_detectado": "Aeropuerto de Sauce Viejo",
       "tipo_evento_sugerido": "cierre_operativo",
       "causa_categoria_sugerida": "obra",
       "fechas_detectadas": [],
@@ -513,9 +623,9 @@
     },
     {
       "id_candidato": "CAND_2019_05_004",
-      "iata": null,
-      "oaci": null,
-      "aeropuerto_detectado": null,
+      "iata": "SFN",
+      "oaci": "SAAV",
+      "aeropuerto_detectado": "Aeropuerto de Sauce Viejo",
       "tipo_evento_sugerido": "cierre_operativo",
       "causa_categoria_sugerida": "obra",
       "fechas_detectadas": [],
@@ -1493,9 +1603,9 @@
     },
     {
       "id_candidato": "CAND_2023_08_002",
-      "iata": null,
-      "oaci": null,
-      "aeropuerto_detectado": null,
+      "iata": "RHD",
+      "oaci": "SANR",
+      "aeropuerto_detectado": "Aeropuerto Internacional Termas de Río Hondo",
       "tipo_evento_sugerido": "cierre_pista",
       "causa_categoria_sugerida": "obra",
       "fechas_detectadas": [],
@@ -1791,9 +1901,9 @@
     },
     {
       "id_candidato": "CAND_2024_07_001",
-      "iata": null,
-      "oaci": null,
-      "aeropuerto_detectado": null,
+      "iata": "RHD",
+      "oaci": "SANR",
+      "aeropuerto_detectado": "Aeropuerto Internacional Termas de Río Hondo",
       "tipo_evento_sugerido": "cierre_operativo",
       "causa_categoria_sugerida": "mantenimiento",
       "fechas_detectadas": [
@@ -2330,9 +2440,9 @@
     },
     {
       "id_candidato": "CAND_2026_01_001",
-      "iata": "COR",
-      "oaci": "SACO",
-      "aeropuerto_detectado": "Aeropuerto Internacional Ingeniero Ambrosio Taravella",
+      "iata": "RGA",
+      "oaci": "SAWE",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Río Grande",
       "tipo_evento_sugerido": "cierre_pista",
       "causa_categoria_sugerida": "modernizacion",
       "fechas_detectadas": [
@@ -2455,9 +2565,9 @@
     },
     {
       "id_candidato": "CAND_2026_04_001",
-      "iata": "AEP",
-      "oaci": "SABE",
-      "aeropuerto_detectado": "Aeroparque Jorge Newbery",
+      "iata": "RGA",
+      "oaci": "SAWE",
+      "aeropuerto_detectado": "Aeropuerto Internacional de Río Grande",
       "tipo_evento_sugerido": "cierre_pista",
       "causa_categoria_sugerida": "modernizacion",
       "fechas_detectadas": [
@@ -2508,191 +2618,191 @@
     {
       "anio": 2016,
       "mes": "08",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-agosto-2016-eana.pdf/download",
+      "documento": "informe-mensual-agosto-2016-eana.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-agosto-2016-eana.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-agosto-2016-eana.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-agosto-2016-eana.pdf"
     },
     {
       "anio": 2016,
       "mes": "09",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-septiembre-2016-eana.pdf/download",
+      "documento": "informe-mensual-septiembre-2016-eana.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-septiembre-2016-eana.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-septiembre-2016-eana.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-septiembre-2016-eana.pdf"
     },
     {
       "anio": 2016,
       "mes": "10",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-octubre-2016-eana.pdf/download",
+      "documento": "informe-mensual-octubre-2016-eana.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-octubre-2016-eana.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-octubre-2016-eana.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-octubre-2016-eana.pdf"
     },
     {
       "anio": 2016,
       "mes": "11",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-noviembre-2016-eana.pdf/download",
+      "documento": "informe-mensual-noviembre-2016-eana.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-noviembre-2016-eana.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-noviembre-2016-eana.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-noviembre-2016-eana.pdf"
     },
     {
       "anio": 2016,
       "mes": "12",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-diciembre-2016-eana.pdf/download",
+      "documento": "informe-mensual-diciembre-2016-eana.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-diciembre-2016-eana.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-diciembre-2016-eana.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-diciembre-2016-eana.pdf"
     },
     {
       "anio": 2017,
       "mes": "01",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-enero-2017-eana.pdf/download",
+      "documento": "informe-mensual-enero-2017-eana.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-enero-2017-eana.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-enero-2017-eana.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-enero-2017-eana.pdf"
     },
     {
       "anio": 2017,
       "mes": "02",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-febrero-2017-eana.pdf/download",
+      "documento": "informe-mensual-febrero-2017-eana.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-febrero-2017-eana.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-febrero-2017-eana.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-febrero-2017-eana.pdf"
     },
     {
       "anio": 2017,
       "mes": "03",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-marzo-2017-eana.pdf/download",
+      "documento": "informe-mensual-marzo-2017-eana.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-marzo-2017-eana.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-marzo-2017-eana.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-marzo-2017-eana.pdf"
     },
     {
       "anio": 2017,
       "mes": "04",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-abril-2017-eana.pdf/download",
+      "documento": "informe-mensual-abril-2017-eana.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-abril-2017-eana.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-abril-2017-eana.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-abril-2017-eana.pdf"
     },
     {
       "anio": 2017,
       "mes": "05",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-mayo-2017-eana.pdf/download",
+      "documento": "informe-mensual-mayo-2017-eana.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-mayo-2017-eana.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-mayo-2017-eana.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-mayo-2017-eana.pdf"
     },
     {
       "anio": 2017,
       "mes": "06",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-junio-2017-eana.pdf/download",
+      "documento": "informe-mensual-junio-2017-eana.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-junio-2017-eana.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-junio-2017-eana.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-junio-2017-eana.pdf"
     },
     {
       "anio": 2017,
       "mes": "07",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-201707-eana-se.pdf/download",
+      "documento": "informe-mensual-201707-eana-se.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-201707-eana-se.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-201707-eana-se.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-201707-eana-se.pdf"
     },
     {
       "anio": 2017,
       "mes": "08",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-agosto-2017-eana.pdf/download",
+      "documento": "informe-mensual-agosto-2017-eana.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-agosto-2017-eana.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-agosto-2017-eana.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-agosto-2017-eana.pdf"
     },
     {
       "anio": 2017,
       "mes": "09",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-septiembre-2017-eana.pdf/download",
+      "documento": "informe-mensual-septiembre-2017-eana.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-septiembre-2017-eana.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-septiembre-2017-eana.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-septiembre-2017-eana.pdf"
     },
     {
       "anio": 2017,
       "mes": "10",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-06/021117-informe-mensual-octubre-2017-online-1.pdf/download",
+      "documento": "021117-informe-mensual-octubre-2017-online-1.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-06/021117-informe-mensual-octubre-2017-online-1.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-06/021117-informe-mensual-octubre-2017-online-1.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-06/021117-informe-mensual-octubre-2017-online-1.pdf"
     },
     {
       "anio": 2017,
       "mes": "11",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-noviembre-2017-eana.pdf/download",
+      "documento": "informe-mensual-noviembre-2017-eana.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-noviembre-2017-eana.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-noviembre-2017-eana.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-noviembre-2017-eana.pdf"
     },
     {
       "anio": 2017,
       "mes": "12",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-diciembre-2017-eana.pdf/download",
+      "documento": "informe-mensual-diciembre-2017-eana.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-diciembre-2017-eana.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-diciembre-2017-eana.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-diciembre-2017-eana.pdf"
     },
     {
       "anio": 2018,
       "mes": "01",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-enero-online.pdf/download",
+      "documento": "informe-mensual-enero-online.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-enero-online.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-enero-online.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-enero-online.pdf"
     },
     {
       "anio": 2018,
       "mes": "02",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-febrero-2018-online.pdf/download",
+      "documento": "informe-mensual-febrero-2018-online.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-febrero-2018-online.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-febrero-2018-online.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-03/informe-mensual-febrero-2018-online.pdf"
     },
     {
       "anio": 2018,
       "mes": "03",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-201803-online.pdf/download",
+      "documento": "informe-mensual-201803-online.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-201803-online.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-201803-online.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-201803-online.pdf"
     },
     {
       "anio": 2018,
       "mes": "04",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-201804-online-1.pdf/download",
+      "documento": "informe-mensual-201804-online-1.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-201804-online-1.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-201804-online-1.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-06/informe-mensual-201804-online-1.pdf"
     },
     {
       "anio": 2018,
@@ -2706,65 +2816,65 @@
     {
       "anio": 2018,
       "mes": "06",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-08/Informe_Mensual_201806_Online.pdf/download",
+      "documento": "Informe_Mensual_201806_Online.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-08/Informe_Mensual_201806_Online.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-08/Informe_Mensual_201806_Online.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-08/Informe_Mensual_201806_Online.pdf"
     },
     {
       "anio": 2018,
       "mes": "07",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-08/Informe_Mensual_201807_Online.01.pdf/download",
+      "documento": "Informe_Mensual_201807_Online.01.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-08/Informe_Mensual_201807_Online.01.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-08/Informe_Mensual_201807_Online.01.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-08/Informe_Mensual_201807_Online.01.pdf"
     },
     {
       "anio": 2018,
       "mes": "08",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-09/Informe%20Mensual%20201808%20-%20Online_2.pdf/download",
+      "documento": "Informe Mensual 201808 - Online_2.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
       "url": "https://www.eana.com.ar/sites/default/files/2018-09/Informe%20Mensual%20201808%20-%20Online_2.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-09/Informe%20Mensual%20201808%20-%20Online_2.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-09/Informe%20Mensual%20201808%20-%20Online_2.pdf"
     },
     {
       "anio": 2018,
       "mes": "09",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-10/Informe%20Mensual%20201809_1.pdf/download",
+      "documento": "Informe Mensual 201809_1.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
       "url": "https://www.eana.com.ar/sites/default/files/2018-10/Informe%20Mensual%20201809_1.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-10/Informe%20Mensual%20201809_1.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-10/Informe%20Mensual%20201809_1.pdf"
     },
     {
       "anio": 2018,
       "mes": "10",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-11/Informe%20Mensual%20201810.pdf/download",
+      "documento": "Informe Mensual 201810.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
       "url": "https://www.eana.com.ar/sites/default/files/2018-11/Informe%20Mensual%20201810.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-11/Informe%20Mensual%20201810.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-11/Informe%20Mensual%20201810.pdf"
     },
     {
       "anio": 2018,
       "mes": "11",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2018-12/Informe%20Mensual%20201811.pdf/download",
+      "documento": "Informe Mensual 201811.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 1,
       "url": "https://www.eana.com.ar/sites/default/files/2018-12/Informe%20Mensual%20201811.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2018-12/Informe%20Mensual%20201811.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2018-12/Informe%20Mensual%20201811.pdf"
     },
     {
       "anio": 2018,
       "mes": "12",
-      "documento": "informe_anac.pdf",
-      "estado": "error",
-      "error": "404 Client Error: Not Found for url: https://www.eana.com.ar/sites/default/files/2019-01/Informe%20Mensual%20201812_1.pdf/download",
+      "documento": "Informe Mensual 201812_1.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 2,
       "url": "https://www.eana.com.ar/sites/default/files/2019-01/Informe%20Mensual%20201812_1.pdf",
-      "download_url": "https://www.eana.com.ar/sites/default/files/2019-01/Informe%20Mensual%20201812_1.pdf/download"
+      "download_url": "https://www.eana.com.ar/sites/default/files/2019-01/Informe%20Mensual%20201812_1.pdf"
     },
     {
       "anio": 2019,
