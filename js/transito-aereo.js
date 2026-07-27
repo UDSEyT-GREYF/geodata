@@ -1,6 +1,7 @@
 const AIRCRAFT_GEOJSON_URL = "data/aircraft/latest.geojson";
 
 const AIRPORT_GEOJSON_CANDIDATES = [
+  "fuentes/poligonos_aeropuertos.geojson",
   "fuentes/Datos_aeropuertos.geojson",
   "data/aeropuertos.geojson",
   "data/aeropuertos_sna.geojson",
@@ -115,6 +116,7 @@ function getFeatureCoordinates(feature) {
   const geometry = feature?.geometry || {};
   const props = feature?.properties || {};
 
+  // 1. Si la geometría es punto, usamos el punto directamente.
   if (geometry.type === "Point" && Array.isArray(geometry.coordinates)) {
     const lon = Number(geometry.coordinates[0]);
     const lat = Number(geometry.coordinates[1]);
@@ -124,6 +126,33 @@ function getFeatureCoordinates(feature) {
     }
   }
 
+  // 2. Si la geometría es polígono o multipolígono,
+  // usamos el centro del predio aeroportuario.
+  // Esto evita depender de campos de coordenadas que pueden venir mal.
+  if (
+    geometry.type === "Polygon" ||
+    geometry.type === "MultiPolygon" ||
+    geometry.type === "LineString" ||
+    geometry.type === "MultiLineString"
+  ) {
+    try {
+      const layer = L.geoJSON(feature);
+      const bounds = layer.getBounds();
+
+      if (bounds && bounds.isValid()) {
+        const center = bounds.getCenter();
+
+        return {
+          lat: center.lat,
+          lon: center.lng
+        };
+      }
+    } catch (error) {
+      console.warn("[SIGA Tránsito aéreo] No se pudo calcular centro de geometría", error);
+    }
+  }
+
+  // 3. Fallback: campos de coordenadas en propiedades.
   const lat = Number(firstProp(props, [
     "lat",
     "latitude",
@@ -156,29 +185,36 @@ function normalizeAirportFeature(feature) {
 
   if (!coords) return null;
 
-  const iata = normalizeIata(firstProp(props, [
-    "IATA",
-    "iata",
-    "iata_code",
-    "codigo_iata",
-    "Código IATA",
-    "CODIGO_IATA",
-    "cod_iata",
-    "COD_IATA"
-  ]));
+const iata = normalizeIata(firstProp(props, [
+  "IATA",
+  "iata",
+  "iata_code",
+  "codigo_iata",
+  "Código IATA",
+  "CODIGO_IATA",
+  "cod_iata",
+  "COD_IATA",
+  "iata_siga",
+  "IATA_SIGA"
+]));
 
   if (!iata) return null;
 
-  const rawName = firstProp(props, [
-    "Aeropuerto",
-    "aeropuerto",
-    "Nombre",
-    "nombre",
-    "Nombre del Aeropuerto",
-    "NOMBRE",
-    "airportName",
-    "name"
-  ]);
+const rawName = firstProp(props, [
+  "Aeropuerto",
+  "aeropuerto",
+  "Nombre",
+  "nombre",
+  "Nombre del Aeropuerto",
+  "NOMBRE",
+  "airportName",
+  "name",
+  "denominacion",
+  "Denominacion",
+  "DENOMINACION",
+  "nombre_aeropuerto",
+  "NOMBRE_AEROPUERTO"
+]);
 
   const city = firstProp(props, [
     "Ciudad",
@@ -536,9 +572,18 @@ async function loadAircraft() {
 function fitInitialView() {
   const bounds = L.latLngBounds();
 
-  for (const airport of airports) {
+for (const airport of airports) {
+  // Solo incluimos aeropuertos dentro de Argentina y entorno regional.
+  // Evita que una geometría mal cargada mande el mapa a otro continente.
+  if (
+    airport.lat >= -56.8 &&
+    airport.lat <= -20.0 &&
+    airport.lon >= -76.8 &&
+    airport.lon <= -50.0
+  ) {
     bounds.extend([airport.lat, airport.lon]);
   }
+}
 
   const features = aircraftGeojson?.features || [];
   for (const feature of features) {
