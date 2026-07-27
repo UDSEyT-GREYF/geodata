@@ -1,0 +1,111 @@
+name: Actualizar cierres operativos ANAC
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    # Una vez por mes, el día 5 a las 08:00 UTC.
+    # Ajustalo si querés correrlo con otra frecuencia.
+    - cron: "0 8 5 * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 pypdf
+
+      - name: Crear carpeta fuentes
+        run: |
+          mkdir -p fuentes
+          mkdir -p scripts
+
+      - name: Ejecutar extracción de candidatos ANAC
+        run: |
+          python scripts/extraer_cierres_anac.py
+
+      - name: Integrar candidatos en la base principal
+        run: |
+          python3 - <<'EOF'
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone
+
+          final_path = Path("fuentes/cierres_operativos_aeropuertos_anac_2016_2026.json")
+          candidates_path = Path("fuentes/cierres_operativos_aeropuertos_anac_2016_2026.candidatos.json")
+
+          if not candidates_path.exists():
+              raise SystemExit("No existe el archivo de candidatos generado por el script.")
+
+          candidates_data = json.loads(candidates_path.read_text(encoding="utf-8"))
+
+          if final_path.exists():
+              final_data = json.loads(final_path.read_text(encoding="utf-8"))
+          else:
+              final_data = {
+                  "metadata": {
+                      "nombre": "cierres_operativos_aeropuertos_anac_2016_2026",
+                      "descripcion": "Base de cierres, ceses de operación o suspensión de operaciones aeroportuarias vinculados a obras, mantenimiento, rehabilitación o modernización, identificados en informes mensuales ANAC.",
+                      "version": "0.1",
+                      "fuente_principal": {
+                          "organismo": "ANAC",
+                          "pagina": "Estadísticas DNTA",
+                          "url": "https://consultas-publicas.anac.gob.ar/estadisticas-dnta/"
+                      },
+                      "estado": "base en construcción"
+                  },
+                  "eventos": [],
+                  "candidatos_pendientes_revision": [],
+                  "fuentes_revisadas": []
+              }
+
+          final_data.setdefault("metadata", {})
+          final_data.setdefault("eventos", [])
+          final_data.setdefault("candidatos_pendientes_revision", [])
+          final_data.setdefault("fuentes_revisadas", [])
+
+          final_data["metadata"]["fecha_actualizacion_candidatos_utc"] = (
+              datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+          )
+
+          final_data["metadata"]["total_eventos_validados"] = len(final_data.get("eventos", []))
+          final_data["metadata"]["total_candidatos_pendientes_revision"] = len(candidates_data.get("candidatos", []))
+
+          # No pisa los eventos validados.
+          # Solo actualiza la bandeja de candidatos y el registro de fuentes revisadas.
+          final_data["candidatos_pendientes_revision"] = candidates_data.get("candidatos", [])
+          final_data["fuentes_revisadas"] = candidates_data.get("fuentes_revisadas", [])
+
+          final_path.write_text(
+              json.dumps(final_data, ensure_ascii=False, indent=2),
+              encoding="utf-8"
+          )
+
+          print(f"Base principal actualizada: {final_path}")
+          print(f"Eventos validados conservados: {len(final_data.get('eventos', []))}")
+          print(f"Candidatos pendientes: {len(final_data.get('candidatos_pendientes_revision', []))}")
+          EOF
+
+      - name: Commit y push si cambió algo
+        run: |
+          git config user.name "anac-closures-bot"
+          git config user.email "anac-closures-bot@users.noreply.github.com"
+
+          git add fuentes/cierres_operativos_aeropuertos_anac_2016_2026.json
+          git add fuentes/cierres_operativos_aeropuertos_anac_2016_2026.candidatos.json
+
+          git diff --staged --quiet || git commit -m "Actualiza base de cierres operativos ANAC $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          git push
