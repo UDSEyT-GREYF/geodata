@@ -12,7 +12,7 @@
 { "type": "Feature", "properties": { "IATA": "ROS", "Pob1hora": "56%" }, "geometry": null },
 { "type": "Feature", "properties": { "IATA": "SLA", "Pob1hora": "92%" }, "geometry": null },
 { "type": "Feature", "properties": { "IATA": "TUC", "Pob1hora": "75%" }, "geometry": null },
-{ "type": "Feature", "properties": { "IATA": "USH", "Pob1hora": "100%" }, "geometry": null },
+{ "type": "Feature", "properties": { "IATA": "USH", "Pob1hora": "99%" }, "geometry": null },
 { "type": "Feature", "properties": { "IATA": "JUJ", "Pob1hora": "48%" }, "geometry": null },
 { "type": "Feature", "properties": { "IATA": "MDQ", "Pob1hora": "53%" }, "geometry": null },
 { "type": "Feature", "properties": { "IATA": "SFN", "Pob1hora": "55%" }, "geometry": null },
