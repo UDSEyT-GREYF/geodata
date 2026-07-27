@@ -1,0 +1,225 @@
+{
+  "metadata": {
+    "nombre": "cierres_operativos_aeropuertos_anac_2016_2026",
+    "descripcion": "Base de cierres, ceses de operación o suspensión de operaciones aeroportuarias vinculados a obras, mantenimiento, rehabilitación o modernización, identificados en informes mensuales ANAC.",
+    "version": "0.1",
+    "fecha_version": "2026-07-27",
+    "periodo_revisado": {
+      "desde": "2016-01",
+      "hasta": "2026-06"
+    },
+    "fuente_principal": {
+      "organismo": "ANAC",
+      "pagina": "Estadísticas DNTA",
+      "url": "https://consultas-publicas.anac.gob.ar/estadisticas-dnta/"
+    },
+    "criterio_inclusion": [
+      "Aeropuerto del Sistema Nacional de Aeropuertos.",
+      "Cierre, cese de operaciones, suspensión de operaciones o inoperatividad total/parcial.",
+      "Causa vinculada a obra, reparación, mantenimiento, rehabilitación, modernización, pista, calles de rodaje, plataforma, balizamiento o infraestructura aeroportuaria.",
+      "Impacto potencial en pasajeros, movimientos, rutas u oferta."
+    ],
+    "criterio_exclusion": [
+      "Paros gremiales o medidas de fuerza generales.",
+      "Pandemia o restricciones sanitarias generales.",
+      "Cierres meteorológicos puntuales, que se registrarán en otra base específica.",
+      "Cambios comerciales de aerolíneas o rutas sin cierre operativo del aeropuerto."
+    ],
+    "estado": "base preliminar; requiere extracción exhaustiva 2016-2026 y validación manual"
+  },
+  "eventos": [
+    {
+      "id": "AEP_2020_2021_reparaciones_mayores",
+      "iata": "AEP",
+      "oaci": "SABE",
+      "aeropuerto": "Aeroparque Jorge Newbery",
+      "localidad": "Ciudad Autónoma de Buenos Aires",
+      "provincia": "CABA",
+      "tipo_evento": "cierre_total",
+      "causa_categoria": "obra",
+      "motivo": "Reparaciones mayores, repavimentación, ensanchado y extendido de pista, instalación de nuevo sistema de balizamiento y adecuación de terminal internacional.",
+      "fecha_inicio": "2020-08-01",
+      "fecha_fin": "2021-03-15",
+      "fecha_fin_inclusive": true,
+      "duracion_dias": 227,
+      "meses_afectados": [
+        "2020-08",
+        "2020-09",
+        "2020-10",
+        "2020-11",
+        "2020-12",
+        "2021-01",
+        "2021-02",
+        "2021-03"
+      ],
+      "impacto_esperado": [
+        "pasajeros",
+        "movimientos",
+        "rutas",
+        "oferta"
+      ],
+      "texto_fuente_resumido": "Entre el 01 de agosto de 2020 y el 15 de marzo 2021 se produjo el cese de operaciones y cierre temporal del Aeroparque Jorge Newbery por reparaciones mayores.",
+      "fuentes_anac": [
+        {
+          "tipo": "nota_general_en_informes_anac",
+          "documento": "pendiente_de_asociar_a_pdf_mensual_especifico"
+        }
+      ],
+      "nivel_confianza": "alto",
+      "estado_validacion": "preliminar_validado_por_texto_fuente"
+    },
+    {
+      "id": "RGL_2025_01_mantenimiento_pista",
+      "iata": "RGL",
+      "oaci": "SAWG",
+      "aeropuerto": "Aeropuerto Internacional de Río Gallegos Piloto Civil Norberto Fernández",
+      "localidad": "Río Gallegos",
+      "provincia": "Santa Cruz",
+      "tipo_evento": "cierre_total",
+      "causa_categoria": "mantenimiento",
+      "motivo": "Trabajos esenciales de mantenimiento en pista y calles de rodaje.",
+      "fecha_inicio": "2025-01-28",
+      "fecha_fin": "2025-01-31",
+      "fecha_fin_inclusive": true,
+      "duracion_dias": 4,
+      "meses_afectados": [
+        "2025-01"
+      ],
+      "impacto_esperado": [
+        "pasajeros",
+        "movimientos",
+        "oferta"
+      ],
+      "texto_fuente_resumido": "El aeropuerto de Río Gallegos permaneció cerrado del 28 al 31 de enero de 2025 debido a trabajos esenciales de mantenimiento en pista y calles de rodaje.",
+      "fuentes_anac": [
+        {
+          "tipo": "informe_mensual",
+          "anio": 2025,
+          "mes": "enero",
+          "documento": "Informe_Mensual_202501.pdf"
+        }
+      ],
+      "nivel_confianza": "alto",
+      "estado_validacion": "preliminar_validado_por_texto_fuente"
+    },
+    {
+      "id": "RGL_2025_09_12_rehabilitacion_pista",
+      "iata": "RGL",
+      "oaci": "SAWG",
+      "aeropuerto": "Aeropuerto Internacional de Río Gallegos Piloto Civil Norberto Fernández",
+      "localidad": "Río Gallegos",
+      "provincia": "Santa Cruz",
+      "tipo_evento": "cierre_total",
+      "causa_categoria": "obra",
+      "motivo": "Rehabilitación integral de la pista principal.",
+      "fecha_inicio": "2025-09-01",
+      "fecha_fin": "2025-12-23",
+      "fecha_fin_inclusive": true,
+      "duracion_dias_informada": 113,
+      "duracion_dias_calculada": 114,
+      "meses_afectados": [
+        "2025-09",
+        "2025-10",
+        "2025-11",
+        "2025-12"
+      ],
+      "impacto_esperado": [
+        "pasajeros",
+        "movimientos",
+        "rutas",
+        "oferta"
+      ],
+      "texto_fuente_resumido": "El Aeropuerto Internacional de Río Gallegos permaneció cerrado por 113 días, desde el 1 de septiembre hasta el 23 de diciembre de 2025, para rehabilitación integral de su pista principal.",
+      "fuentes_anac": [
+        {
+          "tipo": "informe_mensual",
+          "anio": 2025,
+          "mes": "diciembre",
+          "documento": "Informe_Mensual_202512.pdf"
+        }
+      ],
+      "nivel_confianza": "alto",
+      "estado_validacion": "preliminar_validado_por_texto_fuente",
+      "observaciones": "Se conserva la duración informada por ANAC; la duración calendario inclusiva puede diferir según criterio de conteo."
+    },
+    {
+      "id": "ROS_2025_09_12_remodelacion_pista",
+      "iata": "ROS",
+      "oaci": "SAAR",
+      "aeropuerto": "Aeropuerto Internacional de Rosario Islas Malvinas",
+      "localidad": "Rosario",
+      "provincia": "Santa Fe",
+      "tipo_evento": "suspension_operaciones",
+      "causa_categoria": "obra",
+      "motivo": "Obras de remodelación en la pista.",
+      "fecha_inicio": "2025-09-20",
+      "fecha_fin": "2025-12-29",
+      "fecha_fin_inclusive": true,
+      "duracion_dias_informada": 90,
+      "duracion_dias_calculada": 101,
+      "meses_afectados": [
+        "2025-09",
+        "2025-10",
+        "2025-11",
+        "2025-12"
+      ],
+      "impacto_esperado": [
+        "pasajeros",
+        "movimientos",
+        "rutas",
+        "oferta"
+      ],
+      "texto_fuente_resumido": "El Aeropuerto Internacional de Rosario suspendió sus operaciones durante 90 días, entre el 20 de septiembre y el 29 de diciembre de 2025, para ejecutar obras de remodelación en la pista.",
+      "fuentes_anac": [
+        {
+          "tipo": "informe_mensual",
+          "anio": 2025,
+          "mes": "diciembre",
+          "documento": "Informe_Mensual_202512.pdf"
+        }
+      ],
+      "nivel_confianza": "alto",
+      "estado_validacion": "preliminar_validado_por_texto_fuente",
+      "observaciones": "Se conserva la duración informada por ANAC; la duración calendario inclusiva puede diferir según criterio de conteo."
+    },
+    {
+      "id": "RGA_2026_01_04_modernizacion_pista_plataforma",
+      "iata": "RGA",
+      "oaci": "SAWE",
+      "aeropuerto": "Aeropuerto Internacional de Río Grande Gobernador Ramón Trejo Noel",
+      "localidad": "Río Grande",
+      "provincia": "Tierra del Fuego",
+      "tipo_evento": "cierre_total",
+      "causa_categoria": "obra",
+      "motivo": "Obras de modernización en la pista y plataforma comercial.",
+      "fecha_inicio": "2026-01-05",
+      "fecha_fin": "2026-04-15",
+      "fecha_fin_inclusive": true,
+      "duracion_dias": 101,
+      "meses_afectados": [
+        "2026-01",
+        "2026-02",
+        "2026-03",
+        "2026-04"
+      ],
+      "impacto_esperado": [
+        "pasajeros",
+        "movimientos",
+        "rutas",
+        "oferta"
+      ],
+      "texto_fuente_resumido": "El Aeropuerto Internacional de Río Grande permaneció cerrado desde el 5 de enero hasta el 15 de abril de 2026 por obras de modernización en la pista y plataforma comercial.",
+      "fuentes_anac": [
+        {
+          "tipo": "informe_mensual",
+          "anio": 2026,
+          "mes": "enero-abril",
+          "documento": "Informe_Mensual_202601_a_202604.pdf"
+        }
+      ],
+      "nivel_confianza": "alto",
+      "estado_validacion": "preliminar_validado_por_texto_fuente"
+    }
+  ],
+  "candidatos_pendientes_revision": []
+}
