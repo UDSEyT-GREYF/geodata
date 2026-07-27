@@ -118,6 +118,7 @@ AIRPORT_CODES = {
     "CPC": ("SAZY", "Aeropuerto Aviador Carlos Campos"),
     "EQS": ("SAVE", "Aeropuerto Brigadier General Antonio Parodi"),
     "PMY": ("SAVY", "Aeropuerto El Tehuelche"),
+    "RHD": ("SANR", "Aeropuerto Internacional Termas de Río Hondo"),
 }
 
 AIRPORT_NAME_HINTS = {
@@ -165,6 +166,11 @@ AIRPORT_NAME_HINTS = {
     "chapelco": "CPC",
     "esquel": "EQS",
     "puerto madryn": "PMY",
+    "termas de rio hondo": "RHD",
+    "termas de río hondo": "RHD",
+    "rio hondo": "RHD",
+    "río hondo": "RHD",
+    "santa fe": "SFN",
 }
 
 
@@ -359,19 +365,45 @@ def is_relevant(text: str) -> bool:
     excluded = any(term in n for term in map(norm, EXCLUDE_TERMS))
     return has_closure and has_work and not excluded
 
+def closure_window(text: str) -> str:
+    pieces = re.split(r"[▪•]|\n|(?<=\.)\s+", text)
 
+    closure_terms = [
+        "cerrado",
+        "cerrada",
+        "cierre",
+        "cese de operaciones",
+        "suspendio",
+        "suspendió",
+        "suspendera",
+        "suspenderá",
+        "suspendida su operatividad",
+        "permanecio cerrado",
+        "permaneció cerrado"
+    ]
+
+    selected = [
+        p.strip()
+        for p in pieces
+        if any(term in norm(p) for term in map(norm, closure_terms))
+    ]
+
+    return " ".join(selected) if selected else text
+  
 def infer_airport(text: str) -> tuple[str, str, str]:
-    n = norm(text)
+    search_text = closure_window(text)
+    n = norm(search_text)
 
-    # 1. IATA explícito entre paréntesis o como palabra.
-    for iata, (oaci, name) in AIRPORT_CODES.items():
-        if re.search(rf"\b{iata}\b", text.upper()):
-            return iata, oaci, name
-
-    # 2. Nombre textual.
+    # 1. Nombre textual dentro de la oración/viñeta del cierre.
+    # Esto evita confundir aeropuertos que aparecen en rankings.
     for hint, iata in AIRPORT_NAME_HINTS.items():
         if norm(hint) in n:
             oaci, name = AIRPORT_CODES.get(iata, ("", ""))
+            return iata, oaci, name
+
+    # 2. IATA explícito dentro de la oración/viñeta del cierre.
+    for iata, (oaci, name) in AIRPORT_CODES.items():
+        if re.search(rf"\b{iata}\b", search_text.upper()):
             return iata, oaci, name
 
     return "", "", ""
