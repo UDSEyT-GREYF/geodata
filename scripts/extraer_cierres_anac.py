@@ -26,7 +26,7 @@ import unicodedata
 from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Iterable
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse, unquote
 
 import requests
 from bs4 import BeautifulSoup
@@ -216,6 +216,12 @@ def discover_year_channels() -> dict[int, str]:
 
 
 def resolve_download_url(page_url: str) -> tuple[str, str]:
+      # Si el enlace ya es un PDF directo, no hay que agregar /download.
+    clean_url = page_url.split("?")[0].lower()
+    if clean_url.endswith(".pdf"):
+        filename = Path(unquote(urlparse(page_url).path)).name or "informe_anac.pdf"
+        return page_url, filename
+      
     html = fetch(page_url).text
     soup = BeautifulSoup(html, "html.parser")
 
