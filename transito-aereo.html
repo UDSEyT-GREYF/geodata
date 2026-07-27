@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SIGA · Tránsito aéreo en tiempo real</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <link rel="stylesheet" href="css/transito-aereo.css?v=transito-aereo-1" />
+</head>
+
+<body>
+  <div class="siga-airmap-shell">
+
+    <header class="siga-airmap-header">
+      <div>
+        <div class="siga-airmap-kicker">SIGA</div>
+        <h1>SIGA · Tránsito aéreo en tiempo real</h1>
+        <p>
+          Posiciones observadas de aeronaves sobre Argentina y entorno regional,
+          vinculadas al Sistema Nacional de Aeropuertos.
+        </p>
+      </div>
+
+      <div class="siga-airmap-actions">
+        <button id="refreshAircraftBtn" type="button">Actualizar</button>
+        <a href="mapas.html">Volver a mapas</a>
+      </div>
+    </header>
+
+    <main class="siga-airmap-main">
+      <aside class="siga-airmap-panel" aria-label="Panel de información">
+
+        <section class="siga-airmap-card siga-airmap-status">
+          <div class="siga-airmap-card-title">Estado de la capa</div>
+
+          <div class="siga-airmap-kpis">
+            <div>
+              <strong id="aircraftCount">—</strong>
+              <span>aeronaves</span>
+            </div>
+            <div>
+              <strong id="routeCount">—</strong>
+              <span>con ruta</span>
+            </div>
+          </div>
+
+          <p id="aircraftUpdatedAt" class="siga-airmap-muted">
+            Última actualización: —
+          </p>
+
+          <p id="aircraftSource" class="siga-airmap-muted">
+            Fuente: —
+          </p>
+        </section>
+
+        <section class="siga-airmap-card">
+          <div class="siga-airmap-card-title">Capas</div>
+
+          <label class="siga-airmap-check">
+            <input id="toggleAircraft" type="checkbox" checked />
+            <span>Aeronaves en vuelo</span>
+          </label>
+
+          <label class="siga-airmap-check">
+            <input id="toggleAirports" type="checkbox" checked />
+            <span>Aeropuertos del SNA</span>
+          </label>
+
+          <label class="siga-airmap-check">
+            <input id="toggleRoutes" type="checkbox" checked />
+            <span>Rutas origen–destino disponibles</span>
+          </label>
+        </section>
+
+        <section class="siga-airmap-card">
+          <div class="siga-airmap-card-title">Buscar vuelo</div>
+
+          <input
+            id="aircraftSearch"
+            class="siga-airmap-search"
+            type="search"
+            placeholder="Callsign, matrícula o tipo de aeronave"
+            autocomplete="off"
+          />
+
+          <p class="siga-airmap-muted">
+            La búsqueda filtra las aeronaves visibles en el mapa.
+          </p>
+        </section>
+
+        <section class="siga-airmap-card">
+          <div class="siga-airmap-card-title">Lectura del dato</div>
+
+          <p class="siga-airmap-note">
+            La capa muestra posiciones observadas desde fuentes abiertas ADS-B.
+            No constituye información operacional ni reemplaza sistemas oficiales
+            de navegación aérea.
+          </p>
+
+          <p class="siga-airmap-note">
+            Cuando la fuente no informa origen y destino, el mapa vincula cada aeronave
+            con el aeropuerto SNA más cercano.
+          </p>
+        </section>
+
+      </aside>
+
+      <section class="siga-airmap-map-wrap">
+        <div id="sigaAirMap"></div>
+
+        <div class="siga-airmap-legend">
+          <div class="siga-airmap-legend-title">Referencias</div>
+          <div><span class="legend-aircraft"></span>Aeronave observada</div>
+          <div><span class="legend-airport"></span>Aeropuerto SNA</div>
+          <div><span class="legend-route"></span>Ruta disponible en la fuente</div>
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="js/transito-aereo.js?v=transito-aereo-1"></script>
+</body>
+</html>
