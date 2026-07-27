@@ -47,20 +47,58 @@ jobs:
 
           # Puntos de consulta para cubrir Argentina y entorno regional.
           QUERY_POINTS = [
+              # Área metropolitana y centro-este
               {"id": "BuenosAires", "lat": -34.6037, "lon": -58.3816},
+              {"id": "LaPlata", "lat": -34.9214, "lon": -57.9544},
               {"id": "MarDelPlata", "lat": -38.0055, "lon": -57.5426},
+              {"id": "Viedma", "lat": -40.8135, "lon": -62.9967},
               {"id": "BahiaBlanca", "lat": -38.7196, "lon": -62.2724},
+              {"id": "SantaRosa", "lat": -36.6203, "lon": -64.2906},
+
+              # Centro y Cuyo
               {"id": "Cordoba", "lat": -31.4201, "lon": -64.1888},
+              {"id": "RioCuarto", "lat": -33.1232, "lon": -64.3493},
               {"id": "Mendoza", "lat": -32.8895, "lon": -68.8458},
-              {"id": "Neuquen", "lat": -38.9516, "lon": -68.0591},
-              {"id": "Bariloche", "lat": -41.1335, "lon": -71.3103},
-              {"id": "ComodoroRivadavia", "lat": -45.8656, "lon": -67.4822},
-              {"id": "RioGallegos", "lat": -51.6230, "lon": -69.2168},
-              {"id": "Ushuaia", "lat": -54.8019, "lon": -68.3030},
+              {"id": "SanJuan", "lat": -31.5375, "lon": -68.5364},
+              {"id": "SanLuis", "lat": -33.3017, "lon": -66.3378},
+
+              # NOA y NEA
               {"id": "Tucuman", "lat": -26.8083, "lon": -65.2176},
               {"id": "Salta", "lat": -24.7821, "lon": -65.4232},
-              {"id": "Iguazu", "lat": -25.5972, "lon": -54.5786},
+              {"id": "Jujuy", "lat": -24.1858, "lon": -65.2995},
+              {"id": "Catamarca", "lat": -28.4696, "lon": -65.7795},
+              {"id": "LaRioja", "lat": -29.4131, "lon": -66.8558},
               {"id": "Resistencia", "lat": -27.4514, "lon": -58.9867},
+              {"id": "Corrientes", "lat": -27.4692, "lon": -58.8306},
+              {"id": "Formosa", "lat": -26.1849, "lon": -58.1731},
+              {"id": "Iguazu", "lat": -25.5972, "lon": -54.5786},
+              {"id": "Posadas", "lat": -27.3621, "lon": -55.9009},
+
+              # Patagonia norte y cordillera
+              {"id": "Neuquen", "lat": -38.9516, "lon": -68.0591},
+              {"id": "SanMartinAndes", "lat": -40.1579, "lon": -71.3524},
+              {"id": "Bariloche", "lat": -41.1335, "lon": -71.3103},
+              {"id": "Esquel", "lat": -42.9115, "lon": -71.3195},
+
+              # Patagonia atlántica y sur
+              {"id": "Trelew", "lat": -43.2489, "lon": -65.3051},
+              {"id": "PuertoMadryn", "lat": -42.7692, "lon": -65.0385},
+              {"id": "ComodoroRivadavia", "lat": -45.8656, "lon": -67.4822},
+              {"id": "PeritoMoreno", "lat": -46.5899, "lon": -70.9297},
+              {"id": "ElCalafate", "lat": -50.3379, "lon": -72.2648},
+              {"id": "RioGallegos", "lat": -51.6230, "lon": -69.2168},
+              {"id": "RioGrande", "lat": -53.7857, "lon": -67.7016},
+              {"id": "Ushuaia", "lat": -54.8019, "lon": -68.3030},
+
+              # Atlántico Sur / entorno regional
+              {"id": "Malvinas", "lat": -51.7000, "lon": -59.0000},
+              {"id": "AtlanticoSurNorte", "lat": -45.5000, "lon": -58.0000},
+              {"id": "AtlanticoSurCentro", "lat": -49.0000, "lon": -58.5000},
+
+              # Entorno regional útil para vuelos que cruzan Argentina
+              {"id": "Montevideo", "lat": -34.9011, "lon": -56.1645},
+              {"id": "SantiagoChile", "lat": -33.4489, "lon": -70.6693},
+              {"id": "Asuncion", "lat": -25.2637, "lon": -57.5759},
           ]
 
           SOURCES = [
@@ -506,19 +544,43 @@ jobs:
                   "previous_errors": previous_errors or []
               }
 
-          def choose_best_result(results):
+          def merge_source_results(results):
               if not results:
                   return None
 
-              # Prioridad: más rutas disponibles; luego más aeronaves.
-              return sorted(
-                  results,
-                  key=lambda item: (
-                      item.get("total_with_route", 0),
-                      len(item.get("features", []))
-                  ),
-                  reverse=True
-              )[0]
+              features_by_key = {}
+              combined_point_errors = []
+              used_sources = []
+              total_points_ok = 0
+
+              for result in results:
+                  used_sources.append(result.get("source", "fuente"))
+                  combined_point_errors.extend(result.get("point_errors", []))
+                  total_points_ok += result.get("points_ok", 0)
+
+                  for feature in result.get("features", []):
+                      key = feature_key(feature)
+                      old_feature = features_by_key.get(key)
+
+                      if not old_feature or should_replace_feature(old_feature, feature):
+                          features_by_key[key] = feature
+
+              features = list(features_by_key.values())
+
+              total_with_route = sum(
+                  1 for feature in features
+                  if feature.get("properties", {}).get("route_available")
+              )
+
+              return {
+                  "source": " + ".join(used_sources),
+                  "features": features,
+                  "total_with_route": total_with_route,
+                  "route_note": "Datos combinados desde fuentes abiertas ADS-B. Las rutas dependen de la disponibilidad de origen/destino en cada fuente.",
+                  "fallback_used": False,
+                  "point_errors": combined_point_errors,
+                  "points_ok": total_points_ok
+              }
 
           try:
               source_results = []
@@ -551,7 +613,7 @@ jobs:
                           "error": str(e)
                       })
 
-              selected = choose_best_result(source_results)
+              selected = merge_source_results(source_results)
 
               if not selected:
                   print("No hubo resultados útiles en ADSB.lol ni Airplanes.live. Se intenta OpenSky.")
