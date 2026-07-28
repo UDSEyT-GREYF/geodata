@@ -402,9 +402,9 @@ function buildRecoveryReading(varTotal, varCab, varInt, includeInternational) {
 
   if (!includeInternational) {
     if (Number.isFinite(varCab) && varCab >= 0) {
-      return `El tráfico comercial ${totalText} respecto del escenario prepandemia y la recuperación se explica por el cabotaje.`;
+      return `En 2025 el tráfico comercial ${totalText} respecto del escenario prepandemia (2019) y la recuperación se explica por el cabotaje.`;
     }
-    return `El tráfico comercial ${totalText} respecto del escenario prepandemia y el componente dominante es el cabotaje.`;
+    return `En 2025 el tráfico comercial ${totalText} respecto del escenario prepandemia (2019) y el componente dominante es el cabotaje.`;
   }
 
   const cabRecovered = Number.isFinite(varCab) && varCab >= 0;
@@ -413,23 +413,23 @@ function buildRecoveryReading(varTotal, varCab, varInt, includeInternational) {
 
   if (cabRecovered && intRecovered) {
     if (Number.isFinite(diff) && diff <= 10) {
-      return `El tráfico comercial ${totalText} respecto del escenario prepandemia, con una recuperación relativamente pareja entre cabotaje e internacional.`;
+      return `En 2025 el tráfico comercial ${totalText} respecto del escenario prepandemia (2019), con una recuperación relativamente pareja entre cabotaje e internacional.`;
     }
     if (varCab > varInt) {
-      return `El tráfico comercial ${totalText} respecto del escenario prepandemia, impulsado principalmente por el cabotaje.`;
+      return `En 2025 el tráfico comercial ${totalText} respecto del escenario prepandemia (2019), impulsado principalmente por el cabotaje.`;
     }
-    return `El tráfico comercial ${totalText} respecto del escenario prepandemia, impulsado principalmente por el tráfico internacional.`;
+    return `En 2025 el tráfico comercial ${totalText} respecto del escenario prepandemia (2019), impulsado principalmente por el tráfico internacional.`;
   }
 
   if (cabRecovered && !intRecovered) {
-    return `El tráfico comercial ${totalText} respecto del escenario prepandemia: el cabotaje superó el nivel de 2019, mientras que el internacional no lo recuperó.`;
+    return `En 2025 el tráfico comercial ${totalText} respecto del escenario prepandemia (2019): el cabotaje superó el nivel de 2019, mientras que el internacional no lo recuperó.`;
   }
 
   if (!cabRecovered && intRecovered) {
-    return `El tráfico comercial ${totalText} respecto del escenario prepandemia: el internacional superó el nivel de 2019, pero el cabotaje no lo recuperó.`;
+    return `En 2025 el tráfico comercial ${totalText} respecto del escenario prepandemia (2019): el internacional superó el nivel de 2019, pero el cabotaje no lo recuperó.`;
   }
 
-  return `El tráfico comercial ${totalText} respecto del escenario prepandemia: ni cabotaje ni internacional alcanzaron los niveles de 2019.`;
+  return `En 2025 el tráfico comercial ${totalText} respecto del escenario prepandemia (2019): ni cabotaje ni internacional alcanzaron los niveles de 2019.`;
 }
   
 function buildSummaryText(scope, rows, includeInternational) {
