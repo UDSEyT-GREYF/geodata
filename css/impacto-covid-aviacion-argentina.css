@@ -34,3 +34,19 @@ button,select{font:inherit}
 @media print{html,body{background:#fff}.no-print{display:none!important}.report-a4{padding:0}.sheet-a4{width:210mm;height:297mm;box-shadow:none;margin:0;page-break-after:avoid}.compare-block th{position:static}}
 .pdf-exporting .no-print{display:none!important}.pdf-exporting body,.pdf-exporting .report-a4{background:#fff!important;padding:0!important}.pdf-exporting .sheet-a4{box-shadow:none!important;margin:0!important}
 @media(max-width:840px){.top-controls{width:auto;margin:10px}.control-inner{flex-direction:column;align-items:stretch}.sheet-a4{transform-origin:top center;max-width:100%;height:auto;min-height:297mm}.kpi-grid{grid-template-columns:repeat(2,1fr)}.charts-row{grid-template-columns:1fr}.chart-box{height:52mm}}
+.legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px 14px;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 6px;
+  text-align: center;
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
