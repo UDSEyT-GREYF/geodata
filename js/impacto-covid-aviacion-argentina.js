@@ -405,7 +405,7 @@
       },
       {
         key: "internacional",
-        color: "#7bb7e5",
+        color: "#008000",
         values: rows.map(r => ({ year: r.anio, value: idx(r[`${metricPrefix}_internacional`], base[`${metricPrefix}_internacional`]) }))
       }
     ];
@@ -521,7 +521,10 @@
     $("summaryTitle").textContent = `Resumen · ${label}`;
     $("summaryText").innerHTML = buildSummaryText(scope, rows);
     $("paxChartTitle").textContent = `Pasajeros · ${label}`;
-    $("vuelosChartTitle").textContent = `Vuelos · ${label}`;
+    
+    const vuelosChartLabel = scope.kind === "airport" ? "Movimientos (aterrizajes y despegues)" : "Vuelos";
+    $("vuelosChartTitle").textContent = `${vuelosChartLabel} · ${label}`;
+    
     $("tableTitle").textContent = `Comparación 2025 vs 2019 · ${label}`;
     $("footerScope").textContent = `Ámbito: ${label}.`;
 
