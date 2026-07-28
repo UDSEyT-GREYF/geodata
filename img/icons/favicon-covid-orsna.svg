@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="COVID ORSNA">
+  <defs>
+    <radialGradient id="g" cx="34%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#5aa7d8"/>
+      <stop offset="0.55" stop-color="#2A6FB0"/>
+      <stop offset="1" stop-color="#002855"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#eef6fb"/>
+  <g fill="none" stroke="#002855" stroke-width="4" stroke-linecap="round">
+    <path d="M32 8v9M32 47v9M8 32h9M47 32h9M15 15l7 7M42 42l7 7M49 15l-7 7M22 42l-7 7"/>
+  </g>
+  <circle cx="32" cy="32" r="18" fill="url(#g)"/>
+  <g fill="#eaf3fb" opacity="0.9">
+    <circle cx="24" cy="27" r="3"/>
+    <circle cx="36" cy="24" r="2.6"/>
+    <circle cx="40" cy="37" r="3.2"/>
+    <circle cx="27" cy="40" r="2.4"/>
+  </g>
+</svg>
