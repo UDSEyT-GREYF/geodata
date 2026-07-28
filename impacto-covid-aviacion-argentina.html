@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impacto COVID-19 en la aviación argentina | SNA 2015-2025</title>
+  <style>
+    :root{
+      --azul:#002855;
+      --azul2:#2A6FB0;
+      --celeste:#eaf3fb;
+      --gris:#f4f6f9;
+      --linea:#d7dee8;
+      --texto:#27313c;
+      --muted:#657384;
+      --verde:#1f7a4d;
+      --rojo:#b33a3a;
+      --amarillo:#a15f00;
+      --card:#ffffff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      background:var(--gris);
+      color:var(--texto);
+    }
+    .wrap{max-width:1240px;margin:0 auto;padding:24px 18px 46px}
+    header{
+      background:linear-gradient(135deg,var(--azul),#174a7d);
+      color:#fff;
+      border-radius:18px;
+      padding:24px 26px;
+      box-shadow:0 12px 28px rgba(20,37,63,.16);
+      margin-bottom:18px;
+    }
+    .eyebrow{
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:.73rem;
+      font-weight:800;
+      opacity:.82;
+      margin-bottom:6px;
+    }
+    h1{
+      margin:0;
+      font-size:clamp(1.7rem,3vw,2.55rem);
+      line-height:1.05;
+      max-width:980px;
+    }
+    .lead{
+      margin:13px 0 0;
+      max-width:1040px;
+      line-height:1.48;
+      color:rgba(255,255,255,.88);
+      font-size:1rem;
+    }
+    .header-meta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .pill{
+      border:1px solid rgba(255,255,255,.28);
+      background:rgba(255,255,255,.10);
+      color:#fff;
+      border-radius:999px;
+      padding:7px 10px;
+      font-size:.82rem;
+      font-weight:700;
+    }
+    .status{
+      border:1px solid var(--linea);
+      background:#fff;
+      border-left:5px solid var(--amarillo);
+      border-radius:12px;
+      padding:11px 13px;
+      margin:12px 0 18px;
+      color:var(--muted);
+      font-size:.88rem;
+    }
+    .status.ok{border-left-color:var(--verde)}
+    .status.err{border-left-color:var(--rojo)}
+    .section{
+      background:var(--card);
+      border:1px solid var(--linea);
+      border-radius:16px;
+      padding:18px;
+      margin:16px 0;
+      box-shadow:0 8px 22px rgba(33,45,68,.07);
+    }
+    .section h2{
+      color:var(--azul);
+      margin:0 0 10px;
+      font-size:1.18rem;
+    }
+    .section h3{
+      color:#163f68;
+      margin:14px 0 8px;
+      font-size:1rem;
+    }
+    .section p{
+      margin:8px 0;
+      line-height:1.55;
+      color:#3b4653;
+    }
+    .grid-kpi{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:12px;
+      margin-top:13px;
+    }
+    .kpi{
+      border:1px solid var(--linea);
+      border-radius:14px;
+      padding:13px 14px;
+      background:#fff;
+      min-height:116px;
+    }
+    .kpi .label{
+      color:var(--muted);
+      font-size:.78rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+    }
+    .kpi .value{
+      margin-top:6px;
+      color:var(--azul);
+      font-size:1.55rem;
+      font-weight:900;
+      line-height:1.05;
+    }
+    .kpi .sub{
+      margin-top:7px;
+      color:#566372;
+      font-size:.84rem;
+      line-height:1.28;
+    }
+    .good{color:var(--verde)!important}
+    .bad{color:var(--rojo)!important}
+    .warn{color:var(--amarillo)!important}
+    .chart-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    .chart-card{
+      border:1px solid var(--linea);
+      border-radius:14px;
+      padding:14px;
+      background:#fff;
+      min-height:390px;
+    }
+    .chart-card h3{margin-top:0}
+    .chart-sub{
+      color:var(--muted);
+      font-size:.82rem;
+      margin-top:-4px;
+      margin-bottom:8px;
+    }
+    svg{display:block;width:100%;height:auto}
+    .legend{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      margin-top:8px;
+      color:var(--muted);
+      font-size:.82rem;
+    }
+    .legend span{display:inline-flex;align-items:center;gap:6px}
+    .sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+    .sw.cab{background:#2A6FB0}
+    .sw.int{background:#7bb7e5}
+    .sw.total{background:#002855}
+    .table-wrap{
+      overflow:auto;
+      border:1px solid var(--linea);
+      border-radius:13px;
+      background:#fff;
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:.84rem;
+      min-width:940px;
+    }
+    th,td{
+      padding:8px 9px;
+      border-bottom:1px solid #edf1f5;
+      text-align:right;
+      white-space:nowrap;
+    }
+    th{
+      background:#eaf1f8;
+      color:var(--azul);
+      font-weight:850;
+      position:sticky;
+      top:0;
+      z-index:1;
+    }
+    th:first-child,td:first-child{text-align:left}
+    tr:hover td{background:#f8fbff}
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    .source-card{
+      border:1px solid var(--linea);
+      border-radius:14px;
+      padding:13px;
+      background:#fbfdff;
+    }
+    .source-card a{
+      color:var(--azul2);
+      font-weight:800;
+      text-decoration:none;
+    }
+    .source-card a:hover{text-decoration:underline}
+    .note{
+      font-size:.84rem;
+      color:var(--muted);
+      line-height:1.45;
+    }
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:12px;
+    }
+    button{
+      border:1px solid #b9c8da;
+      background:#fff;
+      color:var(--azul);
+      border-radius:9px;
+      padding:9px 12px;
+      font-weight:800;
+      cursor:pointer;
+    }
+    button.primary{
+      background:var(--azul2);
+      color:#fff;
+      border-color:var(--azul2);
+    }
+    button:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+    }
+    .method-list{
+      margin:8px 0 0 18px;
+      color:#3b4653;
+      line-height:1.5;
+      padding:0;
+    }
+    .method-list li{margin:5px 0}
+    footer{
+      color:var(--muted);
+      font-size:.8rem;
+      line-height:1.45;
+      margin-top:16px;
+      padding:0 4px;
+    }
+    @media (max-width:900px){
+      .grid-kpi{grid-template-columns:1fr 1fr}
+      .chart-grid,.two-col{grid-template-columns:1fr}
+    }
+    @media (max-width:560px){
+      .grid-kpi{grid-template-columns:1fr}
+      header{padding:20px 18px}
+    }
+    @media print{
+      body{background:#fff}
+      .wrap{max-width:none;padding:0}
+      header,.section{box-shadow:none}
+      button,.actions{display:none}
+      .chart-grid,.two-col{grid-template-columns:1fr 1fr}
+      .section{break-inside:avoid}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="eyebrow">Informe técnico preliminar · Sistema Nacional de Aeropuertos</div>
+      <h1>Impacto del COVID-19 en la aviación argentina</h1>
+      <p class="lead">
+        Comparación de la evolución del tráfico comercial del SNA entre el período prepandemia,
+        la caída de 2020–2021 y el nivel alcanzado en 2025. El informe separa pasajeros y vuelos
+        comerciales de cabotaje e internacionales.
+      </p>
+      <div class="header-meta">
+        <span class="pill">Base: 2019 = 100</span>
+        <span class="pill">Serie mensual agregada SNA</span>
+        <span class="pill">Pasajeros y vuelos comerciales</span>
+        <span class="pill">Cabotaje / Internacional</span>
+      </div>
+    </header>
+
+    <div id="status" class="status">Cargando datos desde la carpeta fuentes…</div>
+
+    <section class="section">
+      <h2>Resumen ejecutivo</h2>
+      <p id="execText">
+        Calculando resultados principales…
+      </p>
+
+      <div class="grid-kpi">
+        <div class="kpi">
+          <div class="label">Pasajeros 2025 vs 2019</div>
+          <div id="kpiPaxTotal" class="value">—</div>
+          <div id="kpiPaxTotalSub" class="sub">—</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Cabotaje pasajeros</div>
+          <div id="kpiPaxCab" class="value">—</div>
+          <div id="kpiPaxCabSub" class="sub">—</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Internacional pasajeros</div>
+          <div id="kpiPaxInt" class="value">—</div>
+          <div id="kpiPaxIntSub" class="sub">—</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Vuelos 2025 vs 2019</div>
+          <div id="kpiVuelosTotal" class="value">—</div>
+          <div id="kpiVuelosTotalSub" class="sub">—</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Marco internacional de referencia</h2>
+      <div class="two-col">
+        <div class="source-card">
+          <h3>ICAO · Impactos económicos del COVID-19</h3>
+          <p>
+            ICAO reunió reportes actualizados y tableros de seguimiento sobre impactos operativos,
+            económicos, utilización de aeronaves y tráfico por pares de países. Su enfoque compara
+            los efectos de la crisis contra la referencia de 2019.
+          </p>
+          <p><a href="https://www.icao.int/economic-impacts-covid-19-civil-aviation" target="_blank" rel="noopener">Ver fuente ICAO</a></p>
+        </div>
+        <div class="source-card">
+          <h3>ACI World · ICAO · recuperación global</h3>
+          <p>
+            El reporte conjunto ACI World–ICAO de enero de 2025 ubica la recuperación global en torno
+            a niveles superiores a 2019 hacia 2024 y proyecta continuidad de crecimiento en 2025.
+          </p>
+          <p><a href="https://aci.aero/2025/01/28/joint-aci-world-icao-passenger-traffic-report-trends-and-outlook/" target="_blank" rel="noopener">Ver fuente ACI World–ICAO</a></p>
+        </div>
+      </div>
+      <p class="note">
+        Este informe no reproduce cifras globales como fuente de los valores argentinos: las usa como marco comparativo.
+        Los indicadores nacionales se calculan únicamente desde las series agregadas SNA ubicadas en la carpeta <code>fuentes</code>.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Evolución del tráfico comercial del SNA</h2>
+      <div class="chart-grid">
+        <div class="chart-card">
+          <h3>Pasajeros comerciales por segmento</h3>
+          <div class="chart-sub">Valores anuales 2015–2025. Barras apiladas: cabotaje + internacional.</div>
+          <div id="chartPax"></div>
+          <div class="legend">
+            <span><i class="sw cab"></i>Cabotaje</span>
+            <span><i class="sw int"></i>Internacional</span>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3>Vuelos comerciales por segmento</h3>
+          <div class="chart-sub">Valores anuales 2015–2025. Barras apiladas: cabotaje + internacional.</div>
+          <div id="chartVuelos"></div>
+          <div class="legend">
+            <span><i class="sw cab"></i>Cabotaje</span>
+            <span><i class="sw int"></i>Internacional</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Índice de recuperación: 2019 = 100</h2>
+      <div class="chart-grid">
+        <div class="chart-card">
+          <h3>Pasajeros</h3>
+          <div class="chart-sub">Índice anual por segmento. La línea de referencia marca el nivel prepandemia.</div>
+          <div id="chartPaxIndex"></div>
+          <div class="legend">
+            <span><i class="sw total"></i>Total</span>
+            <span><i class="sw cab"></i>Cabotaje</span>
+            <span><i class="sw int"></i>Internacional</span>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3>Vuelos</h3>
+          <div class="chart-sub">Índice anual por segmento. La línea de referencia marca el nivel prepandemia.</div>
+          <div id="chartVuelosIndex"></div>
+          <div class="legend">
+            <span><i class="sw total"></i>Total</span>
+            <span><i class="sw cab"></i>Cabotaje</span>
+            <span><i class="sw int"></i>Internacional</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Comparación 2025 vs 2019</h2>
+      <p id="compareText">Calculando comparación…</p>
+      <div class="table-wrap">
+        <table id="compareTable">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Serie anual utilizada</h2>
+      <p class="note">
+        La tabla resume las series mensuales agregadas por año. Los totales surgen de sumar cabotaje e internacional.
+      </p>
+      <div class="actions">
+        <button id="btnCsv" class="primary" type="button" disabled>Descargar CSV resumen</button>
+        <button id="btnPrint" type="button">Imprimir / guardar PDF</button>
+      </div>
+      <div class="table-wrap" style="margin-top:12px;">
+        <table id="annualTable">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Metodología y fuentes de datos</h2>
+      <ul class="method-list">
+        <li>Unidad de análisis: agregado mensual del Sistema Nacional de Aeropuertos, identificado como <code>SNA</code>.</li>
+        <li>Fuentes locales esperadas: <code>fuentes/pasajeros_SNA_mensual.csv</code> y <code>fuentes/vuelos_SNA_mensual.csv</code>.</li>
+        <li>Indicadores: pasajeros comerciales y vuelos comerciales.</li>
+        <li>Segmentos: cabotaje e internacional, tomados del campo <code>region</code> de cada archivo.</li>
+        <li>Período graficado: 2015–2025. Para el análisis de recuperación se usa 2019 como base prepandemia.</li>
+        <li>Variación porcentual: <code>((valor_2025 / valor_2019) - 1) × 100</code>.</li>
+        <li>Índice de recuperación: <code>(valor_año / valor_2019) × 100</code>.</li>
+      </ul>
+    </section>
+
+    <footer>
+      Ubicación sugerida: guardar como <strong>impacto-covid-aviacion-argentina.html</strong> en la raíz del sitio,
+      al mismo nivel que la carpeta <strong>fuentes</strong>. Esta versión no usa librerías externas: todos los cálculos y gráficos
+      se generan en el navegador desde CSV.
+    </footer>
+  </div>
+
+  <script>
+  (() => {
+    "use strict";
+
+    const DATA_PATHS = {
+      pax: "fuentes/pasajeros_SNA_mensual.csv",
+      vuelos: "fuentes/vuelos_SNA_mensual.csv"
+    };
+
+    const YEARS = Array.from({ length: 2025 - 2015 + 1 }, (_, i) => 2015 + i);
+    const BASE_YEAR = 2019;
+    const COMPARE_YEAR = 2025;
+
+    let annualRows = [];
+    let rawPaxRows = [];
+    let rawVuelosRows = [];
+
+    const $ = id => document.getElementById(id);
+
+    function clean(v){ return v === null || v === undefined ? "" : String(v).trim(); }
+
+    function normalizeHeader(v){
+      return clean(v)
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g,"")
+        .replace(/[^a-z0-9]+/g,"_")
+        .replace(/^_+|_+$/g,"");
+    }
+
+    function detectSep(headerLine){
+      if (headerLine.includes("\t")) return "\t";
+      const semi = (headerLine.match(/;/g) || []).length;
+      const comma = (headerLine.match(/,/g) || []).length;
+      return semi >= comma ? ";" : ",";
+    }
+
+    function splitDelimitedLine(line, sep){
+      const out = [];
+      let cur = "";
+      let inQuotes = false;
+      for (let i = 0; i < line.length; i++){
+        const ch = line[i];
+        if (ch === '"'){
+          if (inQuotes && line[i + 1] === '"'){
+            cur += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (ch === sep && !inQuotes){
+          out.push(cur);
+          cur = "";
+        } else {
+          cur += ch;
+        }
+      }
+      out.push(cur);
+      return out;
+    }
+
+    function parseCSV(text){
+      if (!text) return [];
+      const lines = text.replace(/^\uFEFF/,"").split(/\r?\n/).filter(line => line.trim() !== "");
+      if (lines.length < 2) return [];
+      const sep = detectSep(lines[0]);
+      const headers = splitDelimitedLine(lines[0], sep).map(normalizeHeader);
+      return lines.slice(1).map(line => {
+        const cols = splitDelimitedLine(line, sep);
+        const row = {};
+        headers.forEach((h, i) => row[h] = cols[i] ?? "");
+        return row;
+      });
+    }
+
+    function parseNumber(v){
+      if (v === null || v === undefined) return NaN;
+      let s = String(v).trim();
+      if (!s) return NaN;
+      s = s.replace(/\s+/g,"").replace(/[^\d,.-]/g,"");
+      if (!s) return NaN;
+      const comma = (s.match(/,/g) || []).length;
+      const dot = (s.match(/\./g) || []).length;
+      if (comma && dot){
+        if (s.lastIndexOf(",") > s.lastIndexOf(".")) s = s.replace(/\./g,"").replace(",",".");
+        else s = s.replace(/,/g,"");
+      } else if (comma){
+        if (comma > 1){
+          s = s.replace(/,/g,"");
+        } else {
+          const decimals = s.length - s.indexOf(",") - 1;
+          s = decimals === 3 ? s.replace(",","") : s.replace(",",".");
+        }
+      } else if (dot){
+        if (dot > 1) s = s.replace(/\./g,"");
+        else {
+          const decimals = s.length - s.indexOf(".") - 1;
+          if (decimals === 3) s = s.replace(".","");
+        }
+      }
+      const n = Number(s);
+      return Number.isFinite(n) ? n : NaN;
+    }
+
+    async function readTextSmart(response){
+      const buffer = await response.arrayBuffer();
+      let text = new TextDecoder("utf-8").decode(buffer);
+      if (text.includes("�")) text = new TextDecoder("windows-1252").decode(buffer);
+      return text;
+    }
+
+    async function fetchText(url){
+      const resp = await fetch(url, { cache:"no-store" });
+      if (!resp.ok) throw new Error(`No se pudo cargar ${url}: HTTP ${resp.status}`);
+      return readTextSmart(resp);
+    }
+
+    function setStatus(message, type = "ok"){
+      const el = $("status");
+      el.className = `status ${type}`;
+      el.innerHTML = message;
+    }
+
+    function fmt(n){
+      const value = Number(n);
+      if (!Number.isFinite(value)) return "—";
+      return value.toLocaleString("es-AR", { maximumFractionDigits: 0 });
+    }
+
+    function fmtM(n){
+      const value = Number(n);
+      if (!Number.isFinite(value)) return "—";
+      return (value / 1_000_000).toLocaleString("es-AR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + " M";
+    }
+
+    function fmtPct(n){
+      const value = Number(n);
+      if (!Number.isFinite(value)) return "—";
+      const sign = value > 0 ? "+" : "";
+      return sign + value.toLocaleString("es-AR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + "%";
+    }
+
+    function fmtIdx(n){
+      const value = Number(n);
+      if (!Number.isFinite(value)) return "—";
+      return value.toLocaleString("es-AR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    }
+
+    function pct(value, base){
+      if (!Number.isFinite(value) || !Number.isFinite(base) || base === 0) return NaN;
+      return ((value / base) - 1) * 100;
+    }
+
+    function idx(value, base){
+      if (!Number.isFinite(value) || !Number.isFinite(base) || base === 0) return NaN;
+      return (value / base) * 100;
+    }
+
+    function getAnnualValue(rows, valueCol, year, region){
+      return rows
+        .filter(r => Number(r.anio) === Number(year) && clean(r.region).toLowerCase() === region)
+        .reduce((acc, r) => {
+          const n = parseNumber(r[valueCol] ?? r.valor);
+          return acc + (Number.isFinite(n) ? n : 0);
+        }, 0);
+    }
+
+    function buildAnnualRows(){
+      return YEARS.map(year => {
+        const paxCab = getAnnualValue(rawPaxRows, "valor_pax", year, "cabotaje");
+        const paxInt = getAnnualValue(rawPaxRows, "valor_pax", year, "internacional");
+        const vueloCab = getAnnualValue(rawVuelosRows, "valor_vuelos", year, "cabotaje");
+        const vueloInt = getAnnualValue(rawVuelosRows, "valor_vuelos", year, "internacional");
+
+        return {
+          anio: year,
+          pax_cabotaje: paxCab,
+          pax_internacional: paxInt,
+          pax_total: paxCab + paxInt,
+          vuelos_cabotaje: vueloCab,
+          vuelos_internacional: vueloInt,
+          vuelos_total: vueloCab + vueloInt
+        };
+      });
+    }
+
+    function byYear(year){
+      return annualRows.find(r => Number(r.anio) === Number(year)) || {};
+    }
+
+    function classForPct(v){
+      if (!Number.isFinite(v)) return "";
+      if (v >= 0) return "good";
+      if (v <= -20) return "bad";
+      return "warn";
+    }
+
+    function updateTextAndKPIs(){
+      const y2019 = byYear(BASE_YEAR);
+      const y2020 = byYear(2020);
+      const y2021 = byYear(2021);
+      const y2025 = byYear(COMPARE_YEAR);
+
+      const paxTotalVar = pct(y2025.pax_total, y2019.pax_total);
+      const paxCabVar = pct(y2025.pax_cabotaje, y2019.pax_cabotaje);
+      const paxIntVar = pct(y2025.pax_internacional, y2019.pax_internacional);
+      const vuelosTotalVar = pct(y2025.vuelos_total, y2019.vuelos_total);
+      const vuelosCabVar = pct(y2025.vuelos_cabotaje, y2019.vuelos_cabotaje);
+      const vuelosIntVar = pct(y2025.vuelos_internacional, y2019.vuelos_internacional);
+
+      const pax2020Var = pct(y2020.pax_total, y2019.pax_total);
+      const pax2021Var = pct(y2021.pax_total, y2019.pax_total);
+
+      $("execText").innerHTML =
+        `En 2020 el tráfico comercial de pasajeros del SNA cayó a <strong>${fmtM(y2020.pax_total)}</strong>, ` +
+        `equivalente a una variación de <strong class="${classForPct(pax2020Var)}">${fmtPct(pax2020Var)}</strong> respecto de 2019. ` +
+        `En 2021 la recuperación todavía fue parcial, con <strong>${fmtM(y2021.pax_total)}</strong> ` +
+        `(<strong class="${classForPct(pax2021Var)}">${fmtPct(pax2021Var)}</strong> frente a 2019). ` +
+        `Para 2025, el sistema superó el nivel prepandemia: <strong>${fmtM(y2025.pax_total)}</strong> pasajeros, ` +
+        `<strong class="${classForPct(paxTotalVar)}">${fmtPct(paxTotalVar)}</strong> sobre 2019. ` +
+        `La recuperación de pasajeros fue positiva tanto en cabotaje (<strong>${fmtPct(paxCabVar)}</strong>) ` +
+        `como en internacional (<strong>${fmtPct(paxIntVar)}</strong>).`;
+
+      $("kpiPaxTotal").textContent = fmtPct(paxTotalVar);
+      $("kpiPaxTotal").className = `value ${classForPct(paxTotalVar)}`;
+      $("kpiPaxTotalSub").textContent = `${fmtM(y2025.pax_total)} en 2025 vs ${fmtM(y2019.pax_total)} en 2019`;
+
+      $("kpiPaxCab").textContent = fmtPct(paxCabVar);
+      $("kpiPaxCab").className = `value ${classForPct(paxCabVar)}`;
+      $("kpiPaxCabSub").textContent = `${fmtM(y2025.pax_cabotaje)} en 2025 vs ${fmtM(y2019.pax_cabotaje)} en 2019`;
+
+      $("kpiPaxInt").textContent = fmtPct(paxIntVar);
+      $("kpiPaxInt").className = `value ${classForPct(paxIntVar)}`;
+      $("kpiPaxIntSub").textContent = `${fmtM(y2025.pax_internacional)} en 2025 vs ${fmtM(y2019.pax_internacional)} en 2019`;
+
+      $("kpiVuelosTotal").textContent = fmtPct(vuelosTotalVar);
+      $("kpiVuelosTotal").className = `value ${classForPct(vuelosTotalVar)}`;
+      $("kpiVuelosTotalSub").textContent = `${fmt(y2025.vuelos_total)} vuelos en 2025 vs ${fmt(y2019.vuelos_total)} en 2019`;
+
+      $("compareText").innerHTML =
+        `En vuelos comerciales, el total de 2025 quedó <strong class="${classForPct(vuelosTotalVar)}">${fmtPct(vuelosTotalVar)}</strong> ` +
+        `por encima de 2019. El cabotaje quedó prácticamente en el nivel prepandemia ` +
+        `(<strong>${fmtPct(vuelosCabVar)}</strong>), mientras que el internacional lo superó con mayor intensidad ` +
+        `(<strong>${fmtPct(vuelosIntVar)}</strong>).`;
+    }
+
+    function renderStackedBars(containerId, metricPrefix, titleFormatter){
+      const data = annualRows.map(r => ({
+        year: r.anio,
+        cab: r[`${metricPrefix}_cabotaje`],
+        intl: r[`${metricPrefix}_internacional`],
+        total: r[`${metricPrefix}_total`]
+      }));
+
+      const width = 720;
+      const height = 310;
+      const pad = { left: 58, right: 18, top: 18, bottom: 42 };
+      const innerW = width - pad.left - pad.right;
+      const innerH = height - pad.top - pad.bottom;
+      const maxTotal = Math.max(...data.map(d => d.total), 1);
+      const barGap = 8;
+      const barW = innerW / data.length - barGap;
+
+      const y = value => pad.top + innerH - (value / maxTotal) * innerH;
+      const x = i => pad.left + i * (innerW / data.length) + barGap / 2;
+
+      const yTicks = [0, .25, .5, .75, 1].map(t => Math.round(maxTotal * t));
+
+      let svg = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Gráfico de barras apiladas">
+        <rect x="0" y="0" width="${width}" height="${height}" fill="#fff"/>`;
+
+      yTicks.forEach(t => {
+        const yy = y(t);
+        svg += `<line x1="${pad.left}" y1="${yy}" x2="${width - pad.right}" y2="${yy}" stroke="#e5ebf2"/>
+                <text x="${pad.left - 8}" y="${yy + 4}" text-anchor="end" font-size="11" fill="#657384">${titleFormatter(t)}</text>`;
+      });
+
+      data.forEach((d, i) => {
+        const xx = x(i);
+        const cabH = (d.cab / maxTotal) * innerH;
+        const intH = (d.intl / maxTotal) * innerH;
+        const baseY = pad.top + innerH;
+        svg += `<rect x="${xx}" y="${baseY - cabH}" width="${barW}" height="${cabH}" rx="3" fill="#2A6FB0">
+                  <title>${d.year} cabotaje: ${fmt(d.cab)}</title>
+                </rect>`;
+        svg += `<rect x="${xx}" y="${baseY - cabH - intH}" width="${barW}" height="${intH}" rx="3" fill="#7bb7e5">
+                  <title>${d.year} internacional: ${fmt(d.intl)}</title>
+                </rect>`;
+        svg += `<text x="${xx + barW/2}" y="${height - 18}" text-anchor="middle" font-size="11" fill="#657384">${String(d.year).slice(2)}</text>`;
+        if (d.year === BASE_YEAR) {
+          svg += `<line x1="${xx + barW/2}" y1="${pad.top}" x2="${xx + barW/2}" y2="${height - 32}" stroke="#002855" stroke-dasharray="3,3" opacity=".55"/>
+                  <text x="${xx + barW/2}" y="${pad.top + 10}" text-anchor="middle" font-size="10" fill="#002855" font-weight="700">2019</text>`;
+        }
+      });
+
+      svg += `<line x1="${pad.left}" y1="${pad.top + innerH}" x2="${width - pad.right}" y2="${pad.top + innerH}" stroke="#cfd8e3"/>
+              </svg>`;
+
+      $(containerId).innerHTML = svg;
+    }
+
+    function renderIndexLines(containerId, metricPrefix){
+      const base = byYear(BASE_YEAR);
+      const series = [
+        { key:"total", label:"Total", color:"#002855", values: annualRows.map(r => ({ year:r.anio, value:idx(r[`${metricPrefix}_total`], base[`${metricPrefix}_total`]) })) },
+        { key:"cabotaje", label:"Cabotaje", color:"#2A6FB0", values: annualRows.map(r => ({ year:r.anio, value:idx(r[`${metricPrefix}_cabotaje`], base[`${metricPrefix}_cabotaje`]) })) },
+        { key:"internacional", label:"Internacional", color:"#7bb7e5", values: annualRows.map(r => ({ year:r.anio, value:idx(r[`${metricPrefix}_internacional`], base[`${metricPrefix}_internacional`]) })) }
+      ];
+
+      const width = 720;
+      const height = 310;
+      const pad = { left: 48, right: 20, top: 20, bottom: 42 };
+      const innerW = width - pad.left - pad.right;
+      const innerH = height - pad.top - pad.bottom;
+      const vals = series.flatMap(s => s.values.map(d => d.value)).filter(Number.isFinite);
+      const maxV = Math.max(120, Math.ceil(Math.max(...vals) / 10) * 10);
+      const minV = Math.min(0, Math.floor(Math.min(...vals) / 10) * 10);
+      const span = maxV - minV || 1;
+      const x = year => pad.left + ((year - YEARS[0]) / (YEARS[YEARS.length - 1] - YEARS[0])) * innerW;
+      const y = value => pad.top + innerH - ((value - minV) / span) * innerH;
+
+      const ticks = [];
+      for (let t = Math.ceil(minV / 20) * 20; t <= maxV; t += 20) ticks.push(t);
+
+      let svg = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Gráfico de índice 2019 igual 100">
+        <rect x="0" y="0" width="${width}" height="${height}" fill="#fff"/>`;
+
+      ticks.forEach(t => {
+        const yy = y(t);
+        const strong = t === 100;
+        svg += `<line x1="${pad.left}" y1="${yy}" x2="${width - pad.right}" y2="${yy}" stroke="${strong ? "#002855" : "#e5ebf2"}" stroke-dasharray="${strong ? "5,4" : "0"}" opacity="${strong ? ".75" : "1"}"/>
+                <text x="${pad.left - 8}" y="${yy + 4}" text-anchor="end" font-size="11" fill="#657384">${t}</text>`;
+      });
+
+      series.forEach(s => {
+        const pts = s.values.filter(d => Number.isFinite(d.value));
+        const path = pts.map((d, i) => `${i === 0 ? "M" : "L"} ${x(d.year).toFixed(2)} ${y(d.value).toFixed(2)}`).join(" ");
+        svg += `<path d="${path}" fill="none" stroke="${s.color}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`;
+        pts.forEach(d => {
+          svg += `<circle cx="${x(d.year)}" cy="${y(d.value)}" r="3.4" fill="${s.color}">
+                    <title>${s.label} ${d.year}: ${fmtIdx(d.value)}</title>
+                  </circle>`;
+        });
+      });
+
+      YEARS.forEach(year => {
+        const xx = x(year);
+        svg += `<text x="${xx}" y="${height - 18}" text-anchor="middle" font-size="11" fill="#657384">${String(year).slice(2)}</text>`;
+      });
+
+      svg += `<line x1="${pad.left}" y1="${pad.top + innerH}" x2="${width - pad.right}" y2="${pad.top + innerH}" stroke="#cfd8e3"/>
+              </svg>`;
+
+      $(containerId).innerHTML = svg;
+    }
+
+    function renderCompareTable(){
+      const base = byYear(BASE_YEAR);
+      const comp = byYear(COMPARE_YEAR);
+      const rows = [
+        ["Pasajeros", "Total", base.pax_total, comp.pax_total],
+        ["Pasajeros", "Cabotaje", base.pax_cabotaje, comp.pax_cabotaje],
+        ["Pasajeros", "Internacional", base.pax_internacional, comp.pax_internacional],
+        ["Vuelos", "Total", base.vuelos_total, comp.vuelos_total],
+        ["Vuelos", "Cabotaje", base.vuelos_cabotaje, comp.vuelos_cabotaje],
+        ["Vuelos", "Internacional", base.vuelos_internacional, comp.vuelos_internacional],
+      ];
+
+      $("compareTable").querySelector("thead").innerHTML =
+        `<tr><th>Indicador</th><th>Segmento</th><th>2019</th><th>2025</th><th>Dif. absoluta</th><th>Variación %</th><th>Índice 2019=100</th></tr>`;
+
+      $("compareTable").querySelector("tbody").innerHTML = rows.map(([ind, seg, b, c]) => {
+        const v = pct(c, b);
+        const index = idx(c, b);
+        return `<tr>
+          <td>${ind}</td>
+          <td>${seg}</td>
+          <td>${fmt(b)}</td>
+          <td>${fmt(c)}</td>
+          <td>${fmt(c - b)}</td>
+          <td class="${classForPct(v)}"><strong>${fmtPct(v)}</strong></td>
+          <td>${fmtIdx(index)}</td>
+        </tr>`;
+      }).join("");
+    }
+
+    function renderAnnualTable(){
+      $("annualTable").querySelector("thead").innerHTML =
+        `<tr>
+          <th>Año</th>
+          <th>Pasajeros total</th>
+          <th>Pasajeros cabotaje</th>
+          <th>Pasajeros internacional</th>
+          <th>Índice pax total</th>
+          <th>Vuelos total</th>
+          <th>Vuelos cabotaje</th>
+          <th>Vuelos internacional</th>
+          <th>Índice vuelos total</th>
+        </tr>`;
+
+      const base = byYear(BASE_YEAR);
+
+      $("annualTable").querySelector("tbody").innerHTML = annualRows.map(r => `
+        <tr>
+          <td>${r.anio}</td>
+          <td>${fmt(r.pax_total)}</td>
+          <td>${fmt(r.pax_cabotaje)}</td>
+          <td>${fmt(r.pax_internacional)}</td>
+          <td>${fmtIdx(idx(r.pax_total, base.pax_total))}</td>
+          <td>${fmt(r.vuelos_total)}</td>
+          <td>${fmt(r.vuelos_cabotaje)}</td>
+          <td>${fmt(r.vuelos_internacional)}</td>
+          <td>${fmtIdx(idx(r.vuelos_total, base.vuelos_total))}</td>
+        </tr>
+      `).join("");
+    }
+
+    function csvEscape(value){
+      const s = String(value ?? "");
+      if (/[";\n\r]/.test(s)) return `"${s.replace(/"/g,'""')}"`;
+      return s;
+    }
+
+    function downloadBlob(content, filename, mime){
+      const blob = new Blob([content], { type:mime });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function downloadSummaryCsv(){
+      const cols = [
+        "anio",
+        "pax_total","pax_cabotaje","pax_internacional",
+        "vuelos_total","vuelos_cabotaje","vuelos_internacional",
+        "indice_pax_total_2019_100","indice_vuelos_total_2019_100"
+      ];
+      const base = byYear(BASE_YEAR);
+      const lines = [cols.join(";")];
+      annualRows.forEach(r => {
+        const row = {
+          ...r,
+          indice_pax_total_2019_100: fmtIdx(idx(r.pax_total, base.pax_total)).replace(",", "."),
+          indice_vuelos_total_2019_100: fmtIdx(idx(r.vuelos_total, base.vuelos_total)).replace(",", ".")
+        };
+        lines.push(cols.map(c => csvEscape(row[c] ?? "")).join(";"));
+      });
+      downloadBlob("\uFEFF" + lines.join("\r\n"), "impacto_covid_sna_2015_2025_resumen.csv", "text/csv;charset=utf-8");
+    }
+
+    function renderAll(){
+      updateTextAndKPIs();
+      renderStackedBars("chartPax", "pax", fmtM);
+      renderStackedBars("chartVuelos", "vuelos", v => fmt(v));
+      renderIndexLines("chartPaxIndex", "pax");
+      renderIndexLines("chartVuelosIndex", "vuelos");
+      renderCompareTable();
+      renderAnnualTable();
+    }
+
+    async function load(){
+      try{
+        setStatus(`Cargando <strong>${DATA_PATHS.pax}</strong> y <strong>${DATA_PATHS.vuelos}</strong>…`, "warn");
+        const [paxText, vuelosText] = await Promise.all([
+          fetchText(DATA_PATHS.pax),
+          fetchText(DATA_PATHS.vuelos)
+        ]);
+
+        rawPaxRows = parseCSV(paxText);
+        rawVuelosRows = parseCSV(vuelosText);
+        annualRows = buildAnnualRows();
+
+        renderAll();
+
+        $("btnCsv").disabled = false;
+
+        setStatus(
+          `Datos cargados correctamente. Pasajeros: <strong>${rawPaxRows.length}</strong> registros mensuales. ` +
+          `Vuelos: <strong>${rawVuelosRows.length}</strong> registros mensuales. Período graficado: <strong>2015–2025</strong>.`,
+          "ok"
+        );
+      }catch(err){
+        console.error(err);
+        setStatus(`Error al cargar el informe: ${String(err.message || err)}. Verificá que los CSV estén en la carpeta fuentes.`, "err");
+      }
+    }
+
+    $("btnCsv").addEventListener("click", downloadSummaryCsv);
+    $("btnPrint").addEventListener("click", () => window.print());
+
+    load();
+  })();
+  </script>
+</body>
+</html>
