@@ -633,14 +633,15 @@ function renderCompareTable(rows, label, includeInternational) {
     const paxIntVar = pct(y2025.pax_internacional, y2019.pax_internacional);
     const vuelosTotalVar = pct(y2025.vuelos_total, y2019.vuelos_total);
     const includeInternational = hasSignificantInternational(rows);
-    const vuelosChartLabel = scope.kind === "airport" ? "Movimientos (aterrizajes y despegues)" : "Vuelos";
+    const vuelosChartLabel = scope.kind === "airport" 
+      ? "Movimientos (aterrizajes y despegues)" 
+      : "Vuelos";
     
     $("scopeBadge").textContent = label;
     $("summaryTitle").textContent = `Resumen · ${label}`;
     $("summaryText").innerHTML = buildSummaryText(scope, rows, includeInternational);
     $("paxChartTitle").textContent = `Pasajeros · ${label}`;
     
-    const vuelosChartLabel = scope.kind === "airport" ? "Movimientos (aterrizajes y despegues)" : "Vuelos";
     $("vuelosChartTitle").textContent = `${vuelosChartLabel} · ${label}`;
     
     $("tableTitle").textContent = `Comparación 2025 vs 2019 · ${label}`;
