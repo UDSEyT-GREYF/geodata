@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tabla descargable de tráfico por aeropuerto 2022-2025</title>
+  <title>Tabla descargable de tráfico por aeropuerto 2015-2025</title>
   <style>
     :root {
       --blue: #2A6FB0;
@@ -35,7 +35,7 @@
     .count { color: var(--muted); font-size: 0.84rem; }
     .table-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 22px rgba(33, 45, 68, 0.08); }
     .table-scroll { overflow: auto; max-height: calc(100vh - 210px); }
-    table { width: 100%; min-width: 1420px; border-collapse: collapse; font-size: 0.82rem; }
+    table { width: 100%; min-width: 6400px; border-collapse: collapse; font-size: 0.78rem; }
     thead th { position: sticky; top: 0; z-index: 2; background: #eaf1f8; color: var(--blue-dark); border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; padding: 8px 8px; font-weight: 800; }
     thead th:nth-child(1), thead th:nth-child(2) { text-align: left; z-index: 3; }
     tbody td { border-bottom: 1px solid #edf1f5; padding: 7px 8px; text-align: right; white-space: nowrap; }
@@ -52,8 +52,8 @@
   <div class="wrap">
     <div class="topbar">
       <div>
-        <h1>Tabla descargable de tráfico por aeropuerto 2022-2025</h1>
-        <div class="subtitle">Pasajeros y movimientos comerciales de cabotaje e internacional. Para los 12 aeropuertos extra, los valores se calculan directamente desde <code>rutasaereas.csv</code> con la misma lógica de la sección de rutas de la lámina.</div>
+        <h1>Tabla descargable de tráfico por aeropuerto 2015-2025</h1>
+        <div class="subtitle">Pasajeros y movimientos comerciales de cabotaje e internacional. Para los 17 aeropuertos extra, los valores se calculan directamente desde <code>rutasaereas.csv</code> con la misma lógica de la sección de rutas de la lámina.</div>
       </div>
       <div class="actions">
         <button id="btnReload" type="button">Recargar</button>
@@ -90,11 +90,13 @@
   (() => {
     "use strict";
 
-    const YEARS = [2022, 2023, 2024, 2025];
+const YEARS = Array.from({ length: 2025 - 2015 + 1 }, (_, i) => 2015 + i);
+
 const EXTRA_ROUTE_IATAS = new Set([
   "TTG", "RYO", "SST", "NEC", "LPG", "GNR", "JNI", "PMQ", "AOL", "LGS", "EPA", "COC",
   "RCQ", "RLO", "TDL", "VLG", "VME"
 ]);
+
     const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
     const PAX_DATASET_INT = "pasajeros_comerciales_internacional_aeropuerto";
     const MOV_DATASET_CAB = "movimientos_comerciales_cabotaje_aeropuerto";
@@ -102,10 +104,8 @@ const EXTRA_ROUTE_IATAS = new Set([
 
     const COLUMNS = [
       "nombre", "iata",
-      ...YEARS.map(y => `paxcab${y}`),
-      ...YEARS.map(y => `paxinter${y}`),
-      ...YEARS.map(y => `movcab${y}`),
-      ...YEARS.map(y => `movinter${y}`)
+      ...YEARS.flatMap(y => [`paxtotal${y}`, `paxcab${y}`, `paxinter${y}`]),
+      ...YEARS.flatMap(y => [`movtotal${y}`, `movcab${y}`, `movinter${y}`])
     ];
 
     const SOURCES = {
@@ -659,19 +659,32 @@ const manual = {
       ));
     }
 
-    function buildTableRows() {
-      return aeropuertos.map(a => {
-        const iata = clean(firstNonEmpty(a, ["IATA", "iata"])).toUpperCase();
-        const row = { nombre: getAirportTitle(a), iata };
+function buildTableRows() {
+  return aeropuertos.map(a => {
+    const iata = clean(firstNonEmpty(a, ["IATA", "iata"])).toUpperCase();
+    const row = { nombre: getAirportTitle(a), iata };
 
-        YEARS.forEach(year => { row[`paxcab${year}`] = getValue(iata, "pax", "cabotaje", year); });
-        YEARS.forEach(year => { row[`paxinter${year}`] = getValue(iata, "pax", "internacional", year); });
-        YEARS.forEach(year => { row[`movcab${year}`] = getValue(iata, "mov", "cabotaje", year); });
-        YEARS.forEach(year => { row[`movinter${year}`] = getValue(iata, "mov", "internacional", year); });
+    YEARS.forEach(year => {
+      const paxCab = getValue(iata, "pax", "cabotaje", year);
+      const paxInt = getValue(iata, "pax", "internacional", year);
 
-        return row;
-      });
-    }
+      row[`paxtotal${year}`] = paxCab + paxInt;
+      row[`paxcab${year}`] = paxCab;
+      row[`paxinter${year}`] = paxInt;
+    });
+
+    YEARS.forEach(year => {
+      const movCab = getValue(iata, "mov", "cabotaje", year);
+      const movInt = getValue(iata, "mov", "internacional", year);
+
+      row[`movtotal${year}`] = movCab + movInt;
+      row[`movcab${year}`] = movCab;
+      row[`movinter${year}`] = movInt;
+    });
+
+    return row;
+  });
+}
 
     function renderTable(rows = tableRows) {
       const thead = q("dataTable").querySelector("thead");
@@ -718,12 +731,12 @@ const manual = {
     function downloadCSV() {
       const lines = [COLUMNS.join(";")];
       tableRows.forEach(row => lines.push(COLUMNS.map(col => csvEscape(row[col] ?? 0)).join(";")));
-      downloadBlob("\uFEFF" + lines.join("\r\n"), "tabla_trafico_aeropuertos_2022_2025.csv", "text/csv;charset=utf-8");
+      downloadBlob("\uFEFF" + lines.join("\r\n"), "tabla_trafico_aeropuertos_2015_2025.csv", "text/csv;charset=utf-8");
     }
 
     function downloadXLS() {
       const html = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="UTF-8"></head><body><table border="1"><thead><tr>${COLUMNS.map(c => `<th>${escapeHtml(c)}</th>`).join("")}</tr></thead><tbody>${tableRows.map(row => `<tr>${COLUMNS.map(col => `<td>${escapeHtml(row[col] ?? 0)}</td>`).join("")}</tr>`).join("")}</tbody></table></body></html>`;
-      downloadBlob("\uFEFF" + html, "tabla_trafico_aeropuertos_2022_2025.xls", "application/vnd.ms-excel;charset=utf-8");
+      downloadBlob("\uFEFF" + html, "tabla_trafico_aeropuertos_2015_2025.xls", "application/vnd.ms-excel;charset=utf-8");
     }
 
     function applyFilter() {
@@ -796,9 +809,9 @@ const manual = {
       if (!fdoJson) warnings.push("fuente FDO de Aeropuertos Argentina no cargada");
 
       const lgs = tableRows.find(r => r.iata === "LGS");
-      const lgsText = lgs
-        ? ` LGS control total pax: ${YEARS.map(y => `${y}=${formatNumber((lgs[`paxcab${y}`] || 0) + (lgs[`paxinter${y}`] || 0))}`).join(", ")}.`
-        : "";
+const lgsText = lgs
+  ? ` LGS control total pax: ${YEARS.map(y => `${y}=${formatNumber(lgs[`paxtotal${y}`] || 0)}`).join(", ")}.`
+  : "";
 
       const matchedRows = routeStats
         ? Array.from(EXTRA_ROUTE_IATAS).reduce((acc, iata) => acc + (routeStats[iata]?.rows || 0), 0)
