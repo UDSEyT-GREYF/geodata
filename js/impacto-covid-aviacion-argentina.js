@@ -13,7 +13,13 @@
   const BASE_YEAR = 2019;
   const DROP_YEAR = 2020;
   const COMPARE_YEAR = 2025;
-
+  const INTERNATIONAL_SIGNIFICANCE = {
+    minAnnualPax: 10000,
+    minAnnualPaxSecondary: 5000,
+    minShareOfTotal: 0.02,
+    minYearsAboveSecondary: 2
+  };
+  
   let rawPaxSnaRows = [];
   let rawVuelosSnaRows = [];
   let rawPaxAirportRows = [];
@@ -368,141 +374,251 @@
     }
     return buildAnnualRowsFrom(rawPaxAirportRows, rawMovAirportRows, scope.iata);
   }
+function hasSignificantInternational(rows) {
+  const maxAnnualInt = Math.max(...rows.map(r => Number(r.pax_internacional) || 0));
 
-  function buildSummaryText(scope, rows) {
-    const label = scope.label;
-    const y2019 = byYearFrom(rows, BASE_YEAR);
-    const y2020 = byYearFrom(rows, DROP_YEAR);
-    const y2025 = byYearFrom(rows, COMPARE_YEAR);
+  const yearsAboveSecondary = rows.filter(r =>
+    (Number(r.pax_internacional) || 0) >= INTERNATIONAL_SIGNIFICANCE.minAnnualPaxSecondary
+  ).length;
 
-    const dropPax = pct(y2020.pax_total, y2019.pax_total);
-    const varPax = pct(y2025.pax_total, y2019.pax_total);
-    const varCab = pct(y2025.pax_cabotaje, y2019.pax_cabotaje);
-    const varInt = pct(y2025.pax_internacional, y2019.pax_internacional);
-    const varVuelos = pct(y2025.vuelos_total, y2019.vuelos_total);
+  const maxShare = Math.max(...rows.map(r => {
+    const total = Number(r.pax_total) || 0;
+    const intl = Number(r.pax_internacional) || 0;
+    return total > 0 ? intl / total : 0;
+  }));
 
-    return `En <strong>${escapeHtml(label)}</strong>, el shock de 2020 redujo los pasajeros comerciales a ` +
-      `<strong>${fmt(y2020.pax_total)}</strong>, con una variación de ` +
-      `<strong class="${classForPct(dropPax)}">${fmtPct(dropPax)}</strong> respecto de 2019. ` +
-      `En 2025 se registraron <strong>${fmt(y2025.pax_total)}</strong> pasajeros, ` +
-      `<strong class="${classForPct(varPax)}">${fmtPct(varPax)}</strong> frente al nivel prepandemia. ` +
-      `La variación 2025 vs 2019 fue de <strong>${fmtPct(varCab)}</strong> en cabotaje, ` +
-      `<strong>${fmtPct(varInt)}</strong> en internacional y <strong>${fmtPct(varVuelos)}</strong> en vuelos totales.`;
+  return (
+    maxAnnualInt >= INTERNATIONAL_SIGNIFICANCE.minAnnualPax ||
+    (
+      yearsAboveSecondary >= INTERNATIONAL_SIGNIFICANCE.minYearsAboveSecondary &&
+      maxShare >= INTERNATIONAL_SIGNIFICANCE.minShareOfTotal
+    )
+  );
+}
+
+function buildRecoveryReading(varTotal, varCab, varInt, includeInternational) {
+  const recovered = Number.isFinite(varTotal) && varTotal >= 0;
+  const totalText = recovered ? "se recuperó" : "no recuperó todavía";
+
+  if (!includeInternational) {
+    if (Number.isFinite(varCab) && varCab >= 0) {
+      return `El tráfico comercial ${totalText} respecto del escenario prepandemia y la recuperación se explica por el cabotaje.`;
+    }
+    return `El tráfico comercial ${totalText} respecto del escenario prepandemia y el componente dominante es el cabotaje.`;
   }
 
-  function renderIndexLines(containerId, metricPrefix, rows) {
-    const base = byYearFrom(rows, BASE_YEAR);
-    const series = [
-      {
-        key: "total",
-        color: "#002855",
-        values: rows.map(r => ({ year: r.anio, value: idx(r[`${metricPrefix}_total`], base[`${metricPrefix}_total`]) }))
-      },
-      {
-        key: "cabotaje",
-        color: "#2A6FB0",
-        values: rows.map(r => ({ year: r.anio, value: idx(r[`${metricPrefix}_cabotaje`], base[`${metricPrefix}_cabotaje`]) }))
-      },
-      {
-        key: "internacional",
-        color: "#008000",
-        values: rows.map(r => ({ year: r.anio, value: idx(r[`${metricPrefix}_internacional`], base[`${metricPrefix}_internacional`]) }))
-      }
-    ];
+  const cabRecovered = Number.isFinite(varCab) && varCab >= 0;
+  const intRecovered = Number.isFinite(varInt) && varInt >= 0;
+  const diff = Number.isFinite(varCab) && Number.isFinite(varInt) ? Math.abs(varCab - varInt) : NaN;
 
-    const width = 360;
-    const height = 190;
-    const pad = { left: 34, right: 10, top: 12, bottom: 24 };
-    const innerW = width - pad.left - pad.right;
-    const innerH = height - pad.top - pad.bottom;
-    const values = series.flatMap(s => s.values.map(d => d.value)).filter(Number.isFinite);
-    const maxV = values.length ? Math.max(120, Math.ceil(Math.max(...values) / 10) * 10) : 120;
-    const minV = values.length ? Math.min(0, Math.floor(Math.min(...values) / 10) * 10) : 0;
-    const span = maxV - minV || 1;
-    const x = year => pad.left + ((year - YEARS[0]) / (YEARS[YEARS.length - 1] - YEARS[0])) * innerW;
-    const y = value => pad.top + innerH - ((value - minV) / span) * innerH;
+  if (cabRecovered && intRecovered) {
+    if (Number.isFinite(diff) && diff <= 10) {
+      return `El tráfico comercial ${totalText} respecto del escenario prepandemia, con una recuperación relativamente pareja entre cabotaje e internacional.`;
+    }
+    if (varCab > varInt) {
+      return `El tráfico comercial ${totalText} respecto del escenario prepandemia, impulsado principalmente por el cabotaje.`;
+    }
+    return `El tráfico comercial ${totalText} respecto del escenario prepandemia, impulsado principalmente por el tráfico internacional.`;
+  }
 
-    const ticks = [];
-    for (let t = Math.ceil(minV / 25) * 25; t <= maxV; t += 25) ticks.push(t);
-    if (!ticks.includes(100)) ticks.push(100);
-    ticks.sort((a, b) => a - b);
+  if (cabRecovered && !intRecovered) {
+    return `El tráfico comercial ${totalText} respecto del escenario prepandemia: el cabotaje superó el nivel de 2019, mientras que el internacional no lo recuperó.`;
+  }
 
-    let svg = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Índice 2019 igual 100">
-      <rect x="0" y="0" width="${width}" height="${height}" fill="#fff"/>`;
+  if (!cabRecovered && intRecovered) {
+    return `El tráfico comercial ${totalText} respecto del escenario prepandemia: el internacional superó el nivel de 2019, pero el cabotaje no lo recuperó.`;
+  }
 
-    ticks.forEach(t => {
-      const yy = y(t);
-      const strong = t === 100;
-      svg += `<line x1="${pad.left}" y1="${yy}" x2="${width - pad.right}" y2="${yy}" stroke="${strong ? "#002855" : "#e5ebf2"}" stroke-dasharray="${strong ? "4,3" : "0"}" opacity="${strong ? ".72" : "1"}"/>
-              <text x="${pad.left - 5}" y="${yy + 3}" text-anchor="end" font-size="8" fill="#657384">${t}</text>`;
+  return `El tráfico comercial ${totalText} respecto del escenario prepandemia: ni cabotaje ni internacional alcanzaron los niveles de 2019.`;
+}
+  
+function buildSummaryText(scope, rows, includeInternational) {
+  const label = scope.label;
+  const y2019 = byYearFrom(rows, BASE_YEAR);
+  const y2020 = byYearFrom(rows, DROP_YEAR);
+  const y2025 = byYearFrom(rows, COMPARE_YEAR);
+
+  const dropPax = pct(y2020.pax_total, y2019.pax_total);
+  const varPax = pct(y2025.pax_total, y2019.pax_total);
+  const varCab = pct(y2025.pax_cabotaje, y2019.pax_cabotaje);
+  const varInt = pct(y2025.pax_internacional, y2019.pax_internacional);
+  const varVuelos = pct(y2025.vuelos_total, y2019.vuelos_total);
+  const recoveryText = buildRecoveryReading(varPax, varCab, varInt, includeInternational);
+
+  let text = `<strong>${escapeHtml(recoveryText)}</strong> ` +
+    `En <strong>${escapeHtml(label)}</strong>, en 2025 se registraron <strong>${fmt(y2025.pax_total)}</strong> pasajeros, ` +
+    `<strong class="${classForPct(varPax)}">${fmtPct(varPax)}</strong> frente a 2019. ` +
+    `El shock de 2020 redujo los pasajeros comerciales a <strong>${fmt(y2020.pax_total)}</strong>, ` +
+    `con una variación de <strong class="${classForPct(dropPax)}">${fmtPct(dropPax)}</strong> respecto de 2019. ` +
+    `La variación 2025 vs 2019 fue de <strong>${fmtPct(varCab)}</strong> en cabotaje`;
+
+  if (includeInternational) {
+    text += `, <strong>${fmtPct(varInt)}</strong> en internacional`;
+  } else {
+    text += `. El tráfico internacional no se muestra como serie analítica independiente por su baja magnitud relativa en la serie histórica`;
+  }
+
+  text += ` y <strong>${fmtPct(varVuelos)}</strong> en ${scope.kind === "airport" ? "movimientos" : "vuelos"} totales.`;
+
+  return text;
+}
+
+function renderIndexLines(containerId, metricPrefix, rows, includeInternational) {
+  const base = byYearFrom(rows, BASE_YEAR);
+
+  const series = [
+    {
+      key: "total",
+      label: "Total",
+      color: "#002855",
+      values: rows.map(r => ({
+        year: r.anio,
+        value: idx(r[`${metricPrefix}_total`], base[`${metricPrefix}_total`])
+      }))
+    },
+    {
+      key: "cabotaje",
+      label: "Cabotaje",
+      color: "#2A6FB0",
+      values: rows.map(r => ({
+        year: r.anio,
+        value: idx(r[`${metricPrefix}_cabotaje`], base[`${metricPrefix}_cabotaje`])
+      }))
+    }
+  ];
+
+  if (includeInternational) {
+    series.push({
+      key: "internacional",
+      label: "Internacional",
+      color: "#008000",
+      values: rows.map(r => ({
+        year: r.anio,
+        value: idx(r[`${metricPrefix}_internacional`], base[`${metricPrefix}_internacional`])
+      }))
     });
+  }
 
-    const yearTicks = [2015, 2019, 2020, 2025];
-    yearTicks.forEach(year => {
-      const xx = x(year);
-      svg += `<line x1="${xx}" y1="${pad.top}" x2="${xx}" y2="${pad.top + innerH}" stroke="#f0f3f7"/>
-              <text x="${xx}" y="${height - 7}" text-anchor="middle" font-size="8" fill="#657384">${year}</text>`;
-    });
+  const width = 760;
+  const height = 205;
+  const pad = { left: 42, right: 104, top: 12, bottom: 25 };
+  const innerW = width - pad.left - pad.right;
+  const innerH = height - pad.top - pad.bottom;
 
-    series.forEach(s => {
-      const pts = s.values
-        .filter(d => Number.isFinite(d.value))
-        .map(d => `${x(d.year)},${y(d.value)}`)
-        .join(" ");
-      svg += `<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
-      s.values.filter(d => [BASE_YEAR, DROP_YEAR, COMPARE_YEAR].includes(d.year) && Number.isFinite(d.value)).forEach(d => {
-        svg += `<circle cx="${x(d.year)}" cy="${y(d.value)}" r="2.2" fill="${s.color}"><title>${d.year}: ${fmtIdx(d.value)}</title></circle>`;
+  const values = series.flatMap(s => s.values.map(d => d.value)).filter(Number.isFinite);
+  const maxV = values.length ? Math.max(120, Math.ceil(Math.max(...values) / 10) * 10) : 120;
+  const minV = values.length ? Math.min(0, Math.floor(Math.min(...values) / 10) * 10) : 0;
+  const span = maxV - minV || 1;
+
+  const x = year => pad.left + ((year - YEARS[0]) / (YEARS[YEARS.length - 1] - YEARS[0])) * innerW;
+  const y = value => pad.top + innerH - ((value - minV) / span) * innerH;
+
+  const ticks = [];
+  for (let t = Math.ceil(minV / 25) * 25; t <= maxV; t += 25) ticks.push(t);
+  if (!ticks.includes(100)) ticks.push(100);
+  ticks.sort((a, b) => a - b);
+
+  let svg = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Índice 2019 igual 100">
+    <rect x="0" y="0" width="${width}" height="${height}" fill="#fff"/>`;
+
+  ticks.forEach(t => {
+    const yy = y(t);
+    const strong = t === 100;
+    svg += `<line x1="${pad.left}" y1="${yy}" x2="${width - pad.right}" y2="${yy}" stroke="${strong ? "#002855" : "#e5ebf2"}" stroke-dasharray="${strong ? "4,3" : "0"}" opacity="${strong ? ".72" : "1"}"/>
+            <text x="${pad.left - 6}" y="${yy + 3}" text-anchor="end" font-size="8.5" fill="#657384">${t}</text>`;
+  });
+
+  const yearTicks = [2015, 2019, 2020, 2025];
+  yearTicks.forEach(year => {
+    const xx = x(year);
+    svg += `<line x1="${xx}" y1="${pad.top}" x2="${xx}" y2="${pad.top + innerH}" stroke="#f0f3f7"/>
+            <text x="${xx}" y="${height - 8}" text-anchor="middle" font-size="8.5" fill="#657384">${year}</text>`;
+  });
+
+  series.forEach((s, sIdx) => {
+    const pts = s.values
+      .filter(d => Number.isFinite(d.value))
+      .map(d => `${x(d.year)},${y(d.value)}`)
+      .join(" ");
+
+    svg += `<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>`;
+
+    s.values
+      .filter(d => [BASE_YEAR, DROP_YEAR, COMPARE_YEAR].includes(d.year) && Number.isFinite(d.value))
+      .forEach(d => {
+        svg += `<circle cx="${x(d.year)}" cy="${y(d.value)}" r="2.3" fill="${s.color}">
+          <title>${d.year}: ${fmtIdx(d.value)}</title>
+        </circle>`;
       });
-    });
 
-    svg += `<line x1="${pad.left}" y1="${pad.top + innerH}" x2="${width - pad.right}" y2="${pad.top + innerH}" stroke="#cfd8e3"/>
-            <line x1="${pad.left}" y1="${pad.top}" x2="${pad.left}" y2="${pad.top + innerH}" stroke="#cfd8e3"/>
-            </svg>`;
+    const last = s.values.find(d => d.year === COMPARE_YEAR && Number.isFinite(d.value));
+    if (last) {
+      const labelX = x(COMPARE_YEAR) + 7;
+      let labelY = y(last.value) + (sIdx - 1) * 9;
+      labelY = Math.max(11, Math.min(height - 18, labelY));
+      svg += `<text x="${labelX}" y="${labelY}" font-size="9" fill="${s.color}" font-weight="800">${s.label}: ${fmtIdx(last.value)}</text>`;
+    }
+  });
 
-    const el = $(containerId);
-    if (el) el.innerHTML = svg;
+  svg += `<text x="${x(BASE_YEAR) + 4}" y="${y(100) - 5}" font-size="8.5" fill="#002855" font-weight="800">2019 = 100</text>
+          <line x1="${pad.left}" y1="${pad.top + innerH}" x2="${width - pad.right}" y2="${pad.top + innerH}" stroke="#cfd8e3"/>
+          <line x1="${pad.left}" y1="${pad.top}" x2="${pad.left}" y2="${pad.top + innerH}" stroke="#cfd8e3"/>
+          </svg>`;
+
+  const el = $(containerId);
+  if (el) el.innerHTML = svg;
+}
+
+function renderCompareTable(rows, label, includeInternational) {
+  const table = $("compareTable");
+  if (!table) return;
+
+  const base = byYearFrom(rows, BASE_YEAR);
+  const cur = byYearFrom(rows, COMPARE_YEAR);
+  const drop = byYearFrom(rows, DROP_YEAR);
+
+  const metrics = [
+    ["Pasajeros totales", "pax_total", fmt],
+    ["Pasajeros cabotaje", "pax_cabotaje", fmt]
+  ];
+
+  if (includeInternational) {
+    metrics.push(["Pasajeros internacional", "pax_internacional", fmt]);
   }
 
-  function renderCompareTable(rows, label) {
-    const table = $("compareTable");
-    if (!table) return;
+  metrics.push(
+    ["Vuelos totales", "vuelos_total", fmt],
+    ["Vuelos cabotaje", "vuelos_cabotaje", fmt]
+  );
 
-    const base = byYearFrom(rows, BASE_YEAR);
-    const cur = byYearFrom(rows, COMPARE_YEAR);
-    const drop = byYearFrom(rows, DROP_YEAR);
-
-    const metrics = [
-      ["Pasajeros totales", "pax_total", fmt],
-      ["Pasajeros cabotaje", "pax_cabotaje", fmt],
-      ["Pasajeros internacional", "pax_internacional", fmt],
-      ["Vuelos totales", "vuelos_total", fmt],
-      ["Vuelos cabotaje", "vuelos_cabotaje", fmt],
-      ["Vuelos internacional", "vuelos_internacional", fmt]
-    ];
-
-    table.querySelector("thead").innerHTML = `
-      <tr>
-        <th>Indicador · ${escapeHtml(label)}</th>
-        <th>2019</th>
-        <th>2020</th>
-        <th>2025</th>
-        <th>Var. 2025/2019</th>
-        <th>Índice 2025</th>
-      </tr>`;
-
-    table.querySelector("tbody").innerHTML = metrics.map(([name, key, formatter]) => {
-      const variation = pct(cur[key], base[key]);
-      const indexValue = idx(cur[key], base[key]);
-      return `<tr>
-        <td class="metric-name">${escapeHtml(name)}</td>
-        <td>${formatter(base[key])}</td>
-        <td>${formatter(drop[key])}</td>
-        <td>${formatter(cur[key])}</td>
-        <td class="${classForPct(variation)}"><strong>${fmtPct(variation)}</strong></td>
-        <td>${fmtIdx(indexValue)}</td>
-      </tr>`;
-    }).join("");
+  if (includeInternational) {
+    metrics.push(["Vuelos internacional", "vuelos_internacional", fmt]);
   }
+
+  table.querySelector("thead").innerHTML = `
+    <tr>
+      <th>Indicador · ${escapeHtml(label)}</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2025</th>
+      <th>Var. 2025/2019</th>
+      <th>Índice 2025</th>
+    </tr>`;
+
+  table.querySelector("tbody").innerHTML = metrics.map(([name, key, formatter]) => {
+    const variation = pct(cur[key], base[key]);
+    const indexValue = idx(cur[key], base[key]);
+
+    return `<tr>
+      <td class="metric-name">${escapeHtml(name)}</td>
+      <td>${formatter(base[key])}</td>
+      <td>${formatter(drop[key])}</td>
+      <td>${formatter(cur[key])}</td>
+      <td class="${classForPct(variation)}"><strong>${fmtPct(variation)}</strong></td>
+      <td>${fmtIdx(indexValue)}</td>
+    </tr>`;
+  }).join("");
+}
 
   function renderScope(scope) {
     currentScope = scope;
@@ -516,10 +632,12 @@
     const paxCabVar = pct(y2025.pax_cabotaje, y2019.pax_cabotaje);
     const paxIntVar = pct(y2025.pax_internacional, y2019.pax_internacional);
     const vuelosTotalVar = pct(y2025.vuelos_total, y2019.vuelos_total);
-
+    const includeInternational = hasSignificantInternational(rows);
+    const vuelosChartLabel = scope.kind === "airport" ? "Movimientos (aterrizajes y despegues)" : "Vuelos";
+    
     $("scopeBadge").textContent = label;
     $("summaryTitle").textContent = `Resumen · ${label}`;
-    $("summaryText").innerHTML = buildSummaryText(scope, rows);
+    $("summaryText").innerHTML = buildSummaryText(scope, rows, includeInternational);
     $("paxChartTitle").textContent = `Pasajeros · ${label}`;
     
     const vuelosChartLabel = scope.kind === "airport" ? "Movimientos (aterrizajes y despegues)" : "Vuelos";
@@ -527,15 +645,23 @@
     
     $("tableTitle").textContent = `Comparación 2025 vs 2019 · ${label}`;
     $("footerScope").textContent = `Ámbito: ${label}.`;
+          document.querySelectorAll(".legend-int").forEach(el => {
+        el.classList.toggle("is-hidden", !includeInternational);
+      });
+      
+      const kpiPaxIntCard = $("kpiPaxIntCard");
+      if (kpiPaxIntCard) {
+        kpiPaxIntCard.style.display = includeInternational ? "block" : "none";
+      }
 
     setKpi("kpiPaxTotal", "kpiPaxTotalSub", paxTotalVar, y2025.pax_total, y2019.pax_total, fmt);
     setKpi("kpiPaxCab", "kpiPaxCabSub", paxCabVar, y2025.pax_cabotaje, y2019.pax_cabotaje, fmt);
     setKpi("kpiPaxInt", "kpiPaxIntSub", paxIntVar, y2025.pax_internacional, y2019.pax_internacional, fmt);
     setKpi("kpiVuelosTotal", "kpiVuelosTotalSub", vuelosTotalVar, y2025.vuelos_total, y2019.vuelos_total, fmt);
 
-    renderIndexLines("chartPaxIndex", "pax", rows);
-    renderIndexLines("chartVuelosIndex", "vuelos", rows);
-    renderCompareTable(rows, label);
+    renderIndexLines("chartPaxIndex", "pax", rows, includeInternational);
+    renderIndexLines("chartVuelosIndex", "vuelos", rows, includeInternational);
+    renderCompareTable(rows, label, includeInternational);
 
     const url = new URL(window.location.href);
     if (scope.kind === "airport") url.searchParams.set("iata", scope.iata);
@@ -560,52 +686,66 @@
     return airportOptions[0];
   }
 
-  async function exportPdfA4() {
-    const node = $("sheetA4");
-    const btn = $("btnPdf");
-    if (!node) return window.print();
+ async function exportPdfA4() {
+  const node = $("sheetA4");
+  const btn = $("btnPdf");
+  if (!node) return window.print();
 
-    const suffix = currentScope.kind === "airport" ? currentScope.iata : "SNA";
-    const filename = `impacto_covid_aviacion_argentina_${suffix}_a4.pdf`;
+  const suffix = currentScope.kind === "airport" ? currentScope.iata : "SNA";
+  const filename = `impacto_covid_aviacion_argentina_${suffix}_a4.pdf`;
 
-    try {
-      if (btn) {
-        btn.disabled = true;
-        btn.textContent = "Generando PDF…";
-      }
-      document.documentElement.classList.add("pdf-exporting");
-      document.body.classList.add("pdf-exporting");
-      await new Promise(resolve => setTimeout(resolve, 200));
+  try {
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = "Generando PDF…";
+    }
 
-      if (window.html2pdf) {
-        await window.html2pdf().set({
-          margin: 0,
-          filename,
-          image: { type: "jpeg", quality: 0.98 },
-          html2canvas: {
-            scale: 2,
-            useCORS: true,
-            backgroundColor: "#ffffff",
-            windowWidth: node.scrollWidth
-          },
-          jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-          pagebreak: { mode: ["avoid-all", "css", "legacy"] }
-        }).from(node).save();
-      } else {
-        window.print();
-      }
-    } catch (err) {
-      console.error(err);
+    window.scrollTo(0, 0);
+    document.documentElement.classList.add("pdf-exporting");
+    document.body.classList.add("pdf-exporting");
+
+    await new Promise(resolve => setTimeout(resolve, 250));
+
+    if (window.html2canvas && window.jspdf?.jsPDF) {
+      const canvas = await window.html2canvas(node, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: "#ffffff",
+        width: node.offsetWidth,
+        height: node.offsetHeight,
+        windowWidth: node.offsetWidth,
+        windowHeight: node.offsetHeight,
+        scrollX: 0,
+        scrollY: 0
+      });
+
+      const imgData = canvas.toDataURL("image/jpeg", 0.98);
+
+      const pdf = new window.jspdf.jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: "a4",
+        compress: true
+      });
+
+      pdf.addImage(imgData, "JPEG", 0, 0, 210, 297);
+      pdf.save(filename);
+    } else {
       window.print();
-    } finally {
-      document.documentElement.classList.remove("pdf-exporting");
-      document.body.classList.remove("pdf-exporting");
-      if (btn) {
-        btn.disabled = false;
-        btn.textContent = "Descargar PDF A4";
-      }
+    }
+  } catch (err) {
+    console.error(err);
+    window.print();
+  } finally {
+    document.documentElement.classList.remove("pdf-exporting");
+    document.body.classList.remove("pdf-exporting");
+
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = "Descargar PDF A4";
     }
   }
+}
 
   async function load() {
     try {
