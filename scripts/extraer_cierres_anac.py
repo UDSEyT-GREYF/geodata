@@ -511,37 +511,37 @@ def build_candidates(informes: Iterable[Informe]) -> dict:
     candidates = []
     fuentes_revisadas = []
 
-    for informe in informes:
-        try:
-            pdf_path = download_pdf(informe)
-            text = extract_note_text_from_pdf(pdf_path)
-if not text.strip():
-    fuentes_revisadas.append({
-        "anio": informe.year,
-        "mes": informe.month,
-        "documento": informe.filename,
-        "estado": "ok",
-        "candidatos_detectados": 0,
-        "criterio_busqueda": "solo_notas_primeras_paginas",
-        "url": informe.page_url,
-        "download_url": informe.download_url,
-    })
-    print(f"[OK] {informe.year}-{informe.month}: sin sección de notas en primeras páginas")
-    continue
+for informe in informes:
+    try:
+        pdf_path = download_pdf(informe)
+        text = extract_note_text_from_pdf(pdf_path)
 
-      
-        except Exception as e:
-            print(f"[ERROR] {informe.year}-{informe.month}: {e}")
+        if not text.strip():
             fuentes_revisadas.append({
                 "anio": informe.year,
                 "mes": informe.month,
                 "documento": informe.filename,
-                "estado": "error",
-                "error": str(e),
+                "estado": "ok",
+                "candidatos_detectados": 0,
+                "criterio_busqueda": "solo_notas_primeras_paginas",
                 "url": informe.page_url,
                 "download_url": informe.download_url,
             })
+            print(f"[OK] {informe.year}-{informe.month}: sin sección de notas en primeras páginas")
             continue
+
+    except Exception as e:
+        print(f"[ERROR] {informe.year}-{informe.month}: {e}")
+        fuentes_revisadas.append({
+            "anio": informe.year,
+            "mes": informe.month,
+            "documento": informe.filename,
+            "estado": "error",
+            "error": str(e),
+            "url": informe.page_url,
+            "download_url": informe.download_url,
+        })
+        continue
 
         paragraphs = split_candidate_paragraphs(text)
         hits = [p for p in paragraphs if is_relevant(p)]
