@@ -38,6 +38,26 @@ OUTPUT_PATH = Path("fuentes/cierres_operativos_aeropuertos_anac_2016_2026.candid
 CACHE_DIR = Path(".cache/anac_informes_mensuales")
 
 YEARS = list(range(2016, 2027))
+MAX_NOTE_SCAN_PAGES = 8
+
+NOTE_SECTION_START_PATTERNS = [
+    r"\bnotas generales\b",
+    r"\bnotas\b",
+    r"\baclaraciones metodol[oó]gicas\b",
+]
+
+NOTE_SECTION_STOP_PATTERNS = [
+    r"\bpasajeros por aeropuerto\b",
+    r"\bpasajeros totales por aeropuerto\b",
+    r"\branking\b",
+    r"\btop 10\b",
+    r"\bvariaci[oó]n pasajeros\b",
+    r"\bcabotaje del mes\b",
+    r"\binternacional del mes\b",
+    r"\bmovimientos por aeropuerto\b",
+    r"\baeronaves por aeropuerto\b",
+    r"\bdepartamento de estad[ií]stica\s+pasajeros\b",
+]
 
 MONTHS = {
     "enero": "01",
@@ -325,18 +345,54 @@ def download_pdf(informe: Informe) -> Path:
     return path
 
 
-def extract_pdf_text(pdf_path: Path) -> str:
+def extract_note_text_from_pdf(pdf_path: Path) -> str:
+    """
+    Extrae solamente la sección de Notas / Notas Generales ubicada
+    en las primeras páginas del informe.
+
+    No revisa rankings, gráficos ni notas al pie de páginas posteriores.
+    """
     reader = PdfReader(str(pdf_path))
     parts = []
 
-    for i, page in enumerate(reader.pages):
-        try:
-            text = page.extract_text() or ""
-        except Exception as e:
-            print(f"[WARN] Error extrayendo página {i+1} de {pdf_path.name}: {e}")
-            text = ""
+    max_pages = min(len(reader.pages), MAX_NOTE_SCAN_PAGES)
 
-        parts.append(f"\n\n--- PAGE {i+1} ---\n{text}")
+    start_re = re.compile(
+        "|".join(NOTE_SECTION_START_PATTERNS),
+        flags=re.IGNORECASE
+    )
+
+    stop_re = re.compile(
+        "|".join(NOTE_SECTION_STOP_PATTERNS),
+        flags=re.IGNORECASE
+    )
+
+    for i in range(max_pages):
+        try:
+            page_text = reader.pages[i].extract_text() or ""
+        except Exception as e:
+            print(f"[WARN] Error extrayendo página {i + 1} de {pdf_path.name}: {e}")
+            continue
+
+        page_text = re.sub(r"\r", "\n", page_text)
+        page_text = re.sub(r"[ \t]+", " ", page_text)
+
+        match = start_re.search(page_text)
+
+        if not match:
+            continue
+
+        section = page_text[match.start():]
+
+        stop_match = stop_re.search(section)
+
+        if stop_match and stop_match.start() > 40:
+            section = section[:stop_match.start()]
+
+        section = re.sub(r"\s+", " ", section).strip()
+
+        if section:
+            parts.append(f"\n\n--- PAGE {i + 1} ---\n{section}")
 
     return "\n".join(parts)
 
@@ -458,7 +514,22 @@ def build_candidates(informes: Iterable[Informe]) -> dict:
     for informe in informes:
         try:
             pdf_path = download_pdf(informe)
-            text = extract_pdf_text(pdf_path)
+            text = extract_note_text_from_pdf(pdf_path)
+if not text.strip():
+    fuentes_revisadas.append({
+        "anio": informe.year,
+        "mes": informe.month,
+        "documento": informe.filename,
+        "estado": "ok",
+        "candidatos_detectados": 0,
+        "criterio_busqueda": "solo_notas_primeras_paginas",
+        "url": informe.page_url,
+        "download_url": informe.download_url,
+    })
+    print(f"[OK] {informe.year}-{informe.month}: sin sección de notas en primeras páginas")
+    continue
+
+      
         except Exception as e:
             print(f"[ERROR] {informe.year}-{informe.month}: {e}")
             fuentes_revisadas.append({
@@ -518,8 +589,11 @@ def build_candidates(informes: Iterable[Informe]) -> dict:
     return {
         "metadata": {
             "nombre": "cierres_operativos_aeropuertos_anac_2016_2026_candidatos",
-            "descripcion": "Candidatos extraídos automáticamente desde informes mensuales ANAC. Requieren validación manual antes de incorporarse a eventos confirmados.",
-            "fuente": BASE_URL,
+           "descripcion": "Candidatos extraídos automáticamente desde la sección Notas / Notas Generales de las primeras páginas de los informes mensuales ANAC. Requieren validación manual antes de incorporarse a eventos confirmados.",
+"fuente": BASE_URL,
+"alcance_extraccion": "solo_notas_primeras_paginas",
+"max_paginas_revisadas_por_pdf": MAX_NOTE_SCAN_PAGES,
+          
             "criterio": {
                 "incluye": ["cierre/cese/suspensión/inoperatividad", "obra/mantenimiento/infraestructura"],
                 "excluye": ["paros", "pandemia", "meteorología puntual", "cambios comerciales"]
