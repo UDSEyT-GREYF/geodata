@@ -12,8 +12,12 @@ Salida:
   fuentes/cierres_operativos_aeropuertos_anac_2016_2026.candidatos.json
 
 Criterio:
-  - Busca en informes mensuales ANAC 2016-2026.
-  - Detecta párrafos con términos de cierre/suspensión/cese + obra/mantenimiento/pista/plataforma.
+  - Busca informes mensuales ANAC 2016-2026.
+  - Descarga los PDF publicados en Estadísticas DNTA.
+  - Extrae solamente la sección de Notas Generales / aclaraciones metodológicas
+    ubicada en las primeras páginas.
+  - No revisa rankings, gráficos ni notas al pie de páginas posteriores.
+  - Detecta párrafos con términos de cierre/suspensión/cese + obra/mantenimiento/infraestructura.
   - NO reemplaza validación manual: genera candidatos para revisar y pasar a "eventos".
 """
 
@@ -23,7 +27,7 @@ import json
 import re
 import time
 import unicodedata
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 from urllib.parse import urljoin, urlparse, unquote
@@ -38,12 +42,16 @@ OUTPUT_PATH = Path("fuentes/cierres_operativos_aeropuertos_anac_2016_2026.candid
 CACHE_DIR = Path(".cache/anac_informes_mensuales")
 
 YEARS = list(range(2016, 2027))
-MAX_NOTE_SCAN_PAGES = 8
+
+# Para evitar notas de rankings posteriores. La sección útil suele estar
+# en las primeras páginas, generalmente como "Notas Generales".
+MAX_NOTE_SCAN_PAGES = 6
 
 NOTE_SECTION_START_PATTERNS = [
     r"\bnotas generales\b",
-    r"\bnotas\b",
     r"\baclaraciones metodol[oó]gicas\b",
+    r"\bconsideraciones metodol[oó]gicas\b",
+    r"\bnotas metodol[oó]gicas\b",
 ]
 
 NOTE_SECTION_STOP_PATTERNS = [
@@ -57,6 +65,20 @@ NOTE_SECTION_STOP_PATTERNS = [
     r"\bmovimientos por aeropuerto\b",
     r"\baeronaves por aeropuerto\b",
     r"\bdepartamento de estad[ií]stica\s+pasajeros\b",
+    r"\boferta por aeropuerto\b",
+    r"\bdemanda por aeropuerto\b",
+]
+
+# Indicadores de páginas que no deben procesarse como notas metodológicas.
+RANKING_PAGE_PATTERNS = [
+    r"\branking\b",
+    r"\btop 10\b",
+    r"\bdecrecimiento\b",
+    r"\baumento pasajeros\b",
+    r"\bdisminuci[oó]n pasajeros\b",
+    r"\bvariaci[oó]n pax\b",
+    r"\bpasajeros por aeropuerto\b",
+    r"\bpasajeros totales por aeropuerto\b",
 ]
 
 MONTHS = {
@@ -77,29 +99,75 @@ MONTHS = {
 
 # Palabras que indican afectación operativa.
 CLOSURE_TERMS = [
-    "cerrado", "cerrada", "cierre", "clausurado", "clausurada",
-    "cese de operaciones", "cesó operaciones", "suspendió sus operaciones",
-    "suspension de operaciones", "suspensión de operaciones",
-    "suspendido", "suspendida", "inoperativo", "inoperativa",
-    "sin operaciones", "no operó", "no opero", "no registró operaciones",
-    "permaneció cerrado", "permanecio cerrado"
+    "cerrado",
+    "cerrada",
+    "cierre",
+    "clausurado",
+    "clausurada",
+    "cese de operaciones",
+    "cesó operaciones",
+    "suspendió sus operaciones",
+    "suspension de operaciones",
+    "suspensión de operaciones",
+    "suspendido",
+    "suspendida",
+    "suspendida su operatividad",
+    "inoperativo",
+    "inoperativa",
+    "sin operaciones",
+    "no operó",
+    "no opero",
+    "no registró operaciones",
+    "permaneció cerrado",
+    "permanecio cerrado",
 ]
 
 # Palabras que indican obra/infraestructura.
 WORK_TERMS = [
-    "obra", "obras", "mantenimiento", "reparación", "reparacion",
-    "rehabilitación", "rehabilitacion", "remodelación", "remodelacion",
-    "modernización", "modernizacion", "repavimentación", "repavimentacion",
-    "pista", "calle de rodaje", "calles de rodaje", "rodaje",
-    "plataforma", "balizamiento", "infraestructura", "terminal",
-    "trabajos esenciales", "ampliación", "ampliacion"
+    "obra",
+    "obras",
+    "mantenimiento",
+    "reparación",
+    "reparacion",
+    "rehabilitación",
+    "rehabilitacion",
+    "remodelación",
+    "remodelacion",
+    "modernización",
+    "modernizacion",
+    "repavimentación",
+    "repavimentacion",
+    "pista",
+    "calle de rodaje",
+    "calles de rodaje",
+    "rodaje",
+    "plataforma",
+    "balizamiento",
+    "infraestructura",
+    "terminal",
+    "trabajos esenciales",
+    "ampliación",
+    "ampliacion",
+    "autobomba",
+    "equipamiento aeroportuario",
 ]
 
 # Términos a excluir cuando no son obra aeroportuaria.
 EXCLUDE_TERMS = [
-    "paro", "medida de fuerza", "huelga", "covid", "pandemia",
-    "restricciones sanitarias", "meteorolog", "niebla", "neblina",
-    "tormenta", "viento", "ceniza", "volcán", "volcan"
+    "paro",
+    "medida de fuerza",
+    "huelga",
+    "covid",
+    "pandemia",
+    "restricciones sanitarias",
+    "meteorolog",
+    "niebla",
+    "neblina",
+    "tormenta",
+    "viento",
+    "ceniza",
+    "volcán",
+    "volcan",
 ]
 
 AIRPORT_CODES = {
@@ -174,6 +242,7 @@ AIRPORT_NAME_HINTS = {
     "parana": "PRA",
     "paraná": "PRA",
     "sauce viejo": "SFN",
+    "santa fe": "SFN",
     "san luis": "LUQ",
     "san juan": "UAQ",
     "la rioja": "IRJ",
@@ -190,7 +259,6 @@ AIRPORT_NAME_HINTS = {
     "termas de río hondo": "RHD",
     "rio hondo": "RHD",
     "río hondo": "RHD",
-    "santa fe": "SFN",
 }
 
 
@@ -242,12 +310,12 @@ def discover_year_channels() -> dict[int, str]:
 
 
 def resolve_download_url(page_url: str) -> tuple[str, str]:
-      # Si el enlace ya es un PDF directo, no hay que agregar /download.
+    # Si el enlace ya es un PDF directo, no hay que agregar /download.
     clean_url = page_url.split("?")[0].lower()
     if clean_url.endswith(".pdf"):
         filename = Path(unquote(urlparse(page_url).path)).name or "informe_anac.pdf"
         return page_url, filename
-      
+
     html = fetch(page_url).text
     soup = BeautifulSoup(html, "html.parser")
 
@@ -264,7 +332,7 @@ def resolve_download_url(page_url: str) -> tuple[str, str]:
         if "download" in label or "/download" in href:
             return href, filename or "informe_anac.pdf"
 
-    # fallback Nextcloud public share download pattern
+    # Fallback Nextcloud public share download pattern.
     return page_url.rstrip("/") + "/download", filename or "informe_anac.pdf"
 
 
@@ -314,9 +382,10 @@ def discover_monthly_reports(channels: dict[int, str]) -> list[Informe]:
                 )
             )
 
-    # Deduplicar por año-mes
+    # Deduplicar por año-mes.
     seen = set()
     unique: list[Informe] = []
+
     for inf in informes:
         key = (inf.year, inf.month)
         if key in seen:
@@ -329,6 +398,7 @@ def discover_monthly_reports(channels: dict[int, str]) -> list[Informe]:
 
 def download_pdf(informe: Informe) -> Path:
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
+
     safe_name = re.sub(r"[^A-Za-z0-9_.-]+", "_", informe.filename)
     if not safe_name.lower().endswith(".pdf"):
         safe_name += ".pdf"
@@ -342,13 +412,36 @@ def download_pdf(informe: Informe) -> Path:
     resp = fetch(informe.download_url, timeout=120)
     path.write_bytes(resp.content)
     time.sleep(0.4)
+
     return path
+
+
+def page_looks_like_ranking(page_text: str, note_start: int) -> bool:
+    """
+    Evita capturar notas al pie de rankings/gráficos.
+    Si antes del título de notas aparece ranking/top 10/pasajeros por aeropuerto,
+    se interpreta como una página de gráfico y no como notas metodológicas.
+    """
+    prefix = page_text[:note_start]
+    prefix_norm = norm(prefix)
+    page_norm = norm(page_text)
+
+    for pattern in RANKING_PAGE_PATTERNS:
+        if re.search(pattern, prefix_norm, flags=re.IGNORECASE):
+            return True
+
+    # Si la página completa es claramente ranking, se descarta salvo que sea
+    # una página explícita de Notas Generales.
+    has_notas_generales = re.search(r"\bnotas generales\b", page_norm, flags=re.IGNORECASE)
+    has_ranking = any(re.search(pattern, page_norm, flags=re.IGNORECASE) for pattern in RANKING_PAGE_PATTERNS)
+
+    return bool(has_ranking and not has_notas_generales)
 
 
 def extract_note_text_from_pdf(pdf_path: Path) -> str:
     """
-    Extrae solamente la sección de Notas / Notas Generales ubicada
-    en las primeras páginas del informe.
+    Extrae solamente la sección de Notas Generales / aclaraciones metodológicas
+    ubicada en las primeras páginas del informe.
 
     No revisa rankings, gráficos ni notas al pie de páginas posteriores.
     """
@@ -359,12 +452,12 @@ def extract_note_text_from_pdf(pdf_path: Path) -> str:
 
     start_re = re.compile(
         "|".join(NOTE_SECTION_START_PATTERNS),
-        flags=re.IGNORECASE
+        flags=re.IGNORECASE,
     )
 
     stop_re = re.compile(
         "|".join(NOTE_SECTION_STOP_PATTERNS),
-        flags=re.IGNORECASE
+        flags=re.IGNORECASE,
     )
 
     for i in range(max_pages):
@@ -380,6 +473,9 @@ def extract_note_text_from_pdf(pdf_path: Path) -> str:
         match = start_re.search(page_text)
 
         if not match:
+            continue
+
+        if page_looks_like_ranking(page_text, match.start()):
             continue
 
         section = page_text[match.start():]
@@ -400,26 +496,33 @@ def extract_note_text_from_pdf(pdf_path: Path) -> str:
 def split_candidate_paragraphs(text: str) -> list[str]:
     text = re.sub(r"\r", "\n", text)
     text = re.sub(r"[ \t]+", " ", text)
+
     raw = re.split(r"\n\s*\n|(?<=\.)\s+(?=[A-ZÁÉÍÓÚÑ])", text)
 
     candidates = []
     for p in raw:
         p = re.sub(r"\s+", " ", p).strip()
+
         if len(p) < 60:
             continue
+
         if len(p) > 1600:
-            # recorte razonable para revisión humana
+            # Recorte razonable para revisión humana.
             p = p[:1600].strip()
+
         candidates.append(p)
+
     return candidates
 
 
 def is_relevant(text: str) -> bool:
     n = norm(text)
-    has_closure = any(term in n for term in map(norm, CLOSURE_TERMS))
-    has_work = any(term in n for term in map(norm, WORK_TERMS))
-    excluded = any(term in n for term in map(norm, EXCLUDE_TERMS))
+    has_closure = any(norm(term) in n for term in CLOSURE_TERMS)
+    has_work = any(norm(term) in n for term in WORK_TERMS)
+    excluded = any(norm(term) in n for term in EXCLUDE_TERMS)
+
     return has_closure and has_work and not excluded
+
 
 def closure_window(text: str) -> str:
     pieces = re.split(r"[▪•]|\n|(?<=\.)\s+", text)
@@ -435,17 +538,18 @@ def closure_window(text: str) -> str:
         "suspenderá",
         "suspendida su operatividad",
         "permanecio cerrado",
-        "permaneció cerrado"
+        "permaneció cerrado",
     ]
 
     selected = [
         p.strip()
         for p in pieces
-        if any(term in norm(p) for term in map(norm, closure_terms))
+        if any(norm(term) in norm(p) for term in closure_terms)
     ]
 
     return " ".join(selected) if selected else text
-  
+
+
 def infer_airport(text: str) -> tuple[str, str, str]:
     search_text = closure_window(text)
     n = norm(search_text)
@@ -466,16 +570,24 @@ def infer_airport(text: str) -> tuple[str, str, str]:
 
 
 def extract_dates(text: str) -> dict:
-    # Devuelve texto crudo de fechas encontradas; la normalización final debe validarse manualmente.
+    """
+    Devuelve texto crudo de fechas encontradas.
+    La normalización final debe validarse manualmente.
+    """
     date_patterns = [
         r"\b\d{1,2}/\d{1,2}/\d{2,4}\b",
         r"\b\d{4}-\d{2}-\d{2}\b",
         r"\b\d{1,2}\s+de\s+[a-záéíóúñ]+\s+de\s+\d{4}\b",
         r"\b\d{1,2}\s+de\s+[a-záéíóúñ]+\b",
+        r"\b[Aa]br[’']?\d{2}\b",
+        r"\b[Aa]go[’']?\d{2}\b",
+        r"\b[Ee]ne[’']?\d{2}\b",
     ]
+
     found = []
     for pat in date_patterns:
         found.extend(re.findall(pat, text, flags=re.IGNORECASE))
+
     return {"fechas_detectadas": list(dict.fromkeys(found))}
 
 
@@ -484,6 +596,8 @@ def classify_event(text: str) -> tuple[str, str]:
 
     if "suspension de operaciones" in n or "suspendio sus operaciones" in n:
         tipo = "suspension_operaciones"
+    elif "suspendida su operatividad" in n:
+        tipo = "suspension_operaciones"
     elif "cese de operaciones" in n:
         tipo = "cese_operaciones"
     elif "pista" in n and ("cerrad" in n or "clausurad" in n):
@@ -491,7 +605,9 @@ def classify_event(text: str) -> tuple[str, str]:
     else:
         tipo = "cierre_operativo"
 
-    if "mantenimiento" in n:
+    if "autobomba" in n:
+        causa = "equipamiento_operativo"
+    elif "mantenimiento" in n:
         causa = "mantenimiento"
     elif "rehabilitacion" in n:
         causa = "rehabilitacion"
@@ -511,37 +627,37 @@ def build_candidates(informes: Iterable[Informe]) -> dict:
     candidates = []
     fuentes_revisadas = []
 
-for informe in informes:
-    try:
-        pdf_path = download_pdf(informe)
-        text = extract_note_text_from_pdf(pdf_path)
+    for informe in informes:
+        try:
+            pdf_path = download_pdf(informe)
+            text = extract_note_text_from_pdf(pdf_path)
 
-        if not text.strip():
+            if not text.strip():
+                fuentes_revisadas.append({
+                    "anio": informe.year,
+                    "mes": informe.month,
+                    "documento": informe.filename,
+                    "estado": "ok",
+                    "candidatos_detectados": 0,
+                    "criterio_busqueda": "solo_notas_generales_primeras_paginas",
+                    "url": informe.page_url,
+                    "download_url": informe.download_url,
+                })
+                print(f"[OK] {informe.year}-{informe.month}: sin Notas Generales en primeras páginas")
+                continue
+
+        except Exception as e:
+            print(f"[ERROR] {informe.year}-{informe.month}: {e}")
             fuentes_revisadas.append({
                 "anio": informe.year,
                 "mes": informe.month,
                 "documento": informe.filename,
-                "estado": "ok",
-                "candidatos_detectados": 0,
-                "criterio_busqueda": "solo_notas_primeras_paginas",
+                "estado": "error",
+                "error": str(e),
                 "url": informe.page_url,
                 "download_url": informe.download_url,
             })
-            print(f"[OK] {informe.year}-{informe.month}: sin sección de notas en primeras páginas")
             continue
-
-    except Exception as e:
-        print(f"[ERROR] {informe.year}-{informe.month}: {e}")
-        fuentes_revisadas.append({
-            "anio": informe.year,
-            "mes": informe.month,
-            "documento": informe.filename,
-            "estado": "error",
-            "error": str(e),
-            "url": informe.page_url,
-            "download_url": informe.download_url,
-        })
-        continue
 
         paragraphs = split_candidate_paragraphs(text)
         hits = [p for p in paragraphs if is_relevant(p)]
@@ -571,7 +687,7 @@ for informe in informes:
                 },
                 "estado_revision": "pendiente",
                 "incluir_en_base": None,
-                "observaciones_revision": ""
+                "observaciones_revision": "",
             })
 
         fuentes_revisadas.append({
@@ -580,6 +696,7 @@ for informe in informes:
             "documento": informe.filename,
             "estado": "ok",
             "candidatos_detectados": len(hits),
+            "criterio_busqueda": "solo_notas_generales_primeras_paginas",
             "url": informe.page_url,
             "download_url": informe.download_url,
         })
@@ -589,20 +706,33 @@ for informe in informes:
     return {
         "metadata": {
             "nombre": "cierres_operativos_aeropuertos_anac_2016_2026_candidatos",
-           "descripcion": "Candidatos extraídos automáticamente desde la sección Notas / Notas Generales de las primeras páginas de los informes mensuales ANAC. Requieren validación manual antes de incorporarse a eventos confirmados.",
-"fuente": BASE_URL,
-"alcance_extraccion": "solo_notas_primeras_paginas",
-"max_paginas_revisadas_por_pdf": MAX_NOTE_SCAN_PAGES,
-          
+            "descripcion": (
+                "Candidatos extraídos automáticamente desde la sección Notas Generales "
+                "/ aclaraciones metodológicas de las primeras páginas de los informes "
+                "mensuales ANAC. Requieren validación manual antes de incorporarse a "
+                "eventos confirmados."
+            ),
+            "fuente": BASE_URL,
+            "alcance_extraccion": "solo_notas_generales_primeras_paginas",
+            "max_paginas_revisadas_por_pdf": MAX_NOTE_SCAN_PAGES,
             "criterio": {
-                "incluye": ["cierre/cese/suspensión/inoperatividad", "obra/mantenimiento/infraestructura"],
-                "excluye": ["paros", "pandemia", "meteorología puntual", "cambios comerciales"]
+                "incluye": [
+                    "cierre/cese/suspensión/inoperatividad",
+                    "obra/mantenimiento/infraestructura/equipamiento operativo",
+                ],
+                "excluye": [
+                    "paros",
+                    "pandemia",
+                    "meteorología puntual",
+                    "cambios comerciales",
+                    "notas al pie de rankings o gráficos posteriores",
+                ],
             },
             "total_candidatos": len(candidates),
             "generado_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         },
         "fuentes_revisadas": fuentes_revisadas,
-        "candidatos": candidates
+        "candidatos": candidates,
     }
 
 
@@ -621,7 +751,7 @@ def main():
 
     OUTPUT_PATH.write_text(
         json.dumps(result, ensure_ascii=False, indent=2),
-        encoding="utf-8"
+        encoding="utf-8",
     )
 
     print(f"[OK] Escrito {OUTPUT_PATH}")
