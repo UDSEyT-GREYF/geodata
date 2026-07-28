@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Impacto COVID-19 en la aviación argentina | SNA 2015-2025</title>
+  <title>Impacto COVID-19 en la aviación argentina | SNA y aeropuertos 2015-2025</title>
   <style>
     :root{
       --azul:#002855;
@@ -111,6 +111,7 @@
       gap:12px;
       margin-top:13px;
     }
+    .grid-kpi.three{grid-template-columns:repeat(3,minmax(0,1fr));}
     .kpi{
       border:1px solid var(--linea);
       border-radius:14px;
@@ -257,6 +258,98 @@
       padding:0;
     }
     .method-list li{margin:5px 0}
+    .selector-card{
+      border:1px solid var(--linea);
+      border-radius:15px;
+      background:#f9fcff;
+      padding:14px;
+      margin:10px 0 14px;
+    }
+    .selector-row{
+      display:grid;
+      grid-template-columns:minmax(280px,520px) auto;
+      gap:10px;
+      align-items:start;
+    }
+    .combo{position:relative;max-width:520px;}
+    .combo input{
+      width:100%;
+      border:1px solid #b9c8da;
+      border-radius:10px;
+      padding:10px 40px 10px 12px;
+      font-size:.92rem;
+      background:#fff;
+      color:var(--texto);
+    }
+    .combo input:focus{
+      outline:3px solid rgba(42,111,176,.18);
+      border-color:var(--azul2);
+    }
+    .combo-clear{
+      position:absolute;
+      right:6px;
+      top:6px;
+      width:28px;
+      height:28px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:0;
+      border-radius:8px;
+      line-height:1;
+      font-size:1rem;
+      color:#58708a;
+    }
+    .combo-list{
+      display:none;
+      position:absolute;
+      z-index:20;
+      left:0;
+      right:0;
+      top:calc(100% + 4px);
+      max-height:280px;
+      overflow:auto;
+      background:#fff;
+      border:1px solid #b9c8da;
+      border-radius:12px;
+      box-shadow:0 12px 26px rgba(25,41,66,.18);
+    }
+    .combo-list.open{display:block;}
+    .combo-item{
+      width:100%;
+      border:0;
+      border-bottom:1px solid #eef2f6;
+      border-radius:0;
+      background:#fff;
+      text-align:left;
+      display:block;
+      padding:9px 11px;
+      color:#263747;
+      font-weight:650;
+    }
+    .combo-item:hover,.combo-item.active{background:#edf6ff;color:var(--azul);}
+    .combo-item small{display:block;color:var(--muted);font-weight:600;margin-top:2px;}
+    .selector-hint{
+      color:var(--muted);
+      font-size:.84rem;
+      line-height:1.35;
+      margin-top:8px;
+    }
+    .airport-title-line{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:baseline;
+      gap:8px;
+      margin:10px 0 4px;
+    }
+    .airport-title-line strong{
+      color:var(--azul);
+      font-size:1.06rem;
+    }
+    .airport-title-line span{
+      color:var(--muted);
+      font-size:.86rem;
+    }
     footer{
       color:var(--muted);
       font-size:.8rem;
@@ -265,18 +358,19 @@
       padding:0 4px;
     }
     @media (max-width:900px){
-      .grid-kpi{grid-template-columns:1fr 1fr}
+      .grid-kpi,.grid-kpi.three{grid-template-columns:1fr 1fr}
       .chart-grid,.two-col{grid-template-columns:1fr}
+      .selector-row{grid-template-columns:1fr}
     }
     @media (max-width:560px){
-      .grid-kpi{grid-template-columns:1fr}
+      .grid-kpi,.grid-kpi.three{grid-template-columns:1fr}
       header{padding:20px 18px}
     }
     @media print{
       body{background:#fff}
       .wrap{max-width:none;padding:0}
       header,.section{box-shadow:none}
-      button,.actions{display:none}
+      button,.actions,.selector-card{display:none!important}
       .chart-grid,.two-col{grid-template-columns:1fr 1fr}
       .section{break-inside:avoid}
     }
@@ -290,23 +384,22 @@
       <p class="lead">
         Comparación de la evolución del tráfico comercial del SNA entre el período prepandemia,
         la caída de 2020–2021 y el nivel alcanzado en 2025. El informe separa pasajeros y vuelos
-        comerciales de cabotaje e internacionales.
+        comerciales de cabotaje e internacionales, y permite consultar el mismo indicador por aeropuerto.
       </p>
       <div class="header-meta">
         <span class="pill">Base: 2019 = 100</span>
         <span class="pill">Serie mensual agregada SNA</span>
         <span class="pill">Pasajeros y vuelos comerciales</span>
         <span class="pill">Cabotaje / Internacional</span>
+        <span class="pill">Consulta por aeropuerto</span>
       </div>
     </header>
 
     <div id="status" class="status">Cargando datos desde la carpeta fuentes…</div>
 
     <section class="section">
-      <h2>Resumen ejecutivo</h2>
-      <p id="execText">
-        Calculando resultados principales…
-      </p>
+      <h2>Resumen ejecutivo · SNA</h2>
+      <p id="execText">Calculando resultados principales…</p>
 
       <div class="grid-kpi">
         <div class="kpi">
@@ -384,7 +477,7 @@
     </section>
 
     <section class="section">
-      <h2>Índice de recuperación: 2019 = 100</h2>
+      <h2>Índice de recuperación SNA: 2019 = 100</h2>
       <div class="chart-grid">
         <div class="chart-card">
           <h3>Pasajeros</h3>
@@ -410,40 +503,126 @@
     </section>
 
     <section class="section">
-      <h2>Comparación 2025 vs 2019</h2>
+      <h2>Comparación SNA 2025 vs 2019</h2>
       <p id="compareText">Calculando comparación…</p>
       <div class="table-wrap">
-        <table id="compareTable">
-          <thead></thead>
-          <tbody></tbody>
-        </table>
+        <table id="compareTable"><thead></thead><tbody></tbody></table>
+      </div>
+    </section>
+
+    <section class="section" id="airportSection">
+      <h2>Análisis por aeropuerto</h2>
+      <p class="note">
+        Seleccioná un aeropuerto para consultar la evolución 2015–2025 con la misma lógica del análisis SNA:
+        pasajeros y vuelos comerciales totales, cabotaje e internacional, comparación 2025 vs 2019 e índice 2019 = 100.
+      </p>
+
+      <div class="selector-card">
+        <div class="selector-row">
+          <div class="combo">
+            <input id="airportInput" type="search" autocomplete="off" placeholder="Buscar aeropuerto por nombre, ciudad o IATA…" disabled />
+            <button id="airportClear" class="combo-clear" type="button" title="Limpiar búsqueda" disabled>×</button>
+            <div id="airportList" class="combo-list"></div>
+          </div>
+          <div class="actions" style="margin-top:0;">
+            <button id="btnAirportCsv" type="button" disabled>Descargar CSV aeropuerto</button>
+          </div>
+        </div>
+        <div id="airportHint" class="selector-hint">Cargando selector de aeropuertos…</div>
+      </div>
+
+      <div class="airport-title-line">
+        <strong id="airportTitle">Aeropuerto seleccionado</strong>
+        <span id="airportMeta">—</span>
+      </div>
+      <p id="airportText">Seleccione un aeropuerto para ver la comparación.</p>
+
+      <div class="grid-kpi">
+        <div class="kpi">
+          <div class="label">Pasajeros 2025 vs 2019</div>
+          <div id="airportKpiPaxTotal" class="value">—</div>
+          <div id="airportKpiPaxTotalSub" class="sub">—</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Cabotaje pasajeros</div>
+          <div id="airportKpiPaxCab" class="value">—</div>
+          <div id="airportKpiPaxCabSub" class="sub">—</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Internacional pasajeros</div>
+          <div id="airportKpiPaxInt" class="value">—</div>
+          <div id="airportKpiPaxIntSub" class="sub">—</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Vuelos 2025 vs 2019</div>
+          <div id="airportKpiVuelosTotal" class="value">—</div>
+          <div id="airportKpiVuelosTotalSub" class="sub">—</div>
+        </div>
+      </div>
+
+      <div class="chart-grid" style="margin-top:14px;">
+        <div class="chart-card">
+          <h3>Pasajeros por segmento</h3>
+          <div class="chart-sub">Valores anuales del aeropuerto seleccionado.</div>
+          <div id="airportChartPax"></div>
+          <div class="legend"><span><i class="sw cab"></i>Cabotaje</span><span><i class="sw int"></i>Internacional</span></div>
+        </div>
+        <div class="chart-card">
+          <h3>Índice pasajeros 2019 = 100</h3>
+          <div class="chart-sub">Total, cabotaje e internacional.</div>
+          <div id="airportChartPaxIndex"></div>
+          <div class="legend"><span><i class="sw total"></i>Total</span><span><i class="sw cab"></i>Cabotaje</span><span><i class="sw int"></i>Internacional</span></div>
+        </div>
+      </div>
+
+      <div class="chart-grid" style="margin-top:14px;">
+        <div class="chart-card">
+          <h3>Vuelos por segmento</h3>
+          <div class="chart-sub">Valores anuales del aeropuerto seleccionado.</div>
+          <div id="airportChartVuelos"></div>
+          <div class="legend"><span><i class="sw cab"></i>Cabotaje</span><span><i class="sw int"></i>Internacional</span></div>
+        </div>
+        <div class="chart-card">
+          <h3>Índice vuelos 2019 = 100</h3>
+          <div class="chart-sub">Total, cabotaje e internacional.</div>
+          <div id="airportChartVuelosIndex"></div>
+          <div class="legend"><span><i class="sw total"></i>Total</span><span><i class="sw cab"></i>Cabotaje</span><span><i class="sw int"></i>Internacional</span></div>
+        </div>
+      </div>
+
+      <h3>Comparación aeropuerto 2025 vs 2019</h3>
+      <div class="table-wrap">
+        <table id="airportCompareTable"><thead></thead><tbody></tbody></table>
+      </div>
+
+      <h3>Serie anual del aeropuerto</h3>
+      <div class="table-wrap">
+        <table id="airportAnnualTable"><thead></thead><tbody></tbody></table>
       </div>
     </section>
 
     <section class="section">
-      <h2>Serie anual utilizada</h2>
+      <h2>Serie anual utilizada · SNA</h2>
       <p class="note">
         La tabla resume las series mensuales agregadas por año. Los totales surgen de sumar cabotaje e internacional.
       </p>
       <div class="actions">
-        <button id="btnCsv" class="primary" type="button" disabled>Descargar CSV resumen</button>
+        <button id="btnCsv" class="primary" type="button" disabled>Descargar CSV resumen SNA</button>
         <button id="btnPrint" type="button">Imprimir / guardar PDF</button>
       </div>
       <div class="table-wrap" style="margin-top:12px;">
-        <table id="annualTable">
-          <thead></thead>
-          <tbody></tbody>
-        </table>
+        <table id="annualTable"><thead></thead><tbody></tbody></table>
       </div>
     </section>
 
     <section class="section">
       <h2>Metodología y fuentes de datos</h2>
       <ul class="method-list">
-        <li>Unidad de análisis: agregado mensual del Sistema Nacional de Aeropuertos, identificado como <code>SNA</code>.</li>
-        <li>Fuentes locales esperadas: <code>fuentes/pasajeros_SNA_mensual.csv</code> y <code>fuentes/vuelos_SNA_mensual.csv</code>.</li>
-        <li>Indicadores: pasajeros comerciales y vuelos comerciales.</li>
-        <li>Segmentos: cabotaje e internacional, tomados del campo <code>region</code> de cada archivo.</li>
+        <li>Unidad de análisis general: agregado mensual del Sistema Nacional de Aeropuertos, identificado como <code>SNA</code>.</li>
+        <li>Fuentes SNA esperadas: <code>fuentes/pasajeros_SNA_mensual.csv</code> y <code>fuentes/vuelos_SNA_mensual.csv</code>.</li>
+        <li>Fuentes por aeropuerto esperadas: <code>fuentes/Datos_aeropuertos.geojson</code>, <code>fuentes/pasajeros_aeropuerto_mensual.csv</code> y <code>fuentes/movimientos_aeropuerto_mensual.csv</code>.</li>
+        <li>Indicadores: pasajeros comerciales y vuelos/movimientos comerciales.</li>
+        <li>Segmentos: cabotaje e internacional, tomados del campo <code>region</code>, <code>segmento</code> o del nombre del <code>dataset</code> cuando corresponda.</li>
         <li>Período graficado: 2015–2025. Para el análisis de recuperación se usa 2019 como base prepandemia.</li>
         <li>Variación porcentual: <code>((valor_2025 / valor_2019) - 1) × 100</code>.</li>
         <li>Índice de recuperación: <code>(valor_año / valor_2019) × 100</code>.</li>
@@ -453,7 +632,7 @@
     <footer>
       Ubicación sugerida: guardar como <strong>impacto-covid-aviacion-argentina.html</strong> en la raíz del sitio,
       al mismo nivel que la carpeta <strong>fuentes</strong>. Esta versión no usa librerías externas: todos los cálculos y gráficos
-      se generan en el navegador desde CSV.
+      se generan en el navegador desde CSV y GeoJSON locales.
     </footer>
   </div>
 
@@ -462,8 +641,11 @@
     "use strict";
 
     const DATA_PATHS = {
-      pax: "fuentes/pasajeros_SNA_mensual.csv",
-      vuelos: "fuentes/vuelos_SNA_mensual.csv"
+      paxSna: "fuentes/pasajeros_SNA_mensual.csv",
+      vuelosSna: "fuentes/vuelos_SNA_mensual.csv",
+      airports: "fuentes/Datos_aeropuertos.geojson",
+      paxAirport: "fuentes/pasajeros_aeropuerto_mensual.csv",
+      movAirport: "fuentes/movimientos_aeropuerto_mensual.csv"
     };
 
     const YEARS = Array.from({ length: 2025 - 2015 + 1 }, (_, i) => 2015 + i);
@@ -473,6 +655,11 @@
     let annualRows = [];
     let rawPaxRows = [];
     let rawVuelosRows = [];
+    let rawAirportPaxRows = [];
+    let rawAirportMovRows = [];
+    let airportOptions = [];
+    let selectedAirport = null;
+    let selectedAirportRows = [];
 
     const $ = id => document.getElementById(id);
 
@@ -485,6 +672,26 @@
         .replace(/[\u0300-\u036f]/g,"")
         .replace(/[^a-z0-9]+/g,"_")
         .replace(/^_+|_+$/g,"");
+    }
+
+    function normalizeText(v){
+      return clean(v)
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g,"")
+        .replace(/[^a-z0-9]+/g," ")
+        .replace(/\s+/g," ")
+        .trim();
+    }
+
+    function firstNonEmpty(obj, keys, fallback = ""){
+      for (const key of keys){
+        if (!obj) continue;
+        const normalized = normalizeHeader(key);
+        const value = obj[key] !== undefined ? obj[key] : obj[normalized];
+        if (value !== undefined && value !== null && String(value).trim() !== "") return value;
+      }
+      return fallback;
     }
 
     function detectSep(headerLine){
@@ -574,6 +781,26 @@
       return readTextSmart(resp);
     }
 
+    async function fetchOptional(url, type = "text"){
+      try{
+        const resp = await fetch(url, { cache:"no-store" });
+        if (!resp.ok) return null;
+        return type === "json" ? await resp.json() : await readTextSmart(resp);
+      }catch(err){
+        console.warn(`No se pudo cargar ${url}`, err);
+        return null;
+      }
+    }
+
+    function escapeHtml(value){
+      return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#39;");
+    }
+
     function setStatus(message, type = "ok"){
       const el = $("status");
       el.className = `status ${type}`;
@@ -615,21 +842,51 @@
       return (value / base) * 100;
     }
 
-    function getAnnualValue(rows, valueCol, year, region){
-      return rows
-        .filter(r => Number(r.anio) === Number(year) && clean(r.region).toLowerCase() === region)
-        .reduce((acc, r) => {
-          const n = parseNumber(r[valueCol] ?? r.valor);
-          return acc + (Number.isFinite(n) ? n : 0);
-        }, 0);
+    function getYear(row){
+      const y = parseNumber(firstNonEmpty(row, ["anio", "ano", "year", "año"]));
+      if (Number.isFinite(y)) return Number(y);
+      const raw = firstNonEmpty(row, ["fecha", "periodo_id", "anomes", "año_mes", "ano_mes"]);
+      const m = String(raw || "").match(/^(\d{4})/);
+      return m ? Number(m[1]) : NaN;
     }
 
-    function buildAnnualRows(){
+    function getSegment(row){
+      const direct = normalizeText(firstNonEmpty(row, ["region", "segmento", "segment"]));
+      const dataset = normalizeText(firstNonEmpty(row, ["dataset"]));
+      const value = direct || dataset;
+      if (value.includes("internacional")) return "internacional";
+      if (value.includes("cabotaje") || value.includes("domest")) return "cabotaje";
+      return "";
+    }
+
+    function getIata(row){
+      return clean(firstNonEmpty(row, ["iata", "IATA", "codigo_iata", "aeropuerto_iata"])).toUpperCase();
+    }
+
+    function getRowValue(row, preferredCols){
+      for (const col of preferredCols){
+        const v = row[normalizeHeader(col)] !== undefined ? row[normalizeHeader(col)] : row[col];
+        const n = parseNumber(v);
+        if (Number.isFinite(n)) return n;
+      }
+      return 0;
+    }
+
+    function getAnnualValue(rows, valueCols, year, segment, iata = null){
+      const code = iata ? clean(iata).toUpperCase() : null;
+      return rows
+        .filter(r => Number(getYear(r)) === Number(year))
+        .filter(r => !code || getIata(r) === code)
+        .filter(r => getSegment(r) === segment)
+        .reduce((acc, r) => acc + getRowValue(r, valueCols), 0);
+    }
+
+    function buildAnnualRowsFrom(paxRows, vuelosRows, iata = null){
       return YEARS.map(year => {
-        const paxCab = getAnnualValue(rawPaxRows, "valor_pax", year, "cabotaje");
-        const paxInt = getAnnualValue(rawPaxRows, "valor_pax", year, "internacional");
-        const vueloCab = getAnnualValue(rawVuelosRows, "valor_vuelos", year, "cabotaje");
-        const vueloInt = getAnnualValue(rawVuelosRows, "valor_vuelos", year, "internacional");
+        const paxCab = getAnnualValue(paxRows, ["valor_pax", "pasajeros", "valor"], year, "cabotaje", iata);
+        const paxInt = getAnnualValue(paxRows, ["valor_pax", "pasajeros", "valor"], year, "internacional", iata);
+        const vueloCab = getAnnualValue(vuelosRows, ["valor_vuelos", "valor_movimientos", "vuelos", "movimientos", "valor"], year, "cabotaje", iata);
+        const vueloInt = getAnnualValue(vuelosRows, ["valor_vuelos", "valor_movimientos", "vuelos", "movimientos", "valor"], year, "internacional", iata);
 
         return {
           anio: year,
@@ -643,15 +900,23 @@
       });
     }
 
-    function byYear(year){
-      return annualRows.find(r => Number(r.anio) === Number(year)) || {};
+    function byYearFrom(rows, year){
+      return rows.find(r => Number(r.anio) === Number(year)) || {};
     }
+
+    function byYear(year){ return byYearFrom(annualRows, year); }
 
     function classForPct(v){
       if (!Number.isFinite(v)) return "";
       if (v >= 0) return "good";
       if (v <= -20) return "bad";
       return "warn";
+    }
+
+    function setKpi(idValue, idSub, variation, current, base, metricLabel){
+      $(idValue).textContent = fmtPct(variation);
+      $(idValue).className = `value ${classForPct(variation)}`;
+      $(idSub).textContent = `${metricLabel(current)} en ${COMPARE_YEAR} vs ${metricLabel(base)} en ${BASE_YEAR}`;
     }
 
     function updateTextAndKPIs(){
@@ -675,36 +940,24 @@
         `equivalente a una variación de <strong class="${classForPct(pax2020Var)}">${fmtPct(pax2020Var)}</strong> respecto de 2019. ` +
         `En 2021 la recuperación todavía fue parcial, con <strong>${fmtM(y2021.pax_total)}</strong> ` +
         `(<strong class="${classForPct(pax2021Var)}">${fmtPct(pax2021Var)}</strong> frente a 2019). ` +
-        `Para 2025, el sistema superó el nivel prepandemia: <strong>${fmtM(y2025.pax_total)}</strong> pasajeros, ` +
-        `<strong class="${classForPct(paxTotalVar)}">${fmtPct(paxTotalVar)}</strong> sobre 2019. ` +
-        `La recuperación de pasajeros fue positiva tanto en cabotaje (<strong>${fmtPct(paxCabVar)}</strong>) ` +
-        `como en internacional (<strong>${fmtPct(paxIntVar)}</strong>).`;
+        `Para 2025, el sistema alcanzó <strong>${fmtM(y2025.pax_total)}</strong> pasajeros, ` +
+        `<strong class="${classForPct(paxTotalVar)}">${fmtPct(paxTotalVar)}</strong> respecto de 2019. ` +
+        `La variación de pasajeros fue de <strong>${fmtPct(paxCabVar)}</strong> en cabotaje ` +
+        `y <strong>${fmtPct(paxIntVar)}</strong> en internacional.`;
 
-      $("kpiPaxTotal").textContent = fmtPct(paxTotalVar);
-      $("kpiPaxTotal").className = `value ${classForPct(paxTotalVar)}`;
-      $("kpiPaxTotalSub").textContent = `${fmtM(y2025.pax_total)} en 2025 vs ${fmtM(y2019.pax_total)} en 2019`;
-
-      $("kpiPaxCab").textContent = fmtPct(paxCabVar);
-      $("kpiPaxCab").className = `value ${classForPct(paxCabVar)}`;
-      $("kpiPaxCabSub").textContent = `${fmtM(y2025.pax_cabotaje)} en 2025 vs ${fmtM(y2019.pax_cabotaje)} en 2019`;
-
-      $("kpiPaxInt").textContent = fmtPct(paxIntVar);
-      $("kpiPaxInt").className = `value ${classForPct(paxIntVar)}`;
-      $("kpiPaxIntSub").textContent = `${fmtM(y2025.pax_internacional)} en 2025 vs ${fmtM(y2019.pax_internacional)} en 2019`;
-
-      $("kpiVuelosTotal").textContent = fmtPct(vuelosTotalVar);
-      $("kpiVuelosTotal").className = `value ${classForPct(vuelosTotalVar)}`;
-      $("kpiVuelosTotalSub").textContent = `${fmt(y2025.vuelos_total)} vuelos en 2025 vs ${fmt(y2019.vuelos_total)} en 2019`;
+      setKpi("kpiPaxTotal", "kpiPaxTotalSub", paxTotalVar, y2025.pax_total, y2019.pax_total, fmtM);
+      setKpi("kpiPaxCab", "kpiPaxCabSub", paxCabVar, y2025.pax_cabotaje, y2019.pax_cabotaje, fmtM);
+      setKpi("kpiPaxInt", "kpiPaxIntSub", paxIntVar, y2025.pax_internacional, y2019.pax_internacional, fmtM);
+      setKpi("kpiVuelosTotal", "kpiVuelosTotalSub", vuelosTotalVar, y2025.vuelos_total, y2019.vuelos_total, v => `${fmt(v)} vuelos`);
 
       $("compareText").innerHTML =
         `En vuelos comerciales, el total de 2025 quedó <strong class="${classForPct(vuelosTotalVar)}">${fmtPct(vuelosTotalVar)}</strong> ` +
-        `por encima de 2019. El cabotaje quedó prácticamente en el nivel prepandemia ` +
-        `(<strong>${fmtPct(vuelosCabVar)}</strong>), mientras que el internacional lo superó con mayor intensidad ` +
-        `(<strong>${fmtPct(vuelosIntVar)}</strong>).`;
+        `frente a 2019. La variación fue de <strong>${fmtPct(vuelosCabVar)}</strong> en cabotaje ` +
+        `y de <strong>${fmtPct(vuelosIntVar)}</strong> en internacional.`;
     }
 
-    function renderStackedBars(containerId, metricPrefix, titleFormatter){
-      const data = annualRows.map(r => ({
+    function renderStackedBars(containerId, metricPrefix, rows, titleFormatter){
+      const data = rows.map(r => ({
         year: r.anio,
         cab: r[`${metricPrefix}_cabotaje`],
         intl: r[`${metricPrefix}_internacional`],
@@ -718,11 +971,10 @@
       const innerH = height - pad.top - pad.bottom;
       const maxTotal = Math.max(...data.map(d => d.total), 1);
       const barGap = 8;
-      const barW = innerW / data.length - barGap;
+      const barW = Math.max(4, innerW / data.length - barGap);
 
       const y = value => pad.top + innerH - (value / maxTotal) * innerH;
       const x = i => pad.left + i * (innerW / data.length) + barGap / 2;
-
       const yTicks = [0, .25, .5, .75, 1].map(t => Math.round(maxTotal * t));
 
       let svg = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Gráfico de barras apiladas">
@@ -758,12 +1010,12 @@
       $(containerId).innerHTML = svg;
     }
 
-    function renderIndexLines(containerId, metricPrefix){
-      const base = byYear(BASE_YEAR);
+    function renderIndexLines(containerId, metricPrefix, rows){
+      const base = byYearFrom(rows, BASE_YEAR);
       const series = [
-        { key:"total", label:"Total", color:"#002855", values: annualRows.map(r => ({ year:r.anio, value:idx(r[`${metricPrefix}_total`], base[`${metricPrefix}_total`]) })) },
-        { key:"cabotaje", label:"Cabotaje", color:"#2A6FB0", values: annualRows.map(r => ({ year:r.anio, value:idx(r[`${metricPrefix}_cabotaje`], base[`${metricPrefix}_cabotaje`]) })) },
-        { key:"internacional", label:"Internacional", color:"#7bb7e5", values: annualRows.map(r => ({ year:r.anio, value:idx(r[`${metricPrefix}_internacional`], base[`${metricPrefix}_internacional`]) })) }
+        { key:"total", label:"Total", color:"#002855", values: rows.map(r => ({ year:r.anio, value:idx(r[`${metricPrefix}_total`], base[`${metricPrefix}_total`]) })) },
+        { key:"cabotaje", label:"Cabotaje", color:"#2A6FB0", values: rows.map(r => ({ year:r.anio, value:idx(r[`${metricPrefix}_cabotaje`], base[`${metricPrefix}_cabotaje`]) })) },
+        { key:"internacional", label:"Internacional", color:"#7bb7e5", values: rows.map(r => ({ year:r.anio, value:idx(r[`${metricPrefix}_internacional`], base[`${metricPrefix}_internacional`]) })) }
       ];
 
       const width = 720;
@@ -772,12 +1024,11 @@
       const innerW = width - pad.left - pad.right;
       const innerH = height - pad.top - pad.bottom;
       const vals = series.flatMap(s => s.values.map(d => d.value)).filter(Number.isFinite);
-      const maxV = Math.max(120, Math.ceil(Math.max(...vals) / 10) * 10);
-      const minV = Math.min(0, Math.floor(Math.min(...vals) / 10) * 10);
+      const maxV = vals.length ? Math.max(120, Math.ceil(Math.max(...vals) / 10) * 10) : 120;
+      const minV = vals.length ? Math.min(0, Math.floor(Math.min(...vals) / 10) * 10) : 0;
       const span = maxV - minV || 1;
       const x = year => pad.left + ((year - YEARS[0]) / (YEARS[YEARS.length - 1] - YEARS[0])) * innerW;
       const y = value => pad.top + innerH - ((value - minV) / span) * innerH;
-
       const ticks = [];
       for (let t = Math.ceil(minV / 20) * 20; t <= maxV; t += 20) ticks.push(t);
 
@@ -793,6 +1044,7 @@
 
       series.forEach(s => {
         const pts = s.values.filter(d => Number.isFinite(d.value));
+        if (!pts.length) return;
         const path = pts.map((d, i) => `${i === 0 ? "M" : "L"} ${x(d.year).toFixed(2)} ${y(d.value).toFixed(2)}`).join(" ");
         svg += `<path d="${path}" fill="none" stroke="${s.color}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`;
         pts.forEach(d => {
@@ -813,10 +1065,10 @@
       $(containerId).innerHTML = svg;
     }
 
-    function renderCompareTable(){
-      const base = byYear(BASE_YEAR);
-      const comp = byYear(COMPARE_YEAR);
-      const rows = [
+    function renderCompareTableFor(tableId, rows){
+      const base = byYearFrom(rows, BASE_YEAR);
+      const comp = byYearFrom(rows, COMPARE_YEAR);
+      const dataRows = [
         ["Pasajeros", "Total", base.pax_total, comp.pax_total],
         ["Pasajeros", "Cabotaje", base.pax_cabotaje, comp.pax_cabotaje],
         ["Pasajeros", "Internacional", base.pax_internacional, comp.pax_internacional],
@@ -825,10 +1077,10 @@
         ["Vuelos", "Internacional", base.vuelos_internacional, comp.vuelos_internacional],
       ];
 
-      $("compareTable").querySelector("thead").innerHTML =
+      $(tableId).querySelector("thead").innerHTML =
         `<tr><th>Indicador</th><th>Segmento</th><th>2019</th><th>2025</th><th>Dif. absoluta</th><th>Variación %</th><th>Índice 2019=100</th></tr>`;
 
-      $("compareTable").querySelector("tbody").innerHTML = rows.map(([ind, seg, b, c]) => {
+      $(tableId).querySelector("tbody").innerHTML = dataRows.map(([ind, seg, b, c]) => {
         const v = pct(c, b);
         const index = idx(c, b);
         return `<tr>
@@ -843,8 +1095,8 @@
       }).join("");
     }
 
-    function renderAnnualTable(){
-      $("annualTable").querySelector("thead").innerHTML =
+    function renderAnnualTableFor(tableId, rows){
+      $(tableId).querySelector("thead").innerHTML =
         `<tr>
           <th>Año</th>
           <th>Pasajeros total</th>
@@ -857,9 +1109,9 @@
           <th>Índice vuelos total</th>
         </tr>`;
 
-      const base = byYear(BASE_YEAR);
+      const base = byYearFrom(rows, BASE_YEAR);
 
-      $("annualTable").querySelector("tbody").innerHTML = annualRows.map(r => `
+      $(tableId).querySelector("tbody").innerHTML = rows.map(r => `
         <tr>
           <td>${r.anio}</td>
           <td>${fmt(r.pax_total)}</td>
@@ -872,6 +1124,186 @@
           <td>${fmtIdx(idx(r.vuelos_total, base.vuelos_total))}</td>
         </tr>
       `).join("");
+    }
+
+    function renderSnaAll(){
+      updateTextAndKPIs();
+      renderStackedBars("chartPax", "pax", annualRows, fmtM);
+      renderStackedBars("chartVuelos", "vuelos", annualRows, v => fmt(v));
+      renderIndexLines("chartPaxIndex", "pax", annualRows);
+      renderIndexLines("chartVuelosIndex", "vuelos", annualRows);
+      renderCompareTableFor("compareTable", annualRows);
+      renderAnnualTableFor("annualTable", annualRows);
+    }
+
+    function getAirportTitleFromProps(p){
+      const iata = clean(firstNonEmpty(p, ["IATA", "iata"])).toUpperCase();
+      const ciudad = clean(firstNonEmpty(p, ["Ciudad", "Localidad", "Municipio", "Ciudad / Localidad", "Ciudad/Localidad", "Aeropuerto"]));
+      const nombre = clean(firstNonEmpty(p, ["Nombre del Aeropuerto", "Aeropuerto", "Denominacion", "Denominación", "nombre", "name"]));
+      if (iata === "AEP") return "Aeroparque Jorge Newbery";
+      if (ciudad && nombre && normalizeText(ciudad) !== normalizeText(nombre)) return `Aeropuerto de ${ciudad} – ${nombre}`;
+      if (ciudad) return `Aeropuerto de ${ciudad}`;
+      if (nombre) return nombre;
+      return iata;
+    }
+
+    function buildAirportOptions(geojson){
+      const fromGeo = (geojson?.features || [])
+        .map(f => f.properties || {})
+        .map(p => {
+          const iata = clean(firstNonEmpty(p, ["IATA", "iata"])).toUpperCase();
+          if (!iata) return null;
+          const ciudad = clean(firstNonEmpty(p, ["Ciudad", "Localidad", "Municipio", "Ciudad / Localidad", "Ciudad/Localidad"]));
+          const provincia = clean(firstNonEmpty(p, ["Provincia", "provincia"]));
+          const nombre = getAirportTitleFromProps(p);
+          return { iata, nombre, ciudad, provincia, search: normalizeText(`${iata} ${nombre} ${ciudad} ${provincia}`) };
+        })
+        .filter(Boolean);
+
+      const byIata = new Map();
+      fromGeo.forEach(a => byIata.set(a.iata, a));
+
+      // Respaldo: si hay IATA en las series por aeropuerto que no figuran en el GeoJSON, los agrega.
+      [...rawAirportPaxRows, ...rawAirportMovRows].forEach(r => {
+        const iata = getIata(r);
+        if (!iata || iata === "SNA" || byIata.has(iata)) return;
+        byIata.set(iata, { iata, nombre:`Aeropuerto ${iata}`, ciudad:"", provincia:"", search:normalizeText(iata) });
+      });
+
+      return Array.from(byIata.values()).sort((a,b) => a.iata.localeCompare(b.iata, "es"));
+    }
+
+    function airportLabel(a){
+      if (!a) return "";
+      return `${a.nombre} (${a.iata})`;
+    }
+
+    function renderAirportOptions(term = ""){
+      const list = $("airportList");
+      const normalized = normalizeText(term);
+      const matches = airportOptions
+        .filter(a => !normalized || a.search.includes(normalized))
+        .slice(0, 80);
+
+      if (!matches.length){
+        list.innerHTML = normalized ? `<div class="combo-item" style="cursor:default;">No se encontraron aeropuertos</div>` : "";
+      } else {
+        list.innerHTML = matches.map(a => `
+          <button type="button" class="combo-item" data-iata="${escapeHtml(a.iata)}">
+            ${escapeHtml(a.nombre)} (${escapeHtml(a.iata)})
+            <small>${escapeHtml([a.ciudad, a.provincia].filter(Boolean).join(" · "))}</small>
+          </button>
+        `).join("");
+      }
+      list.classList.add("open");
+    }
+
+    function hideAirportOptions(){
+      setTimeout(() => $("airportList").classList.remove("open"), 120);
+    }
+
+    function clearAirportVisuals(){
+      selectedAirportRows = [];
+      $("airportTitle").textContent = "Aeropuerto seleccionado";
+      $("airportMeta").textContent = "—";
+      $("airportText").textContent = "Seleccione un aeropuerto para ver la comparación.";
+      ["airportKpiPaxTotal","airportKpiPaxCab","airportKpiPaxInt","airportKpiVuelosTotal"].forEach(id => { $(id).textContent = "—"; $(id).className = "value"; });
+      ["airportKpiPaxTotalSub","airportKpiPaxCabSub","airportKpiPaxIntSub","airportKpiVuelosTotalSub"].forEach(id => $(id).textContent = "—");
+      ["airportChartPax","airportChartPaxIndex","airportChartVuelos","airportChartVuelosIndex"].forEach(id => $(id).innerHTML = "");
+      ["airportCompareTable","airportAnnualTable"].forEach(id => { $(id).querySelector("thead").innerHTML = ""; $(id).querySelector("tbody").innerHTML = ""; });
+      $("btnAirportCsv").disabled = true;
+    }
+
+    function updateAirportSection(iata){
+      const airport = airportOptions.find(a => a.iata === clean(iata).toUpperCase());
+      if (!airport) return;
+      selectedAirport = airport;
+      selectedAirportRows = buildAnnualRowsFrom(rawAirportPaxRows, rawAirportMovRows, airport.iata);
+
+      $("airportInput").value = airportLabel(airport);
+      $("airportTitle").textContent = airport.nombre;
+      $("airportMeta").textContent = [airport.iata, airport.ciudad, airport.provincia].filter(Boolean).join(" · ");
+
+      const y2019 = byYearFrom(selectedAirportRows, BASE_YEAR);
+      const y2025 = byYearFrom(selectedAirportRows, COMPARE_YEAR);
+      const y2020 = byYearFrom(selectedAirportRows, 2020);
+
+      const paxTotalVar = pct(y2025.pax_total, y2019.pax_total);
+      const paxCabVar = pct(y2025.pax_cabotaje, y2019.pax_cabotaje);
+      const paxIntVar = pct(y2025.pax_internacional, y2019.pax_internacional);
+      const vuelosTotalVar = pct(y2025.vuelos_total, y2019.vuelos_total);
+      const pax2020Var = pct(y2020.pax_total, y2019.pax_total);
+
+      $("airportText").innerHTML =
+        `En <strong>${escapeHtml(airport.nombre)} (${escapeHtml(airport.iata)})</strong>, el tráfico de pasajeros de 2020 fue ` +
+        `<strong>${fmt(y2020.pax_total)}</strong>, con una variación de ` +
+        `<strong class="${classForPct(pax2020Var)}">${fmtPct(pax2020Var)}</strong> respecto de 2019. ` +
+        `En 2025 se registraron <strong>${fmt(y2025.pax_total)}</strong> pasajeros, ` +
+        `<strong class="${classForPct(paxTotalVar)}">${fmtPct(paxTotalVar)}</strong> frente al nivel prepandemia. ` +
+        `La variación 2025 vs 2019 fue de <strong>${fmtPct(paxCabVar)}</strong> en cabotaje ` +
+        `y <strong>${fmtPct(paxIntVar)}</strong> en internacional.`;
+
+      setKpi("airportKpiPaxTotal", "airportKpiPaxTotalSub", paxTotalVar, y2025.pax_total, y2019.pax_total, v => fmt(v));
+      setKpi("airportKpiPaxCab", "airportKpiPaxCabSub", paxCabVar, y2025.pax_cabotaje, y2019.pax_cabotaje, v => fmt(v));
+      setKpi("airportKpiPaxInt", "airportKpiPaxIntSub", paxIntVar, y2025.pax_internacional, y2019.pax_internacional, v => fmt(v));
+      setKpi("airportKpiVuelosTotal", "airportKpiVuelosTotalSub", vuelosTotalVar, y2025.vuelos_total, y2019.vuelos_total, v => `${fmt(v)} vuelos`);
+
+      renderStackedBars("airportChartPax", "pax", selectedAirportRows, v => fmt(v));
+      renderIndexLines("airportChartPaxIndex", "pax", selectedAirportRows);
+      renderStackedBars("airportChartVuelos", "vuelos", selectedAirportRows, v => fmt(v));
+      renderIndexLines("airportChartVuelosIndex", "vuelos", selectedAirportRows);
+      renderCompareTableFor("airportCompareTable", selectedAirportRows);
+      renderAnnualTableFor("airportAnnualTable", selectedAirportRows);
+
+      $("btnAirportCsv").disabled = false;
+      $("airportHint").innerHTML = `Aeropuerto seleccionado: <strong>${escapeHtml(airportLabel(airport))}</strong>. Podés escribir otra ciudad, nombre o IATA para cambiar la selección.`;
+
+      const url = new URL(window.location.href);
+      url.searchParams.set("iata", airport.iata);
+      window.history.replaceState({}, "", url.toString());
+    }
+
+    function setupAirportSelector(){
+      const input = $("airportInput");
+      const clear = $("airportClear");
+      const list = $("airportList");
+
+      input.disabled = false;
+      clear.disabled = false;
+
+      input.addEventListener("focus", () => {
+        input.select();
+        renderAirportOptions("");
+      });
+
+      input.addEventListener("click", () => {
+        if (selectedAirport && input.value === airportLabel(selectedAirport)) input.value = "";
+        renderAirportOptions(input.value);
+      });
+
+      input.addEventListener("input", () => renderAirportOptions(input.value));
+      input.addEventListener("blur", hideAirportOptions);
+
+      clear.addEventListener("click", () => {
+        input.value = "";
+        input.focus();
+        renderAirportOptions("");
+      });
+
+      list.addEventListener("click", evt => {
+        const btn = evt.target.closest("button[data-iata]");
+        if (!btn) return;
+        updateAirportSection(btn.dataset.iata);
+        list.classList.remove("open");
+      });
+
+      const initial = new URLSearchParams(window.location.search).get("iata");
+      const defaultIata = (initial && airportOptions.some(a => a.iata === initial.toUpperCase()))
+        ? initial.toUpperCase()
+        : (airportOptions.some(a => a.iata === "AEP") ? "AEP" : airportOptions[0]?.iata);
+
+      if (defaultIata) updateAirportSection(defaultIata);
+      else clearAirportVisuals();
     }
 
     function csvEscape(value){
@@ -892,16 +1324,16 @@
       URL.revokeObjectURL(url);
     }
 
-    function downloadSummaryCsv(){
+    function rowsToCsv(rows, filename){
       const cols = [
         "anio",
         "pax_total","pax_cabotaje","pax_internacional",
         "vuelos_total","vuelos_cabotaje","vuelos_internacional",
         "indice_pax_total_2019_100","indice_vuelos_total_2019_100"
       ];
-      const base = byYear(BASE_YEAR);
+      const base = byYearFrom(rows, BASE_YEAR);
       const lines = [cols.join(";")];
-      annualRows.forEach(r => {
+      rows.forEach(r => {
         const row = {
           ...r,
           indice_pax_total_2019_100: fmtIdx(idx(r.pax_total, base.pax_total)).replace(",", "."),
@@ -909,39 +1341,57 @@
         };
         lines.push(cols.map(c => csvEscape(row[c] ?? "")).join(";"));
       });
-      downloadBlob("\uFEFF" + lines.join("\r\n"), "impacto_covid_sna_2015_2025_resumen.csv", "text/csv;charset=utf-8");
+      downloadBlob("\uFEFF" + lines.join("\r\n"), filename, "text/csv;charset=utf-8");
     }
 
-    function renderAll(){
-      updateTextAndKPIs();
-      renderStackedBars("chartPax", "pax", fmtM);
-      renderStackedBars("chartVuelos", "vuelos", v => fmt(v));
-      renderIndexLines("chartPaxIndex", "pax");
-      renderIndexLines("chartVuelosIndex", "vuelos");
-      renderCompareTable();
-      renderAnnualTable();
+    function downloadSummaryCsv(){
+      rowsToCsv(annualRows, "impacto_covid_sna_2015_2025_resumen.csv");
+    }
+
+    function downloadAirportCsv(){
+      if (!selectedAirport || !selectedAirportRows.length) return;
+      rowsToCsv(selectedAirportRows, `impacto_covid_${selectedAirport.iata}_2015_2025_resumen.csv`);
     }
 
     async function load(){
       try{
-        setStatus(`Cargando <strong>${DATA_PATHS.pax}</strong> y <strong>${DATA_PATHS.vuelos}</strong>…`, "warn");
-        const [paxText, vuelosText] = await Promise.all([
-          fetchText(DATA_PATHS.pax),
-          fetchText(DATA_PATHS.vuelos)
+        setStatus(
+          `Cargando series SNA y fuentes por aeropuerto desde la carpeta <strong>fuentes</strong>…`,
+          "warn"
+        );
+
+        const [paxText, vuelosText, airportsGJ, paxAirportText, movAirportText] = await Promise.all([
+          fetchText(DATA_PATHS.paxSna),
+          fetchText(DATA_PATHS.vuelosSna),
+          fetchOptional(DATA_PATHS.airports, "json"),
+          fetchOptional(DATA_PATHS.paxAirport, "text"),
+          fetchOptional(DATA_PATHS.movAirport, "text")
         ]);
 
         rawPaxRows = parseCSV(paxText);
         rawVuelosRows = parseCSV(vuelosText);
-        annualRows = buildAnnualRows();
+        annualRows = buildAnnualRowsFrom(rawPaxRows, rawVuelosRows);
 
-        renderAll();
+        rawAirportPaxRows = paxAirportText ? parseCSV(paxAirportText) : [];
+        rawAirportMovRows = movAirportText ? parseCSV(movAirportText) : [];
+        airportOptions = buildAirportOptions(airportsGJ);
+
+        renderSnaAll();
+        setupAirportSelector();
 
         $("btnCsv").disabled = false;
 
+        const warnings = [];
+        if (!airportsGJ) warnings.push("Datos_aeropuertos.geojson no cargado");
+        if (!paxAirportText) warnings.push("pasajeros_aeropuerto_mensual.csv no cargado");
+        if (!movAirportText) warnings.push("movimientos_aeropuerto_mensual.csv no cargado");
+
         setStatus(
-          `Datos cargados correctamente. Pasajeros: <strong>${rawPaxRows.length}</strong> registros mensuales. ` +
-          `Vuelos: <strong>${rawVuelosRows.length}</strong> registros mensuales. Período graficado: <strong>2015–2025</strong>.`,
-          "ok"
+          `Datos cargados correctamente. SNA: <strong>${rawPaxRows.length}</strong> registros de pasajeros y ` +
+          `<strong>${rawVuelosRows.length}</strong> registros de vuelos. Aeropuertos disponibles en selector: ` +
+          `<strong>${airportOptions.length}</strong>. Período graficado: <strong>2015–2025</strong>.` +
+          (warnings.length ? `<br><span>Advertencias: ${warnings.join("; ")}.</span>` : ""),
+          warnings.length ? "warn" : "ok"
         );
       }catch(err){
         console.error(err);
@@ -950,6 +1400,7 @@
     }
 
     $("btnCsv").addEventListener("click", downloadSummaryCsv);
+    $("btnAirportCsv").addEventListener("click", downloadAirportCsv);
     $("btnPrint").addEventListener("click", () => window.print());
 
     load();
