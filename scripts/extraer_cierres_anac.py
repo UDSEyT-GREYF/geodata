@@ -39,6 +39,7 @@ from pypdf import PdfReader
 
 BASE_URL = "https://consultas-publicas.anac.gob.ar/estadisticas-dnta/"
 OUTPUT_PATH = Path("fuentes/cierres_operativos_aeropuertos_anac_2016_2026.candidatos.json")
+FINAL_BASE_PATH = Path("fuentes/cierres_operativos_aeropuertos_anac_2016_2026.json")
 CACHE_DIR = Path(".cache/anac_informes_mensuales")
 
 YEARS = list(range(2016, 2027))
@@ -623,6 +624,173 @@ def classify_event(text: str) -> tuple[str, str]:
     return tipo, causa
 
 
+def candidate_signature(candidate: dict) -> tuple:
+    """
+    Firma para detectar candidatos repetidos aunque provengan de informes
+    mensuales distintos.
+
+    No incluye fuente ni mes de publicación, porque muchas Notas Generales se
+    repiten literalmente durante meses.
+    """
+    text = candidate.get("texto_fuente", "")
+    window = closure_window(text)
+    window = norm(window)
+    window = re.sub(r"[^a-z0-9]+", " ", window).strip()
+
+    fechas = "|".join(candidate.get("fechas_detectadas", []))
+
+    return (
+        candidate.get("iata") or "",
+        candidate.get("oaci") or "",
+        candidate.get("tipo_evento_sugerido") or "",
+        candidate.get("causa_categoria_sugerida") or "",
+        fechas,
+        window[:700],
+    )
+
+
+def dedupe_candidates(candidates: list[dict]) -> tuple[list[dict], int]:
+    """
+    Elimina candidatos repetidos originados por la misma nota publicada en
+    varios informes mensuales.
+    """
+    seen = set()
+    unique = []
+    removed = 0
+
+    for candidate in candidates:
+        sig = candidate_signature(candidate)
+
+        if sig in seen:
+            removed += 1
+            continue
+
+        seen.add(sig)
+        unique.append(candidate)
+
+    return unique, removed
+
+
+def spanish_date_variants(date_iso: str) -> list[str]:
+    """
+    Genera variantes simples de una fecha ISO para compararlas contra el texto
+    extraído de los PDF, que suele estar redactado como "01 de agosto de 2020"
+    o "15 de marzo 2021".
+    """
+    if not date_iso:
+        return []
+
+    match = re.match(r"^(\d{4})-(\d{2})-(\d{2})$", date_iso)
+    if not match:
+        return [norm(date_iso)]
+
+    year, month, day = match.groups()
+    month_names = {
+        "01": "enero",
+        "02": "febrero",
+        "03": "marzo",
+        "04": "abril",
+        "05": "mayo",
+        "06": "junio",
+        "07": "julio",
+        "08": "agosto",
+        "09": "septiembre",
+        "10": "octubre",
+        "11": "noviembre",
+        "12": "diciembre",
+    }
+
+    month_name = month_names.get(month, month)
+    day_int = str(int(day))
+
+    variants = [
+        f"{day} de {month_name} de {year}",
+        f"{day_int} de {month_name} de {year}",
+        f"{day} de {month_name} {year}",
+        f"{day_int} de {month_name} {year}",
+        f"{day}/{month}/{year}",
+        f"{day_int}/{int(month)}/{year}",
+    ]
+
+    return [norm(v) for v in variants]
+
+
+def load_validated_events() -> list[dict]:
+    """
+    Lee la base consolidada, si existe, para no volver a emitir como candidatos
+    eventos que ya están en 'eventos'.
+    """
+    if not FINAL_BASE_PATH.exists():
+        return []
+
+    try:
+        data = json.loads(FINAL_BASE_PATH.read_text(encoding="utf-8"))
+    except Exception as e:
+        print(f"[WARN] No se pudo leer base final para filtrar validados: {e}")
+        return []
+
+    eventos = data.get("eventos", [])
+    return eventos if isinstance(eventos, list) else []
+
+
+def candidate_matches_validated_event(candidate: dict, event: dict) -> bool:
+    """
+    Detecta si un candidato corresponde a un evento ya validado.
+
+    Usa IATA y las fechas inicio/fin cuando están presentes en el texto fuente.
+    Esto elimina, por ejemplo, la nota repetida de AEP 2020-2021 ya cargada
+    como evento validado.
+    """
+    candidate_iata = candidate.get("iata")
+    event_iata = event.get("iata")
+
+    if not candidate_iata or not event_iata or candidate_iata != event_iata:
+        return False
+
+    text_norm = norm(candidate.get("texto_fuente", ""))
+
+    start_variants = spanish_date_variants(event.get("fecha_inicio", ""))
+    end_variants = spanish_date_variants(event.get("fecha_fin", ""))
+
+    has_start = any(v and v in text_norm for v in start_variants)
+    has_end = any(v and v in text_norm for v in end_variants)
+
+    if has_start and has_end:
+        return True
+
+    # Fallback conservador para AEP: los informes repiten esta nota en forma
+    # textual, pero a veces el extractor no captura todas las fechas como campo.
+    if candidate_iata == "AEP":
+        return (
+            "01 de agosto de 2020" in text_norm
+            and "15 de marzo 2021" in text_norm
+            and "aeroparque" in text_norm
+            and "cese de operaciones" in text_norm
+        )
+
+    return False
+
+
+def filter_already_validated(candidates: list[dict], eventos: list[dict]) -> tuple[list[dict], int]:
+    """
+    Quita candidatos que ya están en la base principal como eventos validados.
+    """
+    if not eventos:
+        return candidates, 0
+
+    filtered = []
+    removed = 0
+
+    for candidate in candidates:
+        if any(candidate_matches_validated_event(candidate, event) for event in eventos):
+            removed += 1
+            continue
+
+        filtered.append(candidate)
+
+    return filtered, removed
+
+
 def build_candidates(informes: Iterable[Informe]) -> dict:
     candidates = []
     fuentes_revisadas = []
@@ -703,6 +871,13 @@ def build_candidates(informes: Iterable[Informe]) -> dict:
 
         print(f"[OK] {informe.year}-{informe.month}: {len(hits)} candidatos")
 
+    candidatos_detectados_brutos = len(candidates)
+
+    candidates, duplicados_eliminados = dedupe_candidates(candidates)
+
+    eventos_validados = load_validated_events()
+    candidates, ya_validados_eliminados = filter_already_validated(candidates, eventos_validados)
+
     return {
         "metadata": {
             "nombre": "cierres_operativos_aeropuertos_anac_2016_2026_candidatos",
@@ -728,6 +903,9 @@ def build_candidates(informes: Iterable[Informe]) -> dict:
                     "notas al pie de rankings o gráficos posteriores",
                 ],
             },
+            "total_candidatos_brutos": candidatos_detectados_brutos,
+            "duplicados_eliminados": duplicados_eliminados,
+            "candidatos_ya_validados_eliminados": ya_validados_eliminados,
             "total_candidatos": len(candidates),
             "generado_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         },
