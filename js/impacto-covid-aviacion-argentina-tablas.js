@@ -523,13 +523,32 @@ function renderPassengerTable(
 
     table.querySelector("tbody").innerHTML = visibleRows
       .map(row => {
-        const marginalClass =
-          row.isMarginal
-            ? " marginal-volume-row"
-            : "";
-
-        return `
-          <tr class="${marginalClass.trim()}">
+    const rowClasses = [];
+    
+    if (row.isMarginal) {
+      rowClasses.push("marginal-volume-row");
+    }
+    
+    const normalizedValuation = String(
+      row.valuation || ""
+    )
+      .trim()
+      .toLowerCase();
+    
+    const isNegativeValuation =
+      normalizedValuation.includes(
+        "recuperación incompleta"
+      ) ||
+      normalizedValuation.includes(
+        "muy por debajo"
+      );
+    
+    if (isNegativeValuation) {
+      rowClasses.push("negative-valuation-row");
+    }
+    
+    return `
+      <tr class="${rowClasses.join(" ")}">
             <td class="airport-name">
               ${escapeHtml(row.label)}
             </td>
