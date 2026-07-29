@@ -617,5 +617,5 @@ button,select{font:inherit}
 /* Texto de la valoración */
 .compare-block tr.negative-valuation-row td.valuation {
   color: #9f2925;
-  font-weight: 800;
+  font-weight: 700;
 }
