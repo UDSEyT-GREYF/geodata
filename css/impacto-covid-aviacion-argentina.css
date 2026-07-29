@@ -512,3 +512,29 @@ button,select{font:inherit}
 .report-footer-row span:last-child {
   text-align: right;
 }
+/* ==========================================================
+   PÁGINA 3 · CONTINUACIÓN DE CABOTAJE
+   ========================================================== */
+
+#sheetA4CabotajeContinuacion .compare-block {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+#sheetA4CabotajeContinuacion .table-wrap {
+  overflow: hidden;
+}
+
+#sheetA4CabotajeContinuacion .compare-block table {
+  font-size: 8.8px;
+}
+
+#sheetA4CabotajeContinuacion .compare-block th,
+#sheetA4CabotajeContinuacion .compare-block td {
+  padding: 3px 4px;
+  line-height: 1.15;
+}
+
+#sheetA4CabotajeContinuacion .report-footer {
+  padding-top: 2mm;
+}
