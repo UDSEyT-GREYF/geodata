@@ -248,3 +248,6 @@ button,select{font:inherit}
 .pdf-exporting .no-print {
   display: none !important;
 }
+.kpi-card.is-hidden {
+  display: none !important;
+}
