@@ -9,12 +9,10 @@
 </head>
 <body>
   <div class="top-controls no-print">
-    <div class="control-inner">
-      <div class="selector-block">
-        <label for="scopeSelect">Seleccionar aeropuerto o SNA</label>
-        <select id="scopeSelect" disabled>
-          <option value="SNA">SNA Sistema Nacional de Aeropuertos</option>
-        </select>
+    <div class="control-inner control-inner-simple">
+      <div class="selector-block toolbar-title-block">
+        <label>Informe sintético</label>
+        <div class="toolbar-title">Tablas comparativas de pasajeros · 2019–2025 y 2026 1S</div>
       </div>
       <button id="btnPdf" class="btn-primary" type="button">Descargar PDF A4</button>
     </div>
@@ -22,7 +20,7 @@
   </div>
 
   <main id="reportA4" class="report-a4">
-    <section id="sheetA4" class="sheet-a4">
+    <section id="sheetA4Cabotaje" class="sheet-a4">
       <header class="report-header">
         <div class="brand-row">
           <div class="brand-dot" aria-hidden="true"></div>
@@ -31,79 +29,76 @@
             <h1>Recuperación post-pandemia de la aviación argentina</h1>
           </div>
         </div>
-        <div class="scope-badge" id="scopeBadge">SNA Sistema Nacional de Aeropuertos</div>
+        <div class="scope-badge">Pasajeros cabotaje</div>
       </header>
 
       <section class="summary-block">
-        <h2 id="summaryTitle">Resumen · SNA Sistema Nacional de Aeropuertos</h2>
-        <p id="summaryText">Calculando resultados…</p>
+        <h2>Pasajeros de cabotaje · comparación 2019–2025 y 2026 1S</h2>
+        <p id="cabSummaryText">Calculando resultados…</p>
       </section>
 
-      <section class="kpi-grid" aria-label="Indicadores principales">
-        <article class="kpi-card">
-          <div class="kpi-label">Pasajeros totales</div>
-          <div class="kpi-value" id="kpiPaxTotal">–</div>
-          <div class="kpi-sub" id="kpiPaxTotalSub">2025 vs 2019</div>
-        </article>
-        <article class="kpi-card">
-          <div class="kpi-label">Pasajeros cabotaje</div>
-          <div class="kpi-value" id="kpiPaxCab">–</div>
-          <div class="kpi-sub" id="kpiPaxCabSub">2025 vs 2019</div>
-        </article>
-        <article class="kpi-card" id="kpiPaxIntCard">
-          <div class="kpi-label">Pasajeros internacional</div>
-          <div class="kpi-value" id="kpiPaxInt">–</div>
-          <div class="kpi-sub" id="kpiPaxIntSub">2025 vs 2019</div>
-        </article>
-        <article class="kpi-card">
-          <div class="kpi-label">Vuelos totales</div>
-          <div class="kpi-value" id="kpiVuelosTotal">–</div>
-          <div class="kpi-sub" id="kpiVuelosTotalSub">2025 vs 2019</div>
-        </article>
-      </section>
-
-      <section class="charts-row" aria-label="Gráficos de recuperación">
-        <article class="chart-card">
-          <div class="chart-title" id="paxChartTitle">Pasajeros · SNA Sistema Nacional de Aeropuertos</div>
-          <div class="chart-subtitle">Índice anual 2019 = 100</div>
-          <div id="chartPaxIndex" class="chart-box"></div>
-          <div class="legend">
-            <span><i class="sw total"></i>Total</span>
-            <span><i class="sw cab"></i>Cabotaje</span>
-            <span class="legend-int"><i class="sw int"></i>Internacional</span>
-          </div>
-        </article>
-        <article class="chart-card">
-          <div class="chart-title" id="vuelosChartTitle">Vuelos · SNA Sistema Nacional de Aeropuertos</div>
-          <div class="chart-subtitle">Índice anual 2019 = 100</div>
-          <div id="chartVuelosIndex" class="chart-box"></div>
-          <div class="legend">
-            <span><i class="sw total"></i>Total</span>
-            <span><i class="sw cab"></i>Cabotaje</span>
-            <span class="legend-int"><i class="sw int"></i>Internacional</span>
-          </div>
-        </article>
-      </section>
-
-      <section class="compare-block">
-        <h2 id="tableTitle">Comparación 2025 vs 2019 · SNA Sistema Nacional de Aeropuertos</h2>
-        <div class="table-wrap">
-          <table id="compareTable">
+      <section class="compare-block covid-table-block">
+        <h2>Tabla comparativa de pasajeros de cabotaje</h2>
+        <div class="table-wrap covid-table-wrap">
+          <table id="cabTable" class="covid-table">
             <thead></thead>
             <tbody></tbody>
           </table>
         </div>
       </section>
 
+      <section class="conclusion-block">
+        <h2>Conclusiones · cabotaje</h2>
+        <div id="cabConclusions" class="conclusion-text">Calculando conclusiones…</div>
+      </section>
+
       <footer class="report-footer">
         <span>Fuente: ORSNA con base en series mensuales SIAC/ANAC.</span>
-        <span id="footerScope">Ámbito: SNA Sistema Nacional de Aeropuertos.</span>
+        <span>2026 1S: enero-junio contra enero-junio de 2019.</span>
+      </footer>
+    </section>
+
+    <section id="sheetA4Internacional" class="sheet-a4">
+      <header class="report-header">
+        <div class="brand-row">
+          <div class="brand-dot" aria-hidden="true"></div>
+          <div>
+            <div class="eyebrow">ORSNA · Informe de tráfico comercial</div>
+            <h1>Recuperación post-pandemia de la aviación argentina</h1>
+          </div>
+        </div>
+        <div class="scope-badge">Pasajeros internacional</div>
+      </header>
+
+      <section class="summary-block">
+        <h2>Pasajeros internacionales significativos · comparación 2019–2025 y 2026 1S</h2>
+        <p id="intSummaryText">Calculando resultados…</p>
+      </section>
+
+      <section class="compare-block covid-table-block">
+        <h2>Tabla comparativa de pasajeros internacionales</h2>
+        <div class="table-wrap covid-table-wrap">
+          <table id="intTable" class="covid-table">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="conclusion-block">
+        <h2>Conclusiones · internacional</h2>
+        <div id="intConclusions" class="conclusion-text">Calculando conclusiones…</div>
+      </section>
+
+      <footer class="report-footer">
+        <span>Fuente: ORSNA con base en series mensuales SIAC/ANAC.</span>
+        <span>Incluye SNA, AEP+EZE y aeropuertos con tráfico internacional significativo.</span>
       </footer>
     </section>
   </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="js/impacto-covid-aviacion-argentina.js"></script>
 </body>
 </html>
