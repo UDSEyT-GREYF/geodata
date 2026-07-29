@@ -438,3 +438,77 @@ button,select{font:inherit}
 .pdf-exporting .no-print{
   display:none!important;
 }
+/* ==========================================================
+   INFORME COVID · ORDEN Y ACLARACIONES
+   ========================================================== */
+
+.covid-intro-note {
+  margin: 0 0 4mm;
+  padding: 7px 9px;
+  border-left: 4px solid var(--orsna-azul-2);
+  border-radius: 0 6px 6px 0;
+  background: #f2f6fb;
+  color: #263746;
+}
+
+.covid-intro-note p {
+  margin: 0;
+  font-size: 10.5px;
+  line-height: 1.4;
+  font-weight: 650;
+  text-align: justify;
+}
+
+
+/* Párrafos generados dentro de las conclusiones */
+
+.summary-block .conclusion-text {
+  margin-top: 5px;
+  padding-top: 4px;
+  border-top: 1px solid var(--orsna-linea);
+}
+
+.summary-block .conclusion-text p {
+  margin: 3px 0 0;
+  font-size: 9.3px;
+  line-height: 1.28;
+  color: #3c4652;
+}
+
+.summary-block .conclusion-text p:first-child {
+  margin-top: 0;
+}
+
+
+/* Pie de página internacional */
+
+.report-footer.report-footer-stacked {
+  display: block;
+}
+
+.covid-method-note {
+  margin-bottom: 2.5mm;
+  font-size: 8px;
+  line-height: 1.32;
+  text-align: justify;
+  color: #536172;
+}
+
+.covid-method-note strong {
+  color: var(--orsna-azul);
+}
+
+.report-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.report-footer-row span {
+  flex: 1 1 0;
+}
+
+.report-footer-row span:last-child {
+  text-align: right;
+}
