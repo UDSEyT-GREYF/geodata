@@ -500,9 +500,22 @@ function renderPassengerTable(
     table.querySelector("thead").innerHTML = `
       <tr>
         <th>Aeropuerto</th>
-        ${reportConfig.years
-          .map(year => `<th>${year}</th>`)
-          .join("")}
+    ${reportConfig.years
+      .map(year => {
+        const yearClass =
+          year === reportConfig.baseYear
+            ? "year-base-col"
+            : year === reportConfig.lastAnnualYear
+              ? "year-current-col"
+              : "";
+    
+        return `
+          <th class="${yearClass}">
+            ${year}
+          </th>
+        `;
+      })
+      .join("")}
         <th>${reportConfig.h1Label}</th>
         <th>Valoración 2025/2019</th>
       </tr>
@@ -534,8 +547,15 @@ function renderPassengerTable(
                   reportConfig
                 );
 
+                const yearClass =
+                  year === reportConfig.baseYear
+                    ? "year-base-col"
+                    : year === reportConfig.lastAnnualYear
+                      ? "year-current-col"
+                      : "";
+                
                 return `
-                  <td>
+                  <td class="${yearClass}">
                     ${buildCell(
                       value,
                       variation,
