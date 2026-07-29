@@ -586,7 +586,7 @@ if (cabConclusions) {
       <strong>Alerta ${reportConfig.h1Label}:</strong>
       ${
         cabFallBack.length
-          ? `recuperaron en ${reportConfig.lastAnnualYear} pero vuelven a caer frente al primer semestre de ${reportConfig.h1BaseYear}: ${escapeHtml(cabFallBack.join("; "))}.`
+          ? `recuperaron en ${reportConfig.lastAnnualYear} pero caen en el primer semestre 2026 frente al primer semestre de ${reportConfig.h1BaseYear}: ${escapeHtml(cabFallBack.join("; "))}.`
           : "no se observan retrocesos marcados entre los casos recuperados."
       }
     </p>
