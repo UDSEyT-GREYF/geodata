@@ -848,9 +848,18 @@ renderPassengerTable(
   con volumen marginal.
 */
 const significantInternationalRows =
-  data.tablas.internacional.filter(
-    row => !isMarginalRow(row, reportConfig)
-  );
+  data.tablas.internacional.filter(row => {
+    const iata = String(
+      row?.iata || ""
+    )
+      .trim()
+      .toUpperCase();
+
+    return (
+      iata !== "EPA" &&
+      !isMarginalRow(row, reportConfig)
+    );
+  });
 
 const intRows = renderPassengerTable(
   "intTable",
