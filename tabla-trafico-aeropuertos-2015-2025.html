@@ -955,6 +955,29 @@ function getCovidBaseScopes() {
   return { snaScope, aepEzeScope, airportScopes };
 }
 
+function getSnaAnnualValue(segment, year) {
+  const dataset = segment === "cabotaje" ? PAX_DATASET_CAB : PAX_DATASET_INT;
+
+  return Math.round(sumYearByDataset(
+    pasajerosSnaRows,
+    "SNA",
+    dataset,
+    year
+  ));
+}
+
+function getSnaPeriodValue(segment, year, maxMonth) {
+  const dataset = segment === "cabotaje" ? PAX_DATASET_CAB : PAX_DATASET_INT;
+
+  return Math.round(sumPeriodByDataset(
+    pasajerosSnaRows,
+    "SNA",
+    dataset,
+    year,
+    maxMonth
+  ));
+}
+    
 function buildCovidRecoveryJson() {
   const { snaScope, aepEzeScope, airportScopes } = getCovidBaseScopes();
 
@@ -1122,8 +1145,8 @@ function downloadCovidJson() {
       domesticIATAs = new Set(aeropuertos.map(a => clean(firstNonEmpty(a, ["IATA", "iata"])).toUpperCase()).filter(Boolean));
 
       pasajerosMensualRows = paxText ? parsePasajerosMensualCSV(paxText) : [];
+      pasajerosSnaRows = paxSnaText ? parsePasajerosMensualCSV(paxSnaText) : [];
       movimientosMensualRows = movText ? parseMovimientosMensualCSV(movText) : [];
-      pasajerosSnaRows = paxSnaText ? parsePasajerosMensualCSV(paxSnaText).map(r => ({ ...r, iata: "SNA" })) : [];
 
       if (iataWorldText) {
         const parsedWorld = parseIATAMundoCSV(iataWorldText);
