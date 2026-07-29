@@ -23,7 +23,8 @@
   */
   const MARGINAL_MAX_ANNUAL_PAX = 1000;
   const MARGINAL_LABEL = "Volumen marginal: variación no representativa";
-
+  const CAB_ROWS_FIRST_PAGE = 20;
+  
   let reportData = null;
   let reportConfig = null;
 
@@ -363,10 +364,12 @@ function rowLabel(row) {
     `;
   }
 
-  function renderPassengerTable(
-    tableId,
-    sourceRows
-  ) {
+function renderPassengerTable(
+  tableId,
+  sourceRows,
+  startIndex = 0,
+  endIndex = null
+) {
     const table = $(tableId);
     if (!table) return [];
 
@@ -374,7 +377,12 @@ function rowLabel(row) {
       sourceRows,
       reportConfig
     );
-
+    const visibleRows = rows.slice(
+      startIndex,
+      Number.isInteger(endIndex)
+        ? endIndex
+        : rows.length
+    );
     table.querySelector("thead").innerHTML = `
       <tr>
         <th>Aeropuerto</th>
@@ -386,7 +394,7 @@ function rowLabel(row) {
       </tr>
     `;
 
-    table.querySelector("tbody").innerHTML = rows
+    table.querySelector("tbody").innerHTML = visibleRows
       .map(row => {
         const marginalClass =
           row.isMarginal
@@ -649,17 +657,43 @@ if (intSummary) {
     reportData = data;
     reportConfig = buildReportConfig(data);
 
-    const cabRows = renderPassengerTable(
-      "cabTable",
-      data.tablas.cabotaje
-    );
+/*
+  Página 2:
+  conclusiones y primeras filas de cabotaje.
+*/
+const cabRows = renderPassengerTable(
+  "cabTable",
+  data.tablas.cabotaje,
+  0,
+  CAB_ROWS_FIRST_PAGE
+);
 
-    const intRows = renderPassengerTable(
-      "intTable",
-      data.tablas.internacional
-    );
 
-    renderConclusions(cabRows, intRows);
+/*
+  Página 3:
+  filas restantes de cabotaje.
+*/
+renderPassengerTable(
+  "cabTableContinuation",
+  data.tablas.cabotaje,
+  CAB_ROWS_FIRST_PAGE
+);
+
+
+/*
+  Página 1:
+  tabla internacional completa.
+*/
+const intRows = renderPassengerTable(
+  "intTable",
+  data.tablas.internacional
+);
+
+
+/*
+  Las conclusiones utilizan cabRows e intRows completos.
+*/
+renderConclusions(cabRows, intRows);
 
     return { cabRows, intRows };
   }
