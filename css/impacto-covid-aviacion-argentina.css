@@ -685,7 +685,7 @@ button,select{font:inherit}
 
 /* Estilos internos del SVG */
 .chart-axis-text {
-  font-size: 8px;
+  font-size: 10px;
   fill: #5f6d7c;
 }
 
@@ -701,7 +701,7 @@ button,select{font:inherit}
 }
 
 .chart-base-label {
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 700;
   fill: #0b376d;
 }
@@ -737,19 +737,19 @@ button,select{font:inherit}
 }
 
 .chart-last-label-sna {
-  font-size: 8.4px;
-  font-weight: 800;
+  font-size: 10px;
+  font-weight: 700;
   fill: #0b376d;
 }
 
 .chart-last-label-bue {
-  font-size: 8.4px;
-  font-weight: 800;
+  font-size: 10px;
+  font-weight: 700;
   fill: #2e74b5;
 }
 
 .chart-last-label-resto {
-  font-size: 8.4px;
-  font-weight: 800;
+  font-size: 10px;
+  font-weight: 700;
   fill: #008a14;
 }
