@@ -55,11 +55,13 @@
         <h1>Tabla descargable de tráfico por aeropuerto 2015-2025</h1>
         <div class="subtitle">Pasajeros y movimientos comerciales de cabotaje e internacional. Para los 17 aeropuertos extra, los valores se calculan directamente desde <code>rutasaereas.csv</code> con la misma lógica de la sección de rutas de la lámina.</div>
       </div>
-      <div class="actions">
-        <button id="btnReload" type="button">Recargar</button>
-        <button id="btnCsv" class="primary" type="button" disabled>Descargar CSV</button>
-        <button id="btnXls" type="button" disabled>Descargar Excel .xls</button>
-      </div>
+  <div class="actions">
+  <button id="btnReload" type="button">Recargar</button>
+  <button id="btnCsv" class="primary" type="button" disabled>Descargar CSV</button>
+  <button id="btnXls" type="button" disabled>Descargar Excel .xls</button>
+  <button id="btnJsonCovid" type="button" disabled>Descargar JSON Covid</button>
+</div>
+
     </div>
 
     <div id="status" class="status warn">Cargando fuentes…</div>
@@ -96,7 +98,22 @@ const EXTRA_ROUTE_IATAS = new Set([
   "TTG", "RYO", "SST", "NEC", "LPG", "GNR", "JNI", "PMQ", "AOL", "LGS", "EPA", "COC",
   "RCQ", "RLO", "TDL", "VLG", "VME"
 ]);
+    
+const FDO_ROUTE_YEARS = new Set([2015, 2016, 2017]);
 
+const H1_BASE_YEAR = 2019;
+const H1_COMPARE_YEAR = 2026;
+const H1_MONTH_LIMIT = 6;
+
+const COVID_JSON_FILENAME = "recuperacion_postpandemia_pasajeros.json";
+
+const INTERNATIONAL_SIGNIFICANCE = {
+  minAnnualPax: 10000,
+  minAnnualPaxSecondary: 5000,
+  minShareOfTotal: 0.02,
+  minYearsAboveSecondary: 2
+};
+    
     const PAX_DATASET_CAB = "pasajeros_comerciales_cabotaje_aeropuerto";
     const PAX_DATASET_INT = "pasajeros_comerciales_internacional_aeropuerto";
     const MOV_DATASET_CAB = "movimientos_comerciales_cabotaje_aeropuerto";
@@ -108,20 +125,24 @@ const EXTRA_ROUTE_IATAS = new Set([
       ...YEARS.flatMap(y => [`movtotal${y}`, `movcab${y}`, `movinter${y}`])
     ];
 
-    const SOURCES = {
-      airports: "fuentes/Datos_aeropuertos.geojson",
-      pax: "fuentes/pasajeros_aeropuerto_mensual.csv",
-      mov: "fuentes/movimientos_aeropuerto_mensual.csv",
-      rutas: "fuentes/rutasaereas.csv",
-      iataWorld: "fuentes/ListadoIATAmundo.csv",
-      fdo: "fuentes/fdo_trafico_aeropuertos_argentina.json"
-    };
+const SOURCES = {
+  airports: "fuentes/Datos_aeropuertos.geojson",
+  pax: "fuentes/pasajeros_aeropuerto_mensual.csv",
+  mov: "fuentes/movimientos_aeropuerto_mensual.csv",
+  rutas: "fuentes/rutasaereas.csv",
+  rutas2026s1: "fuentes/Tabla%20rutasaereas2026_semestre1.csv",
+  paxSna: "fuentes/pasajeros_SNA_mensual.csv",
+  iataWorld: "fuentes/ListadoIATAmundo.csv",
+  fdo: "fuentes/fdo_trafico_aeropuertos_argentina.json"
+};
 
     let aeropuertos = [];
     let domesticIATAs = new Set();
     let pasajerosMensualRows = [];
     let movimientosMensualRows = [];
+    let pasajerosSnaRows = [];
     let rutasRows = [];
+    let rutas2026S1Rows = [];
     let iataWorldIndex = {};
     let routeCodeIndex = {};
     let tableRows = [];
@@ -370,6 +391,7 @@ const EXTRA_ROUTE_IATAS = new Set([
       });
 
 const manual = {
+  FDO: ["San Fernando", "Aeropuerto Internacional de San Fernando"],
   TTG: ["Tartagal", "General Enrique Mosconi", "Gral Enrique Mosconi"],
   RYO: ["Rio Turbio", "Río Turbio", "28 de Noviembre"],
   SST: ["Santa Teresita"],
@@ -382,7 +404,6 @@ const manual = {
   LGS: ["Malargue", "Malargüe"],
   EPA: ["El Palomar", "Palomar"],
   COC: ["Concordia"],
-
   RCQ: ["Reconquista"],
   RLO: ["Valle del Conlara", "Conlara", "Merlo", "Villa de Merlo"],
   TDL: ["Tandil"],
@@ -439,7 +460,8 @@ const manual = {
           endpointB,
           volume,
           movimientos,
-          year: Number.isFinite(yearNum) ? Number(yearNum) : (date ? date.getFullYear() : NaN)
+          year: Number.isFinite(yearNum) ? Number(yearNum) : (date ? date.getFullYear() : NaN),
+          month: date ? date.getMonth() + 1 : NaN
         };
       }).filter(r => r.endpointA && r.endpointB && Number.isFinite(r.year) && (Number.isFinite(r.volume) || Number.isFinite(r.movimientos)));
     }
@@ -563,12 +585,21 @@ const manual = {
       return Array.from(acc.values()).filter(row => Number.isFinite(row.valor)).sort((a, b) => a.date - b.date);
     }
 
-    function replaceRowsForFDO(baseRows, replacementRows) {
-      return (baseRows || [])
-        .filter(row => !isFDO(row.iata))
-        .concat(replacementRows || [])
-        .sort((a, b) => a.date - b.date);
-    }
+function replaceRowsForFDO(baseRows, replacementRows) {
+  /*
+    Solo reemplazamos FDO desde 2018.
+    Para 2015-2017 no usamos las filas mensuales base:
+    getValue() fuerza el cálculo desde rutasaereas.csv.
+  */
+  return (baseRows || [])
+    .filter(row => {
+      if (!isFDO(row.iata)) return true;
+      const year = row.date ? row.date.getFullYear() : NaN;
+      return Number.isFinite(year) && year < 2018;
+    })
+    .concat(replacementRows || [])
+    .sort((a, b) => a.date - b.date);
+}
 
     function getAirportTitle(a) {
       const iata = clean(firstNonEmpty(a, ["IATA", "iata"])).toUpperCase();
@@ -588,76 +619,113 @@ const manual = {
         .reduce((acc, r) => acc + (Number(r.valor) || 0), 0);
     }
 
-    function getMatchingRouteRows(iata, year) {
-      const selected = clean(iata).toUpperCase();
-      return rutasRows.filter(r =>
-        Number(r.year) === Number(year) &&
-        (r.endpointA === selected || r.endpointB === selected)
-      );
+function getMatchingRouteRowsFrom(sourceRows, iata, year, options = {}) {
+  const selected = clean(iata).toUpperCase();
+  const { maxMonth = null, sourceIsH1 = false } = options;
+
+  return (sourceRows || []).filter(r => {
+    if (Number(r.year) !== Number(year)) return false;
+    if (!(r.endpointA === selected || r.endpointB === selected)) return false;
+
+    if (sourceIsH1) return true;
+
+    if (maxMonth !== null) {
+      const month = Number(r.month);
+      return Number.isFinite(month) && month >= 1 && month <= maxMonth;
     }
 
-    function sumRoutesLikeLamina(iata, year, segmentWanted, metric) {
-      const selected = clean(iata).toUpperCase();
-      let total = 0;
+    return true;
+  });
+}
 
-      getMatchingRouteRows(selected, year).forEach(r => {
-        const otherCodeRaw = r.endpointA === selected ? r.endpointB : r.endpointA;
+function getMatchingRouteRows(iata, year) {
+  return getMatchingRouteRowsFrom(rutasRows, iata, year);
+}
 
-        /*
-          No descartamos self-pairs/locales (ej.: LGS-LGS) ni extremos vacíos.
-          En datos-clave-lamina, el total de “Líneas aéreas” se suma antes
-          de armar los destinos visibles; por eso esas filas deben computar.
-          classifyRouteSegmentLikeLamina() las envía a cabotaje/operación local.
-        */
-        const segment = classifyRouteSegmentLikeLamina(selected, otherCodeRaw);
-        if (segment !== segmentWanted) return;
+function sumRoutesLikeLaminaFrom(sourceRows, iata, year, segmentWanted, metric, options = {}) {
+  const selected = clean(iata).toUpperCase();
+  let total = 0;
 
-        const value = metric === "pax" ? r.volume : r.movimientos;
-        if (Number.isFinite(value)) total += Number(value) || 0;
-      });
+  getMatchingRouteRowsFrom(sourceRows, selected, year, options).forEach(r => {
+    const otherCodeRaw = r.endpointA === selected ? r.endpointB : r.endpointA;
 
-      return total;
-    }
+    /*
+      No descartamos self-pairs/locales ni extremos vacíos.
+      Se mantiene la lógica usada para los 17 aeropuertos especiales:
+      la clasificación se hace con classifyRouteSegmentLikeLamina().
+    */
+    const segment = classifyRouteSegmentLikeLamina(selected, otherCodeRaw);
+    if (segment !== segmentWanted) return;
 
-    function countMatchedRouteRowsByIata() {
-      const byIata = {};
-      EXTRA_ROUTE_IATAS.forEach(iata => {
-        byIata[iata] = { rows: 0, pax: 0, mov: 0 };
-      });
-      rutasRows.forEach(r => {
-        [r.endpointA, r.endpointB].forEach(endpoint => {
-          if (!EXTRA_ROUTE_IATAS.has(endpoint)) return;
-          byIata[endpoint].rows += 1;
-          if (Number.isFinite(r.volume)) byIata[endpoint].pax += 1;
-          if (Number.isFinite(r.movimientos)) byIata[endpoint].mov += 1;
-        });
-      });
-      return byIata;
-    }
+    const value = metric === "pax" ? r.volume : r.movimientos;
+    if (Number.isFinite(value)) total += Number(value) || 0;
+  });
 
-    function getValue(iata, metric, segment, year) {
-      const code = clean(iata).toUpperCase();
+  return total;
+}
 
-      if (EXTRA_ROUTE_IATAS.has(code)) {
-        return Math.round(sumRoutesLikeLamina(code, year, segment, metric));
-      }
+function sumRoutesLikeLamina(iata, year, segmentWanted, metric) {
+  return sumRoutesLikeLaminaFrom(rutasRows, iata, year, segmentWanted, metric);
+}
 
-      if (metric === "pax") {
-        return Math.round(sumYearByDataset(
-          pasajerosMensualRows,
-          code,
-          segment === "cabotaje" ? PAX_DATASET_CAB : PAX_DATASET_INT,
-          year
-        ));
-      }
+function countMatchedRouteRowsByIata() {
+  const byIata = {};
+  const tracked = new Set([...EXTRA_ROUTE_IATAS, "FDO"]);
 
-      return Math.round(sumYearByDataset(
-        movimientosMensualRows,
-        code,
-        segment === "cabotaje" ? MOV_DATASET_CAB : MOV_DATASET_INT,
-        year
-      ));
-    }
+  tracked.forEach(iata => {
+    byIata[iata] = { rows: 0, pax: 0, mov: 0 };
+  });
+
+  rutasRows.forEach(r => {
+    [r.endpointA, r.endpointB].forEach(endpoint => {
+      if (!tracked.has(endpoint)) return;
+      byIata[endpoint].rows += 1;
+      if (Number.isFinite(r.volume)) byIata[endpoint].pax += 1;
+      if (Number.isFinite(r.movimientos)) byIata[endpoint].mov += 1;
+    });
+  });
+
+  return byIata;
+}
+
+function getValue(iata, metric, segment, year) {
+  const code = clean(iata).toUpperCase();
+  const numericYear = Number(year);
+
+  /*
+    17 aeropuertos especiales:
+    siempre se calculan desde rutasaereas.csv para 2015-2025.
+  */
+  if (EXTRA_ROUTE_IATAS.has(code)) {
+    return Math.round(sumRoutesLikeLamina(code, numericYear, segment, metric));
+  }
+
+  /*
+    FDO:
+    - 2015, 2016 y 2017 desde rutasaereas.csv.
+    - Desde 2018 mantiene el procesamiento especial de Aeropuertos Argentina,
+      que ya fue incorporado en pasajerosMensualRows y movimientosMensualRows.
+  */
+  if (isFDO(code) && FDO_ROUTE_YEARS.has(numericYear)) {
+    return Math.round(sumRoutesLikeLamina(code, numericYear, segment, metric));
+  }
+
+  if (metric === "pax") {
+    return Math.round(sumYearByDataset(
+      pasajerosMensualRows,
+      code,
+      segment === "cabotaje" ? PAX_DATASET_CAB : PAX_DATASET_INT,
+      numericYear
+    ));
+  }
+
+  return Math.round(sumYearByDataset(
+    movimientosMensualRows,
+    code,
+    segment === "cabotaje" ? MOV_DATASET_CAB : MOV_DATASET_INT,
+    numericYear
+  ));
+}
 
 function buildTableRows() {
   return aeropuertos.map(a => {
@@ -685,7 +753,271 @@ function buildTableRows() {
     return row;
   });
 }
+function sumPeriodByDataset(rows, iata, dataset, year, maxMonth) {
+  const code = clean(iata).toUpperCase();
 
+  return (rows || [])
+    .filter(r => r.iata === code && r.dataset === dataset && r.date)
+    .filter(r => r.date.getFullYear() === Number(year))
+    .filter(r => {
+      const month = r.date.getMonth() + 1;
+      return month >= 1 && month <= maxMonth;
+    })
+    .reduce((acc, r) => acc + (Number(r.valor) || 0), 0);
+}
+
+function sumPeriodSnaByDataset(dataset, year, maxMonth) {
+  return (pasajerosSnaRows || [])
+    .filter(r => r.dataset === dataset && r.date)
+    .filter(r => r.date.getFullYear() === Number(year))
+    .filter(r => {
+      const month = r.date.getMonth() + 1;
+      return month >= 1 && month <= maxMonth;
+    })
+    .reduce((acc, r) => acc + (Number(r.valor) || 0), 0);
+}
+
+function getPeriodValue(iata, segment, year, maxMonth) {
+  const code = clean(iata).toUpperCase();
+  const dataset = segment === "cabotaje" ? PAX_DATASET_CAB : PAX_DATASET_INT;
+
+  /*
+    Para 2026 1S:
+    - FDO y los 17 aeropuertos especiales se calculan desde Tabla rutasaereas2026_semestre1.csv.
+    - Esa fuente ya representa el primer semestre, por eso sourceIsH1=true.
+  */
+  if (
+    Number(year) === H1_COMPARE_YEAR &&
+    (EXTRA_ROUTE_IATAS.has(code) || isFDO(code))
+  ) {
+    return Math.round(sumRoutesLikeLaminaFrom(
+      rutas2026S1Rows,
+      code,
+      year,
+      segment,
+      "pax",
+      { sourceIsH1: true }
+    ));
+  }
+
+  /*
+    Para 2019 1S:
+    - Los 17 especiales y FDO usan rutasaereas.csv si tiene mes/fecha.
+  */
+  if (
+    Number(year) === H1_BASE_YEAR &&
+    (EXTRA_ROUTE_IATAS.has(code) || isFDO(code))
+  ) {
+    return Math.round(sumRoutesLikeLaminaFrom(
+      rutasRows,
+      code,
+      year,
+      segment,
+      "pax",
+      { maxMonth }
+    ));
+  }
+
+  return Math.round(sumPeriodByDataset(
+    pasajerosMensualRows,
+    code,
+    dataset,
+    year,
+    maxMonth
+  ));
+}
+
+function getSnaAnnualValue(segment, year) {
+  const dataset = segment === "cabotaje" ? PAX_DATASET_CAB : PAX_DATASET_INT;
+  return Math.round(sumYearByDataset(pasajerosSnaRows, "SNA", dataset, year));
+}
+
+function getSnaPeriodValue(segment, year, maxMonth) {
+  const dataset = segment === "cabotaje" ? PAX_DATASET_CAB : PAX_DATASET_INT;
+  return Math.round(sumPeriodSnaByDataset(dataset, year, maxMonth));
+}
+
+function getAepEzeAnnualValue(segment, year) {
+  return getValue("AEP", "pax", segment, year) + getValue("EZE", "pax", segment, year);
+}
+
+function getAepEzePeriodValue(segment, year, maxMonth) {
+  return getPeriodValue("AEP", segment, year, maxMonth) + getPeriodValue("EZE", segment, year, maxMonth);
+}
+
+function pctChange(value, base) {
+  const v = Number(value);
+  const b = Number(base);
+  if (!Number.isFinite(v) || !Number.isFinite(b) || b === 0) return null;
+  return ((v / b) - 1) * 100;
+}
+
+function isSignificantInternationalRow(row) {
+  const annualValues = YEARS.map(y => Number(row[`pax_${y}`]) || 0);
+  const maxAnnual = Math.max(...annualValues);
+  const yearsAboveSecondary = annualValues.filter(v => v >= INTERNATIONAL_SIGNIFICANCE.minAnnualPaxSecondary).length;
+
+  const maxShare = Math.max(...YEARS.map(y => {
+    const intl = Number(row[`pax_${y}`]) || 0;
+    const airportTableRow = tableRows.find(r => r.iata === row.iata);
+    const total = Number(airportTableRow?.[`paxtotal${y}`]) || 0;
+    return total > 0 ? intl / total : 0;
+  }));
+
+  return (
+    maxAnnual >= INTERNATIONAL_SIGNIFICANCE.minAnnualPax ||
+    (
+      yearsAboveSecondary >= INTERNATIONAL_SIGNIFICANCE.minYearsAboveSecondary &&
+      maxShare >= INTERNATIONAL_SIGNIFICANCE.minShareOfTotal
+    )
+  );
+}
+
+function valoracionFromVariation(var2025, var2026s1, segment) {
+  const v2025 = Number(var2025);
+  const v2026 = Number(var2026s1);
+
+  if (!Number.isFinite(v2025)) return "Sin base 2019";
+
+  if (v2025 >= 20) {
+    if (Number.isFinite(v2026) && v2026 < -3) return "Recuperó en 2025, alerta 2026 1S";
+    return "Recuperación amplia";
+  }
+
+  if (v2025 >= 10) {
+    if (Number.isFinite(v2026) && v2026 < -3) return "Recuperación con alerta 2026 1S";
+    return "Recuperación clara";
+  }
+
+  if (v2025 >= 3) return segment === "cabotaje" ? "Recuperación leve en cabotaje" : "Recuperación leve";
+
+  if (v2025 >= -3) return "Igualó el nivel de 2019";
+
+  if (v2025 >= -20) return "Recuperación incompleta";
+
+  return "Muy por debajo de 2019";
+}
+
+function buildCovidJsonRow({ tipoTabla, iata, nombre, annualGetter, periodGetter, flags = {} }) {
+  const row = {
+    tipo_tabla: tipoTabla,
+    iata,
+    aeropuerto: nombre,
+    es_sna: !!flags.es_sna,
+    es_aep_eze: !!flags.es_aep_eze,
+    es_internacional_significativo: !!flags.es_internacional_significativo
+  };
+
+  YEARS.forEach(year => {
+    const pax = Math.round(Number(annualGetter(tipoTabla, year)) || 0);
+    const base = year === 2019 ? pax : Math.round(Number(annualGetter(tipoTabla, 2019)) || 0);
+
+    row[`pax_${year}`] = pax;
+    row[`var_${year}`] = year === 2019 ? 0 : pctChange(pax, base);
+  });
+
+  const pax2019s1 = Math.round(Number(periodGetter(tipoTabla, H1_BASE_YEAR, H1_MONTH_LIMIT)) || 0);
+  const pax2026s1 = Math.round(Number(periodGetter(tipoTabla, H1_COMPARE_YEAR, H1_MONTH_LIMIT)) || 0);
+  const var2026s1 = pctChange(pax2026s1, pax2019s1);
+
+  row.pax_2019_1s = pax2019s1;
+  row.pax_2026_1s = pax2026s1;
+  row.var_2026_1s = var2026s1;
+  row.valoracion = valoracionFromVariation(row.pax_2025 ? row.var_2025 : null, var2026s1, tipoTabla);
+
+  return row;
+}
+
+function getCovidBaseScopes() {
+  const airportScopes = tableRows.map(row => ({
+    iata: row.iata,
+    nombre: row.nombre,
+    annualGetter: (segment, year) => getValue(row.iata, "pax", segment, year),
+    periodGetter: (segment, year, maxMonth) => getPeriodValue(row.iata, segment, year, maxMonth)
+  }));
+
+  const snaScope = {
+    iata: "SNA",
+    nombre: "SNA Sistema Nacional de Aeropuertos",
+    flags: { es_sna: true },
+    annualGetter: (segment, year) => getSnaAnnualValue(segment, year),
+    periodGetter: (segment, year, maxMonth) => getSnaPeriodValue(segment, year, maxMonth)
+  };
+
+  const aepEzeScope = {
+    iata: "BUE",
+    nombre: "AEP + EZE Región Buenos Aires",
+    flags: { es_aep_eze: true },
+    annualGetter: (segment, year) => getAepEzeAnnualValue(segment, year),
+    periodGetter: (segment, year, maxMonth) => getAepEzePeriodValue(segment, year, maxMonth)
+  };
+
+  return { snaScope, aepEzeScope, airportScopes };
+}
+
+function buildCovidRecoveryJson() {
+  const { snaScope, aepEzeScope, airportScopes } = getCovidBaseScopes();
+
+  const cabotaje = [
+    buildCovidJsonRow({ tipoTabla: "cabotaje", ...snaScope }),
+    buildCovidJsonRow({ tipoTabla: "cabotaje", ...aepEzeScope }),
+    ...airportScopes.map(scope => buildCovidJsonRow({ tipoTabla: "cabotaje", ...scope }))
+  ];
+
+  const airportInternationalRows = airportScopes
+    .map(scope => buildCovidJsonRow({ tipoTabla: "internacional", ...scope }))
+    .filter(row => {
+      const significant = isSignificantInternationalRow(row);
+      row.es_internacional_significativo = significant;
+      return significant;
+    });
+
+  const internacional = [
+    buildCovidJsonRow({
+      tipoTabla: "internacional",
+      ...snaScope,
+      flags: { ...snaScope.flags, es_internacional_significativo: true }
+    }),
+    buildCovidJsonRow({
+      tipoTabla: "internacional",
+      ...aepEzeScope,
+      flags: { ...aepEzeScope.flags, es_internacional_significativo: true }
+    }),
+    ...airportInternationalRows
+  ];
+
+  return {
+    metadata: {
+      titulo: "Recuperación post-pandemia de la aviación argentina",
+      generado: new Date().toISOString(),
+      destino_sugerido: "data/recuperacion_postpandemia_pasajeros.json",
+      base_anual: 2019,
+      periodo_anual: "2019-2025",
+      periodo_semestre: "2026 1S vs 2019 1S",
+      nota_tabla_visible: "La tabla HTML publicada no incorpora columnas semestrales; los datos 2019 1S y 2026 1S se incluyen solo en este JSON.",
+      nota_fdo: "FDO 2015-2017 se calcula desde rutasaereas.csv; FDO 2018-2025 mantiene la fuente especial de Aeropuertos Argentina; FDO 2026 1S se calcula desde Tabla rutasaereas2026_semestre1.csv.",
+      nota_aep_eze: "AEP+EZE se calcula como suma de Aeroparque Jorge Newbery y Ezeiza para leer conjuntamente la redistribución metropolitana de vuelos regionales."
+    },
+    parametros: {
+      international_significance: INTERNATIONAL_SIGNIFICANCE,
+      extra_route_iatas: Array.from(EXTRA_ROUTE_IATAS),
+      fdo_route_years: Array.from(FDO_ROUTE_YEARS),
+      h1_base_year: H1_BASE_YEAR,
+      h1_compare_year: H1_COMPARE_YEAR,
+      h1_month_limit: H1_MONTH_LIMIT
+    },
+    tablas: {
+      cabotaje,
+      internacional
+    }
+  };
+}
+
+function downloadCovidJson() {
+  const data = buildCovidRecoveryJson();
+  const content = JSON.stringify(data, null, 2);
+  downloadBlob(content, COVID_JSON_FILENAME, "application/json;charset=utf-8");
+}
     function renderTable(rows = tableRows) {
       const thead = q("dataTable").querySelector("thead");
       const tbody = q("dataTable").querySelector("tbody");
@@ -752,15 +1084,27 @@ function buildTableRows() {
     async function loadData() {
       q("btnCsv").disabled = true;
       q("btnXls").disabled = true;
+      q("btnJsonCovid").disabled = true;
       q("filterInput").disabled = true;
       q("filterInput").value = "";
       setStatus("Cargando fuentes…", "warn");
 
-      const [airportsGJ, paxText, movText, rutasText, iataWorldText, fdoJson] = await Promise.all([
+      const [
+        airportsGJ,
+        paxText,
+        movText,
+        rutasText,
+        rutas2026s1Text,
+        paxSnaText,
+        iataWorldText,
+        fdoJson
+      ] = await Promise.all([
         fetchOptional(SOURCES.airports, "json"),
         fetchOptional(SOURCES.pax, "text"),
         fetchOptional(SOURCES.mov, "text"),
         fetchOptional(SOURCES.rutas, "text"),
+        fetchOptional(SOURCES.rutas2026s1, "text"),
+        fetchOptional(SOURCES.paxSna, "text"),
         fetchOptional(SOURCES.iataWorld, "text"),
         fetchOptional(SOURCES.fdo, "json")
       ]);
@@ -779,6 +1123,7 @@ function buildTableRows() {
 
       pasajerosMensualRows = paxText ? parsePasajerosMensualCSV(paxText) : [];
       movimientosMensualRows = movText ? parseMovimientosMensualCSV(movText) : [];
+      pasajerosSnaRows = paxSnaText ? parsePasajerosMensualCSV(paxSnaText).map(r => ({ ...r, iata: "SNA" })) : [];
 
       if (iataWorldText) {
         const parsedWorld = parseIATAMundoCSV(iataWorldText);
@@ -787,6 +1132,7 @@ function buildTableRows() {
       }
 
       rutasRows = rutasText ? parseRutasCSV(rutasText) : [];
+      rutas2026S1Rows = rutas2026s1Text ? parseRutasCSV(rutas2026s1Text) : [];
       routeStats = countMatchedRouteRowsByIata();
 
       if (fdoJson) {
@@ -799,14 +1145,17 @@ function buildTableRows() {
 
       q("btnCsv").disabled = false;
       q("btnXls").disabled = false;
+      q("btnJsonCovid").disabled = false;
       q("filterInput").disabled = false;
 
       const warnings = [];
       if (!paxText) warnings.push("pasajeros_aeropuerto_mensual.csv no cargado");
       if (!movText) warnings.push("movimientos_aeropuerto_mensual.csv no cargado");
-      if (!rutasText) warnings.push("rutasaereas.csv no cargado para los 17 aeropuertos extra");
+      if (!rutasText) warnings.push("rutasaereas.csv no cargado para los 17 aeropuertos extra y FDO 2015-2017");
+      if (!rutas2026s1Text) warnings.push("Tabla rutasaereas2026_semestre1.csv no cargada para FDO y 17 aeropuertos extra en 2026 1S");
+      if (!paxSnaText) warnings.push("pasajeros_SNA_mensual.csv no cargado: el JSON Covid no podrá completar SNA");
       if (!iataWorldText) warnings.push("ListadoIATAmundo.csv no cargado: la clasificación internacional puede quedar limitada a IATA domésticos");
-      if (!fdoJson) warnings.push("fuente FDO de Aeropuertos Argentina no cargada");
+      if (!fdoJson) warnings.push("fuente FDO de Aeropuertos Argentina no cargada para 2018-2025");
 
       const lgs = tableRows.find(r => r.iata === "LGS");
 const lgsText = lgs
@@ -814,17 +1163,18 @@ const lgsText = lgs
   : "";
 
       const matchedRows = routeStats
-        ? Array.from(EXTRA_ROUTE_IATAS).reduce((acc, iata) => acc + (routeStats[iata]?.rows || 0), 0)
+        ? Array.from(new Set([...EXTRA_ROUTE_IATAS, "FDO"])).reduce((acc, iata) => acc + (routeStats[iata]?.rows || 0), 0)
         : 0;
 
-      const msg = `Tabla generada: <strong>${tableRows.length}</strong> aeropuertos. Para los 17 aeropuertos extra se usaron <strong>${matchedRows}</strong> coincidencias de endpoint desde <strong>rutasaereas.csv</strong>, calculadas directamente como en la sección de rutas.${lgsText}`;
+const msg = `Tabla generada: <strong>${tableRows.length}</strong> aeropuertos. Para los 17 aeropuertos extra y FDO 2015-2017 se usaron <strong>${matchedRows}</strong> coincidencias de endpoint desde <strong>rutasaereas.csv</strong>. El JSON Covid suma además 2026 1S desde <strong>Tabla rutasaereas2026_semestre1.csv</strong> para FDO y los 17 aeropuertos especiales.${lgsText}`;      
       setStatus(warnings.length ? `${msg}<br><span>Advertencias: ${warnings.join("; ")}.</span>` : msg, warnings.length ? "warn" : "ok");
     }
 
-    q("btnReload").addEventListener("click", loadData);
-    q("btnCsv").addEventListener("click", downloadCSV);
-    q("btnXls").addEventListener("click", downloadXLS);
-    q("filterInput").addEventListener("input", applyFilter);
+      q("btnReload").addEventListener("click", loadData);
+      q("btnCsv").addEventListener("click", downloadCSV);
+      q("btnXls").addEventListener("click", downloadXLS);
+      q("btnJsonCovid").addEventListener("click", downloadCovidJson);
+      q("filterInput").addEventListener("input", applyFilter);
 
     loadData().catch(err => {
       console.error(err);
