@@ -251,3 +251,190 @@ button,select{font:inherit}
 .kpi-card.is-hidden {
   display: none !important;
 }
+
+
+
+/* ============================================================
+   INFORME SINTÉTICO COVID · TABLAS DE PASAJEROS
+   Agregado al final para respetar tamaños y estilos base existentes.
+   ============================================================ */
+
+.control-inner-simple{
+  align-items:center;
+}
+
+.toolbar-title-block{
+  gap:2px;
+}
+
+.toolbar-title{
+  font-size:12px;
+  font-weight:800;
+  color:var(--orsna-azul);
+  line-height:1.15;
+}
+
+.report-a4{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+  padding:0 0 28px;
+}
+
+.covid-table-block{
+  flex:1 1 auto;
+  min-height:0;
+  margin-bottom:4mm;
+}
+
+.covid-table-wrap{
+  overflow:hidden;
+}
+
+.covid-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:7.7px;
+}
+
+.covid-table th,
+.covid-table td{
+  border-bottom:1px solid #edf1f5;
+  padding:3px 3px;
+  text-align:right;
+  vertical-align:top;
+  white-space:nowrap;
+}
+
+.covid-table th{
+  background:#eaf1f8;
+  color:var(--orsna-azul);
+  font-weight:900;
+}
+
+.covid-table th:first-child,
+.covid-table td:first-child{
+  text-align:left;
+  white-space:normal;
+  width:30mm;
+}
+
+.covid-table th:last-child,
+.covid-table td:last-child{
+  text-align:left;
+  white-space:normal;
+  width:25mm;
+}
+
+.covid-table tbody tr:last-child td{
+  border-bottom:0;
+}
+
+.covid-table .airport-name{
+  font-weight:850;
+  color:#253447;
+}
+
+.covid-table .cell-main{
+  display:block;
+  font-weight:700;
+  color:#253447;
+  line-height:1.05;
+}
+
+.covid-table .cell-var{
+  display:block;
+  font-size:7.2px;
+  line-height:1.05;
+  margin-top:1px;
+  font-weight:850;
+}
+
+.covid-table .cell-base{
+  color:var(--muted);
+}
+
+.covid-table .valuation{
+  font-weight:850;
+  color:var(--orsna-azul);
+  line-height:1.15;
+}
+
+.conclusion-block{
+  border:1px solid var(--orsna-linea);
+  border-radius:8px;
+  background:#fbfdff;
+  padding:6px 8px;
+  margin-bottom:4mm;
+}
+
+.conclusion-block h2{
+  font-size:11px;
+  color:var(--orsna-azul);
+  margin:0 0 4px;
+  font-weight:700;
+}
+
+.conclusion-text{
+  font-size:9.2px;
+  line-height:1.28;
+  color:#3c4652;
+}
+
+.conclusion-text p{
+  margin:0 0 4px;
+}
+
+.conclusion-text p:last-child{
+  margin-bottom:0;
+}
+
+.covid-note{
+  color:var(--muted);
+  font-size:8.4px;
+  line-height:1.2;
+}
+
+/* Exportación PDF multipágina */
+.pdf-exporting,
+.pdf-exporting body{
+  width:210mm!important;
+  min-height:297mm!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:visible!important;
+  background:#fff!important;
+}
+
+.pdf-exporting .report-a4{
+  width:210mm!important;
+  min-height:297mm!important;
+  padding:0!important;
+  margin:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  gap:0!important;
+  background:#fff!important;
+}
+
+.pdf-exporting .sheet-a4{
+  width:210mm!important;
+  height:297mm!important;
+  margin:0!important;
+  box-shadow:none!important;
+  transform:none!important;
+  overflow:hidden!important;
+  page-break-after:always!important;
+  border-radius:0!important;
+}
+
+.pdf-exporting .sheet-a4:last-child{
+  page-break-after:auto!important;
+}
+
+.pdf-exporting .top-controls,
+.pdf-exporting .no-print{
+  display:none!important;
+}
