@@ -756,43 +756,45 @@ if (intConclusions) {
   `;
 }
 
-    const cabSummary = $("cabSummaryText");
-    if (cabSummary) {
-      const sna = cabRows.find(row => row.isSna);
-      const bue = cabRows.find(row => row.isBue);
+      const cabSummary = $("cabSummaryText");
+      
+      if (cabSummary) {
+        const sna = cabRows.find(row => row.isSna);
+        const bue = cabRows.find(row => row.isBue);
+      
+        cabSummary.innerHTML =
+          (
+            sna
+              ? `En el SNA, el cabotaje ${reportConfig.lastAnnualYear} muestra <strong class="${classForPct(sna.currentVariation)}">${fmtPct(sna.currentVariation)}</strong> respecto de ${reportConfig.baseYear}. `
+              : ""
+          ) +
+          (
+            bue
+              ? `Para AEP+EZE, la variación ${reportConfig.lastAnnualYear}/${reportConfig.baseYear} es <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong>. `
+              : ""
+          ) +
+          `La tabla sintetiza la recuperación del cabotaje en 2025 tomando ${reportConfig.baseYear} como base.`;
+      }
 
-      cabSummary.innerHTML =
-        `La tabla sintetiza la recuperación del cabotaje tomando ${reportConfig.baseYear} como base. ` +
-        (
-          sna
-            ? `En el SNA, el cabotaje ${reportConfig.lastAnnualYear} muestra <strong class="${classForPct(sna.currentVariation)}">${fmtPct(sna.currentVariation)}</strong> respecto de ${reportConfig.baseYear}. `
-            : ""
-        ) +
-        (
-          bue
-            ? `Para AEP+EZE, la variación ${reportConfig.lastAnnualYear}/${reportConfig.baseYear} es <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong>.`
-            : ""
-        );
-    }
-
-const intSummary = $("intSummaryText");
-
-if (intSummary) {
-  const sna = intRows.find(row => row.isSna);
-  const bue = intRows.find(row => row.isBue);
-
-  intSummary.innerHTML =
-    (
-      sna
-        ? `En el SNA, el tráfico internacional ${reportConfig.lastAnnualYear} registra <strong class="${classForPct(sna.currentVariation)}">${fmtPct(sna.currentVariation)}</strong> respecto de ${reportConfig.baseYear}. `
-        : ""
-    ) +
-    (
-      bue
-        ? `En AEP+EZE, la lectura conjunta muestra una variación de <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong> en ${reportConfig.lastAnnualYear} respecto de ${reportConfig.baseYear}.`
-        : ""
-    );
-  }
+      const intSummary = $("intSummaryText");
+      
+      if (intSummary) {
+        const sna = intRows.find(row => row.isSna);
+        const bue = intRows.find(row => row.isBue);
+      
+        intSummary.innerHTML =
+          (
+            sna
+              ? `En el SNA, el tráfico internacional ${reportConfig.lastAnnualYear} registra <strong class="${classForPct(sna.currentVariation)}">${fmtPct(sna.currentVariation)}</strong> respecto de ${reportConfig.baseYear}. `
+              : ""
+          ) +
+          (
+            bue
+              ? `En AEP+EZE, la lectura conjunta muestra una variación de <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong> en ${reportConfig.lastAnnualYear} respecto de ${reportConfig.baseYear}. `
+              : ""
+          ) +
+          `La tabla sintetiza la recuperación del tráfico internacional en 2025 tomando ${reportConfig.baseYear} como base.`;
+      }
 }
   function validateReportData(data) {
     if (!data || typeof data !== "object") {
