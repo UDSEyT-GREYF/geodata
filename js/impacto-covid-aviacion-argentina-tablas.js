@@ -38,12 +38,21 @@
       .replace(/'/g, "&#39;");
   }
 
-  function setStatus(message, type = "ok") {
-    const el = $("status");
-    if (!el) return;
-    el.className = `status ${type}`;
-    el.innerHTML = message;
+function setStatus(message, type = "ok") {
+  const el = $("status");
+
+  if (!el) return;
+
+  if (!message) {
+    el.innerHTML = "";
+    el.style.display = "none";
+    return;
   }
+
+  el.style.display = "";
+  el.className = `status ${type}`;
+  el.innerHTML = message;
+}
 
   async function fetchJson(url) {
     const resp = await fetch(url, { cache: "no-store" });
@@ -507,105 +516,80 @@ function rowLabel(row) {
 
     const intMarginal = marginalLabels(intRows);
 
-    const cabConclusions = $("cabConclusions");
-    if (cabConclusions) {
-      cabConclusions.innerHTML = `
-        <p>
-          <strong>Recuperación amplia:</strong>
-          ${
-            cabWide.length
-              ? escapeHtml(cabWide.join("; "))
-              : "no se identifican casos destacados con el umbral aplicado"
-          }.
-        </p>
+const cabConclusions = $("cabConclusions");
 
-        <p>
-          <strong>Recuperación leve o nivelación:</strong>
-          ${
-            cabMild.length
-              ? escapeHtml(cabMild.join("; "))
-              : "sin casos relevantes"
-          }.
-        </p>
+if (cabConclusions) {
+  cabConclusions.innerHTML = `
+    <p>
+      <strong>Recuperación amplia:</strong>
+      ${
+        cabWide.length
+          ? escapeHtml(cabWide.join("; "))
+          : "sin casos destacados"
+      }.
+    </p>
 
-        <p>
-          <strong>Recuperación incompleta en ${reportConfig.lastAnnualYear}:</strong>
-          ${
-            cabNotRecovered.length
-              ? escapeHtml(cabNotRecovered.join("; "))
-              : "sin casos destacados"
-          }.
-        </p>
+    <p>
+      <strong>Recuperación leve o nivelación:</strong>
+      ${
+        cabMild.length
+          ? escapeHtml(cabMild.join("; "))
+          : "sin casos destacados"
+      }.
+    </p>
 
-        <p>
-          <strong>Alerta ${reportConfig.h1Label}:</strong>
-          ${
-            cabFallBack.length
-              ? `recuperaron en ${reportConfig.lastAnnualYear} pero vuelven a caer frente al primer semestre de ${reportConfig.h1BaseYear}: ${escapeHtml(cabFallBack.join("; "))}.`
-              : "no se observan retrocesos marcados entre los casos recuperados."
-          }
-        </p>
+    <p>
+      <strong>Recuperación incompleta en ${reportConfig.lastAnnualYear}:</strong>
+      ${
+        cabNotRecovered.length
+          ? escapeHtml(cabNotRecovered.join("; "))
+          : "sin casos destacados"
+      }.
+    </p>
 
-        <p>
-          <strong>Volumen marginal:</strong>
-          ${
-            cabMarginal.length
-              ? `${escapeHtml(cabMarginal.join("; "))}. Sus variaciones porcentuales no se consideran representativas porque tanto ${reportConfig.baseYear} como ${reportConfig.lastAnnualYear} registran menos de ${fmt(MARGINAL_MAX_ANNUAL_PAX)} pasajeros.`
-              : "no se identifican casos con el umbral aplicado."
-          }
-        </p>
-      `;
-    }
+    <p>
+      <strong>Alerta ${reportConfig.h1Label}:</strong>
+      ${
+        cabFallBack.length
+          ? `recuperaron en ${reportConfig.lastAnnualYear} pero vuelven a caer frente al primer semestre de ${reportConfig.h1BaseYear}: ${escapeHtml(cabFallBack.join("; "))}.`
+          : "no se observan retrocesos marcados entre los casos recuperados."
+      }
+    </p>
+  `;
+}
 
-    const intConclusions = $("intConclusions");
-    if (intConclusions) {
-      intConclusions.innerHTML = `
-        <p>
-          <strong>Recuperación internacional:</strong>
-          ${
-            intRecovered.length
-              ? escapeHtml(intRecovered.join("; "))
-              : "no se identifican aeropuertos con recuperación plena dentro del universo significativo"
-          }.
-        </p>
+const intConclusions = $("intConclusions");
 
-        <p>
-          <strong>Internacional aún por debajo de ${reportConfig.baseYear}:</strong>
-          ${
-            intNotRecovered.length
-              ? escapeHtml(intNotRecovered.join("; "))
-              : "sin casos destacados"
-          }.
-        </p>
+if (intConclusions) {
+  intConclusions.innerHTML = `
+    <p>
+      <strong>Recuperación internacional:</strong>
+      ${
+        intRecovered.length
+          ? escapeHtml(intRecovered.join("; "))
+          : "sin casos destacados"
+      }.
+    </p>
 
-        <p>
-          <strong>Alerta ${reportConfig.h1Label}:</strong>
-          ${
-            intFallBack.length
-              ? `casos recuperados en ${reportConfig.lastAnnualYear} que muestran retroceso frente al primer semestre de ${reportConfig.h1BaseYear}: ${escapeHtml(intFallBack.join("; "))}.`
-              : "sin retrocesos marcados en los casos recuperados."
-          }
-        </p>
+    <p>
+      <strong>Internacional aún por debajo de ${reportConfig.baseYear}:</strong>
+      ${
+        intNotRecovered.length
+          ? escapeHtml(intNotRecovered.join("; "))
+          : "sin casos destacados"
+      }.
+    </p>
 
-        ${
-          intMarginal.length
-            ? `
-              <p>
-                <strong>Volumen marginal:</strong>
-                ${escapeHtml(intMarginal.join("; "))}.
-                Sus variaciones no se consideran representativas.
-              </p>
-            `
-            : ""
-        }
-
-        <p class="covid-note">
-          La tabla internacional utiliza directamente la selección de
-          tráfico significativo incluida en el JSON y evita incorporar
-          registros residuales no seleccionados por la fuente.
-        </p>
-      `;
-    }
+    <p>
+      <strong>Alerta ${reportConfig.h1Label}:</strong>
+      ${
+        intFallBack.length
+          ? `casos recuperados en ${reportConfig.lastAnnualYear} que muestran retroceso frente al primer semestre de ${reportConfig.h1BaseYear}: ${escapeHtml(intFallBack.join("; "))}.`
+          : "sin retrocesos marcados en los casos recuperados."
+      }
+    </p>
+  `;
+}
 
     const cabSummary = $("cabSummaryText");
     if (cabSummary) {
@@ -626,25 +610,24 @@ function rowLabel(row) {
         );
     }
 
-    const intSummary = $("intSummaryText");
-    if (intSummary) {
-      const sna = intRows.find(row => row.isSna);
-      const bue = intRows.find(row => row.isBue);
+const intSummary = $("intSummaryText");
 
-      intSummary.innerHTML =
-        `La tabla internacional muestra el SNA, AEP+EZE y los aeropuertos seleccionados como significativos en la fuente JSON. ` +
-        (
-          sna
-            ? `En el SNA, el tráfico internacional ${reportConfig.lastAnnualYear} registra <strong class="${classForPct(sna.currentVariation)}">${fmtPct(sna.currentVariation)}</strong> respecto de ${reportConfig.baseYear}. `
-            : ""
-        ) +
-        (
-          bue
-            ? `En AEP+EZE, la lectura conjunta muestra una variación de <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong> en ${reportConfig.lastAnnualYear} respecto de ${reportConfig.baseYear}.`
-            : ""
-        );
-    }
-  }
+if (intSummary) {
+  const sna = intRows.find(row => row.isSna);
+  const bue = intRows.find(row => row.isBue);
+
+  intSummary.innerHTML =
+    (
+      sna
+        ? `En el SNA, el tráfico internacional ${reportConfig.lastAnnualYear} registra <strong class="${classForPct(sna.currentVariation)}">${fmtPct(sna.currentVariation)}</strong> respecto de ${reportConfig.baseYear}. `
+        : ""
+    ) +
+    (
+      bue
+        ? `En AEP+EZE, la lectura conjunta muestra una variación de <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong> en ${reportConfig.lastAnnualYear} respecto de ${reportConfig.baseYear}.`
+        : ""
+    );
+}
 
   function validateReportData(data) {
     if (!data || typeof data !== "object") {
@@ -792,30 +775,8 @@ function rowLabel(row) {
       );
 
       const data = await fetchJson(DATA_PATH);
-      const { cabRows, intRows } = renderReport(data);
-
-      const marginalCount = [
-        ...cabRows,
-        ...intRows
-      ].filter(row => row.isMarginal).length;
-
-      const generated = data?.metadata?.generado
-        ? new Date(data.metadata.generado)
-        : null;
-
-      const generatedText =
-        generated &&
-        !Number.isNaN(generated.getTime())
-          ? ` · fuente generada ${generated.toLocaleString("es-AR")}`
-          : "";
-
-      setStatus(
-        `Datos cargados desde <strong>${DATA_PATH}</strong> · ` +
-        `${cabRows.length} filas de cabotaje · ` +
-        `${intRows.length} filas internacionales · ` +
-        `${marginalCount} casos de volumen marginal${generatedText}.`,
-        "ok"
-      );
+      renderReport(data);
+      setStatus("");
     } catch (err) {
       console.error(err);
 
