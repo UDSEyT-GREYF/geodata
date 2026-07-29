@@ -652,7 +652,7 @@ function renderCompareTable(rows, label, includeInternational) {
       
       const kpiPaxIntCard = $("kpiPaxIntCard");
       if (kpiPaxIntCard) {
-        kpiPaxIntCard.style.display = includeInternational ? "block" : "none";
+        kpiPaxIntCard.classList.toggle("is-hidden", !includeInternational);
       }
 
     setKpi("kpiPaxTotal", "kpiPaxTotalSub", paxTotalVar, y2025.pax_total, y2019.pax_total, fmt);
