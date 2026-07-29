@@ -1173,6 +1173,28 @@ function buildCovidJsonRow({
   row[`pax_${H1_COMPARE_YEAR}_1s`] = paxCompareH1;
   row[`var_${H1_COMPARE_YEAR}_1s`] = varCompareH1;
 
+const paxBaseAnnual =
+  row[`pax_${BASE_YEAR}`];
+
+const paxLastAnnual =
+  row[`pax_${LAST_ANNUAL_YEAR}`];
+
+const isMarginal =
+  !flags.es_sna &&
+  !flags.es_aep_eze &&
+  paxBaseAnnual < 1000 &&
+  paxLastAnnual < 1000;
+
+row.es_volumen_marginal = isMarginal;
+
+row.valoracion = isMarginal
+  ? "Volumen marginal: variación no representativa"
+  : valoracionFromVariation(
+      row[`var_${LAST_ANNUAL_YEAR}`],
+      varCompareH1,
+      tipoTabla
+    );
+  
   row.valoracion = valoracionFromVariation(
     row[`var_${LAST_ANNUAL_YEAR}`],
     varCompareH1,
