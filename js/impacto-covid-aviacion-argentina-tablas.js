@@ -478,6 +478,257 @@ function conclusionLabel(row) {
     `;
   }
 
+function formatOneDecimal(value) {
+  const n = Number(value);
+
+  if (!Number.isFinite(n)) return "–";
+
+  return n.toLocaleString("es-AR", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1
+  });
+}
+
+
+function buildLinePath(series, valueKey, xScale, yScale) {
+  return series
+    .map((d, i) => {
+      const x = xScale(i);
+      const y = yScale(d[valueKey]);
+      return `${i === 0 ? "M" : "L"}${x},${y}`;
+    })
+    .join(" ");
+}
+
+
+function getInternationalTerritorialSeries() {
+  const intlRows = reportData?.tablas?.internacional || [];
+
+  const snaRow = intlRows.find(row => row.es_sna) || null;
+  const bueRow = intlRows.find(row => row.es_aep_eze) || null;
+
+  if (!snaRow || !bueRow) {
+    return [];
+  }
+
+  const years = getAnnualYearsFromRows([snaRow, bueRow])
+    .filter(year => year >= 2015 && year <= 2025)
+    .sort((a, b) => a - b);
+
+  const baseYear = reportConfig.baseYear;
+
+  const snaBase = annualValue(snaRow, baseYear);
+  const bueBase = annualValue(bueRow, baseYear);
+  const restoBase = snaBase - bueBase;
+
+  return years.map(year => {
+    const sna = annualValue(snaRow, year);
+    const bue = annualValue(bueRow, year);
+    const resto = sna - bue;
+
+    return {
+      year,
+      snaIndex: snaBase > 0 ? (sna / snaBase) * 100 : 0,
+      bueIndex: bueBase > 0 ? (bue / bueBase) * 100 : 0,
+      restoIndex: restoBase > 0 ? (resto / restoBase) * 100 : 0
+    };
+  });
+}
+
+
+function renderInternationalTerritorialChart(containerId) {
+  const el = $(containerId);
+  if (!el) return;
+
+  const series = getInternationalTerritorialSeries();
+
+  if (!series.length) {
+    el.innerHTML = "";
+    return;
+  }
+
+  const width = 860;
+  const height = 215;
+
+  const margin = {
+    top: 10,
+    right: 112,
+    bottom: 26,
+    left: 36
+  };
+
+  const plotWidth = width - margin.left - margin.right;
+  const plotHeight = height - margin.top - margin.bottom;
+
+  const allValues = series.flatMap(d => [
+    d.snaIndex,
+    d.bueIndex,
+    d.restoIndex
+  ]);
+
+  const maxValue =
+    Math.max(110, Math.ceil(Math.max(...allValues) / 10) * 10);
+
+  const minValue = 0;
+
+  const xScale = i =>
+    margin.left +
+    (plotWidth * i) / (series.length - 1);
+
+  const yScale = value =>
+    margin.top +
+    plotHeight -
+    ((value - minValue) / (maxValue - minValue)) * plotHeight;
+
+  const yTicks = [0, 25, 50, 75, 100];
+
+  const snaPath = buildLinePath(
+    series,
+    "snaIndex",
+    xScale,
+    yScale
+  );
+
+  const buePath = buildLinePath(
+    series,
+    "bueIndex",
+    xScale,
+    yScale
+  );
+
+  const restoPath = buildLinePath(
+    series,
+    "restoIndex",
+    xScale,
+    yScale
+  );
+
+  const last = series[series.length - 1];
+
+  const baseY = yScale(100);
+  const baseIndex = series.findIndex(d => d.year === 2019);
+  const baseX = xScale(baseIndex);
+
+  const horizontalGrid = yTicks.map(value => `
+    <line
+      x1="${margin.left}"
+      y1="${yScale(value)}"
+      x2="${width - margin.right}"
+      y2="${yScale(value)}"
+      class="chart-grid-line"
+    ></line>
+
+    <text
+      x="${margin.left - 8}"
+      y="${yScale(value) + 3}"
+      text-anchor="end"
+      class="chart-axis-text"
+    >${value}</text>
+  `).join("");
+
+  const yearLabels = series.map((d, i) => {
+    const show =
+      d.year === 2015 ||
+      d.year === 2019 ||
+      d.year === 2020 ||
+      d.year === 2025;
+
+    if (!show) return "";
+
+    return `
+      <text
+        x="${xScale(i)}"
+        y="${height - 6}"
+        text-anchor="middle"
+        class="chart-axis-text"
+      >${d.year}</text>
+    `;
+  }).join("");
+
+  const points = series.map((d, i) => `
+    <circle
+      cx="${xScale(i)}"
+      cy="${yScale(d.snaIndex)}"
+      r="2.1"
+      class="chart-point-sna"
+    ></circle>
+
+    <circle
+      cx="${xScale(i)}"
+      cy="${yScale(d.bueIndex)}"
+      r="2.1"
+      class="chart-point-bue"
+    ></circle>
+
+    <circle
+      cx="${xScale(i)}"
+      cy="${yScale(d.restoIndex)}"
+      r="2.1"
+      class="chart-point-resto"
+    ></circle>
+  `).join("");
+
+  el.innerHTML = `
+    <svg
+      viewBox="0 0 ${width} ${height}"
+      role="img"
+      aria-label="Evolución del tráfico internacional del SNA, AEP más EZE y resto del sistema. Índice 2019 igual a 100."
+    >
+      ${horizontalGrid}
+
+      <line
+        x1="${baseX}"
+        y1="${margin.top}"
+        x2="${baseX}"
+        y2="${margin.top + plotHeight}"
+        class="chart-grid-line"
+        style="stroke:#e0e6ec"
+      ></line>
+
+      <line
+        x1="${margin.left}"
+        y1="${baseY}"
+        x2="${width - margin.right}"
+        y2="${baseY}"
+        class="chart-base-line"
+      ></line>
+
+      <text
+        x="${baseX + 6}"
+        y="${baseY - 6}"
+        class="chart-base-label"
+      >2019 = 100</text>
+
+      <path d="${snaPath}" class="chart-series-sna"></path>
+      <path d="${buePath}" class="chart-series-bue"></path>
+      <path d="${restoPath}" class="chart-series-resto"></path>
+
+      ${points}
+
+      ${yearLabels}
+
+      <text
+        x="${width - margin.right + 12}"
+        y="${yScale(last.snaIndex) - 8}"
+        class="chart-last-label-sna"
+      >SNA: ${formatOneDecimal(last.snaIndex)}</text>
+
+      <text
+        x="${width - margin.right + 12}"
+        y="${yScale(last.bueIndex) + 2}"
+        class="chart-last-label-bue"
+      >AEP+EZE: ${formatOneDecimal(last.bueIndex)}</text>
+
+      <text
+        x="${width - margin.right + 12}"
+        y="${yScale(last.restoIndex) + 12}"
+        class="chart-last-label-resto"
+      >Resto: ${formatOneDecimal(last.restoIndex)}</text>
+    </svg>
+  `;
+}
+
+  
 function renderPassengerTable(
   tableId,
   sourceRows,
@@ -871,6 +1122,10 @@ const intRows = renderPassengerTable(
   Las conclusiones utilizan cabRows e intRows completos.
 */
 renderConclusions(cabRows, intRows);
+
+renderInternationalTerritorialChart(
+  "intlTerritorialChart"
+);
 
     return { cabRows, intRows };
   }
