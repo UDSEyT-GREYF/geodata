@@ -221,23 +221,50 @@ function setStatus(message, type = "ok") {
     return !!row?.es_sna || !!row?.es_aep_eze;
   }
 
-  function isMarginalRow(row, config = reportConfig) {
-    if (!row || isSpecialAggregate(row)) return false;
-
-    /*
-      Si futuros JSON ya incluyen la marca, se respeta.
-      Mientras tanto, se calcula con los valores incluidos.
-    */
-    if (row.es_volumen_marginal === true) return true;
-
-    const base = annualValue(row, config.baseYear);
-    const current = annualValue(row, config.lastAnnualYear);
-
-    return (
-      base < MARGINAL_MAX_ANNUAL_PAX &&
-      current < MARGINAL_MAX_ANNUAL_PAX
-    );
+function isMarginalRow(row, config = reportConfig) {
+  if (!row || isSpecialAggregate(row)) {
+    return false;
   }
+
+  /*
+    Se respeta la marca explícita incluida en el JSON.
+  */
+  if (row.es_volumen_marginal === true) {
+    return true;
+  }
+
+  /*
+    También se reconoce la valoración escrita en el JSON.
+  */
+  const storedValuation = String(
+    row.valoracion || ""
+  )
+    .trim()
+    .toLowerCase();
+
+  if (storedValuation.includes("volumen marginal")) {
+    return true;
+  }
+
+  /*
+    Como respaldo, se calcula a partir de los pasajeros
+    de 2019 y 2025.
+  */
+  const base = annualValue(
+    row,
+    config.baseYear
+  );
+
+  const current = annualValue(
+    row,
+    config.lastAnnualYear
+  );
+
+  return (
+    base < MARGINAL_MAX_ANNUAL_PAX &&
+    current < MARGINAL_MAX_ANNUAL_PAX
+  );
+}
 
 function rowLabel(row) {
   const rawName = String(
@@ -684,9 +711,18 @@ renderPassengerTable(
   Página 1:
   tabla internacional completa.
 */
+/*
+  En la tabla internacional no se muestran aeropuertos
+  con volumen marginal.
+*/
+const significantInternationalRows =
+  data.tablas.internacional.filter(
+    row => !isMarginalRow(row, reportConfig)
+  );
+
 const intRows = renderPassengerTable(
   "intTable",
-  data.tablas.internacional
+  significantInternationalRows
 );
 
 
