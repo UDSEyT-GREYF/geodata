@@ -46,8 +46,22 @@ button,select{font:inherit}
 .table-wrap{overflow:hidden;border:1px solid #e5ebf2;border-radius:7px}
 .compare-block table{width:100%;border-collapse:collapse;font-size:9.2px}
 .compare-block th,.compare-block td{padding:4px 5px;border-bottom:1px solid #edf1f5;text-align:right;white-space:nowrap}
-.compare-block th{background:#eaf1f8;color:var(--orsna-azul);font-weight:900}
-.compare-block th:first-child,.compare-block td:first-child{text-align:left;white-space:normal}
+.compare-block th{
+  background:#eaf1f8;
+  color:var(--orsna-azul);
+  font-weight:900;
+  text-align:center;
+  vertical-align:middle
+}
+.compare-block th:first-child{
+  text-align:center;
+  white-space:normal
+}
+
+.compare-block td:first-child{
+  text-align:left;
+  white-space:normal
+}
 .compare-block tbody tr:last-child td{border-bottom:0}
 .metric-name{font-weight:850;color:#253447}
 .report-footer{margin-top:auto;padding-top:4mm;display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--orsna-linea);font-size:9px;color:var(--muted)}
