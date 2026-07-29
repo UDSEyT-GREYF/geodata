@@ -229,20 +229,51 @@
     );
   }
 
-  function rowLabel(row) {
-    const name = String(row?.aeropuerto || row?.iata || "").trim();
-    const iata = String(row?.iata || "").trim().toUpperCase();
+function rowLabel(row) {
+  const rawName = String(
+    row?.aeropuerto || row?.iata || ""
+  ).trim();
 
-    if (!iata || iata === "SNA" || iata === "BUE") {
-      return name;
-    }
+  const iata = String(
+    row?.iata || ""
+  ).trim().toUpperCase();
 
-    if (name.toUpperCase().includes(`(${iata})`)) {
-      return name;
-    }
-
-    return `${name} (${iata})`;
+  /*
+    Casos agregados:
+    conservan su denominación actual.
+  */
+  if (iata === "SNA" || iata === "BUE") {
+    return rawName;
   }
+
+  /*
+    Excepción solicitada para Aeroparque.
+  */
+  if (iata === "AEP") {
+    return "Aeroparque Jorge Newbery";
+  }
+
+  /*
+    Quita el código IATA final:
+    (COR), (MDZ), (BRC), etc.
+  */
+  let shortName = rawName.replace(
+    /\s*\([A-Z0-9]{2,4}\)\s*$/i,
+    ""
+  );
+
+  /*
+    Conserva solo lo anterior al guion:
+    "Aeropuerto de Córdoba – Ing. A. Taravella"
+    pasa a:
+    "Aeropuerto de Córdoba"
+  */
+  shortName = shortName
+    .split(/\s+[–—-]\s+/)[0]
+    .trim();
+
+  return shortName || rawName;
+}
 
   function valuationText(row, config = reportConfig) {
     if (isMarginalRow(row, config)) {
