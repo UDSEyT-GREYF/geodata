@@ -639,10 +639,10 @@
         "pax_2025": 17176,
         "var_2025": 16.156083045918713,
         "pax_2019_1s": 9233,
-        "pax_2026_1s": 0,
-        "var_2026_1s": -100,
+        "pax_2026_1s": 7745,
+        "var_2026_1s": -16,
         "es_volumen_marginal": false,
-        "valoracion": "Recuperó en 2025, alerta 2026 1S"
+        "valoracion": "Recuperación incompleta"
       },
       {
         "tipo_tabla": "cabotaje",
@@ -2391,10 +2391,10 @@
         "pax_2025": 21984,
         "var_2025": 85.61296859169201,
         "pax_2019_1s": 5674,
-        "pax_2026_1s": 0,
-        "var_2026_1s": -100,
+        "pax_2026_1s": 10162,
+        "var_2026_1s": +80,
         "es_volumen_marginal": false,
-        "valoracion": "Recuperó en 2025, alerta 2026 1S"
+        "valoracion": "Recuperación amplia"
       },
       {
         "tipo_tabla": "internacional",
