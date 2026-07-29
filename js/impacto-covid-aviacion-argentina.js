@@ -687,12 +687,19 @@ function renderCompareTable(rows, label, includeInternational) {
     return airportOptions[0];
   }
 
- async function exportPdfA4() {
+async function exportPdfA4() {
   const node = $("sheetA4");
   const btn = $("btnPdf");
-  if (!node) return window.print();
 
-  const suffix = currentScope.kind === "airport" ? currentScope.iata : "SNA";
+  if (!node) {
+    window.print();
+    return;
+  }
+
+  const suffix = currentScope && currentScope.kind === "airport"
+    ? currentScope.iata
+    : "SNA";
+
   const filename = `impacto_covid_aviacion_argentina_${suffix}_a4.pdf`;
 
   try {
@@ -702,40 +709,69 @@ function renderCompareTable(rows, label, includeInternational) {
     }
 
     window.scrollTo(0, 0);
+
     document.documentElement.classList.add("pdf-exporting");
     document.body.classList.add("pdf-exporting");
 
-    await new Promise(resolve => setTimeout(resolve, 250));
+    await new Promise(resolve => setTimeout(resolve, 350));
 
-    if (window.html2canvas && window.jspdf?.jsPDF) {
-      const canvas = await window.html2canvas(node, {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: "#ffffff",
-        width: node.offsetWidth,
-        height: node.offsetHeight,
-        windowWidth: node.offsetWidth,
-        windowHeight: node.offsetHeight,
-        scrollX: 0,
-        scrollY: 0
-      });
-
-      const imgData = canvas.toDataURL("image/jpeg", 0.98);
-
-      const pdf = new window.jspdf.jsPDF({
-        orientation: "portrait",
-        unit: "mm",
-        format: "a4",
-        compress: true
-      });
-
-      pdf.addImage(imgData, "JPEG", 0, 0, 210, 297);
-      pdf.save(filename);
-    } else {
+    if (!window.html2canvas || !window.jspdf?.jsPDF) {
       window.print();
+      return;
     }
+
+    const canvas = await window.html2canvas(node, {
+      scale: 2.2,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: "#ffffff",
+      scrollX: 0,
+      scrollY: 0,
+      windowWidth: node.scrollWidth,
+      windowHeight: node.scrollHeight
+    });
+
+    const imgData = canvas.toDataURL("image/jpeg", 0.98);
+
+    const pdf = new window.jspdf.jsPDF({
+      orientation: "portrait",
+      unit: "mm",
+      format: "a4",
+      compress: true
+    });
+
+    const pageW = 210;
+    const pageH = 297;
+
+    /*
+      Escalado seguro:
+      - Si la imagen queda más alta que A4, se achica proporcionalmente.
+      - Si queda más angosta, se centra.
+      - No recorta contenido.
+    */
+    const imgRatio = canvas.width / canvas.height;
+    const pageRatio = pageW / pageH;
+
+    let renderW = pageW;
+    let renderH = pageH;
+    let x = 0;
+    let y = 0;
+
+    if (imgRatio > pageRatio) {
+      renderW = pageW;
+      renderH = pageW / imgRatio;
+      y = (pageH - renderH) / 2;
+    } else {
+      renderH = pageH;
+      renderW = pageH * imgRatio;
+      x = (pageW - renderW) / 2;
+    }
+
+    pdf.addImage(imgData, "JPEG", x, y, renderW, renderH);
+    pdf.save(filename);
+
   } catch (err) {
-    console.error(err);
+    console.error("Error exportando PDF A4:", err);
     window.print();
   } finally {
     document.documentElement.classList.remove("pdf-exporting");
