@@ -1,7 +1,7 @@
 {
   "metadata": {
     "titulo": "Recuperación post-pandemia de la aviación argentina",
-    "generado": "2026-07-29T17:08:28.775Z",
+    "generado": "2026-07-29T17:40:29.750Z",
     "destino_sugerido": "data/recuperacion_postpandemia_pasajeros.json",
     "base_anual": 2019,
     "serie_anual": "2015-2025",
@@ -81,6 +81,7 @@
         "pax_2019_1s": 7644062,
         "pax_2026_1s": 7866913,
         "var_2026_1s": 2.9153478870265648,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación leve en cabotaje"
       },
       {
@@ -115,6 +116,7 @@
         "pax_2019_1s": 6158708,
         "pax_2026_1s": 7199826,
         "var_2026_1s": 16.90481185339523,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación amplia"
       },
       {
@@ -149,6 +151,7 @@
         "pax_2019_1s": 5613241,
         "pax_2026_1s": 5591608,
         "var_2026_1s": -0.38539232504002374,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación leve en cabotaje"
       },
       {
@@ -183,6 +186,7 @@
         "pax_2019_1s": 24909,
         "pax_2026_1s": 22051,
         "var_2026_1s": -11.473764502790152,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación incompleta"
       },
       {
@@ -217,7 +221,8 @@
         "pax_2019_1s": 1,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
-        "valoracion": "Recuperó en 2025, alerta 2026 1S"
+        "es_volumen_marginal": true,
+        "valoracion": "Volumen marginal: variación no representativa"
       },
       {
         "tipo_tabla": "cabotaje",
@@ -251,6 +256,7 @@
         "pax_2019_1s": 177409,
         "pax_2026_1s": 120157,
         "var_2026_1s": -32.271192555056395,
+        "es_volumen_marginal": false,
         "valoracion": "Muy por debajo de 2019"
       },
       {
@@ -285,6 +291,7 @@
         "pax_2019_1s": 729973,
         "pax_2026_1s": 953625,
         "var_2026_1s": 30.638393474827154,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación amplia"
       },
       {
@@ -319,6 +326,7 @@
         "pax_2019_1s": 102707,
         "pax_2026_1s": 82831,
         "var_2026_1s": -19.352137634241096,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperó en 2025, alerta 2026 1S"
       },
       {
@@ -353,7 +361,8 @@
         "pax_2019_1s": 233,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
-        "valoracion": "Muy por debajo de 2019"
+        "es_volumen_marginal": true,
+        "valoracion": "Volumen marginal: variación no representativa"
       },
       {
         "tipo_tabla": "cabotaje",
@@ -387,6 +396,7 @@
         "pax_2019_1s": 1361591,
         "pax_2026_1s": 1066194,
         "var_2026_1s": -21.69498770188698,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación incompleta"
       },
       {
@@ -421,6 +431,7 @@
         "pax_2019_1s": 60357,
         "pax_2026_1s": 149233,
         "var_2026_1s": 147.250526036748,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación amplia"
       },
       {
@@ -455,6 +466,7 @@
         "pax_2019_1s": 327346,
         "pax_2026_1s": 253556,
         "var_2026_1s": -22.54189756404539,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación incompleta"
       },
       {
@@ -489,6 +501,7 @@
         "pax_2019_1s": 29038,
         "pax_2026_1s": 34292,
         "var_2026_1s": 18.093532612438867,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación amplia"
       },
       {
@@ -523,6 +536,7 @@
         "pax_2019_1s": 632585,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
+        "es_volumen_marginal": false,
         "valoracion": "Muy por debajo de 2019"
       },
       {
@@ -557,6 +571,7 @@
         "pax_2019_1s": 25404,
         "pax_2026_1s": 37436,
         "var_2026_1s": 47.36262005983309,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación amplia"
       },
       {
@@ -591,6 +606,7 @@
         "pax_2019_1s": 545467,
         "pax_2026_1s": 1608218,
         "var_2026_1s": 194.83323464114238,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación amplia"
       },
       {
@@ -625,6 +641,7 @@
         "pax_2019_1s": 9233,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperó en 2025, alerta 2026 1S"
       },
       {
@@ -659,6 +676,7 @@
         "pax_2019_1s": 51098,
         "pax_2026_1s": 37245,
         "var_2026_1s": -27.1106501232925,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación incompleta"
       },
       {
@@ -693,6 +711,7 @@
         "pax_2019_1s": 337540,
         "pax_2026_1s": 467997,
         "var_2026_1s": 38.649345262783676,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación amplia"
       },
       {
@@ -727,7 +746,8 @@
         "pax_2019_1s": 163,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
-        "valoracion": "Muy por debajo de 2019"
+        "es_volumen_marginal": true,
+        "valoracion": "Volumen marginal: variación no representativa"
       },
       {
         "tipo_tabla": "cabotaje",
@@ -761,7 +781,8 @@
         "pax_2019_1s": 6,
         "pax_2026_1s": 166,
         "var_2026_1s": 2666.666666666667,
-        "valoracion": "Recuperación amplia"
+        "es_volumen_marginal": true,
+        "valoracion": "Volumen marginal: variación no representativa"
       },
       {
         "tipo_tabla": "cabotaje",
@@ -795,6 +816,7 @@
         "pax_2019_1s": 737977,
         "pax_2026_1s": 782356,
         "var_2026_1s": 6.013602049928379,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación clara"
       },
       {
@@ -829,6 +851,7 @@
         "pax_2019_1s": 31935,
         "pax_2026_1s": 32303,
         "var_2026_1s": 1.1523406920306956,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación clara"
       },
       {
@@ -863,7 +886,8 @@
         "pax_2019_1s": 1,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
-        "valoracion": "Recuperó en 2025, alerta 2026 1S"
+        "es_volumen_marginal": true,
+        "valoracion": "Volumen marginal: variación no representativa"
       },
       {
         "tipo_tabla": "cabotaje",
@@ -897,6 +921,7 @@
         "pax_2019_1s": 192130,
         "pax_2026_1s": 212039,
         "var_2026_1s": 10.362254723364384,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación amplia"
       },
       {
@@ -931,7 +956,8 @@
         "pax_2019_1s": 216,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
-        "valoracion": "Muy por debajo de 2019"
+        "es_volumen_marginal": true,
+        "valoracion": "Volumen marginal: variación no representativa"
       },
       {
         "tipo_tabla": "cabotaje",
@@ -965,7 +991,8 @@
         "pax_2019_1s": 69,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
-        "valoracion": "Recuperó en 2025, alerta 2026 1S"
+        "es_volumen_marginal": true,
+        "valoracion": "Volumen marginal: variación no representativa"
       },
       {
         "tipo_tabla": "cabotaje",
@@ -999,6 +1026,7 @@
         "pax_2019_1s": 38525,
         "pax_2026_1s": 28418,
         "var_2026_1s": -26.234912394548992,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación incompleta"
       },
       {
@@ -1033,6 +1061,7 @@
         "pax_2019_1s": 222213,
         "pax_2026_1s": 151039,
         "var_2026_1s": -32.029629229613036,
+        "es_volumen_marginal": false,
         "valoracion": "Muy por debajo de 2019"
       },
       {
@@ -1067,6 +1096,7 @@
         "pax_2019_1s": 888778,
         "pax_2026_1s": 800521,
         "var_2026_1s": -9.930151286372979,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperó en 2025, alerta 2026 1S"
       },
       {
@@ -1101,7 +1131,8 @@
         "pax_2019_1s": 18,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
-        "valoracion": "Muy por debajo de 2019"
+        "es_volumen_marginal": true,
+        "valoracion": "Volumen marginal: variación no representativa"
       },
       {
         "tipo_tabla": "cabotaje",
@@ -1135,6 +1166,7 @@
         "pax_2019_1s": 542475,
         "pax_2026_1s": 647260,
         "var_2026_1s": 19.31609751601455,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación clara"
       },
       {
@@ -1169,6 +1201,7 @@
         "pax_2019_1s": 1231,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperó en 2025, alerta 2026 1S"
       },
       {
@@ -1203,6 +1236,7 @@
         "pax_2019_1s": 42656,
         "pax_2026_1s": 60119,
         "var_2026_1s": 40.93914103525882,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación amplia"
       },
       {
@@ -1237,6 +1271,7 @@
         "pax_2019_1s": 27766,
         "pax_2026_1s": 20613,
         "var_2026_1s": -25.761722970539513,
+        "es_volumen_marginal": false,
         "valoracion": "Muy por debajo de 2019"
       },
       {
@@ -1271,6 +1306,7 @@
         "pax_2019_1s": 158841,
         "pax_2026_1s": 138827,
         "var_2026_1s": -12.600021405052853,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperó en 2025, alerta 2026 1S"
       },
       {
@@ -1305,6 +1341,7 @@
         "pax_2019_1s": 3161,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
+        "es_volumen_marginal": false,
         "valoracion": "Muy por debajo de 2019"
       },
       {
@@ -1339,6 +1376,7 @@
         "pax_2019_1s": 18052,
         "pax_2026_1s": 11758,
         "var_2026_1s": -34.86594283181918,
+        "es_volumen_marginal": false,
         "valoracion": "Muy por debajo de 2019"
       },
       {
@@ -1373,6 +1411,7 @@
         "pax_2019_1s": 142569,
         "pax_2026_1s": 138986,
         "var_2026_1s": -2.513169061998055,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación incompleta"
       },
       {
@@ -1407,6 +1446,7 @@
         "pax_2019_1s": 131328,
         "pax_2026_1s": 129966,
         "var_2026_1s": -1.0370979532163704,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación incompleta"
       },
       {
@@ -1441,6 +1481,7 @@
         "pax_2019_1s": 74892,
         "pax_2026_1s": 23909,
         "var_2026_1s": -68.07536185440368,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación incompleta"
       },
       {
@@ -1475,6 +1516,7 @@
         "pax_2019_1s": 128442,
         "pax_2026_1s": 69041,
         "var_2026_1s": -46.24733342676072,
+        "es_volumen_marginal": false,
         "valoracion": "Muy por debajo de 2019"
       },
       {
@@ -1509,6 +1551,7 @@
         "pax_2019_1s": 4404,
         "pax_2026_1s": 8041,
         "var_2026_1s": 82.58401453224342,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación amplia"
       },
       {
@@ -1543,6 +1586,7 @@
         "pax_2019_1s": 40,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperó en 2025, alerta 2026 1S"
       },
       {
@@ -1577,6 +1621,7 @@
         "pax_2019_1s": 174222,
         "pax_2026_1s": 101591,
         "var_2026_1s": -41.68876490913892,
+        "es_volumen_marginal": false,
         "valoracion": "Muy por debajo de 2019"
       },
       {
@@ -1611,6 +1656,7 @@
         "pax_2019_1s": 22628,
         "pax_2026_1s": 18976,
         "var_2026_1s": -16.139296446879968,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación incompleta"
       },
       {
@@ -1645,7 +1691,8 @@
         "pax_2019_1s": 9,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
-        "valoracion": "Muy por debajo de 2019"
+        "es_volumen_marginal": true,
+        "valoracion": "Volumen marginal: variación no representativa"
       },
       {
         "tipo_tabla": "cabotaje",
@@ -1679,6 +1726,7 @@
         "pax_2019_1s": 72302,
         "pax_2026_1s": 86183,
         "var_2026_1s": 19.198639041796906,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación amplia"
       },
       {
@@ -1713,6 +1761,7 @@
         "pax_2019_1s": 56350,
         "pax_2026_1s": 37796,
         "var_2026_1s": -32.92635314995563,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperó en 2025, alerta 2026 1S"
       },
       {
@@ -1747,6 +1796,7 @@
         "pax_2019_1s": 603459,
         "pax_2026_1s": 649643,
         "var_2026_1s": 7.653212562908163,
+        "es_volumen_marginal": false,
         "valoracion": "Igualó el nivel de 2019"
       },
       {
@@ -1781,7 +1831,8 @@
         "pax_2019_1s": 40,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
-        "valoracion": "Muy por debajo de 2019"
+        "es_volumen_marginal": true,
+        "valoracion": "Volumen marginal: variación no representativa"
       },
       {
         "tipo_tabla": "cabotaje",
@@ -1815,7 +1866,8 @@
         "pax_2019_1s": 529,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
-        "valoracion": "Recuperó en 2025, alerta 2026 1S"
+        "es_volumen_marginal": true,
+        "valoracion": "Volumen marginal: variación no representativa"
       },
       {
         "tipo_tabla": "cabotaje",
@@ -1849,7 +1901,8 @@
         "pax_2019_1s": 277,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
-        "valoracion": "Muy por debajo de 2019"
+        "es_volumen_marginal": true,
+        "valoracion": "Volumen marginal: variación no representativa"
       },
       {
         "tipo_tabla": "cabotaje",
@@ -1883,6 +1936,7 @@
         "pax_2019_1s": 431625,
         "pax_2026_1s": 419587,
         "var_2026_1s": -2.78899507674486,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación incompleta"
       },
       {
@@ -1917,6 +1971,7 @@
         "pax_2019_1s": 57789,
         "pax_2026_1s": 101354,
         "var_2026_1s": 75.38631919569467,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación amplia"
       },
       {
@@ -1951,6 +2006,7 @@
         "pax_2019_1s": 412545,
         "pax_2026_1s": 561592,
         "var_2026_1s": 36.128664751724045,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación amplia"
       },
       {
@@ -1985,6 +2041,7 @@
         "pax_2019_1s": 19268,
         "pax_2026_1s": 17576,
         "var_2026_1s": -8.781399211127262,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación incompleta"
       },
       {
@@ -2019,7 +2076,8 @@
         "pax_2019_1s": 270,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
-        "valoracion": "Recuperación incompleta"
+        "es_volumen_marginal": true,
+        "valoracion": "Volumen marginal: variación no representativa"
       },
       {
         "tipo_tabla": "cabotaje",
@@ -2053,7 +2111,8 @@
         "pax_2019_1s": 291,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
-        "valoracion": "Muy por debajo de 2019"
+        "es_volumen_marginal": true,
+        "valoracion": "Volumen marginal: variación no representativa"
       }
     ],
     "internacional": [
@@ -2089,6 +2148,7 @@
         "pax_2019_1s": 7519668,
         "pax_2026_1s": 8884560,
         "var_2026_1s": 18.150960920083172,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación clara"
       },
       {
@@ -2123,6 +2183,7 @@
         "pax_2019_1s": 6365804,
         "pax_2026_1s": 7474195,
         "var_2026_1s": 17.41164195441769,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación clara"
       },
       {
@@ -2157,6 +2218,7 @@
         "pax_2019_1s": 589983,
         "pax_2026_1s": 2819871,
         "var_2026_1s": 377.9580089595802,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación amplia"
       },
       {
@@ -2191,6 +2253,7 @@
         "pax_2019_1s": 1984,
         "pax_2026_1s": 29731,
         "var_2026_1s": 1398.538306451613,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación amplia"
       },
       {
@@ -2225,6 +2288,7 @@
         "pax_2019_1s": 404478,
         "pax_2026_1s": 653180,
         "var_2026_1s": 61.48715134074041,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación amplia"
       },
       {
@@ -2259,6 +2323,7 @@
         "pax_2019_1s": 116174,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
+        "es_volumen_marginal": false,
         "valoracion": "Muy por debajo de 2019"
       },
       {
@@ -2293,6 +2358,7 @@
         "pax_2019_1s": 5775821,
         "pax_2026_1s": 4654324,
         "var_2026_1s": -19.41710104935731,
+        "es_volumen_marginal": false,
         "valoracion": "Muy por debajo de 2019"
       },
       {
@@ -2327,6 +2393,7 @@
         "pax_2019_1s": 5674,
         "pax_2026_1s": 0,
         "var_2026_1s": -100,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperó en 2025, alerta 2026 1S"
       },
       {
@@ -2361,6 +2428,7 @@
         "pax_2019_1s": 279374,
         "pax_2026_1s": 350609,
         "var_2026_1s": 25.498077845468803,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación amplia"
       },
       {
@@ -2395,6 +2463,7 @@
         "pax_2019_1s": 18423,
         "pax_2026_1s": 7990,
         "var_2026_1s": -56.630299082668415,
+        "es_volumen_marginal": false,
         "valoracion": "Muy por debajo de 2019"
       },
       {
@@ -2429,6 +2498,7 @@
         "pax_2019_1s": 227437,
         "pax_2026_1s": 228578,
         "var_2026_1s": 0.501677387584265,
+        "es_volumen_marginal": false,
         "valoracion": "Muy por debajo de 2019"
       },
       {
@@ -2463,6 +2533,7 @@
         "pax_2019_1s": 46764,
         "pax_2026_1s": 61512,
         "var_2026_1s": 31.537079804978198,
+        "es_volumen_marginal": false,
         "valoracion": "Recuperación amplia"
       },
       {
@@ -2497,6 +2568,7 @@
         "pax_2019_1s": 39320,
         "pax_2026_1s": 40552,
         "var_2026_1s": 3.133265513733474,
+        "es_volumen_marginal": false,
         "valoracion": "Muy por debajo de 2019"
       },
       {
@@ -2531,7 +2603,8 @@
         "pax_2019_1s": 30,
         "pax_2026_1s": 5,
         "var_2026_1s": -83.33333333333334,
-        "valoracion": "Muy por debajo de 2019"
+        "es_volumen_marginal": true,
+        "valoracion": "Volumen marginal: variación no representativa"
       }
     ]
   }
