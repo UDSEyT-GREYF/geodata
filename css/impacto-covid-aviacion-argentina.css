@@ -538,3 +538,52 @@ button,select{font:inherit}
 #sheetA4CabotajeContinuacion .report-footer {
   padding-top: 2mm;
 }
+/* ==========================================================
+   COLUMNAS DESTACADAS · 2019 Y 2025
+   ========================================================== */
+
+/* 2019 · año base */
+
+.compare-block th.year-base-col {
+  background: #dfe5ec;
+  color: var(--orsna-azul);
+}
+
+.compare-block td.year-base-col {
+  background: #f3f5f7;
+}
+
+
+/* 2025 · año principal de comparación */
+
+.compare-block th.year-current-col {
+  background: #cbdfee;
+  color: var(--orsna-azul);
+}
+
+.compare-block td.year-current-col {
+  background: #e8f2f9;
+}
+
+
+/* Valores principales un poco más marcados */
+
+.compare-block td.year-base-col .cell-main,
+.compare-block td.year-current-col .cell-main {
+  font-weight: 800;
+}
+
+
+/* Separación vertical suave */
+
+.compare-block th.year-base-col,
+.compare-block td.year-base-col {
+  border-left: 1px solid #c5ced8;
+  border-right: 1px solid #c5ced8;
+}
+
+.compare-block th.year-current-col,
+.compare-block td.year-current-col {
+  border-left: 1px solid #b7cad9;
+  border-right: 1px solid #b7cad9;
+}
