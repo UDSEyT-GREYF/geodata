@@ -373,7 +373,7 @@ function rowLabel(row) {
           .map(year => `<th>${year}</th>`)
           .join("")}
         <th>${reportConfig.h1Label}</th>
-        <th>Valoración</th>
+        <th>Valoración 2025/2019</th>
       </tr>
     `;
 
