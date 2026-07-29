@@ -106,10 +106,24 @@ const H1_BASE_YEAR = 2019;
 const H1_COMPARE_YEAR = 2026;
 const H1_MONTH_LIMIT = 6;
 
-let LAST_ANNUAL_YEAR = 2025;
-let H1_COMPARE_YEAR = 2026;
-let YEARS = [];
-let COLUMNS = [];
+const LAST_ANNUAL_YEAR = END_YEAR;
+
+const COLUMNS = [
+  "nombre",
+  "iata",
+
+  ...YEARS.flatMap(year => [
+    `paxtotal${year}`,
+    `paxcab${year}`,
+    `paxinter${year}`
+  ]),
+
+  ...YEARS.flatMap(year => [
+    `movtotal${year}`,
+    `movcab${year}`,
+    `movinter${year}`
+  ])
+];
 
 const EXTRA_ROUTE_IATAS = new Set([
   "TTG", "RYO", "SST", "NEC", "LPG", "GNR", "JNI", "PMQ", "AOL", "LGS", "EPA", "COC",
@@ -332,18 +346,23 @@ const SOURCES = {
       return NaN;
     }
 
-function getPassengerSegment(row) {
-  const value = normalizeHeader([
-    firstNonEmpty(row, ["region"]),
-    firstNonEmpty(row, ["segmento"]),
-    firstNonEmpty(row, ["dataset"])
-  ].join(" "));
 
-  if (value.includes("internacional")) return "internacional";
+
+function normalizeTrafficRegion(value) {
+  const region = normalizeHeader(value);
 
   if (
-    value.includes("cabotaje") ||
-    value.includes("domest")
+    region.includes("internacional") ||
+    region.includes("international")
+  ) {
+    return "internacional";
+  }
+
+  if (
+    region.includes("cabotaje") ||
+    region.includes("domestico") ||
+    region.includes("domestic") ||
+    region.includes("nacional")
   ) {
     return "cabotaje";
   }
@@ -351,105 +370,57 @@ function getPassengerSegment(row) {
   return "";
 }
 
-function parsePasajerosMensualCSV(text) {
+function parseMonthlyTrafficCSV(text, valueField) {
   return parseCSV(text)
     .map(r => ({
-      iata: clean(firstNonEmpty(r, ["iata"])).toUpperCase(),
-      dataset: clean(firstNonEmpty(r, ["dataset"])),
-      segment: getPassengerSegment(r),
-      date: parseFechaFlexible(firstNonEmpty(r, ["fecha"])),
+      iata: clean(
+        firstNonEmpty(r, ["iata"])
+      ).toUpperCase(),
+
+      dataset: clean(
+        firstNonEmpty(r, ["dataset"])
+      ),
+
+      region: normalizeTrafficRegion(
+        firstNonEmpty(r, ["region", "dataset"])
+      ),
+
+      segmento: clean(
+        firstNonEmpty(r, ["segmento"])
+      ),
+
+      date: parseFechaFlexible(
+        firstNonEmpty(r, ["fecha", "periodo_id"])
+      ),
+
       valor: parseNumber(
-        firstNonEmpty(r, ["valor_pax", "valor", "pasajeros"])
+        firstNonEmpty(r, [valueField])
       )
     }))
     .filter(r =>
       r.iata &&
-      r.segment &&
+      r.region &&
       r.date &&
       Number.isFinite(r.valor)
     )
     .sort((a, b) => a.date - b.date);
 }
 
-function rebuildTemporalConfig() {
-  const coverage = new Map();
-
-  (pasajerosSnaRows || []).forEach(row => {
-    if (!row.date || !row.segment) return;
-
-    const year = row.date.getFullYear();
-    const month = row.date.getMonth() + 1;
-
-    if (!coverage.has(year)) {
-      coverage.set(year, {
-        cabotaje: new Set(),
-        internacional: new Set()
-      });
-    }
-
-    coverage.get(year)[row.segment].add(month);
-  });
-
-  const completeYears = Array.from(coverage.entries())
-    .filter(([, months]) =>
-      months.cabotaje.size === 12 &&
-      months.internacional.size === 12
-    )
-    .map(([year]) => year)
-    .filter(year => year >= START_YEAR);
-
-  const availableYears = Array.from(coverage.keys())
-    .filter(year => year >= START_YEAR);
-
-  if (completeYears.length) {
-    LAST_ANNUAL_YEAR = Math.max(...completeYears);
-  }
-
-  if (availableYears.length) {
-    H1_COMPARE_YEAR = Math.max(...availableYears);
-  }
-
-  YEARS = Array.from(
-    { length: LAST_ANNUAL_YEAR - START_YEAR + 1 },
-    (_, i) => START_YEAR + i
+function parsePasajerosMensualCSV(text) {
+  return parseMonthlyTrafficCSV(
+    text,
+    "valor_pax"
   );
-
-  COLUMNS = [
-    "nombre",
-    "iata",
-    ...YEARS.flatMap(year => [
-      `paxtotal${year}`,
-      `paxcab${year}`,
-      `paxinter${year}`
-    ]),
-    ...YEARS.flatMap(year => [
-      `movtotal${year}`,
-      `movcab${year}`,
-      `movinter${year}`
-    ])
-  ];
-
-  const rangeText = `${START_YEAR}-${LAST_ANNUAL_YEAR}`;
-
-  document.title =
-    `Tabla descargable de tráfico por aeropuerto ${rangeText}`;
-
-  const title = document.querySelector("h1");
-
-  if (title) {
-    title.textContent =
-      `Tabla descargable de tráfico por aeropuerto ${rangeText}`;
-  }
 }
+
+function parseMovimientosMensualCSV(text) {
+  return parseMonthlyTrafficCSV(
+    text,
+    "valor_movimientos"
+  );
+}
+
     
-    function parseMovimientosMensualCSV(text) {
-      return parseCSV(text).map(r => ({
-        iata: clean(firstNonEmpty(r, ["iata"])).toUpperCase(),
-        dataset: clean(firstNonEmpty(r, ["dataset"])),
-        date: parseFechaFlexible(firstNonEmpty(r, ["fecha"])),
-        valor: parseNumber(firstNonEmpty(r, ["valor_movimientos", "valor", "movimientos"]))
-      })).filter(r => r.iata && r.date && Number.isFinite(r.valor)).sort((a, b) => a.date - b.date);
-    }
 
     function getMovementValueFromRouteRow(r) {
       return parseNumber(firstNonEmpty(r, [
@@ -671,9 +642,26 @@ const manual = {
           const anio = Number(row.anio);
           const mes = Number(row.mes);
           if (!Number.isFinite(anio) || !Number.isFinite(mes)) return;
-          const dataset = fdoPassengerDataset(row.segmento);
-          const key = `${anio}-${String(mes).padStart(2, "0")}-${dataset}`;
-          if (!acc.has(key)) acc.set(key, { iata: "FDO", dataset, date: new Date(anio, mes - 1, 1), valor: 0, source: "aeropuertos_argentina_fdo" });
+          const region =
+            normalizeTrafficRegion(row.segmento) ||
+            "cabotaje";
+          
+          const dataset =
+            fdoPassengerDataset(row.segmento);
+          
+          const key =
+            `${anio}-${String(mes).padStart(2, "0")}-${dataset}`;
+          
+          if (!acc.has(key)) {
+            acc.set(key, {
+              iata: "FDO",
+              dataset,
+              region,
+              date: new Date(anio, mes - 1, 1),
+              valor: 0,
+              source: "aeropuertos_argentina_fdo"
+            });
+          }
           acc.get(key).valor += Number(row.pasajeros) || 0;
         });
       return Array.from(acc.values()).filter(row => Number.isFinite(row.valor)).sort((a, b) => a.date - b.date);
@@ -687,9 +675,26 @@ const manual = {
           const anio = Number(row.anio);
           const mes = Number(row.mes);
           if (!Number.isFinite(anio) || !Number.isFinite(mes)) return;
-          const dataset = fdoMovementDataset(row.segmento);
-          const key = `${anio}-${String(mes).padStart(2, "0")}-${dataset}`;
-          if (!acc.has(key)) acc.set(key, { iata: "FDO", dataset, date: new Date(anio, mes - 1, 1), valor: 0, source: "aeropuertos_argentina_fdo" });
+          const region =
+            normalizeTrafficRegion(row.segmento) ||
+            "cabotaje";
+          
+          const dataset =
+            fdoMovementDataset(row.segmento);
+          
+          const key =
+            `${anio}-${String(mes).padStart(2, "0")}-${dataset}`;
+          
+          if (!acc.has(key)) {
+            acc.set(key, {
+              iata: "FDO",
+              dataset,
+              region,
+              date: new Date(anio, mes - 1, 1),
+              valor: 0,
+              source: "aeropuertos_argentina_fdo"
+            });
+          }
           acc.get(key).valor += Number(row.movimientos) || 0;
         });
       return Array.from(acc.values()).filter(row => Number.isFinite(row.valor)).sort((a, b) => a.date - b.date);
@@ -812,42 +817,62 @@ function getValue(iata, metric, segment, year) {
   const numericYear = Number(year);
 
   /*
-    17 aeropuertos especiales:
-    siempre se calculan desde rutasaereas.csv para 2015-2025.
+    Los 17 aeropuertos especiales:
+    se calculan desde rutasaereas.csv.
   */
   if (EXTRA_ROUTE_IATAS.has(code)) {
-    return Math.round(sumRoutesLikeLamina(code, numericYear, segment, metric));
+    return Math.round(
+      sumRoutesLikeLamina(
+        code,
+        numericYear,
+        segment,
+        metric
+      )
+    );
   }
 
   /*
-    FDO:
-    - 2015, 2016 y 2017 desde rutasaereas.csv.
-    - Desde 2018 mantiene el procesamiento especial de Aeropuertos Argentina,
-      que ya fue incorporado en pasajerosMensualRows y movimientosMensualRows.
+    FDO 2015-2017:
+    se calcula desde rutasaereas.csv.
   */
-  if (isFDO(code) && FDO_ROUTE_YEARS.has(numericYear)) {
-    return Math.round(sumRoutesLikeLamina(code, numericYear, segment, metric));
+  if (
+    isFDO(code) &&
+    FDO_ROUTE_YEARS.has(numericYear)
+  ) {
+    return Math.round(
+      sumRoutesLikeLamina(
+        code,
+        numericYear,
+        segment,
+        metric
+      )
+    );
   }
 
-if (metric === "pax") {
+  /*
+    Resto de los aeropuertos:
+    tablas mensuales agrupadas por region.
+  */
+  if (metric === "pax") {
+    return Math.round(
+      sumYearByRegion(
+        pasajerosMensualRows,
+        code,
+        segment,
+        numericYear
+      )
+    );
+  }
+
   return Math.round(
     sumYearByRegion(
-      pasajerosMensualRows,
+      movimientosMensualRows,
       code,
       segment,
       numericYear
     )
   );
 }
-
-return Math.round(
-  sumYearByRegion(
-    movimientosMensualRows,
-    code,
-    segment,
-    numericYear
-  )
-);
 
 
 function buildTableRows() {
@@ -906,83 +931,100 @@ function sumPeriodByRegion(
     );
 }
 
-function sumSnaPassengerPeriod(segment, year, maxMonth = 12) {
-  return (pasajerosSnaRows || [])
-    .filter(r =>
-      r.iata === "SNA" &&
-      r.segment === segment &&
-      r.date
-    )
-    .filter(r => r.date.getFullYear() === Number(year))
-    .filter(r => {
-      const month = r.date.getMonth() + 1;
-      return month >= 1 && month <= maxMonth;
-    })
-    .reduce(
-      (acc, r) => acc + (Number(r.valor) || 0),
-      0
-    );
-}
-
-function getPeriodValue(iata, segment, year, maxMonth) {
+function getPeriodValue(
+  iata,
+  segment,
+  year,
+  maxMonth
+) {
   const code = clean(iata).toUpperCase();
+  const numericYear = Number(year);
 
   /*
-    Para 2026 1S:
-    - FDO y los 17 aeropuertos especiales se calculan desde Tabla rutasaereas2026_semestre1.csv.
-    - Esa fuente ya representa el primer semestre, por eso sourceIsH1=true.
+    2026 1S para FDO y los 17 especiales:
+    Tabla rutasaereas2026_semestre1.csv.
   */
   if (
-    Number(year) === H1_COMPARE_YEAR &&
-    (EXTRA_ROUTE_IATAS.has(code) || isFDO(code))
+    numericYear === H1_COMPARE_YEAR &&
+    (
+      EXTRA_ROUTE_IATAS.has(code) ||
+      isFDO(code)
+    )
   ) {
-    return Math.round(sumRoutesLikeLaminaFrom(
-      rutas2026S1Rows,
+    return Math.round(
+      sumRoutesLikeLaminaFrom(
+        rutas2026S1Rows,
+        code,
+        numericYear,
+        segment,
+        "pax",
+        { sourceIsH1: true }
+      )
+    );
+  }
+
+  /*
+    2019 1S para FDO y los 17 especiales:
+    rutasaereas.csv, limitado a junio.
+  */
+  if (
+    numericYear === H1_BASE_YEAR &&
+    (
+      EXTRA_ROUTE_IATAS.has(code) ||
+      isFDO(code)
+    )
+  ) {
+    return Math.round(
+      sumRoutesLikeLaminaFrom(
+        rutasRows,
+        code,
+        numericYear,
+        segment,
+        "pax",
+        { maxMonth }
+      )
+    );
+  }
+
+  /*
+    Aeropuertos comunes:
+    fuente mensual de pasajeros.
+  */
+  return Math.round(
+    sumPeriodByRegion(
+      pasajerosMensualRows,
       code,
-      year,
       segment,
-      "pax",
-      { sourceIsH1: true }
-    ));
-  }
-
-  /*
-    Para 2019 1S:
-    - Los 17 especiales y FDO usan rutasaereas.csv si tiene mes/fecha.
-  */
-  if (
-    Number(year) === H1_BASE_YEAR &&
-    (EXTRA_ROUTE_IATAS.has(code) || isFDO(code))
-  ) {
-return Math.round(
-  sumPeriodByRegion(
-    pasajerosMensualRows,
-    code,
-    segment,
-    year,
-    maxMonth
-  )
-);
-  }
-
-  return Math.round(sumPeriodByDataset(
-    pasajerosMensualRows,
-    code,
-    dataset,
-    year,
-    maxMonth
-  ));
+      numericYear,
+      maxMonth
+    )
+  );
 }
 
 function getSnaAnnualValue(segment, year) {
   return Math.round(
-    sumSnaPassengerPeriod(segment, year, 12)
+    sumYearByRegion(
+      pasajerosSnaRows,
+      "SNA",
+      segment,
+      year
+    )
   );
 }
 
-function getSnaPeriodValue(segment, year, maxMonth) {
+function getSnaPeriodValue(
+  segment,
+  year,
+  maxMonth
+) {
   return Math.round(
-    sumSnaPassengerPeriod(segment, year, maxMonth)
+    sumPeriodByRegion(
+      pasajerosSnaRows,
+      "SNA",
+      segment,
+      year,
+      maxMonth
+    )
   );
 }
 
@@ -1167,28 +1209,6 @@ function getCovidBaseScopes() {
   return { snaScope, aepEzeScope, airportScopes };
 }
 
-function getSnaAnnualValue(segment, year) {
-  const dataset = segment === "cabotaje" ? PAX_DATASET_CAB : PAX_DATASET_INT;
-
-  return Math.round(sumYearByDataset(
-    pasajerosSnaRows,
-    "SNA",
-    dataset,
-    year
-  ));
-}
-
-function getSnaPeriodValue(segment, year, maxMonth) {
-  const dataset = segment === "cabotaje" ? PAX_DATASET_CAB : PAX_DATASET_INT;
-
-  return Math.round(sumPeriodByDataset(
-    pasajerosSnaRows,
-    "SNA",
-    dataset,
-    year,
-    maxMonth
-  ));
-}
     
 function buildCovidRecoveryJson() {
   const { snaScope, aepEzeScope, airportScopes } = getCovidBaseScopes();
