@@ -356,7 +356,7 @@ button,select{font:inherit}
 }
 
 .covid-table .valuation{
-  font-weight:850;
+  font-weight:650;
   color:var(--orsna-azul);
   line-height:1.15;
 }
