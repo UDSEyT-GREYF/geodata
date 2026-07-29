@@ -627,8 +627,8 @@ if (intSummary) {
         ? `En AEP+EZE, la lectura conjunta muestra una variación de <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong> en ${reportConfig.lastAnnualYear} respecto de ${reportConfig.baseYear}.`
         : ""
     );
+  }
 }
-
   function validateReportData(data) {
     if (!data || typeof data !== "object") {
       throw new Error("El archivo JSON no contiene un objeto válido");
