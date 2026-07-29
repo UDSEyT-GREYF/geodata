@@ -601,3 +601,21 @@ button,select{font:inherit}
   border-left: 1px solid #b7cad9;
   border-right: 1px solid #b7cad9;
 }
+/* ==========================================================
+   FILAS CON RECUPERACIÓN NEGATIVA
+   ========================================================== */
+
+.compare-block tr.negative-valuation-row td {
+  background-color: #fff1f0;
+}
+
+/* Nombre del aeropuerto */
+.compare-block tr.negative-valuation-row td:first-child {
+  border-left: 3px solid #c94b45;
+}
+
+/* Texto de la valoración */
+.compare-block tr.negative-valuation-row td.valuation {
+  color: #9f2925;
+  font-weight: 800;
+}
