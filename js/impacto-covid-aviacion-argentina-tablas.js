@@ -13,7 +13,8 @@
     - selección de tráfico internacional significativo.
   */
   const DATA_PATH = "data/recuperacion_postpandemia_pasajeros.json";
-
+  const AIRPORTS_PATH =
+    "fuentes/Datos_aeropuertos.geojson";
   /*
     Una variación porcentual se considera no representativa cuando
     tanto el año base como el último año anual tienen menos de
@@ -27,7 +28,8 @@
   
   let reportData = null;
   let reportConfig = null;
-
+  let airportNameByIata = new Map();
+  
   const $ = id => document.getElementById(id);
 
   function escapeHtml(value) {
@@ -63,6 +65,77 @@ function setStatus(message, type = "ok") {
     return resp.json();
   }
 
+function buildAirportNameIndex(geojson) {
+  const index = new Map();
+
+  const features = Array.isArray(geojson?.features)
+    ? geojson.features
+    : [];
+
+  features.forEach(feature => {
+    const properties = feature?.properties || {};
+
+    const iata = String(
+      properties.IATA || ""
+    )
+      .trim()
+      .toUpperCase();
+
+    const airportName = String(
+      properties.Aeropuerto || ""
+    ).trim();
+
+    if (iata && airportName) {
+      index.set(iata, airportName);
+    }
+  });
+
+  return index;
+}
+
+
+function getAirportShortName(row) {
+  const iata = String(
+    row?.iata || ""
+  )
+    .trim()
+    .toUpperCase();
+
+  /*
+    Fuente principal:
+    campo Aeropuerto de Datos_aeropuertos.geojson.
+  */
+  const geojsonName =
+    airportNameByIata.get(iata);
+
+  if (geojsonName) {
+    return geojsonName;
+  }
+
+  /*
+    Respaldo por si un código no estuviera
+    presente en el GeoJSON.
+  */
+  const rawName = String(
+    row?.aeropuerto ||
+    row?.iata ||
+    ""
+  ).trim();
+
+  return rawName
+    .replace(
+      /\s*\([A-Z0-9]{2,4}\)\s*$/i,
+      ""
+    )
+    .replace(
+      /^Aeropuerto\s+de\s+/i,
+      ""
+    )
+    .split(/\s+[–—-]\s+/)[0]
+    .trim();
+}
+
+  
   function fmt(n) {
     const value = Number(n);
     if (!Number.isFinite(value)) return "–";
@@ -268,50 +341,63 @@ function isMarginalRow(row, config = reportConfig) {
 
 function rowLabel(row) {
   const rawName = String(
-    row?.aeropuerto || row?.iata || ""
+    row?.aeropuerto ||
+    row?.iata ||
+    ""
   ).trim();
 
   const iata = String(
     row?.iata || ""
-  ).trim().toUpperCase();
+  )
+    .trim()
+    .toUpperCase();
 
   /*
-    Casos agregados:
-    conservan su denominación actual.
+    Las filas agregadas conservan
+    su nombre actual.
   */
   if (iata === "SNA" || iata === "BUE") {
     return rawName;
   }
 
   /*
-    Excepción solicitada para Aeroparque.
+    Nombre especial para AEP en las tablas.
   */
   if (iata === "AEP") {
     return "Aeroparque Jorge Newbery";
   }
 
-  /*
-    Quita el código IATA final:
-    (COR), (MDZ), (BRC), etc.
-  */
-  let shortName = rawName.replace(
-    /\s*\([A-Z0-9]{2,4}\)\s*$/i,
-    ""
-  );
+  const shortName =
+    getAirportShortName(row);
 
-  /*
-    Conserva solo lo anterior al guion:
-    "Aeropuerto de Córdoba – Ing. A. Taravella"
-    pasa a:
-    "Aeropuerto de Córdoba"
-  */
-  shortName = shortName
-    .split(/\s+[–—-]\s+/)[0]
-    .trim();
+  if (shortName) {
+    return `Aeropuerto de ${shortName}`;
+  }
 
-  return shortName || rawName;
+  return rawName;
 }
 
+
+function conclusionLabel(row) {
+  const iata = String(
+    row?.iata || ""
+  )
+    .trim()
+    .toUpperCase();
+
+  if (iata === "AEP") {
+    return "Aeroparque";
+  }
+
+  const shortName =
+    getAirportShortName(row);
+
+  return (
+    shortName ||
+    String(row?.aeropuerto || iata).trim()
+  );
+}
+  
   function valuationText(row, config = reportConfig) {
     if (isMarginalRow(row, config)) {
       return MARGINAL_LABEL;
@@ -345,6 +431,7 @@ function rowLabel(row) {
         source: row,
         iata: String(row?.iata || "").trim().toUpperCase(),
         label: rowLabel(row),
+        shortLabel: conclusionLabel(row),
         isSna: !!row?.es_sna,
         isBue: !!row?.es_aep_eze,
         isMarginal: isMarginalRow(row, config),
@@ -491,7 +578,9 @@ function renderPassengerTable(
       )
       .filter(predicate)
       .slice(0, limit)
-      .map(row => row.label);
+      .map(row =>
+      row.shortLabel || row.label
+    );
   }
 
   function marginalLabels(rows, limit = 10) {
@@ -502,7 +591,9 @@ function renderPassengerTable(
         !row.isBue
       )
       .slice(0, limit)
-      .map(row => row.label);
+      .map(row =>
+      row.shortLabel || row.label
+    );
   }
 
   function renderConclusions(cabRows, intRows) {
@@ -844,9 +935,22 @@ renderConclusions(cabRows, intRows);
         "warn"
       );
 
-      const data = await fetchJson(DATA_PATH);
-      renderReport(data);
-      setStatus("");
+const [
+  data,
+  airportsGeojson
+] = await Promise.all([
+  fetchJson(DATA_PATH),
+  fetchJson(AIRPORTS_PATH)
+]);
+
+airportNameByIata =
+  buildAirportNameIndex(
+    airportsGeojson
+  );
+
+renderReport(data);
+
+setStatus("");
     } catch (err) {
       console.error(err);
 
