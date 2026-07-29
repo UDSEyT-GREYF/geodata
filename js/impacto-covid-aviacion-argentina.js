@@ -650,10 +650,20 @@ function renderCompareTable(rows, label, includeInternational) {
         el.classList.toggle("is-hidden", !includeInternational);
       });
       
-      const kpiPaxIntCard = $("kpiPaxIntCard");
-      if (kpiPaxIntCard) {
-        kpiPaxIntCard.classList.toggle("is-hidden", !includeInternational);
-      }
+const kpiPaxIntCard = $("kpiPaxIntCard");
+
+if (kpiPaxIntCard) {
+  kpiPaxIntCard.classList.toggle("is-hidden", !includeInternational);
+}
+
+if (includeInternational) {
+  $("kpiPaxInt").textContent = fmtPct(paxIntVar);
+  $("kpiPaxInt").className = `kpi-value ${classForPct(paxIntVar)}`;
+  $("kpiPaxIntSub").textContent = `${fmt(y2025.pax_internacional)} en 2025 vs ${fmt(y2019.pax_internacional)} en 2019`;
+} else {
+  $("kpiPaxInt").textContent = "";
+  $("kpiPaxIntSub").textContent = "";
+}
 
     setKpi("kpiPaxTotal", "kpiPaxTotalSub", paxTotalVar, y2025.pax_total, y2019.pax_total, fmt);
     setKpi("kpiPaxCab", "kpiPaxCabSub", paxCabVar, y2025.pax_cabotaje, y2019.pax_cabotaje, fmt);
