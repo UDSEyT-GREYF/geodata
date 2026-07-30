@@ -552,8 +552,8 @@ function renderInternationalTerritorialChart(containerId) {
 
   const margin = {
     top: 10,
-    right: 112,
-    bottom: 26,
+    right: 100,
+    bottom: 28,
     left: 36
   };
 
@@ -626,24 +626,16 @@ function renderInternationalTerritorialChart(containerId) {
     >${value}</text>
   `).join("");
 
-  const yearLabels = series.map((d, i) => {
-    const show =
-      d.year === 2015 ||
-      d.year === 2019 ||
-      d.year === 2020 ||
-      d.year === 2025;
-
-    if (!show) return "";
-
-    return `
-      <text
-        x="${xScale(i)}"
-        y="${height - 6}"
-        text-anchor="middle"
-        class="chart-axis-text"
-      >${d.year}</text>
-    `;
-  }).join("");
+const yearLabels = series.map((d, i) => {
+  return `
+    <text
+      x="${xScale(i)}"
+      y="${height - 6}"
+      text-anchor="middle"
+      class="chart-axis-text"
+    >${d.year}</text>
+  `;
+}).join("");
 
   const points = series.map((d, i) => `
     <circle
