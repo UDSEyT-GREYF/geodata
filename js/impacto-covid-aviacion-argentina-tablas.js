@@ -993,7 +993,7 @@ if (intConclusions) {
       ${
         intFallBack.length
           ? `casos recuperados en ${reportConfig.lastAnnualYear} que muestran retroceso frente al primer semestre de ${reportConfig.h1BaseYear}: ${escapeHtml(intFallBack.join("; "))}.`
-          : "sin retrocesos en el primer semestre de 2026 entre los aeropuertos recuperados en 2025."
+          : "sin casos de retrocesos en el primer semestre de 2026 entre los aeropuertos recuperados en 2025."
       }
     </p>
   `;
