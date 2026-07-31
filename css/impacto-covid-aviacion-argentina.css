@@ -797,3 +797,24 @@ button,select{font:inherit}
   color: var(--orsna-azul);
   font-weight: 900;
 }
+/* ==========================================================
+   FILA TOTAL · AEROPUERTOS DEL GRUPO A
+   ========================================================== */
+
+.compare-block tr.table-total-row td,
+.compare-block tr.table-total-row td.year-base-col,
+.compare-block tr.table-total-row td.year-current-col {
+  background: #dce9f5;
+  font-weight: 900;
+  border-top: 2px solid var(--orsna-azul-2);
+  border-bottom: 2px solid var(--orsna-azul-2);
+}
+
+.compare-block tr.table-total-row td:first-child {
+  color: var(--orsna-azul);
+}
+
+.compare-block tr.table-total-row td.valuation {
+  color: var(--orsna-azul);
+  font-weight: 900;
+}
