@@ -846,3 +846,16 @@ button,select{font:inherit}
   padding-top: 4px;
   padding-bottom: 4px;
 }
+/* ==========================================================
+   GRÁFICO TERRITORIAL DE CABOTAJE
+   ========================================================== */
+
+#sheetA4Cabotaje .cabotage-chart-block {
+  margin-top: 2mm;
+  margin-bottom: 2mm;
+  padding-top: 1mm;
+}
+
+#sheetA4Cabotaje .cabotage-chart-block h2 {
+  margin-bottom: 1px;
+}
