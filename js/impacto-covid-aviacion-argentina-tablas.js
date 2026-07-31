@@ -25,10 +25,20 @@
   const MARGINAL_MAX_ANNUAL_PAX = 1000;
   const MARGINAL_LABEL = "Volumen marginal";
   const CAB_ROWS_FIRST_PAGE = 24;
+  /*
+  Grupos de aeropuertos incluidos en las tablas
+  y en las conclusiones.
+  
+  Para volver a incorporar el Grupo B:
+  new Set(["A", "B"])
+*/
+const VISIBLE_AIRPORT_GROUPS =
+  new Set(["A"]);
   
   let reportData = null;
   let reportConfig = null;
   let airportNameByIata = new Map();
+  let airportGroupByIata = new Map();
   
   const $ = id => document.getElementById(id);
 
@@ -92,7 +102,72 @@ function buildAirportNameIndex(geojson) {
 
   return index;
 }
+function normalizeAirportGroup(value) {
+  return String(value ?? "")
+    .trim()
+    .toUpperCase()
+    .replace(/^GRUPO\s+/, "");
+}
 
+
+function buildAirportGroupIndex(geojson) {
+  const index = new Map();
+
+  const features = Array.isArray(
+    geojson?.features
+  )
+    ? geojson.features
+    : [];
+
+  features.forEach(feature => {
+    const properties =
+      feature?.properties || {};
+
+    const iata = String(
+      properties.IATA || ""
+    )
+      .trim()
+      .toUpperCase();
+
+    const group = normalizeAirportGroup(
+      properties.Grupo
+    );
+
+    if (iata) {
+      index.set(iata, group);
+    }
+  });
+
+  return index;
+}
+
+
+function isVisibleAirportRow(row) {
+  /*
+    SNA y AEP+EZE son filas agregadas.
+    Se mantienen siempre.
+  */
+  if (row?.es_sna || row?.es_aep_eze) {
+    return true;
+  }
+
+  const iata = String(
+    row?.iata || ""
+  )
+    .trim()
+    .toUpperCase();
+
+  if (!iata) {
+    return false;
+  }
+
+  const group =
+    airportGroupByIata.get(iata) || "";
+
+  return VISIBLE_AIRPORT_GROUPS.has(
+    group
+  );
+}
 
 function getAirportShortName(row) {
   const iata = String(
@@ -201,59 +276,58 @@ function getAirportShortName(row) {
       .sort((a, b) => a - b);
   }
 
-  function buildReportConfig(data) {
-    const metadata = data?.metadata || {};
-    const parametros = data?.parametros || {};
-    const allRows = [
-      ...(data?.tablas?.cabotaje || []),
-      ...(data?.tablas?.internacional || [])
-    ];
+function buildReportConfig(data) {
+  const metadata = data?.metadata || {};
 
-    const availableYears = getAnnualYearsFromRows(allRows);
+  const allRows = [
+    ...(data?.tablas?.cabotaje || []),
+    ...(data?.tablas?.internacional || [])
+  ];
 
-    const baseYear =
-      Number(metadata.base_anual) ||
-      Number(parametros.h1_base_year) ||
-      2019;
+  const availableYears =
+    getAnnualYearsFromRows(allRows);
 
-    const lastAnnualYear =
-      extractYearFromText(metadata.comparacion_anual, "first") ||
-      availableYears[availableYears.length - 1] ||
-      2025;
+  const baseYear =
+    Number(metadata.base_anual) ||
+    2019;
 
-    const h1BaseYear =
-      Number(parametros.h1_base_year) ||
-      extractYearFromText(metadata.periodo_semestre, "last") ||
-      baseYear;
+  const lastAnnualYear =
+    extractYearFromText(
+      metadata.comparacion_anual,
+      "first"
+    ) ||
+    availableYears[
+      availableYears.length - 1
+    ] ||
+    2025;
 
-    const h1CompareYear =
-      Number(parametros.h1_compare_year) ||
-      extractYearFromText(metadata.periodo_semestre, "first") ||
-      2026;
+  /*
+    Las tablas comienzan en el año base
+    y terminan en el último año completo.
+  */
+  const years = availableYears.filter(
+    year =>
+      year >= baseYear &&
+      year <= lastAnnualYear
+  );
 
-    /*
-      El informe de recuperación muestra desde el año base.
-      Aunque el JSON conserve 2015-2018, no se agregan columnas
-      anteriores a 2019 en estas tablas.
-    */
-    const years = availableYears.filter(
-      year => year >= baseYear && year <= lastAnnualYear
-    );
+  return {
+    baseYear,
+    lastAnnualYear,
 
-    return {
-      baseYear,
-      lastAnnualYear,
-      h1BaseYear,
-      h1CompareYear,
-      h1Label: `${h1CompareYear} 1S`,
-      years: years.length
-        ? years
-        : Array.from(
-            { length: lastAnnualYear - baseYear + 1 },
-            (_, i) => baseYear + i
-          )
-    };
-  }
+    years: years.length
+      ? years
+      : Array.from(
+          {
+            length:
+              lastAnnualYear -
+              baseYear +
+              1
+          },
+          (_, i) => baseYear + i
+        )
+  };
+}
 
   function annualValue(row, year) {
     return Number(row?.[`pax_${year}`]) || 0;
@@ -269,26 +343,7 @@ function getAirportShortName(row) {
     );
   }
 
-  function h1BaseValue(row, config = reportConfig) {
-    return Number(row?.[`pax_${config.h1BaseYear}_1s`]) || 0;
-  }
 
-  function h1CurrentValue(row, config = reportConfig) {
-    return Number(row?.[`pax_${config.h1CompareYear}_1s`]) || 0;
-  }
-
-  function h1Variation(row, config = reportConfig) {
-    const stored = Number(
-      row?.[`var_${config.h1CompareYear}_1s`]
-    );
-
-    if (Number.isFinite(stored)) return stored;
-
-    return pct(
-      h1CurrentValue(row, config),
-      h1BaseValue(row, config)
-    );
-  }
 
   function isSpecialAggregate(row) {
     return !!row?.es_sna || !!row?.es_aep_eze;
@@ -403,9 +458,25 @@ function conclusionLabel(row) {
       return MARGINAL_LABEL;
     }
 
-    if (String(row?.valoracion || "").trim()) {
-      return String(row.valoracion).trim();
-    }
+const storedValuation = String(
+  row?.valoracion || ""
+).trim();
+
+const hasSemesterReference =
+  /2026|1\s*S|primer\s+semestre/i
+    .test(storedValuation);
+
+/*
+  Se conserva la valoración almacenada
+  solamente cuando no contiene referencias
+  al período semestral eliminado.
+*/
+if (
+  storedValuation &&
+  !hasSemesterReference
+) {
+  return storedValuation;
+}
 
     const annualVar = annualVariation(
       row,
@@ -441,8 +512,7 @@ function conclusionLabel(row) {
           config.lastAnnualYear,
           config
         ),
-        h1Value: h1CurrentValue(row, config),
-        h1Variation: h1Variation(row, config),
+
         valuation: valuationText(row, config)
       }))
       .filter(row => {
@@ -451,7 +521,6 @@ function conclusionLabel(row) {
         return (
           base > 0 ||
           row.currentValue > 0 ||
-          row.h1Value > 0
         );
       })
       .sort((a, b) => {
@@ -759,7 +828,6 @@ function renderPassengerTable(
         `;
       })
       .join("")}
-        <th>${reportConfig.h1Label}</th>
         <th>Valoración 2025/2019</th>
       </tr>
     `;
@@ -828,13 +896,6 @@ function renderPassengerTable(
               })
               .join("")}
 
-            <td>
-              ${buildCell(
-                row.h1Value,
-                row.h1Variation,
-                false
-              )}
-            </td>
 
             <td class="valuation">
               ${escapeHtml(row.valuation)}
@@ -878,166 +939,165 @@ function renderPassengerTable(
     );
   }
 
-  function renderConclusions(cabRows, intRows) {
-    const cabWide = topLabels(
-      cabRows,
-      row => Number(row.currentVariation) >= 20
+function renderConclusions(
+  cabRows,
+  intRows
+) {
+  const cabWide = topLabels(
+    cabRows,
+    row =>
+      Number(row.currentVariation) >= 20
+  );
+
+  const cabMild = topLabels(
+    cabRows,
+    row =>
+      Number(row.currentVariation) >= 0 &&
+      Number(row.currentVariation) < 20
+  );
+
+  const cabNotRecovered = topLabels(
+    cabRows,
+    row =>
+      Number(row.currentVariation) < 0
+  );
+
+  const intRecovered = topLabels(
+    intRows,
+    row =>
+      Number(row.currentVariation) >= 0
+  );
+
+  const intNotRecovered = topLabels(
+    intRows,
+    row =>
+      Number(row.currentVariation) < 0
+  );
+
+
+  const cabConclusions =
+    $("cabConclusions");
+
+  if (cabConclusions) {
+    cabConclusions.innerHTML = `
+      <p>
+        <strong>Recuperación amplia:</strong>
+        ${
+          cabWide.length
+            ? escapeHtml(
+                cabWide.join("; ")
+              )
+            : "sin casos destacados"
+        }.
+      </p>
+
+      <p>
+        <strong>Recuperación leve o nivelación:</strong>
+        ${
+          cabMild.length
+            ? escapeHtml(
+                cabMild.join("; ")
+              )
+            : "sin casos destacados"
+        }.
+      </p>
+
+      <p>
+        <strong>Recuperación incompleta en ${reportConfig.lastAnnualYear}:</strong>
+        ${
+          cabNotRecovered.length
+            ? escapeHtml(
+                cabNotRecovered.join("; ")
+              )
+            : "sin casos destacados"
+        }.
+      </p>
+    `;
+  }
+
+
+  const intConclusions =
+    $("intConclusions");
+
+  if (intConclusions) {
+    intConclusions.innerHTML = `
+      <p>
+        <strong>Recuperación internacional:</strong>
+        ${
+          intRecovered.length
+            ? escapeHtml(
+                intRecovered.join("; ")
+              )
+            : "sin casos destacados"
+        }.
+      </p>
+
+      <p>
+        <strong>Internacional aún por debajo de ${reportConfig.baseYear}:</strong>
+        ${
+          intNotRecovered.length
+            ? escapeHtml(
+                intNotRecovered.join("; ")
+              )
+            : "sin casos destacados"
+        }.
+      </p>
+    `;
+  }
+
+
+  const cabSummary =
+    $("cabSummaryText");
+
+  if (cabSummary) {
+    const sna = cabRows.find(
+      row => row.isSna
     );
 
-    const cabMild = topLabels(
-      cabRows,
-      row =>
-        Number(row.currentVariation) >= 0 &&
-        Number(row.currentVariation) < 20
+    const bue = cabRows.find(
+      row => row.isBue
     );
 
-    const cabNotRecovered = topLabels(
-      cabRows,
-      row => Number(row.currentVariation) < 0
+    cabSummary.innerHTML =
+      (
+        sna
+          ? `En el SNA, el cabotaje ${reportConfig.lastAnnualYear} muestra <strong class="${classForPct(sna.currentVariation)}">${fmtPct(sna.currentVariation)}</strong> respecto de ${reportConfig.baseYear}. `
+          : ""
+      ) +
+      (
+        bue
+          ? `Para AEP+EZE, la variación ${reportConfig.lastAnnualYear}/${reportConfig.baseYear} es <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong>. `
+          : ""
+      ) +
+      `La tabla sintetiza la recuperación del cabotaje en ${reportConfig.lastAnnualYear} tomando ${reportConfig.baseYear} como base.`;
+  }
+
+
+  const intSummary =
+    $("intSummaryText");
+
+  if (intSummary) {
+    const sna = intRows.find(
+      row => row.isSna
     );
 
-    const cabFallBack = topLabels(
-      cabRows,
-      row =>
-        Number(row.currentVariation) >= 0 &&
-        Number(row.h1Variation) < -5
+    const bue = intRows.find(
+      row => row.isBue
     );
 
-    const cabMarginal = marginalLabels(cabRows);
-
-    const intRecovered = topLabels(
-      intRows,
-      row => Number(row.currentVariation) >= 0
-    );
-
-    const intNotRecovered = topLabels(
-      intRows,
-      row => Number(row.currentVariation) < 0
-    );
-
-    const intFallBack = topLabels(
-      intRows,
-      row =>
-        Number(row.currentVariation) >= 0 &&
-        Number(row.h1Variation) < -5
-    );
-
-    const intMarginal = marginalLabels(intRows);
-
-const cabConclusions = $("cabConclusions");
-
-if (cabConclusions) {
-  cabConclusions.innerHTML = `
-    <p>
-      <strong>Recuperación amplia:</strong>
-      ${
-        cabWide.length
-          ? escapeHtml(cabWide.join("; "))
-          : "sin casos destacados"
-      }.
-    </p>
-
-    <p>
-      <strong>Recuperación leve o nivelación:</strong>
-      ${
-        cabMild.length
-          ? escapeHtml(cabMild.join("; "))
-          : "sin casos destacados"
-      }.
-    </p>
-
-    <p>
-      <strong>Recuperación incompleta en ${reportConfig.lastAnnualYear}:</strong>
-      ${
-        cabNotRecovered.length
-          ? escapeHtml(cabNotRecovered.join("; "))
-          : "sin casos destacados"
-      }.
-    </p>
-
-    <p>
-      <strong>Alerta ${reportConfig.h1Label}:</strong>
-      ${
-        cabFallBack.length
-          ? `recuperaron en ${reportConfig.lastAnnualYear} pero caen en el primer semestre 2026 frente al primer semestre de ${reportConfig.h1BaseYear}: ${escapeHtml(cabFallBack.join("; "))}.`
-          : "no se observan retrocesos marcados entre los casos recuperados."
-      }
-    </p>
-  `;
-}
-
-const intConclusions = $("intConclusions");
-
-if (intConclusions) {
-  intConclusions.innerHTML = `
-    <p>
-      <strong>Recuperación internacional:</strong>
-      ${
-        intRecovered.length
-          ? escapeHtml(intRecovered.join("; "))
-          : "sin casos destacados"
-      }.
-    </p>
-
-    <p>
-      <strong>Internacional aún por debajo de ${reportConfig.baseYear}:</strong>
-      ${
-        intNotRecovered.length
-          ? escapeHtml(intNotRecovered.join("; "))
-          : "sin casos destacados"
-      }.
-    </p>
-
-    <p>
-      <strong>Alerta ${reportConfig.h1Label}:</strong>
-      ${
-        intFallBack.length
-          ? `casos recuperados en ${reportConfig.lastAnnualYear} que muestran retroceso frente al primer semestre de ${reportConfig.h1BaseYear}: ${escapeHtml(intFallBack.join("; "))}.`
-          : "sin casos de retrocesos en el primer semestre de 2026 entre los aeropuertos recuperados en 2025."
-      }
-    </p>
-  `;
-}
-
-      const cabSummary = $("cabSummaryText");
-      
-      if (cabSummary) {
-        const sna = cabRows.find(row => row.isSna);
-        const bue = cabRows.find(row => row.isBue);
-      
-        cabSummary.innerHTML =
-          (
-            sna
-              ? `En el SNA, el cabotaje ${reportConfig.lastAnnualYear} muestra <strong class="${classForPct(sna.currentVariation)}">${fmtPct(sna.currentVariation)}</strong> respecto de ${reportConfig.baseYear}. `
-              : ""
-          ) +
-          (
-            bue
-              ? `Para AEP+EZE, la variación ${reportConfig.lastAnnualYear}/${reportConfig.baseYear} es <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong>. `
-              : ""
-          ) +
-          `La tabla sintetiza la recuperación del cabotaje en 2025 tomando ${reportConfig.baseYear} como base.`;
-      }
-
-      const intSummary = $("intSummaryText");
-      
-      if (intSummary) {
-        const sna = intRows.find(row => row.isSna);
-        const bue = intRows.find(row => row.isBue);
-      
-        intSummary.innerHTML =
-          (
-            sna
-              ? `En el SNA, el tráfico internacional ${reportConfig.lastAnnualYear} registra <strong class="${classForPct(sna.currentVariation)}">${fmtPct(sna.currentVariation)}</strong> respecto de ${reportConfig.baseYear}. `
-              : ""
-          ) +
-          (
-            bue
-              ? `En AEP+EZE, la lectura conjunta muestra una variación de <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong> en ${reportConfig.lastAnnualYear} respecto de ${reportConfig.baseYear}. `
-              : ""
-          ) +
-          `La tabla sintetiza la recuperación del tráfico internacional en 2025 tomando ${reportConfig.baseYear} como base.`;
-      }
+    intSummary.innerHTML =
+      (
+        sna
+          ? `En el SNA, el tráfico internacional ${reportConfig.lastAnnualYear} registra <strong class="${classForPct(sna.currentVariation)}">${fmtPct(sna.currentVariation)}</strong> respecto de ${reportConfig.baseYear}. `
+          : ""
+      ) +
+      (
+        bue
+          ? `En AEP+EZE, la lectura conjunta muestra una variación de <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong> en ${reportConfig.lastAnnualYear} respecto de ${reportConfig.baseYear}. `
+          : ""
+      ) +
+      `La tabla sintetiza la recuperación del tráfico internacional en ${reportConfig.lastAnnualYear} tomando ${reportConfig.baseYear} como base.`;
+  }
 }
   function validateReportData(data) {
     if (!data || typeof data !== "object") {
@@ -1053,74 +1113,128 @@ if (intConclusions) {
     }
   }
 
-  function renderReport(data) {
-    validateReportData(data);
+function renderReport(data) {
+  validateReportData(data);
 
-    reportData = data;
-    reportConfig = buildReportConfig(data);
-
-/*
-  Página 2:
-  conclusiones y primeras filas de cabotaje.
-*/
-const cabRows = renderPassengerTable(
-  "cabTable",
-  data.tablas.cabotaje,
-  0,
-  CAB_ROWS_FIRST_PAGE
-);
+  reportData = data;
+  reportConfig =
+    buildReportConfig(data);
 
 
-/*
-  Página 3:
-  filas restantes de cabotaje.
-*/
-renderPassengerTable(
-  "cabTableContinuation",
-  data.tablas.cabotaje,
-  CAB_ROWS_FIRST_PAGE
-);
-
-
-/*
-  Página 1:
-  tabla internacional completa.
-*/
-/*
-  En la tabla internacional no se muestran aeropuertos
-  con volumen marginal.
-*/
-const significantInternationalRows =
-  data.tablas.internacional.filter(row => {
-    const iata = String(
-      row?.iata || ""
-    )
-      .trim()
-      .toUpperCase();
-
-    return (
-      iata !== "EPA" &&
-      !isMarginalRow(row, reportConfig)
+  /*
+    Se muestran solamente aeropuertos
+    pertenecientes a los grupos habilitados.
+    SNA y AEP+EZE se conservan.
+  */
+  const visibleCabotageRows =
+    data.tablas.cabotaje.filter(
+      isVisibleAirportRow
     );
-  });
-
-const intRows = renderPassengerTable(
-  "intTable",
-  significantInternationalRows
-);
 
 
-/*
-  Las conclusiones utilizan cabRows e intRows completos.
-*/
-renderConclusions(cabRows, intRows);
+  /*
+    Página 2:
+    conclusiones y primeras filas.
+  */
+  const cabRows =
+    renderPassengerTable(
+      "cabTable",
+      visibleCabotageRows,
+      0,
+      CAB_ROWS_FIRST_PAGE
+    );
 
-renderInternationalTerritorialChart(
-  "intlTerritorialChart"
-);
 
-    return { cabRows, intRows };
+  /*
+    Página 3:
+    continuación, cuando resulte necesaria.
+  */
+  renderPassengerTable(
+    "cabTableContinuation",
+    visibleCabotageRows,
+    CAB_ROWS_FIRST_PAGE
+  );
+
+
+  /*
+    Si todos los aeropuertos del grupo
+    seleccionado entran en la página 2,
+    se oculta la página de continuación.
+  */
+  const continuationTable =
+    $("cabTableContinuation");
+
+  const continuationSheet =
+    continuationTable?.closest(
+      ".sheet-a4"
+    );
+
+  if (continuationSheet) {
+    continuationSheet.style.display =
+      cabRows.length >
+      CAB_ROWS_FIRST_PAGE
+        ? ""
+        : "none";
   }
+
+
+  /*
+    Internacional:
+    Grupo A + agregados,
+    sin EPA ni volumen marginal.
+  */
+  const significantInternationalRows =
+    data.tablas.internacional.filter(
+      row => {
+        const iata = String(
+          row?.iata || ""
+        )
+          .trim()
+          .toUpperCase();
+
+        return (
+          isVisibleAirportRow(row) &&
+          iata !== "EPA" &&
+          !isMarginalRow(
+            row,
+            reportConfig
+          )
+        );
+      }
+    );
+
+
+  const intRows =
+    renderPassengerTable(
+      "intTable",
+      significantInternationalRows
+    );
+
+
+  /*
+    Las conclusiones reciben únicamente
+    las filas visibles.
+  */
+  renderConclusions(
+    cabRows,
+    intRows
+  );
+
+
+  /*
+    El gráfico continúa representando
+    SNA, AEP+EZE y resto del sistema.
+  */
+  renderInternationalTerritorialChart(
+    "intlTerritorialChart"
+  );
+
+
+  return {
+    cabRows,
+    intRows
+  };
+}
 
   async function exportPdfA4() {
     const pages = Array.from(
@@ -1242,6 +1356,11 @@ const [
 
 airportNameByIata =
   buildAirportNameIndex(
+    airportsGeojson
+  );
+
+airportGroupByIata =
+  buildAirportGroupIndex(
     airportsGeojson
   );
 
