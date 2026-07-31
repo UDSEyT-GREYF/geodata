@@ -753,6 +753,12 @@ button,select{font:inherit}
   font-weight: 700;
   fill: #008a14;
 }
+/* Tabla internacional: recuperar espacio vertical */
+#intTable th,
+#intTable td {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
 /* ==========================================================
    TABLA RESUMEN · SNA Y AEP+EZE
    ========================================================== */
