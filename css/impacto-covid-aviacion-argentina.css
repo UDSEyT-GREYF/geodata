@@ -753,3 +753,47 @@ button,select{font:inherit}
   font-weight: 700;
   fill: #008a14;
 }
+/* ==========================================================
+   TABLA RESUMEN · SNA Y AEP+EZE
+   ========================================================== */
+
+.aggregate-table-wrap {
+  margin-bottom: 2mm;
+}
+
+.airport-table-subtitle {
+  margin-top: 0 !important;
+  padding-top: 1.8mm;
+  border-top: 1px solid var(--orsna-linea);
+}
+
+
+/* Diferenciar las referencias generales */
+
+.aggregate-table tbody td {
+  background: #edf4fa;
+  font-weight: 700;
+}
+
+.aggregate-table tbody td:first-child {
+  font-weight: 900;
+}
+
+
+/* Enmarcar visualmente las dos filas */
+
+.aggregate-table tbody tr:first-child td {
+  border-top: 2px solid var(--orsna-azul-2);
+}
+
+.aggregate-table tbody tr:last-child td {
+  border-bottom: 2px solid var(--orsna-azul-2);
+}
+
+
+/* Destacar la valoración general */
+
+.aggregate-table td.valuation {
+  color: var(--orsna-azul);
+  font-weight: 900;
+}
