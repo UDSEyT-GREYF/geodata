@@ -557,6 +557,22 @@ function conclusionLabel(row) {
     .trim()
     .toUpperCase();
 
+  /*
+    Filas agregadas creadas por el informe.
+    Se conserva exactamente su nombre.
+  */
+  if (
+    row?.es_grupo_a_resto ||
+    row?.es_total_tabla
+  ) {
+    return String(
+      row?.aeropuerto || ""
+    ).trim();
+  }
+
+  /*
+    Nombre corto especial para Aeroparque.
+  */
   if (iata === "AEP") {
     return "Aeroparque";
   }
@@ -566,7 +582,9 @@ function conclusionLabel(row) {
 
   return (
     shortName ||
-    String(row?.aeropuerto || iata).trim()
+    String(
+      row?.aeropuerto || iata
+    ).trim()
   );
 }
   
