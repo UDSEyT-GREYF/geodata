@@ -589,7 +589,7 @@ h1 {
 
 .covid-table .valuation {
   color: var(--orsna-azul);
-  font-weight: 650;
+  font-weight: 600;
   line-height: 1.15;
 }
 
@@ -651,7 +651,7 @@ h1 {
 
 .compare-block tr.negative-valuation-row td.valuation {
   color: #9f2925;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .compare-block tr.table-total-row td,
@@ -721,7 +721,7 @@ h1 {
 
 .aggregate-table td.valuation {
   color: var(--orsna-azul);
-  font-weight: 900;
+  font-weight: 600;
 }
 
 .airport-table-subtitle {
