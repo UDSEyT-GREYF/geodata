@@ -24,7 +24,7 @@
   */
   const MARGINAL_MAX_ANNUAL_PAX = 1000;
   const MARGINAL_LABEL = "Volumen marginal";
-  const CAB_ROWS_FIRST_PAGE = 18;
+  const CAB_ROWS_FIRST_PAGE = 13;
   /*
   Grupos de aeropuertos incluidos en las tablas
   y en las conclusiones.
@@ -849,7 +849,110 @@ function getInternationalTerritorialSeries(
   });
 }
 
+function getCabotageTerritorialSeries(
+  groupARemainderRow
+) {
+  const cabRows =
+    reportData?.tablas?.cabotaje || [];
 
+  const snaRow =
+    cabRows.find(
+      row => row.es_sna
+    ) || null;
+
+  const bueRow =
+    cabRows.find(
+      row => row.es_aep_eze
+    ) || null;
+
+  /*
+    El gráfico usa la misma fila
+    Resto Grupo A que la tabla síntesis.
+  */
+  if (
+    !snaRow ||
+    !bueRow ||
+    !groupARemainderRow
+  ) {
+    return [];
+  }
+
+  const years =
+    getAnnualYearsFromRows([
+      snaRow,
+      bueRow,
+      groupARemainderRow
+    ])
+      .filter(
+        year =>
+          year >= 2015 &&
+          year <= 2025
+      )
+      .sort((a, b) => a - b);
+
+  const baseYear =
+    reportConfig.baseYear;
+
+  const snaBase =
+    annualValue(
+      snaRow,
+      baseYear
+    );
+
+  const bueBase =
+    annualValue(
+      bueRow,
+      baseYear
+    );
+
+  const restoGrupoABase =
+    annualValue(
+      groupARemainderRow,
+      baseYear
+    );
+
+  return years.map(year => {
+    const sna =
+      annualValue(
+        snaRow,
+        year
+      );
+
+    const bue =
+      annualValue(
+        bueRow,
+        year
+      );
+
+    const restoGrupoA =
+      annualValue(
+        groupARemainderRow,
+        year
+      );
+
+    return {
+      year,
+
+      snaIndex:
+        snaBase > 0
+          ? (sna / snaBase) * 100
+          : 0,
+
+      bueIndex:
+        bueBase > 0
+          ? (bue / bueBase) * 100
+          : 0,
+
+      restoIndex:
+        restoGrupoABase > 0
+          ? (
+              restoGrupoA /
+              restoGrupoABase
+            ) * 100
+          : 0
+    };
+  });
+}
 function renderInternationalTerritorialChart(
   containerId,
   groupARemainderRow
@@ -1099,7 +1202,320 @@ const yearLabels = series.map((d, i) => {
   `;
 }
 
-  
+function renderCabotageTerritorialChart(
+  containerId,
+  groupARemainderRow
+) {
+  const el = $(containerId);
+
+  if (!el) return;
+
+  const series =
+    getCabotageTerritorialSeries(
+      groupARemainderRow
+    );
+
+  if (!series.length) {
+    el.innerHTML = "";
+    return;
+  }
+
+  const width = 860;
+  const height = 215;
+
+  const margin = {
+    top: 10,
+    right: 140,
+    bottom: 28,
+    left: 36
+  };
+
+  const plotWidth =
+    width -
+    margin.left -
+    margin.right;
+
+  const plotHeight =
+    height -
+    margin.top -
+    margin.bottom;
+
+  const allValues =
+    series.flatMap(row => [
+      row.snaIndex,
+      row.bueIndex,
+      row.restoIndex
+    ]);
+
+  const maxValue = Math.max(
+    110,
+    Math.ceil(
+      Math.max(...allValues) / 10
+    ) * 10
+  );
+
+  const minValue = 0;
+
+  const xScale = index =>
+    margin.left +
+    (
+      plotWidth * index
+    ) /
+    (
+      series.length - 1
+    );
+
+  const yScale = value =>
+    margin.top +
+    plotHeight -
+    (
+      (
+        value - minValue
+      ) /
+      (
+        maxValue - minValue
+      )
+    ) * plotHeight;
+
+  const yTicks = [
+    0,
+    25,
+    50,
+    75,
+    100
+  ];
+
+  const snaPath =
+    buildLinePath(
+      series,
+      "snaIndex",
+      xScale,
+      yScale
+    );
+
+  const buePath =
+    buildLinePath(
+      series,
+      "bueIndex",
+      xScale,
+      yScale
+    );
+
+  const restoPath =
+    buildLinePath(
+      series,
+      "restoIndex",
+      xScale,
+      yScale
+    );
+
+  const last =
+    series[series.length - 1];
+
+  const baseY =
+    yScale(100);
+
+  const foundBaseIndex =
+    series.findIndex(
+      row => row.year === 2019
+    );
+
+  const baseIndex =
+    foundBaseIndex >= 0
+      ? foundBaseIndex
+      : 0;
+
+  const baseX =
+    xScale(baseIndex);
+
+  const horizontalGrid =
+    yTicks.map(value => `
+      <line
+        x1="${margin.left}"
+        y1="${yScale(value)}"
+        x2="${width - margin.right}"
+        y2="${yScale(value)}"
+        class="chart-grid-line"
+      ></line>
+
+      <text
+        x="${margin.left - 8}"
+        y="${yScale(value) + 3}"
+        text-anchor="end"
+        class="chart-axis-text"
+      >${value}</text>
+    `).join("");
+
+  const yearLabels =
+    series.map((row, index) => `
+      <text
+        x="${xScale(index)}"
+        y="${height - 6}"
+        text-anchor="middle"
+        class="chart-axis-text"
+      >${row.year}</text>
+    `).join("");
+
+  const points =
+    series.map((row, index) => `
+      <circle
+        cx="${xScale(index)}"
+        cy="${yScale(row.snaIndex)}"
+        r="2.1"
+        class="chart-point-sna"
+      ></circle>
+
+      <circle
+        cx="${xScale(index)}"
+        cy="${yScale(row.bueIndex)}"
+        r="2.1"
+        class="chart-point-bue"
+      ></circle>
+
+      <circle
+        cx="${xScale(index)}"
+        cy="${yScale(row.restoIndex)}"
+        r="2.1"
+        class="chart-point-resto"
+      ></circle>
+    `).join("");
+
+  /*
+    Separación automática de las
+    etiquetas finales.
+  */
+  const endLabels = [
+    {
+      key: "resto",
+      originalY:
+        yScale(last.restoIndex)
+    },
+    {
+      key: "sna",
+      originalY:
+        yScale(last.snaIndex)
+    },
+    {
+      key: "bue",
+      originalY:
+        yScale(last.bueIndex)
+    }
+  ].sort(
+    (a, b) =>
+      a.originalY -
+      b.originalY
+  );
+
+  const minLabelGap = 13;
+
+  endLabels.forEach(
+    (label, index) => {
+      label.y =
+        index === 0
+          ? label.originalY
+          : Math.max(
+              label.originalY,
+              endLabels[index - 1].y +
+                minLabelGap
+            );
+    }
+  );
+
+  const maxLabelY =
+    margin.top +
+    plotHeight -
+    3;
+
+  const overflow =
+    endLabels[
+      endLabels.length - 1
+    ].y -
+    maxLabelY;
+
+  if (overflow > 0) {
+    endLabels.forEach(label => {
+      label.y -= overflow;
+    });
+  }
+
+  const labelY =
+    Object.fromEntries(
+      endLabels.map(label => [
+        label.key,
+        label.y
+      ])
+    );
+
+  el.innerHTML = `
+    <svg
+      viewBox="0 0 ${width} ${height}"
+      role="img"
+      aria-label="Evolución del tráfico de cabotaje del SNA, AEP más EZE y resto de aeropuertos del Grupo A. Índice 2019 igual a 100."
+    >
+      ${horizontalGrid}
+
+      <line
+        x1="${baseX}"
+        y1="${margin.top}"
+        x2="${baseX}"
+        y2="${margin.top + plotHeight}"
+        class="chart-grid-line"
+        style="stroke:#e0e6ec"
+      ></line>
+
+      <line
+        x1="${margin.left}"
+        y1="${baseY}"
+        x2="${width - margin.right}"
+        y2="${baseY}"
+        class="chart-base-line"
+      ></line>
+
+      <text
+        x="${baseX + 6}"
+        y="${baseY - 6}"
+        class="chart-base-label"
+      >2019 = 100</text>
+
+      <path
+        d="${snaPath}"
+        class="chart-series-sna"
+      ></path>
+
+      <path
+        d="${buePath}"
+        class="chart-series-bue"
+      ></path>
+
+      <path
+        d="${restoPath}"
+        class="chart-series-resto"
+      ></path>
+
+      ${points}
+
+      ${yearLabels}
+
+      <text
+        x="${width - margin.right + 12}"
+        y="${labelY.sna}"
+        class="chart-last-label-sna"
+      >SNA: ${formatOneDecimal(last.snaIndex)}</text>
+
+      <text
+        x="${width - margin.right + 12}"
+        y="${labelY.bue}"
+        class="chart-last-label-bue"
+      >AEP+EZE: ${formatOneDecimal(last.bueIndex)}</text>
+
+      <text
+        x="${width - margin.right + 12}"
+        y="${labelY.resto}"
+        class="chart-last-label-resto"
+      >Resto Grupo A: ${formatOneDecimal(last.restoIndex)}</text>
+    </svg>
+  `;
+}  
 function renderPassengerTable(
   tableId,
   sourceRows,
@@ -1499,21 +1915,28 @@ const cabotageSummaryRows = [
 ];
 
 
-/*
-  Render de la tabla síntesis de cabotaje.
-*/
-const cabAggregateRows =
-  renderPassengerTable(
-    "cabAggregatesTable",
-    cabotageSummaryRows
+  /*
+    Render de la tabla síntesis de cabotaje.
+  */
+  const cabAggregateRows =
+    renderPassengerTable(
+      "cabAggregatesTable",
+      cabotageSummaryRows
+    );
+  /*
+    Gráfico territorial de cabotaje.
+  */
+  renderCabotageTerritorialChart(
+    "cabTerritorialChart",
+    cabotageGroupARemainderRow
   );
-
-
-/*
-  Total de los aeropuertos individuales
-  mostrados en la tabla principal.
-*/
-const cabotageTotalRow =
+  
+  /*
+    Total de los aeropuertos individuales
+    mostrados en la tabla principal.
+  */
+  const cabotageTotalRow =
+  
   buildAirportTableTotalRow(
     cabotageAirportRows,
     "cabotaje"
