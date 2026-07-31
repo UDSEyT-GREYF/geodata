@@ -353,23 +353,35 @@ function isSpecialAggregate(row) {
     !!row?.es_total_tabla
   );
 }
-function buildGroupARemainderRow(rows) {
-  const sourceRows = (rows || []).filter(row => {
-    const iata = String(
-      row?.iata || ""
-    )
-      .trim()
-      .toUpperCase();
+function buildGroupARemainderRow(
+  rows,
+  tableType
+) {
+  /*
+    El resto del Grupo A excluye:
+    - AEP;
+    - EZE;
+    - agregados;
+    - filas de total.
+  */
+  const sourceRows = (rows || []).filter(
+    row => {
+      const iata = String(
+        row?.iata || ""
+      )
+        .trim()
+        .toUpperCase();
 
-    /*
-      AEP y EZE ya están representados
-      en la fila agregada AEP+EZE.
-    */
-    return (
-      iata !== "AEP" &&
-      iata !== "EZE"
-    );
-  });
+      return (
+        iata !== "AEP" &&
+        iata !== "EZE" &&
+        !row?.es_sna &&
+        !row?.es_aep_eze &&
+        !row?.es_grupo_a_resto &&
+        !row?.es_total_tabla
+      );
+    }
+  );
 
   if (!sourceRows.length) {
     return null;
@@ -379,7 +391,8 @@ function buildGroupARemainderRow(rows) {
     getAnnualYearsFromRows(sourceRows);
 
   const aggregateRow = {
-    tipo_tabla: "internacional",
+    tipo_tabla: tableType,
+
     iata: "RESTO_GRUPO_A",
 
     aeropuerto:
@@ -388,6 +401,7 @@ function buildGroupARemainderRow(rows) {
     es_sna: false,
     es_aep_eze: false,
     es_grupo_a_resto: true,
+    es_total_tabla: false,
     es_volumen_marginal: false
   };
 
@@ -1355,7 +1369,7 @@ function renderConclusions(
     }
 
     if (!Array.isArray(data?.tablas?.internacional)) {
-      throw new Error("El JSON no contiene tablas.internacional");
+      throw new Error("El JSON no contiene tablas.internacional");        
     }
   }
 
@@ -1367,24 +1381,93 @@ function renderReport(data) {
     buildReportConfig(data);
 
 
-  /*
-    Se muestran solamente aeropuertos
-    pertenecientes a los grupos habilitados.
-    SNA y AEP+EZE se conservan.
-  */
-  const visibleCabotageRows =
-    data.tablas.cabotaje.filter(
-      isVisibleAirportRow
-    );
+/*
+  Cabotaje:
+  Grupo A + agregados SNA y AEP+EZE.
+*/
+const visibleCabotageRows =
+  data.tablas.cabotaje.filter(
+    isVisibleAirportRow
+  );
 
-const cabotageTotalRow =
-  buildAirportTableTotalRow(
-    visibleCabotageRows,
+
+/*
+  Referencias generales:
+  SNA y AEP+EZE.
+*/
+const cabotageAggregateRows =
+  visibleCabotageRows.filter(
+    row =>
+      row.es_sna ||
+      row.es_aep_eze
+  );
+
+
+/*
+  Aeropuertos individuales del Grupo A.
+  No incluye las filas agregadas.
+*/
+const cabotageAirportRows =
+  visibleCabotageRows.filter(
+    row =>
+      !row.es_sna &&
+      !row.es_aep_eze
+  );
+
+
+/*
+  Resto del Grupo A:
+  suma de los aeropuertos individuales,
+  excluyendo AEP y EZE.
+*/
+const cabotageGroupARemainderRow =
+  buildGroupARemainderRow(
+    cabotageAirportRows,
     "cabotaje"
   );
 
+
+/*
+  Filas de la tabla síntesis:
+  SNA + AEP/EZE + Resto Grupo A.
+*/
+const cabotageSummaryRows = [
+  ...cabotageAggregateRows,
+
+  ...(
+    cabotageGroupARemainderRow
+      ? [cabotageGroupARemainderRow]
+      : []
+  )
+];
+
+
+/*
+  Render de la tabla síntesis de cabotaje.
+*/
+const cabAggregateRows =
+  renderPassengerTable(
+    "cabAggregatesTable",
+    cabotageSummaryRows
+  );
+
+
+/*
+  Total de los aeropuertos individuales
+  mostrados en la tabla principal.
+*/
+const cabotageTotalRow =
+  buildAirportTableTotalRow(
+    cabotageAirportRows,
+    "cabotaje"
+  );
+
+
+/*
+  Aeropuertos individuales + Total.
+*/
 const cabotageTableRows = [
-  ...visibleCabotageRows,
+  ...cabotageAirportRows,
 
   ...(
     cabotageTotalRow
@@ -1392,50 +1475,76 @@ const cabotageTableRows = [
       : []
   )
 ];
-  /*
-    Página 2:
-    conclusiones y primeras filas.
-  */
-  const cabRows =
-    renderPassengerTable(
-      "cabTable",
-      cabotageTableRows,
-      0,
-      CAB_ROWS_FIRST_PAGE
-    );
 
 
-  /*
-    Página 3:
-    continuación, cuando resulte necesaria.
-  */
+/*
+  Página principal de cabotaje.
+*/
+const cabAirportRows =
   renderPassengerTable(
-    "cabTableContinuation",
+    "cabTable",
     cabotageTableRows,
+    0,
     CAB_ROWS_FIRST_PAGE
   );
 
 
-  /*
-    Si todos los aeropuertos del grupo
-    seleccionado entran en la página 2,
-    se oculta la página de continuación.
-  */
-  const continuationTable =
-    $("cabTableContinuation");
+/*
+  Página de continuación de cabotaje.
+*/
+renderPassengerTable(
+  "cabTableContinuation",
+  cabotageTableRows,
+  CAB_ROWS_FIRST_PAGE
+);
 
-  const continuationSheet =
-    continuationTable?.closest(
-      ".sheet-a4"
-    );
 
-  if (continuationSheet) {
-    continuationSheet.style.display =
-      cabRows.length >
-      CAB_ROWS_FIRST_PAGE
-        ? ""
-        : "none";
-  }
+/*
+  Ocultar la página de continuación
+  cuando todas las filas entran
+  en la página principal.
+*/
+const continuationTable =
+  $("cabTableContinuation");
+
+const continuationSheet =
+  continuationTable?.closest(
+    ".sheet-a4"
+  );
+
+if (continuationSheet) {
+  continuationSheet.style.display =
+    cabAirportRows.length >
+    CAB_ROWS_FIRST_PAGE
+      ? ""
+      : "none";
+}
+
+
+/*
+  Filas utilizadas en las conclusiones.
+
+  Se incluyen:
+  - SNA;
+  - AEP+EZE;
+  - aeropuertos individuales.
+
+  Se excluyen:
+  - Resto Grupo A;
+  - fila Total.
+*/
+const cabRows = [
+  ...cabAggregateRows.filter(
+    row =>
+      row.isSna ||
+      row.isBue
+  ),
+
+  ...cabAirportRows.filter(
+    row =>
+      !row.isTableTotal
+  )
+];
 
 
   /*
@@ -1509,7 +1618,8 @@ const internationalAirportRowsWithTotal = [
 */
 const groupARemainderRow =
   buildGroupARemainderRow(
-    internationalAirportRows
+    internationalAirportRows,
+    "internacional"
   );
 
 
