@@ -619,26 +619,32 @@ function valuationText(
   if (!Number.isFinite(annualVar)) {
     return `Sin base ${config.baseYear}`;
   }
+  const trafficType =
+    String(row?.tipo_tabla || "")
+      .trim()
+      .toLowerCase() === "internacional"
+      ? "internacional"
+      : "cabotaje";
+  
+if (annualVar >= 20) {
+  return `Recuperación amplia ${trafficType}`;
+}
 
-  if (annualVar >= 20) {
-    return "Recuperación amplia cabotaje";
-  }
+if (annualVar >= 10) {
+  return `Recuperación clara ${trafficType}`;
+}
 
-  if (annualVar >= 10) {
-    return "Recuperación clara cabotaje";
-  }
+if (annualVar >= 3) {
+  return `Recuperación leve ${trafficType}`;
+}
 
-  if (annualVar >= 3) {
-    return "Recuperación leve cabotaje";
-  }
+if (annualVar >= -3) {
+  return `Igualó el nivel ${trafficType} de ${config.baseYear}`;
+}
 
-  if (annualVar >= -3) {
-    return `Igualó el nivel cabotaje de ${config.baseYear}`;
-  }
-
-  if (annualVar >= -20) {
-    return "Recuperación incompleta cabotaje";
-  }
+if (annualVar >= -20) {
+  return `Recuperación incompleta ${trafficType}`;
+}
 
   return `Muy por debajo de ${config.baseYear}`;
 }
