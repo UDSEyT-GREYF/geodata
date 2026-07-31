@@ -926,7 +926,64 @@ function renderInternationalTerritorialChart(
   );
 
   const last = series[series.length - 1];
+/*
+  Posiciones de las etiquetas finales.
+  Se ordenan verticalmente y se obliga
+  a dejar una separación mínima.
+*/
+const endLabels = [
+  {
+    key: "resto",
+    originalY: yScale(last.restoIndex)
+  },
+  {
+    key: "sna",
+    originalY: yScale(last.snaIndex)
+  },
+  {
+    key: "bue",
+    originalY: yScale(last.bueIndex)
+  }
+].sort(
+  (a, b) => a.originalY - b.originalY
+);
 
+const minLabelGap = 13;
+
+endLabels.forEach((label, index) => {
+  label.y =
+    index === 0
+      ? label.originalY
+      : Math.max(
+          label.originalY,
+          endLabels[index - 1].y +
+            minLabelGap
+        );
+});
+
+/*
+  Evita que la última etiqueta salga
+  por debajo del área del gráfico.
+*/
+const maxLabelY =
+  margin.top + plotHeight - 3;
+
+const overflow =
+  endLabels[endLabels.length - 1].y -
+  maxLabelY;
+
+if (overflow > 0) {
+  endLabels.forEach(label => {
+    label.y -= overflow;
+  });
+}
+
+const labelY = Object.fromEntries(
+  endLabels.map(label => [
+    label.key,
+    label.y
+  ])
+);
   const baseY = yScale(100);
   const baseIndex = series.findIndex(d => d.year === 2019);
   const baseX = xScale(baseIndex);
@@ -1023,19 +1080,19 @@ const yearLabels = series.map((d, i) => {
 
       <text
         x="${width - margin.right + 12}"
-        y="${yScale(last.snaIndex) - 8}"
+        y="${labelY.sna}"
         class="chart-last-label-sna"
       >SNA: ${formatOneDecimal(last.snaIndex)}</text>
 
       <text
         x="${width - margin.right + 12}"
-        y="${yScale(last.bueIndex) + 2}"
+        y="${labelY.bue}"
         class="chart-last-label-bue"
       >AEP+EZE: ${formatOneDecimal(last.bueIndex)}</text>
 
       <text
         x="${width - margin.right + 12}"
-        y="${yScale(last.restoIndex) + 12}"
+        y="${labelY.resto}"
         class="chart-last-label-resto"
       >Resto Grupo A: ${formatOneDecimal(last.restoIndex)}</text>
     </svg>
