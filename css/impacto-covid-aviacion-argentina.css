@@ -1,459 +1,224 @@
-:root{
-  --orsna-azul:#002855;
-  --orsna-azul-2:#2A6FB0;
-  --orsna-celeste:#eaf3fb;
-  --orsna-linea:#d7dee8;
-  --texto:#27313c;
-  --muted:#657384;
-  --bg:#eef2f7;
-  --verde:#1f7a4d;
-  --rojo:#b33a3a;
-  --ambar:#a15f00;
-  --int:#008000;
-}
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--texto);background:var(--bg)}
-button,select{font:inherit}
-.top-controls{width:210mm;margin:12px auto 8px;display:flex;flex-direction:column;gap:6px}
-.control-inner{display:flex;align-items:flex-end;gap:10px;background:#fff;border:1px solid var(--orsna-linea);border-radius:12px;padding:10px 12px;box-shadow:0 6px 16px rgba(30,45,70,.08)}
-.selector-block{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
-.selector-block label{font-size:11px;font-weight:700;color:var(--orsna-azul);text-transform:uppercase;letter-spacing:.04em}
-.selector-block select{width:100%;height:34px;border:1px solid #b8c5d4;border-radius:8px;background:#fff;color:var(--texto);padding:0 10px;font-weight:600;font-size:11px}
-.btn-primary{height:34px;border:1px solid var(--orsna-azul-2);border-radius:8px;background:var(--orsna-azul-2);color:#fff;padding:0 14px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
-.btn-primary:disabled{opacity:.6;cursor:wait}
-.status{font-size:11px;color:var(--muted);padding:0 2px;min-height:16px}
-.report-a4{display:flex;justify-content:center;padding:0 0 28px}
-.sheet-a4{width:210mm;height:297mm;background:#fff;box-shadow:0 8px 24px rgba(28,44,70,.14);padding:9mm 9mm 7mm;display:flex;flex-direction:column;overflow:hidden;position:relative}
-.report-header{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;border-bottom:2px solid var(--orsna-azul);padding-bottom:5mm;margin-bottom:4mm}
-.brand-row{display:flex;gap:8px;align-items:center;min-width:0}.brand-dot{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--orsna-azul),var(--orsna-azul-2));flex:0 0 auto}.eyebrow{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:1.2mm}h1{font-size:18px;line-height:1.03;margin:0;color:var(--orsna-azul);font-weight:700}.scope-badge{border:1px solid #b8c5d4;border-radius:999px;background:var(--orsna-celeste);color:var(--orsna-azul);font-size:9.5px;font-weight:700;padding:5px 8px;max-width:78mm;text-align:right;line-height:1.15}
-.summary-block{border:1px solid var(--orsna-linea);border-radius:8px;background:#fbfdff;padding:6px 8px;margin-bottom:4mm}.summary-block h2,.compare-block h2{font-size:12px;color:var(--orsna-azul);margin:0 0 4px;font-weight:900}.summary-block p{font-size:11px;line-height:1.35;margin:0;color:#3c4652}.good{color:var(--verde)!important}.bad{color:var(--rojo)!important}.warn{color:var(--ambar)!important}
-.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(35mm,1fr));gap:6px;margin-bottom:3mm}.kpi-card{border:1px solid var(--orsna-linea);border-radius:8px;background:#fff;padding:6px 7px;min-height:22mm}.kpi-label{font-size:9.2px;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);font-weight:700;line-height:1.15}.kpi-value{font-size:15px;line-height:1;margin-top:4px;color:var(--orsna-azul);font-weight:700}.kpi-sub{font-size:9.4px;color:#536172;margin-top:4px;line-height:1.15}
-.charts-row{display:grid;grid-template-columns:1fr;gap:5px;margin-bottom:3mm}
-.chart-card{border:1px solid var(--orsna-linea);border-radius:8px;padding:5px 7px;background:#fff;min-height:57mm}
-.chart-title{font-size:11.5px;color:var(--orsna-azul);font-weight:900;line-height:1.15}
-.chart-subtitle{font-size:9px;color:var(--muted);margin-top:1px}
-.chart-box{height:47mm}
-.chart-box svg{width:100%;height:100%;display:block}
-.chart-note{font-size:8.6px;color:var(--muted);margin-top:2px}
-.legend{display:flex;justify-content:center;align-items:center;gap:8px 14px;flex-wrap:wrap;width:100%;font-size:9px;color:var(--muted);margin-top:1px;text-align:center}
-.legend span{display:inline-flex;align-items:center;justify-content:center;gap:4px}
-.legend-int.is-hidden{display:none!important}
-.sw{width:9px;height:9px;border-radius:2px;display:inline-block}
-.sw.total{background:var(--orsna-azul)}
-.sw.cab{background:var(--orsna-azul-2)}
-.sw.int{background:var(--int)}
-.compare-block{border:1px solid var(--orsna-linea);border-radius:8px;padding:5px 7px;background:#fff;flex:0 0 auto;min-height:0;display:flex;flex-direction:column}
-.table-wrap{overflow:hidden;border:1px solid #e5ebf2;border-radius:7px}
-.compare-block table{width:100%;border-collapse:collapse;font-size:9.2px}
-.compare-block th,.compare-block td{padding:4px 5px;border-bottom:1px solid #edf1f5;text-align:right;white-space:nowrap}
-.compare-block th{
-  background:#eaf1f8;
-  color:var(--orsna-azul);
-  font-weight:900;
-  text-align:center;
-  vertical-align:middle
-}
-.compare-block th:first-child{
-  text-align:center;
-  white-space:normal
+/* ==========================================================
+   VARIABLES Y BASE GENERAL
+   ========================================================== */
+
+:root {
+  --orsna-azul: #002855;
+  --orsna-azul-2: #2A6FB0;
+  --orsna-celeste: #eaf3fb;
+  --orsna-linea: #d7dee8;
+  --texto: #27313c;
+  --muted: #657384;
+  --bg: #eef2f7;
+  --verde: #1f7a4d;
+  --rojo: #b33a3a;
+  --ambar: #a15f00;
+  --int: #008000;
 }
 
-.compare-block td:first-child{
-  text-align:left;
-  white-space:normal
+* {
+  box-sizing: border-box;
 }
-.compare-block tbody tr:last-child td{border-bottom:0}
-.metric-name{font-weight:850;color:#253447}
-.report-footer{margin-top:auto;padding-top:4mm;display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--orsna-linea);font-size:9px;color:var(--muted)}
-@page{size:A4 portrait;margin:0}
-@media print{html,body{background:#fff}.no-print{display:none!important}.report-a4{padding:0}.sheet-a4{width:210mm;height:297mm;box-shadow:none;margin:0;page-break-after:avoid}.compare-block th{position:static}}
-.pdf-exporting .no-print{display:none!important}.pdf-exporting body,.pdf-exporting .report-a4{background:#fff!important;padding:0!important}.pdf-exporting .sheet-a4{box-shadow:none!important;margin:0!important}
-@media(max-width:840px){.top-controls{width:auto;margin:10px}.control-inner{flex-direction:column;align-items:stretch}.sheet-a4{transform-origin:top center;max-width:100%;height:auto;min-height:297mm}.kpi-grid{grid-template-columns:repeat(2,1fr)}.charts-row{grid-template-columns:1fr}.chart-box{height:52mm}}
-.legend {
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  color: var(--texto);
+  background: var(--bg);
+}
+
+button,
+select {
+  font: inherit;
+}
+
+.good {
+  color: var(--verde) !important;
+}
+
+.bad {
+  color: var(--rojo) !important;
+}
+
+.warn {
+  color: var(--ambar) !important;
+}
+
+/* ==========================================================
+   CONTROLES SUPERIORES
+   ========================================================== */
+
+.top-controls {
+  width: 210mm;
+  margin: 12px auto 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.control-inner {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--orsna-linea);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 6px 16px rgba(30,45,70,.08);
+}
+
+.control-inner-simple {
+  align-items: center;
+}
+
+.selector-block {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.selector-block label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--orsna-azul);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.selector-block select {
+  width: 100%;
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid #b8c5d4;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--texto);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.toolbar-title-block {
+  gap: 2px;
+}
+
+.toolbar-title {
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--orsna-azul);
+}
+
+.btn-primary {
+  height: 34px;
+  padding: 0 14px;
+  border: 1px solid var(--orsna-azul-2);
+  border-radius: 8px;
+  background: var(--orsna-azul-2);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-primary:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
+.status {
+  min-height: 16px;
+  padding: 0 2px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* ==========================================================
+   ESTRUCTURA A4 Y ENCABEZADO
+   ========================================================== */
+
+.report-a4 {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px 14px;
-  flex-wrap: wrap;
-  width: 100%;
-  margin-top: 6px;
-  text-align: center;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 0 28px;
 }
 
-.legend span {
-  display: inline-flex;
+.sheet-a4 {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  padding: 9mm 9mm 7mm;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(28,44,70,.14);
+}
+
+.report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  padding-bottom: 5mm;
+  margin-bottom: 4mm;
+  border-bottom: 2px solid var(--orsna-azul);
+}
+
+.brand-row {
+  display: flex;
   align-items: center;
-  justify-content: center;
-}
-/* Ajustes para exportación PDF A4 */
-.pdf-exporting html,
-.pdf-exporting body{
-  width:210mm!important;
-  min-height:297mm!important;
-  overflow:visible!important;
-  background:#fff!important;
+  gap: 8px;
+  min-width: 0;
 }
 
-.pdf-exporting .report-a4{
-  width:210mm!important;
-  height:297mm!important;
-  padding:0!important;
-  margin:0!important;
-  display:block!important;
-  background:#fff!important;
+.brand-dot {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: linear-gradient(135deg,var(--orsna-azul),var(--orsna-azul-2));
 }
 
-.pdf-exporting .sheet-a4{
-  width:210mm!important;
-  height:297mm!important;
-  margin:0!important;
-  box-shadow:none!important;
-  transform:none!important;
-  overflow:hidden!important;
+.eyebrow {
+  margin-bottom: 1.2mm;
+  color: var(--muted);
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
 }
 
-.pdf-exporting .top-controls,
-.pdf-exporting .no-print{
-  display:none!important;
-}
-/* ============================================================
-   AJUSTE EXCLUSIVO PARA EXPORTACIÓN PDF A4
-   No afecta la vista web normal.
-   ============================================================ */
-
-.pdf-exporting,
-.pdf-exporting body {
-  width: 210mm !important;
-  min-height: 297mm !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-  background: #ffffff !important;
+h1 {
+  margin: 0;
+  color: var(--orsna-azul);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.03;
 }
 
-.pdf-exporting .page-wrap,
-.pdf-exporting .report-a4 {
-  width: 210mm !important;
-  height: 297mm !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  background: #ffffff !important;
-  overflow: hidden !important;
+.scope-badge {
+  max-width: 78mm;
+  padding: 5px 8px;
+  border: 1px solid #b8c5d4;
+  border-radius: 999px;
+  background: var(--orsna-celeste);
+  color: var(--orsna-azul);
+  font-size: 9.5px;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: right;
 }
 
-.pdf-exporting .sheet-a4 {
-  width: 210mm !important;
-  height: 297mm !important;
-  margin: 0 !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
-  overflow: hidden !important;
-  transform: none !important;
-  padding: 8mm 9mm 6mm !important;
-}
-
-/* Reducir aire vertical solo al exportar */
-.pdf-exporting .report-head {
-  margin-bottom: 4mm !important;
-  padding-bottom: 3mm !important;
-}
-
-.pdf-exporting .summary-box {
-  padding: 4px 7px !important;
-  margin-bottom: 3mm !important;
-}
-
-.pdf-exporting .summary-title {
-  font-size: 11px !important;
-  line-height: 1.1 !important;
-}
-
-.pdf-exporting .summary-text {
-  font-size: 9.4px !important;
-  line-height: 1.28 !important;
-}
-
-.pdf-exporting .kpi-grid {
-  gap: 4px !important;
-  margin-bottom: 3mm !important;
-}
-
-.pdf-exporting .kpi-card {
-  padding: 5px 7px !important;
-  min-height: 15mm !important;
-}
-
-.pdf-exporting .kpi-label {
-  font-size: 8.4px !important;
-}
-
-.pdf-exporting .kpi-value {
-  font-size: 17px !important;
-  line-height: 1.05 !important;
-}
-
-.pdf-exporting .kpi-sub {
-  font-size: 8.2px !important;
-  line-height: 1.15 !important;
-}
-
-/* Gráficos apilados, de ancho completo, pero con altura controlada */
-.pdf-exporting .charts-row {
-  display: grid !important;
-  grid-template-columns: 1fr !important;
-  gap: 3mm !important;
-  margin-bottom: 3mm !important;
-}
-
-.pdf-exporting .chart-card {
-  min-height: 0 !important;
-  height: 58mm !important;
-  padding: 4px 7px 3px !important;
-}
-
-.pdf-exporting .chart-title {
-  font-size: 11px !important;
-  line-height: 1.05 !important;
-}
-
-.pdf-exporting .chart-subtitle {
-  font-size: 8.6px !important;
-  line-height: 1.05 !important;
-}
-
-.pdf-exporting .chart-box {
-  height: 43mm !important;
-}
-
-.pdf-exporting .legend {
-  margin-top: 0 !important;
-  font-size: 8.4px !important;
-}
-
-/* Tabla más compacta */
-.pdf-exporting .compare-block {
-  padding: 4px 7px !important;
-  margin-top: 0 !important;
-  flex: 1 1 auto !important;
-  min-height: 0 !important;
-}
-
-.pdf-exporting .compare-title {
-  font-size: 11px !important;
-  margin-bottom: 3px !important;
-}
-
-.pdf-exporting .compare-block table {
-  font-size: 8.6px !important;
-}
-
-.pdf-exporting .compare-block th,
-.pdf-exporting .compare-block td {
-  padding: 3px 4px !important;
-}
-
-.pdf-exporting .report-footer {
-  padding-top: 2mm !important;
-  font-size: 8px !important;
-}
-
-/* Ocultar controles externos en PDF */
-.pdf-exporting .top-controls,
-.pdf-exporting .no-print {
-  display: none !important;
-}
-.kpi-card.is-hidden {
-  display: none !important;
-}
-
-
-
-/* ============================================================
-   INFORME SINTÉTICO COVID · TABLAS DE PASAJEROS
-   Agregado al final para respetar tamaños y estilos base existentes.
-   ============================================================ */
-
-.control-inner-simple{
-  align-items:center;
-}
-
-.toolbar-title-block{
-  gap:2px;
-}
-
-.toolbar-title{
-  font-size:12px;
-  font-weight:800;
-  color:var(--orsna-azul);
-  line-height:1.15;
-}
-
-.report-a4{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:12px;
-  padding:0 0 28px;
-}
-
-.covid-table-block{
-  flex:1 1 auto;
-  min-height:0;
-  margin-bottom:4mm;
-}
-
-.covid-table-wrap{
-  overflow:hidden;
-}
-
-.covid-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:7.7px;
-}
-
-.covid-table th,
-.covid-table td{
-  border-bottom:1px solid #edf1f5;
-  padding:3px 3px;
-  text-align:right;
-  vertical-align:top;
-  white-space:nowrap;
-}
-
-.covid-table th{
-  background:#eaf1f8;
-  color:var(--orsna-azul);
-  font-weight:900;
-}
-
-.covid-table th:first-child,
-.covid-table td:first-child{
-  text-align:left;
-  white-space:normal;
-  width:30mm;
-}
-
-.covid-table th:last-child,
-.covid-table td:last-child{
-  text-align:left;
-  white-space:normal;
-  width:25mm;
-}
-
-.covid-table tbody tr:last-child td{
-  border-bottom:0;
-}
-
-.covid-table .airport-name{
-  font-weight:650;
-  color:#253447;
-}
-
-.covid-table .cell-main{
-  display:block;
-  font-weight:700;
-  color:#253447;
-  line-height:1.05;
-}
-
-.covid-table .cell-var{
-  display:block;
-  font-size:9px;
-  line-height:1.05;
-  margin-top:1px;
-  font-weight:600;
-}
-
-.covid-table .cell-base{
-  color:var(--muted);
-}
-
-.covid-table .valuation{
-  font-weight:650;
-  color:var(--orsna-azul);
-  line-height:1.15;
-}
-
-.conclusion-block{
-  border:1px solid var(--orsna-linea);
-  border-radius:8px;
-  background:#fbfdff;
-  padding:6px 8px;
-  margin-bottom:4mm;
-}
-
-.conclusion-block h2{
-  font-size:11px;
-  color:var(--orsna-azul);
-  margin:0 0 4px;
-  font-weight:700;
-}
-
-.conclusion-text{
-  font-size:9.2px;
-  line-height:1.28;
-  color:#3c4652;
-}
-
-.conclusion-text p{
-  margin:0 0 4px;
-}
-
-.conclusion-text p:last-child{
-  margin-bottom:0;
-}
-
-.covid-note{
-  color:var(--muted);
-  font-size:8.4px;
-  line-height:1.2;
-}
-
-/* Exportación PDF multipágina */
-.pdf-exporting,
-.pdf-exporting body{
-  width:210mm!important;
-  min-height:297mm!important;
-  margin:0!important;
-  padding:0!important;
-  overflow:visible!important;
-  background:#fff!important;
-}
-
-.pdf-exporting .report-a4{
-  width:210mm!important;
-  min-height:297mm!important;
-  padding:0!important;
-  margin:0!important;
-  display:flex!important;
-  flex-direction:column!important;
-  align-items:center!important;
-  gap:0!important;
-  background:#fff!important;
-}
-
-.pdf-exporting .sheet-a4{
-  width:210mm!important;
-  height:297mm!important;
-  margin:0!important;
-  box-shadow:none!important;
-  transform:none!important;
-  overflow:hidden!important;
-  page-break-after:always!important;
-  border-radius:0!important;
-}
-
-.pdf-exporting .sheet-a4:last-child{
-  page-break-after:auto!important;
-}
-
-.pdf-exporting .top-controls,
-.pdf-exporting .no-print{
-  display:none!important;
-}
 /* ==========================================================
-   INFORME COVID · ORDEN Y ACLARACIONES
+   INTRODUCCIÓN, RESÚMENES Y CONCLUSIONES
    ========================================================== */
 
 .covid-intro-note {
@@ -468,13 +233,33 @@ button,select{font:inherit}
 .covid-intro-note p {
   margin: 0;
   font-size: 10.5px;
-  line-height: 1.4;
   font-weight: 650;
+  line-height: 1.4;
   text-align: justify;
 }
 
+.summary-block {
+  margin-bottom: 4mm;
+  padding: 6px 8px;
+  border: 1px solid var(--orsna-linea);
+  border-radius: 8px;
+  background: #fbfdff;
+}
 
-/* Párrafos generados dentro de las conclusiones */
+.summary-block h2,
+.compare-block h2 {
+  margin: 0 0 4px;
+  color: var(--orsna-azul);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.summary-block p {
+  margin: 0;
+  color: #3c4652;
+  font-size: 11px;
+  line-height: 1.35;
+}
 
 .summary-block .conclusion-text {
   margin-top: 5px;
@@ -484,79 +269,338 @@ button,select{font:inherit}
 
 .summary-block .conclusion-text p {
   margin: 3px 0 0;
+  color: #3c4652;
   font-size: 11px;
   line-height: 1.28;
-  color: #3c4652;
 }
 
 .summary-block .conclusion-text p:first-child {
   margin-top: 0;
 }
 
-
-/* Pie de página internacional */
-
-.report-footer.report-footer-stacked {
-  display: block;
+.conclusion-block {
+  margin-bottom: 4mm;
+  padding: 6px 8px;
+  border: 1px solid var(--orsna-linea);
+  border-radius: 8px;
+  background: #fbfdff;
 }
 
-.covid-method-note {
-  margin-bottom: 2.5mm;
-  font-size: 9.5px;
-  line-height: 1.32;
-  text-align: justify;
-  color: #536172;
-}
-
-.covid-method-note strong {
+.conclusion-block h2 {
+  margin: 0 0 4px;
   color: var(--orsna-azul);
+  font-size: 11px;
+  font-weight: 700;
 }
 
-.report-footer-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 10px;
+.conclusion-text {
+  color: #3c4652;
+  font-size: 9.2px;
+  line-height: 1.28;
 }
 
-.report-footer-row span {
-  flex: 1 1 0;
+.conclusion-text p {
+  margin: 0 0 4px;
 }
 
-.report-footer-row span:last-child {
-  text-align: right;
+.conclusion-text p:last-child {
+  margin-bottom: 0;
 }
+
+.covid-note {
+  color: var(--muted);
+  font-size: 8.4px;
+  line-height: 1.2;
+}
+
 /* ==========================================================
-   PÁGINA 3 · CONTINUACIÓN DE CABOTAJE
+   KPI Y TARJETAS DE GRÁFICOS BASE
    ========================================================== */
 
-#sheetA4CabotajeContinuacion .compare-block {
-  flex: 1 1 auto;
-  min-height: 0;
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(35mm,1fr));
+  gap: 6px;
+  margin-bottom: 3mm;
 }
 
-#sheetA4CabotajeContinuacion .table-wrap {
-  overflow: hidden;
+.kpi-card {
+  min-height: 22mm;
+  padding: 6px 7px;
+  border: 1px solid var(--orsna-linea);
+  border-radius: 8px;
+  background: #fff;
 }
 
-#sheetA4CabotajeContinuacion .compare-block table {
-  font-size: 8.8px;
+.kpi-card.is-hidden {
+  display: none !important;
 }
 
-#sheetA4CabotajeContinuacion .compare-block th,
-#sheetA4CabotajeContinuacion .compare-block td {
-  padding: 3px 4px;
+.kpi-label {
+  color: var(--muted);
+  font-size: 9.2px;
+  font-weight: 700;
+  line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+
+.kpi-value {
+  margin-top: 4px;
+  color: var(--orsna-azul);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.kpi-sub {
+  margin-top: 4px;
+  color: #536172;
+  font-size: 9.4px;
   line-height: 1.15;
 }
 
-#sheetA4CabotajeContinuacion .report-footer {
-  padding-top: 2mm;
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+  margin-bottom: 3mm;
 }
+
+.chart-card {
+  min-height: 57mm;
+  padding: 5px 7px;
+  border: 1px solid var(--orsna-linea);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.chart-title {
+  color: var(--orsna-azul);
+  font-size: 11.5px;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.chart-subtitle {
+  margin-top: 1px;
+  margin-bottom: 1.5mm;
+  color: #5e6d7d;
+  font-size: 8.6px;
+}
+
+.chart-box {
+  height: 47mm;
+}
+
+.chart-box svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.chart-note {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 8.6px;
+}
+
+.legend {
+  width: 100%;
+  margin-top: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  color: var(--muted);
+  font-size: 9px;
+  text-align: center;
+}
+
+.legend span {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.legend-int.is-hidden {
+  display: none !important;
+}
+
+.sw {
+  width: 9px;
+  height: 9px;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+.sw.total {
+  background: var(--orsna-azul);
+}
+
+.sw.cab {
+  background: var(--orsna-azul-2);
+}
+
+.sw.int {
+  background: var(--int);
+}
+
+/* ==========================================================
+   BLOQUES Y TABLAS BASE
+   ========================================================== */
+
+.compare-block {
+  min-height: 0;
+  padding: 5px 7px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  border: 1px solid var(--orsna-linea);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.table-wrap {
+  overflow: hidden;
+  border: 1px solid #e5ebf2;
+  border-radius: 7px;
+}
+
+.compare-block table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9.2px;
+}
+
+.compare-block th,
+.compare-block td {
+  padding: 4px 5px;
+  border-bottom: 1px solid #edf1f5;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.compare-block th {
+  background: #eaf1f8;
+  color: var(--orsna-azul);
+  font-weight: 900;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.compare-block th:first-child {
+  text-align: center;
+  white-space: normal;
+}
+
+.compare-block td:first-child {
+  text-align: left;
+  white-space: normal;
+}
+
+.compare-block tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.metric-name {
+  color: #253447;
+  font-weight: 850;
+}
+
+/* ==========================================================
+   TABLAS DEL INFORME COVID
+   ========================================================== */
+
+.covid-table-block {
+  min-height: 0;
+  flex: 1 1 auto;
+  margin-bottom: 4mm;
+}
+
+.covid-table-wrap {
+  overflow: hidden;
+}
+
+.covid-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 7.7px;
+}
+
+.covid-table th,
+.covid-table td {
+  padding: 3px 3px;
+  border-bottom: 1px solid #edf1f5;
+  text-align: right;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.covid-table th {
+  background: #eaf1f8;
+  color: var(--orsna-azul);
+  font-weight: 900;
+}
+
+.covid-table th:first-child,
+.covid-table td:first-child {
+  width: 30mm;
+  text-align: left;
+  white-space: normal;
+}
+
+.covid-table th:last-child,
+.covid-table td:last-child {
+  width: 25mm;
+  text-align: left;
+  white-space: normal;
+}
+
+.covid-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.covid-table .airport-name {
+  color: #253447;
+  font-weight: 650;
+}
+
+.covid-table .cell-main {
+  display: block;
+  color: #253447;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.covid-table .cell-var {
+  display: block;
+  margin-top: 1px;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+.covid-table .cell-base {
+  color: var(--muted);
+}
+
+.covid-table .valuation {
+  color: var(--orsna-azul);
+  font-weight: 650;
+  line-height: 1.15;
+}
+
+/* Recupera espacio vertical sin cambiar la tabla ni el gráfico. */
+#sheetA4Internacional .international-tables-block {
+  margin-bottom: 1.5mm;
+}
+
 /* ==========================================================
    COLUMNAS DESTACADAS · 2019 Y 2025
    ========================================================== */
-
-/* 2019 · año base */
 
 .compare-block th.year-base-col {
   background: #dfe5ec;
@@ -567,9 +611,6 @@ button,select{font:inherit}
   background: #f3f5f7;
 }
 
-
-/* 2025 · año principal de comparación */
-
 .compare-block th.year-current-col {
   background: #cbdfee;
   color: var(--orsna-azul);
@@ -579,16 +620,10 @@ button,select{font:inherit}
   background: #e8f2f9;
 }
 
-
-/* Valores principales un poco más marcados */
-
 .compare-block td.year-base-col .cell-main,
 .compare-block td.year-current-col .cell-main {
   font-weight: 800;
 }
-
-
-/* Separación vertical suave */
 
 .compare-block th.year-base-col,
 .compare-block td.year-base-col {
@@ -601,26 +636,102 @@ button,select{font:inherit}
   border-left: 1px solid #b7cad9;
   border-right: 1px solid #b7cad9;
 }
+
 /* ==========================================================
-   FILAS CON RECUPERACIÓN NEGATIVA
+   FILAS ESPECIALES
    ========================================================== */
 
 .compare-block tr.negative-valuation-row td {
   background-color: #fff1f0;
 }
 
-/* Nombre del aeropuerto */
 .compare-block tr.negative-valuation-row td:first-child {
   border-left: 3px solid #c94b45;
 }
 
-/* Texto de la valoración */
 .compare-block tr.negative-valuation-row td.valuation {
   color: #9f2925;
   font-weight: 700;
 }
+
+.compare-block tr.table-total-row td,
+.compare-block tr.table-total-row td.year-base-col,
+.compare-block tr.table-total-row td.year-current-col {
+  background: #dce9f5;
+  font-weight: 900;
+  border-top: 2px solid var(--orsna-azul-2);
+  border-bottom: 2px solid var(--orsna-azul-2);
+}
+
+.compare-block tr.table-total-row td:first-child {
+  color: var(--orsna-azul);
+}
+
+.compare-block tr.table-total-row td.valuation {
+  color: var(--orsna-azul);
+  font-weight: 900;
+}
+
 /* ==========================================================
-   GRÁFICO COMPACTO · PÁGINA 1 INTERNACIONAL
+   TABLAS SÍNTESIS
+   ========================================================== */
+
+.aggregate-table-block {
+  height: auto !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  flex: 0 0 auto !important;
+  overflow: visible !important;
+  margin-bottom: 3mm;
+}
+
+.aggregate-table-wrap {
+  height: auto !important;
+  max-height: none !important;
+  margin-bottom: 2mm;
+  overflow: hidden !important;
+}
+
+.aggregate-table {
+  height: auto !important;
+}
+
+.aggregate-table th,
+.aggregate-table td {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.aggregate-table tbody td {
+  background: #edf4fa;
+  font-weight: 700;
+}
+
+.aggregate-table tbody td:first-child {
+  font-weight: 900;
+}
+
+.aggregate-table tbody tr:first-child td {
+  border-top: 2px solid var(--orsna-azul-2);
+}
+
+.aggregate-table tbody tr:last-child td {
+  border-bottom: 2px solid var(--orsna-azul-2);
+}
+
+.aggregate-table td.valuation {
+  color: var(--orsna-azul);
+  font-weight: 900;
+}
+
+.airport-table-subtitle {
+  margin-top: 0 !important;
+  padding-top: 1.8mm;
+  border-top: 1px solid var(--orsna-linea);
+}
+
+/* ==========================================================
+   GRÁFICOS TERRITORIALES
    ========================================================== */
 
 .covid-chart-block {
@@ -632,30 +743,18 @@ button,select{font:inherit}
   margin-bottom: 1px;
 }
 
-.chart-subtitle {
-  margin-bottom: 1.5mm;
-  font-size: 8.6px;
-  color: #5e6d7d;
-}
-
 .compact-chart-box {
   height: 38mm;
-}
-
-.chart-box svg {
-  width: 100%;
-  height: 100%;
-  display: block;
 }
 
 .chart-legend {
   margin-top: 1.2mm;
   display: flex;
   justify-content: center;
-  gap: 16px;
   flex-wrap: wrap;
-  font-size: 8.8px;
+  gap: 16px;
   color: #637181;
+  font-size: 8.8px;
 }
 
 .chart-legend span {
@@ -667,8 +766,8 @@ button,select{font:inherit}
 .chart-legend .sw {
   width: 12px;
   height: 12px;
-  border-radius: 3px;
   display: inline-block;
+  border-radius: 3px;
 }
 
 .chart-legend .sw.sna {
@@ -683,10 +782,9 @@ button,select{font:inherit}
   background: #008a14;
 }
 
-/* Estilos internos del SVG */
 .chart-axis-text {
-  font-size: 10px;
   fill: #5f6d7c;
+  font-size: 10px;
 }
 
 .chart-grid-line {
@@ -701,9 +799,9 @@ button,select{font:inherit}
 }
 
 .chart-base-label {
+  fill: #0b376d;
   font-size: 10px;
   font-weight: 700;
-  fill: #0b376d;
 }
 
 .chart-series-sna {
@@ -737,124 +835,22 @@ button,select{font:inherit}
 }
 
 .chart-last-label-sna {
+  fill: #0b376d;
   font-size: 10px;
   font-weight: 700;
-  fill: #0b376d;
 }
 
 .chart-last-label-bue {
+  fill: #2e74b5;
   font-size: 10px;
   font-weight: 700;
-  fill: #2e74b5;
 }
 
 .chart-last-label-resto {
+  fill: #008a14;
   font-size: 10px;
   font-weight: 700;
-  fill: #008a14;
 }
-/* Tabla internacional: recuperar espacio vertical */
-#intTable th,
-#intTable td {
-  padding-top: 3px;
-  padding-bottom: 3px;
-}
-/* ==========================================================
-   TABLA RESUMEN · SNA Y AEP+EZE
-   ========================================================== */
-
-.aggregate-table-wrap {
-  margin-bottom: 2mm;
-}
-
-.airport-table-subtitle {
-  margin-top: 0 !important;
-  padding-top: 1.8mm;
-  border-top: 1px solid var(--orsna-linea);
-}
-
-
-/* Diferenciar las referencias generales */
-
-.aggregate-table tbody td {
-  background: #edf4fa;
-  font-weight: 700;
-}
-
-.aggregate-table tbody td:first-child {
-  font-weight: 900;
-}
-
-
-/* Enmarcar visualmente las dos filas */
-
-.aggregate-table tbody tr:first-child td {
-  border-top: 2px solid var(--orsna-azul-2);
-}
-
-.aggregate-table tbody tr:last-child td {
-  border-bottom: 2px solid var(--orsna-azul-2);
-}
-
-
-/* Destacar la valoración general */
-
-.aggregate-table td.valuation {
-  color: var(--orsna-azul);
-  font-weight: 900;
-}
-/* ==========================================================
-   FILA TOTAL · AEROPUERTOS DEL GRUPO A
-   ========================================================== */
-
-.compare-block tr.table-total-row td,
-.compare-block tr.table-total-row td.year-base-col,
-.compare-block tr.table-total-row td.year-current-col {
-  background: #dce9f5;
-  font-weight: 900;
-  border-top: 2px solid var(--orsna-azul-2);
-  border-bottom: 2px solid var(--orsna-azul-2);
-}
-
-.compare-block tr.table-total-row td:first-child {
-  color: var(--orsna-azul);
-}
-
-.compare-block tr.table-total-row td.valuation {
-  color: var(--orsna-azul);
-  font-weight: 900;
-}
-/* ==========================================================
-   TABLAS SÍNTESIS · TRES FILAS COMPLETAS
-   ========================================================== */
-
-.aggregate-table-block {
-  height: auto !important;
-  max-height: none !important;
-  min-height: 0 !important;
-  flex: 0 0 auto !important;
-  overflow: visible !important;
-  margin-bottom: 3mm;
-}
-
-.aggregate-table-wrap {
-  height: auto !important;
-  max-height: none !important;
-  overflow: hidden !important;
-}
-
-.aggregate-table {
-  height: auto !important;
-}
-
-.aggregate-table th,
-.aggregate-table td {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-/* ==========================================================
-   GRÁFICO TERRITORIAL DE CABOTAJE
-   ========================================================== */
 
 #sheetA4Cabotaje .cabotage-chart-block {
   margin-top: 2mm;
@@ -864,4 +860,311 @@ button,select{font:inherit}
 
 #sheetA4Cabotaje .cabotage-chart-block h2 {
   margin-bottom: 1px;
+}
+
+/* ==========================================================
+   PIE DE PÁGINA
+   ========================================================== */
+
+.report-footer {
+  margin-top: auto;
+  padding-top: 4mm;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border-top: 1px solid var(--orsna-linea);
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.report-footer.report-footer-stacked {
+  display: block;
+}
+
+.covid-method-note {
+  margin-bottom: 2.5mm;
+  color: #536172;
+  font-size: 9.5px;
+  line-height: 1.32;
+  text-align: justify;
+}
+
+.covid-method-note strong {
+  color: var(--orsna-azul);
+}
+
+.report-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.report-footer-row span {
+  flex: 1 1 0;
+}
+
+.report-footer-row span:last-child {
+  text-align: right;
+}
+
+/* ==========================================================
+   PÁGINA 3 · CONTINUACIÓN DE CABOTAJE
+   ========================================================== */
+
+#sheetA4CabotajeContinuacion .compare-block {
+  min-height: 0;
+  flex: 1 1 auto;
+}
+
+#sheetA4CabotajeContinuacion .table-wrap {
+  overflow: hidden;
+}
+
+#sheetA4CabotajeContinuacion .compare-block table {
+  font-size: 8.8px;
+}
+
+#sheetA4CabotajeContinuacion .compare-block th,
+#sheetA4CabotajeContinuacion .compare-block td {
+  padding: 3px 4px;
+  line-height: 1.15;
+}
+
+#sheetA4CabotajeContinuacion .report-footer {
+  padding-top: 2mm;
+}
+
+/* ==========================================================
+   IMPRESIÓN Y EXPORTACIÓN PDF
+   ========================================================== */
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    background: #fff;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .report-a4 {
+    padding: 0;
+  }
+
+  .sheet-a4 {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    box-shadow: none;
+    page-break-after: avoid;
+  }
+
+  .compare-block th {
+    position: static;
+  }
+}
+
+.pdf-exporting,
+.pdf-exporting body {
+  width: 210mm !important;
+  min-height: 297mm !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  background: #fff !important;
+}
+
+.pdf-exporting html {
+  width: 210mm !important;
+  min-height: 297mm !important;
+  overflow: visible !important;
+  background: #fff !important;
+}
+
+.pdf-exporting .page-wrap {
+  width: 210mm !important;
+  height: 297mm !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+}
+
+.pdf-exporting .report-a4 {
+  width: 210mm !important;
+  height: 297mm !important;
+  min-height: 297mm !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  overflow: hidden !important;
+  background: #fff !important;
+}
+
+.pdf-exporting .sheet-a4 {
+  width: 210mm !important;
+  height: 297mm !important;
+  margin: 0 !important;
+  padding: 8mm 9mm 6mm !important;
+  overflow: hidden !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  page-break-after: always !important;
+}
+
+.pdf-exporting .sheet-a4:last-child {
+  page-break-after: auto !important;
+}
+
+.pdf-exporting .top-controls,
+.pdf-exporting .no-print {
+  display: none !important;
+}
+
+.pdf-exporting .report-head {
+  margin-bottom: 4mm !important;
+  padding-bottom: 3mm !important;
+}
+
+.pdf-exporting .summary-box {
+  margin-bottom: 3mm !important;
+  padding: 4px 7px !important;
+}
+
+.pdf-exporting .summary-title {
+  font-size: 11px !important;
+  line-height: 1.1 !important;
+}
+
+.pdf-exporting .summary-text {
+  font-size: 9.4px !important;
+  line-height: 1.28 !important;
+}
+
+.pdf-exporting .kpi-grid {
+  gap: 4px !important;
+  margin-bottom: 3mm !important;
+}
+
+.pdf-exporting .kpi-card {
+  min-height: 15mm !important;
+  padding: 5px 7px !important;
+}
+
+.pdf-exporting .kpi-label {
+  font-size: 8.4px !important;
+}
+
+.pdf-exporting .kpi-value {
+  font-size: 17px !important;
+  line-height: 1.05 !important;
+}
+
+.pdf-exporting .kpi-sub {
+  font-size: 8.2px !important;
+  line-height: 1.15 !important;
+}
+
+.pdf-exporting .charts-row {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 3mm !important;
+  margin-bottom: 3mm !important;
+}
+
+.pdf-exporting .chart-card {
+  height: 58mm !important;
+  min-height: 0 !important;
+  padding: 4px 7px 3px !important;
+}
+
+.pdf-exporting .chart-title {
+  font-size: 11px !important;
+  line-height: 1.05 !important;
+}
+
+.pdf-exporting .chart-subtitle {
+  font-size: 8.6px !important;
+  line-height: 1.05 !important;
+}
+
+.pdf-exporting .chart-box {
+  height: 43mm !important;
+}
+
+.pdf-exporting .legend {
+  margin-top: 0 !important;
+  font-size: 8.4px !important;
+}
+
+.pdf-exporting .compare-block {
+  min-height: 0 !important;
+  padding: 4px 7px !important;
+  flex: 1 1 auto !important;
+  margin-top: 0 !important;
+}
+
+.pdf-exporting .compare-title {
+  margin-bottom: 3px !important;
+  font-size: 11px !important;
+}
+
+.pdf-exporting .compare-block table {
+  font-size: 8.6px !important;
+}
+
+.pdf-exporting .compare-block th,
+.pdf-exporting .compare-block td {
+  padding: 3px 4px !important;
+}
+
+.pdf-exporting .report-footer {
+  padding-top: 2mm !important;
+  font-size: 8px !important;
+}
+
+/* ==========================================================
+   ADAPTACIÓN A PANTALLAS ANGOSTAS
+   ========================================================== */
+
+@media(max-width:840px) {
+  .top-controls {
+    width: auto;
+    margin: 10px;
+  }
+
+  .control-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sheet-a4 {
+    max-width: 100%;
+    height: auto;
+    min-height: 297mm;
+    transform-origin: top center;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .charts-row {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-box {
+    height: 52mm;
+  }
 }
