@@ -725,46 +725,130 @@ function buildLinePath(series, valueKey, xScale, yScale) {
 }
 
 
-function getInternationalTerritorialSeries() {
-  const intlRows = reportData?.tablas?.internacional || [];
+function getInternationalTerritorialSeries(
+  groupARemainderRow
+) {
+  const intlRows =
+    reportData?.tablas?.internacional || [];
 
-  const snaRow = intlRows.find(row => row.es_sna) || null;
-  const bueRow = intlRows.find(row => row.es_aep_eze) || null;
+  const snaRow =
+    intlRows.find(
+      row => row.es_sna
+    ) || null;
 
-  if (!snaRow || !bueRow) {
+  const bueRow =
+    intlRows.find(
+      row => row.es_aep_eze
+    ) || null;
+
+  /*
+    El gráfico utiliza la misma fila
+    Resto Grupo A que la tabla síntesis.
+  */
+  if (
+    !snaRow ||
+    !bueRow ||
+    !groupARemainderRow
+  ) {
     return [];
   }
 
-  const years = getAnnualYearsFromRows([snaRow, bueRow])
-    .filter(year => year >= 2015 && year <= 2025)
-    .sort((a, b) => a - b);
+  const years =
+    getAnnualYearsFromRows([
+      snaRow,
+      bueRow,
+      groupARemainderRow
+    ])
+      .filter(
+        year =>
+          year >= 2015 &&
+          year <= 2025
+      )
+      .sort((a, b) => a - b);
 
-  const baseYear = reportConfig.baseYear;
+  const baseYear =
+    reportConfig.baseYear;
 
-  const snaBase = annualValue(snaRow, baseYear);
-  const bueBase = annualValue(bueRow, baseYear);
-  const restoBase = snaBase - bueBase;
+  const snaBase =
+    annualValue(
+      snaRow,
+      baseYear
+    );
+
+  const bueBase =
+    annualValue(
+      bueRow,
+      baseYear
+    );
+
+  const restoGrupoABase =
+    annualValue(
+      groupARemainderRow,
+      baseYear
+    );
 
   return years.map(year => {
-    const sna = annualValue(snaRow, year);
-    const bue = annualValue(bueRow, year);
-    const resto = sna - bue;
+    const sna =
+      annualValue(
+        snaRow,
+        year
+      );
+
+    const bue =
+      annualValue(
+        bueRow,
+        year
+      );
+
+    const restoGrupoA =
+      annualValue(
+        groupARemainderRow,
+        year
+      );
 
     return {
       year,
-      snaIndex: snaBase > 0 ? (sna / snaBase) * 100 : 0,
-      bueIndex: bueBase > 0 ? (bue / bueBase) * 100 : 0,
-      restoIndex: restoBase > 0 ? (resto / restoBase) * 100 : 0
+
+      snaIndex:
+        snaBase > 0
+          ? (sna / snaBase) * 100
+          : 0,
+
+      bueIndex:
+        bueBase > 0
+          ? (bue / bueBase) * 100
+          : 0,
+
+      /*
+        Se conserva el nombre interno
+        restoIndex para no cambiar todo
+        el dibujo del gráfico.
+      */
+      restoIndex:
+        restoGrupoABase > 0
+          ? (
+              restoGrupoA /
+              restoGrupoABase
+            ) * 100
+          : 0
     };
   });
 }
 
 
-function renderInternationalTerritorialChart(containerId) {
+function renderInternationalTerritorialChart(
+  containerId,
+  groupARemainderRow
+) {
   const el = $(containerId);
+
   if (!el) return;
 
-  const series = getInternationalTerritorialSeries();
+  const series =
+    getInternationalTerritorialSeries(
+      groupARemainderRow
+    );
+
 
   if (!series.length) {
     el.innerHTML = "";
@@ -888,7 +972,7 @@ const yearLabels = series.map((d, i) => {
     <svg
       viewBox="0 0 ${width} ${height}"
       role="img"
-      aria-label="Evolución del tráfico internacional del SNA, AEP más EZE y resto del sistema. Índice 2019 igual a 100."
+      aria-label="Evolución del tráfico internacional del SNA, AEP más EZE y resto de aeropuertos del Grupo A. Índice 2019 igual a 100."
     >
       ${horizontalGrid}
 
@@ -939,7 +1023,7 @@ const yearLabels = series.map((d, i) => {
         x="${width - margin.right + 12}"
         y="${yScale(last.restoIndex) + 12}"
         class="chart-last-label-resto"
-      >Resto: ${formatOneDecimal(last.restoIndex)}</text>
+      >Resto Grupo A: ${formatOneDecimal(last.restoIndex)}</text>
     </svg>
   `;
 }
@@ -1488,7 +1572,8 @@ renderConclusions(
     SNA, AEP+EZE y resto del sistema.
   */
   renderInternationalTerritorialChart(
-    "intlTerritorialChart"
+    "intlTerritorialChart",
+    groupARemainderRow
   );
 
 
