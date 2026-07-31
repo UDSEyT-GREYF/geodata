@@ -602,48 +602,46 @@ function conclusionLabel(row) {
   );
 }
   
-  function valuationText(row, config = reportConfig) {
-    if (isMarginalRow(row, config)) {
-      return MARGINAL_LABEL;
-    }
-
-const storedValuation = String(
-  row?.valoracion || ""
-).trim();
-
-const hasSemesterReference =
-  /2026|1\s*S|primer\s+semestre/i
-    .test(storedValuation);
-
-/*
-  Se conserva la valoración almacenada
-  solamente cuando no contiene referencias
-  al período semestral eliminado.
-*/
-if (
-  storedValuation &&
-  !hasSemesterReference
+function valuationText(
+  row,
+  config = reportConfig
 ) {
-  return storedValuation;
-}
-
-    const annualVar = annualVariation(
-      row,
-      config.lastAnnualYear,
-      config
-    );
-
-    if (!Number.isFinite(annualVar)) {
-      return `Sin base ${config.baseYear}`;
-    }
-
-    if (annualVar >= 20) return "Recuperación amplia cabotaje";
-    if (annualVar >= 10) return "Recuperación clara cabotaje";
-    if (annualVar >= 3) return "Recuperación leve cabotaje";
-    if (annualVar >= -3) return `Igualó el nivel cabotaje de ${config.baseYear}`;
-    if (annualVar >= -20) return "Recuperación incompleta cabotaje";
-    return `Muy por debajo de ${config.baseYear}`;
+  if (isMarginalRow(row, config)) {
+    return MARGINAL_LABEL;
   }
+
+  const annualVar = annualVariation(
+    row,
+    config.lastAnnualYear,
+    config
+  );
+
+  if (!Number.isFinite(annualVar)) {
+    return `Sin base ${config.baseYear}`;
+  }
+
+  if (annualVar >= 20) {
+    return "Recuperación amplia cabotaje";
+  }
+
+  if (annualVar >= 10) {
+    return "Recuperación clara cabotaje";
+  }
+
+  if (annualVar >= 3) {
+    return "Recuperación leve cabotaje";
+  }
+
+  if (annualVar >= -3) {
+    return `Igualó el nivel cabotaje de ${config.baseYear}`;
+  }
+
+  if (annualVar >= -20) {
+    return "Recuperación incompleta cabotaje";
+  }
+
+  return `Muy por debajo de ${config.baseYear}`;
+}
 
   function normalizeReportRows(rows, config = reportConfig) {
     return (rows || [])
