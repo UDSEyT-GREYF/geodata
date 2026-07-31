@@ -349,7 +349,8 @@ function isSpecialAggregate(row) {
   return (
     !!row?.es_sna ||
     !!row?.es_aep_eze ||
-    !!row?.es_grupo_a_resto
+    !!row?.es_grupo_a_resto ||
+    !!row?.es_total_tabla
   );
 }
 function buildGroupARemainderRow(rows) {
@@ -401,6 +402,57 @@ function buildGroupARemainderRow(rows) {
 
   return aggregateRow;
 }
+
+function buildAirportTableTotalRow(
+  rows,
+  tableType
+) {
+  /*
+    Solo se suman aeropuertos individuales.
+    Se excluyen todos los agregados para
+    evitar duplicaciones.
+  */
+  const sourceRows = (rows || []).filter(
+    row =>
+      !row?.es_sna &&
+      !row?.es_aep_eze &&
+      !row?.es_grupo_a_resto &&
+      !row?.es_total_tabla
+  );
+
+  if (!sourceRows.length) {
+    return null;
+  }
+
+  const years =
+    getAnnualYearsFromRows(sourceRows);
+
+  const totalRow = {
+    tipo_tabla: tableType,
+    iata: "TOTAL_GRUPO_A",
+
+    aeropuerto:
+      "Total aeropuertos del Grupo A",
+
+    es_sna: false,
+    es_aep_eze: false,
+    es_grupo_a_resto: false,
+    es_total_tabla: true,
+    es_volumen_marginal: false
+  };
+
+  years.forEach(year => {
+    totalRow[`pax_${year}`] =
+      sourceRows.reduce(
+        (sum, row) =>
+          sum + annualValue(row, year),
+        0
+      );
+  });
+
+  return totalRow;
+}
+  
 function isMarginalRow(row, config = reportConfig) {
   if (!row || isSpecialAggregate(row)) {
     return false;
@@ -459,10 +511,16 @@ const iata = String(
   .trim()
   .toUpperCase();
 
+
+
+  
 /*
   Agregado del resto del Grupo A.
 */
-if (row?.es_grupo_a_resto) {
+if (
+  row?.es_grupo_a_resto ||
+  row?.es_total_tabla
+) {
   return rawName;
 }
 
@@ -564,6 +622,8 @@ if (
         shortLabel: conclusionLabel(row),
         isSna: !!row?.es_sna,
         isBue: !!row?.es_aep_eze,
+        isTableTotal: !!row?.es_total_tabla,
+        
         isMarginal: isMarginalRow(row, config),
         currentValue: annualValue(row, config.lastAnnualYear),
         currentVariation: annualVariation(
@@ -582,11 +642,29 @@ if (
           row.currentValue > 0
         );
       })
-      .sort((a, b) => {
-        if (a.isSna !== b.isSna) return a.isSna ? -1 : 1;
-        if (a.isBue !== b.isBue) return a.isBue ? -1 : 1;
-        return b.currentValue - a.currentValue;
-      });
+.sort((a, b) => {
+  /*
+    El Total siempre se ubica al final.
+  */
+  if (
+    a.isTableTotal !== b.isTableTotal
+  ) {
+    return a.isTableTotal ? 1 : -1;
+  }
+
+  if (a.isSna !== b.isSna) {
+    return a.isSna ? -1 : 1;
+  }
+
+  if (a.isBue !== b.isBue) {
+    return a.isBue ? -1 : 1;
+  }
+
+  return (
+    b.currentValue -
+    a.currentValue
+  );
+});
   }
 
   function buildCell(value, variation, isBase = false) {
@@ -898,7 +976,12 @@ function renderPassengerTable(
     if (row.isMarginal) {
       rowClasses.push("marginal-volume-row");
     }
-    
+        
+    if (row.isTableTotal) {
+      rowClasses.push(
+        "table-total-row"
+      );
+    }
     const normalizedValuation = String(
       row.valuation || ""
     )
@@ -976,7 +1059,8 @@ function renderPassengerTable(
       .filter(row =>
         !row.isSna &&
         !row.isBue &&
-        !row.isMarginal
+        !row.isMarginal &&
+        !row.isTableTotal
       )
       .filter(predicate)
       .slice(0, limit)
@@ -987,11 +1071,12 @@ function renderPassengerTable(
 
   function marginalLabels(rows, limit = 10) {
     return (rows || [])
-      .filter(row =>
-        row.isMarginal &&
-        !row.isSna &&
-        !row.isBue
-      )
+        .filter(row =>
+          row.isMarginal &&
+          !row.isSna &&
+          !row.isBue &&
+          !row.isTableTotal
+        )
       .slice(0, limit)
       .map(row =>
       row.shortLabel || row.label
@@ -1190,7 +1275,21 @@ function renderReport(data) {
       isVisibleAirportRow
     );
 
+const cabotageTotalRow =
+  buildAirportTableTotalRow(
+    visibleCabotageRows,
+    "cabotaje"
+  );
 
+const cabotageTableRows = [
+  ...visibleCabotageRows,
+
+  ...(
+    cabotageTotalRow
+      ? [cabotageTotalRow]
+      : []
+  )
+];
   /*
     Página 2:
     conclusiones y primeras filas.
@@ -1198,7 +1297,7 @@ function renderReport(data) {
   const cabRows =
     renderPassengerTable(
       "cabTable",
-      visibleCabotageRows,
+      cabotageTableRows,
       0,
       CAB_ROWS_FIRST_PAGE
     );
@@ -1210,7 +1309,7 @@ function renderReport(data) {
   */
   renderPassengerTable(
     "cabTableContinuation",
-    visibleCabotageRows,
+    cabotageTableRows,
     CAB_ROWS_FIRST_PAGE
   );
 
@@ -1285,6 +1384,23 @@ const internationalAirportRows =
       !row.es_sna &&
       !row.es_aep_eze
   );
+
+const internationalTotalRow =
+  buildAirportTableTotalRow(
+    internationalAirportRows,
+    "internacional"
+  );
+
+const internationalAirportRowsWithTotal = [
+  ...internationalAirportRows,
+
+  ...(
+    internationalTotalRow
+      ? [internationalTotalRow]
+      : []
+  )
+];
+  
 /*
   Suma de los aeropuertos individuales
   del Grupo A, excluidos AEP y EZE.
@@ -1321,7 +1437,7 @@ const intAggregateRows =
 const intAirportRows =
   renderPassengerTable(
     "intTable",
-    internationalAirportRows
+    internationalAirportRowsWithTotal
   );
 
 
@@ -1336,7 +1452,10 @@ const intRows = [
       row.isBue
   ),
 
-  ...intAirportRows
+  ...intAirportRows.filter(
+    row =>
+      !row.isTableTotal
+  )
 ];
 
 
