@@ -24,7 +24,7 @@
   */
   const MARGINAL_MAX_ANNUAL_PAX = 1000;
   const MARGINAL_LABEL = "Volumen marginal";
-  const CAB_ROWS_FIRST_PAGE = 20;
+  const CAB_ROWS_FIRST_PAGE = 18;
   /*
   Grupos de aeropuertos incluidos en las tablas
   y en las conclusiones.
