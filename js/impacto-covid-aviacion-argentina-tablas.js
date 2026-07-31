@@ -1204,21 +1204,64 @@ function renderReport(data) {
     );
 
 
-  const intRows =
-    renderPassengerTable(
-      "intTable",
-      significantInternationalRows
-    );
-
-
-  /*
-    Las conclusiones reciben únicamente
-    las filas visibles.
-  */
-  renderConclusions(
-    cabRows,
-    intRows
+/*
+  Referencias generales:
+  SNA y AEP+EZE.
+*/
+const internationalAggregateRows =
+  significantInternationalRows.filter(
+    row =>
+      row.es_sna ||
+      row.es_aep_eze
   );
+
+
+/*
+  Aeropuertos individuales:
+  actualmente solamente Grupo A.
+*/
+const internationalAirportRows =
+  significantInternationalRows.filter(
+    row =>
+      !row.es_sna &&
+      !row.es_aep_eze
+  );
+
+
+/*
+  Tabla superior de referencias.
+*/
+const intAggregateRows =
+  renderPassengerTable(
+    "intAggregatesTable",
+    internationalAggregateRows
+  );
+
+
+/*
+  Tabla principal de aeropuertos.
+*/
+const intAirportRows =
+  renderPassengerTable(
+    "intTable",
+    internationalAirportRows
+  );
+
+
+/*
+  Las conclusiones necesitan conservar
+  tanto los agregados como los aeropuertos.
+*/
+const intRows = [
+  ...intAggregateRows,
+  ...intAirportRows
+];
+
+
+renderConclusions(
+  cabRows,
+  intRows
+);
 
 
   /*
