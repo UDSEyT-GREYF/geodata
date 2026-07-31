@@ -624,8 +624,8 @@ button,select{font:inherit}
    ========================================================== */
 
 .covid-chart-block {
-  margin-top: 2.5mm;
-  padding-top: 1.5mm;
+  margin-top: 0mm;
+  padding-top: 1mm;
 }
 
 .covid-chart-block h2 {
