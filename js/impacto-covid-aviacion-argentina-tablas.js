@@ -345,10 +345,62 @@ function buildReportConfig(data) {
 
 
 
-  function isSpecialAggregate(row) {
-    return !!row?.es_sna || !!row?.es_aep_eze;
+function isSpecialAggregate(row) {
+  return (
+    !!row?.es_sna ||
+    !!row?.es_aep_eze ||
+    !!row?.es_grupo_a_resto
+  );
+}
+function buildGroupARemainderRow(rows) {
+  const sourceRows = (rows || []).filter(row => {
+    const iata = String(
+      row?.iata || ""
+    )
+      .trim()
+      .toUpperCase();
+
+    /*
+      AEP y EZE ya están representados
+      en la fila agregada AEP+EZE.
+    */
+    return (
+      iata !== "AEP" &&
+      iata !== "EZE"
+    );
+  });
+
+  if (!sourceRows.length) {
+    return null;
   }
 
+  const years =
+    getAnnualYearsFromRows(sourceRows);
+
+  const aggregateRow = {
+    tipo_tabla: "internacional",
+    iata: "RESTO_GRUPO_A",
+
+    aeropuerto:
+      "Resto de aeropuertos del Grupo A",
+
+    es_sna: false,
+    es_aep_eze: false,
+    es_grupo_a_resto: true,
+    es_volumen_marginal: false
+  };
+
+  years.forEach(year => {
+    aggregateRow[`pax_${year}`] =
+      sourceRows.reduce(
+        (sum, row) =>
+          sum + annualValue(row, year),
+        0
+      );
+  });
+
+  return aggregateRow;
+}
 function isMarginalRow(row, config = reportConfig) {
   if (!row || isSpecialAggregate(row)) {
     return false;
@@ -401,19 +453,26 @@ function rowLabel(row) {
     ""
   ).trim();
 
-  const iata = String(
-    row?.iata || ""
-  )
-    .trim()
-    .toUpperCase();
+const iata = String(
+  row?.iata || ""
+)
+  .trim()
+  .toUpperCase();
 
-  /*
-    Las filas agregadas conservan
-    su nombre actual.
-  */
-  if (iata === "SNA" || iata === "BUE") {
-    return rawName;
-  }
+/*
+  Agregado del resto del Grupo A.
+*/
+if (row?.es_grupo_a_resto) {
+  return rawName;
+}
+
+/*
+  Las demás filas agregadas conservan
+  su denominación completa.
+*/
+if (iata === "SNA" || iata === "BUE") {
+  return rawName;
+}
 
   /*
     Nombre especial para AEP en las tablas.
@@ -1226,7 +1285,25 @@ const internationalAirportRows =
       !row.es_sna &&
       !row.es_aep_eze
   );
+/*
+  Suma de los aeropuertos individuales
+  del Grupo A, excluidos AEP y EZE.
+*/
+const groupARemainderRow =
+  buildGroupARemainderRow(
+    internationalAirportRows
+  );
 
+
+const internationalSummaryRows = [
+  ...internationalAggregateRows,
+
+  ...(
+    groupARemainderRow
+      ? [groupARemainderRow]
+      : []
+  )
+];
 
 /*
   Tabla superior de referencias.
@@ -1234,7 +1311,7 @@ const internationalAirportRows =
 const intAggregateRows =
   renderPassengerTable(
     "intAggregatesTable",
-    internationalAggregateRows
+    internationalSummaryRows
   );
 
 
@@ -1253,7 +1330,12 @@ const intAirportRows =
   tanto los agregados como los aeropuertos.
 */
 const intRows = [
-  ...intAggregateRows,
+  ...intAggregateRows.filter(
+    row =>
+      row.isSna ||
+      row.isBue
+  ),
+
   ...intAirportRows
 ];
 
