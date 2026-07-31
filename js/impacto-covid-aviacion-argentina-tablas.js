@@ -637,11 +637,11 @@ if (
       return `Sin base ${config.baseYear}`;
     }
 
-    if (annualVar >= 20) return "Recuperación amplia";
-    if (annualVar >= 10) return "Recuperación clara";
-    if (annualVar >= 3) return "Recuperación leve";
-    if (annualVar >= -3) return `Igualó el nivel de ${config.baseYear}`;
-    if (annualVar >= -20) return "Recuperación incompleta";
+    if (annualVar >= 20) return "Recuperación amplia cabotaje";
+    if (annualVar >= 10) return "Recuperación clara cabotaje";
+    if (annualVar >= 3) return "Recuperación leve cabotaje";
+    if (annualVar >= -3) return `Igualó el nivel cabotaje de ${config.baseYear}`;
+    if (annualVar >= -20) return "Recuperación incompleta cabotaje";
     return `Muy por debajo de ${config.baseYear}`;
   }
 
@@ -1639,24 +1639,28 @@ function renderPassengerTable(
     return rows;
   }
 
-  function topLabels(
-    rows,
-    predicate,
-    limit = 6
-  ) {
-    return (rows || [])
-      .filter(row =>
-        !row.isSna &&
-        !row.isBue &&
-        !row.isMarginal &&
-        !row.isTableTotal
-      )
-      .filter(predicate)
-      .slice(0, limit)
-      .map(row =>
+function topLabels(
+  rows,
+  predicate
+) {
+  return (rows || [])
+    .filter(row =>
+      /*
+        Solo aeropuertos individuales.
+        Se excluyen agregados, totales
+        y registros de volumen marginal.
+      */
+      !row.isSna &&
+      !row.isBue &&
+      !row.isMarginal &&
+      !row.isTableTotal &&
+      !row.source?.es_grupo_a_resto
+    )
+    .filter(predicate)
+    .map(row =>
       row.shortLabel || row.label
     );
-  }
+}
 
   function marginalLabels(rows, limit = 10) {
     return (rows || [])
@@ -1755,7 +1759,7 @@ function renderConclusions(
   if (intConclusions) {
     intConclusions.innerHTML = `
       <p>
-        <strong>Recuperación internacional:</strong>
+        <strong>Recuperación amplia internacional:</strong>
         ${
           intRecovered.length
             ? escapeHtml(
@@ -1828,8 +1832,7 @@ function renderConclusions(
         bue
           ? `En AEP+EZE, la lectura conjunta muestra una variación de <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong> en ${reportConfig.lastAnnualYear} respecto de ${reportConfig.baseYear}. `
           : ""
-      ) +
-      `La tabla sintetiza la recuperación del tráfico internacional en ${reportConfig.lastAnnualYear} tomando ${reportConfig.baseYear} como base.`;
+      ) 
   }
 }
   function validateReportData(data) {
@@ -2013,17 +2016,34 @@ if (continuationSheet) {
   - Resto Grupo A;
   - fila Total.
 */
+/*
+  Normalización de todos los aeropuertos
+  individuales, sin depender de la
+  paginación de la tabla.
+*/
+const cabAllAirportRows =
+  normalizeReportRows(
+    cabotageAirportRows,
+    reportConfig
+  );
+
+
 const cabRows = [
+  /*
+    SNA y AEP+EZE se conservan para
+    construir el texto general.
+  */
   ...cabAggregateRows.filter(
     row =>
       row.isSna ||
       row.isBue
   ),
 
-  ...cabAirportRows.filter(
-    row =>
-      !row.isTableTotal
-  )
+  /*
+    Todos los aeropuertos individuales.
+    topLabels excluirá los marginales.
+  */
+  ...cabAllAirportRows
 ];
 
 
