@@ -520,7 +520,7 @@ if (
 
         return (
           base > 0 ||
-          row.currentValue > 0 ||
+          row.currentValue > 0
         );
       })
       .sort((a, b) => {
