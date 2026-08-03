@@ -1459,9 +1459,15 @@ layer.on("mouseover", (e) => {
     // Predios y aeroplantas: solo engrosar borde, sin relleno.
 if (cfg.id === "predios") {
   layer.setStyle({
-    weight: Math.max(3, Number((cfg.style || {}).weight || 1.4) + 1.4),
-    fill: false,
-    fillOpacity: 0
+    weight: Math.max(
+      3,
+      Number((cfg.style || {}).weight || 1.4) + 1.4
+    ),
+
+    // No quitar el relleno interactivo al entrar con el cursor.
+    fill: true,
+    fillColor: "#5DFF3A",
+    fillOpacity: 0.001
   });
   return;
 }
