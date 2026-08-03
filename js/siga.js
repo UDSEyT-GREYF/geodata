@@ -230,9 +230,12 @@ style: {
   color: "#5DFF3A",
   weight: 2.4,
   opacity: 0.95,
-  fill: false,
-  fillColor: "transparent",
-  fillOpacity: 0
+
+  // Relleno prácticamente invisible, pero permite que
+  // el predio capture el cursor antes que Provincias.
+  fill: true,
+  fillColor: "#5DFF3A",
+  fillOpacity: 0.001
 }
     },
     {
