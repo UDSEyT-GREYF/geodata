@@ -258,12 +258,14 @@ style: {
     { label: "Material", keys: ["material", "Material"] }
   ],
       
-      style: {
-        color: SIGA_COLORS.grisPista,
-        weight: 2,
-        fillColor: SIGA_COLORS.amarilloPista,
-        fillOpacity: 0.16
-      }
+    style: {
+      color: SIGA_COLORS.amarilloPista,
+      weight: 2.2,
+      opacity: 1,
+      fill: true,
+      fillColor: SIGA_COLORS.amarilloPista,
+      fillOpacity: 0.001
+    }
     },
     {
       id: "cabeceras",
@@ -309,12 +311,14 @@ style: {
     { label: "Superficie", keys: ["Metros2", "Metros", "Metros2"], suffix: "metros²" },
   ],
       
-      style: {
-        color: SIGA_COLORS.azulLink,
-        weight: 1.5,
-        fillColor: SIGA_COLORS.celesteCab,
-        fillOpacity: 0.42
-      }
+    style: {
+      color: "#00AEEF",
+      weight: 1.8,
+      opacity: 1,
+      fill: true,
+      fillColor: "#00AEEF",
+      fillOpacity: 0.001
+    }
     },
 
     {
@@ -392,27 +396,32 @@ polygonIcon: {
       url: "fuentes/Torres_control_2026.geojson",
       active: true,
       opacity: 1,
-      color: SIGA_COLORS.azulOscuro,
+    
+      // Color utilizado también en la leyenda.
+      color: "#FF2D8D",
+    
       point: {
-        radius: 6,
-        color: SIGA_COLORS.azulOscuro,
-        fillColor: SIGA_COLORS.azulMedio,
-        fillOpacity: 0.95
+        radius: 7,
+        color: "#5B0037",
+        weight: 2.4,
+        fillColor: "#FF2D8D",
+        fillOpacity: 1
       }
     },
-    {
+{
       id: "hangares",
       group: "Edificios e infraestructura",
       name: "Hangares",
       url: "fuentes/Hangares2026.geojson",
       active: true,
-      opacity: 0.9,
-      color: "#8a5a35",
+      opacity: 1,
+      color: "#FF8A00",
       style: {
-        color: "#6f4627",
-        weight: 1.1,
-        fillColor: "#b5835a",
-        fillOpacity: 0.38
+        color: "#FF8A00",
+        weight: 1.8,
+        opacity: 1,
+        fillColor: "#FF8A00",
+        fillOpacity: 0.001
       }
     },
     {
@@ -430,21 +439,22 @@ polygonIcon: {
         fillOpacity: 0.38
       }
     },
-    {
-      id: "estacionamientos",
-      group: "Edificios e infraestructura",
-      name: "Estacionamientos vehiculares",
-      url: "fuentes/Estacionamientos_vehiculares2026.geojson",
-      active: true,
-      opacity: 0.9,
-      color: SIGA_COLORS.grisChip,
-      style: {
-        color: "#777777",
-        weight: 1.1,
-        fillColor: SIGA_COLORS.grisChip,
-        fillOpacity: 0.48
-      }
-    },
+{
+    id: "estacionamientos",
+    group: "Edificios e infraestructura",
+    name: "Estacionamientos vehiculares",
+    url: "fuentes/Estacionamientos_vehiculares2026.geojson",
+    active: true,
+    opacity: 1,
+    color: "#00B8D9",
+    style: {
+      color: "#00B8D9",
+      weight: 1.8,
+      opacity: 1,
+      fillColor: "#00B8D9",
+      fillOpacity: 0.001
+    }
+  },
 {
   id: "paradasapp",
   group: "Servicios y apoyo",
@@ -501,6 +511,17 @@ const LAYER_GROUP_ORDER = [
   "Servicios y apoyo",
   "Contexto territorial"
 ];
+const HOLLOW_POLYGON_LAYER_IDS = new Set([
+  "predios",
+  "pistas",
+  "cabeceras",
+  "plataformas",
+  "aeroplantas",
+  "terminales2026",
+  "hangares",
+  "otros",
+  "estacionamientos"
+]);
   const state = {
     map: null,
     baseLayers: {},
@@ -1275,7 +1296,7 @@ return L.circleMarker(latlng, {
   interactive: true,
   radius: p.radius,
   color: p.color,
-  weight: 1,
+  weight: p.weight ?? 1,
   fillColor: p.fillColor,
   fillOpacity: p.fillOpacity
 });
@@ -1286,10 +1307,30 @@ return L.circleMarker(latlng, {
     return L.geoJSON(geojson, options);
   }
 
-  function featureStyle(cfg, feature) {
-    const base = cfg.style || { color: cfg.color, weight: 1.5, fillColor: cfg.color, fillOpacity: 0.35 };
-    return { ...base };
+function featureStyle(cfg, feature) {
+  const base = cfg.style || {
+    color: cfg.color,
+    weight: 1.5,
+    fillColor: cfg.color,
+    fillOpacity: 0.35
+  };
+
+  /*
+    Los objetos aeroportuarios se muestran sin relleno visible,
+    pero conservan un relleno casi transparente para que toda
+    su superficie pueda capturar el cursor.
+  */
+  if (HOLLOW_POLYGON_LAYER_IDS.has(cfg.id)) {
+    return {
+      ...base,
+      fill: true,
+      fillColor: base.fillColor || base.color || cfg.color,
+      fillOpacity: 0.001
+    };
   }
+
+  return { ...base };
+}
 function buildHoverTooltip(cfg, feature) {
   if (cfg.tooltip === false) return "";
 
@@ -1454,38 +1495,61 @@ layer.on("mouseover", (e) => {
   showHoverLabel(cfg, feature, e.originalEvent);
   state.map?.getContainer()?.classList.add("is-feature-hovering");
 
-  if (!layer.setStyle || cfg.id === "provincias") return;
+if (!layer.setStyle || cfg.id === "provincias") return;
 
-    // Predios y aeroplantas: solo engrosar borde, sin relleno.
-if (cfg.id === "predios") {
+/*
+  La torre de control aumenta de tamaño y refuerza
+  su contorno al pasar el cursor.
+*/
+if (cfg.id === "torres") {
+  if (layer.setRadius) {
+    layer.setRadius(Number(cfg.point?.radius || 7) + 3);
+  }
+
+  layer.setStyle({
+    color: "#5B0037",
+    weight: 3,
+    fillColor: "#FF2D8D",
+    fillOpacity: 1
+  });
+
+  return;
+}
+
+/*
+  Todos los polígonos aeroportuarios:
+  borde más grueso y sin relleno visible.
+*/
+if (HOLLOW_POLYGON_LAYER_IDS.has(cfg.id)) {
+  const base = cfg.style || {};
+
   layer.setStyle({
     weight: Math.max(
       3,
-      Number((cfg.style || {}).weight || 1.4) + 1.4
+      Number(base.weight || 1.5) + 1.6
     ),
-
-    // No quitar el relleno interactivo al entrar con el cursor.
+    opacity: 1,
     fill: true,
-    fillColor: "#5DFF3A",
+    fillColor: base.fillColor || base.color || cfg.color,
     fillOpacity: 0.001
   });
+
   return;
 }
 
-if (cfg.id === "aeroplantas") {
-  layer.setStyle({
-    weight: Math.max(3, Number((cfg.style || {}).weight || 1.4) + 1.4),
-    fill: true,
-    fillColor: "#d71920",
-    fillOpacity: 0.06
-  });
-  return;
-}
-
-    layer.setStyle({
-      weight: Math.max(3, Number((cfg.style || {}).weight || 1.5) + 1.5),
-      fillOpacity: Math.min(0.72, Number((cfg.style || {}).fillOpacity ?? 0.35) + 0.18)
-    });
+/*
+  Comportamiento general para los restantes puntos.
+*/
+layer.setStyle({
+  weight: Math.max(
+    3,
+    Number((cfg.style || {}).weight || 1.5) + 1.5
+  ),
+  fillOpacity: Math.min(
+    1,
+    Number((cfg.point || cfg.style || {}).fillOpacity ?? 0.8) + 0.15
+  )
+});
   });
 
   layer.on("mousemove", (e) => {
@@ -1497,10 +1561,15 @@ layer.on("mouseout", () => {
   state.map?.getContainer()?.classList.remove("is-feature-hovering");
 
   const def = state.layerDefs.get(cfg.id);
-    if (layer.setStyle && def) {
-      layer.setStyle(featureStyle(cfg, feature));
-    }
-  });
+
+  if (cfg.id === "torres" && layer.setRadius) {
+    layer.setRadius(Number(cfg.point?.radius || 7));
+  }
+
+  if (layer.setStyle && def) {
+    layer.setStyle(featureStyle(cfg, feature));
+  }
+});
 }
 
 function getImportantProps(feature, cfg = {}) {
