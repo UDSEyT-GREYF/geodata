@@ -15,6 +15,9 @@
   const DATA_PATH = "data/recuperacion_postpandemia_pasajeros.json";
   const AIRPORTS_PATH =
     "fuentes/Datos_aeropuertos.geojson";
+  const CLOSURES_PATH =
+  "fuentes/cierres_aeropuertos_anac_2025_2026.json";
+  
   /*
     Una variación porcentual se considera no representativa cuando
     tanto el año base como el último año anual tienen menos de
@@ -39,6 +42,7 @@ const VISIBLE_AIRPORT_GROUPS =
   let reportConfig = null;
   let airportNameByIata = new Map();
   let airportGroupByIata = new Map();
+  let airportClosure2025ByIata = new Map();
   
   const $ = id => document.getElementById(id);
 
@@ -141,7 +145,54 @@ function buildAirportGroupIndex(geojson) {
   return index;
 }
 
+function buildAirportClosure2025Index(data) {
+  const index = new Map();
 
+  const events = Array.isArray(data?.eventos)
+    ? data.eventos
+    : [];
+
+  events
+    .filter(event => {
+      if (event?.usar_en_informe !== true) {
+        return false;
+      }
+
+      const start = String(
+        event?.fecha_inicio || ""
+      );
+
+      const end = String(
+        event?.fecha_fin || ""
+      );
+
+      /*
+        El evento debe superponerse
+        con algún momento de 2025.
+      */
+      return (
+        start <= "2025-12-31" &&
+        end >= "2025-01-01"
+      );
+    })
+    .forEach(event => {
+      const iata = String(
+        event?.iata || ""
+      )
+        .trim()
+        .toUpperCase();
+
+      if (!iata) return;
+
+      if (!index.has(iata)) {
+        index.set(iata, []);
+      }
+
+      index.get(iata).push(event);
+    });
+
+  return index;
+}
 function isVisibleAirportRow(row) {
   /*
     SNA y AEP+EZE son filas agregadas.
@@ -656,6 +707,12 @@ if (annualVar >= -20) {
         iata: String(row?.iata || "").trim().toUpperCase(),
         label: rowLabel(row),
         shortLabel: conclusionLabel(row),
+        closureEvents2025:
+          airportClosure2025ByIata.get(
+            String(row?.iata || "")
+              .trim()
+              .toUpperCase()
+          ) || [],
         isSna: !!row?.es_sna,
         isBue: !!row?.es_aep_eze,
         isTableTotal: !!row?.es_total_tabla,
@@ -1592,12 +1649,40 @@ function renderPassengerTable(
     if (isNegativeValuation) {
       rowClasses.push("negative-valuation-row");
     }
-    
+    const hasClosure2025 =
+        Array.isArray(row.closureEvents2025) &&
+        row.closureEvents2025.length > 0;
+      
+      if (hasClosure2025) {
+        rowClasses.push(
+          "airport-closure-2025-row"
+        );
+      }
     return `
       <tr class="${rowClasses.join(" ")}">
-            <td class="airport-name">
-              ${escapeHtml(row.label)}
-            </td>
+        <td class="airport-name">
+          ${escapeHtml(row.label)}
+        
+          ${
+            hasClosure2025
+              ? `
+                <span
+                  class="airport-closure-marker"
+                  title="${escapeHtml(
+                    row.closureEvents2025
+                      .map(event =>
+                        event.texto_fuente_resumido ||
+                        event.motivo ||
+                        ""
+                      )
+                      .filter(Boolean)
+                      .join(" ")
+                  )}"
+                >†</span>
+              `
+              : ""
+          }
+        </td>
 
             ${reportConfig.years
               .map(year => {
@@ -1634,6 +1719,17 @@ function renderPassengerTable(
 
             <td class="valuation">
               ${escapeHtml(row.valuation)}
+            
+              ${
+                hasClosure2025
+                  ? `
+                    <span class="airport-closure-note">
+                      † cierre o suspensión
+                      operativa en 2025
+                    </span>
+                  `
+                  : ""
+              }
             </td>
           </tr>
         `;
@@ -2309,10 +2405,12 @@ renderConclusions(
 
 const [
   data,
-  airportsGeojson
+  airportsGeojson,
+  airportClosures
 ] = await Promise.all([
   fetchJson(DATA_PATH),
-  fetchJson(AIRPORTS_PATH)
+  fetchJson(AIRPORTS_PATH),
+  fetchJson(CLOSURES_PATH)
 ]);
 
 airportNameByIata =
@@ -2324,7 +2422,11 @@ airportGroupByIata =
   buildAirportGroupIndex(
     airportsGeojson
   );
-
+      
+airportClosure2025ByIata =
+  buildAirportClosure2025Index(
+    airportClosures
+  );
 renderReport(data);
 
 setStatus("");
