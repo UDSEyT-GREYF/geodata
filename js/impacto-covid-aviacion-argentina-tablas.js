@@ -1,6 +1,13 @@
 (() => {
   "use strict";
-
+  const REPORT_VARIANT =
+    window.COVID_REPORT_VARIANT || {
+      scope: "grupo-a",
+      versionLabel: "GRUPO A · 2025/2019",
+      includeSemester2026: false,
+      pdfFileName:
+        "recuperacion_postpandemia_grupoA_2025_2019.pdf"
+    };
   /*
     Fuente única del informe.
     El JSON ya contiene:
@@ -54,7 +61,16 @@ const VISIBLE_AIRPORT_GROUPS =
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#39;");
   }
-
+  
+function renderReportVariant() {
+  document
+    .querySelectorAll(".report-version-label")
+    .forEach(el => {
+      el.textContent =
+        REPORT_VARIANT.versionLabel;
+    });
+}
+  
 function setStatus(message, type = "ok") {
   const el = $("status");
 
@@ -2427,6 +2443,7 @@ airportClosure2025ByIata =
   buildAirportClosure2025Index(
     airportClosures
   );
+renderReportVariant();
 renderReport(data);
 
 setStatus("");
