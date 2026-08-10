@@ -1732,26 +1732,7 @@ function renderPassengerTable(
       );
     }
 
-    ${REPORT_VARIANT.includeSemester2026
-  ? `
-    <td class="semester-current-col">
-      <span class="cell-main">
-        ${fmt(row.semester2026Value)}
-      </span>
 
-      <span
-        class="cell-var ${classForPct(
-          row.semester2026Variation
-        )}"
-      >
-        ${fmtPct(
-          row.semester2026Variation
-        )}
-      </span>
-    </td>
-  `
-  : ""
-}
     const normalizedValuation = String(
       row.valuation || ""
     )
@@ -1836,6 +1817,27 @@ function renderPassengerTable(
               })
               .join("")}
 
+            ${
+              REPORT_VARIANT.includeSemester2026
+                ? `
+                  <td class="semester-current-col">
+                    <span class="cell-main">
+                      ${fmt(row.semester2026Value)}
+                    </span>
+
+                    <span
+                      class="cell-var ${classForPct(
+                        row.semester2026Variation
+                      )}"
+                    >
+                      ${fmtPct(
+                        row.semester2026Variation
+                      )}
+                    </span>
+                  </td>
+                `
+                : ""
+            }
 
             <td class="valuation">
               ${escapeHtml(row.valuation)}
@@ -2014,26 +2016,7 @@ function renderConclusions(
     const bue = cabRows.find(
       row => row.isBue
     );
-const semesterSummary =
-  REPORT_VARIANT.includeSemester2026 &&
-  sna &&
-  bue
-    ? `En el 1S 2026, frente al 1S 2019, las variaciones son
-       <strong class="${classForPct(
-         sna.semester2026Variation
-       )}">
-         ${fmtPct(
-           sna.semester2026Variation
-         )}
-       </strong> en el SNA y
-       <strong class="${classForPct(
-         bue.semester2026Variation
-       )}">
-         ${fmtPct(
-           bue.semester2026Variation
-         )}
-       </strong> en AEP+EZE. `
-    : "";
+
     
 cabSummary.innerHTML =
   (
@@ -2072,41 +2055,30 @@ cabSummary.innerHTML =
       row => row.isBue
     );
 
-const intSummary =
-  $("intSummaryText");
-
-if (intSummary) {
-  const sna = intRows.find(
-    row => row.isSna
-  );
-
-  const bue = intRows.find(
-    row => row.isBue
-  );
-
-  intSummary.innerHTML =
-    (
-      sna
-        ? `En el SNA, el tráfico internacional ${reportConfig.lastAnnualYear} registra <strong class="${classForPct(sna.currentVariation)}">${fmtPct(sna.currentVariation)}</strong> respecto de ${reportConfig.baseYear}. `
-        : ""
-    ) +
-    (
-      bue
-        ? `En AEP+EZE, la lectura conjunta muestra una variación de <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong> en ${reportConfig.lastAnnualYear} respecto de ${reportConfig.baseYear}. `
-        : ""
-    ) +
-    (
-      REPORT_VARIANT.includeSemester2026 &&
-      sna &&
-      bue
-        ? `En el 1S 2026, frente al 1S 2019, las variaciones son <strong class="${classForPct(sna.semester2026Variation)}">${fmtPct(sna.semester2026Variation)}</strong> en el SNA y <strong class="${classForPct(bue.semester2026Variation)}">${fmtPct(bue.semester2026Variation)}</strong> en AEP+EZE. `
-        : ""
-    ) +
-    (
-      REPORT_VARIANT.includeSemester2026
-        ? `La valoración corresponde a 2025/2019; el primer semestre de 2026 se presenta como comparación adicional.`
-        : ""
-    );
+    intSummary.innerHTML =
+      (
+        sna
+          ? `En el SNA, el tráfico internacional ${reportConfig.lastAnnualYear} registra <strong class="${classForPct(sna.currentVariation)}">${fmtPct(sna.currentVariation)}</strong> respecto de ${reportConfig.baseYear}. `
+          : ""
+      ) +
+      (
+        bue
+          ? `En AEP+EZE, la lectura conjunta muestra una variación de <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong> en ${reportConfig.lastAnnualYear} respecto de ${reportConfig.baseYear}. `
+          : ""
+      ) +
+      (
+        REPORT_VARIANT.includeSemester2026 &&
+        sna &&
+        bue
+          ? `En el 1S 2026, frente al 1S 2019, las variaciones son <strong class="${classForPct(sna.semester2026Variation)}">${fmtPct(sna.semester2026Variation)}</strong> en el SNA y <strong class="${classForPct(bue.semester2026Variation)}">${fmtPct(bue.semester2026Variation)}</strong> en AEP+EZE. `
+          : ""
+      ) +
+      (
+        REPORT_VARIANT.includeSemester2026
+          ? `La valoración corresponde a 2025/2019; el primer semestre de 2026 se presenta como comparación adicional.`
+          : ""
+      );
+  }
 }
   function validateReportData(data) {
     if (!data || typeof data !== "object") {
@@ -2546,7 +2518,7 @@ renderConclusions(
       }
 
       pdf.save(
-        "impacto_covid_aviacion_argentina_pasajeros_a4.pdf"
+        REPORT_VARIANT.pdfFileName
       );
     } catch (err) {
       console.error(
