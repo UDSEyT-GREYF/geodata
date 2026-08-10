@@ -410,7 +410,30 @@ function buildReportConfig(data) {
     );
   }
 
+function semesterValue(row, year) {
+  return Number(
+    row?.[`pax_${year}_1s`]
+  ) || 0;
+}
 
+function semesterVariation(
+  row,
+  compareYear = 2026,
+  baseYear = 2019
+) {
+  const stored = Number(
+    row?.[`var_${compareYear}_1s`]
+  );
+
+  if (Number.isFinite(stored)) {
+    return stored;
+  }
+
+  return pct(
+    semesterValue(row, compareYear),
+    semesterValue(row, baseYear)
+  );
+}
 
 function isSpecialAggregate(row) {
   return (
@@ -480,7 +503,25 @@ function buildGroupARemainderRow(
         0
       );
   });
+aggregateRow.pax_2019_1s =
+  sourceRows.reduce(
+    (sum, row) =>
+      sum + semesterValue(row, 2019),
+    0
+  );
 
+aggregateRow.pax_2026_1s =
+  sourceRows.reduce(
+    (sum, row) =>
+      sum + semesterValue(row, 2026),
+    0
+  );
+
+aggregateRow.var_2026_1s =
+  pct(
+    aggregateRow.pax_2026_1s,
+    aggregateRow.pax_2019_1s
+  );
   return aggregateRow;
 }
 
@@ -530,7 +571,26 @@ function buildAirportTableTotalRow(
         0
       );
   });
+totalRow.pax_2019_1s =
+  sourceRows.reduce(
+    (sum, row) =>
+      sum + semesterValue(row, 2019),
+    0
+  );
 
+totalRow.pax_2026_1s =
+  sourceRows.reduce(
+    (sum, row) =>
+      sum + semesterValue(row, 2026),
+    0
+  );
+
+totalRow.var_2026_1s =
+  pct(
+    totalRow.pax_2026_1s,
+    totalRow.pax_2019_1s
+  );
+  
   return totalRow;
 }
   
@@ -740,7 +800,18 @@ if (annualVar >= -20) {
           config.lastAnnualYear,
           config
         ),
-
+      semester2019Value:
+        semesterValue(row, 2019),
+      
+      semester2026Value:
+        semesterValue(row, 2026),
+      
+      semester2026Variation:
+        semesterVariation(
+          row,
+          2026,
+          2019
+        ),
         valuation: valuationText(row, config)
       }))
       .filter(row => {
@@ -1631,6 +1702,18 @@ function renderPassengerTable(
         `;
       })
       .join("")}
+      
+      ${REPORT_VARIANT.includeSemester2026
+  ? `
+    <th class="semester-current-col">
+      1S 2026<br>
+      <span class="semester-head-sub">
+        vs 1S 2019
+      </span>
+    </th>
+  `
+  : ""
+}
         <th>Valoración 2025/2019</th>
       </tr>
     `;
@@ -1648,6 +1731,27 @@ function renderPassengerTable(
         "table-total-row"
       );
     }
+
+    ${REPORT_VARIANT.includeSemester2026
+  ? `
+    <td class="semester-current-col">
+      <span class="cell-main">
+        ${fmt(row.semester2026Value)}
+      </span>
+
+      <span
+        class="cell-var ${classForPct(
+          row.semester2026Variation
+        )}"
+      >
+        ${fmtPct(
+          row.semester2026Variation
+        )}
+      </span>
+    </td>
+  `
+  : ""
+}
     const normalizedValuation = String(
       row.valuation || ""
     )
@@ -1910,21 +2014,51 @@ function renderConclusions(
     const bue = cabRows.find(
       row => row.isBue
     );
-
-    cabSummary.innerHTML =
-      (
-        sna
-          ? `En el SNA, el cabotaje ${reportConfig.lastAnnualYear} muestra <strong class="${classForPct(sna.currentVariation)}">${fmtPct(sna.currentVariation)}</strong> respecto de ${reportConfig.baseYear}. `
-          : ""
-      ) +
-      (
-        bue
-          ? `Para AEP+EZE, la variación ${reportConfig.lastAnnualYear}/${reportConfig.baseYear} es <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong>. `
-          : ""
-      ) +
-      `La tabla sintetiza la recuperación del cabotaje en ${reportConfig.lastAnnualYear} tomando ${reportConfig.baseYear} como base.`;
-  }
-
+const semesterSummary =
+  REPORT_VARIANT.includeSemester2026 &&
+  sna &&
+  bue
+    ? `En el 1S 2026, frente al 1S 2019, las variaciones son
+       <strong class="${classForPct(
+         sna.semester2026Variation
+       )}">
+         ${fmtPct(
+           sna.semester2026Variation
+         )}
+       </strong> en el SNA y
+       <strong class="${classForPct(
+         bue.semester2026Variation
+       )}">
+         ${fmtPct(
+           bue.semester2026Variation
+         )}
+       </strong> en AEP+EZE. `
+    : "";
+    
+cabSummary.innerHTML =
+  (
+    sna
+      ? `En el SNA, el cabotaje ${reportConfig.lastAnnualYear} muestra <strong class="${classForPct(sna.currentVariation)}">${fmtPct(sna.currentVariation)}</strong> respecto de ${reportConfig.baseYear}. `
+      : ""
+  ) +
+  (
+    bue
+      ? `Para AEP+EZE, la variación ${reportConfig.lastAnnualYear}/${reportConfig.baseYear} es <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong>. `
+      : ""
+  ) +
+  (
+    REPORT_VARIANT.includeSemester2026 &&
+    sna &&
+    bue
+      ? `En el 1S 2026, frente al 1S 2019, las variaciones son <strong class="${classForPct(sna.semester2026Variation)}">${fmtPct(sna.semester2026Variation)}</strong> en el SNA y <strong class="${classForPct(bue.semester2026Variation)}">${fmtPct(bue.semester2026Variation)}</strong> en AEP+EZE. `
+      : ""
+  ) +
+  (
+    REPORT_VARIANT.includeSemester2026
+      ? `La valoración corresponde a 2025/2019; el primer semestre de 2026 se presenta como comparación adicional.`
+      : `La tabla sintetiza la recuperación del cabotaje en ${reportConfig.lastAnnualYear} tomando ${reportConfig.baseYear} como base.`
+  );
+}
 
   const intSummary =
     $("intSummaryText");
@@ -1938,18 +2072,41 @@ function renderConclusions(
       row => row.isBue
     );
 
-    intSummary.innerHTML =
-      (
-        sna
-          ? `En el SNA, el tráfico internacional ${reportConfig.lastAnnualYear} registra <strong class="${classForPct(sna.currentVariation)}">${fmtPct(sna.currentVariation)}</strong> respecto de ${reportConfig.baseYear}. `
-          : ""
-      ) +
-      (
-        bue
-          ? `En AEP+EZE, la lectura conjunta muestra una variación de <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong> en ${reportConfig.lastAnnualYear} respecto de ${reportConfig.baseYear}. `
-          : ""
-      ) 
-  }
+const intSummary =
+  $("intSummaryText");
+
+if (intSummary) {
+  const sna = intRows.find(
+    row => row.isSna
+  );
+
+  const bue = intRows.find(
+    row => row.isBue
+  );
+
+  intSummary.innerHTML =
+    (
+      sna
+        ? `En el SNA, el tráfico internacional ${reportConfig.lastAnnualYear} registra <strong class="${classForPct(sna.currentVariation)}">${fmtPct(sna.currentVariation)}</strong> respecto de ${reportConfig.baseYear}. `
+        : ""
+    ) +
+    (
+      bue
+        ? `En AEP+EZE, la lectura conjunta muestra una variación de <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong> en ${reportConfig.lastAnnualYear} respecto de ${reportConfig.baseYear}. `
+        : ""
+    ) +
+    (
+      REPORT_VARIANT.includeSemester2026 &&
+      sna &&
+      bue
+        ? `En el 1S 2026, frente al 1S 2019, las variaciones son <strong class="${classForPct(sna.semester2026Variation)}">${fmtPct(sna.semester2026Variation)}</strong> en el SNA y <strong class="${classForPct(bue.semester2026Variation)}">${fmtPct(bue.semester2026Variation)}</strong> en AEP+EZE. `
+        : ""
+    ) +
+    (
+      REPORT_VARIANT.includeSemester2026
+        ? `La valoración corresponde a 2025/2019; el primer semestre de 2026 se presenta como comparación adicional.`
+        : ""
+    );
 }
   function validateReportData(data) {
     if (!data || typeof data !== "object") {
