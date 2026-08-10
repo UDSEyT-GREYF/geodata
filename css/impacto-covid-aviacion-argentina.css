@@ -1191,3 +1191,98 @@ h1 {
     height: 52mm;
   }
 }
+/* ==========================================================
+   SNA COMPLETO · AJUSTE PÁGINA INTERNACIONAL
+   Permite incorporar todos los aeropuertos + Total
+   sin crear una hoja adicional.
+   ========================================================== */
+
+#sheetA4Internacional.sna-full-international .report-header {
+  padding-bottom: 3.5mm;
+  margin-bottom: 2.5mm;
+}
+
+#sheetA4Internacional.sna-full-international .covid-intro-note {
+  margin-bottom: 2mm;
+  padding: 5px 8px;
+}
+
+#sheetA4Internacional.sna-full-international .covid-intro-note p {
+  font-size: 10px;
+  line-height: 1.28;
+}
+
+#sheetA4Internacional.sna-full-international .summary-block {
+  margin-bottom: 2mm;
+  padding: 4px 7px;
+}
+
+#sheetA4Internacional.sna-full-international .summary-block p {
+  font-size: 10.3px;
+  line-height: 1.23;
+}
+
+#sheetA4Internacional.sna-full-international
+  .summary-block .conclusion-text {
+  margin-top: 3px;
+  padding-top: 3px;
+}
+
+#sheetA4Internacional.sna-full-international
+  .summary-block .conclusion-text p {
+  font-size: 10.3px;
+  line-height: 1.2;
+}
+
+#sheetA4Internacional.sna-full-international
+  .aggregate-table-wrap {
+  margin-bottom: 1mm;
+}
+
+#sheetA4Internacional.sna-full-international
+  .aggregate-table th,
+#sheetA4Internacional.sna-full-international
+  .aggregate-table td {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+#sheetA4Internacional.sna-full-international
+  .airport-table-subtitle {
+  padding-top: 1mm;
+}
+
+#sheetA4Internacional.sna-full-international
+  #intTable th,
+#sheetA4Internacional.sna-full-international
+  #intTable td {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+#sheetA4Internacional.sna-full-international
+  .compact-chart-box {
+  height: 29mm;
+}
+
+#sheetA4Internacional.sna-full-international
+  .chart-subtitle {
+  margin-bottom: 0.5mm;
+}
+
+#sheetA4Internacional.sna-full-international
+  .chart-legend {
+  margin-top: 0.5mm;
+}
+
+#sheetA4Internacional.sna-full-international
+  .report-footer {
+  padding-top: 2mm;
+}
+
+#sheetA4Internacional.sna-full-international
+  .covid-method-note {
+  margin-bottom: 1.2mm;
+  font-size: 9px;
+  line-height: 1.22;
+}
