@@ -32,9 +32,11 @@
 
     El umbral queda centralizado para poder modificarlo fácilmente.
   */
-  const MARGINAL_MAX_ANNUAL_PAX = 1000;
-  const MARGINAL_LABEL = "Volumen marginal";
-  const CAB_ROWS_FIRST_PAGE = 10;
+    const MARGINAL_MAX_ANNUAL_PAX = 1000;
+    const MARGINAL_LABEL = "Volumen marginal";
+    
+    const CAB_ROWS_FIRST_PAGE = 10;
+    const CAB_ROWS_CONTINUATION_SNA = 22;
   /*
   Grupos de aeropuertos incluidos en las tablas
   y en las conclusiones.
@@ -69,6 +71,34 @@ function renderReportVariant() {
       el.textContent =
         REPORT_VARIANT.versionLabel;
     });
+}
+
+function isSnaScope() {
+  return REPORT_VARIANT.scope === "sna";
+}
+
+function reportScopeName() {
+  return isSnaScope()
+    ? "SNA"
+    : "Grupo A";
+}
+
+function reportRemainderName() {
+  return isSnaScope()
+    ? "Resto SNA"
+    : "Resto Grupo A";
+}
+
+function reportRemainderAirportName() {
+  return isSnaScope()
+    ? "Resto de aeropuertos del SNA"
+    : "Resto de aeropuertos del Grupo A";
+}
+
+function reportTotalAirportName() {
+  return isSnaScope()
+    ? "Total aeropuertos del SNA"
+    : "Total aeropuertos del Grupo A";
 }
   
 function setStatus(message, type = "ok") {
@@ -228,6 +258,17 @@ function isVisibleAirportRow(row) {
     return false;
   }
 
+  /*
+    Versión SNA:
+    no discrimina Grupo A / Grupo B.
+  */
+  if (REPORT_VARIANT.scope === "sna") {
+    return true;
+  }
+
+  /*
+    Versiones Grupo A.
+  */
   const group =
     airportGroupByIata.get(iata) || "";
 
@@ -486,7 +527,7 @@ function buildGroupARemainderRow(
     iata: "RESTO_GRUPO_A",
 
     aeropuerto:
-      "Resto de aeropuertos del Grupo A",
+      reportRemainderAirportName(),
 
     es_sna: false,
     es_aep_eze: false,
@@ -554,7 +595,7 @@ function buildAirportTableTotalRow(
     iata: "TOTAL_GRUPO_A",
 
     aeropuerto:
-      "Total aeropuertos del Grupo A",
+      reportTotalAirportName(),
 
     es_sna: false,
     es_aep_eze: false,
@@ -1345,7 +1386,7 @@ const yearLabels = series.map((d, i) => {
         x="${width - margin.right + 12}"
         y="${labelY.resto}"
         class="chart-last-label-resto"
-      >Resto Grupo A: ${formatOneDecimal(last.restoIndex)}</text>
+      >${reportRemainderName()}: ${formatOneDecimal(last.restoIndex)}</text>
     </svg>
   `;
 }
@@ -1660,7 +1701,7 @@ function renderCabotageTerritorialChart(
         x="${width - margin.right + 12}"
         y="${labelY.resto}"
         class="chart-last-label-resto"
-      >Resto Grupo A: ${formatOneDecimal(last.restoIndex)}</text>
+      >${reportRemainderName()}: ${formatOneDecimal(last.restoIndex)}</text>
     </svg>
   `;
 }  
@@ -2218,34 +2259,102 @@ const cabAirportRows =
 
 
 /*
-  Página de continuación de cabotaje.
+  Páginas de continuación de cabotaje.
 */
-renderPassengerTable(
-  "cabTableContinuation",
-  cabotageTableRows,
-  CAB_ROWS_FIRST_PAGE
-);
+if (isSnaScope()) {
+
+  /*
+    En la versión SNA se divide
+    la continuación en dos páginas.
+  */
+  const start1 =
+    CAB_ROWS_FIRST_PAGE;
+
+  const end1 =
+    start1 +
+    CAB_ROWS_CONTINUATION_SNA;
+
+  const start2 =
+    end1;
 
 
-/*
-  Ocultar la página de continuación
-  cuando todas las filas entran
-  en la página principal.
-*/
-const continuationTable =
-  $("cabTableContinuation");
-
-const continuationSheet =
-  continuationTable?.closest(
-    ".sheet-a4"
+  /*
+    Primera página de continuación.
+  */
+  renderPassengerTable(
+    "cabTableContinuation",
+    cabotageTableRows,
+    start1,
+    end1
   );
 
-if (continuationSheet) {
-  continuationSheet.style.display =
-    cabAirportRows.length >
+
+  /*
+    Segunda página de continuación.
+    Recibe todos los aeropuertos restantes.
+  */
+  renderPassengerTable(
+    "cabTableContinuation2",
+    cabotageTableRows,
+    start2
+  );
+
+
+  /*
+    Mostrar u ocultar
+    la primera continuación.
+  */
+  const continuationSheet1 =
+    $("cabTableContinuation")
+      ?.closest(".sheet-a4");
+
+  if (continuationSheet1) {
+    continuationSheet1.style.display =
+      cabAirportRows.length > start1
+        ? ""
+        : "none";
+  }
+
+
+  /*
+    Mostrar u ocultar
+    la segunda continuación.
+  */
+  const continuationSheet2 =
+    $("cabTableContinuation2")
+      ?.closest(".sheet-a4");
+
+  if (continuationSheet2) {
+    continuationSheet2.style.display =
+      cabAirportRows.length > start2
+        ? ""
+        : "none";
+  }
+
+} else {
+
+  /*
+    Las versiones Grupo A conservan
+    exactamente el funcionamiento actual.
+  */
+  renderPassengerTable(
+    "cabTableContinuation",
+    cabotageTableRows,
     CAB_ROWS_FIRST_PAGE
-      ? ""
-      : "none";
+  );
+
+
+  const continuationSheet =
+    $("cabTableContinuation")
+      ?.closest(".sheet-a4");
+
+  if (continuationSheet) {
+    continuationSheet.style.display =
+      cabAirportRows.length >
+      CAB_ROWS_FIRST_PAGE
+        ? ""
+        : "none";
+  }
 }
 
 
@@ -2394,8 +2503,20 @@ const intAggregateRows =
 const intAirportRows =
   renderPassengerTable(
     "intTable",
-    internationalAirportRowsWithTotal
+    internationalAirportRowsWithTotal,
+    0,
+    isSnaScope()
+      ? INT_ROWS_FIRST_PAGE_SNA
+      : null
   );
+
+if (isSnaScope()) {
+  renderPassengerTable(
+    "intTableContinuation",
+    internationalAirportRowsWithTotal,
+    INT_ROWS_FIRST_PAGE_SNA
+  );
+}
 
 
 /*
