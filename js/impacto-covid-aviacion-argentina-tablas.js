@@ -37,6 +37,8 @@
     
     const CAB_ROWS_FIRST_PAGE = 10;
     const CAB_ROWS_CONTINUATION_SNA = 22;
+  
+    const INT_ROWS_FIRST_PAGE_SNA = 8;
   /*
   Grupos de aeropuertos incluidos en las tablas
   y en las conclusiones.
