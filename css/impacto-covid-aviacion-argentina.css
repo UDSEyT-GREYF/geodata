@@ -671,7 +671,27 @@ h1 {
   color: var(--orsna-azul);
   font-weight: 900;
 }
+.compare-block tr.airport-closure-2025-row td:first-child {
+  border-left: 3px solid #d89a2b;
+}
 
+.airport-closure-marker {
+  margin-left: 2px;
+  color: #a56a00;
+  font-size: 9px;
+  font-weight: 900;
+  vertical-align: super;
+  cursor: help;
+}
+
+.airport-closure-note {
+  display: block;
+  margin-top: 2px;
+  color: #8a650f;
+  font-size: 6.8px;
+  font-weight: 700;
+  line-height: 1.15;
+}
 /* ==========================================================
    TABLAS SÍNTESIS
    ========================================================== */
