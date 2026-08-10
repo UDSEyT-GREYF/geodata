@@ -595,7 +595,10 @@ h1 {
 
 /* Recupera espacio vertical sin cambiar la tabla ni el gráfico. */
 #sheetA4Internacional .international-tables-block {
-  margin-bottom: 1.5mm;
+  margin-bottom: 0mm;
+}
+#sheetA4Internacional .compact-chart-box {
+  height: 35mm;
 }
 
 /* ==========================================================
