@@ -1,64 +1,3812 @@
 {
-"type": "FeatureCollection",
-"name": "Aeroplatas",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-"features": [
-{ "type": "Feature", "properties": { "IATA": "PSS", "Name": "PSS - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -55.965790008254835, -27.392563477068162, 0.0 ], [ -55.965531108594078, -27.392463072299108, 0.0 ], [ -55.965321785827719, -27.392825467414415, 0.0 ], [ -55.965578724800444, -27.392948658096678, 0.0 ], [ -55.965790008254835, -27.392563477068162, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "RCU", "Name": "RCU - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -64.275818049675351, -33.09289909588805, 0.0 ], [ -64.275348339333974, -33.092892596613652, 0.0 ], [ -64.275344218042619, -33.09332431649856, 0.0 ], [ -64.275809692214452, -33.093327128846205, 0.0 ], [ -64.275818049675351, -33.09289909588805, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "RGA", "Name": "RGA - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -67.7509919, -53.7821014, 0.0 ], [ -67.75071, -53.7820965, 0.0 ], [ -67.7507085, -53.7821828, 0.0 ], [ -67.7509904, -53.7821893, 0.0 ], [ -67.7509919, -53.7821014, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "RGA", "Name": "RGA - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -67.7509904, -53.7821893, 0.0 ], [ -67.7507085, -53.7821828, 0.0 ], [ -67.7506985, -53.7823339, 0.0 ], [ -67.7509803, -53.7823404, 0.0 ], [ -67.7509904, -53.7821893, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "RGL", "Name": "RGL - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -69.3017167, -51.6120758, 0.0 ], [ -69.3016118, -51.612074, 0.0 ], [ -69.3016144, -51.6120153, 0.0 ], [ -69.3011954, -51.6120081, 0.0 ], [ -69.3011856, -51.6122288, 0.0 ], [ -69.3015941, -51.6122359, 0.0 ], [ -69.3015968, -51.6121738, 0.0 ], [ -69.3017123, -51.6121758, 0.0 ], [ -69.3017167, -51.6120758, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "SLA", "Name": "SLA - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -65.4773395, -24.8445875, 0.0 ], [ -65.4773126, -24.8445254, 0.0 ], [ -65.4772583, -24.8445448, 0.0 ], [ -65.4772852, -24.8446069, 0.0 ], [ -65.4773395, -24.8445875, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "SLA", "Name": "SLA - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -65.4772689, -24.8446205, 0.0 ], [ -65.4772144, -24.8444911, 0.0 ], [ -65.4771072, -24.8445283, 0.0 ], [ -65.4771618, -24.8446577, 0.0 ], [ -65.4772689, -24.8446205, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "TUC", "Name": "TUC - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -65.108800314985601, -26.830979366212919, 0.0 ], [ -65.1087209417624, -26.830502720241224, 0.0 ], [ -65.108151736815699, -26.830592329182249, 0.0 ], [ -65.108231094428277, -26.831070669795675, 0.0 ], [ -65.108800314985601, -26.830979366212919, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "TUC", "Name": "TUC - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -65.1086556, -26.830778799999987, 0.0 ], [ -65.1086175, -26.8305728, 0.0 ], [ -65.1084803, -26.830593, 0.0 ], [ -65.1085183, -26.830799, 0.0 ], [ -65.1086556, -26.830778799999987, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "UAQ", "Name": "UAQ - Aeroplanta YPF", "descriptio": "JET A1" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -68.422974175928587, -31.572579848503018, 0.0 ], [ -68.422540665671761, -31.572413847804057, 0.0 ], [ -68.422459257629839, -31.572562639059914, 0.0 ], [ -68.422596327471865, -31.572648505471175, 0.0 ], [ -68.422510383087499, -31.5728225712542, 0.0 ], [ -68.422788340730335, -31.572931819028479, 0.0 ], [ -68.422974175928587, -31.572579848503018, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "AFA", "Name": "AFA - Aeroplanta YPF", "descriptio": "JET A1" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -68.399439160628233, -34.591662206215908, 0.0 ], [ -68.399349127231517, -34.591488727928684, 0.0 ], [ -68.399133087805808, -34.591563308247302, 0.0 ], [ -68.399218078350984, -34.59173112111521, 0.0 ], [ -68.399439160628233, -34.591662206215908, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "EQS", "Name": "EQS - Aeroplanta YPF", "descriptio": "JET A1 - Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -71.1456166, -42.9054962, 0.0 ], [ -71.1455596, -42.9054703, 0.0 ], [ -71.1454989, -42.905542, 0.0 ], [ -71.1455559, -42.9055679, 0.0 ], [ -71.1456166, -42.9054962, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "EQS", "Name": "EQS - Aeroplanta YPF", "descriptio": "JET A1 - Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -71.1460043, -42.9057262, 0.0 ], [ -71.1458371, -42.9056436, 0.0 ], [ -71.1457842, -42.9057011, 0.0 ], [ -71.1459513, -42.9057837, 0.0 ], [ -71.1460043, -42.9057262, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "EQS", "Name": "EQS - Aeroplanta YPF", "descriptio": "JET A1 - Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -71.1456849, -42.9055905, 0.0 ], [ -71.1455937, -42.9055488, 0.0 ], [ -71.1455702, -42.9055764, 0.0 ], [ -71.1456613, -42.9056182, 0.0 ], [ -71.1456849, -42.9055905, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "EZE", "Name": "EZE - Aeroplanta", "descriptio": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -58.5399089, -34.8112222, 0.0 ], [ -58.539797, -34.8111918, 0.0 ], [ -58.5397033, -34.8114242, 0.0 ], [ -58.5398152, -34.8114546, 0.0 ], [ -58.5399089, -34.8112222, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "EZE", "Name": "EZE - Aeroplanta YPF", "descriptio": "JET A1" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -58.541122177144985, -34.810735674772616, 0.0 ], [ -58.540965132718611, -34.810689989121272, 0.0 ], [ -58.540930868480189, -34.810782788100539, 0.0 ], [ -58.54078096243677, -34.810741385479105, 0.0 ], [ -58.540689591134139, -34.810988373531416, 0.0 ], [ -58.54082807576475, -34.811028348476384, 0.0 ], [ -58.540809515968817, -34.811082600187319, 0.0 ], [ -58.540969415748464, -34.811122575132174, 0.0 ], [ -58.541122177144985, -34.810735674772616, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "EZE", "Name": "EZE - Aeroplanta", "descriptio": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -58.5407119, -34.8114248, 0.0 ], [ -58.5405965, -34.8113951, 0.0 ], [ -58.5404773, -34.811707, 0.0 ], [ -58.5405927, -34.8117367, 0.0 ], [ -58.5407119, -34.8114248, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "EZE", "Name": "EZE - Aeroplanta Shell", "descriptio": "JET A1" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -58.5404307, -34.8114341, 0.0 ], [ -58.5402699, -34.8113905, 0.0 ], [ -58.5402017, -34.8115596, 0.0 ], [ -58.5403625, -34.8116033, 0.0 ], [ -58.5404307, -34.8114341, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "EZE", "Name": "EZE - Aeroplanta", "descriptio": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -58.5401604, -34.8113607, 0.0 ], [ -58.540001, -34.8113174, 0.0 ], [ -58.5399328, -34.8114865, 0.0 ], [ -58.5400922, -34.8115298, 0.0 ], [ -58.5401604, -34.8113607, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "LUQ", "Name": "LUQ - Aeroplanta YPF", "descriptio": "JET A1" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -66.350411525617687, -33.275524682155947, 0.0 ], [ -66.350233066042222, -33.275378940169389, 0.0 ], [ -66.350124800566505, -33.275469954552761, 0.0 ], [ -66.350308613929144, -33.275629973305513, 0.0 ], [ -66.350411525617687, -33.275524682155947, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "JUJ", "Name": "JUJ - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -65.092672615858135, -24.387033657309132, 0.0 ], [ -65.092263348565098, -24.386813557166079, 0.0 ], [ -65.091914757527718, -24.387365592119352, 0.0 ], [ -65.09234662970033, -24.387598779298003, 0.0 ], [ -65.092485828169174, -24.387350125622845, 0.0 ], [ -65.092672615858135, -24.387033657309132, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "MDZ", "Name": "MDZ - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -68.800759475759762, -32.833122247289182, 0.0 ], [ -68.800801890260161, -32.832490498876318, 0.0 ], [ -68.799749475948033, -32.832435212832408, 0.0 ], [ -68.799675806937813, -32.83306328023486, 0.0 ], [ -68.800083785761856, -32.833084810530728, 0.0 ], [ -68.800327889599288, -32.833092486712573, 0.0 ], [ -68.800759475759762, -32.833122247289182, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "SDE", "Name": "SDE - Aeroplanta YPF", "descriptio": "JET A1 - Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -64.296873201122239, -27.759344848372663, 0.0 ], [ -64.29675525027109, -27.759268922146976, 0.0 ], [ -64.296516901237041, -27.75911918750986, 0.0 ], [ -64.296364421989551, -27.759296330166165, 0.0 ], [ -64.296723058465133, -27.75952703282206, 0.0 ], [ -64.296873201122239, -27.759344848372663, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "BHI", "Name": "BHI - Aeroplanta YPF", "descriptio": "JET A1 - Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -62.164305178795274, -38.717716559658378, 0.0 ], [ -62.164227490989447, -38.717264965135875, 0.0 ], [ -62.163658920605535, -38.717321321781746, 0.0 ], [ -62.163730470587772, -38.717773906020398, 0.0 ], [ -62.164305178795274, -38.717716559658378, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "CTC", "Name": "CTC - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100 LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -65.754639162871214, -28.590202301057616, 0.0 ], [ -65.754129375528962, -28.590293168920589, 0.0 ], [ -65.754254639531993, -28.59083649221008, 0.0 ], [ -65.754764447145917, -28.590737974687542, 0.0 ], [ -65.754639162871214, -28.590202301057616, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "AEP", "Name": "AEP - Aeroplanta AXION", "descriptio": "JET A1" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -58.41541851363602, -34.562630441781259, 0.0 ], [ -58.416329644104337, -34.562015711319852, 0.0 ], [ -58.416036406531887, -34.56166625302285, 0.0 ], [ -58.415098520607486, -34.562199481555083, 0.0 ], [ -58.41541851363602, -34.562630441781259, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "AEP", "Name": "AEP - Aeroplanta YPF", "descriptio": "JET A1" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -58.416411402234736, -34.561946520507831, 0.0 ], [ -58.417285998221672, -34.561180899358774, 0.0 ], [ -58.417287012225707, -34.561130438887695, 0.0 ], [ -58.417222790577945, -34.561007546756791, 0.0 ], [ -58.417062329748362, -34.560837033667937, 0.0 ], [ -58.417033483956487, -34.560838203337838, 0.0 ], [ -58.41599647778763, -34.561415354489078, 0.0 ], [ -58.416411402234736, -34.561946520507831, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "AEP", "Name": "AEP - Aeroplanta Shell", "descriptio": "JET A1" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -58.417381707910131, -34.561076915583797, 0.0 ], [ -58.417400712152826, -34.561104850850583, 0.0 ], [ -58.4179525850506, -34.56056870743862, 0.0 ], [ -58.417932166591648, -34.560516907977686, 0.0 ], [ -58.417842196458814, -34.560439959411106, 0.0 ], [ -58.417759166076934, -34.560405052217234, 0.0 ], [ -58.41766791281912, -34.560381519202885, 0.0 ], [ -58.417575376148498, -34.560411401762025, 0.0 ], [ -58.417164169174733, -34.560783956873991, 0.0 ], [ -58.417381707910131, -34.561076915583797, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "IGR", "Name": "IGR - Aeroplanta YPF", "descriptio": "JET A1 - Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -54.479539573430728, -25.730483463939862, 0.0 ], [ -54.479258093389696, -25.729910350572943, 0.0 ], [ -54.47866749873031, -25.73012190042126, 0.0 ], [ -54.478937212608137, -25.730709667386346, 0.0 ], [ -54.479539573430728, -25.730483463939862, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "USH", "Name": "USH - Aeroplanta YPF", "descriptio": "JET A1" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -68.310364591570604, -54.838156471396644, 0.0 ], [ -68.308011311756943, -54.838044596749945, 0.0 ], [ -68.307887997045597, -54.838820988118222, 0.0 ], [ -68.310232821725421, -54.838923811688119, 0.0 ], [ -68.310364591570604, -54.838156471396644, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "PMY", "Name": "PMY - Aeroplanta YPF", "descriptio": "JET A1" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -65.102941275745692, -42.753985194441682, 0.0 ], [ -65.102373751305052, -42.753778614196783, 0.0 ], [ -65.102093490763892, -42.754192811453763, 0.0 ], [ -65.102683016527493, -42.754395522810277, 0.0 ], [ -65.102941275745692, -42.753985194441682, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "RGL", "Name": "RGL - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -69.302085013806575, -51.611990987055755, 0.0 ], [ -69.301156689780925, -51.611946341086465, 0.0 ], [ -69.301068018527147, -51.612444301519851, 0.0 ], [ -69.302024970530155, -51.612483978685034, 0.0 ], [ -69.302085013806575, -51.611990987055755, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "RGA", "Name": "RGA - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -67.751323072741769, -53.782615894334491, 0.0 ], [ -67.751359779680243, -53.781905860028864, 0.0 ], [ -67.750107004529497, -53.781886355395486, 0.0 ], [ -67.750070095006336, -53.782592030467086, 0.0 ], [ -67.751323072741769, -53.782615894334491, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "FTE", "Name": "FTE - Aeroplanta YPF", "descriptio": "JET A1 - Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -72.049113470297755, -50.283570524945617, 0.0 ], [ -72.049079251842159, -50.283871125836754, 0.0 ], [ -72.049975793579335, -50.283942668640009, 0.0 ], [ -72.049978847708815, -50.283625132176553, 0.0 ], [ -72.049113470297755, -50.283570524945617, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "CRD", "Name": "CRD - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -67.474337801120342, -45.79009668494777, 0.0 ], [ -67.473344129478221, -45.790057620371542, 0.0 ], [ -67.473296882744862, -45.790606717126245, 0.0 ], [ -67.474298086641497, -45.790618750071218, 0.0 ], [ -67.474337801120342, -45.79009668494777, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "BRC", "Name": "BRC - Aeroplanta YPF", "descriptio": "JET A1  / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -71.160404742959045, -41.147249699418516, 0.0 ], [ -71.160201336404057, -41.14690009210085, 0.0 ], [ -71.159513241334906, -41.147150574172052, 0.0 ], [ -71.159728006264601, -41.147488907631384, 0.0 ], [ -71.160404742959045, -41.147249699418516, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "MDQ", "Name": "MDQ - Aeroplanta YPF", "descriptio": "JET A1 - Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -57.582935454589069, -37.932691411527919, 0.0 ], [ -57.583548922263624, -37.932390375034686, 0.0 ], [ -57.583060174063341, -37.931783363790075, 0.0 ], [ -57.582435964077717, -37.93208901803547, 0.0 ], [ -57.582935454589069, -37.932691411527919, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "CNQ", "Name": "CNQ - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -58.757365171045102, -27.446080988830239, 0.0 ], [ -58.756884866965116, -27.446138420736268, 0.0 ], [ -58.756961941003759, -27.446668369334603, 0.0 ], [ -58.75744174510892, -27.446618589013731, 0.0 ], [ -58.757365171045102, -27.446080988830239, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "RES", "Name": "RES - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -59.046486202038125, -27.44989023920656, 0.0 ], [ -59.046788714798815, -27.449621157885698, 0.0 ], [ -59.04636407243445, -27.449252584504165, 0.0 ], [ -59.046058076387297, -27.44950540024481, 0.0 ], [ -59.046486202038125, -27.44989023920656, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "FMA", "Name": "FMA - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -58.229253144304643, -26.211954235376208, 0.0 ], [ -58.229545967111449, -26.211791068206992, 0.0 ], [ -58.229260843396986, -26.211363659779149, 0.0 ], [ -58.228956152681732, -26.211526181115879, 0.0 ], [ -58.229253144304643, -26.211954235376208, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "RCQ", "Name": "RCQ - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -59.694006689880503, -29.202279545576829, 0.0 ], [ -59.693060891788754, -29.202384221510453, 0.0 ], [ -59.693208943407164, -29.203435915198838, 0.0 ], [ -59.694140292849021, -29.203348558157842, 0.0 ], [ -59.694006689880503, -29.202279545576829, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "NQN", "Name": "NQN - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -68.144703669688553, -38.953364418198205, 0.0 ], [ -68.144627124907942, -38.952908221798275, 0.0 ], [ -68.143825586952673, -38.952999999677083, 0.0 ], [ -68.143910740117121, -38.95344436488503, 0.0 ], [ -68.144703669688553, -38.953364418198205, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "SFN", "Name": "SFN - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -60.807690653808109, -31.711905201040839, 0.0 ], [ -60.807185789688567, -31.712079762639313, 0.0 ], [ -60.807490027453447, -31.712649214788897, 0.0 ], [ -60.807994283149668, -31.712485592410577, 0.0 ], [ -60.807690653808109, -31.711905201040839, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "PRA", "Name": "PRA - Aeroplanta YPF", "descriptio": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -60.483494220941431, -31.790305129058268, 0.0 ], [ -60.483173268615737, -31.79034314737692, 0.0 ], [ -60.483204388587204, -31.790561640768509, 0.0 ], [ -60.483530465905339, -31.790527797421021, 0.0 ], [ -60.483494220941431, -31.790305129058268, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "ROS", "Name": "ROS - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -60.777441172997904, -32.909591118441632, 0.0 ], [ -60.77662942990947, -32.909849811686826, 0.0 ], [ -60.777041607764737, -32.910751837855258, 0.0 ], [ -60.777857096801412, -32.910496625388618, 0.0 ], [ -60.777441172997904, -32.909591118441632, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "EPA", "Name": "EPA - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -58.605035336039968, -34.615767747453752, 0.0 ], [ -58.605622452070733, -34.615576783517668, 0.0 ], [ -58.605225357311241, -34.614757326284774, 0.0 ], [ -58.604261100437611, -34.615069446498637, 0.0 ], [ -58.604669158400739, -34.61589767306657, 0.0 ], [ -58.605035336039968, -34.615767747453752, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "CPC", "Name": "CPC - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -71.144978720164033, -40.081530749830215, 0.0 ], [ -71.144648943424585, -40.081394068746633, 0.0 ], [ -71.144498803718363, -40.081600283734609, 0.0 ], [ -71.144836106579149, -40.081737776794782, 0.0 ], [ -71.144978720164033, -40.081530749830215, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "RSA", "Name": "RSA - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -64.280818121449045, -36.592559612374181, 0.0 ], [ -64.279310067884737, -36.59257533615142, 0.0 ], [ -64.279318960006421, -36.593520796614136, 0.0 ], [ -64.28084001463364, -36.593518650502041, 0.0 ], [ -64.280818121449045, -36.592559612374181, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "GPO", "Name": "GPO - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -63.758870576361339, -35.688652013508836, 0.0 ], [ -63.758956292212531, -35.688461204895482, 0.0 ], [ -63.75875101572489, -35.688408750890247, 0.0 ], [ -63.758685731423427, -35.688569646503105, 0.0 ], [ -63.758715039347365, -35.688608336352011, 0.0 ], [ -63.758870576361339, -35.688652013508836, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "COR", "Name": "COR - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -64.21280909047114, -31.317830970915256, 0.0 ], [ -64.213104519145659, -31.317835084117803, 0.0 ], [ -64.213087410999222, -31.317073754186875, 0.0 ], [ -64.212794092044064, -31.317086306261771, 0.0 ], [ -64.21280909047114, -31.317830970915256, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "VDM", "Name": "VDM - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -63.004815903566929, -40.861101632860112, 0.0 ], [ -63.005221780225376, -40.860771355661264, 0.0 ], [ -63.005003300793199, -40.860598542345635, 0.0 ], [ -63.005160421840522, -40.860483675197244, 0.0 ], [ -63.005020838152923, -40.860364392142777, 0.0 ], [ -63.004429531252121, -40.860830877517728, 0.0 ], [ -63.004815903566929, -40.861101632860112, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "REL", "Name": "REL - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -65.28915084923905, -43.211501657480049, 0.0 ], [ -65.289369998994857, -43.211109496186289, 0.0 ], [ -65.28852131488371, -43.210876529998188, 0.0 ], [ -65.288316277155403, -43.211273177507451, 0.0 ], [ -65.28915084923905, -43.211501657480049, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "VME", "Name": "VME - Aeroplanta YPF", "descriptio": "JET A1 / Avgas 100LL" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -65.378332878689747, -33.715774538387073, 0.0 ], [ -65.376557804644449, -33.716174311034052, 0.0 ], [ -65.376782844285557, -33.716882291635656, 0.0 ], [ -65.378552039710257, -33.716501720183508, 0.0 ], [ -65.378332878689747, -33.715774538387073, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "LPG", "Name": "LPG - Aeroplanta YPF", "descriptio": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -57.89471570773533, -34.965443214968474, 0.0 ], [ -57.894480585985576, -34.965491062909365, 0.0 ], [ -57.894548873592399, -34.965709333945725, 0.0 ], [ -57.894771918529379, -34.965665432029901, 0.0 ], [ -57.89471570773533, -34.965443214968474, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "LGS", "Name": "LGS - Aeroplanta YPF", "descriptio": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -69.5846543604017, -35.482821068095973, 0.0 ], [ -69.58449547654277, -35.482821851671645, 0.0 ], [ -69.584493146077008, -35.483041691381075, 0.0 ], [ -69.584659485921705, -35.483038217708163, 0.0 ], [ -69.5846543604017, -35.482821068095973, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "RHD", "Name": "RHD - Aeroplanta LAION SRL", "descriptio": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -64.934720010138406, -27.508313351955675, 0.0 ], [ -64.93468510289226, -27.50820548118131, 0.0 ], [ -64.934211239611727, -27.508058447122131, 0.0 ], [ -64.934080189376544, -27.508097822674412, 0.0 ], [ -64.933876607735129, -27.508707541601034, 0.0 ], [ -64.933888540010685, -27.508801499868497, 0.0 ], [ -64.934375003060154, -27.508944882868199, 0.0 ], [ -64.934519351847399, -27.508886463301309, 0.0 ], [ -64.934720010138406, -27.508313351955675, 0.0 ] ] ] ] } },
-{ "type": "Feature", "properties": { "IATA": "EZE", "Name": "EZE - Aeroplanta AXION", "descriptio": "JET A1" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -58.54036979157496, -34.810624315997529, 0.0 ], [ -58.540152784731276, -34.810565781256855, 0.0 ], [ -58.540047136662565, -34.810842750517963, 0.0 ], [ -58.540265571182886, -34.810901285258637, 0.0 ], [ -58.54036979157496, -34.810624315997529, 0.0 ] ] ] ] } }
-]
+    "type": "FeatureCollection",
+    "name": "Aeroplantas2026_GITHUB",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 1,
+                "id": "PSS_YPF",
+                "icao": "SARP",
+                "iata": "PSS",
+                "name": "PSS - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Posadas / Lib. Gral. D. José de San Martín",
+                "nombre_aeroplanta": "PSS - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 1314.3,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2026-06-11",
+                "tipo_fuente": "AIP AD-2.B",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1133c3d5a1",
+                "aip_pagina": "SARP AD2.B1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -55.965790008254835,
+                                -27.392563477068162
+                            ],
+                            [
+                                -55.965531108594078,
+                                -27.392463072299108
+                            ],
+                            [
+                                -55.965321785827719,
+                                -27.392825467414415
+                            ],
+                            [
+                                -55.965578724800444,
+                                -27.392948658096678
+                            ],
+                            [
+                                -55.965790008254835,
+                                -27.392563477068162
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 2,
+                "id": "RCU_YPF",
+                "icao": "SAOC",
+                "iata": "RCU",
+                "name": "RCU - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Río Cuarto / Area de Material",
+                "nombre_aeroplanta": "RCU - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 2081.45,
+                "confirmado_aip": null,
+                "nivel_confirmacion_aip": "no_individualizado_en_aip_revisado",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2025-11-27",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68de9de8ed19e",
+                "aip_pagina": "SAOC AD2.A1 | SAOC AD2.A2",
+                "nota_fuente": "En los planos AIP revisados no se individualizó una instalación de combustible que permita validar este polígono. Se conserva la geometría y la atribución histórica sin interpretarla como desmentida.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "pendiente_documental"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -64.275818049675351,
+                                -33.09289909588805
+                            ],
+                            [
+                                -64.275348339333974,
+                                -33.092892596613652
+                            ],
+                            [
+                                -64.275344218042619,
+                                -33.09332431649856
+                            ],
+                            [
+                                -64.275809692214452,
+                                -33.093327128846205
+                            ],
+                            [
+                                -64.275818049675351,
+                                -33.09289909588805
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 3,
+                "id": "RGA_YPF_01",
+                "icao": "SAWE",
+                "iata": "RGA",
+                "name": null,
+                "descriptio": null,
+                "aeropuerto": "Río Grande",
+                "nombre_aeroplanta": "RGA - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 180.2,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada_componentes_no_individualizados",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-11-30",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651edc4e712d3",
+                "aip_pagina": "SAWE AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto, pero no individualiza por separado todos los polígonos de la base ni confirma su operador. Se conservan las geometrías y la atribución histórica.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado_parcial"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -67.7509919,
+                                -53.7821014
+                            ],
+                            [
+                                -67.75071,
+                                -53.7820965
+                            ],
+                            [
+                                -67.7507085,
+                                -53.7821828
+                            ],
+                            [
+                                -67.7509904,
+                                -53.7821893
+                            ],
+                            [
+                                -67.7509919,
+                                -53.7821014
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 4,
+                "id": "RGA_YPF_02",
+                "icao": "SAWE",
+                "iata": "RGA",
+                "name": null,
+                "descriptio": null,
+                "aeropuerto": "Río Grande",
+                "nombre_aeroplanta": "RGA - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 312.93,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada_componentes_no_individualizados",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-11-30",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651edc4e712d3",
+                "aip_pagina": "SAWE AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto, pero no individualiza por separado todos los polígonos de la base ni confirma su operador. Se conservan las geometrías y la atribución histórica.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado_parcial"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -67.7509904,
+                                -53.7821893
+                            ],
+                            [
+                                -67.7507085,
+                                -53.7821828
+                            ],
+                            [
+                                -67.7506985,
+                                -53.7823339
+                            ],
+                            [
+                                -67.7509803,
+                                -53.7823404
+                            ],
+                            [
+                                -67.7509904,
+                                -53.7821893
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 5,
+                "id": "RGL_YPF_01",
+                "icao": "SAWG",
+                "iata": "RGL",
+                "name": null,
+                "descriptio": null,
+                "aeropuerto": "Río Gallegos / Piloto Civil Norberto Fernández",
+                "nombre_aeroplanta": "RGL - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 789.25,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada_componentes_no_individualizados",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2026-06-11",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e115aee0fcb",
+                "aip_pagina": "SAWG AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto, pero no individualiza por separado todos los polígonos de la base ni confirma su operador. Se conservan las geometrías y la atribución histórica.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado_parcial"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -69.3017167,
+                                -51.6120758
+                            ],
+                            [
+                                -69.3016118,
+                                -51.612074
+                            ],
+                            [
+                                -69.3016144,
+                                -51.6120153
+                            ],
+                            [
+                                -69.3011954,
+                                -51.6120081
+                            ],
+                            [
+                                -69.3011856,
+                                -51.6122288
+                            ],
+                            [
+                                -69.3015941,
+                                -51.6122359
+                            ],
+                            [
+                                -69.3015968,
+                                -51.6121738
+                            ],
+                            [
+                                -69.3017123,
+                                -51.6121758
+                            ],
+                            [
+                                -69.3017167,
+                                -51.6120758
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 6,
+                "id": "SLA_YPF_01",
+                "icao": "SASA",
+                "iata": "SLA",
+                "name": null,
+                "descriptio": null,
+                "aeropuerto": "Salta / Gral. Martín Miguel de Güemes",
+                "nombre_aeroplanta": "SLA - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 43.6,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada_componentes_no_individualizados",
+                "denominacion_aip": "SURTIDOR COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": "AVGAS 100 LL",
+                "fecha_doc": "2025-11-27",
+                "tipo_fuente": "AIP AD-2.B",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68dea17800eb7",
+                "aip_pagina": "SASA AD2.B1 | SASA AD2.B4",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto, pero no individualiza por separado todos los polígonos de la base ni confirma su operador. Se conservan las geometrías y la atribución histórica. El AIP confirma AVGAS 100 LL como servicio/carga de combustible.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado_parcial"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -65.4773395,
+                                -24.8445875
+                            ],
+                            [
+                                -65.4773126,
+                                -24.8445254
+                            ],
+                            [
+                                -65.4772583,
+                                -24.8445448
+                            ],
+                            [
+                                -65.4772852,
+                                -24.8446069
+                            ],
+                            [
+                                -65.4773395,
+                                -24.8445875
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 7,
+                "id": "SLA_YPF_02",
+                "icao": "SASA",
+                "iata": "SLA",
+                "name": "SLA - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Salta / Gral. Martín Miguel de Güemes",
+                "nombre_aeroplanta": "SLA - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 177.96,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada_componentes_no_individualizados",
+                "denominacion_aip": "SURTIDOR COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": "AVGAS 100 LL",
+                "fecha_doc": "2025-11-27",
+                "tipo_fuente": "AIP AD-2.B",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68dea17800eb7",
+                "aip_pagina": "SASA AD2.B1 | SASA AD2.B4",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto, pero no individualiza por separado todos los polígonos de la base ni confirma su operador. Se conservan las geometrías y la atribución histórica. El AIP confirma AVGAS 100 LL como servicio/carga de combustible.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado_parcial"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -65.4772689,
+                                -24.8446205
+                            ],
+                            [
+                                -65.4772144,
+                                -24.8444911
+                            ],
+                            [
+                                -65.4771072,
+                                -24.8445283
+                            ],
+                            [
+                                -65.4771618,
+                                -24.8446577
+                            ],
+                            [
+                                -65.4772689,
+                                -24.8446205
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 8,
+                "id": "TUC_YPF_01",
+                "icao": "SANT",
+                "iata": "TUC",
+                "name": "TUC - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Tucumán / Tte. B. Matienzo",
+                "nombre_aeroplanta": "TUC - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 3072.61,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada_componentes_no_individualizados",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": "AVGAS 100 LL",
+                "fecha_doc": "2026-06-11",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10a25336eb",
+                "aip_pagina": "SANT AD2.A1 | SANT AD2.B4 | SANT AD2.B5",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto, pero no individualiza por separado todos los polígonos de la base ni confirma su operador. Se conservan las geometrías y la atribución histórica. El AIP confirma AVGAS 100 LL como servicio/carga de combustible.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado_parcial"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -65.108800314985601,
+                                -26.830979366212919
+                            ],
+                            [
+                                -65.1087209417624,
+                                -26.830502720241224
+                            ],
+                            [
+                                -65.108151736815699,
+                                -26.830592329182249
+                            ],
+                            [
+                                -65.108231094428277,
+                                -26.831070669795675
+                            ],
+                            [
+                                -65.108800314985601,
+                                -26.830979366212919
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 9,
+                "id": "TUC_YPF_02",
+                "icao": "SANT",
+                "iata": "TUC",
+                "name": "TUC - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Tucumán / Tte. B. Matienzo",
+                "nombre_aeroplanta": "TUC - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 319.87,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada_componentes_no_individualizados",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": "AVGAS 100 LL",
+                "fecha_doc": "2026-06-11",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10a25336eb",
+                "aip_pagina": "SANT AD2.A1 | SANT AD2.B4 | SANT AD2.B5",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto, pero no individualiza por separado todos los polígonos de la base ni confirma su operador. Se conservan las geometrías y la atribución histórica. El AIP confirma AVGAS 100 LL como servicio/carga de combustible.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado_parcial"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -65.1086556,
+                                -26.830778799999987
+                            ],
+                            [
+                                -65.1086175,
+                                -26.8305728
+                            ],
+                            [
+                                -65.1084803,
+                                -26.830593
+                            ],
+                            [
+                                -65.1085183,
+                                -26.830799
+                            ],
+                            [
+                                -65.1086556,
+                                -26.830778799999987
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 11,
+                "id": "AFA_YPF",
+                "icao": "SAMR",
+                "iata": "AFA",
+                "name": "AFA - Aeroplanta YPF",
+                "descriptio": "JET A1",
+                "aeropuerto": "San Rafael / S. A. Santiago Germano",
+                "nombre_aeroplanta": "AFA - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1",
+                "area_m2": 443.46,
+                "confirmado_aip": null,
+                "nivel_confirmacion_aip": "no_individualizado_en_aip_revisado",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2025-06-12",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6802ea5364029",
+                "aip_pagina": "SAMR AD2.A1",
+                "nota_fuente": "En los planos AIP revisados no se individualizó una instalación de combustible que permita validar este polígono. Se conserva la geometría y la atribución histórica sin interpretarla como desmentida.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "pendiente_documental"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -68.399439160628233,
+                                -34.591662206215908
+                            ],
+                            [
+                                -68.399349127231517,
+                                -34.591488727928684
+                            ],
+                            [
+                                -68.399133087805808,
+                                -34.591563308247302
+                            ],
+                            [
+                                -68.399218078350984,
+                                -34.59173112111521
+                            ],
+                            [
+                                -68.399439160628233,
+                                -34.591662206215908
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 12,
+                "id": "EQS_YPF_01",
+                "icao": "SAVE",
+                "iata": "EQS",
+                "name": null,
+                "descriptio": null,
+                "aeropuerto": "Esquel / Brig. Gral. Antonio Parodi",
+                "nombre_aeroplanta": "EQS - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 51.34,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada_componentes_no_individualizados",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-07-13",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6468f9e95acf3",
+                "aip_pagina": "SAVE AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto, pero no individualiza por separado todos los polígonos de la base ni confirma su operador. Se conservan las geometrías y la atribución histórica.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado_parcial"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -71.1456166,
+                                -42.9054962
+                            ],
+                            [
+                                -71.1455596,
+                                -42.9054703
+                            ],
+                            [
+                                -71.1454989,
+                                -42.905542
+                            ],
+                            [
+                                -71.1455559,
+                                -42.9055679
+                            ],
+                            [
+                                -71.1456166,
+                                -42.9054962
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 13,
+                "id": "EQS_YPF_02",
+                "icao": "SAVE",
+                "iata": "EQS",
+                "name": null,
+                "descriptio": null,
+                "aeropuerto": "Esquel / Brig. Gral. Antonio Parodi",
+                "nombre_aeroplanta": "EQS - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 126.87,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada_componentes_no_individualizados",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-07-13",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6468f9e95acf3",
+                "aip_pagina": "SAVE AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto, pero no individualiza por separado todos los polígonos de la base ni confirma su operador. Se conservan las geometrías y la atribución histórica.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado_parcial"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -71.1460043,
+                                -42.9057262
+                            ],
+                            [
+                                -71.1458371,
+                                -42.9056436
+                            ],
+                            [
+                                -71.1457842,
+                                -42.9057011
+                            ],
+                            [
+                                -71.1459513,
+                                -42.9057837
+                            ],
+                            [
+                                -71.1460043,
+                                -42.9057262
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 14,
+                "id": "EQS_YPF_03",
+                "icao": "SAVE",
+                "iata": "EQS",
+                "name": "EQS - Aeroplanta YPF",
+                "descriptio": "JET A1 - Avgas 100LL",
+                "aeropuerto": "Esquel / Brig. Gral. Antonio Parodi",
+                "nombre_aeroplanta": "EQS - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 31.78,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada_componentes_no_individualizados",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-07-13",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6468f9e95acf3",
+                "aip_pagina": "SAVE AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto, pero no individualiza por separado todos los polígonos de la base ni confirma su operador. Se conservan las geometrías y la atribución histórica.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado_parcial"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -71.1456849,
+                                -42.9055905
+                            ],
+                            [
+                                -71.1455937,
+                                -42.9055488
+                            ],
+                            [
+                                -71.1455702,
+                                -42.9055764
+                            ],
+                            [
+                                -71.1456613,
+                                -42.9056182
+                            ],
+                            [
+                                -71.1456849,
+                                -42.9055905
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 15,
+                "id": "EZE_AEROPLANTA_01",
+                "icao": "SAEZ",
+                "iata": "EZE",
+                "name": null,
+                "descriptio": null,
+                "aeropuerto": "Ezeiza / Ministro Pistarini",
+                "nombre_aeroplanta": "EZE - Aeroplanta",
+                "operador": null,
+                "combustibles": null,
+                "area_m2": 292.88,
+                "confirmado_aip": null,
+                "nivel_confirmacion_aip": "no_individualizado_en_aip_revisado",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-11-30",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651ec6aea3d78",
+                "aip_pagina": "SAEZ AD2.A1 | SAEZ AD2.A2",
+                "nota_fuente": "En los planos AIP revisados no se individualizó una instalación de combustible que permita validar este polígono. Se conserva la geometría y la atribución histórica sin interpretarla como desmentida.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "pendiente_documental"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -58.5399089,
+                                -34.8112222
+                            ],
+                            [
+                                -58.539797,
+                                -34.8111918
+                            ],
+                            [
+                                -58.5397033,
+                                -34.8114242
+                            ],
+                            [
+                                -58.5398152,
+                                -34.8114546
+                            ],
+                            [
+                                -58.5399089,
+                                -34.8112222
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 16,
+                "id": "EZE_YPF",
+                "icao": "SAEZ",
+                "iata": "EZE",
+                "name": "EZE - Aeroplanta YPF",
+                "descriptio": "JET A1",
+                "aeropuerto": "Ezeiza / Ministro Pistarini",
+                "nombre_aeroplanta": "EZE - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1",
+                "area_m2": 1094.69,
+                "confirmado_aip": null,
+                "nivel_confirmacion_aip": "no_individualizado_en_aip_revisado",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-11-30",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651ec6aea3d78",
+                "aip_pagina": "SAEZ AD2.A1 | SAEZ AD2.A2",
+                "nota_fuente": "En los planos AIP revisados no se individualizó una instalación de combustible que permita validar este polígono. Se conserva la geometría y la atribución histórica sin interpretarla como desmentida.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "pendiente_documental"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -58.541122177144985,
+                                -34.810735674772616
+                            ],
+                            [
+                                -58.540965132718611,
+                                -34.810689989121272
+                            ],
+                            [
+                                -58.540930868480189,
+                                -34.810782788100539
+                            ],
+                            [
+                                -58.54078096243677,
+                                -34.810741385479105
+                            ],
+                            [
+                                -58.540689591134139,
+                                -34.810988373531416
+                            ],
+                            [
+                                -58.54082807576475,
+                                -34.811028348476384
+                            ],
+                            [
+                                -58.540809515968817,
+                                -34.811082600187319
+                            ],
+                            [
+                                -58.540969415748464,
+                                -34.811122575132174
+                            ],
+                            [
+                                -58.541122177144985,
+                                -34.810735674772616
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 17,
+                "id": "EZE_AEROPLANTA_02",
+                "icao": "SAEZ",
+                "iata": "EZE",
+                "name": null,
+                "descriptio": null,
+                "aeropuerto": "Ezeiza / Ministro Pistarini",
+                "nombre_aeroplanta": "EZE - Aeroplanta",
+                "operador": null,
+                "combustibles": null,
+                "area_m2": 401.28,
+                "confirmado_aip": null,
+                "nivel_confirmacion_aip": "no_individualizado_en_aip_revisado",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-11-30",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651ec6aea3d78",
+                "aip_pagina": "SAEZ AD2.A1 | SAEZ AD2.A2",
+                "nota_fuente": "En los planos AIP revisados no se individualizó una instalación de combustible que permita validar este polígono. Se conserva la geometría y la atribución histórica sin interpretarla como desmentida.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "pendiente_documental"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -58.5407119,
+                                -34.8114248
+                            ],
+                            [
+                                -58.5405965,
+                                -34.8113951
+                            ],
+                            [
+                                -58.5404773,
+                                -34.811707
+                            ],
+                            [
+                                -58.5405927,
+                                -34.8117367
+                            ],
+                            [
+                                -58.5407119,
+                                -34.8114248
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 18,
+                "id": "EZE_SHELL",
+                "icao": "SAEZ",
+                "iata": "EZE",
+                "name": "EZE - Aeroplanta Shell",
+                "descriptio": "JET A1",
+                "aeropuerto": "Ezeiza / Ministro Pistarini",
+                "nombre_aeroplanta": "EZE - Aeroplanta Shell",
+                "operador": "Shell",
+                "combustibles": "JET A1",
+                "area_m2": 306.3,
+                "confirmado_aip": null,
+                "nivel_confirmacion_aip": "no_individualizado_en_aip_revisado",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-11-30",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651ec6aea3d78",
+                "aip_pagina": "SAEZ AD2.A1 | SAEZ AD2.A2",
+                "nota_fuente": "En los planos AIP revisados no se individualizó una instalación de combustible que permita validar este polígono. Se conserva la geometría y la atribución histórica sin interpretarla como desmentida.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "pendiente_documental"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -58.5404307,
+                                -34.8114341
+                            ],
+                            [
+                                -58.5402699,
+                                -34.8113905
+                            ],
+                            [
+                                -58.5402017,
+                                -34.8115596
+                            ],
+                            [
+                                -58.5403625,
+                                -34.8116033
+                            ],
+                            [
+                                -58.5404307,
+                                -34.8114341
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 19,
+                "id": "EZE_AEROPLANTA_03",
+                "icao": "SAEZ",
+                "iata": "EZE",
+                "name": null,
+                "descriptio": null,
+                "aeropuerto": "Ezeiza / Ministro Pistarini",
+                "nombre_aeroplanta": "EZE - Aeroplanta",
+                "operador": null,
+                "combustibles": null,
+                "area_m2": 303.57,
+                "confirmado_aip": null,
+                "nivel_confirmacion_aip": "no_individualizado_en_aip_revisado",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-11-30",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651ec6aea3d78",
+                "aip_pagina": "SAEZ AD2.A1 | SAEZ AD2.A2",
+                "nota_fuente": "En los planos AIP revisados no se individualizó una instalación de combustible que permita validar este polígono. Se conserva la geometría y la atribución histórica sin interpretarla como desmentida.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "pendiente_documental"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -58.5401604,
+                                -34.8113607
+                            ],
+                            [
+                                -58.540001,
+                                -34.8113174
+                            ],
+                            [
+                                -58.5399328,
+                                -34.8114865
+                            ],
+                            [
+                                -58.5400922,
+                                -34.8115298
+                            ],
+                            [
+                                -58.5401604,
+                                -34.8113607
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 20,
+                "id": "LUQ_YPF",
+                "icao": "SAOU",
+                "iata": "LUQ",
+                "name": "LUQ - Aeroplanta YPF",
+                "descriptio": "JET A1",
+                "aeropuerto": "San Luis / Brig. My. D. C. R. Ojeda",
+                "nombre_aeroplanta": "LUQ - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1",
+                "area_m2": 350.49,
+                "confirmado_aip": null,
+                "nivel_confirmacion_aip": "no_individualizado_en_aip_revisado",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-11-30",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651f0521c52ce",
+                "aip_pagina": "SAOU AD2.A1",
+                "nota_fuente": "En los planos AIP revisados no se individualizó una instalación de combustible que permita validar este polígono. Se conserva la geometría y la atribución histórica sin interpretarla como desmentida.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "pendiente_documental"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -66.350411525617687,
+                                -33.275524682155947
+                            ],
+                            [
+                                -66.350233066042222,
+                                -33.275378940169389
+                            ],
+                            [
+                                -66.350124800566505,
+                                -33.275469954552761
+                            ],
+                            [
+                                -66.350308613929144,
+                                -33.275629973305513
+                            ],
+                            [
+                                -66.350411525617687,
+                                -33.275524682155947
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 21,
+                "id": "JUJ_YPF",
+                "icao": "SASJ",
+                "iata": "JUJ",
+                "name": "JUJ - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Jujuy / Gobernador Horacio Guzmán",
+                "nombre_aeroplanta": "JUJ - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 3485.19,
+                "confirmado_aip": null,
+                "nivel_confirmacion_aip": "no_individualizado_en_aip_revisado",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2025-11-27",
+                "tipo_fuente": "AIP AD-2.B",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68dea1b4ba71b",
+                "aip_pagina": "SASJ AD2.B4",
+                "nota_fuente": "El AIP regula la coordinación para la carga de combustible, pero en los planos revisados no individualiza una aeroplanta que permita validar este polígono ni su operador.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "pendiente_documental"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -65.092672615858135,
+                                -24.387033657309132
+                            ],
+                            [
+                                -65.092263348565098,
+                                -24.386813557166079
+                            ],
+                            [
+                                -65.091914757527718,
+                                -24.387365592119352
+                            ],
+                            [
+                                -65.09234662970033,
+                                -24.387598779298003
+                            ],
+                            [
+                                -65.092485828169174,
+                                -24.387350125622845
+                            ],
+                            [
+                                -65.092672615858135,
+                                -24.387033657309132
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 22,
+                "id": "MDZ_YPF",
+                "icao": "SAME",
+                "iata": "MDZ",
+                "name": "MDZ - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Mendoza / El Plumerillo",
+                "nombre_aeroplanta": "MDZ - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 6995.89,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2025-06-12",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68011c8d9e1e1",
+                "aip_pagina": "SAME AD2.A1 | SAME AD2.A2",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -68.800759475759762,
+                                -32.833122247289182
+                            ],
+                            [
+                                -68.800801890260161,
+                                -32.832490498876318
+                            ],
+                            [
+                                -68.799749475948033,
+                                -32.832435212832408
+                            ],
+                            [
+                                -68.799675806937813,
+                                -32.83306328023486
+                            ],
+                            [
+                                -68.800083785761856,
+                                -32.833084810530728
+                            ],
+                            [
+                                -68.800327889599288,
+                                -32.833092486712573
+                            ],
+                            [
+                                -68.800759475759762,
+                                -32.833122247289182
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 23,
+                "id": "SDE_YPF",
+                "icao": "SANE",
+                "iata": "SDE",
+                "name": "SDE - Aeroplanta YPF",
+                "descriptio": "JET A1 - Avgas 100LL",
+                "aeropuerto": "Santiago del Estero / Vcom. Ángel de la Paz Aragonés",
+                "nombre_aeroplanta": "SDE - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 1081.14,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2024-11-28",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-670079c86dde4",
+                "aip_pagina": "SANE AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -64.296873201122239,
+                                -27.759344848372663
+                            ],
+                            [
+                                -64.29675525027109,
+                                -27.759268922146976
+                            ],
+                            [
+                                -64.296516901237041,
+                                -27.75911918750986
+                            ],
+                            [
+                                -64.296364421989551,
+                                -27.759296330166165
+                            ],
+                            [
+                                -64.296723058465133,
+                                -27.75952703282206
+                            ],
+                            [
+                                -64.296873201122239,
+                                -27.759344848372663
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 24,
+                "id": "BHI_YPF",
+                "icao": "SAZB",
+                "iata": "BHI",
+                "name": "BHI - Aeroplanta YPF",
+                "descriptio": "JET A1 - Avgas 100LL / Teléfonos:(0291) 486-0808",
+                "aeropuerto": "Bahía Blanca / Cte. Espora",
+                "nombre_aeroplanta": "BHI - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 2536.0,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-07-13",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6468fdb54f646",
+                "aip_pagina": "SAZB AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -62.164305178795274,
+                                -38.717716559658378
+                            ],
+                            [
+                                -62.164227490989447,
+                                -38.717264965135875
+                            ],
+                            [
+                                -62.163658920605535,
+                                -38.717321321781746
+                            ],
+                            [
+                                -62.163730470587772,
+                                -38.717773906020398
+                            ],
+                            [
+                                -62.164305178795274,
+                                -38.717716559658378
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 25,
+                "id": "CTC_YPF",
+                "icao": "SANC",
+                "iata": "CTC",
+                "name": "CTC - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100 LL - Teléfonos:(0383)443-4311",
+                "aeropuerto": "Catamarca",
+                "nombre_aeroplanta": "CTC - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 3110.36,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "SURTIDOR COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2025-06-12",
+                "tipo_fuente": "AIP AD-2.B",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68011d8d6a962",
+                "aip_pagina": "SANC AD2.B1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -65.754639162871214,
+                                -28.590202301057616
+                            ],
+                            [
+                                -65.754129375528962,
+                                -28.590293168920589
+                            ],
+                            [
+                                -65.754254639531993,
+                                -28.59083649221008
+                            ],
+                            [
+                                -65.754764447145917,
+                                -28.590737974687542
+                            ],
+                            [
+                                -65.754639162871214,
+                                -28.590202301057616
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 26,
+                "id": "AEP_AXION",
+                "icao": "SABE",
+                "iata": "AEP",
+                "name": "AEP - Aeroplanta AXION",
+                "descriptio": "JET A1",
+                "aeropuerto": "Aeroparque Jorge Newbery",
+                "nombre_aeroplanta": "AEP - Aeroplanta AXION",
+                "operador": "AXION",
+                "combustibles": "JET A1",
+                "area_m2": 5464.3,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "operador_identificado_en_aip",
+                "denominacion_aip": "PLANTA DE COMBUSTIBLE",
+                "operador_confirmado_aip": true,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2026-06-11",
+                "tipo_fuente": "AIP AD-2.B",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1062373b79",
+                "aip_pagina": "SABE AD2.B6 | SABE AD2.B7",
+                "nota_fuente": "El AIP identifica una PLANTA DE COMBUSTIBLE y rotula expresamente AXION. La geometría se conserva de la base actual.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -58.41541851363602,
+                                -34.562630441781259
+                            ],
+                            [
+                                -58.416329644104337,
+                                -34.562015711319852
+                            ],
+                            [
+                                -58.416036406531887,
+                                -34.56166625302285
+                            ],
+                            [
+                                -58.415098520607486,
+                                -34.562199481555083
+                            ],
+                            [
+                                -58.41541851363602,
+                                -34.562630441781259
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 27,
+                "id": "AEP_YPF",
+                "icao": "SABE",
+                "iata": "AEP",
+                "name": "AEP - Aeroplanta YPF",
+                "descriptio": "JET A1 / Teléfonos: 4773-1746/1663/5441-4169",
+                "aeropuerto": "Aeroparque Jorge Newbery",
+                "nombre_aeroplanta": "AEP - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1",
+                "area_m2": 6688.29,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "operador_identificado_en_aip",
+                "denominacion_aip": "PLANTA DE COMBUSTIBLE",
+                "operador_confirmado_aip": true,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2026-06-11",
+                "tipo_fuente": "AIP AD-2.B",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1062373b79",
+                "aip_pagina": "SABE AD2.B6 | SABE AD2.B7",
+                "nota_fuente": "El AIP identifica una PLANTA DE COMBUSTIBLE y rotula expresamente YPF. La geometría se conserva de la base actual.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -58.416411402234736,
+                                -34.561946520507831
+                            ],
+                            [
+                                -58.417285998221672,
+                                -34.561180899358774
+                            ],
+                            [
+                                -58.417287012225707,
+                                -34.561130438887695
+                            ],
+                            [
+                                -58.417222790577945,
+                                -34.561007546756791
+                            ],
+                            [
+                                -58.417062329748362,
+                                -34.560837033667937
+                            ],
+                            [
+                                -58.417033483956487,
+                                -34.560838203337838
+                            ],
+                            [
+                                -58.41599647778763,
+                                -34.561415354489078
+                            ],
+                            [
+                                -58.416411402234736,
+                                -34.561946520507831
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 28,
+                "id": "AEP_SHELL",
+                "icao": "SABE",
+                "iata": "AEP",
+                "name": "AEP - Aeroplanta Shell",
+                "descriptio": "JET A1",
+                "aeropuerto": "Aeroparque Jorge Newbery",
+                "nombre_aeroplanta": "AEP - Aeroplanta Shell",
+                "operador": "Shell",
+                "combustibles": "JET A1",
+                "area_m2": 2823.9,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada_operador_no_confirmado",
+                "denominacion_aip": "PLANTA DE COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2026-06-11",
+                "tipo_fuente": "AIP AD-2.B",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1062373b79",
+                "aip_pagina": "SABE AD2.B6 | SABE AD2.B7",
+                "nota_fuente": "El AIP confirma la PLANTA DE COMBUSTIBLE y rotula AXION e YPF; no se identificó la marca Shell en el plano revisado. Se conserva la atribución histórica de la base.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado_parcial"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -58.417381707910131,
+                                -34.561076915583797
+                            ],
+                            [
+                                -58.417400712152826,
+                                -34.561104850850583
+                            ],
+                            [
+                                -58.4179525850506,
+                                -34.56056870743862
+                            ],
+                            [
+                                -58.417932166591648,
+                                -34.560516907977686
+                            ],
+                            [
+                                -58.417842196458814,
+                                -34.560439959411106
+                            ],
+                            [
+                                -58.417759166076934,
+                                -34.560405052217234
+                            ],
+                            [
+                                -58.41766791281912,
+                                -34.560381519202885
+                            ],
+                            [
+                                -58.417575376148498,
+                                -34.560411401762025
+                            ],
+                            [
+                                -58.417164169174733,
+                                -34.560783956873991
+                            ],
+                            [
+                                -58.417381707910131,
+                                -34.561076915583797
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 29,
+                "id": "IGR_YPF",
+                "icao": "SARI",
+                "iata": "IGR",
+                "name": "IGR - Aeroplanta YPF",
+                "descriptio": "JET A1 - Avgas 100LL",
+                "aeropuerto": "Cataratas del Iguazú / Mayor D. Carlos Eduardo Krause",
+                "nombre_aeroplanta": "IGR - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 4519.37,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-07-13",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6468d9ade4865",
+                "aip_pagina": "SARI AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -54.479539573430728,
+                                -25.730483463939862
+                            ],
+                            [
+                                -54.479258093389696,
+                                -25.729910350572943
+                            ],
+                            [
+                                -54.47866749873031,
+                                -25.73012190042126
+                            ],
+                            [
+                                -54.478937212608137,
+                                -25.730709667386346
+                            ],
+                            [
+                                -54.479539573430728,
+                                -25.730483463939862
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 30,
+                "id": "USH_YPF",
+                "icao": "SAWH",
+                "iata": "USH",
+                "name": "USH - Aeroplanta YPF",
+                "descriptio": "JET A1",
+                "aeropuerto": "Ushuaia / Malvinas Argentinas",
+                "nombre_aeroplanta": "USH - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1",
+                "area_m2": 13066.41,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2025-06-12",
+                "tipo_fuente": "AIP AD-2.B",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6801972fc475b",
+                "aip_pagina": "SAWH AD2.B1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -68.310364591570604,
+                                -54.838156471396644
+                            ],
+                            [
+                                -68.308011311756943,
+                                -54.838044596749945
+                            ],
+                            [
+                                -68.307887997045597,
+                                -54.838820988118222
+                            ],
+                            [
+                                -68.310232821725421,
+                                -54.838923811688119
+                            ],
+                            [
+                                -68.310364591570604,
+                                -54.838156471396644
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 31,
+                "id": "PMY_YPF",
+                "icao": "SAVY",
+                "iata": "PMY",
+                "name": "PMY - Aeroplanta YPF",
+                "descriptio": "JET A1",
+                "aeropuerto": "Puerto Madryn / El Tehuelche",
+                "nombre_aeroplanta": "PMY - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1",
+                "area_m2": 2670.14,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2024-07-11",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-66589b5317caa",
+                "aip_pagina": "SAVY AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -65.102941275745692,
+                                -42.753985194441682
+                            ],
+                            [
+                                -65.102373751305052,
+                                -42.753778614196783
+                            ],
+                            [
+                                -65.102093490763892,
+                                -42.754192811453763
+                            ],
+                            [
+                                -65.102683016527493,
+                                -42.754395522810277
+                            ],
+                            [
+                                -65.102941275745692,
+                                -42.753985194441682
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 32,
+                "id": "RGL_YPF_02",
+                "icao": "SAWG",
+                "iata": "RGL",
+                "name": "RGL - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Río Gallegos / Piloto Civil Norberto Fernández",
+                "nombre_aeroplanta": "RGL - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 3623.73,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada_componentes_no_individualizados",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2026-06-11",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e115aee0fcb",
+                "aip_pagina": "SAWG AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto, pero no individualiza por separado todos los polígonos de la base ni confirma su operador. Se conservan las geometrías y la atribución histórica.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado_parcial"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -69.302085013806575,
+                                -51.611990987055755
+                            ],
+                            [
+                                -69.301156689780925,
+                                -51.611946341086465
+                            ],
+                            [
+                                -69.301068018527147,
+                                -51.612444301519851
+                            ],
+                            [
+                                -69.302024970530155,
+                                -51.612483978685034
+                            ],
+                            [
+                                -69.302085013806575,
+                                -51.611990987055755
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 33,
+                "id": "RGA_YPF_03",
+                "icao": "SAWE",
+                "iata": "RGA",
+                "name": "RGA - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Río Grande",
+                "nombre_aeroplanta": "RGA - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 6512.42,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada_componentes_no_individualizados",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-11-30",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651edc4e712d3",
+                "aip_pagina": "SAWE AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto, pero no individualiza por separado todos los polígonos de la base ni confirma su operador. Se conservan las geometrías y la atribución histórica.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado_parcial"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -67.751323072741769,
+                                -53.782615894334491
+                            ],
+                            [
+                                -67.751359779680243,
+                                -53.781905860028864
+                            ],
+                            [
+                                -67.750107004529497,
+                                -53.781886355395486
+                            ],
+                            [
+                                -67.750070095006336,
+                                -53.782592030467086
+                            ],
+                            [
+                                -67.751323072741769,
+                                -53.782615894334491
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 34,
+                "id": "FTE_YPF",
+                "icao": "SAWC",
+                "iata": "FTE",
+                "name": "FTE - Aeroplanta YPF",
+                "descriptio": "JET A1 - Avgas 100LL",
+                "aeropuerto": "El Calafate / Comandante Armando Tola",
+                "nombre_aeroplanta": "FTE - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 2167.93,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-11-30",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651edb23416c7",
+                "aip_pagina": "SAWC AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -72.049113470297755,
+                                -50.283570524945617
+                            ],
+                            [
+                                -72.049079251842159,
+                                -50.283871125836754
+                            ],
+                            [
+                                -72.049975793579335,
+                                -50.283942668640009
+                            ],
+                            [
+                                -72.049978847708815,
+                                -50.283625132176553
+                            ],
+                            [
+                                -72.049113470297755,
+                                -50.283570524945617
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 35,
+                "id": "CRD_YPF",
+                "icao": "SAVC",
+                "iata": "CRD",
+                "name": "CRD - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Comodoro Rivadavia / Gral. E. Mosconi",
+                "nombre_aeroplanta": "CRD - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 4626.39,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2025-11-27",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68dea1f76e25e",
+                "aip_pagina": "SAVC AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -67.474337801120342,
+                                -45.79009668494777
+                            ],
+                            [
+                                -67.473344129478221,
+                                -45.790057620371542
+                            ],
+                            [
+                                -67.473296882744862,
+                                -45.790606717126245
+                            ],
+                            [
+                                -67.474298086641497,
+                                -45.790618750071218
+                            ],
+                            [
+                                -67.474337801120342,
+                                -45.79009668494777
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 36,
+                "id": "BRC_YPF",
+                "icao": "SAZS",
+                "iata": "BRC",
+                "name": "BRC - Aeroplanta YPF",
+                "descriptio": "JET A1  / Avgas 100LL",
+                "aeropuerto": "San Carlos de Bariloche / San Carlos de Bariloche",
+                "nombre_aeroplanta": "BRC - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 2665.66,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "operador_identificado_en_aip",
+                "denominacion_aip": "PLANTA DE COMBUSTIBLE",
+                "operador_confirmado_aip": true,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2026-06-11",
+                "tipo_fuente": "AIP AD-2.B",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69f1f54c15953",
+                "aip_pagina": "SAZS AD2.B1",
+                "nota_fuente": "El AIP rotula YPF y PLANTA COMBUSTIBLE. La geometría se conserva de la base actual.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -71.160404742959045,
+                                -41.147249699418516
+                            ],
+                            [
+                                -71.160201336404057,
+                                -41.14690009210085
+                            ],
+                            [
+                                -71.159513241334906,
+                                -41.147150574172052
+                            ],
+                            [
+                                -71.159728006264601,
+                                -41.147488907631384
+                            ],
+                            [
+                                -71.160404742959045,
+                                -41.147249699418516
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 37,
+                "id": "MDQ_YPF",
+                "icao": "SAZM",
+                "iata": "MDQ",
+                "name": "MDQ - Aeroplanta YPF",
+                "descriptio": "JET A1 - Avgas 100LL",
+                "aeropuerto": "Mar del Plata / Astor Piazzolla",
+                "nombre_aeroplanta": "MDQ - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 5114.16,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2025-11-27",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68dea30306f10",
+                "aip_pagina": "SAZM AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -57.582935454589069,
+                                -37.932691411527919
+                            ],
+                            [
+                                -57.583548922263624,
+                                -37.932390375034686
+                            ],
+                            [
+                                -57.583060174063341,
+                                -37.931783363790075
+                            ],
+                            [
+                                -57.582435964077717,
+                                -37.93208901803547
+                            ],
+                            [
+                                -57.582935454589069,
+                                -37.932691411527919
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 38,
+                "id": "CNQ_YPF",
+                "icao": "SARC",
+                "iata": "CNQ",
+                "name": "CNQ - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Corrientes / Fernando Piragine Niveyro",
+                "nombre_aeroplanta": "CNQ - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 2852.16,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2025-06-12",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68066d8ddbfdd",
+                "aip_pagina": "SARC AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -58.757365171045102,
+                                -27.446080988830239
+                            ],
+                            [
+                                -58.756884866965116,
+                                -27.446138420736268
+                            ],
+                            [
+                                -58.756961941003759,
+                                -27.446668369334603
+                            ],
+                            [
+                                -58.75744174510892,
+                                -27.446618589013731
+                            ],
+                            [
+                                -58.757365171045102,
+                                -27.446080988830239
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 39,
+                "id": "RES_YPF",
+                "icao": "SARE",
+                "iata": "RES",
+                "name": "RES - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Resistencia",
+                "nombre_aeroplanta": "RES - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 2474.37,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2025-06-12",
+                "tipo_fuente": "AIP AD-2.B",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-680122278889d",
+                "aip_pagina": "SARE AD2.B1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -59.046486202038125,
+                                -27.44989023920656
+                            ],
+                            [
+                                -59.046788714798815,
+                                -27.449621157885698
+                            ],
+                            [
+                                -59.04636407243445,
+                                -27.449252584504165
+                            ],
+                            [
+                                -59.046058076387297,
+                                -27.44950540024481
+                            ],
+                            [
+                                -59.046486202038125,
+                                -27.44989023920656
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 40,
+                "id": "FMA_YPF",
+                "icao": "SARF",
+                "iata": "FMA",
+                "name": "FMA - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Formosa / Formosa",
+                "nombre_aeroplanta": "FMA - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 1939.68,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "PLANTA DE COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2026-06-11",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10df95a1e0",
+                "aip_pagina": "SARF AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -58.229253144304643,
+                                -26.211954235376208
+                            ],
+                            [
+                                -58.229545967111449,
+                                -26.211791068206992
+                            ],
+                            [
+                                -58.229260843396986,
+                                -26.211363659779149
+                            ],
+                            [
+                                -58.228956152681732,
+                                -26.211526181115879
+                            ],
+                            [
+                                -58.229253144304643,
+                                -26.211954235376208
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 41,
+                "id": "RCQ_YPF",
+                "icao": "SATR",
+                "iata": "RCQ",
+                "name": "RCQ - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Reconquista",
+                "nombre_aeroplanta": "RCQ - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 10873.11,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2025-06-12",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6807dda674ee2",
+                "aip_pagina": "SATR AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -59.694006689880503,
+                                -29.202279545576829
+                            ],
+                            [
+                                -59.693060891788754,
+                                -29.202384221510453
+                            ],
+                            [
+                                -59.693208943407164,
+                                -29.203435915198838
+                            ],
+                            [
+                                -59.694140292849021,
+                                -29.203348558157842
+                            ],
+                            [
+                                -59.694006689880503,
+                                -29.202279545576829
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 42,
+                "id": "NQN_YPF",
+                "icao": "SAZN",
+                "iata": "NQN",
+                "name": "NQN - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Neuquén / Presidente Perón",
+                "nombre_aeroplanta": "NQN - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 3521.3,
+                "confirmado_aip": null,
+                "nivel_confirmacion_aip": "no_individualizado_en_aip_revisado",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2025-06-12",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-680129812bd52",
+                "aip_pagina": "SAZN AD2.A1",
+                "nota_fuente": "En los planos AIP revisados no se individualizó una instalación de combustible que permita validar este polígono. Se conserva la geometría y la atribución histórica sin interpretarla como desmentida.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "pendiente_documental"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -68.144703669688553,
+                                -38.953364418198205
+                            ],
+                            [
+                                -68.144627124907942,
+                                -38.952908221798275
+                            ],
+                            [
+                                -68.143825586952673,
+                                -38.952999999677083
+                            ],
+                            [
+                                -68.143910740117121,
+                                -38.95344436488503
+                            ],
+                            [
+                                -68.144703669688553,
+                                -38.953364418198205
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 43,
+                "id": "SFN_YPF",
+                "icao": "SAAV",
+                "iata": "SFN",
+                "name": "SFN - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Santa Fe / Sauce Viejo",
+                "nombre_aeroplanta": "SFN - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 3588.96,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-11-30",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651f006da4239",
+                "aip_pagina": "SAAV AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -60.807690653808109,
+                                -31.711905201040839
+                            ],
+                            [
+                                -60.807185789688567,
+                                -31.712079762639313
+                            ],
+                            [
+                                -60.807490027453447,
+                                -31.712649214788897
+                            ],
+                            [
+                                -60.807994283149668,
+                                -31.712485592410577
+                            ],
+                            [
+                                -60.807690653808109,
+                                -31.711905201040839
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 44,
+                "id": "PRA_YPF",
+                "icao": "SAAP",
+                "iata": "PRA",
+                "name": "PRA - Aeroplanta YPF",
+                "descriptio": null,
+                "aeropuerto": "Paraná / General Justo José de Urquiza",
+                "nombre_aeroplanta": "PRA - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": null,
+                "area_m2": 762.11,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-11-30",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651effaf11078",
+                "aip_pagina": "SAAP AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -60.483494220941431,
+                                -31.790305129058268
+                            ],
+                            [
+                                -60.483173268615737,
+                                -31.79034314737692
+                            ],
+                            [
+                                -60.483204388587204,
+                                -31.790561640768509
+                            ],
+                            [
+                                -60.483530465905339,
+                                -31.790527797421021
+                            ],
+                            [
+                                -60.483494220941431,
+                                -31.790305129058268
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 45,
+                "id": "ROS_YPF",
+                "icao": "SAAR",
+                "iata": "ROS",
+                "name": "ROS - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Rosario / Islas Malvinas",
+                "nombre_aeroplanta": "ROS - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 8732.51,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2026-06-11",
+                "tipo_fuente": "AIP AD-2.B",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10590d556a",
+                "aip_pagina": "SAAR AD2.B1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -60.777441172997904,
+                                -32.909591118441632
+                            ],
+                            [
+                                -60.77662942990947,
+                                -32.909849811686826
+                            ],
+                            [
+                                -60.777041607764737,
+                                -32.910751837855258
+                            ],
+                            [
+                                -60.777857096801412,
+                                -32.910496625388618
+                            ],
+                            [
+                                -60.777441172997904,
+                                -32.909591118441632
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 46,
+                "id": "EPA_YPF",
+                "icao": "SADP",
+                "iata": "EPA",
+                "name": "EPA - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "El Palomar / El Palomar",
+                "nombre_aeroplanta": "EPA - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 9300.32,
+                "confirmado_aip": null,
+                "nivel_confirmacion_aip": "no_individualizado_en_aip_revisado",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-11-30",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651ec55ece2f9",
+                "aip_pagina": "SADP AD2.A1",
+                "nota_fuente": "En los planos AIP revisados no se individualizó una instalación de combustible que permita validar este polígono. Se conserva la geometría y la atribución histórica sin interpretarla como desmentida.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "pendiente_documental"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -58.605035336039968,
+                                -34.615767747453752
+                            ],
+                            [
+                                -58.605622452070733,
+                                -34.615576783517668
+                            ],
+                            [
+                                -58.605225357311241,
+                                -34.614757326284774
+                            ],
+                            [
+                                -58.604261100437611,
+                                -34.615069446498637
+                            ],
+                            [
+                                -58.604669158400739,
+                                -34.61589767306657
+                            ],
+                            [
+                                -58.605035336039968,
+                                -34.615767747453752
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 47,
+                "id": "CPC_YPF",
+                "icao": "SAZY",
+                "iata": "CPC",
+                "name": "CPC - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "San Martín de los Andes / Aviador Carlos Campos",
+                "nombre_aeroplanta": "CPC - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 842.71,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-11-30",
+                "tipo_fuente": "AIP AD-2.B",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651f0f1280544",
+                "aip_pagina": "SAZY AD2.B1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -71.144978720164033,
+                                -40.081530749830215
+                            ],
+                            [
+                                -71.144648943424585,
+                                -40.081394068746633
+                            ],
+                            [
+                                -71.144498803718363,
+                                -40.081600283734609
+                            ],
+                            [
+                                -71.144836106579149,
+                                -40.081737776794782
+                            ],
+                            [
+                                -71.144978720164033,
+                                -40.081530749830215
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 48,
+                "id": "RSA_YPF",
+                "icao": "SAZR",
+                "iata": "RSA",
+                "name": "RSA - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Santa Rosa",
+                "nombre_aeroplanta": "RSA - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 14322.77,
+                "confirmado_aip": null,
+                "nivel_confirmacion_aip": "no_individualizado_en_aip_revisado",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2025-06-12",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68012a4a97c56",
+                "aip_pagina": "SAZR AD2.A1",
+                "nota_fuente": "En los planos AIP revisados no se individualizó una instalación de combustible que permita validar este polígono. Se conserva la geometría y la atribución histórica sin interpretarla como desmentida.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "pendiente_documental"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -64.280818121449045,
+                                -36.592559612374181
+                            ],
+                            [
+                                -64.279310067884737,
+                                -36.59257533615142
+                            ],
+                            [
+                                -64.279318960006421,
+                                -36.593520796614136
+                            ],
+                            [
+                                -64.28084001463364,
+                                -36.593518650502041
+                            ],
+                            [
+                                -64.280818121449045,
+                                -36.592559612374181
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 49,
+                "id": "GPO_YPF",
+                "icao": "SAZG",
+                "iata": "GPO",
+                "name": "GPO - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "General Pico",
+                "nombre_aeroplanta": "GPO - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 419.4,
+                "confirmado_aip": null,
+                "nivel_confirmacion_aip": "sin_aip_en_corpus",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": null,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": null,
+                "tipo_fuente": null,
+                "url_fuente": null,
+                "aip_pagina": null,
+                "nota_fuente": "Geometría y atributos históricos conservados. No hay AIP AD-2.A/AD-2.B de este aeropuerto en el corpus revisado.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "pendiente_aip"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -63.758870576361339,
+                                -35.688652013508836
+                            ],
+                            [
+                                -63.758956292212531,
+                                -35.688461204895482
+                            ],
+                            [
+                                -63.75875101572489,
+                                -35.688408750890247
+                            ],
+                            [
+                                -63.758685731423427,
+                                -35.688569646503105
+                            ],
+                            [
+                                -63.758715039347365,
+                                -35.688608336352011
+                            ],
+                            [
+                                -63.758870576361339,
+                                -35.688652013508836
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 50,
+                "id": "COR_YPF",
+                "icao": "SACO",
+                "iata": "COR",
+                "name": "COR - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Córdoba / Ing. Ambrosio Taravella",
+                "nombre_aeroplanta": "COR - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 2340.1,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2025-11-27",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68de9bedbc48d",
+                "aip_pagina": "SACO AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -64.21280909047114,
+                                -31.317830970915256
+                            ],
+                            [
+                                -64.213104519145659,
+                                -31.317835084117803
+                            ],
+                            [
+                                -64.213087410999222,
+                                -31.317073754186875
+                            ],
+                            [
+                                -64.212794092044064,
+                                -31.317086306261771
+                            ],
+                            [
+                                -64.21280909047114,
+                                -31.317830970915256
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 51,
+                "id": "VDM_YPF",
+                "icao": "SAVV",
+                "iata": "VDM",
+                "name": "VDM - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Viedma / Gobernador Castello",
+                "nombre_aeroplanta": "VDM - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 2586.36,
+                "confirmado_aip": null,
+                "nivel_confirmacion_aip": "no_individualizado_en_aip_revisado",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-11-30",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651f0637b06dd",
+                "aip_pagina": "SAVV AD2.A1 | SAVV AD2.A2",
+                "nota_fuente": "En los planos AIP revisados no se individualizó una instalación de combustible que permita validar este polígono. Se conserva la geometría y la atribución histórica sin interpretarla como desmentida.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "pendiente_documental"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -63.004815903566929,
+                                -40.861101632860112
+                            ],
+                            [
+                                -63.005221780225376,
+                                -40.860771355661264
+                            ],
+                            [
+                                -63.005003300793199,
+                                -40.860598542345635
+                            ],
+                            [
+                                -63.005160421840522,
+                                -40.860483675197244
+                            ],
+                            [
+                                -63.005020838152923,
+                                -40.860364392142777
+                            ],
+                            [
+                                -63.004429531252121,
+                                -40.860830877517728
+                            ],
+                            [
+                                -63.004815903566929,
+                                -40.861101632860112
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 52,
+                "id": "REL_YPF",
+                "icao": "SAVT",
+                "iata": "REL",
+                "name": "REL - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Trelew / Almirante Marcos A. Zar",
+                "nombre_aeroplanta": "REL - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 3438.5,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-11-30",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651ed93d6b7c0",
+                "aip_pagina": "SAVT AD2.A1",
+                "nota_fuente": "El AIP publica una instalación/surtidor de combustible en el aeropuerto. La geometría y el operador de la base se conservan; el operador no se infiere del AIP salvo indicación expresa.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -65.28915084923905,
+                                -43.211501657480049
+                            ],
+                            [
+                                -65.289369998994857,
+                                -43.211109496186289
+                            ],
+                            [
+                                -65.28852131488371,
+                                -43.210876529998188
+                            ],
+                            [
+                                -65.288316277155403,
+                                -43.211273177507451
+                            ],
+                            [
+                                -65.28915084923905,
+                                -43.211501657480049
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 53,
+                "id": "VME_YPF",
+                "icao": "SAOR",
+                "iata": "VME",
+                "name": "VME - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "Villa Mercedes",
+                "nombre_aeroplanta": "VME - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 13964.77,
+                "confirmado_aip": null,
+                "nivel_confirmacion_aip": "sin_aip_en_corpus",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": null,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": null,
+                "tipo_fuente": null,
+                "url_fuente": null,
+                "aip_pagina": null,
+                "nota_fuente": "Geometría y atributos históricos conservados. No hay AIP AD-2.A/AD-2.B de este aeropuerto en el corpus revisado.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "pendiente_aip"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -65.378332878689747,
+                                -33.715774538387073
+                            ],
+                            [
+                                -65.376557804644449,
+                                -33.716174311034052
+                            ],
+                            [
+                                -65.376782844285557,
+                                -33.716882291635656
+                            ],
+                            [
+                                -65.378552039710257,
+                                -33.716501720183508
+                            ],
+                            [
+                                -65.378332878689747,
+                                -33.715774538387073
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 54,
+                "id": "LPG_YPF",
+                "icao": "SADL",
+                "iata": "LPG",
+                "name": "LPG - Aeroplanta YPF",
+                "descriptio": null,
+                "aeropuerto": "La Plata",
+                "nombre_aeroplanta": "LPG - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": null,
+                "area_m2": 540.12,
+                "confirmado_aip": null,
+                "nivel_confirmacion_aip": "sin_aip_en_corpus",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": null,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": null,
+                "tipo_fuente": null,
+                "url_fuente": null,
+                "aip_pagina": null,
+                "nota_fuente": "Geometría y atributos históricos conservados. No hay AIP AD-2.A/AD-2.B de este aeropuerto en el corpus revisado.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "pendiente_aip"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -57.89471570773533,
+                                -34.965443214968474
+                            ],
+                            [
+                                -57.894480585985576,
+                                -34.965491062909365
+                            ],
+                            [
+                                -57.894548873592399,
+                                -34.965709333945725
+                            ],
+                            [
+                                -57.894771918529379,
+                                -34.965665432029901
+                            ],
+                            [
+                                -57.89471570773533,
+                                -34.965443214968474
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 55,
+                "id": "LGS_YPF",
+                "icao": "SAMM",
+                "iata": "LGS",
+                "name": "LGS - Aeroplanta YPF",
+                "descriptio": null,
+                "aeropuerto": "Malargüe / Comodoro D. Ricardo Salomón",
+                "nombre_aeroplanta": "LGS - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": null,
+                "area_m2": 357.76,
+                "confirmado_aip": null,
+                "nivel_confirmacion_aip": "no_individualizado_en_aip_revisado",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2025-06-12",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68011d0f6de65",
+                "aip_pagina": "SAMM AD2.A1 | SAMM AD2.A2",
+                "nota_fuente": "En los planos AIP revisados no se individualizó una instalación de combustible que permita validar este polígono. Se conserva la geometría y la atribución histórica sin interpretarla como desmentida.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "pendiente_documental"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -69.5846543604017,
+                                -35.482821068095973
+                            ],
+                            [
+                                -69.58449547654277,
+                                -35.482821851671645
+                            ],
+                            [
+                                -69.584493146077008,
+                                -35.483041691381075
+                            ],
+                            [
+                                -69.584659485921705,
+                                -35.483038217708163
+                            ],
+                            [
+                                -69.5846543604017,
+                                -35.482821068095973
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 56,
+                "id": "RHD_LAION_SRL",
+                "icao": "SANR",
+                "iata": "RHD",
+                "name": "RHD - Aeroplanta LAION SRL",
+                "descriptio": null,
+                "aeropuerto": "Termas de Río Hondo",
+                "nombre_aeroplanta": "RHD - Aeroplanta LAION SRL",
+                "operador": "LAION SRL",
+                "combustibles": null,
+                "area_m2": 5720.96,
+                "confirmado_aip": null,
+                "nivel_confirmacion_aip": "no_individualizado_en_aip_revisado",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2026-06-11",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10992324d6",
+                "aip_pagina": "SANR AD2.A1",
+                "nota_fuente": "En los planos AIP revisados no se individualizó una instalación de combustible que permita validar este polígono. Se conserva la geometría y la atribución histórica sin interpretarla como desmentida.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "pendiente_documental"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -64.934720010138406,
+                                -27.508313351955675
+                            ],
+                            [
+                                -64.93468510289226,
+                                -27.50820548118131
+                            ],
+                            [
+                                -64.934211239611727,
+                                -27.508058447122131
+                            ],
+                            [
+                                -64.934080189376544,
+                                -27.508097822674412
+                            ],
+                            [
+                                -64.933876607735129,
+                                -27.508707541601034
+                            ],
+                            [
+                                -64.933888540010685,
+                                -27.508801499868497
+                            ],
+                            [
+                                -64.934375003060154,
+                                -27.508944882868199
+                            ],
+                            [
+                                -64.934519351847399,
+                                -27.508886463301309
+                            ],
+                            [
+                                -64.934720010138406,
+                                -27.508313351955675
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 57,
+                "id": "EZE_AXION",
+                "icao": "SAEZ",
+                "iata": "EZE",
+                "name": "EZE - Aeroplanta AXION",
+                "descriptio": "JET A1",
+                "aeropuerto": "Ezeiza / Ministro Pistarini",
+                "nombre_aeroplanta": "EZE - Aeroplanta AXION",
+                "operador": "AXION",
+                "combustibles": "JET A1",
+                "area_m2": 674.44,
+                "confirmado_aip": null,
+                "nivel_confirmacion_aip": "no_individualizado_en_aip_revisado",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2023-11-30",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651ec6aea3d78",
+                "aip_pagina": "SAEZ AD2.A1 | SAEZ AD2.A2",
+                "nota_fuente": "En los planos AIP revisados no se individualizó una instalación de combustible que permita validar este polígono. Se conserva la geometría y la atribución histórica sin interpretarla como desmentida.",
+                "metodo_extraccion": "Geometría original conservada; área recalculada sobre WGS84; instalación, operador y combustibles revisados separadamente contra AIP.",
+                "estado_revision": "pendiente_documental"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -58.54036979157496,
+                                -34.810624315997529
+                            ],
+                            [
+                                -58.540152784731276,
+                                -34.810565781256855
+                            ],
+                            [
+                                -58.540047136662565,
+                                -34.810842750517963
+                            ],
+                            [
+                                -58.540265571182886,
+                                -34.810901285258637
+                            ],
+                            [
+                                -58.54036979157496,
+                                -34.810624315997529
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 10,
+                "id": "UAQ_YPF_OFICINA",
+                "icao": "SANU",
+                "iata": "UAQ",
+                "name": "UAQ - Aeroplanta YPF",
+                "descriptio": "Oficina YPF",
+                "aeropuerto": "San Juan / Domingo F. Sarmiento",
+                "nombre_aeroplanta": "UAQ - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": null,
+                "area_m2": 702.34,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2025-11-27",
+                "tipo_fuente": "AIP AD-2.B",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68dea06377505",
+                "aip_pagina": "SANU AD2.B1",
+                "nota_fuente": "El AIP publica una instalación de combustible en UAQ. Este polígono fue identificado en el GeoJSON actualizado como Oficina YPF; el AIP no individualiza esta edificación ni confirma al operador.",
+                "metodo_extraccion": "Geometría del GeoJSON actualizado conservada; área recalculada sobre WGS84; instalación revisada contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -68.422974175928587,
+                                -31.572579848503018
+                            ],
+                            [
+                                -68.422540665671761,
+                                -31.572413847804057
+                            ],
+                            [
+                                -68.422450230102385,
+                                -31.572507906607218
+                            ],
+                            [
+                                -68.422622428494108,
+                                -31.572592857813802
+                            ],
+                            [
+                                -68.422700491765028,
+                                -31.572622705535036
+                            ],
+                            [
+                                -68.422893353963758,
+                                -31.572716840655847
+                            ],
+                            [
+                                -68.422974175928587,
+                                -31.572579848503018
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 58,
+                "id": "UAQ_YPF_COMBUSTIBLE_01",
+                "icao": "SANU",
+                "iata": "UAQ",
+                "name": "UAQ - Aeroplanta YPF",
+                "descriptio": "JET A1 / Avgas 100LL",
+                "aeropuerto": "San Juan / Domingo F. Sarmiento",
+                "nombre_aeroplanta": "UAQ - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1 | AVGAS 100 LL",
+                "area_m2": 260.46,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2025-11-27",
+                "tipo_fuente": "AIP AD-2.B",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68dea06377505",
+                "aip_pagina": "SANU AD2.B1",
+                "nota_fuente": "El AIP publica una instalación de combustible. La geometría y la descripción de combustibles provienen del GeoJSON actualizado; el operador y los combustibles no se infieren del AIP.",
+                "metodo_extraccion": "Geometría del GeoJSON actualizado conservada; área recalculada sobre WGS84; instalación revisada contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -68.422365852890437,
+                                -31.572579655937112
+                            ],
+                            [
+                                -68.422184470584483,
+                                -31.572421233416726
+                            ],
+                            [
+                                -68.422105833318923,
+                                -31.572487816794862
+                            ],
+                            [
+                                -68.422292381576625,
+                                -31.572649683283082
+                            ],
+                            [
+                                -68.422292381576625,
+                                -31.572649683283082
+                            ],
+                            [
+                                -68.422365852890437,
+                                -31.572579655937112
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 59,
+                "id": "UAQ_YPF_COMBUSTIBLE_02",
+                "icao": "SANU",
+                "iata": "UAQ",
+                "name": "UAQ - Aeroplanta YPF",
+                "descriptio": "JET A1",
+                "aeropuerto": "San Juan / Domingo F. Sarmiento",
+                "nombre_aeroplanta": "UAQ - Aeroplanta YPF",
+                "operador": "YPF",
+                "combustibles": "JET A1",
+                "area_m2": 1222.94,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2025-11-27",
+                "tipo_fuente": "AIP AD-2.B",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68dea06377505",
+                "aip_pagina": "SANU AD2.B1",
+                "nota_fuente": "El AIP publica una instalación de combustible. La geometría y la descripción de combustible provienen del GeoJSON actualizado; el operador y el combustible no se infieren del AIP.",
+                "metodo_extraccion": "Geometría del GeoJSON actualizado conservada; área recalculada sobre WGS84; instalación revisada contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -68.422033509994392,
+                                -31.573050331541161
+                            ],
+                            [
+                                -68.421728144846398,
+                                -31.572797773899964
+                            ],
+                            [
+                                -68.421505434926431,
+                                -31.572988340120141
+                            ],
+                            [
+                                -68.421813096052986,
+                                -31.573247785697006
+                            ],
+                            [
+                                -68.421813096052986,
+                                -31.573247785697006
+                            ],
+                            [
+                                -68.422033509994392,
+                                -31.573050331541161
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 60,
+                "id": "PMQ_SANDIN_01",
+                "icao": null,
+                "iata": "PMQ",
+                "name": "aeroplanta",
+                "descriptio": "Sandin Hnos. SRL",
+                "aeropuerto": "Perito Moreno",
+                "nombre_aeroplanta": "PMQ - Aeroplanta Sandin Hnos. SRL",
+                "operador": "Sandin Hnos. SRL",
+                "combustibles": null,
+                "area_m2": 304.03,
+                "confirmado_aip": false,
+                "nivel_confirmacion_aip": "sin_aip_en_corpus",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": null,
+                "tipo_fuente": null,
+                "url_fuente": null,
+                "aip_pagina": null,
+                "nota_fuente": "La geometría y la referencia a Sandin Hnos. SRL provienen del GeoJSON actualizado. No se dispone de AIP de PMQ en el corpus revisado, por lo que la instalación queda pendiente de verificación documental.",
+                "metodo_extraccion": "Geometría del GeoJSON actualizado conservada; área recalculada sobre WGS84; sin validación AIP disponible en el corpus.",
+                "estado_revision": "pendiente_aip"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -70.983071310940574,
+                                -46.538469379491566
+                            ],
+                            [
+                                -70.982874025325557,
+                                -46.538528047217355
+                            ],
+                            [
+                                -70.982980584202323,
+                                -46.538684437940908
+                            ],
+                            [
+                                -70.983160628879588,
+                                -46.538634662791935
+                            ],
+                            [
+                                -70.983160628879588,
+                                -46.538634662791935
+                            ],
+                            [
+                                -70.983071310940574,
+                                -46.538469379491566
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 61,
+                "id": "PMQ_SANDIN_02",
+                "icao": null,
+                "iata": "PMQ",
+                "name": "aeroplanta",
+                "descriptio": "Sandin Hnos. SRL",
+                "aeropuerto": "Perito Moreno",
+                "nombre_aeroplanta": "PMQ - Aeroplanta Sandin Hnos. SRL",
+                "operador": "Sandin Hnos. SRL",
+                "combustibles": null,
+                "area_m2": 30.99,
+                "confirmado_aip": false,
+                "nivel_confirmacion_aip": "sin_aip_en_corpus",
+                "denominacion_aip": null,
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": null,
+                "tipo_fuente": null,
+                "url_fuente": null,
+                "aip_pagina": null,
+                "nota_fuente": "La geometría y la referencia a Sandin Hnos. SRL provienen del GeoJSON actualizado. No se dispone de AIP de PMQ en el corpus revisado, por lo que la instalación queda pendiente de verificación documental.",
+                "metodo_extraccion": "Geometría del GeoJSON actualizado conservada; área recalculada sobre WGS84; sin validación AIP disponible en el corpus.",
+                "estado_revision": "pendiente_aip"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -70.983399510812319,
+                                -46.538361186374487
+                            ],
+                            [
+                                -70.983374528532906,
+                                -46.538323892791254
+                            ],
+                            [
+                                -70.983453702864153,
+                                -46.53829464586186
+                            ],
+                            [
+                                -70.983477673574711,
+                                -46.538331370348473
+                            ],
+                            [
+                                -70.983477673574711,
+                                -46.538331370348473
+                            ],
+                            [
+                                -70.983399510812319,
+                                -46.538361186374487
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 62,
+                "id": "COC_COMBUSTIBLE",
+                "icao": "SAAC",
+                "iata": "COC",
+                "name": "aeroplanta",
+                "descriptio": null,
+                "aeropuerto": "Concordia / Comodoro Pierrestegui",
+                "nombre_aeroplanta": "COC - Aeroplanta",
+                "operador": null,
+                "combustibles": null,
+                "area_m2": 2956.93,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2026-06-11",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e103d200150",
+                "aip_pagina": "SAAC AD2.A1",
+                "nota_fuente": "El AIP publica expresamente una instalación de combustible. La geometría fue incorporada en el GeoJSON actualizado; operador y combustibles no se infieren del AIP.",
+                "metodo_extraccion": "Geometría incorporada por la usuaria; área recalculada sobre WGS84; existencia de la instalación verificada contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -58.003147287570776,
+                                -31.302800528169826
+                            ],
+                            [
+                                -58.003037269272966,
+                                -31.302371069002245
+                            ],
+                            [
+                                -58.00240166596722,
+                                -31.302516597649195
+                            ],
+                            [
+                                -58.002543613828962,
+                                -31.30293449654593
+                            ],
+                            [
+                                -58.003147287570776,
+                                -31.302800528169826
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 63,
+                "id": "FDO_PLANTA_COMBUSTIBLE",
+                "icao": "SADF",
+                "iata": "FDO",
+                "name": "aeroplanta",
+                "descriptio": null,
+                "aeropuerto": "San Fernando / San Fernando",
+                "nombre_aeroplanta": "FDO - Planta de combustible",
+                "operador": null,
+                "combustibles": null,
+                "area_m2": 2387.75,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "PLANTA DE COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2024-07-11",
+                "tipo_fuente": "AIP AD-2.A",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-66462d9ad4794",
+                "aip_pagina": "SADF AD2.A1",
+                "nota_fuente": "El AIP publica expresamente una PLANTA DE COMBUSTIBLE. La geometría fue incorporada en el GeoJSON actualizado; operador y combustibles no se infieren del AIP.",
+                "metodo_extraccion": "Geometría incorporada por la usuaria; área recalculada sobre WGS84; existencia de la instalación verificada contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -58.593299452480323,
+                                -34.460037846518098
+                            ],
+                            [
+                                -58.592814239007311,
+                                -34.459825629382294
+                            ],
+                            [
+                                -58.592785913964399,
+                                -34.459864312917418
+                            ],
+                            [
+                                -58.592662111895919,
+                                -34.459807325468759
+                            ],
+                            [
+                                -58.592864757217576,
+                                -34.459482902436655
+                            ],
+                            [
+                                -58.593053513157592,
+                                -34.459569133935901
+                            ],
+                            [
+                                -58.593061903374114,
+                                -34.459556628375701
+                            ],
+                            [
+                                -58.593481959686109,
+                                -34.459743435711765
+                            ],
+                            [
+                                -58.593299452480323,
+                                -34.460037846518098
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "gid": 64,
+                "id": "TDL_COMBUSTIBLE",
+                "icao": "SAZT",
+                "iata": "TDL",
+                "name": "aeroplanta",
+                "descriptio": null,
+                "aeropuerto": "Tandil / Héroes de Malvinas",
+                "nombre_aeroplanta": "TDL - Aeroplanta",
+                "operador": null,
+                "combustibles": null,
+                "area_m2": 754.12,
+                "confirmado_aip": true,
+                "nivel_confirmacion_aip": "instalacion_publicada",
+                "denominacion_aip": "COMBUSTIBLE",
+                "operador_confirmado_aip": false,
+                "combustibles_confirmados_aip": null,
+                "fecha_doc": "2025-06-12",
+                "tipo_fuente": "AIP AD-2.A + AD-2.B",
+                "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68012add4eaef",
+                "aip_pagina": "SAZT AD2.A1 | SAZT AD2.B1",
+                "nota_fuente": "La instalación de combustible figura expresamente en los planos AIP. La geometría fue incorporada en el GeoJSON actualizado; operador y combustibles no se infieren del AIP.",
+                "metodo_extraccion": "Geometría incorporada por la usuaria; área recalculada sobre WGS84; existencia de la instalación verificada contra AIP.",
+                "estado_revision": "actualizado"
+            },
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                -59.233369625021083,
+                                -37.240363698517633
+                            ],
+                            [
+                                -59.233140267271672,
+                                -37.240216134731213
+                            ],
+                            [
+                                -59.233362790392405,
+                                -37.240018600328
+                            ],
+                            [
+                                -59.233583272388287,
+                                -37.240175487675458
+                            ],
+                            [
+                                -59.233369625021083,
+                                -37.240363698517633
+                            ]
+                        ]
+                    ]
+                ]
+            }
+        }
+    ]
 }
