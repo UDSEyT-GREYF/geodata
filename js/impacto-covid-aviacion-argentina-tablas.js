@@ -1942,7 +1942,7 @@ return `
               })
               .join("")}
 
-            ${
+           ${
   REPORT_VARIANT.includeSemester2026
     ? `
         <td class="semester-current-col">
@@ -1959,34 +1959,34 @@ return `
               row.semester2026Variation
             )}
           </span>
-
-          ${
-            hasClosure2026H1
-              ? `
-                <span class="airport-closure-note">
-                  ** cierre operativo en 1S 2026
-                </span>
-              `
-              : ""
-          }
         </td>
       `
     : ""
 }
 
-            <td class="valuation">
-              ${escapeHtml(row.valuation)}
-            
-              ${
-                hasClosure2025
-                  ? `
-                    <span class="airport-closure-note">
-                      * cierre operativo en 2025
-                    </span>
-                  `
-                  : ""
-              }
-            </td>
+<td class="valuation">
+  ${escapeHtml(row.valuation)}
+
+  ${
+    hasClosure2025
+      ? `
+        <span class="airport-closure-note">
+          * cierre operativo en 2025
+        </span>
+      `
+      : ""
+  }
+
+  ${
+    hasClosure2026H1
+      ? `
+        <span class="airport-closure-note">
+          ** cierre operativo en 1S 2026
+        </span>
+      `
+      : ""
+  }
+</td>
           </tr>
         `;
       })
