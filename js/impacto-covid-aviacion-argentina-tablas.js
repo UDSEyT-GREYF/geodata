@@ -54,6 +54,7 @@ const VISIBLE_AIRPORT_GROUPS =
   let airportNameByIata = new Map();
   let airportGroupByIata = new Map();
   let airportClosure2025ByIata = new Map();
+  let airportClosure2026H1ByIata = new Map();
   
   const $ = id => document.getElementById(id);
 
@@ -241,6 +242,52 @@ function buildAirportClosure2025Index(data) {
 
   return index;
 }
+
+function buildAirportClosure2026H1Index(data) {
+  const index = new Map();
+
+  const events = Array.isArray(data?.eventos)
+    ? data.eventos
+    : [];
+
+  events
+    .filter(event => {
+      if (event?.usar_en_informe !== true) {
+        return false;
+      }
+
+      const start = String(
+        event?.fecha_inicio || ""
+      );
+
+      const end = String(
+        event?.fecha_fin || ""
+      );
+
+      return (
+        start <= "2026-06-30" &&
+        end >= "2026-01-01"
+      );
+    })
+    .forEach(event => {
+      const iata = String(
+        event?.iata || ""
+      )
+        .trim()
+        .toUpperCase();
+
+      if (!iata) return;
+
+      if (!index.has(iata)) {
+        index.set(iata, []);
+      }
+
+      index.get(iata).push(event);
+    });
+
+  return index;
+}
+  
 function isVisibleAirportRow(row) {
   /*
     SNA y AEP+EZE son filas agregadas.
@@ -828,6 +875,12 @@ if (annualVar >= -20) {
         shortLabel: conclusionLabel(row),
         closureEvents2025:
           airportClosure2025ByIata.get(
+            String(row?.iata || "")
+              .trim()
+              .toUpperCase()
+          ) || [],
+        closureEvents2026H1:
+          airportClosure2026H1ByIata.get(
             String(row?.iata || "")
               .trim()
               .toUpperCase()
@@ -1822,10 +1875,29 @@ function renderPassengerTable(
                       .filter(Boolean)
                       .join(" ")
                   )}"
-                >†</span>
+                >*</span>
               `
               : ""
           }
+          ${
+  hasClosure2026H1
+    ? `
+      <span
+        class="airport-closure-marker"
+        title="${escapeHtml(
+          row.closureEvents2026H1
+            .map(event =>
+              event.texto_fuente_resumido ||
+              event.motivo ||
+              ""
+            )
+            .filter(Boolean)
+            .join(" ")
+        )}"
+      >**</span>
+    `
+    : ""
+}
         </td>
 
             ${reportConfig.years
@@ -1889,8 +1961,7 @@ function renderPassengerTable(
                 hasClosure2025
                   ? `
                     <span class="airport-closure-note">
-                      † cierre o suspensión
-                      operativa en 2025
+                      * cierre operativo en 2025
                     </span>
                   `
                   : ""
@@ -2693,6 +2764,10 @@ airportGroupByIata =
       
 airportClosure2025ByIata =
   buildAirportClosure2025Index(
+    airportClosures
+  );
+airportClosure2026H1ByIata =
+  buildAirportClosure2026H1Index(
     airportClosures
   );
 renderReportVariant();
