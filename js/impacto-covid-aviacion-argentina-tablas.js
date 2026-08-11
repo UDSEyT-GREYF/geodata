@@ -1860,7 +1860,11 @@ if (hasClosure2025) {
     "airport-closure-2025-row"
   );
 }
-
+if (hasClosure2026H1) {
+  rowClasses.push(
+    "airport-closure-2026-row"
+  );
+}
 return `
       <tr class="${rowClasses.join(" ")}">
         <td class="airport-name">
@@ -1939,26 +1943,36 @@ return `
               .join("")}
 
             ${
-              REPORT_VARIANT.includeSemester2026
-                ? `
-                  <td class="semester-current-col">
-                    <span class="cell-main">
-                      ${fmt(row.semester2026Value)}
-                    </span>
+  REPORT_VARIANT.includeSemester2026
+    ? `
+        <td class="semester-current-col">
+          <span class="cell-main">
+            ${fmt(row.semester2026Value)}
+          </span>
 
-                    <span
-                      class="cell-var ${classForPct(
-                        row.semester2026Variation
-                      )}"
-                    >
-                      ${fmtPct(
-                        row.semester2026Variation
-                      )}
-                    </span>
-                  </td>
-                `
-                : ""
-            }
+          <span
+            class="cell-var ${classForPct(
+              row.semester2026Variation
+            )}"
+          >
+            ${fmtPct(
+              row.semester2026Variation
+            )}
+          </span>
+
+          ${
+            hasClosure2026H1
+              ? `
+                <span class="airport-closure-note">
+                  ** cierre operativo en 1S 2026
+                </span>
+              `
+              : ""
+          }
+        </td>
+      `
+    : ""
+}
 
             <td class="valuation">
               ${escapeHtml(row.valuation)}
