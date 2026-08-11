@@ -1846,16 +1846,22 @@ function renderPassengerTable(
     if (isNegativeValuation) {
       rowClasses.push("negative-valuation-row");
     }
-    const hasClosure2025 =
-        Array.isArray(row.closureEvents2025) &&
-        row.closureEvents2025.length > 0;
-      
-      if (hasClosure2025) {
-        rowClasses.push(
-          "airport-closure-2025-row"
-        );
-      }
-    return `
+const hasClosure2025 =
+  Array.isArray(row.closureEvents2025) &&
+  row.closureEvents2025.length > 0;
+
+const hasClosure2026H1 =
+  REPORT_VARIANT.includeSemester2026 &&
+  Array.isArray(row.closureEvents2026H1) &&
+  row.closureEvents2026H1.length > 0;
+
+if (hasClosure2025) {
+  rowClasses.push(
+    "airport-closure-2025-row"
+  );
+}
+
+return `
       <tr class="${rowClasses.join(" ")}">
         <td class="airport-name">
           ${escapeHtml(row.label)}
