@@ -36,7 +36,7 @@
     const MARGINAL_LABEL = "Volumen marginal";
     
     const CAB_ROWS_FIRST_PAGE = 10;
-    const CAB_ROWS_CONTINUATION_SNA = 24;
+    const CAB_ROWS_CONTINUATION_SNA = 30;
   
     const INT_ROWS_FIRST_PAGE_SNA = 11;
   /*
