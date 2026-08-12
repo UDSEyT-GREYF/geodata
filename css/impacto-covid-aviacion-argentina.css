@@ -1286,3 +1286,10 @@ h1 {
   font-size: 9px;
   line-height: 1.22;
 }
+.aggregate-table-note {
+  margin: 4px 2px 0;
+  font-size: 0.68rem;
+  line-height: 1.25;
+  color: #6b7280;
+  font-style: italic;
+}
