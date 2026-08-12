@@ -87,7 +87,7 @@
 {
   "tipo_tabla": "cabotaje",
   "iata": "BUE",
-  "aeropuerto": "Región Buenos Aires (AEP + EZE + EPA)",
+  "aeropuerto": "Región Buenos Aires (AEP + EZE)*",
   "es_sna": false,
   "es_aep_eze": true,
   "es_internacional_significativo": false,
@@ -2167,7 +2167,7 @@
       {
         "tipo_tabla": "internacional",
         "iata": "BUE",
-        "aeropuerto": "AEP + EZE Región Buenos Aires",
+        "aeropuerto": "Región Buenos Aires (AEP + EZE)*",
         "es_sna": false,
         "es_aep_eze": true,
         "es_internacional_significativo": true,
