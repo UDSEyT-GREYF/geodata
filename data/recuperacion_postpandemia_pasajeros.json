@@ -10,7 +10,7 @@
     "periodo_semestre": "2026 1S vs 2019 1S",
     "nota_tabla_visible": "La tabla HTML publicada no incorpora columnas semestrales; los datos 2019 1S y 2026 1S se incluyen solo en este JSON.",
     "nota_fdo": "FDO 2015-2017 se calcula desde rutasaereas.csv; FDO 2018-2025 mantiene la fuente especial de Aeropuertos Argentina; FDO 2026 1S se calcula desde Tabla rutasaereas2026_semestre1.csv.",
-    "nota_aep_eze": "AEP+EZE se calcula como suma de Aeroparque Jorge Newbery y Ezeiza para leer conjuntamente la redistribución metropolitana de vuelos regionales."
+    "nota_aep_eze": "AEP+EZE se calcula como suma de Aeroparque Jorge Newbery y Ezeiza (+EPA en 2019) para leer conjuntamente la redistribución metropolitana de vuelos regionales."
   },
   "parametros": {
     "international_significance": {
@@ -84,41 +84,54 @@
         "es_volumen_marginal": false,
         "valoracion": "Recuperación leve en cabotaje"
       },
-      {
-        "tipo_tabla": "cabotaje",
-        "iata": "BUE",
-        "aeropuerto": "AEP + EZE Región Buenos Aires",
-        "es_sna": false,
-        "es_aep_eze": true,
-        "es_internacional_significativo": false,
-        "pax_2015": 9611420,
-        "var_2015": -24.514351856287764,
-        "pax_2016": 10076056,
-        "var_2016": -20.86521888624776,
-        "pax_2017": 11427881,
-        "var_2017": -10.248329154878844,
-        "pax_2018": 11947746,
-        "var_2018": -6.165441665597249,
-        "pax_2019": 12732778,
-        "var_2019": 0,
-        "pax_2020": 2802000,
-        "var_2020": -77.99380465127092,
-        "pax_2021": 5702524,
-        "var_2021": -55.21382686480515,
-        "pax_2022": 12031560,
-        "var_2022": -5.50718782656856,
-        "pax_2023": 15409094,
-        "var_2023": 21.01910517877559,
-        "pax_2024": 14135077,
-        "var_2024": 11.013299689981238,
-        "pax_2025": 15893455,
-        "var_2025": 24.823153282025334,
-        "pax_2019_1s": 6158708,
-        "pax_2026_1s": 7199826,
-        "var_2026_1s": 16.90481185339523,
-        "es_volumen_marginal": false,
-        "valoracion": "Recuperación amplia"
-      },
+{
+  "tipo_tabla": "cabotaje",
+  "iata": "BUE",
+  "aeropuerto": "Región Buenos Aires (AEP + EZE + EPA)",
+  "es_sna": false,
+  "es_aep_eze": true,
+  "es_internacional_significativo": false,
+
+  "pax_2015": 9612554,
+  "var_2015": -32.47539694760303,
+
+  "pax_2016": 10077058,
+  "var_2016": -29.212429767782698,
+
+  "pax_2017": 11428729,
+  "var_2017": -19.71744563219954,
+
+  "pax_2018": 12637498,
+  "var_2018": -11.22629469488956,
+
+  "pax_2019": 14235632,
+  "var_2019": 0,
+
+  "pax_2020": 3186954,
+  "var_2020": -77.61283798288689,
+
+  "pax_2021": 5705745,
+  "var_2021": -59.919271585553766,
+
+  "pax_2022": 12034303,
+  "var_2022": -15.463514370138254,
+
+  "pax_2023": 15411933,
+  "var_2023": 8.263075359070825,
+
+  "pax_2024": 14139128,
+  "var_2024": -0.6779045707278719,
+
+  "pax_2025": 15897446,
+  "var_2025": 11.67362292028904,
+
+  "pax_2019_1s": 6791293,
+  "pax_2026_1s": 7199826,
+  "var_2026_1s": 6.015540781409379,
+
+  "es_volumen_marginal": false,
+  "valoracion": "Recuperación clara en cabotaje"
+}
       {
         "tipo_tabla": "cabotaje",
         "iata": "AEP",
