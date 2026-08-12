@@ -541,6 +541,7 @@ function buildGroupARemainderRow(
     El resto del Grupo A excluye:
     - AEP;
     - EZE;
+    - EPA;
     - agregados;
     - filas de total.
   */
@@ -555,6 +556,7 @@ function buildGroupARemainderRow(
       return (
         iata !== "AEP" &&
         iata !== "EZE" &&
+        iata !== "EPA" &&
         !row?.es_sna &&
         !row?.es_aep_eze &&
         !row?.es_grupo_a_resto &&
@@ -1694,7 +1696,7 @@ function renderCabotageTerritorialChart(
     <svg
       viewBox="0 0 ${width} ${height}"
       role="img"
-      aria-label="Evolución del tráfico de cabotaje del SNA, AEP más EZE y resto de aeropuertos del Grupo A. Índice 2019 igual a 100."
+      aria-label="Evolución del tráfico de cabotaje del SNA, Region BA (AEP más EZE +EPA solo en 2019, y resto de aeropuertos del Grupo A. Índice 2019 igual a 100."
     >
       ${horizontalGrid}
 
@@ -1750,7 +1752,7 @@ function renderCabotageTerritorialChart(
         x="${width - margin.right + 12}"
         y="${labelY.bue}"
         class="chart-last-label-bue"
-      >AEP+EZE: ${formatOneDecimal(last.bueIndex)}</text>
+      >Región Buenos Aires: ${formatOneDecimal(last.bueIndex)}</text>
 
       <text
         x="${width - margin.right + 12}"
@@ -2160,14 +2162,14 @@ cabSummary.innerHTML =
   ) +
   (
     bue
-      ? `Para AEP+EZE, la variación ${reportConfig.lastAnnualYear}/${reportConfig.baseYear} es <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong>. `
+      ? `Para Región Buenos Aires, la variación ${reportConfig.lastAnnualYear}/${reportConfig.baseYear} es <strong class="${classForPct(bue.currentVariation)}">${fmtPct(bue.currentVariation)}</strong>. `
       : ""
   ) +
   (
     REPORT_VARIANT.includeSemester2026 &&
     sna &&
     bue
-      ? `En el 1S 2026, frente al 1S 2019, las variaciones son <strong class="${classForPct(sna.semester2026Variation)}">${fmtPct(sna.semester2026Variation)}</strong> en el SNA y <strong class="${classForPct(bue.semester2026Variation)}">${fmtPct(bue.semester2026Variation)}</strong> en AEP+EZE. `
+      ? `En el 1S 2026, frente al 1S 2019, las variaciones son <strong class="${classForPct(sna.semester2026Variation)}">${fmtPct(sna.semester2026Variation)}</strong> en el SNA y <strong class="${classForPct(bue.semester2026Variation)}">${fmtPct(bue.semester2026Variation)}</strong> en la Región Buenos Aires. `
       : ""
   ) +
   (
