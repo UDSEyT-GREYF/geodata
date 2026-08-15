@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recuperación post-pandemia de la aviación argentina · SNA · 1S 2026</title>
+  <link rel="icon" href="img/icons/favicon-covid-orsna.svg?v=2" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/impacto-covid-aviacion-argentina.css" />
+</head>
+<body>
+  <div class="top-controls no-print">
+    <div class="control-inner control-inner-simple">
+      <div class="selector-block toolbar-title-block">
+        <label>
+        Informe pasajeros aéreos post pandemia COVID19 · SNA
+      </label>
+        <div class="toolbar-title">
+        2025/2019 · actualización 1S 2026/1S 2019
+      </div>
+      </div>
+      <button id="btnPdf" class="btn-primary" type="button">Descargar PDF A4</button>
+    </div>
+    <div id="status" class="status">Cargando datos…</div>
+  </div>
+
+<main id="reportA4" class="report-a4">
+
+  <!-- =========================================================
+       PÁGINA 1 · TRÁFICO INTERNACIONAL
+       ========================================================= -->
+  <section
+  id="sheetA4Internacional"
+  class="sheet-a4 sna-full-international sna-semester"
+>
+
+    <header class="report-header">
+      <div class="brand-row">
+        <div class="brand-dot" aria-hidden="true"></div>
+
+        <div>
+          <div class="eyebrow">
+            ORSNA · Informe de tráfico comercial ·
+            <span class="report-version-label"></span>
+          </div>
+
+          <h1>
+            Recuperación post-pandemia de la aviación argentina
+          </h1>
+        </div>
+      </div>
+
+      <div class="scope-badge">
+        Pasajeros internacionales
+      </div>
+    </header>
+
+
+    <!-- ACLARACIÓN INICIAL DEL INFORME -->
+    <section class="covid-intro-note">
+      <p>
+        Este informe da cuenta de la variación de los pasajeros aéreos
+        en Argentina en 2025 y primer semestre de 2026, tomando 2019 como año base.
+      </p>
+      <p>
+        Las categorías de valoración corresponden a la comparación 2025/2019:
+        recuperación amplia (≥ +20%), recuperación clara (+10% a &lt; +20%),
+        recuperación leve (+3% a &lt; +10%), recuperación incompleta (−20% a &lt; −3%),
+        muy por debajo de 2019 (&lt; −20%) y volumen marginal
+        (menos de 1.000 pasajeros en 2019 y 2025).
+      </p>
+    </section>
+
+
+    <!-- CONCLUSIONES INTERNACIONALES -->
+    <section class="summary-block">
+      <h2>Conclusiones · internacional</h2>
+
+      <p id="intSummaryText">
+        Calculando resultados…
+      </p>
+
+      <div
+        id="intConclusions"
+        class="conclusion-text"
+      >
+        Calculando conclusiones…
+      </div>
+    </section>
+
+
+<!-- TABLAS INTERNACIONALES -->
+<section
+  class="compare-block covid-table-block international-tables-block"
+>
+
+  <!-- REFERENCIAS GENERALES -->
+  <h2>
+    Síntesis pasajeros internacionales
+  </h2>
+
+<div
+  class="table-wrap covid-table-wrap aggregate-table-wrap"
+>
+  <table
+    id="intAggregatesTable"
+    class="covid-table aggregate-table"
+  >
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+
+
+
+  <!-- AEROPUERTOS INDIVIDUALES -->
+  <h2 class="airport-table-subtitle">
+    Tabla comparativa de pasajeros internacionales SNA
+  </h2>
+
+  <div class="table-wrap covid-table-wrap">
+    <table
+      id="intTable"
+      class="covid-table"
+    >
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+</section>
+<section class="compare-block covid-chart-block">
+  <h2>Evolución del tráfico internacional en el SNA, AEP+EZE y resto del SNA</h2>
+
+  <div class="chart-subtitle">
+    Índice anual 2019 = 100 · Serie 2015–2025
+  </div>
+
+  <div
+    id="intlTerritorialChart"
+    class="chart-box compact-chart-box"
+  ></div>
+
+  <div class="legend chart-legend">
+    <span><i class="sw sna"></i>SNA</span>
+    <span><i class="sw bue"></i>AEP + EZE</span>
+    <span><i class="sw resto"></i>Resto SNA</span>
+  </div>
+</section>
+
+    <!-- PIE DE LA PÁGINA INTERNACIONAL -->
+    <footer class="report-footer report-footer-stacked">
+
+      <div class="covid-method-note">
+        <strong>* Aclaración sobre AEP y EZE.</strong>
+        La evolución individual de Aeroparque y Ezeiza debe
+        interpretarse considerando la redistribución regulatoria del
+        tráfico internacional regional: su traslado progresivo desde Aeroparque
+        hacia Ezeiza comenzó en 2018 y se completó en 2019, mientras
+        que su regreso a Aeroparque se concretó con la reapertura
+        del aeropuerto en marzo de 2021. 
+        Por ello, se incorpora para su analisis conjunto el agregado Región Buenos Aires (AEP + EZE). 
+        </div>
+
+      <div class="report-footer-row">
+        <span>
+          Fuente: elaborado por GREyF ORSNA con datos de series
+          mensuales SIAC/ANAC.
+        </span>
+
+        <span>
+          Incluye SNA, AEP+EZE y aeropuertos con tráfico
+          internacional significativo.
+        </span>
+      </div>
+
+    </footer>
+
+  </section>
+
+
+  <!-- =========================================================
+       PÁGINA 2 · TRÁFICO DE CABOTAJE
+       ========================================================= -->
+  <section id="sheetA4Cabotaje" class="sheet-a4">
+
+    <header class="report-header">
+      <div class="brand-row">
+        <div class="brand-dot" aria-hidden="true"></div>
+
+        <div>
+          <div class="eyebrow">
+            ORSNA · Informe de tráfico comercial ·
+            <span class="report-version-label"></span>
+          </div>
+
+          <h1>
+            Recuperación post-pandemia de la aviación argentina
+          </h1>
+        </div>
+      </div>
+
+      <div class="scope-badge">
+        Pasajeros de cabotaje
+      </div>
+    </header>
+
+
+    <!-- CONCLUSIONES DE CABOTAJE -->
+    <section class="summary-block">
+      <h2>Conclusiones · cabotaje</h2>
+
+      <p id="cabSummaryText">
+        Calculando resultados…
+      </p>
+
+      <div
+        id="cabConclusions"
+        class="conclusion-text"
+      >
+        Calculando conclusiones…
+      </div>
+    </section>
+
+<!-- TABLA SÍNTESIS DE CABOTAJE -->
+<section
+  class="compare-block covid-table-block aggregate-table-block"
+>
+  <h2>
+    Síntesis pasajeros de cabotaje
+  </h2>
+
+  <div
+    class="table-wrap covid-table-wrap aggregate-table-wrap"
+  >
+    <table
+      id="cabAggregatesTable"
+      class="covid-table aggregate-table"
+    >
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <p class="covid-method-note aggregate-table-note">
+    * En 2019, la Región Buenos Aires incluye El Palomar (EPA).
+  </p>
+</section>
+
+<!-- GRÁFICO DE CABOTAJE -->
+<section
+  class="compare-block covid-chart-block cabotage-chart-block"
+>
+  <h2>
+    Evolución del tráfico de cabotaje en el SNA,
+    AEP+EZE y resto del SNA
+  </h2>
+
+  <div class="chart-subtitle">
+    Índice anual 2019 = 100 · Serie 2015–2025
+  </div>
+
+  <div
+    id="cabTerritorialChart"
+    class="chart-box compact-chart-box"
+  ></div>
+
+  <div class="legend chart-legend">
+    <span>
+      <i class="sw sna"></i>
+      SNA
+    </span>
+
+    <span>
+      <i class="sw bue"></i>
+      AEP + EZE
+    </span>
+
+    <span>
+      <i class="sw resto"></i>
+      Resto SNA
+    </span>
+  </div>
+</section>
+
+    
+    <!-- TABLA DE CABOTAJE -->
+    <section class="compare-block covid-table-block">
+      <h2>
+        Tabla comparativa de pasajeros de cabotaje SNA
+      </h2>
+
+      <div class="table-wrap covid-table-wrap">
+        <table
+          id="cabTable"
+          class="covid-table"
+        >
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+
+    <footer class="report-footer">
+      <span>
+        Fuente: elaborado por GREyF ORSNA con datos de series
+        mensuales SIAC/ANAC.
+      </span>
+
+    </footer>
+
+  </section>
+<!-- =========================================================
+     PÁGINA 3 · CABOTAJE, CONTINUACIÓN
+     ========================================================= -->
+<section
+  id="sheetA4CabotajeContinuacion"
+  class="sheet-a4"
+>
+
+  <header class="report-header">
+    <div class="brand-row">
+      <div
+        class="brand-dot"
+        aria-hidden="true"
+      ></div>
+
+      <div>
+        <div class="eyebrow">
+          ORSNA · Informe de tráfico comercial ·
+          <span class="report-version-label"></span>
+        </div>
+
+        <h1>
+          Recuperación post-pandemia de la aviación argentina
+        </h1>
+      </div>
+    </div>
+
+    <div class="scope-badge">
+      Pasajeros de cabotaje · continuación 1 de 2
+    </div>
+  </header>
+
+
+  <section class="compare-block covid-table-block">
+
+    <h2>
+      Tabla comparativa de pasajeros de cabotaje · continuación 1 de 2
+    </h2>
+
+    <div class="table-wrap covid-table-wrap">
+
+      <table
+        id="cabTableContinuation"
+        class="covid-table"
+      >
+        <thead></thead>
+        <tbody></tbody>
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <footer class="report-footer">
+
+    <span>
+      Fuente: elaborado por GREyF ORSNA con datos de series
+      mensuales SIAC/ANAC.
+    </span>
+
+  </footer>
+
+</section>
+
+
+<!-- =========================================================
+     PÁGINA 4 · CABOTAJE, SEGUNDA CONTINUACIÓN
+     ========================================================= -->
+<section
+  id="sheetA4CabotajeContinuacion2"
+  class="sheet-a4"
+>
+
+  <header class="report-header">
+    <div class="brand-row">
+      <div
+        class="brand-dot"
+        aria-hidden="true"
+      ></div>
+
+      <div>
+        <div class="eyebrow">
+          ORSNA · Informe de tráfico comercial ·
+          <span class="report-version-label"></span>
+        </div>
+
+        <h1>
+          Recuperación post-pandemia de la aviación argentina
+        </h1>
+      </div>
+    </div>
+
+    <div class="scope-badge">
+      Pasajeros de cabotaje · continuación 2 de 2
+    </div>
+  </header>
+
+
+  <section class="compare-block covid-table-block">
+
+    <h2>
+      Tabla comparativa de pasajeros de cabotaje · continuación 2 de 2
+    </h2>
+
+    <div class="table-wrap covid-table-wrap">
+
+      <table
+        id="cabTableContinuation2"
+        class="covid-table"
+      >
+        <thead></thead>
+        <tbody></tbody>
+      </table>
+
+    </div>
+
+  </section>
+
+
+<footer class="report-footer report-footer-stacked">
+
+  <div class="covid-method-note">
+    <strong>Aclaración metodológica.</strong>
+    En el total SNA de cabotaje de la Síntesis, cada persona que vuela se contabiliza una
+    sola vez. En el total resultante de la suma de los
+    aeropuertos, cada persona que viaja se contabiliza en el aeropuerto
+    de origen y nuevamente en el de destino.
+  </div>
+
+  <div class="report-footer-row">
+    <span>
+      Fuente: elaborado por GREyF ORSNA con datos de series
+      mensuales SIAC/ANAC.
+    </span>
+  </div>
+
+</footer>
+
+</section>
+</main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  window.COVID_REPORT_VARIANT = {
+    scope: "sna",
+    versionLabel:
+      "SNA · 2025/2019 y 1S 2026/1S 2019",
+    includeSemester2026: true,
+    pdfFileName:
+      "recuperacion_postpandemia_SNA_2025_2019_y_2026S1_2019S1.pdf"
+  };
+</script>   
+  <script src="js/impacto-covid-aviacion-argentina-tablas.js"></script>
+</body>
+</html>
