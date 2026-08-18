@@ -3,7 +3,7 @@
 
   const DATA_PATH = "data/recuperacion_postpandemia_rutas.json";
   const YEARS = [2019, 2020, 2021, 2022, 2023, 2024, 2025];
-  const ROWS_FIRST_PAGE = 10;
+  const ROWS_FIRST_PAGE = 14;
 
   let reportData = null;
 
