@@ -262,37 +262,36 @@ const conclusions = $(`${prefix}Conclusions`);
 
 if (conclusions) {
 
-  const wide = rows
-    .filter(row => row.valoracion === "Recuperación amplia")
-    .sort((a, b) => Number(b.var_2025) - Number(a.var_2025))
-    .slice(0, 5)
-    .map(row => displayRoute(row.ruta));
+  const categoryOrder = [
+    "Recuperación amplia",
+    "Recuperación clara",
+    "Recuperación leve",
+    "Igualó el nivel de 2019",
+    "Recuperación incompleta",
+    "Muy por debajo de 2019"
+  ];
 
-  const veryLow = rows
-    .filter(row => row.valoracion === "Muy por debajo de 2019")
-    .sort((a, b) => Number(a.var_2025) - Number(b.var_2025))
-    .slice(0, 5)
-    .map(row => displayRoute(row.ruta));
+  const categoryLines = categoryOrder
+    .map(category => {
 
-  conclusions.innerHTML = `
-    <p>
-      <strong>Recuperación amplia:</strong>
-      ${escapeHtml(
-        wide.length
-          ? wide.join("; ")
-          : "sin casos destacados"
-      )}.
-    </p>
+      const categoryRows = rows
+        .filter(row => row.valoracion === category)
+        .sort((a, b) => Number(b.var_2025) - Number(a.var_2025))
+        .map(row => displayRoute(row.ruta));
 
-    <p>
-      <strong>Muy por debajo de 2019:</strong>
-      ${escapeHtml(
-        veryLow.length
-          ? veryLow.join("; ")
-          : "sin casos destacados"
-      )}.
-    </p>
-  `;
+      if (!categoryRows.length) return "";
+
+      return `
+        <p>
+          <strong>${escapeHtml(category)}:</strong>
+          ${escapeHtml(categoryRows.join("; "))}.
+        </p>
+      `;
+    })
+    .filter(Boolean)
+    .join("");
+
+  conclusions.innerHTML = categoryLines;
 }
   }
 
