@@ -141,8 +141,8 @@
     }
 
     const width = 860;
-    const height = 255;
-    const margin = { top: 18, right: 48, bottom: 32, left: 205 };
+    const height = 210;
+    const margin = { top: 14, right: 48, bottom: 26, left: 205 };
     const plotWidth = width - margin.left - margin.right;
     const rowHeight = (height - margin.top - margin.bottom) / top.length;
 
