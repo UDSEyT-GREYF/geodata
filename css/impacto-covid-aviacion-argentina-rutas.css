@@ -1,0 +1,132 @@
+/* Complemento específico para el informe de rutas.
+   Se carga después de impacto-covid-aviacion-argentina.css. */
+
+.route-report .sheet-a4 {
+  overflow: hidden;
+}
+
+.route-report .route-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.2mm;
+  margin: 2.4mm 0 2.6mm;
+}
+
+.route-kpi {
+  border: 1px solid #d9e2ec;
+  border-radius: 6px;
+  padding: 2.2mm 2mm;
+  background: #f8fafc;
+  text-align: center;
+}
+
+.route-kpi-value {
+  display: block;
+  font-size: 15px;
+  line-height: 1.05;
+  font-weight: 700;
+  color: #0b4f87;
+}
+
+.route-kpi-label {
+  display: block;
+  margin-top: 1mm;
+  font-size: 8.5px;
+  line-height: 1.18;
+  color: #536172;
+}
+
+.route-chart-box {
+  margin-top: 1.6mm;
+}
+
+.route-chart-box svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.route-chart-grid {
+  stroke: #e5e9ef;
+  stroke-width: 1;
+}
+
+.route-index-bar {
+  opacity: 0.9;
+}
+
+.route-index-good {
+  fill: #2d789b;
+}
+
+.route-index-bad {
+  fill: #b06b63;
+}
+
+.route-chart-label {
+  font-size: 9px;
+  fill: #334155;
+}
+
+.route-chart-value {
+  font-size: 8.5px;
+  font-weight: 700;
+  fill: #334155;
+}
+
+.route-report .route-table-block {
+  margin-top: 2.3mm;
+}
+
+.route-report .covid-table {
+  font-size: 7.8px;
+}
+
+.route-report .covid-table th {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.route-report .covid-table td {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.route-report .covid-table .route-name {
+  width: 26%;
+  min-width: 150px;
+  white-space: normal;
+  line-height: 1.15;
+}
+
+.route-report .covid-table .valuation {
+  width: 13%;
+  min-width: 82px;
+  white-space: normal;
+  line-height: 1.12;
+}
+
+.route-report .route-method-note {
+  margin-top: 1.6mm;
+  font-size: 9.5px;
+  line-height: 1.32;
+  text-align: justify;
+  color: #536172;
+}
+
+.route-report .route-category-line {
+  color: #536172;
+}
+
+.route-report .continuation-intro {
+  margin: 0 0 2.4mm;
+  font-size: 9.5px;
+  line-height: 1.3;
+  color: #536172;
+}
+
+@media print {
+  .route-report .route-kpi {
+    break-inside: avoid;
+  }
+}
