@@ -258,29 +258,42 @@
       `;
     }
 
-    const conclusions = $(`${prefix}Conclusions`);
-    if (conclusions) {
-      const growth = topNames(rows, row => Number(row.var_2025) >= 20);
-      const decline = bottomNames(rows);
-      const categories = summary.categorias || {};
-      conclusions.innerHTML = `
-        <p>
-          <strong>Recuperación amplia:</strong>
-          ${escapeHtml(growth.length ? growth.join("; ") : "sin casos destacados")}.
-        </p>
-        <p>
-          <strong>Mayores rezagos:</strong>
-          ${escapeHtml(decline.length ? decline.join("; ") : "sin casos destacados")}.
-        </p>
-        <p class="route-category-line">
-          Distribución: ${escapeHtml(
-            Object.entries(categories)
-              .map(([name, count]) => `${name}: ${count}`)
-              .join(" · ")
-          )}.
-        </p>
-      `;
-    }
+const conclusions = $(`${prefix}Conclusions`);
+
+if (conclusions) {
+
+  const wide = rows
+    .filter(row => row.valoracion === "Recuperación amplia")
+    .sort((a, b) => Number(b.var_2025) - Number(a.var_2025))
+    .slice(0, 5)
+    .map(row => displayRoute(row.ruta));
+
+  const veryLow = rows
+    .filter(row => row.valoracion === "Muy por debajo de 2019")
+    .sort((a, b) => Number(a.var_2025) - Number(b.var_2025))
+    .slice(0, 5)
+    .map(row => displayRoute(row.ruta));
+
+  conclusions.innerHTML = `
+    <p>
+      <strong>Recuperación amplia:</strong>
+      ${escapeHtml(
+        wide.length
+          ? wide.join("; ")
+          : "sin casos destacados"
+      )}.
+    </p>
+
+    <p>
+      <strong>Muy por debajo de 2019:</strong>
+      ${escapeHtml(
+        veryLow.length
+          ? veryLow.join("; ")
+          : "sin casos destacados"
+      )}.
+    </p>
+  `;
+}
   }
 
   function renderReport(data) {
