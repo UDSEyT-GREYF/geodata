@@ -4,7 +4,6 @@
   const DATA_PATH = "data/recuperacion_postpandemia_rutas.json";
   const YEARS = [2019, 2020, 2021, 2022, 2023, 2024, 2025];
   const MAIN_ROUTE_THRESHOLD = 150000;
-  const ROWS_FIRST_PAGE = 7;
 
   let reportData = null;
 
@@ -293,17 +292,8 @@
     renderIndexChart("intRouteChart", intRows);
     renderIndexChart("cabRouteChart", cabRows);
 
-    renderRouteTable("intRoutesTable", intRows, 0, ROWS_FIRST_PAGE);
-    renderRouteTable("intRoutesTableContinuation", intRows, ROWS_FIRST_PAGE);
-
-    renderRouteTable("cabRoutesTable", cabRows, 0, ROWS_FIRST_PAGE);
-    renderRouteTable("cabRoutesTableContinuation", cabRows, ROWS_FIRST_PAGE);
-
-    const intCont = $("intRoutesTableContinuation")?.closest(".sheet-a4");
-    if (intCont) intCont.style.display = intRows.length > ROWS_FIRST_PAGE ? "" : "none";
-
-    const cabCont = $("cabRoutesTableContinuation")?.closest(".sheet-a4");
-    if (cabCont) cabCont.style.display = cabRows.length > ROWS_FIRST_PAGE ? "" : "none";
+    renderRouteTable("intRoutesTableContinuation", intRows);
+    renderRouteTable("cabRoutesTableContinuation", cabRows);
   }
 
 async function exportPdfA4() {
