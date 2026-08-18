@@ -100,7 +100,7 @@
 
     table.querySelector("tbody").innerHTML = visible.map(row => `
       <tr class="${Number(row.var_2025) < -3 ? "negative-valuation-row" : ""}">
-        <td class="airport-name route-name">${escapeHtml(row.ruta)}</td>
+        <td class="airport-name route-name">${escapeHtml(displayRoute(row.ruta))}</td>
         ${YEARS.map(year => {
           const value = Number(row[`pax_${year}`]) || 0;
           const base = Number(row.pax_2019) || 0;
@@ -120,9 +120,13 @@
     `).join("");
   }
 
+  function displayRoute(label) {
+    return String(label ?? "")
+      .replace(/Región Buenos Aires/gi, "Buenos Aires");
+  }
+
   function shortRoute(label) {
-    return String(label)
-      .replace(/^Región Buenos Aires\s*-\s*/i, "Reg. BA – ")
+    return displayRoute(label)
       .replace(/\s*-\s*/g, " – ");
   }
 
@@ -191,7 +195,7 @@
       .filter(predicate)
       .sort((a, b) => Number(b.var_2025) - Number(a.var_2025))
       .slice(0, limit)
-      .map(row => row.ruta);
+      .map(row => displayRoute(row.ruta));
   }
 
   function bottomNames(rows, limit = 5) {
@@ -199,7 +203,7 @@
       .filter(row => Number.isFinite(Number(row.var_2025)) && Number(row.var_2025) < -3)
       .sort((a, b) => Number(a.var_2025) - Number(b.var_2025))
       .slice(0, limit)
-      .map(row => row.ruta);
+      .map(row => displayRoute(row.ruta));
   }
 
   function renderSummary(segmento, rows) {
