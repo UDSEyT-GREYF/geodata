@@ -168,7 +168,7 @@
 
     el.innerHTML = `
       <svg viewBox="0 0 ${width} ${height}" role="img"
-        aria-label="Índice 2025 respecto de 2019 para las diez principales rutas por pasajeros de 2025.">
+        aria-label="Índice 2025 respecto de 2019 para las 20 principales rutas por pasajeros de 2025.">
         ${ticks.map(t => `
           <line x1="${x(t)}" y1="${margin.top - 6}" x2="${x(t)}" y2="${height - margin.bottom}"
             class="route-chart-grid"></line>
