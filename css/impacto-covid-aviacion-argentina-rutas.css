@@ -38,7 +38,7 @@
 
 .route-chart-box {
   margin-top: 1.2mm;
-  min-height: 142mm;
+  min-height: 0;
 }
 
 .route-chart-box svg {
