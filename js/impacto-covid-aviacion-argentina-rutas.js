@@ -148,8 +148,8 @@
     }
 
     const width = 860;
-    const height = 255;
-    const margin = { top: 18, right: 48, bottom: 32, left: 205 };
+    const height = 330;
+    const margin = { top: 20, right: 52, bottom: 34, left: 225 };
     const plotWidth = width - margin.left - margin.right;
     const rowHeight = (height - margin.top - margin.bottom) / top.length;
 
@@ -183,7 +183,7 @@
         ${top.map((row, i) => {
           const idx = indices[i];
           const y = margin.top + i * rowHeight + 3;
-          const h = Math.max(8, rowHeight - 7);
+          const h = Math.max(10, rowHeight - 10);
           return `
             <text x="${margin.left - 10}" y="${y + h * 0.72}" text-anchor="end"
               class="route-chart-label">${escapeHtml(shortRoute(row.ruta))}</text>
