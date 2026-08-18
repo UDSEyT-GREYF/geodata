@@ -4,7 +4,7 @@
   const DATA_PATH = "data/recuperacion_postpandemia_rutas.json";
   const YEARS = [2019, 2020, 2021, 2022, 2023, 2024, 2025];
   const MAIN_ROUTE_THRESHOLD = 150000;
-  const ROWS_FIRST_PAGE = 10;
+  const ROWS_FIRST_PAGE = 7;
 
   let reportData = null;
 
