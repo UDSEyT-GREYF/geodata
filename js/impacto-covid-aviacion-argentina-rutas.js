@@ -141,14 +141,14 @@
     const el = $(containerId);
     if (!el) return;
 
-    const top = rows.slice(0, 10);
+    const top = rows.slice(0, 20);
     if (!top.length) {
       el.innerHTML = "";
       return;
     }
 
     const width = 860;
-    const height = 330;
+    const height = 600;
     const margin = { top: 20, right: 52, bottom: 34, left: 225 };
     const plotWidth = width - margin.left - margin.right;
     const rowHeight = (height - margin.top - margin.bottom) / top.length;
