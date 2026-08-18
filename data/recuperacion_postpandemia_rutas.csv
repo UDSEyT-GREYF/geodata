@@ -1,0 +1,165 @@
+﻿segmento,ruta,rutas_fuente,es_principal,criterio_seleccion,pax_2019,pax_2020,pax_2021,pax_2022,pax_2023,pax_2024,pax_2025,pax_2019_1s,pax_2026_1s,var_2025,var_2026_1s,valoracion
+cabotaje,Región Buenos Aires - Bariloche,Aeroparque - Bariloche | Bariloche - El Palomar | Bariloche - Ezeiza,True,≥200.000 pasajeros en 2019 y 2025,1549038,320952,945718,1576885,2047521,1880690,2088721,619081,821673,34.8398812682452,32.72463538696875,Recuperación amplia
+cabotaje,Región Buenos Aires - Iguazú,Aeroparque - Iguazú | El Palomar - Iguazú | Ezeiza - Iguazú,True,≥200.000 pasajeros en 2019 y 2025,1320716,230311,379497,1001870,1380620,1339953,1673684,626521,728915,26.725503439043674,16.34326702536706,Recuperación amplia
+cabotaje,Región Buenos Aires - Córdoba,Aeroparque - Córdoba | Córdoba - El Palomar | Córdoba - Ezeiza,True,≥200.000 pasajeros en 2019 y 2025,1723839,313974,478789,1016311,1437456,1332599,1599949,878074,746454,-7.186866058837282,-14.989625020214692,Recuperación incompleta
+cabotaje,Región Buenos Aires - Mendoza,Aeroparque - Mendoza | El Palomar - Mendoza | Ezeiza - Mendoza,True,≥200.000 pasajeros en 2019 y 2025,1422087,249408,526258,1097163,1495870,1361876,1571448,699273,678226,10.502943912714201,-3.0098402197711094,Recuperación clara
+cabotaje,Región Buenos Aires - Salta,Aeroparque - Salta | El Palomar - Salta | Ezeiza - Salta,True,≥200.000 pasajeros en 2019 y 2025,1062921,196426,423215,870027,1024717,930796,1024666,497968,494188,-3.599044519771455,-0.7590849211194239,Recuperación incompleta
+cabotaje,Región Buenos Aires - Neuquén,Aeroparque - Neuquén | El Palomar - Neuquén,True,≥200.000 pasajeros en 2019 y 2025,913244,143654,227716,599861,744041,712341,896318,432638,414702,-1.8533929596033505,-4.145729223970152,Igualó el nivel de 2019
+cabotaje,Región Buenos Aires - Ushuaia,Aeroparque - Ushuaia | Ezeiza - Ushuaia,True,≥200.000 pasajeros en 2019 y 2025,655578,217448,426003,725984,917210,876672,890352,281754,443916,35.81175695340599,57.554462403373165,Recuperación amplia
+cabotaje,Región Buenos Aires - Tucumán,Aeroparque - Tucumán | El Palomar - Tucumán | Ezeiza - Tucumán,True,≥200.000 pasajeros en 2019 y 2025,793440,143011,297073,634410,771126,675694,795239,373843,395149,0.22673422060899284,5.699183882003944,Igualó el nivel de 2019
+cabotaje,Región Buenos Aires - El Calafate,Aeroparque - El Calafate | El Calafate - Ezeiza,True,≥200.000 pasajeros en 2019 y 2025,447178,146099,276608,526074,636857,631531,637756,224731,338261,42.61792843118399,50.518175062630434,Recuperación amplia
+cabotaje,Región Buenos Aires - Comod. Rivadavia,Aeroparque - Comod. Rivadavia,True,≥200.000 pasajeros en 2019 y 2025,465523,88908,119043,319989,405364,368039,416556,236721,193797,-10.518706916736665,-18.132738540306946,Recuperación incompleta
+cabotaje,Región Buenos Aires - Chapelco,Aeroparque - Chapelco,True,≥200.000 pasajeros en 2025,143734,29917,77443,151714,218808,284098,325089,59126,136968,126.1740437196488,131.65443290599734,Recuperación amplia
+cabotaje,Región Buenos Aires - Jujuy,Aeroparque - Jujuy | El Palomar - Jujuy,True,≥200.000 pasajeros en 2019 y 2025,329579,49994,130688,365506,382125,324697,310658,162855,122199,-5.740960437406506,-24.964539007092203,Recuperación incompleta
+cabotaje,Región Buenos Aires - Posadas,Aeroparque - Posadas | El Palomar - Posadas,True,≥200.000 pasajeros en 2019 y 2025,290742,29995,119733,203230,346614,266286,298588,146426,116282,2.6986125155636254,-20.586507860625847,Igualó el nivel de 2019
+cabotaje,Región Buenos Aires - Trelew,Aeroparque - Trelew | Ezeiza - Trelew,True,≥200.000 pasajeros en 2019 y 2025,276264,61860,163730,266008,239744,247628,277474,113695,135132,0.437986853154948,18.854830907251863,Igualó el nivel de 2019
+cabotaje,Región Buenos Aires - Mar del Plata,Aeroparque - Mar del Plata | Ezeiza - Mar del Plata,True,≥200.000 pasajeros en 2019 y 2025,300141,74422,72716,206753,230408,233184,246427,174783,128327,-17.896255426616158,-26.57924397681697,Recuperación incompleta
+cabotaje,Región Buenos Aires - Corrientes,Aeroparque - Corrientes | Corrientes - El Palomar,True,≥200.000 pasajeros en 2025,188779,14585,89597,209796,280742,174262,212579,94372,82382,12.60733450224867,-12.70503963039885,Recuperación clara
+cabotaje,Región Buenos Aires - Bahía Blanca,Aeroparque - Bahía Blanca | Bahía Blanca - El Palomar,True,≥200.000 pasajeros en 2019 y 2025,271986,42883,39936,179148,226060,212168,210529,146588,103391,-22.595648305427485,-29.46830572761754,Muy por debajo de 2019
+cabotaje,Región Buenos Aires - Resistencia,Aeroparque - Resistencia,True,≥200.000 pasajeros en 2019 y 2025,241295,34602,50206,180683,146685,157105,207317,110466,120356,-14.081518473238152,8.952981007730877,Recuperación incompleta
+cabotaje,Región Buenos Aires - Santiago del Estero,Aeroparque - Santiago del Estero | El Palomar - Santiago del Estero,False,,143458,13091,53778,160898,218874,196092,195652,74363,71415,36.382774052335876,-3.964337103129245,Recuperación amplia
+cabotaje,El Calafate - Ushuaia,El Calafate - Ushuaia,False,,141538,50171,51118,157194,165548,180982,182841,73775,91788,29.181562548573538,24.41613012538122,Recuperación amplia
+cabotaje,Región Buenos Aires - San Juan,Aeroparque - San Juan,False,,148211,28714,51037,142566,181878,168124,177766,56933,82028,19.94116496076539,44.078126921117814,Recuperación clara
+cabotaje,Región Buenos Aires - Puerto Madryn,Aeroparque - Puerto Madryn,False,,78523,10417,20800,110289,175573,128479,158845,41928,48070,102.2910484826102,14.648921961457727,Recuperación amplia
+cabotaje,Córdoba - Neuquén,Córdoba - Neuquén,False,,124497,23293,25341,84234,120534,137578,144741,51697,56464,16.26063278633221,9.221037971255575,Recuperación clara
+cabotaje,Región Buenos Aires - Río Grande,Aeroparque - Río Grande | Ezeiza - Río Grande,False,,143670,32813,47235,117238,152173,130296,139398,72717,23716,-2.973480893714764,-67.38589325742261,Igualó el nivel de 2019
+cabotaje,Bariloche - Córdoba,Bariloche - Córdoba,False,,128785,26810,75414,172681,187940,171469,138821,54349,58191,7.792833016267431,7.069127306850165,Recuperación leve
+cabotaje,Región Buenos Aires - Rosario,Aeroparque - Rosario | Ezeiza - Rosario,True,≥200.000 pasajeros en 2019,206375,35293,48138,142192,163226,140276,123923,104799,82253,-39.95251362810418,-21.513564060725766,Muy por debajo de 2019
+cabotaje,Córdoba - Salta,Córdoba - Salta,False,,143705,33178,23042,86286,157837,134223,114744,55588,46792,-20.153091402526012,-15.823559041519752,Muy por debajo de 2019
+cabotaje,Región Buenos Aires - Río Gallegos,Aeroparque - Río Gallegos,True,≥200.000 pasajeros en 2019,248109,58993,70126,173814,200664,151894,105156,127098,53874,-57.617015102233296,-57.612236227163294,Muy por debajo de 2019
+cabotaje,Córdoba - Mendoza,Córdoba - Mendoza,False,,137945,27439,30917,108705,136318,118507,98370,77185,38987,-28.688970241763023,-49.48889032843169,Muy por debajo de 2019
+cabotaje,Mendoza - Salta,Mendoza - Salta,False,,41507,10406,9657,39217,89659,51377,91713,15772,37935,120.95791071385551,140.52117676895764,Recuperación amplia
+cabotaje,Región Buenos Aires - Santa Fe,Aeroparque - Santa Fe,False,,94976,9815,13656,60654,84639,71619,90804,56089,37009,-4.392688679245282,-34.01736525878515,Recuperación incompleta
+cabotaje,Región Buenos Aires - Esquel,Aeroparque - Esquel,False,,53073,12108,28363,67760,78421,90024,88828,25313,32158,67.3694722363537,27.041441156717895,Recuperación amplia
+cabotaje,Región Buenos Aires - Formosa,Aeroparque - Formosa,False,,104725,18222,11588,83607,104894,93992,86574,50927,32380,-17.332060157555507,-36.41879553085789,Recuperación incompleta
+cabotaje,Bariloche - Mendoza,Bariloche - Mendoza,False,,25245,7571,22990,57145,70801,61988,77041,10124,23717,205.17330164388989,134.26511260371393,Recuperación amplia
+cabotaje,Región Buenos Aires - Catamarca,Aeroparque - Catamarca,False,,57033,9640,26316,68644,71944,67243,72265,29746,31868,26.70734487051356,7.1337322665232294,Recuperación amplia
+cabotaje,Región Buenos Aires - La Rioja,Aeroparque - La Rioja,False,,61345,8873,8655,55269,75759,68252,66696,29165,28648,8.72279729399299,-1.7726727241556661,Recuperación leve
+cabotaje,Región Buenos Aires - San Luis,Aeroparque - San Luis,False,,74951,12330,17968,68832,72391,58667,56900,39567,26088,-24.08373470667503,-34.06626734399879,Muy por debajo de 2019
+cabotaje,Córdoba - Iguazú,Córdoba - Iguazú,False,,100978,27748,13968,46327,62989,74343,52434,53450,35541,-48.07383786567371,-33.50608044901777,Muy por debajo de 2019
+cabotaje,Mendoza - Neuquén,Mendoza - Neuquén,False,,59435,10450,14667,40304,38676,44704,50958,27205,20205,-14.262639858669136,-25.730564234515718,Recuperación incompleta
+cabotaje,Región Buenos Aires - San Rafael,Aeroparque - San Rafael,False,,53694,10833,15120,52734,44705,49540,49410,25254,20507,-7.978545088836741,-18.797022253900376,Recuperación incompleta
+cabotaje,Comod. Rivadavia - Neuquén,Comod. Rivadavia - Neuquén,False,,47440,9360,13829,34807,31671,41022,47923,22800,20562,1.0181281618887095,-9.81578947368421,Igualó el nivel de 2019
+cabotaje,Bariloche - El Calafate,Bariloche - El Calafate,False,,48643,18338,4690,14736,26660,47160,46911,24316,24315,-3.5606356515839876,-0.004112518506338425,Recuperación incompleta
+cabotaje,Región Buenos Aires - Santa Rosa,Aeroparque - Santa Rosa,False,,48380,7322,8920,25446,51628,41732,41712,22554,18215,-13.782554774700284,-19.2382725902279,Recuperación incompleta
+cabotaje,Región Buenos Aires - Paraná,Aeroparque - Paraná,False,,58562,7657,8972,31331,51736,37925,41330,27462,20305,-29.425224548341934,-26.06146675406016,Muy por debajo de 2019
+cabotaje,Córdoba - Tucumán,Córdoba - Tucumán,False,,73385,13044,7475,33700,42833,46418,34571,37300,16120,-52.89091776248552,-56.78284182305631,Muy por debajo de 2019
+cabotaje,Región Buenos Aires - Viedma,Aeroparque - Viedma,False,,39226,7139,6953,29218,31533,33256,34048,18911,16251,-13.200428287360422,-14.065887578657922,Recuperación incompleta
+cabotaje,Córdoba - Jujuy,Córdoba - Jujuy,False,,53234,7564,10554,31857,44425,42038,32695,27586,17958,-38.58248487808543,-34.90176176321322,Muy por debajo de 2019
+cabotaje,Comod. Rivadavia - Córdoba,Comod. Rivadavia - Córdoba,False,,67190,12248,224,32623,40952,49296,30041,34208,12770,-55.28947760083346,-62.669550982226376,Muy por debajo de 2019
+cabotaje,Iguazú - Salta,Iguazú - Salta,False,,53448,22295,11534,45588,32114,35831,28780,20177,13071,-46.153270468492735,-35.21831788670268,Muy por debajo de 2019
+cabotaje,Bariloche - Rosario,Bariloche - Rosario,False,,34420,7286,30481,71179,68556,50273,27343,15664,8677,-20.560720511330622,-44.60546475995915,Muy por debajo de 2019
+cabotaje,Córdoba - Ushuaia,Córdoba - Ushuaia,False,,46326,9451,5845,35505,52311,48998,23541,21165,17056,-49.18404351767906,-19.41412709662178,Muy por debajo de 2019
+cabotaje,Córdoba - Mar del Plata,Córdoba - Mar del Plata,False,,33922,11687,3143,23025,26209,20347,18801,18848,5969,-44.575791521726316,-68.33085738539899,Muy por debajo de 2019
+cabotaje,Región Buenos Aires - Termas Río Hondo,Aeroparque - Termas Río Hondo,False,,9572,169,5221,19246,12048,10601,17389,4915,7504,81.6652737150021,52.675483214649034,Recuperación amplia
+cabotaje,Córdoba - El Calafate,Córdoba - El Calafate,False,,16376,5339,5700,32259,37935,23133,16800,7338,16525,2.5891548607718695,125.19760152630144,Igualó el nivel de 2019
+cabotaje,Mar del Plata - Mendoza,Mar del Plata - Mendoza,False,,6427,6226,2805,20700,15694,15202,15667,6167,4976,143.76847673875835,-19.312469596238046,Recuperación amplia
+cabotaje,Iguazú - Rosario,Iguazú - Rosario,False,,44939,15324,11,30387,31361,19565,14673,18013,4709,-67.34907318809942,-73.85776938877477,Muy por debajo de 2019
+cabotaje,Mendoza - Rosario,Mendoza - Rosario,False,,30371,8416,7568,34597,30818,21109,11084,12833,488,-63.504659049751396,-96.19730382607341,Muy por debajo de 2019
+cabotaje,Región Buenos Aires - Río Cuarto,Aeroparque - Río Cuarto,False,,37210,4630,5877,23398,28508,24550,11024,18299,11481,-70.37355549583447,-37.258866604732496,Muy por debajo de 2019
+cabotaje,El Calafate - Trelew,El Calafate - Trelew,False,,9685,3323,27,4907,10949,9824,10054,4019,3232,3.810015487867835,-19.58198556854939,Recuperación leve
+cabotaje,Trelew - Ushuaia,Trelew - Ushuaia,False,,26750,8878,122,8627,17929,16975,9809,10510,3835,-63.33084112149533,-63.51094196003806,Muy por debajo de 2019
+cabotaje,Mar del Plata - Tucumán,Mar del Plata - Tucumán,False,,7164,7956,2819,12483,14966,7330,9588,6915,6715,33.83584589614741,-2.8922631959508283,Recuperación amplia
+cabotaje,Córdoba - Posadas,Córdoba - Posadas,False,,23485,3208,5,11711,27201,17338,8757,11994,2,-62.712369597615506,-99.98332499583125,Muy por debajo de 2019
+cabotaje,Rosario - Salta,Rosario - Salta,False,,48859,10902,7291,32975,25498,18256,7167,16974,4365,-85.33125933809534,-74.28419936373277,Muy por debajo de 2019
+cabotaje,Bariloche - Tucumán,Bariloche - Tucumán,False,,12630,0,0,2419,9081,2666,2365,5703,0,-81.27474267616786,-100.0,Muy por debajo de 2019
+cabotaje,Bahía Blanca - Mar del Plata,Bahía Blanca - Mar del Plata,False,,28428,6102,505,4814,10887,6746,1862,15510,966,-93.45011960039398,-93.77176015473889,Muy por debajo de 2019
+cabotaje,Córdoba - Resistencia,Córdoba - Resistencia,False,,33953,4961,152,27104,23695,20064,1060,18278,0,-96.8780372868377,-100.0,Muy por debajo de 2019
+cabotaje,Salta - Tucumán,Salta - Tucumán,False,,914,519,1583,4587,2770,209,462,900,677,-49.45295404814004,-24.777777777777775,Muy por debajo de 2019
+cabotaje,Jujuy - Salta,Jujuy - Salta,False,,3418,568,990,180,466,404,418,1415,183,-87.77062609713282,-87.06713780918727,Muy por debajo de 2019
+cabotaje,Comod. Rivadavia - Trelew,Comod. Rivadavia - Trelew,False,,10499,2933,316,7260,14713,7316,209,5962,162,-98.00933422230689,-97.28279100972827,Muy por debajo de 2019
+cabotaje,Bahía Blanca - Trelew,Bahía Blanca - Trelew,False,,10928,2516,36,6834,11968,6468,94,6346,117,-99.1398243045388,-98.15631894106524,Muy por debajo de 2019
+cabotaje,Comod. Rivadavia - Mendoza,Comod. Rivadavia - Mendoza,False,,32355,3707,259,50,43,342,90,17380,0,-99.72183588317107,-100.0,Muy por debajo de 2019
+cabotaje,Iguazú - Mendoza,Iguazú - Mendoza,False,,24495,6852,2,116,66,17,58,14295,27,-99.76321698305777,-99.81112277019936,Muy por debajo de 2019
+cabotaje,Jujuy - Tucumán,Jujuy - Tucumán,False,,198,170,608,271,175,134,9,97,0,-95.45454545454545,-100.0,Muy por debajo de 2019
+cabotaje,Reconquista - Rosario,Reconquista - Rosario,False,,1894,0,0,11,2698,544,6,1881,12,-99.68321013727561,-99.36204146730464,Muy por debajo de 2019
+cabotaje,Bahía Blanca - Ushuaia,Bahía Blanca - Ushuaia,False,,24198,4326,0,0,0,183,0,12182,2,-100.0,-99.98358233459203,Muy por debajo de 2019
+cabotaje,Córdoba - Trelew,Córdoba - Trelew,False,,10920,4019,17,19057,24958,6767,0,4145,0,-100.0,-100.0,Muy por debajo de 2019
+internacional,Región Buenos Aires - San Pablo,Aeroparque - San Pablo | Ezeiza - San Pablo,True,≥200.000 pasajeros en 2019 y 2025,1732204,396188,170035,1316441,1650380,1762460,1985145,884030,919030,14.602263936580218,3.9591416580885275,Recuperación clara
+internacional,Región Buenos Aires - Santiago,Aeroparque - Santiago | Ezeiza - Santiago,True,≥200.000 pasajeros en 2019 y 2025,1550576,386402,177551,945334,1508055,1625728,1694935,801597,801259,9.310024145865793,-0.04216582646890954,Recuperación leve
+internacional,Región Buenos Aires - Rio de Janeiro,Aeroparque - Rio de Janeiro | Ezeiza - Rio de Janeiro,True,≥200.000 pasajeros en 2019 y 2025,842114,209026,32350,491884,960032,1165464,1653482,464435,915183,96.34895037963982,97.05297835003822,Recuperación amplia
+internacional,Región Buenos Aires - Madrid,Ezeiza - Madrid,True,≥200.000 pasajeros en 2019 y 2025,942423,231740,234314,670709,870275,1034925,1155745,444603,571689,22.63548321719653,28.58415260355869,Recuperación amplia
+internacional,Región Buenos Aires - Miami,Ezeiza - Miami,True,≥200.000 pasajeros en 2019 y 2025,858068,237202,335454,502767,566617,652302,776447,444424,494736,-9.51218318361715,11.320720753154646,Recuperación incompleta
+internacional,Región Buenos Aires - Panamá,Ezeiza - Panamá,True,≥200.000 pasajeros en 2019 y 2025,310766,82898,102532,296676,410842,451688,598065,151283,321611,92.44865911972353,112.58898884871398,Recuperación amplia
+internacional,Región Buenos Aires - Florianópolis,Aeroparque - Florianópolis | Ezeiza - Florianópolis,True,≥200.000 pasajeros en 2025,183746,86894,7234,95818,226661,347190,483182,136188,398260,162.96191481719327,192.433988310277,Recuperación amplia
+internacional,Región Buenos Aires - Roma,Ezeiza - Roma,True,≥200.000 pasajeros en 2019 y 2025,355630,66247,1618,156349,299852,347853,377965,175601,180977,6.280403790456379,3.06148598242606,Recuperación leve
+internacional,Mendoza - Santiago,Mendoza - Santiago,True,≥200.000 pasajeros en 2019 y 2025,305552,52331,18282,142802,229132,311822,375147,166871,175312,22.77681049379483,5.0583984035572405,Recuperación amplia
+internacional,Región Buenos Aires - Bogotá,Ezeiza - Bogotá,True,≥200.000 pasajeros en 2019 y 2025,305108,84579,92026,301687,320739,356231,364534,150348,192546,19.47703763913107,28.0668848272009,Recuperación clara
+internacional,Región Buenos Aires - Lima,Ezeiza - Lima,True,≥200.000 pasajeros en 2019 y 2025,783268,167780,74165,220473,428587,447592,328001,416232,162229,-58.12403928157413,-61.024380633877264,Muy por debajo de 2019
+internacional,Región Buenos Aires - Punta Cana,Ezeiza - Punta Cana,True,≥200.000 pasajeros en 2025,22581,2774,8591,78924,78252,114788,267253,19085,175292,1083.5304016651166,818.4804820539691,Recuperación amplia
+internacional,Región Buenos Aires - Nueva York,Ezeiza - Nueva York,True,≥200.000 pasajeros en 2019 y 2025,311859,53832,61619,208677,250602,302624,251972,158193,129530,-19.203229664688205,-18.11900652999817,Recuperación incompleta
+internacional,Córdoba - Panamá,Córdoba - Panamá,True,≥200.000 pasajeros en 2025,110484,21209,6863,84873,139169,196222,247055,58588,148833,123.61156366532708,154.03324912951456,Recuperación amplia
+internacional,Región Buenos Aires - Houston,Ezeiza - Houston,True,≥200.000 pasajeros en 2025,174675,45132,76455,159549,178674,205639,238608,84208,122106,36.60111635895233,45.00522515675471,Recuperación amplia
+internacional,Región Buenos Aires - Frankfurt,Ezeiza - Frankfurt,True,≥200.000 pasajeros en 2019 y 2025,232632,59071,60634,177137,208867,218752,237175,114432,115562,1.9528697685615048,0.9874860178970879,Igualó el nivel de 2019
+internacional,Región Buenos Aires - Asunción,Aeroparque - Asunción | Ezeiza - Asunción,True,≥200.000 pasajeros en 2019 y 2025,265566,61470,53549,139255,183072,198815,235703,121690,149702,-11.245038898051707,23.01914701290164,Recuperación incompleta
+internacional,Región Buenos Aires - Barcelona,Ezeiza - Barcelona,True,≥200.000 pasajeros en 2025,195696,43515,33688,115450,150906,173600,214605,97189,115639,9.662435614422371,18.98362983465207,Recuperación leve
+internacional,Región Buenos Aires - México DF,Ezeiza - México DF,True,≥200.000 pasajeros en 2019 y 2025,214500,72050,56038,148788,183186,218229,205144,116470,91099,-4.361771561771565,-21.78329183480725,Recuperación incompleta
+internacional,Región Buenos Aires - Santa Cruz de la Sierra,Aeroparque - Santa Cruz de la Sierra | Ezeiza - Santa Cruz de la Sierra,True,≥200.000 pasajeros en 2019 y 2025,210569,76110,69004,203521,228983,246152,203829,105259,93990,-3.200851027454188,-10.705972885928993,Recuperación incompleta
+internacional,Región Buenos Aires - Atlanta,Ezeiza - Atlanta,False,,157197,30823,37357,101102,146046,158791,195595,82930,107361,24.426674809315706,29.45978536114795,Recuperación amplia
+internacional,Región Buenos Aires - Paris,Ezeiza - Paris,False,,192432,55086,46692,128400,192812,175457,193684,95006,101410,0.6506194395942355,6.740626907774239,Igualó el nivel de 2019
+internacional,Región Buenos Aires - Montevideo,Aeroparque - Montevideo | Ezeiza - Montevideo,True,≥200.000 pasajeros en 2019,259741,44499,12596,139601,225600,243813,182816,124501,90196,-29.61604059428431,-27.553995550236543,Muy por debajo de 2019
+internacional,Región Buenos Aires - Amsterdam,Ezeiza - Amsterdam,False,,188900,53648,51274,147257,166068,163028,172306,104679,90655,-8.78454208575966,-13.397147469884118,Recuperación incompleta
+internacional,Córdoba - Rio de Janeiro,Córdoba - Rio de Janeiro,False,,99522,34769,0,15408,43857,79011,166330,52496,106918,67.12887602741102,103.66885096007317,Recuperación amplia
+internacional,Región Buenos Aires - Salvador,Aeroparque - Salvador | Ezeiza - Salvador,False,,122949,26648,758,40950,80629,105691,140282,72544,90645,14.097715312853287,24.951753418614906,Recuperación clara
+internacional,Córdoba - Santiago,Córdoba - Santiago,False,,189319,33861,6408,72386,98118,103984,131299,112376,51886,-30.646686280827595,-53.828219548658076,Muy por debajo de 2019
+internacional,Mendoza - San Pablo,Mendoza - San Pablo,False,,78879,16614,5367,71479,143342,142783,128975,36684,60698,63.509932935255264,65.46178170319486,Recuperación amplia
+internacional,Córdoba - Lima,Córdoba - Lima,False,,111629,21647,4761,49724,76339,97829,124157,57771,70919,11.22289010920101,22.75882363123367,Recuperación clara
+internacional,Región Buenos Aires - Cancún,Ezeiza - Cancún,False,,109664,37169,20990,76715,79750,101303,112279,57112,53661,2.3845564633790506,-6.042512956996782,Igualó el nivel de 2019
+internacional,Panamá - Rosario,Rosario - Panamá,False,,97746,20697,0,61727,98110,102457,100293,49956,88421,2.605733226935114,76.99775802706381,Igualó el nivel de 2019
+internacional,Región Buenos Aires - Punta del Este,Aeroparque - Punta del Este,False,,117961,43743,9177,60945,76643,81670,93797,85521,64994,-20.484736480701248,-24.00229183475404,Muy por debajo de 2019
+internacional,Mendoza - Panamá,Mendoza - Panamá,False,,57460,11812,3862,63941,80032,80569,84933,32010,49742,47.812391228680816,55.39518900343643,Recuperación amplia
+internacional,Región Buenos Aires - Porto Alegre,Aeroparque - Porto Alegre | Ezeiza - Porto Alegre,False,,114263,20253,325,34429,74268,30317,73834,55318,52264,-35.38240725344161,-5.520806970606317,Muy por debajo de 2019
+internacional,Región Buenos Aires - Dallas-Fort Worth,Ezeiza - Dallas-Fort Worth,False,,157056,44376,56900,94662,111301,70795,68826,78220,48261,-56.17741442542788,-38.30094604960368,Muy por debajo de 2019
+internacional,Lima - Mendoza,Mendoza - Lima,False,,65408,11490,2,6368,41238,57359,66952,38678,35313,2.3605675146771032,-8.700036196287297,Igualó el nivel de 2019
+internacional,Lima - Salta,Salta - Lima,False,,39432,7908,8,5,2769,44056,63590,24191,23956,61.26496246703186,-0.9714356578892969,Recuperación amplia
+internacional,Rio de Janeiro - Rosario,Rosario - Rio de Janeiro,False,,82601,30613,3,2637,18830,44539,63045,42329,52437,-23.675258168787305,23.879609723830008,Muy por debajo de 2019
+internacional,Región Buenos Aires - Curitiba,Aeroparque - Curitiba | Ezeiza - Curitiba,False,,68746,14502,13,31341,50712,79135,52030,30086,27402,-24.31559654379891,-8.921092867114277,Muy por debajo de 2019
+internacional,Región Buenos Aires - Brasília,Ezeiza - Brasília,False,,110497,18387,150,197,143,7561,50181,60978,24743,-54.586097360109335,-59.423070615631865,Muy por debajo de 2019
+internacional,Bariloche - San Pablo,Bariloche - San Pablo,False,,22035,0,0,15081,17890,22826,50044,0,7090,127.11141366008624,,Recuperación amplia
+internacional,Región Buenos Aires - Porto Seguro,Aeroparque - Porto Seguro | Ezeiza - Porto Seguro,False,,35056,11181,0,5140,6035,32730,48945,17947,25593,39.619465997261514,42.603220593971145,Recuperación amplia
+internacional,Córdoba - San Pablo,Córdoba - San Pablo,False,,66095,11086,9,16568,43854,14902,46776,40788,59495,-29.229139874423183,45.863979601843674,Muy por debajo de 2019
+internacional,Región Buenos Aires - Recife,Ezeiza - Recife,False,,47636,13659,4,2,7,6250,42667,26050,38504,-10.431186497606848,47.80806142034548,Recuperación incompleta
+internacional,Córdoba - Punta Cana,Córdoba - Punta Cana,False,,5515,2340,0,0,0,7949,38387,2380,43439,596.0471441523118,1725.1680672268908,Recuperación amplia
+internacional,Lima - Rosario,Rosario - Lima,False,,95292,19326,0,0,0,3139,27706,50588,19292,-70.92515636149939,-61.86447378825017,Muy por debajo de 2019
+internacional,Región Buenos Aires - Fortaleza,Ezeiza - Fortaleza,False,,15456,3516,156,479,2,26450,23393,7532,10970,51.35222567287785,45.645246946362185,Recuperación amplia
+internacional,Córdoba - Florianópolis,Córdoba - Florianópolis,False,,9270,4928,0,5197,5660,9939,20424,8938,38119,120.32362459546925,326.4824345491161,Recuperación amplia
+internacional,Región Buenos Aires - Natal,Ezeiza - Natal,False,,11087,4449,0,468,9199,13751,13967,6135,33097,25.976368720122657,439.47840260798694,Recuperación amplia
+internacional,Región Buenos Aires - Maceió,Ezeiza - Maceió,False,,6945,1356,0,428,12474,12084,13849,3678,22621,99.40964722822174,515.0353452963567,Recuperación amplia
+internacional,Florianópolis - Rosario,Rosario - Florianópolis,False,,5622,1957,0,20,2526,134,13047,5479,16421,132.07043756670225,199.7079759080124,Recuperación amplia
+internacional,Bariloche - Campinas,Bariloche - Campinas,False,,16073,3125,0,0,0,13963,12341,1947,927,-23.21906302494867,-52.38828967642527,Muy por debajo de 2019
+internacional,Asunción - Córdoba,Córdoba - Asunción,False,,58030,10900,1,75488,49641,9302,11809,29365,2335,-79.65018094089264,-92.04835688745105,Muy por debajo de 2019
+internacional,Córdoba - Recife,Córdoba - Recife,False,,15780,3092,0,0,0,0,9843,7758,10305,-37.623574144486696,32.83062645011601,Muy por debajo de 2019
+internacional,Región Buenos Aires - Belo Horizonte,Ezeiza - Belo Horizonte,False,,123531,18953,398,8,738,13524,7465,79031,1095,-93.95698245784459,-98.6144677405069,Muy por debajo de 2019
+internacional,Región Buenos Aires - João Pessoa,Ezeiza - João Pessoa,False,,7848,1926,0,0,2535,4929,6104,3770,0,-22.22222222222222,-100.0,Muy por debajo de 2019
+internacional,Asunción - Salta,Salta - Asunción,False,,224,0,18,29,8,24,5175,224,2136,2210.2678571428573,853.5714285714287,Recuperación amplia
+internacional,Santiago - Ushuaia,Ushuaia - Santiago,False,,5626,3302,1078,1368,3657,3412,3717,3869,1841,-33.93174546747245,-52.41664512794004,Muy por debajo de 2019
+internacional,Córdoba - Salvador,Córdoba - Salvador,False,,12677,2755,0,0,0,0,3498,5661,182,-72.40672083300466,-96.78502031443207,Muy por debajo de 2019
+internacional,Córdoba - Porto Seguro,Córdoba - Porto Seguro,False,,4171,2125,0,0,0,0,3396,4159,2349,-18.58067609685926,-43.5200769415725,Recuperación incompleta
+internacional,Región Buenos Aires - Londres (Heathrow),Ezeiza - Londres (Heathrow),False,,174145,36850,6135,24623,70535,1850,3224,90395,1404,-98.14866921243791,-98.44681674871397,Muy por debajo de 2019
+internacional,Región Buenos Aires - Auckland,Ezeiza - Auckland,False,,95121,27766,0,100,0,0,3061,50846,23451,-96.78199346096025,-53.878377846831604,Muy por debajo de 2019
+internacional,Lima - Tucumán,Tucumán - Lima,False,,51404,11499,0,0,0,6,1334,28327,9248,-97.40487121624777,-67.35270236876478,Muy por debajo de 2019
+internacional,Región Buenos Aires - Campinas,Ezeiza - Campinas,False,,139096,44118,165,690,72,1250,509,51752,64,-99.63406568125612,-99.87633328180553,Muy por debajo de 2019
+internacional,Rosario - Santiago,Rosario - Santiago,False,,27815,0,0,12,51,0,304,22389,0,-98.90706453352507,-100.0,Muy por debajo de 2019
+internacional,Región Buenos Aires - Zurich,Ezeiza - Zurich,False,,50591,12758,2574,3923,1027,5,252,25560,0,-99.50188768753335,-100.0,Muy por debajo de 2019
+internacional,Córdoba - Punta del Este,Córdoba - Punta del Este,False,,8544,2296,17,229,111,157,219,8194,1865,-97.43679775280899,-77.23944349524042,Muy por debajo de 2019
+internacional,Rosario - San Pablo,Rosario - San Pablo,False,,35199,203,3,1398,30331,9283,215,34757,37835,-99.38918719281797,8.85577006070719,Muy por debajo de 2019
+internacional,Región Buenos Aires - Foz Do Iguaçu,Aeroparque - Foz Do Iguaçu,False,,8,0,11,0,24,145,182,0,182,2175.0,,Recuperación amplia
+internacional,Región Buenos Aires - Manaus,Ezeiza - Manaus,False,,9512,0,0,0,0,0,161,5180,321,-98.30740117746005,-93.80308880308881,Muy por debajo de 2019
+internacional,Córdoba - Porto Alegre,Córdoba - Porto Alegre,False,,8154,2,0,9,144,0,131,8058,176,-98.3934265391219,-97.81583519483743,Muy por debajo de 2019
+internacional,Porto Alegre - Rosario,Rosario - Porto Alegre,False,,6459,0,0,123,56,0,89,6459,21,-98.62207772100945,-99.67487227124941,Muy por debajo de 2019
+internacional,Región Buenos Aires - Toronto,Ezeiza - Toronto,False,,19087,142,0,1399,4,0,24,18688,7,-99.87425996751715,-99.96254280821918,Muy por debajo de 2019
+internacional,Región Buenos Aires - Newark,Ezeiza - Newark,False,,112999,2,3,2,0,4,23,68343,0,-99.97964583757378,-100.0,Muy por debajo de 2019
+internacional,Salta - Santa Cruz de la Sierra,Salta - Santa Cruz de la Sierra,False,,8370,3,0,186,11,17,12,7215,330,-99.85663082437276,-95.42619542619542,Muy por debajo de 2019
+internacional,Región Buenos Aires - Los Angeles,Ezeiza - Los Angeles,False,,74166,16399,5,79,5,7,11,36637,0,-99.98516840600814,-100.0,Muy por debajo de 2019
+internacional,San Pablo - Tucumán,Tucumán - San Pablo,False,,4547,0,0,0,139,1,3,4547,0,-99.934022432373,-100.0,Muy por debajo de 2019
+internacional,Santiago - Tucumán,Tucumán - Santiago,False,,4828,0,9,7,0,0,3,4828,0,-99.93786246893124,-100.0,Muy por debajo de 2019
+internacional,San Juan - Santiago,San Juan - Santiago,False,,13,14,0,27,3,0,2,13,0,-84.61538461538461,-100.0,Muy por debajo de 2019
+internacional,Región Buenos Aires - Caracas,Ezeiza - Caracas,False,,33857,8802,342,1969,462,2,1,17984,0,-99.99704640103967,-100.0,Muy por debajo de 2019
+internacional,Córdoba - Samana,Córdoba - Samana,False,,0,0,0,0,0,0,0,0,0,,,Sin base 2019
+internacional,Iquique - Salta,Salta - Iquique,False,,3334,1768,0,0,0,114,0,3334,3033,-100.0,-9.028194361127772,Muy por debajo de 2019
+internacional,Neuquén - Santiago,Neuquén - Santiago,False,,27801,3,0,0,0,7,0,18420,7970,-100.0,-56.73181324647123,Muy por debajo de 2019
+internacional,Recife - Rosario,Rosario - Recife,False,,15966,2856,0,0,0,0,0,7862,0,-100.0,-100.0,Muy por debajo de 2019
+internacional,Región Buenos Aires - Cayo Coco,Ezeiza - Cayo Coco,False,,8576,1679,0,1864,4475,1573,0,4380,0,-100.0,-100.0,Muy por debajo de 2019
+internacional,Región Buenos Aires - Havana,Ezeiza - Havana,False,,6157,2782,1473,3774,8087,3737,0,4042,0,-100.0,-100.0,Muy por debajo de 2019
+internacional,Región Buenos Aires - Londres (Gatwick),Ezeiza - Londres (Gatwick),False,,176192,28061,154,0,0,0,0,81129,0,-100.0,-100.0,Muy por debajo de 2019
+internacional,Región Buenos Aires - Navegantes,Ezeiza - Navegantes,False,,14088,0,0,0,0,7571,0,13923,0,-100.0,-100.0,Muy por debajo de 2019
