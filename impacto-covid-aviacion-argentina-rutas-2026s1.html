@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recuperación post-pandemia · principales rutas aéreas</title>
+  <link rel="icon" href="img/icons/favicon-covid-orsna.svg?v=2" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/impacto-covid-aviacion-argentina.css" />
+  <link rel="stylesheet" href="css/impacto-covid-aviacion-argentina-rutas.css" />
+</head>
+<body class="route-report">
+
+  <div class="top-controls no-print">
+    <div class="control-inner control-inner-simple">
+      <div class="selector-block toolbar-title-block">
+        <label>Informe pasajeros aéreos post pandemia COVID19 · rutas principales</label>
+        <div class="toolbar-title">2025/2019 · actualización 1S 2026/1S 2019</div>
+      </div>
+      <button id="btnPdf" class="btn-primary" type="button">Descargar PDF A4</button>
+    </div>
+    <div id="status" class="status">Cargando datos…</div>
+  </div>
+
+  <main id="reportA4" class="report-a4">
+
+    <!-- PÁGINA 1 · INTERNACIONAL -->
+    <section id="sheetRoutesInternational" class="sheet-a4">
+      <header class="report-header">
+        <div class="brand-row">
+          <div class="brand-dot" aria-hidden="true"></div>
+          <div>
+            <div class="eyebrow">ORSNA · Informe de tráfico comercial · RUTAS · 2025/2019 Y 1S 2026/1S 2019</div>
+            <h1>Recuperación post-pandemia de las principales rutas aéreas</h1>
+          </div>
+        </div>
+        <div class="scope-badge">Rutas internacionales</div>
+      </header>
+
+      <section class="covid-intro-note">
+        <p>
+          El informe compara la evolución de las principales rutas comerciales en 2025 respecto de 2019
+          e incorpora el primer semestre de 2026 frente al mismo período de 2019. Se consideran principales
+          las rutas con al menos 200.000 pasajeros en 2019 o en 2025.
+        </p>
+        <p>
+          Las categorías de valoración corresponden a 2025/2019: recuperación amplia (≥ +20%),
+          recuperación clara (+10% a &lt; +20%), recuperación leve (+3% a &lt; +10%),
+          igualó el nivel de 2019 (−3% a &lt; +3%), recuperación incompleta (−20% a &lt; −3%)
+          y muy por debajo de 2019 (&lt; −20%).
+        </p>
+      </section>
+
+      <section class="summary-block">
+        <h2>Conclusiones · rutas internacionales</h2>
+        <p id="intSummaryText">Calculando resultados…</p>
+        <div id="intKpis" class="route-kpis"></div>
+        <div id="intConclusions" class="conclusion-text">Calculando conclusiones…</div>
+      </section>
+
+      <section class="compare-block covid-chart-block">
+        <h2>Índice de recuperación de las 10 rutas internacionales con más pasajeros en 2025</h2>
+        <div class="chart-subtitle">Índice 2019 = 100</div>
+        <div id="intRouteChart" class="chart-box route-chart-box"></div>
+      </section>
+
+      <section class="compare-block covid-table-block route-table-block">
+        <h2>Principales rutas internacionales</h2>
+        <div class="table-wrap covid-table-wrap">
+          <table id="intRoutesTable" class="covid-table">
+            <thead></thead><tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer class="report-footer report-footer-stacked">
+        <div class="route-method-note">
+          <strong>Aclaración metodológica.</strong>
+          Las rutas se analizan como pares no direccionales. Para los enlaces con Buenos Aires se agrupan
+          Aeroparque y Ezeiza como <strong>Región Buenos Aires</strong>. El Palomar se excluye del agregado internacional.
+          La categoría “Otros” de la fuente no se incluye en el detalle por ruta.
+        </div>
+        <div class="report-footer-row">
+          <span>Fuente: elaborado por GREyF ORSNA con datos públicos de ANAC, tabla de pasajeros por rutas comerciales internacionales.</span>
+        </div>
+      </footer>
+    </section>
+
+    <!-- PÁGINA 2 · INTERNACIONAL CONTINUACIÓN -->
+    <section id="sheetRoutesInternationalContinuation" class="sheet-a4">
+      <header class="report-header">
+        <div class="brand-row">
+          <div class="brand-dot" aria-hidden="true"></div>
+          <div>
+            <div class="eyebrow">ORSNA · Informe de tráfico comercial · RUTAS</div>
+            <h1>Recuperación post-pandemia de las principales rutas aéreas</h1>
+          </div>
+        </div>
+        <div class="scope-badge">Internacional · continuación</div>
+      </header>
+
+      <section class="compare-block covid-table-block">
+        <h2>Principales rutas internacionales · continuación</h2>
+        <p class="continuation-intro">Comparación anual 2019–2025 y actualización del primer semestre de 2026.</p>
+        <div class="table-wrap covid-table-wrap">
+          <table id="intRoutesTableContinuation" class="covid-table">
+            <thead></thead><tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer class="report-footer">
+        <span>Fuente: elaborado por GREyF ORSNA con datos públicos de ANAC.</span>
+      </footer>
+    </section>
+
+    <!-- PÁGINA 3 · CABOTAJE -->
+    <section id="sheetRoutesCabotage" class="sheet-a4">
+      <header class="report-header">
+        <div class="brand-row">
+          <div class="brand-dot" aria-hidden="true"></div>
+          <div>
+            <div class="eyebrow">ORSNA · Informe de tráfico comercial · RUTAS · 2025/2019 Y 1S 2026/1S 2019</div>
+            <h1>Recuperación post-pandemia de las principales rutas aéreas</h1>
+          </div>
+        </div>
+        <div class="scope-badge">Rutas de cabotaje</div>
+      </header>
+
+      <section class="covid-intro-note">
+        <p>
+          El informe aplica a las rutas de cabotaje el mismo umbral de selección y las mismas categorías de
+          recuperación utilizadas para las rutas internacionales.
+        </p>
+        <p>
+          En los enlaces con Buenos Aires se agrupan Aeroparque y Ezeiza como Región Buenos Aires.
+          Para mantener la base comparable con 2019, El Palomar se incorpora únicamente en 2019.
+        </p>
+      </section>
+
+      <section class="summary-block">
+        <h2>Conclusiones · rutas de cabotaje</h2>
+        <p id="cabSummaryText">Calculando resultados…</p>
+        <div id="cabKpis" class="route-kpis"></div>
+        <div id="cabConclusions" class="conclusion-text">Calculando conclusiones…</div>
+      </section>
+
+      <section class="compare-block covid-chart-block">
+        <h2>Índice de recuperación de las 10 rutas de cabotaje con más pasajeros en 2025</h2>
+        <div class="chart-subtitle">Índice 2019 = 100</div>
+        <div id="cabRouteChart" class="chart-box route-chart-box"></div>
+      </section>
+
+      <section class="compare-block covid-table-block route-table-block">
+        <h2>Principales rutas de cabotaje</h2>
+        <div class="table-wrap covid-table-wrap">
+          <table id="cabRoutesTable" class="covid-table">
+            <thead></thead><tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer class="report-footer report-footer-stacked">
+        <div class="route-method-note">
+          <strong>* Región Buenos Aires.</strong>
+          En cabotaje, el agregado corresponde a AEP + EZE y en la base 2019 incluye también El Palomar (EPA).
+        </div>
+        <div class="report-footer-row">
+          <span>Fuente: elaborado por GREyF ORSNA con datos públicos de ANAC, tabla de pasajeros por rutas comerciales de cabotaje.</span>
+        </div>
+      </footer>
+    </section>
+
+    <!-- PÁGINA 4 · CABOTAJE CONTINUACIÓN -->
+    <section id="sheetRoutesCabotageContinuation" class="sheet-a4">
+      <header class="report-header">
+        <div class="brand-row">
+          <div class="brand-dot" aria-hidden="true"></div>
+          <div>
+            <div class="eyebrow">ORSNA · Informe de tráfico comercial · RUTAS</div>
+            <h1>Recuperación post-pandemia de las principales rutas aéreas</h1>
+          </div>
+        </div>
+        <div class="scope-badge">Cabotaje · continuación</div>
+      </header>
+
+      <section class="compare-block covid-table-block">
+        <h2>Principales rutas de cabotaje · continuación</h2>
+        <p class="continuation-intro">Comparación anual 2019–2025 y actualización del primer semestre de 2026.</p>
+        <div class="table-wrap covid-table-wrap">
+          <table id="cabRoutesTableContinuation" class="covid-table">
+            <thead></thead><tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer class="report-footer">
+        <span>Fuente: elaborado por GREyF ORSNA con datos públicos de ANAC.</span>
+      </footer>
+    </section>
+
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="js/impacto-covid-aviacion-argentina-rutas.js"></script>
+</body>
+</html>
