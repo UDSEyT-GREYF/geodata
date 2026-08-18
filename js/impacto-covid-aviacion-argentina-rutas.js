@@ -301,59 +301,128 @@
     if (cabCont) cabCont.style.display = cabRows.length > ROWS_FIRST_PAGE ? "" : "none";
   }
 
-  async function exportPdfA4() {
-    const pages = Array.from(document.querySelectorAll(".sheet-a4"))
-      .filter(page => getComputedStyle(page).display !== "none");
+async function exportPdfA4() {
+  const pages = Array.from(
+    document.querySelectorAll(".sheet-a4")
+  ).filter(page =>
+    getComputedStyle(page).display !== "none"
+  );
 
-    const btn = $("btnPdf");
-    try {
-      if (btn) {
-        btn.disabled = true;
-        btn.textContent = "Generando PDF…";
-      }
+  const btn = $("btnPdf");
 
-      if (!window.html2canvas || !window.jspdf?.jsPDF) {
-        window.print();
-        return;
-      }
+  if (!pages.length) {
+    window.print();
+    return;
+  }
 
-      document.documentElement.classList.add("pdf-exporting");
-      document.body.classList.add("pdf-exporting");
-      await new Promise(resolve => setTimeout(resolve, 300));
+  try {
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = "Generando PDF…";
+    }
 
-      const pdf = new window.jspdf.jsPDF({
-        orientation: "portrait",
-        unit: "mm",
-        format: "a4",
-        compress: true
-      });
+    if (
+      !window.html2canvas ||
+      !window.jspdf?.jsPDF
+    ) {
+      window.print();
+      return;
+    }
 
-      for (let i = 0; i < pages.length; i++) {
-        const canvas = await window.html2canvas(pages[i], {
+    window.scrollTo(0, 0);
+
+    /*
+      IMPORTANTE:
+      no se agrega la clase pdf-exporting.
+      Se captura cada A4 exactamente como
+      está renderizado en la página web.
+    */
+
+    await new Promise(resolve =>
+      requestAnimationFrame(() =>
+        requestAnimationFrame(resolve)
+      )
+    );
+
+    const pdf = new window.jspdf.jsPDF({
+      orientation: "portrait",
+      unit: "mm",
+      format: "a4",
+      compress: true
+    });
+
+    for (let i = 0; i < pages.length; i++) {
+      const page = pages[i];
+
+      const rect = page.getBoundingClientRect();
+
+      const width = Math.ceil(rect.width);
+      const height = Math.ceil(rect.height);
+
+      const canvas = await window.html2canvas(
+        page,
+        {
           scale: 2,
           useCORS: true,
+          allowTaint: true,
           backgroundColor: "#ffffff",
+
+          width: width,
+          height: height,
+
+          windowWidth: width,
+          windowHeight: height,
+
           scrollX: 0,
-          scrollY: 0
-        });
+          scrollY: 0,
 
-        if (i > 0) pdf.addPage("a4", "portrait");
-        pdf.addImage(canvas.toDataURL("image/jpeg", 0.98), "JPEG", 0, 0, 210, 297);
+          logging: false
+        }
+      );
+
+      const imgData = canvas.toDataURL(
+        "image/jpeg",
+        0.98
+      );
+
+      if (i > 0) {
+        pdf.addPage("a4", "portrait");
       }
 
-      pdf.save("recuperacion_postpandemia_rutas_principales_2025_2019_y_2026S1_2019S1.pdf");
-    } catch (err) {
-      console.error(err);
-      window.print();
-    } finally {
-      document.documentElement.classList.remove("pdf-exporting");
-      document.body.classList.remove("pdf-exporting");
-      if (btn) {
-        btn.disabled = false;
-        btn.textContent = "Descargar PDF A4";
-      }
+      /*
+        La hoja web ya está diseñada como A4.
+        Solo se rasteriza y se coloca sobre
+        una hoja A4 completa.
+      */
+      pdf.addImage(
+        imgData,
+        "JPEG",
+        0,
+        0,
+        210,
+        297
+      );
+    }
+
+    pdf.save(
+      "recuperacion_postpandemia_rutas_principales_2025_2019_y_2026S1_2019S1.pdf"
+    );
+
+  } catch (err) {
+    console.error(
+      "Error exportando PDF A4:",
+      err
+    );
+
+    window.print();
+
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = "Descargar PDF A4";
     }
   }
+}
 
   document.addEventListener("DOMContentLoaded", async () => {
     const btn = $("btnPdf");
