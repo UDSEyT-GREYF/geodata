@@ -158,7 +158,8 @@
       return base ? current / base * 100 : 0;
     });
 
-    const maxValue = Math.max(120, Math.ceil(Math.max(...indices) / 50) * 50);
+    const VISUAL_MAX = 300;
+    const maxValue = VISUAL_MAX;
     const x = value => margin.left + (value / maxValue) * plotWidth;
     const baseX = x(100);
 
@@ -181,16 +182,18 @@
 
         ${top.map((row, i) => {
           const idx = indices[i];
+          const visualIdx = Math.min(idx, VISUAL_MAX);
+          const truncated = idx > VISUAL_MAX;
           const y = margin.top + i * rowHeight + 3;
           const h = Math.max(10, rowHeight - 10);
           return `
             <text x="${margin.left - 10}" y="${y + h * 0.70}" text-anchor="end"
               class="route-chart-label">${escapeHtml(shortRoute(row.ruta))}</text>
           
-            <rect x="${margin.left}" y="${y}" width="${Math.max(1, x(idx) - margin.left)}" height="${h}"
+            <rect x="${margin.left}" y="${y}" width="${Math.max(1, x(visualIdx) - margin.left)}" height="${h}"
               class="route-index-bar ${idx >= 100 ? "route-index-good" : "route-index-bad"}"></rect>
           
-            <text x="${Math.min(width - 6, x(idx) + 6)}" y="${y + h * 0.70}"
+            <text x="${Math.min(width - 6, x(visualIdx) + 6)}" y="${y + h * 0.70}"
               class="route-chart-value">${idx.toLocaleString("es-AR", {
                 minimumFractionDigits: 1,
                 maximumFractionDigits: 1
