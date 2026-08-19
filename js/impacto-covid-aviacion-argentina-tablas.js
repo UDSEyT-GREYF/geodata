@@ -1130,7 +1130,7 @@ const width = 860;
 const height = 1020;
 
 const margin = {
-  top: 14,
+  top: 26,
   right: 68,
   bottom: 16,
   left: 205
