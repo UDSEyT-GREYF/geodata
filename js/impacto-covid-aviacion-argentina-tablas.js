@@ -1197,70 +1197,83 @@ return "—";
   }
 
 
-  function segmentMarkup(
-    row,
-    y,
-    cssClass
-  ) {
-    const info =
-      airportRecoveryIndex(row);
+function segmentMarkup(
+  row,
+  y,
+  cssClass
+) {
+  const info =
+    airportRecoveryIndex(row);
 
-    if (info.status !== "ok") {
-      return `
-        <text
-          x="${margin.left + 5}"
-          y="${y + barHeight}"
-          class="airport-recovery-missing"
-        >
-          ${escapeHtml(
-            statusText(info)
-          )}
-        </text>
-      `;
-    }
-
-    const realValue =
-      info.value;
-
-    const visualValue =
-      Math.min(
-        realValue,
-        VISUAL_MAX
-      );
-
+  if (info.status !== "ok") {
     return `
-      <rect
-        x="${margin.left}"
-        y="${y}"
-        width="${
-          Math.max(
-            1,
-            x(visualValue) -
-            margin.left
-          )
-        }"
-        height="${barHeight}"
-        class="${cssClass}"
-      ></rect>
-
       <text
-        x="${
-          Math.min(
-            width - 5,
-            x(visualValue) + 6
-          )
-        }"
+        x="${margin.left + 5}"
         y="${y + barHeight}"
-        class="airport-recovery-value"
+        class="airport-recovery-missing"
       >
-        ${
-          formatOneDecimal(
-            realValue
-          )
-        }
+        ${escapeHtml(
+          statusText(info)
+        )}
       </text>
     `;
   }
+
+  const realValue =
+    info.value;
+
+  const visualValue =
+    Math.min(
+      realValue,
+      VISUAL_MAX
+    );
+
+  const isBelow2019 =
+    realValue < 100;
+
+  const barClass =
+    isBelow2019
+      ? "airport-recovery-bar-bad"
+      : cssClass;
+
+  const valueClass =
+    isBelow2019
+      ? "airport-recovery-value airport-recovery-value-bad"
+      : "airport-recovery-value";
+
+  return `
+    <rect
+      x="${margin.left}"
+      y="${y}"
+      width="${
+        Math.max(
+          1,
+          x(visualValue) -
+          margin.left
+        )
+      }"
+      height="${barHeight}"
+      class="${barClass}"
+    ></rect>
+
+    <text
+      x="${
+        Math.min(
+          width - 5,
+          x(visualValue) + 6
+        )
+      }"
+      y="${y + barHeight}"
+      class="${valueClass}"
+    >
+      ${
+        formatOneDecimal(
+          realValue
+        )
+      }
+    </text>
+  `;
+}
 
 
   const grid =
