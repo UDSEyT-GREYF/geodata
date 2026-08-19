@@ -1374,7 +1374,6 @@ h1 {
 }
 
 .airport-recovery-value {
-  fill: #374554;
   font-size: 10px;
   font-weight: 700;
 }
@@ -1437,7 +1436,15 @@ h1 {
   fill: #c9786f;
 }
 
+.airport-recovery-value-good {
+  fill: #374554;
+}
+
 .airport-recovery-value-bad {
-  fill: #b23a32;
+  fill: #a63b3b;
   font-weight: 800;
+}
+
+.airport-recovery-value-bg-bad {
+  fill: #f3d6d6;
 }
