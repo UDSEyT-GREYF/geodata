@@ -976,7 +976,407 @@ function formatOneDecimal(value) {
   });
 }
 
+function buildAirportRecoveryRows(
+  cabRows,
+  intRows
+) {
+  const byIata = new Map();
 
+  function addRow(row, segment) {
+    if (!row) return;
+
+    /*
+      Solo aeropuertos individuales.
+      Se excluyen agregados y totales.
+    */
+    if (
+      row.isSna ||
+      row.isBue ||
+      row.isTableTotal ||
+      row.source?.es_grupo_a_resto
+    ) {
+      return;
+    }
+
+    const iata = String(
+      row.iata || ""
+    )
+      .trim()
+      .toUpperCase();
+
+    if (!iata) return;
+
+    if (!byIata.has(iata)) {
+      byIata.set(iata, {
+        iata,
+        label:
+          row.shortLabel ||
+          row.label ||
+          iata,
+        cab: null,
+        int: null
+      });
+    }
+
+    const item =
+      byIata.get(iata);
+
+    item[segment] = row;
+
+    /*
+      Si alguno de los dos segmentos
+      tiene un nombre mejor, se conserva.
+    */
+    if (
+      row.shortLabel ||
+      row.label
+    ) {
+      item.label =
+        row.shortLabel ||
+        row.label;
+    }
+  }
+
+  (cabRows || []).forEach(
+    row => addRow(row, "cab")
+  );
+
+  (intRows || []).forEach(
+    row => addRow(row, "int")
+  );
+
+  return Array.from(
+    byIata.values()
+  )
+    .map(item => ({
+      ...item,
+
+      total2025:
+        Number(
+          item.cab?.currentValue || 0
+        ) +
+        Number(
+          item.int?.currentValue || 0
+        )
+    }))
+    .sort(
+      (a, b) =>
+        b.total2025 -
+        a.total2025
+    );
+}
+
+function airportRecoveryIndex(row) {
+  if (!row) {
+    return {
+      status: "missing",
+      value: NaN
+    };
+  }
+
+  /*
+    Los volúmenes marginales no deben
+    mostrar una variación porcentual
+    como si fuera representativa.
+  */
+  if (row.isMarginal) {
+    return {
+      status: "marginal",
+      value: NaN
+    };
+  }
+
+  const base =
+    annualValue(
+      row.source,
+      reportConfig.baseYear
+    );
+
+  const current =
+    annualValue(
+      row.source,
+      reportConfig.lastAnnualYear
+    );
+
+  if (base <= 0) {
+    return {
+      status: "no-base",
+      value: NaN
+    };
+  }
+
+  return {
+    status: "ok",
+    value:
+      (current / base) * 100
+  };
+}
+
+function renderAirportRecoveryChart(
+  containerId,
+  rows
+) {
+  const el = $(containerId);
+
+  if (!el) return;
+
+  if (!Array.isArray(rows) || !rows.length) {
+    el.innerHTML = "";
+    return;
+  }
+
+  const width = 860;
+  const height = 350;
+
+  const margin = {
+    top: 20,
+    right: 58,
+    bottom: 28,
+    left: 190
+  };
+
+  const plotWidth =
+    width -
+    margin.left -
+    margin.right;
+
+  const plotHeight =
+    height -
+    margin.top -
+    margin.bottom;
+
+  const VISUAL_MAX = 300;
+
+  const x = value =>
+    margin.left +
+    (
+      Math.max(
+        0,
+        Math.min(
+          value,
+          VISUAL_MAX
+        )
+      ) /
+      VISUAL_MAX
+    ) *
+    plotWidth;
+
+  const rowHeight =
+    plotHeight /
+    rows.length;
+
+  const barHeight =
+    Math.max(
+      2.5,
+      Math.min(
+        6,
+        rowHeight * 0.27
+      )
+    );
+
+  const ticks = [];
+
+  for (
+    let value = 0;
+    value <= VISUAL_MAX;
+    value += 50
+  ) {
+    ticks.push(value);
+  }
+
+  const baseX = x(100);
+
+
+  function statusText(info) {
+    if (
+      info.status === "marginal"
+    ) {
+      return "vol. marginal";
+    }
+
+    if (
+      info.status === "no-base"
+    ) {
+      return `sin base ${reportConfig.baseYear}`;
+    }
+
+    return "—";
+  }
+
+
+  function segmentMarkup(
+    row,
+    y,
+    cssClass
+  ) {
+    const info =
+      airportRecoveryIndex(row);
+
+    if (info.status !== "ok") {
+      return `
+        <text
+          x="${margin.left + 5}"
+          y="${y + barHeight}"
+          class="airport-recovery-missing"
+        >
+          ${escapeHtml(
+            statusText(info)
+          )}
+        </text>
+      `;
+    }
+
+    const realValue =
+      info.value;
+
+    const visualValue =
+      Math.min(
+        realValue,
+        VISUAL_MAX
+      );
+
+    return `
+      <rect
+        x="${margin.left}"
+        y="${y}"
+        width="${
+          Math.max(
+            1,
+            x(visualValue) -
+            margin.left
+          )
+        }"
+        height="${barHeight}"
+        class="${cssClass}"
+      ></rect>
+
+      <text
+        x="${
+          Math.min(
+            width - 5,
+            x(visualValue) + 6
+          )
+        }"
+        y="${y + barHeight}"
+        class="airport-recovery-value"
+      >
+        ${
+          formatOneDecimal(
+            realValue
+          )
+        }
+      </text>
+    `;
+  }
+
+
+  const grid =
+    ticks.map(value => `
+      <line
+        x1="${x(value)}"
+        y1="${margin.top - 5}"
+        x2="${x(value)}"
+        y2="${height - margin.bottom}"
+        class="airport-recovery-grid"
+      ></line>
+
+      <text
+        x="${x(value)}"
+        y="${height - 7}"
+        text-anchor="middle"
+        class="airport-recovery-axis"
+      >
+        ${value}
+      </text>
+    `).join("");
+
+
+  const bars =
+    rows.map(
+      (item, index) => {
+
+        const rowTop =
+          margin.top +
+          index * rowHeight;
+
+        const middleY =
+          rowTop +
+          rowHeight / 2;
+
+        const cabY =
+          middleY -
+          barHeight -
+          1.5;
+
+        const intY =
+          middleY +
+          1.5;
+
+        return `
+          <text
+            x="${margin.left - 10}"
+            y="${middleY + 2}"
+            text-anchor="end"
+            class="airport-recovery-label"
+          >
+            ${escapeHtml(
+              item.label
+            )}
+          </text>
+
+          ${
+            segmentMarkup(
+              item.cab,
+              cabY,
+              "airport-recovery-bar-cab"
+            )
+          }
+
+          ${
+            segmentMarkup(
+              item.int,
+              intY,
+              "airport-recovery-bar-int"
+            )
+          }
+        `;
+      }
+    ).join("");
+
+
+  el.innerHTML = `
+    <svg
+      viewBox="0 0 ${width} ${height}"
+      role="img"
+      aria-label="Índice de recuperación 2025 respecto de 2019 por aeropuerto para pasajeros de cabotaje e internacionales."
+    >
+
+      ${grid}
+
+      <line
+        x1="${baseX}"
+        y1="${margin.top - 6}"
+        x2="${baseX}"
+        y2="${height - margin.bottom}"
+        class="airport-recovery-base-line"
+      ></line>
+
+      <text
+        x="${baseX + 5}"
+        y="${margin.top - 8}"
+        class="airport-recovery-base-label"
+      >
+        2019 = 100
+      </text>
+
+      ${bars}
+
+    </svg>
+  `;
+}
+
+
+  
 function buildLinePath(series, valueKey, xScale, yScale) {
   return series
     .map((d, i) => {
@@ -2548,6 +2948,64 @@ const internationalAirportRows =
       !row.es_aep_eze
   );
 
+/*
+  Aeropuertos internacionales
+  normalizados para el gráfico
+  combinado.
+*/
+const intAllAirportRows =
+  normalizeReportRows(
+    internationalAirportRows,
+    reportConfig
+  );
+
+
+/*
+  Unión de aeropuertos de cabotaje
+  e internacional.
+*/
+const airportRecoveryRows =
+  buildAirportRecoveryRows(
+    cabAllAirportRows,
+    intAllAirportRows
+  );
+
+
+/*
+  Se divide la lista exactamente
+  por la mitad para disponer de
+  dos gráficos con mayor espacio.
+*/
+const airportRecoverySplit =
+  Math.ceil(
+    airportRecoveryRows.length / 2
+  );
+
+
+const airportRecoveryRows1 =
+  airportRecoveryRows.slice(
+    0,
+    airportRecoverySplit
+  );
+
+
+const airportRecoveryRows2 =
+  airportRecoveryRows.slice(
+    airportRecoverySplit
+  );
+
+
+renderAirportRecoveryChart(
+  "airportRecoveryChart1",
+  airportRecoveryRows1
+);
+
+
+renderAirportRecoveryChart(
+  "airportRecoveryChart2",
+  airportRecoveryRows2
+);
+  
 const internationalTotalRow =
   buildAirportTableTotalRow(
     internationalAirportRows,
