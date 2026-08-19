@@ -1408,7 +1408,7 @@ h1 {
   align-items: center;
   gap: 16px;
   margin: 1mm 0 1.8mm;
-  font-size: 8px;
+  font-size: 10px;
   color: var(--muted);
 }
 
