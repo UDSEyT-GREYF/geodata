@@ -3107,108 +3107,136 @@ renderConclusions(
   };
 }
 
-  async function exportPdfA4() {
-    const pages = Array.from(
-      document.querySelectorAll(".sheet-a4")
-    );
+async function exportPdfA4() {
+  const pages = Array.from(
+    document.querySelectorAll(".sheet-a4")
+  ).filter(page =>
+    getComputedStyle(page).display !== "none"
+  );
 
-    const btn = $("btnPdf");
+  const btn = $("btnPdf");
 
-    if (!pages.length) {
+  if (!pages.length) {
+    window.print();
+    return;
+  }
+
+  try {
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = "Generando PDF…";
+    }
+
+    if (
+      !window.html2canvas ||
+      !window.jspdf?.jsPDF
+    ) {
       window.print();
       return;
     }
 
-    try {
-      if (btn) {
-        btn.disabled = true;
-        btn.textContent = "Generando PDF…";
-      }
+    window.scrollTo(0, 0);
 
-      window.scrollTo(0, 0);
-      document.documentElement.classList.add(
-        "pdf-exporting"
-      );
-      document.body.classList.add(
-        "pdf-exporting"
-      );
+    /*
+      Se captura cada hoja exactamente
+      como está renderizada en la web.
+      No se utiliza la clase pdf-exporting.
+    */
+    await new Promise(resolve =>
+      requestAnimationFrame(() =>
+        requestAnimationFrame(resolve)
+      )
+    );
 
-      await new Promise(resolve =>
-        setTimeout(resolve, 350)
-      );
-
-      if (
-        !window.html2canvas ||
-        !window.jspdf?.jsPDF
-      ) {
-        window.print();
-        return;
-      }
-
-      const pdf = new window.jspdf.jsPDF({
+    const pdf =
+      new window.jspdf.jsPDF({
         orientation: "portrait",
         unit: "mm",
         format: "a4",
         compress: true
       });
 
-      for (let i = 0; i < pages.length; i++) {
-        const canvas = await window.html2canvas(
-          pages[i],
+    for (
+      let i = 0;
+      i < pages.length;
+      i++
+    ) {
+      const page = pages[i];
+
+      const rect =
+        page.getBoundingClientRect();
+
+      const width =
+        Math.ceil(rect.width);
+
+      const height =
+        Math.ceil(rect.height);
+
+      const canvas =
+        await window.html2canvas(
+          page,
           {
             scale: 2,
             useCORS: true,
             allowTaint: true,
             backgroundColor: "#ffffff",
+
+            width: width,
+            height: height,
+
+            windowWidth: width,
+            windowHeight: height,
+
             scrollX: 0,
             scrollY: 0,
-            windowWidth: pages[i].scrollWidth,
-            windowHeight: pages[i].scrollHeight
+
+            logging: false
           }
         );
 
-        const imgData = canvas.toDataURL(
+      const imgData =
+        canvas.toDataURL(
           "image/jpeg",
           0.98
         );
 
-        if (i > 0) {
-          pdf.addPage("a4", "portrait");
-        }
-
-        pdf.addImage(
-          imgData,
-          "JPEG",
-          0,
-          0,
-          210,
-          297
+      if (i > 0) {
+        pdf.addPage(
+          "a4",
+          "portrait"
         );
       }
 
-      pdf.save(
-        REPORT_VARIANT.pdfFileName
+      pdf.addImage(
+        imgData,
+        "JPEG",
+        0,
+        0,
+        210,
+        297
       );
-    } catch (err) {
-      console.error(
-        "Error exportando PDF A4:",
-        err
-      );
-      window.print();
-    } finally {
-      document.documentElement.classList.remove(
-        "pdf-exporting"
-      );
-      document.body.classList.remove(
-        "pdf-exporting"
-      );
+    }
 
-      if (btn) {
-        btn.disabled = false;
-        btn.textContent = "Descargar PDF A4";
-      }
+    pdf.save(
+      REPORT_VARIANT.pdfFileName
+    );
+
+  } catch (err) {
+    console.error(
+      "Error exportando PDF A4:",
+      err
+    );
+
+    window.print();
+
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent =
+        "Descargar PDF A4";
     }
   }
+}
 
   async function load() {
     try {
