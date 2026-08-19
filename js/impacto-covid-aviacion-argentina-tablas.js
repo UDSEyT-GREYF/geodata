@@ -1228,18 +1228,15 @@ function segmentMarkup(
       VISUAL_MAX
     );
 
-  const isBelow2019 =
-    realValue < 100;
+const isBelow2019 =
+  realValue < 100;
 
-  const barClass =
-    isBelow2019
-      ? "airport-recovery-bar-bad"
-      : cssClass;
+const barClass = cssClass;
 
-  const valueClass =
-    isBelow2019
-      ? "airport-recovery-value airport-recovery-value-bad"
-      : "airport-recovery-value";
+const valueClass =
+  isBelow2019
+    ? "airport-recovery-value airport-recovery-value-bad"
+    : "airport-recovery-value airport-recovery-value-good";
 
   return `
     <rect
