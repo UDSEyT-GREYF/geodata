@@ -989,14 +989,15 @@ function buildAirportRecoveryRows(
       Solo aeropuertos individuales.
       Se excluyen agregados y totales.
     */
-    if (
-      row.isSna ||
-      row.isBue ||
-      row.isTableTotal ||
-      row.source?.es_grupo_a_resto
-    ) {
-      return;
-    }
+if (
+  row.isSna ||
+  row.isBue ||
+  row.isTableTotal ||
+  row.source?.es_grupo_a_resto ||
+  row.isMarginal
+) {
+  return;
+}
 
     const iata = String(
       row.iata || ""
@@ -1125,15 +1126,15 @@ function renderAirportRecoveryChart(
     return;
   }
 
-  const width = 860;
-  const height = 350;
+const width = 860;
+const height = 760;
 
-  const margin = {
-    top: 20,
-    right: 58,
-    bottom: 28,
-    left: 190
-  };
+const margin = {
+  top: 20,
+  right: 58,
+  bottom: 28,
+  left: 205
+};
 
   const plotWidth =
     width -
@@ -1165,14 +1166,14 @@ function renderAirportRecoveryChart(
     plotHeight /
     rows.length;
 
-  const barHeight =
-    Math.max(
-      2.5,
-      Math.min(
-        6,
-        rowHeight * 0.27
-      )
-    );
+const barHeight =
+  Math.max(
+    2.2,
+    Math.min(
+      5.2,
+      rowHeight * 0.24
+    )
+  );
 
   const ticks = [];
 
@@ -1188,19 +1189,11 @@ function renderAirportRecoveryChart(
 
 
   function statusText(info) {
-    if (
-      info.status === "marginal"
-    ) {
-      return "vol. marginal";
-    }
+if (info.status === "no-base") {
+  return `sin base ${reportConfig.baseYear}`;
+}
 
-    if (
-      info.status === "no-base"
-    ) {
-      return `sin base ${reportConfig.baseYear}`;
-    }
-
-    return "—";
+return "—";
   }
 
 
@@ -2970,40 +2963,9 @@ const airportRecoveryRows =
     intAllAirportRows
   );
 
-
-/*
-  Se divide la lista exactamente
-  por la mitad para disponer de
-  dos gráficos con mayor espacio.
-*/
-const airportRecoverySplit =
-  Math.ceil(
-    airportRecoveryRows.length / 2
-  );
-
-
-const airportRecoveryRows1 =
-  airportRecoveryRows.slice(
-    0,
-    airportRecoverySplit
-  );
-
-
-const airportRecoveryRows2 =
-  airportRecoveryRows.slice(
-    airportRecoverySplit
-  );
-
-
 renderAirportRecoveryChart(
-  "airportRecoveryChart1",
-  airportRecoveryRows1
-);
-
-
-renderAirportRecoveryChart(
-  "airportRecoveryChart2",
-  airportRecoveryRows2
+  "airportRecoveryChart",
+  airportRecoveryRows
 );
   
 const internationalTotalRow =
