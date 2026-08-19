@@ -1127,12 +1127,12 @@ function renderAirportRecoveryChart(
   }
 
 const width = 860;
-const height = 900;
+const height = 1020;
 
 const margin = {
-  top: 18,
-  right: 62,
-  bottom: 22,
+  top: 14,
+  right: 68,
+  bottom: 16,
   left: 205
 };
 
@@ -1168,10 +1168,10 @@ const margin = {
 
 const barHeight =
   Math.max(
-    2.2,
+    3.2,
     Math.min(
-      5.2,
-      rowHeight * 0.24
+      7.2,
+      rowHeight * 0.32
     )
   );
 
