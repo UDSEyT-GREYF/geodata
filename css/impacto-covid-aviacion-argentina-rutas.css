@@ -41,10 +41,10 @@
   min-height: 0;
 }
 
-.route-chart-box svg {
-  width: 100%;
+.route-chart-box {
+  margin-top: 1.2mm;
   height: auto;
-  display: block;
+  min-height: 0;
 }
 
 .route-chart-grid {
