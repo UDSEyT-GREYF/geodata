@@ -1238,39 +1238,59 @@ const valueClass =
     ? "airport-recovery-value airport-recovery-value-bad"
     : "airport-recovery-value airport-recovery-value-good";
 
-  return `
-    <rect
-      x="${margin.left}"
-      y="${y}"
-      width="${
-        Math.max(
-          1,
-          x(visualValue) -
-          margin.left
-        )
-      }"
-      height="${barHeight}"
-      class="${barClass}"
-    ></rect>
+ return `
+  <rect
+    x="${margin.left}"
+    y="${y}"
+    width="${
+      Math.max(
+        1,
+        x(visualValue) -
+        margin.left
+      )
+    }"
+    height="${barHeight}"
+    class="${barClass}"
+  ></rect>
 
-    <text
-      x="${
-        Math.min(
-          width - 5,
-          x(visualValue) + 6
-        )
-      }"
-      y="${y + barHeight}"
-      class="${valueClass}"
-    >
-      ${
-        formatOneDecimal(
-          realValue
-        )
-      }
-    </text>
-  `;
-}
+  ${
+    isBelow2019
+      ? `
+        <rect
+          x="${
+            Math.min(
+              width - 40,
+              x(visualValue) + 3
+            )
+          }"
+          y="${y - 0.8}"
+          width="34"
+          height="${barHeight + 2}"
+          rx="2"
+          ry="2"
+          class="airport-recovery-value-bg-bad"
+        ></rect>
+      `
+      : ""
+  }
+
+  <text
+    x="${
+      Math.min(
+        width - 5,
+        x(visualValue) + 6
+      )
+    }"
+    y="${y + barHeight}"
+    class="${valueClass}"
+  >
+    ${
+      formatOneDecimal(
+        realValue
+      )
+    }
+  </text>
+`;}
 
 
   const grid =
