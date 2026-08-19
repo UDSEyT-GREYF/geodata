@@ -1336,10 +1336,9 @@ h1 {
 
 .airport-recovery-chart {
   width: 100%;
-  height: 175mm;
+  height: 188mm;
   min-height: 0;
 }
-
 .airport-recovery-chart svg {
   width: 100%;
   height: 100%;
