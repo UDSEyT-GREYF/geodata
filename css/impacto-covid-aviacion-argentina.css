@@ -1432,9 +1432,7 @@ h1 {
 .airport-recovery-legend .sw.int {
   background: var(--int);
 }
-.airport-recovery-bar-bad {
-  fill: #c9786f;
-}
+
 
 .airport-recovery-value-good {
   fill: #374554;
