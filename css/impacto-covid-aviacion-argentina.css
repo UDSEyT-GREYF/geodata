@@ -1326,7 +1326,7 @@ h1 {
 }
 
 .airport-recovery-block {
-  margin-bottom: 2mm;
+  margin-bottom: 1.5mm;
   flex: 0 0 auto;
 }
 
@@ -1394,8 +1394,12 @@ h1 {
 }
 
 .airport-recovery-note {
-  margin-top: 0;
+  margin-top: 1mm;
+  margin-bottom: 1.5mm;
   color: var(--muted);
   font-size: 7.6px;
   line-height: 1.25;
+}
+.airport-recovery-sheet .report-footer {
+  margin-top: 1mm;
 }
