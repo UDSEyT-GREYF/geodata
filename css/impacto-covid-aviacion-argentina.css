@@ -1326,7 +1326,7 @@ h1 {
 }
 
 .airport-recovery-block {
-  margin-bottom: 1.5mm;
+  margin-bottom: 0.8mm;
   flex: 0 0 auto;
 }
 
@@ -1336,7 +1336,7 @@ h1 {
 
 .airport-recovery-chart {
   width: 100%;
-  height: 210mm;
+  height: 220mm;
   min-height: 0;
 }
 .airport-recovery-chart svg {
@@ -1394,12 +1394,42 @@ h1 {
 }
 
 .airport-recovery-note {
-  margin-top: 1mm;
-  margin-bottom: 1.5mm;
+  margin-top: 0.6mm;
+  margin-bottom: 1mm;
   color: var(--muted);
-  font-size: 7.6px;
-  line-height: 1.25;
+  font-size: 7.2px;
+  line-height: 1.2;
 }
 .airport-recovery-sheet .report-footer {
   margin-top: 1mm;
+}
+.airport-recovery-legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin: 1mm 0 1.8mm;
+  font-size: 8px;
+  color: var(--muted);
+}
+
+.airport-recovery-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.airport-recovery-legend .sw {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.airport-recovery-legend .sw.cab {
+  background: var(--orsna-azul-2);
+}
+
+.airport-recovery-legend .sw.int {
+  background: var(--int);
 }
