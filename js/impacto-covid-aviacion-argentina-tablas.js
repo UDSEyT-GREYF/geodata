@@ -1127,12 +1127,12 @@ function renderAirportRecoveryChart(
   }
 
 const width = 860;
-const height = 760;
+const height = 900;
 
 const margin = {
-  top: 20,
-  right: 58,
-  bottom: 28,
+  top: 18,
+  right: 62,
+  bottom: 22,
   left: 205
 };
 
