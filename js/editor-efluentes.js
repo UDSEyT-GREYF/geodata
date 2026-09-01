@@ -100,6 +100,9 @@
 
   function initMap() {
     if (map) return;
+    if (typeof L === "undefined") {
+      throw new Error("Leaflet no se cargó. Recargá la página; si persiste, revisá el acceso al CDN.");
+    }
 
     map = L.map("map", { zoomControl: true, preferCanvas: true })
       .setView(DEFAULT_CENTER, DEFAULT_ZOOM);
@@ -642,8 +645,9 @@
     } catch (err) {
       console.error(err);
       alert(`No se pudo abrir el editor: ${err.message || err}`);
-      await sb.auth.signOut();
+      try { await sb.auth.signOut(); } catch (_) {}
       showLogin();
+      throw err;
     }
   }
 

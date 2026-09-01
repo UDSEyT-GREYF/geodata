@@ -6,6 +6,7 @@ window.SIGA_EDITOR_CONFIG = {
   supabaseUrl: "https://arsmoxqyosomorakzasa.supabase.co",
   supabaseAnonKey: "sb_publishable_rzlL03Rek-M5XUbw-NwXcA_CBNjaKvy",
 
+  // Fuentes ya utilizadas por SIGA en el repositorio geodata.
   airportsSource: "fuentes/Datos_aeropuertos.geojson",
   airportPolygonsSource: "fuentes/poligonos_aeropuertos.geojson"
 };
