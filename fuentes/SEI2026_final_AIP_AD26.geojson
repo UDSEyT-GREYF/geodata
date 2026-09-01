@@ -1,0 +1,2804 @@
+{
+  "type": "FeatureCollection",
+  "name": "SEI2026",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 1,
+        "id": "AEP_SEI_01",
+        "tipo": "SEI",
+        "iata": "AEP",
+        "icao": "SABE",
+        "aeropuerto": "Aeroparque Jorge Newbery",
+        "etiqueta": "AEP - SEI 01",
+        "etiqueta_original": "AEP - Hangares SEI",
+        "area_m2": 526.47,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "sitio_publicado_componentes_no_individualizados",
+        "estado_revision": "actualizado_parcial",
+        "categoria_sei": 7,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "7",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 22712,
+        "espuma_l": 3200,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 454,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "2 autobombas; 22.712 litros de agua; 3.200 litros de espuma; 454 kg de polvo químico seco",
+        "capacidad_remocion": "Se ajusta al plan de remoción de aeronaves inutilizadas de Aeropuertos Argentina",
+        "prestador_sei": "Policía Federal Argentina",
+        "observaciones_ad26": "Prestador del servicio SEI: Policía Federal Argentina.",
+        "fecha_ad26": "2025-11-27",
+        "amdt_ad26": "2/2025",
+        "aip_pagina_ad26": "2-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-6a10684a7a5bd",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -58.41314895610856,
+                -34.56348036960617
+              ],
+              [
+                -58.413445792664504,
+                -34.5633141586066
+              ],
+              [
+                -58.41335381043592,
+                -34.56319142304943
+              ],
+              [
+                -58.41305401960983,
+                -34.56336186689043
+              ],
+              [
+                -58.41314895610856,
+                -34.56348036960617
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 2,
+        "id": "AEP_SEI_02",
+        "tipo": "SEI",
+        "iata": "AEP",
+        "icao": "SABE",
+        "aeropuerto": "Aeroparque Jorge Newbery",
+        "etiqueta": "AEP - SEI 02",
+        "etiqueta_original": "AEP - Hangares SEI",
+        "area_m2": 1397.12,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "sitio_publicado_componentes_no_individualizados",
+        "estado_revision": "actualizado_parcial",
+        "categoria_sei": 7,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "7",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 22712,
+        "espuma_l": 3200,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 454,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "2 autobombas; 22.712 litros de agua; 3.200 litros de espuma; 454 kg de polvo químico seco",
+        "capacidad_remocion": "Se ajusta al plan de remoción de aeronaves inutilizadas de Aeropuertos Argentina",
+        "prestador_sei": "Policía Federal Argentina",
+        "observaciones_ad26": "Prestador del servicio SEI: Policía Federal Argentina.",
+        "fecha_ad26": "2025-11-27",
+        "amdt_ad26": "2/2025",
+        "aip_pagina_ad26": "2-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-6a10684a7a5bd",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -58.41371066179579,
+                -34.56364345286801
+              ],
+              [
+                -58.413447212209974,
+                -34.56331209898963
+              ],
+              [
+                -58.41344366142931,
+                -34.563311314814484
+              ],
+              [
+                -58.413445792664504,
+                -34.5633141586066
+              ],
+              [
+                -58.41314895610856,
+                -34.56348036960617
+              ],
+              [
+                -58.41339369421951,
+                -34.563785859393136
+              ],
+              [
+                -58.41371066179579,
+                -34.56364345286801
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 3,
+        "id": "CNQ_SEI",
+        "tipo": "SEI",
+        "iata": "CNQ",
+        "icao": "SARC",
+        "aeropuerto": "Corrientes / Dr. Fernando Piragine Niveyro",
+        "etiqueta": "CNQ - SEI",
+        "etiqueta_original": "CNQ -Hangar SEI Cuartel de Bomberos",
+        "area_m2": 774.45,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 7,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "7",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 3,
+        "cantidad_cisternas": null,
+        "agua_l": 15800,
+        "espuma_l": 1700,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 625,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "3 autobombas; 15.800 litros de agua; 1.700 litros de espuma; 625 kg de polvo químico seco",
+        "capacidad_remocion": "Responsabilidad del explotador de la aeronave. A coordinar con la Administración de la Dirección de Aeronáutica Provincial para obtener datos de empresas que realizan el servicio.",
+        "prestador_sei": "Policía Provincial",
+        "observaciones_ad26": "Prestador del servicio SEI: Policía Provincial.",
+        "fecha_ad26": "2025-06-12",
+        "amdt_ad26": "1/2025",
+        "aip_pagina_ad26": "3-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e10de8df659",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -58.75832429306408,
+                -27.447443539821283
+              ],
+              [
+                -58.758098799737695,
+                -27.44746978248441
+              ],
+              [
+                -58.7581377672072,
+                -27.44776890203838
+              ],
+              [
+                -58.75837653533198,
+                -27.44774335310728
+              ],
+              [
+                -58.75832429306408,
+                -27.447443539821283
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 4,
+        "id": "COR_SEI",
+        "tipo": "SEI",
+        "iata": "COR",
+        "icao": "SACO",
+        "aeropuerto": "Córdoba / Ing. Ambrosio Taravella",
+        "etiqueta": "COR - SEI",
+        "etiqueta_original": "COR - Hangar SEI",
+        "area_m2": 397.74,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 9,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "9",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 3,
+        "cantidad_cisternas": null,
+        "agua_l": 35000,
+        "espuma_l": 4510,
+        "tipo_espuma": "AFFF",
+        "polvo_quimico_kg": 725,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "3 autobombas; 35.000 litros de agua; 4.510 litros de espuma AFFF; 725 kg de polvo químico seco",
+        "capacidad_remocion": "Disponible previa declaración de incapacidad del explotador/propietario. Recursos próximos: grúas móviles/telescópicas/giratorias de 30 a 500 t, grúas torre de 7 a 12 t, gatos hidráulicos hasta 200 t, desplazadores neumáticos hasta 150 t, patines oruga hasta 100 t, plataformas y módulos hidráulicos hasta 200 t, semirremolques y carretones.",
+        "prestador_sei": "ANAC",
+        "observaciones_ad26": "Prestador del servicio SEI: ANAC.",
+        "fecha_ad26": "2026-06-11",
+        "amdt_ad26": "1/2026",
+        "aip_pagina_ad26": "3-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e1078aa7f9d",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -64.2124209,
+                -31.314604
+              ],
+              [
+                -64.2123945,
+                -31.3146047
+              ],
+              [
+                -64.2123947,
+                -31.314428500000016
+              ],
+              [
+                -64.2122562,
+                -31.3144277
+              ],
+              [
+                -64.2122559,
+                -31.3146848
+              ],
+              [
+                -64.2124208,
+                -31.31468489999999
+              ],
+              [
+                -64.2124209,
+                -31.314604
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 5,
+        "id": "CTC_SEI",
+        "tipo": "SEI",
+        "iata": "CTC",
+        "icao": "SANC",
+        "aeropuerto": "Catamarca",
+        "etiqueta": "CTC - SEI",
+        "etiqueta_original": "CTC - SEI",
+        "area_m2": 656.9,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 6,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "6",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 1,
+        "cantidad_cisternas": null,
+        "agua_l": 11356,
+        "espuma_l": 1590,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 205,
+        "reserva_espuma_l": 1800,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "1 autobomba; 11.356 litros de agua; 1.590 litros de espuma; 205 kg de polvo químico seco. Reserva de espuma 1.800 litros",
+        "capacidad_remocion": "NIL",
+        "prestador_sei": "Policía Federal Argentina",
+        "observaciones_ad26": "Prestador del servicio SEI: Policía Federal Argentina.",
+        "fecha_ad26": "2025-11-27",
+        "amdt_ad26": "2/2025",
+        "aip_pagina_ad26": "3-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e256ccb0f13",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -65.75587881984332,
+                -28.59541511823665
+              ],
+              [
+                -65.7554797133854,
+                -28.59548004875085
+              ],
+              [
+                -65.75549964013467,
+                -28.595635256084844
+              ],
+              [
+                -65.7559055504833,
+                -28.595552433367125
+              ],
+              [
+                -65.75587881984332,
+                -28.59541511823665
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 6,
+        "id": "EPA_SEI",
+        "tipo": "SEI",
+        "iata": "EPA",
+        "icao": "SADP",
+        "aeropuerto": "El Palomar",
+        "etiqueta": "EPA - SEI",
+        "etiqueta_original": "EPA - Hangar SEI",
+        "area_m2": 776.11,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 6,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "6",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 22712,
+        "espuma_l": 3200,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 454,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "2 autobombas; 22.712 litros de agua; 3.200 litros de espuma; 454 kg de polvo seco químico",
+        "capacidad_remocion": "El explotador del aeropuerto, AA2000, no cuenta con equipamiento en el lugar para retirar aeronaves inutilizadas. Debe contratar a una empresa para realizar el trabajo. El mismo se encuentra a cargo de las empresas aéreas o del propietario registrado",
+        "prestador_sei": "Policía Federal Argentina",
+        "observaciones_ad26": "Prestador del servicio SEI: Policía Federal Argentina.",
+        "fecha_ad26": "2024-07-11",
+        "amdt_ad26": "1/2024",
+        "aip_pagina_ad26": "2-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e26822c76b6",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -58.602121334170135,
+                -34.611561872261134
+              ],
+              [
+                -58.60234579862562,
+                -34.611473245650856
+              ],
+              [
+                -58.602215551903996,
+                -34.611199286753745
+              ],
+              [
+                -58.60197217258469,
+                -34.611291875424115
+              ],
+              [
+                -58.602121334170135,
+                -34.611561872261134
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 7,
+        "id": "CRD_SEI",
+        "tipo": "SEI",
+        "iata": "CRD",
+        "icao": "SAVC",
+        "aeropuerto": "Comodoro Rivadavia / Gral. E. Mosconi",
+        "etiqueta": "CRD - SEI",
+        "etiqueta_original": "CRD - SEI",
+        "area_m2": 407.11,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 7,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "7",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 18200,
+        "espuma_l": 2290,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 406,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "2 autobombas; 18.200 litros de agua; 2.290 litros de espuma; 406 kg de polvo 2 firefighting trucks; 18,200 liters of water; 2,290 liters of foam; 406 kg of powder",
+        "capacidad_remocion": "El aeropuerto no cuenta con equipamiento; el retiro está a cargo del explotador de la aeronave.",
+        "prestador_sei": "ANAC",
+        "observaciones_ad26": "Prestador del servicio SEI: ANAC.",
+        "fecha_ad26": "2024-07-11",
+        "amdt_ad26": "1/2024",
+        "aip_pagina_ad26": "2-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e1143c25a85",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -67.47257490788644,
+                -45.790350599260364
+              ],
+              [
+                -67.47233986890576,
+                -45.790339945099696
+              ],
+              [
+                -67.47230580371576,
+                -45.7905319888938
+              ],
+              [
+                -67.47257959606853,
+                -45.79052845716423
+              ],
+              [
+                -67.47257490788644,
+                -45.790350599260364
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 8,
+        "id": "EQS_SEI",
+        "tipo": "SEI",
+        "iata": "EQS",
+        "icao": "SAVE",
+        "aeropuerto": "Esquel / Brig. Gral. Antonio Parodi",
+        "etiqueta": "EQS - SEI",
+        "etiqueta_original": "EQS - Hangar SEI",
+        "area_m2": 801.62,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 6,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "6",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 1,
+        "cantidad_cisternas": null,
+        "agua_l": 11356,
+        "espuma_l": 1536,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 208,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "1 autobomba; 11.356 litros de agua; 1.536 litros de espuma; 208 kg de polvo químico seco. 1 firefighting truck; 11,356 liters of water; 1,536 liters of foam; 208 kg of dry chemical powder",
+        "capacidad_remocion": "El aeropuerto no cuenta con equipamiento. El retiro está a cargo del explotador de la aeronave.",
+        "prestador_sei": "ANAC",
+        "observaciones_ad26": "Prestador del servicio SEI: ANAC.",
+        "fecha_ad26": "2024-07-11",
+        "amdt_ad26": "1/2024",
+        "aip_pagina_ad26": "3-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e114f5ef93e",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -71.1447895,
+                -42.9049243
+              ],
+              [
+                -71.1445427,
+                -42.90481230000001
+              ],
+              [
+                -71.1443194,
+                -42.9050694
+              ],
+              [
+                -71.1445544,
+                -42.9051846
+              ],
+              [
+                -71.1447895,
+                -42.9049243
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 9,
+        "id": "EZE_SEI",
+        "tipo": "SEI",
+        "iata": "EZE",
+        "icao": "SAEZ",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "etiqueta": "EZE - SEI",
+        "etiqueta_original": "EZE - SEI",
+        "area_m2": 3925.62,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 10,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "10",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 3,
+        "cantidad_cisternas": 1,
+        "agua_l": 34068,
+        "espuma_l": 4770,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 1135,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "3 autobombas; 1 cisterna 34.068 litros de agua; 4.770 litros de espuma; 1.135 kg de polvo",
+        "capacidad_remocion": "Se ajusta al plan de remoción de aeronaves inutilizadas de Aeropuertos Argentina 2000",
+        "prestador_sei": "Policía Federal Argentina",
+        "observaciones_ad26": "Prestador del servicio SEI: Policía Federal Argentina.",
+        "fecha_ad26": "2024-07-11",
+        "amdt_ad26": "1/2024",
+        "aip_pagina_ad26": "2-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e10875b7c89",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -58.53821530137392,
+                -34.81838406032715
+              ],
+              [
+                -58.538776438127684,
+                -34.8179193104673
+              ],
+              [
+                -58.53835272072691,
+                -34.81758405155366
+              ],
+              [
+                -58.53779640957277,
+                -34.817995594415414
+              ],
+              [
+                -58.53821530137392,
+                -34.81838406032715
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 10,
+        "id": "FDO_SEI",
+        "tipo": "SEI",
+        "iata": "FDO",
+        "icao": "SADF",
+        "aeropuerto": "San Fernando",
+        "etiqueta": "FDO - SEI",
+        "etiqueta_original": "FDO - SEI",
+        "area_m2": 656.06,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 5,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "5",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 1,
+        "cantidad_cisternas": null,
+        "agua_l": 6000,
+        "espuma_l": 725,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 180,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "1 autobomba; 6.000 litros de agua; 725 litros de espuma; 180 kg. de polvo químico seco",
+        "capacidad_remocion": "Se ajusta al plan de remoción de aeronaves inutilizadas de Aeropuertos Argentina.",
+        "prestador_sei": "Policía Federal Argentina",
+        "observaciones_ad26": "Prestador del servicio SEI: Policía Federal Argentina.",
+        "fecha_ad26": "2025-06-12",
+        "amdt_ad26": "1/2025",
+        "aip_pagina_ad26": "2-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-6a68fbe672145",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -58.5788518,
+                -34.4535773
+              ],
+              [
+                -58.5787733,
+                -34.4535422
+              ],
+              [
+                -58.5786151,
+                -34.4534714
+              ],
+              [
+                -58.5785557,
+                -34.4535616
+              ],
+              [
+                -58.5786368,
+                -34.4535979
+              ],
+              [
+                -58.5786067,
+                -34.4536437
+              ],
+              [
+                -58.5785776,
+                -34.4536306
+              ],
+              [
+                -58.5785307,
+                -34.4537018
+              ],
+              [
+                -58.5786312,
+                -34.4537468
+              ],
+              [
+                -58.5785679,
+                -34.453843
+              ],
+              [
+                -58.578652,
+                -34.4538807
+              ],
+              [
+                -58.5788518,
+                -34.4535773
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 11,
+        "id": "FMA_SEI",
+        "tipo": "SEI",
+        "iata": "FMA",
+        "icao": "SARF",
+        "aeropuerto": "Formosa",
+        "etiqueta": "FMA - SEI",
+        "etiqueta_original": "FMA - SEI",
+        "area_m2": 250.07,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 7,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "7",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 15141,
+        "espuma_l": 1968,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 384,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "2 autobombas; 15.141 litros de agua; 1.968 litros de espuma; 384 kg de polvo químico seco",
+        "capacidad_remocion": "Aeropuerto no cuenta con equipamiento, el retiro está a cargo del explotador de la aeronave",
+        "prestador_sei": "ANAC",
+        "observaciones_ad26": "Prestador del servicio SEI: ANAC.",
+        "fecha_ad26": "2026-06-11",
+        "amdt_ad26": "1/2026",
+        "aip_pagina_ad26": "3-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e249b1a7ad5",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -58.23014302462306,
+                -26.213553478121998
+              ],
+              [
+                -58.230115820723775,
+                -26.21348373458528
+              ],
+              [
+                -58.22984623706831,
+                -26.21358404825138
+              ],
+              [
+                -58.22987296235357,
+                -26.213660951520033
+              ],
+              [
+                -58.23014302462306,
+                -26.213553478121998
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 12,
+        "id": "FTE_SEI",
+        "tipo": "SEI",
+        "iata": "FTE",
+        "icao": "SAWC",
+        "aeropuerto": "El Calafate / Comandante Armando Tola",
+        "etiqueta": "FTE - SEI",
+        "etiqueta_original": "DTE - Hangar SEI",
+        "area_m2": 397.91,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 7,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "7",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 3,
+        "cantidad_cisternas": null,
+        "agua_l": 21120,
+        "espuma_l": 2370,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 700,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "3 autobombas; 21.120 litros de agua; 2.370 litros de espuma, 700 kg de polvo químico seco",
+        "capacidad_remocion": "El aeropuerto no cuenta con equipamiento. El retiro está a cargo del explotador de la aeronave. Empresas de referencia en las inmediaciones del aeropuerto: - KESEN S.A.: Av. Asturias 175, Río Gallegos, Pcia. de SANTA CRUZ, (+54 2966) 442332, www.kesensa.com.ar - CORDO SERVICIOS: El Calafate, Santa Cruz, (+54 2966) 307595, cordoservicios@cotecal.com.ar",
+        "prestador_sei": "Policía Federal Argentina",
+        "observaciones_ad26": "Prestador del servicio SEI: Policía Federal Argentina.",
+        "fecha_ad26": "2024-07-11",
+        "amdt_ad26": "1/2024",
+        "aip_pagina_ad26": "3-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e7b256c1c2c",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -72.05179538148064,
+                -50.28378239132911
+              ],
+              [
+                -72.05146971595688,
+                -50.283763693632
+              ],
+              [
+                -72.05144462115602,
+                -50.28382929152821
+              ],
+              [
+                -72.05152596696446,
+                -50.28394289990137
+              ],
+              [
+                -72.05169942294894,
+                -50.28394812221075
+              ],
+              [
+                -72.05178780148074,
+                -50.28385421703662
+              ],
+              [
+                -72.05179538148064,
+                -50.28378239132911
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 13,
+        "id": "GPO_SEI",
+        "tipo": "SEI",
+        "iata": "GPO",
+        "icao": null,
+        "aeropuerto": "General Pico",
+        "etiqueta": "GPO - SEI",
+        "etiqueta_original": "GPO - SEI",
+        "area_m2": 307.8,
+        "confirmado_aip": null,
+        "nivel_confirmacion_aip": "sin_aip_en_corpus",
+        "estado_revision": "pendiente_aip",
+        "categoria_sei": null,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": null,
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": null,
+        "cantidad_cisternas": null,
+        "agua_l": null,
+        "espuma_l": null,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": null,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": null,
+        "capacidad_remocion": null,
+        "prestador_sei": null,
+        "observaciones_ad26": "No se dispone de AIP completo para GPO en el corpus revisado.",
+        "fecha_ad26": null,
+        "amdt_ad26": null,
+        "aip_pagina_ad26": null,
+        "fuente_ad26": null,
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -63.758401357313886,
+                -35.68821679630458
+              ],
+              [
+                -63.758397723850166,
+                -35.68808560888339
+              ],
+              [
+                -63.758156020345055,
+                -35.68810792572227
+              ],
+              [
+                -63.75818155828153,
+                -35.68823952125913
+              ],
+              [
+                -63.758401357313886,
+                -35.68821679630458
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 14,
+        "id": "PSS_SEI",
+        "tipo": "SEI",
+        "iata": "PSS",
+        "icao": "SARP",
+        "aeropuerto": "Posadas / Libertador Gral. José de San Martín",
+        "etiqueta": "PSS - SEI WIP",
+        "etiqueta_original": "PSS - SEI (en construcción)",
+        "area_m2": 838.42,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada_correspondencia_parcial",
+        "estado_revision": "actualizado_parcial",
+        "categoria_sei": 7,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "7",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 17356,
+        "espuma_l": 2090,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 304,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "2 autobombas; 17.356 litros de agua; 2.090 litros de espuma; 304 kg de polvo químico seco",
+        "capacidad_remocion": "El aeropuerto no cuenta con equipamiento. El retiro está a cargo del explotador de la aeronave /",
+        "prestador_sei": "ANAC",
+        "observaciones_ad26": "Prestador del servicio SEI: ANAC.",
+        "fecha_ad26": "2026-06-11",
+        "amdt_ad26": "1/2026",
+        "aip_pagina_ad26": "3-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e1137370dba",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -55.9672755,
+                -27.3885114
+              ],
+              [
+                -55.9669127,
+                -27.3885028
+              ],
+              [
+                -55.9669064,
+                -27.3887135
+              ],
+              [
+                -55.9672692,
+                -27.3887221
+              ],
+              [
+                -55.9672755,
+                -27.3885114
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 15,
+        "id": "RCQ_SEI",
+        "tipo": "SEI",
+        "iata": "RCQ",
+        "icao": "SATR",
+        "aeropuerto": "Reconquista",
+        "etiqueta": "RCQ - SEI",
+        "etiqueta_original": "RCQ - SEI",
+        "area_m2": 773.99,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 5,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "5",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 1,
+        "cantidad_cisternas": null,
+        "agua_l": 6100,
+        "espuma_l": 750,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 250,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "1 autobomba, 6.100 litros de agua, 750 litros de espuma, 250 kg de polvo químico seco.",
+        "capacidad_remocion": "NIL",
+        "prestador_sei": "ANAC",
+        "observaciones_ad26": "Prestador del servicio SEI: ANAC.",
+        "fecha_ad26": "2024-11-28",
+        "amdt_ad26": "2/2024",
+        "aip_pagina_ad26": "3-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e11419cd188",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -59.69510903962092,
+                -29.205071954899104
+              ],
+              [
+                -59.694709782656744,
+                -29.205081621774642
+              ],
+              [
+                -59.694722747546386,
+                -29.20526783203192
+              ],
+              [
+                -59.695122879988844,
+                -29.205243929910395
+              ],
+              [
+                -59.69510903962092,
+                -29.205071954899104
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 16,
+        "id": "RGA_SEI",
+        "tipo": "SEI",
+        "iata": "RGA",
+        "icao": "SAWE",
+        "aeropuerto": "Río Grande",
+        "etiqueta": "RGA - SEI",
+        "etiqueta_original": "RGA - SEI",
+        "area_m2": 240.17,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 7,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "7",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 17356,
+        "espuma_l": 2325,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 354,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "2 autobombas; 17.356 litros de agua; 2.325 litros de espuma; 354 kg de polvo.",
+        "capacidad_remocion": "No",
+        "prestador_sei": "ANAC",
+        "observaciones_ad26": "Prestador del servicio SEI: ANAC.",
+        "fecha_ad26": "2025-11-27",
+        "amdt_ad26": "2/2025",
+        "aip_pagina_ad26": "2-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e1380c9247f",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -67.7511705,
+                -53.7813923
+              ],
+              [
+                -67.7509491,
+                -53.7813881
+              ],
+              [
+                -67.7509403,
+                -53.781552
+              ],
+              [
+                -67.7510676,
+                -53.7815544
+              ],
+              [
+                -67.7510696,
+                -53.7815164
+              ],
+              [
+                -67.7511637,
+                -53.7815181
+              ],
+              [
+                -67.7511705,
+                -53.7813923
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 17,
+        "id": "RGL_SEI",
+        "tipo": "SEI",
+        "iata": "RGL",
+        "icao": "SAWG",
+        "aeropuerto": "Río Gallegos / Piloto Civil Norberto Fernández",
+        "etiqueta": "RGL - SEI",
+        "etiqueta_original": "RGL - SEI",
+        "area_m2": 1048.65,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 8,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "8",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 22712,
+        "espuma_l": 3180,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 410,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "2 autobombas; 22.712. litros de agua; 3.180 litros de espuma; 410 kg de polvo químico seco.",
+        "capacidad_remocion": "El aeropuerto no cuenta con equipamiento. El retiro está a cargo del explotador de la aeronave.",
+        "prestador_sei": "Policía Federal Argentina",
+        "observaciones_ad26": "Prestador del servicio SEI: Policía Federal Argentina.",
+        "fecha_ad26": "2024-07-11",
+        "amdt_ad26": "1/2024",
+        "aip_pagina_ad26": "2-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e1165d02be1",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -69.29658920000001,
+                -51.6113179
+              ],
+              [
+                -69.29681189999998,
+                -51.6113199
+              ],
+              [
+                -69.2968172,
+                -51.6110917
+              ],
+              [
+                -69.2965946,
+                -51.6110897
+              ],
+              [
+                -69.29658920000001,
+                -51.6113179
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                -69.2965709,
+                -51.6110581
+              ],
+              [
+                -69.2969142,
+                -51.6110564
+              ],
+              [
+                -69.2969111,
+                -51.6108082
+              ],
+              [
+                -69.2965677,
+                -51.6108098
+              ],
+              [
+                -69.2965709,
+                -51.6110581
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 18,
+        "id": "SFN_SEI",
+        "tipo": "SEI",
+        "iata": "SFN",
+        "icao": "SAAV",
+        "aeropuerto": "Santa Fe / Sauce Viejo",
+        "etiqueta": "SFN - SEI",
+        "etiqueta_original": "SFN - SEI",
+        "area_m2": 545.36,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 6,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "6",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 9605,
+        "espuma_l": 1105,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 354,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "2 autobombas; 9.605 litros de agua; 1.105 litros de espuma; 354 kg de polvo químico seco",
+        "capacidad_remocion": "A cargo del Explotador del Aeropuerto y/o Explotador de la aeronave (convenio con terceros), Gob. de la Pcia. de Santa Fe) (+54 342) 4995061/64)",
+        "prestador_sei": "ANAC",
+        "observaciones_ad26": "Prestador del servicio SEI: ANAC.",
+        "fecha_ad26": "2025-06-12",
+        "amdt_ad26": "1/2025",
+        "aip_pagina_ad26": "3-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e13318f081b",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -60.806193,
+                -31.7105465
+              ],
+              [
+                -60.8061187,
+                -31.710408
+              ],
+              [
+                -60.8060214,
+                -31.710444100000014
+              ],
+              [
+                -60.8059949,
+                -31.71039149999999
+              ],
+              [
+                -60.8058285,
+                -31.7104562
+              ],
+              [
+                -60.8058586,
+                -31.7105179
+              ],
+              [
+                -60.8059612,
+                -31.7104743
+              ],
+              [
+                -60.8060179,
+                -31.7106082
+              ],
+              [
+                -60.8059923,
+                -31.7106192
+              ],
+              [
+                -60.8060472,
+                -31.7107224
+              ],
+              [
+                -60.8061509,
+                -31.7106824
+              ],
+              [
+                -60.8060993,
+                -31.710579599999985
+              ],
+              [
+                -60.806193,
+                -31.7105465
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 19,
+        "id": "TUC_SEI",
+        "tipo": "SEI",
+        "iata": "TUC",
+        "icao": "SANT",
+        "aeropuerto": "Tucumán / Tte. Benjamín Matienzo",
+        "etiqueta": "TUC - SEI",
+        "etiqueta_original": "TUC - SEI",
+        "area_m2": 1038.68,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 7,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "7",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 17356,
+        "espuma_l": 2325,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 407,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "2 autobombas; 17.356 litros de agua; 2.325 litros de espuma; 407 kg de polvo químico seco",
+        "capacidad_remocion": "A desarrollar / To be developed",
+        "prestador_sei": "Policía Federal Argentina",
+        "observaciones_ad26": "Prestador del servicio SEI: Policía Federal Argentina.",
+        "fecha_ad26": "2024-07-11",
+        "amdt_ad26": "1/2024",
+        "aip_pagina_ad26": "2-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e10b1142729",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -65.1081643,
+                -26.8340971
+              ],
+              [
+                -65.1080543,
+                -26.8335275
+              ],
+              [
+                -65.1078935,
+                -26.83355219999999
+              ],
+              [
+                -65.1080035,
+                -26.8341218
+              ],
+              [
+                -65.1081643,
+                -26.8340971
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 20,
+        "id": "UAQ_SEI",
+        "tipo": "SEI",
+        "iata": "UAQ",
+        "icao": "SANU",
+        "aeropuerto": "San Juan / Domingo F. Sarmiento",
+        "etiqueta": "UAQ - SEI",
+        "etiqueta_original": "UAQ - SEI",
+        "area_m2": 251.09,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 6,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "6",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 1,
+        "cantidad_cisternas": null,
+        "agua_l": 11350,
+        "espuma_l": 1590,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 204,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "1 autobomba, 11.350 litros de agua, 1590 litros de espuma, 204 kg de polvo químico seco.",
+        "capacidad_remocion": "El aeropuerto no cuenta con equipamiento. El retiro está a cargo del explotador de la aeronave.",
+        "prestador_sei": "ANAC",
+        "observaciones_ad26": "Prestador del servicio SEI: ANAC.",
+        "fecha_ad26": "2025-11-27",
+        "amdt_ad26": "2/2025",
+        "aip_pagina_ad26": "3-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e10b2277811",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -68.4227161,
+                -31.5706906
+              ],
+              [
+                -68.4226795,
+                -31.570592599999987
+              ],
+              [
+                -68.4224584,
+                -31.57065269999999
+              ],
+              [
+                -68.422495,
+                -31.570750600000014
+              ],
+              [
+                -68.4227161,
+                -31.5706906
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 21,
+        "id": "USH_SEI",
+        "tipo": "SEI",
+        "iata": "USH",
+        "icao": "SAWH",
+        "aeropuerto": "Ushuaia / Malvinas Argentinas",
+        "etiqueta": "USH - SEI",
+        "etiqueta_original": "USH - SEI",
+        "area_m2": 724.54,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 8,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "8",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 3,
+        "cantidad_cisternas": null,
+        "agua_l": 27212,
+        "espuma_l": 2622,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 454,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "3 autobombas; 27.212 litros de agua; 2.622 litros de espuma; 454 kg de polvo químico seco.",
+        "capacidad_remocion": "El aeropuerto no cuenta con equipamiento; el retiro está a cargo del explotador. Grúa de 40 t O/R en puerto local, con demora publicada de 50 MIN.",
+        "prestador_sei": "Policía Federal Argentina",
+        "observaciones_ad26": "Grúa de 40 t O/R en puerto local; demora de llegada 50 MIN. Prestador SSEI: Policía Federal Argentina.",
+        "fecha_ad26": "2026-06-11",
+        "amdt_ad26": "1/2026",
+        "aip_pagina_ad26": "2-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e7b2b7ee74b",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -68.3091711,
+                -54.8406099
+              ],
+              [
+                -68.3090991,
+                -54.8406065
+              ],
+              [
+                -68.309137,
+                -54.8403374
+              ],
+              [
+                -68.3088856,
+                -54.8403257
+              ],
+              [
+                -68.3088477,
+                -54.8405948
+              ],
+              [
+                -68.3087831,
+                -54.8405918
+              ],
+              [
+                -68.3087711,
+                -54.8406768
+              ],
+              [
+                -68.3091592,
+                -54.8406949
+              ],
+              [
+                -68.3091711,
+                -54.8406099
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 22,
+        "id": "VDM_SEI",
+        "tipo": "SEI",
+        "iata": "VDM",
+        "icao": "SAVV",
+        "aeropuerto": "Viedma / Gobernador Castello",
+        "etiqueta": "VDM - SEI",
+        "etiqueta_original": "VDM - SEI",
+        "area_m2": 1951.36,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 5,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "5",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 1,
+        "cantidad_cisternas": null,
+        "agua_l": 5825,
+        "espuma_l": 725,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 150,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "1 autobomba; 5.825 litros de agua; 725 litros de espuma; 150 kg de polvo químico seco.",
+        "capacidad_remocion": "A cargo del explotador / At the operator's expense",
+        "prestador_sei": "ANAC",
+        "observaciones_ad26": "Prestador del servicio SEI: ANAC.",
+        "fecha_ad26": "2025-11-27",
+        "amdt_ad26": "2/2025",
+        "aip_pagina_ad26": "3-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e7b1a89ea5e",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -63.0042721,
+                -40.86176
+              ],
+              [
+                -63.0037665,
+                -40.861372
+              ],
+              [
+                -63.003494,
+                -40.8615752
+              ],
+              [
+                -63.0039997,
+                -40.8619631
+              ],
+              [
+                -63.0041083,
+                -40.8618821
+              ],
+              [
+                -63.0042721,
+                -40.86176
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 23,
+        "id": "IGR_SEI",
+        "tipo": "SEI",
+        "iata": "IGR",
+        "icao": "SARI",
+        "aeropuerto": "Cataratas del Iguazú / My. D. Carlos E. Krause",
+        "etiqueta": "IGR - SEI",
+        "etiqueta_original": "IGR - SEI",
+        "area_m2": 868.0,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 7,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "7",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 17356,
+        "espuma_l": 2315,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 474,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "2 autobombas; 17.356 litros de agua; 2.315 litros de espuma; 474 kg de polvo químico seco.",
+        "capacidad_remocion": "No",
+        "prestador_sei": "Policía Federal Argentina",
+        "observaciones_ad26": "Prestador del servicio SEI: Policía Federal Argentina.",
+        "fecha_ad26": "2026-06-11",
+        "amdt_ad26": "1/2026",
+        "aip_pagina_ad26": "3-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e6163c31b23",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -54.4798596,
+                -25.7312316
+              ],
+              [
+                -54.4797248,
+                -25.7309675
+              ],
+              [
+                -54.47948070000001,
+                -25.7310687
+              ],
+              [
+                -54.4796156,
+                -25.7313327
+              ],
+              [
+                -54.4798596,
+                -25.7312316
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 24,
+        "id": "JUJ_SEI",
+        "tipo": "SEI",
+        "iata": "JUJ",
+        "icao": "SASJ",
+        "aeropuerto": "Jujuy / Gdor. Horacio Guzmán",
+        "etiqueta": "JUJ - SEI",
+        "etiqueta_original": "JUJ - SEI",
+        "area_m2": 204.39,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada_correspondencia_parcial",
+        "estado_revision": "actualizado_parcial",
+        "categoria_sei": 7,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "7",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 15136,
+        "espuma_l": 1888,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 354,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "2 autobombas; 15.136 litros de agua; 1.888 litros de espuma; 354 kg de polvo seco químico",
+        "capacidad_remocion": "Según plan de remoción de aeronaves",
+        "prestador_sei": "ANAC",
+        "observaciones_ad26": "Prestador del servicio SEI: ANAC.",
+        "fecha_ad26": "2025-11-27",
+        "amdt_ad26": "2/2025",
+        "aip_pagina_ad26": "2-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e113f9e6050",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -65.09512977645173,
+                -24.384811450280957
+              ],
+              [
+                -65.09508217526717,
+                -24.38490431670227
+              ],
+              [
+                -65.0952381252535,
+                -24.38497690249511
+              ],
+              [
+                -65.09529349835286,
+                -24.384891247874304
+              ],
+              [
+                -65.09512977645173,
+                -24.384811450280957
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 25,
+        "id": "LGS_SEI",
+        "tipo": "SEI",
+        "iata": "LGS",
+        "icao": "SAMM",
+        "aeropuerto": "Malargüe / Comodoro D. R. Salomón",
+        "etiqueta": "LGS - SEI",
+        "etiqueta_original": "LGS - SEI",
+        "area_m2": 289.36,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 5,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "5",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 1,
+        "cantidad_cisternas": null,
+        "agua_l": 10000,
+        "espuma_l": 1000,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 250,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "1 autobomba; 10.000 litros de agua; 1.000 litros de espuma; 250 kg de polvo químico seco.",
+        "capacidad_remocion": "Disponible con empresas petroleras del medio que poseen grúas y camiones remolques de gran envergadura.",
+        "prestador_sei": "ANAC",
+        "observaciones_ad26": "Prestador del servicio SEI: ANAC.",
+        "fecha_ad26": "2024-11-28",
+        "amdt_ad26": "2/2024",
+        "aip_pagina_ad26": "2-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e168cc06ad1",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -69.58373595833262,
+                -35.48100728720661
+              ],
+              [
+                -69.58358724864476,
+                -35.481004559626776
+              ],
+              [
+                -69.58353376120944,
+                -35.48117773562046
+              ],
+              [
+                -69.58372579880596,
+                -35.481172025502126
+              ],
+              [
+                -69.58373595833262,
+                -35.48100728720661
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 26,
+        "id": "PRA_SEI",
+        "tipo": "SEI",
+        "iata": "PRA",
+        "icao": "SAAP",
+        "aeropuerto": "Paraná / Gral. Urquiza",
+        "etiqueta": "PRA - SEI",
+        "etiqueta_original": "PRA - SEI",
+        "area_m2": 416.57,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 5,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "5",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 12000,
+        "espuma_l": 1425,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 330,
+        "reserva_espuma_l": 950,
+        "reserva_polvo_kg": 567,
+        "equipo_salvamento": "2 autobombas (Kronenburg y Ford 7000); 12.000 litros de agua; 1.425 litros de espuma; 330 kg de polvo. Reservas: 950 litros de agente espumígeno y 567 kg de polvo.",
+        "capacidad_remocion": "Grúas móviles, telescópicas y giratorias de 30 a 70 t; altura de elevación hasta 60 m; radio máximo hasta 45 m y carretones. Costos a cargo del propietario o explotador de la aeronave.",
+        "prestador_sei": "ANAC",
+        "observaciones_ad26": "Prestador del servicio SEI: ANAC.",
+        "fecha_ad26": "2024-07-11",
+        "amdt_ad26": "1/2024",
+        "aip_pagina_ad26": "3-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e12b515db21",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -60.4831914,
+                -31.7887645
+              ],
+              [
+                -60.4831383,
+                -31.788492700000013
+              ],
+              [
+                -60.4829963,
+                -31.7885127
+              ],
+              [
+                -60.4830494,
+                -31.7887846
+              ],
+              [
+                -60.4831914,
+                -31.7887645
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 27,
+        "id": "COC_SEI",
+        "tipo": "SEI",
+        "iata": "COC",
+        "icao": "SAAC",
+        "aeropuerto": "Concordia / Comodoro Pierrestegui",
+        "etiqueta": "COC - SEI",
+        "etiqueta_original": "SEI",
+        "area_m2": 583.18,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 1,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "1",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": null,
+        "cantidad_cisternas": null,
+        "agua_l": null,
+        "espuma_l": null,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": null,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "O/R",
+        "capacidad_remocion": "NIL",
+        "prestador_sei": null,
+        "observaciones_ad26": "Categoría 1. Equipo O/R. Capacidad de remoción NIL. Observaciones NIL.",
+        "fecha_ad26": "2026-06-11",
+        "amdt_ad26": "1/2025",
+        "aip_pagina_ad26": "2-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e10469037bf",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -58.00199317990581,
+                -31.301047862917912
+              ],
+              [
+                -58.00189892661334,
+                -31.30085935633299
+              ],
+              [
+                -58.00165282079414,
+                -31.30097979109558
+              ],
+              [
+                -58.001768019262705,
+                -31.30115782509245
+              ],
+              [
+                -58.001768019262705,
+                -31.30115782509245
+              ],
+              [
+                -58.00199317990581,
+                -31.301047862917912
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 28,
+        "id": "RHD_SEI",
+        "tipo": "SEI",
+        "iata": "RHD",
+        "icao": "SANR",
+        "aeropuerto": "Termas de Río Hondo",
+        "etiqueta": "RHD - SEI",
+        "etiqueta_original": null,
+        "area_m2": 524.6,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada",
+        "estado_revision": "actualizado",
+        "categoria_sei": 6,
+        "categoria_sei_base": 4,
+        "categoria_sei_texto": "O/R - 6 sólo vuelos comerciales, resto 4. Coordinar 2 HR antes.",
+        "categoria_sei_condicion": "Categoría 6 O/R sólo para vuelos comerciales; resto categoría 4. Coordinar 2 HR antes.",
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 10000,
+        "espuma_l": 1200,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 500,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "2 autobombas; 10.000 litros de agua; 1.200 litros de espuma; 500 kg de polvo químico seco",
+        "capacidad_remocion": "No",
+        "prestador_sei": "ANAC",
+        "observaciones_ad26": "Categoría 6 O/R sólo para vuelos comerciales; resto categoría 4. Coordinar 2 HR antes. Prestador: ANAC.",
+        "fecha_ad26": "2026-06-11",
+        "amdt_ad26": "1/2026",
+        "aip_pagina_ad26": "2-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e6130f69047",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -64.93395124717296,
+                -27.50694421699813
+              ],
+              [
+                -64.93366944223693,
+                -27.506721694149896
+              ],
+              [
+                -64.93358006717764,
+                -27.506816931255248
+              ],
+              [
+                -64.9338499334249,
+                -27.507041756526725
+              ],
+              [
+                -64.9338499334249,
+                -27.507041756526725
+              ],
+              [
+                -64.93395124717296,
+                -27.50694421699813
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 29,
+        "id": "ROS_SEI",
+        "tipo": "SEI",
+        "iata": "ROS",
+        "icao": "SAAR",
+        "aeropuerto": "Rosario / Islas Malvinas",
+        "etiqueta": "ROS - SEI",
+        "etiqueta_original": null,
+        "area_m2": 4385.85,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada_geometria_usuario",
+        "estado_revision": "actualizado",
+        "categoria_sei": 7,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "7; categoría 9 disponible previa coordinación con Jefatura de Aeropuerto.",
+        "categoria_sei_condicion": "Categoría 9 disponible previa coordinación con Jefatura de Aeropuerto.",
+        "cantidad_autobombas": 3,
+        "cantidad_cisternas": null,
+        "agua_l": 26494,
+        "espuma_l": 3867,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 679,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "3 autobombas; 26.494 litros de agua; 3.867 litros de espuma; 679 kg de polvo químico seco",
+        "capacidad_remocion": "Se ajusta al plan de remoción de aeronaves inutilizadas del Aeropuerto Internacional de Rosario. Dentro del área de movimiento, aeronaves tipo A319-320-321, B737-500-700-800, E 190, FOKKER-100 y las que cuenten con sus respectivas lanzas para remolque.",
+        "prestador_sei": "ANAC",
+        "observaciones_ad26": "Prestador: ANAC. Para categoría 9, coordinar con Jefatura de Aeropuerto.",
+        "fecha_ad26": "2026-06-11",
+        "amdt_ad26": "1/2026",
+        "aip_pagina_ad26": "3-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e105dba2f99",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -60.78233401164066,
+                -32.91273034898715
+              ],
+              [
+                -60.781541981893625,
+                -32.91219268779731
+              ],
+              [
+                -60.78173468203613,
+                -32.91187156259201
+              ],
+              [
+                -60.78211981747957,
+                -32.91206230892452
+              ],
+              [
+                -60.78262986260986,
+                -32.9123872530191
+              ],
+              [
+                -60.78233401164066,
+                -32.91273034898715
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 30,
+        "id": "AOL_SEI",
+        "tipo": "SEI",
+        "iata": "AOL",
+        "icao": "SARL",
+        "aeropuerto": "Paso de los Libres",
+        "etiqueta": "AOL - SEI",
+        "etiqueta_original": null,
+        "area_m2": 460.03,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada_geometria_usuario",
+        "estado_revision": "actualizado",
+        "categoria_sei": null,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "No",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": null,
+        "cantidad_cisternas": null,
+        "agua_l": null,
+        "espuma_l": null,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": null,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "No",
+        "capacidad_remocion": "No",
+        "prestador_sei": "Policía Provincial",
+        "observaciones_ad26": "AD 2.6 publica 'No' para categoría, equipo y capacidad de remoción; prestador: Policía Provincial.",
+        "fecha_ad26": "2026-06-11",
+        "amdt_ad26": "1/2026",
+        "aip_pagina_ad26": "2-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e1113b81c2b",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -57.14803814994008,
+                -29.68951390748257
+              ],
+              [
+                -57.14815425776777,
+                -29.689409993136266
+              ],
+              [
+                -57.147937247487995,
+                -29.68922868393242
+              ],
+              [
+                -57.1478282276926,
+                -29.68933831133594
+              ],
+              [
+                -57.14803814994008,
+                -29.68951390748257
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 31,
+        "id": "BRC_SEI",
+        "tipo": "SEI",
+        "iata": "BRC",
+        "icao": "SAZS",
+        "aeropuerto": "San Carlos de Bariloche / Tte. Luis Candelaria",
+        "etiqueta": "BRC - SEI",
+        "etiqueta_original": null,
+        "area_m2": 1030.51,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada_correspondencia_parcial",
+        "estado_revision": "actualizado_parcial",
+        "categoria_sei": 8,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "8",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 3,
+        "cantidad_cisternas": null,
+        "agua_l": 28712,
+        "espuma_l": 3905,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 558,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "3 autobombas; 28.712 litros de agua; 3.905 litros de espuma; 558 kg de polvo/. First aid and ambulance room. Hospitals in the city. 3 firefighting trucks; 28,712 liters of water; 3,905 liters of foam; 558 kg of dry chemical powder.",
+        "capacidad_remocion": "Se ajusta al plan de remoción de aeronaves inutilizadas de Aeropuertos Argentina 2000.",
+        "prestador_sei": "Policía Federal Argentina",
+        "observaciones_ad26": "Prestador del servicio SEI: Policía Federal Argentina.",
+        "fecha_ad26": "2025-06-12",
+        "amdt_ad26": "1/2025",
+        "aip_pagina_ad26": "3-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e8bacf19c28",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -71.16021317912693,
+                -41.14783386232399
+              ],
+              [
+                -71.16004893727195,
+                -41.147570376758544
+              ],
+              [
+                -71.15987551721274,
+                -41.1476108049973
+              ],
+              [
+                -71.1597905000775,
+                -41.14747872893645
+              ],
+              [
+                -71.15965782547423,
+                -41.14753675594006
+              ],
+              [
+                -71.15983840709177,
+                -41.14782821555565
+              ],
+              [
+                -71.15993709249223,
+                -41.14779527601991
+              ],
+              [
+                -71.16000347277934,
+                -41.147903859238774
+              ],
+              [
+                -71.16021317912693,
+                -41.14783386232399
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 32,
+        "id": "MDQ_SEI",
+        "tipo": "SEI",
+        "iata": "MDQ",
+        "icao": "SAZM",
+        "aeropuerto": "Mar del Plata / Astor Piazzolla",
+        "etiqueta": "MDQ - SEI",
+        "etiqueta_original": null,
+        "area_m2": 404.85,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada_geometria_usuario",
+        "estado_revision": "actualizado",
+        "categoria_sei": 7,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "7",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 20356,
+        "espuma_l": 2190,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 384,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "2 autobombas: 20.356 litros de agua; 2.190 litros de espuma; 384 kg de polvo químico seco.",
+        "capacidad_remocion": "Se ajusta al Plan de Remoción de Aeronaves de Aeropuertos Argentina. La responsabilidad primaria es del propietario/explotador; el AIP publica además empresas de grúas y carretones de referencia.",
+        "prestador_sei": "Policía Federal Argentina",
+        "observaciones_ad26": "Prestador del servicio SEI: Policía Federal Argentina.",
+        "fecha_ad26": "2026-06-11",
+        "amdt_ad26": "1/2026",
+        "aip_pagina_ad26": "2-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e1232468b6a",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -57.581938583787185,
+                -37.933918194405024
+              ],
+              [
+                -57.581873545777185,
+                -37.93389514199491
+              ],
+              [
+                -57.581683306286735,
+                -37.9338535489956
+              ],
+              [
+                -57.5815201127831,
+                -37.93391344897437
+              ],
+              [
+                -57.5816014,
+                -37.9340469
+              ],
+              [
+                -57.581938583787185,
+                -37.933918194405024
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 33,
+        "id": "MDZ_SEI",
+        "tipo": "SEI",
+        "iata": "MDZ",
+        "icao": "SAME",
+        "aeropuerto": "Mendoza / El Plumerillo",
+        "etiqueta": "MDZ - SEI",
+        "etiqueta_original": null,
+        "area_m2": 3361.41,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada_geometria_usuario",
+        "estado_revision": "actualizado",
+        "categoria_sei": 7,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "7",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 18920,
+        "espuma_l": 3020,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 454,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "2 autobombas; 18.920 litros de agua; 3.020 litros de espuma; 454 kg de polvo químico seco",
+        "capacidad_remocion": "Recursos disponibles en las inmediaciones del aeropuerto según Plan de Retiro de Aeronaves Inutilizadas.",
+        "prestador_sei": "Fuerza Aérea Argentina",
+        "observaciones_ad26": "Prestador del servicio SEI: Fuerza Aérea Argentina.",
+        "fecha_ad26": "2025-11-27",
+        "amdt_ad26": "2/2025",
+        "aip_pagina_ad26": "3-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69fc9d7664864",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -68.79862765623339,
+                -32.83958837790587
+              ],
+              [
+                -68.79812403465174,
+                -32.83955977284672
+              ],
+              [
+                -68.79809474354946,
+                -32.840190307166786
+              ],
+              [
+                -68.79860778937477,
+                -32.84022838219151
+              ],
+              [
+                -68.79862765623339,
+                -32.83958837790587
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 34,
+        "id": "PMY_SEI",
+        "tipo": "SEI",
+        "iata": "PMY",
+        "icao": "SAVY",
+        "aeropuerto": "Puerto Madryn / El Tehuelche",
+        "etiqueta": "PMY - SEI",
+        "etiqueta_original": null,
+        "area_m2": 268.62,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada_geometria_usuario",
+        "estado_revision": "actualizado",
+        "categoria_sei": 6,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "6",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 11750,
+        "espuma_l": 2370,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 700,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "2 autobombas; 11.750 litros de agua; 2.370 litros de espuma; 700 kg de polvo químico seco",
+        "capacidad_remocion": "A cargo del explotador / At the operator's expense",
+        "prestador_sei": "Policía Federal Argentina",
+        "observaciones_ad26": "Prestador del servicio SEI: Policía Federal Argentina.",
+        "fecha_ad26": "2024-07-11",
+        "amdt_ad26": "1/2024",
+        "aip_pagina_ad26": "2-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e1155398740",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -65.101326243518,
+                -42.75539368180815
+              ],
+              [
+                -65.10114346271615,
+                -42.755302252773674
+              ],
+              [
+                -65.10104229352916,
+                -42.75541492328301
+              ],
+              [
+                -65.10123632222889,
+                -42.75550335825539
+              ],
+              [
+                -65.101326243518,
+                -42.75539368180815
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 35,
+        "id": "REL_SEI",
+        "tipo": "SEI",
+        "iata": "REL",
+        "icao": "SAVT",
+        "aeropuerto": "Trelew / Almirante Marcos A. Zar",
+        "etiqueta": "REL - SEI",
+        "etiqueta_original": null,
+        "area_m2": 4046.93,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada_geometria_usuario",
+        "estado_revision": "actualizado",
+        "categoria_sei": 6,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "6",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 1,
+        "cantidad_cisternas": null,
+        "agua_l": 11356,
+        "espuma_l": 1530,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 208,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "1 autobomba; 11.356 litros de agua; 1.530 litros de espuma; 208 kg de polvo",
+        "capacidad_remocion": "El aeropuerto no cuenta con equipamiento. El retiro está a cargo del explotador de la aeronave.",
+        "prestador_sei": "Policía Federal Argentina",
+        "observaciones_ad26": "Prestador del servicio SEI: Policía Federal Argentina.",
+        "fecha_ad26": "2024-07-11",
+        "amdt_ad26": "1/2024",
+        "aip_pagina_ad26": "2-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e11508bc15d",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -65.2706321794751,
+                -43.21542097770972
+              ],
+              [
+                -65.26980097805928,
+                -43.21543748052982
+              ],
+              [
+                -65.2697950394033,
+                -43.21597071739118
+              ],
+              [
+                -65.27063088163484,
+                -43.215963530420815
+              ],
+              [
+                -65.2706321794751,
+                -43.21542097770972
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 36,
+        "id": "RES_SEI",
+        "tipo": "SEI",
+        "iata": "RES",
+        "icao": "SARE",
+        "aeropuerto": "Resistencia",
+        "etiqueta": "RES - SEI",
+        "etiqueta_original": null,
+        "area_m2": 2145.59,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada_geometria_usuario",
+        "estado_revision": "actualizado",
+        "categoria_sei": 7,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "7",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 25400,
+        "espuma_l": 3000,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 454,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "2 autobombas; 25.400 litros de agua; 3.000 litros de espuma; 454 kg de polvo químico seco",
+        "capacidad_remocion": "Empresa Bertoncini, publicada como única empresa del medio con capacidad para la remoción.",
+        "prestador_sei": "ANAC",
+        "observaciones_ad26": "Prestador del servicio SEI: ANAC.",
+        "fecha_ad26": "2025-11-27",
+        "amdt_ad26": "2/2025",
+        "aip_pagina_ad26": "3-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e23557ecfd0",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -59.0501419795952,
+                -27.44986934136169
+              ],
+              [
+                -59.04973028257387,
+                -27.44958918610506
+              ],
+              [
+                -59.049982839491754,
+                -27.44928020628672
+              ],
+              [
+                -59.05038496207365,
+                -27.449551257841794
+              ],
+              [
+                -59.0501419795952,
+                -27.44986934136169
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 37,
+        "id": "RSA_SEI",
+        "tipo": "SEI",
+        "iata": "RSA",
+        "icao": "SAZR",
+        "aeropuerto": "Santa Rosa",
+        "etiqueta": "RSA - SEI",
+        "etiqueta_original": null,
+        "area_m2": 719.4,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada_geometria_usuario",
+        "estado_revision": "actualizado",
+        "categoria_sei": 5,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "5",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 9325,
+        "espuma_l": 1120,
+        "tipo_espuma": "FFFA",
+        "polvo_quimico_kg": 400,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "2 autobombas; 9.325 litros de agua; 1120 litros de espuma FFFA; 400 kg polvo químico seco",
+        "capacidad_remocion": "Se ajusta al plan de remoción de aeronaves inutilizadas de Aeropuertos Argentina.",
+        "prestador_sei": "ANAC",
+        "observaciones_ad26": "Prestador del servicio SEI: ANAC.",
+        "fecha_ad26": "2025-06-12",
+        "amdt_ad26": "1/2025",
+        "aip_pagina_ad26": "3-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e123c163177",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -64.27963440328614,
+                -36.59222088845879
+              ],
+              [
+                -64.27967918654797,
+                -36.59228045069754
+              ],
+              [
+                -64.27969360706824,
+                -36.59235799870217
+              ],
+              [
+                -64.27964636888701,
+                -36.59241501711116
+              ],
+              [
+                -64.27956602419826,
+                -36.59245649720936
+              ],
+              [
+                -64.27951350289,
+                -36.59245882709947
+              ],
+              [
+                -64.27946740462298,
+                -36.59245225813717
+              ],
+              [
+                -64.27939471047416,
+                -36.59242654897117
+              ],
+              [
+                -64.27935862744069,
+                -36.59236336127779
+              ],
+              [
+                -64.27935509694309,
+                -36.59228216437411
+              ],
+              [
+                -64.27940872914627,
+                -36.59221448158946
+              ],
+              [
+                -64.27947173183297,
+                -36.5921837836316
+              ],
+              [
+                -64.27955937393693,
+                -36.5921863745954
+              ],
+              [
+                -64.27963440328614,
+                -36.59222088845879
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "gid": 38,
+        "id": "SLA_SEI",
+        "tipo": "SEI",
+        "iata": "SLA",
+        "icao": "SASA",
+        "aeropuerto": "Salta / Martín Miguel de Güemes",
+        "etiqueta": "SLA - SEI",
+        "etiqueta_original": null,
+        "area_m2": 367.15,
+        "confirmado_aip": true,
+        "nivel_confirmacion_aip": "instalacion_publicada_geometria_usuario",
+        "estado_revision": "actualizado",
+        "categoria_sei": 7,
+        "categoria_sei_base": null,
+        "categoria_sei_texto": "7",
+        "categoria_sei_condicion": null,
+        "cantidad_autobombas": 2,
+        "cantidad_cisternas": null,
+        "agua_l": 24000,
+        "espuma_l": 3020,
+        "tipo_espuma": null,
+        "polvo_quimico_kg": 494,
+        "reserva_espuma_l": null,
+        "reserva_polvo_kg": null,
+        "equipo_salvamento": "2 autobombas, 24000 litros de agua, 3020 litros de espuma, 494 kg de polvo químico seco",
+        "capacidad_remocion": "No disponible / Not available.",
+        "prestador_sei": "ANAC",
+        "observaciones_ad26": "Prestador del servicio SEI: ANAC.",
+        "fecha_ad26": "2024-07-11",
+        "amdt_ad26": "1/2024",
+        "aip_pagina_ad26": "2-6",
+        "fuente_ad26": "https://ais.anac.gob.ar/descarga/aip-69e1138586777",
+        "origen_geometria": "base_usuario",
+        "fecha_revision": "2026-08-12"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -65.47788796986963,
+                -24.844853587217816
+              ],
+              [
+                -65.47783157236096,
+                -24.844721907536275
+              ],
+              [
+                -65.47761942806179,
+                -24.84479703931876
+              ],
+              [
+                -65.47767257628081,
+                -24.844911532996477
+              ],
+              [
+                -65.47768755396336,
+                -24.84493382913417
+              ],
+              [
+                -65.47788796986963,
+                -24.844853587217816
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
