@@ -7,6 +7,7 @@
   <link rel="icon" type="image/png" href="img/icons/iconoSIGA.png">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="css/editor-efluentes.css">
+  <link rel="stylesheet" href="css/editor-efluentes-contexto.css">
 </head>
 <body>
   <div id="loginScreen" class="login-screen">
@@ -88,8 +89,10 @@
           </div>
         </section>
 
-        <section class="card compact-card">
-          <div class="section-title">Capas</div>
+        <section class="card compact-card editor-map-layers-card">
+          <div class="section-title">Capas del mapa</div>
+
+          <div class="context-subtitle">Capas de trabajo</div>
           <label class="check-row">
             <input id="toggleAirports" type="checkbox" checked>
             Aeropuertos
@@ -98,10 +101,34 @@
             <input id="togglePredios" type="checkbox" checked>
             Predios aeroportuarios
           </label>
-          <label class="check-row">
+          <label class="check-row editor-layer-editable">
             <input id="toggleEfluentes" type="checkbox" checked>
+            <span class="editable-dot"></span>
             Infraestructura de efluentes
           </label>
+
+          <div class="context-divider"></div>
+
+          <div class="context-heading row-between">
+            <div>
+              <div class="context-subtitle context-subtitle-main">Contexto SIGA</div>
+              <div class="context-note">Sólo lectura · ayuda para ubicar la infraestructura</div>
+            </div>
+            <span id="contextLoadStatus" class="context-status">—</span>
+          </div>
+
+          <div class="context-buttons">
+            <button id="contextDefaultButton" class="btn btn-secondary" type="button">Principales</button>
+            <button id="contextAllButton" class="btn btn-secondary" type="button">Todas</button>
+            <button id="contextNoneButton" class="btn btn-secondary" type="button">Limpiar</button>
+          </div>
+
+          <div id="contextLayerTree" class="context-layer-tree">
+            <div class="context-loading">Las capas se cargarán al abrir el mapa.</div>
+          </div>
+
+          <div class="context-divider"></div>
+
           <label for="basemapSelect">Mapa base</label>
           <select id="basemapSelect">
             <option value="satellite">Esri satelital</option>
@@ -240,6 +267,11 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/editor-efluentes-config.js"></script>
-  <script src="js/editor-efluentes.js"></script>
+
+  <!-- Captura la instancia Leaflet y agrega todas las capas de contexto SIGA. -->
+  <script src="js/editor-contexto-siga.js?v=20260901-1"></script>
+
+  <!-- Editor DMA original: no se modifica. -->
+  <script src="js/editor-efluentes.js?v=20260901-1"></script>
 </body>
 </html>
