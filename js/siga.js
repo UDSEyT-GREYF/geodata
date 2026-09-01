@@ -2,505 +2,2004 @@
 (() => {
   "use strict";
 
-  /*
-    Extensión AIP para SIGA.
-    - No modifica ni elimina ninguna capa definida en js/siga.js.
-    - Agrega sólo capas con geometría publicada o derivada.
-    - Excluye geometrías de referencia sin posición física exacta.
-  */
+const params = new URLSearchParams(window.location.search);
+const EMBED_MODE = params.get("embed") === "1";
+const MINI_MODE = params.get("mini") === "1";
+const URL_AIRPORT = (params.get("airport") || "").trim().toUpperCase();
+const URL_FOCUS = params.get("focus") === "1";
 
-  if (typeof L === "undefined") {
-    console.warn("SIGA AIP: Leaflet no está disponible.");
-    return;
-  }
+if (EMBED_MODE) document.body.classList.add("embed");
+if (MINI_MODE) document.body.classList.add("mini");
 
-  // Captura la instancia del mapa que crea js/siga.js.
-  const originalMapFactory = L.map;
-  if (!L.map.__sigaAipWrapped) {
-    const wrappedMapFactory = function (...args) {
-      const map = originalMapFactory.apply(this, args);
-      const target = args[0];
-      const id = typeof target === "string" ? target : target?.id;
-      if (id === "sigaMap") window.__SIGA_AIP_MAP__ = map;
-      return map;
-    };
-    wrappedMapFactory.__sigaAipWrapped = true;
-    L.map = wrappedMapFactory;
-  }
+  const AIRPORTS_SOURCE = "fuentes/Datos_aeropuertos.geojson";
+  const PARADAS_APP_CSV_SOURCE = "fuentes/Paradasapp.csv";
+  const DEFAULT_CENTER = [-38.4, -63.6];
+  const DEFAULT_ZOOM = 4;
 
-  const EXTRA_LAYERS = [
+  const FIELD_IATA_CANDIDATES = [
+    "IATA", "iata", "iata_code", "cod_iata", "COD_IATA", "codigo_iata", "Código IATA"
+  ];
+
+  const SIGA_COLORS = {
+    azulOrsna: "#306fb0",
+    azulOscuro: "#002855",
+    azulMedio: "#2a5fa0",
+    azulLink: "#0072bb",
+    azulClaro: "#4fa3ff",
+    celesteCab: "#75AADB",
+    verdeLima: "#8DE000",
+    violeta: "#6b2f82",
+    rojoTerminal: "#b22222",
+    rojoSuave: "#ffdede",
+    grisPista: "#222222",
+    amarilloPista: "#ffff00",
+    grisContexto: "#b0b0b0",
+    grisFondo: "#f5f5f5",
+    grisChip: "#b3b3b3",
+    verdeInternacional: "#16c41e",
+    amarilloSeleccion: "#FFD700"
+  };
+
+  const BASEMAP_CONFIGS = [
     {
-      id: "aip_umbrales",
-      group: "Área de movimiento",
-      name: "Umbrales de pista (AIP)",
-      url: "fuentes/aip_umbrales_pista.geojson",
-      color: "#00CFE8",
-      minZoom: 11,
-      point: { radius: 4.2, color: "#004E64", weight: 1.2, fillColor: "#00CFE8", fillOpacity: 0.95 },
-      titleKeys: ["rwy"],
-      fields: [
-        ["IATA", ["iata", "IATA"]], ["OACI", ["icao", "OACI"]], ["Pista", ["rwy"]],
-        ["BRG GEO", ["brg_geo"]], ["BRG MAG", ["brg_mag"]],
-        ["Longitud RWY", ["longitud_rwy_m"], "m"], ["Ancho RWY", ["ancho_rwy_m"], "m"],
-        ["Superficie / resistencia", ["resistencia_superficie"]], ["Elevación THR/TDZ", ["elev_thr_tdz"]],
-        ["DTHR", ["dthr_m"], "m"], ["TORA", ["tora_m"], "m"], ["TODA", ["toda_m"], "m"],
-        ["ASDA", ["asda_m"], "m"], ["LDA", ["lda_m"], "m"],
-        ["Precisión", ["precision_geometria"]], ["Fecha AIP", ["fecha_seccion"]],
-        ["AMDT AIRAC", ["amdt_airac"]], ["Fuente", ["url_fuente"], "", "url"]
-      ]
+      id: "argenmap",
+      name: "Argenmap IGN",
+      url: "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png",
+      tms: true,
+      minZoom: 3,
+      maxZoom: 19,
+      attribution: "© Instituto Geográfico Nacional + OpenStreetMap",
+      swatch: "#bfe6fb"
     },
     {
-      id: "aip_ejes_pista",
-      group: "Área de movimiento",
-      name: "Ejes de pista (AIP)",
-      url: "fuentes/aip_pistas_ejes.geojson",
-      color: "#F4D03F",
-      minZoom: 10,
-      style: { color: "#F4D03F", weight: 2.4, opacity: 0.95, fillOpacity: 0 },
-      titleKeys: ["designacion"],
-      fields: [
-        ["IATA", ["iata"]], ["OACI", ["icao"]], ["Pista", ["designacion"]],
-        ["Longitud publicada", ["longitud_publicada_m"], "m"], ["Ancho", ["ancho_m"], "m"],
-        ["Superficie / resistencia", ["resistencia_superficie"]], ["BRG GEO 1", ["brg_geo_1"]],
-        ["BRG GEO 2", ["brg_geo_2"]], ["Método", ["metodo_geometria"]],
-        ["Precisión", ["precision_geometria"]], ["Fecha AIP", ["fecha_seccion"]],
-        ["Fuente", ["url_fuente"], "", "url"]
-      ]
+      id: "argenmap_gris",
+      name: "Argenmap IGN gris",
+      url: "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_gris@EPSG%3A3857@png/{z}/{x}/{-y}.png",
+      tms: true,
+      minZoom: 3,
+      maxZoom: 19,
+      attribution: "© Instituto Geográfico Nacional + OpenStreetMap",
+      swatch: "#d5d8dc"
     },
     {
-      id: "aip_superficies_pista",
-      group: "Área de movimiento",
-      name: "Superficies de pista (AIP)",
-      url: "fuentes/aip_pistas_superficies.geojson",
-      color: "#F5B041",
-      minZoom: 10,
-      style: { color: "#F5B041", weight: 1.7, opacity: 0.95, fillColor: "#F5B041", fillOpacity: 0.07 },
-      titleKeys: ["designacion"],
-      fields: [
-        ["IATA", ["iata"]], ["OACI", ["icao"]], ["Pista", ["designacion"]],
-        ["Longitud publicada", ["longitud_publicada_m"], "m"], ["Ancho", ["ancho_m"], "m"],
-        ["Superficie / resistencia", ["resistencia_superficie"]], ["Método", ["metodo_geometria"]],
-        ["Precisión", ["precision_geometria"]], ["Fecha AIP", ["fecha_seccion"]],
-        ["Fuente", ["url_fuente"], "", "url"]
-      ]
+      id: "argenmap_oscuro",
+      name: "Argenmap IGN oscuro",
+      url: "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/argenmap_oscuro@EPSG%3A3857@png/{z}/{x}/{-y}.png",
+      tms: true,
+      minZoom: 3,
+      maxZoom: 19,
+      attribution: "© Instituto Geográfico Nacional + OpenStreetMap",
+      swatch: "#23272d"
     },
     {
-      id: "aip_zonas_pista",
-      group: "Área de movimiento",
-      name: "Zonas de pista: SWY/CWY/RESA/franjas (AIP)",
-      url: "fuentes/aip_zonas_pista.geojson",
-      color: "#FF8C42",
-      minZoom: 10,
-      style: { color: "#FF8C42", weight: 1.6, opacity: 0.95, fillColor: "#FF8C42", fillOpacity: 0.08 },
-      titleKeys: ["tipo_zona", "rwy_asociada"],
-      fields: [
-        ["IATA", ["iata"]], ["OACI", ["icao"]], ["Tipo", ["tipo_zona"]],
-        ["RWY asociada", ["rwy_asociada"]], ["Dimensiones AIP", ["dimensiones_publicadas"]],
-        ["Longitud", ["longitud_m"], "m"], ["Ancho", ["ancho_m"], "m"], ["OFZ", ["ofz"]],
-        ["Sistema de parada", ["sistema_parada"]], ["Observaciones", ["observaciones"]],
-        ["Método", ["metodo_geometria"]], ["Precisión", ["precision_geometria"]],
-        ["Fecha AIP", ["fecha_seccion"]], ["Fuente", ["url_fuente"], "", "url"]
-      ]
+      id: "argenmap_topografico",
+      name: "Argenmap IGN topográfico",
+      url: "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_topo@EPSG%3A3857@png/{z}/{x}/{-y}.png",
+      tms: true,
+      minZoom: 3,
+      maxZoom: 13,
+      attribution: "© Instituto Geográfico Nacional + OpenStreetMap",
+      swatch: "#cfe8d0"
     },
     {
-      id: "aip_luces_aproximacion",
-      group: "Área de movimiento",
-      name: "Luces de aproximación (AIP)",
-      url: "fuentes/aip_luces_aproximacion.geojson",
-      color: "#00E676",
-      minZoom: 10,
-      style: { color: "#00E676", weight: 3, opacity: 0.95, fillOpacity: 0 },
-      titleKeys: ["rwy", "sistema_aproximacion"],
-      fields: [
-        ["IATA", ["iata"]], ["OACI", ["icao"]], ["RWY", ["rwy"]],
-        ["Sistema", ["sistema_aproximacion"]], ["Longitud", ["longitud_m"], "m"],
-        ["Método", ["metodo_geometria"]], ["Precisión", ["precision_geometria"]],
-        ["Fecha AIP", ["fecha_seccion"]], ["Fuente", ["url_fuente"], "", "url"]
-      ]
+      id: "osm",
+      name: "OpenStreetMap",
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      maxZoom: 20,
+      attribution: "© OpenStreetMap contributors",
+      swatch: "#d8edf7"
     },
     {
-      id: "sei_aip",
-      group: "Servicios y apoyo",
-      name: "Salvamento y extinción de incendios (SEI)",
-      url: "fuentes/SEI2026_final_AIP_AD26.geojson",
-      color: "#E53935",
-      minZoom: 10,
-      style: { color: "#B71C1C", weight: 1.8, opacity: 1, fillColor: "#E53935", fillOpacity: 0.13 },
-      titleKeys: ["etiqueta", "aeropuerto"],
-      fields: [
-        ["IATA", ["iata"]], ["OACI", ["icao"]], ["Aeropuerto", ["aeropuerto"]],
-        ["Categoría SEI", ["categoria_sei_texto", "categoria_sei"]], ["Autobombas", ["cantidad_autobombas"]],
-        ["Agua", ["agua_l"], "l"], ["Espuma", ["espuma_l"], "l"], ["Polvo químico", ["polvo_quimico_kg"], "kg"],
-        ["Prestador", ["prestador_sei"]], ["Equipo de salvamento", ["equipo_salvamento"]],
-        ["Remoción de aeronaves", ["capacidad_remocion"]], ["Estado de revisión", ["estado_revision"]],
-        ["Fecha AIP AD 2.6", ["fecha_ad26"]], ["AMDT", ["amdt_ad26"]],
-        ["Fuente AIP", ["fuente_ad26"], "", "url"]
-      ]
+      id: "osm_humanitario",
+      name: "OpenStreetMap humanitario",
+      url: "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
+      maxZoom: 20,
+      attribution: "© OpenStreetMap contributors, Humanitarian OpenStreetMap Team",
+      swatch: "#f2e1d6"
     },
     {
-      id: "aip_radioayudas",
-      group: "Servicios y apoyo",
-      name: "Radioayudas (AIP)",
-      url: "fuentes/aip_radioayudas.geojson",
-      color: "#7E57C2",
-      minZoom: 8,
-      point: { radius: 4.5, color: "#4527A0", weight: 1.2, fillColor: "#7E57C2", fillOpacity: 0.95 },
-      titleKeys: ["tipo_ayuda", "id_ayuda"],
-      fields: [
-        ["IATA", ["iata"]], ["OACI", ["icao"]], ["Tipo", ["tipo_ayuda"]], ["Identificador", ["id_ayuda"]],
-        ["Frecuencia / canal", ["frecuencia_canal"]], ["Horario", ["horario"]], ["Elevación DME", ["elevacion_dme"]],
-        ["Observaciones", ["observaciones"]], ["Precisión", ["precision_geometria"]],
-        ["Fecha AIP", ["fecha_seccion"]], ["Fuente", ["url_fuente"], "", "url"]
-      ]
+      id: "opentopo",
+      name: "Openstreetmap Topográfico",
+      url: "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+      maxZoom: 17,
+      attribution: "© OpenStreetMap contributors, SRTM | © OpenTopoMap",
+      swatch: "#e9dcc1"
     },
     {
-      id: "aip_puntos_verificacion",
-      group: "Servicios y apoyo",
-      name: "Puntos de verificación VOR/INS (AIP)",
-      url: "fuentes/aip_puntos_verificacion.geojson",
-      color: "#00ACC1",
-      minZoom: 10,
-      point: { radius: 4.5, color: "#006064", weight: 1.2, fillColor: "#00ACC1", fillOpacity: 0.95 },
-      titleKeys: ["tipo"],
-      fields: [
-        ["IATA", ["iata"]], ["OACI", ["icao"]], ["Tipo", ["tipo"]], ["Método", ["metodo"]],
-        ["Detalle", ["detalle"]], ["VOR", ["vor_id"]], ["Radial", ["rdl"]], ["Distancia", ["distancia_nm"], "NM"],
-        ["Precisión", ["precision_geometria"]], ["Fecha AIP", ["fecha_seccion"]],
-        ["Fuente", ["url_fuente"], "", "url"]
-      ]
+      id: "carto_claro",
+      name: "Carto claro",
+      url: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+      maxZoom: 20,
+      attribution: "© OpenStreetMap contributors © CARTO",
+      swatch: "#edf2f6"
     },
     {
-      id: "aip_obstaculos",
-      group: "Contexto territorial",
-      name: "Obstáculos de aeródromo (AIP)",
-      url: "fuentes/aip_obstaculos_aerodromo.geojson",
-      color: "#FF5252",
-      minZoom: 11,
-      point: { radius: 3.1, color: "#8B0000", weight: 1, fillColor: "#FF5252", fillOpacity: 0.9 },
-      titleKeys: ["tipo_obstaculo"],
-      fields: [
-        ["IATA", ["iata"]], ["OACI", ["icao"]], ["Contexto", ["contexto"]],
-        ["RWY / área afectada", ["rwy_area_afectada"]], ["Obstáculo", ["tipo_obstaculo"]],
-        ["Elevación", ["elevacion_m"], "m"], ["Detalle", ["detalle"]], ["Coordenada AIP", ["coord_raw"]],
-        ["Precisión", ["precision_geometria"]], ["Fecha AIP", ["fecha_seccion"]],
-        ["Fuente", ["url_fuente"], "", "url"]
-      ]
+      id: "carto_voyager",
+      name: "Carto Voyager",
+      url: "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+      maxZoom: 20,
+      attribution: "© OpenStreetMap contributors © CARTO",
+      swatch: "#e7f0ef"
     },
     {
-      id: "aip_espacios_ats",
-      group: "Contexto territorial",
-      name: "Espacios ATS / CTR (AIP)",
-      url: "fuentes/aip_espacios_ats.geojson",
-      color: "#8E44AD",
-      minZoom: 5,
-      style: { color: "#8E44AD", weight: 1.5, opacity: 0.9, fillColor: "#8E44AD", fillOpacity: 0.035 },
-      titleKeys: ["designacion", "nombre", "tipo_espacio", "tipo"],
-      fields: [
-        ["IATA", ["iata"]], ["OACI", ["icao"]], ["Designación", ["designacion", "nombre"]],
-        ["Tipo", ["tipo_espacio", "tipo"]], ["Límites laterales", ["limites_laterales", "limite_lateral"]],
-        ["Límites verticales", ["limites_verticales", "limite_vertical"]],
-        ["Clasificación", ["clasificacion", "clase"]], ["Dependencia ATS", ["dependencia_ats", "unidad_ats"]],
-        ["Método", ["metodo_geometria", "metodo"]], ["Precisión", ["precision_geometria"]],
-        ["Fecha AIP", ["fecha_seccion"]], ["Fuente", ["url_fuente"], "", "url"]
-      ]
+      id: "carto_oscuro",
+      name: "Carto oscuro",
+      url: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+      maxZoom: 20,
+      attribution: "© OpenStreetMap contributors © CARTO",
+      swatch: "#242a31"
+    },
+    {
+      id: "google_imagery",
+      name: "Google satelital",
+      url: "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+      minZoom: 3,
+      maxZoom: 21,
+      attribution: "Imágenes satelitales © Google",
+      swatchImage: "https://mt1.google.com/vt/lyrs=s&x=0&y=0&z=0"
+    },
+    {
+      id: "esri_imagery",
+      name: "Esri satelital",
+      url: "https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+      maxZoom: 19,
+      attribution: "Imágenes satelitales © Esri",
+      swatchImage: "https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/0/0/0"
+    },
+
+    {
+      id: "esri_calles",
+      name: "Esri calles",
+      url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+      maxZoom: 20,
+      attribution: "Tiles © Esri",
+      swatch: "#ece2d0"
+    },
+    {
+      id: "esri_topografico",
+      name: "Esri topográfico",
+      url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+      maxZoom: 20,
+      attribution: "Mapa topográfico © Esri",
+      swatch: "#c4d7ef"
+    },
+    {
+      id: "esri_gris",
+      name: "Esri gris claro",
+      url: "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+      maxZoom: 16,
+      attribution: "Tiles © Esri",
+      swatch: "#d7dce2"
+    },
+    {
+      id: "esri_oceanico",
+      name: "Esri Oceánico",
+      url: "https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}",
+      minZoom: 3,
+      maxZoom: 10,
+      attribution: "Tiles © Esri — Fuente: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ y Esri",
+      swatchImage: "https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/0/0/0"
     }
   ];
 
-  const defs = new Map();
-  let initialized = false;
+  const DEFAULT_BASEMAP_ID = "argenmap";
+  const AIRPORT_BASEMAP_ID = "esri_imagery";
 
-  const clean = (v) => v === null || v === undefined ? "" : String(v).trim();
-  const escapeHtml = (v) => String(v ?? "")
-    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+  const LAYER_CONFIGS = [
+    {
+      id: "provincias",
+      group: "Contexto territorial",
+      name: "Provincias",
+      url: "fuentes/provincias.geojson",
+      active: true,
+      opacity: 0.9,
+      color: SIGA_COLORS.grisContexto,
+      style: {
+        color: SIGA_COLORS.grisContexto,
+        weight: 1,
+        fillColor: "transparent",
+        fillOpacity: 0
+      }
+    },
+    {
+      id: "predios",
+      group: "Explotación",
+      name: "Predios aeroportuarios",
+      url: "fuentes/poligonos_aeropuertos.geojson",
+      active: true,
+      opacity: 0.95,
+      color: "#5DFF3A",
+      tooltipTitle: "Predio aeroportuario",
+      tooltipFields: [
+      { label: "Aeropuerto", keys: ["Aeropuerto", "aeropuerto", "nombre", "Nombre"] },
+      { label: "IATA", keys: ["IATA", "iata"] },
+      { label: "OACI", keys: ["OACI", "oaci"] }
+    ],
+  popupFields: [
+    { label: "IATA", keys: ["IATA", "iata"] },
+    { label: "Grupo", keys: ["Grupo"] },
+    { label: "Aeropuerto", keys: ["Nom_aerop", "Aeropuerto", "aeropuerto", "Nombre"] },
+    { label: "Ciudad", keys: ["Ciudad", "ciudad"] },
+    { label: "Provincia", keys: ["Provincia", "provincia"] },
+    { label: "Habilitación", keys: ["Habilitaci", "Habilitación", "habilitacion"] },
+    { label: "Sup. Hectáreas", keys: ["SupHaText", "Supha"],suffix: "Ha."  },
+    { label: "Sup. Kilómetros", keys: ["SupKm2Text", "SupKm2"], suffix: "km²" },
+    { label: "Descripción", keys: ["Descrip"] }
+  ],
+style: {
+  color: "#5DFF3A",
+  weight: 2.4,
+  opacity: 0.95,
 
-  function firstProp(props, keys) {
-    for (const key of keys || []) {
-      const value = props?.[key];
-      if (value !== null && value !== undefined && clean(value) !== "") return value;
+  // Relleno prácticamente invisible, pero permite que
+  // el predio capture el cursor antes que Provincias.
+  fill: true,
+  fillColor: "#5DFF3A",
+  fillOpacity: 0.001
+}
+    },
+    {
+      id: "pistas",
+      group: "Área de movimiento",
+      name: "Pistas",
+      url: "fuentes/pistas.geojson",
+      active: true,
+      opacity: 1,
+      color: SIGA_COLORS.grisPista,
+      tooltipTitle: "Pistas",
+      tooltipFields: [
+      { label: "Pista", keys: ["tipo", "Tipo",] },
+      { label: "IATA", keys: ["IATA", "iata"] },
+    ],
+  popupFields: [
+    { label: "IATA", keys: ["IATA", "iata"] },
+    { label: "Longitud", keys: ["largxanchm"], suffix: "metros" },
+    { label: "Orientación", keys: ["orientacio", "Orientacion"] },
+    { label: "Material", keys: ["material", "Material"] }
+  ],
+      
+    style: {
+      color: SIGA_COLORS.amarilloPista,
+      weight: 2.2,
+      opacity: 1,
+      fill: true,
+      fillColor: SIGA_COLORS.amarilloPista,
+      fillOpacity: 0.001
+    }
+    },
+    {
+      id: "cabeceras",
+      group: "Área de movimiento",
+      name: "Cabeceras de pista",
+      url: "fuentes/Cabeceras2026.geojson",
+      active: true,
+      opacity: 1,
+      color: SIGA_COLORS.azulMedio,
+
+      tooltipTitle: "Cabeceras",
+      tooltipFields: [
+      { label: "Cabecera", keys: ["Cabecera", "cabecera",] },
+      { label: "IATA", keys: ["IATA", "iata"] },
+    ],
+  popupFields: [
+    { label: "IATA", keys: ["IATA", "iata"] },
+    { label: "Cabecera", keys: ["Cabecera", "cabecera"], }
+  ],
+      style: {
+        color: SIGA_COLORS.azulOscuro,
+        weight: 1.8,
+        fillColor: SIGA_COLORS.azulMedio,
+        fillOpacity: 0.36
+      }
+    },
+    {
+      id: "plataformas",
+      group: "Área de movimiento",
+      name: "Plataformas",
+      url: "fuentes/Plataformas2026.geojson",
+      active: true,
+      opacity: 0.92,
+      color: SIGA_COLORS.celesteCab,
+      tooltipTitle: "Plataformas",
+      tooltipFields: [
+      { label: "Tipo", keys: ["Tipo", "tipo"] },
+      { label: "IATA", keys: ["IATA", "iata"] },
+    ],
+  popupFields: [
+    { label: "IATA", keys: ["IATA", "iata"] },
+    { label: "Tipo", keys: ["Tipo", "tipo"] },
+    { label: "Superficie", keys: ["Metros2", "Metros", "Metros2"], suffix: "metros²" },
+  ],
+      
+    style: {
+      color: "#00AEEF",
+      weight: 1.8,
+      opacity: 1,
+      fill: true,
+      fillColor: "#00AEEF",
+      fillOpacity: 0.001
+    }
+    },
+
+    {
+      id: "psn",
+      group: "Área de movimiento",
+      name: "Posiciones aeronaves",
+      url: "fuentes/psn_posiciones.geojson",
+      active: true,
+      opacity: 1,
+      color: SIGA_COLORS.violeta,
+      point: {
+        radius: 2.2,
+        color: "#000000",
+        fillColor: SIGA_COLORS.violeta,
+        fillOpacity: 0.5
+      },
+      tooltipTitle: "Posiciones de aeronaves",
+      tooltipFields: [
+      { label: "IATA", keys: ["IATA", "iata"] },
+      { label: "Posición", keys: ["Posicion"] },
+    ],
+  popupFields: [
+    { label: "IATA", keys: ["IATA", "iata"] },
+    { label: "Posición", keys: ["Posicion"] },
+  ],
+    },
+{
+  id: "aeroplantas",
+  group: "Área de movimiento",
+  name: "Aeroplantas",
+  url: "fuentes/Aeroplantas.geojson",
+  active: true,
+  opacity: 1,
+color: "#d71920",
+style: {
+  color: "#d71920",
+  weight: 1.4,
+  fillColor: "#d71920",
+  // Relleno prácticamente invisible, pero mantiene
+  // toda la superficie del polígono consultable.
+  fillOpacity: 0.015
+},
+polygonIcon: {
+  html: `
+    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+      <path d="M7 3h8c1.1 0 2 .9 2 2v14c0 1.1-.9 2-2 2H7c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2Z"
+            fill="currentColor"/>
+      <path d="M8 6h6v3H8V6Z" fill="#ffffff" opacity="0.9"/>
+      <path d="M17 7h1.4c.5 0 .9.4.9.9v3.8c0 .8.5 1.3 1.1 1.3s1.1-.5 1.1-1.3V9.2"
+            fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+  `,
+    className: "siga-poly-center-icon siga-poly-center-icon-aeroplanta siga-zoom-detail-icon"
+}
+},
+    {
+      id: "terminales2026",
+      group: "Edificios e infraestructura",
+      name: "Terminales",
+      url: "fuentes/Terminales2026.geojson",
+      active: true,
+      opacity: 0.94,
+      color: SIGA_COLORS.rojoTerminal,
+      style: {
+        color: SIGA_COLORS.rojoTerminal,
+        weight: 1.2,
+        fillColor: SIGA_COLORS.rojoSuave,
+        fillOpacity: 0.45
+      }
+    },
+    {
+      id: "torres",
+      group: "Edificios e infraestructura",
+      name: "Torres de control",
+      url: "fuentes/Torres_control_2026.geojson",
+      active: true,
+      opacity: 1,
+    
+      // Color utilizado también en la leyenda.
+      color: "#FF2D8D",
+    
+      point: {
+        radius: 7,
+        color: "#5B0037",
+        weight: 2.4,
+        fillColor: "#FF2D8D",
+        fillOpacity: 1
+      }
+    },
+{
+      id: "hangares",
+      group: "Edificios e infraestructura",
+      name: "Hangares",
+      url: "fuentes/Hangares2026.geojson",
+      active: true,
+      opacity: 1,
+      color: "#FF8A00",
+      style: {
+        color: "#FF8A00",
+        weight: 1.8,
+        opacity: 1,
+        fillColor: "#FF8A00",
+        fillOpacity: 0.001
+      }
+    },
+    {
+      id: "otros",
+      group: "Edificios e infraestructura",
+      name: "Otros edificios",
+      url: "fuentes/Otros_edificios2026.geojson",
+      active: true,
+      opacity: 0.9,
+      color: "#6c757d",
+      style: {
+        color: "#555555",
+        weight: 1.1,
+        fillColor: "#b3b3b3",
+        fillOpacity: 0.38
+      }
+    },
+{
+    id: "estacionamientos",
+    group: "Edificios e infraestructura",
+    name: "Estacionamientos vehiculares",
+    url: "fuentes/Estacionamientos_vehiculares2026.geojson",
+    active: true,
+    opacity: 1,
+    color: "#00B8D9",
+    style: {
+      color: "#00B8D9",
+      weight: 1.8,
+      opacity: 1,
+      fillColor: "#00B8D9",
+      fillOpacity: 0.001
+    }
+  },
+{
+  id: "paradasapp",
+  group: "Servicios y apoyo",
+  name: "Paradas transporte público",
+  url: "fuentes/paradasapp.geojson",
+  active: true,
+  opacity: 1,
+  color: SIGA_COLORS.verdeInternacional,
+
+  tooltipTitle: "Parada de transporte público",
+  tooltipFields: [
+    { label: "IATA", keys: ["IATA", "iata"] },
+    { label: "Línea", keys: ["LINEA", "Linea", "linea", "Línea"] },
+    { label: "Parada", keys: ["Parada", "PARADA", "parada"] }
+  ],
+
+  popupFields: [
+    { label: "IATA", keys: ["IATA", "iata"] },
+    { label: "Línea", keys: ["LINEA", "Linea", "linea", "Línea"] },
+    { label: "Parada", keys: ["Parada", "PARADA", "parada"] }
+  ],
+
+  point: {
+    radius: 4.8,
+    color: "#1a7a3e",
+    fillColor: SIGA_COLORS.verdeInternacional,
+    fillOpacity: 0.9
+  }
+},
+    {
+      id: "smn",
+      group: "Servicios y apoyo",
+      name: "Estaciones meteorológicas SMN",
+      url: "fuentes/smn_estaciones_meteorologicas2026.geojson",
+      active: true,
+
+      // Visible solo cuando el zoom ya está cerca del aeropuerto
+      minVisibleZoom: 12,
+
+      opacity: 1,
+      color: SIGA_COLORS.azulLink,
+      point: {
+        radius: 5.2,
+        color: SIGA_COLORS.azulOscuro,
+        fillColor: SIGA_COLORS.azulLink,
+        fillOpacity: 0.92
+      }
+    }
+  ];
+const LAYER_GROUP_ORDER = [
+  "Explotación",
+  "Edificios e infraestructura",
+  "Área de movimiento",
+  "Servicios y apoyo",
+  "Contexto territorial"
+];
+const HOLLOW_POLYGON_LAYER_IDS = new Set([
+  "predios",
+  "pistas",
+  "cabeceras",
+  "plataformas",
+  "aeroplantas",
+  "terminales2026",
+  "hangares",
+  "otros",
+  "estacionamientos"
+]);
+  const state = {
+    map: null,
+    baseLayers: {},
+    baseLayerConfigs: new Map(),
+    activeBaseLayerId: "",
+    userChangedBaseLayer: false,
+    autoSwitchingBaseLayer: false,
+    layerDefs: new Map(),
+    airports: [],
+    airportIndex: new Map(),
+    selectedAirport: "",
+    airportLabelLayer: null,
+    drawnItems: null,
+    paradasAppRowsByIata: new Map()
+  };
+
+  const q = (id) => document.getElementById(id);
+
+  function clean(v) {
+    if (v === null || v === undefined) return "";
+    return String(v).trim();
+  }
+
+  function formatValue(v) {
+    if (v === null || v === undefined || v === "") return "–";
+    if (typeof v === "number") return Number.isInteger(v) ? v.toLocaleString("es-AR") : v.toLocaleString("es-AR", { maximumFractionDigits: 2 });
+    return String(v);
+  }
+
+  function getFirstProp(props, names) {
+    for (const n of names) {
+      if (props && props[n] !== undefined && props[n] !== null && String(props[n]).trim() !== "") return props[n];
     }
     return "";
   }
 
-  // Regla de inclusión: geometría real o derivada; nunca una mera referencia.
-  function acceptedFeature(feature) {
-    if (!feature?.geometry) return false;
-    const p = feature.properties || {};
-    if (p.ubicacion_equipo_exacta === false) return false;
-    if (p.aproximada === true) return false;
-    const precision = clean(p.precision_geometria).toLowerCase();
-    if (precision.includes("referencia") || precision.includes("no_posicion_fisica")) return false;
-    return true;
-  }
-
-  function layerTitle(cfg, feature) {
-    const p = feature?.properties || {};
-    const parts = (cfg.titleKeys || []).map(k => clean(p[k])).filter(Boolean);
-    if (parts.length) return parts.join(" · ");
-    return clean(p.aeropuerto || p.Aeropuerto || p.iata || p.IATA || cfg.name);
-  }
-
-  function formatValue(value) {
-    if (value === null || value === undefined || value === "") return "–";
-    if (typeof value === "number") return value.toLocaleString("es-AR", { maximumFractionDigits: 2 });
-    return String(value);
-  }
-
-  function buildInfoRows(cfg, feature) {
+  function getFeatureIata(feature) {
     const props = feature?.properties || {};
-    return (cfg.fields || []).map(([label, keys, suffix, type]) => {
-      const value = firstProp(props, keys);
-      if (value === "") return "";
-      const shown = `${formatValue(value)}${suffix ? ` ${suffix}` : ""}`;
-      const rendered = type === "url"
-        ? `<a href="${escapeHtml(value)}" target="_blank" rel="noopener">Abrir fuente AIP</a>`
-        : escapeHtml(shown);
-      return `<tr><td>${escapeHtml(label)}</td><td>${rendered}</td></tr>`;
-    }).filter(Boolean).join("");
+    return clean(getFirstProp(props, FIELD_IATA_CANDIDATES)).toUpperCase();
   }
 
-  function showFeatureInfo(cfg, feature) {
-    const el = document.getElementById("featureInfo");
-    if (!el) return;
-    el.innerHTML = `
-      <div class="feature-title">${escapeHtml(cfg.name)} · ${escapeHtml(layerTitle(cfg, feature))}</div>
-      <table class="feature-table">${buildInfoRows(cfg, feature)}</table>
-      <div class="siga-hint" style="margin-top:6px">Fuente: AIP Argentina · ANAC.</div>
-    `;
+  function featureTitle(feature, fallback) {
+    const p = feature?.properties || {};
+    return clean(getFirstProp(p, [
+      "nombre", "Nombre", "NOMBRE", "name", "Name", "Aeropuerto", "aeropuerto",
+      "etiqueta", "ETIQUETA", "tipo", "Tipo", "descripcion", "Descripción", "IATA", "iata"
+    ])) || fallback || "Elemento";
   }
 
-  function makeLeafletLayer(cfg, geojson) {
-    const pane = cfg.group === "Área de movimiento"
-      ? "sigaMovimientoPane"
-      : cfg.group === "Servicios y apoyo"
-        ? "sigaServiciosPane"
-        : "sigaContextPane";
+  function hasGeometry(feature) {
+    return !!feature?.geometry;
+  }
+function isPolygonGeometry(feature) {
+  const type = feature?.geometry?.type;
+  return type === "Polygon" || type === "MultiPolygon";
+}
 
-    const filtered = {
-      type: "FeatureCollection",
-      features: (geojson?.features || []).filter(acceptedFeature)
-    };
+function getDetailLabelValue(cfg, feature) {
+  const props = feature?.properties || {};
 
-    return L.geoJSON(filtered, {
-      pane,
-      interactive: true,
-      style: () => ({
-        ...(cfg.style || { color: cfg.color, weight: 1.5, fillColor: cfg.color, fillOpacity: 0.18 }),
-        pane
-      }),
-      pointToLayer: (_feature, latlng) => {
-        const p = cfg.point || {
-          radius: 4, color: cfg.color, weight: 1,
-          fillColor: cfg.color, fillOpacity: 0.9
-        };
-        return L.circleMarker(latlng, { ...p, pane });
-      },
-      onEachFeature: (feature, layer) => {
-        layer.bindTooltip(`${escapeHtml(cfg.name)} · ${escapeHtml(layerTitle(cfg, feature))}`, {
-          sticky: true,
-          direction: "top",
-          opacity: 0.92,
-          className: "siga-tooltip"
-        });
-        layer.on("click", (e) => {
-          if (e?.originalEvent) L.DomEvent.stopPropagation(e.originalEvent);
-          showFeatureInfo(cfg, feature);
-        });
-      }
+  if (cfg.id === "paradasapp") return "Parada TP";
+
+  const byLayer = {
+    cabeceras: ["Cabecera", "cabecera", "CABECERA", "etiqueta", "ETIQUETA"],
+    pistas: ["tipo", "Tipo", "TIPO"],
+
+    plataformas: [
+      "etiqueta", "Etiqueta", "ETIQUETA",
+      "tipo", "Tipo", "TIPO",
+      "nombre", "Nombre", "NOMBRE"
+    ],
+
+    psn: ["posicion", "Posicion", "posición", "Posición", "POSICION"],
+    terminales2026: ["tipo", "Tipo", "TIPO"]
+  };
+
+  const candidates = byLayer[cfg.id];
+  if (!candidates) return "";
+
+  return clean(getFirstProp(props, candidates));
+}
+
+function getAirportShortName(airport) {
+  const p = airport?.properties || {};
+
+  return clean(
+    p.Aeropuerto ||
+    p.aeropuerto ||
+    airport?.nombre ||
+    airport?.iata
+  ) || "Aeropuerto";
+}
+
+  function getPredioBoundsForAirport(iata) {
+    const pred = state.layerDefs.get("predios")?.geojson;
+    if (!pred?.features?.length) return null;
+    const feats = pred.features.filter((f) => getFeatureIata(f) === iata && hasGeometry(f));
+    if (!feats.length) return null;
+    const layer = L.geoJSON(feats);
+    const b = layer.getBounds();
+    return b.isValid() ? b : null;
+  }
+
+  function makeBaseLayer(cfg) {
+    return L.tileLayer(cfg.url, {
+      minZoom: cfg.minZoom ?? 0,
+      maxZoom: cfg.maxZoom ?? 20,
+      maxNativeZoom: cfg.nativeMaxZoom,
+      minNativeZoom: cfg.nativeMinZoom,
+      tms: !!cfg.tms,
+      attribution: cfg.attribution || ""
     });
   }
+function createSigaPanes(map) {
+  const panes = [
+    ["sigaContextPane", 410],
+    ["sigaPredioPane", 430],
+    ["sigaMovimientoPane", 470],
+    ["sigaInfraPane", 510],
+    ["sigaServiciosPane", 540],
+    ["sigaLabelsPane", 650]
+  ];
 
-  function applyOpacity(def, opacity) {
-    def.opacity = Number(opacity);
-    def.layer?.eachLayer?.((layer) => {
-      if (!layer.setStyle) return;
-      if (layer.__sigaAipBaseOpacity === undefined) {
-        layer.__sigaAipBaseOpacity = layer.options.opacity ?? 1;
+  panes.forEach(([name, zIndex]) => {
+    if (!map.getPane(name)) map.createPane(name);
+    map.getPane(name).style.zIndex = zIndex;
+  });
+}
+
+function getLayerPaneId(layerId) {
+  if (layerId === "provincias") return "sigaContextPane";
+
+  if (layerId === "predios") return "sigaPredioPane";
+
+  if ([
+    "pistas",
+    "cabeceras",
+    "plataformas",
+    "psn"
+  ].includes(layerId)) {
+    return "sigaMovimientoPane";
+  }
+
+  if ([
+    "terminales2026",
+    "hangares",
+    "otros",
+    "estacionamientos",
+    "aeroplantas"
+  ].includes(layerId)) {
+    return "sigaInfraPane";
+  }
+
+  if ([
+    "torres",
+    "paradasapp",
+    "smn"
+  ].includes(layerId)) {
+    return "sigaServiciosPane";
+  }
+
+  return "overlayPane";
+}
+  function createMap() {
+    const map = L.map("sigaMap", {
+      center: DEFAULT_CENTER,
+      zoom: DEFAULT_ZOOM,
+      zoomControl: true,
+        zoomSnap: 0.25,
+        zoomDelta: 0.25,
+        wheelPxPerZoomLevel: 150,
+      preferCanvas: false,
+      fullscreenControl: !!L.Control.FullScreen
+    });
+
+    BASEMAP_CONFIGS.forEach((cfg) => {
+      const layer = makeBaseLayer(cfg);
+      state.baseLayers[cfg.name] = layer;
+      state.baseLayerConfigs.set(cfg.id, { ...cfg, layer });
+    });
+
+state.map = map;
+
+createSigaPanes(map);
+
+setBaseLayer(DEFAULT_BASEMAP_ID, { auto: true, silent: true });
+
+    map.on("baselayerchange", (e) => {
+      if (state.autoSwitchingBaseLayer) return;
+      const found = BASEMAP_CONFIGS.find((cfg) => cfg.name === e.name);
+      if (!found) return;
+      state.activeBaseLayerId = found.id;
+      state.userChangedBaseLayer = true;
+      renderBaseLayerTree();
+    });
+
+    L.control.scale({ metric: true, imperial: false, position: "bottomleft" }).addTo(map);
+const zoomIndicator = L.control({ position: "bottomleft" });
+
+zoomIndicator.onAdd = function () {
+  const div = L.DomUtil.create("div", "siga-zoom-indicator");
+  div.textContent = `Zoom: ${map.getZoom().toFixed(2)}`;
+  return div;
+};
+
+zoomIndicator.addTo(map);
+
+map.on("zoomend", () => {
+  const el = document.querySelector(".siga-zoom-indicator");
+  if (el) el.textContent = `Zoom: ${map.getZoom().toFixed(2)}`;
+});
+    addOptionalControls(map);
+  }
+
+  function addOptionalControls(map) {
+    try {
+      if (L.control.locate) L.control.locate({ position: "topleft", flyTo: true, strings: { title: "Mostrar mi ubicación" } }).addTo(map);
+    } catch (e) { console.warn("Locate plugin no disponible", e); }
+
+    try {
+      if (L.Control.geocoder) L.Control.geocoder({ position: "topleft", defaultMarkGeocode: true, placeholder: "Buscar lugar…" }).addTo(map);
+    } catch (e) { console.warn("Geocoder plugin no disponible", e); }
+
+    try {
+      if (L.control.measure) L.control.measure({ position: "topleft", primaryLengthUnit: "meters", primaryAreaUnit: "sqmeters", activeColor: SIGA_COLORS.azulMedio, completedColor: SIGA_COLORS.violeta }).addTo(map);
+    } catch (e) { console.warn("Measure plugin no disponible", e); }
+
+    try {
+      state.drawnItems = new L.FeatureGroup();
+      map.addLayer(state.drawnItems);
+      if (L.Control.Draw) {
+        const drawControl = new L.Control.Draw({
+          position: "topleft",
+          edit: { featureGroup: state.drawnItems },
+          draw: { circle: false, circlemarker: false }
+        });
+        map.addControl(drawControl);
+        map.on(L.Draw.Event.CREATED, (event) => state.drawnItems.addLayer(event.layer));
       }
-      if (layer.__sigaAipBaseFillOpacity === undefined) {
-        layer.__sigaAipBaseFillOpacity = layer.options.fillOpacity ?? 0;
+    } catch (e) { console.warn("Draw plugin no disponible", e); }
+
+    try {
+      if (L.Control.MiniMap) {
+        const miniLayer = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", { maxZoom: 20 });
+        new L.Control.MiniMap(miniLayer, { toggleDisplay: true, minimized: true, position: "bottomright" }).addTo(map);
       }
-      layer.setStyle({
-        opacity: layer.__sigaAipBaseOpacity * def.opacity,
-        fillOpacity: layer.__sigaAipBaseFillOpacity * def.opacity
+    } catch (e) { console.warn("MiniMap plugin no disponible", e); }
+
+    try {
+      if (L.control.mousePosition) L.control.mousePosition({ position: "bottomright", separator: " | ", prefix: "Lat/Lon" }).addTo(map);
+    } catch (e) { console.warn("MousePosition plugin no disponible", e); }
+
+    try {
+      if (L.easyPrint) L.easyPrint({ title: "Imprimir mapa", position: "topleft", sizeModes: ["Current", "A4Landscape", "A4Portrait"] }).addTo(map);
+    } catch (e) { console.warn("EasyPrint plugin no disponible", e); }
+  }
+
+  async function loadJson(url) {
+    const resp = await fetch(url);
+    if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
+    return resp.json();
+  }
+async function loadText(url) {
+  const resp = await fetch(url);
+  if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
+  return resp.text();
+}
+
+function parseCsvLine(line, separator = ";") {
+  const out = [];
+  let current = "";
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i += 1) {
+    const ch = line[i];
+    const next = line[i + 1];
+
+    if (ch === '"' && inQuotes && next === '"') {
+      current += '"';
+      i += 1;
+      continue;
+    }
+
+    if (ch === '"') {
+      inQuotes = !inQuotes;
+      continue;
+    }
+
+    if (ch === separator && !inQuotes) {
+      out.push(current.trim());
+      current = "";
+      continue;
+    }
+
+    current += ch;
+  }
+
+  out.push(current.trim());
+  return out;
+}
+
+function parseSemicolonCsv(text) {
+  const lines = String(text || "")
+    .replace(/^\uFEFF/, "")
+    .split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(Boolean);
+
+  if (!lines.length) return [];
+
+  const headers = parseCsvLine(lines[0], ";").map(h => clean(h));
+
+  return lines.slice(1).map(line => {
+    const values = parseCsvLine(line, ";");
+    const row = {};
+
+    headers.forEach((header, idx) => {
+      row[header] = clean(values[idx]);
+    });
+
+    return row;
+  });
+}
+
+async function loadParadasAppCsv() {
+  state.paradasAppRowsByIata = new Map();
+
+  try {
+    const text = await loadText(PARADAS_APP_CSV_SOURCE);
+    const rows = parseSemicolonCsv(text);
+
+    rows.forEach((row) => {
+      const iata = clean(row.IATA || row.iata).toUpperCase();
+      if (!iata) return;
+
+      if (!state.paradasAppRowsByIata.has(iata)) {
+        state.paradasAppRowsByIata.set(iata, []);
+      }
+
+      state.paradasAppRowsByIata.get(iata).push({
+        IATA: iata,
+        LINEA: clean(row.LINEA || row.Linea || row.linea || row["Línea"]),
+        Parada: clean(row.Parada || row.PARADA || row.parada)
       });
     });
+  } catch (e) {
+    console.warn("No se pudo cargar Paradasapp.csv", e);
+  }
+}
+
+function enrichParadasAppGeojson(geojson) {
+  if (!geojson?.features?.length) return geojson;
+
+  const assignedByIata = new Map();
+
+  geojson.features.forEach((feature) => {
+    const props = feature.properties || {};
+    const iata = clean(props.IATA || props.iata || getFeatureIata(feature)).toUpperCase();
+
+    if (!iata) return;
+
+    const rows = state.paradasAppRowsByIata.get(iata) || [];
+    if (!rows.length) return;
+
+    const used = assignedByIata.get(iata) || 0;
+    const row = rows[used] || rows[0];
+
+    assignedByIata.set(iata, used + 1);
+
+    feature.properties = {
+      ...props,
+      IATA: props.IATA || iata,
+      LINEA: props.LINEA || row.LINEA || "",
+      Parada: props.Parada || row.Parada || ""
+    };
+  });
+
+  return geojson;
+}
+  async function loadAirports() {
+    const gj = await loadJson(AIRPORTS_SOURCE);
+    state.airports = (gj.features || [])
+      .map((f) => {
+        const p = f.properties || {};
+        const iata = clean(p.IATA || p.iata).toUpperCase();
+        const nombre = clean(p.Aeropuerto || p["Nombre del Aeropuerto"] || p.nombre || p.name || iata);
+        return { iata, nombre, properties: p, feature: f };
+      })
+      .filter((a) => a.iata)
+      .sort((a, b) => a.iata.localeCompare(b.iata));
+
+    state.airports.forEach((a) => state.airportIndex.set(a.iata, a));
+    renderAirportSelects();
   }
 
-  function refreshVisibility() {
-    const map = window.__SIGA_AIP_MAP__;
-    if (!map) return;
+function normalizeSearchTerm(value) {
+  return clean(value)
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
 
-    defs.forEach(def => {
-      const shouldShow = def.active && map.getZoom() >= (def.cfg.minZoom ?? 0);
-      const shown = map.hasLayer(def.layer);
-      if (shouldShow && !shown) def.layer.addTo(map);
-      else if (!shouldShow && shown) map.removeLayer(def.layer);
-    });
+function getAirportSearchText(airport) {
+  const p = airport?.properties || {};
 
-    syncLegend();
+  return normalizeSearchTerm([
+    airport.iata,
+    airport.nombre,
+    p.Aeropuerto,
+    p.aeropuerto,
+    p["Nombre del Aeropuerto"],
+    p.nombre,
+    p.name,
+    p.Ciudad,
+    p["Ciudad/Localidad"],
+    p.Localidad,
+    p.Provincia,
+    p.OACI,
+    p.oaci
+  ].filter(Boolean).join(" "));
+}
+
+function populateAirportSelect(select, airports) {
+  const currentValue = select.value;
+
+  select.innerHTML = `<option value="">Seleccionar aeropuerto…</option>`;
+
+  airports.forEach((a) => {
+    const opt = document.createElement("option");
+    opt.value = a.iata;
+    opt.textContent = `${a.nombre} (${a.iata})`;
+    select.appendChild(opt);
+  });
+
+  if (currentValue && airports.some((a) => a.iata === currentValue)) {
+    select.value = currentValue;
+  }
+}
+
+function wireAirportSearch() {
+  const search = q("airportSearch");
+  const select = q("airportSelect");
+  const results = q("airportSearchResults");
+
+  if (!search || !select || !results || search.dataset.bound === "1") return;
+
+  search.dataset.bound = "1";
+
+  let highlightedIndex = -1;
+  let currentResults = [];
+
+  function closeResults() {
+    results.classList.remove("is-open");
+    highlightedIndex = -1;
   }
 
-  function setExtraActive(id, active) {
-    const def = defs.get(id);
-    if (!def) return;
-    def.active = !!active;
-    refreshVisibility();
+  function selectAirport(iata) {
+    if (!iata || !state.airportIndex.has(iata)) return;
+
+    const airport = state.airportIndex.get(iata);
+
+    select.value = iata;
+    search.value = `${airport.nombre} (${airport.iata})`;
+
+    closeResults();
+
+    select.dispatchEvent(new Event("change"));
   }
 
-  function findGroupEl(groupName) {
-    const root = document.getElementById("layerTree");
-    if (!root) return null;
-    return Array.from(root.querySelectorAll(".layer-group")).find(group =>
-      clean(group.querySelector(".layer-group-title")?.textContent) === groupName
-    ) || null;
-  }
+  function renderResults(term = "") {
+    const normalized = normalizeSearchTerm(term);
 
-  function renderRows() {
-    if (!initialized) return;
+    currentResults = normalized
+      ? state.airports.filter((a) => getAirportSearchText(a).includes(normalized))
+      : state.airports;
 
-    document.querySelectorAll("[data-siga-aip-extra-row]").forEach(el => el.remove());
+    results.innerHTML = "";
 
-    EXTRA_LAYERS.forEach(cfg => {
-      const def = defs.get(cfg.id);
-      const groupEl = findGroupEl(cfg.group);
-      if (!groupEl || !def) return;
-
-      const row = document.createElement("label");
-      row.className = "layer-row";
-      row.dataset.sigaAipExtraRow = cfg.id;
-      row.title = cfg.minZoom ? `Capa AIP. Visible desde zoom ${cfg.minZoom}.` : "Capa AIP";
-      row.innerHTML = `
-        <input type="checkbox" data-aip-extra-id="${escapeHtml(cfg.id)}" ${def.active ? "checked" : ""}>
-        <span class="layer-swatch" style="background:${cfg.color};"></span>
-        <span class="layer-name" title="${escapeHtml(cfg.name)}">${escapeHtml(cfg.name)}</span>
-        <input class="layer-opacity" type="range" min="0.1" max="1" step="0.05"
-               value="${def.opacity}" data-aip-opacity-id="${escapeHtml(cfg.id)}">
+    if (!currentResults.length) {
+      results.innerHTML = `
+        <div class="siga-search-result">
+          No se encontraron aeropuertos.
+        </div>
       `;
-      groupEl.appendChild(row);
-    });
-  }
-
-  function syncLegend() {
-    const legend = document.getElementById("mapLegend");
-    const map = window.__SIGA_AIP_MAP__;
-    if (!legend || !map) return;
-
-    legend.querySelectorAll("[data-aip-extra-legend]").forEach(el => el.remove());
-    const visible = Array.from(defs.values()).filter(def => def.active && map.hasLayer(def.layer));
-
-    if (visible.length) {
-      legend.querySelectorAll(".siga-hint").forEach(el => el.remove());
-      visible.forEach(def => {
-        const item = document.createElement("div");
-        item.className = "legend-item";
-        item.dataset.aipExtraLegend = def.cfg.id;
-        item.innerHTML = `
-          <span class="legend-swatch" style="background:${def.cfg.color};"></span>
-          <span>${escapeHtml(def.cfg.name)}</span>
-        `;
-        legend.appendChild(item);
-      });
-    } else if (!legend.children.length) {
-      legend.innerHTML = `<div class="siga-hint">No hay capas activas.</div>`;
-    }
-  }
-
-  function wireExtensionUi() {
-    const root = document.getElementById("layerTree");
-    if (!root) return;
-
-    root.addEventListener("change", e => {
-      const checkbox = e.target.closest("input[data-aip-extra-id]");
-      if (checkbox) {
-        setExtraActive(checkbox.dataset.aipExtraId, checkbox.checked);
-        return;
-      }
-      if (e.target.matches("input[data-layer-id]")) setTimeout(syncLegend, 0);
-    });
-
-    root.addEventListener("input", e => {
-      const slider = e.target.closest("input[data-aip-opacity-id]");
-      if (!slider) return;
-      const def = defs.get(slider.dataset.aipOpacityId);
-      if (!def) return;
-      applyOpacity(def, Number(slider.value));
-    });
-
-    const buttonActions = {
-      btnDefaultLayers: false,
-      btnNoLayers: false,
-      btnAllLayers: true
-    };
-
-    Object.entries(buttonActions).forEach(([id, value]) => {
-      document.getElementById(id)?.addEventListener("click", () => {
-        defs.forEach(def => { def.active = value; });
-        refreshVisibility();
-
-        // Los botones nativos vuelven a dibujar el árbol de capas.
-        // Restauramos luego nuestras filas dentro de las mismas categorías.
-        setTimeout(() => {
-          renderRows();
-          syncLegend();
-        }, 0);
-      });
-    });
-
-    window.__SIGA_AIP_MAP__?.on("zoomend", refreshVisibility);
-  }
-
-  async function initialize() {
-    if (initialized) return;
-
-    const map = window.__SIGA_AIP_MAP__;
-    const root = document.getElementById("layerTree");
-    if (!map || !root?.querySelector(".layer-group")) return;
-
-    const results = await Promise.all(EXTRA_LAYERS.map(async cfg => {
-      try {
-        const response = await fetch(cfg.url);
-        if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-        const geojson = await response.json();
-        const layer = makeLeafletLayer(cfg, geojson);
-        const def = { cfg, layer, active: false, opacity: 1 };
-        applyOpacity(def, 1);
-        defs.set(cfg.id, def);
-        return { ok: true, cfg, count: layer.getLayers().length };
-      } catch (error) {
-        console.warn(`SIGA AIP: no se pudo cargar ${cfg.url}`, error);
-        return { ok: false, cfg, error };
-      }
-    }));
-
-    initialized = true;
-    renderRows();
-    wireExtensionUi();
-    syncLegend();
-
-    const loaded = results.filter(r => r.ok);
-    const failed = results.filter(r => !r.ok);
-    console.info(
-      "SIGA AIP: capas incorporadas",
-      loaded.map(r => `${r.cfg.name}: ${r.count}`).join(" | ")
-    );
-    if (failed.length) {
-      console.warn("SIGA AIP: capas no disponibles", failed.map(r => r.cfg.url));
-    }
-  }
-
-  function waitForMainSiga(attempt = 0) {
-    if (window.__SIGA_AIP_MAP__ && document.querySelector("#layerTree .layer-group")) {
-      initialize();
+      results.classList.add("is-open");
       return;
     }
 
-    if (attempt < 240) {
-      setTimeout(() => waitForMainSiga(attempt + 1), 100);
-    } else {
-      console.warn("SIGA AIP: no se pudo encontrar el mapa o el árbol de capas.");
+    currentResults.slice(0, 80).forEach((airport, index) => {
+      const item = document.createElement("div");
+      item.className = "siga-search-result";
+      item.dataset.iata = airport.iata;
+      item.dataset.index = String(index);
+
+      item.innerHTML = `
+        <span class="siga-search-result-code">${escapeHtml(airport.iata)}</span>
+        ${escapeHtml(airport.nombre)}
+      `;
+
+      item.addEventListener("mousedown", (e) => {
+        e.preventDefault();
+        selectAirport(airport.iata);
+      });
+
+      results.appendChild(item);
+    });
+
+    results.classList.add("is-open");
+  }
+
+  function updateHighlight() {
+    results.querySelectorAll(".siga-search-result").forEach((el, idx) => {
+      el.classList.toggle("is-highlighted", idx === highlightedIndex);
+    });
+  }
+
+  search.addEventListener("focus", () => {
+    renderResults(search.value);
+  });
+
+  search.addEventListener("input", () => {
+    highlightedIndex = -1;
+    renderResults(search.value);
+  });
+
+  search.addEventListener("keydown", (e) => {
+    if (!results.classList.contains("is-open")) {
+      if (e.key === "ArrowDown" || e.key === "Enter") {
+        renderResults(search.value);
+      }
+      return;
+    }
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      highlightedIndex = Math.min(highlightedIndex + 1, currentResults.length - 1);
+      updateHighlight();
+      return;
+    }
+
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      highlightedIndex = Math.max(highlightedIndex - 1, 0);
+      updateHighlight();
+      return;
+    }
+
+    if (e.key === "Enter") {
+      e.preventDefault();
+
+      const selected =
+        highlightedIndex >= 0
+          ? currentResults[highlightedIndex]
+          : currentResults[0];
+
+      if (selected) selectAirport(selected.iata);
+      return;
+    }
+
+    if (e.key === "Escape") {
+      closeResults();
+    }
+  });
+
+  document.addEventListener("mousedown", (e) => {
+    if (!e.target.closest(".siga-airport-combobox")) {
+      closeResults();
+    }
+  });
+}
+
+function renderAirportSelects() {
+  const selects = [q("airportSelect"), q("airportSelectEmbed")].filter(Boolean);
+
+  selects.forEach((select) => {
+    populateAirportSelect(select, state.airports);
+
+    if (URL_AIRPORT && state.airportIndex.has(URL_AIRPORT)) {
+      select.value = URL_AIRPORT;
+    }
+
+    if (select.dataset.bound === "1") return;
+    select.dataset.bound = "1";
+
+    select.addEventListener("change", (e) => {
+      state.selectedAirport = e.target.value;
+
+      syncAirportSelects(state.selectedAirport);
+
+      if (select.id === "airportSelect") {
+        const search = q("airportSearch");
+        const airport = state.airportIndex.get(state.selectedAirport);
+
+        if (search && airport) {
+          search.value = `${airport.nombre} (${airport.iata})`;
+        }
+
+        populateAirportSelect(select, state.airports);
+        select.value = state.selectedAirport;
+      }
+
+      if (state.selectedAirport) zoomToAirport(state.selectedAirport);
+
+      updateUrl(false);
+    });
+  });
+
+  wireAirportSearch();
+}
+
+  function syncAirportSelects(iata) {
+    [q("airportSelect"), q("airportSelectEmbed")].forEach((select) => {
+      if (select && select.value !== iata) select.value = iata || "";
+    });
+  }
+
+function buildAirportLabelText(iata, name) {
+  const code = `(${escapeHtml(clean(iata).toUpperCase())})`;
+  const cleanName = clean(name);
+
+  if (!cleanName) {
+    return {
+      line1: code,
+      line2: ""
+    };
+  }
+
+  const words = cleanName.split(/\s+/).filter(Boolean);
+
+  // Si el nombre es corto, deja el código arriba y el nombre abajo.
+  // Ejemplo:
+  // (AEP)
+  // Aeroparque
+  if (cleanName.length <= 15 || words.length <= 1) {
+    return {
+      line1: code,
+      line2: escapeHtml(cleanName)
+    };
+  }
+
+  // Si el nombre es largo, usa el código al inicio de la primera línea.
+  // Ejemplo:
+  // (CPC) San Martín
+  // de los Andes
+  const maxFirstLineNameChars = 13;
+  const firstLineWords = [];
+  const secondLineWords = [...words];
+
+  while (secondLineWords.length) {
+    const next = secondLineWords[0];
+    const test = [...firstLineWords, next].join(" ");
+
+    if (firstLineWords.length > 0 && test.length > maxFirstLineNameChars) {
+      break;
+    }
+
+    firstLineWords.push(secondLineWords.shift());
+  }
+
+  return {
+    line1: `${code} ${escapeHtml(firstLineWords.join(" "))}`,
+    line2: escapeHtml(secondLineWords.join(" "))
+  };
+}
+  function createAirportLabels() {
+    if (!state.map) return;
+
+    if (state.airportLabelLayer) {
+      state.map.removeLayer(state.airportLabelLayer);
+      state.airportLabelLayer = null;
+    }
+
+    const group = L.layerGroup();
+
+    state.airports.forEach((airport) => {
+      const bounds = getPredioBoundsForAirport(airport.iata);
+      const center = bounds?.getCenter() || getAirportCenterFromFeature(airport.feature, airport.properties);
+      if (!center) return;
+
+const shortName = getAirportShortName(airport);
+const label = buildAirportLabelText(airport.iata, shortName);
+
+const html = `
+  <div class="siga-airport-center-icon" aria-hidden="true">✈</div>
+  <div class="siga-airport-floating-text">
+    <span class="siga-airport-label-line siga-airport-label-line-1">${label.line1}</span>
+    <span class="siga-airport-label-line siga-airport-label-line-2">${label.line2}</span>
+  </div>
+`;
+
+      const marker = L.marker(center, {
+        interactive: false,
+        keyboard: false,
+        icon: L.divIcon({
+          className: "siga-airport-label-marker",
+          html,
+          iconSize: [1, 1],
+          iconAnchor: [0, 0]
+        })
+      });
+
+      group.addLayer(marker);
+    });
+
+    state.airportLabelLayer = group;
+    updateZoomDependentLabels();
+  }
+
+  function updateZoomDependentLabels() {
+    if (!state.map) return;
+
+    const z = state.map.getZoom();
+    const showAirportLabels = z <= 7;
+    const showDetailLabels = z >= 15;
+
+    if (state.airportLabelLayer) {
+      if (showAirportLabels && !state.map.hasLayer(state.airportLabelLayer)) {
+        state.airportLabelLayer.addTo(state.map);
+      } else if (!showAirportLabels && state.map.hasLayer(state.airportLabelLayer)) {
+        state.map.removeLayer(state.airportLabelLayer);
+      }
+    }
+
+    state.map.getContainer().classList.toggle("siga-show-detail-labels", showDetailLabels);
+  }
+function layerPassesZoom(def) {
+  if (!def?.cfg) return false;
+
+  const minZoom = def.cfg.minVisibleZoom;
+
+  // Si la capa no tiene minVisibleZoom, se comporta como siempre.
+  if (minZoom === undefined || minZoom === null) return true;
+
+  return state.map && state.map.getZoom() >= minZoom;
+}
+
+function refreshZoomDependentLayers() {
+  if (!state.map) return;
+
+  state.layerDefs.forEach((def) => {
+    if (!def?.layer) return;
+
+    const shouldShow = !!def.active && layerPassesZoom(def);
+    const isShown = state.map.hasLayer(def.layer);
+
+    if (shouldShow && !isShown) {
+      def.layer.addTo(state.map);
+    } else if (!shouldShow && isShown) {
+      state.map.removeLayer(def.layer);
+    }
+  });
+
+  renderLegend();
+}
+  function makeLayer(cfg, geojson) {
+const paneId = getLayerPaneId(cfg.id);
+
+const options = {
+  pane: paneId,
+  interactive: true,
+  style: (feature) => featureStyle(cfg, feature),
+  pointToLayer: (feature, latlng) => {
+    const p = cfg.point || {
+      radius: 4,
+      color: cfg.color,
+      fillColor: cfg.color,
+      fillOpacity: 0.9
+    };
+
+return L.circleMarker(latlng, {
+  pane: paneId,
+  interactive: true,
+  radius: p.radius,
+  color: p.color,
+  weight: p.weight ?? 1,
+  fillColor: p.fillColor,
+  fillOpacity: p.fillOpacity
+});
+  },
+  onEachFeature: (feature, layer) => bindFeature(cfg, feature, layer)
+};
+
+    return L.geoJSON(geojson, options);
+  }
+
+function featureStyle(cfg, feature) {
+  const base = cfg.style || {
+    color: cfg.color,
+    weight: 1.5,
+    fillColor: cfg.color,
+    fillOpacity: 0.35
+  };
+
+  /*
+    Los objetos aeroportuarios se muestran sin relleno visible,
+    pero conservan un relleno casi transparente para que toda
+    su superficie pueda capturar el cursor.
+  */
+  if (HOLLOW_POLYGON_LAYER_IDS.has(cfg.id)) {
+    return {
+      ...base,
+      fill: true,
+      fillColor: base.fillColor || base.color || cfg.color,
+      fillOpacity: 0.001
+    };
+  }
+
+  return { ...base };
+}
+function buildHoverTooltip(cfg, feature) {
+  if (cfg.tooltip === false) return "";
+
+  const props = feature?.properties || {};
+  const fields = cfg.tooltipFields || [];
+
+  // Si la capa no define tooltipFields, usa el comportamiento actual.
+  if (!fields.length) {
+    const title = featureTitle(feature, cfg.name);
+    const iata = getFeatureIata(feature);
+    return iata ? `${escapeHtml(iata)} · ${escapeHtml(title)}` : escapeHtml(title);
+  }
+
+  const rows = fields
+    .map((field) => {
+      const label = field.label || "";
+      const keys = Array.isArray(field.keys) ? field.keys : [field.key];
+      const value = clean(getFirstProp(props, keys));
+
+      if (!value) return "";
+
+      return `
+        <div class="siga-tooltip-row">
+          <span class="siga-tooltip-key">${escapeHtml(label)}</span>
+          <span class="siga-tooltip-value">${escapeHtml(formatValue(value))}</span>
+        </div>
+      `;
+    })
+    .filter(Boolean)
+    .join("");
+
+  if (!rows) return "";
+
+  const title = cfg.tooltipTitle || cfg.name;
+
+  return `
+    <div class="siga-tooltip-title">${escapeHtml(title)}</div>
+    ${rows}
+  `;
+}
+  function getFeatureHoverName(cfg, feature) {
+  const detailLabel = getDetailLabelValue(cfg, feature);
+
+  const layerNames = {
+    predios: "Predio aeroportuario",
+    pistas: "Pista",
+    cabeceras: "Cabecera",
+    plataformas: "Plataforma",
+    psn: "Posición de aeronave",
+    aeroplantas: "Aeroplanta",
+    terminales2026: "Terminal",
+    torres: "Torre de control",
+    hangares: "Hangar",
+    otros: "Edificio",
+    estacionamientos: "Estacionamiento vehicular",
+    paradasapp: "Parada de transporte público",
+    smn: "Estación meteorológica SMN",
+    provincias: "Provincia"
+  };
+
+  const base = layerNames[cfg.id] || cfg.tooltipTitle || cfg.name || "Elemento";
+  const title = featureTitle(feature, "");
+
+if (detailLabel) {
+  if (cfg.id === "paradasapp") {
+    return `${base} líneas: ${detailLabel}`;
+  }
+
+  return `${base}: ${detailLabel}`;
+}
+
+  if (
+    title &&
+    title !== "Elemento" &&
+    title !== cfg.name &&
+    title !== base
+  ) {
+    return `${base}: ${title}`;
+  }
+
+  return base;
+}
+
+function ensureHoverLabel() {
+  if (!state.map) return null;
+
+  let el = document.getElementById("sigaHoverLabel");
+
+  if (!el) {
+    el = document.createElement("div");
+    el.id = "sigaHoverLabel";
+    el.className = "siga-map-hover-label";
+    state.map.getContainer().appendChild(el);
+  }
+
+  return el;
+}
+
+function moveHoverLabel(originalEvent) {
+  const el = ensureHoverLabel();
+  if (!el || !originalEvent || !state.map) return;
+
+  const rect = state.map.getContainer().getBoundingClientRect();
+  const x = originalEvent.clientX - rect.left;
+  const y = originalEvent.clientY - rect.top;
+
+  el.style.left = `${x}px`;
+  el.style.top = `${y}px`;
+}
+
+function showHoverLabel(cfg, feature, originalEvent) {
+  const el = ensureHoverLabel();
+  if (!el) return;
+
+  el.textContent = getFeatureHoverName(cfg, feature);
+  el.style.display = "block";
+
+  moveHoverLabel(originalEvent);
+}
+
+function hideHoverLabel() {
+  const el = document.getElementById("sigaHoverLabel");
+  if (el) el.style.display = "none";
+}
+
+  
+function bindFeature(cfg, feature, layer) {
+  const detailLabel = getDetailLabelValue(cfg, feature);
+
+  /*
+    Mantiene etiquetas permanentes para los elementos que ya las tienen,
+    pero la identificación al pasar el mouse ahora se maneja con
+    la etiqueta flotante siga-map-hover-label.
+  */
+  if (cfg.polygonIcon && isPolygonGeometry(feature)) {
+    layer.bindTooltip(cfg.polygonIcon.html || "", {
+      permanent: true,
+      direction: "center",
+      className: cfg.polygonIcon.className || "siga-poly-center-icon"
+    });
+  } else if (detailLabel) {
+    layer.bindTooltip(detailLabel, {
+      permanent: true,
+      direction: cfg.id === "psn" ? "top" : "center",
+      className: `siga-tooltip siga-label-detail siga-label-detail-${cfg.id}`
+    });
+  }
+
+  /*
+    Clic: la información va al panel lateral izquierdo.
+    No dependemos del popup del mapa.
+  */
+  layer.on("click", (e) => {
+    if (e?.originalEvent) {
+      L.DomEvent.stopPropagation(e.originalEvent);
+    }
+
+    setFeatureInfo(cfg, feature);
+  });
+
+layer.on("mouseover", (e) => {
+  showHoverLabel(cfg, feature, e.originalEvent);
+  state.map?.getContainer()?.classList.add("is-feature-hovering");
+
+if (!layer.setStyle || cfg.id === "provincias") return;
+
+/*
+  La torre de control aumenta de tamaño y refuerza
+  su contorno al pasar el cursor.
+*/
+if (cfg.id === "torres") {
+  if (layer.setRadius) {
+    layer.setRadius(Number(cfg.point?.radius || 7) + 3);
+  }
+
+  layer.setStyle({
+    color: "#5B0037",
+    weight: 3,
+    fillColor: "#FF2D8D",
+    fillOpacity: 1
+  });
+
+  return;
+}
+
+/*
+  Todos los polígonos aeroportuarios:
+  borde más grueso y sin relleno visible.
+*/
+if (HOLLOW_POLYGON_LAYER_IDS.has(cfg.id)) {
+  const base = cfg.style || {};
+
+  layer.setStyle({
+    weight: Math.max(
+      3,
+      Number(base.weight || 1.5) + 1.6
+    ),
+    opacity: 1,
+    fill: true,
+    fillColor: base.fillColor || base.color || cfg.color,
+    fillOpacity: 0.001
+  });
+
+  return;
+}
+
+/*
+  Comportamiento general para los restantes puntos.
+*/
+layer.setStyle({
+  weight: Math.max(
+    3,
+    Number((cfg.style || {}).weight || 1.5) + 1.5
+  ),
+  fillOpacity: Math.min(
+    1,
+    Number((cfg.point || cfg.style || {}).fillOpacity ?? 0.8) + 0.15
+  )
+});
+  });
+
+  layer.on("mousemove", (e) => {
+    moveHoverLabel(e.originalEvent);
+  });
+
+layer.on("mouseout", () => {
+  hideHoverLabel();
+  state.map?.getContainer()?.classList.remove("is-feature-hovering");
+
+  const def = state.layerDefs.get(cfg.id);
+
+  if (cfg.id === "torres" && layer.setRadius) {
+    layer.setRadius(Number(cfg.point?.radius || 7));
+  }
+
+  if (layer.setStyle && def) {
+    layer.setStyle(featureStyle(cfg, feature));
+  }
+});
+}
+
+function getImportantProps(feature, cfg = {}) {
+  const props = feature?.properties || {};
+
+  if (Array.isArray(cfg.popupFields) && cfg.popupFields.length) {
+    return cfg.popupFields
+      .map((field) => {
+        const label = field.label || field.key || "";
+        const keys = Array.isArray(field.keys) ? field.keys : [field.key];
+        const value = getFirstProp(props, keys);
+
+        if (value === undefined || value === null || String(value).trim() === "") return null;
+
+        const suffix = field.suffix ? ` ${field.suffix}` : "";
+        return [label, `${formatValue(value)}${suffix}`];
+      })
+      .filter(Boolean);
+  }
+
+  const preferred = [
+    "IATA", "iata", "OACI", "oaci", "ANAC", "Aeropuerto", "nombre", "Nombre", "NOMBRE",
+    "tipo", "Tipo", "etiqueta", "ETIQUETA", "orientacion", "Orientacion", "PistaOrientacion",
+    "longitud", "Longitud", "dimensiones", "Dimensiones", "superficie", "Superficie", "metros2", "m2",
+    "posicion", "Posicion", "clase", "Clase", "estado", "Estado"
+  ];
+
+  const out = [];
+  preferred.forEach((key) => {
+    if (props[key] !== undefined && props[key] !== null && String(props[key]).trim() !== "") {
+      out.push([key, props[key]]);
+    }
+  });
+
+  Object.keys(props).forEach((key) => {
+    if (out.length >= 12) return;
+    if (preferred.includes(key)) return;
+    const val = props[key];
+    if (val !== undefined && val !== null && String(val).trim() !== "") out.push([key, val]);
+  });
+
+  return out.slice(0, 12);
+}
+
+function buildPopupHtml(cfg, feature) {
+  const rows = getImportantProps(feature, cfg);
+  const title = featureTitle(feature, cfg.name);
+
+  return `
+    <div class="siga-popup-title">${escapeHtml(cfg.popupTitle || cfg.name)} · ${escapeHtml(title)}</div>
+    <table class="siga-popup-table">
+      ${rows.map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td>${escapeHtml(formatValue(v))}</td></tr>`).join("")}
+    </table>
+  `;
+}
+
+function setFeatureInfo(cfg, feature) {
+  const el = q("featureInfo");
+  if (!el) return;
+
+  const title = featureTitle(feature, cfg.name);
+  const rows = getImportantProps(feature, cfg);
+
+  el.innerHTML = `
+    <div class="feature-title">${escapeHtml(cfg.popupTitle || cfg.name)} · ${escapeHtml(title)}</div>
+    <table class="feature-table">
+      ${rows.map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td>${escapeHtml(formatValue(v))}</td></tr>`).join("")}
+    </table>
+  `;
+}
+
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  async function loadConfiguredLayers() {
+    const status = q("mapStatus");
+    let loaded = 0;
+    let failed = 0;
+
+    for (const cfg of LAYER_CONFIGS) {
+      try {
+        let gj = await loadJson(cfg.url);
+
+if (cfg.id === "paradasapp") {
+  gj = enrichParadasAppGeojson(gj);
+}
+
+const layer = makeLayer(cfg, gj);
+        const def = { cfg, geojson: gj, layer, active: false, opacity: cfg.opacity ?? 1 };
+        state.layerDefs.set(cfg.id, def);
+
+        applyLayerOpacity(layer, def.opacity);
+        if (cfg.active) setLayerActive(cfg.id, true);
+        loaded += 1;
+        if (status) status.textContent = `Capas cargadas: ${loaded}/${LAYER_CONFIGS.length}`;
+      } catch (e) {
+        console.warn(`No se pudo cargar ${cfg.url}`, e);
+        state.layerDefs.set(cfg.id, { cfg, geojson: null, layer: null, active: false, error: true, opacity: cfg.opacity ?? 1 });
+        failed += 1;
+      }
+    }
+
+    renderBaseLayerTree();
+    renderLayerTree();
+    renderLegend();
+    if (status) status.textContent = failed ? `Capas cargadas: ${loaded}. No disponibles: ${failed}.` : `Capas cargadas: ${loaded}.`;
+  }
+
+function setLayerActive(id, active) {
+  const def = state.layerDefs.get(id);
+  if (!def || !def.layer) return;
+
+  def.active = !!active;
+
+  const shouldShow = def.active && layerPassesZoom(def);
+  const isShown = state.map.hasLayer(def.layer);
+
+  if (shouldShow && !isShown) {
+    def.layer.addTo(state.map);
+  } else if (!shouldShow && isShown) {
+    state.map.removeLayer(def.layer);
+  }
+
+  renderLegend();
+}
+
+  function applyLayerOpacity(layer, opacity) {
+    if (!layer) return;
+    layer.eachLayer?.((l) => {
+if (l.setStyle) {
+  const style = {};
+
+  if (l.options.fill === false) {
+    style.fill = false;
+    style.fillOpacity = 0;
+  } else if (l.options.fillOpacity !== undefined) {
+    style.fillOpacity = opacity * (l.options.fillOpacity ?? 0.5);
+  }
+
+  if (l.options.opacity !== undefined) style.opacity = opacity;
+
+  l.setStyle(style);
+}
+      if (l.setOpacity) l.setOpacity(opacity);
+    });
+  }
+
+  function setBaseLayer(id, opts = {}) {
+    const { auto = false, silent = false } = opts;
+    const def = state.baseLayerConfigs.get(id);
+    if (!def || !def.layer) return;
+
+    if (!auto && !silent) state.userChangedBaseLayer = true;
+
+    Object.values(state.baseLayers).forEach((layer) => {
+      if (state.map?.hasLayer(layer)) state.map.removeLayer(layer);
+    });
+
+    state.autoSwitchingBaseLayer = true;
+    def.layer.addTo(state.map);
+    state.activeBaseLayerId = id;
+    state.autoSwitchingBaseLayer = false;
+
+    renderBaseLayerTree();
+  }
+
+  function maybeSwitchBaseLayerForAirport() {
+    if (!state.userChangedBaseLayer) {
+      setBaseLayer(AIRPORT_BASEMAP_ID, { auto: true });
     }
   }
 
-  document.addEventListener("DOMContentLoaded", () => waitForMainSiga());
+  function maybeSwitchBaseLayerForArgentina() {
+    if (!state.userChangedBaseLayer) {
+      setBaseLayer(DEFAULT_BASEMAP_ID, { auto: true });
+    }
+  }
+
+  function renderBaseLayerTree() {
+    const root = q("baseLayerTree");
+    if (!root) return;
+
+    root.innerHTML = BASEMAP_CONFIGS.map((cfg) => {
+      const checked = state.activeBaseLayerId === cfg.id ? "checked" : "";
+      const swatchStyle = cfg.swatchImage
+        ? `background-image:url('${cfg.swatchImage}'); background-size:cover; background-position:center;`
+        : `background:${cfg.swatch || "#d0d7e2"};`;
+
+      return `
+        <label class="basemap-row" title="${escapeHtml(cfg.name)}">
+          <input type="radio" name="sigaBaseMap" value="${escapeHtml(cfg.id)}" ${checked}>
+          <span class="basemap-thumb" style="${swatchStyle}"></span>
+          <span class="basemap-name">${escapeHtml(cfg.name)}</span>
+        </label>
+      `;
+    }).join("");
+
+    root.querySelectorAll('input[name="sigaBaseMap"]').forEach((input) => {
+      input.addEventListener("change", (e) => {
+        setBaseLayer(e.target.value, { auto: false });
+      });
+    });
+  }
+
+function renderLayerTree() {
+  const root = q("layerTree");
+  if (!root) return;
+
+  const groups = new Map();
+  LAYER_CONFIGS.forEach((cfg) => {
+    if (!groups.has(cfg.group)) groups.set(cfg.group, []);
+    groups.get(cfg.group).push(cfg);
+  });
+
+  const orderedGroups = [
+    ...LAYER_GROUP_ORDER.filter((groupName) => groups.has(groupName)),
+    ...Array.from(groups.keys()).filter((groupName) => !LAYER_GROUP_ORDER.includes(groupName))
+  ];
+
+  root.innerHTML = "";
+  orderedGroups.forEach((groupName) => {
+    const items = groups.get(groupName);
+      const groupEl = document.createElement("div");
+      groupEl.className = "layer-group";
+      groupEl.innerHTML = `<div class="layer-group-title">${escapeHtml(groupName)}</div>`;
+
+      items.forEach((cfg) => {
+        const def = state.layerDefs.get(cfg.id);
+        const row = document.createElement("label");
+        row.className = "layer-row";
+        row.innerHTML = `
+          <input type="checkbox" ${def?.active ? "checked" : ""} ${def?.error ? "disabled" : ""} data-layer-id="${cfg.id}">
+          <span class="layer-swatch" style="background:${cfg.color};"></span>
+          <span class="layer-name" title="${escapeHtml(cfg.name)}">${escapeHtml(cfg.name)}${def?.error ? " (no disponible)" : ""}</span>
+          <input class="layer-opacity" type="range" min="0.1" max="1" step="0.05" value="${def?.opacity ?? cfg.opacity ?? 1}" data-opacity-id="${cfg.id}" ${def?.error ? "disabled" : ""}>
+        `;
+        groupEl.appendChild(row);
+      });
+
+      root.appendChild(groupEl);
+    });
+
+    root.querySelectorAll("input[type='checkbox'][data-layer-id]").forEach((input) => {
+      input.addEventListener("change", (e) => setLayerActive(e.target.dataset.layerId, e.target.checked));
+    });
+
+    root.querySelectorAll("input[type='range'][data-opacity-id]").forEach((input) => {
+      input.addEventListener("input", (e) => {
+        const def = state.layerDefs.get(e.target.dataset.opacityId);
+        if (!def) return;
+        def.opacity = Number(e.target.value);
+        applyLayerOpacity(def.layer, def.opacity);
+      });
+    });
+  }
+
+  function renderLegend() {
+    const el = q("mapLegend");
+    if (!el) return;
+    const active = Array.from(state.layerDefs.values()).filter((def) =>
+    def.active && def.layer && state.map?.hasLayer(def.layer)
+    );
+    if (!active.length) {
+      el.innerHTML = `<div class="siga-hint">No hay capas activas.</div>`;
+      return;
+    }
+    el.innerHTML = active
+      .map((def) => `<div class="legend-item"><span class="legend-swatch" style="background:${def.cfg.color};"></span><span>${escapeHtml(def.cfg.name)}</span></div>`)
+      .join("");
+  }
+
+  function setDefaultLayers() {
+    LAYER_CONFIGS.forEach((cfg) => setLayerActive(cfg.id, !!cfg.active));
+    renderLayerTree();
+  }
+
+  function setAllLayers(active) {
+    LAYER_CONFIGS.forEach((cfg) => setLayerActive(cfg.id, !!active));
+    renderLayerTree();
+  }
+
+  function zoomArgentina() {
+    maybeSwitchBaseLayerForArgentina();
+    clearAirportHighlight();
+    state.selectedAirport = "";
+    syncAirportSelects("");
+
+    const prov = state.layerDefs.get("provincias")?.layer;
+    if (prov) {
+      const b = prov.getBounds();
+      if (b.isValid()) state.map.fitBounds(b, { padding: [20, 20] });
+      return;
+    }
+    state.map.setView(DEFAULT_CENTER, DEFAULT_ZOOM);
+  }
+
+  function zoomToAirport(iata) {
+    const code = clean(iata).toUpperCase();
+    if (!code) return;
+    state.selectedAirport = code;
+    syncAirportSelects(code);
+    maybeSwitchBaseLayerForAirport();
+
+    const bounds = findAirportBounds(code);
+    if (bounds && bounds.isValid()) {
+      state.map.fitBounds(bounds, { padding: [35, 35], maxZoom: 17 });
+      // No dibujamos polígono de predio seleccionado: entorpece la lectura de capas internas.
+      const hint = q("airportHint");
+      if (hint) hint.textContent = `Vista centrada en ${code}.`;
+      updateUrl(true);
+      return;
+    }
+
+    const airport = state.airportIndex.get(code);
+    const center = getAirportCenterFromFeature(airport?.feature, airport?.properties);
+    if (center) {
+      state.map.setView(center, 14);
+      updateUrl(true);
+    }
+  }
+
+  function findAirportBounds(iata) {
+    let bounds = null;
+    ["predios", "pistas", "plataformas", "terminales2026"].forEach((id) => {
+      const def = state.layerDefs.get(id);
+      if (!def?.geojson?.features?.length) return;
+      const feats = def.geojson.features.filter((f) => getFeatureIata(f) === iata && hasGeometry(f));
+      if (!feats.length) return;
+      const layer = L.geoJSON(feats);
+      const b = layer.getBounds();
+      if (!b.isValid()) return;
+      bounds = bounds ? bounds.extend(b) : b;
+    });
+    return bounds;
+  }
+
+  function getAirportCenterFromFeature(feature, props) {
+    if (feature?.geometry) {
+      try {
+        const layer = L.geoJSON(feature);
+        const b = layer.getBounds();
+        if (b.isValid()) return b.getCenter();
+      } catch (_) {}
+    }
+    const lat = Number(props?.Lat ?? props?.LAT ?? props?.latitud ?? props?.Latitud);
+    const lon = Number(props?.Lon ?? props?.LON ?? props?.Long ?? props?.longitud ?? props?.Longitud);
+    if (Number.isFinite(lat) && Number.isFinite(lon)) return L.latLng(lat, lon);
+    return null;
+  }
+
+  function highlightAirport(iata) {
+    // Desactivado a pedido: no se dibuja un polígono de predio seleccionado,
+    // para no tapar ni competir visualmente con las capas internas del aeropuerto.
+  }
+
+  function clearAirportHighlight() {
+    // Sin resaltado persistente de predio.
+  }
+
+  function updateUrl(focused) {
+    const url = new URL(window.location.href);
+    if (state.selectedAirport) url.searchParams.set("airport", state.selectedAirport);
+    else url.searchParams.delete("airport");
+    if (focused) url.searchParams.set("focus", "1");
+    else url.searchParams.delete("focus");
+    if (EMBED_MODE) url.searchParams.set("embed", "1");
+    window.history.replaceState({}, "", url);
+  }
+
+  function wireUi() {
+    q("btnZoomAirport")?.addEventListener("click", () => zoomToAirport(q("airportSelect")?.value));
+    q("btnZoomAirportEmbed")?.addEventListener("click", () => zoomToAirport(q("airportSelectEmbed")?.value));
+    q("btnArgentina")?.addEventListener("click", zoomArgentina);
+    q("btnArgentinaTop")?.addEventListener("click", zoomArgentina);
+    q("btnDefaultLayers")?.addEventListener("click", setDefaultLayers);
+    q("btnAllLayers")?.addEventListener("click", () => setAllLayers(true));
+    q("btnNoLayers")?.addEventListener("click", () => setAllLayers(false));
+
+    const openFull = () => {
+      const iata = state.selectedAirport || q("airportSelect")?.value || q("airportSelectEmbed")?.value || "";
+      const url = new URL("siga.html", window.location.href);
+      if (iata) {
+        url.searchParams.set("airport", iata);
+        url.searchParams.set("focus", "1");
+      }
+      window.open(url.toString(), "_blank");
+    };
+    q("btnOpenFull")?.addEventListener("click", openFull);
+    q("btnOpenFullEmbed")?.addEventListener("click", openFull);
+  }
+
+  async function init() {
+    createMap();
+    wireUi();
+    renderBaseLayerTree();
+
+    try {
+await loadAirports();
+await loadParadasAppCsv();
+await loadConfiguredLayers();
+      createAirportLabels();
+      state.map.on("zoomend", () => {
+      updateZoomDependentLabels();
+      refreshZoomDependentLayers();
+      });
+      updateZoomDependentLabels();
+      refreshZoomDependentLayers();
+
+      setTimeout(() => state.map.invalidateSize(), 50);
+
+      if (URL_AIRPORT && state.airportIndex.has(URL_AIRPORT)) {
+        state.selectedAirport = URL_AIRPORT;
+        syncAirportSelects(URL_AIRPORT);
+        if (URL_FOCUS || EMBED_MODE) zoomToAirport(URL_AIRPORT);
+        else zoomArgentina();
+      } else {
+        zoomArgentina();
+      }
+    } catch (e) {
+      console.error("Error inicializando SIGA", e);
+      const status = q("mapStatus");
+      if (status) status.textContent = "Error al cargar el visor SIGA. Revisá la consola.";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
 })();
