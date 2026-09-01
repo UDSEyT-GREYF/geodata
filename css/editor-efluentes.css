@@ -15,7 +15,7 @@
 }
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--texto);background:var(--fondo)}
-button,input,select,textarea{font:inherit}
+button,input,select,textarea{font:14px}
 .hidden{display:none!important}
 .muted{color:var(--muted)}
 .login-screen{min-height:100%;display:grid;place-items:center;padding:20px;background:linear-gradient(145deg,#eef6fb,#f7fafc)}
