@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGA – Editor DMA de efluentes</title>
+  <link rel="icon" type="image/png" href="img/icons/iconoSIGA.png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="css/editor-efluentes.css">
+</head>
+<body>
+  <div id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <div class="login-brand">SIGA</div>
+      <h1>Editor DMA</h1>
+      <p>Infraestructura de efluentes aeroportuarios</p>
+
+      <div id="configWarning" class="alert alert-warning hidden">
+        Falta configurar la URL y la clave pública de Supabase en
+        <code>js/editor-efluentes-config.js</code>.
+      </div>
+
+      <form id="loginForm" autocomplete="on">
+        <label for="loginEmail">Correo</label>
+        <input id="loginEmail" type="email" autocomplete="username" required
+               placeholder="editor_dma@editores.siga">
+
+        <label for="loginPassword">Contraseña</label>
+        <input id="loginPassword" type="password" autocomplete="current-password" required>
+
+        <button id="loginButton" type="submit" class="btn btn-primary btn-block">Ingresar</button>
+      </form>
+      <div id="loginMessage" class="form-message"></div>
+    </div>
+  </div>
+
+  <div id="app" class="app hidden">
+    <header class="app-header">
+      <div class="brand-wrap">
+        <div class="siga-logo">SIGA</div>
+        <div>
+          <h1>Sistema de Información Geográfica Aeroportuaria</h1>
+          <p>Editor DMA · Infraestructura de efluentes</p>
+        </div>
+      </div>
+      <div class="user-wrap">
+        <div>
+          <strong id="userEmail">—</strong>
+          <span id="userScope" class="user-scope">—</span>
+        </div>
+        <button id="logoutButton" class="btn btn-light" type="button">Salir</button>
+      </div>
+    </header>
+
+    <main class="editor-layout">
+      <aside class="left-panel">
+        <section class="card">
+          <div class="section-title">Aeropuerto</div>
+          <label for="airportSearch">Buscar / seleccionar</label>
+          <div class="search-wrap">
+            <input id="airportSearch" type="search"
+                   placeholder="Ciudad, aeropuerto, IATA u OACI…"
+                   autocomplete="off">
+            <div id="airportSearchResults" class="search-results hidden"></div>
+          </div>
+          <div id="selectedAirportInfo" class="airport-info muted">
+            Elegí un aeropuerto para acercar el mapa y cargar infraestructura.
+          </div>
+          <div class="button-row">
+            <button id="zoomAirportButton" class="btn btn-secondary" type="button" disabled>Zoom al predio</button>
+            <button id="argentinaButton" class="btn btn-secondary" type="button">Ver Argentina</button>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="section-title row-between">
+            <span>Infraestructura</span>
+            <span id="recordCount" class="count-badge">0</span>
+          </div>
+          <button id="newRecordButton" class="btn btn-primary btn-block" type="button" disabled>
+            + Agregar infraestructura
+          </button>
+          <div id="placementHint" class="placement-hint hidden">
+            Hacé clic en el mapa para ubicar el nuevo elemento.
+          </div>
+          <div id="recordList" class="record-list">
+            <div class="empty-state">Cargando registros…</div>
+          </div>
+        </section>
+
+        <section class="card compact-card">
+          <div class="section-title">Capas</div>
+          <label class="check-row">
+            <input id="toggleAirports" type="checkbox" checked>
+            Aeropuertos
+          </label>
+          <label class="check-row">
+            <input id="togglePredios" type="checkbox" checked>
+            Predios aeroportuarios
+          </label>
+          <label class="check-row">
+            <input id="toggleEfluentes" type="checkbox" checked>
+            Infraestructura de efluentes
+          </label>
+          <label for="basemapSelect">Mapa base</label>
+          <select id="basemapSelect">
+            <option value="satellite">Esri satelital</option>
+            <option value="argenmap">Argenmap IGN</option>
+            <option value="osm">OpenStreetMap</option>
+          </select>
+        </section>
+      </aside>
+
+      <section class="map-shell">
+        <div id="map" aria-label="Mapa editor de efluentes"></div>
+        <div id="mapStatus" class="map-status">Inicializando…</div>
+      </section>
+
+      <aside class="right-panel">
+        <section class="card form-card">
+          <div class="section-title row-between">
+            <span id="formTitle">Ficha del elemento</span>
+            <span id="reviewBadge" class="review-badge review-pendiente hidden">pendiente</span>
+          </div>
+
+          <div id="formEmpty" class="empty-state form-empty">
+            Seleccioná un elemento existente o agregá uno nuevo.
+          </div>
+
+          <form id="recordForm" class="hidden">
+            <input id="recordId" type="hidden">
+
+            <div class="field-grid two">
+              <div>
+                <label for="formIata">IATA</label>
+                <input id="formIata" type="text" readonly>
+              </div>
+              <div>
+                <label for="formOaci">OACI</label>
+                <input id="formOaci" type="text" readonly>
+              </div>
+            </div>
+
+            <label for="formAirport">Aeropuerto</label>
+            <input id="formAirport" type="text" readonly>
+
+            <label for="formType">Tipo *</label>
+            <select id="formType" required>
+              <option value="">Seleccionar…</option>
+              <option>Planta de tratamiento</option>
+              <option>Campo de infiltración</option>
+              <option>Pozo absorbente</option>
+              <option>Cámara séptica</option>
+              <option>Punto de vuelco de efluentes de aeronaves</option>
+              <option>Conexión a red cloacal</option>
+              <option>Estación o cámara de bombeo</option>
+              <option>Otro</option>
+            </select>
+
+            <div class="field-grid two">
+              <div>
+                <label for="formOperational">Estado operativo *</label>
+                <select id="formOperational" required>
+                  <option value="a_verificar">A verificar</option>
+                  <option value="operativo">Operativo</option>
+                  <option value="fuera_de_servicio">Fuera de servicio</option>
+                  <option value="historico">Histórico</option>
+                </select>
+              </div>
+              <div>
+                <label for="formPrecision">Precisión *</label>
+                <select id="formPrecision" required>
+                  <option value="aproximada">Aproximada</option>
+                  <option value="exacta">Exacta</option>
+                  <option value="documental">Documental</option>
+                  <option value="a_verificar">A verificar</option>
+                </select>
+              </div>
+            </div>
+
+            <label for="formMethod">Método de ubicación</label>
+            <select id="formMethod">
+              <option value="">Sin especificar</option>
+              <option value="especialista">Especialista</option>
+              <option value="GPS">GPS</option>
+              <option value="plano">Plano</option>
+              <option value="imagen_satelital">Imagen satelital</option>
+              <option value="documento">Documento</option>
+              <option value="migracion_poligono_existente">Migración de polígono existente</option>
+              <option value="otro">Otro</option>
+            </select>
+
+            <label for="formSource">Fuente</label>
+            <input id="formSource" type="text" placeholder="AIP, relevamiento DMA, plano, etc.">
+
+            <label for="formSourceUrl">URL de la fuente</label>
+            <input id="formSourceUrl" type="url" placeholder="https://…">
+
+            <label for="formSourceDate">Fecha de la fuente</label>
+            <input id="formSourceDate" type="date">
+
+            <label for="formObservations">Observaciones</label>
+            <textarea id="formObservations" rows="4"></textarea>
+
+            <label for="formPhotos">Fotos / enlaces</label>
+            <textarea id="formPhotos" rows="3"
+                      placeholder="Una URL por línea"></textarea>
+
+            <div class="field-grid two">
+              <div>
+                <label for="formLat">Latitud *</label>
+                <input id="formLat" type="number" step="any" readonly required>
+              </div>
+              <div>
+                <label for="formLon">Longitud *</label>
+                <input id="formLon" type="number" step="any" readonly required>
+              </div>
+            </div>
+
+            <button id="movePointButton" type="button" class="btn btn-secondary btn-block">
+              Cambiar ubicación en el mapa
+            </button>
+
+            <div id="readOnlyMessage" class="alert alert-warning hidden">
+              Podés consultar este registro, pero tu usuario no está habilitado para editar este aeropuerto.
+            </div>
+
+            <div id="formMessage" class="form-message"></div>
+
+            <div class="button-row form-actions">
+              <button id="cancelFormButton" type="button" class="btn btn-light">Cancelar</button>
+              <button id="saveRecordButton" type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </form>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9coqIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/editor-efluentes-config.js"></script>
+  <script src="js/editor-efluentes.js"></script>
+</body>
+</html>
