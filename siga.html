@@ -41,7 +41,7 @@
       <section class="siga-card siga-airport-card">
         <div class="siga-section-title">Sistema Nacional de Aeropuertos</div>
         <label class="siga-label" for="airportSearch">Buscar / seleccionar aeropuerto</label>
-        
+
         <div class="siga-airport-combobox">
           <input
             id="airportSearch"
@@ -50,10 +50,10 @@
             placeholder="Buscar por ciudad, aeropuerto o IATA…"
             autocomplete="off"
           />
-        
+
           <div id="airportSearchResults" class="siga-search-results"></div>
         </div>
-        
+
         <select id="airportSelect" class="siga-select siga-select-hidden">
           <option value="">Cargando aeropuertos…</option>
         </select>
@@ -64,29 +64,28 @@
         <div class="siga-hint" id="airportHint">Elegí un aeropuerto o navegá libremente por el mapa.</div>
       </section>
 
- <section class="siga-card siga-layers-card">
-  <div class="siga-subsection-title">Capas operativas</div>
+      <section class="siga-card siga-layers-card">
+        <div class="siga-subsection-title">Capas operativas</div>
 
-  <div class="siga-button-row siga-button-row-tight">
-    <button type="button" id="btnDefaultLayers" class="siga-btn siga-btn-secondary">Principales</button>
-    <button type="button" id="btnAllLayers" class="siga-btn siga-btn-secondary">Activar Todas</button>
-    <button type="button" id="btnNoLayers" class="siga-btn siga-btn-secondary">Limpiar</button>
-  </div>
-
-  <div id="layerTree" class="layer-tree"></div>
-
-
-      <section class="siga-card">
-        <div class="siga-section-title">Información</div>
-        <div id="featureInfo" class="feature-info">
-          Seleccioná un elemento del mapa para ver sus atributos principales.
+        <div class="siga-button-row siga-button-row-tight">
+          <button type="button" id="btnDefaultLayers" class="siga-btn siga-btn-secondary">Principales</button>
+          <button type="button" id="btnAllLayers" class="siga-btn siga-btn-secondary">Activar Todas</button>
+          <button type="button" id="btnNoLayers" class="siga-btn siga-btn-secondary">Limpiar</button>
         </div>
+
+        <div id="layerTree" class="layer-tree"></div>
+
+        <section class="siga-card">
+          <div class="siga-section-title">Información</div>
+          <div id="featureInfo" class="feature-info">
+            Seleccioná un elemento del mapa para ver sus atributos principales.
+          </div>
+        </section>
+
+        <div class="siga-subsection-title siga-subsection-title-overlays">Mapas base</div>
+        <div id="baseLayerTree" class="base-layer-tree"></div>
       </section>
-   
-  <div class="siga-subsection-title siga-subsection-title-overlays">Mapas base</div>
-  <div id="baseLayerTree" class="base-layer-tree"></div>
-</section>
-      
+
       <section class="siga-card">
         <div class="siga-section-title">Leyenda</div>
         <div id="mapLegend" class="map-legend"></div>
@@ -115,9 +114,11 @@
   <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
   <script src="https://unpkg.com/leaflet-minimap@3.6.1/dist/Control.MiniMap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/ardhi/Leaflet.MousePosition/src/L.Control.MousePosition.js"></script>
-  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.js"></script>
   <script src="https://unpkg.com/leaflet-easyprint@2.1.9/dist/bundle.js"></script>
 
-  <script src="js/siga.js"></script>
+  <!-- Extensión AIP: debe cargarse antes de siga.js para capturar la instancia Leaflet. -->
+  <script src="js/siga-aip.js?v=20260901-1"></script>
+  <script src="js/siga.js?v=20260901-1"></script>
 </body>
 </html>
