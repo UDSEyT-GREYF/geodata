@@ -1,0 +1,209 @@
+
+/* Extensión visual: capas de contexto SIGA dentro del Editor DMA */
+
+.editor-map-layers-card{
+  padding-bottom:14px;
+}
+
+.context-subtitle{
+  margin:9px 0 5px;
+  font-size:11px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.03em;
+  color:#334155;
+}
+
+.context-subtitle-main{
+  margin:0;
+  color:#002855;
+}
+
+.context-note{
+  margin-top:2px;
+  font-size:10px;
+  line-height:1.25;
+  color:#64748b;
+}
+
+.context-divider{
+  height:1px;
+  margin:11px 0;
+  background:#e4eaf0;
+}
+
+.context-heading{
+  align-items:flex-start;
+}
+
+.context-status{
+  flex:0 0 auto;
+  min-width:25px;
+  padding:3px 6px;
+  border-radius:999px;
+  background:#eef4f8;
+  color:#334155;
+  font-size:9px;
+  font-weight:800;
+  text-align:center;
+}
+
+.context-buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:5px;
+  margin:8px 0 7px;
+}
+
+.context-buttons .btn{
+  padding:5px 4px;
+  font-size:10px;
+}
+
+.context-layer-tree{
+  border:1px solid #e0e7ee;
+  border-radius:7px;
+  background:#fbfcfd;
+  overflow:hidden;
+}
+
+.context-loading{
+  padding:10px;
+  color:#64748b;
+  font-size:11px;
+  text-align:center;
+}
+
+.context-group{
+  border-bottom:1px solid #e8edf2;
+}
+
+.context-group:last-child{
+  border-bottom:0;
+}
+
+.context-group summary{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:6px;
+  cursor:pointer;
+  padding:7px 8px;
+  background:#f5f8fa;
+  color:#1e3a5f;
+  font-size:10.5px;
+  font-weight:800;
+  user-select:none;
+}
+
+.context-group summary::-webkit-details-marker{
+  display:none;
+}
+
+.context-group summary::after{
+  content:"▾";
+  color:#64748b;
+  font-size:10px;
+  transition:transform .15s ease;
+}
+
+.context-group:not([open]) summary::after{
+  transform:rotate(-90deg);
+}
+
+.context-group-count{
+  margin-left:auto;
+  margin-right:4px;
+  color:#64748b;
+  font-size:9px;
+  font-weight:700;
+}
+
+.context-group-body{
+  padding:3px 6px 5px;
+  background:#fff;
+}
+
+.context-layer-row{
+  display:grid;
+  grid-template-columns:16px 9px minmax(0,1fr) 48px;
+  align-items:center;
+  gap:5px;
+  min-height:26px;
+  margin:0;
+  padding:2px 1px;
+  color:#334155;
+  font-size:10.5px;
+  font-weight:500;
+}
+
+.context-layer-row input[type="checkbox"]{
+  width:auto;
+  margin:0;
+}
+
+.context-layer-row .context-swatch{
+  width:9px;
+  height:9px;
+  border-radius:2px;
+  border:1px solid rgba(0,0,0,.16);
+}
+
+.context-layer-name{
+  min-width:0;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.context-layer-row .context-opacity{
+  width:48px;
+  height:16px;
+  padding:0;
+  border:0;
+  box-shadow:none;
+  accent-color:#306fb0;
+}
+
+.context-layer-row.is-aip .context-layer-name::after{
+  content:" AIP";
+  color:#6b7280;
+  font-size:8px;
+  font-weight:800;
+}
+
+.context-layer-row.is-unavailable{
+  opacity:.45;
+}
+
+.editor-layer-editable{
+  position:relative;
+}
+
+.editable-dot{
+  display:inline-block;
+  width:9px;
+  height:9px;
+  margin-left:-2px;
+  border-radius:50%;
+  background:#b7791f;
+  border:1px solid rgba(0,0,0,.12);
+}
+
+.context-map-tooltip{
+  border:1px solid #cbd5e1!important;
+  box-shadow:0 2px 7px rgba(0,40,85,.14)!important;
+  color:#1f2937!important;
+  font-size:10px!important;
+  font-weight:700!important;
+}
+
+@media(max-width:1100px){
+  .context-layer-row{
+    grid-template-columns:16px 9px minmax(0,1fr) 40px;
+  }
+  .context-layer-row .context-opacity{
+    width:40px;
+  }
+}
