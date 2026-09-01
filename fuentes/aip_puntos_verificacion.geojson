@@ -1,0 +1,885 @@
+{
+  "type": "FeatureCollection",
+  "name": "aip_puntos_verificacion",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAP",
+        "iata": "PRA",
+        "aeropuerto": "PARANÁ / GENERAL URQUIZA",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e12b515db21.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e12b515db21",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / En rodaje (TWY “A”) a cabecera 02, frente a APN, RDL 016 Location of VOR checkpoints Distancia 1.1 NM del VOR; En TWY “E” RDL 022 Distancia 1.4 NM del VOR. / 4 On taxiing (TWY “A”) to heading 02, in front of APN, RDL 016 Distance 1.1 NM from the VOR; On TWY “E” RDL 022 Distance 1.4 NM from the VOR.",
+        "vor_id": "PAR",
+        "rdl": 22.0,
+        "distancia_nm": 1.4,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.474353163782766,
+          -31.786688553795894
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAP",
+        "iata": "PRA",
+        "aeropuerto": "PARANÁ / GENERAL URQUIZA",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e12b515db21.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e12b515db21",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / En rodaje (TWY “A”) a cabecera 02, frente a APN, RDL 016 Location of VOR checkpoints Distancia 1.1 NM del VOR; En TWY “E” RDL 022 Distancia 1.4 NM del VOR. / 4 On taxiing (TWY “A”) to heading 02, in front of APN, RDL 016 Distance 1.1 NM from the VOR; On TWY “E” RDL 022 Distance 1.4 NM from the VOR.",
+        "vor_id": "PAR",
+        "rdl": 22.0,
+        "distancia_nm": 1.4,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.474353163782766,
+          -31.786688553795894
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADF",
+        "iata": "FDO",
+        "aeropuerto": "SAN FERNANDO",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-6a68fbe672145.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a68fbe672145",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / TWY “A” RDL 239° DIST DME 0.7 NM. 4 Location of VOR checkpoints TWY “C” RDL 092° DIST DME 0.14 NM.",
+        "vor_id": "FDO",
+        "rdl": 239.0,
+        "distancia_nm": 0.7,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.596176840751326,
+          -34.45743510423664
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADF",
+        "iata": "FDO",
+        "aeropuerto": "SAN FERNANDO",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-6a68fbe672145.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a68fbe672145",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / TWY “A” RDL 239° DIST DME 0.7 NM. 4 Location of VOR checkpoints TWY “C” RDL 092° DIST DME 0.14 NM.",
+        "vor_id": "FDO",
+        "rdl": 92.0,
+        "distancia_nm": 0.14,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.581263513896644,
+          -34.45149820536816
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "EZEIZA / MINISTRO PISTARINI",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-69e10875b7c89.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10875b7c89",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / Ubicado sobre TWY “D”, próximo intersección rodaje “G”, RDL Location of VOR checkpoints 354/0,4 NM DME/VOR / 4 Located on TWY “D”, next intersection taxiing “G”, RDL 354/0,4 NM DME/VOR",
+        "vor_id": "EZE",
+        "rdl": 354.0,
+        "distancia_nm": 0.4,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.53616581325815,
+          -34.81742282070511
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAME",
+        "iata": "MDZ",
+        "aeropuerto": "MENDOZA / El Plumerillo",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-69fc9d7664864.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69fc9d7664864",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / TWY \"A\", en acceso a THR 18, RDL 345°, distancia DME 0.8 NM 4 Location of VOR checkpoints TWY \"A\", en acceso a THR 36: RDL 196°, distancia DME 0.6 NM / TWY \"A\", in access to THR 18, RDL 345°, distance DME 0.8 NM TWY \"A\", in access to THR 36, RDL 196°, distance DME 0.6 NM",
+        "vor_id": "DOZ",
+        "rdl": 345.0,
+        "distancia_nm": 0.8,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.79492828887038,
+          -32.81898441963847
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAME",
+        "iata": "MDZ",
+        "aeropuerto": "MENDOZA / El Plumerillo",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-69fc9d7664864.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69fc9d7664864",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / TWY \"A\", en acceso a THR 18, RDL 345°, distancia DME 0.8 NM 4 Location of VOR checkpoints TWY \"A\", en acceso a THR 36: RDL 196°, distancia DME 0.6 NM / TWY \"A\", in access to THR 18, RDL 345°, distance DME 0.8 NM TWY \"A\", in access to THR 36, RDL 196°, distance DME 0.6 NM",
+        "vor_id": "DOZ",
+        "rdl": 196.0,
+        "distancia_nm": 0.6,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.79410494683327,
+          -32.841520397211646
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAME",
+        "iata": "MDZ",
+        "aeropuerto": "MENDOZA / El Plumerillo",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-69fc9d7664864.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69fc9d7664864",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / TWY \"A\", en acceso a THR 18, RDL 345°, distancia DME 0.8 NM 4 Location of VOR checkpoints TWY \"A\", en acceso a THR 36: RDL 196°, distancia DME 0.6 NM / TWY \"A\", in access to THR 18, RDL 345°, distance DME 0.8 NM TWY \"A\", in access to THR 36, RDL 196°, distance DME 0.6 NM",
+        "vor_id": "DOZ",
+        "rdl": 345.0,
+        "distancia_nm": 0.8,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.79492828887038,
+          -32.81898441963847
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAME",
+        "iata": "MDZ",
+        "aeropuerto": "MENDOZA / El Plumerillo",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-69fc9d7664864.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69fc9d7664864",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / TWY \"A\", en acceso a THR 18, RDL 345°, distancia DME 0.8 NM 4 Location of VOR checkpoints TWY \"A\", en acceso a THR 36: RDL 196°, distancia DME 0.6 NM / TWY \"A\", in access to THR 18, RDL 345°, distance DME 0.8 NM TWY \"A\", in access to THR 36, RDL 196°, distance DME 0.6 NM",
+        "vor_id": "DOZ",
+        "rdl": 196.0,
+        "distancia_nm": 0.6,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.79410494683327,
+          -32.841520397211646
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAMR",
+        "iata": "AFA",
+        "aeropuerto": "SAN RAFAEL / S. A. SANTIAGO GERMANO",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-69e169708997f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e169708997f",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / Sí en TWY “A”, RDL 255, distancia 0.29 NM – 540 m / 4 Location of VOR checkpoints Yes in TWY \"A\", RDL 255, distance 0.29 NM - 540 m",
+        "vor_id": "SRA",
+        "rdl": 255.0,
+        "distancia_nm": 0.29,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.40037708547126,
+          -34.5906973798953
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAMR",
+        "iata": "AFA",
+        "aeropuerto": "SAN RAFAEL / S. A. SANTIAGO GERMANO",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-69e169708997f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e169708997f",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / Sí en TWY “A”, RDL 255, distancia 0.29 NM – 540 m / 4 Location of VOR checkpoints Yes in TWY \"A\", RDL 255, distance 0.29 NM - 540 m",
+        "vor_id": "SRA",
+        "rdl": 255.0,
+        "distancia_nm": 0.29,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.40037708547126,
+          -34.5906973798953
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANE",
+        "iata": "SDE",
+        "aeropuerto": "SANTIAGO DEL ESTERO / VCOM. ÁNGEL D. LA PAZ ARAGONÉS",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-69e1098092c2d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1098092c2d",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / APN Comercial RDL 040 distancia 1.5 NM del VOR 4 Location of VOR checkpoints Commercial APN RDL 040 distance 1.5 NM from VOR",
+        "vor_id": "SDE",
+        "rdl": 40.0,
+        "distancia_nm": 1.5,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.28458374649178,
+          -27.739725621201373
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANE",
+        "iata": "SDE",
+        "aeropuerto": "SANTIAGO DEL ESTERO / VCOM. ÁNGEL D. LA PAZ ARAGONÉS",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-69e1098092c2d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1098092c2d",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / APN Comercial RDL 040 distancia 1.5 NM del VOR 4 Location of VOR checkpoints Commercial APN RDL 040 distance 1.5 NM from VOR",
+        "vor_id": "SDE",
+        "rdl": 40.0,
+        "distancia_nm": 1.5,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.28458374649178,
+          -27.739725621201373
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANT",
+        "iata": "TUC",
+        "aeropuerto": "SAN MIGUEL de TUCUMÁN / Tte. BENJAMÍN MATIENZO",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-69e10b1142729.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b1142729",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / En TWY “A” RDL 025 VOR TUC distancia DME 0.4 NM VOR TUC. / 4 Location of VOR checkpoints At TWY “A” RDL 025 TUC VOR distance 0.4 NM from DME TUC VOR.",
+        "vor_id": "TUC",
+        "rdl": 25.0,
+        "distancia_nm": 0.4,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.10530019634733,
+          -26.83965718715642
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANT",
+        "iata": "TUC",
+        "aeropuerto": "SAN MIGUEL de TUCUMÁN / Tte. BENJAMÍN MATIENZO",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-69e10b1142729.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b1142729",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / En TWY “A” RDL 025 VOR TUC distancia DME 0.4 NM VOR TUC. / 4 Location of VOR checkpoints At TWY “A” RDL 025 TUC VOR distance 0.4 NM from DME TUC VOR.",
+        "vor_id": "TUC",
+        "rdl": 25.0,
+        "distancia_nm": 0.4,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.10530019634733,
+          -26.83965718715642
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANT",
+        "iata": "TUC",
+        "aeropuerto": "SAN MIGUEL de TUCUMÁN / Tte. BENJAMÍN MATIENZO",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-69e10b1142729.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b1142729",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "INS_CHECK",
+        "metodo": "coordenada_AIP",
+        "detalle": "Posición de los puntos de verificación INS / En TWY “D” 264957.09S 0650616.39W. / 5 Position of INS checkpoints In TWY “D” 264957.09S 0650616.39W. 6",
+        "metodo_geometria": "coordenada_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.10455277777777,
+          -26.832525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANT",
+        "iata": "TUC",
+        "aeropuerto": "SAN MIGUEL de TUCUMÁN / Tte. BENJAMÍN MATIENZO",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-69e10b1142729.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b1142729",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "INS_CHECK",
+        "metodo": "coordenada_AIP",
+        "detalle": "Posición de los puntos de verificación INS / En TWY “D” 264957.09S 0650616.39W. / 5 Position of INS checkpoints In TWY “D” 264957.09S 0650616.39W. 6",
+        "metodo_geometria": "coordenada_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.10455277777777,
+          -26.832525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARF",
+        "iata": "FMA",
+        "aeropuerto": "FORMOSA",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-69e249b1a7ad5(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e249b1a7ad5",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / A la salida de APN en TWY central RWY 04/22, RDL 239, 0,4 NM / 4 Location of VOR checkpoints On departure from APN in central TWY RWY 04/22, RDL 239, 0.4 NM",
+        "vor_id": "FSA",
+        "rdl": 239.0,
+        "distancia_nm": 0.4,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.23104285934656,
+          -26.213715857484353
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARF",
+        "iata": "FMA",
+        "aeropuerto": "FORMOSA",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-69e249b1a7ad5(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e249b1a7ad5",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / A la salida de APN en TWY central RWY 04/22, RDL 239, 0,4 NM / 4 Location of VOR checkpoints On departure from APN in central TWY RWY 04/22, RDL 239, 0.4 NM",
+        "vor_id": "FSA",
+        "rdl": 239.0,
+        "distancia_nm": 0.4,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.23104285934656,
+          -26.213715857484353
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASA",
+        "iata": "SLA",
+        "aeropuerto": "SALTA / Gral. Don Martín Miguel de Güemes",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-69e1138586777(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1138586777",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / TWY “B”, RDL 054°, distancia DME 0.5 NM / 4 Location of VOR checkpoints TWY “B”, RDL 054°, distance DME 0.5 NM",
+        "vor_id": null,
+        "rdl": 54.0,
+        "distancia_nm": 0.5,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.47650480581487,
+          -24.847363935682353
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASA",
+        "iata": "SLA",
+        "aeropuerto": "SALTA / Gral. Don Martín Miguel de Güemes",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-69e1138586777(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1138586777",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / TWY “B”, RDL 054°, distancia DME 0.5 NM / 4 Location of VOR checkpoints TWY “B”, RDL 054°, distance DME 0.5 NM",
+        "vor_id": null,
+        "rdl": 54.0,
+        "distancia_nm": 0.5,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.47650480581487,
+          -24.847363935682353
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWC",
+        "iata": "FTE",
+        "aeropuerto": "EL CALAFATE",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e7b256c1c2c.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b256c1c2c",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "coordenada_AIP",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / Ubicado en TWY “B” (501656.31S – 0720350.81W) / 4 Location of VOR checkpoints Located on TWY “B” (501656.31S – 0720350.81W)",
+        "metodo_geometria": "coordenada_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.06411388888888,
+          -50.28230833333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWC",
+        "iata": "FTE",
+        "aeropuerto": "EL CALAFATE",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e7b256c1c2c.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b256c1c2c",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "coordenada_AIP",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / Ubicado en TWY “B” (501656.31S – 0720350.81W) / 4 Location of VOR checkpoints Located on TWY “B” (501656.31S – 0720350.81W)",
+        "metodo_geometria": "coordenada_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.06411388888888,
+          -50.28230833333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWE",
+        "iata": "RGA",
+        "aeropuerto": "RÍO GRANDE",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-69e1380c9247f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1380c9247f",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "INS_CHECK",
+        "metodo": "coordenada_AIP",
+        "detalle": "Posición de los puntos de verificación INS / En Rodaje 534645S - 674508W / At taxiway 534645S - 674508W 5 Position of INS checkpoints",
+        "metodo_geometria": "coordenada_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.75222222222222,
+          -53.77916666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWE",
+        "iata": "RGA",
+        "aeropuerto": "RÍO GRANDE",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 3,
+        "archivo_aip": "aip-69e1380c9247f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1380c9247f",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "INS_CHECK",
+        "metodo": "coordenada_AIP",
+        "detalle": "Posición de los puntos de verificación INS / En Rodaje 534645S - 674508W / At taxiway 534645S - 674508W 5 Position of INS checkpoints",
+        "metodo_geometria": "coordenada_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.75222222222222,
+          -53.77916666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZM",
+        "iata": "MDQ",
+        "aeropuerto": "MAR DEL PLATA / ASTOR PIAZZOLLA",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e1232468b6a(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1232468b6a",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / En TWY A” RDL 240° distancia 0.2 NM; en TWY “B” en salida de Location of VOR checkpoints APN, RDL 211°, distancia 0.3 NM. / 4 In TWY \"A\" RDL 240° distance 0.2 NM; in TWY \"B\" at APN departure, RDL 211°, distance 0.3 NM.",
+        "vor_id": "MDP",
+        "rdl": 240.0,
+        "distancia_nm": 0.2,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.58009318568813,
+          -37.931496262360504
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZM",
+        "iata": "MDQ",
+        "aeropuerto": "MAR DEL PLATA / ASTOR PIAZZOLLA",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e1232468b6a(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1232468b6a",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / En TWY A” RDL 240° distancia 0.2 NM; en TWY “B” en salida de Location of VOR checkpoints APN, RDL 211°, distancia 0.3 NM. / 4 In TWY \"A\" RDL 240° distance 0.2 NM; in TWY \"B\" at APN departure, RDL 211°, distance 0.3 NM.",
+        "vor_id": "MDP",
+        "rdl": 211.0,
+        "distancia_nm": 0.3,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.57969950037257,
+          -37.93411838853935
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZM",
+        "iata": "MDQ",
+        "aeropuerto": "MAR DEL PLATA / ASTOR PIAZZOLLA",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e1232468b6a(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1232468b6a",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / En TWY A” RDL 240° distancia 0.2 NM; en TWY “B” en salida de Location of VOR checkpoints APN, RDL 211°, distancia 0.3 NM. / 4 In TWY \"A\" RDL 240° distance 0.2 NM; in TWY \"B\" at APN departure, RDL 211°, distance 0.3 NM.",
+        "vor_id": "MDP",
+        "rdl": 240.0,
+        "distancia_nm": 0.2,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.58009318568813,
+          -37.931496262360504
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZM",
+        "iata": "MDQ",
+        "aeropuerto": "MAR DEL PLATA / ASTOR PIAZZOLLA",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e1232468b6a(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1232468b6a",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "VOR_CHECK",
+        "metodo": "derivado_RDL_distancia_desde_VOR",
+        "detalle": "Emplazamiento de los puntos de verificación VOR / En TWY A” RDL 240° distancia 0.2 NM; en TWY “B” en salida de Location of VOR checkpoints APN, RDL 211°, distancia 0.3 NM. / 4 In TWY \"A\" RDL 240° distance 0.2 NM; in TWY \"B\" at APN departure, RDL 211°, distance 0.3 NM.",
+        "vor_id": "MDP",
+        "rdl": 211.0,
+        "distancia_nm": 0.3,
+        "metodo_geometria": "derivado_RDL_distancia_desde_VOR",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.57969950037257,
+          -37.93411838853935
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZM",
+        "iata": "MDQ",
+        "aeropuerto": "MAR DEL PLATA / ASTOR PIAZZOLLA",
+        "fuente_seccion": "AD 2.8",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e1232468b6a(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1232468b6a",
+        "fecha_extraccion": "2026-08-13",
+        "tipo": "INS_CHECK",
+        "metodo": "coordenada_AIP",
+        "detalle": "Posición de los puntos de verificación INS / 375001S 0573408W, ELEV 22 m 5 Position of INS checkpoints",
+        "metodo_geometria": "coordenada_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.56888888888889,
+          -37.83361111111111
+        ]
+      }
+    }
+  ]
+}

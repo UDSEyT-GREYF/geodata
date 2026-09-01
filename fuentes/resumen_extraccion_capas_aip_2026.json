@@ -1,0 +1,173 @@
+{
+  "fecha": "2026-08-13",
+  "corpus_aip_completos": 51,
+  "capas_geojson": 16,
+  "inventario": [
+    {
+      "archivo": "aip_aerodromos_arp.geojson",
+      "features": 51,
+      "geometrias_null": 0,
+      "tipos_geometria": {
+        "Point": 51
+      },
+      "descripcion": "ARP AD 2.2"
+    },
+    {
+      "archivo": "aip_umbrales_pista.geojson",
+      "features": 120,
+      "geometrias_null": 0,
+      "tipos_geometria": {
+        "Point": 120
+      },
+      "descripcion": "Umbrales de pista AD 2.12 + AD 2.13"
+    },
+    {
+      "archivo": "aip_pistas_ejes.geojson",
+      "features": 60,
+      "geometrias_null": 0,
+      "tipos_geometria": {
+        "LineString": 60
+      },
+      "descripcion": "Ejes de pista"
+    },
+    {
+      "archivo": "aip_pistas_superficies.geojson",
+      "features": 60,
+      "geometrias_null": 0,
+      "tipos_geometria": {
+        "Polygon": 60
+      },
+      "descripcion": "Superficies de pista derivadas"
+    },
+    {
+      "archivo": "aip_zonas_pista.geojson",
+      "features": 109,
+      "geometrias_null": 0,
+      "tipos_geometria": {
+        "Polygon": 109
+      },
+      "descripcion": "SWY/CWY/RESA/franjas"
+    },
+    {
+      "archivo": "aip_ayudas_visuales_umbral.geojson",
+      "features": 117,
+      "geometrias_null": 0,
+      "tipos_geometria": {
+        "Point": 117
+      },
+      "descripcion": "Ayudas visuales AD 2.14 asociadas al THR"
+    },
+    {
+      "archivo": "aip_papi_vasis_referencia.geojson",
+      "features": 83,
+      "geometrias_null": 0,
+      "tipos_geometria": {
+        "Point": 83
+      },
+      "descripcion": "PAPI/VASIS asociados al THR; no posición física exacta"
+    },
+    {
+      "archivo": "aip_luces_aproximacion.geojson",
+      "features": 26,
+      "geometrias_null": 0,
+      "tipos_geometria": {
+        "LineString": 26
+      },
+      "descripcion": "Luces de aproximación con longitud publicada"
+    },
+    {
+      "archivo": "aip_radioayudas.geojson",
+      "features": 104,
+      "geometrias_null": 0,
+      "tipos_geometria": {
+        "Point": 104
+      },
+      "descripcion": "VOR/DME, ILS/LOC, GP/DME, NDB, etc. AD 2.19"
+    },
+    {
+      "archivo": "aip_obstaculos_aerodromo.geojson",
+      "features": 941,
+      "geometrias_null": 0,
+      "tipos_geometria": {
+        "Point": 941
+      },
+      "descripcion": "Obstáculos AD 2.10 con coordenadas"
+    },
+    {
+      "archivo": "aip_espacios_ats.geojson",
+      "features": 51,
+      "geometrias_null": 5,
+      "tipos_geometria": {
+        "NULL": 5,
+        "Polygon": 41,
+        "LineString": 1,
+        "MultiPolygon": 2,
+        "MultiLineString": 1,
+        "GeometryCollection": 1
+      },
+      "descripcion": "CTR/espacios ATS AD 2.17"
+    },
+    {
+      "archivo": "aip_helicopteros.geojson",
+      "features": 1,
+      "geometrias_null": 0,
+      "tipos_geometria": {
+        "Point": 1
+      },
+      "descripcion": "TLOF/FATO con coordenadas AD 2.16"
+    },
+    {
+      "archivo": "aip_puntos_verificacion.geojson",
+      "features": 30,
+      "geometrias_null": 0,
+      "tipos_geometria": {
+        "Point": 30
+      },
+      "descripcion": "VOR/INS check points AD 2.8"
+    },
+    {
+      "archivo": "aip_sistemas_aerodromo_referencia.geojson",
+      "features": 51,
+      "geometrias_null": 0,
+      "tipos_geometria": {
+        "Point": 51
+      },
+      "descripcion": "WDI/ABN/IBN/LDI/stop bars/guard lights asociados al ARP"
+    },
+    {
+      "archivo": "aip_wdi_referencia.geojson",
+      "features": 39,
+      "geometrias_null": 0,
+      "tipos_geometria": {
+        "Point": 39
+      },
+      "descripcion": "WDI: referencia aeroportuaria, no posición física exacta"
+    },
+    {
+      "archivo": "aip_balizas_ldi_referencia.geojson",
+      "features": 51,
+      "geometrias_null": 0,
+      "tipos_geometria": {
+        "Point": 51
+      },
+      "descripcion": "ABN/IBN/LDI: referencia aeroportuaria, no posición física exacta"
+    }
+  ],
+  "ats_sin_geometria_reconstruible": [
+    "SAAC",
+    "SARF",
+    "SARP",
+    "SAWB",
+    "SAWH"
+  ],
+  "criterios": {
+    "publicada": "coordenada explícita AIP",
+    "derivada": "geometría calculada sólo con coordenadas/rumbos/dimensiones AIP",
+    "referencia": "THR o ARP como ancla temática; no posición física exacta"
+  },
+  "advertencias": [
+    "No se inventaron posiciones exactas de WDI, PAPI, ABN/IBN/LDI, stop bars o TWY cuando la tabla no publica coordenadas. Las capas *_referencia usan THR/ARP y lo declaran en atributos.",
+    "Los espacios ATS que dependen de límites FIR/arcos no completamente reconstruibles se conservan con geometry=null o como aproximados, manteniendo el texto AD 2.17.",
+    "Los obstáculos remitidos exclusivamente a anexos AD 2.D1 no están digitalizados si sus coordenadas no aparecen en el AIP completo tabular; se requiere etapa específica con anexos/planos."
+  ]
+}

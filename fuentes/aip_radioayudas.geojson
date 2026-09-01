@@ -1,0 +1,3230 @@
+{
+  "type": "FeatureCollection",
+  "name": "aip_radioayudas",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAG",
+        "iata": null,
+        "aeropuerto": "GUALEGUAYCHÚ",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69ebb97edc7dc.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69ebb97edc7dc",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "GUA",
+        "frecuencia_canal": "113.2 MHz",
+        "horario": "H24",
+        "coord_raw": "330035S 0583651W",
+        "elevacion_dme": "D",
+        "observaciones": "330035S VOR/DME GUA 113.2 MHz H24 DME CH 79X (340 km) 0583651W",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.61416666666667,
+          -33.00972222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAP",
+        "iata": "PRA",
+        "aeropuerto": "PARANÁ / GENERAL URQUIZA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e12b515db21.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e12b515db21",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "PAR",
+        "frecuencia_canal": "116.8 MHz",
+        "horario": "H24",
+        "coord_raw": "314830.13S 0602904.59W",
+        "elevacion_dme": "76.50 m DM 251 ft",
+        "observaciones": "314830.13S 76.50 m VOR/DME PAR 116.8 MHz H24 DME CH 115X (370 km) 0602904.59W 251 ft",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.484608333333334,
+          -31.808369444444445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAP",
+        "iata": "PRA",
+        "aeropuerto": "PARANÁ / GENERAL URQUIZA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e12b515db21.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e12b515db21",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "PA",
+        "frecuencia_canal": "110.3 MHz",
+        "horario": "H24",
+        "coord_raw": "314830.42S 0602857.86W",
+        "elevacion_dme": "68 m CA 223 ft 20",
+        "observaciones": "314830.42S 68 m CAT I a RWY 20 / CAT I to RWY ILS/LOC PA 110.3 MHz 0602857.86W 223 ft 20 H24",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.48273888888889,
+          -31.80845
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAP",
+        "iata": "PRA",
+        "aeropuerto": "PARANÁ / GENERAL URQUIZA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e12b515db21.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e12b515db21",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "335.0 MHz",
+        "horario": "otalidad, se disp le, there is an o",
+        "coord_raw": "314717.78S 0602849.84W",
+        "elevacion_dme": "85.75 m RW 281 ft m dicador de funcionamien onitor and remote contr",
+        "observaciones": "314717.78S 85.75 m RWY 20 - GP 3° - HGT REF 16 GP/DME 335.0 MHz 0602849.84W 281 ft m - DME CH 40X Observaciones / Remarks: Para las radioayudas en su totalidad, se dispone de monitor de indicador de funcionamiento y control remoto en la torre de control. / For the radio aids as a whole, there is an operating indicator monitor and remote control in the control tower.",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.48051111111111,
+          -31.788272222222226
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAR",
+        "iata": "ROS",
+        "aeropuerto": "ROSARIO / ISLAS MALVINAS",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e105dba2f99.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e105dba2f99",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "ROS",
+        "frecuencia_canal": "117.3 MHz",
+        "horario": "H24",
+        "coord_raw": "325418.1S 0604653.0W",
+        "elevacion_dme": "DME 32m Res 105 ft Res",
+        "observaciones": "DME CH 120X (324 km) 325418.1S 32m VOR/DME ROS 117.3 MHz H24 Restricciones: Ver ENR 4.1. / 0604653.0W 105 ft Restrictions: See ENR 4.1.",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.78138888888889,
+          -32.905027777777775
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAR",
+        "iata": "ROS",
+        "aeropuerto": "ROSARIO / ISLAS MALVINAS",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e105dba2f99.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e105dba2f99",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "RO",
+        "frecuencia_canal": "109.9 MHz",
+        "horario": "H24",
+        "coord_raw": "325509.6S 0604717.7W",
+        "elevacion_dme": "28.5 m CAT 94 ft",
+        "observaciones": "325509.6S 28.5 m ILS/LOC RO 109.9 MHz H24 CAT I a/to pista/RWY 20. 0604717.7W 94 ft",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.78825,
+          -32.919333333333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAR",
+        "iata": "ROS",
+        "aeropuerto": "ROSARIO / ISLAS MALVINAS",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e105dba2f99.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e105dba2f99",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "333.8 MHz",
+        "horario": null,
+        "coord_raw": "325335.2S 0604651.5W",
+        "elevacion_dme": "39.5 m Pis 130 ft 15.",
+        "observaciones": "325335.2S 39.5 m Pista/RWY 20 GP 3° - HGT REF GP/DME 333.8 MHz 0604651.5W 130 ft 15.75 m DME CH 36X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.78097222222222,
+          -32.89311111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAV",
+        "iata": "SFN",
+        "aeropuerto": "SANTA FE / SAUCE VIEJO",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e13318f081b.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e13318f081b",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "NDB",
+        "id_ayuda": "SVO",
+        "frecuencia_canal": "405 KHz",
+        "horario": null,
+        "coord_raw": "314241.20S 0604822.99W",
+        "elevacion_dme": "32 m ( 105 ft",
+        "observaciones": "314241.20S 32 m NDB SVO 405 KHz (425 km) 0604822.99W 105 ft",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.80638611111111,
+          -31.711444444444442
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAV",
+        "iata": "SFN",
+        "aeropuerto": "SANTA FE / SAUCE VIEJO",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e13318f081b.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e13318f081b",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "SV",
+        "frecuencia_canal": "109.5 MHz",
+        "horario": "H24",
+        "coord_raw": "314319.83S 0604900.78W",
+        "elevacion_dme": "20 m C 66 ft",
+        "observaciones": "314319.83S 20 m ILS/LOC SV 109.5 MHz H24 CAT I a Pista / RWY 21 0604900.78W 66 ft",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.81688333333334,
+          -31.722175
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAV",
+        "iata": "SFN",
+        "aeropuerto": "SANTA FE / SAUCE VIEJO",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e13318f081b.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e13318f081b",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "332.6 MHz",
+        "horario": null,
+        "coord_raw": "314215.14S 0604823.50W",
+        "elevacion_dme": "34.25 m P 112 ft R",
+        "observaciones": "314215.14S 34.25 m Pista / RWY 21 - GP 3° - HGT GP/DME 332.6 MHz 0604823.50W 112 ft REF 17.70 m - DME CH 32X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.806527777777774,
+          -31.704205555555554
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "AEROPARQUE JORGE NEWBERY",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 11,
+        "archivo_aip": "aip-6a10684a7a5bd.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a10684a7a5bd",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "NDB/LI",
+        "id_ayuda": "N",
+        "frecuencia_canal": "375 KHz",
+        "horario": null,
+        "coord_raw": "343505.70S 0582208.00W",
+        "elevacion_dme": "2.",
+        "observaciones": "343505.70S NDB/LI N 375 KHz 2.3 NM a Pista/RWY 31 0582208.00W",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.36888888888889,
+          -34.58491666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "AEROPARQUE JORGE NEWBERY",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 11,
+        "archivo_aip": "aip-6a10684a7a5bd.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a10684a7a5bd",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "AE",
+        "frecuencia_canal": "109.5 MHz",
+        "horario": "H24",
+        "coord_raw": "343359.54S 0582409.59W",
+        "elevacion_dme": "8.5 m CAT 28 ft",
+        "observaciones": "343359.54S 8.5 m ILS/LOC AE 109.5 MHz H24 CAT II a Pista/RWY 13 0582409.59W 28 ft",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.40266388888889,
+          -34.566538888888886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "AEROPARQUE JORGE NEWBERY",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 11,
+        "archivo_aip": "aip-6a10684a7a5bd.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a10684a7a5bd",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "332.6 MHz",
+        "horario": null,
+        "coord_raw": "343322.31S 0582523.49W",
+        "elevacion_dme": "4.50 m Pis 15 ft 15.",
+        "observaciones": "343322.31S 4.50 m Pista / RWY 13 GP 3º - HGT REF GP/DME 332.6 MHz 0582523.49W 15 ft 15.30 m - DME CH 32X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.42319166666667,
+          -34.55619722222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "CÓRDOBA / ING. AER. A. L. V. TARAVELLA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e1078aa7f9d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1078aa7f9d",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "CBA",
+        "frecuencia_canal": "114.5 MHz",
+        "horario": "H24",
+        "coord_raw": "311847.6S 0641213.3W",
+        "elevacion_dme": "479 m 1.572 ft",
+        "observaciones": "311847.6S 479 m VOR/DME CBA 114.5 MHz H24 DME CH 92X (343 km) 0641213.3W 1.572 ft",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.20369444444445,
+          -31.313222222222223
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "CÓRDOBA / ING. AER. A. L. V. TARAVELLA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e1078aa7f9d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1078aa7f9d",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "CB",
+        "frecuencia_canal": "110.3 MHz",
+        "horario": "H24",
+        "coord_raw": "311935.5S 0641229W",
+        "elevacion_dme": null,
+        "observaciones": "311935.5S ILS/LOC CB 110.3 MHz H24 CAT I a Pista/RWY 19 0641229W",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.20805555555556,
+          -31.326527777777777
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "CÓRDOBA / ING. AER. A. L. V. TARAVELLA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e1078aa7f9d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1078aa7f9d",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "335 MHz",
+        "horario": "H24",
+        "coord_raw": "311756.9S 0641226W",
+        "elevacion_dme": "502 m 1.647 ft",
+        "observaciones": "311756.9S 502 m Pista/RWY 19 GP 3° - HGT GP/DME 335 MHz H24 0641226W 1.647 ft REF 16 m. DME CH 40X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.20722222222223,
+          -31.29913888888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADF",
+        "iata": "FDO",
+        "aeropuerto": "SAN FERNANDO",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 12,
+        "archivo_aip": "aip-6a68fbe672145.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a68fbe672145",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "331.4 MHz",
+        "horario": null,
+        "coord_raw": "342728.58S 0583534.82W",
+        "elevacion_dme": "19.5 m 64 ft",
+        "observaciones": "342728.58S 19.5 m Pista / RWY 05 GP 3°. GP/DME 331.4 MHz HGT REF 15.20 m. 0583534.82W 64 ft DME CH 28X.",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.59300555555556,
+          -34.45793888888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADF",
+        "iata": "FDO",
+        "aeropuerto": "SAN FERNANDO",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 12,
+        "archivo_aip": "aip-6a68fbe672145.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a68fbe672145",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "FDO",
+        "frecuencia_canal": "114.4 MHz",
+        "horario": "H24",
+        "coord_raw": "342705.1S 0583502.7W",
+        "elevacion_dme": "11.5 m 38 ft",
+        "observaciones": "342705.1S 11.5 m VOR/DME FDO 114.4 MHz H24 DME CH 91X. (343 km). 0583502.7W 38 ft",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.58408333333333,
+          -34.45141666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADF",
+        "iata": "FDO",
+        "aeropuerto": "SAN FERNANDO",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 12,
+        "archivo_aip": "aip-6a68fbe672145.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a68fbe672145",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "FD",
+        "frecuencia_canal": "109.1 MHz",
+        "horario": "H24",
+        "coord_raw": "342649.79S 0583455.97W",
+        "elevacion_dme": "5m 16 ft",
+        "observaciones": "342649.79S 5m ILS/LOC FD 109.1 MHz H24 CAT I a/to Pista/ RWY 05. 0583455.97W 16 ft",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.582213888888894,
+          -34.44716388888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADP",
+        "iata": "EPA",
+        "aeropuerto": "EL PALOMAR",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e26822c76b6.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e26822c76b6",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "PAL",
+        "frecuencia_canal": "115.2 MHz",
+        "horario": "H24",
+        "coord_raw": "343641.96S 0583649.69W",
+        "elevacion_dme": "D 23.5 m R 77 ft R",
+        "observaciones": "DME CH 99X (324 km) 343641.96S 23.5 m VOR/DME PAL 115.2 MHz H24 Restricciones - Ver ENR 4.1. / 0583649.69W 77 ft Restrictions – See ENR 4.1.",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.61380277777778,
+          -34.61165555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADP",
+        "iata": "EPA",
+        "aeropuerto": "EL PALOMAR",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e26822c76b6.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e26822c76b6",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "PR",
+        "frecuencia_canal": "110.5 MHz",
+        "horario": "H24",
+        "coord_raw": "343712.77S 0583626.71W",
+        "elevacion_dme": "20.25 m C 66 ft",
+        "observaciones": "343712.77S 20.25 m ILS/LOC PR 110.5 MHz H24 CAT I a pista / RWY 17 0583626.71W 66 ft",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.607419444444446,
+          -34.62021388888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADP",
+        "iata": "EPA",
+        "aeropuerto": "EL PALOMAR",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e26822c76b6.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e26822c76b6",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "329.6 MHz",
+        "horario": null,
+        "coord_raw": "343612.23S 0583652.19W",
+        "elevacion_dme": "28.25 m P 93 ft 1",
+        "observaciones": "343612.23S 28.25 m Pista / RWY 17 GP 3º - HGT REF GP DME 329.6 MHz 0583652.19W 93 ft 17.40 m. DME CH 42X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.61449722222223,
+          -34.60339722222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "EZEIZA / MINISTRO PISTARINI",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e10875b7c89.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10875b7c89",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR DME",
+        "id_ayuda": "EZE",
+        "frecuencia_canal": "116.5 MHz",
+        "horario": "H24",
+        "coord_raw": "344926.63S 0583207.15W",
+        "elevacion_dme": "20.50 m DME 67 ft",
+        "observaciones": "VOR DME EZE 116.5 MHz H24 344926.63S 20.50 m DME CH 112X (343 km) 0583207.15W 67 ft",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.53531944444444,
+          -34.824063888888894
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "EZEIZA / MINISTRO PISTARINI",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e10875b7c89.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10875b7c89",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "PC",
+        "frecuencia_canal": "110.1 MHz",
+        "horario": "H24",
+        "coord_raw": "344932.81S 0583057.22W",
+        "elevacion_dme": "CAT",
+        "observaciones": "ILS/LOC PC 110.1 MHz H24 344932.81S CAT III-A a Pista/RWY 11 0583057.22W",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.51589444444444,
+          -34.82578055555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "EZEIZA / MINISTRO PISTARINI",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e10875b7c89.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10875b7c89",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "334.4 MHz",
+        "horario": null,
+        "coord_raw": "344915.51S 0583301.52W",
+        "elevacion_dme": "18.75 m Pist 62 ft 38X",
+        "observaciones": "GP/DME 334.4 MHz 344915.51S 18.75 m Pista/RWY 11 GP 3° - HGT REF DME CH 0583301.52W 62 ft 38X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.55042222222222,
+          -34.820975000000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "EZEIZA / MINISTRO PISTARINI",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e10875b7c89.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10875b7c89",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "EZ",
+        "frecuencia_canal": "108.7 MHz",
+        "horario": null,
+        "coord_raw": "344815.66S 0583207.10W",
+        "elevacion_dme": "CAT",
+        "observaciones": "ILS/LOC EZ 108.7 MHz 344815.66S CAT II a Pista/RWY 35 0583207.10W",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.53530555555555,
+          -34.80435
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "EZEIZA / MINISTRO PISTARINI",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e10875b7c89.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10875b7c89",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "330.5 MHz",
+        "horario": null,
+        "coord_raw": "344945.63S 0583130.12W",
+        "elevacion_dme": "19.25 m Pist 63 ft DME /2024",
+        "observaciones": "GP/DME 330.5 MHz 344945.63S 19.25 m Pista/RWY 35. GP 3° HGT REF 16.10 m. 0583130.12W 63 ft DME CH 24X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.52503333333333,
+          -34.82934166666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAME",
+        "iata": "MDZ",
+        "aeropuerto": "MENDOZA / El Plumerillo",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69fc9d7664864.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69fc9d7664864",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "DOZ",
+        "frecuencia_canal": "114.9 MHz",
+        "horario": "H24",
+        "coord_raw": "324954.8S 0684727.0W",
+        "elevacion_dme": "711 m 2.333 ft",
+        "observaciones": "DME CH 96X (343 km). 324954.8S 711 m Ver restricción en AIP VOR/DME DOZ 114.9 MHz H24 0684727.0W 2.333 ft 4.1 / See restriction in AIP 4.1",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.79083333333332,
+          -32.83188888888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAME",
+        "iata": "MDZ",
+        "aeropuerto": "MENDOZA / El Plumerillo",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69fc9d7664864.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69fc9d7664864",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "DO",
+        "frecuencia_canal": "109.9 MHz",
+        "horario": null,
+        "coord_raw": "324859.6S 0684733.5W",
+        "elevacion_dme": null,
+        "observaciones": "324859.6S ILS/LOC DO 109.9 MHz CAT I a Pista / RWY 36 0684733.5W",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.79263888888889,
+          -32.81655555555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAME",
+        "iata": "MDZ",
+        "aeropuerto": "MENDOZA / El Plumerillo",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69fc9d7664864.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69fc9d7664864",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "333.8 MHz",
+        "horario": null,
+        "coord_raw": "325030.1S 0684730.3W",
+        "elevacion_dme": "715 m 2.346 ft",
+        "observaciones": "325030.1S 715 m Pista / RWY 36 GP 3° - GP/DME 333.8 MHz HGT REF 16.20 m 0684730.3W 2.346 ft DME CH 36X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.79175,
+          -32.84169444444445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAMM",
+        "iata": "LGS",
+        "aeropuerto": "MALARGÜE / COMODORO D. R. SALOMÓN",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e168cc06ad1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e168cc06ad1",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "117.2 MHz",
+        "horario": "H24",
+        "coord_raw": "352910S 0693443W",
+        "elevacion_dme": "NIL Declinación magnétic ination 2° E (JANUAR",
+        "observaciones": "DME CH 119X (330 km). 352910S Restricciones: Ver ENR VOR/DME MLG 117.2 MHz H24 NIL 0693443W 4.1. / Restrictions: See ENR 4.1. (*) ELEV de emplazamiento (Terreno natural) 1.422,40 m - ELEV de Extremo superior 1.429,9 m - Declinación magnética 2° E (ENERO 2020). / Site ELEV (Natural terrain) 1,422.40 m - Upper end ELEV 1,429.9 m - Magnetic declination 2° E (JANUARY 2020).",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.5786111111111,
+          -35.486111111111114
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAMR",
+        "iata": "AFA",
+        "aeropuerto": "SAN RAFAEL / S. A. SANTIAGO GERMANO",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e169708997f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e169708997f",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "SRA",
+        "frecuencia_canal": "116.9 MHz",
+        "horario": "H24",
+        "coord_raw": "343522.00S 0682341.00W",
+        "elevacion_dme": "747.50 m 2.452 ft",
+        "observaciones": "DME CH 116X (330 km). 343522.00S 747.50 m Restricciones: Ver ENR VOR/DME SRA 116.9 MHz H24 0682341.00W 2.452 ft 4.1. / Restrictions: See ENR 4.1.",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.39472222222223,
+          -34.589444444444446
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANC",
+        "iata": "CTC",
+        "aeropuerto": "CATAMARCA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e256ccb0f13.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e256ccb0f13",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "CAT",
+        "frecuencia_canal": "114.3 MHz",
+        "horario": "H24",
+        "coord_raw": "283500.7S 0654448.7W",
+        "elevacion_dme": "DME en 482 m Res 1.581 ft DME in Res",
+        "observaciones": "DME CH 90X (296 km) (Calculado en gabinete) 114.3 283500.7S 482 m Restricciones: Ver AIP ENR 4.1 / VOR/DME CAT H24 MHz 0654448.7W 1.581 ft DME CH 90X (296 km) (Calculated in laboratory). Restrictions: See AIP ENR 4.1",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.74686111111112,
+          -28.58352777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANE",
+        "iata": "SDE",
+        "aeropuerto": "SANTIAGO DEL ESTERO / VCOM. ÁNGEL D. LA PAZ ARAGONÉS",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1098092c2d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1098092c2d",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR",
+        "id_ayuda": "SDE",
+        "frecuencia_canal": "114.8 MHz",
+        "horario": "H24",
+        "coord_raw": "274532.15S 0641809.70W",
+        "elevacion_dme": "2 207.7 m ( 681 ft C",
+        "observaciones": "220 km 274532.15S 207.7 m VOR SDE 114.8 MHz H24 (Calculado en gabinete. / 0641809.70W 681 ft Calculated in laboratory.)",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.30269444444444,
+          -27.758930555555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANL",
+        "iata": "IRJ",
+        "aeropuerto": "LA RIOJA / CAPITÁN VICENTE A. ALMONACID",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e254b904105.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e254b904105",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "LAR",
+        "frecuencia_canal": "113.5 MHz",
+        "horario": "H24",
+        "coord_raw": "292319.01S 0664812.77W",
+        "elevacion_dme": "D 445.5 m V 1.462 ft S",
+        "observaciones": "DME CH 82X 296 km. 292319.01S 445.5 m VOR/DME LAR 113.5 MHz H24 Ver restricción en AIP 4.1. / 0664812.77W 1.462 ft See restriction in AIP 4.1.",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.80354722222222,
+          -29.388613888888887
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANL",
+        "iata": "IRJ",
+        "aeropuerto": "LA RIOJA / CAPITÁN VICENTE A. ALMONACID",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e254b904105.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e254b904105",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "LR",
+        "frecuencia_canal": "110.1 MHz",
+        "horario": "H24",
+        "coord_raw": "292336.68S 0664813.58W",
+        "elevacion_dme": "445.75 m C 1.462 ft P",
+        "observaciones": "292336.68S 445.75 m ILS/LOC LR 110.1 MHz H24 CAT I a Pista / RWY 21. 0664813.58W 1.462 ft Pista / RWY 21.",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.80377222222222,
+          -29.39352222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANL",
+        "iata": "IRJ",
+        "aeropuerto": "LA RIOJA / CAPITÁN VICENTE A. ALMONACID",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e254b904105.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e254b904105",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "334.4 MHz",
+        "horario": "Ver / See NOTAM´s",
+        "coord_raw": "292220.34S 0664721.39W",
+        "elevacion_dme": "443.25 m D 1.454 ft G",
+        "observaciones": "Ver / See 292220.34S 443.25 m GP/DME 334.4 MHz DME CH 38X. NOTAM´s 0664721.39W 1.454 ft GP 3° - HGT REF 15.60 m.",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.789275,
+          -29.372316666666666
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANR",
+        "iata": "RHD",
+        "aeropuerto": "TERMAS DE RIO HONDO",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e6130f69047.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6130f69047",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "TRH",
+        "frecuencia_canal": "113.70 MHz",
+        "horario": "H24",
+        "coord_raw": "272948.33S 0645601.38W",
+        "elevacion_dme": "DME C 286.75 m Ver r 941 ft DME C See r",
+        "observaciones": "DME CH 84X (343 km) 272948.33S 286.75 m Ver restricciones en AIP ENR 4.1 / VOR/DME TRH 113.70 MHz H24 0645601.38W 941 ft DME CH 84X (343 km) See restrictions in AIP ENR 4.1",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.93371666666667,
+          -27.496758333333336
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANR",
+        "iata": "RHD",
+        "aeropuerto": "TERMAS DE RIO HONDO",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e6130f69047.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6130f69047",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "RH",
+        "frecuencia_canal": "108.7 MHz",
+        "horario": "H24",
+        "coord_raw": "272852.87S 0645606.64W",
+        "elevacion_dme": "283.75 m CAT I 931 ft",
+        "observaciones": "272852.87S 283.75 m ILS/LOC RH 108.7 MHz H24 CAT II a RWY 01 0645606.64W 931 ft",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.93517777777778,
+          -27.481352777777776
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANR",
+        "iata": "RHD",
+        "aeropuerto": "TERMAS DE RIO HONDO",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e6130f69047.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6130f69047",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "330.5 MHz",
+        "horario": null,
+        "coord_raw": "273018.21S 0645615.36W",
+        "elevacion_dme": "290.25 m DME C 952 ft HGT R 6",
+        "observaciones": "273018.21S 290.25 m DME CH 24X - RWY 01 GP 3° – GP/DME 330.5 MHz 0645615.36W 952 ft HGT REF 15.20 m Observaciones / Remarks: NIL",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.9376,
+          -27.505058333333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANT",
+        "iata": "TUC",
+        "aeropuerto": "SAN MIGUEL de TUCUMÁN / Tte. BENJAMÍN MATIENZO",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e10b1142729.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b1142729",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "TUC",
+        "frecuencia_canal": "114.1 MHz",
+        "horario": null,
+        "coord_raw": "265044.58S 0650630.42W",
+        "elevacion_dme": "449 m 1.473 ft",
+        "observaciones": "DME CH 88X - 343 km 265044.58S 449 m VOR/DME TUC 114.1 MHz Restricciones - Ver ENR 4.1. / 0650630.42W 1.473 ft Restrictions – See ENR 4.1",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.10844999999999,
+          -26.845716666666664
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANT",
+        "iata": "TUC",
+        "aeropuerto": "SAN MIGUEL de TUCUMÁN / Tte. BENJAMÍN MATIENZO",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e10b1142729.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b1142729",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "TU",
+        "frecuencia_canal": "109.9MHz",
+        "horario": "H24",
+        "coord_raw": "264911.94S 0650602.98W",
+        "elevacion_dme": "459.5 m 1.508 ft",
+        "observaciones": "H24 264911.94S 459.5 m ILS/LOC TU 109.9MHz CAT II a Pista/RWY 02 0650602.98W 1.508 ft",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.10082777777777,
+          -26.819983333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANT",
+        "iata": "TUC",
+        "aeropuerto": "SAN MIGUEL de TUCUMÁN / Tte. BENJAMÍN MATIENZO",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e10b1142729.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b1142729",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "333.8MHz",
+        "horario": null,
+        "coord_raw": "265105.34S 0650620.30W",
+        "elevacion_dme": "453 m 1.486 ft",
+        "observaciones": "265105.34S 453 m Pista/RWY 02 GP 3° - HGT REF GP/DME 333.8MHz 0650620.30W 1.486 ft 17.3 m - DME CH 36X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.10563888888888,
+          -26.851483333333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANU",
+        "iata": "UAQ",
+        "aeropuerto": "SAN JUAN / DOMINGO FAUSTINO SARMIENTO",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e10b2277811.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b2277811",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "JUA",
+        "frecuencia_canal": "113.1 MHz",
+        "horario": "H24",
+        "coord_raw": "313349.9S 0682517.1W",
+        "elevacion_dme": "601 m 1.972 ft",
+        "observaciones": "313349.9S 601 m DME CH 78X (330 km) VOR/DME JUA 113.1 MHz H24 Restricciones: Ver ENR 4.1 0682517.1W 1.972 ft",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.42141666666667,
+          -31.563861111111112
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANU",
+        "iata": "UAQ",
+        "aeropuerto": "SAN JUAN / DOMINGO FAUSTINO SARMIENTO",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e10b2277811.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b2277811",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "SJ",
+        "frecuencia_canal": "110.3 MHz",
+        "horario": "10:00-23:59 UTC",
+        "coord_raw": "313504S 0682505.4W",
+        "elevacion_dme": "593.5 m 1.947 ft",
+        "observaciones": "Restrictions See ENR 4.1. 10:00-23:59 UTC 313504S 593.5 m CAT I a RWY 18. / ILS/LOC SJ 110.3 MHz 0682505.4W 1.947 ft CAT I to RWY 18.",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.41816666666666,
+          -31.584444444444443
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANU",
+        "iata": "UAQ",
+        "aeropuerto": "SAN JUAN / DOMINGO FAUSTINO SARMIENTO",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e10b2277811.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b2277811",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "335.0 MHz",
+        "horario": "10:00-23:59 UTC",
+        "coord_raw": "313347.5S 0682501.5W",
+        "elevacion_dme": "606.5 m 1.990 ft",
+        "observaciones": "313347.5S 606.5 m RWY 18 - GP 3° - HGT REF GP/DME 335.0 MHz 10:00-23:59 UTC 0682501.5W 1.990 ft 15.20 m - DME CH 40X.",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.41708333333334,
+          -31.563194444444445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOC",
+        "iata": "RCU",
+        "aeropuerto": "RÍO CUARTO / ÁREA DE MATERIAL",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e10b83ad8fa.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b83ad8fa",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "RCU",
+        "frecuencia_canal": "114.2 MHz",
+        "horario": null,
+        "coord_raw": "330532.2S 0641554.2W",
+        "elevacion_dme": null,
+        "observaciones": "330532.2S DME CH 89X (330 VOR/DME RCU 114.2 MHz 0641554.2W km)",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.26505555555555,
+          -33.09227777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOC",
+        "iata": "RCU",
+        "aeropuerto": "RÍO CUARTO / ÁREA DE MATERIAL",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e10b83ad8fa.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b83ad8fa",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "RC",
+        "frecuencia_canal": "110.9 MHz",
+        "horario": "H24",
+        "coord_raw": "330455.6S 0641527.5W",
+        "elevacion_dme": "2.4S 7.0W",
+        "observaciones": "330455.6S CAT I a RWY 05 / ILS/LOC RC 110.9 MHz H24 0641527.5W CAT I to RWY 05 RWY 05 - GP 3° - 330552.4S GP/DME 330.8 MHz HGT REF 16.51 m 0641627.0W - DME CH 46X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.25763888888889,
+          -33.08211111111112
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOR",
+        "iata": "VME",
+        "aeropuerto": "VILLA REYNOLDS",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e10c27bbaf1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10c27bbaf1",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "RYD",
+        "frecuencia_canal": "115.7 MHz",
+        "horario": "H24",
+        "coord_raw": "334343.3S 0652251.7W",
+        "elevacion_dme": "496.50 m 1.629 ft",
+        "observaciones": "334343.3S 496.50 m VOR/DME RYD 115.7 MHz H24 DME CH 104X (343 km) 0652251.7W 1.629 ft",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.38102777777777,
+          -33.72869444444444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOU",
+        "iata": "LUQ",
+        "aeropuerto": "SAN LUIS / BRIG.MY. CESAR RAUL OJEDA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e23dcde0868(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e23dcde0868",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "UIS",
+        "frecuencia_canal": "116 MHz",
+        "horario": "H24",
+        "coord_raw": "331606.1S 0662128.1W",
+        "elevacion_dme": "710 m 2.329 ft",
+        "observaciones": "331606.1S 710 m DME CH 107X VOR/DME UIS 116 MHz H24 0662128.1W 2.329 ft (328 km).",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.35780555555554,
+          -33.26836111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARC",
+        "iata": "CNQ",
+        "aeropuerto": "CORRIENTES",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e10de8df659(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10de8df659",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "115.4 MHz",
+        "horario": "H24",
+        "coord_raw": "272614.2S 0584542.4W",
+        "elevacion_dme": "70 m D 230 ft",
+        "observaciones": "272614.2S 70 m VOR/DME CRS 115.4 MHz H24 DME CH 101 X (340 km) 0584542.4W 230 ft",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.76177777777778,
+          -27.437277777777776
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARC",
+        "iata": "CNQ",
+        "aeropuerto": "CORRIENTES",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e10de8df659(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10de8df659",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": null,
+        "frecuencia_canal": "109.7 MHz",
+        "horario": null,
+        "coord_raw": "272722.8S 0584548.5W",
+        "elevacion_dme": "P",
+        "observaciones": "272722.8S ILS/LOC CR 109.7 MHz 0584548.5W Pista 20 GP 3° - HGT REF 16.30",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.76347222222222,
+          -27.456333333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARC",
+        "iata": "CNQ",
+        "aeropuerto": "CORRIENTES",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e10de8df659(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10de8df659",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": "3",
+        "frecuencia_canal": "333.2 MHz",
+        "horario": null,
+        "coord_raw": "272621S 0584534.3W",
+        "elevacion_dme": "m R 1",
+        "observaciones": "272621S m - DME: CH 34 X / GP/DME 333.2 MHz 0584534.3W Runway 20 GP 3° - HGT REF 16.30 m - DME: CH 34 X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.75952777777778,
+          -27.439166666666665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARE",
+        "iata": "RES",
+        "aeropuerto": "RESISTENCIA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e23557ecfd0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e23557ecfd0",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "SIS",
+        "frecuencia_canal": "115.1 MHz",
+        "horario": "H24",
+        "coord_raw": "272648.87S 0590325.60W",
+        "elevacion_dme": "60.5 m 198 ft",
+        "observaciones": "272648.87S 60.5 m DME CH 98X (343 VOR/DME SIS 115.1 MHz H24 0590325.60W 198 ft km)",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.057111111111105,
+          -27.446908333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARE",
+        "iata": "RES",
+        "aeropuerto": "RESISTENCIA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e23557ecfd0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e23557ecfd0",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "RS",
+        "frecuencia_canal": "110.3 MHz",
+        "horario": "H24",
+        "coord_raw": "272749.92S 0590343.31W",
+        "elevacion_dme": "56.5 m 185 ft",
+        "observaciones": "272749.92S 56.5 m ILS/LOC RS 110.3 MHz H24 CAT I a RWY 21 0590343.31W 185 ft RWY 21 GP 3° - HGT",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.06203055555555,
+          -27.463866666666664
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARE",
+        "iata": "RES",
+        "aeropuerto": "RESISTENCIA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e23557ecfd0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e23557ecfd0",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "335.0 MHz",
+        "horario": null,
+        "coord_raw": "272625.46S 0590311.90W",
+        "elevacion_dme": "67 m 220 ft",
+        "observaciones": "272625.46S 67 m GP/DME 335.0 MHz REF 17 m 0590311.90W 220 ft DME CH 40X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.05330555555555,
+          -27.440405555555557
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARF",
+        "iata": "FMA",
+        "aeropuerto": "FORMOSA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e249b1a7ad5(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e249b1a7ad5",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "FSA",
+        "frecuencia_canal": "115.6 MHz",
+        "horario": "H24",
+        "coord_raw": "261236.98S 0581328.88W",
+        "elevacion_dme": "DME Rest 65 m / 213 ft DME Rest",
+        "observaciones": "DME CH 103X (333 km). 261236.98S Restricciones: Ver ENR 4.1 / VOR/DME FSA 115.6 MHz H24 65 m / 213 ft 0581328.88W DME CH 103X (333 k) Restrictions See ENR 4.1",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.22468888888889,
+          -26.210272222222223
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARF",
+        "iata": "FMA",
+        "aeropuerto": "FORMOSA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e249b1a7ad5(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e249b1a7ad5",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "FS",
+        "frecuencia_canal": "110.9 MHz",
+        "horario": "Ver AD 2.3-",
+        "coord_raw": "261318.32S 0581358.05W",
+        "elevacion_dme": "CAT I a 61.5 m / 202 ft CAT I to",
+        "observaciones": "261318.32S CAT I a Pista 22 / ILS/LOC FS 110.9 MHz 61.5 m / 202 ft CAT I to Runway 22 0581358.05W Ver AD 2.3-",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.23279166666667,
+          -26.221755555555553
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARF",
+        "iata": "FMA",
+        "aeropuerto": "FORMOSA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e249b1a7ad5(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e249b1a7ad5",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "330.8 MHz",
+        "horario": "7/ See AD 2.3-7",
+        "coord_raw": "261231.04S 0581329.26W",
+        "elevacion_dme": "Pist DME 74 m / 243 ft Runw DME 2026",
+        "observaciones": "7/ See AD Pista 22 GP 3° - HGT REF 16.20 m. 2.3-7 261231.04S DME CH 46X / GP/DME 330.8 MHz 74 m / 243 ft 0581329.26W Runway 22 GP 3° - HGT REF 16,20 m. DME CH 46X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.22479444444445,
+          -26.20862222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARI",
+        "iata": "IGR",
+        "aeropuerto": "CATARATAS DEL IGUAZÚ / Mayor D. Carlos Eduardo Krause",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e6163c31b23(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6163c31b23",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "IGU",
+        "frecuencia_canal": "114.1 MHz",
+        "horario": "H24",
+        "coord_raw": "254404.2S 0542908.6W",
+        "elevacion_dme": "285 m DM 935 ft",
+        "observaciones": "254404.2S 285 m VOR/DME IGU 114.1 MHz H24 DME CH 88X (328 km). 0542908.6W 935 ft",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -54.48572222222222,
+          -25.7345
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARI",
+        "iata": "IGR",
+        "aeropuerto": "CATARATAS DEL IGUAZÚ / Mayor D. Carlos Eduardo Krause",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e6163c31b23(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6163c31b23",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "IG",
+        "frecuencia_canal": "110.9 MHz",
+        "horario": "H24",
+        "coord_raw": "254349.1S 0542924.4W",
+        "elevacion_dme": "CA 31 Pi",
+        "observaciones": "254349.1S CAT I a Pista 31 / CAT I to Runway ILS/LOC IG 110.9 MHz H24 0542924.4W 31 Pista 31 GP 3° - HGT REF 15.70 m -",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -54.49011111111111,
+          -25.730305555555553
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARI",
+        "iata": "IGR",
+        "aeropuerto": "CATARATAS DEL IGUAZÚ / Mayor D. Carlos Eduardo Krause",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e6163c31b23(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6163c31b23",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "330.8 MHz",
+        "horario": null,
+        "coord_raw": "254435.1S 0542744.5W",
+        "elevacion_dme": "292 m DM 958 ft Ru DM",
+        "observaciones": "254435.1S 292 m DME CH 46X / GP/DME 330.8 MHz 0542744.5W 958 ft Runway 31 GP 3° - HGT REF 15,70 m DME CH 46X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -54.462361111111115,
+          -25.743083333333335
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARI",
+        "iata": "IGR",
+        "aeropuerto": "CATARATAS DEL IGUAZÚ / Mayor D. Carlos Eduardo Krause",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e6163c31b23(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6163c31b23",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "MM",
+        "id_ayuda": null,
+        "frecuencia_canal": "75.0 MHz",
+        "horario": null,
+        "coord_raw": "254453S 0542652.2W",
+        "elevacion_dme": null,
+        "observaciones": "254453S MM 75.0 MHz 0542652.2W",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -54.44783333333333,
+          -25.748055555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARP",
+        "iata": "PSS",
+        "aeropuerto": "POSADAS / Libertador Gral. D. José de San Martín",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e1137370dba(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1137370dba",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "POS",
+        "frecuencia_canal": "114.9 MHz",
+        "horario": "H24",
+        "coord_raw": "272308.05S 0555808.39W",
+        "elevacion_dme": "DME Rest de F (pas 132 m osci 433 ft DME Rest betw",
+        "observaciones": "DME CH 96X. (343 km). Restricción: NO UTILIZAR por debajo de FL090 entre el RDL 070 y RDL 110 (pasando por RDL 090), por 272308.05S 132 m oscilaciones fuera de tolerancia. / VOR/DME POS 114.9 MHz H24 0555808.39W 433 ft DME CH 96X (343 km). Restriction: DO NOT USE below FL090 between RDL 070 and RDL 110",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -55.96899722222222,
+          -27.385569444444442
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARP",
+        "iata": "PSS",
+        "aeropuerto": "POSADAS / Libertador Gral. D. José de San Martín",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e1137370dba(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1137370dba",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "PO",
+        "frecuencia_canal": "109.9 MHz",
+        "horario": "H24",
+        "coord_raw": "272350.33S 0555813.13W",
+        "elevacion_dme": "(pas of-t 129 m CAT 423 ft Pist",
+        "observaciones": "(passing through RDL 090), due to out- of-tolerance oscillations. 272350.33S 129 m ILS/LOC PO 109.9 MHz H24 CAT I a Pista 20 / CAT I to Runway 20. 0555813.13W 423 ft Pista 20 GP 3° - HGT REF 15 m - DME",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -55.97031388888889,
+          -27.39731388888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARP",
+        "iata": "PSS",
+        "aeropuerto": "POSADAS / Libertador Gral. D. José de San Martín",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e1137370dba(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1137370dba",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "333.8 MHz",
+        "horario": "H24",
+        "coord_raw": "272241.65S 0555809.72W",
+        "elevacion_dme": "113.75 m CH 3 373 ft Runw DME",
+        "observaciones": "272241.65S 113.75 m CH 36X. GP/DME 333.8 MHz H24 0555809.72W 373 ft Runway 20 GP 3° - HGT REF 15 m - DME CH 36X.",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -55.969366666666666,
+          -27.37823611111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASA",
+        "iata": "SLA",
+        "aeropuerto": "SALTA / Gral. Don Martín Miguel de Güemes",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e1138586777(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1138586777",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "116.7 MHz",
+        "horario": "H24",
+        "coord_raw": "245108.2S 0652902.1W",
+        "elevacion_dme": "DME 1.240 m Rest DME 4.068 ft Rest /2026",
+        "observaciones": "DME CH 114X (343 km). 245108.2S 1.240 m Restricciones Ver ENR 4.1/ VOR/DME SAL 116.7 MHz H24 DME CH 114X (343 km). 0652902.1W 4.068 ft Restrictions See ENR 4.1.",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.48391666666667,
+          -24.85227777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASJ",
+        "iata": "JUJ",
+        "aeropuerto": "JUJUY / Gobernador Horacio Guzmán",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e113f9e6050(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e113f9e6050",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "JUJ",
+        "frecuencia_canal": "112.9 MHz",
+        "horario": "H24",
+        "coord_raw": "242336.62S 0650534.01W",
+        "elevacion_dme": "DME 896,75 m Res 2942 ft DME Res",
+        "observaciones": "DME CH 76X (345 km) 242336.62S 896,75 m Restricción: Ver ENR 4.1 / VOR/DME JUJ 112.9 MHz H24 0650534.01W 2942 ft DME CH 76X (345 km) Restrictions – See ENR 4.1",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.09278055555555,
+          -24.393505555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASJ",
+        "iata": "JUJ",
+        "aeropuerto": "JUJUY / Gobernador Horacio Guzmán",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e113f9e6050(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e113f9e6050",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "JU",
+        "frecuencia_canal": "110.1 MHz",
+        "horario": "H24",
+        "coord_raw": "242239.76S 0650625.99W",
+        "elevacion_dme": "925.5 m CAT 3036 ft CAT Pis",
+        "observaciones": "242239.76S 925.5 m CAT I a Pista 34 / ILS/LOC JU 110.1 MHz H24 0650625.99W 3036 ft CAT I to Runway 24 Pista 34 GP 3° - HGT REF 16 m - DME",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.10721944444444,
+          -24.37771111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASJ",
+        "iata": "JUJ",
+        "aeropuerto": "JUJUY / Gobernador Horacio Guzmán",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e113f9e6050(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e113f9e6050",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/ DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "334.4 MHz",
+        "horario": null,
+        "coord_raw": "242409.53S 0650535.02W",
+        "elevacion_dme": "890 m CH 2920 ft Run DME",
+        "observaciones": "242409.53S 890 m CH 38X. / GP/ DME 334.4 MHz 0650535.02W 2920 ft Runway 34 GP 3° - HGT REF 16 m - DME CH 38X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.09306111111111,
+          -24.40264722222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SATR",
+        "iata": "RCQ",
+        "aeropuerto": "RECONQUISTA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e11419cd188(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11419cd188",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "RTA",
+        "frecuencia_canal": "117.1 MHz",
+        "horario": "H24",
+        "coord_raw": "291231.18S 0594056.60W",
+        "elevacion_dme": "8,70 m",
+        "observaciones": "291231.18S VOR/DME RTA 117.1 MHz H24 8,70 m DME CH 118X (343 km) 0594056.60W",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.68238888888889,
+          -29.20866111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVC",
+        "iata": "CRD",
+        "aeropuerto": "COMODORO RIVADAVIA / GRAL. E. MOSCONI",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e1143c25a85(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1143c25a85",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "CRV",
+        "frecuencia_canal": "117.5 MHz",
+        "horario": null,
+        "coord_raw": "454623.9S 0672217.6W",
+        "elevacion_dme": "DM Re 58 m DM 190 ft Re",
+        "observaciones": "DME CH 122X (330 km). Restricciones: Ver ENR 4.1/ 454623.9S 58 m VOR/DME CRV 117.5 MHz DME CH 122X (330km). 0672217.6W 190 ft Restrictions – See ENR 4.1",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.37155555555555,
+          -45.77330555555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVC",
+        "iata": "CRD",
+        "aeropuerto": "COMODORO RIVADAVIA / GRAL. E. MOSCONI",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e1143c25a85(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1143c25a85",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "CR",
+        "frecuencia_canal": "110.3 MHz",
+        "horario": "H24",
+        "coord_raw": "454716.9S 0672706.9W",
+        "elevacion_dme": "CA CA Pi 46 m DM 151 ft Ru m.",
+        "observaciones": "H24 454716.9S CAT I a Pista 25. / ILS/LOC CR 110.3 MHz 0672912.3 W CAT I to Runway 25. Pista 25 GP 3° - HGT REF 16.40 m. 454655.6S 46 m DME CH 40X. / GP/DME 335 MHz 0672706.9W 151 ft Runway 25 GP 3° - HGT REF 16,40 m. DME CH 40X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.45191666666668,
+          -45.78802777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVE",
+        "iata": "EQS",
+        "aeropuerto": "ESQUEL / Brigadier General Antonio Parodi",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e114f5ef93e(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e114f5ef93e",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "ESQ",
+        "frecuencia_canal": "117.8 MH",
+        "horario": "H24",
+        "coord_raw": "425313.5S 0710601W",
+        "elevacion_dme": "D a 771.5 m R 2.531 ft D a",
+        "observaciones": "DME CH 125X (296 km) (DME asociado al VOR). 425313.5S 771.5 m Restricciones: Ver ENR 4.1 VOR/DME ESQ 117.8 MH H24 0710601W 2.531 ft DME CH 125X (296 km) (DME associated with VOR).",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.10027777777778,
+          -42.88708333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVE",
+        "iata": "EQS",
+        "aeropuerto": "ESQUEL / Brigadier General Antonio Parodi",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e114f5ef93e(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e114f5ef93e",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "ES",
+        "frecuencia_canal": "109.7 MH",
+        "horario": "H24",
+        "coord_raw": "425442S 0710907.5W",
+        "elevacion_dme": "R 806 m C 2.644 ft C",
+        "observaciones": "Restrictions: See ENR 4.1 425442S 806 m CAT I a pista / RWY 23. ILS/LOC ES 109.7 MH 2.644 ft 0710907.5W CAT I to runway / RWY 23 H24",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.15208333333334,
+          -42.91166666666666
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVE",
+        "iata": "EQS",
+        "aeropuerto": "ESQUEL / Brigadier General Antonio Parodi",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e114f5ef93e(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e114f5ef93e",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "333.2 MH",
+        "horario": null,
+        "coord_raw": "425401.1S 0710731.7W",
+        "elevacion_dme": "797.5 m D 2.616 ft 1",
+        "observaciones": "425401.1S 797.5 m DME CH 34X - GP 3° - HGT REF GP/DME 333.2 MH 2.616 ft 15 m. 0710731.7W",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.12547222222221,
+          -42.900305555555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVT",
+        "iata": "REL",
+        "aeropuerto": "TRELEW / ALMIRANTE ZAR",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e11508bc15d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11508bc15d",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "TR",
+        "frecuencia_canal": "109.5 MHz",
+        "horario": "H24",
+        "coord_raw": "431256.50S 0651721.06W",
+        "elevacion_dme": "37.5 m 123 ft",
+        "observaciones": "431256.50S 37.5 m ILS/LOC TR 109.5 MHz H24 CAT II a Pista/RWY 25. 0651721.06W 123 ft",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.28918333333333,
+          -43.215694444444445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVT",
+        "iata": "REL",
+        "aeropuerto": "TRELEW / ALMIRANTE ZAR",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e11508bc15d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11508bc15d",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": null,
+        "horario": null,
+        "coord_raw": "431230.27S 0651531.45W",
+        "elevacion_dme": "46.5 m 153 ft",
+        "observaciones": "431230.27S 46.5 m Pista/RWY 25 - GP 3° - HGT REF GP/DME 0651531.45W 153 ft 15.20 m - DME CH 32X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.2587361111111,
+          -43.20840833333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVT",
+        "iata": "REL",
+        "aeropuerto": "TRELEW / ALMIRANTE ZAR",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e11508bc15d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11508bc15d",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "TRE",
+        "frecuencia_canal": "115.1MHz",
+        "horario": "H24",
+        "coord_raw": "431209.01S 0651450.13W",
+        "elevacion_dme": "40.5 m 133 ft",
+        "observaciones": "431209.01S 40.5 m VOR/DME TRE 115.1MHz H24 DME CH 98X (343 km) 0651450.13W 133 ft",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.24725833333333,
+          -43.20250277777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVV",
+        "iata": "VDM",
+        "aeropuerto": "VIEDMA / GOBERNADOR CASTELLO",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e7b1a89ea5e.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b1a89ea5e",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR",
+        "id_ayuda": "VIE",
+        "frecuencia_canal": "117.1 MHz",
+        "horario": "H24",
+        "coord_raw": "405202S 0630003W",
+        "elevacion_dme": "NIL",
+        "observaciones": "405202S VOR VIE 117.1 MHz H24 NIL (343 km). 0630003W",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.00083333333333,
+          -40.867222222222225
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVY",
+        "iata": "PMY",
+        "aeropuerto": "PUERTO MADRYN",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e1155398740.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1155398740",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "116.1 MHz",
+        "horario": "H24",
+        "coord_raw": "424536S 0650603W",
+        "elevacion_dme": "140 m D",
+        "observaciones": "424536S VOR/DME DRY 116.1 MHz H24 140 m DME CH 108X (370 km) 0650603W Observaciones / Remarks:",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.10083333333333,
+          -42.76
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWB",
+        "iata": null,
+        "aeropuerto": "MARAMBIO / VICECOMODORO MARAMBIO",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e11573197e5.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11573197e5",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "NDB",
+        "id_ayuda": "MBI",
+        "frecuencia_canal": "345 KHz",
+        "horario": "O/R",
+        "coord_raw": "641520S 0563850W",
+        "elevacion_dme": "NIL 2 NIL D",
+        "observaciones": "641520S NIL NDB MBI 345 KHz O/R 250 km 0563850W NIL DME CH 117X (350 km).",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.64722222222222,
+          -64.25555555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWB",
+        "iata": null,
+        "aeropuerto": "MARAMBIO / VICECOMODORO MARAMBIO",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e11573197e5.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11573197e5",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "MBI",
+        "frecuencia_canal": "117.0 MHz",
+        "horario": "O/R",
+        "coord_raw": "641405S 0563712W",
+        "elevacion_dme": "R D R",
+        "observaciones": "641405S Restricciones ver AIP ENR 4.1/ VOR/DME MBI 117.0 MHz O/R 0563712W DME CH 117X (350 km). Restricciones see AIP ENR 4.1.",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.62,
+          -64.23472222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWC",
+        "iata": "FTE",
+        "aeropuerto": "EL CALAFATE",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e7b256c1c2c.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b256c1c2c",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "ECA",
+        "frecuencia_canal": "114.7 MHz",
+        "horario": "H24",
+        "coord_raw": "501642.38S 0720244.25W",
+        "elevacion_dme": "197 m Re 646 ft",
+        "observaciones": "DME CH 94X (330 km) 501642.38S 197 m Restricciones: Ver ENR 4.1. / VOR/DME ECA 114.7 MHz H24 0720244.25W 646 ft DME CH 94X (330 km).",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.045625,
+          -50.278438888888886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWC",
+        "iata": "FTE",
+        "aeropuerto": "EL CALAFATE",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e7b256c1c2c.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b256c1c2c",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "EC",
+        "frecuencia_canal": "108.9 MHz",
+        "horario": "H24",
+        "coord_raw": "501653.73S 0720432.37W",
+        "elevacion_dme": "R 200.5 m 658 ft Pi",
+        "observaciones": "Restrictions: See ENR 4.1. 501653.73S 200.5 m CAT I a RWY 25 / ILS/LOC EC 108.9 MHz H24 0720432.37W 658 ft CAT I to RWY 25 Pista 25 - GP 3° - HGT REF",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.07565833333332,
+          -50.281591666666664
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWC",
+        "iata": "FTE",
+        "aeropuerto": "EL CALAFATE",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e7b256c1c2c.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b256c1c2c",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "329.3 MHz",
+        "horario": "A",
+        "coord_raw": "501649.86S 0720221.63W",
+        "elevacion_dme": "207.5 m 681 ft Ru",
+        "observaciones": "501649.86S 207.5 m 15,08 m - DME CH 26X / GP/DME 329.3 MHz 0720221.63W 681 ft Runway 25 – GP 3° HGT REF 15.08 m – DME CH 26X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.03934166666666,
+          -50.280516666666664
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWE",
+        "iata": "RGA",
+        "aeropuerto": "RÍO GRANDE",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e1380c9247f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1380c9247f",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "GRA",
+        "frecuencia_canal": "117.3 MHz",
+        "horario": "H24",
+        "coord_raw": "534630.9S 0674445.0W",
+        "elevacion_dme": "21.5 m / 70.5 ft",
+        "observaciones": "534630.9S 21.5 m / VOR/DME GRA 117.3 MHz H24 DME CH 120X (348 km) 0674445.0W 70.5 ft",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.74583333333334,
+          -53.77525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWE",
+        "iata": "RGA",
+        "aeropuerto": "RÍO GRANDE",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e1380c9247f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1380c9247f",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "GR",
+        "frecuencia_canal": "109.5 MHz",
+        "horario": "H24",
+        "coord_raw": "534641.3S 0674611.8W",
+        "elevacion_dme": "4.8 m 16 f",
+        "observaciones": "534641.3S 4.8 m CAT I a Pista 26 / ILS/LOC GR 109.5 MHz H24 0674611.8W 16 f CAT I to Runway 26. Pista 26 GP 3° - HGT REF",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.76994444444445,
+          -53.77813888888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWE",
+        "iata": "RGA",
+        "aeropuerto": "RÍO GRANDE",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e1380c9247f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1380c9247f",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "332.6 MHz",
+        "horario": null,
+        "coord_raw": "534643.3S 0674421.4W",
+        "elevacion_dme": "25 m / 82 ft",
+        "observaciones": "16.20 m - DME CH 32X / 534643.3S 25 m / GP/DME 332.6 MHz Runway 26 GP 3° - HGT 0674421.4W 82 ft REF 16.20 m - DME CH 32X.",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.73927777777777,
+          -53.77869444444444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWH",
+        "iata": "USH",
+        "aeropuerto": "USHUAIA / MALVINAS ARGENTINAS",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e7b2b7ee74b(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b2b7ee74b",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "DVOR/DME",
+        "id_ayuda": "USU",
+        "frecuencia_canal": "113.7 MHz",
+        "horario": "H24",
+        "coord_raw": "545016.6S 0681703.1W",
+        "elevacion_dme": "RE ha 09 il in ex de re en 25 os No RE RD se un un AW",
+        "observaciones": "RESTRICCION: Desde RDL 070° hasta RDL 120° pasando por el RDL 090° utilizable desde 1000 FT hasta ilimitado. El resto de los sectores inutilizable por debajo de FL 130, excepto AWY W42 FL 110, por debajo de ese nivel inutilizable. se recomienda no utilizar modo NAV en piloto automático en IAC RWY 25 que utilicen VOR por 545016.6S oscilaciones efecto montaña. / DVOR/DME USU 113.7 MHz H24 No 0681703.1W RESTRICTION: From RDL 070° until RDL 120° passing through RDL 090° serviceable from 1000 FT until unlimited. The rest of the sectors unserviceable below FL 130, except AWY W42 FL 110, below such level",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.28419444444444,
+          -54.837944444444446
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWH",
+        "iata": "USH",
+        "aeropuerto": "USHUAIA / MALVINAS ARGENTINAS",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e7b2b7ee74b(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b2b7ee74b",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "US",
+        "frecuencia_canal": "111.3 MHz",
+        "horario": "H24",
+        "coord_raw": "545039.3S 0681910.8W",
+        "elevacion_dme": "un no pi VO fl No CA RW",
+        "observaciones": "unserviceable. It is recommended not to use NAV mode on automatic pilot in IAC RWY 25 and to use IAC VOR due to mountain effect fluctuations. ILS/LOC US 111.3 MHz H24 545039.3S No CAT I RWY 25 0681910.8W RWY 25 GP 3.5°-HGT REF 16.50 m",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.31966666666666,
+          -54.84425
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWH",
+        "iata": "USH",
+        "aeropuerto": "USHUAIA / MALVINAS ARGENTINAS",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-69e7b2b7ee74b(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b2b7ee74b",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "332.3 MHz",
+        "horario": "H24",
+        "coord_raw": "545029.9S 0681650W",
+        "elevacion_dme": "DM No RW DM 026",
+        "observaciones": "545029.9S DME CH 50X. / GP/DME 332.3 MHz H24 No 0681650W RWY 25 GP 3.5°-HGT REF 16.50 m DME CH 50X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.28055555555555,
+          -54.841638888888895
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZB",
+        "iata": "BHI",
+        "aeropuerto": "BAHÍA BLANCA / COMANDANTE ESPORA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e7b314ac7f0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b314ac7f0",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "BCA",
+        "frecuencia_canal": "114.3MHz",
+        "horario": "H24",
+        "coord_raw": "384312S 0620930.1W",
+        "elevacion_dme": "7m DM",
+        "observaciones": "384312S VOR/DME BCA 114.3MHz H24 7m DME CH 90X (324 km) 0620930.1W",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.15836111111111,
+          -38.72
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZB",
+        "iata": "BHI",
+        "aeropuerto": "BAHÍA BLANCA / COMANDANTE ESPORA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e7b314ac7f0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b314ac7f0",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "BC",
+        "frecuencia_canal": "109.7 MHz",
+        "horario": "H24",
+        "coord_raw": "384426.1S 0620854.4W",
+        "elevacion_dme": "CA 3m CA",
+        "observaciones": "384426.1S CAT II a RWY 17 L ILS/LOC BC 109.7 MHz H24 3m 0620854.4W CAT II to RWY 17 L",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.14844444444444,
+          -38.74058333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZB",
+        "iata": "BHI",
+        "aeropuerto": "BAHÍA BLANCA / COMANDANTE ESPORA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e7b314ac7f0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b314ac7f0",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": "NIL",
+        "frecuencia_canal": "333.2 MHz",
+        "horario": "H24",
+        "coord_raw": "384309.1S 0620916.6W",
+        "elevacion_dme": "DM 12 m 15",
+        "observaciones": "384309.1S DME CH 34 X GP 2.7° HGT REF GP/DME 333.2 MHz H24 12 m 0620916.6W 15.55 m. Observaciones / Remarks: NIL",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.15461111111111,
+          -38.71919444444445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZM",
+        "iata": "MDQ",
+        "aeropuerto": "MAR DEL PLATA / ASTOR PIAZZOLLA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e1232468b6a(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1232468b6a",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": "MDP",
+        "frecuencia_canal": "116.2 MHz",
+        "horario": "H24",
+        "coord_raw": "375547.38S 0573435.20W",
+        "elevacion_dme": "19 m 62 ft",
+        "observaciones": "375547.38S 19 m DME CH 109X (324 VOR/DME MDP 116.2 MHz H24 0573435.20W 62 ft km)",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.57644444444445,
+          -37.929827777777774
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZM",
+        "iata": "MDQ",
+        "aeropuerto": "MAR DEL PLATA / ASTOR PIAZZOLLA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e1232468b6a(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1232468b6a",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "MP",
+        "frecuencia_canal": "109.5 MHz",
+        "horario": "H24",
+        "coord_raw": "375627.73S 0573335.30W",
+        "elevacion_dme": "16.50 m 54 ft",
+        "observaciones": "375627.73S 16.50 m CAT I a Pista 13/ ILS/LOC MP 109.5 MHz H24 0573335.30W 54 ft CAT I to Runway 13. Pista 13 GP 3° - HGT",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.559805555555556,
+          -37.94103611111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZM",
+        "iata": "MDQ",
+        "aeropuerto": "MAR DEL PLATA / ASTOR PIAZZOLLA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e1232468b6a(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1232468b6a",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "332.6 MHz",
+        "horario": "AMDT AI",
+        "coord_raw": "375553.50S 0573453.11W",
+        "elevacion_dme": "20 m 66 ft",
+        "observaciones": "REF 15.50 m - DME CH 375553.50S 20 m 32X/ GP/DME 332.6 MHz 0573453.11W 66 ft Runway 13 GP 3° - HGT REF 15.50 m - DME CH 32X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.58141944444445,
+          -37.931527777777774
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZN",
+        "iata": "NQN",
+        "aeropuerto": "NEUQUÉN / Presidente Perón",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e1234aab580(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1234aab580",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "DVOR/DME",
+        "id_ayuda": "NEU",
+        "frecuencia_canal": "116.7 MHz",
+        "horario": "H24",
+        "coord_raw": "385701.45S 0680917.13W",
+        "elevacion_dme": "268.50 m 881 ft",
+        "observaciones": "385701.45S 268.50 m DME CH 114X (350 DVOR/DME NEU 116.7 MHz H24 0680917.13W 881 ft km) CAT II a Pista 09/",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.15475833333333,
+          -38.95040277777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZN",
+        "iata": "NQN",
+        "aeropuerto": "NEUQUÉN / Presidente Perón",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e1234aab580(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1234aab580",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "ILS/LOC",
+        "id_ayuda": "NE",
+        "frecuencia_canal": "110.3 MHz",
+        "horario": "H24",
+        "coord_raw": "385656.64S 0680814.41W",
+        "elevacion_dme": "268 m 879 ft",
+        "observaciones": "ILS/LOC NE 110.3 MHz H24 385656.64S 268 m CAT II to Runway 0680814.41W 879 ft 09.",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.13733611111111,
+          -38.94906666666666
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZN",
+        "iata": "NQN",
+        "aeropuerto": "NEUQUÉN / Presidente Perón",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e1234aab580(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1234aab580",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "335.0 MHz",
+        "horario": "H24",
+        "coord_raw": "385700.34S 0681000.72W",
+        "elevacion_dme": "271 m 889 ft.",
+        "observaciones": "Pista 09 GP 3° - HGT REF 16.60 m. DME GP/DME 335.0 MHz H24 385700.34S 271 m CH 40X / 0681000.72W 889 ft. Pista 09 GP 3° - HGT REF 16.60 m. DME CH 40X",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.16686666666668,
+          -38.950094444444446
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZR",
+        "iata": "RSA",
+        "aeropuerto": "SANTA ROSA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e123c163177(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e123c163177",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "112.5 MHz",
+        "horario": "H24",
+        "coord_raw": "363602.8S 0641643.3W",
+        "elevacion_dme": "NIL NIL",
+        "observaciones": "363501.4 S VOR/DME OSA 112.5 MHz H24 NIL DME CH 72X (350 km) 0641622.1 W 363602.8S CAT I a RWY 19/ ILS/LOC SR 110.3 MHz NIL 0641643.3W CAT I to RWY 19 H24",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.27869444444444,
+          -36.60077777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZR",
+        "iata": "RSA",
+        "aeropuerto": "SANTA ROSA",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e123c163177(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e123c163177",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "GP/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "335.0 MHz",
+        "horario": null,
+        "coord_raw": "363451.0S 0641631.7W",
+        "elevacion_dme": "NIL",
+        "observaciones": "363451.0S RWY 19 - GP 3° - HGT REF GP/DME 335.0 MHz NIL 0641631.7W 16.20 m - DME CH 40X Observaciones / Remarks:",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.27547222222222,
+          -36.58083333333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZT",
+        "iata": "TDL",
+        "aeropuerto": "TANDIL / HÉROES DE MALVINAS",
+        "fuente_seccion": "AD 2.19",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e12466c7a15(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e12466c7a15",
+        "fecha_extraccion": "2026-08-13",
+        "tipo_ayuda": "VOR/DME",
+        "id_ayuda": null,
+        "frecuencia_canal": "115.9 MHz",
+        "horario": "H24",
+        "coord_raw": "371330.36S 0591346.23W",
+        "elevacion_dme": "DME NIL RWY - C",
+        "observaciones": "DME CH 106X (324 km) - CAT I a 371330.36S VOR/DME DIL 115.9 MHz H24 NIL RWY 19. / DME CH 106X (324 km) 0591346.23W - CAT I to RWY 19 Observaciones / Remarks: NIL",
+        "metodo_geometria": "coordenada_antena_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.229508333333335,
+          -37.225100000000005
+        ]
+      }
+    }
+  ]
+}

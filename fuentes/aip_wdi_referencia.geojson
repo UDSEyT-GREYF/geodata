@@ -1,0 +1,1293 @@
+{
+  "type": "FeatureCollection",
+  "name": "aip_wdi_referencia",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAP",
+        "iata": "PRA",
+        "aeropuerto": "PARANÁ / GENERAL URQUIZA",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e12b515db21.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e12b515db21",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí / Yes ABN location, characteristics and hours of operation 1 Emplazamiento, características y horas de funcionamiento IBN / Sí / Yes IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT NIL Luces de borde y eje de TWY / No 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / 1 GEL con el respectivo equipo secundario, la torre de control Secondary power supply cuenta con un equipo autónomo, como cada una de las radioayudas, permitiendo estar en el aire por el plazo de 24 hs. 4 1 GEL with the corresponding secondary equipment, the control tower has an autonomous equipment, as each one of the radio aids, allowing it to be on the air for 24 hours. Tiempo de conmutación / Switch-over time NIL Observaciones / Remarks Posee LGTD WDI, TWY y APN (Borde, además de 6 torres de iluminación) Ayudas a la navegación para el señalamiento: RWY, THR, designadores, eje, zona toma contacto, eje rodaje, punto espera, puestos de estacionamiento. 5 No posee Sistemas visuales indicadores de pendiente de aproximación. / LGTD WDI, TWY and APN available (Edge, plus 6 lighting towers). Navigation aids for signaling: RWY, THR, designators, axis, contact area, taxiway axis, holding point, parking positions. It does not have visual approach slope indicator systems.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de Carteles de información (números) / aeronaves, líneas de guía TWY y sistema de guía visual a Information signs (numbers) 1 estacionamiento en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Eléctrica, umbral, borde, rodaje. Si en RWY; THR; LGT y señales. RWY and TWY markings and LGT En TWY señales visuales y LGT en TWY “A”; “B”, “C”, “D” y “E”. / 2 Electric, threshold, edge, rolling. Yes on RWY; THR; LGT and signals. In TWY visual signals and LGT in TWY \"A\"; \"B\", \"C\", \"D\" and \"E\". Barras de parada y luces de protección de RWY / No. 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / NIL 4 Other runway protection measures Observaciones / Remarks Falta el balizamiento en TWY “A” entre “B” y RWY 02, “C” fuera de servicio. TWY “E”, “A” entre “B” y RWY 20, “B” en servicio. / 5 Missing beaconing at TWY \"A\" between “B” and RWY 02, \"C\" out of service. TWY \"E”, \"A\" between “B” and RWY 20, \"B\" in service.",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.48027777777778,
+          -31.794722222222223
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAR",
+        "iata": "ROS",
+        "aeropuerto": "ROSARIO / ISLAS MALVINAS",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e105dba2f99.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e105dba2f99",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY SYSTEMS Emplazamiento, características y horas de funcionamiento ABN Sí. Luz verde y blanca, 24 destellos por MIN / / ABN location, characteristics and hours of operation Yes. Green and white light, 24 flashes per MIN 1 Emplazamiento, características y horas de funcionamiento IBN/ No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT No Luces de borde y eje de TWY / Sí/Yes, No 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / 2 GEL (1 x 405 kW y/and 1 x 175 kW) 4 Secondary power supply Tiempo de conmutación / Switch-over time 8 SEC Observaciones / Remarks Posee borde de APN y WDI LGTD / 5 It has APN edge and WDI LGTD.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Indicadores puestos de estacionamiento / líneas de guía TWY y sistema de guía visual a estacionamiento Parking positions indicator 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Señales Sí, LGT de borde TWY y de umbral, extremo y borde RWY / 2 RWY and TWY markings and LGT Markings Yes, TWY border and threshold LGT, RWY end and border Barras de parada y luces de protección de RWY / TWY “A”, “B” 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / Letreros obligatorios y de información / 4 Other runway protection measures Mandatory and information signs 5 Observaciones / Remarks No",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.78444444444444,
+          -32.90361111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAV",
+        "iata": "SFN",
+        "aeropuerto": "SANTA FE / SAUCE VIEJO",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e13318f081b.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e13318f081b",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí. Luz Verde y blanco, 24 destellos por min/ ABN location, characteristics and hours of operation Yes. Green and White light, 24 flashes per min 1 Emplazamiento, características y horas de funcionamiento IBN / Sí. Luz Verde a destellos cada 10 sec (SVO) / IBN location, characteristics and hours of operation Yes. Green light flashes every 10 sec (SVO) 2 Emplazamiento y LGT en LDI / LDI location and LGT NIL Luces de borde y eje de TWY / Sí, alta Intensidad CAT 1 / Yes, high intensity CAT 1 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / 1 GEL de 500 Kva / 1 GEL of 500 Kva 4 Secondary power supply Tiempo de conmutación / Switch-over time 10 sec Observaciones / Remarks Posee APN y WDI LGTD Luces de alta intensidad de THR, Extremos y Bordes RWY Balizamiento - RWY 03/21 alta intensidad RWY 03/21 dispone de 5 niveles de brillo RWY 03 dispone de REILS / SALS RWY 21 dispone de ALS TWY “A”, “B” y “C” disponen de 3 niveles de brillo / 5 It has APN and WDI LGTD High intensity THR, End and Edge RWY lights Beaconing - RWY 03/21 high intensity RWY 03/21 has 5 brightness levels RWY 03 has REILS / SALS RWY 21 has ALS TWY \"A\", \"B\" and \"C\" have 3 brightness levels",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de Posiciones de estacionamiento, 1-2-3-4-5-H, disponible indicador aeronaves, líneas de guía TWY y sistema de guía visual a de tipo de ACFT en posición / 1 estacionamiento en los puestos de aeronaves / Parking positions, 1-2-3-4-5-H, ACFT type indicator available in Use of aircraft stand ID signs, TWY guide lines and visual position. docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Eléctrica de borde, RWY y THR / Electrical edge, RWY and THR 2 RWY and TWY markings and LGT Barras de parada y luces de protección de RWY / Barras de parada: No. Luces de protección de RWY: Sí / 3 Stop bars and RWY guard lights Stop bars: No. RWY protection lights: Yes Otras medidas de protección de RWY / NIL 4 Other runway protection measures Observaciones / Remarks Puesto de estacionamiento N° 1 penaliza H. Puesto H penaliza 5 puesto de estacionamiento N° 1 / Parking position No. 1 penalizes H. Post H penalizes parking position N° 1.",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.811388888888885,
+          -31.710833333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "AEROPARQUE JORGE NEWBERY",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-6a10684a7a5bd.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a10684a7a5bd",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí. Sobre TWR, Verde-Blanco, H24 / ABN location, characteristics and hours of operation Yes. On TWR, Green-White, H24 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation Emplazamiento y LGT en LDI / Sí/Yes 2 LDI location and LGT Luces de borde y eje de TWY / Sí. Luces de eje de plataforma de viraje en RSE de RWY 13 y TWY edge and centre line lighting extremo de RWY 31 / 3 Yes. Turning platform axis lights on RWY 13 RSE and end of RWY 31 Fuente secundaria de energía eléctrica / 1 G349 x 275 KVA - 1 G350 x 275 KVA - 1 G351 x 275 KVA 4 Secondary power supply Tiempo de conmutación / Switch-over time Automática. Observaciones / Remarks Posee APN y WDI LGTD Ayudas para el señalamiento: THR, eje, designadores, TDZ, distancia fija punto de espera en rodaje, eje TWY, puestos de 5 estacionamiento / It has APN and WDI LGTD Aids for marking: THR, axis, designators, TDZ, fixed distance taxiway holding point, TWY axis, parking positions",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Señales de eje de TWY en plataforma, direccional a los puestos de líneas de guía TWY y sistema de guía visual a estacionamiento estacionamiento, de identificación de PSN, de parada y tipo de 1 en los puestos de aeronaves / aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual Signs of shaft centerline on the APN, directional to parking docking/parking guidance system at aircraft stands positions, identification of PSN, stop and type of aircraft Señales y LGT de RWY y TWY / Designadores de pista / THR / TDZ / Eje RWY / Faja lateral RWY / RWY and TWY markings and LGT Eje de TWY / Borde TWY/ Puntos de Espera de la pista / Puntos de Espera Intermedio RWY 13: Señales de RSE (Extensión de Pista). Luces de eje RWY 13 y 31 / TDZ de RWY 13 Luces de eje en: TWY “A”, “B”, “C”, “D”, “F”, “H”, “I” y “J”. Luces de punto de espera intermedio en TWY “A”. RWY 13: Luces de RSE (Extensión de Pista). / 2 Runway Designators / THR / TDZ / RWY shaft / RWY Side Strip / TWY shaft / TWY Edge / Runway Holding Points / Intermediate Holding Points. RWY 13: RSE markings (Runway Extension). RWY 13 and 31 / TDZ center line lights from RWY 13 Centerline lights on: TWY “A”, “B”, “C”, “D”, “F”, “H”, “I” and “J”. Intermediate holding point lights on TWY “A” RWY 13: RSE lights (Runway Extension) Barras de parada y luces de protección de RWY / TWY “A”, “B”, “C”, “D”, “E”, “F”, “H”, “I” y / and “J” 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / Luces de Protección de pista / Runway Protection Lights 4 Other runway protection measures Observaciones / Remarks TWY “F”, solo destinada a desalojar la pista. Excepción: se podrá utilizar para ingreso a pista solo con la autorización del control TWR AER Luces de Barra de Prohibición de Acceso en TWY “F” / 5 TWY “F”, only intended for runway clearance. Exception: it may be used for runway entry only with the clearance of the AER TWR control Access Prohibition Bar Lights in TWY \"F\"",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.415,
+          -34.55972222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "CÓRDOBA / ING. AER. A. L. V. TARAVELLA",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e1078aa7f9d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1078aa7f9d",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí, luz blanca a destellos cada 12 SEC / ABN location, characteristics and hours of operation Yes, White light, flashes every 12 SEC 1 Emplazamiento, características y horas de funcionamiento IBN / Sí, luz verde a destellos cada 12 SEC-CBA / IBN location, characteristics and hours of operation Yes, green light, flashes every 12 SEC-CBA 2 Emplazamiento y LGT en LDI / LDI location and LGT No 3 Luces de borde y eje de TWY / Posee luces de borde TWY; No posee luces de eje TWY / TWY edge and centre line lighting It has TWY edge lights; It does not have TWY axis lights 4 Fuente secundaria de energía eléctrica / 1 GEL (500 kW) / 1 GEL (250 kW) Secondary power supply Tiempo de conmutación / Switch-over time 5 SEC 5 Observaciones / Remarks Posee WDI y APN LGTD Ayudas para el señalamiento: THR designadores, eje, TDZ 01/19 05/23. Eje rodaje, punto espera, puestos de estacionamiento. / It has WDI and APN LGTD Signaling aids: THR designators, axis, TDZ 01/19 05/23. Taxiing axis, holding point, parking positions",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Letreros de salida intersecciones / Exit signs at intersections líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / ILE RWY 01/19, RWY 05/23 y / and TWY “A”, “B” y/and “C” 2 RWY and TWY markings and LGT Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / No 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.20833333333334,
+          -31.310000000000002
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADF",
+        "iata": "FDO",
+        "aeropuerto": "SAN FERNANDO",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-6a68fbe672145.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a68fbe672145",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / No ABN location, characteristics and hours of operation 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT No Luces de borde y eje de TWY / Sí/Yes - No 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / 1 GEL x 330 KVA/264 kW 4 Secondary power supply Tiempo de conmutación / Switch-over time 12 SEC Observaciones / Remarks Posee APN y WDI LGTD Ayudas para el señalamiento: Señales de pista, THR, THR desplazado, dígitos eje TWY y eje punto espera en rodaje / 5 It has WDI and APN LGTD Signaling aids: Markings of runway, THR, displaced THR, TWY axis digits, and taxing holding point axis",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, APN, borde de TWY / APN, TWY edge líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Sistema de iluminación de pista de alta densidad de borde, THR y 2 RWY and TWY markings and LGT extremo / High density runway edge, THR and end runway lighting system Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / No 4 Other runway protection measures 5 Observaciones / Remarks Señalamiento de obstáculos / Obstacle markings",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.59138888888889,
+          -34.455000000000005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADP",
+        "iata": "EPA",
+        "aeropuerto": "EL PALOMAR",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e26822c76b6.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e26822c76b6",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí / Yes ABN location, characteristics and hours of operation 1 Emplazamiento, características y horas de funcionamiento IBN / Sí / Yes IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT Sí / Yes Luces de borde y eje de TWY / Sí, luces de borde TWY / Yes, TWY edge lighting 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / Sí / Yes 4 Secondary power supply Tiempo de conmutación / Switch-over time 12 SEC 5 Observaciones / Remarks Posee TWY, APN y WDI LGTD / It has TWY, APN y WDI LGTD.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Sí. Indicadores de posiciones de estacionamiento. Señales líneas de guía TWY y sistema de guía visual a estacionamiento designadoras de posiciones. No dispone letreros / 1 en los puestos de aeronaves / Yes. Parking position indicators. Position designator markings. No Use of aircraft stand ID signs, TWY guide lines and visual signs available. docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Eléctrica de borde, de extremo y THR / Electric edge, end and THR. 2 RWY and TWY markings and LGT Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / NIL 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.612500000000004,
+          -34.61
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "EZEIZA / MINISTRO PISTARINI",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e10875b7c89.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10875b7c89",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Luz alternativa verde y blanca a destellos cada 12 SEC / ABN location, characteristics and hours of operation Alternative green and white light, flashes every 12 SEC 1 Emplazamiento, características y horas de funcionamiento IBN / Luz verde a destellos cada 12 SEC/EZE / IBN location, characteristics and hours of operation Green light, flashes every 12 SEC/EZE 2 Emplazamiento y LGT en LDI / LDI location and LGT Sí/Yes 3 Luces de borde y eje de TWY / TWY edge and centre line lighting Sí/Yes Fuente secundaria de energía eléctrica / Circuitos de emergencias en pista 11/29. Fuente secundaria de Secondary power supply energía eléctrica / 4 Emergency circuits at runway 11/29. Secondary source of electric energy Tiempo de conmutación / Switch-over time NIL Observaciones / Remarks RWY 11/29 THR, TDZ distancia fija, eje y dígitos faja lateral RWY 17/35 THR, eje y dígitos, TDZ distancia lateral Posee APN y WDI LGTD (THR 11 y THR 35) / 5 RWY 11/29 THR, TDZ fixed distance, axis and digits side strip RWY 17/35 THR, axis and digits, TDZ lateral distance It has APN and WDI LGTD (THR 11 and THR 35)",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de Designadores de pista, THR, eje de pista, eje rodaje puestos de aeronaves, líneas de guía TWY y sistema de guía visual a aeronaves atraques y estacionamientos / 1 estacionamiento en los puestos de aeronaves / Designators of runway, KGMTHR, runway axis, taxiing axis, Use of aircraft stand ID signs, TWY guide lines and visual aircraft docking and parking positions docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Luces de eje TWY “C”, “D”, “E”, “F”, “I”. RWY and TWY markings and LGT Luces de eje TWY “G” entre TWY “D” y RWY 11/29. / 2 Axis lights at TWY “C”, “D”, “E”, “F”, “I”. Axis lights at TWY “G” between TWY “D” and RWY 11/29. Barras de parada y luces de protección de RWY / TWY “A”, “B”, “C”, “D”, “E”, “F”, “G”, “H”, “I”. / 3 Stop bars and RWY guard lights TWY “A”, “B”, “C”, “D”, “E”, “F”, “G”, “H”, “I”. Otras medidas de protección de RWY / NIL 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.53583333333333,
+          -34.82222222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAME",
+        "iata": "MDZ",
+        "aeropuerto": "MENDOZA / El Plumerillo",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69fc9d7664864.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69fc9d7664864",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí, luces alternadas verdes y blancas, cada 2.5 SEC 14.000 CD / ABN location, characteristics and hours of operation Yes, alternative green and white lights, every 2.5 SEC 14,000 cd 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT NIL Luces de borde y eje de TWY / Sí / Yes. 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / Sí. 2 GEL 1.100 kW con UPS para balizamiento / 4 Secondary power supply Yes. 2 GEL 1,100 kW with UPS for beaconing Tiempo de conmutación / Switch-over time NIL 5 Observaciones / Remarks Posee WDI y APN LGTD / It has WDI and APN LGTD.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Letreros de información / Information signs líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Eléctrica de borde, eje de pista, de extremo y THR 2 RWY and TWY markings and LGT Electric edge, runway axis, end and THR Barras de parada y luces de protección de RWY / Eléctrica en TWY \"A\", \"B\", \"C\", \"D\" y \"H\" / 3 Stop bars and RWY guard lights Luces de protección de pista / Electric at TWY “A”, “B”, “C”, “D” and “H” Runway protection lights Otras medidas de protección de RWY / No 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.79277777777777,
+          -32.83166666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAMM",
+        "iata": "LGS",
+        "aeropuerto": "MALARGÜE / COMODORO D. R. SALOMÓN",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e168cc06ad1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e168cc06ad1",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí. Color verde y blanco / Yes. Green and white color ABN location, characteristics and hours of operation 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT No Luces de borde y eje de TWY / Luces de borde de TWY: Sí / TWY edge lights: Yes 3 TWY edge and centre line lighting Luces de eje de TWY: No / TWY centre line lights: No Fuente secundaria de energía eléctrica / Sí. GEL (2): Equipo CUMINS – C220 D54 – 220 Kva y Equipo OTTO Secondary power supply DEUTZ - 60 Kva / 4 Yes. GEL (2): CUMINS Equipment - C220 D54 - 220 Kva and OTTO DEUTZ Equipment - 60 Kva Tiempo de conmutación / Switch-over time 15 SEC 5 Observaciones / Remarks WDI LGTD. APN LGT",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Sí / Yes líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Sí / Yes 2 RWY and TWY markings and LGT Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / No 4 Other runway protection measures 5 Observaciones / Remarks No",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.57472222222222,
+          -35.493611111111115
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAMR",
+        "iata": "AFA",
+        "aeropuerto": "SAN RAFAEL / S. A. SANTIAGO GERMANO",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e169708997f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e169708997f",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí, verde, blanco / No / Yes, green, white / No ABN location, characteristics and hours of operation 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT No Luces de borde y eje de TWY / Sí, No / Yes, No 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / Sí / Yes 4 Secondary power supply Tiempo de conmutación / Switch-over time 6 (seis/six) SEC 5 Observaciones / Remarks Posee LGT WDI (2), TWY y APN / It has LGT WDI (2), TWY and APN",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de Sí, Sí / Yes, Yes aeronaves, líneas de guía TWY y sistema de guía visual a 1 estacionamiento en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Sí, THR, Designadores de RWY, eje de RWY, Faja lateral de RWY, RWY and TWY markings and LGT TDZ. Señales de Eje de TWY, borde TWY / 2 Yes, THR, RWY Designators, RWY Axis, RWY Side Strip, TDZ. TWY Axis signals, TWY edge Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / No 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.40361111111112,
+          -34.58777777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANC",
+        "iata": "CTC",
+        "aeropuerto": "CATAMARCA",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e256ccb0f13.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e256ccb0f13",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí / Yes ABN location, characteristics and hours of operation 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation Frente a la plataforma comercial. Dispone de luz / 2 Emplazamiento y LGT en LDI / LDI location and LGT In front of the commercial APN. It has light Sí, TWY “A”, “B”, “C” y “D”. No dispone de luces de eje de TWY / Luces de borde y eje de TWY / 3 Yes, TWY “A”, “B”, “C” and “D”. Does not have TWY centre line TWY edge and centre line lighting lights Fuente secundaria de energía eléctrica / Sí / Yes 4 Secondary power supply Tiempo de conmutación / Switch-over time NIL 5 Observaciones / Remarks Posee WDI, TWY y APN LGTD / It has WDI, TWY y APN LGTD",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Sí / Yes líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / RWY 02/20 y/and TWY 2 RWY and TWY markings and LGT Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / No 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.75111111111111,
+          -28.593055555555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANE",
+        "iata": "SDE",
+        "aeropuerto": "SANTIAGO DEL ESTERO / VCOM. ÁNGEL D. LA PAZ ARAGONÉS",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e1098092c2d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1098092c2d",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / No ABN location, characteristics and hours of operation 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT NIL 3 Luces de borde y eje de TWY / TWY edge and centre line lighting NIL Fuente secundaria de energía eléctrica / Secondary power supply Sí. 1 GEL de 450 KW y 1 GEL de 150 KW / 4 Yes. 1 GEL of 450 KW and 1 GEL of 150 KW Tiempo de conmutación / Switch-over time NIL 5 Observaciones / Remarks Posee TWY, APN y WDI LGTD. / It has TWY, APN and WDI LGTD.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Sí/Yes líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Sí/Yes 2 RWY and TWY markings and LGT Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / NIL 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.31,
+          -27.765555555555554
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANL",
+        "iata": "IRJ",
+        "aeropuerto": "LA RIOJA / CAPITÁN VICENTE A. ALMONACID",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e254b904105.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e254b904105",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / No ABN location, characteristics and hours of operation 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT No Luces de borde y eje de TWY / Sí / Yes 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / GEL (AA2000) 4 Secondary power supply Tiempo de conmutación / Switch-over time 7 SEC 5 Observaciones / Remarks Posee WDI y APN LGTD. / It has WDI and APN LGTD.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Sí / Yes líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Sí / Yes 2 RWY and TWY markings and LGT Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / No 4 Other runway protection measures 5 Observaciones / Remarks No",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.79583333333333,
+          -29.380555555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANR",
+        "iata": "RHD",
+        "aeropuerto": "TERMAS DE RIO HONDO",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e6130f69047.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6130f69047",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí / Yes ABN location, characteristics and hours of operation 1 Emplazamiento, características y horas de funcionamiento IBN / Sí / Yes IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT No Luces de borde y eje de TWY / No 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / Sí / Yes 4 Secondary power supply Tiempo de conmutación / Switch-over time NIL 5 Observaciones / Remarks Posee TWY, APN y WDI LGTD / It has TWY, APN and WDI LGTD",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Sí / Yes líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Sí / Yes 2 RWY and TWY markings and LGT Barras de parada y luces de protección de RWY / Sí / Yes 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / Sí, control terrestre / Yes, ground control 4 Other runway protection measures 5 Observaciones / Remarks No",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.93583333333333,
+          -27.496666666666666
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANT",
+        "iata": "TUC",
+        "aeropuerto": "SAN MIGUEL de TUCUMÁN / Tte. BENJAMÍN MATIENZO",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10b1142729.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b1142729",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí, luz blanca a destellos cada 6 SEC / ABN location, characteristics and hours of operation Yes, white light, flashes every 6 SEC 1 Emplazamiento, características y horas de funcionamiento IBN / NIL IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT Sí/Yes Luces de borde y eje de TWY / Sí/Yes 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / 1 GEL de/of 175 Kw; 1 GEL de/of 440 Kw. 4 Secondary power supply Tiempo de conmutación / Switch-over time 7 SEC Observaciones / Remarks Posee WDI y APN LGTD. Ayudas para el señalamiento: RWY, THR, designadores, eje, TDZ, eje rodaje, punto espera, puestos de estacionamiento / 5 It has WDI and APN LGTD. Signaling aids: RWY, THR, designators, axis, TDZ, taxiing axis, standing point, parking positions.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Sí, letreros de información / Yes, information signs líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Eléctrica, THR, extremo, borde, rodaje / 2 RWY and TWY markings and LGT Electric, THR, end, edge, taxiing Barras de parada y luces de protección de RWY / Sí/Yes y/and No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / No 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.10444444444444,
+          -26.83833333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANU",
+        "iata": "UAQ",
+        "aeropuerto": "SAN JUAN / DOMINGO FAUSTINO SARMIENTO",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e10b2277811.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b2277811",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN/ Sí / Yes ABN location, characteristics and hours of operation 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT NIL 3 Luces de borde y eje de TWY / TWY edge and centre line lighting NIL Fuente secundaria de energía eléctrica /Secondary power supply Sí / Yes 4 Tiempo de conmutación / Switch-over time 9 SEC 5 Observaciones / Remarks Posse TWY, APN y WDI LGTD. / It has TWY, APN and WDI LGTD.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de Sí / Yes aeronaves, líneas de guía TWY y sistema de guía visual a 1 estacionamiento en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / RWY and TWY markings and LGT Sí / Yes 2 Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / NIL 4 Other runway protection measures Observaciones / Remarks NIL 5",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.41833333333334,
+          -31.57138888888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOC",
+        "iata": "RCU",
+        "aeropuerto": "RÍO CUARTO / ÁREA DE MATERIAL",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10b83ad8fa.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b83ad8fa",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí/Yes ABN location, characteristics and hours of operation 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT Sí/Yes Luces de borde y eje de TWY / Sí/Yes, no 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / GEL 137.5 KW 4 Secondary power supply Tiempo de conmutación / Switch-over time 12 SEC automático / 12 sec automatic 5 Observaciones / Remarks Posee WDI, TWY y APN LGT / It has WDI, TWY and APN LGT",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de Sí/Yes aeronaves, líneas de guía TWY y sistema de guía visual a 1 estacionamiento en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Sí/Yes 2 RWY and TWY markings and LGT Barras de parada y luces de protección de RWY / Sí. Sin LGT / Yes. Without LGT 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / NIL 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.26944444444445,
+          -33.092222222222226
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOR",
+        "iata": "VME",
+        "aeropuerto": "VILLA REYNOLDS",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e10c27bbaf1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10c27bbaf1",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí / Yes ABN location, characteristics and hours of operation 1 Emplazamiento, características y horas de funcionamiento IBN / Sí / Yes IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT NIL Luces de borde y eje de TWY / NIL 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / Sí / Yes 4 Secondary power supply Tiempo de conmutación / Switch-over time NIL Observaciones / Remarks Posee TWY, APN y WDI LGTD. Grupo electrógeno provisto por AA2000. / 5 It has TWY, APN and WDI LGTD. Generator equipment supplied by AA2000.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Sí / Yes líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands 2 Señales y LGT de RWY y TWY /RWY and TWY markings and LGT Sí / Yes Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / NIL 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.37805555555555,
+          -33.725
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOS",
+        "iata": "RLO",
+        "aeropuerto": "VALLE DEL CONLARA",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "1/2023",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10c3899e4a.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10c3899e4a",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí, en TWR, verde y blanco, 12 destellos por MIN. / ABN location, characteristics and hours of operation Yes, in TWR, green and white, 12 flashes per MIN. 1 Emplazamiento, características y horas de funcionamiento IBN / Sí / Yes IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT No 3 Luces de borde y eje de TWY /TWY edge and centre line lighting Sí / Yes Fuente secundaria de energía eléctrica / Sí. GEL 124.8 kW / Yes. GEL 124,8 kW. 4 Secondary power supply Tiempo de conmutación / Switch-over time 13 SEC 5 Observaciones / Remarks Posee WDI y APN LGTD. / It has WDI and APN LGTD.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Sí / Yes líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Sí / Yes 2 RWY and TWY markings and LGT Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / NIL 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.18577222222223,
+          -32.38446944444444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOU",
+        "iata": "LUQ",
+        "aeropuerto": "SAN LUIS / BRIG.MY. CESAR RAUL OJEDA",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e23dcde0868(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e23dcde0868",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí/Yes ABN location, characteristics and hours of operation 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT NIL Luces de borde y eje de TWY / NIL 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica /Secondary power supply GEL 4 Tiempo de conmutación / Switch-over time Conmutación 8 SEC. / Switching 8 SEC. 5 Observaciones / Remarks Posee TWY, APN y WDI LGTD. / It has TWY, APN and WDI LGTD.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Sí/Yes líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands 2 Señales y LGT de RWY y TWY / RWY and TWY markings and LGT Sí/Yes Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / NIL 4 Other runway protection measures Observaciones / Remarks No dispone ID tipo de aeronaves en PSN 3, 4, 5 y 6 / 5 No aircraft type ID available on PSN 3, 4, 5 and 6",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.35638888888889,
+          -33.27333333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARC",
+        "iata": "CNQ",
+        "aeropuerto": "CORRIENTES",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e10de8df659(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10de8df659",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Luz alternativa verde y blanca cada 3 segundos / ABN location, characteristics and hours of operation Alternative green and white lights every 3 seconds 1 Emplazamiento, características y horas de funcionamiento IBN / Luz verde a destellos cada 3 segundos-CRR / IBN location, characteristics and hours of operation Green light, flashes every 3 seconds-CRR 2 Emplazamiento y LGT en LDI / LDI location and LGT Sí/Yes Luces de borde y eje de TWY / Sí/Yes 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / Energía eléctrica de emergencia 1 GEL de 135 kW y 1 GEL de 300 Secondary power supply kW / 4 Emergency power 1 GEL of 135 kW and 1 GEL of 300 kW Tiempo de conmutación / Switch-over time 11 SEC Observaciones / Remarks Posee LGT en APN y 2 (dos) WDI. Ayudas para el señalamiento: eje de pista, designadores de pista, THR de pista, punto de espera de la pista, eje de TWY, puesto de 5 estacionamiento en APN / It has LGT on APN and 2 (two) WDI. Signaling aids: runway axis, runway designators, runway THR, runway holding point, TWY axis, APN parking position.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Letreros en TWY y APN / Signs on TWY and APN líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / RWY: borde, THR y extremo - TWY: borde / 2 RWY and TWY markings and LGT RWY: edge, THR and end – TWY: edge Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.76166666666666,
+          -27.445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARE",
+        "iata": "RES",
+        "aeropuerto": "RESISTENCIA",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e23557ecfd0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e23557ecfd0",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí, luz alternativa verde y blanca 2.5 destellos por SEC / ABN location, characteristics and hours of operation Yes, alternative green and white lights, 2.5 flashes per SEC 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT Sí, 1 entre APN y RWY / Yes, 1 between APN and RWY Luces de borde y eje de TWY / Sí/Yes 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / 1 GEL de 500 KVA / 1 GEL of 500 KVA 4 Secondary power supply Tiempo de conmutación / Switch-over time 9 SEC 5 Observaciones / Remarks Posee LGTD en APN y WDI / It has LGTD at APN and WDI",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, ID puestos de estacionamiento. Guía visual para estacionamiento. líneas de guía TWY y sistema de guía visual a estacionamiento Guía TWY / 1 en los puestos de aeronaves / ID Parking positions. Visual parking guidance. TWY guide Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Eléctrica de borde, de extremo y THR / 2 RWY and TWY markings and LGT Electric of edge, end, and THR Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / No 4 Other runway protection measures 5 Observaciones / Remarks No",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.05611111111111,
+          -27.45
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARF",
+        "iata": "FMA",
+        "aeropuerto": "FORMOSA",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e249b1a7ad5(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e249b1a7ad5",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN Sí, luz alternativa verde y blanca 2.5 destellos por segundos / / ABN location, characteristics and hours of operation Yes, alternative green and white light, 2.5 flashes per seconds 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT Sí / Yes Luces de borde y eje de TWY / Sí / Yes 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / Sí / Yes 4 Secondary power supply Tiempo de conmutación / Switch-over time 12 Sec 5 Observaciones / Remarks Posee APN y WDI LGTD / It has APN and WDI LGTD",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Si, puestos de estacionamiento 1, 2, 3, 4, y 5 / líneas de guía TWY y sistema de guía visual a estacionamiento Yes, parking positions 1, 2, 3, 4, y 5 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Eléctrica de borde, de extremo y THR / 2 RWY and TWY markings and LGT Electric of edge, end and THR Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / No 4 Other runway protection measures Observaciones / Remarks Puesto de estacionamiento N° 2: sin restricciones / 5 Parking position No. 2: no restrictions",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.22805555555556,
+          -26.212777777777777
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARI",
+        "iata": "IGR",
+        "aeropuerto": "CATARATAS DEL IGUAZÚ / Mayor D. Carlos Eduardo Krause",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e6163c31b23(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6163c31b23",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí / Yes 1 ABN location, characteristics and hours of operation Emplazamiento, características y horas de funcionamiento IBN / NIL IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT NIL Luces de borde y eje de TWY / Si. Luces de borde de TWY “A”, “B” y “C” iluminación de alta TWY edge and centre line lighting intensidad. Doble circuito / 3 Yes. TWY edge lights \"A\", \"B\" and \"C\" high intensity lighting. Double circuit. Fuente secundaria de energía eléctrica / 2 GEL x 110 kW C/U - 1 GEL x 500 kW. 4 Secondary power supply Tiempo de conmutación / Switch-over time NIL 5 Observaciones / Remarks Posee APN y WDI LGTD / It has APN and WDI LGTD",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Letreros de información / Information signs. líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Eléctrica de borde, de extremo de THR / 2 RWY and TWY markings and LGT Electric of edge, of THR end. Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / NIL 4 Other runway protection measures Observaciones / Remarks Ayuda para señalamiento: THR, Zona de Toma de contacto, Eje, Designadores, Faja Lateral, Borde de TWY, Eje de TWY, Puesto de 5 estacionamiento en APN / Marking aids: THR, Touchdown Zone, Axis, Designators, Side Strip, TWY Edge, TWY Axis, APN Parking Position.",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -54.473333333333336,
+          -25.737222222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARP",
+        "iata": "PSS",
+        "aeropuerto": "POSADAS / Libertador Gral. D. José de San Martín",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1137370dba(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1137370dba",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí. ABN. Luces Blanco y Verde. 24 destellos por minuto. ABN location, characteristics and hours of operation Emplazado en TWR / 1 Yes. ABN. White and Green lights. 24 flashes per minute. Located in TWR Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT NIL 3 Luces de borde y eje de TWY / TWY edge and centre line lighting No Fuente secundaria de energía eléctrica / Secondary power supply Principal: 330 KVA, 2 equipos Secundarios 90 KVA / 4 Main: 330 KVA, 2 Secondary equipment 90 KVA Tiempo de conmutación / Switch-over time 0” (UPS) Observaciones / Remarks Posee WDI y borde APN LGTD Ayudas para el señalamiento: THR, designadores, eje, eje rodaje, punto espera, puestos estacionamiento / 5 It has WDI and edge APN LGTD Marking aids: THR, designators, axis, taxiing axis, holding point, parking positions",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Borde de rodaje, eje, indicador puestos de estacionamiento / líneas de guía TWY y sistema de guía visual a estacionamiento Taxiing edge, axis, parking position indicators 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands 2 Señales y LGT de RWY y TWY / RWY and TWY markings and LGT Sí/Yes Barras de parada y luces de protección de RWY / No Barra de Parada, Sí Luces de protección de RWY / 3 Stop bars and RWY guard lights No Stop Bar, Yes RWY guard lights Otras medidas de protección de RWY / NIL 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -55.970555555555556,
+          -27.385833333333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASA",
+        "iata": "SLA",
+        "aeropuerto": "SALTA / Gral. Don Martín Miguel de Güemes",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e1138586777(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1138586777",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY 1 Emplazamiento, características y horas de funcionamiento ABN Sí, luz blanca cada 12 segundos. / Yes, white light every 12 seconds. / ABN location, characteristics and hours of operation Emplazamiento, características y horas de funcionamiento IBN No / IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT NIL Luces de borde y eje de TWY / Sí / Yes 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / Grupos electrógenos 1 de 200 kW y 1 de 300 kW. / 4 Secondary power supply Generating sets 1 of 200 kW and 1 of 300 kW. Tiempo de conmutación / Switch-over time Transferencia automática. / Automatic transfer. 5 Observaciones / Remarks Posee APN y WDI LGTD. / It has APN and WDI LGTD.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Señales de TWY indicadores diurnos. Dispone letreros / líneas de guía TWY y sistema de guía visual a estacionamiento TWY signs daytime indicators. Signs available. 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Eléctrica de borde, de extremo y THR. TWY: Eléctrica / 2 RWY and TWY markings and LGT Electric of edge, end, and THR. TWY: Electric. Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / NIL 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.48694444444445,
+          -24.859722222222224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASJ",
+        "iata": "JUJ",
+        "aeropuerto": "JUJUY / Gobernador Horacio Guzmán",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e113f9e6050(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e113f9e6050",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY 1 Emplazamiento, características y horas de funcionamiento ABN Sí, blanco 20 destellos por MIN / Yes, white, 20 flashes per MIN / ABN location, characteristics and hours of operation Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT 242334S 0650542 W Luces de borde y eje de TWY / Si. Luces de borde de TWY. / Yes. Edge lights of TWY 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / 1 GEL de 1360KW / 1 GEL of 1360KW 4 Secondary power supply Tiempo de conmutación / Switch-over time NIL Observaciones / Remarks Posee WDI y APN LGTD. Ayudas para el señalamiento: THR, designadores, eje, TDZ, eje rodaje punto espera, puestos de 5 estacionamiento / It has APN and WDI LGTD. Signaling aids: THR, designators, axis, TDZ, taxiway, holding point, parking positions",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Posiciones de estacionamiento, eje TWY, puntos de espera de la líneas de guía TWY y sistema de guía visual a estacionamiento pista / 1 en los puestos de aeronaves / Parking positions, TWY axis, RWY holding points Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Eléctrica de borde, de extremo de THR, borde de rodaje / 2 RWY and TWY markings and LGT Electric of edge, end of THR, taxiing edge Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / No 4 Other runway protection measures Observaciones / Remarks No 5",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.0978361111111,
+          -24.392777777777777
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SATR",
+        "iata": "RCQ",
+        "aeropuerto": "RECONQUISTA",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e11419cd188(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11419cd188",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": false,
+        "rwy_guard_lights_mencionado": false,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí / Yes ABN location, characteristics and hours of operation 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation Emplazamiento y LGT en LDI / LDI location and LGT Sí, en cercanías del THR 02. / 2 Yes, in the proximity of THR 02 Luces de borde y eje de TWY /TWY edge and centre line lighting Sí, azules. / No dispone luces de eje de TWY. Yes, blue. / 3 It has no TWY centre line lights. 4 Fuente secundaria de energía eléctrica /Secondary power supply Sí / Yes 5 Tiempo de conmutación / Switch-over time 7 SEC 6 Observaciones / Remarks Posee LGT WDI, TWY y APN. / It has LGT WDI, TWY and APN.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Sí / Yes líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / RWY and TWY markings and LGT Señales: Designadores de pista 02/20 / THR / Eje RWY / Faja lateral RWY / Eje de TWY / Borde TWY/ Puntos de Espera de la pista / Puntos de Espera Intermedio. Designadores de pista 10/28 / THR / TDZ / Eje RWY / Faja lateral 2 RWY / Eje de TWY. Luces: Luces de umbral/extremo, REILS y borde de RWY para 10/28. RWY 02/20 no posee luces. Luces de TWY sobre RWY 02/20 entre TWY “A” y RWY 10/28./",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.68,
+          -29.210277777777776
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVC",
+        "iata": "CRD",
+        "aeropuerto": "COMODORO RIVADAVIA / GRAL. E. MOSCONI",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e1143c25a85(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1143c25a85",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN Si. Emplazado sobre TWR. Destellos cada 2.5 SEC. Luces verde/ / ABN location, characteristics and hours of operation blanca. 2000 CD / Yes. Located on a TWR. Flashes every 2.5 seconds. Green/white 1 light. 2000 CD Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT NIL Luces de borde y eje de TWY / Sí. Eléctrica de borde / Yes. Electric of edge 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / 1 GEL x 650 kW / 1 GEL x 400 kW 4 Secondary power supply Tiempo de conmutación / Switch-over time NIL 5 Observaciones / Remarks Posee WDI y APN LGTD / It has WDI and APN LGTD",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Sí / Yes líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Eléctrica de borde, de extremo de THR / 2 RWY and TWY markings and LGT Electric of edge, of end of THR Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / NIL 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.46555555555555,
+          -45.78527777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVE",
+        "iata": "EQS",
+        "aeropuerto": "ESQUEL / Brigadier General Antonio Parodi",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e114f5ef93e(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e114f5ef93e",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN / Sí verde/blanco 24 destellos por MIN/ ABN location, characteristics and hours of operation Yes green/white 24 flashes per MIN 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT NIL Luces de borde y eje de TWY / NIL 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / Sí, principal cummins 330 KVA y un grupo alternativo cummins Secondary power supply 100 KVA. / Yes, principal cummins 330 KVA and one alternative 4 cummins of 100 KVA. Tiempo de conmutación / Switch-over time NIL 5 Observaciones / Remarks Posee WDI, TWY y APN LGTD. / It has WDI, TWY and APN LGTD.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de Sí / Yes aeronaves, líneas de guía TWY y sistema de guía visual a 1 estacionamiento en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / No 2 RWY and TWY markings and LGT Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / NIL 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.13555555555556,
+          -42.903888888888886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVT",
+        "iata": "REL",
+        "aeropuerto": "TRELEW / ALMIRANTE ZAR",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e11508bc15d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11508bc15d",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN Sí. Luz alternada verde y blanca 24 destellos por MIN / / ABN location, characteristics and hours of operation Yes. Alternate green and white light, 24 flashes every MIN 1 Emplazamiento, características y horas de funcionamiento IBN / NIL IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT NIL Luces de borde y eje de TWY / Sí/Yes 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / Sí/Yes 4 Secondary power supply Tiempo de conmutación / Switch-over time Sí/Yes 5 Observaciones / Remarks Posee WDI y APN LGTD. / It has LGTD WDI and APN.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Letrero de guía para el rodaje. / Guide sign for taxiway líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY /RWY and TWY markings and LGT Eléctrica de pista, bordes y THR / 2 Electrical of runway, edges and THR Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / NIL 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.27027777777778,
+          -43.21055555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWC",
+        "iata": "FTE",
+        "aeropuerto": "EL CALAFATE",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e7b256c1c2c.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b256c1c2c",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY SYSTEMS Emplazamiento, características y horas de funcionamiento ABN / Sí. Blanco - Verde (*) / Yes. White - Green (*) ABN location, characteristics and hours of operation 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT No Luces de borde y eje de TWY / Sí / Yes 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / 1 GEL 340 kW, 1 GEL 325 kW, 1 GEL 139 kW 4 Secondary power supply Tiempo de conmutación / Switch-over time No Observaciones / Remarks (*) Ubicado en TWR - Posee WDI y APN LGTD. / 5 (*) Located at TWR - It has WDI and APN LGTD.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Sí. 1-2-3-4-4A-5-6-7-8-8A / Yes.1 -2-3-4-4A-5-6-7-8-8A líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands 2 Señales y LGT de RWY y TWY / RWY and TWY markings and LGT Sí (TWY “C” No) / Yes (TWY “C” No) Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / No 4 Other runway protection measures 5 Observaciones / Remarks No",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.05333333333333,
+          -50.280277777777776
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWE",
+        "iata": "RGA",
+        "aeropuerto": "RÍO GRANDE",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1380c9247f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1380c9247f",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN Sí, luz alternativa verde y blanca a destellos cada 2.5 SEC. / / ABN location, characteristics and hours of operation Yes, alternating green and white light flashing every 2.5 sec. 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT NIL Luces de borde y eje de TWY / Sí / Yes 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / 2 GEL UNO DE 330KVA Y OTRO DE 220 KVA/ 4 Secondary power supply 2 GEL, ONE OF 330 KVA AND ANOTHER ONE OF 220 KVA Tiempo de conmutación / Switch-over time NIL 5 Observaciones / Remarks Posee WDI LGTD / It has WDI LGTD",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, No líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Eléctrica de borde, de extremo y THR / 2 Electric of edge, end and THR RWY and TWY markings and LGT Barras de parada y luces de protección de RWY / Dispone de LGT de protección de RWY en TWY A/ 3 It has RWY protection LGT at TWY A Stop bars and RWY guard lights Otras medidas de protección de RWY / NIL 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.74944444444445,
+          -53.777499999999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWG",
+        "iata": "RGL",
+        "aeropuerto": "RÍO GALLEGOS / Piloto Civil Norberto Fernández",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1165d02be1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1165d02be1",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN Blanco y verde, 24 destellos por MIN. / ABN location, characteristics and hours of operation White and green, 24 flashes per MIN. 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT NIL Luces de borde y eje de TWY / Borde calle de rodajes/Taxiway edge 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / 1 GEL sullair 375 kW. Secondary power supply 4 Tiempo de conmutación / Switch-over time Con dispositivo automático de conmutación y puesta en servicio de 11 SEC./ With automatic switching and commissioning device of 11 SEC. 5 Observaciones / Remarks Posee WDI y APN LGTD / It has WDI and APN LGTD.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Sí /Yes líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Luces de borde de TWY “A”, “B”, “C” y “D” / 2 RWY and TWY markings and LGT Edge lights of TWY “A”, “B”, “C” and “D”. Barras de parada y luces de protección de RWY / Dispone de luces de protección de pista en TWY “A”, “B”, “C” y 3 Stop bars and RWY guard lights “D” / It has runway protection lights in TWY \"A\", \"B\", \"C\" and \"D\". Otras medidas de protección de RWY / NIL 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.30694444444444,
+          -51.60861111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWH",
+        "iata": "USH",
+        "aeropuerto": "USHUAIA / MALVINAS ARGENTINAS",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e7b2b7ee74b(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b2b7ee74b",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN Sí, luz blanca y verde, destellos de 24 a 30 flashes por min / / ABN location, characteristics and hours of operation Yes, white, and green light, flashes 24 to 30 flashes per min. 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT NIL Luces de borde y eje de TWY / Sí, eléctrica de borde. / Yes, electric of edge. 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / 85 KV en área operativa (TWR-RWY LGT-MET-ARO AIS) y 200 KVA Secondary power supply (TERMINAL) / 4 85 KV at operative area (TWR-RWY LGT-MET-ARO AIS) and 200 KVA (TERMINAL) Tiempo de conmutación / Switch-over time NIL Observaciones / Remarks Posee WDI y APN LGTD / It has WDI and APN LGTD/ 5 APN AUX sin iluminación. / APN AUX without lighting.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Sí / Yes líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / RWY: Señal de Eje TDZ, THR. Eléctrica – Borde – Extremo – THR. / 2 RWY and TWY markings and LGT RWY: TDZ, THR axis marking. Electric – Edge –End– THR. Barras de parada y luces de protección de RWY / Carteles de información. / Information signs. 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / NIL 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.29555555555555,
+          -54.843333333333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZM",
+        "iata": "MDQ",
+        "aeropuerto": "MAR DEL PLATA / ASTOR PIAZZOLLA",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e1232468b6a(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1232468b6a",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN Sí, luz blanca a destellos cada 5 SEC. / Yes, white light, flashes / ABN location, characteristics and hours of operation every 5 SEC. 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT NIL Luces de borde y eje de TWY / Sí / Yes; No 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / 2 GEL 175 kW C/U / 2 GEL 175 Kw each 4 Secondary power supply Tiempo de conmutación / Switch-over time 12 segundos / 12 seconds 5 Observaciones / Remarks Posee APN y WDI (en ambas cabeceras) LGTD/ It has APN and WDI (at both headers) LGTD",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Eje de Rodaje, Puestos de estacionamiento / líneas de guía TWY y sistema de guía visual a estacionamiento Taxiing axis. Parking positions 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Eléctrica de borde, de extremo y THR/ 2 RWY and TWY markings and LGT Electric of edge, end and THR Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / NIL 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.57333333333334,
+          -37.93416666666666
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZN",
+        "iata": "NQN",
+        "aeropuerto": "NEUQUÉN / Presidente Perón",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e1234aab580(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1234aab580",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento ABN Sí, sobre TWR, Verde/Incoloro, 2 SEC / ABN location, characteristics and hours of operation Yes, over TWR, Green/no color, 2 SEC 1 Emplazamiento, características y horas de funcionamiento IBN / No IBN location, characteristics and hours of operation 2 Emplazamiento y LGT en LDI / LDI location and LGT No 3 Luces de borde y eje de TWY /TWY edge and centre line lighting Sí, No / Yes, No Fuente secundaria de energía eléctrica /Secondary power supply 2 GEL de 75 kW C/U / 2 GEL of 75 kW each 4 Tiempo de conmutación / Switch-over time NIL 5 Observaciones / Remarks Posee APN y WDI LGTD / It has APN and WDI LGTD",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Borde de rodaje, eje de rodaje, puestos de estacionamientos / líneas de guía TWY y sistema de guía visual a estacionamiento Taxiway edge, taxiway axis, parking positions 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Señales: Designadores de pista, THR / TDZ, Eje RWY / Faja lateral RWY and TWY markings and LGT RWY/Eje TWY/ Borde TWY y Puntos de Espera de la pista. Luces RWY y TWY. LGT Borde, extremo y umbral RWY. Letreros en RWY y TWY / 2 Signals: Runway Designators, THR / TDZ, RWY Axis / RWY Side Strip / TWY Axis / TWY Edge and Runway Waiting Points. RWY and TWY lights. LGT RWY edge, end and threshold. Signs on RWY and TWY Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.15583333333333,
+          -38.94888888888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZS",
+        "iata": "BRC",
+        "aeropuerto": "SAN CARLOS DE BARILOCHE",
+        "fuente_seccion": "AD 2.15",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e8bacf19c28(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e8bacf19c28",
+        "fecha_extraccion": "2026-08-13",
+        "wdi_mencionado": true,
+        "abn_mencionado": true,
+        "ibn_mencionado": true,
+        "ldi_mencionado": true,
+        "stop_bars_mencionado": true,
+        "rwy_guard_lights_mencionado": true,
+        "texto_ad215": "AD 2.15 OTROS SISTEMAS DE ILUMINACIÓN Y FUENTE SECUNDARIA DE ENERGÍA ELÉCTRICA / OTHER LIGHTING AND SECONDARY POWER SUPPLY Emplazamiento, características y horas de funcionamiento Sí. Luz blanca a destellos 1.5 por SEC./ 1 ABN/ ABN location, characteristics and hours of operation Yes, flashing white light 1.5 per SEC. Emplazamiento, características y horas de funcionamiento IBN / Sí. Luz verde a destellos cada 12 SEC/ BAR IBN location, characteristics and hours of operation Yes. Flashing green light every 12 SEC/BAR 2 Emplazamiento y LGT en LDI / LDI location and LGT NIL Luces de borde y eje de TWY / Sí / Yes 3 TWY edge and centre line lighting Fuente secundaria de energía eléctrica / Sí. 3 grupos electrógenos de 550 kVA. / Secondary power supply Yes. 3 power generators of 550 kVA. 4 Tiempo de conmutación / Switch-over time Tiempo conmutación del GEL 8 segundos. / GEL switching time 8 seconds. Observaciones / Remarks Posee APN LGTD y WDI LGTD lateral E TWY “C”, lateral S THR 11 sin LGTD, lateral THR 29 con LGTD. / 5 It has APN LGTD and WDI LGTD lateral E TWY \"C\", lateral S THR 11 without LGTD, lateral THR 29 with LGTD.",
+        "texto_ad29": "AD 2.9 SISTEMA DE GUÍA Y CONTROL DEL MOVIMIENTO EN LA SUPERFICIE Y SEÑALES / SURFACE MOVEMENT GUIDANCE AND CONTROL SYSTEM AND MARKINGS Uso de señales ID de puestos de estacionamiento de aeronaves, Sí / Yes líneas de guía TWY y sistema de guía visual a estacionamiento 1 en los puestos de aeronaves / Use of aircraft stand ID signs, TWY guide lines and visual docking/parking guidance system at aircraft stands Señales y LGT de RWY y TWY / Sí / Yes 2 RWY and TWY markings and LGT Barras de parada y luces de protección de RWY / No 3 Stop bars and RWY guard lights Otras medidas de protección de RWY / NIL 4 Other runway protection measures 5 Observaciones / Remarks NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "ARP_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.15777777777778,
+          -41.151111111111106
+        ]
+      }
+    }
+  ]
+}

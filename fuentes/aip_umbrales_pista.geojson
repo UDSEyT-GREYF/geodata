@@ -1,0 +1,4806 @@
+{
+  "type": "FeatureCollection",
+  "name": "aip_umbrales_pista",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAC",
+        "iata": "COC",
+        "aeropuerto": "CONCORDIA / COMODORO JUAN JOSÉ PIERRESTEGUI",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10469037bf.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10469037bf",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "04",
+        "brg_geo": 27.9,
+        "brg_mag": 40.0,
+        "longitud_rwy_m": 2000.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "500/R/C/W/T",
+        "elev_thr_tdz": "32.75 m 107 ft",
+        "pendiente_rwy_swy": "-0.45%",
+        "coord_aip": "311821.14S 0580007.70W GUND 17 m",
+        "dthr_m": null,
+        "tora_m": 2000.0,
+        "toda_m": 2000.0,
+        "asda_m": 2000.0,
+        "lda_m": 2000.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.00213888888889,
+          -31.305872222222224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAC",
+        "iata": "COC",
+        "aeropuerto": "CONCORDIA / COMODORO JUAN JOSÉ PIERRESTEGUI",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10469037bf.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10469037bf",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "22",
+        "brg_geo": 207.9,
+        "brg_mag": 220.0,
+        "longitud_rwy_m": 2000.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "500/R/C/W/T",
+        "elev_thr_tdz": "23.75 m 78 ft OFZ",
+        "pendiente_rwy_swy": "0.45% Observaciones / Remarks",
+        "coord_aip": "311723.73S 0575932.37W GUND 17 m Ubicación (en qué extremo de pista) Descripción del sistema de parada Location (which RWY end) and Descriptio of arresting syste",
+        "dthr_m": null,
+        "tora_m": 2000.0,
+        "toda_m": 2000.0,
+        "asda_m": 2000.0,
+        "lda_m": 2000.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.992325,
+          -31.289925
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAG",
+        "iata": null,
+        "aeropuerto": "GUALEGUAYCHÚ",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69ebb97edc7dc.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69ebb97edc7dc",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "01",
+        "brg_geo": 10.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 1330.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "16t/1 20t/2 32t/4",
+        "elev_thr_tdz": "23 m 75 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "330041.65S 0583646.53W",
+        "dthr_m": null,
+        "tora_m": 1330.0,
+        "toda_m": 1330.0,
+        "asda_m": 1330.0,
+        "lda_m": 1330.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.612925000000004,
+          -33.01156944444445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAG",
+        "iata": null,
+        "aeropuerto": "GUALEGUAYCHÚ",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69ebb97edc7dc.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69ebb97edc7dc",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "19",
+        "brg_geo": 190.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 1330.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "16t/1 20t/2 32t/4",
+        "elev_thr_tdz": "16 m 53 ft OFZ",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks",
+        "coord_aip": "325958.47S 0583645.69W Ubicación (en qué extremo de pista) Descripción del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": 1330.0,
+        "toda_m": 1330.0,
+        "asda_m": 1330.0,
+        "lda_m": 1330.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.61269166666667,
+          -32.999575
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAP",
+        "iata": "PRA",
+        "aeropuerto": "PARANÁ / GENERAL URQUIZA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e12b515db21.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e12b515db21",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "brg_geo": 8.0,
+        "brg_mag": 27.0,
+        "longitud_rwy_m": 2100.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "36/F/C/W/T",
+        "elev_thr_tdz": "63.25 m (208 ft)",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "314814.87S 0602855.16W UND 17 m (56 ft)",
+        "dthr_m": null,
+        "tora_m": 2100.0,
+        "toda_m": 2100.0,
+        "asda_m": 2100.0,
+        "lda_m": 2100.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.48198888888889,
+          -31.804130555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAP",
+        "iata": "PRA",
+        "aeropuerto": "PARANÁ / GENERAL URQUIZA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e12b515db21.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e12b515db21",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "20",
+        "brg_geo": 188.0,
+        "brg_mag": 27.0,
+        "longitud_rwy_m": 2100.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "36/F/C/W/T",
+        "elev_thr_tdz": "71.25 m (234 ft) OFZ",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks",
+        "coord_aip": "314707.43S 0602843.44W UND 17 m (56 ft) bicación (en qué extremo de pista) cripción del sistema de parada / cation (which RWY ) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": null,
+        "toda_m": null,
+        "asda_m": null,
+        "lda_m": null,
+        "distancias_observaciones": null,
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.47873333333334,
+          -31.785397222222223
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAR",
+        "iata": "ROS",
+        "aeropuerto": "ROSARIO / ISLAS MALVINAS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e105dba2f99.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e105dba2f99",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "brg_geo": 10.87,
+        "brg_mag": 20.0,
+        "longitud_rwy_m": 3001.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "RWY 1.230/R/C/W/ T CONC 983/F/C/X/T ASPH",
+        "elev_thr_tdz": "25,25 m (83 ft) 26,25 m (86 ft)",
+        "pendiente_rwy_swy": "+0,10%",
+        "coord_aip": "325500.36S 0604715.61W 325324.67S 0604653.83W GUND 17 m (56 ft)",
+        "dthr_m": null,
+        "tora_m": 3001.0,
+        "toda_m": 3251.0,
+        "asda_m": 3001.0,
+        "lda_m": 3001.0,
+        "distancias_observaciones": "No",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.78766944444444,
+          -32.91676666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAR",
+        "iata": "ROS",
+        "aeropuerto": "ROSARIO / ISLAS MALVINAS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e105dba2f99.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e105dba2f99",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "20",
+        "brg_geo": 190.87,
+        "brg_mag": 200.0,
+        "longitud_rwy_m": 3001.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "RWY 1.230/R/C/W/ T CONC 983/F/C/X/T ASPH",
+        "elev_thr_tdz": "24 m (79 ft) 24,50 m (80 ft)",
+        "pendiente_rwy_swy": "+0,07%",
+        "coord_aip": "325324.67S 0604653.83W 325500.36S 0604715.61W GUND 17 m (56 ft)",
+        "dthr_m": null,
+        "tora_m": 3001.0,
+        "toda_m": 3251.0,
+        "asda_m": 3001.0,
+        "lda_m": 3001.0,
+        "distancias_observaciones": "No",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.781619444444445,
+          -32.89018611111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAV",
+        "iata": "SFN",
+        "aeropuerto": "SANTA FE / SAUCE VIEJO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e13318f081b.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e13318f081b",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "03",
+        "brg_geo": 22.0,
+        "brg_mag": 52.0,
+        "longitud_rwy_m": 2325.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "53/F/C/X/T",
+        "elev_thr_tdz": "17.5 m 57 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "314313.76S 0604857.78W GUND 18 m 59 ft",
+        "dthr_m": null,
+        "tora_m": 2325.0,
+        "toda_m": 2325.0,
+        "asda_m": 2325.0,
+        "lda_m": 2325.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "Franjas con",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.81605,
+          -31.720488888888887
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAV",
+        "iata": "SFN",
+        "aeropuerto": "SANTA FE / SAUCE VIEJO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e13318f081b.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e13318f081b",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "21",
+        "brg_geo": 202.0,
+        "brg_mag": 52.0,
+        "longitud_rwy_m": 2325.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "53/F/C/X/T",
+        "elev_thr_tdz": "18 m 59 ft OFZ",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks",
+        "coord_aip": "314204.22S 0604823.47W GUND 18 m 59 ft Ubicación (en qué extremo de pista) scripción del sistema de parada / ocation (which RWY d) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": 2325.0,
+        "toda_m": 2325.0,
+        "asda_m": 2325.0,
+        "lda_m": 2325.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "desniveles /",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.80651944444444,
+          -31.701172222222223
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "AEROPARQUE JORGE NEWBERY",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-6a10684a7a5bd.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a10684a7a5bd",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "13",
+        "brg_geo": 124.01,
+        "brg_mag": 133.76,
+        "longitud_rwy_m": 2350.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "1170/R/C/W/T",
+        "elev_thr_tdz": "6m 20 ft",
+        "pendiente_rwy_swy": "-0.05%",
+        "coord_aip": "343314.16S 0582530.91W",
+        "dthr_m": null,
+        "tora_m": 2280.0,
+        "toda_m": 2280.0,
+        "asda_m": 2350.0,
+        "lda_m": 2350.0,
+        "distancias_observaciones": "e RWY 13 desplazado 70 m por obstáculo (ILS) / Y 13 displaced 70 m by obstacle (ILS)",
+        "observaciones_ad212": "(***)",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.42525277777778,
+          -34.55393333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "AEROPARQUE JORGE NEWBERY",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-6a10684a7a5bd.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a10684a7a5bd",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "31",
+        "brg_geo": 304.0,
+        "brg_mag": 313.75,
+        "longitud_rwy_m": 2350.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "1170/R/C/W/T",
+        "elev_thr_tdz": "4.75 m 16 ft OFZ",
+        "pendiente_rwy_swy": "+0.05% Observaciones / Remarks",
+        "coord_aip": "343349.97S 0582426.74W Ubicación (en qué extremo de pista) Descripció del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": null,
+        "toda_m": null,
+        "asda_m": null,
+        "lda_m": null,
+        "distancias_observaciones": null,
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.40742777777778,
+          -34.56388055555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "CÓRDOBA / ING. AER. A. L. V. TARAVELLA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1078aa7f9d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1078aa7f9d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "05",
+        "brg_geo": 44.2,
+        "brg_mag": 51.0,
+        "longitud_rwy_m": 2200.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "395/F/A/X/T ASPH",
+        "elev_thr_tdz": "465.5 m 1.527 ft",
+        "pendiente_rwy_swy": "0.2%",
+        "coord_aip": "311923.40S 0641227.01W",
+        "dthr_m": null,
+        "tora_m": 2200.0,
+        "toda_m": 2200.0,
+        "asda_m": 2200.0,
+        "lda_m": 2200.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.20750277777778,
+          -31.323166666666665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "CÓRDOBA / ING. AER. A. L. V. TARAVELLA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1078aa7f9d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1078aa7f9d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "23",
+        "brg_geo": 224.2,
+        "brg_mag": 231.0,
+        "longitud_rwy_m": 2200.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "395/F/A/X/T ASPH",
+        "elev_thr_tdz": "470 m 1.542 ft",
+        "pendiente_rwy_swy": "-0.2%",
+        "coord_aip": "311832.13S 0641128.99W",
+        "dthr_m": null,
+        "tora_m": 2200.0,
+        "toda_m": 2200.0,
+        "asda_m": 2200.0,
+        "lda_m": 2200.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.19138611111111,
+          -31.308925000000002
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "CÓRDOBA / ING. AER. A. L. V. TARAVELLA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1078aa7f9d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1078aa7f9d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "01",
+        "brg_geo": 359.2,
+        "brg_mag": 6.0,
+        "longitud_rwy_m": 3200.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "680/R/B/W/T",
+        "elev_thr_tdz": "465 m 1.526 ft",
+        "pendiente_rwy_swy": "0.75%",
+        "coord_aip": "311928.31S 0641229.16W",
+        "dthr_m": null,
+        "tora_m": 3200.0,
+        "toda_m": 3200.0,
+        "asda_m": 3200.0,
+        "lda_m": 3200.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.2081,
+          -31.324530555555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "CÓRDOBA / ING. AER. A. L. V. TARAVELLA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1078aa7f9d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1078aa7f9d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "19",
+        "brg_geo": 179.2,
+        "brg_mag": 186.0,
+        "longitud_rwy_m": 3200.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "680/R/B/W/T",
+        "elev_thr_tdz": "489 m 1.604 ft OFZ",
+        "pendiente_rwy_swy": "-0.75% Observaciones / Remarks",
+        "coord_aip": "311744.36S 0641230.86W Ubicación (en qué extremo de pista) Descripción del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": 3200.0,
+        "toda_m": 3200.0,
+        "asda_m": 3200.0,
+        "lda_m": 3200.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.20857222222223,
+          -31.29565555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADF",
+        "iata": "FDO",
+        "aeropuerto": "SAN FERNANDO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-6a68fbe672145.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a68fbe672145",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "05",
+        "brg_geo": 44.19,
+        "brg_mag": 53.85,
+        "longitud_rwy_m": 1690.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "18 F/C/X/U",
+        "elev_thr_tdz": "3m 10 ft",
+        "pendiente_rwy_swy": "0.02%",
+        "coord_aip": "342732.81S 0583546.43W 342653.53S 0583500.34W 16 m (52 ft)",
+        "dthr_m": null,
+        "tora_m": 1690.0,
+        "toda_m": 1690.0,
+        "asda_m": 1690.0,
+        "lda_m": 1690.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.59623055555556,
+          -34.45911388888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADF",
+        "iata": "FDO",
+        "aeropuerto": "SAN FERNANDO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-6a68fbe672145.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a68fbe672145",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "23",
+        "brg_geo": 224.18,
+        "brg_mag": 233.8,
+        "longitud_rwy_m": 1690.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "18 F/C/X/U",
+        "elev_thr_tdz": "3.25 m 11 ft",
+        "pendiente_rwy_swy": "-0.02%",
+        "coord_aip": "342659.94S 0583507.86W 342732.81S 0583546.43W 16 m (52 ft) IRAC 1/2026",
+        "dthr_m": null,
+        "tora_m": 1690.0,
+        "toda_m": 1690.0,
+        "asda_m": 1690.0,
+        "lda_m": 1415.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.58551666666667,
+          -34.44998333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADJ",
+        "iata": null,
+        "aeropuerto": "MARIANO MORENO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e16419c624e.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e16419c624e",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "16",
+        "brg_geo": 169.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2403.0,
+        "ancho_rwy_m": 40.0,
+        "resistencia_superficie": "57t/1 74t/2 118t/4 143t/5",
+        "elev_thr_tdz": "31.75 m 104 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "343300.75S 0584737.44W",
+        "dthr_m": null,
+        "tora_m": null,
+        "toda_m": null,
+        "asda_m": null,
+        "lda_m": null,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.79373333333333,
+          -34.55020833333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADJ",
+        "iata": null,
+        "aeropuerto": "MARIANO MORENO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e16419c624e.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e16419c624e",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "34",
+        "brg_geo": 349.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2403.0,
+        "ancho_rwy_m": 40.0,
+        "resistencia_superficie": "57t/1 74t/2 118t/4 143t/5",
+        "elev_thr_tdz": "30.5 m 100 ft OFZ",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks (*)",
+        "coord_aip": "343414.21S 0584705.89W Ubicación (en qué extremo de pista) Descripción del istema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": 273.0,
+        "tora_m": null,
+        "toda_m": null,
+        "asda_m": null,
+        "lda_m": null,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.78496944444444,
+          -34.57061388888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADM",
+        "iata": null,
+        "aeropuerto": "MORÓN",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e135e507da0.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e135e507da0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "brg_geo": 13.51,
+        "brg_mag": 23.0,
+        "longitud_rwy_m": 2303.0,
+        "ancho_rwy_m": 3.0,
+        "resistencia_superficie": "26t/1 34t/2 5",
+        "elev_thr_tdz": "29.75 m 98 ft",
+        "pendiente_rwy_swy": "-0.17%",
+        "coord_aip": "THR 02 344119.59 0583847.12W THR 20 344006.92 0583826.14W t/4 GUND 16 m 52 ft",
+        "dthr_m": null,
+        "tora_m": 2303.0,
+        "toda_m": 2303.0,
+        "asda_m": 2303.0,
+        "lda_m": 2303.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.64642222222222,
+          -34.688775
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADM",
+        "iata": null,
+        "aeropuerto": "MORÓN",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e135e507da0.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e135e507da0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "20",
+        "brg_geo": 193.51,
+        "brg_mag": 203.0,
+        "longitud_rwy_m": 2303.0,
+        "ancho_rwy_m": 3.0,
+        "resistencia_superficie": "26t/1 34t/2 5",
+        "elev_thr_tdz": "25.75 m 84 ft é ) l / OFZ Y on em",
+        "pendiente_rwy_swy": "0.17% Observaciones / Remarks (*)",
+        "coord_aip": "THR 20 344006.92 0583826.14W THR 02 344119.59 0583847.12W GUND 16 m 52 ft Ubicación (en q extremo de pist Descripción d sistema de parad Location (which R end) and Descript of arresting sys",
+        "dthr_m": null,
+        "tora_m": null,
+        "toda_m": null,
+        "asda_m": null,
+        "lda_m": null,
+        "distancias_observaciones": null,
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.640594444444446,
+          -34.668588888888884
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADP",
+        "iata": "EPA",
+        "aeropuerto": "EL PALOMAR",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e26822c76b6.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e26822c76b6",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "17",
+        "brg_geo": 156.8,
+        "brg_mag": 166.6,
+        "longitud_rwy_m": 2110.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "UW 55t/1 83t/2 125t/4 270t/8",
+        "elev_thr_tdz": "12.75 m 42 ft",
+        "pendiente_rwy_swy": "0.25%",
+        "coord_aip": "343604.16S 0583701.67W GUND 16 m 52 ft",
+        "dthr_m": null,
+        "tora_m": 2110.0,
+        "toda_m": 2110.0,
+        "asda_m": 2110.0,
+        "lda_m": 2110.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.617130555555555,
+          -34.60115555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADP",
+        "iata": "EPA",
+        "aeropuerto": "EL PALOMAR",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e26822c76b6.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e26822c76b6",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "35",
+        "brg_geo": 336.8,
+        "brg_mag": 346.5,
+        "longitud_rwy_m": 2110.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "UW 55t/1 83t/2 125t/4 270t/8",
+        "elev_thr_tdz": "18 m 59 ft OFZ",
+        "pendiente_rwy_swy": "-0.25% Observaciones / Remarks",
+        "coord_aip": "343701.14S 0583632.16W GUND 16 m 52 ft Ubicación (en qué extremo de pista) Descripción del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": 2110.0,
+        "toda_m": 2110.0,
+        "asda_m": 2110.0,
+        "lda_m": 1910.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "DTHR 35 MOVE",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.60893333333333,
+          -34.61698333333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "EZEIZA / MINISTRO PISTARINI",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10875b7c89.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10875b7c89",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "11",
+        "brg_geo": 102.3,
+        "brg_mag": 112.0,
+        "longitud_rwy_m": 3300.0,
+        "ancho_rwy_m": 60.0,
+        "resistencia_superficie": "82/R/B/W/T ASPH 92/F/C/W/T CONC",
+        "elev_thr_tdz": "19 m 62 ft",
+        "pendiente_rwy_swy": "+0.01%",
+        "coord_aip": "344908.59S 0583312.42W 344931.30S 0583105.70W 16.23 m 53 ft",
+        "dthr_m": null,
+        "tora_m": 3300.0,
+        "toda_m": 3500.0,
+        "asda_m": 3300.0,
+        "lda_m": 3300.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.55345,
+          -34.819052777777785
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "EZEIZA / MINISTRO PISTARINI",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10875b7c89.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10875b7c89",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "29",
+        "brg_geo": 282.2,
+        "brg_mag": 292.0,
+        "longitud_rwy_m": 3300.0,
+        "ancho_rwy_m": 60.0,
+        "resistencia_superficie": "82/R/B/W/T ASPH 92/F/C/W/T CONC",
+        "elev_thr_tdz": "20 m 66 ft",
+        "pendiente_rwy_swy": "-0.01%",
+        "coord_aip": "344931.30S 0583105.70W 344908.59S 0583312.42W 16.23 m 53 ft",
+        "dthr_m": null,
+        "tora_m": null,
+        "toda_m": null,
+        "asda_m": null,
+        "lda_m": null,
+        "distancias_observaciones": null,
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.51825,
+          -34.825361111111114
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "EZEIZA / MINISTRO PISTARINI",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10875b7c89.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10875b7c89",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "17",
+        "brg_geo": 164.0,
+        "brg_mag": 174.0,
+        "longitud_rwy_m": 3105.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "70 R/B/W/T ASPH",
+        "elev_thr_tdz": "19 m 62 ft",
+        "pendiente_rwy_swy": "+0.01%",
+        "coord_aip": "344829.75S 0583202.21W 345006.76S 0583128.51W 16.23 m 53 ft",
+        "dthr_m": null,
+        "tora_m": 3105.0,
+        "toda_m": 3105.0,
+        "asda_m": 3105.0,
+        "lda_m": 3105.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.53394722222222,
+          -34.80826388888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "EZEIZA / MINISTRO PISTARINI",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10875b7c89.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10875b7c89",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "35",
+        "brg_geo": 344.0,
+        "brg_mag": 354.0,
+        "longitud_rwy_m": 3105.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "70 R/B/W/T ASPH",
+        "elev_thr_tdz": "20.5 m 67 ft OFZ",
+        "pendiente_rwy_swy": "-0.01% Observaciones / Remarks (*)",
+        "coord_aip": "344957.32S 0583131.79W 344829.75S 0583202.21W 16.23 m 53 ft Ubicación (en qué extremo de pista) Descripción del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": 300.0,
+        "tora_m": 3105.0,
+        "toda_m": 3405.0,
+        "asda_m": 3105.0,
+        "lda_m": 2805.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "DTHR 35 300 m PERM por OBST /",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.52549722222222,
+          -34.83258888888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAME",
+        "iata": "MDZ",
+        "aeropuerto": "MENDOZA / El Plumerillo",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69fc9d7664864.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69fc9d7664864",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "18",
+        "brg_geo": 180.74,
+        "brg_mag": 183.0,
+        "longitud_rwy_m": 2835.0,
+        "ancho_rwy_m": 54.0,
+        "resistencia_superficie": "970/R/B/W/T CONC",
+        "elev_thr_tdz": "698 m 2.290 ft",
+        "pendiente_rwy_swy": "0.21%",
+        "coord_aip": "324909.03S 0684733.67W GUND 22 m / 72 ft",
+        "dthr_m": null,
+        "tora_m": 2835.0,
+        "toda_m": 3135.0,
+        "asda_m": 2835.0,
+        "lda_m": 2835.0,
+        "distancias_observaciones": "eronaves clave D y E consultar álculo de TORA, TODA y ASDA /",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.79268611111111,
+          -32.819175
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAME",
+        "iata": "MDZ",
+        "aeropuerto": "MENDOZA / El Plumerillo",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69fc9d7664864.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69fc9d7664864",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "36",
+        "brg_geo": 0.7,
+        "brg_mag": 3.0,
+        "longitud_rwy_m": 2835.0,
+        "ancho_rwy_m": 54.0,
+        "resistencia_superficie": "970/R/B/W/T CONC",
+        "elev_thr_tdz": "704 m 2.310 ft OFZ",
+        "pendiente_rwy_swy": "-0.21% Observaciones / Remarks (*)",
+        "coord_aip": "325039.56S 0684735.02W GUND 22 m / 72 ft Ubicación (en qué extremo de pista) Descripción del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": 2835.0,
+        "toda_m": 3185.0,
+        "asda_m": 2835.0,
+        "lda_m": 2790.0,
+        "distancias_observaciones": "or code letter D and E aircraft, ee TORA, TODA and ASDA alculation",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.79306111111111,
+          -32.844322222222225
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAMM",
+        "iata": "LGS",
+        "aeropuerto": "MALARGÜE / COMODORO D. R. SALOMÓN",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e168cc06ad1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e168cc06ad1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "09",
+        "brg_geo": 95.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 1450.0,
+        "ancho_rwy_m": 20.0,
+        "resistencia_superficie": "ASPH 11t/1 15t/2",
+        "elev_thr_tdz": "1.430 m 4.692 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "352902.76S 0693456.32W",
+        "dthr_m": null,
+        "tora_m": 1450.0,
+        "toda_m": 1450.0,
+        "asda_m": 1450.0,
+        "lda_m": 1450.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.58231111111111,
+          -35.4841
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAMM",
+        "iata": "LGS",
+        "aeropuerto": "MALARGÜE / COMODORO D. R. SALOMÓN",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e168cc06ad1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e168cc06ad1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "27",
+        "brg_geo": 275.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 1450.0,
+        "ancho_rwy_m": 20.0,
+        "resistencia_superficie": "ASPH 11t/1 15t/2",
+        "elev_thr_tdz": "1.417,5 m 4.651 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "352909.01S 0693349.36W",
+        "dthr_m": null,
+        "tora_m": 1450.0,
+        "toda_m": 1450.0,
+        "asda_m": 1450.0,
+        "lda_m": 1450.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "(*)",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.5637111111111,
+          -35.48583611111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAMM",
+        "iata": "LGS",
+        "aeropuerto": "MALARGÜE / COMODORO D. R. SALOMÓN",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e168cc06ad1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e168cc06ad1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "14",
+        "brg_geo": 143.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2650.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "ASPH",
+        "elev_thr_tdz": "1.422,75 m 4.668 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "352914.12S 0693447.78W",
+        "dthr_m": null,
+        "tora_m": 2650.0,
+        "toda_m": 2650.0,
+        "asda_m": 2650.0,
+        "lda_m": 2180.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.57993888888889,
+          -35.487255555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAMM",
+        "iata": "LGS",
+        "aeropuerto": "MALARGÜE / COMODORO D. R. SALOMÓN",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e168cc06ad1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e168cc06ad1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "32",
+        "brg_geo": 323.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2650.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "ASPH",
+        "elev_thr_tdz": "1.422,5 m 4.667 ft OFZ",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks",
+        "coord_aip": "353011.79S 0693357.70W Ubicación (en qué extremo de pista) Descripción del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": null,
+        "toda_m": null,
+        "asda_m": null,
+        "lda_m": null,
+        "distancias_observaciones": null,
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.56602777777778,
+          -35.503275
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAMR",
+        "iata": "AFA",
+        "aeropuerto": "SAN RAFAEL / S. A. SANTIAGO GERMANO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e169708997f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e169708997f",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "11",
+        "brg_geo": 108.46,
+        "brg_mag": 109.0,
+        "longitud_rwy_m": 2102.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "430/F/B/X/T",
+        "elev_thr_tdz": "754.25 m 2.475 ft",
+        "pendiente_rwy_swy": "-0.7 %",
+        "coord_aip": "343505.34S 0682452.04W",
+        "dthr_m": null,
+        "tora_m": 2102.0,
+        "toda_m": 2102.0,
+        "asda_m": 2102.0,
+        "lda_m": 2102.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.41445555555556,
+          -34.58481666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAMR",
+        "iata": "AFA",
+        "aeropuerto": "SAN RAFAEL / S. A. SANTIAGO GERMANO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e169708997f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e169708997f",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "29",
+        "brg_geo": 288.46,
+        "brg_mag": 289.0,
+        "longitud_rwy_m": 2102.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "430/F/B/X/T",
+        "elev_thr_tdz": "739.5 m 2.426 ft OFZ",
+        "pendiente_rwy_swy": "+0.7 % Observaciones / Remarks",
+        "coord_aip": "343526.95S 0682333.81W Ubicación (en qué extremo de pista) scripción del sistema de parada / ocation (which RWY d) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": 2102.0,
+        "toda_m": 2102.0,
+        "asda_m": 2102.0,
+        "lda_m": 2102.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.39272500000001,
+          -34.59081944444445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANC",
+        "iata": "CTC",
+        "aeropuerto": "CATAMARCA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e256ccb0f13.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e256ccb0f13",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "brg_geo": 12.0,
+        "brg_mag": 19.0,
+        "longitud_rwy_m": 2800.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "550/R/B/W/T CONC",
+        "elev_thr_tdz": "459.75 m 1.508 ft",
+        "pendiente_rwy_swy": "-0.52%",
+        "coord_aip": "283619.67S 0654514.95W",
+        "dthr_m": null,
+        "tora_m": 2800.0,
+        "toda_m": 2800.0,
+        "asda_m": 2800.0,
+        "lda_m": 2800.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "No",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.75415277777778,
+          -28.60546388888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANC",
+        "iata": "CTC",
+        "aeropuerto": "CATAMARCA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e256ccb0f13.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e256ccb0f13",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "20",
+        "brg_geo": 192.0,
+        "brg_mag": 199.0,
+        "longitud_rwy_m": 2800.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "550/R/B/W/T CONC",
+        "elev_thr_tdz": "474.25 m 1.556 ft qué sta) del ada / O RWY ption ystem",
+        "pendiente_rwy_swy": "0.52% Observaciones / Z Remarks",
+        "coord_aip": "283450.72S 0654453.56W T AIRAC 1/2026 Ubicación (e extremo de p Descripció sistema de pa Location (whic end) and Descr of arresting",
+        "dthr_m": null,
+        "tora_m": 2800.0,
+        "toda_m": 2800.0,
+        "asda_m": 2800.0,
+        "lda_m": 2800.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "No",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.74821111111112,
+          -28.580755555555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANE",
+        "iata": "SDE",
+        "aeropuerto": "SANTIAGO DEL ESTERO / VCOM. ÁNGEL D. LA PAZ ARAGONÉS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e1098092c2d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1098092c2d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "03",
+        "brg_geo": 36.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2435.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "71t/1 96t/2 152t/4",
+        "elev_thr_tdz": "199 m 653 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "274631.30S 0641856.54W",
+        "dthr_m": null,
+        "tora_m": 2435.0,
+        "toda_m": 2435.0,
+        "asda_m": 2435.0,
+        "lda_m": 2435.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.31570555555555,
+          -27.77536111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANE",
+        "iata": "SDE",
+        "aeropuerto": "SANTIAGO DEL ESTERO / VCOM. ÁNGEL D. LA PAZ ARAGONÉS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e1098092c2d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1098092c2d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "21",
+        "brg_geo": 216.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2435.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "71t/1 96t/2 152t/4",
+        "elev_thr_tdz": "199.5 m 655 ft OFZ",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks",
+        "coord_aip": "274521.32S 0641815.11W Ubicación (en qué extremo de pista) Descripción del sistema de parada Location (which RWY end) and Descriptio of arresting syste",
+        "dthr_m": null,
+        "tora_m": null,
+        "toda_m": null,
+        "asda_m": null,
+        "lda_m": null,
+        "distancias_observaciones": null,
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.30419722222221,
+          -27.75592222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANL",
+        "iata": "IRJ",
+        "aeropuerto": "LA RIOJA / CAPITÁN VICENTE A. ALMONACID",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e254b904105.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e254b904105",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "03",
+        "brg_geo": 28.0,
+        "brg_mag": 18.0,
+        "longitud_rwy_m": 2806.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "46t/1 60t/2 95t/4",
+        "elev_thr_tdz": "441.5 m 1.448 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "292329.70S 0664809.28W",
+        "dthr_m": null,
+        "tora_m": 2806.0,
+        "toda_m": 2806.0,
+        "asda_m": 2806.0,
+        "lda_m": 2806.0,
+        "distancias_observaciones": "No",
+        "observaciones_ad212": "No",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.80257777777777,
+          -29.391583333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANL",
+        "iata": "IRJ",
+        "aeropuerto": "LA RIOJA / CAPITÁN VICENTE A. ALMONACID",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e254b904105.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e254b904105",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "21",
+        "brg_geo": 208.0,
+        "brg_mag": 18.0,
+        "longitud_rwy_m": 2806.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "46t/1 60t/2 95t/4",
+        "elev_thr_tdz": "428.5 m 1.406 ft OFZ",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks",
+        "coord_aip": "292209.45S 0664719.93W Ubicación (en qué extremo de pista) Descripción del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": 2806.0,
+        "toda_m": 2806.0,
+        "asda_m": 2806.0,
+        "lda_m": 2806.0,
+        "distancias_observaciones": "No",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.78886944444444,
+          -29.369291666666665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANR",
+        "iata": "RHD",
+        "aeropuerto": "TERMAS DE RIO HONDO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e6130f69047.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6130f69047",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "01",
+        "brg_geo": 2.0,
+        "brg_mag": 36.0,
+        "longitud_rwy_m": 2500.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "ASPH -",
+        "elev_thr_tdz": "278.25 m 913 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "273028.38S 0645611.52W",
+        "dthr_m": null,
+        "tora_m": 2500.0,
+        "toda_m": 2500.0,
+        "asda_m": 2500.0,
+        "lda_m": 2500.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "(*) THR 70 m –",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.93653333333334,
+          -27.507883333333332
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANR",
+        "iata": "RHD",
+        "aeropuerto": "TERMAS DE RIO HONDO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e6130f69047.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6130f69047",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "19",
+        "brg_geo": 182.0,
+        "brg_mag": 36.0,
+        "longitud_rwy_m": 2500.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "ASPH -",
+        "elev_thr_tdz": "280.5 m 920 ft OFZ",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks",
+        "coord_aip": "272907.25S 0645607.38W Ubicación (en qué extremo de pista) Descripción del sistema de parada / ocation (which RWY nd) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": 2500.0,
+        "toda_m": 2500.0,
+        "asda_m": 2500.0,
+        "lda_m": 2500.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "CONC - 550",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.93538333333333,
+          -27.485347222222224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANT",
+        "iata": "TUC",
+        "aeropuerto": "SAN MIGUEL de TUCUMÁN / Tte. BENJAMÍN MATIENZO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10b1142729.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b1142729",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "brg_geo": 9.78,
+        "brg_mag": 18.0,
+        "longitud_rwy_m": 3500.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "82/R/B/W/T",
+        "elev_thr_tdz": "435.75 439",
+        "pendiente_rwy_swy": "0.557%",
+        "coord_aip": "265113.62S 0650626.35W",
+        "dthr_m": null,
+        "tora_m": 3500.0,
+        "toda_m": 3500.0,
+        "asda_m": 3500.0,
+        "lda_m": 3500.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.10731944444444,
+          -26.853783333333336
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANT",
+        "iata": "TUC",
+        "aeropuerto": "SAN MIGUEL de TUCUMÁN / Tte. BENJAMÍN MATIENZO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10b1142729.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b1142729",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "20",
+        "brg_geo": 189.77,
+        "brg_mag": 198.0,
+        "longitud_rwy_m": 3500.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "82/R/B/W/T",
+        "elev_thr_tdz": "455.25 OFZ",
+        "pendiente_rwy_swy": "-0.557% Observaciones / Remarks (*)",
+        "coord_aip": "264921.56S 0650604.83W Ubicación (en qué extremo de pista) Descripción del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": 3500.0,
+        "toda_m": 3500.0,
+        "asda_m": 3500.0,
+        "lda_m": 3500.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.10134166666666,
+          -26.822655555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANU",
+        "iata": "UAQ",
+        "aeropuerto": "SAN JUAN / DOMINGO FAUSTINO SARMIENTO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10b2277811.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b2277811",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "18",
+        "brg_geo": 179.51,
+        "brg_mag": 182.29,
+        "longitud_rwy_m": 2460.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "ASPH 430/F/B/X/T",
+        "elev_thr_tdz": "593.75 m 1.948 ft",
+        "pendiente_rwy_swy": "-0.08%",
+        "coord_aip": "313337.33S 0682506.26W",
+        "dthr_m": null,
+        "tora_m": 2460.0,
+        "toda_m": 2460.0,
+        "asda_m": 2460.0,
+        "lda_m": 2460.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.41840555555557,
+          -31.560369444444444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANU",
+        "iata": "UAQ",
+        "aeropuerto": "SAN JUAN / DOMINGO FAUSTINO SARMIENTO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10b2277811.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b2277811",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "36",
+        "brg_geo": 359.51,
+        "brg_mag": 2.29,
+        "longitud_rwy_m": 2460.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "ASPH 430/F/B/X/T",
+        "elev_thr_tdz": "591.75 m 1.941 ft",
+        "pendiente_rwy_swy": "0.08%",
+        "coord_aip": "313457.20S 0682505.46W MDT AIRAC 1/2026",
+        "dthr_m": null,
+        "tora_m": 2460.0,
+        "toda_m": 2460.0,
+        "asda_m": 2460.0,
+        "lda_m": 2460.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.41818333333333,
+          -31.582555555555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOC",
+        "iata": "RCU",
+        "aeropuerto": "RÍO CUARTO / ÁREA DE MATERIAL",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10b83ad8fa.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b83ad8fa",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "05",
+        "brg_geo": 44.32,
+        "brg_mag": 50.27,
+        "longitud_rwy_m": 2265.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "490/F/A/X/T",
+        "elev_thr_tdz": "420.25 m 1.379 ft",
+        "pendiente_rwy_swy": "0.0",
+        "coord_aip": "330558.09S 0641640.08W",
+        "dthr_m": null,
+        "tora_m": 2265.0,
+        "toda_m": 2265.0,
+        "asda_m": 2265.0,
+        "lda_m": 2265.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.2778,
+          -33.099469444444445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOC",
+        "iata": "RCU",
+        "aeropuerto": "RÍO CUARTO / ÁREA DE MATERIAL",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10b83ad8fa.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b83ad8fa",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "23",
+        "brg_geo": 224.32,
+        "brg_mag": 230.27,
+        "longitud_rwy_m": 2265.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "490/F/A/X/T",
+        "elev_thr_tdz": "419.25 m 1.375 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "330505.47S 0641539.04W",
+        "dthr_m": null,
+        "tora_m": 2265.0,
+        "toda_m": 2265.0,
+        "asda_m": 2265.0,
+        "lda_m": 2265.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.26084444444444,
+          -33.08485277777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOC",
+        "iata": "RCU",
+        "aeropuerto": "RÍO CUARTO / ÁREA DE MATERIAL",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10b83ad8fa.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b83ad8fa",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "01",
+        "brg_geo": 359.33,
+        "brg_mag": 5.28,
+        "longitud_rwy_m": 2075.0,
+        "ancho_rwy_m": 40.0,
+        "resistencia_superficie": "440/F/B/X/T",
+        "elev_thr_tdz": "412 m 1.352 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "330608.29S 0641540.44W",
+        "dthr_m": null,
+        "tora_m": 2075.0,
+        "toda_m": 2075.0,
+        "asda_m": 2075.0,
+        "lda_m": 2075.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.26123333333334,
+          -33.10230277777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOC",
+        "iata": "RCU",
+        "aeropuerto": "RÍO CUARTO / ÁREA DE MATERIAL",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10b83ad8fa.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b83ad8fa",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "19",
+        "brg_geo": 179.33,
+        "brg_mag": 184.9,
+        "longitud_rwy_m": 2075.0,
+        "ancho_rwy_m": 40.0,
+        "resistencia_superficie": "440/F/B/X/T",
+        "elev_thr_tdz": "420 m 1.378 ft OFZ",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks",
+        "coord_aip": "330500.93S 0641541.37W Ubicación (en qué extremo de pista) Descripción del sistema de parada / ocation (which RWY nd) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": 2075.0,
+        "toda_m": 2075.0,
+        "asda_m": 2075.0,
+        "lda_m": 2075.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.26149166666667,
+          -33.08359166666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOR",
+        "iata": "VME",
+        "aeropuerto": "VILLA REYNOLDS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "2/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10c27bbaf1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10c27bbaf1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "06",
+        "brg_geo": 62.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2362.0,
+        "ancho_rwy_m": 50.0,
+        "resistencia_superficie": "65t/1 80t/2 135t/4 ASPH",
+        "elev_thr_tdz": "484.75 m 1.590 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "334350.36S 0652320.34W",
+        "dthr_m": null,
+        "tora_m": 2362.0,
+        "toda_m": 2362.0,
+        "asda_m": 2362.0,
+        "lda_m": 2362.0,
+        "distancias_observaciones": "2.362",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.38898333333334,
+          -33.73065555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOR",
+        "iata": "VME",
+        "aeropuerto": "VILLA REYNOLDS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "2/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10c27bbaf1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10c27bbaf1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "24",
+        "brg_geo": 242.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2362.0,
+        "ancho_rwy_m": 50.0,
+        "resistencia_superficie": "65t/1 80t/2 135t/4 ASPH",
+        "elev_thr_tdz": "479.75 m 1.574 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "334310.31S 0652202.10W",
+        "dthr_m": null,
+        "tora_m": 2362.0,
+        "toda_m": 2362.0,
+        "asda_m": 2362.0,
+        "lda_m": 2362.0,
+        "distancias_observaciones": "2.362",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.36725,
+          -33.71953055555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOR",
+        "iata": "VME",
+        "aeropuerto": "VILLA REYNOLDS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "2/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10c27bbaf1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10c27bbaf1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "10",
+        "brg_geo": 105.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2397.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "35t/1 45t/2 71t/4 ASPH A",
+        "elev_thr_tdz": "485 m 1.591 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "334346.85S 0652318.50W",
+        "dthr_m": null,
+        "tora_m": 2397.0,
+        "toda_m": 2397.0,
+        "asda_m": 2397.0,
+        "lda_m": 2397.0,
+        "distancias_observaciones": "2.397",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.38847222222223,
+          -33.72968055555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOR",
+        "iata": "VME",
+        "aeropuerto": "VILLA REYNOLDS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "2/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10c27bbaf1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10c27bbaf1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "28",
+        "brg_geo": 285.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2397.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "35t/1 45t/2 71t/4 ASPH A",
+        "elev_thr_tdz": "479.25 m 1.572 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "334401.91S 0652147.16W DT AIRAC 2/2026",
+        "dthr_m": null,
+        "tora_m": 2397.0,
+        "toda_m": 2397.0,
+        "asda_m": 2397.0,
+        "lda_m": 2397.0,
+        "distancias_observaciones": "2.397",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.36309999999999,
+          -33.73386388888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOS",
+        "iata": "RLO",
+        "aeropuerto": "VALLE DEL CONLARA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10c3899e4a.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10c3899e4a",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "brg_geo": 17.57,
+        "brg_mag": 22.0,
+        "longitud_rwy_m": 2550.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "40/R/C/W/T CONC",
+        "elev_thr_tdz": "616 m 2.021 ft",
+        "pendiente_rwy_swy": "0m",
+        "coord_aip": "322343.55S 0651123.51W GUND 26 m",
+        "dthr_m": null,
+        "tora_m": 2550.0,
+        "toda_m": 2550.0,
+        "asda_m": 2550.0,
+        "lda_m": 2550.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.1898638888889,
+          -32.395430555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOS",
+        "iata": "RLO",
+        "aeropuerto": "VALLE DEL CONLARA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10c3899e4a.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10c3899e4a",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "20",
+        "brg_geo": 197.57,
+        "brg_mag": 202.0,
+        "longitud_rwy_m": 2550.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "40/R/C/W/T CONC",
+        "elev_thr_tdz": "616.25 m 2.022 ft",
+        "pendiente_rwy_swy": "0m",
+        "coord_aip": "322224.63S 0651054.06W GUND 26 m",
+        "dthr_m": null,
+        "tora_m": 2550.0,
+        "toda_m": 2550.0,
+        "asda_m": 2550.0,
+        "lda_m": 2550.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.18168333333334,
+          -32.373508333333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOU",
+        "iata": "LUQ",
+        "aeropuerto": "SAN LUIS / BRIG.MY. CESAR RAUL OJEDA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e23dcde0868(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e23dcde0868",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "01",
+        "brg_geo": 9.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2955.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "PCN 36/F/B/W/T",
+        "elev_thr_tdz": "700.75 m 2.299 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "331711.05S 0662129.89W",
+        "dthr_m": null,
+        "tora_m": 2955.0,
+        "toda_m": 2955.0,
+        "asda_m": 2955.0,
+        "lda_m": 2955.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.35830277777777,
+          -33.286402777777774
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOU",
+        "iata": "LUQ",
+        "aeropuerto": "SAN LUIS / BRIG.MY. CESAR RAUL OJEDA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e23dcde0868(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e23dcde0868",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "19",
+        "brg_geo": 189.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2955.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "PCN 36/F/B/W/T",
+        "elev_thr_tdz": "710.75 m 2.332 ft OFZ",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks",
+        "coord_aip": "331535.76S 0662116.91W Ubicación (en qué extremo de pista) Descripción del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": 2955.0,
+        "toda_m": 2955.0,
+        "asda_m": 2955.0,
+        "lda_m": 2955.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.35469722222221,
+          -33.259933333333336
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARC",
+        "iata": "CNQ",
+        "aeropuerto": "CORRIENTES",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10de8df659(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10de8df659",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "brg_geo": 7.9,
+        "brg_mag": 21.0,
+        "longitud_rwy_m": 2250.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "500/R/C/W/T ASPH",
+        "elev_thr_tdz": "62 m 203 ft",
+        "pendiente_rwy_swy": "-0.0004%",
+        "coord_aip": "272713.01S 0584546.95W",
+        "dthr_m": 150.0,
+        "tora_m": 2250.0,
+        "toda_m": 2250.0,
+        "asda_m": 2250.0,
+        "lda_m": 2100.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "PERM por OBST / DTHR 02 150 m PERM due to OBST",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.763041666666666,
+          -27.45361388888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARC",
+        "iata": "CNQ",
+        "aeropuerto": "CORRIENTES",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10de8df659(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10de8df659",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "20",
+        "brg_geo": 187.9,
+        "brg_mag": 201.0,
+        "longitud_rwy_m": 2250.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "500/R/C/W/T ASPH",
+        "elev_thr_tdz": "61.25 m 200 ft OFZ",
+        "pendiente_rwy_swy": "0.0004% Observaciones / Remarks",
+        "coord_aip": "272610.27S 0584537.23W Ubicación (en qué extremo de pista) Descripción del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": 150.0,
+        "tora_m": 2250.0,
+        "toda_m": 2250.0,
+        "asda_m": 2250.0,
+        "lda_m": 2100.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "DTHR 20 150 m PERM.",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.76034166666667,
+          -27.436186111111112
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARE",
+        "iata": "RES",
+        "aeropuerto": "RESISTENCIA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e23557ecfd0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e23557ecfd0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "03",
+        "brg_geo": 20.7,
+        "brg_mag": 34.0,
+        "longitud_rwy_m": 2770.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "410/F/A/X/T",
+        "elev_thr_tdz": "52.25 m 171 ft",
+        "pendiente_rwy_swy": "0.018%",
+        "coord_aip": "272741.77S 0590339.84W",
+        "dthr_m": null,
+        "tora_m": 2770.0,
+        "toda_m": 3570.0,
+        "asda_m": 2770.0,
+        "lda_m": 2770.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.06106666666666,
+          -27.461602777777777
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARE",
+        "iata": "RES",
+        "aeropuerto": "RESISTENCIA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e23557ecfd0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e23557ecfd0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "21",
+        "brg_geo": 200.7,
+        "brg_mag": 214.0,
+        "longitud_rwy_m": 2770.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "410/F/A/X/T",
+        "elev_thr_tdz": "52.75 m 173 ft OFZ",
+        "pendiente_rwy_swy": "-0.018% Observaciones / Remarks",
+        "coord_aip": "272617.69S 0590303.86W Ubicación (en qué extremo de pista) Descripción del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": 2770.0,
+        "toda_m": 2990.0,
+        "asda_m": 2770.0,
+        "lda_m": 2770.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.05107222222222,
+          -27.438247222222223
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARF",
+        "iata": "FMA",
+        "aeropuerto": "FORMOSA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e249b1a7ad5(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e249b1a7ad5",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "04",
+        "brg_geo": 40.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 1800.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "430/F/D/X/T",
+        "elev_thr_tdz": "58.5 m / 192 ft",
+        "pendiente_rwy_swy": "No",
+        "coord_aip": "261312.47S 0581355.01W GUND 18 m (59 ft)",
+        "dthr_m": null,
+        "tora_m": 1800.0,
+        "toda_m": 1800.0,
+        "asda_m": 1800.0,
+        "lda_m": 1800.0,
+        "distancias_observaciones": "No",
+        "observaciones_ad212": "WY 04 Runway",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.231947222222225,
+          -26.220130555555553
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARF",
+        "iata": "FMA",
+        "aeropuerto": "FORMOSA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e249b1a7ad5(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e249b1a7ad5",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "22",
+        "brg_geo": 220.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 1800.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "430/F/D/X/T",
+        "elev_thr_tdz": "59 m / 194 ft OFZ",
+        "pendiente_rwy_swy": "No Observaciones / Remarks",
+        "coord_aip": "261219.52S 0581327.64W GUND 18 m (59 ft) Ubicación (en qué extremo de pista) Descripción del sistema de parada/ Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": null,
+        "toda_m": null,
+        "asda_m": null,
+        "lda_m": null,
+        "distancias_observaciones": null,
+        "observaciones_ad212": "trip, sector W educed to 75 m ue to OBST",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.22434444444445,
+          -26.20542222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARI",
+        "iata": "IGR",
+        "aeropuerto": "CATARATAS DEL IGUAZÚ / Mayor D. Carlos Eduardo Krause",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e6163c31b23(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6163c31b23",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "13",
+        "brg_geo": 131.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 3300.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "69/F/B/W/T",
+        "elev_thr_tdz": "276.75 m 908 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "254351.74S 0542918.16W GUND 5 m (16 ft)",
+        "dthr_m": null,
+        "tora_m": 3300.0,
+        "toda_m": 3600.0,
+        "asda_m": 3300.0,
+        "lda_m": 3300.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -54.48837777777778,
+          -25.731038888888886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARI",
+        "iata": "IGR",
+        "aeropuerto": "CATARATAS DEL IGUAZÚ / Mayor D. Carlos Eduardo Krause",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e6163c31b23(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6163c31b23",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "31",
+        "brg_geo": 311.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 3300.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "69/F/B/W/T",
+        "elev_thr_tdz": "279.25 m 916 ft OFZ",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks (*)",
+        "coord_aip": "254436.66S 0542730.64W GUND 5 m (16 ft) Ubicación (en qué extremo de pista) Descripción del sistema de parada/ Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": 3300.0,
+        "toda_m": 3300.0,
+        "asda_m": 3300.0,
+        "lda_m": 3300.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -54.458511111111115,
+          -25.743516666666668
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARP",
+        "iata": "PSS",
+        "aeropuerto": "POSADAS / Libertador Gral. D. José de San Martín",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e1137370dba(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1137370dba",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "brg_geo": 359.15,
+        "brg_mag": 15.0,
+        "longitud_rwy_m": 2252.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "590/F/C/X/T ASPH",
+        "elev_thr_tdz": "THR 130.50 m 428 ft TDZ 130.50 m 428 ft",
+        "pendiente_rwy_swy": "(*)",
+        "coord_aip": "272345.28S 0555813.23W GUND 12 m 39 ft",
+        "dthr_m": null,
+        "tora_m": 2252.0,
+        "toda_m": 2802.0,
+        "asda_m": 2252.0,
+        "lda_m": 2252.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -55.97034166666667,
+          -27.39591111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARP",
+        "iata": "PSS",
+        "aeropuerto": "POSADAS / Libertador Gral. D. José de San Martín",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e1137370dba(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1137370dba",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "20",
+        "brg_geo": 179.15,
+        "brg_mag": 195.0,
+        "longitud_rwy_m": 2252.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "590/F/C/X/T ASPH",
+        "elev_thr_tdz": "THR 114.25 m 375 ft TDZ 118.90 m 390 ft OFZ",
+        "pendiente_rwy_swy": "(*) Observaciones / Remarks",
+        "coord_aip": "272232.11S 0555814.43W GUND 12 m 39 ft Ubicación (en qué extremo de pista) Descripción del sistema de parada / ocation (which RWY nd) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": null,
+        "toda_m": null,
+        "asda_m": null,
+        "lda_m": null,
+        "distancias_observaciones": null,
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -55.970675,
+          -27.37558611111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASA",
+        "iata": "SLA",
+        "aeropuerto": "SALTA / Gral. Don Martín Miguel de Güemes",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e1138586777(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1138586777",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "brg_geo": 20.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2989.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "530/R/A/W/T CONC 395/F/A/X/T ASPH",
+        "elev_thr_tdz": "1246.25 m 4.089 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "245222.20S 0652923.78W GUND 34 112 ft",
+        "dthr_m": null,
+        "tora_m": 2989.0,
+        "toda_m": 2989.0,
+        "asda_m": 2989.0,
+        "lda_m": 2989.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.48993888888889,
+          -24.872833333333332
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASA",
+        "iata": "SLA",
+        "aeropuerto": "SALTA / Gral. Don Martín Miguel de Güemes",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e1138586777(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1138586777",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "20",
+        "brg_geo": 200.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2989.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "530/R/A/W/T CONC 395/F/A/X/T ASPH",
+        "elev_thr_tdz": "1230.5 m 4.037 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "245046.94S 0652902.93W GUND 34 112 ft",
+        "dthr_m": null,
+        "tora_m": 2989.0,
+        "toda_m": 2989.0,
+        "asda_m": 2989.0,
+        "lda_m": 2989.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.48414722222222,
+          -24.84637222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASA",
+        "iata": "SLA",
+        "aeropuerto": "SALTA / Gral. Don Martín Miguel de Güemes",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e1138586777(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1138586777",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "06",
+        "brg_geo": 61.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2400.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "430/F/B/X/T",
+        "elev_thr_tdz": "1.240 m 4.068 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "245129.15S 0652922.47W GUND 34 112 ft",
+        "dthr_m": null,
+        "tora_m": 2400.0,
+        "toda_m": 2400.0,
+        "asda_m": 2400.0,
+        "lda_m": 2400.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.489575,
+          -24.858097222222224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASA",
+        "iata": "SLA",
+        "aeropuerto": "SALTA / Gral. Don Martín Miguel de Güemes",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e1138586777(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1138586777",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "24",
+        "brg_geo": 241.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2400.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "430/F/B/X/T",
+        "elev_thr_tdz": "1214.25 m 3.984 ft OFZ",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks",
+        "coord_aip": "245041.37S 0652814.90W GUND 34 112 ft Ubicación (en qué extremo de pista) Descripción del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": null,
+        "toda_m": null,
+        "asda_m": null,
+        "lda_m": null,
+        "distancias_observaciones": null,
+        "observaciones_ad212": "(*)",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.47080555555556,
+          -24.844825
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASJ",
+        "iata": "JUJ",
+        "aeropuerto": "JUJUY / Gobernador Horacio Guzmán",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e113f9e6050(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e113f9e6050",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "16",
+        "brg_geo": 150.15,
+        "brg_mag": 160.0,
+        "longitud_rwy_m": 2944.0,
+        "ancho_rwy_m": 40.0,
+        "resistencia_superficie": "470/F/C/X/U",
+        "elev_thr_tdz": "921.25 m 3.022 ft",
+        "pendiente_rwy_swy": "-1.2%",
+        "coord_aip": "242252.34S 0650618.11W 32 m (105 ft)",
+        "dthr_m": null,
+        "tora_m": 2944.0,
+        "toda_m": 3844.0,
+        "asda_m": 2944.0,
+        "lda_m": 2944.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.10503055555554,
+          -24.381205555555557
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASJ",
+        "iata": "JUJ",
+        "aeropuerto": "JUJUY / Gobernador Horacio Guzmán",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e113f9e6050(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e113f9e6050",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "34",
+        "brg_geo": 330.15,
+        "brg_mag": 340.0,
+        "longitud_rwy_m": 2944.0,
+        "ancho_rwy_m": 40.0,
+        "resistencia_superficie": "470/F/C/X/U",
+        "elev_thr_tdz": "886 m 2.907 ft OFZ",
+        "pendiente_rwy_swy": "1.2% Observaciones / Remarks",
+        "coord_aip": "242415.34S 0650526.10W 31 m (102 ft) Ubicación (en qué extremo de pista) Descripción del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": 2944.0,
+        "toda_m": 2944.0,
+        "asda_m": 2944.0,
+        "lda_m": 2944.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.09058333333333,
+          -24.40426111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SATR",
+        "iata": "RCQ",
+        "aeropuerto": "RECONQUISTA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e11419cd188(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11419cd188",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "brg_geo": 7.05,
+        "brg_mag": 19.0,
+        "longitud_rwy_m": 1250.0,
+        "ancho_rwy_m": 34.0,
+        "resistencia_superficie": "310/R/C/W/T CONC",
+        "elev_thr_tdz": "49 m 161 ft",
+        "pendiente_rwy_swy": "0%",
+        "coord_aip": "291236.19S 0594127.08W 19 m (62 ft)",
+        "dthr_m": null,
+        "tora_m": 1250.0,
+        "toda_m": 1250.0,
+        "asda_m": 1250.0,
+        "lda_m": 1250.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.69085555555555,
+          -29.210052777777776
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SATR",
+        "iata": "RCQ",
+        "aeropuerto": "RECONQUISTA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e11419cd188(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11419cd188",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "20",
+        "brg_geo": 187.05,
+        "brg_mag": 199.0,
+        "longitud_rwy_m": 1250.0,
+        "ancho_rwy_m": 34.0,
+        "resistencia_superficie": "310/R/C/W/T CONC",
+        "elev_thr_tdz": "49 m 161 ft",
+        "pendiente_rwy_swy": "0%",
+        "coord_aip": "291155.90S 0594121.40W 19 m (62 ft)",
+        "dthr_m": null,
+        "tora_m": 1250.0,
+        "toda_m": 1250.0,
+        "asda_m": 1250.0,
+        "lda_m": 1250.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.689277777777775,
+          -29.19886111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SATR",
+        "iata": "RCQ",
+        "aeropuerto": "RECONQUISTA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e11419cd188(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11419cd188",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "10",
+        "brg_geo": 89.57,
+        "brg_mag": 101.0,
+        "longitud_rwy_m": 2800.0,
+        "ancho_rwy_m": 50.0,
+        "resistencia_superficie": "310/R/C/W/T CONC",
+        "elev_thr_tdz": "49 m 161 ft",
+        "pendiente_rwy_swy": "0.035%",
+        "coord_aip": "291237.37S 0594139.37W 19 m (62 ft)",
+        "dthr_m": null,
+        "tora_m": 2800.0,
+        "toda_m": 2800.0,
+        "asda_m": 2800.0,
+        "lda_m": 2800.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.694269444444444,
+          -29.210380555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SATR",
+        "iata": "RCQ",
+        "aeropuerto": "RECONQUISTA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e11419cd188(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11419cd188",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "28",
+        "brg_geo": 269.56,
+        "brg_mag": 281.0,
+        "longitud_rwy_m": 2800.0,
+        "ancho_rwy_m": 50.0,
+        "resistencia_superficie": "310/R/C/W/T CONC",
+        "elev_thr_tdz": "49 m 161 ft",
+        "pendiente_rwy_swy": "-0.035%",
+        "coord_aip": "291236.68S 0593955.67W 19 m (62 ft)",
+        "dthr_m": null,
+        "tora_m": 2800.0,
+        "toda_m": 2800.0,
+        "asda_m": 2800.0,
+        "lda_m": 2800.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.66546388888889,
+          -29.210188888888887
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVC",
+        "iata": "CRD",
+        "aeropuerto": "COMODORO RIVADAVIA / GRAL. E. MOSCONI",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1143c25a85(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1143c25a85",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "07",
+        "brg_geo": 74.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2760.0,
+        "ancho_rwy_m": 50.0,
+        "resistencia_superficie": "710/R/C/W/T",
+        "elev_thr_tdz": "49 m 161 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "454710.83S 0672826.07W",
+        "dthr_m": null,
+        "tora_m": 2760.0,
+        "toda_m": 2760.0,
+        "asda_m": 2940.0,
+        "lda_m": 2060.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "OBST",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.47390833333334,
+          -45.786341666666665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVC",
+        "iata": "CRD",
+        "aeropuerto": "COMODORO RIVADAVIA / GRAL. E. MOSCONI",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1143c25a85(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1143c25a85",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "25",
+        "brg_geo": 254.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2760.0,
+        "ancho_rwy_m": 50.0,
+        "resistencia_superficie": "710/R/C/W/T",
+        "elev_thr_tdz": "30 m 98 ft OFZ",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks",
+        "coord_aip": "454658.58S 0672652.54W Ubicación (en qué extremo de pista) Descripción del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": 2760.0,
+        "toda_m": 2760.0,
+        "asda_m": 2910.0,
+        "lda_m": 2760.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "Extremo de pista 25: ELEV 56.5 m (185 ft) /",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.44792777777778,
+          -45.782938888888886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVE",
+        "iata": "EQS",
+        "aeropuerto": "ESQUEL / Brigadier General Antonio Parodi",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e114f5ef93e(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e114f5ef93e",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "05",
+        "brg_geo": 49.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2393.0,
+        "ancho_rwy_m": 40.0,
+        "resistencia_superficie": "50t/1 74t/2 115t/4 178/t5 220/t8 ASPH",
+        "elev_thr_tdz": "799.25 m 2.622 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "425434.75S 0710852.17W",
+        "dthr_m": null,
+        "tora_m": 2393.0,
+        "toda_m": 2393.0,
+        "asda_m": 2393.0,
+        "lda_m": 2393.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.14782500000001,
+          -42.90965277777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVE",
+        "iata": "EQS",
+        "aeropuerto": "ESQUEL / Brigadier General Antonio Parodi",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e114f5ef93e(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e114f5ef93e",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "23",
+        "brg_geo": 229.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2393.0,
+        "ancho_rwy_m": 40.0,
+        "resistencia_superficie": "50t/1 74t/2 115t/4 178/t5 220/t8 ASPH",
+        "elev_thr_tdz": "781.25 m 2.563 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "425352.64S 0710723.58W",
+        "dthr_m": null,
+        "tora_m": 2393.0,
+        "toda_m": 2393.0,
+        "asda_m": 2393.0,
+        "lda_m": 2393.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.12321666666666,
+          -42.897955555555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVE",
+        "iata": "EQS",
+        "aeropuerto": "ESQUEL / Brigadier General Antonio Parodi",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e114f5ef93e(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e114f5ef93e",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "08",
+        "brg_geo": 83.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 1239.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "GND",
+        "elev_thr_tdz": "800.25 m 2.625 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "425442.67S 0710901.22W",
+        "dthr_m": null,
+        "tora_m": 1239.0,
+        "toda_m": 1239.0,
+        "asda_m": 1239.0,
+        "lda_m": 1239.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.1503388888889,
+          -42.911852777777774
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVE",
+        "iata": "EQS",
+        "aeropuerto": "ESQUEL / Brigadier General Antonio Parodi",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e114f5ef93e(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e114f5ef93e",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "26",
+        "brg_geo": 263.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 1239.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "GND",
+        "elev_thr_tdz": "791 m 2.595 ft a OFZ f",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks",
+        "coord_aip": "425442.97S 0710806.61W Ubicación (en qué extremo de pista) Descripción del siste de parada / Location (which RWY end) and Description arresting system",
+        "dthr_m": null,
+        "tora_m": null,
+        "toda_m": null,
+        "asda_m": null,
+        "lda_m": null,
+        "distancias_observaciones": null,
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.13516944444446,
+          -42.91193611111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVT",
+        "iata": "REL",
+        "aeropuerto": "TRELEW / ALMIRANTE ZAR",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e11508bc15d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11508bc15d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "07",
+        "brg_geo": 67.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2560.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "ASPH",
+        "elev_thr_tdz": "34.75 m 114 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "431252.41S 0651706.35W",
+        "dthr_m": null,
+        "tora_m": 2560.0,
+        "toda_m": 2560.0,
+        "asda_m": 2560.0,
+        "lda_m": 2560.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.28509722222222,
+          -43.214558333333336
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVT",
+        "iata": "REL",
+        "aeropuerto": "TRELEW / ALMIRANTE ZAR",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e11508bc15d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11508bc15d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "25",
+        "brg_geo": 247.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2560.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "ASPH",
+        "elev_thr_tdz": "33.5 m 110 ft OFZ",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks",
+        "coord_aip": "431222.91S 0651520.34W Ubicación (en qué extremo de pista) Descripción del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": 2560.0,
+        "toda_m": 2560.0,
+        "asda_m": 2560.0,
+        "lda_m": 2560.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.25565,
+          -43.206363888888895
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVV",
+        "iata": "VDM",
+        "aeropuerto": "VIEDMA / GOBERNADOR CASTELLO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e7b1a89ea5e.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b1a89ea5e",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "11",
+        "brg_geo": 26.0,
+        "brg_mag": 206.0,
+        "longitud_rwy_m": 1457.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "23t/1 29t/2 47t/4 ASPH 60t/1 94t/2 150t/4 230t/5",
+        "elev_thr_tdz": "5.5 m 18 ft 4.5 m 15 ft 6m 20 ft",
+        "pendiente_rwy_swy": "NIL NIL NIL",
+        "coord_aip": "405215.69S 0630005.26W 405132.96S 0625938.49W 405201.37S 0630040.25W",
+        "dthr_m": null,
+        "tora_m": 2550.0,
+        "toda_m": 2550.0,
+        "asda_m": 2550.0,
+        "lda_m": 2550.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.00146111111111,
+          -40.871025
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVV",
+        "iata": "VDM",
+        "aeropuerto": "VIEDMA / GOBERNADOR CASTELLO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e7b1a89ea5e.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b1a89ea5e",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "29",
+        "brg_geo": 287.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 1457.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "23t/1 29t/2 47t/4 ASPH 60t/1 94t/2 150t/4 230t/5",
+        "elev_thr_tdz": "4.5 m 15 ft l OFZ ng",
+        "pendiente_rwy_swy": "NIL Observaciones/ Remarks",
+        "coord_aip": "405223.51S 0625855.30W cación (en qué extremo e pista) Descripción d sistema de parada / cation (which RWY end) Description of arrest system",
+        "dthr_m": null,
+        "tora_m": 2550.0,
+        "toda_m": 2550.0,
+        "asda_m": 2550.0,
+        "lda_m": 2550.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.98202777777778,
+          -40.873197222222224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVY",
+        "iata": "PMY",
+        "aeropuerto": "PUERTO MADRYN",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e1155398740.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1155398740",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "06",
+        "brg_geo": 58.02,
+        "brg_mag": 56.0,
+        "longitud_rwy_m": 2500.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "430/F/B/W/T (**)",
+        "elev_thr_tdz": "131 m 430 ft",
+        "pendiente_rwy_swy": "-0.03%",
+        "coord_aip": "424554.69S 0650656.30W",
+        "dthr_m": null,
+        "tora_m": 2500.0,
+        "toda_m": 2500.0,
+        "asda_m": 2500.0,
+        "lda_m": 2500.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.11563888888888,
+          -42.76519166666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVY",
+        "iata": "PMY",
+        "aeropuerto": "PUERTO MADRYN",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e1155398740.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1155398740",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "24",
+        "brg_geo": 238.0,
+        "brg_mag": 236.0,
+        "longitud_rwy_m": 2500.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "430/F/B/W/T (**)",
+        "elev_thr_tdz": "132 m 433 ft",
+        "pendiente_rwy_swy": "0.03%",
+        "coord_aip": "424511.76S 0650523.02W MDT AIRAC 1/2026",
+        "dthr_m": null,
+        "tora_m": 2500.0,
+        "toda_m": 2500.0,
+        "asda_m": 2500.0,
+        "lda_m": 2500.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.08972777777777,
+          -42.75326666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWB",
+        "iata": null,
+        "aeropuerto": "MARAMBIO / VICECOMODORO MARAMBIO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e11573197e5.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11573197e5",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "05",
+        "brg_geo": null,
+        "brg_mag": null,
+        "longitud_rwy_m": 1208.0,
+        "ancho_rwy_m": 40.0,
+        "resistencia_superficie": null,
+        "elev_thr_tdz": "209.5 m 687 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "641429.11S 0563831.75W",
+        "dthr_m": null,
+        "tora_m": null,
+        "toda_m": null,
+        "asda_m": null,
+        "lda_m": null,
+        "distancias_observaciones": null,
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.642152777777774,
+          -64.24141944444445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWB",
+        "iata": null,
+        "aeropuerto": "MARAMBIO / VICECOMODORO MARAMBIO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e11573197e5.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11573197e5",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "23",
+        "brg_geo": null,
+        "brg_mag": null,
+        "longitud_rwy_m": 1208.0,
+        "ancho_rwy_m": 40.0,
+        "resistencia_superficie": null,
+        "elev_thr_tdz": "205 m 673 ft OFZ",
+        "pendiente_rwy_swy": "NIL bservaciones / Remarks",
+        "coord_aip": "641412.61S 0563710.36W Ubicación (en qué extremo de pista) scripción del sistema de parada / ocation (which RWY d) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": null,
+        "toda_m": null,
+        "asda_m": null,
+        "lda_m": null,
+        "distancias_observaciones": null,
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.61954444444444,
+          -64.23683611111112
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWC",
+        "iata": "FTE",
+        "aeropuerto": "EL CALAFATE",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e7b256c1c2c.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b256c1c2c",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "07",
+        "brg_geo": 72.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2550.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "CONC",
+        "elev_thr_tdz": "197,25 m 647 ft",
+        "pendiente_rwy_swy": "No",
+        "coord_aip": "501652.74S 0720415.86W",
+        "dthr_m": null,
+        "tora_m": 2550.0,
+        "toda_m": 2550.0,
+        "asda_m": 2550.0,
+        "lda_m": 2550.0,
+        "distancias_observaciones": "No",
+        "observaciones_ad212": "No",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.07107222222221,
+          -50.28131666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWC",
+        "iata": "FTE",
+        "aeropuerto": "EL CALAFATE",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e7b256c1c2c.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b256c1c2c",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "25",
+        "brg_geo": 252.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2550.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "CONC",
+        "elev_thr_tdz": "192,50 m 632 ft OFZ",
+        "pendiente_rwy_swy": "No Observacion es / Remarks (*)",
+        "coord_aip": "501645.08S 0720207.47W Ubicación (en qué extremo de pista) scripción del sistema de parada / Location (which RWY end) scription of arrestin system",
+        "dthr_m": null,
+        "tora_m": 2550.0,
+        "toda_m": 2550.0,
+        "asda_m": 2550.0,
+        "lda_m": 2550.0,
+        "distancias_observaciones": "No",
+        "observaciones_ad212": "No",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.03540833333334,
+          -50.27918888888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWE",
+        "iata": "RGA",
+        "aeropuerto": "RÍO GRANDE",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e1380c9247f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1380c9247f",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "08",
+        "brg_geo": 76.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2000.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "630 /R/A/W/T CONC",
+        "elev_thr_tdz": "19.25 m 63 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "534640.79S 0674552.81W",
+        "dthr_m": null,
+        "tora_m": 2000.0,
+        "toda_m": 2200.0,
+        "asda_m": 2185.0,
+        "lda_m": 2000.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "extensión. / Strip of RWY 08, right sector, reduced to 50 m in all its extension.",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.76466944444445,
+          -53.77799722222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWE",
+        "iata": "RGA",
+        "aeropuerto": "RÍO GRANDE",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e1380c9247f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1380c9247f",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "26",
+        "brg_geo": 256.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2000.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "630 /R/A/W/T CONC",
+        "elev_thr_tdz": "13 m 43 ft OFZ",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks",
+        "coord_aip": "534637.93S 0674403.73W Ubicación (en qué extremo de pista) escripción del sistem de parada / Location (which RWY nd) and Description o arresting system",
+        "dthr_m": null,
+        "tora_m": null,
+        "toda_m": null,
+        "asda_m": null,
+        "lda_m": null,
+        "distancias_observaciones": null,
+        "observaciones_ad212": "Franja de RWY 26, sector derecho, reducida a 50 m entre THR 26 y progresiva 250./",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.73436944444444,
+          -53.777202777777774
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWG",
+        "iata": "RGL",
+        "aeropuerto": "RÍO GALLEGOS / Piloto Civil Norberto Fernández",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e1165d02be1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1165d02be1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "08",
+        "brg_geo": 85.6,
+        "brg_mag": 75.0,
+        "longitud_rwy_m": 2750.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "590/R/A/W/T",
+        "elev_thr_tdz": "17.25 m (57 ft) 17.15 m (56 ft)",
+        "pendiente_rwy_swy": "-0.05%",
+        "coord_aip": "513634.2S 0691936.2W 513627.4S 0691713.7W GUND 10 m (33 ft)",
+        "dthr_m": null,
+        "tora_m": 2750.0,
+        "toda_m": 3050.0,
+        "asda_m": 2750.0,
+        "lda_m": 2750.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.32672222222222,
+          -51.609500000000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWG",
+        "iata": "RGL",
+        "aeropuerto": "RÍO GALLEGOS / Piloto Civil Norberto Fernández",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e1165d02be1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1165d02be1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "26",
+        "brg_geo": 265.56,
+        "brg_mag": 255.0,
+        "longitud_rwy_m": 2750.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "590/R/A/W/T",
+        "elev_thr_tdz": "15.50 m (51 ft) 16.5 m (54 ft) OFZ",
+        "pendiente_rwy_swy": "0.05% Observaciones / Remarks",
+        "coord_aip": "513627.4S 0691713.7W 513634.2S 0691936.2W GUND 10 m (33 ft) Ubicación (en qué extremo de pista) Descripción del sistema de parada/ Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": 2750.0,
+        "toda_m": 2750.0,
+        "asda_m": 2750.0,
+        "lda_m": 2750.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.28713888888889,
+          -51.60761111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWH",
+        "iata": "USH",
+        "aeropuerto": "USHUAIA / MALVINAS ARGENTINAS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e7b2b7ee74b(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b2b7ee74b",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "07",
+        "brg_geo": null,
+        "brg_mag": null,
+        "longitud_rwy_m": 2804.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "54/R/A/W/U CONC",
+        "elev_thr_tdz": "25 m 82 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "545038.55S 0681852.82W GUND 13 m (43 ft)",
+        "dthr_m": null,
+        "tora_m": 2804.0,
+        "toda_m": 2954.0,
+        "asda_m": 2918.0,
+        "lda_m": 2624.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "DTHR 07 180 m.",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.31467222222221,
+          -54.84404166666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWH",
+        "iata": "USH",
+        "aeropuerto": "USHUAIA / MALVINAS ARGENTINAS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e7b2b7ee74b(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b2b7ee74b",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "25",
+        "brg_geo": null,
+        "brg_mag": null,
+        "longitud_rwy_m": 2804.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "54/R/A/W/U CONC",
+        "elev_thr_tdz": "21 m 69 ft OFZ",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks (*)",
+        "coord_aip": "545033.23S 0681635.17W GUND 13 m (43 ft) Ubicación (en qué extremo de pista) Descripción del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": 2918.0,
+        "toda_m": 3068.0,
+        "asda_m": 3008.0,
+        "lda_m": 2642.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "DTHR 25 162 m.",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.27643611111111,
+          -54.84256388888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZB",
+        "iata": "BHI",
+        "aeropuerto": "BAHÍA BLANCA / COMANDANTE ESPORA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e7b314ac7f0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b314ac7f0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "17L",
+        "brg_geo": 166.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2410.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "42/F/B/W/U ASPH",
+        "elev_thr_tdz": "75.5 m 248 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "384300.01S 0620926.56W",
+        "dthr_m": null,
+        "tora_m": 2410.0,
+        "toda_m": 2410.0,
+        "asda_m": 2410.0,
+        "lda_m": 2410.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.157377777777775,
+          -38.71666944444445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZB",
+        "iata": "BHI",
+        "aeropuerto": "BAHÍA BLANCA / COMANDANTE ESPORA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e7b314ac7f0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b314ac7f0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "35R",
+        "brg_geo": null,
+        "brg_mag": null,
+        "longitud_rwy_m": 2410.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "42/F/B/W/U ASPH",
+        "elev_thr_tdz": "66.5 m",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "384415.01S",
+        "dthr_m": null,
+        "tora_m": 2410.0,
+        "toda_m": 2410.0,
+        "asda_m": 2410.0,
+        "lda_m": 2410.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.14960277777778,
+          -38.73750277777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZB",
+        "iata": "BHI",
+        "aeropuerto": "BAHÍA BLANCA / COMANDANTE ESPORA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e7b314ac7f0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b314ac7f0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "06",
+        "brg_geo": 346.0,
+        "brg_mag": 63.0,
+        "longitud_rwy_m": 1980.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "8t/1 85t/2 136t/4 136t/5 240 t/8 ASPH",
+        "elev_thr_tdz": "218 ft 74 m 243 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "0620858.57W 384339.00S 0621050.06W",
+        "dthr_m": null,
+        "tora_m": 1980.0,
+        "toda_m": 1980.0,
+        "asda_m": 1980.0,
+        "lda_m": 1980.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "CLSD",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.18057222222222,
+          -38.7275
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZB",
+        "iata": "BHI",
+        "aeropuerto": "BAHÍA BLANCA / COMANDANTE ESPORA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e7b314ac7f0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b314ac7f0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "24",
+        "brg_geo": null,
+        "brg_mag": null,
+        "longitud_rwy_m": 1980.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "8t/1 85t/2 136t/4 136t/5 240 t/8 ASPH",
+        "elev_thr_tdz": "75.5 m",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "384307.59S",
+        "dthr_m": null,
+        "tora_m": 1980.0,
+        "toda_m": 2280.0,
+        "asda_m": 1980.0,
+        "lda_m": 1980.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "CLSD",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.16070555555555,
+          -38.718775
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZB",
+        "iata": "BHI",
+        "aeropuerto": "BAHÍA BLANCA / COMANDANTE ESPORA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e7b314ac7f0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b314ac7f0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "17R",
+        "brg_geo": 243.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 1498.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "2 t/1 30 t/2 48 t/4 48 t/5 90 t/8",
+        "elev_thr_tdz": "248 ft 70.5 m 231 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "0620938.54W 384310.98S",
+        "dthr_m": null,
+        "tora_m": 1498.0,
+        "toda_m": 1498.0,
+        "asda_m": 1498.0,
+        "lda_m": 1498.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "CLSD",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.18432222222222,
+          -38.71971666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZB",
+        "iata": "BHI",
+        "aeropuerto": "BAHÍA BLANCA / COMANDANTE ESPORA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e7b314ac7f0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b314ac7f0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "35L",
+        "brg_geo": 167.0,
+        "brg_mag": 347.0,
+        "longitud_rwy_m": 1498.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "2 t/1 30 t/2 48 t/4 48 t/5 90 t/8",
+        "elev_thr_tdz": "71.5 m 235 ft OFZ",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks",
+        "coord_aip": "0621103.56W 384357.72S 0621046.64W Ubicación (en qué extremo de pista) Descripción del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": null,
+        "toda_m": null,
+        "asda_m": null,
+        "lda_m": null,
+        "distancias_observaciones": null,
+        "observaciones_ad212": "CLSD",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.17962222222222,
+          -38.7327
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZM",
+        "iata": "MDQ",
+        "aeropuerto": "MAR DEL PLATA / ASTOR PIAZZOLLA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1232468b6a(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1232468b6a",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "13",
+        "brg_geo": 122.68,
+        "brg_mag": 132.0,
+        "longitud_rwy_m": 2200.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "450/R/B/W/T Rigido / Rigid 350/F/BF/X/T",
+        "elev_thr_tdz": "21.50 m 71 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "375543.88S 0573501.65W GUND 14.50 m (48 ft)",
+        "dthr_m": null,
+        "tora_m": 2200.0,
+        "toda_m": 2200.0,
+        "asda_m": 2200.0,
+        "lda_m": 2200.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.58379166666667,
+          -37.92885555555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZM",
+        "iata": "MDQ",
+        "aeropuerto": "MAR DEL PLATA / ASTOR PIAZZOLLA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1232468b6a(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1232468b6a",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "31",
+        "brg_geo": 302.66,
+        "brg_mag": 312.0,
+        "longitud_rwy_m": 2200.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "450/R/B/W/T Rigido / Rigid 350/F/BF/X/T",
+        "elev_thr_tdz": "18.75 m 62 ft OFZ",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks(*)",
+        "coord_aip": "375622.40S 0573345.82W GUND 14.50 m (48 ft) Ubicación (en qué extremo de pista) Descripción del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": null,
+        "toda_m": null,
+        "asda_m": null,
+        "lda_m": null,
+        "distancias_observaciones": null,
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.56272777777777,
+          -37.93955555555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZN",
+        "iata": "NQN",
+        "aeropuerto": "NEUQUÉN / Presidente Perón",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1234aab580(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1234aab580",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "09",
+        "brg_geo": 90.23,
+        "brg_mag": 88.13,
+        "longitud_rwy_m": 2570.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "RWY 80/R/D/W/U ASPH SWY NIL ASPH",
+        "elev_thr_tdz": "271.5 m 891 ft",
+        "pendiente_rwy_swy": "-0.11% 0.0%",
+        "coord_aip": "385656.27S 0681013.93W 385656.60S 0680827.24W 18m (59 ft)",
+        "dthr_m": null,
+        "tora_m": 2570.0,
+        "toda_m": 2570.0,
+        "asda_m": 2776.0,
+        "lda_m": 2570.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.17053611111112,
+          -38.94896388888888
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZN",
+        "iata": "NQN",
+        "aeropuerto": "NEUQUÉN / Presidente Perón",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1234aab580(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1234aab580",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "27",
+        "brg_geo": 270.22,
+        "brg_mag": 268.13,
+        "longitud_rwy_m": 2570.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "RWY 80/R/D/W/U ASPH SWY NIL ASPH",
+        "elev_thr_tdz": "268.75 m 882 ft OFZ",
+        "pendiente_rwy_swy": "0.11% 0.0% Observaciones / Remarks",
+        "coord_aip": "385656.60S 0680827.23W 385656.27S 0681013.93W 18 m (59 ft) Ubicación (en qué extremo de pista) Descripción del sistema de parada / Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": 2570.0,
+        "toda_m": 2570.0,
+        "asda_m": 2778.0,
+        "lda_m": 2570.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.14089722222222,
+          -38.94905555555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZR",
+        "iata": "RSA",
+        "aeropuerto": "SANTA ROSA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e123c163177(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e123c163177",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "01",
+        "brg_geo": 15.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2300.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "430/F/B/X/T ASPH A",
+        "elev_thr_tdz": "187.5 m 615 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "363553.97S 0641641.14W GUND 18m",
+        "dthr_m": null,
+        "tora_m": 2300.0,
+        "toda_m": 2300.0,
+        "asda_m": 2300.0,
+        "lda_m": 2300.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.27809444444445,
+          -36.598325
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZR",
+        "iata": "RSA",
+        "aeropuerto": "SANTA ROSA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e123c163177(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e123c163177",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "19",
+        "brg_geo": 195.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2300.0,
+        "ancho_rwy_m": 30.0,
+        "resistencia_superficie": "430/F/B/X/T ASPH A",
+        "elev_thr_tdz": "190 m 623 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "363440.81S 0641623.08W GUND 18m DT AIRAC 1/2026",
+        "dthr_m": null,
+        "tora_m": 2300.0,
+        "toda_m": 2300.0,
+        "asda_m": 2300.0,
+        "lda_m": 2300.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.27307777777777,
+          -36.57800277777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZS",
+        "iata": "BRC",
+        "aeropuerto": "SAN CARLOS DE BARILOCHE",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e8bacf19c28(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e8bacf19c28",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "11",
+        "brg_geo": 114.74,
+        "brg_mag": 109.0,
+        "longitud_rwy_m": 2348.0,
+        "ancho_rwy_m": 48.0,
+        "resistencia_superficie": "720/R/A/W/T ASPH, base",
+        "elev_thr_tdz": "835 m 2.739 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "410848S 0711014.20W 22 m (72 ft)",
+        "dthr_m": null,
+        "tora_m": 2348.0,
+        "toda_m": 2598.0,
+        "asda_m": 2348.0,
+        "lda_m": 2348.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": "NIL",
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.17061111111111,
+          -41.14666666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZS",
+        "iata": "BRC",
+        "aeropuerto": "SAN CARLOS DE BARILOCHE",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e8bacf19c28(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e8bacf19c28",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "29",
+        "brg_geo": 294.73,
+        "brg_mag": 289.0,
+        "longitud_rwy_m": 2348.0,
+        "ancho_rwy_m": 48.0,
+        "resistencia_superficie": "720/R/A/W/T ASPH, base",
+        "elev_thr_tdz": "841.5 m 2.761 ft OFZ",
+        "pendiente_rwy_swy": "NIL Observaciones / Remarks (*)",
+        "coord_aip": "410919.84S 0710842.75W 22 m (72 ft) bicación (en qué xtremo de pista) Descripción del istema de parada /Location (which RWY end) and Description of arresting system",
+        "dthr_m": null,
+        "tora_m": null,
+        "toda_m": null,
+        "asda_m": null,
+        "lda_m": null,
+        "distancias_observaciones": null,
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.14520833333334,
+          -41.15551111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZT",
+        "iata": "TDL",
+        "aeropuerto": "TANDIL / HÉROES DE MALVINAS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": null,
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e12466c7a15(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e12466c7a15",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "01",
+        "brg_geo": 13.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2550.0,
+        "ancho_rwy_m": 48.0,
+        "resistencia_superficie": "320/R/B/W/T AMD",
+        "elev_thr_tdz": "175.5 m 576 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "371444.96S 0591347.51W GUND 17 m (56 ft)",
+        "dthr_m": null,
+        "tora_m": 2550.0,
+        "toda_m": 2550.0,
+        "asda_m": 2550.0,
+        "lda_m": 2550.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.22986388888889,
+          -37.24582222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZT",
+        "iata": "TDL",
+        "aeropuerto": "TANDIL / HÉROES DE MALVINAS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": null,
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e12466c7a15(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e12466c7a15",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "19",
+        "brg_geo": 193.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2550.0,
+        "ancho_rwy_m": 48.0,
+        "resistencia_superficie": "320/R/B/W/T AMD",
+        "elev_thr_tdz": "167 m 548 ft",
+        "pendiente_rwy_swy": "NIL 11 JUNI0 2026",
+        "coord_aip": "371322.56S 0591338.32W GUND 17 m (56 ft) AIRAC 1/2026",
+        "dthr_m": null,
+        "tora_m": 2550.0,
+        "toda_m": 2550.0,
+        "asda_m": 2550.0,
+        "lda_m": 2550.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.22731111111111,
+          -37.22293333333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZY",
+        "iata": "CPC",
+        "aeropuerto": "SAN MARTÍN DE LOS ANDES / AVIADOR C. CAMPOS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69fcdbcd57a67(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69fcdbcd57a67",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "06",
+        "brg_geo": 63.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2501.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "38/F/B/X/T ASPH",
+        "elev_thr_tdz": "789 m 2.589 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "400446S 0710903.21W",
+        "dthr_m": null,
+        "tora_m": 2501.0,
+        "toda_m": 2501.0,
+        "asda_m": 2501.0,
+        "lda_m": 2501.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.15089166666667,
+          -40.07944444444445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZY",
+        "iata": "CPC",
+        "aeropuerto": "SAN MARTÍN DE LOS ANDES / AVIADOR C. CAMPOS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69fcdbcd57a67(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69fcdbcd57a67",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "24",
+        "brg_geo": 243.0,
+        "brg_mag": null,
+        "longitud_rwy_m": 2501.0,
+        "ancho_rwy_m": 45.0,
+        "resistencia_superficie": "38/F/B/X/T ASPH",
+        "elev_thr_tdz": "775 m 2.543 ft",
+        "pendiente_rwy_swy": "NIL",
+        "coord_aip": "400416.10S 0710725.08W MDT AIRAC 1/2026",
+        "dthr_m": null,
+        "tora_m": 2501.0,
+        "toda_m": 2501.0,
+        "asda_m": 2501.0,
+        "lda_m": 2501.0,
+        "distancias_observaciones": "NIL",
+        "observaciones_ad212": null,
+        "metodo_geometria": "coordenada_THR_AIP",
+        "precision_geometria": "publicada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.12363333333333,
+          -40.07113888888889
+        ]
+      }
+    }
+  ]
+}

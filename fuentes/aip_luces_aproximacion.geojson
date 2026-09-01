@@ -1,0 +1,864 @@
+{
+  "type": "FeatureCollection",
+  "name": "aip_luces_aproximacion",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAC",
+        "iata": "COC",
+        "aeropuerto": "CONCORDIA / COMODORO JUAN JOSÉ PIERRESTEGUI",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10469037bf.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10469037bf",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "04",
+        "sistema_aproximacion": "SALS (210 m) – Media Intensidad / medium intensity (LIM) Visual",
+        "longitud_m": 210.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -58.00213888888889,
+            -31.305872222222224
+          ],
+          [
+            -58.003171126243224,
+            -31.30754609585994
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAC",
+        "iata": "COC",
+        "aeropuerto": "CONCORDIA / COMODORO JUAN JOSÉ PIERRESTEGUI",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10469037bf.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10469037bf",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "22",
+        "sistema_aproximacion": "SALS (210 m) - Media Intensidad/ Medium intensity (LIM) Visual",
+        "longitud_m": 210.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -57.992325,
+            -31.289925
+          ],
+          [
+            -57.991292972926544,
+            -31.288251113470874
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAR",
+        "iata": "ROS",
+        "aeropuerto": "ROSARIO / ISLAS MALVINAS",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e105dba2f99.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e105dba2f99",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "sistema_aproximacion": "ALS 420 m 5 Niveles de brillo / SALS 420 m 5 brightness levels",
+        "longitud_m": 420.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -60.78766944444444,
+            -32.91676666666667
+          ],
+          [
+            -60.788516212811714,
+            -32.920485807095396
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAR",
+        "iata": "ROS",
+        "aeropuerto": "ROSARIO / ISLAS MALVINAS",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e105dba2f99.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e105dba2f99",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "20",
+        "sistema_aproximacion": "ALS 900M-F, 5 LIH",
+        "longitud_m": 900.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -60.781619444444445,
+            -32.89018611111111
+          ],
+          [
+            -60.77980572101837,
+            -32.88221646378744
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAV",
+        "iata": "SFN",
+        "aeropuerto": "SANTA FE / SAUCE VIEJO",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e13318f081b.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e13318f081b",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "03",
+        "sistema_aproximacion": "SALS 420 m",
+        "longitud_m": 420.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -60.81605,
+            -31.720488888888887
+          ],
+          [
+            -60.8177100854799,
+            -31.724000876040247
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAV",
+        "iata": "SFN",
+        "aeropuerto": "SANTA FE / SAUCE VIEJO",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e13318f081b.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e13318f081b",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "21",
+        "sistema_aproximacion": "ALS-F 900 m",
+        "longitud_m": 900.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -60.80651944444444,
+            -31.701172222222223
+          ],
+          [
+            -60.80296327694777,
+            -31.693646433378145
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "AEROPARQUE JORGE NEWBERY",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-6a10684a7a5bd.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a10684a7a5bd",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "13",
+        "sistema_aproximacion": "ALS – F 549 m - LIH",
+        "longitud_m": 549.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -58.42525277777778,
+            -34.55393333333333
+          ],
+          [
+            -58.430211036893915,
+            -34.551165093486716
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "AEROPARQUE JORGE NEWBERY",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-6a10684a7a5bd.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a10684a7a5bd",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "31",
+        "sistema_aproximacion": "ALS – F 690 m - LIH",
+        "longitud_m": 690.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -58.40742777777778,
+            -34.56388055555555
+          ],
+          [
+            -58.40119414428796,
+            -34.5673585710202
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "CÓRDOBA / ING. AER. A. L. V. TARAVELLA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1078aa7f9d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1078aa7f9d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "19",
+        "sistema_aproximacion": "ALS-F 900 m",
+        "longitud_m": 900.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -64.20857222222223,
+            -31.29565555555556
+          ],
+          [
+            -64.20870419475928,
+            -31.287539060205276
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "EZEIZA / MINISTRO PISTARINI",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e10875b7c89.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10875b7c89",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "35",
+        "sistema_aproximacion": "tema de iluminación de precisión C Longitud 720 m / ision lighting system CAT II. Leng",
+        "longitud_m": 720.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -58.52549722222222,
+            -34.83258888888889
+          ],
+          [
+            -58.52332748541633,
+            -34.83882758943461
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANE",
+        "iata": "SDE",
+        "aeropuerto": "SANTIAGO DEL ESTERO / VCOM. ÁNGEL D. LA PAZ ARAGONÉS",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e1098092c2d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1098092c2d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "21",
+        "sistema_aproximacion": "ma de iluminación de Aproximación- , longitud de 900 m, 5 niveles de intensidad y dispone de FLASH / ach lighting system-ALS-F, length , 5 brightness levels, high intens as FLASH No",
+        "longitud_m": 900.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -64.30419722222221,
+            -27.75592222222222
+          ],
+          [
+            -64.2988314179435,
+            -27.749351598046538
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANR",
+        "iata": "RHD",
+        "aeropuerto": "TERMAS DE RIO HONDO",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e6130f69047.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6130f69047",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "01",
+        "sistema_aproximacion": "ALS-F, 720 M, 5 LIH F (ALS) LIH",
+        "longitud_m": 720.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -64.93653333333334,
+            -27.507883333333332
+          ],
+          [
+            -64.93678766346207,
+            -27.514376888890073
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANT",
+        "iata": "TUC",
+        "aeropuerto": "SAN MIGUEL de TUCUMÁN / Tte. BENJAMÍN MATIENZO",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10b1142729.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b1142729",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "sistema_aproximacion": "SALS-F, 390 m, 5 LIH",
+        "longitud_m": 390.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -65.10731944444444,
+            -26.853783333333336
+          ],
+          [
+            -65.10798605353284,
+            -26.857251995008316
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARC",
+        "iata": "CNQ",
+        "aeropuerto": "CORRIENTES",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10de8df659(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10de8df659",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "20",
+        "sistema_aproximacion": "ma sencillo de iluminación (900 m Simple lighting system (900 m). ÁUTICA",
+        "longitud_m": 900.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -58.76034166666667,
+            -27.436186111111112
+          ],
+          [
+            -58.759090606750306,
+            -27.4281412029716
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARE",
+        "iata": "RES",
+        "aeropuerto": "RESISTENCIA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e23557ecfd0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e23557ecfd0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "21",
+        "sistema_aproximacion": "tema de iluminación de precisión S) CAT 1 (900 m) / roach Lighting System (ALS) CAT 0 m)",
+        "longitud_m": 900.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -59.05107222222222,
+            -27.438247222222223
+          ],
+          [
+            -59.0478547194825,
+            -27.43064952563756
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARI",
+        "iata": "IGR",
+        "aeropuerto": "CATARATAS DEL IGUAZÚ / Mayor D. Carlos Eduardo Krause",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e6163c31b23(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6163c31b23",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "31",
+        "sistema_aproximacion": "Precisión CAT I 900 m / CAT I 900 m Precision Illumination System",
+        "longitud_m": 900.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -54.458511111111115,
+            -25.743516666666668
+          ],
+          [
+            -54.45174104188287,
+            -25.74884627263951
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARP",
+        "iata": "PSS",
+        "aeropuerto": "POSADAS / Libertador Gral. D. José de San Martín",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1137370dba(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1137370dba",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "20",
+        "sistema_aproximacion": "ALS-F, 750 m, LIH",
+        "longitud_m": 750.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -55.970675,
+            -27.37558611111111
+          ],
+          [
+            -55.970787465127906,
+            -27.368818477227613
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASA",
+        "iata": "SLA",
+        "aeropuerto": "SALTA / Gral. Don Martín Miguel de Güemes",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e1138586777(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1138586777",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "sistema_aproximacion": "LS-F CAT I 810 m - Alta intensidad / LS-F CAT I 810 m – High intensity",
+        "longitud_m": 810.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -65.48993888888889,
+            -24.872833333333332
+          ],
+          [
+            -65.4926805154708,
+            -24.87970469777591
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASJ",
+        "iata": "JUJ",
+        "aeropuerto": "JUJUY / Gobernador Horacio Guzmán",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e113f9e6050(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e113f9e6050",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "34",
+        "sistema_aproximacion": "ALS, 900 m, LIH CAT I ONÁUTICA",
+        "longitud_m": 900.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -65.09058333333333,
+            -24.40426111111111
+          ],
+          [
+            -65.08616672449462,
+            -24.411308438094654
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SATR",
+        "iata": "RCQ",
+        "aeropuerto": "RECONQUISTA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e11419cd188(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11419cd188",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "10",
+        "sistema_aproximacion": "SALS, 360 m",
+        "longitud_m": 360.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -59.694269444444444,
+            -29.210380555555556
+          ],
+          [
+            -59.697971485107445,
+            -29.210404879690106
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVT",
+        "iata": "REL",
+        "aeropuerto": "TRELEW / ALMIRANTE ZAR",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e11508bc15d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11508bc15d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "25",
+        "sistema_aproximacion": "CAT I ALS-F 900 m",
+        "longitud_m": 900.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -65.25565,
+            -43.206363888888895
+          ],
+          [
+            -65.24545636773446,
+            -43.203198102835515
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVV",
+        "iata": "VDM",
+        "aeropuerto": "VIEDMA / GOBERNADOR CASTELLO",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e7b1a89ea5e.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b1a89ea5e",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "29",
+        "sistema_aproximacion": "SALS-F, 420 m, 5 LIH, F 3",
+        "longitud_m": 420.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -62.98202777777778,
+            -40.873197222222224
+          ],
+          [
+            -62.97726297727332,
+            -40.87430288240785
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWE",
+        "iata": "RGA",
+        "aeropuerto": "RÍO GRANDE",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1380c9247f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1380c9247f",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "26",
+        "sistema_aproximacion": "S-F, 900 m, 5 niveles de brillo, L S-F, 900 m, 5 brightness levels, L",
+        "longitud_m": 900.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -67.73436944444444,
+            -53.777202777777774
+          ],
+          [
+            -67.72112378810034,
+            -53.7752458189589
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWG",
+        "iata": "RGL",
+        "aeropuerto": "RÍO GALLEGOS / Piloto Civil Norberto Fernández",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1165d02be1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1165d02be1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "26",
+        "sistema_aproximacion": "ALS, 870 m, 5 LIH",
+        "longitud_m": 870.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -69.28713888888889,
+            -51.60761111111111
+          ],
+          [
+            -69.27461843746828,
+            -51.60700509389525
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZM",
+        "iata": "MDQ",
+        "aeropuerto": "MAR DEL PLATA / ASTOR PIAZZOLLA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e1232468b6a(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1232468b6a",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "13",
+        "sistema_aproximacion": "SALS-F 660 m",
+        "longitud_m": 660.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -57.58379166666667,
+            -37.92885555555555
+          ],
+          [
+            -57.590110078696604,
+            -37.92564475124132
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZS",
+        "iata": "BRC",
+        "aeropuerto": "SAN CARLOS DE BARILOCHE",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e8bacf19c28(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e8bacf19c28",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "29",
+        "sistema_aproximacion": "precisión CAT 1, con luce de destellos (900 m) FLASH ODSL. / CAT 1 precision lighting system, with flashing lights (900 m) FLASH ODSL",
+        "longitud_m": 900.0,
+        "metodo_geometria": "derivada_THR_rumbo_longitud_AIP",
+        "precision_geometria": "derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -71.14520833333334,
+            -41.15551111111111
+          ],
+          [
+            -71.1354688711415,
+            -41.15890092797234
+          ]
+        ]
+      }
+    }
+  ]
+}

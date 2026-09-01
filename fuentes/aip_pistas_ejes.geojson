@@ -1,0 +1,2286 @@
+{
+  "type": "FeatureCollection",
+  "name": "aip_pistas_ejes",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAC",
+        "iata": "COC",
+        "aeropuerto": "CONCORDIA / COMODORO JUAN JOSÉ PIERRESTEGUI",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10469037bf.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10469037bf",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "04",
+        "rwy_2": "22",
+        "designacion": "04/22",
+        "longitud_publicada_m": 2000.0,
+        "ancho_m": 30.0,
+        "resistencia_superficie": "500/R/C/W/T",
+        "brg_geo_1": 27.9,
+        "brg_geo_2": 207.9,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -58.00213888888889,
+            -31.305872222222224
+          ],
+          [
+            -57.992325,
+            -31.289925
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAG",
+        "iata": null,
+        "aeropuerto": "GUALEGUAYCHÚ",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69ebb97edc7dc.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69ebb97edc7dc",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "01",
+        "rwy_2": "19",
+        "designacion": "01/19",
+        "longitud_publicada_m": 1330.0,
+        "ancho_m": 30.0,
+        "resistencia_superficie": "16t/1 20t/2 32t/4",
+        "brg_geo_1": 10.0,
+        "brg_geo_2": 190.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -58.612925000000004,
+            -33.01156944444445
+          ],
+          [
+            -58.61269166666667,
+            -32.999575
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAP",
+        "iata": "PRA",
+        "aeropuerto": "PARANÁ / GENERAL URQUIZA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e12b515db21.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e12b515db21",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "02",
+        "rwy_2": "20",
+        "designacion": "02/20",
+        "longitud_publicada_m": 2100.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "36/F/C/W/T",
+        "brg_geo_1": 8.0,
+        "brg_geo_2": 188.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -60.48198888888889,
+            -31.804130555555556
+          ],
+          [
+            -60.47873333333334,
+            -31.785397222222223
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAR",
+        "iata": "ROS",
+        "aeropuerto": "ROSARIO / ISLAS MALVINAS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e105dba2f99.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e105dba2f99",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "02",
+        "rwy_2": "20",
+        "designacion": "02/20",
+        "longitud_publicada_m": 3001.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "RWY 1.230/R/C/W/ T CONC 983/F/C/X/T ASPH",
+        "brg_geo_1": 10.87,
+        "brg_geo_2": 190.87,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -60.78766944444444,
+            -32.91676666666667
+          ],
+          [
+            -60.781619444444445,
+            -32.89018611111111
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAV",
+        "iata": "SFN",
+        "aeropuerto": "SANTA FE / SAUCE VIEJO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e13318f081b.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e13318f081b",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "03",
+        "rwy_2": "21",
+        "designacion": "03/21",
+        "longitud_publicada_m": 2325.0,
+        "ancho_m": 30.0,
+        "resistencia_superficie": "53/F/C/X/T",
+        "brg_geo_1": 22.0,
+        "brg_geo_2": 202.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -60.81605,
+            -31.720488888888887
+          ],
+          [
+            -60.80651944444444,
+            -31.701172222222223
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "AEROPARQUE JORGE NEWBERY",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-6a10684a7a5bd.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a10684a7a5bd",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "13",
+        "rwy_2": "31",
+        "designacion": "13/31",
+        "longitud_publicada_m": 2350.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "1170/R/C/W/T",
+        "brg_geo_1": 124.01,
+        "brg_geo_2": 304.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -58.42525277777778,
+            -34.55393333333333
+          ],
+          [
+            -58.40742777777778,
+            -34.56388055555555
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "CÓRDOBA / ING. AER. A. L. V. TARAVELLA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1078aa7f9d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1078aa7f9d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "05",
+        "rwy_2": "23",
+        "designacion": "05/23",
+        "longitud_publicada_m": 2200.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "395/F/A/X/T ASPH",
+        "brg_geo_1": 44.2,
+        "brg_geo_2": 224.2,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -64.20750277777778,
+            -31.323166666666665
+          ],
+          [
+            -64.19138611111111,
+            -31.308925000000002
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "CÓRDOBA / ING. AER. A. L. V. TARAVELLA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1078aa7f9d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1078aa7f9d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "01",
+        "rwy_2": "19",
+        "designacion": "01/19",
+        "longitud_publicada_m": 3200.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "680/R/B/W/T",
+        "brg_geo_1": 359.2,
+        "brg_geo_2": 179.2,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -64.2081,
+            -31.324530555555555
+          ],
+          [
+            -64.20857222222223,
+            -31.29565555555556
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADF",
+        "iata": "FDO",
+        "aeropuerto": "SAN FERNANDO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-6a68fbe672145.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a68fbe672145",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "05",
+        "rwy_2": "23",
+        "designacion": "05/23",
+        "longitud_publicada_m": 1690.0,
+        "ancho_m": 30.0,
+        "resistencia_superficie": "18 F/C/X/U",
+        "brg_geo_1": 44.19,
+        "brg_geo_2": 224.18,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -58.59623055555556,
+            -34.45911388888889
+          ],
+          [
+            -58.58551666666667,
+            -34.44998333333333
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADJ",
+        "iata": null,
+        "aeropuerto": "MARIANO MORENO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e16419c624e.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e16419c624e",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "16",
+        "rwy_2": "34",
+        "designacion": "16/34",
+        "longitud_publicada_m": 2403.0,
+        "ancho_m": 40.0,
+        "resistencia_superficie": "57t/1 74t/2 118t/4 143t/5",
+        "brg_geo_1": 169.0,
+        "brg_geo_2": 349.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -58.79373333333333,
+            -34.55020833333333
+          ],
+          [
+            -58.784401757458994,
+            -34.57302962328363
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADM",
+        "iata": null,
+        "aeropuerto": "MORÓN",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e135e507da0.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e135e507da0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "02",
+        "rwy_2": "20",
+        "designacion": "02/20",
+        "longitud_publicada_m": 2303.0,
+        "ancho_m": 3.0,
+        "resistencia_superficie": "26t/1 34t/2 5",
+        "brg_geo_1": 13.51,
+        "brg_geo_2": 193.51,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -58.64642222222222,
+            -34.688775
+          ],
+          [
+            -58.640594444444446,
+            -34.668588888888884
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADP",
+        "iata": "EPA",
+        "aeropuerto": "EL PALOMAR",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e26822c76b6.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e26822c76b6",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "17",
+        "rwy_2": "35",
+        "designacion": "17/35",
+        "longitud_publicada_m": 2110.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "UW 55t/1 83t/2 125t/4 270t/8",
+        "brg_geo_1": 156.8,
+        "brg_geo_2": 336.8,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -58.617130555555555,
+            -34.60115555555556
+          ],
+          [
+            -58.60893333333333,
+            -34.61698333333334
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "EZEIZA / MINISTRO PISTARINI",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10875b7c89.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10875b7c89",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "11",
+        "rwy_2": "29",
+        "designacion": "11/29",
+        "longitud_publicada_m": 3300.0,
+        "ancho_m": 60.0,
+        "resistencia_superficie": "82/R/B/W/T ASPH 92/F/C/W/T CONC",
+        "brg_geo_1": 102.3,
+        "brg_geo_2": 282.2,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -58.55345,
+            -34.819052777777785
+          ],
+          [
+            -58.51825,
+            -34.825361111111114
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "EZEIZA / MINISTRO PISTARINI",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10875b7c89.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10875b7c89",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "17",
+        "rwy_2": "35",
+        "designacion": "17/35",
+        "longitud_publicada_m": 3105.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "70 R/B/W/T ASPH",
+        "brg_geo_1": 164.0,
+        "brg_geo_2": 344.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -58.53394722222222,
+            -34.80826388888889
+          ],
+          [
+            -58.524593205001686,
+            -34.8351883529316
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAME",
+        "iata": "MDZ",
+        "aeropuerto": "MENDOZA / El Plumerillo",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69fc9d7664864.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69fc9d7664864",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "18",
+        "rwy_2": "36",
+        "designacion": "18/36",
+        "longitud_publicada_m": 2835.0,
+        "ancho_m": 54.0,
+        "resistencia_superficie": "970/R/B/W/T CONC",
+        "brg_geo_1": 180.74,
+        "brg_geo_2": 0.7,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -68.79268611111111,
+            -32.819175
+          ],
+          [
+            -68.79306111111111,
+            -32.844322222222225
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAMM",
+        "iata": "LGS",
+        "aeropuerto": "MALARGÜE / COMODORO D. R. SALOMÓN",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e168cc06ad1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e168cc06ad1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "09",
+        "rwy_2": "27",
+        "designacion": "09/27",
+        "longitud_publicada_m": 1450.0,
+        "ancho_m": 20.0,
+        "resistencia_superficie": "ASPH 11t/1 15t/2",
+        "brg_geo_1": 95.0,
+        "brg_geo_2": 275.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -69.58231111111111,
+            -35.4841
+          ],
+          [
+            -69.5637111111111,
+            -35.48583611111111
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAMM",
+        "iata": "LGS",
+        "aeropuerto": "MALARGÜE / COMODORO D. R. SALOMÓN",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e168cc06ad1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e168cc06ad1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "14",
+        "rwy_2": "32",
+        "designacion": "14/32",
+        "longitud_publicada_m": 2650.0,
+        "ancho_m": 30.0,
+        "resistencia_superficie": "ASPH",
+        "brg_geo_1": 143.0,
+        "brg_geo_2": 323.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -69.57993888888889,
+            -35.487255555555556
+          ],
+          [
+            -69.56602777777778,
+            -35.503275
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAMR",
+        "iata": "AFA",
+        "aeropuerto": "SAN RAFAEL / S. A. SANTIAGO GERMANO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e169708997f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e169708997f",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "11",
+        "rwy_2": "29",
+        "designacion": "11/29",
+        "longitud_publicada_m": 2102.0,
+        "ancho_m": 30.0,
+        "resistencia_superficie": "430/F/B/X/T",
+        "brg_geo_1": 108.46,
+        "brg_geo_2": 288.46,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -68.41445555555556,
+            -34.58481666666667
+          ],
+          [
+            -68.39272500000001,
+            -34.59081944444445
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANC",
+        "iata": "CTC",
+        "aeropuerto": "CATAMARCA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e256ccb0f13.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e256ccb0f13",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "02",
+        "rwy_2": "20",
+        "designacion": "02/20",
+        "longitud_publicada_m": 2800.0,
+        "ancho_m": 30.0,
+        "resistencia_superficie": "550/R/B/W/T CONC",
+        "brg_geo_1": 12.0,
+        "brg_geo_2": 192.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -65.75415277777778,
+            -28.60546388888889
+          ],
+          [
+            -65.74821111111112,
+            -28.580755555555555
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANE",
+        "iata": "SDE",
+        "aeropuerto": "SANTIAGO DEL ESTERO / VCOM. ÁNGEL D. LA PAZ ARAGONÉS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e1098092c2d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1098092c2d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "03",
+        "rwy_2": "21",
+        "designacion": "03/21",
+        "longitud_publicada_m": 2435.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "71t/1 96t/2 152t/4",
+        "brg_geo_1": 36.0,
+        "brg_geo_2": 216.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -64.31570555555555,
+            -27.77536111111111
+          ],
+          [
+            -64.30419722222221,
+            -27.75592222222222
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANL",
+        "iata": "IRJ",
+        "aeropuerto": "LA RIOJA / CAPITÁN VICENTE A. ALMONACID",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e254b904105.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e254b904105",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "03",
+        "rwy_2": "21",
+        "designacion": "03/21",
+        "longitud_publicada_m": 2806.0,
+        "ancho_m": 30.0,
+        "resistencia_superficie": "46t/1 60t/2 95t/4",
+        "brg_geo_1": 28.0,
+        "brg_geo_2": 208.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -66.80257777777777,
+            -29.391583333333333
+          ],
+          [
+            -66.78886944444444,
+            -29.369291666666665
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANR",
+        "iata": "RHD",
+        "aeropuerto": "TERMAS DE RIO HONDO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e6130f69047.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6130f69047",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "01",
+        "rwy_2": "19",
+        "designacion": "01/19",
+        "longitud_publicada_m": 2500.0,
+        "ancho_m": 30.0,
+        "resistencia_superficie": "ASPH -",
+        "brg_geo_1": 2.0,
+        "brg_geo_2": 182.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -64.93653333333334,
+            -27.507883333333332
+          ],
+          [
+            -64.93538333333333,
+            -27.485347222222224
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANT",
+        "iata": "TUC",
+        "aeropuerto": "SAN MIGUEL de TUCUMÁN / Tte. BENJAMÍN MATIENZO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10b1142729.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b1142729",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "02",
+        "rwy_2": "20",
+        "designacion": "02/20",
+        "longitud_publicada_m": 3500.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "82/R/B/W/T",
+        "brg_geo_1": 9.78,
+        "brg_geo_2": 189.77,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -65.10731944444444,
+            -26.853783333333336
+          ],
+          [
+            -65.10134166666666,
+            -26.822655555555556
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANU",
+        "iata": "UAQ",
+        "aeropuerto": "SAN JUAN / DOMINGO FAUSTINO SARMIENTO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10b2277811.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b2277811",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "18",
+        "rwy_2": "36",
+        "designacion": "18/36",
+        "longitud_publicada_m": 2460.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "ASPH 430/F/B/X/T",
+        "brg_geo_1": 179.51,
+        "brg_geo_2": 359.51,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -68.41840555555557,
+            -31.560369444444444
+          ],
+          [
+            -68.41818333333333,
+            -31.582555555555555
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOC",
+        "iata": "RCU",
+        "aeropuerto": "RÍO CUARTO / ÁREA DE MATERIAL",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10b83ad8fa.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b83ad8fa",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "05",
+        "rwy_2": "23",
+        "designacion": "05/23",
+        "longitud_publicada_m": 2265.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "490/F/A/X/T",
+        "brg_geo_1": 44.32,
+        "brg_geo_2": 224.32,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -64.2778,
+            -33.099469444444445
+          ],
+          [
+            -64.26084444444444,
+            -33.08485277777778
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOC",
+        "iata": "RCU",
+        "aeropuerto": "RÍO CUARTO / ÁREA DE MATERIAL",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10b83ad8fa.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b83ad8fa",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "01",
+        "rwy_2": "19",
+        "designacion": "01/19",
+        "longitud_publicada_m": 2075.0,
+        "ancho_m": 40.0,
+        "resistencia_superficie": "440/F/B/X/T",
+        "brg_geo_1": 359.33,
+        "brg_geo_2": 179.33,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -64.26123333333334,
+            -33.10230277777778
+          ],
+          [
+            -64.26149166666667,
+            -33.08359166666667
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOR",
+        "iata": "VME",
+        "aeropuerto": "VILLA REYNOLDS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "2/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10c27bbaf1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10c27bbaf1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "06",
+        "rwy_2": "24",
+        "designacion": "06/24",
+        "longitud_publicada_m": 2362.0,
+        "ancho_m": 50.0,
+        "resistencia_superficie": "65t/1 80t/2 135t/4 ASPH",
+        "brg_geo_1": 62.0,
+        "brg_geo_2": 242.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -65.38898333333334,
+            -33.73065555555556
+          ],
+          [
+            -65.36725,
+            -33.71953055555556
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOR",
+        "iata": "VME",
+        "aeropuerto": "VILLA REYNOLDS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "2/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10c27bbaf1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10c27bbaf1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "10",
+        "rwy_2": "28",
+        "designacion": "10/28",
+        "longitud_publicada_m": 2397.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "35t/1 45t/2 71t/4 ASPH A",
+        "brg_geo_1": 105.0,
+        "brg_geo_2": 285.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -65.38847222222223,
+            -33.72968055555556
+          ],
+          [
+            -65.36309999999999,
+            -33.73386388888889
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOS",
+        "iata": "RLO",
+        "aeropuerto": "VALLE DEL CONLARA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e10c3899e4a.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10c3899e4a",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "02",
+        "rwy_2": "20",
+        "designacion": "02/20",
+        "longitud_publicada_m": 2550.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "40/R/C/W/T CONC",
+        "brg_geo_1": 17.57,
+        "brg_geo_2": 197.57,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -65.1898638888889,
+            -32.395430555555556
+          ],
+          [
+            -65.18168333333334,
+            -32.373508333333334
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOU",
+        "iata": "LUQ",
+        "aeropuerto": "SAN LUIS / BRIG.MY. CESAR RAUL OJEDA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e23dcde0868(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e23dcde0868",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "01",
+        "rwy_2": "19",
+        "designacion": "01/19",
+        "longitud_publicada_m": 2955.0,
+        "ancho_m": 30.0,
+        "resistencia_superficie": "PCN 36/F/B/W/T",
+        "brg_geo_1": 9.0,
+        "brg_geo_2": 189.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -66.35830277777777,
+            -33.286402777777774
+          ],
+          [
+            -66.35469722222221,
+            -33.259933333333336
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARC",
+        "iata": "CNQ",
+        "aeropuerto": "CORRIENTES",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10de8df659(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10de8df659",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "02",
+        "rwy_2": "20",
+        "designacion": "02/20",
+        "longitud_publicada_m": 2250.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "500/R/C/W/T ASPH",
+        "brg_geo_1": 7.9,
+        "brg_geo_2": 187.9,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -58.763250227062045,
+            -27.454954701562013
+          ],
+          [
+            -58.760133144083,
+            -27.434845294512797
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARE",
+        "iata": "RES",
+        "aeropuerto": "RESISTENCIA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e23557ecfd0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e23557ecfd0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "03",
+        "rwy_2": "21",
+        "designacion": "03/21",
+        "longitud_publicada_m": 2770.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "410/F/A/X/T",
+        "brg_geo_1": 20.7,
+        "brg_geo_2": 200.7,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -59.06106666666666,
+            -27.461602777777777
+          ],
+          [
+            -59.05107222222222,
+            -27.438247222222223
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARF",
+        "iata": "FMA",
+        "aeropuerto": "FORMOSA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e249b1a7ad5(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e249b1a7ad5",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "04",
+        "rwy_2": "22",
+        "designacion": "04/22",
+        "longitud_publicada_m": 1800.0,
+        "ancho_m": 30.0,
+        "resistencia_superficie": "430/F/D/X/T",
+        "brg_geo_1": 40.0,
+        "brg_geo_2": 220.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -58.231947222222225,
+            -26.220130555555553
+          ],
+          [
+            -58.22434444444445,
+            -26.20542222222222
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARI",
+        "iata": "IGR",
+        "aeropuerto": "CATARATAS DEL IGUAZÚ / Mayor D. Carlos Eduardo Krause",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e6163c31b23(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6163c31b23",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "13",
+        "rwy_2": "31",
+        "designacion": "13/31",
+        "longitud_publicada_m": 3300.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "69/F/B/W/T",
+        "brg_geo_1": 131.0,
+        "brg_geo_2": 311.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -54.48837777777778,
+            -25.731038888888886
+          ],
+          [
+            -54.458511111111115,
+            -25.743516666666668
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARP",
+        "iata": "PSS",
+        "aeropuerto": "POSADAS / Libertador Gral. D. José de San Martín",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e1137370dba(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1137370dba",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "02",
+        "rwy_2": "20",
+        "designacion": "02/20",
+        "longitud_publicada_m": 2252.0,
+        "ancho_m": 30.0,
+        "resistencia_superficie": "590/F/C/X/T ASPH",
+        "brg_geo_1": 359.15,
+        "brg_geo_2": 179.15,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -55.97034166666667,
+            -27.39591111111111
+          ],
+          [
+            -55.970675,
+            -27.37558611111111
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASA",
+        "iata": "SLA",
+        "aeropuerto": "SALTA / Gral. Don Martín Miguel de Güemes",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e1138586777(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1138586777",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "02",
+        "rwy_2": "20",
+        "designacion": "02/20",
+        "longitud_publicada_m": 2989.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "530/R/A/W/T CONC 395/F/A/X/T ASPH",
+        "brg_geo_1": 20.0,
+        "brg_geo_2": 200.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -65.48993888888889,
+            -24.872833333333332
+          ],
+          [
+            -65.48414722222222,
+            -24.84637222222222
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASA",
+        "iata": "SLA",
+        "aeropuerto": "SALTA / Gral. Don Martín Miguel de Güemes",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e1138586777(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1138586777",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "06",
+        "rwy_2": "24",
+        "designacion": "06/24",
+        "longitud_publicada_m": 2400.0,
+        "ancho_m": 30.0,
+        "resistencia_superficie": "430/F/B/X/T",
+        "brg_geo_1": 61.0,
+        "brg_geo_2": 241.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -65.489575,
+            -24.858097222222224
+          ],
+          [
+            -65.47080555555556,
+            -24.844825
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASJ",
+        "iata": "JUJ",
+        "aeropuerto": "JUJUY / Gobernador Horacio Guzmán",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e113f9e6050(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e113f9e6050",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "16",
+        "rwy_2": "34",
+        "designacion": "16/34",
+        "longitud_publicada_m": 2944.0,
+        "ancho_m": 40.0,
+        "resistencia_superficie": "470/F/C/X/U",
+        "brg_geo_1": 150.15,
+        "brg_geo_2": 330.15,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -65.10503055555554,
+            -24.381205555555557
+          ],
+          [
+            -65.09058333333333,
+            -24.40426111111111
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SATR",
+        "iata": "RCQ",
+        "aeropuerto": "RECONQUISTA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e11419cd188(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11419cd188",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "02",
+        "rwy_2": "20",
+        "designacion": "02/20",
+        "longitud_publicada_m": 1250.0,
+        "ancho_m": 34.0,
+        "resistencia_superficie": "310/R/C/W/T CONC",
+        "brg_geo_1": 7.05,
+        "brg_geo_2": 187.05,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -59.69085555555555,
+            -29.210052777777776
+          ],
+          [
+            -59.689277777777775,
+            -29.19886111111111
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SATR",
+        "iata": "RCQ",
+        "aeropuerto": "RECONQUISTA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e11419cd188(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11419cd188",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "10",
+        "rwy_2": "28",
+        "designacion": "10/28",
+        "longitud_publicada_m": 2800.0,
+        "ancho_m": 50.0,
+        "resistencia_superficie": "310/R/C/W/T CONC",
+        "brg_geo_1": 89.57,
+        "brg_geo_2": 269.56,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -59.694269444444444,
+            -29.210380555555556
+          ],
+          [
+            -59.66546388888889,
+            -29.210188888888887
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVC",
+        "iata": "CRD",
+        "aeropuerto": "COMODORO RIVADAVIA / GRAL. E. MOSCONI",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1143c25a85(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1143c25a85",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "07",
+        "rwy_2": "25",
+        "designacion": "07/25",
+        "longitud_publicada_m": 2760.0,
+        "ancho_m": 50.0,
+        "resistencia_superficie": "710/R/C/W/T",
+        "brg_geo_1": 74.0,
+        "brg_geo_2": 254.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -67.47390833333334,
+            -45.786341666666665
+          ],
+          [
+            -67.44792777777778,
+            -45.782938888888886
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVE",
+        "iata": "EQS",
+        "aeropuerto": "ESQUEL / Brigadier General Antonio Parodi",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e114f5ef93e(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e114f5ef93e",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "05",
+        "rwy_2": "23",
+        "designacion": "05/23",
+        "longitud_publicada_m": 2393.0,
+        "ancho_m": 40.0,
+        "resistencia_superficie": "50t/1 74t/2 115t/4 178/t5 220/t8 ASPH",
+        "brg_geo_1": 49.0,
+        "brg_geo_2": 229.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -71.14782500000001,
+            -42.90965277777778
+          ],
+          [
+            -71.12321666666666,
+            -42.897955555555555
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVE",
+        "iata": "EQS",
+        "aeropuerto": "ESQUEL / Brigadier General Antonio Parodi",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e114f5ef93e(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e114f5ef93e",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "08",
+        "rwy_2": "26",
+        "designacion": "08/26",
+        "longitud_publicada_m": 1239.0,
+        "ancho_m": 30.0,
+        "resistencia_superficie": "GND",
+        "brg_geo_1": 83.0,
+        "brg_geo_2": 263.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -71.1503388888889,
+            -42.911852777777774
+          ],
+          [
+            -71.13516944444446,
+            -42.91193611111111
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVT",
+        "iata": "REL",
+        "aeropuerto": "TRELEW / ALMIRANTE ZAR",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e11508bc15d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11508bc15d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "07",
+        "rwy_2": "25",
+        "designacion": "07/25",
+        "longitud_publicada_m": 2560.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "ASPH",
+        "brg_geo_1": 67.0,
+        "brg_geo_2": 247.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -65.28509722222222,
+            -43.214558333333336
+          ],
+          [
+            -65.25565,
+            -43.206363888888895
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVV",
+        "iata": "VDM",
+        "aeropuerto": "VIEDMA / GOBERNADOR CASTELLO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e7b1a89ea5e.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b1a89ea5e",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "11",
+        "rwy_2": "29",
+        "designacion": "11/29",
+        "longitud_publicada_m": 1457.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "23t/1 29t/2 47t/4 ASPH 60t/1 94t/2 150t/4 230t/5",
+        "brg_geo_1": 26.0,
+        "brg_geo_2": 287.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -63.00146111111111,
+            -40.871025
+          ],
+          [
+            -62.98202777777778,
+            -40.873197222222224
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVY",
+        "iata": "PMY",
+        "aeropuerto": "PUERTO MADRYN",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e1155398740.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1155398740",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "06",
+        "rwy_2": "24",
+        "designacion": "06/24",
+        "longitud_publicada_m": 2500.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "430/F/B/W/T (**)",
+        "brg_geo_1": 58.02,
+        "brg_geo_2": 238.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -65.11563888888888,
+            -42.76519166666667
+          ],
+          [
+            -65.08972777777777,
+            -42.75326666666667
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWB",
+        "iata": null,
+        "aeropuerto": "MARAMBIO / VICECOMODORO MARAMBIO",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e11573197e5.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11573197e5",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "05",
+        "rwy_2": "23",
+        "designacion": "05/23",
+        "longitud_publicada_m": 1208.0,
+        "ancho_m": 40.0,
+        "resistencia_superficie": null,
+        "brg_geo_1": null,
+        "brg_geo_2": null,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -56.642152777777774,
+            -64.24141944444445
+          ],
+          [
+            -56.61954444444444,
+            -64.23683611111112
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWC",
+        "iata": "FTE",
+        "aeropuerto": "EL CALAFATE",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e7b256c1c2c.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b256c1c2c",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "07",
+        "rwy_2": "25",
+        "designacion": "07/25",
+        "longitud_publicada_m": 2550.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "CONC",
+        "brg_geo_1": 72.0,
+        "brg_geo_2": 252.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -72.07107222222221,
+            -50.28131666666667
+          ],
+          [
+            -72.03540833333334,
+            -50.27918888888889
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWE",
+        "iata": "RGA",
+        "aeropuerto": "RÍO GRANDE",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e1380c9247f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1380c9247f",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "08",
+        "rwy_2": "26",
+        "designacion": "08/26",
+        "longitud_publicada_m": 2000.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "630 /R/A/W/T CONC",
+        "brg_geo_1": 76.0,
+        "brg_geo_2": 256.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -67.76466944444445,
+            -53.77799722222222
+          ],
+          [
+            -67.73436944444444,
+            -53.777202777777774
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWG",
+        "iata": "RGL",
+        "aeropuerto": "RÍO GALLEGOS / Piloto Civil Norberto Fernández",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e1165d02be1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1165d02be1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "08",
+        "rwy_2": "26",
+        "designacion": "08/26",
+        "longitud_publicada_m": 2750.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "590/R/A/W/T",
+        "brg_geo_1": 85.6,
+        "brg_geo_2": 265.56,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -69.32672222222222,
+            -51.609500000000004
+          ],
+          [
+            -69.28713888888889,
+            -51.60761111111111
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWH",
+        "iata": "USH",
+        "aeropuerto": "USHUAIA / MALVINAS ARGENTINAS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e7b2b7ee74b(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b2b7ee74b",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "07",
+        "rwy_2": "25",
+        "designacion": "07/25",
+        "longitud_publicada_m": 2804.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "54/R/A/W/U CONC",
+        "brg_geo_1": null,
+        "brg_geo_2": null,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -68.31467222222221,
+            -54.84404166666667
+          ],
+          [
+            -68.27643611111111,
+            -54.84256388888889
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZB",
+        "iata": "BHI",
+        "aeropuerto": "BAHÍA BLANCA / COMANDANTE ESPORA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e7b314ac7f0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b314ac7f0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "17L",
+        "rwy_2": "35R",
+        "designacion": "17L/35R",
+        "longitud_publicada_m": 2410.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "42/F/B/W/U ASPH",
+        "brg_geo_1": 166.0,
+        "brg_geo_2": null,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -62.157377777777775,
+            -38.71666944444445
+          ],
+          [
+            -62.14960277777778,
+            -38.73750277777778
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZB",
+        "iata": "BHI",
+        "aeropuerto": "BAHÍA BLANCA / COMANDANTE ESPORA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e7b314ac7f0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b314ac7f0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "06",
+        "rwy_2": "24",
+        "designacion": "06/24",
+        "longitud_publicada_m": 1980.0,
+        "ancho_m": 30.0,
+        "resistencia_superficie": "8t/1 85t/2 136t/4 136t/5 240 t/8 ASPH",
+        "brg_geo_1": 346.0,
+        "brg_geo_2": null,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -62.18057222222222,
+            -38.7275
+          ],
+          [
+            -62.16070555555555,
+            -38.718775
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZB",
+        "iata": "BHI",
+        "aeropuerto": "BAHÍA BLANCA / COMANDANTE ESPORA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e7b314ac7f0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b314ac7f0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "17R",
+        "rwy_2": "35L",
+        "designacion": "17R/35L",
+        "longitud_publicada_m": 1498.0,
+        "ancho_m": 30.0,
+        "resistencia_superficie": "2 t/1 30 t/2 48 t/4 48 t/5 90 t/8",
+        "brg_geo_1": 243.0,
+        "brg_geo_2": 167.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -62.18432222222222,
+            -38.71971666666667
+          ],
+          [
+            -62.17962222222222,
+            -38.7327
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZM",
+        "iata": "MDQ",
+        "aeropuerto": "MAR DEL PLATA / ASTOR PIAZZOLLA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1232468b6a(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1232468b6a",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "13",
+        "rwy_2": "31",
+        "designacion": "13/31",
+        "longitud_publicada_m": 2200.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "450/R/B/W/T Rigido / Rigid 350/F/BF/X/T",
+        "brg_geo_1": 122.68,
+        "brg_geo_2": 302.66,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -57.58379166666667,
+            -37.92885555555555
+          ],
+          [
+            -57.56272777777777,
+            -37.93955555555555
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZN",
+        "iata": "NQN",
+        "aeropuerto": "NEUQUÉN / Presidente Perón",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1234aab580(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1234aab580",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "09",
+        "rwy_2": "27",
+        "designacion": "09/27",
+        "longitud_publicada_m": 2570.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "RWY 80/R/D/W/U ASPH SWY NIL ASPH",
+        "brg_geo_1": 90.23,
+        "brg_geo_2": 270.22,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -68.17053611111112,
+            -38.94896388888888
+          ],
+          [
+            -68.14089722222222,
+            -38.94905555555555
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZR",
+        "iata": "RSA",
+        "aeropuerto": "SANTA ROSA",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e123c163177(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e123c163177",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "01",
+        "rwy_2": "19",
+        "designacion": "01/19",
+        "longitud_publicada_m": 2300.0,
+        "ancho_m": 30.0,
+        "resistencia_superficie": "430/F/B/X/T ASPH A",
+        "brg_geo_1": 15.0,
+        "brg_geo_2": 195.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -64.27809444444445,
+            -36.598325
+          ],
+          [
+            -64.27307777777777,
+            -36.57800277777778
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZS",
+        "iata": "BRC",
+        "aeropuerto": "SAN CARLOS DE BARILOCHE",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e8bacf19c28(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e8bacf19c28",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "11",
+        "rwy_2": "29",
+        "designacion": "11/29",
+        "longitud_publicada_m": 2348.0,
+        "ancho_m": 48.0,
+        "resistencia_superficie": "720/R/A/W/T ASPH, base",
+        "brg_geo_1": 114.74,
+        "brg_geo_2": 294.73,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -71.17061111111111,
+            -41.14666666666667
+          ],
+          [
+            -71.14520833333334,
+            -41.15551111111111
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZT",
+        "iata": "TDL",
+        "aeropuerto": "TANDIL / HÉROES DE MALVINAS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": null,
+        "amdt_airac": "1/2026",
+        "aip_pagina": 4,
+        "archivo_aip": "aip-69e12466c7a15(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e12466c7a15",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "01",
+        "rwy_2": "19",
+        "designacion": "01/19",
+        "longitud_publicada_m": 2550.0,
+        "ancho_m": 48.0,
+        "resistencia_superficie": "320/R/B/W/T AMD",
+        "brg_geo_1": 13.0,
+        "brg_geo_2": 193.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -59.22986388888889,
+            -37.24582222222222
+          ],
+          [
+            -59.22731111111111,
+            -37.22293333333334
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZY",
+        "iata": "CPC",
+        "aeropuerto": "SAN MARTÍN DE LOS ANDES / AVIADOR C. CAMPOS",
+        "fuente_seccion": "AD 2.12",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69fcdbcd57a67(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69fcdbcd57a67",
+        "fecha_extraccion": "2026-08-13",
+        "rwy_1": "06",
+        "rwy_2": "24",
+        "designacion": "06/24",
+        "longitud_publicada_m": 2501.0,
+        "ancho_m": 45.0,
+        "resistencia_superficie": "38/F/B/X/T ASPH",
+        "brg_geo_1": 63.0,
+        "brg_geo_2": 243.0,
+        "metodo_geometria": "extremos_fisicos_derivados_de_THR_DTHR_AIP",
+        "precision_geometria": "publicada/derivada"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -71.15089166666667,
+            -40.07944444444445
+          ],
+          [
+            -71.12363333333333,
+            -40.07113888888889
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,2994 @@
+{
+  "type": "FeatureCollection",
+  "name": "aip_papi_vasis_referencia",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAC",
+        "iata": "COC",
+        "aeropuerto": "CONCORDIA / COMODORO JUAN JOSÉ PIERRESTEGUI",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10469037bf.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10469037bf",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "04",
+        "approach_lgt": "SALS (210 m) – Media Intensidad / medium intensity (LIM) Visual",
+        "thr_lgt": "Verde / green, 5 LIH",
+        "papi_vasis": "Si, alta intensidad 3° Yes, high intensity 3°",
+        "tdz_lgt": "No",
+        "rcll": "S",
+        "redl": ", 2.000 m, 50 m, Blanco, 5 LIH Últim 600 m color amarillo, en sentido de",
+        "renl": "s",
+        "stwl": null,
+        "observaciones": null,
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING LGT THR Color Tipo, LEN e INTST del sistema de LGT de LEN Designador RWY / WBAR / APCH / PAPI, VASIS LGT RWY designator THR LGT Color APCH LGT system type, LEN and INTST TDZ WBAR 1 2 3 4 5 SALS (210 m) – Media Intensidad / Si, alta intensidad 3°/ 04 medium intensity Verde / green, 5 LIH No Yes, high intensity 3° (LIM) Visual SALS (210 m) - Media Intensidad/ Si, alta intensidad 3°/ 22 Medium intensity Verde / green, 5 LIH No Yes, high intensity 3° (LIM) Visual LEN, Separación, Color, Color RENL y INTST RCLL / LEN, Separación, Color, INTST REDL / WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, INSTS RENL Color and STWL LEN and Color Remarks Color, INTST WBAR 6 7 8 9 10 Sí, 2.000 m, 50 m, Blanco, 5 LIH Últimos 600 m color amarillo, en sentido de despegue / Dispone/It has No Rojo / Red, 5 LIH No REILS Yes, 2,000 m, 50 m, White, 5 LIH Last 600 m yellow, in takeoff direction Sí, 2.000 m, 50 m, Blanco, 5 LIH Últimos 600 m color amarillo, en sentido de despegue / Dispone/It has No Rojo / Red, 5 LIH No REILS Yes, 2,000m, 50m, White, 5 LIH Last 600m yellow, in takeoff direction",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.00213888888889,
+          -31.305872222222224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAC",
+        "iata": "COC",
+        "aeropuerto": "CONCORDIA / COMODORO JUAN JOSÉ PIERRESTEGUI",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10469037bf.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10469037bf",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "22",
+        "approach_lgt": "SALS (210 m) - Media Intensidad/ Medium intensity (LIM) Visual",
+        "thr_lgt": "Verde / green, 5 LIH",
+        "papi_vasis": "Si, alta intensidad 3° Yes, high intensity 3°",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Yes, 2,000 m, 50 m, White, 5 LIH",
+        "renl": "Rojo / Red, 5 LIH",
+        "stwl": "No",
+        "observaciones": "REILS",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING LGT THR Color Tipo, LEN e INTST del sistema de LGT de LEN Designador RWY / WBAR / APCH / PAPI, VASIS LGT RWY designator THR LGT Color APCH LGT system type, LEN and INTST TDZ WBAR 1 2 3 4 5 SALS (210 m) – Media Intensidad / Si, alta intensidad 3°/ 04 medium intensity Verde / green, 5 LIH No Yes, high intensity 3° (LIM) Visual SALS (210 m) - Media Intensidad/ Si, alta intensidad 3°/ 22 Medium intensity Verde / green, 5 LIH No Yes, high intensity 3° (LIM) Visual LEN, Separación, Color, Color RENL y INTST RCLL / LEN, Separación, Color, INTST REDL / WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, INSTS RENL Color and STWL LEN and Color Remarks Color, INTST WBAR 6 7 8 9 10 Sí, 2.000 m, 50 m, Blanco, 5 LIH Últimos 600 m color amarillo, en sentido de despegue / Dispone/It has No Rojo / Red, 5 LIH No REILS Yes, 2,000 m, 50 m, White, 5 LIH Last 600 m yellow, in takeoff direction Sí, 2.000 m, 50 m, Blanco, 5 LIH Últimos 600 m color amarillo, en sentido de despegue / Dispone/It has No Rojo / Red, 5 LIH No REILS Yes, 2,000m, 50m, White, 5 LIH Last 600m yellow, in takeoff direction",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.992325,
+          -31.289925
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAR",
+        "iata": "ROS",
+        "aeropuerto": "ROSARIO / ISLAS MALVINAS",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e105dba2f99.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e105dba2f99",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "approach_lgt": "ALS 420 m 5 Niveles de brillo / SALS 420 m 5 brightness levels",
+        "thr_lgt": "Verde/Green 5 LIH, No",
+        "papi_vasis": "Sí/Yes 3° - HGT THR 16,7 m",
+        "tdz_lgt": "No",
+        "rcll": "No 3",
+        "redl": "000, 50 m, blanco / white, 5 LIH",
+        "renl": "Rojo/red 5 LIH, No",
+        "stwl": "No",
+        "observaciones": "No",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema de LEN Designador RWY / LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN and THR LGT Color WBAR TDZ INTST 1 2 3 4 5 SALS 420 m 5 Niveles de brillo / 02 Verde/Green 5 LIH, No Sí/Yes 3° - HGT THR 16,7 m No SALS 420 m 5 brightness levels 20 ALS 900M-F, 5 LIH Verde/Green 5 LIH, No Sí/Yes No LEN, Separación, LEN, Separación, Color, INTST Color, INTST RCLL / Color RENL y WBAR / LEN y Color STWL / Observaciones / REDL / RCLL LEN, Spacing, RENL Color and WBAR STWL LEN and Color Remarks REDL LEN, Spacing, Color, INSTS Color, INTST 6 7 8 9 10 No 3.000, 50 m, blanco / white, 5 LIH Rojo/red 5 LIH, No No No No 3.000, 50 m, blanco / white, 5 LIH Rojo/red 5 LIH, No No F (ALS) 3 LIH",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.78766944444444,
+          -32.91676666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAR",
+        "iata": "ROS",
+        "aeropuerto": "ROSARIO / ISLAS MALVINAS",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e105dba2f99.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e105dba2f99",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "20",
+        "approach_lgt": "ALS 900M-F, 5 LIH",
+        "thr_lgt": "Verde/Green 5 LIH, No",
+        "papi_vasis": "Sí/Yes",
+        "tdz_lgt": "No",
+        "rcll": "No 3",
+        "redl": "000, 50 m, blanco / white, 5 LIH",
+        "renl": "Rojo/red 5 LIH, No",
+        "stwl": "No",
+        "observaciones": "F (ALS) 3 LIH",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema de LEN Designador RWY / LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN and THR LGT Color WBAR TDZ INTST 1 2 3 4 5 SALS 420 m 5 Niveles de brillo / 02 Verde/Green 5 LIH, No Sí/Yes 3° - HGT THR 16,7 m No SALS 420 m 5 brightness levels 20 ALS 900M-F, 5 LIH Verde/Green 5 LIH, No Sí/Yes No LEN, Separación, LEN, Separación, Color, INTST Color, INTST RCLL / Color RENL y WBAR / LEN y Color STWL / Observaciones / REDL / RCLL LEN, Spacing, RENL Color and WBAR STWL LEN and Color Remarks REDL LEN, Spacing, Color, INSTS Color, INTST 6 7 8 9 10 No 3.000, 50 m, blanco / white, 5 LIH Rojo/red 5 LIH, No No No No 3.000, 50 m, blanco / white, 5 LIH Rojo/red 5 LIH, No No F (ALS) 3 LIH",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.781619444444445,
+          -32.89018611111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAV",
+        "iata": "SFN",
+        "aeropuerto": "SANTA FE / SAUCE VIEJO",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e13318f081b.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e13318f081b",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "03",
+        "approach_lgt": "SALS 420 m",
+        "thr_lgt": "Sí, alta intensidad CAT 1 / Yes, high intensity CAT 1",
+        "papi_vasis": "Ángulo de aproximación 2.98° - H de cruce en THR 15.84 m / Approach angle 2.98° - crossing at THR 15.84 m",
+        "tdz_lgt": "T NIL GT",
+        "rcll": "NIL",
+        "redl": null,
+        "renl": null,
+        "stwl": "NIL",
+        "observaciones": "REILS / It has REILS",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR TDZ LEN and INTST 1 2 3 4 5 Ángulo de aproximación 2.98° - HGT Sí, alta intensidad CAT 1 / de cruce en THR 15.84 m / 03 SALS 420 m NIL Yes, high intensity CAT 1 Approach angle 2.98° - crossing HGT at THR 15.84 m Ángulo de aproximación 3.04° - HGT Sí, alta intensidad CAT 1 / de cruce en THR 16.81 m / 21 ALS-F 900 m NIL Yes, high intensity CAT 1 Approach angle 2.98° - crossing HGT at THR 16.81 m LEN, Separación, LEN, Separación, Color, Color, INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 Dispone de Sí, alta intensidad CAT 1 / Sí, alta intensidad CAT 1 / NIL NIL REILS / Yes, high intensity CAT 1 Yes, high intensity CAT 1 It has REILS Sí, alta intensidad CAT 1 / Sí, alta intensidad CAT 1 / NIL NIL NIL Yes, high intensity CAT 1 Yes, high intensity CAT 1",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.81605,
+          -31.720488888888887
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAAV",
+        "iata": "SFN",
+        "aeropuerto": "SANTA FE / SAUCE VIEJO",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e13318f081b.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e13318f081b",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "21",
+        "approach_lgt": "ALS-F 900 m",
+        "thr_lgt": "Sí, alta intensidad CAT 1 / Yes, high intensity CAT 1",
+        "papi_vasis": "Ángulo de aproximación 3.04° - H de cruce en THR 16.81 m / Approach angle 2.98° - crossing at THR 16.81 m",
+        "tdz_lgt": "T NIL GT",
+        "rcll": "NIL",
+        "redl": null,
+        "renl": null,
+        "stwl": "NIL",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR TDZ LEN and INTST 1 2 3 4 5 Ángulo de aproximación 2.98° - HGT Sí, alta intensidad CAT 1 / de cruce en THR 15.84 m / 03 SALS 420 m NIL Yes, high intensity CAT 1 Approach angle 2.98° - crossing HGT at THR 15.84 m Ángulo de aproximación 3.04° - HGT Sí, alta intensidad CAT 1 / de cruce en THR 16.81 m / 21 ALS-F 900 m NIL Yes, high intensity CAT 1 Approach angle 2.98° - crossing HGT at THR 16.81 m LEN, Separación, LEN, Separación, Color, Color, INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 Dispone de Sí, alta intensidad CAT 1 / Sí, alta intensidad CAT 1 / NIL NIL REILS / Yes, high intensity CAT 1 Yes, high intensity CAT 1 It has REILS Sí, alta intensidad CAT 1 / Sí, alta intensidad CAT 1 / NIL NIL NIL Yes, high intensity CAT 1 Yes, high intensity CAT 1",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.80651944444444,
+          -31.701172222222223
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "AEROPARQUE JORGE NEWBERY",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-6a10684a7a5bd.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a10684a7a5bd",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "13",
+        "approach_lgt": "ALS – F 549 m - LIH",
+        "thr_lgt": "Sí. Verde / Yes. Green",
+        "papi_vasis": "Ángulo de aproximación 3° / Approach angle 3°",
+        "tdz_lgt": "Sí. 900 m / Yes. 900 m",
+        "rcll": "Sí. 2350 m / LIH /",
+        "redl": "Sí. 2350 m / LIH /",
+        "renl": null,
+        "stwl": "L",
+        "observaciones": "ces de identificación de umbral de",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LGT THR Color LEN Designador RWY / sistema de LGT de APCH / WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color TDZ LEN and INTST WBAR 1 2 3 4 5 Ángulo de Sí. Verde / 13 ALS – F 549 m - LIH aproximación 3° / Sí. 900 m / Yes. 900 m Yes. Green Approach angle 3° Ángulo de Sí. Verde / 31 ALS – F 690 m - LIH aproximación 3° / No Yes. Green Approach angle 3° LEN, Separación, LEN, Separación, Color, Color RENL y LEN y Color STWL / Color, INTST RCLL / INTST REDL / WBAR / Observaciones / STWL LEN and RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and Remarks Color Color, INTST INSTS WBAR 6 7 8 9 10 Sí. 2350 m / LIH / Sí. 2350 m / LIH / Luces de identificación de umbral de Sí. Rojo / Yes. Red No Yes. 2350 m / LIH Yes. 2350 m / LIH pista Luces específicas de RSE. Borde Azul / Rojo. Eje Verde (LIH-LIL) / Sí. 2350 m / LIH / Sí. 2350 m / LIH / Runway threshold identification lights Sí. Rojo / Yes. Red No Yes. 2350 m / LIH Yes. 2350 m / LIH (REILS) Specific CSR lights. Blue / Red border. Green Axis (LIH-LIL)",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.42525277777778,
+          -34.55393333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "AEROPARQUE JORGE NEWBERY",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 9,
+        "archivo_aip": "aip-6a10684a7a5bd.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a10684a7a5bd",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "31",
+        "approach_lgt": "ALS – F 690 m - LIH",
+        "thr_lgt": "Sí. Verde / Yes. Green",
+        "papi_vasis": "Ángulo de aproximación 3° / Approach angle 3°",
+        "tdz_lgt": "No",
+        "rcll": "Yes. 2350 m / LIH",
+        "redl": "Yes. 2350 m / LIH",
+        "renl": null,
+        "stwl": "p",
+        "observaciones": "sta",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LGT THR Color LEN Designador RWY / sistema de LGT de APCH / WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color TDZ LEN and INTST WBAR 1 2 3 4 5 Ángulo de Sí. Verde / 13 ALS – F 549 m - LIH aproximación 3° / Sí. 900 m / Yes. 900 m Yes. Green Approach angle 3° Ángulo de Sí. Verde / 31 ALS – F 690 m - LIH aproximación 3° / No Yes. Green Approach angle 3° LEN, Separación, LEN, Separación, Color, Color RENL y LEN y Color STWL / Color, INTST RCLL / INTST REDL / WBAR / Observaciones / STWL LEN and RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and Remarks Color Color, INTST INSTS WBAR 6 7 8 9 10 Sí. 2350 m / LIH / Sí. 2350 m / LIH / Luces de identificación de umbral de Sí. Rojo / Yes. Red No Yes. 2350 m / LIH Yes. 2350 m / LIH pista Luces específicas de RSE. Borde Azul / Rojo. Eje Verde (LIH-LIL) / Sí. 2350 m / LIH / Sí. 2350 m / LIH / Runway threshold identification lights Sí. Rojo / Yes. Red No Yes. 2350 m / LIH Yes. 2350 m / LIH (REILS) Specific CSR lights. Blue / Red border. Green Axis (LIH-LIL)",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.40742777777778,
+          -34.56388055555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "CÓRDOBA / ING. AER. A. L. V. TARAVELLA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1078aa7f9d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1078aa7f9d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "05",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí. Alta Intensidad / Yes. High intensity",
+        "papi_vasis": "Ángulo de aproximación 3° Approach angle 3°",
+        "tdz_lgt": "No",
+        "rcll": null,
+        "redl": null,
+        "renl": null,
+        "stwl": null,
+        "observaciones": null,
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR TDZ LEN and INTST 1 2 3 4 5 No Sí. Alta Intensidad CAT 1 / Ángulo de descenso 3°, HGT No Yes. High intensity CAT 1 de cruce en THR 17.5 m / No / 01 Descent angle 3°, HGT of crossing at THR 17,5 m / No ALS-F 900 m Sí. Alta Intensidad CAT 1 / No No 19 Yes. High intensity CAT 1 No Sí. Alta Intensidad / Ángulo de aproximación 3° / No 05 Yes. High intensity Approach angle 3° No Sí. Alta Intensidad / Ángulo de aproximación 3° / No 23 Yes. High intensity Approach angle 3°",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.20750277777778,
+          -31.323166666666665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "CÓRDOBA / ING. AER. A. L. V. TARAVELLA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1078aa7f9d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1078aa7f9d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "23",
+        "approach_lgt": "No AERONÁUTICA",
+        "thr_lgt": "Sí. Alta Intensidad / Yes. High intensity AMDT AIRAC 2/2",
+        "papi_vasis": "Ángulo de aproximación 3° Approach angle 3° 25",
+        "tdz_lgt": "No",
+        "rcll": null,
+        "redl": null,
+        "renl": null,
+        "stwl": null,
+        "observaciones": null,
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR TDZ LEN and INTST 1 2 3 4 5 No Sí. Alta Intensidad CAT 1 / Ángulo de descenso 3°, HGT No Yes. High intensity CAT 1 de cruce en THR 17.5 m / No / 01 Descent angle 3°, HGT of crossing at THR 17,5 m / No ALS-F 900 m Sí. Alta Intensidad CAT 1 / No No 19 Yes. High intensity CAT 1 No Sí. Alta Intensidad / Ángulo de aproximación 3° / No 05 Yes. High intensity Approach angle 3° No Sí. Alta Intensidad / Ángulo de aproximación 3° / No 23 Yes. High intensity Approach angle 3°",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.19138611111111,
+          -31.308925000000002
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "CÓRDOBA / ING. AER. A. L. V. TARAVELLA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1078aa7f9d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1078aa7f9d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "01",
+        "approach_lgt": "No",
+        "thr_lgt": "í. Alta Intensidad CAT 1 / Yes. High intensity CAT 1",
+        "papi_vasis": "Ángulo de descenso 3°, HG de cruce en THR 17.5 m / N Descent angle 3°, HGT o crossing at THR 17,5 m /",
+        "tdz_lgt": "No / o",
+        "rcll": null,
+        "redl": null,
+        "renl": null,
+        "stwl": null,
+        "observaciones": null,
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR TDZ LEN and INTST 1 2 3 4 5 No Sí. Alta Intensidad CAT 1 / Ángulo de descenso 3°, HGT No Yes. High intensity CAT 1 de cruce en THR 17.5 m / No / 01 Descent angle 3°, HGT of crossing at THR 17,5 m / No ALS-F 900 m Sí. Alta Intensidad CAT 1 / No No 19 Yes. High intensity CAT 1 No Sí. Alta Intensidad / Ángulo de aproximación 3° / No 05 Yes. High intensity Approach angle 3° No Sí. Alta Intensidad / Ángulo de aproximación 3° / No 23 Yes. High intensity Approach angle 3°",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.2081,
+          -31.324530555555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADF",
+        "iata": "FDO",
+        "aeropuerto": "SAN FERNANDO",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-6a68fbe672145.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a68fbe672145",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "05",
+        "approach_lgt": "No",
+        "thr_lgt": "Verde / Green, 5 LIH",
+        "papi_vasis": "ngulo de descenso 3°. HGT cruce HR 13 m (42 ft) / escent angle 3°. HGT of crossin HR 13 m (42 ft)",
+        "tdz_lgt": "No at",
+        "rcll": "No",
+        "redl": "marillo, en el sentido de espegue / ast 600 m yellow color, in he take-off direction .690 m, 48 m, Blanca / hite, 5 LIH ltimos 600 m color",
+        "renl": "Rojo / Red, 5 LIH",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR TDZ LEN and INTST 1 2 3 4 5 Ángulo de descenso 3°. HGT cruce THR 13 m (42 ft) / 05 No Verde / Green, 5 LIH No Descent angle 3°. HGT of crossing at THR 13 m (42 ft) Ángulo de descenso 3º. HGT cruce THR 13,21 m (43 ft) / 23 No Verde / Green, 5 LIH No Descent angle 3°. HGT of crossing at THR 13.21 m (43 ft) LEN, Separación, LEN, Separación, Color, Color, INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 1.690 m, 48 m, Blanca / White, 5 LIH Últimos 600 m color No amarillo, en el sentido de Rojo / Red, 5 LIH No NIL despegue / Last 600 m yellow color, in the take-off direction 1.690 m, 48 m, Blanca / White, 5 LIH Últimos 600 m color No amarillo, en el sentido de Rojo / Red, 5 LIH No NIL despegue / Last 600 m yellow color, in the take-off direction",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.59623055555556,
+          -34.45911388888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADF",
+        "iata": "FDO",
+        "aeropuerto": "SAN FERNANDO",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-6a68fbe672145.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6a68fbe672145",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "23",
+        "approach_lgt": "No",
+        "thr_lgt": "Verde / Green, 5 LIH",
+        "papi_vasis": "ngulo de descenso 3º. HGT cruce HR 13,21 m (43 ft) / escent angle 3°. HGT of crossin HR 13.21 m (43 ft)",
+        "tdz_lgt": "No at",
+        "rcll": "No",
+        "redl": "marillo, en el sentido de espegue / ast 600 m yellow color, in he take-off direction",
+        "renl": "Rojo / Red, 5 LIH",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR TDZ LEN and INTST 1 2 3 4 5 Ángulo de descenso 3°. HGT cruce THR 13 m (42 ft) / 05 No Verde / Green, 5 LIH No Descent angle 3°. HGT of crossing at THR 13 m (42 ft) Ángulo de descenso 3º. HGT cruce THR 13,21 m (43 ft) / 23 No Verde / Green, 5 LIH No Descent angle 3°. HGT of crossing at THR 13.21 m (43 ft) LEN, Separación, LEN, Separación, Color, Color, INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 1.690 m, 48 m, Blanca / White, 5 LIH Últimos 600 m color No amarillo, en el sentido de Rojo / Red, 5 LIH No NIL despegue / Last 600 m yellow color, in the take-off direction 1.690 m, 48 m, Blanca / White, 5 LIH Últimos 600 m color No amarillo, en el sentido de Rojo / Red, 5 LIH No NIL despegue / Last 600 m yellow color, in the take-off direction",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.58551666666667,
+          -34.44998333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADP",
+        "iata": "EPA",
+        "aeropuerto": "EL PALOMAR",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e26822c76b6.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e26822c76b6",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "17",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "ngulo de aproximación 3° / Approach angle 3°.",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "No",
+        "observaciones": "NIL Luces de THR desplazado /",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LGT THR Color LEN Designador RWY / sistema de LGT de APCH / WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color TDZ LEN and INTST WBAR 1 2 3 4 5 Ángulo de aproximación 3° / 17 No Sí / Yes No Approach angle 3°. Ángulo de aproximación 3° / 35 No Sí / Yes No Approach angle 3°. LEN, Separación, LEN, Separación, Color, Color RENL y Color, INTST RCLL / INTST REDL / WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and STWL LEN and Color Remarks Color, INTST INSTS WBAR 6 7 8 9 10 No Sí / Yes Sí / Yes No NIL Luces de THR desplazado / No Sí / Yes Sí / Yes No Displaced THR Lights.",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.617130555555555,
+          -34.60115555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SADP",
+        "iata": "EPA",
+        "aeropuerto": "EL PALOMAR",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e26822c76b6.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e26822c76b6",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "35",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "ngulo de aproximación 3° / Approach angle 3°.",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "No",
+        "observaciones": "Displaced THR Lights.",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LGT THR Color LEN Designador RWY / sistema de LGT de APCH / WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color TDZ LEN and INTST WBAR 1 2 3 4 5 Ángulo de aproximación 3° / 17 No Sí / Yes No Approach angle 3°. Ángulo de aproximación 3° / 35 No Sí / Yes No Approach angle 3°. LEN, Separación, LEN, Separación, Color, Color RENL y Color, INTST RCLL / INTST REDL / WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and STWL LEN and Color Remarks Color, INTST INSTS WBAR 6 7 8 9 10 No Sí / Yes Sí / Yes No NIL Luces de THR desplazado / No Sí / Yes Sí / Yes No Displaced THR Lights.",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.60893333333333,
+          -34.61698333333334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "EZEIZA / MINISTRO PISTARINI",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e10875b7c89.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10875b7c89",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "11",
+        "approach_lgt": "ema de iluminación de precisión CA Precision lighting system CAT II",
+        "thr_lgt": "III / Sí/Yes",
+        "papi_vasis": "Ángulo de aproximación 3° / Approach angle 3°",
+        "tdz_lgt": "Sí/Yes",
+        "rcll": "Sí/Yes",
+        "redl": "Sí/Yes",
+        "renl": "Sí/Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING LGT THR LEN Designador RWY / Tipo, LEN e INTST del sistema de LGT de APCH / Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN and INTST THR LGT Color TDZ WBAR 1 2 3 4 5 Ángulo de Sistema de iluminación de precisión CAT III / 11 Sí/Yes aproximación 3° / Sí/Yes Precision lighting system CAT III Approach angle 3° Ángulo de 29 No Sí/Yes aproximación 2.95° / No Approach angle 2,95° Ángulo de descenso 3° / 17 No Sí/Yes No Descent angle 3° Sistema de iluminación de precisión CAT II. Ángulo de 35 Longitud 720 m / Sí/Yes aproximación 3° / Sí/Yes Precision lighting system CAT II. Length 720 m Approach angle 3° LEN, Separación, LEN, Separación, Color, INTST REDL / Color RENL y Color, INTST RCLL / REDL LEN, Spacing, Color, INSTS WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, RENL Color STWL LEN and Color Remarks Color, INTST and WBAR 6 7 8 9 10 Sí/Yes Sí/Yes Sí/Yes No NIL Sí/Yes Sí/Yes Sí/Yes No NIL Sí/Yes Sí/Yes Sí/Yes No NIL Sí/Yes Sí/Yes Sí/Yes No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.55345,
+          -34.819052777777785
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "EZEIZA / MINISTRO PISTARINI",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e10875b7c89.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10875b7c89",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "29",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí/Yes",
+        "papi_vasis": "Ángulo de aproximación 2.95° / Approach angle 2,95°",
+        "tdz_lgt": "No",
+        "rcll": "Sí/Yes",
+        "redl": "Sí/Yes",
+        "renl": "Sí/Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING LGT THR LEN Designador RWY / Tipo, LEN e INTST del sistema de LGT de APCH / Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN and INTST THR LGT Color TDZ WBAR 1 2 3 4 5 Ángulo de Sistema de iluminación de precisión CAT III / 11 Sí/Yes aproximación 3° / Sí/Yes Precision lighting system CAT III Approach angle 3° Ángulo de 29 No Sí/Yes aproximación 2.95° / No Approach angle 2,95° Ángulo de descenso 3° / 17 No Sí/Yes No Descent angle 3° Sistema de iluminación de precisión CAT II. Ángulo de 35 Longitud 720 m / Sí/Yes aproximación 3° / Sí/Yes Precision lighting system CAT II. Length 720 m Approach angle 3° LEN, Separación, LEN, Separación, Color, INTST REDL / Color RENL y Color, INTST RCLL / REDL LEN, Spacing, Color, INSTS WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, RENL Color STWL LEN and Color Remarks Color, INTST and WBAR 6 7 8 9 10 Sí/Yes Sí/Yes Sí/Yes No NIL Sí/Yes Sí/Yes Sí/Yes No NIL Sí/Yes Sí/Yes Sí/Yes No NIL Sí/Yes Sí/Yes Sí/Yes No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.51825,
+          -34.825361111111114
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "EZEIZA / MINISTRO PISTARINI",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e10875b7c89.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10875b7c89",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "17",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí/Yes",
+        "papi_vasis": "Ángulo de descenso 3° Descent angle 3°",
+        "tdz_lgt": "/ No",
+        "rcll": "Sí/Yes",
+        "redl": "Sí/Yes",
+        "renl": "Sí/Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING LGT THR LEN Designador RWY / Tipo, LEN e INTST del sistema de LGT de APCH / Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN and INTST THR LGT Color TDZ WBAR 1 2 3 4 5 Ángulo de Sistema de iluminación de precisión CAT III / 11 Sí/Yes aproximación 3° / Sí/Yes Precision lighting system CAT III Approach angle 3° Ángulo de 29 No Sí/Yes aproximación 2.95° / No Approach angle 2,95° Ángulo de descenso 3° / 17 No Sí/Yes No Descent angle 3° Sistema de iluminación de precisión CAT II. Ángulo de 35 Longitud 720 m / Sí/Yes aproximación 3° / Sí/Yes Precision lighting system CAT II. Length 720 m Approach angle 3° LEN, Separación, LEN, Separación, Color, INTST REDL / Color RENL y Color, INTST RCLL / REDL LEN, Spacing, Color, INSTS WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, RENL Color STWL LEN and Color Remarks Color, INTST and WBAR 6 7 8 9 10 Sí/Yes Sí/Yes Sí/Yes No NIL Sí/Yes Sí/Yes Sí/Yes No NIL Sí/Yes Sí/Yes Sí/Yes No NIL Sí/Yes Sí/Yes Sí/Yes No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.53394722222222,
+          -34.80826388888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "EZEIZA / MINISTRO PISTARINI",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e10875b7c89.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10875b7c89",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "35",
+        "approach_lgt": "tema de iluminación de precisión C Longitud 720 m / ision lighting system CAT II. Leng",
+        "thr_lgt": "T II. Sí/Yes h 720 m",
+        "papi_vasis": "Ángulo de aproximación 3° / Approach angle 3°",
+        "tdz_lgt": "Sí/Yes",
+        "rcll": "Sí/Yes",
+        "redl": "Sí/Yes",
+        "renl": "Sí/Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING LGT THR LEN Designador RWY / Tipo, LEN e INTST del sistema de LGT de APCH / Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN and INTST THR LGT Color TDZ WBAR 1 2 3 4 5 Ángulo de Sistema de iluminación de precisión CAT III / 11 Sí/Yes aproximación 3° / Sí/Yes Precision lighting system CAT III Approach angle 3° Ángulo de 29 No Sí/Yes aproximación 2.95° / No Approach angle 2,95° Ángulo de descenso 3° / 17 No Sí/Yes No Descent angle 3° Sistema de iluminación de precisión CAT II. Ángulo de 35 Longitud 720 m / Sí/Yes aproximación 3° / Sí/Yes Precision lighting system CAT II. Length 720 m Approach angle 3° LEN, Separación, LEN, Separación, Color, INTST REDL / Color RENL y Color, INTST RCLL / REDL LEN, Spacing, Color, INSTS WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, RENL Color STWL LEN and Color Remarks Color, INTST and WBAR 6 7 8 9 10 Sí/Yes Sí/Yes Sí/Yes No NIL Sí/Yes Sí/Yes Sí/Yes No NIL Sí/Yes Sí/Yes Sí/Yes No NIL Sí/Yes Sí/Yes Sí/Yes No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.52549722222222,
+          -34.83258888888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAME",
+        "iata": "MDZ",
+        "aeropuerto": "MENDOZA / El Plumerillo",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69fc9d7664864.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69fc9d7664864",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "18",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "Avasis ángulo de aproximación 3° / Avasis approach angle 3°",
+        "tdz_lgt": "No",
+        "rcll": "Sí / Yes",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "Sí / Yes",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del Designador RWY LEN sistema de LGT de APCH / LGT THR Color WBAR / / PAPI, VASIS LGT APCH LGT system type, LEN THR LGT Color WBAR RWY designator TDZ and INTST 1 2 3 4 5 Avasis ángulo de aproximación 3° 18 No Sí / Yes / No Avasis approach angle 3° Ángulo aproximación 3° / 36 No Sí / Yes No Approach angle 3° LEN, Separación, Color, INTST RCLL LEN, Separación, Color, / INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Spacing, Color, INSTS INTST 6 7 8 9 10 Sí / Yes Sí / Yes Sí / Yes Sí / Yes NIL Sí / Yes Sí / Yes Sí / Yes Sí / Yes NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.79268611111111,
+          -32.819175
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAME",
+        "iata": "MDZ",
+        "aeropuerto": "MENDOZA / El Plumerillo",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69fc9d7664864.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69fc9d7664864",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "36",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "Ángulo aproximación 3° / Approach angle 3°",
+        "tdz_lgt": "No",
+        "rcll": "Sí / Yes",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "Sí / Yes",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del Designador RWY LEN sistema de LGT de APCH / LGT THR Color WBAR / / PAPI, VASIS LGT APCH LGT system type, LEN THR LGT Color WBAR RWY designator TDZ and INTST 1 2 3 4 5 Avasis ángulo de aproximación 3° 18 No Sí / Yes / No Avasis approach angle 3° Ángulo aproximación 3° / 36 No Sí / Yes No Approach angle 3° LEN, Separación, Color, INTST RCLL LEN, Separación, Color, / INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Spacing, Color, INSTS INTST 6 7 8 9 10 Sí / Yes Sí / Yes Sí / Yes Sí / Yes NIL Sí / Yes Sí / Yes Sí / Yes Sí / Yes NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.79306111111111,
+          -32.844322222222225
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAMM",
+        "iata": "LGS",
+        "aeropuerto": "MALARGÜE / COMODORO D. R. SALOMÓN",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e168cc06ad1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e168cc06ad1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "14",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí / Yes App",
+        "papi_vasis": "cruce en THR 14.65 m oach angle 3° - Crossing HGT at THR 14,65 m.",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR TDZ LEN and INTST 1 2 3 4 5 09 No No No No 27 No No No No Ángulo de aproximación 3° - HGT cruce en THR 14.65 m 14 No Sí / Yes No Approach angle 3° - Crossing HGT at THR 14,65 m. Ángulo de aproximación 3° - HGT cruce en THR 14.65 m. 32 No Sí / Yes No Approach angle 3° - Crossing HGT at THR 14,65 m. LEN, Separación, LEN, Separación, Color, Color, INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 No No No No NIL No No No No NIL No Sí / Yes Sí / Yes No NIL No Sí / Yes Sí / Yes No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.57993888888889,
+          -35.487255555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAMM",
+        "iata": "LGS",
+        "aeropuerto": "MALARGÜE / COMODORO D. R. SALOMÓN",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e168cc06ad1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e168cc06ad1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "32",
+        "approach_lgt": "No",
+        "thr_lgt": "Áng Sí / Yes App",
+        "papi_vasis": "lo de aproximación 3° - HGT cruce en THR 14.65 m. oach angle 3° - Crossing HGT at THR 14,65 m.",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR TDZ LEN and INTST 1 2 3 4 5 09 No No No No 27 No No No No Ángulo de aproximación 3° - HGT cruce en THR 14.65 m 14 No Sí / Yes No Approach angle 3° - Crossing HGT at THR 14,65 m. Ángulo de aproximación 3° - HGT cruce en THR 14.65 m. 32 No Sí / Yes No Approach angle 3° - Crossing HGT at THR 14,65 m. LEN, Separación, LEN, Separación, Color, Color, INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 No No No No NIL No No No No NIL No Sí / Yes Sí / Yes No NIL No Sí / Yes Sí / Yes No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.56602777777778,
+          -35.503275
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAMR",
+        "iata": "AFA",
+        "aeropuerto": "SAN RAFAEL / S. A. SANTIAGO GERMANO",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e169708997f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e169708997f",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "11",
+        "approach_lgt": "No",
+        "thr_lgt": "S Verde, No / Green, No Y",
+        "papi_vasis": "3° - HGT de cruce en THR 16.75 s 3° - Crossing HGT at THR 16,7",
+        "tdz_lgt": "m / No m",
+        "rcll": "No",
+        "redl": "2,102 m, 60 m, white, LIH Last 600 m yellow .102 m, 60 m, blanco, LIH ltimos 600 m amarillas /",
+        "renl": "Rojo, No / Red, No",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Sí 3° - HGT de cruce en THR 16.75 m / 11 No Verde, No / Green, No No Yes 3° - Crossing HGT at THR 16,75 m 29 No Verde, No / Green, No Sí, 3° / Yes, 3° No LEN, Separación, LEN, Separación, Color, Color RENL y WBAR / Color, INTST RCLL / INTST REDL / LEN y Color STWL / Observaciones / RENL Color and RCLL LEN, Spacing, REDL LEN, Spacing, Color, STWL LEN and Color Remarks WBAR Color, INTST INSTS 6 7 8 9 10 2.102 m, 60 m, blanco, LIH Últimos 600 m amarillas / No Rojo, No / Red, No No NIL 2,102 m, 60 m, white, LIH Last 600 m yellow 2.102 m, 60 m, blanco, LIH Últimos 600 m amarillas / No Rojo, No / Red, No No NIL 2,102 m, 60 m, white, LIH Last 600 m yellow",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.41445555555556,
+          -34.58481666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAMR",
+        "iata": "AFA",
+        "aeropuerto": "SAN RAFAEL / S. A. SANTIAGO GERMANO",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e169708997f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e169708997f",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "29",
+        "approach_lgt": "No",
+        "thr_lgt": "Verde, No / Green, No",
+        "papi_vasis": "Sí, 3° / Yes, 3°",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "2,102 m, 60 m, white, LIH Last 600 m yellow",
+        "renl": "Rojo, No / Red, No",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Sí 3° - HGT de cruce en THR 16.75 m / 11 No Verde, No / Green, No No Yes 3° - Crossing HGT at THR 16,75 m 29 No Verde, No / Green, No Sí, 3° / Yes, 3° No LEN, Separación, LEN, Separación, Color, Color RENL y WBAR / Color, INTST RCLL / INTST REDL / LEN y Color STWL / Observaciones / RENL Color and RCLL LEN, Spacing, REDL LEN, Spacing, Color, STWL LEN and Color Remarks WBAR Color, INTST INSTS 6 7 8 9 10 2.102 m, 60 m, blanco, LIH Últimos 600 m amarillas / No Rojo, No / Red, No No NIL 2,102 m, 60 m, white, LIH Last 600 m yellow 2.102 m, 60 m, blanco, LIH Últimos 600 m amarillas / No Rojo, No / Red, No No NIL 2,102 m, 60 m, white, LIH Last 600 m yellow",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.39272500000001,
+          -34.59081944444445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANC",
+        "iata": "CTC",
+        "aeropuerto": "CATAMARCA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e256ccb0f13.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e256ccb0f13",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "Ángulo de descenso 3° - HGT cr THR 16.54 m / Descent angle 3° - Crossing HGT 16.54 m",
+        "tdz_lgt": "ce No THR",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR LEN and INTST TDZ 1 2 3 4 5 Ángulo de descenso 3° - HGT cruce THR 16.54 m / 02 No Sí / Yes No Descent angle 3° - Crossing HGT THR 16.54 m Ángulo de descenso 3° - HGT cruce THR 16.57 m / 20 No Sí / Yes No Descent angle 3° - Crossing HGT THR 16,57 m LEN, Separación, LEN, Separación, Color, Color RENL y WBAR / Color, INTST RCLL / INTST REDL / LEN y Color STWL / Observaciones / RENL Color and RCLL LEN, Spacing, REDL LEN, Spacing, Color, STWL LEN and Color Remarks WBAR Color, INTST INSTS 6 7 8 9 10 No Sí / Yes Sí / Yes No NIL No Sí / Yes Sí / Yes No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.75415277777778,
+          -28.60546388888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANC",
+        "iata": "CTC",
+        "aeropuerto": "CATAMARCA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e256ccb0f13.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e256ccb0f13",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "20",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "Ángulo de descenso 3° - HGT cr THR 16.57 m / Descent angle 3° - Crossing HGT 16,57 m",
+        "tdz_lgt": "ce No THR",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR LEN and INTST TDZ 1 2 3 4 5 Ángulo de descenso 3° - HGT cruce THR 16.54 m / 02 No Sí / Yes No Descent angle 3° - Crossing HGT THR 16.54 m Ángulo de descenso 3° - HGT cruce THR 16.57 m / 20 No Sí / Yes No Descent angle 3° - Crossing HGT THR 16,57 m LEN, Separación, LEN, Separación, Color, Color RENL y WBAR / Color, INTST RCLL / INTST REDL / LEN y Color STWL / Observaciones / RENL Color and RCLL LEN, Spacing, REDL LEN, Spacing, Color, STWL LEN and Color Remarks WBAR Color, INTST INSTS 6 7 8 9 10 No Sí / Yes Sí / Yes No NIL No Sí / Yes Sí / Yes No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.74821111111112,
+          -28.580755555555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANE",
+        "iata": "SDE",
+        "aeropuerto": "SANTIAGO DEL ESTERO / VCOM. ÁNGEL D. LA PAZ ARAGONÉS",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-11-28",
+        "amdt_airac": "2/2024",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e1098092c2d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1098092c2d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "21",
+        "approach_lgt": "ma de iluminación de Aproximación- , longitud de 900 m, 5 niveles de intensidad y dispone de FLASH / ach lighting system-ALS-F, length , 5 brightness levels, high intens as FLASH No",
+        "thr_lgt": "rillo, Sí/Yes f ty Sí/Yes",
+        "papi_vasis": "ngulo de descenso 3° - HGT 16.4 m. / Descent angle 3° HGT 16,4 m. ngulo de descenso 3° - HGT 18.64 m. Descent angle 3° HGT 18,64 m.",
+        "tdz_lgt": "No No",
+        "rcll": "No",
+        "redl": "Sí/Yes",
+        "renl": "Sí/Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING LGT THR Color Tipo, LEN e INTST del sistema de LGT de LEN Designador RWY / WBAR / APCH / PAPI, VASIS LGT RWY designator THR LGT Color APCH LGT system type, LEN and INTST TDZ WBAR 1 2 3 4 5 03 Sistema de iluminación de Aproximación- No ALS-F, longitud de 900 m, 5 niveles de brillo, Ángulo de descenso 3° - alta intensidad y dispone de FLASH / HGT 16.4 m. / Sí/Yes Approach lighting system-ALS-F, length of Descent angle 3° HGT 900 m, 5 brightness levels, high intensity 16,4 m. and has FLASH 21 Ángulo de descenso 3° - No HGT 18.64 m. No Sí/Yes Descent angle 3° HGT 18,64 m. LEN, Separación, Color RENL y Color, INTST RCLL / LEN, Separación, Color, INTST REDL / WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, INSTS RENL Color and STWL LEN and Color Remarks Color, INTST WBAR 6 7 8 9 10 No Sí/Yes Sí/Yes No NIL No Sí/Yes Sí/Yes No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.30419722222221,
+          -27.75592222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANR",
+        "iata": "RHD",
+        "aeropuerto": "TERMAS DE RIO HONDO",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e6130f69047.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6130f69047",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "01",
+        "approach_lgt": "ALS-F, 720 M, 5 LIH F (ALS) LIH",
+        "thr_lgt": "Verde/Green",
+        "papi_vasis": "3° - TCH 15.4 m",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Últimos 600 m Amarillo / 2500 m, 50 m, White 5 LIH.",
+        "renl": "Rojo/Red",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema LEN Designador RWY / de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 ALS-F, 720 M, 5 LIH F (ALS) 3 01 Verde/Green 3° - TCH 15.4 m No LIH 19 No Verde/Green 3° - TCH 15.8 m No LEN, Separación, Color, LEN, Separación, Color, LEN y Color STWL / INTST RCLL / INTST REDL / Color RENL y WBAR / Observaciones / STWL LEN and RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR Remarks Color Color, INTST INSTS 6 7 8 9 10 2500 m, 50 m, Blanco, 5 LIH. No Rojo/Red No NIL Últimos 600 m Amarillo / 2500 m, 50 m, White 5 LIH. No Last 600 m Yellow Rojo/Red No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.93653333333334,
+          -27.507883333333332
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANR",
+        "iata": "RHD",
+        "aeropuerto": "TERMAS DE RIO HONDO",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e6130f69047.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6130f69047",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "19",
+        "approach_lgt": "No",
+        "thr_lgt": "Verde/Green",
+        "papi_vasis": "3° - TCH 15.8 m",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Last 600 m Yellow",
+        "renl": "Rojo/Red",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema LEN Designador RWY / de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 ALS-F, 720 M, 5 LIH F (ALS) 3 01 Verde/Green 3° - TCH 15.4 m No LIH 19 No Verde/Green 3° - TCH 15.8 m No LEN, Separación, Color, LEN, Separación, Color, LEN y Color STWL / INTST RCLL / INTST REDL / Color RENL y WBAR / Observaciones / STWL LEN and RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR Remarks Color Color, INTST INSTS 6 7 8 9 10 2500 m, 50 m, Blanco, 5 LIH. No Rojo/Red No NIL Últimos 600 m Amarillo / 2500 m, 50 m, White 5 LIH. No Last 600 m Yellow Rojo/Red No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.93538333333333,
+          -27.485347222222224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANT",
+        "iata": "TUC",
+        "aeropuerto": "SAN MIGUEL de TUCUMÁN / Tte. BENJAMÍN MATIENZO",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10b1142729.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b1142729",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "approach_lgt": "SALS-F, 390 m, 5 LIH",
+        "thr_lgt": "Verde, 5 LIH / Green, 5 LIH",
+        "papi_vasis": "Ángulo aproximación 3° Approach angle 3°",
+        "tdz_lgt": "No",
+        "rcll": "3500 m, 30 m, blanco, 5 LIH /",
+        "redl": "sentido de despegue /",
+        "renl": "Rojo, 5 LIH /",
+        "stwl": null,
+        "observaciones": null,
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema LEN Designador RWY / de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Verde, 5 LIH / Ángulo aproximación 3° / 02 SALS-F, 390 m, 5 LIH No Green, 5 LIH Approach angle 3° Verde, 5 LIH / Ángulo aproximación 3° / 20 No No Green, 5 LIH Approach angle 3° LEN, Separación, Color, LEN, Separación, Color, Color RENL y WBAR / INTST RCLL / INTST REDL / LEN y Color STWL / Observaciones / RENL Color and RCLL LEN, Spacing, Color, REDL LEN, Spacing, Color, STWL LEN and Color Remarks WBAR INTST INSTS 6 7 8 9 10 3500 m, 50 m, blanco, 5 LIH - Últimos 600 m amarillo el 3500 m, 30 m, blanco, 5 LIH / sentido de despegue / Rojo, 5 LIH / No NIL 3500 m, 30 m, white, 5 LIH 3500 m, 50 m, white, 5 LIH - Red, 5 LIH Last 600 m yellow the direction of takeoff 3500 m, 50 m, blanco, 5 LIH - Últimos 600 m amarillo el 3500 m, 30 m, blanco, 5 LIH / sentido de despegue / Rojo, 5 LIH / No NIL 3500 m, 30 m, white, 5 LIH 3500 m, 50 m, white, 5 LIH - Red, 5 LIH Last 600 m yellow the direction of takeoff",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.10731944444444,
+          -26.853783333333336
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANT",
+        "iata": "TUC",
+        "aeropuerto": "SAN MIGUEL de TUCUMÁN / Tte. BENJAMÍN MATIENZO",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10b1142729.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b1142729",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "20",
+        "approach_lgt": "No",
+        "thr_lgt": "Verde, 5 LIH / Green, 5 LIH",
+        "papi_vasis": "Ángulo aproximación 3° Approach angle 3°",
+        "tdz_lgt": "No",
+        "rcll": "3500 m, 30 m, white, 5 LIH",
+        "redl": "3500 m, 50 m, white, 5 LIH - Last 600 m yellow the direction of takeoff 3500 m, 50 m, blanco, 5 LIH - Últimos 600 m amarillo el",
+        "renl": "Red, 5 LIH",
+        "stwl": null,
+        "observaciones": null,
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema LEN Designador RWY / de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Verde, 5 LIH / Ángulo aproximación 3° / 02 SALS-F, 390 m, 5 LIH No Green, 5 LIH Approach angle 3° Verde, 5 LIH / Ángulo aproximación 3° / 20 No No Green, 5 LIH Approach angle 3° LEN, Separación, Color, LEN, Separación, Color, Color RENL y WBAR / INTST RCLL / INTST REDL / LEN y Color STWL / Observaciones / RENL Color and RCLL LEN, Spacing, Color, REDL LEN, Spacing, Color, STWL LEN and Color Remarks WBAR INTST INSTS 6 7 8 9 10 3500 m, 50 m, blanco, 5 LIH - Últimos 600 m amarillo el 3500 m, 30 m, blanco, 5 LIH / sentido de despegue / Rojo, 5 LIH / No NIL 3500 m, 30 m, white, 5 LIH 3500 m, 50 m, white, 5 LIH - Red, 5 LIH Last 600 m yellow the direction of takeoff 3500 m, 50 m, blanco, 5 LIH - Últimos 600 m amarillo el 3500 m, 30 m, blanco, 5 LIH / sentido de despegue / Rojo, 5 LIH / No NIL 3500 m, 30 m, white, 5 LIH 3500 m, 50 m, white, 5 LIH - Red, 5 LIH Last 600 m yellow the direction of takeoff",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.10134166666666,
+          -26.822655555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANU",
+        "iata": "UAQ",
+        "aeropuerto": "SAN JUAN / DOMINGO FAUSTINO SARMIENTO",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e10b2277811.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b2277811",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "18",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí, verde / Yes, green",
+        "papi_vasis": "Sí, 3° - HGT cruce en THR 15,80 m. / Yes, 3° - crossing HGT at T 15.80 m.",
+        "tdz_lgt": "No R",
+        "rcll": "No",
+        "redl": "2460 m, 50 m, blanca / 2460 m, 50 m, white",
+        "renl": null,
+        "stwl": "No",
+        "observaciones": null,
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Designador Tipo, LEN e INTST del LEN RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY APCH LGT system type, LEN THR LGT Color WBAR TDZ designator and INTST 1 2 3 4 5 Sí, 3° - HGT cruce en THR 15,80 m. / No 18 No Sí, verde / Yes, green Yes, 3° - crossing HGT at THR 15.80 m. Sí, 3° - HGT cruce en THR 16,87 m. / No 36 No Sí, verde / Yes, green Yes, 3° - crossing HGT at THR 16.87 m. LEN, Separación, LEN, Separación, Color, Color, INTST INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL / REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks RCLL LEN, INSTS Spacing, Color, INTST 6 7 8 9 10 No 2460 m, 50 m, blanca / No Sí, rojo / Yes, red NIL 2460 m, 50 m, white No 2460 m, 50 m, blanca / No Sí, rojo / Yes, red NIL 2460 m, 50 m, white",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.41840555555557,
+          -31.560369444444444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SANU",
+        "iata": "UAQ",
+        "aeropuerto": "SAN JUAN / DOMINGO FAUSTINO SARMIENTO",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e10b2277811.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b2277811",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "36",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí, verde / Yes, green",
+        "papi_vasis": "Sí, 3° - HGT cruce en THR 16,87 m. / Yes, 3° - crossing HGT at T 16.87 m.",
+        "tdz_lgt": "No R",
+        "rcll": "No",
+        "redl": "2460 m, 50 m, blanca / 2460 m, 50 m, white",
+        "renl": null,
+        "stwl": "No",
+        "observaciones": null,
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Designador Tipo, LEN e INTST del LEN RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY APCH LGT system type, LEN THR LGT Color WBAR TDZ designator and INTST 1 2 3 4 5 Sí, 3° - HGT cruce en THR 15,80 m. / No 18 No Sí, verde / Yes, green Yes, 3° - crossing HGT at THR 15.80 m. Sí, 3° - HGT cruce en THR 16,87 m. / No 36 No Sí, verde / Yes, green Yes, 3° - crossing HGT at THR 16.87 m. LEN, Separación, LEN, Separación, Color, Color, INTST INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL / REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks RCLL LEN, INSTS Spacing, Color, INTST 6 7 8 9 10 No 2460 m, 50 m, blanca / No Sí, rojo / Yes, red NIL 2460 m, 50 m, white No 2460 m, 50 m, blanca / No Sí, rojo / Yes, red NIL 2460 m, 50 m, white",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.41818333333333,
+          -31.582555555555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOC",
+        "iata": "RCU",
+        "aeropuerto": "RÍO CUARTO / ÁREA DE MATERIAL",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10b83ad8fa.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10b83ad8fa",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "05",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí, Verde / Yes, Green",
+        "papi_vasis": "Ángulo de descenso 2.98 / Descent Angle 2,98°",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "2.265 m, 50 m, Blanco, LIH Últimos 600 m, Amarillo / 2,265 m, 50 m, White, LIH Last 600 m, Yellow",
+        "renl": "Sí, Rojo / Yes, Red",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema de LEN Designador RWY / LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Ángulo de descenso 2.98° 05 No Sí, Verde / Yes, Green No / Descent Angle 2,98° 23 No Sí, Verde / Yes, Green No No 01 No No No No 19 No No No No LEN, Separación, LEN, Separación, Color, INTST Color RENL y WBAR / LEN y Color STWL / Observaciones / Color, INTST RCLL / REDL / RENL Color and WBAR STWL LEN and Color Remarks RCLL LEN, Spacing, REDL LEN, Spacing, Color, Color, INTST INSTS 6 7 8 9 10 No 2.265 m, 50 m, Blanco, LIH Sí, Rojo / Yes, Red No NIL Últimos 600 m, Amarillo / 2,265 m, 50 m, White, LIH Last 600 m, Yellow No 2.265 m, 50 m, Blanco, LIH Sí, Rojo / Yes, Red No NIL Últimos 600 m, Amarillo / 2,265 m, 50 m, White, LIH Last 600 m, Yellow No No No No NIL No No No No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.2778,
+          -33.099469444444445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOR",
+        "iata": "VME",
+        "aeropuerto": "VILLA REYNOLDS",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10c27bbaf1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10c27bbaf1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "06",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "Ángulo descenso 2.5° - HGT cruc en THR 19.94 m / Descent angle 2,5° - Crossing H",
+        "tdz_lgt": "No T",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR TDZ LEN and INTST 1 2 3 4 5 Ángulo descenso 2.5° - HGT cruce 06 en THR 19.94 m / No Sí / Yes No Descent angle 2,5° - Crossing HGT at THR 19,94 m Ángulo descenso 3° / 24 No Sí / Yes No Descent angle 3° 10 No No No No Ángulo descenso No / 28 No No No Descent angle No LEN, Separación, Color, LEN, Separación, Color, Observacio INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / nes / RCLL LEN, Spacing, REDL LEN, Spacing, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST Color, INSTS 6 7 8 9 10 No Sí / Yes Sí / Yes No NIL No Sí / Yes Sí / Yes No NIL No No No No NIL No No No No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.38898333333334,
+          -33.73065555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOR",
+        "iata": "VME",
+        "aeropuerto": "VILLA REYNOLDS",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10c27bbaf1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10c27bbaf1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "24",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "at THR 19,94 m Ángulo descenso 3° / Descent angle 3°",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR TDZ LEN and INTST 1 2 3 4 5 Ángulo descenso 2.5° - HGT cruce 06 en THR 19.94 m / No Sí / Yes No Descent angle 2,5° - Crossing HGT at THR 19,94 m Ángulo descenso 3° / 24 No Sí / Yes No Descent angle 3° 10 No No No No Ángulo descenso No / 28 No No No Descent angle No LEN, Separación, Color, LEN, Separación, Color, Observacio INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / nes / RCLL LEN, Spacing, REDL LEN, Spacing, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST Color, INSTS 6 7 8 9 10 No Sí / Yes Sí / Yes No NIL No Sí / Yes Sí / Yes No NIL No No No No NIL No No No No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.36725,
+          -33.71953055555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOR",
+        "iata": "VME",
+        "aeropuerto": "VILLA REYNOLDS",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10c27bbaf1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10c27bbaf1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "28",
+        "approach_lgt": "No",
+        "thr_lgt": "No",
+        "papi_vasis": "Descent angle No",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "No",
+        "renl": "No",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR TDZ LEN and INTST 1 2 3 4 5 Ángulo descenso 2.5° - HGT cruce 06 en THR 19.94 m / No Sí / Yes No Descent angle 2,5° - Crossing HGT at THR 19,94 m Ángulo descenso 3° / 24 No Sí / Yes No Descent angle 3° 10 No No No No Ángulo descenso No / 28 No No No Descent angle No LEN, Separación, Color, LEN, Separación, Color, Observacio INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / nes / RCLL LEN, Spacing, REDL LEN, Spacing, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST Color, INSTS 6 7 8 9 10 No Sí / Yes Sí / Yes No NIL No Sí / Yes Sí / Yes No NIL No No No No NIL No No No No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.36309999999999,
+          -33.73386388888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOS",
+        "iata": "RLO",
+        "aeropuerto": "VALLE DEL CONLARA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "1/2023",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10c3899e4a.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10c3899e4a",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "approach_lgt": "No",
+        "thr_lgt": "Verdes, No / Green, No",
+        "papi_vasis": "Ángulo de descenso a 3° Descent angle at 3°.",
+        "tdz_lgt": "/ No",
+        "rcll": "No",
+        "redl": "amarillas, alta / 2,550 m, 50 m, white and yellow, high 2.550 m, 50 m, blancas y",
+        "renl": "Rojo, No / Red, No",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema LEN Designador RWY / de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Verdes, No / Green, No Ángulo de descenso a 3°. / 02 No No Descent angle at 3°. 20 No Verdes, No / Green, No No No LEN, Separación, LEN, Separación, Color, Color, INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 2.550 m, 50 m, blancas y No amarillas, alta / Rojo, No / Red, No No NIL 2,550 m, 50 m, white and yellow, high 2.550 m, 50 m, blancas y No amarillas, alta / Rojo, No / Red, No No NIL 2,550 m, 50 m, white and yellow, high",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.1898638888889,
+          -32.395430555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOU",
+        "iata": "LUQ",
+        "aeropuerto": "SAN LUIS / BRIG.MY. CESAR RAUL OJEDA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e23dcde0868(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e23dcde0868",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "01",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí/Yes",
+        "papi_vasis": "Sí, ángulo de descenso 3° Yes, descent angle 3° Sí, ángulo de descenso 3°",
+        "tdz_lgt": "No -",
+        "rcll": null,
+        "redl": null,
+        "renl": null,
+        "stwl": null,
+        "observaciones": null,
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema de LEN Designador RWY / LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Sí, ángulo de descenso 3°/ 01 No Sí/Yes No Yes, descent angle 3° Sí, ángulo de descenso 3° - HGT cruce en THR 19 17.16 m / 19 No Sí/Yes No Yes, descent angle 3° - crossing HGT at THR 19 17,16 m",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.35830277777777,
+          -33.286402777777774
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAOU",
+        "iata": "LUQ",
+        "aeropuerto": "SAN LUIS / BRIG.MY. CESAR RAUL OJEDA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e23dcde0868(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e23dcde0868",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "19",
+        "approach_lgt": "No TICA",
+        "thr_lgt": "Sí/Yes",
+        "papi_vasis": "HGT cruce en THR 19 17.16 m / Yes, descent angle 3° - crossing HGT at THR 19 17,16 m S",
+        "tdz_lgt": "No OU AD 2.6",
+        "rcll": null,
+        "redl": null,
+        "renl": null,
+        "stwl": null,
+        "observaciones": null,
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema de LEN Designador RWY / LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Sí, ángulo de descenso 3°/ 01 No Sí/Yes No Yes, descent angle 3° Sí, ángulo de descenso 3° - HGT cruce en THR 19 17.16 m / 19 No Sí/Yes No Yes, descent angle 3° - crossing HGT at THR 19 17,16 m",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.35469722222221,
+          -33.259933333333336
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARC",
+        "iata": "CNQ",
+        "aeropuerto": "CORRIENTES",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10de8df659(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10de8df659",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí. Alta intensidad/ Yes. High intensity.",
+        "papi_vasis": "Ángulo aproximación 3°. HGT cruce THR 16 m (53 ft) / Approach angle 3°. HGT crossing THR 16 m (53 ft).",
+        "tdz_lgt": "No",
+        "rcll": null,
+        "redl": null,
+        "renl": null,
+        "stwl": null,
+        "observaciones": null,
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING LGT THR Color Tipo, LEN e INTST del sistema de LGT de LEN Designador RWY / WBAR / APCH / PAPI, VASIS LGT RWY Designator THR LGT Color APCH LGT system type, LEN and INTST TDZ WBAR 1 2 3 4 5 Ángulo aproximación 3°. HGT Sí. Alta intensidad/ cruce THR 16 m (53 ft) / 02 No No Yes. High intensity. Approach angle 3°. HGT crossing THR 16 m (53 ft). Ángulo aproximación 3°. HGT Sistema sencillo de iluminación (900 m) / Sí. Alta intensidad / cruce THR 16 m (53 ft) / 20 No Simple lighting system (900 m). Yes. High intensity. Approach angle 3°. HGT crossing THR 16 m (53 ft).",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.763041666666666,
+          -27.45361388888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARC",
+        "iata": "CNQ",
+        "aeropuerto": "CORRIENTES",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e10de8df659(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10de8df659",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "20",
+        "approach_lgt": "ma sencillo de iluminación (900 m Simple lighting system (900 m). ÁUTICA",
+        "thr_lgt": "/ Sí. Alta intensidad / Yes. High intensity.",
+        "papi_vasis": "Ángulo aproximación 3°. HGT cruce THR 16 m (53 ft) / Approach angle 3°. HGT crossing THR 16 m (53 ft).",
+        "tdz_lgt": "No",
+        "rcll": null,
+        "redl": null,
+        "renl": null,
+        "stwl": null,
+        "observaciones": null,
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING LGT THR Color Tipo, LEN e INTST del sistema de LGT de LEN Designador RWY / WBAR / APCH / PAPI, VASIS LGT RWY Designator THR LGT Color APCH LGT system type, LEN and INTST TDZ WBAR 1 2 3 4 5 Ángulo aproximación 3°. HGT Sí. Alta intensidad/ cruce THR 16 m (53 ft) / 02 No No Yes. High intensity. Approach angle 3°. HGT crossing THR 16 m (53 ft). Ángulo aproximación 3°. HGT Sistema sencillo de iluminación (900 m) / Sí. Alta intensidad / cruce THR 16 m (53 ft) / 20 No Simple lighting system (900 m). Yes. High intensity. Approach angle 3°. HGT crossing THR 16 m (53 ft).",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.76034166666667,
+          -27.436186111111112
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARE",
+        "iata": "RES",
+        "aeropuerto": "RESISTENCIA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e23557ecfd0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e23557ecfd0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "03",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí/Yes",
+        "papi_vasis": "ngulo de aproximación 3°, HGT e cruce en THR 15 m (49 ft) / pproach angle 3°. HGT crossin HR 15 m (49 ft)",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí/Yes",
+        "renl": "Sí/Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema de LGT LGT THR Color LEN Designador RWY / de APCH / WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN and THR LGT Color TDZ INTST WBAR 1 2 3 4 5 Ángulo de aproximación 3°, HGT de cruce en THR 15 m (49 ft) / 03 No Sí/Yes No Approach angle 3°. HGT crossing THR 15 m (49 ft) Sistema de iluminación de precisión Ángulo de aproximación 3°, HGT (ALS) CAT 1 (900 m) / de cruce en THR 17 m (56 ft) / 21 Sí/Yes No Approach Lighting System (ALS) CAT 1 Approach angle 3°. HGT crossing (900 m) THR 17 m (56 ft) LEN, Separación, Color RENL y Color, INTST RCLL / LEN, Separación, Color, INTST REDL / WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, INSTS RENL Color and STWL LEN and Color Remarks Color, INTST WBAR 6 7 8 9 10 No Sí/Yes Sí/Yes No NIL No Sí/Yes Sí/Yes No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.06106666666666,
+          -27.461602777777777
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARE",
+        "iata": "RES",
+        "aeropuerto": "RESISTENCIA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e23557ecfd0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e23557ecfd0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "21",
+        "approach_lgt": "tema de iluminación de precisión S) CAT 1 (900 m) / roach Lighting System (ALS) CAT 0 m)",
+        "thr_lgt": "Sí/Yes",
+        "papi_vasis": "ngulo de aproximación 3°, HGT e cruce en THR 17 m (56 ft) / pproach angle 3°. HGT crossin HR 17 m (56 ft)",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí/Yes",
+        "renl": "Sí/Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema de LGT LGT THR Color LEN Designador RWY / de APCH / WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN and THR LGT Color TDZ INTST WBAR 1 2 3 4 5 Ángulo de aproximación 3°, HGT de cruce en THR 15 m (49 ft) / 03 No Sí/Yes No Approach angle 3°. HGT crossing THR 15 m (49 ft) Sistema de iluminación de precisión Ángulo de aproximación 3°, HGT (ALS) CAT 1 (900 m) / de cruce en THR 17 m (56 ft) / 21 Sí/Yes No Approach Lighting System (ALS) CAT 1 Approach angle 3°. HGT crossing (900 m) THR 17 m (56 ft) LEN, Separación, Color RENL y Color, INTST RCLL / LEN, Separación, Color, INTST REDL / WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, INSTS RENL Color and STWL LEN and Color Remarks Color, INTST WBAR 6 7 8 9 10 No Sí/Yes Sí/Yes No NIL No Sí/Yes Sí/Yes No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.05107222222222,
+          -27.438247222222223
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARI",
+        "iata": "IGR",
+        "aeropuerto": "CATARATAS DEL IGUAZÚ / Mayor D. Carlos Eduardo Krause",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e6163c31b23(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6163c31b23",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "13",
+        "approach_lgt": "No stema de Iluminación de",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "Ángulo de aproximación 3 Approach angle 3°",
+        "tdz_lgt": "/ No",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Ángulo de aproximación 3° / 13 No Sí / Yes No Approach angle 3° Sistema de Iluminación de Precisión CAT I 900 m / Ángulo de aproximación 3° / 31 Sí / Yes No CAT I 900 m Precision Approach angle 3° Illumination System LEN, Separación, LEN, Separación, Color, Color, INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 No Sí / Yes Sí / Yes No NIL No Sí / Yes Sí / Yes No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -54.48837777777778,
+          -25.731038888888886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARI",
+        "iata": "IGR",
+        "aeropuerto": "CATARATAS DEL IGUAZÚ / Mayor D. Carlos Eduardo Krause",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e6163c31b23(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e6163c31b23",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "31",
+        "approach_lgt": "Precisión CAT I 900 m / CAT I 900 m Precision Illumination System",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "Ángulo de aproximación 3 Approach angle 3°",
+        "tdz_lgt": "/ No",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Ángulo de aproximación 3° / 13 No Sí / Yes No Approach angle 3° Sistema de Iluminación de Precisión CAT I 900 m / Ángulo de aproximación 3° / 31 Sí / Yes No CAT I 900 m Precision Approach angle 3° Illumination System LEN, Separación, LEN, Separación, Color, Color, INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 No Sí / Yes Sí / Yes No NIL No Sí / Yes Sí / Yes No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -54.458511111111115,
+          -25.743516666666668
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARP",
+        "iata": "PSS",
+        "aeropuerto": "POSADAS / Libertador Gral. D. José de San Martín",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1137370dba(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1137370dba",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "approach_lgt": "No",
+        "thr_lgt": "Verde/Green",
+        "papi_vasis": "Ángulo aproximación 3°/ Approach angle 3°",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "50, White, LIH, White Yellow last 600 m 50, Blancas, LIH, Blancas Amarillas últimos 600 m /",
+        "renl": "Rojo/Red",
+        "stwl": "No",
+        "observaciones": "REILS",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema de LEN Designador RWY / LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN and THR LGT Color WBAR TDZ INTST 1 2 3 4 5 Ángulo aproximación 3°/ 02 No Verde/Green No Approach angle 3° Ángulo aproximación 2.54°/ 20 ALS-F, 750 m, LIH Verde/Green No Approach angle 2.54° LEN, Separación, Color, INTST RCLL / Color RENL y WBAR / LEN y Color STWL / Observaciones / LEN, Separación, Color, INTST REDL / RCLL LEN, RENL Color and WBAR STWL LEN and Color Remarks REDL LEN, Spacing, Color, INSTS Spacing, Color, INTST 6 7 8 9 10 50, Blancas, LIH, Blancas Amarillas últimos 600 m / No Rojo/Red No REILS 50, White, LIH, White Yellow last 600 m 50, Blancas, LIH, Blancas Amarillas últimos 600 m / No Rojo/Red No REILS 50, White, LIH, White Yellow last 600 m",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -55.97034166666667,
+          -27.39591111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SARP",
+        "iata": "PSS",
+        "aeropuerto": "POSADAS / Libertador Gral. D. José de San Martín",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1137370dba(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1137370dba",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "20",
+        "approach_lgt": "ALS-F, 750 m, LIH",
+        "thr_lgt": "Verde/Green",
+        "papi_vasis": "Ángulo aproximación 2.54°/ Approach angle 2.54°",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "50, White, LIH, White Yellow last 600 m",
+        "renl": "Rojo/Red",
+        "stwl": "No",
+        "observaciones": "REILS",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema de LEN Designador RWY / LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN and THR LGT Color WBAR TDZ INTST 1 2 3 4 5 Ángulo aproximación 3°/ 02 No Verde/Green No Approach angle 3° Ángulo aproximación 2.54°/ 20 ALS-F, 750 m, LIH Verde/Green No Approach angle 2.54° LEN, Separación, Color, INTST RCLL / Color RENL y WBAR / LEN y Color STWL / Observaciones / LEN, Separación, Color, INTST REDL / RCLL LEN, RENL Color and WBAR STWL LEN and Color Remarks REDL LEN, Spacing, Color, INSTS Spacing, Color, INTST 6 7 8 9 10 50, Blancas, LIH, Blancas Amarillas últimos 600 m / No Rojo/Red No REILS 50, White, LIH, White Yellow last 600 m 50, Blancas, LIH, Blancas Amarillas últimos 600 m / No Rojo/Red No REILS 50, White, LIH, White Yellow last 600 m",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -55.970675,
+          -27.37558611111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASA",
+        "iata": "SLA",
+        "aeropuerto": "SALTA / Gral. Don Martín Miguel de Güemes",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e1138586777(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1138586777",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "02",
+        "approach_lgt": "LS-F CAT I 810 m - Alta intensidad / LS-F CAT I 810 m – High intensity",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "ngulo de descenso 3° / Descent angle 3°",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "No",
+        "observaciones": "LS 5 brightness levels. LASH 3 brightness levels.",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Designador Tipo, LEN e INTST del LGT THR Color LEN RWY / sistema de LGT de APCH / WBAR / PAPI, VASIS LGT RWY APCH LGT system type, THR LGT Color TDZ designator LEN and INTST WBAR 1 2 3 4 5 ALS-F CAT I 810 m - Alta intensidad / Ángulo de descenso 3° / 02 Sí / Yes No ALS-F CAT I 810 m – High Descent angle 3° intensity Ángulo de descenso 3° / 20 No Sí / Yes No Descent angle 3° 06 No Sí / Yes No No 24 No Sí / Yes No No LEN, LEN, Separación, Color, Separación, INTST REDL / Color, INTST Color RENL y REDL LEN, Spacing, Color, WBAR / LEN y Color STWL / Observaciones / RCLL / INSTS RENL Color and STWL LEN and Color Remarks RCLL LEN, WBAR Spacing, Color, INTST 6 7 8 9 10 ALS de 5 niveles de brillo. FLASH 3 niveles de brillo / No Sí / Yes Sí / Yes No ALS 5 brightness levels. FLASH 3 brightness levels. No Sí / Yes Sí / Yes No NIL No Sí / Yes Sí / Yes No LGT media intensidad - 1 nivel de brillo / No Sí / Yes Sí / Yes No LGT medium intensity - 1 brightness level",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.48993888888889,
+          -24.872833333333332
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASA",
+        "iata": "SLA",
+        "aeropuerto": "SALTA / Gral. Don Martín Miguel de Güemes",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 8,
+        "archivo_aip": "aip-69e1138586777(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1138586777",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "20",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "ngulo de descenso 3° / Descent angle 3°",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "No",
+        "observaciones": "IL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Designador Tipo, LEN e INTST del LGT THR Color LEN RWY / sistema de LGT de APCH / WBAR / PAPI, VASIS LGT RWY APCH LGT system type, THR LGT Color TDZ designator LEN and INTST WBAR 1 2 3 4 5 ALS-F CAT I 810 m - Alta intensidad / Ángulo de descenso 3° / 02 Sí / Yes No ALS-F CAT I 810 m – High Descent angle 3° intensity Ángulo de descenso 3° / 20 No Sí / Yes No Descent angle 3° 06 No Sí / Yes No No 24 No Sí / Yes No No LEN, LEN, Separación, Color, Separación, INTST REDL / Color, INTST Color RENL y REDL LEN, Spacing, Color, WBAR / LEN y Color STWL / Observaciones / RCLL / INSTS RENL Color and STWL LEN and Color Remarks RCLL LEN, WBAR Spacing, Color, INTST 6 7 8 9 10 ALS de 5 niveles de brillo. FLASH 3 niveles de brillo / No Sí / Yes Sí / Yes No ALS 5 brightness levels. FLASH 3 brightness levels. No Sí / Yes Sí / Yes No NIL No Sí / Yes Sí / Yes No LGT media intensidad - 1 nivel de brillo / No Sí / Yes Sí / Yes No LGT medium intensity - 1 brightness level",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.48414722222222,
+          -24.84637222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASJ",
+        "iata": "JUJ",
+        "aeropuerto": "JUJUY / Gobernador Horacio Guzmán",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e113f9e6050(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e113f9e6050",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "16",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí, verde / Yes, green",
+        "papi_vasis": "Ángulo de aproximación 3° Approach angle 3°",
+        "tdz_lgt": "No",
+        "rcll": null,
+        "redl": null,
+        "renl": null,
+        "stwl": null,
+        "observaciones": null,
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema LEN Designador RWY / de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Ángulo de aproximación 3°/ 16 No Sí, verde / Yes, green No Approach angle 3° Ángulo de aproximación 3°/ 34 ALS, 900 m, LIH CAT I Sí, verde / Yes, green No Approach angle 3°",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.10503055555554,
+          -24.381205555555557
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SASJ",
+        "iata": "JUJ",
+        "aeropuerto": "JUJUY / Gobernador Horacio Guzmán",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e113f9e6050(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e113f9e6050",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "34",
+        "approach_lgt": "ALS, 900 m, LIH CAT I ONÁUTICA",
+        "thr_lgt": "Sí, verde / Yes, green",
+        "papi_vasis": "Ángulo de aproximación 3° Approach angle 3°",
+        "tdz_lgt": "No",
+        "rcll": null,
+        "redl": null,
+        "renl": null,
+        "stwl": null,
+        "observaciones": null,
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema LEN Designador RWY / de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Ángulo de aproximación 3°/ 16 No Sí, verde / Yes, green No Approach angle 3° Ángulo de aproximación 3°/ 34 ALS, 900 m, LIH CAT I Sí, verde / Yes, green No Approach angle 3°",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.09058333333333,
+          -24.40426111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVC",
+        "iata": "CRD",
+        "aeropuerto": "COMODORO RIVADAVIA / GRAL. E. MOSCONI",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1143c25a85(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1143c25a85",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "07",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "Ángulo de descenso 3° 20’ Descent Angle 3° 20’",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "Sí / Yes",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Ángulo de descenso 3° 20’ 07 No Sí / Yes No Descent Angle 3° 20’ Ángulo de descenso 3° 25 No Sí / Yes No Descent Angle 3° LEN, Separación, Color, LEN, Separación, Color, INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones/ RCLL LEN, Spacing, Color, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks INTST INSTS 6 7 8 9 10 No Sí / Yes Sí / Yes Sí / Yes NIL No Sí / Yes Sí / Yes Sí / Yes NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.47390833333334,
+          -45.786341666666665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVC",
+        "iata": "CRD",
+        "aeropuerto": "COMODORO RIVADAVIA / GRAL. E. MOSCONI",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-11-27",
+        "amdt_airac": "2/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1143c25a85(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1143c25a85",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "25",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "Ángulo de descenso 3° Descent Angle 3°",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "Sí / Yes",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Ángulo de descenso 3° 20’ 07 No Sí / Yes No Descent Angle 3° 20’ Ángulo de descenso 3° 25 No Sí / Yes No Descent Angle 3° LEN, Separación, Color, LEN, Separación, Color, INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones/ RCLL LEN, Spacing, Color, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks INTST INSTS 6 7 8 9 10 No Sí / Yes Sí / Yes Sí / Yes NIL No Sí / Yes Sí / Yes Sí / Yes NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.44792777777778,
+          -45.782938888888886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVE",
+        "iata": "EQS",
+        "aeropuerto": "ESQUEL / Brigadier General Antonio Parodi",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e114f5ef93e(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e114f5ef93e",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "05",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "Angulo de descenso 3.5° - HGT de cruce en THR 16 m./ Descent angle 3.5° - crossing HGT at THR 16 m.",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "No",
+        "observaciones": "High intensity lighting system 5 brightness Sistema Iluminación de alta intensidad 5 brillos",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema de LEN Designador RWY / LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Angulo de descenso 3.5° - HGT de cruce en THR 16 m./ 05 No Sí / Yes No Descent angle 3.5° - crossing HGT at THR 16 m. Angulo de descenso 3° - HGT de cruce en THR 16.75 m./ 23 No Sí / Yes No Descent angle 3° - crossing HGT at THR 16,75 m. 08 No No No No 26 No No No No LEN, Separación, LEN, Separación, Color, INTST Color, INTST RCLL / REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 Sistema Iluminación de alta intensidad 5 brillos No Sí / Yes Sí / Yes No High intensity lighting system 5 brightness Sistema Iluminación de alta intensidad 5 brillos No Sí / Yes Sí / Yes No High intensity lighting system 5 brightness No No No No NIL No No No No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.14782500000001,
+          -42.90965277777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVE",
+        "iata": "EQS",
+        "aeropuerto": "ESQUEL / Brigadier General Antonio Parodi",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e114f5ef93e(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e114f5ef93e",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "23",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "Angulo de descenso 3° - HGT de cruce en THR 16.75 m./ Descent angle 3° - crossing HGT at THR",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "No",
+        "observaciones": "High intensity lighting system 5 brightness",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema de LEN Designador RWY / LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Angulo de descenso 3.5° - HGT de cruce en THR 16 m./ 05 No Sí / Yes No Descent angle 3.5° - crossing HGT at THR 16 m. Angulo de descenso 3° - HGT de cruce en THR 16.75 m./ 23 No Sí / Yes No Descent angle 3° - crossing HGT at THR 16,75 m. 08 No No No No 26 No No No No LEN, Separación, LEN, Separación, Color, INTST Color, INTST RCLL / REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 Sistema Iluminación de alta intensidad 5 brillos No Sí / Yes Sí / Yes No High intensity lighting system 5 brightness Sistema Iluminación de alta intensidad 5 brillos No Sí / Yes Sí / Yes No High intensity lighting system 5 brightness No No No No NIL No No No No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.12321666666666,
+          -42.897955555555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVE",
+        "iata": "EQS",
+        "aeropuerto": "ESQUEL / Brigadier General Antonio Parodi",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e114f5ef93e(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e114f5ef93e",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "08",
+        "approach_lgt": "No",
+        "thr_lgt": "No",
+        "papi_vasis": "16,75 m. No",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "No",
+        "renl": "No",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema de LEN Designador RWY / LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Angulo de descenso 3.5° - HGT de cruce en THR 16 m./ 05 No Sí / Yes No Descent angle 3.5° - crossing HGT at THR 16 m. Angulo de descenso 3° - HGT de cruce en THR 16.75 m./ 23 No Sí / Yes No Descent angle 3° - crossing HGT at THR 16,75 m. 08 No No No No 26 No No No No LEN, Separación, LEN, Separación, Color, INTST Color, INTST RCLL / REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 Sistema Iluminación de alta intensidad 5 brillos No Sí / Yes Sí / Yes No High intensity lighting system 5 brightness Sistema Iluminación de alta intensidad 5 brillos No Sí / Yes Sí / Yes No High intensity lighting system 5 brightness No No No No NIL No No No No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.1503388888889,
+          -42.911852777777774
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVT",
+        "iata": "REL",
+        "aeropuerto": "TRELEW / ALMIRANTE ZAR",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e11508bc15d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11508bc15d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "07",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí/Yes",
+        "papi_vasis": "ngulo Aproximación 3° (*) Approach Angle 3° (*)",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí/Yes",
+        "renl": "Sí/Yes",
+        "stwl": "No",
+        "observaciones": "New high-intensity lighting system (*) Crossing HGT in THR 07: 16.50 m Nuevo sistema de luces de alta intensidad (**) HGT de cruce en THR 25: 16,14 m /",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LGT THR Color LEN Designador RWY / sistema de LGT de APCH / WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color TDZ LEN and INTST WBAR 1 2 3 4 5 Ángulo Aproximación 3° (*) 07 No Sí/Yes No Approach Angle 3° (*) Ángulo Aproximación 3° (**) 25 CAT I ALS-F 900 m Sí/Yes No Approach Angle 3° (**) LEN, Separación, LEN, Separación, Color, Color RENL y Color, INTST RCLL / INTST REDL / WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and STWL LEN and Color Remarks Color, INTST INSTS WBAR 6 7 8 9 10 Nuevo sistema de luces de alta intensidad (*) HGT de cruce en THR 07: 16,50 m / No Sí/Yes Sí/Yes No New high-intensity lighting system (*) Crossing HGT in THR 07: 16.50 m Nuevo sistema de luces de alta intensidad (**) HGT de cruce en THR 25: 16,14 m / No Sí/Yes Sí/Yes No New high-intensity lighting system (**) Crossing HGT in THR 25: 16.14 m",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.28509722222222,
+          -43.214558333333336
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVT",
+        "iata": "REL",
+        "aeropuerto": "TRELEW / ALMIRANTE ZAR",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e11508bc15d.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e11508bc15d",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "25",
+        "approach_lgt": "CAT I ALS-F 900 m",
+        "thr_lgt": "Á Sí/Yes",
+        "papi_vasis": "gulo Aproximación 3° (**) Approach Angle 3° (**)",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí/Yes",
+        "renl": "Sí/Yes",
+        "stwl": "No",
+        "observaciones": "New high-intensity lighting system (**) Crossing HGT in THR 25: 16.14 m",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LGT THR Color LEN Designador RWY / sistema de LGT de APCH / WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color TDZ LEN and INTST WBAR 1 2 3 4 5 Ángulo Aproximación 3° (*) 07 No Sí/Yes No Approach Angle 3° (*) Ángulo Aproximación 3° (**) 25 CAT I ALS-F 900 m Sí/Yes No Approach Angle 3° (**) LEN, Separación, LEN, Separación, Color, Color RENL y Color, INTST RCLL / INTST REDL / WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and STWL LEN and Color Remarks Color, INTST INSTS WBAR 6 7 8 9 10 Nuevo sistema de luces de alta intensidad (*) HGT de cruce en THR 07: 16,50 m / No Sí/Yes Sí/Yes No New high-intensity lighting system (*) Crossing HGT in THR 07: 16.50 m Nuevo sistema de luces de alta intensidad (**) HGT de cruce en THR 25: 16,14 m / No Sí/Yes Sí/Yes No New high-intensity lighting system (**) Crossing HGT in THR 25: 16.14 m",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.25565,
+          -43.206363888888895
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVV",
+        "iata": "VDM",
+        "aeropuerto": "VIEDMA / GOBERNADOR CASTELLO",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e7b1a89ea5e.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b1a89ea5e",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "11",
+        "approach_lgt": "No",
+        "thr_lgt": "Yes green",
+        "papi_vasis": "Descent angle 3°, 15 m 49",
+        "tdz_lgt": "No ft",
+        "rcll": "No",
+        "redl": "Last 600 m, Yellow 2550 m, 60 m, Blanco, 1 LI",
+        "renl": null,
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING LGT THR Tipo, LEN e INTST del sistema Color WBAR PAPI, VASIS LEN Designador RWY / de LGT de APCH / / LGT RWY designator APCH LGT system type, LEN MEHT THR LGT TDZ and INTST Color WBAR 1 2 3 4 5 02 No No No No 20 No No No No Sí verde / Ángulo de descenso 3°, 15 m 49 ft / 11 No No Yes green Descent angle 3°, 15 m 49 ft Sí verde / Ángulo de descenso 3°, 18 m 59 ft/ 29 SALS-F, 420 m, 5 LIH, F 3 LIH No Yes green Descent angle 3°, 18 m 59 ft LEN, Separación, LEN, Separación, Color, INTST Color RENL y Color, INTST RCLL / REDL / WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color STWL LEN and Color Remarks Color, INTST INSTS and WBAR 6 7 8 9 10 No No No No CLSD No No No No CLSD 2550 m, 60 m, Blanco, 1 LIH Últimos 600 m, Amarillo / Sí Rojo / No No NIL 2550 m, 60 m, White, 1 LIH Yes Red Last 600 m, Yellow 2550 m, 60 m, Blanco, 1 LIH Últimos 600 m, Amarillo / Sí Rojo / No No REILS 2550 m, 60 m, White, 1 LIH Yes Red Last 600 m, Yellow",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.00146111111111,
+          -40.871025
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVV",
+        "iata": "VDM",
+        "aeropuerto": "VIEDMA / GOBERNADOR CASTELLO",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e7b1a89ea5e.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b1a89ea5e",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "29",
+        "approach_lgt": "SALS-F, 420 m, 5 LIH, F 3",
+        "thr_lgt": "Sí verde / Á IH Yes green",
+        "papi_vasis": "gulo de descenso 3°, 18 m 59 Descent angle 3°, 18 m 59",
+        "tdz_lgt": "ft/ No ft",
+        "rcll": "No",
+        "redl": "Last 600 m, Yellow",
+        "renl": null,
+        "stwl": "No",
+        "observaciones": "REILS",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING LGT THR Tipo, LEN e INTST del sistema Color WBAR PAPI, VASIS LEN Designador RWY / de LGT de APCH / / LGT RWY designator APCH LGT system type, LEN MEHT THR LGT TDZ and INTST Color WBAR 1 2 3 4 5 02 No No No No 20 No No No No Sí verde / Ángulo de descenso 3°, 15 m 49 ft / 11 No No Yes green Descent angle 3°, 15 m 49 ft Sí verde / Ángulo de descenso 3°, 18 m 59 ft/ 29 SALS-F, 420 m, 5 LIH, F 3 LIH No Yes green Descent angle 3°, 18 m 59 ft LEN, Separación, LEN, Separación, Color, INTST Color RENL y Color, INTST RCLL / REDL / WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color STWL LEN and Color Remarks Color, INTST INSTS and WBAR 6 7 8 9 10 No No No No CLSD No No No No CLSD 2550 m, 60 m, Blanco, 1 LIH Últimos 600 m, Amarillo / Sí Rojo / No No NIL 2550 m, 60 m, White, 1 LIH Yes Red Last 600 m, Yellow 2550 m, 60 m, Blanco, 1 LIH Últimos 600 m, Amarillo / Sí Rojo / No No REILS 2550 m, 60 m, White, 1 LIH Yes Red Last 600 m, Yellow",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.98202777777778,
+          -40.873197222222224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVY",
+        "iata": "PMY",
+        "aeropuerto": "PUERTO MADRYN",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e1155398740.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1155398740",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "06",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí, Verde, 5 Lih, Sí / Yes, Green, 5 Lih, Yes",
+        "papi_vasis": "Ángulo de aproximación 3° HGT de cruce THR 16.31 m. Approach angle 3° - Cross HGT THR 16,31 m.",
+        "tdz_lgt": "- / No ng",
+        "rcll": "No L",
+        "redl": "ces Amarillas últimos 600 m / 2500 m, 50 m, White, 5 LIH Yellow Lights last 600 m 2500 m, 50 m, Blanco, 5 LIH",
+        "renl": "Rojas, Sí / Red Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema de LGT THR Color LEN Designador RWY / LGT de APCH / WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN and THR LGT Color TDZ INTST WBAR 1 2 3 4 5 Ángulo de aproximación 3° - Sí, Verde, 5 Lih, Sí / HGT de cruce THR 16.31 m. / 06 No Yes, Green, 5 Lih, No Approach angle 3° - Crossing Yes HGT THR 16,31 m. Ángulo de aproximación 3° - Sí, Verde, 5 LIH, Sí / HGT de cruce THR 16.54 m./ 24 No Yes, Green, 5 LIH, No Approach angle 3° - Crossing Yes HGT THR 16,54 m. LEN, Separación, LEN, Separación, Color, INTST Color, INTST RCLL / REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RENL Color and RCLL LEN, Spacing, REDL LEN, Spacing, Color, INSTS WBAR STWL LEN and Color Remarks Color, INTST 6 7 8 9 10 2500 m, 50 m, Blanco, 5 LIH No Luces Amarillas últimos 600 m / Rojas, Sí / Red Yes No NIL 2500 m, 50 m, White, 5 LIH Yellow Lights last 600 m 2500 m, 50 m, Blanco, 5 LIH No Luces Amarillas últimos 600 m/ Rojas, Sí / Red Yes No NIL 2500 m, 50 m, White, 5 LIH Yellow Lights last 600 m",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.11563888888888,
+          -42.76519166666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAVY",
+        "iata": "PMY",
+        "aeropuerto": "PUERTO MADRYN",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 5,
+        "archivo_aip": "aip-69e1155398740.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1155398740",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "24",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí, Verde, 5 LIH, Sí / Yes, Green, 5 LIH, Yes",
+        "papi_vasis": "Ángulo de aproximación 3° HGT de cruce THR 16.54 m. Approach angle 3° - Cross HGT THR 16,54 m.",
+        "tdz_lgt": "- No ng",
+        "rcll": "No L",
+        "redl": "ces Amarillas últimos 600 m/ 2500 m, 50 m, White, 5 LIH Yellow Lights last 600 m",
+        "renl": "Rojas, Sí / Red Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema de LGT THR Color LEN Designador RWY / LGT de APCH / WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN and THR LGT Color TDZ INTST WBAR 1 2 3 4 5 Ángulo de aproximación 3° - Sí, Verde, 5 Lih, Sí / HGT de cruce THR 16.31 m. / 06 No Yes, Green, 5 Lih, No Approach angle 3° - Crossing Yes HGT THR 16,31 m. Ángulo de aproximación 3° - Sí, Verde, 5 LIH, Sí / HGT de cruce THR 16.54 m./ 24 No Yes, Green, 5 LIH, No Approach angle 3° - Crossing Yes HGT THR 16,54 m. LEN, Separación, LEN, Separación, Color, INTST Color, INTST RCLL / REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RENL Color and RCLL LEN, Spacing, REDL LEN, Spacing, Color, INSTS WBAR STWL LEN and Color Remarks Color, INTST 6 7 8 9 10 2500 m, 50 m, Blanco, 5 LIH No Luces Amarillas últimos 600 m / Rojas, Sí / Red Yes No NIL 2500 m, 50 m, White, 5 LIH Yellow Lights last 600 m 2500 m, 50 m, Blanco, 5 LIH No Luces Amarillas últimos 600 m/ Rojas, Sí / Red Yes No NIL 2500 m, 50 m, White, 5 LIH Yellow Lights last 600 m",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.08972777777777,
+          -42.75326666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWC",
+        "iata": "FTE",
+        "aeropuerto": "EL CALAFATE",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e7b256c1c2c.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b256c1c2c",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "07",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "Ángulo de aproximación 3° Approach angle 3°",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "No",
+        "observaciones": "No",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / LEN PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR LEN and INTST TDZ 1 2 3 4 5 Ángulo de aproximación 3° / 07 No Sí / Yes No Approach angle 3° Ángulo de aproximación 3° / 25 No Sí / Yes No Approach angle 3° LEN, Separación, LEN, Separación, Color, Color, INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 No Sí / Yes Sí / Yes No No No Sí / Yes Sí / Yes No REILS",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.07107222222221,
+          -50.28131666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWC",
+        "iata": "FTE",
+        "aeropuerto": "EL CALAFATE",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2024-07-11",
+        "amdt_airac": "1/2024",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e7b256c1c2c.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b256c1c2c",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "25",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "Ángulo de aproximación 3° Approach angle 3°",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "No",
+        "observaciones": "REILS",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / LEN PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR LEN and INTST TDZ 1 2 3 4 5 Ángulo de aproximación 3° / 07 No Sí / Yes No Approach angle 3° Ángulo de aproximación 3° / 25 No Sí / Yes No Approach angle 3° LEN, Separación, LEN, Separación, Color, Color, INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 No Sí / Yes Sí / Yes No No No Sí / Yes Sí / Yes No REILS",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.03540833333334,
+          -50.27918888888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWE",
+        "iata": "RGA",
+        "aeropuerto": "RÍO GRANDE",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1380c9247f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1380c9247f",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "08",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "ngulo Aproximación 3° Approach Angle 3°",
+        "tdz_lgt": "/ No",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING LGT THR Color Tipo, LEN e INTST del sistema de LGT de LEN Designador RWY / WBAR / APCH / PAPI, VASIS LGT RWY designator THR LGT Color APCH LGT system type, LEN and INTST TDZ WBAR 1 2 3 4 5 Ángulo Aproximación 3° / 08 No Sí / Yes No Approach Angle 3° ALS-F, 900 m, 5 niveles de brillo, LIH / Ángulo Aproximación 3° / 26 Sí / Yes No ALS-F, 900 m, 5 brightness levels, LIH Approach Angle 3° LEN, Separación, Color RENL y Color, INTST RCLL / LEN, Separación, Color, INTST REDL / WBAR / LEN y Color STWL / Observaciones/ RCLL LEN, Spacing, REDL LEN, Spacing, Color, INSTS RENL Color and STWL LEN and Color Remarks Color, INTST WBAR 6 7 8 9 10 No Sí / Yes Sí / Yes No NIL No Sí / Yes Sí / Yes No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.76466944444445,
+          -53.77799722222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWE",
+        "iata": "RGA",
+        "aeropuerto": "RÍO GRANDE",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1380c9247f.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1380c9247f",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "26",
+        "approach_lgt": "S-F, 900 m, 5 niveles de brillo, L S-F, 900 m, 5 brightness levels, L",
+        "thr_lgt": "H / Sí / Yes H",
+        "papi_vasis": "ngulo Aproximación 3° Approach Angle 3°",
+        "tdz_lgt": "/ No",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING LGT THR Color Tipo, LEN e INTST del sistema de LGT de LEN Designador RWY / WBAR / APCH / PAPI, VASIS LGT RWY designator THR LGT Color APCH LGT system type, LEN and INTST TDZ WBAR 1 2 3 4 5 Ángulo Aproximación 3° / 08 No Sí / Yes No Approach Angle 3° ALS-F, 900 m, 5 niveles de brillo, LIH / Ángulo Aproximación 3° / 26 Sí / Yes No ALS-F, 900 m, 5 brightness levels, LIH Approach Angle 3° LEN, Separación, Color RENL y Color, INTST RCLL / LEN, Separación, Color, INTST REDL / WBAR / LEN y Color STWL / Observaciones/ RCLL LEN, Spacing, REDL LEN, Spacing, Color, INSTS RENL Color and STWL LEN and Color Remarks Color, INTST WBAR 6 7 8 9 10 No Sí / Yes Sí / Yes No NIL No Sí / Yes Sí / Yes No NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.73436944444444,
+          -53.777202777777774
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWG",
+        "iata": "RGL",
+        "aeropuerto": "RÍO GALLEGOS / Piloto Civil Norberto Fernández",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2026-06-11",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1165d02be1.pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1165d02be1",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "26",
+        "approach_lgt": "ALS, 870 m, 5 LIH",
+        "thr_lgt": "VERDE GREEN",
+        "papi_vasis": "ILS de 3°. Opera sin Contr Remoto en TWR. / es, Linked with ILS glide pa 3°.Operates without Remote Control in TWR",
+        "tdz_lgt": "l No h of",
+        "rcll": "No",
+        "redl": "take-off direction",
+        "renl": null,
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema LGT THR Color LEN Designador RWY / de LGT de APCH / WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color TDZ and INTST WBAR 1 2 3 4 5 VERDE / 08 No No No GREEN Sí, Asociado trayectoria planeo ILS de 3°. Opera sin Control VERDE Remoto en TWR. / 26 ALS, 870 m, 5 LIH No GREEN Yes, Linked with ILS glide path of 3°.Operates without Remote Control in TWR LEN, Separación, Color, LEN, Separación, Color, INTST Color RENL y INTST RCLL / REDL / WBAR / LEN y Color STWL / Observaciones/ RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and STWL LEN and Color Remarks Color, INTST INSTS WBAR 6 7 8 9 10 Sí, 2750,45 m, blanco, 5 LIH. Últimos 600 m color amarillo, en el sentido de despegue / ROJO/ No No NIL Yes, 2750, 45 m, White, 5 LIH. RED Last 600 m yellow color, in the take-off direction Sí, 2750, 45 m, blanco, 5 LIH. Últimos 600 m color amarillo en el sentido de despegue / ROJO/ No No NIL Yes, 2750, 45 m, White, 5 LIH. RED Last 600 m yellow color, in the take-off direction",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.28713888888889,
+          -51.60761111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAWH",
+        "iata": "USH",
+        "aeropuerto": "USHUAIA / MALVINAS ARGENTINAS",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e7b2b7ee74b(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b2b7ee74b",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "25",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí / Yes REILS.",
+        "papi_vasis": "ngulo de aproximación 3.5°/ Approach angle 3,5°",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Si / Yes",
+        "renl": "Si / Yes",
+        "stwl": "Si / Yes",
+        "observaciones": "(*)",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema Designador RWY / de LGT de APCH / LGT THR Color WBAR/ PAPI, VASIS LEN LGT TDZ RWY designator APCH LGT system type, LEN THR LGT Color WBAR and INTST 1 2 3 4 5 07 No Sí / Yes REILS. No No 25 No Ángulo de aproximación 3.5°/ No Sí / Yes REILS. Approach angle 3,5° LEN, Separación, LEN, Separación, Color, Color, INTST RCLL / INTST REDL / Color RENL y WBAR/ LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 Faja lateral, eje, área anterior al umbral. / No Sí / Yes Sí / Yes Sí / Yes Lateral strip, axis, area previous to threshold. No Si / Yes Si / Yes Si / Yes (*) (*) Faja lateral, eje, área anterior al THR. PAPI: Se recomienda no utilizar el sistema fuera de las 5.5 NM. Distancia DME del eje de pista / Lateral strip, axis, area previous to threshold. PAPI: It is recommended not to use the system outside 5,5 NM. DME distance from the runway axis.",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.27643611111111,
+          -54.84256388888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZB",
+        "iata": "BHI",
+        "aeropuerto": "BAHÍA BLANCA / COMANDANTE ESPORA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e7b314ac7f0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b314ac7f0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "17L",
+        "approach_lgt": "ALS/FLASH CAT I",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "Ángulo de aproximación 2.7° Approach angle 2.7° - Cross",
+        "tdz_lgt": "- NIL ng",
+        "rcll": "NIL",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "NIL",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema de LEN Designador RWY / LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Ángulo de aproximación 2.7° - 17L ALS/FLASH CAT I Sí / Yes NIL Approach angle 2.7° - Crossing Ángulo de aproximación 3° - 35R NIL Sí / Yes No Approach angle 3° - Crossing 06 NIL NIL NIL NIL Ángulo de aproximación 3°. 24 NIL NIL NIL Approach angle 3°. 17R NIL NIL NIL NIL 35L NIL NIL NIL NIL LEN, Separación, LEN, Separación, Color, INTST Color, INTST RCLL / REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones/ RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 NIL Sí / Yes Sí / Yes NIL NIL NIL Sí / Yes Sí / Yes NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.157377777777775,
+          -38.71666944444445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZB",
+        "iata": "BHI",
+        "aeropuerto": "BAHÍA BLANCA / COMANDANTE ESPORA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e7b314ac7f0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b314ac7f0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "35R",
+        "approach_lgt": "NIL",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "Ángulo de aproximación 3° Approach angle 3° - Crossi",
+        "tdz_lgt": "No g",
+        "rcll": "NIL",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "NIL",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema de LEN Designador RWY / LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Ángulo de aproximación 2.7° - 17L ALS/FLASH CAT I Sí / Yes NIL Approach angle 2.7° - Crossing Ángulo de aproximación 3° - 35R NIL Sí / Yes No Approach angle 3° - Crossing 06 NIL NIL NIL NIL Ángulo de aproximación 3°. 24 NIL NIL NIL Approach angle 3°. 17R NIL NIL NIL NIL 35L NIL NIL NIL NIL LEN, Separación, LEN, Separación, Color, INTST Color, INTST RCLL / REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones/ RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 NIL Sí / Yes Sí / Yes NIL NIL NIL Sí / Yes Sí / Yes NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.14960277777778,
+          -38.73750277777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZB",
+        "iata": "BHI",
+        "aeropuerto": "BAHÍA BLANCA / COMANDANTE ESPORA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e7b314ac7f0(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e7b314ac7f0",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "24",
+        "approach_lgt": "NIL",
+        "thr_lgt": "NIL",
+        "papi_vasis": "Approach angle 3°.",
+        "tdz_lgt": "NIL",
+        "rcll": "NIL",
+        "redl": "NIL",
+        "renl": "NIL",
+        "stwl": "NIL",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema de LEN Designador RWY / LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR TDZ and INTST 1 2 3 4 5 Ángulo de aproximación 2.7° - 17L ALS/FLASH CAT I Sí / Yes NIL Approach angle 2.7° - Crossing Ángulo de aproximación 3° - 35R NIL Sí / Yes No Approach angle 3° - Crossing 06 NIL NIL NIL NIL Ángulo de aproximación 3°. 24 NIL NIL NIL Approach angle 3°. 17R NIL NIL NIL NIL 35L NIL NIL NIL NIL LEN, Separación, LEN, Separación, Color, INTST Color, INTST RCLL / REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones/ RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 NIL Sí / Yes Sí / Yes NIL NIL NIL Sí / Yes Sí / Yes NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.16070555555555,
+          -38.718775
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZM",
+        "iata": "MDQ",
+        "aeropuerto": "MAR DEL PLATA / ASTOR PIAZZOLLA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e1232468b6a(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1232468b6a",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "13",
+        "approach_lgt": "SALS-F 660 m",
+        "thr_lgt": "Sí /Yes",
+        "papi_vasis": "ngulo de descenso 3°/ escent angle 3° ngulo de aproximación 3°, HGT de",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí /Yes",
+        "renl": "Sí /Yes",
+        "stwl": "No",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LGT THR Color LEN Designador RWY / sistema de LGT de APCH / WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color TDZ LEN and INTST WBAR 1 2 3 4 5 Ángulo de descenso 3°/ 13 SALS-F 660 m Sí /Yes No Descent angle 3° Ángulo de aproximación 3°, HGT de cruce en THR 15 m/ 31 No Sí /Yes No Approach angle 3°, crossing HGT at THR 15 m LEN, Separación, Color, LEN, Separación, Color, Color RENL y WBAR INTST RCLL / INTST REDL / / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, RENL Color and STWL LEN and Color Remarks Color, INTST Color, INSTS WBAR 6 7 8 9 10 No Sí /Yes Sí /Yes No NIL No Sí /Yes Sí/Yes No REILS",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.58379166666667,
+          -37.92885555555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZM",
+        "iata": "MDQ",
+        "aeropuerto": "MAR DEL PLATA / ASTOR PIAZZOLLA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e1232468b6a(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1232468b6a",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "31",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí /Yes",
+        "papi_vasis": "ruce en THR 15 m/ pproach angle 3°, crossing HGT a HR 15 m",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí /Yes",
+        "renl": "Sí/Yes",
+        "stwl": "No",
+        "observaciones": "REILS",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LGT THR Color LEN Designador RWY / sistema de LGT de APCH / WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color TDZ LEN and INTST WBAR 1 2 3 4 5 Ángulo de descenso 3°/ 13 SALS-F 660 m Sí /Yes No Descent angle 3° Ángulo de aproximación 3°, HGT de cruce en THR 15 m/ 31 No Sí /Yes No Approach angle 3°, crossing HGT at THR 15 m LEN, Separación, Color, LEN, Separación, Color, Color RENL y WBAR INTST RCLL / INTST REDL / / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, RENL Color and STWL LEN and Color Remarks Color, INTST Color, INSTS WBAR 6 7 8 9 10 No Sí /Yes Sí /Yes No NIL No Sí /Yes Sí/Yes No REILS",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.56272777777777,
+          -37.93955555555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZN",
+        "iata": "NQN",
+        "aeropuerto": "NEUQUÉN / Presidente Perón",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1234aab580(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1234aab580",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "09",
+        "approach_lgt": "No",
+        "thr_lgt": "Sí, Verde, 5 LIH / Yes, Green, 5 LIH",
+        "papi_vasis": "Ángulo de aproximación 3 Approach angle 3°",
+        "tdz_lgt": "/ No",
+        "rcll": null,
+        "redl": null,
+        "renl": null,
+        "stwl": null,
+        "observaciones": null,
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema de LEN Designador RWY / LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN and THR LGT Color WBAR TDZ INTST 1 2 3 4 5 Sí, Verde, 5 LIH / Ángulo de aproximación 3°/ 09 No No Yes, Green, 5 LIH Approach angle 3° Sí, Verde, 5 LIH / Ángulo de aproximación 3°/ 27 No No Yes, Green, 5 LIH Approach angle 3°",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.17053611111112,
+          -38.94896388888888
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZN",
+        "iata": "NQN",
+        "aeropuerto": "NEUQUÉN / Presidente Perón",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e1234aab580(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1234aab580",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "27",
+        "approach_lgt": "No ÁUTICA",
+        "thr_lgt": "Sí, Verde, 5 LIH / Yes, Green, 5 LIH",
+        "papi_vasis": "Ángulo de aproximación 3 Approach angle 3°",
+        "tdz_lgt": "/ No AZN AD 2.7",
+        "rcll": null,
+        "redl": null,
+        "renl": null,
+        "stwl": null,
+        "observaciones": null,
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema de LEN Designador RWY / LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN and THR LGT Color WBAR TDZ INTST 1 2 3 4 5 Sí, Verde, 5 LIH / Ángulo de aproximación 3°/ 09 No No Yes, Green, 5 LIH Approach angle 3° Sí, Verde, 5 LIH / Ángulo de aproximación 3°/ 27 No No Yes, Green, 5 LIH Approach angle 3°",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.14089722222222,
+          -38.94905555555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZR",
+        "iata": "RSA",
+        "aeropuerto": "SANTA ROSA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e123c163177(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e123c163177",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "01",
+        "approach_lgt": "NIL",
+        "thr_lgt": "NIL",
+        "papi_vasis": "Ángulo de descenso 3°",
+        "tdz_lgt": "NIL",
+        "rcll": "NIL",
+        "redl": "Sí/Yes",
+        "renl": "Sí/Yes",
+        "stwl": "NIL",
+        "observaciones": "Crossing HGT at THR 15.98 m HGT de cruce en THR 16,24 m/",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema LEN Designador RWY / de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR and INTST TDZ 1 2 3 4 5 01 Ángulo de descenso 3°/ NIL NIL NIL Descent angle 3° 19 Ángulo de descenso 3°/ NIL NIL NIL Descent angle 3° LEN, Separación, LEN, Separación, Color, INTST Color, INTST RCLL / REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 HGT de cruce en THR 15,98 m/ NIL Sí/Yes Sí/Yes NIL Crossing HGT at THR 15.98 m HGT de cruce en THR 16,24 m/ NIL Sí/Yes Sí/Yes NIL Crossing HGT at THR 16.24 m",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.27809444444445,
+          -36.598325
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZR",
+        "iata": "RSA",
+        "aeropuerto": "SANTA ROSA",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2023-11-30",
+        "amdt_airac": "2/2023",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69e123c163177(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e123c163177",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "19",
+        "approach_lgt": "NIL",
+        "thr_lgt": "NIL",
+        "papi_vasis": "Descent angle 3° Ángulo de descenso 3° Descent angle 3°",
+        "tdz_lgt": "NIL",
+        "rcll": "NIL",
+        "redl": "Sí/Yes",
+        "renl": "Sí/Yes",
+        "stwl": "NIL",
+        "observaciones": "Crossing HGT at THR 16.24 m",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del sistema LEN Designador RWY / de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, LEN THR LGT Color WBAR and INTST TDZ 1 2 3 4 5 01 Ángulo de descenso 3°/ NIL NIL NIL Descent angle 3° 19 Ángulo de descenso 3°/ NIL NIL NIL Descent angle 3° LEN, Separación, LEN, Separación, Color, INTST Color, INTST RCLL / REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 HGT de cruce en THR 15,98 m/ NIL Sí/Yes Sí/Yes NIL Crossing HGT at THR 15.98 m HGT de cruce en THR 16,24 m/ NIL Sí/Yes Sí/Yes NIL Crossing HGT at THR 16.24 m",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.27307777777777,
+          -36.57800277777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZS",
+        "iata": "BRC",
+        "aeropuerto": "SAN CARLOS DE BARILOCHE",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e8bacf19c28(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e8bacf19c28",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "11",
+        "approach_lgt": "No Sistema de iluminación de",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "Ángulo de aproximación 3°. Approach angle 3°.",
+        "tdz_lgt": "/ No",
+        "rcll": "No",
+        "redl": "Sí /Yes",
+        "renl": "Sí /Yes",
+        "stwl": "No",
+        "observaciones": "pista y extremo de pista dispone sistema de Iluminación de alta intensidad. /",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR TDZ LEN and INTST 1 2 3 4 5 Ángulo de aproximación 3°. / 11 No Sí / Yes No Approach angle 3°. Sistema de iluminación de precisión CAT 1, con luces de destellos (900 m) Ángulo de aproximación 3°/ 29 FLASH ODSL. / Sí / Yes No Approach angle 3°. CAT 1 precision lighting system, with flashing lights (900 m) FLASH ODSL LEN, Separación, LEN, Separación, Color, Color, INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 Luces de THR, borde de No Sí /Yes Sí /Yes No pista y extremo de pista dispone sistema de Iluminación de alta intensidad. / No Sí / Yes Sí / Yes No THR, runway edge and runway end lights. High intensity lighting system.",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.17061111111111,
+          -41.14666666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZS",
+        "iata": "BRC",
+        "aeropuerto": "SAN CARLOS DE BARILOCHE",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2026",
+        "aip_pagina": 7,
+        "archivo_aip": "aip-69e8bacf19c28(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e8bacf19c28",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "29",
+        "approach_lgt": "precisión CAT 1, con luce de destellos (900 m) FLASH ODSL. / CAT 1 precision lighting system, with flashing lights (900 m) FLASH ODSL",
+        "thr_lgt": "Sí / Yes",
+        "papi_vasis": "Ángulo de aproximación 3°/ Approach angle 3°.",
+        "tdz_lgt": "No",
+        "rcll": "No",
+        "redl": "Sí / Yes",
+        "renl": "Sí / Yes",
+        "stwl": "No",
+        "observaciones": "THR, runway edge and runway end lights. High intensity lighting system.",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR TDZ LEN and INTST 1 2 3 4 5 Ángulo de aproximación 3°. / 11 No Sí / Yes No Approach angle 3°. Sistema de iluminación de precisión CAT 1, con luces de destellos (900 m) Ángulo de aproximación 3°/ 29 FLASH ODSL. / Sí / Yes No Approach angle 3°. CAT 1 precision lighting system, with flashing lights (900 m) FLASH ODSL LEN, Separación, LEN, Separación, Color, Color, INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, Color, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST INSTS 6 7 8 9 10 Luces de THR, borde de No Sí /Yes Sí /Yes No pista y extremo de pista dispone sistema de Iluminación de alta intensidad. / No Sí / Yes Sí / Yes No THR, runway edge and runway end lights. High intensity lighting system.",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.14520833333334,
+          -41.15551111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZY",
+        "iata": "CPC",
+        "aeropuerto": "SAN MARTÍN DE LOS ANDES / AVIADOR C. CAMPOS",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69fcdbcd57a67(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69fcdbcd57a67",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "06",
+        "approach_lgt": "NIL",
+        "thr_lgt": "NIL",
+        "papi_vasis": "Ángulo de descenso 3° - HGT de cruce en THR 06 17.40 m./ Descent angle",
+        "tdz_lgt": "NIL 3°",
+        "rcll": "NIL",
+        "redl": "NIL",
+        "renl": "NIL",
+        "stwl": "NIL",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR TDZ LEN and INTST 1 2 3 4 5 06 NIL NIL Ángulo de descenso 3° - NIL HGT de cruce en THR 06 17.40 m./ Descent angle 3° - Crossing HGT at THR 06 17.40 m. 24 NIL NIL Ángulo de descenso 3.10° - NIL HGT de cruce en THR 24 17.33 m./ Descent angle 3.10° - Crossing HGT at THR 24 17.33 m. LEN, Separación, Color, LEN, Separación, Color, INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST Color, INSTS 6 7 8 9 10 NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.15089166666667,
+          -40.07944444444445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "icao": "SAZY",
+        "iata": "CPC",
+        "aeropuerto": "SAN MARTÍN DE LOS ANDES / AVIADOR C. CAMPOS",
+        "fuente_seccion": "AD 2.14",
+        "fecha_seccion": "2025-06-12",
+        "amdt_airac": "1/2025",
+        "aip_pagina": 6,
+        "archivo_aip": "aip-69fcdbcd57a67(1).pdf",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69fcdbcd57a67",
+        "fecha_extraccion": "2026-08-13",
+        "rwy": "24",
+        "approach_lgt": "NIL",
+        "thr_lgt": "NIL",
+        "papi_vasis": "- Crossing HGT at THR 0 17.40 m. Ángulo de descenso 3.10 HGT de cruce en THR 24 17.33 m./ Descent angle 3.10° - Crossing HGT at THR 24 17.33 m.",
+        "tdz_lgt": "- NIL",
+        "rcll": "NIL",
+        "redl": "NIL",
+        "renl": "NIL",
+        "stwl": "NIL",
+        "observaciones": "NIL",
+        "texto_ad214": "AD 2.14 LUCES DE APROXIMACIÓN Y DE PISTA / APPROACH AND RUNWAY LIGHTING Tipo, LEN e INTST del LEN Designador RWY / sistema de LGT de APCH / LGT THR Color WBAR / PAPI, VASIS LGT RWY designator APCH LGT system type, THR LGT Color WBAR TDZ LEN and INTST 1 2 3 4 5 06 NIL NIL Ángulo de descenso 3° - NIL HGT de cruce en THR 06 17.40 m./ Descent angle 3° - Crossing HGT at THR 06 17.40 m. 24 NIL NIL Ángulo de descenso 3.10° - NIL HGT de cruce en THR 24 17.33 m./ Descent angle 3.10° - Crossing HGT at THR 24 17.33 m. LEN, Separación, Color, LEN, Separación, Color, INTST RCLL / INTST REDL / Color RENL y WBAR / LEN y Color STWL / Observaciones / RCLL LEN, Spacing, REDL LEN, Spacing, RENL Color and WBAR STWL LEN and Color Remarks Color, INTST Color, INSTS 6 7 8 9 10 NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL",
+        "ubicacion_equipo_exacta": false,
+        "metodo_geometria": "THR_como_referencia",
+        "precision_geometria": "referencia_no_posicion_fisica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.12363333333333,
+          -40.07113888888889
+        ]
+      }
+    }
+  ]
+}
