@@ -29,10 +29,10 @@
     .subtitle{font-size:12px;color:var(--muted)}
     .controls{display:flex;gap:8px;align-items:end;flex-wrap:wrap}
     .field{display:flex;flex-direction:column;gap:3px}
-    .field label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#64748b}
+    .field label{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#64748b}
     select{
       min-width:160px;border:1px solid #b9c6d3;border-radius:7px;
-      background:#fff;padding:7px 28px 7px 9px;font-size:13px;color:#17324d;
+      background:#fff;padding:7px 28px 7px 9px;font-size:12px;color:#17324d;
     }
     #periodSelect{min-width:120px}
     .summary{
@@ -40,7 +40,7 @@
     }
     .pill{
       display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;
-      background:#eef4f8;border:1px solid #d8e5ed;font-size:11px;color:#36546b;
+      background:#eef4f8;border:1px solid #d8e5ed;font-size:10px;color:#36546b;
     }
     .logo{height:24px;max-width:110px;object-fit:contain;display:none}
     main{position:relative;flex:1;min-height:0}
@@ -48,12 +48,12 @@
     #status{
       position:absolute;z-index:900;left:10px;bottom:10px;
       background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:7px;
-      padding:7px 9px;font-size:11px;color:#425466;box-shadow:0 2px 8px rgba(0,0,0,.08)
+      padding:7px 9px;font-size:10px;color:#425466;box-shadow:0 2px 8px rgba(0,0,0,.08)
     }
     .legend{
       background:rgba(255,255,255,.95);border:1px solid var(--line);border-radius:7px;
       padding:8px 9px;box-shadow:0 2px 8px rgba(0,0,0,.08);
-      font-size:11px;line-height:1.35;color:#425466;
+      font-size:10px;line-height:1.35;color:#425466;
     }
     .legend-title{font-weight:700;color:#17324d;margin-bottom:5px}
     .legend-row{display:flex;align-items:center;gap:6px;margin:4px 0}
@@ -67,9 +67,9 @@
       padding:1px 3px!important;border-radius:3px!important;
     }
     .leaflet-tooltip-top.iata-label:before{display:none}
-    .popup-title{font-weight:700;font-size:14px;margin-bottom:3px}
-    .popup-sub{color:#64748b;font-size:11px;margin-bottom:7px}
-    .popup-grid{display:grid;grid-template-columns:auto auto;gap:3px 10px;font-size:11px}
+    .popup-title{font-weight:700;font-size:12px;margin-bottom:3px}
+    .popup-sub{color:#64748b;font-size:10px;margin-bottom:7px}
+    .popup-grid{display:grid;grid-template-columns:auto auto;gap:3px 10px;font-size:10px}
     .popup-grid b{text-align:right}
     @media(max-width:760px){
       header{padding:9px 10px}
@@ -313,7 +313,7 @@
   legend.onAdd = function() {
     const div = L.DomUtil.create("div", "legend");
     div.innerHTML = `
-      <div class="legend-title">Lectura</div>
+      <div class="legend-title">Referencias</div>
       <div class="legend-row"><span class="dot current"></span><span>Opera en el año seleccionado</span></div>
       <div class="legend-row"><span class="dot historical"></span><span>Presencia 2023–2024, no en 2025</span></div>
       <div style="margin-top:5px;color:#6b7785">Tamaño del círculo ≈ pasajeros vinculados</div>
