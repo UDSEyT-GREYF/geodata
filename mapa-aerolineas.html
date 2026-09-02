@@ -61,12 +61,20 @@
     .dot.current{border-color:var(--map-color);background:var(--map-color)}
     .dot.historical{border-color:#7a8793;background:#fff}
     .iata-label{
-      background:rgba(255,255,255,.86)!important;
-      border:0!important;box-shadow:none!important;
-      color:#17324d!important;font-size:9px!important;font-weight:700!important;
-      padding:1px 3px!important;border-radius:3px!important;
+      background:rgba(255,255,255,.90)!important;
+      border:0!important;
+      box-shadow:none!important;
+      color:#17324d!important;
+      font-size:8px!important;
+      line-height:1.05!important;
+      font-weight:700!important;
+      letter-spacing:.01em!important;
+      white-space:nowrap!important;
+      padding:1px 2px!important;
+      border-radius:2px!important;
+      pointer-events:none!important;
     }
-    .leaflet-tooltip-top.iata-label:before{display:none}
+    .iata-label:before{display:none!important}
     .popup-title{font-weight:700;font-size:12px;margin-bottom:3px}
     .popup-sub{color:#64748b;font-size:10px;margin-bottom:7px}
     .popup-grid{display:grid;grid-template-columns:auto auto;gap:3px 10px;font-size:10px}
@@ -157,11 +165,9 @@
     zoomControl: true,
     minZoom: 1,
     maxZoom: 15,
-
-
-      zoomSnap: 0.25,
-      zoomDelta: 0.25,
-      wheelPxPerZoomLevel: 120,
+    zoomSnap: 0.25,
+    zoomDelta: 0.25,
+    wheelPxPerZoomLevel: 120,
     maxBounds: L.latLngBounds([[-60,-80],[-16,-48]])
   });
 
@@ -182,6 +188,8 @@
   const fmt = new Intl.NumberFormat("es-AR", { maximumFractionDigits: 0 });
 
   let db = null;
+  let labelEntries = [];
+  let labelRefreshQueued = false;
 
   function setStatus(msg) {
     $("status").textContent = msg;
@@ -210,6 +218,138 @@
       if (!v || max <= 0) return 6;
       return 6 + 11 * Math.sqrt(v / max);
     };
+  }
+
+  function boxesOverlap(a, b, pad = 2) {
+    return !(
+      a.right + pad <= b.left ||
+      a.left >= b.right + pad ||
+      a.bottom + pad <= b.top ||
+      a.top >= b.bottom + pad
+    );
+  }
+
+  function estimatedLabelSize(iata) {
+    const chars = String(iata || "").trim().length;
+    return {
+      width: Math.max(20, chars * 5.1 + 6),
+      height: 12
+    };
+  }
+
+  function labelCandidates(radius) {
+    const r = Math.max(6, Number(radius) || 6);
+    return [
+      [0, -(r + 9)],
+      [r + 13, -(r + 4)],
+      [r + 16, 0],
+      [r + 13, r + 4],
+      [0, r + 10],
+      [-(r + 13), r + 4],
+      [-(r + 16), 0],
+      [-(r + 13), -(r + 4)],
+      [0, -(r + 18)],
+      [r + 24, 0],
+      [0, r + 19],
+      [-(r + 24), 0]
+    ];
+  }
+
+  function candidateBox(entry, dx, dy) {
+    const p = entry.point || map.latLngToContainerPoint(entry.marker.getLatLng());
+    const size = estimatedLabelSize(entry.iata);
+    const cx = p.x + dx;
+    const cy = p.y + dy;
+    return {
+      left: cx - size.width / 2,
+      right: cx + size.width / 2,
+      top: cy - size.height / 2,
+      bottom: cy + size.height / 2
+    };
+  }
+
+  function boxInsideMap(box) {
+    const size = map.getSize();
+    const margin = 3;
+    return box.left >= margin && box.top >= margin && box.right <= size.x - margin && box.bottom <= size.y - margin;
+  }
+
+  function chooseLabelOffset(entry, occupied) {
+    const candidates = labelCandidates(entry.radius);
+
+    for (const [dx, dy] of candidates) {
+      const box = candidateBox(entry, dx, dy);
+      if (!boxInsideMap(box)) continue;
+      if (occupied.some(other => boxesOverlap(box, other, 2))) continue;
+      occupied.push(box);
+      return [dx, dy];
+    }
+
+    for (let ring = 1; ring <= 7; ring++) {
+      const distance = entry.radius + 20 + ring * 8;
+      for (let angle = -90; angle < 270; angle += 45) {
+        const rad = angle * Math.PI / 180;
+        const dx = Math.round(Math.cos(rad) * distance);
+        const dy = Math.round(Math.sin(rad) * distance);
+        const box = candidateBox(entry, dx, dy);
+        if (!boxInsideMap(box)) continue;
+        if (occupied.some(other => boxesOverlap(box, other, 2))) continue;
+        occupied.push(box);
+        return [dx, dy];
+      }
+    }
+
+    const fallback = [0, -(entry.radius + 10)];
+    occupied.push(candidateBox(entry, fallback[0], fallback[1]));
+    return fallback;
+  }
+
+  function refreshLabelPositions() {
+    if (!labelEntries.length) return;
+
+    const entries = labelEntries.map(entry => ({
+      ...entry,
+      point: map.latLngToContainerPoint(entry.marker.getLatLng()),
+      density: 0
+    }));
+
+    entries.forEach(entry => {
+      entry.density = entries.reduce((count, other) => {
+        if (entry === other) return count;
+        return count + (entry.point.distanceTo(other.point) < 55 ? 1 : 0);
+      }, 0);
+    });
+
+    entries.sort((a, b) =>
+      (b.density - a.density) ||
+      (b.radius - a.radius) ||
+      String(a.iata).localeCompare(String(b.iata))
+    );
+
+    const occupied = [];
+
+    entries.forEach(entry => {
+      const [dx, dy] = chooseLabelOffset(entry, occupied);
+      entry.marker.unbindTooltip();
+      entry.marker.bindTooltip(entry.iata, {
+        permanent: true,
+        direction: "center",
+        offset: L.point(dx, dy),
+        className: "iata-label",
+        opacity: 0.96,
+        interactive: false
+      });
+      entry.marker.openTooltip();
+    });
+  }
+
+  function scheduleLabelRefresh() {
+    if (labelRefreshQueued) return;
+    labelRefreshQueued = true;
+    requestAnimationFrame(() => {
+      labelRefreshQueued = false;
+      refreshLabelPositions();
+    });
   }
 
   function popupHtml(d, airline, period) {
@@ -262,6 +402,7 @@
     );
 
     layer.clearLayers();
+    labelEntries = [];
     document.documentElement.style.setProperty("--map-color", color);
 
     const scale = radiusScale(rows);
@@ -269,8 +410,9 @@
     rows.forEach(d => {
       const historical = period === "2023_2025" && d.tipoPresencia === "historica_reciente";
       const pax = Number(d.pasajerosVinculados ?? d.pasajerosPeriodo ?? 0);
+      const radius = scale(pax);
       const marker = L.circleMarker([Number(d.latitud), Number(d.longitud)], {
-        radius: scale(pax),
+        radius,
         color: historical ? "#7a8793" : color,
         weight: historical ? 2 : 1.5,
         fillColor: historical ? "#ffffff" : color,
@@ -279,14 +421,8 @@
       });
 
       marker.bindPopup(popupHtml(d, airline, period), { maxWidth: 320 });
-      marker.bindTooltip(d.iata, {
-        permanent: true,
-        direction: "top",
-        offset: [0, -4],
-        className: "iata-label",
-        opacity: 0.95
-      });
       marker.addTo(layer);
+      labelEntries.push({ marker, iata: d.iata, radius });
     });
 
     const totalPax = rows.reduce((s,d) => s + Number(d.pasajerosVinculados ?? d.pasajerosPeriodo ?? 0), 0);
@@ -312,6 +448,8 @@
     } else {
       map.fitBounds(ARG_BOUNDS, { padding: [10,10] });
     }
+
+    setTimeout(scheduleLabelRefresh, 0);
   }
 
   const legend = L.control({ position: "bottomright" });
@@ -326,6 +464,8 @@
     return div;
   };
   legend.addTo(map);
+
+  map.on("zoomend moveend resize", scheduleLabelRefresh);
 
   $("airlineSelect").addEventListener("change", render);
   $("periodSelect").addEventListener("change", render);
