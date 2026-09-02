@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Presencia de aerolíneas por aeropuerto | SIGA</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIINfQ3ynHTCm5OWMZQ4sD0tLrXzN3V1n6c="
+        crossorigin="">
+
+  <style>
+    :root {
+      --ink:#17324d;
+      --muted:#64748b;
+      --line:#d8e0e8;
+      --panel:#ffffff;
+      --bg:#f5f7fa;
+      --accent:#0f5b8d;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
+    body{display:flex;flex-direction:column}
+    header{
+      background:#fff;border-bottom:1px solid var(--line);
+      padding:12px 18px 10px;z-index:1000;
+    }
+    .topline{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    .title-wrap{flex:1;min-width:280px}
+    h1{font-size:20px;line-height:1.15;margin:0 0 3px}
+    .subtitle{font-size:12px;color:var(--muted)}
+    .controls{display:flex;gap:8px;align-items:end;flex-wrap:wrap}
+    .field{display:flex;flex-direction:column;gap:3px}
+    .field label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#64748b}
+    select{
+      min-width:160px;border:1px solid #b9c6d3;border-radius:7px;
+      background:#fff;padding:7px 28px 7px 9px;font-size:13px;color:#17324d;
+    }
+    #periodSelect{min-width:120px}
+    .summary{
+      margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+    }
+    .pill{
+      display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;
+      background:#eef4f8;border:1px solid #d8e5ed;font-size:11px;color:#36546b;
+    }
+    .logo{height:24px;max-width:110px;object-fit:contain;display:none}
+    main{position:relative;flex:1;min-height:0}
+    #map{position:absolute;inset:0;background:#eaf0f4}
+    #status{
+      position:absolute;z-index:900;left:10px;bottom:10px;
+      background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:7px;
+      padding:7px 9px;font-size:11px;color:#425466;box-shadow:0 2px 8px rgba(0,0,0,.08)
+    }
+    .legend{
+      background:rgba(255,255,255,.95);border:1px solid var(--line);border-radius:7px;
+      padding:8px 9px;box-shadow:0 2px 8px rgba(0,0,0,.08);
+      font-size:11px;line-height:1.35;color:#425466;
+    }
+    .legend-title{font-weight:700;color:#17324d;margin-bottom:5px}
+    .legend-row{display:flex;align-items:center;gap:6px;margin:4px 0}
+    .dot{width:12px;height:12px;border-radius:50%;display:inline-block;border:2px solid #444;background:#fff}
+    .dot.current{border-color:var(--map-color);background:var(--map-color)}
+    .dot.historical{border-color:#7a8793;background:#fff}
+    .iata-label{
+      background:rgba(255,255,255,.86)!important;
+      border:0!important;box-shadow:none!important;
+      color:#17324d!important;font-size:9px!important;font-weight:700!important;
+      padding:1px 3px!important;border-radius:3px!important;
+    }
+    .leaflet-tooltip-top.iata-label:before{display:none}
+    .popup-title{font-weight:700;font-size:14px;margin-bottom:3px}
+    .popup-sub{color:#64748b;font-size:11px;margin-bottom:7px}
+    .popup-grid{display:grid;grid-template-columns:auto auto;gap:3px 10px;font-size:11px}
+    .popup-grid b{text-align:right}
+    @media(max-width:760px){
+      header{padding:9px 10px}
+      h1{font-size:17px}
+      .controls{width:100%}
+      .field{flex:1}
+      select{width:100%;min-width:0}
+      .subtitle{display:none}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="topline">
+    <div class="title-wrap">
+      <h1>Presencia de aerolíneas por aeropuerto</h1>
+      <div class="subtitle">Red aeroportuaria argentina · 2023–2025 · fuente procesada desde rutasaereas.csv</div>
+    </div>
+
+    <img id="airlineLogo" class="logo" alt="Logo de la aerolínea">
+
+    <div class="controls">
+      <div class="field">
+        <label for="airlineSelect">Aerolínea</label>
+        <select id="airlineSelect">
+          <option>Aerolíneas Argentinas</option>
+          <option>Flybondi</option>
+          <option>JetSMART</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="periodSelect">Período</label>
+        <select id="periodSelect">
+          <option value="2025" selected>2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2023_2025">2023–2025</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary">
+    <span id="countPill" class="pill">— aeropuertos</span>
+    <span id="paxPill" class="pill">— pasajeros vinculados</span>
+    <span id="periodPill" class="pill">Período: 2025</span>
+  </div>
+</header>
+
+<main>
+  <div id="map"></div>
+  <div id="status">Cargando datos…</div>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+
+<script>
+(() => {
+  "use strict";
+
+  const DATA_CANDIDATES = [
+    "data/aerolineas_por_aeropuerto_2015_2025_web_v3_2.json",
+    "aerolineas_por_aeropuerto_2015_2025_web_v3_2.json",
+    "fuentes/aerolineas_por_aeropuerto_2015_2025_web_v3_2.json"
+  ];
+
+  const COLORS = {
+    "Aerolíneas Argentinas": "#005b96",
+    "Flybondi": "#f0c400",
+    "JetSMART": "#b21f2d"
+  };
+
+  const ARG_BOUNDS = L.latLngBounds(
+    L.latLng(-56.3, -74.7),
+    L.latLng(-20.5, -52.0)
+  );
+
+  const map = L.map("map", {
+    zoomControl: true,
+    minZoom: 3,
+    maxZoom: 12,
+    maxBounds: L.latLngBounds([[-60,-80],[-16,-48]])
+  });
+
+  L.tileLayer(
+    "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png",
+    {
+      tms: true,
+      minZoom: 3,
+      maxZoom: 18,
+      attribution: "© Instituto Geográfico Nacional + OpenStreetMap"
+    }
+  ).addTo(map);
+
+  map.fitBounds(ARG_BOUNDS, { padding: [10,10] });
+
+  const layer = L.layerGroup().addTo(map);
+  const $ = id => document.getElementById(id);
+  const fmt = new Intl.NumberFormat("es-AR", { maximumFractionDigits: 0 });
+
+  let db = null;
+
+  function setStatus(msg) {
+    $("status").textContent = msg;
+  }
+
+  async function loadJson() {
+    let lastError = null;
+    for (const url of DATA_CANDIDATES) {
+      try {
+        const r = await fetch(url, { cache: "no-store" });
+        if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
+        setStatus(`Datos: ${url}`);
+        return await r.json();
+      } catch (e) {
+        lastError = e;
+      }
+    }
+    throw new Error(`No se encontró el JSON. Probé: ${DATA_CANDIDATES.join(", ")}. ${lastError || ""}`);
+  }
+
+  function radiusScale(rows) {
+    const vals = rows.map(d => Number(d.pasajerosVinculados || d.pasajerosPeriodo || 0)).filter(v => v > 0);
+    if (!vals.length) return () => 7;
+    const max = Math.max(...vals);
+    return v => {
+      if (!v || max <= 0) return 6;
+      return 6 + 11 * Math.sqrt(v / max);
+    };
+  }
+
+  function popupHtml(d, airline, period) {
+    const pax = Number(d.pasajerosVinculados ?? d.pasajerosPeriodo ?? 0);
+    const flights = Number(d.vuelosVinculados ?? d.vuelosPeriodo ?? 0);
+    const state = d.tipoPresencia === "historica_reciente"
+      ? "Presencia histórica reciente"
+      : (d.estado || "Presencia en el período");
+
+    const years = Array.isArray(d.aniosActivos) ? d.aniosActivos.join(", ") : period;
+    const share = Number.isFinite(Number(d.shareAerolineasWebPct))
+      ? `${Number(d.shareAerolineasWebPct).toFixed(1).replace(".", ",")}%`
+      : "—";
+
+    return `
+      <div class="popup-title">${d.iata} · ${d.aeropuerto || ""}</div>
+      <div class="popup-sub">${d.localidad || ""}${d.provincia ? ` · ${d.provincia}` : ""}</div>
+      <div class="popup-grid">
+        <span>Aerolínea</span><b>${airline}</b>
+        <span>Período</span><b>${years}</b>
+        <span>Situación</span><b>${state}</b>
+        <span>Pasajeros vinculados</span><b>${fmt.format(pax)}</b>
+        <span>Vuelos vinculados</span><b>${fmt.format(flights)}</b>
+        ${period !== "2023_2025" ? `<span>Participación aeropuerto</span><b>${share}</b>` : ""}
+      </div>
+    `;
+  }
+
+  function getRows(airline, period) {
+    const idx = db?.indiceAerolineas?.[airline];
+    if (!idx) return [];
+
+    if (period === "2023_2025") {
+      return (idx.periodo2023_2025?.aeropuertos || []).map(d => ({ ...d }));
+    }
+    return (idx.anios?.[period]?.aeropuertos || []).map(d => ({
+      ...d,
+      tipoPresencia: period === "2025" ? "actual_2025" : "presencia_anual"
+    }));
+  }
+
+  function render() {
+    if (!db) return;
+
+    const airline = $("airlineSelect").value;
+    const period = $("periodSelect").value;
+    const color = COLORS[airline] || "#355c7d";
+    const rows = getRows(airline, period).filter(d =>
+      Number.isFinite(Number(d.latitud)) && Number.isFinite(Number(d.longitud))
+    );
+
+    layer.clearLayers();
+    document.documentElement.style.setProperty("--map-color", color);
+
+    const scale = radiusScale(rows);
+
+    rows.forEach(d => {
+      const historical = period === "2023_2025" && d.tipoPresencia === "historica_reciente";
+      const pax = Number(d.pasajerosVinculados ?? d.pasajerosPeriodo ?? 0);
+      const marker = L.circleMarker([Number(d.latitud), Number(d.longitud)], {
+        radius: scale(pax),
+        color: historical ? "#7a8793" : color,
+        weight: historical ? 2 : 1.5,
+        fillColor: historical ? "#ffffff" : color,
+        fillOpacity: historical ? 0.15 : 0.72,
+        opacity: 0.95
+      });
+
+      marker.bindPopup(popupHtml(d, airline, period), { maxWidth: 320 });
+      marker.bindTooltip(d.iata, {
+        permanent: true,
+        direction: "top",
+        offset: [0, -4],
+        className: "iata-label",
+        opacity: 0.95
+      });
+      marker.addTo(layer);
+    });
+
+    const totalPax = rows.reduce((s,d) => s + Number(d.pasajerosVinculados ?? d.pasajerosPeriodo ?? 0), 0);
+    $("countPill").textContent = `${fmt.format(rows.length)} aeropuertos`;
+    $("paxPill").textContent = `${fmt.format(totalPax)} pasajeros vinculados`;
+    $("periodPill").textContent = `Período: ${period === "2023_2025" ? "2023–2025" : period}`;
+
+    const logo = $("airlineLogo");
+    const logoSrc = db?.indiceAerolineas?.[airline]?.logo;
+    if (logoSrc) {
+      logo.src = logoSrc;
+      logo.style.display = "block";
+    } else {
+      logo.removeAttribute("src");
+      logo.style.display = "none";
+    }
+
+    setStatus(`${airline} · ${period === "2023_2025" ? "2023–2025" : period} · ${rows.length} aeropuertos con coordenadas`);
+
+    if (rows.length) {
+      const b = L.latLngBounds(rows.map(d => [Number(d.latitud), Number(d.longitud)]));
+      map.fitBounds(b, { padding: [30,30], maxZoom: 5 });
+    } else {
+      map.fitBounds(ARG_BOUNDS, { padding: [10,10] });
+    }
+  }
+
+  const legend = L.control({ position: "bottomright" });
+  legend.onAdd = function() {
+    const div = L.DomUtil.create("div", "legend");
+    div.innerHTML = `
+      <div class="legend-title">Lectura</div>
+      <div class="legend-row"><span class="dot current"></span><span>Opera en el año seleccionado</span></div>
+      <div class="legend-row"><span class="dot historical"></span><span>Presencia 2023–2024, no en 2025</span></div>
+      <div style="margin-top:5px;color:#6b7785">Tamaño del círculo ≈ pasajeros vinculados</div>
+    `;
+    return div;
+  };
+  legend.addTo(map);
+
+  $("airlineSelect").addEventListener("change", render);
+  $("periodSelect").addEventListener("change", render);
+
+  loadJson()
+    .then(json => {
+      db = json;
+      render();
+    })
+    .catch(err => {
+      console.error(err);
+      setStatus(`Error: ${err.message}`);
+    });
+})();
+</script>
+</body>
+</html>
