@@ -246,9 +246,9 @@
 <div class="wrap">
   <div class="topbar">
     <div>
-      <h1>Operación de aerolíneas por aeropuerto y año <span class="small">v3.1</span></h1>
+      <h1>Operación de aerolíneas por aeropuerto y año <span class="small">v3.2</span></h1>
       <div class="subtitle">
-        Consulta derivada de <code>fuentes/rutasaereas.csv</code>. Una fila representa la presencia de un operador en un aeropuerto durante un año. La v3.1 mantiene la auditoría completa y agrega una lectura 2023–2025: conserva las aerolíneas relevantes aunque hayan dejado de operar en 2025 y genera un índice por aerolínea para construir mapas nacionales por marca y año.
+        Consulta derivada de <code>fuentes/rutasaereas.csv</code>. Una fila representa la presencia de un operador en un aeropuerto durante un año. La v3.2 mantiene la lectura 2023–2025 y el índice nacional por aerolínea. Además toma las coordenadas desde fuentes/ourairports.csv, porque Datos_aeropuertos.geojson no contiene geometría de puntos.
       </div>
     </div>
     <div class="actions">
@@ -378,7 +378,7 @@
   </details>
 
   <div class="note">
-    <strong>Fuente:</strong> SIAC (ANAC), <code>fuentes/rutasaereas.csv</code>. Catálogo de aeropuertos: <code>fuentes/Datos_aeropuertos.geojson</code>. Alias de aerolíneas: <code>fuentes/aerolineas_alias.csv</code>. Elaboración propia.<br>
+    <strong>Fuente:</strong> SIAC (ANAC), <code>fuentes/rutasaereas.csv</code>. Catálogo de aeropuertos: <code>fuentes/Datos_aeropuertos.geojson</code>. Coordenadas: <code>fuentes/ourairports.csv</code>. Alias de aerolíneas: <code>fuentes/aerolineas_alias.csv</code>. Elaboración propia.<br>
     Los pasajeros y vuelos de esta tabla son <strong>volúmenes vinculados al aeropuerto a través de las rutas</strong>; no deben sumarse entre aeropuertos para obtener un total nacional porque una ruta de cabotaje se asocia a ambos extremos. El campo <strong>Share nacional</strong> sí se calcula sobre las filas de ruta originales, sin esa duplicación. El botón <strong>JSON auditoría</strong> conserva todos los operadores confirmados y su clasificación. <strong>JSON web</strong> agrupa operadores bajo una marca visible y excluye carga, operadores militares/estatales y aviación ejecutiva; incluye aerolíneas y charters de pasajeros. Ambos ignoran los filtros visuales y el Top N.
   </div>
 </div>
@@ -390,6 +390,7 @@
   const SOURCES = {
     routes: "fuentes/rutasaereas.csv",
     airports: "fuentes/Datos_aeropuertos.geojson",
+    coordinates: "fuentes/ourairports.csv",
     aliases: "fuentes/aerolineas_alias.csv"
   };
 
@@ -755,6 +756,43 @@
     return domesticIatas.has(endpointA) && domesticIatas.has(endpointB) ? "Cabotaje" : "Internacional";
   }
 
+  function parseCoordinateValue(value, type = "lat") {
+    let s = clean(value)
+      .replace(/^[\'"]+|[\'"]+$/g, "")
+      .replace(/\s+/g, "");
+    if (!s) return NaN;
+
+    // Algunas filas de ourairports usan coma decimal.
+    s = s.replace(/,/g, ".");
+
+    // También existen valores con varios puntos por una importación histórica
+    // (p.ej. 31.323.600.769 -> 31.323600769).
+    const sign = s.startsWith("-") ? "-" : "";
+    if (sign) s = s.slice(1);
+    const parts = s.split(".");
+    if (parts.length > 2) s = parts.shift() + "." + parts.join("");
+    s = sign + s;
+
+    const n = Number(s);
+    if (!Number.isFinite(n)) return NaN;
+    const limit = type === "lon" ? 180 : 90;
+    return Math.abs(n) <= limit ? n : NaN;
+  }
+
+  function coordinateMapFromCSV(text) {
+    const map = new Map();
+    parseCSV(text).forEach(row => {
+      const iata = clean(firstNonEmpty(row, ["iata", "iata_code", "codigo_iata"])).toUpperCase();
+      if (!iata) return;
+      const lat = parseCoordinateValue(firstNonEmpty(row, ["latitude", "latitude_deg", "lat"]), "lat");
+      const lon = parseCoordinateValue(firstNonEmpty(row, ["longitude", "longitude_deg", "lon", "lng"]), "lon");
+      if (Number.isFinite(lat) && Number.isFinite(lon)) {
+        map.set(iata, { latitud: lat, longitud: lon });
+      }
+    });
+    return map;
+  }
+
   function airportMetaFromGeojson(geojson) {
     const map = new Map();
     (geojson?.features || []).forEach(f => {
@@ -796,13 +834,14 @@
     });
   }
 
-  function buildQuery(routeText, airportsGeojson, aliasText) {
+  function buildQuery(routeText, airportsGeojson, aliasText, coordinatesText) {
     state.qaRows = [];
     state.qaCounts = {};
     state.coverageByYear = new Map();
     state.airlinePassengerTotals = new Map();
 
     const airportMap = airportMetaFromGeojson(airportsGeojson);
+    const coordinateMap = coordinateMapFromCSV(coordinatesText);
     const domesticIatas = new Set(airportMap.keys());
     const aliasMap = aliasMapFromCSV(aliasText);
     const raw = parseCSV(routeText);
@@ -944,9 +983,16 @@
       if (a.types.has("Cabotaje") && a.types.has("Internacional")) tipo = "Mixto";
       else tipo = [...a.types][0] || "";
 
-      const coords = meta.geometry?.type === "Point" && Array.isArray(meta.geometry.coordinates)
+      const geometryCoords = meta.geometry?.type === "Point" && Array.isArray(meta.geometry.coordinates)
         ? meta.geometry.coordinates
         : [];
+      const csvCoords = coordinateMap.get(a.iata) || {};
+      const longitud = Number.isFinite(Number(geometryCoords[0]))
+        ? Number(geometryCoords[0])
+        : (Number.isFinite(csvCoords.longitud) ? csvCoords.longitud : null);
+      const latitud = Number.isFinite(Number(geometryCoords[1]))
+        ? Number(geometryCoords[1])
+        : (Number.isFinite(csvCoords.latitud) ? csvCoords.latitud : null);
       result.push({
         anio: a.anio,
         rankingAnual: ranks.get(`${a.anio}|${a.aerolinea}`) || null,
@@ -959,8 +1005,8 @@
         aeropuerto: meta.aeropuerto,
         localidad: meta.localidad,
         provincia: meta.provincia,
-        longitud: Number.isFinite(Number(coords[0])) ? Number(coords[0]) : null,
-        latitud: Number.isFinite(Number(coords[1])) ? Number(coords[1]) : null,
+        longitud,
+        latitud,
         tipoTrafico: tipo,
         estadoOperacion: s.status,
         mesesOperados: a.months.size,
@@ -1238,10 +1284,11 @@
 
     return {
       metadata: {
-        version: "3.1",
+        version: "3.2",
         generado: new Date().toISOString(),
         fuente: SOURCES.routes,
         catalogoAeropuertos: SOURCES.airports,
+        fuenteCoordenadas: SOURCES.coordinates,
         aliasAerolineas: SOURCES.aliases,
         cobertura: { desde: years[0] ?? null, hasta: years[years.length - 1] ?? null },
         criterio: "Auditoría: Regular + Estacional. Conserva todos los operadores confirmados y agrega tipoOperador, marcaWeb, logo e incluirEnWeb.",
@@ -1575,9 +1622,10 @@
 
     return {
       metadata: {
-        version: "3.1",
+        version: "3.2",
         generado: new Date().toISOString(),
         fuente: SOURCES.routes,
+        fuenteCoordenadas: SOURCES.coordinates,
         cobertura: { desde: years[0] ?? null, hasta: years[years.length - 1] ?? null },
         criterio: "Fuente web: Regular + Estacional; agrupa operadores por marca web. Conserva aerolíneas y charters de pasajeros. Añade relevancia 2023–2025 y un índice por aerolínea para mapas nacionales.",
         criterioRelevancia2023_2025: {
@@ -1601,11 +1649,11 @@
   }
 
   function exportJsonAudit() {
-    downloadBlob(JSON.stringify(buildAuditJson(), null, 2), "application/json;charset=utf-8", "aerolineas_por_aeropuerto_2015_2025_auditoria_v3_1.json");
+    downloadBlob(JSON.stringify(buildAuditJson(), null, 2), "application/json;charset=utf-8", "aerolineas_por_aeropuerto_2015_2025_auditoria_v3_2.json");
   }
 
   function exportJsonWeb() {
-    downloadBlob(JSON.stringify(buildWebJson(), null, 2), "application/json;charset=utf-8", "aerolineas_por_aeropuerto_2015_2025_web_v3_1.json");
+    downloadBlob(JSON.stringify(buildWebJson(), null, 2), "application/json;charset=utf-8", "aerolineas_por_aeropuerto_2015_2025_web_v3_2.json");
   }
 
   function exportExcel() {
@@ -1633,19 +1681,28 @@
     q("status").className = "status warn";
     q("status").textContent = "Cargando fuentes y construyendo la consulta…";
     try {
-      const [routesText, airports, aliasesText] = await Promise.all([
+      const [routesText, airports, aliasesText, coordinatesText] = await Promise.all([
         fetchRequired(SOURCES.routes, "text"),
         fetchRequired(SOURCES.airports, "json"),
-        fetchRequired(SOURCES.aliases, "text")
+        fetchRequired(SOURCES.aliases, "text"),
+        fetchRequired(SOURCES.coordinates, "text")
       ]);
-      state.rows = buildQuery(routesText, airports, aliasesText);
+      state.rows = buildQuery(routesText, airports, aliasesText, coordinatesText);
       populateFilters();
       renderQa();
       enableControls(true);
       render();
       const years = [...new Set(state.rows.map(r => r.anio))].sort((a, b) => a - b);
-      q("status").className = "status ok";
-      q("status").textContent = `Consulta lista: ${formatNumber(state.rows.length)} registros derivados, ${formatNumber(new Set(state.rows.map(r => r.aerolinea)).size)} aerolíneas y ${formatNumber(new Set(state.rows.map(r => r.iata)).size)} aeropuertos. Cobertura: ${years[0] ?? "–"}–${years[years.length - 1] ?? "–"}. El filtro de aerolíneas está ordenado por pasajeros y el JSON final incluye todas las operaciones regulares + estacionales.`;
+      const airportsVisible = [...new Set(state.rows.map(r => r.iata))];
+      const coordsOk = new Set(
+        state.rows
+          .filter(r => Number.isFinite(r.latitud) && Number.isFinite(r.longitud))
+          .map(r => r.iata)
+      );
+      const missingCoords = airportsVisible.filter(iata => !coordsOk.has(iata)).sort();
+
+      q("status").className = missingCoords.length ? "status warn" : "status ok";
+      q("status").textContent = `Consulta lista: ${formatNumber(state.rows.length)} registros derivados, ${formatNumber(new Set(state.rows.map(r => r.aerolinea)).size)} aerolíneas y ${formatNumber(airportsVisible.length)} aeropuertos. Cobertura: ${years[0] ?? "–"}–${years[years.length - 1] ?? "–"}. Coordenadas disponibles: ${coordsOk.size}/${airportsVisible.length}${missingCoords.length ? `; faltan: ${missingCoords.join(", ")}` : ""}.`;
     } catch (err) {
       console.error(err);
       q("status").className = "status err";
