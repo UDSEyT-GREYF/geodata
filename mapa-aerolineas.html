@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Presencia de aerolíneas por aeropuerto | SIGA</title>
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIINfQ3ynHTCm5OWMZQ4sD0tLrXzN3V1n6c="
-        crossorigin="">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
   <style>
     :root {
@@ -126,18 +124,22 @@
   <div id="status">Cargando datos…</div>
 </main>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
 (() => {
   "use strict";
 
+  if (typeof L === "undefined") {
+    const status = document.getElementById("status");
+    if (status) status.textContent = "Error: Leaflet no pudo cargarse.";
+    throw new Error("Leaflet no pudo cargarse.");
+  }
+
   const DATA_CANDIDATES = [
+    "fuentes/aerolineas_por_aeropuerto_2015_2025_web_v3_2.json",
     "data/aerolineas_por_aeropuerto_2015_2025_web_v3_2.json",
-    "aerolineas_por_aeropuerto_2015_2025_web_v3_2.json",
-    "fuentes/aerolineas_por_aeropuerto_2015_2025_web_v3_2.json"
+    "aerolineas_por_aeropuerto_2015_2025_web_v3_2.json"
   ];
 
   const COLORS = {
