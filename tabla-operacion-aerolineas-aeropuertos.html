@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operación de aerolíneas por aeropuerto y año</title>
+  <style>
+    :root {
+      --blue: #2A6FB0;
+      --blue-dark: #002855;
+      --line: #d0d7e2;
+      --bg: #f5f7fb;
+      --text: #2f3a45;
+      --muted: #66727f;
+      --ok: #1f7a4d;
+      --warn: #a15f00;
+      --err: #a32626;
+      --soft-blue: #eaf1f8;
+      --soft-green: #eaf6ef;
+      --soft-orange: #fff4e5;
+      --soft-red: #fdecec;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .wrap { max-width: 1600px; margin: 0 auto; padding: 22px 18px 32px; }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    h1 { margin: 0; color: var(--blue-dark); font-size: 1.42rem; line-height: 1.15; }
+    .subtitle { margin-top: 5px; color: var(--muted); font-size: 0.88rem; line-height: 1.4; max-width: 980px; }
+    .actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+    button {
+      border: 1px solid #b9c8da;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--blue-dark);
+      padding: 9px 12px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+    button.primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+    button.danger { color: var(--err); }
+    button:disabled { opacity: 0.55; cursor: not-allowed; }
+    .status {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+    .status.ok { border-left: 5px solid var(--ok); }
+    .status.warn { border-left: 5px solid var(--warn); }
+    .status.err { border-left: 5px solid var(--err); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(130px, 1fr));
+      gap: 9px;
+      margin-bottom: 12px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      min-height: 70px;
+    }
+    .card .label { color: var(--muted); font-size: 0.72rem; text-transform: uppercase; letter-spacing: .03em; }
+    .card .value { color: var(--blue-dark); font-size: 1.25rem; font-weight: 800; margin-top: 3px; }
+    .card .detail { color: var(--muted); font-size: 0.72rem; margin-top: 2px; }
+
+    .filters {
+      display: grid;
+      grid-template-columns: 125px 220px 130px 170px 150px minmax(250px, 1fr);
+      gap: 9px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 11px;
+      margin-bottom: 10px;
+    }
+    .field { min-width: 0; }
+    .field label {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+    select, input[type="search"] {
+      width: 100%;
+      border: 1px solid #bdcad8;
+      border-radius: 8px;
+      padding: 8px 9px;
+      font-size: 0.85rem;
+      background: #fff;
+      color: var(--text);
+    }
+    .tools-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .count { color: var(--muted); font-size: 0.82rem; }
+    .legend { display: flex; gap: 8px; flex-wrap: wrap; font-size: 0.75rem; color: var(--muted); }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 7px;
+      border-radius: 99px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .dot.regular { background: var(--ok); }
+    .dot.seasonal { background: #d98900; }
+    .dot.review { background: var(--err); }
+
+    .table-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 22px rgba(33, 45, 68, 0.08);
+    }
+    .table-scroll { overflow: auto; max-height: calc(100vh - 390px); min-height: 330px; }
+    table { width: 100%; min-width: 1750px; border-collapse: collapse; font-size: 0.77rem; }
+    thead th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: var(--soft-blue);
+      color: var(--blue-dark);
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      white-space: nowrap;
+      padding: 8px 8px;
+      font-weight: 800;
+      cursor: pointer;
+      user-select: none;
+    }
+    thead th.num { text-align: right; }
+    tbody td {
+      border-bottom: 1px solid #edf1f5;
+      padding: 7px 8px;
+      white-space: nowrap;
+      vertical-align: top;
+    }
+    tbody td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    tbody tr:hover td { background: #f6faff; }
+    td.airline { font-weight: 700; color: #143c63; }
+    td.iata { font-weight: 800; color: var(--blue-dark); }
+    .status-tag {
+      display: inline-block;
+      border-radius: 99px;
+      padding: 2px 7px;
+      font-weight: 800;
+      font-size: 0.7rem;
+    }
+    .status-tag.regular { background: var(--soft-green); color: var(--ok); }
+    .status-tag.estacional { background: var(--soft-orange); color: #8c5500; }
+    .status-tag.revisar { background: var(--soft-red); color: var(--err); }
+
+    details.qa {
+      margin-top: 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+    details.qa summary { cursor: pointer; font-weight: 800; color: var(--blue-dark); }
+    .qa-body { margin-top: 9px; color: var(--muted); font-size: 0.8rem; line-height: 1.45; }
+    .qa-grid { display: grid; grid-template-columns: repeat(4, minmax(150px, 1fr)); gap: 8px; margin-top: 8px; }
+    .qa-item { background: #f8fafc; border: 1px solid #e4e9ef; border-radius: 8px; padding: 7px 8px; }
+    .qa-item b { color: var(--blue-dark); }
+    .note { margin-top: 10px; color: var(--muted); font-size: 0.79rem; line-height: 1.4; }
+    code { background: #edf3f8; padding: 1px 4px; border-radius: 4px; color: #123d67; }
+    .small { font-size: 0.73rem; color: var(--muted); }
+
+    @media (max-width: 1150px) {
+      .cards { grid-template-columns: repeat(3, 1fr); }
+      .filters { grid-template-columns: repeat(3, 1fr); }
+      .table-scroll { max-height: calc(100vh - 500px); }
+    }
+    @media (max-width: 700px) {
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .actions { justify-content: flex-start; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .filters { grid-template-columns: 1fr; }
+      .qa-grid { grid-template-columns: 1fr; }
+      .table-scroll { max-height: 62vh; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div>
+      <h1>Operación de aerolíneas por aeropuerto y año</h1>
+      <div class="subtitle">
+        Consulta derivada de <code>fuentes/rutasaereas.csv</code>. Una fila representa la presencia de una aerolínea en un aeropuerto durante un año. La consulta excluye aviación general, rutas locales, los 17 aeropuertos definidos para control y FDO; además clasifica los casos con baja persistencia como <strong>A revisar</strong>.
+      </div>
+    </div>
+    <div class="actions">
+      <button id="btnReload" type="button">Recargar</button>
+      <button id="btnCsv" class="primary" type="button" disabled>Descargar CSV</button>
+      <button id="btnXls" type="button" disabled>Descargar Excel .xls</button>
+      <button id="btnJson" type="button" disabled>Descargar JSON</button>
+      <button id="btnQa" class="danger" type="button" disabled>Descargar QA descartados</button>
+    </div>
+  </div>
+
+  <div id="status" class="status warn">Cargando fuentes y construyendo la consulta…</div>
+
+  <div class="cards">
+    <div class="card"><div class="label">Registros visibles</div><div id="kpiRows" class="value">–</div><div class="detail">según filtros</div></div>
+    <div class="card"><div class="label">Aerolíneas</div><div id="kpiAirlines" class="value">–</div><div class="detail">grupos visibles</div></div>
+    <div class="card"><div class="label">Aeropuertos</div><div id="kpiAirports" class="value">–</div><div class="detail">IATA distintos</div></div>
+    <div class="card"><div class="label">Años</div><div id="kpiYears" class="value">–</div><div class="detail">cobertura visible</div></div>
+    <div class="card"><div class="label">Confirmados</div><div id="kpiConfirmed" class="value">–</div><div class="detail">regular + estacional</div></div>
+    <div class="card"><div class="label">QA descartados</div><div id="kpiQa" class="value">–</div><div class="detail">filas fuente</div></div>
+  </div>
+
+  <div class="filters">
+    <div class="field">
+      <label for="yearFilter">Año</label>
+      <select id="yearFilter" disabled><option value="">Todos</option></select>
+    </div>
+    <div class="field">
+      <label for="airlineFilter">Aerolínea</label>
+      <select id="airlineFilter" disabled><option value="">Todas</option></select>
+    </div>
+    <div class="field">
+      <label for="topFilter">Ranking anual</label>
+      <select id="topFilter" disabled>
+        <option value="3">Top 3</option>
+        <option value="5" selected>Top 5</option>
+        <option value="10">Top 10</option>
+        <option value="all">Todas</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="statusFilter">Estado de operación</label>
+      <select id="statusFilter" disabled>
+        <option value="confirmed" selected>Regular + estacional</option>
+        <option value="Regular">Regular</option>
+        <option value="Estacional">Estacional</option>
+        <option value="A revisar">A revisar</option>
+        <option value="">Todos</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="trafficFilter">Tipo de tráfico</label>
+      <select id="trafficFilter" disabled>
+        <option value="">Todos</option>
+        <option value="Cabotaje">Cabotaje</option>
+        <option value="Internacional">Internacional</option>
+        <option value="Mixto">Mixto</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="searchInput">Aeropuerto / IATA / provincia</label>
+      <input id="searchInput" type="search" placeholder="Ej.: Bariloche, BRC, Salta…" disabled>
+    </div>
+  </div>
+
+  <div class="tools-row">
+    <div id="rowCount" class="count">Sin datos</div>
+    <div class="legend">
+      <span class="pill"><span class="dot regular"></span>Regular</span>
+      <span class="pill"><span class="dot seasonal"></span>Estacional</span>
+      <span class="pill"><span class="dot review"></span>A revisar</span>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-scroll">
+      <table id="dataTable">
+        <thead>
+          <tr>
+            <th data-sort="anio">Año</th>
+            <th class="num" data-sort="rankingAnual">Rank</th>
+            <th data-sort="aerolinea">Aerolínea</th>
+            <th data-sort="iata">IATA</th>
+            <th data-sort="aeropuerto">Aeropuerto</th>
+            <th data-sort="provincia">Provincia</th>
+            <th data-sort="tipoTrafico">Tráfico</th>
+            <th data-sort="estadoOperacion">Estado</th>
+            <th class="num" data-sort="mesesOperados">Meses</th>
+            <th class="num" data-sort="maxMesesConsecutivos">Máx. consecutivos</th>
+            <th class="num" data-sort="rutasUnicas">Rutas</th>
+            <th class="num" data-sort="pasajeros">Pasajeros vinculados</th>
+            <th class="num" data-sort="vuelos">Vuelos vinculados</th>
+            <th class="num" data-sort="shareNacionalPct">Share nacional</th>
+            <th class="num" data-sort="shareAeropuertoPct">Share aeropuerto</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <details class="qa" id="qaDetails">
+    <summary>Control de calidad y criterios de descarte</summary>
+    <div class="qa-body">
+      <div>
+        Se eliminan de la consulta principal las filas de aviación general, las rutas locales (mismo IATA en ambos extremos), las filas sin aerolínea o sin pasajeros y cualquier ruta que toque alguno de los siguientes aeropuertos de control: <strong>TTG, RYO, SST, NEC, LPG, GNR, JNI, PMQ, AOL, LGS, EPA, COC, RCQ, RLO, TDL, VLG, VME</strong>, además de <strong>FDO</strong>.
+      </div>
+      <div class="qa-grid" id="qaGrid"></div>
+      <div class="note">
+        <strong>Regular:</strong> presencia con pasajeros en al menos 7 meses del año; en un año parcial se exige actividad durante todos los meses disponibles si la cobertura tiene entre 4 y 6 meses. <strong>Estacional:</strong> al menos 3 meses activos consecutivos. Los demás casos quedan como <strong>A revisar</strong> y no se muestran por defecto. El ranking nacional se calcula antes de expandir las rutas a sus aeropuertos, para evitar duplicar pasajeros en cabotaje.
+      </div>
+    </div>
+  </details>
+
+  <div class="note">
+    <strong>Fuente:</strong> SIAC (ANAC), <code>fuentes/rutasaereas.csv</code>. Catálogo de aeropuertos: <code>fuentes/Datos_aeropuertos.geojson</code>. Alias de aerolíneas: <code>fuentes/aerolineas_alias.csv</code>. Elaboración propia.<br>
+    Los pasajeros y vuelos de esta tabla son <strong>volúmenes vinculados al aeropuerto a través de las rutas</strong>; no deben sumarse entre aeropuertos para obtener un total nacional porque una ruta de cabotaje se asocia a ambos extremos. El campo <strong>Share nacional</strong> sí se calcula sobre las filas de ruta originales, sin esa duplicación.
+  </div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  const SOURCES = {
+    routes: "fuentes/rutasaereas.csv",
+    airports: "fuentes/Datos_aeropuertos.geojson",
+    aliases: "fuentes/aerolineas_alias.csv"
+  };
+
+  const EXCLUDED_IATAS = new Set([
+    "TTG", "RYO", "SST", "NEC", "LPG", "GNR", "JNI", "PMQ", "AOL", "LGS",
+    "EPA", "COC", "RCQ", "RLO", "TDL", "VLG", "VME", "FDO"
+  ]);
+
+  const GROUP_OVERRIDES = new Map([
+    ["aerolineas argentinas", "Aerolíneas Argentinas / Austral"],
+    ["aerolineas argentinas sa", "Aerolíneas Argentinas / Austral"],
+    ["austral", "Aerolíneas Argentinas / Austral"],
+    ["austral lineas aereas", "Aerolíneas Argentinas / Austral"],
+    ["jetsmart", "JetSMART"],
+    ["jetsmart airlines", "JetSMART"],
+    ["flybondi", "Flybondi"]
+  ]);
+
+  const state = {
+    rows: [],
+    filtered: [],
+    qaRows: [],
+    qaCounts: {},
+    coverageByYear: new Map(),
+    sortKey: "anio",
+    sortDir: -1
+  };
+
+  const q = id => document.getElementById(id);
+
+  function clean(v) {
+    return v === null || v === undefined ? "" : String(v).trim();
+  }
+
+  function normalizeHeader(v) {
+    return clean(v)
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "_")
+      .replace(/^_+|_+$/g, "");
+  }
+
+  function normalizeText(v) {
+    return clean(v)
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function firstNonEmpty(obj, keys, fallback = "") {
+    for (const key of keys) {
+      const k = normalizeHeader(key);
+      const value = obj?.[key] !== undefined ? obj[key] : obj?.[k];
+      if (value !== undefined && value !== null && String(value).trim() !== "") return value;
+    }
+    return fallback;
+  }
+
+  function parseNumber(v) {
+    if (v === null || v === undefined) return NaN;
+    let s = String(v).trim();
+    if (!s) return NaN;
+    s = s.replace(/\s+/g, "").replace(/[^\d,.-]/g, "");
+    if (!s) return NaN;
+    const commaCount = (s.match(/,/g) || []).length;
+    const dotCount = (s.match(/\./g) || []).length;
+    if (commaCount && dotCount) {
+      if (s.lastIndexOf(",") > s.lastIndexOf(".")) s = s.replace(/\./g, "").replace(",", ".");
+      else s = s.replace(/,/g, "");
+    } else if (commaCount) {
+      if (commaCount > 1) {
+        const last = s.lastIndexOf(",");
+        const decimals = s.length - last - 1;
+        if (decimals !== 3) {
+          const parts = s.split(",");
+          const dec = parts.pop();
+          s = parts.join("") + "." + dec;
+        } else s = s.replace(/,/g, "");
+      } else {
+        const decimals = s.length - s.indexOf(",") - 1;
+        s = decimals === 3 ? s.replace(/,/g, "") : s.replace(",", ".");
+      }
+    } else if (dotCount) {
+      if (dotCount > 1) {
+        const last = s.lastIndexOf(".");
+        const decimals = s.length - last - 1;
+        if (decimals !== 3) {
+          const parts = s.split(".");
+          const dec = parts.pop();
+          s = parts.join("") + "." + dec;
+        } else s = s.replace(/\./g, "");
+      } else {
+        const decimals = s.length - s.indexOf(".") - 1;
+        if (decimals === 3) s = s.replace(".", "");
+      }
+    }
+    const n = Number(s);
+    return Number.isFinite(n) ? n : NaN;
+  }
+
+  function detectSep(headerLine) {
+    if (headerLine.includes("\t")) return "\t";
+    const semi = (headerLine.match(/;/g) || []).length;
+    const comma = (headerLine.match(/,/g) || []).length;
+    return semi >= comma ? ";" : ",";
+  }
+
+  function splitDelimitedLine(line, sep) {
+    const out = [];
+    let cur = "";
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (ch === '"') {
+        if (inQuotes && line[i + 1] === '"') {
+          cur += '"';
+          i++;
+        } else inQuotes = !inQuotes;
+      } else if (ch === sep && !inQuotes) {
+        out.push(cur);
+        cur = "";
+      } else cur += ch;
+    }
+    out.push(cur);
+    return out;
+  }
+
+  function parseCSV(text) {
+    if (!text) return [];
+    const lines = text.replace(/^\uFEFF/, "").split(/\r?\n/).filter(line => line.trim() !== "");
+    if (lines.length < 2) return [];
+    const sep = detectSep(lines[0]);
+    const headers = splitDelimitedLine(lines[0], sep).map(normalizeHeader);
+    return lines.slice(1).map(line => {
+      const cols = splitDelimitedLine(line, sep);
+      const row = {};
+      headers.forEach((h, i) => { row[h] = cols[i] ?? ""; });
+      return row;
+    });
+  }
+
+  async function readTextSmart(response) {
+    const buffer = await response.arrayBuffer();
+    let text = new TextDecoder("utf-8").decode(buffer);
+    if (text.includes("�")) text = new TextDecoder("windows-1252").decode(buffer);
+    return text;
+  }
+
+  async function fetchRequired(url, type = "text") {
+    const resp = await fetch(url, { cache: "no-store" });
+    if (!resp.ok) throw new Error(`${url}: HTTP ${resp.status}`);
+    return type === "json" ? await resp.json() : await readTextSmart(resp);
+  }
+
+  function parseYearMonth(raw) {
+    const s = clean(raw);
+    let m = s.match(/^(\d{4})[-\/]?(\d{1,2})$/);
+    if (!m) m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+    if (!m) return { year: NaN, month: NaN };
+    const year = Number(m[1]);
+    const month = Number(m[2]);
+    return {
+      year: Number.isFinite(year) ? year : NaN,
+      month: month >= 1 && month <= 12 ? month : NaN
+    };
+  }
+
+  function splitRoutePair(raw) {
+    const route = clean(raw).toUpperCase();
+    if (!route) return ["", ""];
+    const parts = route.split(/\s*-\s*/).map(s => s.trim()).filter(Boolean);
+    return [parts[0] || "", parts[1] || ""];
+  }
+
+  function maxConsecutiveMonths(monthSet) {
+    const months = [...monthSet].sort((a, b) => a - b);
+    let best = 0;
+    let current = 0;
+    let prev = null;
+    for (const m of months) {
+      if (prev !== null && m === prev + 1) current += 1;
+      else current = 1;
+      if (current > best) best = current;
+      prev = m;
+    }
+    return best;
+  }
+
+  function statusFor(monthSet, year) {
+    const active = monthSet.size;
+    const maxConsecutive = maxConsecutiveMonths(monthSet);
+    const coverage = state.coverageByYear.get(year)?.size || 12;
+    let regularThreshold = 7;
+    if (coverage >= 4 && coverage < 7) regularThreshold = coverage;
+    if (active >= regularThreshold) return { status: "Regular", maxConsecutive };
+    if (active >= 3 && maxConsecutive >= 3) return { status: "Estacional", maxConsecutive };
+    return { status: "A revisar", maxConsecutive };
+  }
+
+  function canonicalAirline(sourceName, aliasMap) {
+    const source = clean(sourceName);
+    const key = normalizeText(source);
+    if (GROUP_OVERRIDES.has(key)) return GROUP_OVERRIDES.get(key);
+    const alias = aliasMap.get(key) || source;
+    const aliasKey = normalizeText(alias);
+    if (GROUP_OVERRIDES.has(aliasKey)) return GROUP_OVERRIDES.get(aliasKey);
+    if (aliasKey === "jetsmart") return "JetSMART";
+    return alias || source;
+  }
+
+  function trafficType(row, endpointA, endpointB, domesticIatas) {
+    const cls = normalizeText(firstNonEmpty(row, ["clasificacion", "clasificación"]));
+    if (cls.includes("internacional")) return "Internacional";
+    if (cls.includes("cabotaje") || cls.includes("domest")) return "Cabotaje";
+    return domesticIatas.has(endpointA) && domesticIatas.has(endpointB) ? "Cabotaje" : "Internacional";
+  }
+
+  function airportMetaFromGeojson(geojson) {
+    const map = new Map();
+    (geojson?.features || []).forEach(f => {
+      const p = f?.properties || {};
+      const iata = clean(p.IATA || p.iata).toUpperCase();
+      if (!iata) return;
+      map.set(iata, {
+        iata,
+        aeropuerto: clean(p["Nombre del Aeropuerto"] || p.Aeropuerto || p.nombre || p.name || iata),
+        provincia: clean(p.Provincia || p.provincia),
+        localidad: clean(p.Localidad || p.localidad),
+        geometry: f.geometry || null
+      });
+    });
+    return map;
+  }
+
+  function aliasMapFromCSV(text) {
+    const map = new Map();
+    parseCSV(text).forEach(row => {
+      const source = clean(firstNonEmpty(row, ["aerolinea_nombre", "aerolinea nombre"]));
+      const short = clean(firstNonEmpty(row, ["nombre_corto", "nombre corto"]));
+      if (source) map.set(normalizeText(source), short || source);
+    });
+    return map;
+  }
+
+  function addQa(row, reason, route = "", airline = "") {
+    state.qaCounts[reason] = (state.qaCounts[reason] || 0) + 1;
+    state.qaRows.push({
+      motivo: reason,
+      anomes: clean(firstNonEmpty(row, ["anomes", "ano_mes", "año_mes"])),
+      ruta: route || clean(firstNonEmpty(row, ["citypair_iata"])),
+      aerolinea: airline || clean(firstNonEmpty(row, ["aerolinea_nombre", "aerolinea nombre"])),
+      pasajeros: parseNumber(firstNonEmpty(row, ["totalpasajeros", "total_pasajeros", "pasajeros"])),
+      vuelos: parseNumber(firstNonEmpty(row, ["vuelos", "movimientos"])),
+      clasificacion: clean(firstNonEmpty(row, ["clasificacion", "clasificación"])),
+      tipoOperacion: clean(firstNonEmpty(row, ["comercial_av_gral", "comercial av gral"]))
+    });
+  }
+
+  function buildQuery(routeText, airportsGeojson, aliasText) {
+    state.qaRows = [];
+    state.qaCounts = {};
+    state.coverageByYear = new Map();
+
+    const airportMap = airportMetaFromGeojson(airportsGeojson);
+    const domesticIatas = new Set(airportMap.keys());
+    const aliasMap = aliasMapFromCSV(aliasText);
+    const raw = parseCSV(routeText);
+    const validRoutes = [];
+
+    raw.forEach(row => {
+      const ym = parseYearMonth(firstNonEmpty(row, ["anomes", "ano_mes", "año_mes", "fecha"]));
+      const route = clean(firstNonEmpty(row, ["citypair_iata", "citypair"])).toUpperCase();
+      const [endpointA, endpointB] = splitRoutePair(route);
+      const airlineSource = clean(firstNonEmpty(row, ["aerolinea_nombre", "aerolinea nombre", "aerolinea"]));
+      const opType = normalizeText(firstNonEmpty(row, ["comercial_av_gral", "comercial av gral"]));
+      const pax = parseNumber(firstNonEmpty(row, ["totalpasajeros", "total_pasajeros", "pasajeros", "pax"]));
+      const flights = parseNumber(firstNonEmpty(row, ["vuelos", "movimientos", "cantidad_vuelos"]));
+
+      if (!Number.isFinite(ym.year) || !Number.isFinite(ym.month)) {
+        addQa(row, "fecha_invalida", route, airlineSource);
+        return;
+      }
+      if (!endpointA || !endpointB) {
+        addQa(row, "ruta_invalida", route, airlineSource);
+        return;
+      }
+      if (!airlineSource) {
+        addQa(row, "sin_aerolinea", route, airlineSource);
+        return;
+      }
+      if (opType.includes("av general") || opType.includes("aviacion general") || opType === "av gral") {
+        addQa(row, "aviacion_general", route, airlineSource);
+        return;
+      }
+      if (endpointA === endpointB) {
+        addQa(row, "ruta_local", route, airlineSource);
+        return;
+      }
+      if (EXCLUDED_IATAS.has(endpointA) || EXCLUDED_IATAS.has(endpointB)) {
+        addQa(row, "aeropuerto_excluido", route, airlineSource);
+        return;
+      }
+      if (!(Number.isFinite(pax) && pax > 0)) {
+        if (Number.isFinite(flights) && flights > 0) addQa(row, "sin_pasajeros", route, airlineSource);
+        return;
+      }
+      if (!domesticIatas.has(endpointA) && !domesticIatas.has(endpointB)) {
+        addQa(row, "sin_aeropuerto_sna", route, airlineSource);
+        return;
+      }
+
+      const airline = canonicalAirline(airlineSource, aliasMap);
+      const type = trafficType(row, endpointA, endpointB, domesticIatas);
+      const normalized = {
+        year: ym.year,
+        month: ym.month,
+        route,
+        endpointA,
+        endpointB,
+        airline,
+        airlineSource,
+        type,
+        pax,
+        flights: Number.isFinite(flights) ? flights : 0
+      };
+      validRoutes.push(normalized);
+
+      if (!state.coverageByYear.has(ym.year)) state.coverageByYear.set(ym.year, new Set());
+      state.coverageByYear.get(ym.year).add(ym.month);
+    });
+
+    // Ranking nacional: se calcula sobre las filas originales de ruta válidas, antes de expandir aeropuertos.
+    const nationalByYearAirline = new Map();
+    const nationalTotalByYear = new Map();
+    validRoutes.forEach(r => {
+      const key = `${r.year}|${r.airline}`;
+      nationalByYearAirline.set(key, (nationalByYearAirline.get(key) || 0) + r.pax);
+      nationalTotalByYear.set(r.year, (nationalTotalByYear.get(r.year) || 0) + r.pax);
+    });
+
+    const ranks = new Map();
+    const years = [...new Set(validRoutes.map(r => r.year))];
+    years.forEach(year => {
+      const arr = [...nationalByYearAirline.entries()]
+        .filter(([key]) => Number(key.split("|")[0]) === year)
+        .map(([key, pax]) => ({ airline: key.split("|").slice(1).join("|"), pax }))
+        .sort((a, b) => b.pax - a.pax);
+      arr.forEach((d, i) => ranks.set(`${year}|${d.airline}`, i + 1));
+    });
+
+    // Expandir cada ruta a los aeropuertos argentinos válidos de sus extremos.
+    const agg = new Map();
+    validRoutes.forEach(r => {
+      const endpoints = [r.endpointA, r.endpointB].filter(iata => domesticIatas.has(iata));
+      endpoints.forEach(iata => {
+        const key = `${r.year}|${r.airline}|${iata}`;
+        if (!agg.has(key)) {
+          agg.set(key, {
+            anio: r.year,
+            aerolinea: r.airline,
+            iata,
+            pasajeros: 0,
+            vuelos: 0,
+            months: new Set(),
+            routes: new Set(),
+            types: new Set(),
+            sourceNames: new Set()
+          });
+        }
+        const a = agg.get(key);
+        a.pasajeros += r.pax;
+        a.vuelos += r.flights;
+        a.months.add(r.month);
+        a.routes.add(r.route);
+        a.types.add(r.type);
+        a.sourceNames.add(r.airlineSource);
+      });
+    });
+
+    const airportTotals = new Map();
+    agg.forEach(a => {
+      const key = `${a.anio}|${a.iata}`;
+      airportTotals.set(key, (airportTotals.get(key) || 0) + a.pasajeros);
+    });
+
+    const result = [];
+    agg.forEach(a => {
+      const meta = airportMap.get(a.iata) || { aeropuerto: a.iata, provincia: "", localidad: "" };
+      const s = statusFor(a.months, a.anio);
+      const nationalPax = nationalByYearAirline.get(`${a.anio}|${a.aerolinea}`) || 0;
+      const nationalTotal = nationalTotalByYear.get(a.anio) || 0;
+      const airportTotal = airportTotals.get(`${a.anio}|${a.iata}`) || 0;
+      let tipo = "";
+      if (a.types.has("Cabotaje") && a.types.has("Internacional")) tipo = "Mixto";
+      else tipo = [...a.types][0] || "";
+
+      result.push({
+        anio: a.anio,
+        rankingAnual: ranks.get(`${a.anio}|${a.aerolinea}`) || null,
+        aerolinea: a.aerolinea,
+        iata: a.iata,
+        aeropuerto: meta.aeropuerto,
+        localidad: meta.localidad,
+        provincia: meta.provincia,
+        tipoTrafico: tipo,
+        estadoOperacion: s.status,
+        mesesOperados: a.months.size,
+        maxMesesConsecutivos: s.maxConsecutive,
+        coberturaMeses: state.coverageByYear.get(a.anio)?.size || null,
+        rutasUnicas: a.routes.size,
+        rutasIata: [...a.routes].sort().join(" | "),
+        pasajeros: Math.round(a.pasajeros * 100) / 100,
+        vuelos: Math.round(a.vuelos * 100) / 100,
+        shareNacionalPct: nationalTotal ? nationalPax / nationalTotal * 100 : null,
+        shareAeropuertoPct: airportTotal ? a.pasajeros / airportTotal * 100 : null,
+        aerolineasFuente: [...a.sourceNames].sort().join(" | ")
+      });
+    });
+
+    return result.sort((a, b) => b.anio - a.anio || a.rankingAnual - b.rankingAnual || a.aerolinea.localeCompare(b.aerolinea, "es") || a.iata.localeCompare(b.iata));
+  }
+
+  function formatNumber(n, decimals = 0) {
+    if (n === null || n === undefined || Number.isNaN(Number(n))) return "–";
+    return Number(n).toLocaleString("es-AR", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  }
+
+  function formatFlexible(n) {
+    if (n === null || n === undefined || Number.isNaN(Number(n))) return "–";
+    const decimals = Math.abs(Number(n) - Math.round(Number(n))) > 1e-9 ? 1 : 0;
+    return formatNumber(n, decimals);
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function statusClass(status) {
+    if (status === "Regular") return "regular";
+    if (status === "Estacional") return "estacional";
+    return "revisar";
+  }
+
+  function populateFilters() {
+    const years = [...new Set(state.rows.map(r => r.anio))].sort((a, b) => b - a);
+    const airlines = [...new Set(state.rows.map(r => r.aerolinea))].sort((a, b) => a.localeCompare(b, "es"));
+    q("yearFilter").innerHTML = '<option value="">Todos</option>' + years.map(y => `<option value="${y}">${y}</option>`).join("");
+    q("airlineFilter").innerHTML = '<option value="">Todas</option>' + airlines.map(a => `<option value="${escapeHtml(a)}">${escapeHtml(a)}</option>`).join("");
+  }
+
+  function currentFilteredRows() {
+    const year = q("yearFilter").value;
+    const airline = q("airlineFilter").value;
+    const top = q("topFilter").value;
+    const status = q("statusFilter").value;
+    const traffic = q("trafficFilter").value;
+    const search = normalizeText(q("searchInput").value);
+
+    return state.rows.filter(r => {
+      if (year && String(r.anio) !== year) return false;
+      if (airline && r.aerolinea !== airline) return false;
+      if (top !== "all" && Number(r.rankingAnual) > Number(top)) return false;
+      if (status === "confirmed" && r.estadoOperacion === "A revisar") return false;
+      else if (status && status !== "confirmed" && r.estadoOperacion !== status) return false;
+      if (traffic && r.tipoTrafico !== traffic) return false;
+      if (search) {
+        const haystack = normalizeText([r.iata, r.aeropuerto, r.localidad, r.provincia, r.aerolinea].join(" "));
+        if (!haystack.includes(search)) return false;
+      }
+      return true;
+    });
+  }
+
+  function sortRows(rows) {
+    const key = state.sortKey;
+    const dir = state.sortDir;
+    return [...rows].sort((a, b) => {
+      const av = a[key];
+      const bv = b[key];
+      if (typeof av === "number" || typeof bv === "number") {
+        const an = Number(av);
+        const bn = Number(bv);
+        if (Number.isFinite(an) && Number.isFinite(bn) && an !== bn) return (an - bn) * dir;
+      }
+      const cmp = String(av ?? "").localeCompare(String(bv ?? ""), "es", { numeric: true, sensitivity: "base" });
+      if (cmp !== 0) return cmp * dir;
+      return b.anio - a.anio || a.rankingAnual - b.rankingAnual || a.iata.localeCompare(b.iata);
+    });
+  }
+
+  function render() {
+    const filtered = currentFilteredRows();
+    state.filtered = sortRows(filtered);
+    const tbody = q("dataTable").querySelector("tbody");
+    tbody.innerHTML = state.filtered.map(r => `
+      <tr title="Rutas: ${escapeHtml(r.rutasIata)}">
+        <td>${r.anio}</td>
+        <td class="num">${r.rankingAnual ?? "–"}</td>
+        <td class="airline">${escapeHtml(r.aerolinea)}</td>
+        <td class="iata">${escapeHtml(r.iata)}</td>
+        <td>${escapeHtml(r.aeropuerto)}</td>
+        <td>${escapeHtml(r.provincia)}</td>
+        <td>${escapeHtml(r.tipoTrafico)}</td>
+        <td><span class="status-tag ${statusClass(r.estadoOperacion)}">${escapeHtml(r.estadoOperacion)}</span></td>
+        <td class="num">${r.mesesOperados}</td>
+        <td class="num">${r.maxMesesConsecutivos}</td>
+        <td class="num">${r.rutasUnicas}</td>
+        <td class="num">${formatFlexible(r.pasajeros)}</td>
+        <td class="num">${formatFlexible(r.vuelos)}</td>
+        <td class="num">${formatNumber(r.shareNacionalPct, 1)}%</td>
+        <td class="num">${formatNumber(r.shareAeropuertoPct, 1)}%</td>
+      </tr>
+    `).join("");
+
+    const distinct = key => new Set(state.filtered.map(r => r[key])).size;
+    const confirmed = state.filtered.filter(r => r.estadoOperacion !== "A revisar").length;
+    q("kpiRows").textContent = formatNumber(state.filtered.length);
+    q("kpiAirlines").textContent = formatNumber(distinct("aerolinea"));
+    q("kpiAirports").textContent = formatNumber(distinct("iata"));
+    q("kpiYears").textContent = formatNumber(distinct("anio"));
+    q("kpiConfirmed").textContent = formatNumber(confirmed);
+    q("kpiQa").textContent = formatNumber(state.qaRows.length);
+    q("rowCount").textContent = `${formatNumber(state.filtered.length)} registros visibles de ${formatNumber(state.rows.length)} registros derivados`;
+  }
+
+  function renderQa() {
+    const labels = {
+      fecha_invalida: "Fecha inválida",
+      ruta_invalida: "Ruta inválida",
+      sin_aerolinea: "Sin aerolínea",
+      aviacion_general: "Aviación general",
+      ruta_local: "Ruta local",
+      aeropuerto_excluido: "Aeropuerto excluido",
+      sin_pasajeros: "Vuelos sin pasajeros",
+      sin_aeropuerto_sna: "Sin aeropuerto SNA"
+    };
+    q("qaGrid").innerHTML = Object.entries(state.qaCounts)
+      .sort((a, b) => b[1] - a[1])
+      .map(([key, value]) => `<div class="qa-item"><b>${escapeHtml(labels[key] || key)}</b><br>${formatNumber(value)} filas</div>`)
+      .join("");
+  }
+
+  function csvEscape(v) {
+    const s = String(v ?? "");
+    return /[;"\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+  }
+
+  const EXPORT_FIELDS = [
+    ["anio", "Año"],
+    ["rankingAnual", "Ranking anual"],
+    ["aerolinea", "Aerolínea"],
+    ["iata", "IATA"],
+    ["aeropuerto", "Aeropuerto"],
+    ["localidad", "Localidad"],
+    ["provincia", "Provincia"],
+    ["tipoTrafico", "Tipo de tráfico"],
+    ["estadoOperacion", "Estado de operación"],
+    ["mesesOperados", "Meses operados"],
+    ["maxMesesConsecutivos", "Máx. meses consecutivos"],
+    ["coberturaMeses", "Meses disponibles en fuente"],
+    ["rutasUnicas", "Rutas únicas"],
+    ["rutasIata", "Rutas IATA"],
+    ["pasajeros", "Pasajeros vinculados"],
+    ["vuelos", "Vuelos vinculados"],
+    ["shareNacionalPct", "Share nacional %"],
+    ["shareAeropuertoPct", "Share aeropuerto %"],
+    ["aerolineasFuente", "Aerolíneas fuente"]
+  ];
+
+  function rowsToCSV(rows) {
+    const header = EXPORT_FIELDS.map(([, label]) => csvEscape(label)).join(";");
+    const body = rows.map(r => EXPORT_FIELDS.map(([key]) => {
+      let value = r[key];
+      if (typeof value === "number" && !Number.isInteger(value)) value = String(Math.round(value * 100) / 100).replace(".", ",");
+      return csvEscape(value);
+    }).join(";")).join("\r\n");
+    return "\uFEFF" + header + "\r\n" + body;
+  }
+
+  function downloadBlob(content, mime, filename) {
+    const blob = new Blob([content], { type: mime });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  function filenameBase() {
+    const year = q("yearFilter").value || "todos-los-anios";
+    const airline = q("airlineFilter").value ? normalizeText(q("airlineFilter").value).replace(/[^a-z0-9]+/g, "-") : "todas-las-aerolineas";
+    return `operacion-aerolineas-aeropuertos_${year}_${airline}`;
+  }
+
+  function exportCSV() {
+    downloadBlob(rowsToCSV(state.filtered), "text/csv;charset=utf-8", filenameBase() + ".csv");
+  }
+
+  function exportJSON() {
+    const payload = {
+      generado: new Date().toISOString(),
+      fuente: SOURCES.routes,
+      exclusionesIata: [...EXCLUDED_IATAS],
+      filtros: {
+        anio: q("yearFilter").value || null,
+        aerolinea: q("airlineFilter").value || null,
+        topN: q("topFilter").value,
+        estado: q("statusFilter").value || null,
+        trafico: q("trafficFilter").value || null,
+        busqueda: q("searchInput").value || null
+      },
+      registros: state.filtered
+    };
+    downloadBlob(JSON.stringify(payload, null, 2), "application/json;charset=utf-8", filenameBase() + ".json");
+  }
+
+  function exportExcel() {
+    const rows = state.filtered;
+    const headers = EXPORT_FIELDS.map(([, label]) => `<th>${escapeHtml(label)}</th>`).join("");
+    const body = rows.map(r => `<tr>${EXPORT_FIELDS.map(([key]) => `<td>${escapeHtml(r[key])}</td>`).join("")}</tr>`).join("");
+    const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body><table border="1"><thead><tr>${headers}</tr></thead><tbody>${body}</tbody></table></body></html>`;
+    downloadBlob("\uFEFF" + html, "application/vnd.ms-excel;charset=utf-8", filenameBase() + ".xls");
+  }
+
+  function exportQa() {
+    const fields = ["motivo", "anomes", "ruta", "aerolinea", "pasajeros", "vuelos", "clasificacion", "tipoOperacion"];
+    const header = fields.join(";");
+    const body = state.qaRows.map(r => fields.map(k => csvEscape(r[k])).join(";")).join("\r\n");
+    downloadBlob("\uFEFF" + header + "\r\n" + body, "text/csv;charset=utf-8", "qa_descartados_operacion_aerolineas_aeropuertos.csv");
+  }
+
+  function enableControls(enabled) {
+    ["yearFilter", "airlineFilter", "topFilter", "statusFilter", "trafficFilter", "searchInput"].forEach(id => q(id).disabled = !enabled);
+    ["btnCsv", "btnXls", "btnJson", "btnQa"].forEach(id => q(id).disabled = !enabled);
+  }
+
+  async function load() {
+    enableControls(false);
+    q("status").className = "status warn";
+    q("status").textContent = "Cargando fuentes y construyendo la consulta…";
+    try {
+      const [routesText, airports, aliasesText] = await Promise.all([
+        fetchRequired(SOURCES.routes, "text"),
+        fetchRequired(SOURCES.airports, "json"),
+        fetchRequired(SOURCES.aliases, "text")
+      ]);
+      state.rows = buildQuery(routesText, airports, aliasesText);
+      populateFilters();
+      renderQa();
+      enableControls(true);
+      render();
+      const years = [...new Set(state.rows.map(r => r.anio))].sort((a, b) => a - b);
+      q("status").className = "status ok";
+      q("status").textContent = `Consulta lista: ${formatNumber(state.rows.length)} registros derivados, ${formatNumber(new Set(state.rows.map(r => r.aerolinea)).size)} aerolíneas y ${formatNumber(new Set(state.rows.map(r => r.iata)).size)} aeropuertos. Cobertura: ${years[0] ?? "–"}–${years[years.length - 1] ?? "–"}.`;
+    } catch (err) {
+      console.error(err);
+      q("status").className = "status err";
+      q("status").textContent = `No se pudo construir la consulta: ${err.message}. Verificá que este HTML esté en la raíz del repositorio y que las fuentes estén disponibles.`;
+    }
+  }
+
+  ["yearFilter", "airlineFilter", "topFilter", "statusFilter", "trafficFilter"].forEach(id => q(id).addEventListener("change", render));
+  q("searchInput").addEventListener("input", render);
+  q("btnReload").addEventListener("click", load);
+  q("btnCsv").addEventListener("click", exportCSV);
+  q("btnXls").addEventListener("click", exportExcel);
+  q("btnJson").addEventListener("click", exportJSON);
+  q("btnQa").addEventListener("click", exportQa);
+
+  q("dataTable").querySelectorAll("thead th[data-sort]").forEach(th => {
+    th.addEventListener("click", () => {
+      const key = th.dataset.sort;
+      if (state.sortKey === key) state.sortDir *= -1;
+      else {
+        state.sortKey = key;
+        state.sortDir = key === "anio" || key === "pasajeros" || key === "vuelos" || key.includes("Pct") ? -1 : 1;
+      }
+      render();
+    });
+  });
+
+  load();
+})();
+</script>
+</body>
+</html>
