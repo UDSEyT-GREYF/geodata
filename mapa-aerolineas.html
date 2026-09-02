@@ -155,8 +155,13 @@
 
   const map = L.map("map", {
     zoomControl: true,
-    minZoom: 3,
-    maxZoom: 12,
+    minZoom: 1,
+    maxZoom: 15,
+
+
+      zoomSnap: 0.25,
+      zoomDelta: 0.25,
+      wheelPxPerZoomLevel: 120,
     maxBounds: L.latLngBounds([[-60,-80],[-16,-48]])
   });
 
@@ -164,7 +169,7 @@
     "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png",
     {
       tms: true,
-      minZoom: 3,
+      minZoom: 1,
       maxZoom: 18,
       attribution: "© Instituto Geográfico Nacional + OpenStreetMap"
     }
