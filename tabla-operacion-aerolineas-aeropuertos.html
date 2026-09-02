@@ -246,9 +246,9 @@
 <div class="wrap">
   <div class="topbar">
     <div>
-      <h1>Operación de aerolíneas por aeropuerto y año <span class="small">v3</span></h1>
+      <h1>Operación de aerolíneas por aeropuerto y año <span class="small">v3.1</span></h1>
       <div class="subtitle">
-        Consulta derivada de <code>fuentes/rutasaereas.csv</code>. Una fila representa la presencia de un operador en un aeropuerto durante un año. La v3 mantiene la auditoría completa, clasifica el tipo de operador, corrige nombres problemáticos, normaliza marcas para la web y genera un JSON web separado sin operadores militares/estatales, cargueros ni aviación ejecutiva.
+        Consulta derivada de <code>fuentes/rutasaereas.csv</code>. Una fila representa la presencia de un operador en un aeropuerto durante un año. La v3.1 mantiene la auditoría completa y agrega una lectura 2023–2025: conserva las aerolíneas relevantes aunque hayan dejado de operar en 2025 y genera un índice por aerolínea para construir mapas nacionales por marca y año.
       </div>
     </div>
     <div class="actions">
@@ -256,7 +256,7 @@
       <button id="btnCsv" class="primary" type="button" disabled>Descargar CSV</button>
       <button id="btnXls" type="button" disabled>Descargar Excel .xls</button>
       <button id="btnJsonAudit" type="button" disabled>JSON auditoría</button>
-      <button id="btnJsonWeb" type="button" disabled>JSON web</button>
+      <button id="btnJsonWeb" type="button" disabled>JSON web / mapa</button>
       <button id="btnQa" class="danger" type="button" disabled>Descargar QA descartados</button>
     </div>
   </div>
@@ -944,6 +944,9 @@
       if (a.types.has("Cabotaje") && a.types.has("Internacional")) tipo = "Mixto";
       else tipo = [...a.types][0] || "";
 
+      const coords = meta.geometry?.type === "Point" && Array.isArray(meta.geometry.coordinates)
+        ? meta.geometry.coordinates
+        : [];
       result.push({
         anio: a.anio,
         rankingAnual: ranks.get(`${a.anio}|${a.aerolinea}`) || null,
@@ -956,6 +959,8 @@
         aeropuerto: meta.aeropuerto,
         localidad: meta.localidad,
         provincia: meta.provincia,
+        longitud: Number.isFinite(Number(coords[0])) ? Number(coords[0]) : null,
+        latitud: Number.isFinite(Number(coords[1])) ? Number(coords[1]) : null,
         tipoTrafico: tipo,
         estadoOperacion: s.status,
         mesesOperados: a.months.size,
@@ -1189,6 +1194,8 @@
           aeropuerto: r.aeropuerto,
           localidad: r.localidad,
           provincia: r.provincia,
+          longitud: r.longitud ?? null,
+          latitud: r.latitud ?? null,
           anios: {}
         });
       }
@@ -1231,7 +1238,7 @@
 
     return {
       metadata: {
-        version: 3,
+        version: "3.1",
         generado: new Date().toISOString(),
         fuente: SOURCES.routes,
         catalogoAeropuertos: SOURCES.airports,
@@ -1254,6 +1261,13 @@
     const years = [...new Set(sourceRows.map(r => r.anio))].sort((a, b) => a - b);
     const grouped = new Map();
 
+    const RECENT_YEARS = [2023, 2024, 2025];
+    const RELEVANCE = {
+      topN: 5,
+      minSharePct: 2,
+      minAnnualPax: 50000
+    };
+
     sourceRows.forEach(r => {
       const key = `${r.iata}|${r.anio}|${r.marcaWeb}`;
       if (!grouped.has(key)) {
@@ -1262,6 +1276,8 @@
           aeropuerto: r.aeropuerto,
           localidad: r.localidad,
           provincia: r.provincia,
+          longitud: r.longitud ?? null,
+          latitud: r.latitud ?? null,
           anio: r.anio,
           nombre: r.marcaWeb,
           logo: getAirlineLogoSrc(r.marcaWeb) || null,
@@ -1297,20 +1313,40 @@
     const airportMap = new Map();
     grouped.forEach(g => {
       if (!airportMap.has(g.iata)) {
-        airportMap.set(g.iata, { iata: g.iata, aeropuerto: g.aeropuerto, localidad: g.localidad, provincia: g.provincia, anios: {} });
+        airportMap.set(g.iata, {
+          iata: g.iata,
+          aeropuerto: g.aeropuerto,
+          localidad: g.localidad,
+          provincia: g.provincia,
+          longitud: g.longitud,
+          latitud: g.latitud,
+          anios: {}
+        });
       }
       const airport = airportMap.get(g.iata);
       const yearKey = String(g.anio);
-      if (!airport.anios[yearKey]) airport.anios[yearKey] = { cantidadAerolineas: 0, aerolineas: [] };
+      if (!airport.anios[yearKey]) {
+        airport.anios[yearKey] = {
+          cantidadAerolineas: 0,
+          cantidadAerolineasPasajeros: 0,
+          cantidadChartersPasajeros: 0,
+          aerolineas: []
+        };
+      }
       const total = airportYearTotals.get(`${g.iata}|${g.anio}`) || 0;
-      const traffic = g.traficos.has("Cabotaje") && g.traficos.has("Internacional") ? "Mixto" : ([...g.traficos][0] || "");
+      const traffic = g.traficos.has("Cabotaje") && g.traficos.has("Internacional")
+        ? "Mixto"
+        : ([...g.traficos][0] || "");
       const estado = g.estados.has("Regular") ? "Regular" : "Estacional";
+
       airport.anios[yearKey].aerolineas.push({
         nombre: g.nombre,
         logo: g.logo,
         estado,
         trafico: traffic,
-        tipoOperador: g.tiposOperador.has("aerolinea_pasajeros") ? "aerolinea_pasajeros" : "charter_pasajeros",
+        tipoOperador: g.tiposOperador.has("aerolinea_pasajeros")
+          ? "aerolinea_pasajeros"
+          : "charter_pasajeros",
         operadoresFuente: [...g.operadoresFuente].sort((a,b) => a.localeCompare(b,"es")),
         mesesOperados: g.mesesOperados,
         maxMesesConsecutivos: g.maxMesesConsecutivos,
@@ -1325,38 +1361,251 @@
     const aeropuertos = {};
     [...airportMap.keys()].sort().forEach(iata => {
       const airport = airportMap.get(iata);
+
       Object.values(airport.anios).forEach(y => {
-        y.aerolineas.sort((a,b) => (b.pasajerosVinculados || 0) - (a.pasajerosVinculados || 0) || a.nombre.localeCompare(b.nombre,"es"));
-        y.cantidadAerolineas = y.aerolineas.length;
+        y.aerolineas.sort((a,b) =>
+          (b.pasajerosVinculados || 0) - (a.pasajerosVinculados || 0)
+          || a.nombre.localeCompare(b.nombre,"es")
+        );
+        y.aerolineas.forEach((a, i) => { a.rankingAeropuerto = i + 1; });
+        y.cantidadAerolineas = y.aerolineas.length; // compatibilidad: todas las marcas visibles
+        y.cantidadAerolineasPasajeros = y.aerolineas.filter(a => a.tipoOperador === "aerolinea_pasajeros").length;
+        y.cantidadChartersPasajeros = y.aerolineas.filter(a => a.tipoOperador === "charter_pasajeros").length;
       });
+
+      // Resumen reciente para el zoom del aeropuerto.
+      // Una aerolínea relevante no desaparece si fue importante en 2023 o 2024 y ya no opera en 2025.
+      const recentByBrand = new Map();
+      RECENT_YEARS.forEach(year => {
+        const y = airport.anios[String(year)];
+        if (!y) return;
+        y.aerolineas.forEach(a => {
+          if (!recentByBrand.has(a.nombre)) recentByBrand.set(a.nombre, []);
+          recentByBrand.get(a.nombre).push({ year, row: a });
+        });
+      });
+
+      const principales = [];
+      const otrasConOperacion = [];
+
+      recentByBrand.forEach((entries, brand) => {
+        const aniosActivos = entries.map(e => e.year).sort((a,b) => a-b);
+        const pasajerosPeriodo = entries.reduce((s,e) => s + (Number(e.row.pasajerosVinculados) || 0), 0);
+        const vuelosPeriodo = entries.reduce((s,e) => s + (Number(e.row.vuelosVinculados) || 0), 0);
+        const mejorRanking = Math.min(...entries.map(e => Number(e.row.rankingAeropuerto) || 999));
+        const maxShare = Math.max(...entries.map(e => Number(e.row.shareAerolineasWebPct) || 0));
+        const maxPax = Math.max(...entries.map(e => Number(e.row.pasajerosVinculados) || 0));
+        const presente2025 = entries.some(e => e.year === 2025);
+        const tipoOperador = entries.some(e => e.row.tipoOperador === "aerolinea_pasajeros")
+          ? "aerolinea_pasajeros"
+          : "charter_pasajeros";
+
+        const esRelevante =
+          mejorRanking <= RELEVANCE.topN ||
+          maxShare >= RELEVANCE.minSharePct ||
+          maxPax >= RELEVANCE.minAnnualPax;
+
+        const item = {
+          nombre: brand,
+          logo: entries.map(e => e.row.logo).find(Boolean) || null,
+          tipoOperador,
+          aniosActivos,
+          presente2025,
+          ultimoAnio: Math.max(...aniosActivos),
+          pasajerosPeriodo: Math.round(pasajerosPeriodo * 100) / 100,
+          vuelosPeriodo: Math.round(vuelosPeriodo * 100) / 100,
+          mejorRankingAeropuerto: mejorRanking,
+          maxShareAerolineasWebPct: maxShare,
+          maxPasajerosAnuales: Math.round(maxPax * 100) / 100,
+          esRelevante,
+          detalleAnual: Object.fromEntries(entries.map(e => [String(e.year), {
+            estado: e.row.estado,
+            trafico: e.row.trafico,
+            pasajerosVinculados: e.row.pasajerosVinculados,
+            vuelosVinculados: e.row.vuelosVinculados,
+            shareAerolineasWebPct: e.row.shareAerolineasWebPct,
+            rankingAeropuerto: e.row.rankingAeropuerto
+          }]))
+        };
+
+        if (esRelevante) principales.push(item);
+        else {
+          otrasConOperacion.push({
+            nombre: brand,
+            tipoOperador,
+            aniosActivos,
+            presente2025
+          });
+        }
+      });
+
+      principales.sort((a,b) =>
+        Number(b.presente2025) - Number(a.presente2025)
+        || (b.pasajerosPeriodo || 0) - (a.pasajerosPeriodo || 0)
+        || a.nombre.localeCompare(b.nombre,"es")
+      );
+
+      otrasConOperacion.sort((a,b) =>
+        Number(b.presente2025) - Number(a.presente2025)
+        || a.nombre.localeCompare(b.nombre,"es")
+      );
+
+      airport.resumen2023_2025 = {
+        criterioRelevancia: {
+          topAeropuertoEnAlgunAnio: RELEVANCE.topN,
+          shareMinimoEnAlgunAnioPct: RELEVANCE.minSharePct,
+          pasajerosMinimosEnAlgunAnio: RELEVANCE.minAnnualPax,
+          regla: "Relevante si cumple al menos una condición en 2023, 2024 o 2025."
+        },
+        cantidadMarcasConOperacion: recentByBrand.size,
+        cantidadMarcasRelevantes: principales.length,
+        principales,
+        otrasConOperacion
+      };
+
       aeropuertos[iata] = airport;
+    });
+
+    // Índice inverso: aerolínea -> aeropuertos.
+    // Permite mapas nacionales sin recorrer todo el árbol aeropuerto -> año -> aerolínea.
+    const airlineIndexMap = new Map();
+
+    Object.values(aeropuertos).forEach(airport => {
+      const relevantSet = new Set((airport.resumen2023_2025?.principales || []).map(a => a.nombre));
+
+      RECENT_YEARS.forEach(year => {
+        const y = airport.anios[String(year)];
+        if (!y) return;
+
+        y.aerolineas.forEach(a => {
+          if (!airlineIndexMap.has(a.nombre)) {
+            airlineIndexMap.set(a.nombre, {
+              nombre: a.nombre,
+              logo: a.logo || null,
+              tipoOperador: a.tipoOperador,
+              anios: Object.fromEntries(RECENT_YEARS.map(yr => [String(yr), {
+                cantidadAeropuertos: 0,
+                aeropuertos: []
+              }]))
+            });
+          }
+
+          const idx = airlineIndexMap.get(a.nombre);
+          if (!idx.logo && a.logo) idx.logo = a.logo;
+          if (a.tipoOperador === "aerolinea_pasajeros") idx.tipoOperador = "aerolinea_pasajeros";
+
+          idx.anios[String(year)].aeropuertos.push({
+            iata: airport.iata,
+            aeropuerto: airport.aeropuerto,
+            localidad: airport.localidad,
+            provincia: airport.provincia,
+            longitud: airport.longitud,
+            latitud: airport.latitud,
+            estado: a.estado,
+            trafico: a.trafico,
+            tipoOperador: a.tipoOperador,
+            pasajerosVinculados: a.pasajerosVinculados,
+            vuelosVinculados: a.vuelosVinculados,
+            shareAerolineasWebPct: a.shareAerolineasWebPct,
+            rankingAeropuerto: a.rankingAeropuerto,
+            relevanteEnAeropuerto2023_2025: relevantSet.has(a.nombre)
+          });
+        });
+      });
+    });
+
+    const indiceAerolineas = {};
+    [...airlineIndexMap.keys()].sort((a,b) => a.localeCompare(b,"es")).forEach(brand => {
+      const idx = airlineIndexMap.get(brand);
+      const union = new Map();
+
+      RECENT_YEARS.forEach(year => {
+        const block = idx.anios[String(year)];
+        block.aeropuertos.sort((a,b) =>
+          (b.pasajerosVinculados || 0) - (a.pasajerosVinculados || 0)
+          || a.iata.localeCompare(b.iata)
+        );
+        block.cantidadAeropuertos = block.aeropuertos.length;
+
+        block.aeropuertos.forEach(a => {
+          if (!union.has(a.iata)) {
+            union.set(a.iata, {
+              iata: a.iata,
+              aeropuerto: a.aeropuerto,
+              localidad: a.localidad,
+              provincia: a.provincia,
+              longitud: a.longitud,
+              latitud: a.latitud,
+              aniosActivos: [],
+              presente2025: false,
+              pasajerosPeriodo: 0,
+              vuelosPeriodo: 0,
+              relevanteEnAeropuerto2023_2025: false
+            });
+          }
+          const u = union.get(a.iata);
+          u.aniosActivos.push(year);
+          u.presente2025 = u.presente2025 || year === 2025;
+          u.pasajerosPeriodo += Number(a.pasajerosVinculados) || 0;
+          u.vuelosPeriodo += Number(a.vuelosVinculados) || 0;
+          u.relevanteEnAeropuerto2023_2025 =
+            u.relevanteEnAeropuerto2023_2025 || Boolean(a.relevanteEnAeropuerto2023_2025);
+        });
+      });
+
+      const unionArr = [...union.values()].map(u => ({
+        ...u,
+        pasajerosPeriodo: Math.round(u.pasajerosPeriodo * 100) / 100,
+        vuelosPeriodo: Math.round(u.vuelosPeriodo * 100) / 100,
+        tipoPresencia: u.presente2025 ? "actual_2025" : "historica_reciente"
+      })).sort((a,b) =>
+        Number(b.presente2025) - Number(a.presente2025)
+        || (b.pasajerosPeriodo || 0) - (a.pasajerosPeriodo || 0)
+        || a.iata.localeCompare(b.iata)
+      );
+
+      idx.periodo2023_2025 = {
+        cantidadAeropuertos: unionArr.length,
+        cantidadAeropuertos2025: unionArr.filter(a => a.presente2025).length,
+        aeropuertos: unionArr
+      };
+
+      indiceAerolineas[brand] = idx;
     });
 
     return {
       metadata: {
-        version: 3,
+        version: "3.1",
         generado: new Date().toISOString(),
         fuente: SOURCES.routes,
         cobertura: { desde: years[0] ?? null, hasta: years[years.length - 1] ?? null },
-        criterio: "Fuente web: Regular + Estacional. Agrupa operadores por marca web y excluye carga, militar/estatal y aviación ejecutiva. Incluye aerolíneas y charters de pasajeros.",
+        criterio: "Fuente web: Regular + Estacional; agrupa operadores por marca web. Conserva aerolíneas y charters de pasajeros. Añade relevancia 2023–2025 y un índice por aerolínea para mapas nacionales.",
+        criterioRelevancia2023_2025: {
+          topAeropuertoEnAlgunAnio: RELEVANCE.topN,
+          shareMinimoEnAlgunAnioPct: RELEVANCE.minSharePct,
+          pasajerosMinimosEnAlgunAnio: RELEVANCE.minAnnualPax,
+          regla: "Una marca es relevante en un aeropuerto si en 2023, 2024 o 2025 fue Top 5, alcanzó al menos 2% del share web o 50.000 pasajeros vinculados."
+        },
         tiposIncluidos: ["aerolinea_pasajeros", "charter_pasajeros"],
         tiposExcluidos: ["carga", "militar_estatal", "aviacion_ejecutiva"],
+        mapasPrioritarios: ["Aerolíneas Argentinas", "Flybondi", "JetSMART"],
         aeropuertos: Object.keys(aeropuertos).length,
         marcas: new Set(sourceRows.map(r => r.marcaWeb)).size,
         registrosFuenteIncluidos: sourceRows.length,
         combinacionesAeropuertoMarca: new Set(sourceRows.map(r => `${r.iata}|${r.marcaWeb}`)).size,
         logoBasePath: "img/LogosAerolineas/"
       },
-      aeropuertos
+      aeropuertos,
+      indiceAerolineas
     };
   }
 
   function exportJsonAudit() {
-    downloadBlob(JSON.stringify(buildAuditJson(), null, 2), "application/json;charset=utf-8", "aerolineas_por_aeropuerto_2015_2025_auditoria_v3.json");
+    downloadBlob(JSON.stringify(buildAuditJson(), null, 2), "application/json;charset=utf-8", "aerolineas_por_aeropuerto_2015_2025_auditoria_v3_1.json");
   }
 
   function exportJsonWeb() {
-    downloadBlob(JSON.stringify(buildWebJson(), null, 2), "application/json;charset=utf-8", "aerolineas_por_aeropuerto_2015_2025_web_v3.json");
+    downloadBlob(JSON.stringify(buildWebJson(), null, 2), "application/json;charset=utf-8", "aerolineas_por_aeropuerto_2015_2025_web_v3_1.json");
   }
 
   function exportExcel() {
