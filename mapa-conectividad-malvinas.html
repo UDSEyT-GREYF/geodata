@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Conectividad aérea de las Islas Malvinas</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    :root{--ink:#17324d;--muted:#64748b;--line:#d8e0e8;--panel:#fff;--bg:#f5f7fa;--ida:#0f5b8d;--vuelta:#6b3fa0;--base:#718096;--ush:#d97706}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
+    body{display:flex;flex-direction:column}
+    header{background:#fff;border-bottom:1px solid var(--line);padding:11px 16px 9px;z-index:1000}
+    h1{font-size:20px;line-height:1.15;margin:0 0 3px;color:#17324d}
+    .subtitle{font-size:11px;color:var(--muted)}
+    .summary{margin-top:7px;display:flex;gap:7px;flex-wrap:wrap}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;background:#eef4f8;border:1px solid #d8e5ed;font-size:10px;color:#36546b}
+    main{position:relative;flex:1;min-height:0}
+    #map{position:absolute;inset:0;background:#eaf0f4}
+    .legend{background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:8px;padding:9px 10px;box-shadow:0 2px 8px rgba(0,0,0,.10);font-size:10px;line-height:1.35;color:#425466;max-width:295px}
+    .legend-title{font-weight:700;color:#17324d;margin-bottom:6px;font-size:11px}
+    .legend-row{display:flex;align-items:center;gap:7px;margin:5px 0}
+    .line{width:34px;height:0;border-top:3px solid;display:inline-block;flex:0 0 34px}
+    .line.base{border-color:var(--base);border-top-width:2px;opacity:.75}
+    .line.ida{border-color:var(--ida)}
+    .line.vuelta{border-color:var(--vuelta);border-top-style:dashed}
+    .line.ush{border-color:var(--ush);border-top-style:dashed;border-top-width:2px}
+    .iata-label{background:rgba(255,255,255,.92)!important;border:0!important;box-shadow:none!important;color:#17324d!important;font-size:9px!important;font-weight:700!important;padding:1px 3px!important;border-radius:2px!important;white-space:nowrap!important}
+    .iata-label:before{display:none!important}
+    .route-card{position:absolute;z-index:800;right:10px;top:10px;width:285px;background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:8px;padding:10px 11px;box-shadow:0 2px 10px rgba(0,0,0,.10);font-size:10px;line-height:1.35;color:#425466}
+    .route-card b{color:#17324d}
+    .route-card .k{font-weight:700;color:#0f5b8d}
+    .route-card button{margin-top:7px;border:1px solid #b9c6d3;border-radius:6px;background:#fff;padding:5px 8px;font-size:10px;color:#17324d;cursor:pointer}
+    @media(max-width:720px){h1{font-size:17px}.subtitle{display:none}.route-card{width:240px;top:auto;bottom:10px}}
+  </style>
+</head>
+<body>
+<header>
+  <h1>Conectividad aérea de las Islas Malvinas</h1>
+  <div class="subtitle">Servicio regular de LATAM · esquema semanal y escala mensual en territorio argentino · base cartográfica IGN</div>
+  <div class="summary">
+    <span class="pill">Servicio regular: semanal</span>
+    <span class="pill">Día habitual: sábado</span>
+    <span class="pill">Escala argentina: RGL, una vez por mes en cada sentido</span>
+  </div>
+</header>
+<main>
+  <div id="map"></div>
+  <div class="route-card">
+    <b>Cómo leer el mapa</b><br>
+    <span class="k">Ida con escala argentina:</span> SCL → PUQ → RGL → MPN (LA897 en los tramos PUQ–RGL–MPN).<br><br>
+    <span class="k" style="color:#6b3fa0">Regreso con escala argentina:</span> MPN → RGL → PUQ → SCL (LA896 en los tramos MPN–RGL–PUQ).<br><br>
+    El servicio entre Punta Arenas y MPN es semanal; la mayor parte de los sábados no incorpora RGL. La escala argentina suele darse en dos sábados consecutivos: ida y, al sábado siguiente, regreso.
+    <button id="toggleUsh">Mostrar desvío temporal por USH (2025)</button>
+  </div>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-polylinedecorator@1.6.0/dist/leaflet.polylineDecorator.js"></script>
+<script>
+(() => {
+  'use strict';
+  const C={ida:'#0f5b8d',vuelta:'#6b3fa0',base:'#718096',ush:'#d97706'};
+  const map=L.map('map',{zoomControl:true,minZoom:2,maxZoom:15,zoomSnap:.25,zoomDelta:.25,wheelPxPerZoomLevel:120,maxBounds:L.latLngBounds([[-61,-82],[-16,-47]])});
+  L.tileLayer('https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png',{
+    tms:true,minZoom:1,maxZoom:18,attribution:'© Instituto Geográfico Nacional + OpenStreetMap'
+  }).addTo(map);
+  const ARG_BOUNDS=L.latLngBounds(L.latLng(-56.5,-74.8),L.latLng(-20.5,-52.0));
+  map.fitBounds(ARG_BOUNDS,{padding:[8,8]});
+
+  const P={
+    SCL:{ll:[-33.3928,-70.7858],name:'Santiago (SCL)'},
+    PUQ:{ll:[-53.0026,-70.8546],name:'Punta Arenas (PUQ)'},
+    RGL:{ll:[-51.6089,-69.3126],name:'Río Gallegos (RGL)'},
+    USH:{ll:[-54.8433,-68.2958],name:'Ushuaia (USH)'},
+    MPN:{ll:[-51.8227996826,-58.4472007751],name:'Monte Agradable (MPN)'}
+  };
+
+  function airport(code,color=C.ida,radius=6){
+    const d=P[code];
+    const m=L.circleMarker(d.ll,{radius,weight:2,color,fillColor:'#fff',fillOpacity:1}).addTo(map);
+    m.bindTooltip(code,{permanent:true,direction:'top',offset:[0,-6],className:'iata-label',opacity:.96});
+    m.bindPopup(`<b>${d.name}</b>`);
+    return m;
+  }
+  airport('SCL',C.base,5); airport('PUQ',C.base,6); airport('RGL',C.ida,7); airport('MPN',C.ida,7);
+
+  // Servicio semanal de base. Se dibuja tenue: PUQ–MPN puede ser directo en las semanas sin escala argentina.
+  const base=L.polyline([P.SCL.ll,P.PUQ.ll,P.MPN.ll],{color:C.base,weight:2,opacity:.45,dashArray:'4 7'}).addTo(map);
+
+  // Las rutas de ida y vuelta se separan visualmente con puntos intermedios para que las flechas no se superpongan.
+  const idaPts=[P.SCL.ll,[-43.0,-72.2],P.PUQ.ll,[-52.55,-70.0],P.RGL.ll,[-51.95,-64.3],P.MPN.ll];
+  const vueltaPts=[P.MPN.ll,[-51.55,-64.0],P.RGL.ll,[-52.95,-69.65],P.PUQ.ll,[-42.7,-71.3],P.SCL.ll];
+  const ida=L.polyline(idaPts,{color:C.ida,weight:3.5,opacity:.95}).addTo(map);
+  const vuelta=L.polyline(vueltaPts,{color:C.vuelta,weight:3,opacity:.95,dashArray:'8 6'}).addTo(map);
+
+  function arrows(line,color,repeat='16%'){
+    if(!L.polylineDecorator) return;
+    L.polylineDecorator(line,{patterns:[{offset:'8%',repeat,symbol:L.Symbol.arrowHead({pixelSize:8,polygon:false,pathOptions:{stroke:true,weight:2,color}})}]}).addTo(map);
+  }
+  arrows(ida,C.ida); arrows(vuelta,C.vuelta);
+
+  const legend=L.control({position:'bottomleft'});
+  legend.onAdd=()=>{
+    const d=L.DomUtil.create('div','legend');
+    d.innerHTML=`<div class="legend-title">Referencias</div>
+      <div class="legend-row"><span class="line base"></span><span>Servicio semanal SCL–PUQ–MPN</span></div>
+      <div class="legend-row"><span class="line ida"></span><span>Ida mensual vía RGL · LA897</span></div>
+      <div class="legend-row"><span class="line vuelta"></span><span>Regreso mensual vía RGL · LA896</span></div>
+      <div class="legend-row"><span class="line ush"></span><span>Desvío temporal vía USH · sep–dic 2025</span></div>`;
+    return d;
+  }; legend.addTo(map);
+
+  const ushLayer=L.layerGroup();
+  const ushMarker=L.circleMarker(P.USH.ll,{radius:6,weight:2,color:C.ush,fillColor:'#fff',fillOpacity:1});
+  ushMarker.bindTooltip('USH',{permanent:true,direction:'top',offset:[0,-6],className:'iata-label',opacity:.96});
+  ushLayer.addLayer(ushMarker);
+  const ushOut=L.polyline([P.PUQ.ll,[-54.2,-69.5],P.USH.ll,[-53.6,-63.5],P.MPN.ll],{color:C.ush,weight:2.5,dashArray:'6 6',opacity:.9});
+  const ushBack=L.polyline([P.MPN.ll,[-53.9,-63.2],P.USH.ll,[-54.0,-69.8],P.PUQ.ll],{color:C.ush,weight:2,dashArray:'3 7',opacity:.7});
+  ushLayer.addLayer(ushOut); ushLayer.addLayer(ushBack);
+  let ushOn=false;
+  document.getElementById('toggleUsh').addEventListener('click',function(){
+    ushOn=!ushOn;
+    if(ushOn){ushLayer.addTo(map);this.textContent='Ocultar desvío temporal por USH (2025)';}
+    else{map.removeLayer(ushLayer);this.textContent='Mostrar desvío temporal por USH (2025)';}
+  });
+})();
+</script>
+</body>
+</html>
