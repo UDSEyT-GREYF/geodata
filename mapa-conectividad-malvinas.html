@@ -6,7 +6,7 @@
   <title>Conectividad aérea de las Islas Malvinas</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <style>
-    :root{--ink:#17324d;--muted:#64748b;--line:#d8e0e8;--panel:#fff;--bg:#f5f7fa;--ida:#0f5b8d;--vuelta:#6b3fa0;--base:#718096;--ush:#d97706;--sna:#5f6f82}
+    :root{--ink:#17324d;--muted:#64748b;--line:#d8e0e8;--bg:#f5f7fa;--ida:#0f5b8d;--vuelta:#6b3fa0;--base:#8a98a9;--ush:#d97706;--sna:#5f6f82}
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
     body{display:flex;flex-direction:column}
@@ -28,7 +28,7 @@
     .dot{width:10px;height:10px;border-radius:50%;display:inline-block;border:2px solid var(--sna);background:#fff;flex:0 0 10px}
     .iata-label{background:rgba(255,255,255,.92)!important;border:0!important;box-shadow:none!important;color:#17324d!important;font-size:9px!important;font-weight:700!important;padding:1px 3px!important;border-radius:2px!important;white-space:nowrap!important}
     .iata-label:before{display:none!important}
-    .route-card{position:absolute;z-index:800;right:10px;top:10px;width:290px;background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:8px;padding:10px 11px;box-shadow:0 2px 10px rgba(0,0,0,.10);font-size:10px;line-height:1.35;color:#425466}
+    .route-card{position:absolute;z-index:800;right:10px;top:10px;width:295px;background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:8px;padding:10px 11px;box-shadow:0 2px 10px rgba(0,0,0,.10);font-size:10px;line-height:1.35;color:#425466}
     .route-card b{color:#17324d}
     .route-card .k{font-weight:700;color:#0f5b8d}
     .route-card button{margin-top:7px;border:1px solid #b9c6d3;border-radius:6px;background:#fff;padding:5px 8px;font-size:10px;color:#17324d;cursor:pointer}
@@ -50,9 +50,9 @@
   <div id="map"></div>
   <div class="route-card">
     <b>Cómo leer el mapa</b><br>
-    <span class="k">Ida con escala argentina:</span> SCL → PUQ → RGL → MPN (LA897 en los tramos PUQ–RGL–MPN).<br><br>
-    <span class="k" style="color:#6b3fa0">Regreso con escala argentina:</span> MPN → RGL → PUQ → SCL (LA896 en los tramos MPN–RGL–PUQ).<br><br>
-    Se incorporan aeropuertos del SNA como referencia espacial, con marcación tenue para no competir con la ruta principal.
+    <span class="k">Ida con escala argentina:</span> SCL → PUQ → RGL → MPN.<br><br>
+    <span class="k" style="color:#6b3fa0">Regreso con escala argentina:</span> MPN → RGL → PUQ → SCL.<br><br>
+    En esta versión las trayectorias se separan más para distinguir mejor ambos sentidos de circulación y se suavizan las curvas de la ruta principal.
     <button id="toggleUsh">Mostrar desvío temporal por USH (2025)</button>
   </div>
 </main>
@@ -61,7 +61,8 @@
 <script>
 (() => {
   'use strict';
-  const C={ida:'#0f5b8d',vuelta:'#6b3fa0',base:'#718096',ush:'#d97706',sna:'#5f6f82'};
+  const C={ida:'#0f5b8d',vuelta:'#6b3fa0',base:'#8a98a9',ush:'#d97706',sna:'#5f6f82'};
+
   const map=L.map('map',{
     zoomControl:true,minZoom:2,maxZoom:15,zoomSnap:.25,zoomDelta:.25,wheelPxPerZoomLevel:120,
     maxBounds:L.latLngBounds([[-61,-82],[-16,-47]])
@@ -75,55 +76,25 @@
   map.fitBounds(ARG_BOUNDS,{padding:[8,8]});
 
   const P={
-    // Ruta principal
     SCL:{ll:[-33.3928,-70.7858],name:'Santiago (SCL)'},
     PUQ:{ll:[-53.0026,-70.8546],name:'Punta Arenas (PUQ)'},
     RGL:{ll:[-51.6089,-69.3126],name:'Río Gallegos (RGL)'},
     USH:{ll:[-54.8433,-68.2958],name:'Ushuaia (USH)'},
     MPN:{ll:[-51.8228,-58.4472],name:'Monte Agradable (MPN)'},
-
-    // Aeropuertos SNA de referencia territorial
-    AEP:{ll:[-34.5592,-58.4156],name:'Aeroparque (AEP)'},
-    EZE:{ll:[-34.8222,-58.5358],name:'Ezeiza (EZE)'},
-    EPA:{ll:[-34.6099,-58.6126],name:'El Palomar (EPA)'},
-    MDQ:{ll:[-37.9342,-57.5733],name:'Mar del Plata (MDQ)'},
-    BRC:{ll:[-41.1512,-71.1575],name:'Bariloche (BRC)'},
-    CRD:{ll:[-45.7853,-67.4655],name:'Comodoro Rivadavia (CRD)'},
-    PMY:{ll:[-42.7592,-65.1027],name:'Puerto Madryn (PMY)'},
-    REL:{ll:[-43.2105,-65.2703],name:'Trelew (REL)'},
-    RGA:{ll:[-53.7777,-67.7494],name:'Río Grande (RGA)'},
-    FTE:{ll:[-50.2803,-72.0531],name:'El Calafate (FTE)'},
-    COR:{ll:[-31.3236,-64.2080],name:'Córdoba (COR)'},
-    ROS:{ll:[-32.9036,-60.7850],name:'Rosario (ROS)'},
-    MDZ:{ll:[-32.8317,-68.7929],name:'Mendoza (MDZ)'},
-    NQN:{ll:[-38.9490,-68.1557],name:'Neuquén (NQN)'},
-    CPC:{ll:[-40.0754,-71.1373],name:'San Martín de los Andes (CPC)'},
-    VDM:{ll:[-40.8692,-63.0004],name:'Viedma (VDM)'},
-    RSA:{ll:[-36.5883,-64.2757],name:'Santa Rosa (RSA)'},
-    SLA:{ll:[-24.8560,-65.4862],name:'Salta (SLA)'},
-    JUJ:{ll:[-24.3928,-65.0978],name:'Jujuy (JUJ)'},
-    TUC:{ll:[-26.8409,-65.1049],name:'Tucumán (TUC)'},
-    CTC:{ll:[-28.5956,-65.7517],name:'Catamarca (CTC)'},
-    IRJ:{ll:[-29.3816,-66.7958],name:'La Rioja (IRJ)'},
-    UAQ:{ll:[-31.5715,-68.4182],name:'San Juan (UAQ)'},
-    LUQ:{ll:[-33.2732,-66.3564],name:'San Luis (LUQ)'},
-    AFA:{ll:[-34.5883,-68.4039],name:'San Rafael (AFA)'},
-    RCU:{ll:[-33.0851,-64.2613],name:'Río Cuarto (RCU)'},
-    PRA:{ll:[-31.7948,-60.4804],name:'Paraná (PRA)'},
-    SFN:{ll:[-31.7117,-60.8117],name:'Santa Fe (SFN)'},
-    CNQ:{ll:[-27.4455,-58.7619],name:'Corrientes (CNQ)'},
-    RES:{ll:[-27.4508,-59.0561],name:'Resistencia (RES)'},
-    FMA:{ll:[-26.2127,-58.2281],name:'Formosa (FMA)'},
-    PSS:{ll:[-27.3858,-55.9707],name:'Posadas (PSS)'},
-    IGR:{ll:[-25.7373,-54.4734],name:'Puerto Iguazú (IGR)'},
-    SDE:{ll:[-27.7656,-64.3101],name:'Santiago del Estero (SDE)'},
-    RHD:{ll:[-27.4966,-64.9360],name:'Termas de Río Hondo (RHD)'},
-    FDO:{ll:[-34.4532,-58.5896],name:'San Fernando (FDO)'},
-    LPG:{ll:[-34.9722,-57.8947],name:'La Plata (LPG)'},
-    COC:{ll:[-31.2969,-57.9966],name:'Concordia (COC)'},
-    NEC:{ll:[-38.4831,-58.8172],name:'Necochea (NEC)'},
-    VLG:{ll:[-37.2354,-57.0292],name:'Villa Gesell (VLG)'},
-    JNI:{ll:[-34.5459,-60.9306],name:'Junín (JNI)'}
+    AEP:{ll:[-34.5592,-58.4156],name:'Aeroparque (AEP)'}, EZE:{ll:[-34.8222,-58.5358],name:'Ezeiza (EZE)'}, EPA:{ll:[-34.6099,-58.6126],name:'El Palomar (EPA)'},
+    MDQ:{ll:[-37.9342,-57.5733],name:'Mar del Plata (MDQ)'}, BRC:{ll:[-41.1512,-71.1575],name:'Bariloche (BRC)'}, CRD:{ll:[-45.7853,-67.4655],name:'Comodoro Rivadavia (CRD)'},
+    PMY:{ll:[-42.7592,-65.1027],name:'Puerto Madryn (PMY)'}, REL:{ll:[-43.2105,-65.2703],name:'Trelew (REL)'}, RGA:{ll:[-53.7777,-67.7494],name:'Río Grande (RGA)'},
+    FTE:{ll:[-50.2803,-72.0531],name:'El Calafate (FTE)'}, COR:{ll:[-31.3236,-64.2080],name:'Córdoba (COR)'}, ROS:{ll:[-32.9036,-60.7850],name:'Rosario (ROS)'},
+    MDZ:{ll:[-32.8317,-68.7929],name:'Mendoza (MDZ)'}, NQN:{ll:[-38.9490,-68.1557],name:'Neuquén (NQN)'}, CPC:{ll:[-40.0754,-71.1373],name:'San Martín de los Andes (CPC)'},
+    VDM:{ll:[-40.8692,-63.0004],name:'Viedma (VDM)'}, RSA:{ll:[-36.5883,-64.2757],name:'Santa Rosa (RSA)'}, SLA:{ll:[-24.8560,-65.4862],name:'Salta (SLA)'},
+    JUJ:{ll:[-24.3928,-65.0978],name:'Jujuy (JUJ)'}, TUC:{ll:[-26.8409,-65.1049],name:'Tucumán (TUC)'}, CTC:{ll:[-28.5956,-65.7517],name:'Catamarca (CTC)'},
+    IRJ:{ll:[-29.3816,-66.7958],name:'La Rioja (IRJ)'}, UAQ:{ll:[-31.5715,-68.4182],name:'San Juan (UAQ)'}, LUQ:{ll:[-33.2732,-66.3564],name:'San Luis (LUQ)'},
+    AFA:{ll:[-34.5883,-68.4039],name:'San Rafael (AFA)'}, RCU:{ll:[-33.0851,-64.2613],name:'Río Cuarto (RCU)'}, PRA:{ll:[-31.7948,-60.4804],name:'Paraná (PRA)'},
+    SFN:{ll:[-31.7117,-60.8117],name:'Santa Fe (SFN)'}, CNQ:{ll:[-27.4455,-58.7619],name:'Corrientes (CNQ)'}, RES:{ll:[-27.4508,-59.0561],name:'Resistencia (RES)'},
+    FMA:{ll:[-26.2127,-58.2281],name:'Formosa (FMA)'}, PSS:{ll:[-27.3858,-55.9707],name:'Posadas (PSS)'}, IGR:{ll:[-25.7373,-54.4734],name:'Puerto Iguazú (IGR)'},
+    SDE:{ll:[-27.7656,-64.3101],name:'Santiago del Estero (SDE)'}, RHD:{ll:[-27.4966,-64.9360],name:'Termas de Río Hondo (RHD)'}, FDO:{ll:[-34.4532,-58.5896],name:'San Fernando (FDO)'},
+    LPG:{ll:[-34.9722,-57.8947],name:'La Plata (LPG)'}, COC:{ll:[-31.2969,-57.9966],name:'Concordia (COC)'}, NEC:{ll:[-38.4831,-58.8172],name:'Necochea (NEC)'},
+    VLG:{ll:[-37.2354,-57.0292],name:'Villa Gesell (VLG)'}, JNI:{ll:[-34.5459,-60.9306],name:'Junín (JNI)'}
   };
 
   function airport(code,{color=C.ida,radius=6,showLabel=true,fillColor='#fff',weight=2,opacity=1}={}){
@@ -139,84 +110,73 @@
     return m;
   }
 
-  function bezierPoint(p0,p1,p2,t){
-    const mt=1-t;
-    return [
-      (mt*mt*p0[0]) + (2*mt*t*p1[0]) + (t*t*p2[0]),
-      (mt*mt*p0[1]) + (2*mt*t*p1[1]) + (t*t*p2[1])
-    ];
-  }
-
-  function curveBetween(a,b,{bend=.18,side=1,steps=32}={}){
-    const lat1=a[0], lng1=a[1], lat2=b[0], lng2=b[1];
-    const mid=[(lat1+lat2)/2,(lng1+lng2)/2];
-    const dx=lat2-lat1, dy=lng2-lng1;
-    const len=Math.hypot(dx,dy) || 1;
-    const nx=(-dy/len), ny=(dx/len);
-    const ctrl=[mid[0]+nx*len*bend*side, mid[1]+ny*len*bend*side];
-    const pts=[];
-    for(let i=0;i<=steps;i++) pts.push(bezierPoint(a,ctrl,b,i/steps));
-    return pts;
-  }
-
-  function curvedPath(codes,segments){
+  // spline suave tipo Catmull-Rom
+  function smoothPath(points, samplesPerSeg=20){
+    if(points.length < 2) return points.slice();
+    const pts=[points[0], ...points, points[points.length-1]];
     const out=[];
-    for(let i=0;i<codes.length-1;i++){
-      const a=P[codes[i]].ll;
-      const b=P[codes[i+1]].ll;
-      const pts=curveBetween(a,b,segments[i]||{});
-      if(i>0) pts.shift();
-      out.push(...pts);
+    for(let i=0;i<pts.length-3;i++){
+      const p0=pts[i], p1=pts[i+1], p2=pts[i+2], p3=pts[i+3];
+      for(let j=0;j<samplesPerSeg;j++){
+        const t=j/samplesPerSeg;
+        const t2=t*t, t3=t2*t;
+        const lat=0.5*((2*p1[0])+(-p0[0]+p2[0])*t+(2*p0[0]-5*p1[0]+4*p2[0]-p3[0])*t2+(-p0[0]+3*p1[0]-3*p2[0]+p3[0])*t3);
+        const lng=0.5*((2*p1[1])+(-p0[1]+p2[1])*t+(2*p0[1]-5*p1[1]+4*p2[1]-p3[1])*t2+(-p0[1]+3*p1[1]-3*p2[1]+p3[1])*t3);
+        out.push([lat,lng]);
+      }
     }
+    out.push(points[points.length-1]);
     return out;
   }
 
-  // Nodos principales de la ruta Malvinas
+  // Nodos principales
   airport('SCL',{color:C.base,radius:5});
   airport('PUQ',{color:C.base,radius:6});
   airport('RGL',{color:C.ida,radius:7});
   airport('MPN',{color:C.ida,radius:7});
 
-  // Resto del SNA, marcación tenue
-  const EXTRA_CODES = Object.keys(P).filter(k => !['SCL','PUQ','RGL','USH','MPN'].includes(k));
-  EXTRA_CODES.forEach(code => airport(code,{color:C.sna,radius:3.6,weight:1.5,showLabel:false,opacity:.9}));
+  // Resto del SNA
+  Object.keys(P)
+    .filter(k => !['SCL','PUQ','RGL','USH','MPN'].includes(k))
+    .forEach(code => airport(code,{color:C.sna,radius:3.6,weight:1.5,showLabel:false,opacity:.9}));
 
-  // Servicio semanal de base
-  const basePts=curvedPath(['SCL','PUQ','MPN'],[
-    {bend:.12,side:.9,steps:28},
-    {bend:.18,side:-1,steps:40}
-  ]);
-  const base=L.polyline(basePts,{color:C.base,weight:2,opacity:.45,dashArray:'4 7'}).addTo(map);
+  // Ruta base semanal, muy tenue
+  const basePts = smoothPath([
+    P.SCL.ll,[-39.5,-70.9],[-46.0,-70.9],P.PUQ.ll,[-53.0,-67.0],[-52.5,-62.0],P.MPN.ll
+  ],18);
+  const base=L.polyline(basePts,{color:C.base,weight:2,opacity:.35,dashArray:'4 7'}).addTo(map);
 
-  // Rutas de ida y vuelta más curvas y separadas visualmente
-  const idaPts=curvedPath(['SCL','PUQ','RGL','MPN'],[
-    {bend:.18,side:1,steps:30},
-    {bend:.16,side:1,steps:26},
-    {bend:.34,side:-1,steps:38}
-  ]);
-  const vueltaPts=curvedPath(['MPN','RGL','PUQ','SCL'],[
-    {bend:.28,side:1,steps:38},
-    {bend:.16,side:-1,steps:26},
-    {bend:.20,side:-1,steps:30}
-  ]);
+  // Ida: por el oeste entre SCL y PUQ, y arco superior hacia MPN
+  const idaPts = smoothPath([
+    P.SCL.ll,[-36.8,-71.4],[-42.5,-72.0],[-48.0,-71.8],P.PUQ.ll,
+    [-52.4,-70.6],P.RGL.ll,[-50.9,-66.6],[-50.7,-62.0],P.MPN.ll
+  ],22);
 
-  const ida=L.polyline(idaPts,{color:C.ida,weight:3.5,opacity:.95}).addTo(map);
-  const vuelta=L.polyline(vueltaPts,{color:C.vuelta,weight:3,opacity:.95,dashArray:'8 6'}).addTo(map);
+  // Vuelta: separada hacia el este para que se lea claramente como otro sentido
+  const vueltaPts = smoothPath([
+    P.MPN.ll,[-52.6,-59.2],[-52.3,-64.2],P.RGL.ll,
+    [-53.0,-69.8],P.PUQ.ll,[-48.8,-69.8],[-42.0,-69.4],[-36.2,-69.3],P.SCL.ll
+  ],22);
 
-  function arrows(line,color,repeat='16%'){
+  const ida=L.polyline(idaPts,{color:C.ida,weight:3.5,opacity:.96}).addTo(map);
+  const vuelta=L.polyline(vueltaPts,{color:C.vuelta,weight:3,opacity:.96,dashArray:'8 6'}).addTo(map);
+  ida.bringToFront();
+  vuelta.bringToFront();
+
+  function arrows(line,color,repeat='18%',offset='10%'){
     if(!L.polylineDecorator) return;
-    L.polylineDecorator(line,{patterns:[{offset:'8%',repeat,symbol:L.Symbol.arrowHead({pixelSize:8,polygon:false,pathOptions:{stroke:true,weight:2,color}})}]}).addTo(map);
+    L.polylineDecorator(line,{patterns:[{offset,repeat,symbol:L.Symbol.arrowHead({pixelSize:8,polygon:false,pathOptions:{stroke:true,weight:2,color}})}]}).addTo(map);
   }
-  arrows(ida,C.ida);
-  arrows(vuelta,C.vuelta);
+  arrows(ida,C.ida,'18%','10%');
+  arrows(vuelta,C.vuelta,'18%','13%');
 
   const legend=L.control({position:'bottomleft'});
   legend.onAdd=()=>{
     const d=L.DomUtil.create('div','legend');
     d.innerHTML=`<div class="legend-title">Referencias</div>
       <div class="legend-row"><span class="line base"></span><span>Servicio semanal SCL–PUQ–MPN</span></div>
-      <div class="legend-row"><span class="line ida"></span><span>Ida mensual vía RGL · LA897</span></div>
-      <div class="legend-row"><span class="line vuelta"></span><span>Regreso mensual vía RGL · LA896</span></div>
+      <div class="legend-row"><span class="line ida"></span><span>Ida mensual vía RGL</span></div>
+      <div class="legend-row"><span class="line vuelta"></span><span>Regreso mensual vía RGL</span></div>
       <div class="legend-row"><span class="line ush"></span><span>Desvío temporal vía USH · sep–dic 2025</span></div>
       <div class="legend-row"><span class="dot"></span><span>Aeropuertos del SNA (referencia territorial)</span></div>`;
     return d;
@@ -228,17 +188,14 @@
   ushMarker.bindTooltip('USH',{permanent:true,direction:'top',offset:[0,-6],className:'iata-label',opacity:.96});
   ushLayer.addLayer(ushMarker);
 
-  const ushOutPts=curvedPath(['PUQ','USH','MPN'],[
-    {bend:.18,side:1,steps:24},
-    {bend:.30,side:-1,steps:38}
-  ]);
-  const ushBackPts=curvedPath(['MPN','USH','PUQ'],[
-    {bend:.28,side:1,steps:38},
-    {bend:.18,side:-1,steps:24}
-  ]);
+  const ushOut=L.polyline(smoothPath([
+    P.PUQ.ll,[-53.6,-70.2],P.USH.ll,[-54.0,-64.5],[-53.2,-61.2],P.MPN.ll
+  ],20),{color:C.ush,weight:2.5,dashArray:'6 6',opacity:.9});
 
-  const ushOut=L.polyline(ushOutPts,{color:C.ush,weight:2.5,dashArray:'6 6',opacity:.9});
-  const ushBack=L.polyline(ushBackPts,{color:C.ush,weight:2,dashArray:'3 7',opacity:.7});
+  const ushBack=L.polyline(smoothPath([
+    P.MPN.ll,[-54.0,-60.2],[-54.5,-64.8],P.USH.ll,[-53.8,-69.7],P.PUQ.ll
+  ],20),{color:C.ush,weight:2,dashArray:'3 7',opacity:.7});
+
   ushLayer.addLayer(ushOut);
   ushLayer.addLayer(ushBack);
 
