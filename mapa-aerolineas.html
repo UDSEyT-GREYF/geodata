@@ -8,21 +8,18 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
   <style>
-    :root {
+    :root{
       --ink:#17324d;
       --muted:#64748b;
       --line:#d8e0e8;
-      --panel:#ffffff;
       --bg:#f5f7fa;
       --accent:#0f5b8d;
+      --map-color:#005b96;
     }
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
     body{display:flex;flex-direction:column}
-    header{
-      background:#fff;border-bottom:1px solid var(--line);
-      padding:12px 18px 10px;z-index:1000;
-    }
+    header{background:#fff;border-bottom:1px solid var(--line);padding:12px 18px 10px;z-index:1000}
     .topline{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
     .title-wrap{flex:1;min-width:280px}
     h1{font-size:20px;line-height:1.15;margin:0 0 3px}
@@ -30,50 +27,21 @@
     .controls{display:flex;gap:8px;align-items:end;flex-wrap:wrap}
     .field{display:flex;flex-direction:column;gap:3px}
     .field label{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#64748b}
-    select{
-      min-width:160px;border:1px solid #b9c6d3;border-radius:7px;
-      background:#fff;padding:7px 28px 7px 9px;font-size:12px;color:#17324d;
-    }
+    select{min-width:190px;border:1px solid #b9c6d3;border-radius:7px;background:#fff;padding:7px 28px 7px 9px;font-size:12px;color:#17324d}
     #periodSelect{min-width:120px}
-    .summary{
-      margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;
-    }
-    .pill{
-      display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;
-      background:#eef4f8;border:1px solid #d8e5ed;font-size:10px;color:#36546b;
-    }
-    .logo{height:24px;max-width:110px;object-fit:contain;display:none}
+    .summary{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;background:#eef4f8;border:1px solid #d8e5ed;font-size:10px;color:#36546b}
+    .logo{height:26px;max-width:120px;object-fit:contain;display:none}
     main{position:relative;flex:1;min-height:0}
     #map{position:absolute;inset:0;background:#eaf0f4}
-    #status{
-      position:absolute;z-index:900;left:10px;bottom:10px;
-      background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:7px;
-      padding:7px 9px;font-size:10px;color:#425466;box-shadow:0 2px 8px rgba(0,0,0,.08)
-    }
-    .legend{
-      background:rgba(255,255,255,.95);border:1px solid var(--line);border-radius:7px;
-      padding:8px 9px;box-shadow:0 2px 8px rgba(0,0,0,.08);
-      font-size:10px;line-height:1.35;color:#425466;
-    }
+    #status{position:absolute;z-index:900;left:10px;bottom:10px;background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:7px;padding:7px 9px;font-size:10px;color:#425466;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+    .legend{background:rgba(255,255,255,.95);border:1px solid var(--line);border-radius:7px;padding:8px 9px;box-shadow:0 2px 8px rgba(0,0,0,.08);font-size:10px;line-height:1.35;color:#425466}
     .legend-title{font-weight:700;color:#17324d;margin-bottom:5px}
     .legend-row{display:flex;align-items:center;gap:6px;margin:4px 0}
     .dot{width:12px;height:12px;border-radius:50%;display:inline-block;border:2px solid #444;background:#fff}
     .dot.current{border-color:var(--map-color);background:var(--map-color)}
     .dot.historical{border-color:#7a8793;background:#fff}
-    .iata-label{
-      background:rgba(255,255,255,.90)!important;
-      border:0!important;
-      box-shadow:none!important;
-      color:#17324d!important;
-      font-size:8px!important;
-      line-height:1.05!important;
-      font-weight:700!important;
-      letter-spacing:.01em!important;
-      white-space:nowrap!important;
-      padding:1px 2px!important;
-      border-radius:2px!important;
-      pointer-events:none!important;
-    }
+    .iata-label{background:rgba(255,255,255,.90)!important;border:0!important;box-shadow:none!important;color:#17324d!important;font-size:8px!important;line-height:1.05!important;font-weight:700!important;letter-spacing:.01em!important;white-space:nowrap!important;padding:1px 2px!important;border-radius:2px!important;pointer-events:none!important}
     .iata-label:before{display:none!important}
     .popup-title{font-weight:700;font-size:12px;margin-bottom:3px}
     .popup-sub{color:#64748b;font-size:10px;margin-bottom:7px}
@@ -102,11 +70,7 @@
     <div class="controls">
       <div class="field">
         <label for="airlineSelect">Aerolínea</label>
-        <select id="airlineSelect">
-          <option>Aerolíneas Argentinas</option>
-          <option>Flybondi</option>
-          <option>JetSMART</option>
-        </select>
+        <select id="airlineSelect"></select>
       </div>
       <div class="field">
         <label for="periodSelect">Período</label>
@@ -123,6 +87,7 @@
   <div class="summary">
     <span id="countPill" class="pill">— aeropuertos</span>
     <span id="paxPill" class="pill">— pasajeros vinculados</span>
+    <span id="trafficPill" class="pill">—</span>
     <span id="periodPill" class="pill">Período: 2025</span>
   </div>
 </header>
@@ -133,16 +98,9 @@
 </main>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
 <script>
 (() => {
   "use strict";
-
-  if (typeof L === "undefined") {
-    const status = document.getElementById("status");
-    if (status) status.textContent = "Error: Leaflet no pudo cargarse.";
-    throw new Error("Leaflet no pudo cargarse.");
-  }
 
   const DATA_CANDIDATES = [
     "fuentes/aerolineas_por_aeropuerto_2015_2025_web_v3_2.json",
@@ -150,335 +108,295 @@
     "aerolineas_por_aeropuerto_2015_2025_web_v3_2.json"
   ];
 
-  const COLORS = {
-    "Aerolíneas Argentinas": "#005b96",
-    "Flybondi": "#f0c400",
-    "JetSMART": "#b21f2d"
+  const PRIORITY = ["Aerolíneas Argentinas", "Flybondi", "JetSMART"];
+
+  const BRAND_COLORS = {
+    "Aerolíneas Argentinas":"#005b96",
+    "Flybondi":"#f0c400",
+    "JetSMART":"#b21f2d",
+    "LATAM":"#d71920",
+    "GOL":"#f58220",
+    "Copa":"#1f4e9e",
+    "Iberia":"#c8102e",
+    "American Airlines":"#0b5fa5",
+    "Avianca":"#d50000",
+    "Sky Airline":"#ff4f87",
+    "Andes":"#6f2c91",
+    "LADE":"#3f6f53",
+    "American Jet":"#00a1c9"
   };
+  const FALLBACK_COLORS = ["#355c7d","#6c5b7b","#c06c84","#2a9d8f","#e76f51","#457b9d","#8d6e63","#7b2cbf","#2d6a4f","#ca6702"];
 
-  const ARG_BOUNDS = L.latLngBounds(
-    L.latLng(-56.3, -74.7),
-    L.latLng(-20.5, -52.0)
-  );
-
-  const map = L.map("map", {
-    zoomControl: true,
-    minZoom: 1,
-    maxZoom: 15,
-    zoomSnap: 0.25,
-    zoomDelta: 0.25,
-    wheelPxPerZoomLevel: 120,
-    maxBounds: L.latLngBounds([[-60,-80],[-16,-48]])
-  });
-
-  L.tileLayer(
-    "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png",
-    {
-      tms: true,
-      minZoom: 1,
-      maxZoom: 18,
-      attribution: "© Instituto Geográfico Nacional + OpenStreetMap"
-    }
-  ).addTo(map);
-
-  map.fitBounds(ARG_BOUNDS, { padding: [10,10] });
-
-  const layer = L.layerGroup().addTo(map);
   const $ = id => document.getElementById(id);
   const fmt = new Intl.NumberFormat("es-AR", { maximumFractionDigits: 0 });
-
   let db = null;
   let labelEntries = [];
   let labelRefreshQueued = false;
 
-  function setStatus(msg) {
-    $("status").textContent = msg;
+  function setStatus(msg){ $("status").textContent = msg; }
+
+  function hashColor(name){
+    if (BRAND_COLORS[name]) return BRAND_COLORS[name];
+    let h = 0;
+    for (const ch of String(name)) h = ((h << 5) - h + ch.charCodeAt(0)) | 0;
+    return FALLBACK_COLORS[Math.abs(h) % FALLBACK_COLORS.length];
   }
 
-  async function loadJson() {
+  async function loadJson(){
     let lastError = null;
-    for (const url of DATA_CANDIDATES) {
-      try {
-        const r = await fetch(url, { cache: "no-store" });
-        if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
+    for (const url of DATA_CANDIDATES){
+      try{
+        const r = await fetch(url, {cache:"no-store"});
+        if(!r.ok) throw new Error(`${r.status} ${r.statusText}`);
         setStatus(`Datos: ${url}`);
         return await r.json();
-      } catch (e) {
-        lastError = e;
+      }catch(e){ lastError = e; }
+    }
+    throw new Error(`No se encontró el JSON. ${lastError || ""}`);
+  }
+
+  function getRows(airline, period){
+    const idx = db?.indiceAerolineas?.[airline];
+    if(!idx) return [];
+    if(period === "2023_2025"){
+      return (idx.periodo2023_2025?.aeropuertos || []).map(d => ({...d}));
+    }
+    return (idx.anios?.[period]?.aeropuertos || []).map(d => ({...d, aniosActivos:[Number(period)]}));
+  }
+
+  function periodLabel(period){ return period === "2023_2025" ? "2023–2025" : period; }
+
+  function scoreForPeriod(name, period){
+    return getRows(name, period).reduce((acc,d) => acc + Number(d.pasajerosVinculados ?? d.pasajerosPeriodo ?? 0), 0);
+  }
+
+  function trafficForAirline(name){
+    const allRows = [2023,2024,2025].flatMap(y => getRows(name, String(y)));
+    const vals = new Set(allRows.map(d => String(d.trafico || "").toLowerCase()).filter(Boolean));
+    if(vals.has("mixto")) return "Mixto";
+    const hasCab = [...vals].some(v => v.includes("cabotaje"));
+    const hasInt = [...vals].some(v => v.includes("internacional"));
+    if(hasCab && hasInt) return "Mixto";
+    if(hasCab) return "Cabotaje";
+    if(hasInt) return "Internacional";
+    return "Sin clasificar";
+  }
+
+  function isPassengerAirline(idx){
+    return !idx?.tipoOperador || idx.tipoOperador === "aerolinea_pasajeros";
+  }
+
+  function activeRecent(name){
+    return ["2023","2024","2025"].some(y => getRows(name, y).length > 0);
+  }
+
+  function rebuildAirlineSelect(preserve = true){
+    const sel = $("airlineSelect");
+    const old = preserve ? sel.value : "Aerolíneas Argentinas";
+    const period = $("periodSelect").value;
+    const index = db?.indiceAerolineas || {};
+
+    const names = Object.keys(index)
+      .filter(name => isPassengerAirline(index[name]))
+      .filter(activeRecent);
+
+    names.sort((a,b) => {
+      const pa = PRIORITY.indexOf(a), pb = PRIORITY.indexOf(b);
+      if(pa >= 0 || pb >= 0){
+        if(pa < 0) return 1;
+        if(pb < 0) return -1;
+        return pa - pb;
       }
-    }
-    throw new Error(`No se encontró el JSON. Probé: ${DATA_CANDIDATES.join(", ")}. ${lastError || ""}`);
-  }
-
-  function radiusScale(rows) {
-    const vals = rows.map(d => Number(d.pasajerosVinculados || d.pasajerosPeriodo || 0)).filter(v => v > 0);
-    if (!vals.length) return () => 7;
-    const max = Math.max(...vals);
-    return v => {
-      if (!v || max <= 0) return 6;
-      return 6 + 11 * Math.sqrt(v / max);
-    };
-  }
-
-  function boxesOverlap(a, b, pad = 2) {
-    return !(
-      a.right + pad <= b.left ||
-      a.left >= b.right + pad ||
-      a.bottom + pad <= b.top ||
-      a.top >= b.bottom + pad
-    );
-  }
-
-  function estimatedLabelSize(iata) {
-    const chars = String(iata || "").trim().length;
-    return {
-      width: Math.max(20, chars * 5.1 + 6),
-      height: 12
-    };
-  }
-
-  function labelCandidates(radius) {
-    const r = Math.max(6, Number(radius) || 6);
-    return [
-      [0, -(r + 9)],
-      [r + 13, -(r + 4)],
-      [r + 16, 0],
-      [r + 13, r + 4],
-      [0, r + 10],
-      [-(r + 13), r + 4],
-      [-(r + 16), 0],
-      [-(r + 13), -(r + 4)],
-      [0, -(r + 18)],
-      [r + 24, 0],
-      [0, r + 19],
-      [-(r + 24), 0]
-    ];
-  }
-
-  function candidateBox(entry, dx, dy) {
-    const p = entry.point || map.latLngToContainerPoint(entry.marker.getLatLng());
-    const size = estimatedLabelSize(entry.iata);
-    const cx = p.x + dx;
-    const cy = p.y + dy;
-    return {
-      left: cx - size.width / 2,
-      right: cx + size.width / 2,
-      top: cy - size.height / 2,
-      bottom: cy + size.height / 2
-    };
-  }
-
-  function boxInsideMap(box) {
-    const size = map.getSize();
-    const margin = 3;
-    return box.left >= margin && box.top >= margin && box.right <= size.x - margin && box.bottom <= size.y - margin;
-  }
-
-  function chooseLabelOffset(entry, occupied) {
-    const candidates = labelCandidates(entry.radius);
-
-    for (const [dx, dy] of candidates) {
-      const box = candidateBox(entry, dx, dy);
-      if (!boxInsideMap(box)) continue;
-      if (occupied.some(other => boxesOverlap(box, other, 2))) continue;
-      occupied.push(box);
-      return [dx, dy];
-    }
-
-    for (let ring = 1; ring <= 7; ring++) {
-      const distance = entry.radius + 20 + ring * 8;
-      for (let angle = -90; angle < 270; angle += 45) {
-        const rad = angle * Math.PI / 180;
-        const dx = Math.round(Math.cos(rad) * distance);
-        const dy = Math.round(Math.sin(rad) * distance);
-        const box = candidateBox(entry, dx, dy);
-        if (!boxInsideMap(box)) continue;
-        if (occupied.some(other => boxesOverlap(box, other, 2))) continue;
-        occupied.push(box);
-        return [dx, dy];
-      }
-    }
-
-    const fallback = [0, -(entry.radius + 10)];
-    occupied.push(candidateBox(entry, fallback[0], fallback[1]));
-    return fallback;
-  }
-
-  function refreshLabelPositions() {
-    if (!labelEntries.length) return;
-
-    const entries = labelEntries.map(entry => ({
-      ...entry,
-      point: map.latLngToContainerPoint(entry.marker.getLatLng()),
-      density: 0
-    }));
-
-    entries.forEach(entry => {
-      entry.density = entries.reduce((count, other) => {
-        if (entry === other) return count;
-        return count + (entry.point.distanceTo(other.point) < 55 ? 1 : 0);
-      }, 0);
+      return scoreForPeriod(b, period) - scoreForPeriod(a, period) || a.localeCompare(b,"es");
     });
 
-    entries.sort((a, b) =>
-      (b.density - a.density) ||
-      (b.radius - a.radius) ||
-      String(a.iata).localeCompare(String(b.iata))
-    );
+    sel.innerHTML = "";
+    const groups = {
+      "Principales": [],
+      "Cabotaje y mixtas": [],
+      "Internacionales": [],
+      "Otras": []
+    };
 
-    const occupied = [];
+    for(const name of names){
+      const traffic = trafficForAirline(name);
+      if(PRIORITY.includes(name)) groups["Principales"].push(name);
+      else if(traffic === "Cabotaje" || traffic === "Mixto") groups["Cabotaje y mixtas"].push(name);
+      else if(traffic === "Internacional") groups["Internacionales"].push(name);
+      else groups["Otras"].push(name);
+    }
 
-    entries.forEach(entry => {
-      const [dx, dy] = chooseLabelOffset(entry, occupied);
-      entry.marker.unbindTooltip();
-      entry.marker.bindTooltip(entry.iata, {
-        permanent: true,
-        direction: "center",
-        offset: L.point(dx, dy),
-        className: "iata-label",
-        opacity: 0.96,
-        interactive: false
+    Object.entries(groups).forEach(([label, list]) => {
+      if(!list.length) return;
+      const group = document.createElement("optgroup");
+      group.label = label;
+      list.forEach(name => {
+        const opt = document.createElement("option");
+        opt.value = name;
+        opt.textContent = name;
+        opt.disabled = getRows(name, period).length === 0;
+        group.appendChild(opt);
       });
+      sel.appendChild(group);
+    });
+
+    const oldOption = [...sel.options].find(o => o.value === old && !o.disabled);
+    const preferred = [...sel.options].find(o => o.value === "Aerolíneas Argentinas" && !o.disabled);
+    const firstEnabled = [...sel.options].find(o => !o.disabled);
+    sel.value = (oldOption || preferred || firstEnabled || {}).value || "";
+  }
+
+  const ARG_BOUNDS = L.latLngBounds(L.latLng(-56.3,-74.7), L.latLng(-20.5,-52.0));
+  const map = L.map("map", {zoomControl:true,minZoom:1,maxZoom:15,zoomSnap:.25,zoomDelta:.25,wheelPxPerZoomLevel:120,maxBounds:L.latLngBounds([[-60,-80],[-16,-48]])});
+  L.tileLayer("https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png",{tms:true,minZoom:1,maxZoom:18,attribution:"© Instituto Geográfico Nacional + OpenStreetMap"}).addTo(map);
+  map.fitBounds(ARG_BOUNDS,{padding:[10,10]});
+  const layer = L.layerGroup().addTo(map);
+
+  function radiusScale(rows){
+    const vals = rows.map(d => Number(d.pasajerosVinculados || d.pasajerosPeriodo || 0)).filter(v => v > 0);
+    if(!vals.length) return () => 7;
+    const max = Math.max(...vals);
+    return v => !v || max <= 0 ? 6 : 6 + 11*Math.sqrt(v/max);
+  }
+
+  function popupHtml(d, airline, period){
+    const pax = Number(d.pasajerosVinculados ?? d.pasajerosPeriodo ?? 0);
+    const flights = Number(d.vuelosVinculados ?? d.vuelosPeriodo ?? 0);
+    const state = d.tipoPresencia === "historica_reciente" ? "Presencia histórica reciente" : (d.estado || "Presencia en el período");
+    const years = Array.isArray(d.aniosActivos) ? d.aniosActivos.join(", ") : periodLabel(period);
+    const share = Number.isFinite(Number(d.shareAerolineasWebPct)) ? `${Number(d.shareAerolineasWebPct).toFixed(1).replace(".",",")}%` : "—";
+    return `
+      <div class="popup-title">${d.iata || ""} · ${d.aeropuerto || ""}</div>
+      <div class="popup-sub">${d.localidad || ""}${d.provincia ? ` · ${d.provincia}` : ""}</div>
+      <div class="popup-grid">
+        <span>Aerolínea</span><b>${airline}</b>
+        <span>Tráfico</span><b>${d.trafico || "—"}</b>
+        <span>Estado</span><b>${state}</b>
+        <span>Año/s</span><b>${years}</b>
+        <span>Pasajeros vinculados</span><b>${fmt.format(pax)}</b>
+        <span>Vuelos vinculados</span><b>${fmt.format(flights)}</b>
+        <span>Share aeropuerto</span><b>${share}</b>
+      </div>`;
+  }
+
+  function boxesOverlap(a,b,pad=2){ return !(a.right+pad<=b.left || a.left>=b.right+pad || a.bottom+pad<=b.top || a.top>=b.bottom+pad); }
+  function estimatedLabelSize(iata){ const chars=String(iata||"").trim().length; return {width:Math.max(20,chars*5.1+6),height:12}; }
+  function labelCandidates(radius){ const r=Math.max(6,Number(radius)||6); return [[0,-(r+9)],[r+13,-(r+4)],[r+16,0],[r+13,r+4],[0,r+10],[-(r+13),r+4],[-(r+16),0],[-(r+13),-(r+4)],[0,-(r+18)],[r+24,0],[0,r+19],[-(r+24),0]]; }
+  function candidateBox(entry,dx,dy){ const p=entry.point||map.latLngToContainerPoint(entry.marker.getLatLng()); const size=estimatedLabelSize(entry.iata); const cx=p.x+dx,cy=p.y+dy; return {left:cx-size.width/2,right:cx+size.width/2,top:cy-size.height/2,bottom:cy+size.height/2}; }
+  function boxInsideMap(box){ const size=map.getSize(),m=3; return box.left>=m&&box.top>=m&&box.right<=size.x-m&&box.bottom<=size.y-m; }
+  function chooseLabelOffset(entry,occupied){
+    for(const [dx,dy] of labelCandidates(entry.radius)){
+      const box=candidateBox(entry,dx,dy);
+      if(!boxInsideMap(box) || occupied.some(other=>boxesOverlap(box,other,2))) continue;
+      occupied.push(box); return [dx,dy];
+    }
+    for(let ring=1; ring<=7; ring++){
+      const distance=entry.radius+20+ring*8;
+      for(let angle=-90; angle<270; angle+=45){
+        const rad=angle*Math.PI/180, dx=Math.round(Math.cos(rad)*distance),dy=Math.round(Math.sin(rad)*distance);
+        const box=candidateBox(entry,dx,dy);
+        if(!boxInsideMap(box) || occupied.some(other=>boxesOverlap(box,other,2))) continue;
+        occupied.push(box); return [dx,dy];
+      }
+    }
+    const fallback=[0,-(entry.radius+10)]; occupied.push(candidateBox(entry,...fallback)); return fallback;
+  }
+
+  function refreshLabelPositions(){
+    if(!labelEntries.length) return;
+    const entries=labelEntries.map(entry=>({...entry,point:map.latLngToContainerPoint(entry.marker.getLatLng()),density:0}));
+    entries.forEach(entry=>{ entry.density=entries.reduce((count,other)=>entry===other?count:count+(entry.point.distanceTo(other.point)<55?1:0),0); });
+    entries.sort((a,b)=>(b.density-a.density)||(b.radius-a.radius)||String(a.iata).localeCompare(String(b.iata)));
+    const occupied=[];
+    entries.forEach(entry=>{
+      const [dx,dy]=chooseLabelOffset(entry,occupied);
+      entry.marker.unbindTooltip();
+      entry.marker.bindTooltip(entry.iata,{permanent:true,direction:"center",offset:L.point(dx,dy),className:"iata-label",opacity:.96,interactive:false});
       entry.marker.openTooltip();
     });
   }
 
-  function scheduleLabelRefresh() {
-    if (labelRefreshQueued) return;
-    labelRefreshQueued = true;
-    requestAnimationFrame(() => {
-      labelRefreshQueued = false;
-      refreshLabelPositions();
-    });
+  function scheduleLabelRefresh(){
+    if(labelRefreshQueued) return;
+    labelRefreshQueued=true;
+    requestAnimationFrame(()=>{labelRefreshQueued=false;refreshLabelPositions();});
   }
 
-  function popupHtml(d, airline, period) {
-    const pax = Number(d.pasajerosVinculados ?? d.pasajerosPeriodo ?? 0);
-    const flights = Number(d.vuelosVinculados ?? d.vuelosPeriodo ?? 0);
-    const state = d.tipoPresencia === "historica_reciente"
-      ? "Presencia histórica reciente"
-      : (d.estado || "Presencia en el período");
-
-    const years = Array.isArray(d.aniosActivos) ? d.aniosActivos.join(", ") : period;
-    const share = Number.isFinite(Number(d.shareAerolineasWebPct))
-      ? `${Number(d.shareAerolineasWebPct).toFixed(1).replace(".", ",")}%`
-      : "—";
-
-    return `
-      <div class="popup-title">${d.iata} · ${d.aeropuerto || ""}</div>
-      <div class="popup-sub">${d.localidad || ""}${d.provincia ? ` · ${d.provincia}` : ""}</div>
-      <div class="popup-grid">
-        <span>Aerolínea</span><b>${airline}</b>
-        <span>Período</span><b>${years}</b>
-        <span>Situación</span><b>${state}</b>
-        <span>Pasajeros vinculados</span><b>${fmt.format(pax)}</b>
-        <span>Vuelos vinculados</span><b>${fmt.format(flights)}</b>
-        ${period !== "2023_2025" ? `<span>Participación aeropuerto</span><b>${share}</b>` : ""}
-      </div>
-    `;
-  }
-
-  function getRows(airline, period) {
-    const idx = db?.indiceAerolineas?.[airline];
-    if (!idx) return [];
-
-    if (period === "2023_2025") {
-      return (idx.periodo2023_2025?.aeropuertos || []).map(d => ({ ...d }));
-    }
-    return (idx.anios?.[period]?.aeropuertos || []).map(d => ({
-      ...d,
-      tipoPresencia: period === "2025" ? "actual_2025" : "presencia_anual"
-    }));
-  }
-
-  function render() {
-    if (!db) return;
-
-    const airline = $("airlineSelect").value;
-    const period = $("periodSelect").value;
-    const color = COLORS[airline] || "#355c7d";
-    const rows = getRows(airline, period).filter(d =>
-      Number.isFinite(Number(d.latitud)) && Number.isFinite(Number(d.longitud))
-    );
-
-    layer.clearLayers();
-    labelEntries = [];
-    document.documentElement.style.setProperty("--map-color", color);
-
-    const scale = radiusScale(rows);
-
-    rows.forEach(d => {
-      const historical = period === "2023_2025" && d.tipoPresencia === "historica_reciente";
-      const pax = Number(d.pasajerosVinculados ?? d.pasajerosPeriodo ?? 0);
-      const radius = scale(pax);
-      const marker = L.circleMarker([Number(d.latitud), Number(d.longitud)], {
-        radius,
-        color: historical ? "#7a8793" : color,
-        weight: historical ? 2 : 1.5,
-        fillColor: historical ? "#ffffff" : color,
-        fillOpacity: historical ? 0.15 : 0.72,
-        opacity: 0.95
-      });
-
-      marker.bindPopup(popupHtml(d, airline, period), { maxWidth: 320 });
-      marker.addTo(layer);
-      labelEntries.push({ marker, iata: d.iata, radius });
-    });
-
-    const totalPax = rows.reduce((s,d) => s + Number(d.pasajerosVinculados ?? d.pasajerosPeriodo ?? 0), 0);
-    $("countPill").textContent = `${fmt.format(rows.length)} aeropuertos`;
-    $("paxPill").textContent = `${fmt.format(totalPax)} pasajeros vinculados`;
-    $("periodPill").textContent = `Período: ${period === "2023_2025" ? "2023–2025" : period}`;
-
-    const logo = $("airlineLogo");
-    const logoSrc = db?.indiceAerolineas?.[airline]?.logo;
-    if (logoSrc) {
-      logo.src = logoSrc;
-      logo.style.display = "block";
-    } else {
-      logo.removeAttribute("src");
-      logo.style.display = "none";
-    }
-
-    setStatus(`${airline} · ${period === "2023_2025" ? "2023–2025" : period} · ${rows.length} aeropuertos`);
-
-    if (rows.length) {
-      const b = L.latLngBounds(rows.map(d => [Number(d.latitud), Number(d.longitud)]));
-      map.fitBounds(b, { padding: [30,30], maxZoom: 5 });
-    } else {
-      map.fitBounds(ARG_BOUNDS, { padding: [10,10] });
-    }
-
-    setTimeout(scheduleLabelRefresh, 0);
-  }
-
-  const legend = L.control({ position: "bottomright" });
-  legend.onAdd = function() {
-    const div = L.DomUtil.create("div", "legend");
-    div.innerHTML = `
-      <div class="legend-title">Referencias</div>
-      <div class="legend-row"><span class="dot current"></span><span>Opera en el año seleccionado</span></div>
-      <div class="legend-row"><span class="dot historical"></span><span>Presencia 2023–2024, no en 2025</span></div>
-      <div style="margin-top:5px;color:#6b7785">Tamaño del círculo ≈ pasajeros vinculados</div>
-    `;
+  const legend = L.control({position:"topright"});
+  legend.onAdd = () => {
+    const div=L.DomUtil.create("div","legend");
+    div.innerHTML=`<div class="legend-title">Presencia</div><div class="legend-row"><span class="dot current"></span> Operación en el período</div><div class="legend-row"><span class="dot historical"></span> Presencia histórica reciente</div><div style="margin-top:5px;color:#64748b">Tamaño del círculo: pasajeros vinculados</div>`;
     return div;
   };
   legend.addTo(map);
 
-  map.on("zoomend moveend resize", scheduleLabelRefresh);
+  function render(){
+    if(!db) return;
+    const airline=$("airlineSelect").value;
+    const period=$("periodSelect").value;
+    if(!airline) return;
+
+    const color=hashColor(airline);
+    document.documentElement.style.setProperty("--map-color",color);
+    layer.clearLayers();
+    labelEntries=[];
+
+    const rows=getRows(airline,period).filter(d=>Number.isFinite(Number(d.latitud))&&Number.isFinite(Number(d.longitud)));
+    const scale=radiusScale(rows);
+    const bounds=[];
+    let paxTotal=0;
+
+    rows.forEach(d=>{
+      const historical=period==="2023_2025" && d.tipoPresencia==="historica_reciente";
+      const pax=Number(d.pasajerosVinculados ?? d.pasajerosPeriodo ?? 0);
+      const radius=scale(pax);
+      paxTotal += pax;
+      const marker=L.circleMarker([Number(d.latitud),Number(d.longitud)],{
+        radius,
+        color: historical ? "#7a8793" : color,
+        weight: historical ? 2 : 1.5,
+        fillColor: historical ? "#ffffff" : color,
+        fillOpacity: historical ? .10 : .68,
+        opacity:.95
+      }).addTo(layer);
+      marker.bindPopup(popupHtml(d,airline,period),{maxWidth:330});
+      labelEntries.push({marker,iata:d.iata||"",radius});
+      bounds.push([Number(d.latitud),Number(d.longitud)]);
+    });
+
+    const idx=db.indiceAerolineas?.[airline];
+    const logo=$("airlineLogo");
+    if(idx?.logo){ logo.src=idx.logo; logo.style.display="block"; logo.onerror=()=>{logo.style.display="none"}; }
+    else{ logo.style.display="none"; }
+
+    $("countPill").textContent=`${fmt.format(rows.length)} aeropuertos`;
+    $("paxPill").textContent=`${fmt.format(paxTotal)} pasajeros vinculados`;
+    $("trafficPill").textContent=`Tráfico: ${trafficForAirline(airline)}`;
+    $("periodPill").textContent=`Período: ${periodLabel(period)}`;
+
+    if(bounds.length){
+      const b=L.latLngBounds(bounds);
+      map.fitBounds(b,{padding:[28,28],maxZoom:6.75});
+      setStatus(`${airline}: ${rows.length} aeropuertos en ${periodLabel(period)}`);
+    }else{
+      map.fitBounds(ARG_BOUNDS,{padding:[10,10]});
+      setStatus(`${airline}: sin operación registrada en ${periodLabel(period)}`);
+    }
+    scheduleLabelRefresh();
+  }
 
   $("airlineSelect").addEventListener("change", render);
-  $("periodSelect").addEventListener("change", render);
+  $("periodSelect").addEventListener("change", () => { rebuildAirlineSelect(true); render(); });
+  map.on("zoomend moveend resize", scheduleLabelRefresh);
 
-  loadJson()
-    .then(json => {
-      db = json;
-      render();
-    })
-    .catch(err => {
-      console.error(err);
-      setStatus(`Error: ${err.message}`);
-    });
+  loadJson().then(data => {
+    db=data;
+    rebuildAirlineSelect(false);
+    render();
+  }).catch(err => {
+    console.error(err);
+    setStatus(`Error: ${err.message}`);
+  });
 })();
 </script>
 </body>
