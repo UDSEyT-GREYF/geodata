@@ -146,6 +146,7 @@
   }
 
   async function loadJson(){
+    $("status").style.display="block";
     let lastError = null;
     for (const url of DATA_CANDIDATES){
       try{
@@ -333,6 +334,7 @@
         <img id="legendLogo" class="legend-logo" alt="Logo de la aerolínea">
       </div>
       <div id="legendAirlineName" class="legend-airline-name"></div>
+      <div id="legendAirportCount" class="legend-row" style="font-weight:700;color:#17324d;margin-bottom:6px">— aeropuertos</div>
       <div class="legend-row"><span class="dot current"></span> <span id="legendCurrentLabel">Presencia en 2025</span></div>
       <div class="legend-row"><span class="dot historical"></span> Presencia histórica reciente</div>
       <div style="margin-top:5px;color:#64748b">El tamaño del círculo corresponde a los pasajeros.</div>`;
@@ -382,9 +384,14 @@
     const legendLogo=$("legendLogo");
     const legendAirlineName=$("legendAirlineName");
     const legendCurrentLabel=$("legendCurrentLabel");
+    const legendAirportCount=$("legendAirportCount");
 
     if(legendCurrentLabel){
       legendCurrentLabel.textContent=`Presencia en ${periodLabel(period)}`;
+    }
+
+    if(legendAirportCount){
+      legendAirportCount.textContent=`${fmt.format(rows.length)} aeropuertos`;
     }
 
     if(legendLogo && legendAirlineName){
@@ -411,8 +418,9 @@
 
     map.fitBounds(ARG_BOUNDS,{padding:[10,10]});
     if(bounds.length){
-      setStatus(`${airline}: ${rows.length} aeropuertos en ${periodLabel(period)}`);
+      $("status").style.display="none";
     }else{
+      $("status").style.display="block";
       setStatus(`${airline}: sin operación registrada en ${periodLabel(period)}`);
     }
     scheduleLabelRefresh();
