@@ -37,6 +37,9 @@
     #status{position:absolute;z-index:900;left:10px;bottom:10px;background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:7px;padding:7px 9px;font-size:10px;color:#425466;box-shadow:0 2px 8px rgba(0,0,0,.08)}
     .legend{background:rgba(255,255,255,.95);border:1px solid var(--line);border-radius:7px;padding:8px 9px;box-shadow:0 2px 8px rgba(0,0,0,.08);font-size:10px;line-height:1.35;color:#425466}
     .legend-title{font-weight:700;color:#17324d;margin-bottom:5px}
+.legend-logo-wrap{display:flex;justify-content:center;align-items:center;min-height:34px;margin-bottom:6px}
+.legend-logo{max-width:110px;max-height:32px;object-fit:contain;display:none}
+.legend-airline-name{font-weight:700;color:#17324d;text-align:center;display:none;margin-bottom:5px}
     .legend-row{display:flex;align-items:center;gap:6px;margin:4px 0}
     .dot{width:12px;height:12px;border-radius:50%;display:inline-block;border:2px solid #444;background:#fff}
     .dot.current{border-color:var(--map-color);background:var(--map-color)}
@@ -325,7 +328,14 @@
   const legend = L.control({position:"topright"});
   legend.onAdd = () => {
     const div=L.DomUtil.create("div","legend");
-    div.innerHTML=`<div class="legend-title">Presencia</div><div class="legend-row"><span class="dot current"></span> Operación en el período</div><div class="legend-row"><span class="dot historical"></span> Presencia histórica reciente</div><div style="margin-top:5px;color:#64748b">Tamaño del círculo: pasajeros vinculados</div>`;
+    div.innerHTML=`
+      <div class="legend-logo-wrap">
+        <img id="legendLogo" class="legend-logo" alt="Logo de la aerolínea">
+      </div>
+      <div id="legendAirlineName" class="legend-airline-name"></div>
+      <div class="legend-row"><span class="dot current"></span> <span id="legendCurrentLabel">Presencia en 2025</span></div>
+      <div class="legend-row"><span class="dot historical"></span> Presencia histórica reciente</div>
+      <div style="margin-top:5px;color:#64748b">El tamaño del círculo corresponde a los pasajeros.</div>`;
     return div;
   };
   legend.addTo(map);
@@ -368,6 +378,31 @@
     const logo=$("airlineLogo");
     if(idx?.logo){ logo.src=idx.logo; logo.style.display="block"; logo.onerror=()=>{logo.style.display="none"}; }
     else{ logo.style.display="none"; }
+
+    const legendLogo=$("legendLogo");
+    const legendAirlineName=$("legendAirlineName");
+    const legendCurrentLabel=$("legendCurrentLabel");
+
+    if(legendCurrentLabel){
+      legendCurrentLabel.textContent=`Presencia en ${periodLabel(period)}`;
+    }
+
+    if(legendLogo && legendAirlineName){
+      if(idx?.logo){
+        legendLogo.src=idx.logo;
+        legendLogo.style.display="block";
+        legendAirlineName.style.display="none";
+        legendLogo.onerror=()=>{
+          legendLogo.style.display="none";
+          legendAirlineName.textContent=airline;
+          legendAirlineName.style.display="block";
+        };
+      }else{
+        legendLogo.style.display="none";
+        legendAirlineName.textContent=airline;
+        legendAirlineName.style.display="block";
+      }
+    }
 
     $("countPill").textContent=`${fmt.format(rows.length)} aeropuertos`;
     $("paxPill").textContent=`${fmt.format(paxTotal)} pasajeros vinculados`;
