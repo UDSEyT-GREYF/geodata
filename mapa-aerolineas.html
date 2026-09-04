@@ -247,7 +247,15 @@
   }
 
   const ARG_BOUNDS = L.latLngBounds(L.latLng(-56.3,-74.7), L.latLng(-20.5,-52.0));
-  const map = L.map("map", {zoomControl:true,minZoom:1,maxZoom:15,zoomSnap:.25,zoomDelta:.25,wheelPxPerZoomLevel:120,maxBounds:L.latLngBounds([[-60,-80],[-16,-48]])});
+    const map = L.map("map", {
+    zoomControl: true,
+    minZoom: 1,
+    maxZoom: 15,
+    zoomSnap: 0.25,
+    zoomDelta: 0.25,
+    wheelPxPerZoomLevel: 120,
+    maxBounds: L.latLngBounds([[-60,-80],[-16,-48]])
+  });
   L.tileLayer("https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png",{tms:true,minZoom:1,maxZoom:18,attribution:"© Instituto Geográfico Nacional + OpenStreetMap"}).addTo(map);
   map.fitBounds(ARG_BOUNDS,{padding:[10,10]});
   const layer = L.layerGroup().addTo(map);
