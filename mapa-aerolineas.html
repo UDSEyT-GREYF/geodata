@@ -15,6 +15,8 @@
       --bg:#f5f7fa;
       --accent:#0f5b8d;
       --map-color:#005b96;
+      --panel-width:clamp(720px,56vw,960px);
+      --panel-gap:14px;
     }
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
@@ -34,7 +36,14 @@
     .pill{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;background:#eef4f8;border:1px solid #d8e5ed;font-size:10px;color:#36546b}
     .logo{height:26px;max-width:120px;object-fit:contain;display:none}
     main{position:relative;flex:1;min-height:0}
-    #map{position:absolute;inset:0;background:#eaf0f4}
+    #map{
+      position:absolute;
+      left:0;
+      top:0;
+      bottom:0;
+      right:calc(var(--panel-width) + var(--panel-gap));
+      background:#eaf0f4;
+    }
     #status{position:absolute;z-index:900;left:10px;bottom:10px;background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:7px;padding:7px 9px;font-size:10px;color:#425466;box-shadow:0 2px 8px rgba(0,0,0,.08)}
     .legend{background:rgba(255,255,255,.95);border:1px solid var(--line);border-radius:7px;padding:8px 9px;box-shadow:0 2px 8px rgba(0,0,0,.08);font-size:10px;line-height:1.35;color:#425466}
     .legend-title{font-weight:700;color:#17324d;margin-bottom:5px}
@@ -58,8 +67,8 @@
       z-index:860;
       right:10px;
       top:162px;
-      width:min(960px, 56vw);
-      min-width:720px;
+      width:var(--panel-width);
+      min-width:0;
       max-width:calc(100% - 20px);
       max-height:calc(100% - 178px);
       overflow:auto;
@@ -176,6 +185,8 @@
         max-width:none;
         max-height:42%;
       }
+      #map{right:0}
+
     }
   </style>
 </head>
@@ -304,6 +315,7 @@
   let routeRows = [];
   let argAirportCodes = new Set();
   let sourceOperatorBrandMap = new Map();
+  let regularRouteCache = new Map();
   let labelEntries = [];
   let labelRefreshQueued = false;
 
@@ -402,7 +414,7 @@
     return Boolean(idx && isPassengerAirline(idx));
   }
 
-  function commercialRouteRows(period, target){
+  function commercialRouteRowsBase(period, target){
     const years = yearsForPeriod(period);
 
     return routeRows.filter(row => {
@@ -419,6 +431,61 @@
     });
   }
 
+  function canonicalRouteKey(a,b){
+    return [String(a||"").toUpperCase(), String(b||"").toUpperCase()]
+      .sort()
+      .join("-");
+  }
+
+  function routeAirlineKey(row){
+    const [a,b] = splitRoutePair(row["CityPair_IATA"]);
+    const airline = canonicalAirline(row["Aerolinea Nombre"]);
+    return `${normalizeText(airline)}|${canonicalRouteKey(a,b)}`;
+  }
+
+  function getRegularRouteKeys(period, target){
+    const cacheKey = `${period}|${target}`;
+    if(regularRouteCache.has(cacheKey)){
+      return regularRouteCache.get(cacheKey);
+    }
+
+    // Se evalúa por año para evitar que una ruta puramente estacional
+    // acumule meses de años diferentes y quede falsamente como regular.
+    const groups = new Map();
+
+    commercialRouteRowsBase(period, target).forEach(row => {
+      const year = String(row["AñoMes"] || "").slice(0,4);
+      const month = String(row["AñoMes"] || "").slice(5,7);
+      const routeKey = routeAirlineKey(row);
+      const groupKey = `${year}|${routeKey}`;
+
+      if(!groups.has(groupKey)) groups.set(groupKey, new Set());
+      if(month) groups.get(groupKey).add(month);
+    });
+
+    const regular = new Set();
+
+    groups.forEach((months, groupKey) => {
+      if(months.size < 6) return;
+      const firstSep = groupKey.indexOf("|");
+      regular.add(groupKey.slice(firstSep + 1));
+    });
+
+    regularRouteCache.set(cacheKey, regular);
+    return regular;
+  }
+
+  function commercialRouteRows(period, target){
+    const rows = commercialRouteRowsBase(period, target);
+
+    if(!regularOnlySelected()){
+      return rows;
+    }
+
+    const regularKeys = getRegularRouteKeys(period, target);
+    return rows.filter(row => regularKeys.has(routeAirlineKey(row)));
+  }
+
   function airlineSegmentsForPeriod(period){
     const result = new Map();
 
@@ -429,10 +496,7 @@
         if(!airline || !isKnownPassengerAirline(airline)) return;
 
         const domesticEndpoints = routeDomesticEndpoints(a,b,segment);
-        const hasValidEndpoint = domesticEndpoints.some(iata =>
-          isRegularAtAirport(airline, iata, period)
-        );
-        if(!hasValidEndpoint) return;
+        if(!domesticEndpoints.length) return;
 
         if(!result.has(airline)){
           result.set(airline,{
@@ -502,7 +566,6 @@
       endpoints.forEach(iata => {
         const airport = db?.aeropuertos?.[iata];
         if(!airport) return;
-        if(!isRegularAtAirport(airline, iata, period)) return;
 
         if(!airportMap.has(iata)){
           airportMap.set(iata,{
@@ -554,7 +617,6 @@
       [a,b].forEach(iata => {
         const airport = db?.aeropuertos?.[iata];
         if(!airport) return;
-        if(!isRegularAtAirport(airline, iata, period)) return;
 
         if(!airportMap.has(iata)){
           airportMap.set(iata,{
@@ -598,7 +660,6 @@
       routeDomesticEndpoints(a,b,"Internacional").forEach(iata => {
         const airport = db?.aeropuertos?.[iata];
         if(!airport) return;
-        if(!isRegularAtAirport(airline, iata, period)) return;
 
         if(!airportMap.has(iata)){
           airportMap.set(iata,{
@@ -846,7 +907,6 @@
       routeDomesticEndpoints(a,b,target).forEach(iata => {
         const airport = db?.aeropuertos?.[iata];
         if(!airport) return;
-        if(!isRegularAtAirport(airline, iata, period)) return;
 
         if(!airportMap.has(iata)){
           airportMap.set(iata,{
@@ -992,8 +1052,7 @@
         routeDomesticEndpoints(a,b,segment).forEach(iata => {
           const airport = db?.aeropuertos?.[iata];
           if(!airport) return;
-          if(!isRegularAtAirport(airline, iata, period)) return;
-
+  
           if(!airportMap.has(iata)){
             airportMap.set(iata,{
               iata,
@@ -1025,7 +1084,16 @@
       .map(d => ({
         ...d,
         pasajerosPeriodo:Number(d.cabotajePax || 0) + Number(d.internacionalPax || 0),
-        vuelosPeriodo:Number(d.cabotajeVuelos || 0) + Number(d.internacionalVuelos || 0)
+        vuelosPeriodo:Number(d.cabotajeVuelos || 0) + Number(d.internacionalVuelos || 0),
+        trafico:
+          Number(d.cabotajePax || 0) > 0 && Number(d.internacionalPax || 0) > 0
+            ? "Cabotaje e internacional"
+            : Number(d.cabotajePax || 0) > 0
+              ? "Cabotaje"
+              : "Internacional",
+        estado: regularOnlySelected()
+          ? "Operación comercial regular"
+          : "Operación comercial"
       }))
       .sort((a,b)=>b.pasajerosPeriodo-a.pasajerosPeriodo || a.iata.localeCompare(b.iata));
   }
@@ -1109,7 +1177,7 @@
 
     $("operatorPanelNote").textContent =
       `Se muestran únicamente los aeropuertos con operación de ${airline}. ` +
-      `El filtro “Comercial regular” utiliza la clasificación anual Regular de la fuente procesada.`;
+      `Con “Comercial regular” se exige que la combinación aerolínea-ruta opere con pasajeros en al menos 6 meses del año.`;
 
     panel.classList.add("show");
   }
@@ -1153,8 +1221,8 @@
 
     $("operatorPanelNote").textContent =
       target === "Internacional"
-        ? `Se consideran operaciones comerciales regulares de pasajeros internacionales. Se excluye Aviación General y se exige un mínimo de ${fmt.format(MIN_PAX_INTERNACIONAL)} pasajeros por aeropuerto.`
-        : `Se consideran operaciones comerciales regulares de pasajeros de cabotaje. Se excluye Aviación General.`;
+        ? `Se consideran operaciones comerciales de pasajeros internacionales. Con “Comercial regular” se exige que la combinación aerolínea-ruta opere con pasajeros en al menos 6 meses del año. Se excluye Aviación General y se exige un mínimo de ${fmt.format(MIN_PAX_INTERNACIONAL)} pasajeros por aeropuerto.`
+        : `Se consideran operaciones comerciales de pasajeros de cabotaje. Con “Comercial regular” se exige que la combinación aerolínea-ruta opere con pasajeros en al menos 6 meses del año. Se excluye Aviación General.`;
 
     const single = rows.filter(r=>r.operators.length===1);
     const multiple = rows.filter(r=>r.operators.length>=2);
@@ -1238,22 +1306,10 @@
   const ARG_BOUNDS = L.latLngBounds(L.latLng(-56.3,-74.7), L.latLng(-20.5,-52.0));
 
   function fitArgentinaWithPanel(panelVisible=true){
-    const panel = $("cabotagePanel");
-    const mobile = window.innerWidth <= 760;
-
-    if(panelVisible && panel && !mobile){
-      const rightPad = Math.min(
-        Math.max(panel.offsetWidth + 34, 520),
-        Math.floor(window.innerWidth * 0.60)
-      );
-
-      map.fitBounds(ARG_BOUNDS,{
-        paddingTopLeft:[18,12],
-        paddingBottomRight:[rightPad,12]
-      });
-    }else{
-      map.fitBounds(ARG_BOUNDS,{padding:[10,10]});
-    }
+    // El panel tiene ahora un espacio reservado fuera del lienzo del mapa.
+    // Por eso basta con ajustar Argentina al tamaño real del mapa.
+    map.invalidateSize({pan:false, animate:false});
+    map.fitBounds(ARG_BOUNDS,{padding:[12,12]});
   }
 
   const map = L.map("map", {zoomControl:true,minZoom:1,maxZoom:15,zoomSnap:.25,zoomDelta:.25,wheelPxPerZoomLevel:120,maxBounds:L.latLngBounds([[-60,-80],[-16,-48]])});
@@ -1443,12 +1499,8 @@
           ? getMainInternationalRows(period)
           : specialTraffic
             ? getTrafficRows(specialTraffic, period)
-            : getRows(airline,period)
+            : buildAirlinePresence(airline, period)
     );
-
-    if(!pieMode && !specialTraffic){
-      rows = filterAirlineRowsByRegularity(airline, period, rows);
-    }
 
     rows = rows.filter(d=>Number.isFinite(Number(d.latitud))&&Number.isFinite(Number(d.longitud)));
 
@@ -1622,8 +1674,16 @@
   }
 
   $("airlineSelect").addEventListener("change", render);
-  $("periodSelect").addEventListener("change", () => { rebuildAirlineSelect(true); render(); });
-  $("regularitySelect").addEventListener("change", () => { rebuildAirlineSelect(true); render(); });
+  $("periodSelect").addEventListener("change", () => {
+    regularRouteCache.clear();
+    rebuildAirlineSelect(true);
+    render();
+  });
+  $("regularitySelect").addEventListener("change", () => {
+    regularRouteCache.clear();
+    rebuildAirlineSelect(true);
+    render();
+  });
   map.on("zoomend moveend", scheduleLabelRefresh);
   map.on("resize", () => {
     fitArgentinaWithPanel(true);
