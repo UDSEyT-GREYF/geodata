@@ -50,6 +50,105 @@
     .popup-sub{color:#64748b;font-size:10px;margin-bottom:7px}
     .popup-grid{display:grid;grid-template-columns:auto auto;gap:3px 10px;font-size:10px}
     .popup-grid b{text-align:right}
+
+    /* Panel de operadores de cabotaje */
+    .cab-panel{
+      position:absolute;
+      z-index:860;
+      right:10px;
+      top:162px;
+      width:410px;
+      max-width:calc(100% - 20px);
+      max-height:calc(100% - 178px);
+      overflow:auto;
+      display:none;
+      background:rgba(255,255,255,.97);
+      border:1px solid var(--line);
+      border-radius:8px;
+      box-shadow:0 3px 12px rgba(0,0,0,.13);
+      padding:10px 11px 11px;
+      font-size:10px;
+      color:#425466;
+    }
+    .cab-panel.show{display:block}
+    .cab-panel h3{margin:0 0 3px;font-size:12px;color:#17324d}
+    .cab-panel .cab-sub{font-size:9px;color:#64748b;margin-bottom:8px}
+    .cab-section-title{
+      font-weight:700;color:#17324d;
+      border-top:1px solid #e4e9ee;
+      padding-top:7px;margin:7px 0 5px
+    }
+    .solo-row{margin:5px 0;line-height:1.35}
+    .solo-row b{color:#17324d}
+    .iata-chip{
+      display:inline-block;
+      padding:1px 4px;
+      margin:1px 2px 1px 0;
+      border-radius:4px;
+      background:#eef4f8;
+      border:1px solid #d9e4ec;
+      color:#24465f;
+      font-weight:700;
+      font-size:9px;
+    }
+    .multi-wrap{overflow-x:auto}
+    .multi-table{
+      border-collapse:collapse;
+      width:100%;
+      min-width:310px;
+      font-size:9px;
+    }
+    .multi-table th,.multi-table td{
+      border-bottom:1px solid #e6ebef;
+      padding:3px 4px;
+      text-align:center;
+      white-space:nowrap;
+    }
+    .multi-table th:first-child,.multi-table td:first-child{
+      text-align:left;
+      font-weight:700;
+      color:#17324d;
+      position:sticky;
+      left:0;
+      background:#fff;
+      z-index:1;
+    }
+    .air-head-logo{
+      max-width:38px;
+      max-height:18px;
+      object-fit:contain;
+      vertical-align:middle;
+    }
+    .air-head-text{font-size:8px;font-weight:700;color:#36546b}
+    .presence-dot{
+      width:10px;height:10px;border-radius:50%;
+      display:inline-block;
+      box-shadow:0 0 0 1px rgba(0,0,0,.15);
+    }
+    .cab-note{
+      margin-top:7px;
+      font-size:8.5px;
+      line-height:1.3;
+      color:#64748b;
+    }
+
+    /* Marcadores tipo gráfico de torta */
+    .pie-div-icon{
+      background:transparent!important;
+      border:0!important;
+    }
+    .pie-marker{
+      border-radius:50%;
+      border:1.5px solid #fff;
+      box-shadow:0 1px 4px rgba(0,0,0,.38);
+    }
+    .pie-legend-row{
+      display:flex;align-items:center;gap:6px;margin:4px 0;
+    }
+    .pie-swatch{
+      width:11px;height:11px;border-radius:50%;display:inline-block;
+      border:1px solid rgba(0,0,0,.16);
+    }
     @media(max-width:760px){
       header{padding:9px 10px}
       h1{font-size:17px}
@@ -57,6 +156,15 @@
       .field{flex:1}
       select{width:100%;min-width:0}
       .subtitle{display:none}
+      .cab-panel{
+        top:auto;
+        bottom:10px;
+        right:10px;
+        left:10px;
+        width:auto;
+        max-width:none;
+        max-height:42%;
+      }
     }
   </style>
 </head>
@@ -97,6 +205,23 @@
 
 <main>
   <div id="map"></div>
+
+  <aside id="cabotagePanel" class="cab-panel" aria-live="polite">
+    <h3 id="cabPanelTitle">Operadores de cabotaje</h3>
+    <div id="cabPanelSub" class="cab-sub"></div>
+
+    <div class="cab-section-title">Aeropuertos con un único operador</div>
+    <div id="cabSoloList"></div>
+
+    <div class="cab-section-title">Aeropuertos con dos o más aerolíneas</div>
+    <div id="cabMultiTable" class="multi-wrap"></div>
+
+    <div class="cab-note">
+      Se consideran operaciones comerciales de pasajeros de cabotaje.
+      Se excluye Aviación General.
+    </div>
+  </aside>
+
   <div id="status">Cargando datos…</div>
 </main>
 
@@ -118,6 +243,8 @@
   ];
 
   const PRIORITY = ["Aerolíneas Argentinas", "Flybondi", "JetSMART"];
+  const MAIN_CABOTAGE_SELECTION = "__PRINCIPALES_CABOTAJE__";
+  const MAIN_CABOTAGE_AIRLINES = ["Aerolíneas Argentinas", "Flybondi", "JetSMART"];
 
   const MIN_PAX_INTERNACIONAL = 1000;
 
@@ -147,6 +274,7 @@
   const fmt = new Intl.NumberFormat("es-AR", { maximumFractionDigits: 0 });
   let db = null;
   let routeRows = [];
+  let sourceOperatorBrandMap = new Map();
   let labelEntries = [];
   let labelRefreshQueued = false;
 
@@ -169,6 +297,220 @@
   function splitRoutePair(route){
     const parts = String(route || "").toUpperCase().split(/\s*-\s*/).map(s=>s.trim()).filter(Boolean);
     return parts.length >= 2 ? [parts[0], parts[1]] : [null, null];
+  }
+
+  function normalizeText(value){
+    return String(value || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g,"")
+      .toLowerCase()
+      .replace(/\s+/g," ")
+      .trim();
+  }
+
+  function buildSourceOperatorBrandMap(){
+    const map = new Map();
+
+    Object.values(db?.aeropuertos || {}).forEach(airport => {
+      Object.values(airport?.anios || {}).forEach(block => {
+        (block?.aerolineas || []).forEach(a => {
+          if(!a?.nombre) return;
+          map.set(normalizeText(a.nombre), a.nombre);
+          (a.operadoresFuente || []).forEach(raw => {
+            if(raw) map.set(normalizeText(raw), a.nombre);
+          });
+        });
+      });
+    });
+
+    sourceOperatorBrandMap = map;
+  }
+
+  function canonicalAirline(rawName){
+    const raw = String(rawName || "").trim();
+    if(!raw) return "";
+    const key = normalizeText(raw);
+
+    if(sourceOperatorBrandMap.has(key)){
+      return sourceOperatorBrandMap.get(key);
+    }
+
+    // Salvaguardas para las tres marcas principales.
+    if(key.includes("aerolineas argentinas") || key.includes("austral")){
+      return "Aerolíneas Argentinas";
+    }
+    if(key.includes("flybondi")) return "Flybondi";
+    if(key.includes("jetsmart")) return "JetSMART";
+
+    return raw;
+  }
+
+  function yearsForPeriod(period){
+    return period === "2023_2025"
+      ? new Set(["2023","2024","2025"])
+      : new Set([String(period)]);
+  }
+
+  function commercialCabotageRouteRows(period){
+    const years = yearsForPeriod(period);
+
+    return routeRows.filter(row => {
+      const year = String(row["AñoMes"] || "").slice(0,4);
+      if(!years.has(year)) return false;
+
+      const flightClass = normalizeText(row["Comercial Av Gral"]);
+      if(flightClass !== "comercial") return false;
+
+      const classification = normalizeText(row["Clasificacion"]);
+      if(classification !== "cabotaje") return false;
+
+      return parseNumberAR(row["TotalPasajeros"]) > 0;
+    });
+  }
+
+  function buildCabotagePresence(period){
+    const airportMap = new Map();
+
+    commercialCabotageRouteRows(period).forEach(row => {
+      const [a,b] = splitRoutePair(row["CityPair_IATA"]);
+      if(!a || !b || a === b) return;
+
+      const pax = parseNumberAR(row["TotalPasajeros"]);
+      const airline = canonicalAirline(row["Aerolinea Nombre"]);
+      if(!airline) return;
+
+      [a,b].forEach(iata => {
+        const airport = db?.aeropuertos?.[iata];
+        if(!airport) return;
+
+        if(!airportMap.has(iata)){
+          airportMap.set(iata,{
+            iata,
+            aeropuerto: airport.aeropuerto || "",
+            localidad: airport.localidad || "",
+            provincia: airport.provincia || "",
+            latitud: Number(airport.latitud),
+            longitud: Number(airport.longitud),
+            operators: new Set(),
+            paxByOperator: {}
+          });
+        }
+
+        const item = airportMap.get(iata);
+        item.operators.add(airline);
+        item.paxByOperator[airline] = (item.paxByOperator[airline] || 0) + pax;
+      });
+    });
+
+    return [...airportMap.values()].map(d => ({
+      ...d,
+      operators: [...d.operators].sort((a,b)=>a.localeCompare(b,"es"))
+    }));
+  }
+
+  function getMainCabotageRows(period){
+    const airportMap = new Map();
+
+    commercialCabotageRouteRows(period).forEach(row => {
+      const airline = canonicalAirline(row["Aerolinea Nombre"]);
+      if(!MAIN_CABOTAGE_AIRLINES.includes(airline)) return;
+
+      const [a,b] = splitRoutePair(row["CityPair_IATA"]);
+      if(!a || !b || a === b) return;
+
+      const pax = parseNumberAR(row["TotalPasajeros"]);
+      const flights = parseNumberAR(row["Vuelos"]);
+
+      [a,b].forEach(iata => {
+        const airport = db?.aeropuertos?.[iata];
+        if(!airport) return;
+
+        if(!airportMap.has(iata)){
+          airportMap.set(iata,{
+            iata,
+            aeropuerto: airport.aeropuerto || "",
+            localidad: airport.localidad || "",
+            provincia: airport.provincia || "",
+            latitud: Number(airport.latitud),
+            longitud: Number(airport.longitud),
+            pasajerosPeriodo: 0,
+            vuelosPeriodo: 0,
+            paxByAirline: {
+              "Aerolíneas Argentinas":0,
+              "Flybondi":0,
+              "JetSMART":0
+            }
+          });
+        }
+
+        const item = airportMap.get(iata);
+        item.pasajerosPeriodo += pax;
+        item.vuelosPeriodo += flights;
+        item.paxByAirline[airline] += pax;
+      });
+    });
+
+    return [...airportMap.values()];
+  }
+
+  function mainPieGradient(paxByAirline){
+    const total = MAIN_CABOTAGE_AIRLINES.reduce(
+      (sum,a)=>sum + Number(paxByAirline?.[a] || 0), 0
+    );
+    if(total <= 0) return "#d1d5db";
+
+    let acc = 0;
+    const stops = [];
+
+    MAIN_CABOTAGE_AIRLINES.forEach(a => {
+      const v = Number(paxByAirline?.[a] || 0);
+      if(v <= 0) return;
+      const start = acc;
+      acc += (v / total) * 100;
+      stops.push(`${BRAND_COLORS[a]} ${start.toFixed(3)}% ${acc.toFixed(3)}%`);
+    });
+
+    return `conic-gradient(${stops.join(",")})`;
+  }
+
+  function mainPieSizeScale(rows){
+    const vals = rows
+      .map(d=>Number(d.pasajerosPeriodo || 0))
+      .filter(v=>v>0);
+
+    if(!vals.length) return ()=>16;
+    const max = Math.max(...vals);
+
+    return v => {
+      if(!v || max<=0) return 14;
+      return 14 + 28 * Math.sqrt(v/max);
+    };
+  }
+
+  function mainPiePopupHtml(d, period){
+    const total = Number(d.pasajerosPeriodo || 0);
+
+    const detail = MAIN_CABOTAGE_AIRLINES.map(a => {
+      const v = Number(d.paxByAirline?.[a] || 0);
+      const pct = total > 0 ? (100*v/total) : 0;
+      return `
+        <div style="display:grid;grid-template-columns:12px 1fr auto;gap:5px;align-items:center;margin:3px 0">
+          <span style="width:10px;height:10px;border-radius:50%;background:${BRAND_COLORS[a]};display:inline-block"></span>
+          <span>${a}</span>
+          <b>${fmt.format(v)} · ${pct.toFixed(1).replace(".",",")}%</b>
+        </div>`;
+    }).join("");
+
+    return `
+      <div class="popup-title">${d.iata || ""} · ${d.aeropuerto || ""}</div>
+      <div class="popup-sub">${d.localidad || ""}${d.provincia ? ` · ${d.provincia}` : ""}</div>
+      <div style="font-size:10px;margin-bottom:6px">
+        Principales aerolíneas de cabotaje · ${periodLabel(period)}
+      </div>
+      ${detail}
+      <div style="margin-top:6px;border-top:1px solid #e5e7eb;padding-top:5px;font-size:10px">
+        <b>Total de las tres:</b> ${fmt.format(total)} pasajeros vinculados
+      </div>`;
   }
 
   function parseSemicolonCsv(text){
@@ -368,7 +710,7 @@
     sel.appendChild(trafficGroup);
 
     const groups = {
-      "Principales": [],
+      "Aerolíneas principales": [],
       "Cabotaje y mixtas": [],
       "Internacionales": [],
       "Otras": []
@@ -376,16 +718,24 @@
 
     for(const name of names){
       const traffic = trafficForAirline(name);
-      if(PRIORITY.includes(name)) groups["Principales"].push(name);
+      if(PRIORITY.includes(name)) groups["Aerolíneas principales"].push(name);
       else if(traffic === "Cabotaje" || traffic === "Mixto") groups["Cabotaje y mixtas"].push(name);
       else if(traffic === "Internacional") groups["Internacionales"].push(name);
       else groups["Otras"].push(name);
     }
 
     Object.entries(groups).forEach(([label, list]) => {
-      if(!list.length) return;
+      if(!list.length && label !== "Aerolíneas principales") return;
       const group = document.createElement("optgroup");
       group.label = label;
+
+      if(label === "Aerolíneas principales"){
+        const combined = document.createElement("option");
+        combined.value = MAIN_CABOTAGE_SELECTION;
+        combined.textContent = "Aerolíneas Argentinas + Flybondi + JetSMART · cabotaje";
+        group.appendChild(combined);
+      }
+
       list.forEach(name => {
         const opt = document.createElement("option");
         opt.value = name;
@@ -400,6 +750,108 @@
     const preferred = [...sel.options].find(o => o.value === "Aerolíneas Argentinas" && !o.disabled);
     const firstEnabled = [...sel.options].find(o => !o.disabled);
     sel.value = (oldOption || preferred || firstEnabled || {}).value || "";
+  }
+
+
+  function airlineLogoHtml(name){
+    const logo = db?.indiceAerolineas?.[name]?.logo;
+    if(logo){
+      return `<img class="air-head-logo" src="${logo}" alt="${name}" title="${name}" onerror="this.replaceWith(document.createTextNode('${name.replace(/'/g,"&#39;")}'))">`;
+    }
+    const short = name
+      .split(/\s+/)
+      .map(x=>x[0] || "")
+      .join("")
+      .slice(0,4)
+      .toUpperCase();
+    return `<span class="air-head-text" title="${name}">${short}</span>`;
+  }
+
+  function renderCabotagePanel(period, show){
+    const panel = $("cabotagePanel");
+    if(!panel) return;
+
+    if(!show){
+      panel.classList.remove("show");
+      return;
+    }
+
+    const rows = buildCabotagePresence(period);
+    $("cabPanelTitle").textContent = `Operadores de cabotaje · ${periodLabel(period)}`;
+    $("cabPanelSub").textContent = `${fmt.format(rows.length)} aeropuertos con pasajeros comerciales de cabotaje`;
+
+    const single = rows.filter(r=>r.operators.length===1);
+    const multiple = rows.filter(r=>r.operators.length>=2);
+
+    const byOperator = new Map();
+    single.forEach(r=>{
+      const op = r.operators[0];
+      if(!byOperator.has(op)) byOperator.set(op,[]);
+      byOperator.get(op).push(r);
+    });
+
+    const soloEntries = [...byOperator.entries()].sort((a,b)=>{
+      const pa = PRIORITY.indexOf(a[0]);
+      const pb = PRIORITY.indexOf(b[0]);
+      if(pa>=0 || pb>=0){
+        if(pa<0) return 1;
+        if(pb<0) return -1;
+        return pa-pb;
+      }
+      return b[1].length-a[1].length || a[0].localeCompare(b[0],"es");
+    });
+
+    $("cabSoloList").innerHTML = soloEntries.length
+      ? soloEntries.map(([op, airports]) => {
+          const chips = airports
+            .sort((a,b)=>a.iata.localeCompare(b.iata))
+            .map(a=>`<span class="iata-chip" title="${a.aeropuerto || a.iata}">${a.iata}</span>`)
+            .join("");
+          return `<div class="solo-row"><b>Sólo ${op} (${airports.length}):</b><br>${chips}</div>`;
+        }).join("")
+      : `<div style="color:#64748b">No se registran aeropuertos con operador único en este período.</div>`;
+
+    const operatorCounts = new Map();
+    multiple.forEach(r=>{
+      r.operators.forEach(op=>operatorCounts.set(op,(operatorCounts.get(op)||0)+1));
+    });
+
+    const operators = [...operatorCounts.keys()].sort((a,b)=>{
+      const pa = PRIORITY.indexOf(a), pb = PRIORITY.indexOf(b);
+      if(pa>=0 || pb>=0){
+        if(pa<0) return 1;
+        if(pb<0) return -1;
+        return pa-pb;
+      }
+      return (operatorCounts.get(b)-operatorCounts.get(a)) || a.localeCompare(b,"es");
+    });
+
+    if(!multiple.length){
+      $("cabMultiTable").innerHTML = `<div style="color:#64748b">No se registran aeropuertos con múltiples operadores.</div>`;
+    }else{
+      const head = operators.map(op=>`<th>${airlineLogoHtml(op)}</th>`).join("");
+      const body = multiple
+        .sort((a,b)=>a.iata.localeCompare(b.iata))
+        .map(r=>{
+          const cells = operators.map(op=>{
+            const present = r.operators.includes(op);
+            return `<td title="${present ? op : ""}">${
+              present
+                ? `<span class="presence-dot" style="background:${hashColor(op)}"></span>`
+                : ""
+            }</td>`;
+          }).join("");
+          return `<tr><td title="${r.aeropuerto || r.iata}">${r.iata}</td>${cells}</tr>`;
+        }).join("");
+
+      $("cabMultiTable").innerHTML = `
+        <table class="multi-table">
+          <thead><tr><th>Aerop.</th>${head}</tr></thead>
+          <tbody>${body}</tbody>
+        </table>`;
+    }
+
+    panel.classList.add("show");
   }
 
   const ARG_BOUNDS = L.latLngBounds(L.latLng(-56.3,-74.7), L.latLng(-20.5,-52.0));
@@ -511,9 +963,22 @@
       </div>
       <div id="legendAirlineName" class="legend-airline-name"></div>
       <div id="legendAirportCount" class="legend-row" style="font-weight:700;color:#17324d;margin-bottom:6px">— aeropuertos</div>
-      <div class="legend-row"><span class="dot current"></span> <span id="legendCurrentLabel">Presencia en 2025</span></div>
-      <div class="legend-row"><span class="dot historical"></span> Presencia histórica reciente</div>
-      <div style="margin-top:5px;color:#64748b">El tamaño del círculo corresponde a los pasajeros.</div>`;
+
+      <div id="legendStandardMode">
+        <div class="legend-row"><span class="dot current"></span> <span id="legendCurrentLabel">Presencia en 2025</span></div>
+        <div id="legendHistoricalRow" class="legend-row"><span class="dot historical"></span> Presencia histórica reciente</div>
+        <div style="margin-top:5px;color:#64748b">El tamaño del círculo corresponde a los pasajeros.</div>
+      </div>
+
+      <div id="legendPieMode" style="display:none">
+        <div class="pie-legend-row"><span class="pie-swatch" style="background:#005b96"></span>Aerolíneas Argentinas</div>
+        <div class="pie-legend-row"><span class="pie-swatch" style="background:#f0c400"></span>Flybondi</div>
+        <div class="pie-legend-row"><span class="pie-swatch" style="background:#b21f2d"></span>JetSMART</div>
+        <div style="margin-top:6px;color:#64748b;max-width:190px">
+          El tamaño del círculo corresponde al total de pasajeros de las tres aerolíneas.
+          Las porciones muestran su distribución en cada aeropuerto.
+        </div>
+      </div>`;
     return div;
   };
   legend.addTo(map);
@@ -524,50 +989,83 @@
     const period=$("periodSelect").value;
     if(!airline) return;
 
+    const mainCabotageMode = airline === MAIN_CABOTAGE_SELECTION;
+
     const specialTraffic = airline === "__TODOS_CABOTAJE__"
       ? "Cabotaje"
       : airline === "__TODOS_INTERNACIONAL__"
         ? "Internacional"
         : null;
 
-    const color = specialTraffic === "Cabotaje"
-      ? "#2f80c9"
-      : specialTraffic === "Internacional"
-        ? "#2e9d68"
-        : hashColor(airline);
+    const color = mainCabotageMode
+      ? "#005b96"
+      : specialTraffic === "Cabotaje"
+        ? "#2f80c9"
+        : specialTraffic === "Internacional"
+          ? "#2e9d68"
+          : hashColor(airline);
 
     document.documentElement.style.setProperty("--map-color",color);
     layer.clearLayers();
     labelEntries=[];
 
-    const rows = (specialTraffic ? getTrafficRows(specialTraffic, period) : getRows(airline,period))
-      .filter(d=>Number.isFinite(Number(d.latitud))&&Number.isFinite(Number(d.longitud)));
-    const scale=radiusScale(rows);
+    const rows = (
+      mainCabotageMode
+        ? getMainCabotageRows(period)
+        : specialTraffic
+          ? getTrafficRows(specialTraffic, period)
+          : getRows(airline,period)
+    ).filter(d=>Number.isFinite(Number(d.latitud))&&Number.isFinite(Number(d.longitud)));
+
+    const scale = mainCabotageMode ? mainPieSizeScale(rows) : radiusScale(rows);
     const bounds=[];
     let paxTotal=0;
 
     rows.forEach(d=>{
       const historical=period==="2023_2025" && d.tipoPresencia==="historica_reciente";
       const pax=Number(d.pasajerosVinculados ?? d.pasajerosPeriodo ?? 0);
-      const radius=scale(pax);
       paxTotal += pax;
-      const marker=L.circleMarker([Number(d.latitud),Number(d.longitud)],{
-        radius,
-        color: historical ? "#7a8793" : color,
-        weight: historical ? 2 : 1.5,
-        fillColor: historical ? "#ffffff" : color,
-        fillOpacity: historical ? .10 : .68,
-        opacity:.95
-      }).addTo(layer);
-      marker.bindPopup(popupHtml(d,airline,period),{maxWidth:330});
+
+      let marker;
+      let radius;
+
+      if(mainCabotageMode){
+        const size = scale(pax);
+        radius = size/2;
+        const gradient = mainPieGradient(d.paxByAirline);
+
+        marker = L.marker([Number(d.latitud),Number(d.longitud)],{
+          icon:L.divIcon({
+            className:"pie-div-icon",
+            iconSize:[size,size],
+            iconAnchor:[size/2,size/2],
+            html:`<div class="pie-marker" style="width:${size}px;height:${size}px;background:${gradient}"></div>`
+          })
+        }).addTo(layer);
+
+        marker.bindPopup(mainPiePopupHtml(d,period),{maxWidth:340});
+      }else{
+        radius=scale(pax);
+        marker=L.circleMarker([Number(d.latitud),Number(d.longitud)],{
+          radius,
+          color: historical ? "#7a8793" : color,
+          weight: historical ? 2 : 1.5,
+          fillColor: historical ? "#ffffff" : color,
+          fillOpacity: historical ? .10 : .68,
+          opacity:.95
+        }).addTo(layer);
+
+        marker.bindPopup(popupHtml(d,airline,period),{maxWidth:330});
+      }
+
       labelEntries.push({marker,iata:d.iata||"",radius});
       bounds.push([Number(d.latitud),Number(d.longitud)]);
     });
 
-    const idx = specialTraffic ? null : db.indiceAerolineas?.[airline];
+    const idx = (specialTraffic || mainCabotageMode) ? null : db.indiceAerolineas?.[airline];
     const logo=$("airlineLogo");
 
-    if(specialTraffic){
+    if(specialTraffic || mainCabotageMode){
       logo.style.display="none";
     }else if(idx?.logo){
       logo.src=idx.logo;
@@ -581,6 +1079,21 @@
     const legendAirlineName=$("legendAirlineName");
     const legendCurrentLabel=$("legendCurrentLabel");
     const legendAirportCount=$("legendAirportCount");
+    const legendStandardMode=$("legendStandardMode");
+    const legendPieMode=$("legendPieMode");
+    const legendHistoricalRow=$("legendHistoricalRow");
+
+    if(legendStandardMode && legendPieMode){
+      legendStandardMode.style.display = mainCabotageMode ? "none" : "block";
+      legendPieMode.style.display = mainCabotageMode ? "block" : "none";
+    }
+
+    if(legendHistoricalRow){
+      legendHistoricalRow.style.display =
+        (!specialTraffic && !mainCabotageMode && period === "2023_2025")
+          ? "flex"
+          : "none";
+    }
 
     if(legendCurrentLabel){
       legendCurrentLabel.textContent = specialTraffic === "Internacional"
@@ -595,7 +1108,11 @@
     }
 
     if(legendLogo && legendAirlineName){
-      if(specialTraffic){
+      if(mainCabotageMode){
+        legendLogo.style.display="none";
+        legendAirlineName.textContent="Principales aerolíneas de cabotaje";
+        legendAirlineName.style.display="block";
+      }else if(specialTraffic){
         legendLogo.style.display="none";
         legendAirlineName.textContent=`Vuelos de ${specialTraffic.toLowerCase()}`;
         legendAirlineName.style.display="block";
@@ -617,8 +1134,15 @@
 
     $("countPill").textContent=`${fmt.format(rows.length)} aeropuertos`;
     $("paxPill").textContent=`${fmt.format(paxTotal)} pasajeros vinculados`;
-    $("trafficPill").textContent=`Tráfico: ${specialTraffic || trafficForAirline(airline)}`;
+    $("trafficPill").textContent = mainCabotageMode
+      ? "Tráfico: Cabotaje · 3 principales"
+      : `Tráfico: ${specialTraffic || trafficForAirline(airline)}`;
     $("periodPill").textContent=`Período: ${periodLabel(period)}`;
+
+    renderCabotagePanel(
+      period,
+      specialTraffic === "Cabotaje" || mainCabotageMode
+    );
 
     map.fitBounds(ARG_BOUNDS,{padding:[10,10]});
     if(bounds.length){
@@ -630,6 +1154,12 @@
     scheduleLabelRefresh();
   }
 
+  const cabPanelEl = $("cabotagePanel");
+  if(cabPanelEl && typeof L !== "undefined"){
+    L.DomEvent.disableClickPropagation(cabPanelEl);
+    L.DomEvent.disableScrollPropagation(cabPanelEl);
+  }
+
   $("airlineSelect").addEventListener("change", render);
   $("periodSelect").addEventListener("change", () => { rebuildAirlineSelect(true); render(); });
   map.on("zoomend moveend resize", scheduleLabelRefresh);
@@ -637,6 +1167,7 @@
   Promise.all([loadJson(), loadRoutesCsv()]).then(([data, routes]) => {
     db = data;
     routeRows = routes;
+    buildSourceOperatorBrandMap();
     rebuildAirlineSelect(false);
     render();
   }).catch(err => {
