@@ -113,6 +113,8 @@
 
   const PRIORITY = ["Aerolíneas Argentinas", "Flybondi", "JetSMART"];
 
+  const MIN_PAX_INTERNACIONAL = 1000;
+
   const SPECIAL_SELECTIONS = {
     "__TODOS_CABOTAJE__": "Todos los aeropuertos con vuelos de cabotaje",
     "__TODOS_INTERNACIONAL__": "Todos los aeropuertos con vuelos internacionales"
@@ -229,12 +231,20 @@
       });
     });
 
-    return [...airportMap.values()].map(row => ({
+    const rows = [...airportMap.values()].map(row => ({
       ...row,
       aniosActivos: [...new Set(row.aniosActivos)].sort(),
       cantidadAerolineasPeriodo: row.aerolineasPeriodo.size,
       aerolineasPeriodo: [...row.aerolineasPeriodo].sort((a,b)=>a.localeCompare(b,"es"))
     }));
+
+    // En la vista agregada internacional se exige un mínimo de 1.000
+    // pasajeros vinculados en el período seleccionado.
+    if(target === "Internacional"){
+      return rows.filter(row => Number(row.pasajerosPeriodo || 0) >= MIN_PAX_INTERNACIONAL);
+    }
+
+    return rows;
   }
 
   function periodLabel(period){ return period === "2023_2025" ? "2023–2025" : period; }
@@ -507,7 +517,9 @@
     const legendAirportCount=$("legendAirportCount");
 
     if(legendCurrentLabel){
-      legendCurrentLabel.textContent=`Presencia en ${periodLabel(period)}`;
+      legendCurrentLabel.textContent = specialTraffic === "Internacional"
+        ? `Presencia en ${periodLabel(period)} · mínimo ${fmt.format(MIN_PAX_INTERNACIONAL)} pasajeros`
+        : `Presencia en ${periodLabel(period)}`;
     }
 
     if(legendAirportCount){
