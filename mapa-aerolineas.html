@@ -127,8 +127,8 @@
       z-index:1;
     }
     .air-head-logo{
-      max-width:29px;
-      max-height:16px;
+      max-width:44px;
+      max-height:23px;
       object-fit:contain;
       vertical-align:middle;
     }
@@ -382,6 +382,9 @@
     }
     if(key.includes("flybondi")) return "Flybondi";
     if(key.includes("jetsmart")) return "JetSMART";
+    if(key === "andes" || key.includes("andes lineas aereas")) return "Andes";
+    if(key === "lade" || key.includes("lineas aereas del estado")) return "LADE";
+    if(key.includes("american jet")) return "American Jet";
 
     return raw;
   }
@@ -411,7 +414,11 @@
 
   function isKnownPassengerAirline(name){
     const idx = db?.indiceAerolineas?.[name];
-    return Boolean(idx && isPassengerAirline(idx));
+    if(idx) return isPassengerAirline(idx);
+
+    // Operadores domésticos que pueden existir en rutasaereas.csv aunque no
+    // tengan ficha propia en el índice JSON de aerolíneas.
+    return ["Andes","LADE","American Jet"].includes(canonicalAirline(name));
   }
 
   function commercialRouteRowsBase(period, target){
@@ -1004,6 +1011,9 @@
     const cabIntGroup = document.createElement("optgroup");
     cabIntGroup.label = "Cabotaje e internacional";
 
+    const onlyCabGroup = document.createElement("optgroup");
+    onlyCabGroup.label = "Solo cabotaje";
+
     const onlyIntGroup = document.createElement("optgroup");
     onlyIntGroup.label = "Solo internacional";
 
@@ -1015,12 +1025,16 @@
       opt.value = name;
       opt.textContent = name;
 
-      // Una aerolínea aparece una sola vez.
-      // Toda compañía con presencia de cabotaje va al primer grupo;
-      // si no tiene cabotaje y sí internacional, va a "Solo internacional".
-      if(info.segments.has("Cabotaje")){
+      // Una aerolínea aparece una sola vez y se clasifica según
+      // el tipo de tráfico que efectivamente registra en el período.
+      const hasCab = info.segments.has("Cabotaje");
+      const hasInt = info.segments.has("Internacional");
+
+      if(hasCab && hasInt){
         cabIntGroup.appendChild(opt);
-      }else if(info.segments.has("Internacional")){
+      }else if(hasCab){
+        onlyCabGroup.appendChild(opt);
+      }else if(hasInt){
         onlyIntGroup.appendChild(opt);
       }
     });
@@ -1028,6 +1042,7 @@
     sel.innerHTML = "";
     sel.appendChild(analysisGroup);
     if(cabIntGroup.children.length) sel.appendChild(cabIntGroup);
+    if(onlyCabGroup.children.length) sel.appendChild(onlyCabGroup);
     if(onlyIntGroup.children.length) sel.appendChild(onlyIntGroup);
 
     const oldOption = [...sel.options].find(o => o.value === old && !o.disabled);
@@ -1209,7 +1224,9 @@
     const targetLower = target.toLowerCase();
 
     $("panelSection1Title").textContent = "Aeropuertos con un único operador";
-    $("panelSection2Title").textContent = "Aeropuertos con dos o más aerolíneas";
+    $("panelSection2Title").textContent = target === "Cabotaje"
+      ? "Presencia de operadores por aeropuerto"
+      : "Aeropuertos con dos o más aerolíneas";
 
     $("cabPanelTitle").textContent = `Operadores de ${targetLower} · ${periodLabel(period)}`;
     $("cabPanelSub").textContent =
@@ -1248,8 +1265,13 @@
         }).join("")
       : `<div style="color:#64748b">No se registran aeropuertos con operador único en este período.</div>`;
 
+    // En cabotaje se muestra la matriz completa para que también aparezcan
+    // operadores exclusivamente domésticos (por ejemplo Andes o LADE),
+    // aunque en un aeropuerto sean el único operador.
+    const tableRows = target === "Cabotaje" ? rows : multiple;
+
     const operatorCounts = new Map();
-    multiple.forEach(r=>{
+    tableRows.forEach(r=>{
       r.operators.forEach(op=>operatorCounts.set(op,(operatorCounts.get(op)||0)+1));
     });
 
@@ -1271,13 +1293,14 @@
         || a.localeCompare(b,"es");
     });
 
-    if(!multiple.length){
-      $("cabMultiTable").innerHTML =
-        `<div style="color:#64748b">No se registran aeropuertos con múltiples operadores.</div>`;
+    if(!tableRows.length){
+      $("cabMultiTable").innerHTML = target === "Cabotaje"
+        ? `<div style="color:#64748b">No se registran operadores de cabotaje en este período.</div>`
+        : `<div style="color:#64748b">No se registran aeropuertos con múltiples operadores.</div>`;
     }else{
       const head = operators.map(op=>`<th>${airlineLogoHtml(op)}</th>`).join("");
 
-      const body = multiple
+      const body = tableRows
         .sort((a,b)=>a.iata.localeCompare(b.iata))
         .map(r=>{
           const cells = operators.map(op=>{
