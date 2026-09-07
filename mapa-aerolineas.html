@@ -111,6 +111,12 @@
     "aerolineas_por_aeropuerto_2015_2025_web_v3_2.json"
   ];
 
+  const ROUTES_CSV_CANDIDATES = [
+    "fuentes/rutasaereas.csv",
+    "data/rutasaereas.csv",
+    "rutasaereas.csv"
+  ];
+
   const PRIORITY = ["Aerolíneas Argentinas", "Flybondi", "JetSMART"];
 
   const MIN_PAX_INTERNACIONAL = 1000;
@@ -140,6 +146,7 @@
   const $ = id => document.getElementById(id);
   const fmt = new Intl.NumberFormat("es-AR", { maximumFractionDigits: 0 });
   let db = null;
+  let routeRows = [];
   let labelEntries = [];
   let labelRefreshQueued = false;
 
@@ -150,6 +157,47 @@
     let h = 0;
     for (const ch of String(name)) h = ((h << 5) - h + ch.charCodeAt(0)) | 0;
     return FALLBACK_COLORS[Math.abs(h) % FALLBACK_COLORS.length];
+  }
+
+
+  function parseNumberAR(value){
+    const s = String(value ?? "").trim();
+    if(!s) return 0;
+    return Number(s.replace(/\./g,"").replace(",", ".")) || 0;
+  }
+
+  function splitRoutePair(route){
+    const parts = String(route || "").toUpperCase().split(/\s*-\s*/).map(s=>s.trim()).filter(Boolean);
+    return parts.length >= 2 ? [parts[0], parts[1]] : [null, null];
+  }
+
+  function parseSemicolonCsv(text){
+    const lines = String(text || "").replace(/\r/g,"").split("\n").filter(Boolean);
+    if(!lines.length) return [];
+    const headers = lines[0].split(";").map(h=>h.trim());
+
+    return lines.slice(1).map(line => {
+      // La fuente no utiliza ';' dentro de campos de texto, por lo que este parser
+      // deliberadamente simple preserva el archivo tal como se publica.
+      const vals = line.split(";");
+      const row = {};
+      headers.forEach((h,i)=> row[h] = vals[i] ?? "");
+      return row;
+    });
+  }
+
+  async function loadRoutesCsv(){
+    let lastError = null;
+    for(const url of ROUTES_CSV_CANDIDATES){
+      try{
+        const r = await fetch(url, {cache:"no-store"});
+        if(!r.ok) throw new Error(`${r.status} ${r.statusText}`);
+        return parseSemicolonCsv(await r.text());
+      }catch(e){
+        lastError = e;
+      }
+    }
+    throw new Error(`No se encontró rutasaereas.csv. ${lastError || ""}`);
   }
 
   async function loadJson(){
@@ -187,25 +235,41 @@
   }
 
   function getTrafficRows(target, period){
-    const years = period === "2023_2025" ? ["2023","2024","2025"] : [String(period)];
+    const years = period === "2023_2025"
+      ? new Set(["2023","2024","2025"])
+      : new Set([String(period)]);
+
     const airportMap = new Map();
 
-    Object.values(db?.aeropuertos || {}).forEach(airport => {
-      years.forEach(year => {
-        const block = airport?.anios?.[year];
-        if(!block) return;
+    routeRows.forEach(row => {
+      const year = String(row["AñoMes"] || "").slice(0,4);
+      if(!years.has(year)) return;
 
-        const matching = (block.aerolineas || []).filter(a =>
-          a?.tipoOperador === "aerolinea_pasajeros" &&
-          trafficMatches(a?.trafico, target)
-        );
+      const flightClass = String(row["Comercial Av Gral"] || "").trim().toLowerCase();
+      // Excluye explícitamente Aviación General.
+      if(flightClass !== "comercial") return;
 
-        if(!matching.length) return;
+      const classification = String(row["Clasificacion"] || "").trim().toLowerCase();
+      const wanted = target.toLowerCase();
+      if(classification !== wanted) return;
 
-        const key = airport.iata || airport.aeropuerto || `${airport.latitud},${airport.longitud}`;
-        if(!airportMap.has(key)){
-          airportMap.set(key, {
-            iata: airport.iata || key,
+      const [a,b] = splitRoutePair(row["CityPair_IATA"]);
+      if(!a || !b || a === b) return;
+
+      const pax = parseNumberAR(row["TotalPasajeros"]);
+      const flights = parseNumberAR(row["Vuelos"]);
+      const airline = String(row["Aerolinea Nombre"] || "").trim();
+
+      // Para internacional sólo uno de los extremos suele pertenecer a la red argentina;
+      // para cabotaje pueden pertenecer ambos. Se agregan únicamente aeropuertos que están
+      // presentes en el JSON nacional del mapa.
+      [a,b].forEach(iata => {
+        const airport = db?.aeropuertos?.[iata];
+        if(!airport) return;
+
+        if(!airportMap.has(iata)){
+          airportMap.set(iata, {
+            iata,
             aeropuerto: airport.aeropuerto || "",
             localidad: airport.localidad || "",
             provincia: airport.provincia || "",
@@ -214,34 +278,32 @@
             pasajerosPeriodo: 0,
             vuelosPeriodo: 0,
             aerolineasPeriodo: new Set(),
-            aniosActivos: [],
+            rutasPeriodo: new Set(),
+            aniosActivos: new Set(),
             trafico: target,
-            estado: "Operación en el período"
+            estado: "Operación comercial en el período"
           });
         }
 
-        const row = airportMap.get(key);
-        row.aniosActivos.push(Number(year));
-
-        matching.forEach(a => {
-          row.pasajerosPeriodo += Number(a.pasajerosVinculados || 0);
-          row.vuelosPeriodo += Number(a.vuelosVinculados || 0);
-          row.aerolineasPeriodo.add(a.nombre);
-        });
+        const item = airportMap.get(iata);
+        item.pasajerosPeriodo += pax;
+        item.vuelosPeriodo += flights;
+        item.aniosActivos.add(Number(year));
+        item.rutasPeriodo.add(String(row["CityPair_IATA"] || "").trim());
+        if(airline) item.aerolineasPeriodo.add(airline);
       });
     });
 
-    const rows = [...airportMap.values()].map(row => ({
+    let rows = [...airportMap.values()].map(row => ({
       ...row,
-      aniosActivos: [...new Set(row.aniosActivos)].sort(),
+      aniosActivos: [...row.aniosActivos].sort(),
       cantidadAerolineasPeriodo: row.aerolineasPeriodo.size,
-      aerolineasPeriodo: [...row.aerolineasPeriodo].sort((a,b)=>a.localeCompare(b,"es"))
+      aerolineasPeriodo: [...row.aerolineasPeriodo].sort((a,b)=>a.localeCompare(b,"es")),
+      rutasPeriodo: [...row.rutasPeriodo].sort((a,b)=>a.localeCompare(b,"es"))
     }));
 
-    // En la vista agregada internacional se exige un mínimo de 1.000
-    // pasajeros vinculados en el período seleccionado.
     if(target === "Internacional"){
-      return rows.filter(row => Number(row.pasajerosPeriodo || 0) >= MIN_PAX_INTERNACIONAL);
+      rows = rows.filter(row => Number(row.pasajerosPeriodo || 0) >= MIN_PAX_INTERNACIONAL);
     }
 
     return rows;
@@ -364,6 +426,9 @@
       const airlineNames = Array.isArray(d.aerolineasPeriodo) && d.aerolineasPeriodo.length
         ? d.aerolineasPeriodo.join(", ")
         : "—";
+      const routeNames = Array.isArray(d.rutasPeriodo) && d.rutasPeriodo.length
+        ? d.rutasPeriodo.join(", ")
+        : "—";
       return `
         <div class="popup-title">${d.iata || ""} · ${d.aeropuerto || ""}</div>
         <div class="popup-sub">${d.localidad || ""}${d.provincia ? ` · ${d.provincia}` : ""}</div>
@@ -374,8 +439,9 @@
           <span>Pasajeros vinculados</span><b>${fmt.format(pax)}</b>
           <span>Vuelos vinculados</span><b>${fmt.format(flights)}</b>
         </div>
-        <div style="margin-top:7px;font-size:9px;color:#64748b;max-width:270px">
-          ${airlineNames}
+        <div style="margin-top:7px;font-size:9px;color:#64748b;max-width:290px">
+          <b>Aerolíneas:</b> ${airlineNames}<br>
+          <b>Rutas comerciales:</b> ${routeNames}
         </div>`;
     }
 
@@ -518,8 +584,10 @@
 
     if(legendCurrentLabel){
       legendCurrentLabel.textContent = specialTraffic === "Internacional"
-        ? `Presencia en ${periodLabel(period)} · mínimo ${fmt.format(MIN_PAX_INTERNACIONAL)} pasajeros`
-        : `Presencia en ${periodLabel(period)}`;
+        ? `Presencia comercial en ${periodLabel(period)} · mínimo ${fmt.format(MIN_PAX_INTERNACIONAL)} pasajeros`
+        : specialTraffic === "Cabotaje"
+          ? `Presencia comercial en ${periodLabel(period)}`
+          : `Presencia en ${periodLabel(period)}`;
     }
 
     if(legendAirportCount){
@@ -566,8 +634,9 @@
   $("periodSelect").addEventListener("change", () => { rebuildAirlineSelect(true); render(); });
   map.on("zoomend moveend resize", scheduleLabelRefresh);
 
-  loadJson().then(data => {
-    db=data;
+  Promise.all([loadJson(), loadRoutesCsv()]).then(([data, routes]) => {
+    db = data;
+    routeRows = routes;
     rebuildAirlineSelect(false);
     render();
   }).catch(err => {
