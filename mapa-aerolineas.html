@@ -309,6 +309,10 @@
     "Otros":"#9aa3ad"
   };
   const FALLBACK_COLORS = ["#355c7d","#6c5b7b","#c06c84","#2a9d8f","#e76f51","#457b9d","#8d6e63","#7b2cbf","#2d6a4f","#ca6702"];
+  const AIRLINE_LOGO_OVERRIDES = {
+    "GOL":"img/LogosAerolineas/GOL.png",
+    "Copa":"img/LogosAerolineas/Copa.png"
+  };
 
   const $ = id => document.getElementById(id);
   const fmt = new Intl.NumberFormat("es-AR", { maximumFractionDigits: 0 });
@@ -350,6 +354,17 @@
       .trim();
   }
 
+  // Nombres canónicos usados por el mapa.
+  // Evita que variantes de la fuente (por ejemplo "Gol Transportes Aereos"
+  // o "Copa Airlines") queden separadas de GOL y Copa.
+  const CANONICAL_AIRLINE_NAMES = new Map([
+    ["gol", "GOL"],
+    ["gol transportes aereos", "GOL"],
+    ["gol linhas aereas", "GOL"],
+    ["copa", "Copa"],
+    ["copa airlines", "Copa"]
+  ]);
+
   function buildSourceOperatorBrandMap(){
     const map = new Map();
 
@@ -373,21 +388,51 @@
     if(!raw) return "";
     const key = normalizeText(raw);
 
-    if(sourceOperatorBrandMap.has(key)){
-      return sourceOperatorBrandMap.get(key);
+    // Primero se resuelven aliases críticos usados por los gráficos de torta.
+    // Esto es importante porque la fuente puede llamar a una misma empresa
+    // "Gol Transportes Aereos", "Gol" o "GOL", y a Copa "Copa Airlines".
+    if(CANONICAL_AIRLINE_NAMES.has(key)){
+      return CANONICAL_AIRLINE_NAMES.get(key);
     }
 
-    // Salvaguardas para las tres marcas principales.
+    if(sourceOperatorBrandMap.has(key)){
+      const mapped = sourceOperatorBrandMap.get(key);
+      const mappedKey = normalizeText(mapped);
+
+      // El nombre devuelto por el JSON también se vuelve a normalizar.
+      if(CANONICAL_AIRLINE_NAMES.has(mappedKey)){
+        return CANONICAL_AIRLINE_NAMES.get(mappedKey);
+      }
+
+      return mapped;
+    }
+
     if(key.includes("aerolineas argentinas") || key.includes("austral")){
       return "Aerolíneas Argentinas";
     }
     if(key.includes("flybondi")) return "Flybondi";
     if(key.includes("jetsmart")) return "JetSMART";
+    if(key === "latam" || key.startsWith("latam ") || key.includes("tam linhas aereas")) return "LATAM";
     if(key === "andes" || key.includes("andes lineas aereas")) return "Andes";
     if(key === "lade" || key.includes("lineas aereas del estado")) return "LADE";
     if(key.includes("american jet")) return "American Jet";
 
     return raw;
+  }
+
+  function getAirlineIndexRecord(name){
+    const index = db?.indiceAerolineas || {};
+
+    if(index[name]) return index[name];
+
+    const canonical = canonicalAirline(name);
+    for(const [key, value] of Object.entries(index)){
+      if(canonicalAirline(key) === canonical){
+        return value;
+      }
+    }
+
+    return null;
   }
 
   function yearsForPeriod(period){
@@ -414,12 +459,18 @@
   }
 
   function isKnownPassengerAirline(name){
-    const idx = db?.indiceAerolineas?.[name];
+    const canonical = canonicalAirline(name);
+    const idx = getAirlineIndexRecord(canonical);
     if(idx) return isPassengerAirline(idx);
+
+    // Las principales deben conservarse aunque el nombre de la marca en el
+    // índice JSON no coincida exactamente con el nombre canónico del mapa.
+    if(MAIN_CABOTAGE_AIRLINES.includes(canonical)) return true;
+    if(MAIN_INTERNATIONAL_AIRLINES.includes(canonical)) return true;
 
     // Operadores domésticos que pueden existir en rutasaereas.csv aunque no
     // tengan ficha propia en el índice JSON de aerolíneas.
-    return ["Andes","LADE","American Jet"].includes(canonicalAirline(name));
+    return ["Andes","LADE","American Jet"].includes(canonical);
   }
 
   function commercialRouteRowsBase(period, target){
@@ -544,7 +595,7 @@
       if(!block) return false;
 
       return (block.aerolineas || []).some(a =>
-        normalizeText(a.nombre) === normalizeText(airline) &&
+        canonicalAirline(a.nombre) === canonicalAirline(airline) &&
         normalizeText(a.estado) === "regular"
       );
     });
@@ -882,7 +933,7 @@
   }
 
   function getRows(airline, period){
-    const idx = db?.indiceAerolineas?.[airline];
+    const idx = getAirlineIndexRecord(airline);
     if(!idx) return [];
     if(period === "2023_2025"){
       return (idx.periodo2023_2025?.aeropuertos || []).map(d => ({...d}));
@@ -1199,7 +1250,7 @@
   }
 
   function airlineLogoHtml(name){
-    const logo = db?.indiceAerolineas?.[name]?.logo;
+    const logo = AIRLINE_LOGO_OVERRIDES[name] || getAirlineIndexRecord(name)?.logo;
     if(logo){
       return `<img class="air-head-logo" src="${logo}" alt="${name}" title="${name}" onerror="this.replaceWith(document.createTextNode('${name.replace(/'/g,"&#39;")}'))">`;
     }
@@ -1269,7 +1320,10 @@
     // En cabotaje se muestra la matriz completa para que también aparezcan
     // operadores exclusivamente domésticos (por ejemplo Andes o LADE),
     // aunque en un aeropuerto sean el único operador.
-    const tableRows = target === "Cabotaje" ? rows : multiple;
+    // La matriz usa el mismo universo de aeropuertos que el mapa. Así una
+    // aerolínea internacional no desaparece de la tabla por operar sola en
+    // alguno de los aeropuertos filtrados.
+    const tableRows = rows;
 
     const operatorCounts = new Map();
     tableRows.forEach(r=>{
@@ -1581,7 +1635,7 @@
       bounds.push([Number(d.latitud),Number(d.longitud)]);
     });
 
-    const idx = (specialTraffic || pieMode) ? null : db.indiceAerolineas?.[airline];
+    const idx = (specialTraffic || pieMode) ? null : getAirlineIndexRecord(airline);
     const logo=$("airlineLogo");
 
     if(specialTraffic || pieMode){
