@@ -29,6 +29,7 @@
     .field label{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#64748b}
     select{min-width:190px;border:1px solid #b9c6d3;border-radius:7px;background:#fff;padding:7px 28px 7px 9px;font-size:12px;color:#17324d}
     #periodSelect{min-width:120px}
+    #regularitySelect{min-width:145px}
     .summary{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
     .pill{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;background:#eef4f8;border:1px solid #d8e5ed;font-size:10px;color:#36546b}
     .logo{height:26px;max-width:120px;object-fit:contain;display:none}
@@ -57,7 +58,8 @@
       z-index:860;
       right:10px;
       top:162px;
-      width:410px;
+      width:min(720px, 43vw);
+      min-width:610px;
       max-width:calc(100% - 20px);
       max-height:calc(100% - 178px);
       overflow:auto;
@@ -91,18 +93,20 @@
       font-weight:700;
       font-size:9px;
     }
-    .multi-wrap{overflow-x:auto}
+    .multi-wrap{overflow-x:hidden}
     .multi-table{
       border-collapse:collapse;
       width:100%;
-      min-width:310px;
-      font-size:9px;
+      min-width:0;
+      table-layout:fixed;
+      font-size:8.5px;
     }
     .multi-table th,.multi-table td{
       border-bottom:1px solid #e6ebef;
-      padding:3px 4px;
+      padding:3px 2px;
       text-align:center;
       white-space:nowrap;
+      overflow:hidden;
     }
     .multi-table th:first-child,.multi-table td:first-child{
       text-align:left;
@@ -114,12 +118,18 @@
       z-index:1;
     }
     .air-head-logo{
-      max-width:38px;
-      max-height:18px;
+      max-width:32px;
+      max-height:17px;
       object-fit:contain;
       vertical-align:middle;
     }
-    .air-head-text{font-size:8px;font-weight:700;color:#36546b}
+    .air-head-text{
+      font-size:7px;
+      font-weight:700;
+      color:#36546b;
+      line-height:1.0;
+      white-space:normal;
+    }
     .presence-dot{
       width:10px;height:10px;border-radius:50%;
       display:inline-block;
@@ -162,6 +172,7 @@
         right:10px;
         left:10px;
         width:auto;
+        min-width:0;
         max-width:none;
         max-height:42%;
       }
@@ -192,6 +203,13 @@
           <option value="2023_2025">2023–2025</option>
         </select>
       </div>
+      <div class="field">
+        <label for="regularitySelect">Operación</label>
+        <select id="regularitySelect">
+          <option value="regular" selected>Comercial regular</option>
+          <option value="all">Toda comercial</option>
+        </select>
+      </div>
     </div>
   </div>
 
@@ -218,6 +236,7 @@
 
     <div class="cab-note">
       Se consideran operaciones comerciales de pasajeros de cabotaje.
+      El filtro “Comercial regular” utiliza la clasificación anual Regular de la fuente procesada.
       Se excluye Aviación General.
     </div>
   </aside>
@@ -351,6 +370,40 @@
       : new Set([String(period)]);
   }
 
+  function regularOnlySelected(){
+    return $("regularitySelect")?.value === "regular";
+  }
+
+  function regularityLabel(){
+    return regularOnlySelected() ? "comercial regular" : "toda comercial";
+  }
+
+  function isRegularAtAirport(airline, iata, period){
+    if(!regularOnlySelected()) return true;
+
+    const airport = db?.aeropuertos?.[iata];
+    if(!airport) return false;
+
+    const years = period === "2023_2025"
+      ? ["2023","2024","2025"]
+      : [String(period)];
+
+    return years.some(year => {
+      const block = airport?.anios?.[year];
+      if(!block) return false;
+
+      return (block.aerolineas || []).some(a =>
+        normalizeText(a.nombre) === normalizeText(airline) &&
+        normalizeText(a.estado) === "regular"
+      );
+    });
+  }
+
+  function filterAirlineRowsByRegularity(airline, period, rows){
+    if(!regularOnlySelected()) return rows;
+    return rows.filter(d => isRegularAtAirport(airline, d.iata, period));
+  }
+
   function commercialCabotageRouteRows(period){
     const years = yearsForPeriod(period);
 
@@ -382,6 +435,7 @@
       [a,b].forEach(iata => {
         const airport = db?.aeropuertos?.[iata];
         if(!airport) return;
+        if(!isRegularAtAirport(airline, iata, period)) return;
 
         if(!airportMap.has(iata)){
           airportMap.set(iata,{
@@ -424,6 +478,7 @@
       [a,b].forEach(iata => {
         const airport = db?.aeropuertos?.[iata];
         if(!airport) return;
+        if(!isRegularAtAirport(airline, iata, period)) return;
 
         if(!airportMap.has(iata)){
           airportMap.set(iata,{
@@ -600,7 +655,7 @@
 
       const pax = parseNumberAR(row["TotalPasajeros"]);
       const flights = parseNumberAR(row["Vuelos"]);
-      const airline = String(row["Aerolinea Nombre"] || "").trim();
+      const airline = canonicalAirline(row["Aerolinea Nombre"]);
 
       // Para internacional sólo uno de los extremos suele pertenecer a la red argentina;
       // para cabotaje pueden pertenecer ambos. Se agregan únicamente aeropuertos que están
@@ -608,6 +663,7 @@
       [a,b].forEach(iata => {
         const airport = db?.aeropuertos?.[iata];
         if(!airport) return;
+        if(!isRegularAtAirport(airline, iata, period)) return;
 
         if(!airportMap.has(iata)){
           airportMap.set(iata, {
@@ -778,7 +834,7 @@
 
     const rows = buildCabotagePresence(period);
     $("cabPanelTitle").textContent = `Operadores de cabotaje · ${periodLabel(period)}`;
-    $("cabPanelSub").textContent = `${fmt.format(rows.length)} aeropuertos con pasajeros comerciales de cabotaje`;
+    $("cabPanelSub").textContent = `${fmt.format(rows.length)} aeropuertos · ${regularityLabel()}`;
 
     const single = rows.filter(r=>r.operators.length===1);
     const multiple = rows.filter(r=>r.operators.length>=2);
@@ -1009,13 +1065,19 @@
     layer.clearLayers();
     labelEntries=[];
 
-    const rows = (
+    let rows = (
       mainCabotageMode
         ? getMainCabotageRows(period)
         : specialTraffic
           ? getTrafficRows(specialTraffic, period)
           : getRows(airline,period)
-    ).filter(d=>Number.isFinite(Number(d.latitud))&&Number.isFinite(Number(d.longitud)));
+    );
+
+    if(!mainCabotageMode && !specialTraffic){
+      rows = filterAirlineRowsByRegularity(airline, period, rows);
+    }
+
+    rows = rows.filter(d=>Number.isFinite(Number(d.latitud))&&Number.isFinite(Number(d.longitud)));
 
     const scale = mainCabotageMode ? mainPieSizeScale(rows) : radiusScale(rows);
     const bounds=[];
@@ -1135,8 +1197,8 @@
     $("countPill").textContent=`${fmt.format(rows.length)} aeropuertos`;
     $("paxPill").textContent=`${fmt.format(paxTotal)} pasajeros vinculados`;
     $("trafficPill").textContent = mainCabotageMode
-      ? "Tráfico: Cabotaje · 3 principales"
-      : `Tráfico: ${specialTraffic || trafficForAirline(airline)}`;
+      ? `Tráfico: Cabotaje · 3 principales · ${regularityLabel()}`
+      : `Tráfico: ${specialTraffic || trafficForAirline(airline)} · ${regularityLabel()}`;
     $("periodPill").textContent=`Período: ${periodLabel(period)}`;
 
     renderCabotagePanel(
@@ -1162,6 +1224,7 @@
 
   $("airlineSelect").addEventListener("change", render);
   $("periodSelect").addEventListener("change", () => { rebuildAirlineSelect(true); render(); });
+  $("regularitySelect").addEventListener("change", () => { rebuildAirlineSelect(true); render(); });
   map.on("zoomend moveend resize", scheduleLabelRefresh);
 
   Promise.all([loadJson(), loadRoutesCsv()]).then(([data, routes]) => {
