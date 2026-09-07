@@ -228,10 +228,10 @@
     <h3 id="cabPanelTitle">Operadores de cabotaje</h3>
     <div id="cabPanelSub" class="cab-sub"></div>
 
-    <div class="cab-section-title">Aeropuertos con un único operador</div>
+    <div id="panelSection1Title" class="cab-section-title">Aeropuertos con un único operador</div>
     <div id="cabSoloList"></div>
 
-    <div class="cab-section-title">Aeropuertos con dos o más aerolíneas</div>
+    <div id="panelSection2Title" class="cab-section-title">Aeropuertos con dos o más aerolíneas</div>
     <div id="cabMultiTable" class="multi-wrap"></div>
 
     <div id="operatorPanelNote" class="cab-note"></div>
@@ -255,6 +255,12 @@
     "fuentes/rutasaereas.csv",
     "data/rutasaereas.csv",
     "rutasaereas.csv"
+  ];
+
+  const SNA_AIRPORTS_CANDIDATES = [
+    "fuentes/Datos_aeropuertos.geojson",
+    "data/Datos_aeropuertos.geojson",
+    "Datos_aeropuertos.geojson"
   ];
 
   const PRIORITY = ["Aerolíneas Argentinas", "Flybondi", "JetSMART"];
@@ -296,6 +302,7 @@
   const fmt = new Intl.NumberFormat("es-AR", { maximumFractionDigits: 0 });
   let db = null;
   let routeRows = [];
+  let argAirportCodes = new Set();
   let sourceOperatorBrandMap = new Map();
   let labelEntries = [];
   let labelRefreshQueued = false;
@@ -374,8 +381,8 @@
   }
 
   function routeSegmentFromPair(a, b){
-    const aArg = Boolean(db?.aeropuertos?.[a]);
-    const bArg = Boolean(db?.aeropuertos?.[b]);
+    const aArg = argAirportCodes.has(String(a || "").toUpperCase());
+    const bArg = argAirportCodes.has(String(b || "").toUpperCase());
 
     if(aArg && bArg) return "Cabotaje";
     if(aArg !== bArg) return "Internacional";
@@ -383,13 +390,11 @@
   }
 
   function routeDomesticEndpoints(a, b, segment){
-    if(segment === "Cabotaje"){
-      return [a,b].filter(iata => Boolean(db?.aeropuertos?.[iata]));
-    }
-    if(segment === "Internacional"){
-      return [a,b].filter(iata => Boolean(db?.aeropuertos?.[iata]));
-    }
-    return [];
+    if(segment !== "Cabotaje" && segment !== "Internacional") return [];
+
+    return [a,b].filter(iata =>
+      argAirportCodes.has(String(iata || "").toUpperCase())
+    );
   }
 
   function isKnownPassengerAirline(name){
@@ -765,6 +770,34 @@
     throw new Error(`No se encontró rutasaereas.csv. ${lastError || ""}`);
   }
 
+  async function loadSnaAirports(){
+    let lastError = null;
+
+    for(const url of SNA_AIRPORTS_CANDIDATES){
+      try{
+        const r = await fetch(url, {cache:"no-store"});
+        if(!r.ok) throw new Error(`${r.status} ${r.statusText}`);
+
+        const geojson = await r.json();
+        const codes = new Set(
+          (geojson.features || [])
+            .map(f => String(f?.properties?.IATA || "").trim().toUpperCase())
+            .filter(Boolean)
+        );
+
+        if(!codes.size){
+          throw new Error("La fuente del SNA no contiene códigos IATA.");
+        }
+
+        return codes;
+      }catch(e){
+        lastError = e;
+      }
+    }
+
+    throw new Error(`No se pudo cargar la lista de aeropuertos argentinos. ${lastError || ""}`);
+  }
+
   async function loadJson(){
     $("status").style.display="block";
     let lastError = null;
@@ -943,6 +976,144 @@
     sel.value = (oldOption || preferred || firstEnabled || {}).value || "";
   }
 
+
+  function buildAirlinePresence(airline, period){
+    const airportMap = new Map();
+
+    ["Cabotaje","Internacional"].forEach(segment => {
+      commercialRouteRows(period, segment).forEach(row => {
+        const rowAirline = canonicalAirline(row["Aerolinea Nombre"]);
+        if(normalizeText(rowAirline) !== normalizeText(airline)) return;
+
+        const [a,b] = splitRoutePair(row["CityPair_IATA"]);
+        const pax = parseNumberAR(row["TotalPasajeros"]);
+        const flights = parseNumberAR(row["Vuelos"]);
+
+        routeDomesticEndpoints(a,b,segment).forEach(iata => {
+          const airport = db?.aeropuertos?.[iata];
+          if(!airport) return;
+          if(!isRegularAtAirport(airline, iata, period)) return;
+
+          if(!airportMap.has(iata)){
+            airportMap.set(iata,{
+              iata,
+              aeropuerto: airport.aeropuerto || "",
+              localidad: airport.localidad || "",
+              provincia: airport.provincia || "",
+              latitud: Number(airport.latitud),
+              longitud: Number(airport.longitud),
+              cabotajePax:0,
+              internacionalPax:0,
+              cabotajeVuelos:0,
+              internacionalVuelos:0
+            });
+          }
+
+          const item = airportMap.get(iata);
+          if(segment === "Cabotaje"){
+            item.cabotajePax += pax;
+            item.cabotajeVuelos += flights;
+          }else{
+            item.internacionalPax += pax;
+            item.internacionalVuelos += flights;
+          }
+        });
+      });
+    });
+
+    return [...airportMap.values()]
+      .map(d => ({
+        ...d,
+        pasajerosPeriodo:Number(d.cabotajePax || 0) + Number(d.internacionalPax || 0),
+        vuelosPeriodo:Number(d.cabotajeVuelos || 0) + Number(d.internacionalVuelos || 0)
+      }))
+      .sort((a,b)=>b.pasajerosPeriodo-a.pasajerosPeriodo || a.iata.localeCompare(b.iata));
+  }
+
+  function trafficLabelForAirlinePeriod(airline, period){
+    const rows = buildAirlinePresence(airline, period);
+    const hasCab = rows.some(r => Number(r.cabotajePax || 0) > 0);
+    const hasInt = rows.some(r => Number(r.internacionalPax || 0) > 0);
+
+    if(hasCab && hasInt) return "Cabotaje e internacional";
+    if(hasCab) return "Cabotaje";
+    if(hasInt) return "Solo internacional";
+    return "Sin operación";
+  }
+
+  function renderAirlinePanel(airline, period, show){
+    const panel = $("cabotagePanel");
+    if(!panel) return;
+
+    if(!show){
+      panel.classList.remove("show");
+      return;
+    }
+
+    const rows = buildAirlinePresence(airline, period);
+    const cab = rows.filter(r => Number(r.cabotajePax || 0) > 0);
+    const intl = rows.filter(r => Number(r.internacionalPax || 0) > 0);
+
+    $("cabPanelTitle").textContent = `${airline} · ${periodLabel(period)}`;
+    $("cabPanelSub").textContent =
+      `${fmt.format(rows.length)} aeropuertos · ${regularityLabel()}`;
+
+    $("panelSection1Title").textContent = "Cobertura por tipo de tráfico";
+    $("panelSection2Title").textContent = "Detalle por aeropuerto";
+
+    const chips = list => list
+      .sort((a,b)=>a.iata.localeCompare(b.iata))
+      .map(a=>`<span class="iata-chip" title="${a.aeropuerto || a.iata}">${a.iata}</span>`)
+      .join("");
+
+    $("cabSoloList").innerHTML = `
+      <div class="solo-row">
+        <b>Cabotaje (${cab.length}):</b><br>
+        ${cab.length ? chips(cab) : '<span style="color:#64748b">Sin operación</span>'}
+      </div>
+      <div class="solo-row">
+        <b>Internacional (${intl.length}):</b><br>
+        ${intl.length ? chips(intl) : '<span style="color:#64748b">Sin operación</span>'}
+      </div>`;
+
+    const color = hashColor(airline);
+    const body = rows.map(r => `
+      <tr>
+        <td title="${r.aeropuerto || r.iata}">${r.iata}</td>
+        <td title="Cabotaje">${
+          r.cabotajePax > 0
+            ? `<span class="presence-dot" style="background:${color}"></span>`
+            : ""
+        }</td>
+        <td title="Internacional">${
+          r.internacionalPax > 0
+            ? `<span class="presence-dot" style="background:${color}"></span>`
+            : ""
+        }</td>
+        <td style="text-align:right">${fmt.format(r.pasajerosPeriodo)}</td>
+      </tr>`).join("");
+
+    $("cabMultiTable").innerHTML = rows.length
+      ? `<table class="multi-table">
+          <thead>
+            <tr>
+              <th>Aerop.</th>
+              <th>Cab.</th>
+              <th>Int.</th>
+              <th style="text-align:right">Pasajeros</th>
+            </tr>
+          </thead>
+          <tbody>${body}</tbody>
+        </table>`
+      : `<div style="color:#64748b">Sin operación registrada en el período seleccionado.</div>`;
+
+    $("operatorPanelNote").textContent =
+      `Se muestran únicamente los aeropuertos con operación de ${airline}. ` +
+      `El filtro “Comercial regular” utiliza la clasificación anual Regular de la fuente procesada.`;
+
+    panel.classList.add("show");
+  }
+
   function airlineLogoHtml(name){
     const logo = db?.indiceAerolineas?.[name]?.logo;
     if(logo){
@@ -968,6 +1139,9 @@
 
     const rows = buildTrafficPresence(target, period);
     const targetLower = target.toLowerCase();
+
+    $("panelSection1Title").textContent = "Aeropuertos con un único operador";
+    $("panelSection2Title").textContent = "Aeropuertos con dos o más aerolíneas";
 
     $("cabPanelTitle").textContent = `Operadores de ${targetLower} · ${periodLabel(period)}`;
     $("cabPanelSub").textContent =
@@ -1062,9 +1236,29 @@
 
 
   const ARG_BOUNDS = L.latLngBounds(L.latLng(-56.3,-74.7), L.latLng(-20.5,-52.0));
+
+  function fitArgentinaWithPanel(panelVisible=true){
+    const panel = $("cabotagePanel");
+    const mobile = window.innerWidth <= 760;
+
+    if(panelVisible && panel && !mobile){
+      const rightPad = Math.min(
+        Math.max(panel.offsetWidth + 34, 520),
+        Math.floor(window.innerWidth * 0.60)
+      );
+
+      map.fitBounds(ARG_BOUNDS,{
+        paddingTopLeft:[18,12],
+        paddingBottomRight:[rightPad,12]
+      });
+    }else{
+      map.fitBounds(ARG_BOUNDS,{padding:[10,10]});
+    }
+  }
+
   const map = L.map("map", {zoomControl:true,minZoom:1,maxZoom:15,zoomSnap:.25,zoomDelta:.25,wheelPxPerZoomLevel:120,maxBounds:L.latLngBounds([[-60,-80],[-16,-48]])});
   L.tileLayer("https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png",{tms:true,minZoom:1,maxZoom:18,attribution:"© Instituto Geográfico Nacional + OpenStreetMap"}).addTo(map);
-  map.fitBounds(ARG_BOUNDS,{padding:[10,10]});
+  fitArgentinaWithPanel(false);
   const layer = L.layerGroup().addTo(map);
 
   function radiusScale(rows){
@@ -1394,7 +1588,9 @@
       ? `Tráfico: Cabotaje · 3 principales · ${regularityLabel()}`
       : mainInternationalMode
         ? `Tráfico: Internacional · 5 principales + otros · ${regularityLabel()}`
-        : `Tráfico: ${specialTraffic || trafficForAirline(airline)} · ${regularityLabel()}`;
+        : specialTraffic
+          ? `Tráfico: ${specialTraffic} · ${regularityLabel()}`
+          : `Tráfico: ${trafficLabelForAirlinePeriod(airline, period)} · ${regularityLabel()}`;
     $("periodPill").textContent=`Período: ${periodLabel(period)}`;
 
     const panelTraffic = mainCabotageMode
@@ -1403,13 +1599,13 @@
         ? "Internacional"
         : specialTraffic;
 
-    renderOperatorPanel(
-      panelTraffic,
-      period,
-      Boolean(panelTraffic)
-    );
+    if(panelTraffic){
+      renderOperatorPanel(panelTraffic, period, true);
+    }else{
+      renderAirlinePanel(airline, period, true);
+    }
 
-    map.fitBounds(ARG_BOUNDS,{padding:[10,10]});
+    fitArgentinaWithPanel(true);
     if(bounds.length){
       $("status").style.display="none";
     }else{
@@ -1428,11 +1624,17 @@
   $("airlineSelect").addEventListener("change", render);
   $("periodSelect").addEventListener("change", () => { rebuildAirlineSelect(true); render(); });
   $("regularitySelect").addEventListener("change", () => { rebuildAirlineSelect(true); render(); });
-  map.on("zoomend moveend resize", scheduleLabelRefresh);
+  map.on("zoomend moveend", scheduleLabelRefresh);
+  map.on("resize", () => {
+    fitArgentinaWithPanel(true);
+    scheduleLabelRefresh();
+  });
 
-  Promise.all([loadJson(), loadRoutesCsv()]).then(([data, routes]) => {
+  Promise.all([loadJson(), loadRoutesCsv(), loadSnaAirports()]).then(([data, routes, snaCodes]) => {
     db = data;
     routeRows = routes;
+    argAirportCodes = snaCodes;
+
     buildSourceOperatorBrandMap();
     rebuildAirlineSelect(false);
     render();
