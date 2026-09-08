@@ -59,6 +59,7 @@
     map: null,
     cluster: null,
     administrativeLayer: null,
+    countryLayer: null,
     administrativeLoaded: false,
     airports: [],
     filtered: [],
@@ -982,12 +983,13 @@ state.countryLayer = L.geoJSON(null, {
     });
   }
 
-  function start() {
-    try {
-      initMap();
-      bindEvents();
-      loadData();
-      loadAdministrativeLayer();
+function start() {
+  try {
+    initMap();
+    bindEvents();
+    loadData();
+    loadAdministrativeLayer();
+    loadCountryLayer();
     } catch (error) {
       console.error(error);
       setLoading(false);
