@@ -4,7 +4,8 @@
   const DATA_URLS = {
     airports: "data/sudamerica/aeropuertos_sudamerica.geojson",
     operations: "data/sudamerica/datos_operativos_aeropuertos.csv",
-    administrative: "data/sudamerica/divisiones_administrativas_sudamerica.geojson"
+    administrative: "data/sudamerica/divisiones_administrativas_sudamerica.geojson",
+    countries: "data/sudamerica/limites_paises_sudamerica.geojson"
   };
 
   const TYPE_META = {
@@ -124,7 +125,22 @@
       removeOutsideVisibleBounds: true,
       animate: true
     });
+    
+state.map.createPane("countryPane");
+state.map.getPane("countryPane").style.zIndex = 330;
+state.map.getPane("countryPane").style.pointerEvents = "none";
 
+state.countryLayer = L.geoJSON(null, {
+  pane: "countryPane",
+  interactive: false,
+  style: {
+    color: "#0b1f33",
+    weight: 1.4,
+    opacity: 0.8,
+    fillOpacity: 0
+  }
+}).addTo(state.map);
+    
     state.map.addLayer(state.cluster);
     state.map.on("click", () => closeDetail());
   }
@@ -148,7 +164,19 @@
       dom.administrativeToggle.checked = false;
     }
   }
-
+  
+      async function loadCountryLayer() {
+    try {
+      const response = await fetchWithRetry(DATA_URLS.countries, 2);
+      const geojson = await response.json();
+  
+      state.countryLayer.clearLayers();
+      state.countryLayer.addData(geojson);
+    } catch (error) {
+      console.warn("No fue posible cargar los límites de países.", error);
+    }
+  }
+  
   function administrativeStyle() {
     return {
       color: "#ffffff",
