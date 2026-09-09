@@ -26,6 +26,8 @@ const DATA_URLS = {
     search: document.getElementById("searchInput"),
     clearSearch: document.getElementById("clearSearch"),
     country: document.getElementById("countrySelect"),
+    year: document.getElementById("yearSelect"),
+    month: document.getElementById("monthSelect"),
     cargoOnly: document.getElementById("cargoOnly"),
     operationalOnly: document.getElementById("operationalOnly"),
     administrativeToggle: document.getElementById("administrativeToggle"),
@@ -64,7 +66,10 @@ const DATA_URLS = {
     airports: [],
     filtered: [],
     markers: new Map(),
-    operational: new Map(),
+    annualOperational: new Map(),
+    monthlyOperational: new Map(),
+    selectedYear: "2025",
+    selectedMonth: "",
     activeTypes: new Set(ALL_TYPES),
     selectedId: null,
     resultsLimit: 18,
@@ -222,22 +227,36 @@ state.countryLayer = L.geoJSON(null, {
     dom.errorMessage.textContent = "Comprobá la conexión y volvé a intentar.";
 
     try {
-      const [geoResponse, operationsResponse] = await Promise.all([
+      const [geoResponse, annualResponse, monthlyResponse] = await Promise.all([
         fetchWithRetry(DATA_URLS.airports),
-        fetchWithRetry(DATA_URLS.operations).catch((error) => {
-          console.warn("Los datos operativos no están disponibles; se muestra la capa geográfica.", error);
+      
+        fetchWithRetry(DATA_URLS.operationsAnnual).catch((error) => {
+          console.warn("Los datos operativos anuales no están disponibles.", error);
+          return null;
+        }),
+      
+        fetchWithRetry(DATA_URLS.operationsMonthly).catch((error) => {
+          console.warn("Los datos operativos mensuales no están disponibles.", error);
           return null;
         })
       ]);
 
-      const geojson = await geoResponse.json();
-      const operationsText = operationsResponse ? await operationsResponse.text() : "";
+const geojson = await geoResponse.json();
+
+const annualText = annualResponse
+  ? await annualResponse.text()
+  : "";
+
+const monthlyText = monthlyResponse
+  ? await monthlyResponse.text()
+  : "";
 
       if (geojson.type !== "FeatureCollection" || !Array.isArray(geojson.features)) {
         throw new Error("El archivo geográfico no es un FeatureCollection válido.");
       }
 
-      state.operational = buildOperationalIndex(parseCSV(operationsText));
+      state.annualOperational = buildAnnualIndex(parseCSV(annualText));
+      state.monthlyOperational = buildMonthlyIndex(parseCSV(monthlyText));
       state.airports = geojson.features
         .filter(isValidPointFeature)
         .map(normalizeAirportFeature);
@@ -376,7 +395,91 @@ state.countryLayer = L.geoJSON(null, {
 
     return index;
   }
+function buildAnnualIndex(rows) {
+  const index = new Map();
 
+  rows.forEach((row) => {
+    const normalized = {
+      ...row,
+      hasData: [
+        "pax_totales",
+        "pax_nacionales_total",
+        "pax_internacionales_total",
+        "mov_totales",
+        "mov_nacionales_total",
+        "mov_internacionales_total"
+      ].some((key) => hasValue(row[key]))
+    };
+
+    const iata = String(row.codigo_iata || "").trim().toUpperCase();
+    const icao = String(row.codigo_oaci || "").trim().toUpperCase();
+    const year = String(row.anio || "").trim();
+
+    if (iata && year) {
+      index.set(`${iata}|${year}`, normalized);
+    }
+
+    if (icao && year) {
+      index.set(`${icao}|${year}`, normalized);
+    }
+  });
+
+  return index;
+}
+
+
+function buildMonthlyIndex(rows) {
+  const index = new Map();
+
+  rows.forEach((row) => {
+    const normalized = {
+      ...row,
+      hasData: [
+        "pax_totales",
+        "pax_nacionales_total",
+        "pax_internacionales_total",
+        "mov_totales",
+        "mov_nacionales_total",
+        "mov_internacionales_total"
+      ].some((key) => hasValue(row[key]))
+    };
+
+    const iata = String(row.codigo_iata || "").trim().toUpperCase();
+    const icao = String(row.codigo_oaci || "").trim().toUpperCase();
+    const yearMonth = String(row.anio_mes || "").trim();
+
+    if (iata && yearMonth) {
+      index.set(`${iata}|${yearMonth}`, normalized);
+    }
+
+    if (icao && yearMonth) {
+      index.set(`${icao}|${yearMonth}`, normalized);
+    }
+  });
+
+  return index;
+}
+function getOperationalData(iata, icao) {
+  const year = state.selectedYear;
+  const month = state.selectedMonth;
+
+  if (month) {
+    const yearMonth = `${year}-${month}`;
+
+    return (
+      state.monthlyOperational.get(`${iata}|${yearMonth}`) ||
+      state.monthlyOperational.get(`${icao}|${yearMonth}`) ||
+      null
+    );
+  }
+
+  return (
+    state.annualOperational.get(`${iata}|${year}`) ||
+    state.annualOperational.get(`${icao}|${year}`) ||
+    null
+  );
+}
+  
   function isValidPointFeature(feature) {
     if (feature?.geometry?.type !== "Point" || !Array.isArray(feature.geometry.coordinates)) return false;
     const [longitude, latitude] = feature.geometry.coordinates;
@@ -388,7 +491,7 @@ state.countryLayer = L.geoJSON(null, {
     const iata = String(properties.codigo_iata || "").trim().toUpperCase();
     const icao = String(properties.codigo_oaci || "").trim().toUpperCase();
     const id = String(feature.id || properties.clave_union || iata || icao || `airport-${index}`);
-    const operational = state.operational.get(iata) || state.operational.get(icao) || null;
+    const operational = getOperationalData(iata, icao);
     const roles = Array.isArray(properties.roles_adicionales) ? properties.roles_adicionales : [];
     const [longitude, latitude] = feature.geometry.coordinates.map(Number);
 
@@ -418,6 +521,28 @@ state.countryLayer = L.geoJSON(null, {
     };
   }
 
+function refreshOperationalData() {
+  state.airports.forEach((airport) => {
+    const operational = getOperationalData(airport.iata, airport.icao);
+
+    airport.operational = operational;
+    airport.hasOperational = Boolean(operational?.hasData);
+  });
+
+  renderSummary();
+  applyFilters();
+
+  if (state.selectedId) {
+    const selected = state.airports.find(
+      (airport) => airport.id === state.selectedId
+    );
+
+    if (selected) {
+      renderDetail(selected);
+    }
+  }
+}
+  
   function normalizeSearch(value) {
     return String(value || "")
       .normalize("NFD")
@@ -663,7 +788,7 @@ state.countryLayer = L.geoJSON(null, {
     const sources = collectSources(airport);
     const operationalSection = airport.hasOperational
       ? renderOperationalMetrics(operational)
-      : `<p class="missing-data-note">No se incorporaron cifras operativas anuales verificadas para este aeropuerto. Los campos vacíos no representan cero.</p>`;
+      : `<p class="missing-data-note">No se incorporaron cifras operativas para este aeropuerto en el período seleccionado. Los campos vacíos no representan cero.</p>`;
 
     dom.detailContent.innerHTML = `
       <header class="detail-hero">
@@ -695,7 +820,15 @@ state.countryLayer = L.geoJSON(null, {
         <section class="detail-section">
           <div class="operational-heading">
             <h3>Actividad operativa</h3>
-            ${operational?.anio ? `<span class="data-year">Año ${escapeHTML(operational.anio)}</span>` : ""}
+                    ${
+          operational
+            ? `<span class="data-year">${
+                state.selectedMonth
+                  ? `${escapeHTML(state.selectedYear)}-${escapeHTML(state.selectedMonth)}`
+                  : `Año ${escapeHTML(state.selectedYear)}`
+              }</span>`
+            : ""
+        }
           </div>
           ${operationalSection}
         </section>
@@ -718,33 +851,59 @@ state.countryLayer = L.geoJSON(null, {
     dom.detailPanel.scrollTop = 0;
   }
 
-  function renderOperationalMetrics(data) {
-    const totalPassengers = numericValue(data.pasajeros_totales_anuales);
-    const domesticPassengers = numericValue(data.pasajeros_nacionales);
-    const internationalPassengers = numericValue(data.pasajeros_internacionales);
-    const compositionAvailable = totalPassengers > 0 && domesticPassengers !== null && internationalPassengers !== null;
-    const domesticShare = compositionAvailable ? (domesticPassengers / totalPassengers) * 100 : 0;
-    const internationalShare = compositionAvailable ? (internationalPassengers / totalPassengers) * 100 : 0;
+function renderOperationalMetrics(data) {
+  const totalPassengers = numericValue(data.pax_totales);
+  const domesticPassengers = numericValue(data.pax_nacionales_total);
+  const internationalPassengers = numericValue(data.pax_internacionales_total);
 
-    return `
-      <div class="metric-grid">
-        ${metricCard("Pasajeros totales", data.pasajeros_totales_anuales, "personas")}
-        ${metricCard("Operaciones", data.operaciones_aeronaves_anuales, "movimientos")}
-        ${metricCard("Carga", data.carga_toneladas_anuales, "toneladas", true)}
-        ${metricCard("Correo", data.correo_toneladas_anuales, "toneladas", true)}
+  const compositionAvailable =
+    totalPassengers > 0 &&
+    domesticPassengers !== null &&
+    internationalPassengers !== null;
+
+  const domesticShare = compositionAvailable
+    ? (domesticPassengers / totalPassengers) * 100
+    : 0;
+
+  const internationalShare = compositionAvailable
+    ? (internationalPassengers / totalPassengers) * 100
+    : 0;
+
+  return `
+    <div class="metric-grid">
+      ${metricCard("Pasajeros totales", data.pax_totales, "pasajeros")}
+      ${metricCard("Movimientos", data.mov_totales, "movimientos")}
+    </div>
+
+    ${compositionAvailable ? `
+      <div class="composition">
+        <div class="composition-labels">
+          <span>Nacionales ${DECIMAL_FORMAT.format(domesticShare)} %</span>
+          <span>Internacionales ${DECIMAL_FORMAT.format(internationalShare)} %</span>
+        </div>
+
+        <div class="composition-bar" aria-label="Composición de pasajeros nacionales e internacionales">
+          <span style="width:${domesticShare}%"></span>
+          <span style="width:${internationalShare}%"></span>
+        </div>
       </div>
-      ${compositionAvailable ? `
-        <div class="composition">
-          <div class="composition-labels">
-            <span>Nacionales ${DECIMAL_FORMAT.format(domesticShare)} %</span>
-            <span>Internacionales ${DECIMAL_FORMAT.format(internationalShare)} %</span>
-          </div>
-          <div class="composition-bar" aria-label="Composición de pasajeros nacionales e internacionales">
-            <span style="width:${domesticShare}%"></span>
-            <span style="width:${internationalShare}%"></span>
-          </div>
-        </div>` : ""}`;
-  }
+    ` : ""}
+
+    <div class="metric-grid">
+      ${metricCard("Pax nacionales arribados", data.pax_nacionales_arribados, "pasajeros")}
+      ${metricCard("Pax nacionales partidos", data.pax_nacionales_partidos, "pasajeros")}
+      ${metricCard("Pax internacionales arribados", data.pax_internacionales_arribados, "pasajeros")}
+      ${metricCard("Pax internacionales partidos", data.pax_internacionales_partidos, "pasajeros")}
+    </div>
+
+    <div class="metric-grid">
+      ${metricCard("Aterrizajes nacionales", data.mov_nacionales_aterrizajes, "movimientos")}
+      ${metricCard("Despegues nacionales", data.mov_nacionales_despegues, "movimientos")}
+      ${metricCard("Aterrizajes internacionales", data.mov_internacionales_aterrizajes, "movimientos")}
+      ${metricCard("Despegues internacionales", data.mov_internacionales_despegues, "movimientos")}
+    </div>
+  `;
+}
 
   function metricCard(label, rawValue, unit, decimals = false) {
     const value = numericValue(rawValue);
@@ -766,7 +925,17 @@ state.countryLayer = L.geoJSON(null, {
     addSource("Fuente aeronáutica oficial", properties.fuente_oficial, "Oficial");
     addSource("Fuente geográfica complementaria", properties.fuente_secundaria, "Complementaria");
     if (airport.hasOperational) {
-      addSource("Fuente de actividad operativa", airport.operational.fuente_dato, "Estadística oficial");
+      addSource(
+        "Fuente de pasajeros",
+        airport.operational.fuente_pasajeros,
+        "Estadística oficial"
+      );
+    
+      addSource(
+        "Fuente de movimientos",
+        airport.operational.fuente_movimientos,
+        "Estadística oficial"
+      );
     }
     return sources;
   }
@@ -828,16 +997,25 @@ state.countryLayer = L.geoJSON(null, {
     }, {});
   }
 
-  function resetFilters() {
-    dom.search.value = "";
-    dom.country.value = "";
-    dom.cargoOnly.checked = false;
-    dom.operationalOnly.checked = false;
-    state.activeTypes = new Set(ALL_TYPES);
-    state.resultsLimit = 18;
-    closeDetail();
-    applyFilters({ fit: true });
-  }
+function resetFilters() {
+  dom.search.value = "";
+  dom.country.value = "";
+
+  if (dom.year) dom.year.value = "2025";
+  if (dom.month) dom.month.value = "";
+
+  state.selectedYear = "2025";
+  state.selectedMonth = "";
+
+  dom.cargoOnly.checked = false;
+  dom.operationalOnly.checked = false;
+
+  state.activeTypes = new Set(ALL_TYPES);
+  state.resultsLimit = 18;
+
+  closeDetail();
+  refreshOperationalData();
+}
 
   function setSidebarOpen(open) {
     dom.sidebar.classList.toggle("is-open", open);
@@ -901,7 +1079,16 @@ state.countryLayer = L.geoJSON(null, {
       closeDetail();
       applyFilters({ fit: true });
     });
+dom.year.addEventListener("change", () => {
+  state.selectedYear = dom.year.value;
+  refreshOperationalData();
+});
 
+
+dom.month.addEventListener("change", () => {
+  state.selectedMonth = dom.month.value;
+  refreshOperationalData();
+});
     [dom.cargoOnly, dom.operationalOnly].forEach((checkbox) => {
       checkbox.addEventListener("change", () => {
         state.resultsLimit = 18;
@@ -987,6 +1174,8 @@ function start() {
   try {
     initMap();
     bindEvents();
+    state.selectedYear = dom.year?.value || "2025";
+    state.selectedMonth = dom.month?.value || "";
     loadData();
     loadAdministrativeLayer();
     loadCountryLayer();
