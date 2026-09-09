@@ -7,8 +7,8 @@ const DATA_URLS = {
   operationsMonthly: "data/sudamerica/operativo/datos_operativos_aeropuertos_mensual.csv",
   administrative: "data/sudamerica/divisiones_administrativas_sudamerica.geojson",
   countries: "data/sudamerica/limites_paises_sudamerica.geojson",
-  populatedPlaces: "data/sudamerica/ne_50m_populated_places_sudamerica.geojson",
-  urbanAreas: "data/sudamerica/ne_50m_urban_areas_sudamerica.geojson",
+  populatedPlaces: "data/sudamerica/ne_10m_populated_places_sudamerica.geojson",
+  urbanAreas: "data/sudamerica/ne_10m_urban_areas_sudamerica.geojson",
 };
 
   const TYPE_META = {
