@@ -62,7 +62,7 @@
       },
       "properties": {
         "clave_union": "AFA",
-        "nombre_oficial": "Suboficial Ay Santiago Germano Airport",
+        "nombre_oficial": "Aeropuerto Suboficial Ay Santiago Germano",
         "codigo_iata": "AFA",
         "codigo_oaci": "SAMR",
         "pais": "Argentina",
@@ -97,7 +97,7 @@
       },
       "properties": {
         "clave_union": "BHI",
-        "nombre_oficial": "Comandante Espora Airport",
+        "nombre_oficial": "Aeropuerto Comandante Espora",
         "codigo_iata": "BHI",
         "codigo_oaci": "SAZB",
         "pais": "Argentina",
@@ -132,7 +132,7 @@
       },
       "properties": {
         "clave_union": "BRC",
-        "nombre_oficial": "Teniente Luis Candelaria International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Teniente Luis Candelaria",
         "codigo_iata": "BRC",
         "codigo_oaci": "SAZS",
         "pais": "Argentina",
@@ -167,7 +167,7 @@
       },
       "properties": {
         "clave_union": "CNQ",
-        "nombre_oficial": "Corrientes Airport",
+        "nombre_oficial": "Aeropuerto Corrientes",
         "codigo_iata": "CNQ",
         "codigo_oaci": "SARC",
         "pais": "Argentina",
@@ -202,7 +202,7 @@
       },
       "properties": {
         "clave_union": "COR",
-        "nombre_oficial": "Ingeniero Aeronáutico Ambrosio L.V. Taravella International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Ingeniero Aeronáutico Ambrosio L.V. Taravella",
         "codigo_iata": "COR",
         "codigo_oaci": "SACO",
         "pais": "Argentina",
@@ -237,7 +237,7 @@
       },
       "properties": {
         "clave_union": "CPC",
-        "nombre_oficial": "Aviador C. Campos Airport",
+        "nombre_oficial": "Aeropuerto Aviador C. Campos",
         "codigo_iata": "CPC",
         "codigo_oaci": "SAZY",
         "pais": "Argentina",
@@ -270,7 +270,7 @@
       },
       "properties": {
         "clave_union": "CRD",
-        "nombre_oficial": "General Enrique Mosconi International Airport",
+        "nombre_oficial": "Aeropuerto Internacional General Enrique Mosconi",
         "codigo_iata": "CRD",
         "codigo_oaci": "SAVC",
         "pais": "Argentina",
@@ -305,7 +305,7 @@
       },
       "properties": {
         "clave_union": "CTC",
-        "nombre_oficial": "Coronel Felipe Varela International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Coronel Felipe Varela",
         "codigo_iata": "CTC",
         "codigo_oaci": "SANC",
         "pais": "Argentina",
@@ -340,7 +340,7 @@
       },
       "properties": {
         "clave_union": "EQS",
-        "nombre_oficial": "Esquel Brigadier Antonio Parodi International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Esquel Brigadier Antonio Parodi",
         "codigo_iata": "EQS",
         "codigo_oaci": "SAVE",
         "pais": "Argentina",
@@ -375,7 +375,7 @@
       },
       "properties": {
         "clave_union": "EZE",
-        "nombre_oficial": "Ezeiza International Airport - Ministro Pistarini",
+        "nombre_oficial": "Aeropuerto Internacional Ezeiza - Ministro Pistarini",
         "codigo_iata": "EZE",
         "codigo_oaci": "SAEZ",
         "pais": "Argentina",
@@ -411,7 +411,7 @@
       },
       "properties": {
         "clave_union": "FMA",
-        "nombre_oficial": "Formosa National Airport",
+        "nombre_oficial": "Aeropuerto Formosa",
         "codigo_iata": "FMA",
         "codigo_oaci": "SARF",
         "pais": "Argentina",
@@ -444,7 +444,7 @@
       },
       "properties": {
         "clave_union": "FTE",
-        "nombre_oficial": "El Calafate - Commander Armando Tola International Airport",
+        "nombre_oficial": "Aeropuerto Internacional El Calafate - Comandante Armando Tola",
         "codigo_iata": "FTE",
         "codigo_oaci": "SAWC",
         "pais": "Argentina",
@@ -479,7 +479,7 @@
       },
       "properties": {
         "clave_union": "GGS",
-        "nombre_oficial": "Gobernador Gregores Airport",
+        "nombre_oficial": "Aeropuerto Gobernador Gregores",
         "codigo_iata": "GGS",
         "codigo_oaci": "SAWR",
         "pais": "Argentina",
@@ -512,7 +512,7 @@
       },
       "properties": {
         "clave_union": "IGR",
-        "nombre_oficial": "Cataratas Del Iguazú International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Cataratas Del Iguazú",
         "codigo_iata": "IGR",
         "codigo_oaci": "SARI",
         "pais": "Argentina",
@@ -547,7 +547,7 @@
       },
       "properties": {
         "clave_union": "IRJ",
-        "nombre_oficial": "Capitan V A Almonacid Airport",
+        "nombre_oficial": "Aeropuerto Capitan V A Almonacid",
         "codigo_iata": "IRJ",
         "codigo_oaci": "SANL",
         "pais": "Argentina",
@@ -580,7 +580,7 @@
       },
       "properties": {
         "clave_union": "JUJ",
-        "nombre_oficial": "Gobernador Horacio Guzman International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Gobernador Horacio Guzman",
         "codigo_iata": "JUJ",
         "codigo_oaci": "SASJ",
         "pais": "Argentina",
@@ -615,7 +615,7 @@
       },
       "properties": {
         "clave_union": "LHS",
-        "nombre_oficial": "Las Heras Airport",
+        "nombre_oficial": "Aeropuerto Las Heras",
         "codigo_iata": "LHS",
         "codigo_oaci": "SAVH",
         "pais": "Argentina",
@@ -648,7 +648,7 @@
       },
       "properties": {
         "clave_union": "LUQ",
-        "nombre_oficial": "Brigadier Mayor D Cesar Raul Ojeda Airport",
+        "nombre_oficial": "Aeropuerto Brigadier Mayor D Cesar Raul Ojeda",
         "codigo_iata": "LUQ",
         "codigo_oaci": "SAOU",
         "pais": "Argentina",
@@ -683,7 +683,7 @@
       },
       "properties": {
         "clave_union": "MDQ",
-        "nombre_oficial": "Ástor Piazzola International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Ástor Piazzola",
         "codigo_iata": "MDQ",
         "codigo_oaci": "SAZM",
         "pais": "Argentina",
@@ -718,7 +718,7 @@
       },
       "properties": {
         "clave_union": "MDZ",
-        "nombre_oficial": "Governor Francisco Gabrielli International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Gobernador Francisco Gabrielli",
         "codigo_iata": "MDZ",
         "codigo_oaci": "SAME",
         "pais": "Argentina",
@@ -753,7 +753,7 @@
       },
       "properties": {
         "clave_union": "NEC",
-        "nombre_oficial": "Necochea Airport",
+        "nombre_oficial": "Aeropuerto Necochea",
         "codigo_iata": "NEC",
         "codigo_oaci": "SAZO",
         "pais": "Argentina",
@@ -786,7 +786,7 @@
       },
       "properties": {
         "clave_union": "NQN",
-        "nombre_oficial": "Presidente Perón International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Presidente Perón",
         "codigo_iata": "NQN",
         "codigo_oaci": "SAZN",
         "pais": "Argentina",
@@ -821,7 +821,7 @@
       },
       "properties": {
         "clave_union": "OES",
-        "nombre_oficial": "Antoine de Saint Exupéry Airport",
+        "nombre_oficial": "Aeropuerto Antoine de Saint Exupéry",
         "codigo_iata": "OES",
         "codigo_oaci": "SAVN",
         "pais": "Argentina",
@@ -854,7 +854,7 @@
       },
       "properties": {
         "clave_union": "PMQ",
-        "nombre_oficial": "Perito Moreno Jalil Hamer Airport",
+        "nombre_oficial": "Aeropuerto Perito Moreno Jalil Hamer",
         "codigo_iata": "PMQ",
         "codigo_oaci": "SAWP",
         "pais": "Argentina",
@@ -887,7 +887,7 @@
       },
       "properties": {
         "clave_union": "PMY",
-        "nombre_oficial": "El Tehuelche Airport",
+        "nombre_oficial": "Aeropuerto El Tehuelche",
         "codigo_iata": "PMY",
         "codigo_oaci": "SAVY",
         "pais": "Argentina",
@@ -920,7 +920,7 @@
       },
       "properties": {
         "clave_union": "PRA",
-        "nombre_oficial": "General Urquiza Airport",
+        "nombre_oficial": "Aeropuerto General Urquiza",
         "codigo_iata": "PRA",
         "codigo_oaci": "SAAP",
         "pais": "Argentina",
@@ -953,7 +953,7 @@
       },
       "properties": {
         "clave_union": "PSS",
-        "nombre_oficial": "Libertador Gral D Jose De San Martin Airport",
+        "nombre_oficial": "Aeropuerto Libertador Gral D Jose De San Martin",
         "codigo_iata": "PSS",
         "codigo_oaci": "SARP",
         "pais": "Argentina",
@@ -986,7 +986,7 @@
       },
       "properties": {
         "clave_union": "PUD",
-        "nombre_oficial": "Puerto Deseado Airport",
+        "nombre_oficial": "Aeropuerto Puerto Deseado",
         "codigo_iata": "PUD",
         "codigo_oaci": "SAWD",
         "pais": "Argentina",
@@ -1019,7 +1019,7 @@
       },
       "properties": {
         "clave_union": "REL",
-        "nombre_oficial": "Almirante Marco Andres Zar Airport",
+        "nombre_oficial": "Aeropuerto Almirante Marco Andres Zar",
         "codigo_iata": "REL",
         "codigo_oaci": "SAVT",
         "pais": "Argentina",
@@ -1054,7 +1054,7 @@
       },
       "properties": {
         "clave_union": "RES",
-        "nombre_oficial": "Resistencia International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Resistencia",
         "codigo_iata": "RES",
         "codigo_oaci": "SARE",
         "pais": "Argentina",
@@ -1089,7 +1089,7 @@
       },
       "properties": {
         "clave_union": "RGA",
-        "nombre_oficial": "Gobernador Ramón Trejo Noel International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Gobernador Ramón Trejo Noel",
         "codigo_iata": "RGA",
         "codigo_oaci": "SAWE",
         "pais": "Argentina",
@@ -1124,7 +1124,7 @@
       },
       "properties": {
         "clave_union": "RGL",
-        "nombre_oficial": "Piloto Civil Norberto Fernández International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Piloto Civil Norberto Fernández",
         "codigo_iata": "RGL",
         "codigo_oaci": "SAWG",
         "pais": "Argentina",
@@ -1159,7 +1159,7 @@
       },
       "properties": {
         "clave_union": "RHD",
-        "nombre_oficial": "Termas de Río Hondo international Airport",
+        "nombre_oficial": "Aeropuerto Internacional Termas de Río Hondo",
         "codigo_iata": "RHD",
         "codigo_oaci": "SANR",
         "pais": "Argentina",
@@ -1194,7 +1194,7 @@
       },
       "properties": {
         "clave_union": "ROS",
-        "nombre_oficial": "Rosario Islas Malvinas International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Rosario Islas Malvinas",
         "codigo_iata": "ROS",
         "codigo_oaci": "SAAR",
         "pais": "Argentina",
@@ -1229,7 +1229,7 @@
       },
       "properties": {
         "clave_union": "RSA",
-        "nombre_oficial": "Santa Rosa Airport",
+        "nombre_oficial": "Aeropuerto Santa Rosa",
         "codigo_iata": "RSA",
         "codigo_oaci": "SAZR",
         "pais": "Argentina",
@@ -1262,7 +1262,7 @@
       },
       "properties": {
         "clave_union": "RYO",
-        "nombre_oficial": "28 de Noviembre Airport",
+        "nombre_oficial": "Aeropuerto 28 de Noviembre",
         "codigo_iata": "RYO",
         "codigo_oaci": "SAWT",
         "pais": "Argentina",
@@ -1295,7 +1295,7 @@
       },
       "properties": {
         "clave_union": "SDE",
-        "nombre_oficial": "Vicecomodoro Angel D. La Paz Aragonés Airport",
+        "nombre_oficial": "Aeropuerto Vicecomodoro Angel D. La Paz Aragonés",
         "codigo_iata": "SDE",
         "codigo_oaci": "SANE",
         "pais": "Argentina",
@@ -1330,7 +1330,7 @@
       },
       "properties": {
         "clave_union": "SFN",
-        "nombre_oficial": "Sauce Viejo Airport",
+        "nombre_oficial": "Aeropuerto Sauce Viejo",
         "codigo_iata": "SFN",
         "codigo_oaci": "SAAV",
         "pais": "Argentina",
@@ -1363,7 +1363,7 @@
       },
       "properties": {
         "clave_union": "SLA",
-        "nombre_oficial": "Martín Miguel de Güemes International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Martín Miguel de Güemes",
         "codigo_iata": "SLA",
         "codigo_oaci": "SASA",
         "pais": "Argentina",
@@ -1398,7 +1398,7 @@
       },
       "properties": {
         "clave_union": "SST",
-        "nombre_oficial": "Santa Teresita Airport",
+        "nombre_oficial": "Aeropuerto Santa Teresita",
         "codigo_iata": "SST",
         "codigo_oaci": "SAZL",
         "pais": "Argentina",
@@ -1431,7 +1431,7 @@
       },
       "properties": {
         "clave_union": "TUC",
-        "nombre_oficial": "Teniente Benjamín Matienzo International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Teniente Benjamín Matienzo",
         "codigo_iata": "TUC",
         "codigo_oaci": "SANT",
         "pais": "Argentina",
@@ -1466,7 +1466,7 @@
       },
       "properties": {
         "clave_union": "UAQ",
-        "nombre_oficial": "Domingo Faustino Sarmiento Airport",
+        "nombre_oficial": "Aeropuerto Domingo Faustino Sarmiento",
         "codigo_iata": "UAQ",
         "codigo_oaci": "SANU",
         "pais": "Argentina",
@@ -1501,7 +1501,7 @@
       },
       "properties": {
         "clave_union": "USH",
-        "nombre_oficial": "Ushuaia - Malvinas Argentinas International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Ushuaia - Malvinas Argentinas",
         "codigo_iata": "USH",
         "codigo_oaci": "SAWH",
         "pais": "Argentina",
@@ -1536,7 +1536,7 @@
       },
       "properties": {
         "clave_union": "VDM",
-        "nombre_oficial": "Gobernador Castello Airport",
+        "nombre_oficial": "Aeropuerto Gobernador Castello",
         "codigo_iata": "VDM",
         "codigo_oaci": "SAVV",
         "pais": "Argentina",
@@ -1569,7 +1569,7 @@
       },
       "properties": {
         "clave_union": "CBB",
-        "nombre_oficial": "Jorge Wilsterman International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Jorge Wilsterman",
         "codigo_iata": "CBB",
         "codigo_oaci": "SLCB",
         "pais": "Bolivia",
@@ -1604,7 +1604,7 @@
       },
       "properties": {
         "clave_union": "CCA",
-        "nombre_oficial": "Chimore Airport",
+        "nombre_oficial": "Aeropuerto Chimore",
         "codigo_iata": "CCA",
         "codigo_oaci": "SLHI",
         "pais": "Bolivia",
@@ -1639,7 +1639,7 @@
       },
       "properties": {
         "clave_union": "CIJ",
-        "nombre_oficial": "Capitán Aníbal Arab Airport",
+        "nombre_oficial": "Aeropuerto Capitán Aníbal Arab",
         "codigo_iata": "CIJ",
         "codigo_oaci": "SLCO",
         "pais": "Bolivia",
@@ -1674,7 +1674,7 @@
       },
       "properties": {
         "clave_union": "GYA",
-        "nombre_oficial": "Guayaramerín Airport",
+        "nombre_oficial": "Aeropuerto Guayaramerín",
         "codigo_iata": "GYA",
         "codigo_oaci": "SLGM",
         "pais": "Bolivia",
@@ -1707,7 +1707,7 @@
       },
       "properties": {
         "clave_union": "LPB",
-        "nombre_oficial": "El Alto International Airport",
+        "nombre_oficial": "Aeropuerto Internacional El Alto",
         "codigo_iata": "LPB",
         "codigo_oaci": "SLLP",
         "pais": "Bolivia",
@@ -1742,7 +1742,7 @@
       },
       "properties": {
         "clave_union": "ORU",
-        "nombre_oficial": "Juan Mendoza International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Juan Mendoza",
         "codigo_iata": "ORU",
         "codigo_oaci": "SLOR",
         "pais": "Bolivia",
@@ -1777,7 +1777,7 @@
       },
       "properties": {
         "clave_union": "PSZ",
-        "nombre_oficial": "Capitán Av. Salvador Ogaya G. airport",
+        "nombre_oficial": "Aeropuerto Capitán Av. Salvador Ogaya G.",
         "codigo_iata": "PSZ",
         "codigo_oaci": "SLPS",
         "pais": "Bolivia",
@@ -1810,7 +1810,7 @@
       },
       "properties": {
         "clave_union": "PUR",
-        "nombre_oficial": "Puerto Rico Airport",
+        "nombre_oficial": "Aeropuerto Puerto Rico",
         "codigo_iata": "PUR",
         "codigo_oaci": "SLPR",
         "pais": "Bolivia",
@@ -1843,7 +1843,7 @@
       },
       "properties": {
         "clave_union": "RBQ",
-        "nombre_oficial": "Rurrenabaque Airport",
+        "nombre_oficial": "Aeropuerto Rurrenabaque",
         "codigo_iata": "RBQ",
         "codigo_oaci": "SLRQ",
         "pais": "Bolivia",
@@ -1876,7 +1876,7 @@
       },
       "properties": {
         "clave_union": "RIB",
-        "nombre_oficial": "Capitán Av. Selin Zeitun Lopez Airport",
+        "nombre_oficial": "Aeropuerto Capitán Av. Selin Zeitun Lopez",
         "codigo_iata": "RIB",
         "codigo_oaci": "SLRI",
         "pais": "Bolivia",
@@ -1909,7 +1909,7 @@
       },
       "properties": {
         "clave_union": "SRE",
-        "nombre_oficial": "Alcantarí International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Alcantarí",
         "codigo_iata": "SRE",
         "codigo_oaci": "SLAL",
         "pais": "Bolivia",
@@ -1944,7 +1944,7 @@
       },
       "properties": {
         "clave_union": "SRZ",
-        "nombre_oficial": "El Trompillo Airport",
+        "nombre_oficial": "Aeropuerto El Trompillo",
         "codigo_iata": "SRZ",
         "codigo_oaci": "SLET",
         "pais": "Bolivia",
@@ -1977,7 +1977,7 @@
       },
       "properties": {
         "clave_union": "TDD",
-        "nombre_oficial": "Teniente Av. Jorge Henrich Arauz Airport",
+        "nombre_oficial": "Aeropuerto Teniente Av. Jorge Henrich Arauz",
         "codigo_iata": "TDD",
         "codigo_oaci": "SLTR",
         "pais": "Bolivia",
@@ -2012,7 +2012,7 @@
       },
       "properties": {
         "clave_union": "TJA",
-        "nombre_oficial": "Capitan Oriel Lea Plaza Airport",
+        "nombre_oficial": "Aeropuerto Capitan Oriel Lea Plaza",
         "codigo_iata": "TJA",
         "codigo_oaci": "SLTJ",
         "pais": "Bolivia",
@@ -2047,7 +2047,7 @@
       },
       "properties": {
         "clave_union": "UYU",
-        "nombre_oficial": "Joya Andina International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Joya Andina",
         "codigo_iata": "UYU",
         "codigo_oaci": "SLUY",
         "pais": "Bolivia",
@@ -2082,7 +2082,7 @@
       },
       "properties": {
         "clave_union": "VVI",
-        "nombre_oficial": "Viru Viru International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Viru Viru",
         "codigo_iata": "VVI",
         "codigo_oaci": "SLVR",
         "pais": "Bolivia",
@@ -2117,7 +2117,7 @@
       },
       "properties": {
         "clave_union": "AAX",
-        "nombre_oficial": "Romeu Zema Airport",
+        "nombre_oficial": "Aeropuerto Romeu Zema",
         "codigo_iata": "AAX",
         "codigo_oaci": "SBAX",
         "pais": "Brasil",
@@ -2150,7 +2150,7 @@
       },
       "properties": {
         "clave_union": "AFL",
-        "nombre_oficial": "Piloto Osvaldo Marques Dias Airport",
+        "nombre_oficial": "Aeropuerto Piloto Osvaldo Marques Dias",
         "codigo_iata": "AFL",
         "codigo_oaci": "SBAT",
         "pais": "Brasil",
@@ -2183,7 +2183,7 @@
       },
       "properties": {
         "clave_union": "AJU",
-        "nombre_oficial": "Aracaju - Santa Maria Airport",
+        "nombre_oficial": "Aeropuerto Aracaju - Santa Maria",
         "codigo_iata": "AJU",
         "codigo_oaci": "SBAR",
         "pais": "Brasil",
@@ -2218,7 +2218,7 @@
       },
       "properties": {
         "clave_union": "AQA",
-        "nombre_oficial": "Araraquara Airport",
+        "nombre_oficial": "Aeropuerto Araraquara",
         "codigo_iata": "AQA",
         "codigo_oaci": "SBAQ",
         "pais": "Brasil",
@@ -2251,7 +2251,7 @@
       },
       "properties": {
         "clave_union": "ARU",
-        "nombre_oficial": "Araçatuba Airport",
+        "nombre_oficial": "Aeropuerto Araçatuba",
         "codigo_iata": "ARU",
         "codigo_oaci": "SBAU",
         "pais": "Brasil",
@@ -2284,7 +2284,7 @@
       },
       "properties": {
         "clave_union": "ATM",
-        "nombre_oficial": "Altamira Interstate Airport",
+        "nombre_oficial": "Aeropuerto Altamira",
         "codigo_iata": "ATM",
         "codigo_oaci": "SBHT",
         "pais": "Brasil",
@@ -2317,7 +2317,7 @@
       },
       "properties": {
         "clave_union": "AUX",
-        "nombre_oficial": "Araguaína Airport",
+        "nombre_oficial": "Aeropuerto Araguaína",
         "codigo_iata": "AUX",
         "codigo_oaci": "SWGN",
         "pais": "Brasil",
@@ -2350,7 +2350,7 @@
       },
       "properties": {
         "clave_union": "BAZ",
-        "nombre_oficial": "Barcelos Airport",
+        "nombre_oficial": "Aeropuerto Barcelos",
         "codigo_iata": "BAZ",
         "codigo_oaci": "SWBC",
         "pais": "Brasil",
@@ -2383,7 +2383,7 @@
       },
       "properties": {
         "clave_union": "BEL",
-        "nombre_oficial": "Val de Cans/Júlio Cezar Ribeiro International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Val de Cans/Júlio Cezar Ribeiro",
         "codigo_iata": "BEL",
         "codigo_oaci": "SBBE",
         "pais": "Brasil",
@@ -2418,7 +2418,7 @@
       },
       "properties": {
         "clave_union": "BPS",
-        "nombre_oficial": "Porto Seguro International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Porto Seguro",
         "codigo_iata": "BPS",
         "codigo_oaci": "SBPS",
         "pais": "Brasil",
@@ -2453,7 +2453,7 @@
       },
       "properties": {
         "clave_union": "BRA",
-        "nombre_oficial": "Dom Ricardo Weberberger Airport",
+        "nombre_oficial": "Aeropuerto Dom Ricardo Weberberger",
         "codigo_iata": "BRA",
         "codigo_oaci": "SNBR",
         "pais": "Brasil",
@@ -2486,7 +2486,7 @@
       },
       "properties": {
         "clave_union": "BSB",
-        "nombre_oficial": "Presidente Juscelino Kubitschek International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Presidente Juscelino Kubitschek",
         "codigo_iata": "BSB",
         "codigo_oaci": "SBBR",
         "pais": "Brasil",
@@ -2521,7 +2521,7 @@
       },
       "properties": {
         "clave_union": "BVB",
-        "nombre_oficial": "Atlas Brasil Cantanhede International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Atlas Brasil Cantanhede",
         "codigo_iata": "BVB",
         "codigo_oaci": "SBBV",
         "pais": "Brasil",
@@ -2556,7 +2556,7 @@
       },
       "properties": {
         "clave_union": "BVH",
-        "nombre_oficial": "Brigadeiro Camarão Airport",
+        "nombre_oficial": "Aeropuerto Brigadeiro Camarão",
         "codigo_iata": "BVH",
         "codigo_oaci": "SBVH",
         "pais": "Brasil",
@@ -2589,7 +2589,7 @@
       },
       "properties": {
         "clave_union": "BVS",
-        "nombre_oficial": "Breves Airport",
+        "nombre_oficial": "Aeropuerto Breves",
         "codigo_iata": "BVS",
         "codigo_oaci": "SNVS",
         "pais": "Brasil",
@@ -2622,7 +2622,7 @@
       },
       "properties": {
         "clave_union": "BYO",
-        "nombre_oficial": "Bonito Airport",
+        "nombre_oficial": "Aeropuerto Bonito",
         "codigo_iata": "BYO",
         "codigo_oaci": "SBDB",
         "pais": "Brasil",
@@ -2655,7 +2655,7 @@
       },
       "properties": {
         "clave_union": "CAC",
-        "nombre_oficial": "Coronel Adalberto Mendes da Silva Airport",
+        "nombre_oficial": "Aeropuerto Coronel Adalberto Mendes da Silva",
         "codigo_iata": "CAC",
         "codigo_oaci": "SBCA",
         "pais": "Brasil",
@@ -2688,7 +2688,7 @@
       },
       "properties": {
         "clave_union": "CAF",
-        "nombre_oficial": "Carauari Airport",
+        "nombre_oficial": "Aeropuerto Carauari",
         "codigo_iata": "CAF",
         "codigo_oaci": "SWCA",
         "pais": "Brasil",
@@ -2721,7 +2721,7 @@
       },
       "properties": {
         "clave_union": "CAU",
-        "nombre_oficial": "Caruaru Airport",
+        "nombre_oficial": "Aeropuerto Caruaru",
         "codigo_iata": "CAU",
         "codigo_oaci": "SNRU",
         "pais": "Brasil",
@@ -2754,7 +2754,7 @@
       },
       "properties": {
         "clave_union": "CAW",
-        "nombre_oficial": "Bartolomeu Lisandro Airport",
+        "nombre_oficial": "Aeropuerto Bartolomeu Lisandro",
         "codigo_iata": "CAW",
         "codigo_oaci": "SBCP",
         "pais": "Brasil",
@@ -2787,7 +2787,7 @@
       },
       "properties": {
         "clave_union": "CEL",
-        "nombre_oficial": "Canela Airport",
+        "nombre_oficial": "Aeropuerto Canela",
         "codigo_iata": "CEL",
         "codigo_oaci": "SSCN",
         "pais": "Brasil",
@@ -2820,7 +2820,7 @@
       },
       "properties": {
         "clave_union": "CFB",
-        "nombre_oficial": "Cabo Frio Airport",
+        "nombre_oficial": "Aeropuerto Cabo Frio",
         "codigo_iata": "CFB",
         "codigo_oaci": "SBCB",
         "pais": "Brasil",
@@ -2853,7 +2853,7 @@
       },
       "properties": {
         "clave_union": "CGB",
-        "nombre_oficial": "Várzea Grande–Marechal Rondon International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Várzea Grande–Marechal Rondon",
         "codigo_iata": "CGB",
         "codigo_oaci": "SBCY",
         "pais": "Brasil",
@@ -2888,7 +2888,7 @@
       },
       "properties": {
         "clave_union": "CGH",
-        "nombre_oficial": "Congonhas–Deputado Freitas Nobre Airport",
+        "nombre_oficial": "Aeropuerto Congonhas–Deputado Freitas Nobre",
         "codigo_iata": "CGH",
         "codigo_oaci": "SBSP",
         "pais": "Brasil",
@@ -2921,7 +2921,7 @@
       },
       "properties": {
         "clave_union": "CGR",
-        "nombre_oficial": "Campo Grande Airport",
+        "nombre_oficial": "Aeropuerto Campo Grande",
         "codigo_iata": "CGR",
         "codigo_oaci": "SBCG",
         "pais": "Brasil",
@@ -2956,7 +2956,7 @@
       },
       "properties": {
         "clave_union": "CJZ",
-        "nombre_oficial": "Pedro Vieira Moreira Airport",
+        "nombre_oficial": "Aeropuerto Pedro Vieira Moreira",
         "codigo_iata": "CJZ",
         "codigo_oaci": "SJZA",
         "pais": "Brasil",
@@ -2989,7 +2989,7 @@
       },
       "properties": {
         "clave_union": "CKS",
-        "nombre_oficial": "Carajás Airport",
+        "nombre_oficial": "Aeropuerto Carajás",
         "codigo_iata": "CKS",
         "codigo_oaci": "SBCJ",
         "pais": "Brasil",
@@ -3022,7 +3022,7 @@
       },
       "properties": {
         "clave_union": "CLV",
-        "nombre_oficial": "Nelson Ribeiro Guimarães Airport",
+        "nombre_oficial": "Aeropuerto Nelson Ribeiro Guimarães",
         "codigo_iata": "CLV",
         "codigo_oaci": "SBCN",
         "pais": "Brasil",
@@ -3055,7 +3055,7 @@
       },
       "properties": {
         "clave_union": "CMG",
-        "nombre_oficial": "Corumbá International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Corumbá",
         "codigo_iata": "CMG",
         "codigo_oaci": "SBCR",
         "pais": "Brasil",
@@ -3090,7 +3090,7 @@
       },
       "properties": {
         "clave_union": "CNF",
-        "nombre_oficial": "Tancredo Neves International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Tancredo Neves",
         "codigo_iata": "CNF",
         "codigo_oaci": "SBCF",
         "pais": "Brasil",
@@ -3125,7 +3125,7 @@
       },
       "properties": {
         "clave_union": "CPV",
-        "nombre_oficial": "Presidente João Suassuna Airport",
+        "nombre_oficial": "Aeropuerto Presidente João Suassuna",
         "codigo_iata": "CPV",
         "codigo_oaci": "SBKG",
         "pais": "Brasil",
@@ -3158,7 +3158,7 @@
       },
       "properties": {
         "clave_union": "CWB",
-        "nombre_oficial": "Curitiba-Afonso Pena International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Curitiba - Afonso Pena",
         "codigo_iata": "CWB",
         "codigo_oaci": "SBCT",
         "pais": "Brasil",
@@ -3193,7 +3193,7 @@
       },
       "properties": {
         "clave_union": "CXJ",
-        "nombre_oficial": "Hugo Cantergiani Regional Airport",
+        "nombre_oficial": "Aeropuerto Hugo Cantergiani",
         "codigo_iata": "CXJ",
         "codigo_oaci": "SBCX",
         "pais": "Brasil",
@@ -3226,7 +3226,7 @@
       },
       "properties": {
         "clave_union": "CZS",
-        "nombre_oficial": "Cruzeiro do Sul Airport",
+        "nombre_oficial": "Aeropuerto Cruzeiro do Sul",
         "codigo_iata": "CZS",
         "codigo_oaci": "SBCZ",
         "pais": "Brasil",
@@ -3259,7 +3259,7 @@
       },
       "properties": {
         "clave_union": "FBE",
-        "nombre_oficial": "Paulo Abdala Airport",
+        "nombre_oficial": "Aeropuerto Paulo Abdala",
         "codigo_iata": "FBE",
         "codigo_oaci": "SSFB",
         "pais": "Brasil",
@@ -3292,7 +3292,7 @@
       },
       "properties": {
         "clave_union": "FEN",
-        "nombre_oficial": "Fernando de Noronha Airport",
+        "nombre_oficial": "Aeropuerto Fernando de Noronha",
         "codigo_iata": "FEN",
         "codigo_oaci": "SBFN",
         "pais": "Brasil",
@@ -3325,7 +3325,7 @@
       },
       "properties": {
         "clave_union": "FLN",
-        "nombre_oficial": "Hercílio Luz International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Hercílio Luz",
         "codigo_iata": "FLN",
         "codigo_oaci": "SBFL",
         "pais": "Brasil",
@@ -3360,7 +3360,7 @@
       },
       "properties": {
         "clave_union": "FOR",
-        "nombre_oficial": "Pinto Martins International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Pinto Martins",
         "codigo_iata": "FOR",
         "codigo_oaci": "SBFZ",
         "pais": "Brasil",
@@ -3395,7 +3395,7 @@
       },
       "properties": {
         "clave_union": "GEL",
-        "nombre_oficial": "Santo Ângelo Airport",
+        "nombre_oficial": "Aeropuerto Santo Ângelo",
         "codigo_iata": "GEL",
         "codigo_oaci": "SBNM",
         "pais": "Brasil",
@@ -3428,7 +3428,7 @@
       },
       "properties": {
         "clave_union": "GGF",
-        "nombre_oficial": "Almeirim Airport",
+        "nombre_oficial": "Aeropuerto Almeirim",
         "codigo_iata": "GGF",
         "codigo_oaci": "SNYA",
         "pais": "Brasil",
@@ -3461,7 +3461,7 @@
       },
       "properties": {
         "clave_union": "GGJ",
-        "nombre_oficial": "Guaíra Airport",
+        "nombre_oficial": "Aeropuerto Guaíra",
         "codigo_iata": "GGJ",
         "codigo_oaci": "SSGY",
         "pais": "Brasil",
@@ -3494,7 +3494,7 @@
       },
       "properties": {
         "clave_union": "GIG",
-        "nombre_oficial": "Rio Galeão – Tom Jobim International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Rio Galeão – Tom Jobim",
         "codigo_iata": "GIG",
         "codigo_oaci": "SBGL",
         "pais": "Brasil",
@@ -3530,7 +3530,7 @@
       },
       "properties": {
         "clave_union": "GRU",
-        "nombre_oficial": "São Paulo/Guarulhos–Governor André Franco Montoro International Airport",
+        "nombre_oficial": "Aeropuerto Internacional São Paulo/Guarulhos–Gobernador André Franco Montoro",
         "codigo_iata": "GRU",
         "codigo_oaci": "SBGR",
         "pais": "Brasil",
@@ -3566,7 +3566,7 @@
       },
       "properties": {
         "clave_union": "GUZ",
-        "nombre_oficial": "Guarapari Airport",
+        "nombre_oficial": "Aeropuerto Guarapari",
         "codigo_iata": "GUZ",
         "codigo_oaci": "SNGA",
         "pais": "Brasil",
@@ -3599,7 +3599,7 @@
       },
       "properties": {
         "clave_union": "GVR",
-        "nombre_oficial": "Coronel Altino Machado Airport",
+        "nombre_oficial": "Aeropuerto Coronel Altino Machado",
         "codigo_iata": "GVR",
         "codigo_oaci": "SBGV",
         "pais": "Brasil",
@@ -3632,7 +3632,7 @@
       },
       "properties": {
         "clave_union": "GYN",
-        "nombre_oficial": "Santa Genoveva International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Santa Genoveva",
         "codigo_iata": "GYN",
         "codigo_oaci": "SBGO",
         "pais": "Brasil",
@@ -3667,7 +3667,7 @@
       },
       "properties": {
         "clave_union": "IGU",
-        "nombre_oficial": "Cataratas International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Cataratas",
         "codigo_iata": "IGU",
         "codigo_oaci": "SBFI",
         "pais": "Brasil",
@@ -3702,7 +3702,7 @@
       },
       "properties": {
         "clave_union": "IMP",
-        "nombre_oficial": "Prefeito Renato Moreira Airport",
+        "nombre_oficial": "Aeropuerto Prefeito Renato Moreira",
         "codigo_iata": "IMP",
         "codigo_oaci": "SBIZ",
         "pais": "Brasil",
@@ -3737,7 +3737,7 @@
       },
       "properties": {
         "clave_union": "IOS",
-        "nombre_oficial": "Bahia - Jorge Amado Airport",
+        "nombre_oficial": "Aeropuerto Bahia - Jorge Amado",
         "codigo_iata": "IOS",
         "codigo_oaci": "SBIL",
         "pais": "Brasil",
@@ -3770,7 +3770,7 @@
       },
       "properties": {
         "clave_union": "IPN",
-        "nombre_oficial": "Usiminas Airport",
+        "nombre_oficial": "Aeropuerto Usiminas",
         "codigo_iata": "IPN",
         "codigo_oaci": "SBIP",
         "pais": "Brasil",
@@ -3803,7 +3803,7 @@
       },
       "properties": {
         "clave_union": "IRZ",
-        "nombre_oficial": "Tapuruquara Airport",
+        "nombre_oficial": "Aeropuerto Tapuruquara",
         "codigo_iata": "IRZ",
         "codigo_oaci": "SWTP",
         "pais": "Brasil",
@@ -3836,7 +3836,7 @@
       },
       "properties": {
         "clave_union": "ITB",
-        "nombre_oficial": "Itaituba Airport",
+        "nombre_oficial": "Aeropuerto Itaituba",
         "codigo_iata": "ITB",
         "codigo_oaci": "SBIH",
         "pais": "Brasil",
@@ -3869,7 +3869,7 @@
       },
       "properties": {
         "clave_union": "IZA",
-        "nombre_oficial": "Presidente Itamar Franco Airport",
+        "nombre_oficial": "Aeropuerto Presidente Itamar Franco",
         "codigo_iata": "IZA",
         "codigo_oaci": "SBZM",
         "pais": "Brasil",
@@ -3902,7 +3902,7 @@
       },
       "properties": {
         "clave_union": "JDF",
-        "nombre_oficial": "Francisco de Assis Airport",
+        "nombre_oficial": "Aeropuerto Francisco de Assis",
         "codigo_iata": "JDF",
         "codigo_oaci": "SBJF",
         "pais": "Brasil",
@@ -3935,7 +3935,7 @@
       },
       "properties": {
         "clave_union": "JDO",
-        "nombre_oficial": "Orlando Bezerra de Menezes Airport",
+        "nombre_oficial": "Aeropuerto Orlando Bezerra de Menezes",
         "codigo_iata": "JDO",
         "codigo_oaci": "SBJU",
         "pais": "Brasil",
@@ -3968,7 +3968,7 @@
       },
       "properties": {
         "clave_union": "JJD",
-        "nombre_oficial": "Comandante Ariston Pessoa Airport",
+        "nombre_oficial": "Aeropuerto Comandante Ariston Pessoa",
         "codigo_iata": "JJD",
         "codigo_oaci": "SBJE",
         "pais": "Brasil",
@@ -4001,7 +4001,7 @@
       },
       "properties": {
         "clave_union": "JJG",
-        "nombre_oficial": "Humberto Ghizzo Bortoluzzi Regional Airport",
+        "nombre_oficial": "Aeropuerto Humberto Ghizzo Bortoluzzi",
         "codigo_iata": "JJG",
         "codigo_oaci": "SBJA",
         "pais": "Brasil",
@@ -4034,7 +4034,7 @@
       },
       "properties": {
         "clave_union": "JOI",
-        "nombre_oficial": "Lauro Carneiro de Loyola Airport",
+        "nombre_oficial": "Aeropuerto Lauro Carneiro de Loyola",
         "codigo_iata": "JOI",
         "codigo_oaci": "SBJV",
         "pais": "Brasil",
@@ -4067,7 +4067,7 @@
       },
       "properties": {
         "clave_union": "JPA",
-        "nombre_oficial": "Presidente Castro Pinto International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Presidente Castro Pinto",
         "codigo_iata": "JPA",
         "codigo_oaci": "SBJP",
         "pais": "Brasil",
@@ -4102,7 +4102,7 @@
       },
       "properties": {
         "clave_union": "JPE",
-        "nombre_oficial": "Nagib Demachki Airport",
+        "nombre_oficial": "Aeropuerto Nagib Demachki",
         "codigo_iata": "JPE",
         "codigo_oaci": "SNEB",
         "pais": "Brasil",
@@ -4135,7 +4135,7 @@
       },
       "properties": {
         "clave_union": "JPR",
-        "nombre_oficial": "Ji-Paraná Airport",
+        "nombre_oficial": "Aeropuerto Ji - Paraná",
         "codigo_iata": "JPR",
         "codigo_oaci": "SBJI",
         "pais": "Brasil",
@@ -4168,7 +4168,7 @@
       },
       "properties": {
         "clave_union": "JTC",
-        "nombre_oficial": "Bauru/Arealva–Moussa Nakhal Tobias State Airport",
+        "nombre_oficial": "Aeropuerto Bauru/Arealva–Moussa Nakhal Tobias State",
         "codigo_iata": "JTC",
         "codigo_oaci": "SBAE",
         "pais": "Brasil",
@@ -4201,7 +4201,7 @@
       },
       "properties": {
         "clave_union": "LAJ",
-        "nombre_oficial": "Lages Airport",
+        "nombre_oficial": "Aeropuerto Lages",
         "codigo_iata": "LAJ",
         "codigo_oaci": "SBLJ",
         "pais": "Brasil",
@@ -4234,7 +4234,7 @@
       },
       "properties": {
         "clave_union": "LBR",
-        "nombre_oficial": "Lábrea Airport",
+        "nombre_oficial": "Aeropuerto Lábrea",
         "codigo_iata": "LBR",
         "codigo_oaci": "SWLB",
         "pais": "Brasil",
@@ -4267,7 +4267,7 @@
       },
       "properties": {
         "clave_union": "LDB",
-        "nombre_oficial": "Governor José Richa Airport",
+        "nombre_oficial": "Aeropuerto Gobernador José Richa",
         "codigo_iata": "LDB",
         "codigo_oaci": "SBLO",
         "pais": "Brasil",
@@ -4300,7 +4300,7 @@
       },
       "properties": {
         "clave_union": "LEC",
-        "nombre_oficial": "Coronel Horácio de Mattos Airport",
+        "nombre_oficial": "Aeropuerto Coronel Horácio de Mattos",
         "codigo_iata": "LEC",
         "codigo_oaci": "SBLE",
         "pais": "Brasil",
@@ -4333,7 +4333,7 @@
       },
       "properties": {
         "clave_union": "MAB",
-        "nombre_oficial": "João Correa da Rocha Airport",
+        "nombre_oficial": "Aeropuerto João Correa da Rocha",
         "codigo_iata": "MAB",
         "codigo_oaci": "SBMA",
         "pais": "Brasil",
@@ -4366,7 +4366,7 @@
       },
       "properties": {
         "clave_union": "MAO",
-        "nombre_oficial": "Eduardo Gomes International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Eduardo Gomes",
         "codigo_iata": "MAO",
         "codigo_oaci": "SBEG",
         "pais": "Brasil",
@@ -4402,7 +4402,7 @@
       },
       "properties": {
         "clave_union": "MCP",
-        "nombre_oficial": "Macapá - Alberto Alcolumbre International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Macapá - Alberto Alcolumbre",
         "codigo_iata": "MCP",
         "codigo_oaci": "SBMQ",
         "pais": "Brasil",
@@ -4437,7 +4437,7 @@
       },
       "properties": {
         "clave_union": "MCZ",
-        "nombre_oficial": "Zumbi dos Palmares International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Zumbi dos Palmares",
         "codigo_iata": "MCZ",
         "codigo_oaci": "SBMO",
         "pais": "Brasil",
@@ -4472,7 +4472,7 @@
       },
       "properties": {
         "clave_union": "MGF",
-        "nombre_oficial": "Regional de Maringá - Sílvio Name Júnior Airport",
+        "nombre_oficial": "Aeropuerto de Maringá - Sílvio Name Júnior",
         "codigo_iata": "MGF",
         "codigo_oaci": "SBMG",
         "pais": "Brasil",
@@ -4505,7 +4505,7 @@
       },
       "properties": {
         "clave_union": "MII",
-        "nombre_oficial": "Frank Miloye Milenkowichi–Marília State Airport",
+        "nombre_oficial": "Aeropuerto Frank Miloye Milenkowichi–Marília State",
         "codigo_iata": "MII",
         "codigo_oaci": "SBML",
         "pais": "Brasil",
@@ -4538,7 +4538,7 @@
       },
       "properties": {
         "clave_union": "MNX",
-        "nombre_oficial": "Manicoré Airport",
+        "nombre_oficial": "Aeropuerto Manicoré",
         "codigo_iata": "MNX",
         "codigo_oaci": "SBMY",
         "pais": "Brasil",
@@ -4571,7 +4571,7 @@
       },
       "properties": {
         "clave_union": "MOC",
-        "nombre_oficial": "Mário Ribeiro Airport",
+        "nombre_oficial": "Aeropuerto Mário Ribeiro",
         "codigo_iata": "MOC",
         "codigo_oaci": "SBMK",
         "pais": "Brasil",
@@ -4604,7 +4604,7 @@
       },
       "properties": {
         "clave_union": "MVF",
-        "nombre_oficial": "Dix-Sept Rosado Airport",
+        "nombre_oficial": "Aeropuerto Dix - Sept Rosado",
         "codigo_iata": "MVF",
         "codigo_oaci": "SBMS",
         "pais": "Brasil",
@@ -4637,7 +4637,7 @@
       },
       "properties": {
         "clave_union": "NAT",
-        "nombre_oficial": "Rio Grande do Norte/São Gonçalo do Amarante–Governador Aluízio Alves International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Rio Grande do Norte/São Gonçalo do Amarante–Governador Aluízio Alves",
         "codigo_iata": "NAT",
         "codigo_oaci": "SBSG",
         "pais": "Brasil",
@@ -4672,7 +4672,7 @@
       },
       "properties": {
         "clave_union": "NVT",
-        "nombre_oficial": "Ministro Victor Konder International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Ministro Victor Konder",
         "codigo_iata": "NVT",
         "codigo_oaci": "SBNF",
         "pais": "Brasil",
@@ -4707,7 +4707,7 @@
       },
       "properties": {
         "clave_union": "OAL",
-        "nombre_oficial": "Cacoal Airport",
+        "nombre_oficial": "Aeropuerto Cacoal",
         "codigo_iata": "OAL",
         "codigo_oaci": "SSKW",
         "pais": "Brasil",
@@ -4740,7 +4740,7 @@
       },
       "properties": {
         "clave_union": "OPP",
-        "nombre_oficial": "Salinópolis Airport",
+        "nombre_oficial": "Aeropuerto Salinópolis",
         "codigo_iata": "OPP",
         "codigo_oaci": "SNSM",
         "pais": "Brasil",
@@ -4773,7 +4773,7 @@
       },
       "properties": {
         "clave_union": "OPS",
-        "nombre_oficial": "Presidente João Batista Figueiredo Airport",
+        "nombre_oficial": "Aeropuerto Presidente João Batista Figueiredo",
         "codigo_iata": "OPS",
         "codigo_oaci": "SBSI",
         "pais": "Brasil",
@@ -4806,7 +4806,7 @@
       },
       "properties": {
         "clave_union": "PAV",
-        "nombre_oficial": "Paulo Afonso Airport",
+        "nombre_oficial": "Aeropuerto Paulo Afonso",
         "codigo_iata": "PAV",
         "codigo_oaci": "SBUF",
         "pais": "Brasil",
@@ -4839,7 +4839,7 @@
       },
       "properties": {
         "clave_union": "PET",
-        "nombre_oficial": "João Simões Lopes Neto International Airport",
+        "nombre_oficial": "Aeropuerto Internacional João Simões Lopes Neto",
         "codigo_iata": "PET",
         "codigo_oaci": "SBPK",
         "pais": "Brasil",
@@ -4874,7 +4874,7 @@
       },
       "properties": {
         "clave_union": "PFB",
-        "nombre_oficial": "Lauro Kurtz Airport",
+        "nombre_oficial": "Aeropuerto Lauro Kurtz",
         "codigo_iata": "PFB",
         "codigo_oaci": "SBPF",
         "pais": "Brasil",
@@ -4907,7 +4907,7 @@
       },
       "properties": {
         "clave_union": "PGZ",
-        "nombre_oficial": "Ponta Grossa Airport - Comandante Antonio Amilton Beraldo",
+        "nombre_oficial": "Aeropuerto Ponta Grossa - Comandante Antonio Amilton Beraldo",
         "codigo_iata": "PGZ",
         "codigo_oaci": "SBPG",
         "pais": "Brasil",
@@ -4940,7 +4940,7 @@
       },
       "properties": {
         "clave_union": "PHB",
-        "nombre_oficial": "Parnaíba - Prefeito Doutor João Silva Filho International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Parnaíba - Prefeito Doutor João Silva Filho",
         "codigo_iata": "PHB",
         "codigo_oaci": "SBPB",
         "pais": "Brasil",
@@ -4975,7 +4975,7 @@
       },
       "properties": {
         "clave_union": "PMG",
-        "nombre_oficial": "Ponta Porã Airport",
+        "nombre_oficial": "Aeropuerto Ponta Porã",
         "codigo_iata": "PMG",
         "codigo_oaci": "SBPP",
         "pais": "Brasil",
@@ -5008,7 +5008,7 @@
       },
       "properties": {
         "clave_union": "PMW",
-        "nombre_oficial": "Brigadeiro Lysias Rodrigues Airport",
+        "nombre_oficial": "Aeropuerto Brigadeiro Lysias Rodrigues",
         "codigo_iata": "PMW",
         "codigo_oaci": "SBPJ",
         "pais": "Brasil",
@@ -5041,7 +5041,7 @@
       },
       "properties": {
         "clave_union": "PNZ",
-        "nombre_oficial": "Senador Nilo Coelho Airport",
+        "nombre_oficial": "Aeropuerto Senador Nilo Coelho",
         "codigo_iata": "PNZ",
         "codigo_oaci": "SBPL",
         "pais": "Brasil",
@@ -5074,7 +5074,7 @@
       },
       "properties": {
         "clave_union": "POA",
-        "nombre_oficial": "Porto Alegre-Salgado Filho International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Porto Alegre - Salgado Filho",
         "codigo_iata": "POA",
         "codigo_oaci": "SBPA",
         "pais": "Brasil",
@@ -5109,7 +5109,7 @@
       },
       "properties": {
         "clave_union": "PPB",
-        "nombre_oficial": "Presidente Prudente Airport",
+        "nombre_oficial": "Aeropuerto Presidente Prudente",
         "codigo_iata": "PPB",
         "codigo_oaci": "SBDN",
         "pais": "Brasil",
@@ -5142,7 +5142,7 @@
       },
       "properties": {
         "clave_union": "PTO",
-        "nombre_oficial": "Juvenal Loureiro Cardoso Airport",
+        "nombre_oficial": "Aeropuerto Juvenal Loureiro Cardoso",
         "codigo_iata": "PTO",
         "codigo_oaci": "SBPO",
         "pais": "Brasil",
@@ -5175,7 +5175,7 @@
       },
       "properties": {
         "clave_union": "PVH",
-        "nombre_oficial": "Governador Jorge Teixeira de Oliveira International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Governador Jorge Teixeira de Oliveira",
         "codigo_iata": "PVH",
         "codigo_oaci": "SBPV",
         "pais": "Brasil",
@@ -5210,7 +5210,7 @@
       },
       "properties": {
         "clave_union": "PYT",
-        "nombre_oficial": "Pedro Rabelo de Souza Airport",
+        "nombre_oficial": "Aeropuerto Pedro Rabelo de Souza",
         "codigo_iata": "PYT",
         "codigo_oaci": "SNZR",
         "pais": "Brasil",
@@ -5243,7 +5243,7 @@
       },
       "properties": {
         "clave_union": "RAO",
-        "nombre_oficial": "Leite Lopes Airport",
+        "nombre_oficial": "Aeropuerto Leite Lopes",
         "codigo_iata": "RAO",
         "codigo_oaci": "SBRP",
         "pais": "Brasil",
@@ -5276,7 +5276,7 @@
       },
       "properties": {
         "clave_union": "RBB",
-        "nombre_oficial": "Borba Airport",
+        "nombre_oficial": "Aeropuerto Borba",
         "codigo_iata": "RBB",
         "codigo_oaci": "SWBR",
         "pais": "Brasil",
@@ -5309,7 +5309,7 @@
       },
       "properties": {
         "clave_union": "RBR",
-        "nombre_oficial": "Rio Branco-Plácido de Castro International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Rio Branco - Plácido de Castro",
         "codigo_iata": "RBR",
         "codigo_oaci": "SBRB",
         "pais": "Brasil",
@@ -5344,7 +5344,7 @@
       },
       "properties": {
         "clave_union": "REC",
-        "nombre_oficial": "Recife/Guararapes - Gilberto Freyre International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Recife/Guararapes - Gilberto Freyre",
         "codigo_iata": "REC",
         "codigo_oaci": "SBRF",
         "pais": "Brasil",
@@ -5379,7 +5379,7 @@
       },
       "properties": {
         "clave_union": "RIA",
-        "nombre_oficial": "Santa Maria Airport",
+        "nombre_oficial": "Aeropuerto Santa Maria",
         "codigo_iata": "RIA",
         "codigo_oaci": "SBSM",
         "pais": "Brasil",
@@ -5412,7 +5412,7 @@
       },
       "properties": {
         "clave_union": "ROO",
-        "nombre_oficial": "Maestro Marinho Franco Airport",
+        "nombre_oficial": "Aeropuerto Maestro Marinho Franco",
         "codigo_iata": "ROO",
         "codigo_oaci": "SBRD",
         "pais": "Brasil",
@@ -5445,7 +5445,7 @@
       },
       "properties": {
         "clave_union": "RRJ",
-        "nombre_oficial": "Jacarepaguá - Roberto Marinho Airport",
+        "nombre_oficial": "Aeropuerto Jacarepaguá - Roberto Marinho",
         "codigo_iata": "RRJ",
         "codigo_oaci": "SBJR",
         "pais": "Brasil",
@@ -5478,7 +5478,7 @@
       },
       "properties": {
         "clave_union": "SDU",
-        "nombre_oficial": "Santos Dumont Airport",
+        "nombre_oficial": "Aeropuerto Santos Dumont",
         "codigo_iata": "SDU",
         "codigo_oaci": "SBRJ",
         "pais": "Brasil",
@@ -5511,7 +5511,7 @@
       },
       "properties": {
         "clave_union": "SET",
-        "nombre_oficial": "Santa Magalhães Airport",
+        "nombre_oficial": "Aeropuerto Santa Magalhães",
         "codigo_iata": "SET",
         "codigo_oaci": "SNHS",
         "pais": "Brasil",
@@ -5544,7 +5544,7 @@
       },
       "properties": {
         "clave_union": "SJK",
-        "nombre_oficial": "Professor Urbano Ernesto Stumpf Airport",
+        "nombre_oficial": "Aeropuerto Professor Urbano Ernesto Stumpf",
         "codigo_iata": "SJK",
         "codigo_oaci": "SBSJ",
         "pais": "Brasil",
@@ -5577,7 +5577,7 @@
       },
       "properties": {
         "clave_union": "SJL",
-        "nombre_oficial": "São Gabriel da Cachoeira Airport",
+        "nombre_oficial": "Aeropuerto São Gabriel da Cachoeira",
         "codigo_iata": "SJL",
         "codigo_oaci": "SBUA",
         "pais": "Brasil",
@@ -5610,7 +5610,7 @@
       },
       "properties": {
         "clave_union": "SJP",
-        "nombre_oficial": "Prof. Eribelto Manoel Reino State Airport",
+        "nombre_oficial": "Aeropuerto Prof. Eribelto Manoel Reino State",
         "codigo_iata": "SJP",
         "codigo_oaci": "SBSR",
         "pais": "Brasil",
@@ -5643,7 +5643,7 @@
       },
       "properties": {
         "clave_union": "SLZ",
-        "nombre_oficial": "Marechal Cunha Machado International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Marechal Cunha Machado",
         "codigo_iata": "SLZ",
         "codigo_oaci": "SBSL",
         "pais": "Brasil",
@@ -5678,7 +5678,7 @@
       },
       "properties": {
         "clave_union": "SMT",
-        "nombre_oficial": "Adolino Bedin Regional Airport",
+        "nombre_oficial": "Aeropuerto Adolino Bedin",
         "codigo_iata": "SMT",
         "codigo_oaci": "SBSO",
         "pais": "Brasil",
@@ -5711,7 +5711,7 @@
       },
       "properties": {
         "clave_union": "SOD",
-        "nombre_oficial": "Sorocaba Airport",
+        "nombre_oficial": "Aeropuerto Sorocaba",
         "codigo_iata": "SOD",
         "codigo_oaci": "SDCO",
         "pais": "Brasil",
@@ -5744,7 +5744,7 @@
       },
       "properties": {
         "clave_union": "SRA",
-        "nombre_oficial": "Luis Alberto Lehr Airport",
+        "nombre_oficial": "Aeropuerto Luis Alberto Lehr",
         "codigo_iata": "SRA",
         "codigo_oaci": "SSZR",
         "pais": "Brasil",
@@ -5777,7 +5777,7 @@
       },
       "properties": {
         "clave_union": "SSA",
-        "nombre_oficial": "Deputado Luiz Eduardo Magalhães International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Deputado Luiz Eduardo Magalhães",
         "codigo_iata": "SSA",
         "codigo_oaci": "SBSV",
         "pais": "Brasil",
@@ -5812,7 +5812,7 @@
       },
       "properties": {
         "clave_union": "STM",
-        "nombre_oficial": "Santarém - Maestro Wilson Fonseca International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Santarém - Maestro Wilson Fonseca",
         "codigo_iata": "STM",
         "codigo_oaci": "SBSN",
         "pais": "Brasil",
@@ -5847,7 +5847,7 @@
       },
       "properties": {
         "clave_union": "TBT",
-        "nombre_oficial": "Tabatinga International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Tabatinga",
         "codigo_iata": "TBT",
         "codigo_oaci": "SBTT",
         "pais": "Brasil",
@@ -5882,7 +5882,7 @@
       },
       "properties": {
         "clave_union": "TFF",
-        "nombre_oficial": "Tefé Airport",
+        "nombre_oficial": "Aeropuerto Tefé",
         "codigo_iata": "TFF",
         "codigo_oaci": "SBTF",
         "pais": "Brasil",
@@ -5915,7 +5915,7 @@
       },
       "properties": {
         "clave_union": "TGQ",
-        "nombre_oficial": "Tangará da Serra Airport",
+        "nombre_oficial": "Aeropuerto Tangará da Serra",
         "codigo_iata": "TGQ",
         "codigo_oaci": "SWTS",
         "pais": "Brasil",
@@ -5948,7 +5948,7 @@
       },
       "properties": {
         "clave_union": "THE",
-        "nombre_oficial": "Senador Petrônio Portela Airport",
+        "nombre_oficial": "Aeropuerto Senador Petrônio Portela",
         "codigo_iata": "THE",
         "codigo_oaci": "SBTE",
         "pais": "Brasil",
@@ -5981,7 +5981,7 @@
       },
       "properties": {
         "clave_union": "TJL",
-        "nombre_oficial": "Plínio Alarcom Airport",
+        "nombre_oficial": "Aeropuerto Plínio Alarcom",
         "codigo_iata": "TJL",
         "codigo_oaci": "SBTG",
         "pais": "Brasil",
@@ -6014,7 +6014,7 @@
       },
       "properties": {
         "clave_union": "TMT",
-        "nombre_oficial": "Trombetas Airport",
+        "nombre_oficial": "Aeropuerto Trombetas",
         "codigo_iata": "TMT",
         "codigo_oaci": "SBTB",
         "pais": "Brasil",
@@ -6047,7 +6047,7 @@
       },
       "properties": {
         "clave_union": "TOW",
-        "nombre_oficial": "Toledo - Luiz Dalcanale Filho Municipal Airport",
+        "nombre_oficial": "Aeropuerto Toledo - Luiz Dalcanale Filho Municipal",
         "codigo_iata": "TOW",
         "codigo_oaci": "SBTD",
         "pais": "Brasil",
@@ -6080,7 +6080,7 @@
       },
       "properties": {
         "clave_union": "TUR",
-        "nombre_oficial": "Tucuruí Airport",
+        "nombre_oficial": "Aeropuerto Tucuruí",
         "codigo_iata": "TUR",
         "codigo_oaci": "SBTU",
         "pais": "Brasil",
@@ -6113,7 +6113,7 @@
       },
       "properties": {
         "clave_union": "UBA",
-        "nombre_oficial": "Mário de Almeida Franco Airport",
+        "nombre_oficial": "Aeropuerto Mário de Almeida Franco",
         "codigo_iata": "UBA",
         "codigo_oaci": "SBUR",
         "pais": "Brasil",
@@ -6146,7 +6146,7 @@
       },
       "properties": {
         "clave_union": "UDI",
-        "nombre_oficial": "Ten. Cel. Aviador César Bombonato Airport",
+        "nombre_oficial": "Aeropuerto Ten. Cel. Aviador César Bombonato",
         "codigo_iata": "UDI",
         "codigo_oaci": "SBUL",
         "pais": "Brasil",
@@ -6179,7 +6179,7 @@
       },
       "properties": {
         "clave_union": "UMU",
-        "nombre_oficial": "Orlando de Carvalho Airport",
+        "nombre_oficial": "Aeropuerto Orlando de Carvalho",
         "codigo_iata": "UMU",
         "codigo_oaci": "SSUM",
         "pais": "Brasil",
@@ -6212,7 +6212,7 @@
       },
       "properties": {
         "clave_union": "UNA",
-        "nombre_oficial": "Una-Comandatuba Airport",
+        "nombre_oficial": "Aeropuerto Una - Comandatuba",
         "codigo_iata": "UNA",
         "codigo_oaci": "SBTC",
         "pais": "Brasil",
@@ -6245,7 +6245,7 @@
       },
       "properties": {
         "clave_union": "URG",
-        "nombre_oficial": "Rubem Berta Airport",
+        "nombre_oficial": "Aeropuerto Rubem Berta",
         "codigo_iata": "URG",
         "codigo_oaci": "SBUG",
         "pais": "Brasil",
@@ -6278,7 +6278,7 @@
       },
       "properties": {
         "clave_union": "UVI",
-        "nombre_oficial": "José Cleto Airport",
+        "nombre_oficial": "Aeropuerto José Cleto",
         "codigo_iata": "UVI",
         "codigo_oaci": "SSUV",
         "pais": "Brasil",
@@ -6311,7 +6311,7 @@
       },
       "properties": {
         "clave_union": "VAL",
-        "nombre_oficial": "Valença Airport",
+        "nombre_oficial": "Aeropuerto Valença",
         "codigo_iata": "VAL",
         "codigo_oaci": "SNVB",
         "pais": "Brasil",
@@ -6344,7 +6344,7 @@
       },
       "properties": {
         "clave_union": "VCP",
-        "nombre_oficial": "Viracopos International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Viracopos",
         "codigo_iata": "VCP",
         "codigo_oaci": "SBKP",
         "pais": "Brasil",
@@ -6380,7 +6380,7 @@
       },
       "properties": {
         "clave_union": "VDC",
-        "nombre_oficial": "Glauber de Andrade Rocha Airport",
+        "nombre_oficial": "Aeropuerto Glauber de Andrade Rocha",
         "codigo_iata": "VDC",
         "codigo_oaci": "SBVC",
         "pais": "Brasil",
@@ -6413,7 +6413,7 @@
       },
       "properties": {
         "clave_union": "VIX",
-        "nombre_oficial": "Eurico de Aguiar Salles International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Eurico de Aguiar Salles",
         "codigo_iata": "VIX",
         "codigo_oaci": "SBVT",
         "pais": "Brasil",
@@ -6448,7 +6448,7 @@
       },
       "properties": {
         "clave_union": "XAP",
-        "nombre_oficial": "Serafin Enoss Bertaso Airport",
+        "nombre_oficial": "Aeropuerto Serafin Enoss Bertaso",
         "codigo_iata": "XAP",
         "codigo_oaci": "SBCH",
         "pais": "Brasil",
@@ -6481,7 +6481,7 @@
       },
       "properties": {
         "clave_union": "ANF",
-        "nombre_oficial": "Andrés Sabella Gálvez International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Andrés Sabella Gálvez",
         "codigo_iata": "ANF",
         "codigo_oaci": "SCFA",
         "pais": "Chile",
@@ -6516,7 +6516,7 @@
       },
       "properties": {
         "clave_union": "ARI",
-        "nombre_oficial": "Chacalluta International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Chacalluta",
         "codigo_iata": "ARI",
         "codigo_oaci": "SCAR",
         "pais": "Chile",
@@ -6551,7 +6551,7 @@
       },
       "properties": {
         "clave_union": "BBA",
-        "nombre_oficial": "Balmaceda Airport",
+        "nombre_oficial": "Aeropuerto Balmaceda",
         "codigo_iata": "BBA",
         "codigo_oaci": "SCBA",
         "pais": "Chile",
@@ -6584,7 +6584,7 @@
       },
       "properties": {
         "clave_union": "CCP",
-        "nombre_oficial": "Carriel Sur International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Carriel Sur",
         "codigo_iata": "CCP",
         "codigo_oaci": "SCIE",
         "pais": "Chile",
@@ -6619,7 +6619,7 @@
       },
       "properties": {
         "clave_union": "CJC",
-        "nombre_oficial": "El Loa Airport",
+        "nombre_oficial": "Aeropuerto El Loa",
         "codigo_iata": "CJC",
         "codigo_oaci": "SCCF",
         "pais": "Chile",
@@ -6652,7 +6652,7 @@
       },
       "properties": {
         "clave_union": "CPO",
-        "nombre_oficial": "Desierto de Atacama Airport",
+        "nombre_oficial": "Aeropuerto Desierto de Atacama",
         "codigo_iata": "CPO",
         "codigo_oaci": "SCAT",
         "pais": "Chile",
@@ -6685,7 +6685,7 @@
       },
       "properties": {
         "clave_union": "ESR",
-        "nombre_oficial": "Ricardo García Posada Airport",
+        "nombre_oficial": "Aeropuerto Ricardo García Posada",
         "codigo_iata": "ESR",
         "codigo_oaci": "SCES",
         "pais": "Chile",
@@ -6718,7 +6718,7 @@
       },
       "properties": {
         "clave_union": "IPC",
-        "nombre_oficial": "Mataveri International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Mataveri",
         "codigo_iata": "IPC",
         "codigo_oaci": "SCIP",
         "pais": "Chile",
@@ -6753,7 +6753,7 @@
       },
       "properties": {
         "clave_union": "IQQ",
-        "nombre_oficial": "Diego Aracena International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Diego Aracena",
         "codigo_iata": "IQQ",
         "codigo_oaci": "SCDA",
         "pais": "Chile",
@@ -6788,7 +6788,7 @@
       },
       "properties": {
         "clave_union": "LSC",
-        "nombre_oficial": "La Florida Airport",
+        "nombre_oficial": "Aeropuerto La Florida",
         "codigo_iata": "LSC",
         "codigo_oaci": "SCSE",
         "pais": "Chile",
@@ -6821,7 +6821,7 @@
       },
       "properties": {
         "clave_union": "MHC",
-        "nombre_oficial": "Mocopulli Airport",
+        "nombre_oficial": "Aeropuerto Mocopulli",
         "codigo_iata": "MHC",
         "codigo_oaci": "SCPQ",
         "pais": "Chile",
@@ -6854,7 +6854,7 @@
       },
       "properties": {
         "clave_union": "PMC",
-        "nombre_oficial": "El Tepual International Airport",
+        "nombre_oficial": "Aeropuerto Internacional El Tepual",
         "codigo_iata": "PMC",
         "codigo_oaci": "SCTE",
         "pais": "Chile",
@@ -6889,7 +6889,7 @@
       },
       "properties": {
         "clave_union": "PNT",
-        "nombre_oficial": "Lieutenant Julio Gallardo Airport",
+        "nombre_oficial": "Aeropuerto Lieutenant Julio Gallardo",
         "codigo_iata": "PNT",
         "codigo_oaci": "SCNT",
         "pais": "Chile",
@@ -6922,7 +6922,7 @@
       },
       "properties": {
         "clave_union": "PUQ",
-        "nombre_oficial": "President Carlos Ibáñez International Airport",
+        "nombre_oficial": "Aeropuerto Internacional President Carlos Ibáñez",
         "codigo_iata": "PUQ",
         "codigo_oaci": "SCCI",
         "pais": "Chile",
@@ -6957,7 +6957,7 @@
       },
       "properties": {
         "clave_union": "SCL",
-        "nombre_oficial": "Comodoro Arturo Merino Benítez International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Comodoro Arturo Merino Benítez",
         "codigo_iata": "SCL",
         "codigo_oaci": "SCEL",
         "pais": "Chile",
@@ -6993,7 +6993,7 @@
       },
       "properties": {
         "clave_union": "ZAL",
-        "nombre_oficial": "Pichoy Airport",
+        "nombre_oficial": "Aeropuerto Pichoy",
         "codigo_iata": "ZAL",
         "codigo_oaci": "SCVD",
         "pais": "Chile",
@@ -7026,7 +7026,7 @@
       },
       "properties": {
         "clave_union": "ZCO",
-        "nombre_oficial": "La Araucanía International Airport",
+        "nombre_oficial": "Aeropuerto Internacional La Araucanía",
         "codigo_iata": "ZCO",
         "codigo_oaci": "SCQP",
         "pais": "Chile",
@@ -7061,7 +7061,7 @@
       },
       "properties": {
         "clave_union": "ZOS",
-        "nombre_oficial": "Cañal Bajo Carlos Hott Siebert Airport",
+        "nombre_oficial": "Aeropuerto Cañal Bajo Carlos Hott Siebert",
         "codigo_iata": "ZOS",
         "codigo_oaci": "SCJO",
         "pais": "Chile",
@@ -7094,7 +7094,7 @@
       },
       "properties": {
         "clave_union": "ZPC",
-        "nombre_oficial": "Pucón Airport",
+        "nombre_oficial": "Aeropuerto Pucón",
         "codigo_iata": "ZPC",
         "codigo_oaci": "SCPC",
         "pais": "Chile",
@@ -7127,7 +7127,7 @@
       },
       "properties": {
         "clave_union": "ADZ",
-        "nombre_oficial": "Gustavo Rojas Pinilla International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Gustavo Rojas Pinilla",
         "codigo_iata": "ADZ",
         "codigo_oaci": "SKSP",
         "pais": "Colombia",
@@ -7162,7 +7162,7 @@
       },
       "properties": {
         "clave_union": "APO",
-        "nombre_oficial": "Antonio Roldán Betancur Airport",
+        "nombre_oficial": "Aeropuerto Antonio Roldán Betancur",
         "codigo_iata": "APO",
         "codigo_oaci": "SKLC",
         "pais": "Colombia",
@@ -7195,7 +7195,7 @@
       },
       "properties": {
         "clave_union": "AUC",
-        "nombre_oficial": "Santiago Perez Airport",
+        "nombre_oficial": "Aeropuerto Santiago Perez",
         "codigo_iata": "AUC",
         "codigo_oaci": "SKUC",
         "pais": "Colombia",
@@ -7228,7 +7228,7 @@
       },
       "properties": {
         "clave_union": "AXM",
-        "nombre_oficial": "El Eden Airport",
+        "nombre_oficial": "Aeropuerto El Eden",
         "codigo_iata": "AXM",
         "codigo_oaci": "SKAR",
         "pais": "Colombia",
@@ -7263,7 +7263,7 @@
       },
       "properties": {
         "clave_union": "BAQ",
-        "nombre_oficial": "Ernesto Cortissoz International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Ernesto Cortissoz",
         "codigo_iata": "BAQ",
         "codigo_oaci": "SKBQ",
         "pais": "Colombia",
@@ -7298,7 +7298,7 @@
       },
       "properties": {
         "clave_union": "BGA",
-        "nombre_oficial": "Palonegro Airport",
+        "nombre_oficial": "Aeropuerto Palonegro",
         "codigo_iata": "BGA",
         "codigo_oaci": "SKBG",
         "pais": "Colombia",
@@ -7333,7 +7333,7 @@
       },
       "properties": {
         "clave_union": "BOG",
-        "nombre_oficial": "El Dorado International Airport",
+        "nombre_oficial": "Aeropuerto Internacional El Dorado",
         "codigo_iata": "BOG",
         "codigo_oaci": "SKBO",
         "pais": "Colombia",
@@ -7369,7 +7369,7 @@
       },
       "properties": {
         "clave_union": "BSC",
-        "nombre_oficial": "José Celestino Mutis Airport",
+        "nombre_oficial": "Aeropuerto José Celestino Mutis",
         "codigo_iata": "BSC",
         "codigo_oaci": "SKBS",
         "pais": "Colombia",
@@ -7402,7 +7402,7 @@
       },
       "properties": {
         "clave_union": "BUN",
-        "nombre_oficial": "Gerardo Tobar López Airport",
+        "nombre_oficial": "Aeropuerto Gerardo Tobar López",
         "codigo_iata": "BUN",
         "codigo_oaci": "SKBU",
         "pais": "Colombia",
@@ -7435,7 +7435,7 @@
       },
       "properties": {
         "clave_union": "CLO",
-        "nombre_oficial": "Alfonso Bonilla Aragon International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Alfonso Bonilla Aragon",
         "codigo_iata": "CLO",
         "codigo_oaci": "SKCL",
         "pais": "Colombia",
@@ -7470,7 +7470,7 @@
       },
       "properties": {
         "clave_union": "CTG",
-        "nombre_oficial": "Rafael Nuñez International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Rafael Nuñez",
         "codigo_iata": "CTG",
         "codigo_oaci": "SKCG",
         "pais": "Colombia",
@@ -7505,7 +7505,7 @@
       },
       "properties": {
         "clave_union": "CUC",
-        "nombre_oficial": "Camilo Daza International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Camilo Daza",
         "codigo_iata": "CUC",
         "codigo_oaci": "SKCC",
         "pais": "Colombia",
@@ -7540,7 +7540,7 @@
       },
       "properties": {
         "clave_union": "CZU",
-        "nombre_oficial": "Las Brujas Airport",
+        "nombre_oficial": "Aeropuerto Las Brujas",
         "codigo_iata": "CZU",
         "codigo_oaci": "SKCZ",
         "pais": "Colombia",
@@ -7573,7 +7573,7 @@
       },
       "properties": {
         "clave_union": "EJA",
-        "nombre_oficial": "Yariguíes Airport",
+        "nombre_oficial": "Aeropuerto Yariguíes",
         "codigo_iata": "EJA",
         "codigo_oaci": "SKEJ",
         "pais": "Colombia",
@@ -7606,7 +7606,7 @@
       },
       "properties": {
         "clave_union": "EOH",
-        "nombre_oficial": "Enrique Olaya Herrera Airport",
+        "nombre_oficial": "Aeropuerto Enrique Olaya Herrera",
         "codigo_iata": "EOH",
         "codigo_oaci": "SKMD",
         "pais": "Colombia",
@@ -7639,7 +7639,7 @@
       },
       "properties": {
         "clave_union": "EYP",
-        "nombre_oficial": "El Alcaravan - Yopal Airport",
+        "nombre_oficial": "Aeropuerto El Alcaravan - Yopal",
         "codigo_iata": "EYP",
         "codigo_oaci": "SKYP",
         "pais": "Colombia",
@@ -7672,7 +7672,7 @@
       },
       "properties": {
         "clave_union": "FLA",
-        "nombre_oficial": "Gustavo Artunduaga Paredes Airport",
+        "nombre_oficial": "Aeropuerto Gustavo Artunduaga Paredes",
         "codigo_iata": "FLA",
         "codigo_oaci": "SKFL",
         "pais": "Colombia",
@@ -7705,7 +7705,7 @@
       },
       "properties": {
         "clave_union": "GPI",
-        "nombre_oficial": "Guapi Airport",
+        "nombre_oficial": "Aeropuerto Guapi",
         "codigo_iata": "GPI",
         "codigo_oaci": "SKGP",
         "pais": "Colombia",
@@ -7738,7 +7738,7 @@
       },
       "properties": {
         "clave_union": "IBE",
-        "nombre_oficial": "Perales Airport",
+        "nombre_oficial": "Aeropuerto Perales",
         "codigo_iata": "IBE",
         "codigo_oaci": "SKIB",
         "pais": "Colombia",
@@ -7771,7 +7771,7 @@
       },
       "properties": {
         "clave_union": "IPI",
-        "nombre_oficial": "San Luis Airport",
+        "nombre_oficial": "Aeropuerto San Luis",
         "codigo_iata": "IPI",
         "codigo_oaci": "SKIP",
         "pais": "Colombia",
@@ -7804,7 +7804,7 @@
       },
       "properties": {
         "clave_union": "LCR",
-        "nombre_oficial": "Virgilio Barco Vargas (La Chorrera) Airport",
+        "nombre_oficial": "Aeropuerto Virgilio Barco Vargas (La Chorrera)",
         "codigo_iata": "LCR",
         "codigo_oaci": "SKHZ",
         "pais": "Colombia",
@@ -7837,7 +7837,7 @@
       },
       "properties": {
         "clave_union": "LET",
-        "nombre_oficial": "Alfredo Vásquez Cobo International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Alfredo Vásquez Cobo",
         "codigo_iata": "LET",
         "codigo_oaci": "SKLT",
         "pais": "Colombia",
@@ -7872,7 +7872,7 @@
       },
       "properties": {
         "clave_union": "LMC",
-        "nombre_oficial": "La Macarena Airport",
+        "nombre_oficial": "Aeropuerto La Macarena",
         "codigo_iata": "LMC",
         "codigo_oaci": "SKNA",
         "pais": "Colombia",
@@ -7905,7 +7905,7 @@
       },
       "properties": {
         "clave_union": "LPD",
-        "nombre_oficial": "La Pedrera Airport",
+        "nombre_oficial": "Aeropuerto La Pedrera",
         "codigo_iata": "LPD",
         "codigo_oaci": "SKLP",
         "pais": "Colombia",
@@ -7938,7 +7938,7 @@
       },
       "properties": {
         "clave_union": "LQM",
-        "nombre_oficial": "Caucaya Airport",
+        "nombre_oficial": "Aeropuerto Caucaya",
         "codigo_iata": "LQM",
         "codigo_oaci": "SKLG",
         "pais": "Colombia",
@@ -7971,7 +7971,7 @@
       },
       "properties": {
         "clave_union": "MDE",
-        "nombre_oficial": "Jose Maria Córdova International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Jose Maria Córdova",
         "codigo_iata": "MDE",
         "codigo_oaci": "SKRG",
         "pais": "Colombia",
@@ -8006,7 +8006,7 @@
       },
       "properties": {
         "clave_union": "MTR",
-        "nombre_oficial": "Los Garzones Airport",
+        "nombre_oficial": "Aeropuerto Los Garzones",
         "codigo_iata": "MTR",
         "codigo_oaci": "SKMR",
         "pais": "Colombia",
@@ -8039,7 +8039,7 @@
       },
       "properties": {
         "clave_union": "MVP",
-        "nombre_oficial": "Fabio Alberto Leon Bentley Airport",
+        "nombre_oficial": "Aeropuerto Fabio Alberto Leon Bentley",
         "codigo_iata": "MVP",
         "codigo_oaci": "SKMU",
         "pais": "Colombia",
@@ -8072,7 +8072,7 @@
       },
       "properties": {
         "clave_union": "MZL",
-        "nombre_oficial": "La Nubia Airport",
+        "nombre_oficial": "Aeropuerto La Nubia",
         "codigo_iata": "MZL",
         "codigo_oaci": "SKMZ",
         "pais": "Colombia",
@@ -8105,7 +8105,7 @@
       },
       "properties": {
         "clave_union": "NQU",
-        "nombre_oficial": "Reyes Murillo Airport",
+        "nombre_oficial": "Aeropuerto Reyes Murillo",
         "codigo_iata": "NQU",
         "codigo_oaci": "SKNQ",
         "pais": "Colombia",
@@ -8138,7 +8138,7 @@
       },
       "properties": {
         "clave_union": "NVA",
-        "nombre_oficial": "Benito Salas Airport",
+        "nombre_oficial": "Aeropuerto Benito Salas",
         "codigo_iata": "NVA",
         "codigo_oaci": "SKNV",
         "pais": "Colombia",
@@ -8171,7 +8171,7 @@
       },
       "properties": {
         "clave_union": "PCR",
-        "nombre_oficial": "German Olano Airport",
+        "nombre_oficial": "Aeropuerto German Olano",
         "codigo_iata": "PCR",
         "codigo_oaci": "SKPC",
         "pais": "Colombia",
@@ -8204,7 +8204,7 @@
       },
       "properties": {
         "clave_union": "PDA",
-        "nombre_oficial": "Obando Cesar Gaviria Trujillo Airport",
+        "nombre_oficial": "Aeropuerto Obando Cesar Gaviria Trujillo",
         "codigo_iata": "PDA",
         "codigo_oaci": "SKPD",
         "pais": "Colombia",
@@ -8237,7 +8237,7 @@
       },
       "properties": {
         "clave_union": "PEI",
-        "nombre_oficial": "Matecaña International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Matecaña",
         "codigo_iata": "PEI",
         "codigo_oaci": "SKPE",
         "pais": "Colombia",
@@ -8272,7 +8272,7 @@
       },
       "properties": {
         "clave_union": "PPN",
-        "nombre_oficial": "Guillermo León Valencia Airport",
+        "nombre_oficial": "Aeropuerto Guillermo León Valencia",
         "codigo_iata": "PPN",
         "codigo_oaci": "SKPP",
         "pais": "Colombia",
@@ -8305,7 +8305,7 @@
       },
       "properties": {
         "clave_union": "PSO",
-        "nombre_oficial": "Antonio Nariño Airport",
+        "nombre_oficial": "Aeropuerto Antonio Nariño",
         "codigo_iata": "PSO",
         "codigo_oaci": "SKPS",
         "pais": "Colombia",
@@ -8338,7 +8338,7 @@
       },
       "properties": {
         "clave_union": "PUU",
-        "nombre_oficial": "Tres De Mayo Airport",
+        "nombre_oficial": "Aeropuerto Tres De Mayo",
         "codigo_iata": "PUU",
         "codigo_oaci": "SKAS",
         "pais": "Colombia",
@@ -8371,7 +8371,7 @@
       },
       "properties": {
         "clave_union": "PVA",
-        "nombre_oficial": "El Embrujo Airport",
+        "nombre_oficial": "Aeropuerto El Embrujo",
         "codigo_iata": "PVA",
         "codigo_oaci": "SKPV",
         "pais": "Colombia",
@@ -8404,7 +8404,7 @@
       },
       "properties": {
         "clave_union": "RCH",
-        "nombre_oficial": "Almirante Padilla Airport",
+        "nombre_oficial": "Aeropuerto Almirante Padilla",
         "codigo_iata": "RCH",
         "codigo_oaci": "SKRH",
         "pais": "Colombia",
@@ -8439,7 +8439,7 @@
       },
       "properties": {
         "clave_union": "RVE",
-        "nombre_oficial": "Los Colonizadores Airport",
+        "nombre_oficial": "Aeropuerto Los Colonizadores",
         "codigo_iata": "RVE",
         "codigo_oaci": "SKSA",
         "pais": "Colombia",
@@ -8472,7 +8472,7 @@
       },
       "properties": {
         "clave_union": "SJE",
-        "nombre_oficial": "Jorge E. Gonzalez Torres Airport",
+        "nombre_oficial": "Aeropuerto Jorge E. Gonzalez Torres",
         "codigo_iata": "SJE",
         "codigo_oaci": "SKSJ",
         "pais": "Colombia",
@@ -8505,7 +8505,7 @@
       },
       "properties": {
         "clave_union": "SMR",
-        "nombre_oficial": "Simón Bolívar International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Simón Bolívar",
         "codigo_iata": "SMR",
         "codigo_oaci": "SKSM",
         "pais": "Colombia",
@@ -8540,7 +8540,7 @@
       },
       "properties": {
         "clave_union": "SVI",
-        "nombre_oficial": "Eduardo Falla Solano Airport",
+        "nombre_oficial": "Aeropuerto Eduardo Falla Solano",
         "codigo_iata": "SVI",
         "codigo_oaci": "SKSV",
         "pais": "Colombia",
@@ -8573,7 +8573,7 @@
       },
       "properties": {
         "clave_union": "TCD",
-        "nombre_oficial": "Tarapacá Airport",
+        "nombre_oficial": "Aeropuerto Tarapacá",
         "codigo_iata": "TCD",
         "codigo_oaci": "SKRA",
         "pais": "Colombia",
@@ -8606,7 +8606,7 @@
       },
       "properties": {
         "clave_union": "TCO",
-        "nombre_oficial": "La Florida Airport",
+        "nombre_oficial": "Aeropuerto La Florida",
         "codigo_iata": "TCO",
         "codigo_oaci": "SKCO",
         "pais": "Colombia",
@@ -8639,7 +8639,7 @@
       },
       "properties": {
         "clave_union": "TLU",
-        "nombre_oficial": "Golfo de Morrosquillo Airport",
+        "nombre_oficial": "Aeropuerto Golfo de Morrosquillo",
         "codigo_iata": "TLU",
         "codigo_oaci": "SKTL",
         "pais": "Colombia",
@@ -8672,7 +8672,7 @@
       },
       "properties": {
         "clave_union": "TME",
-        "nombre_oficial": "Gustavo Vargas Airport",
+        "nombre_oficial": "Aeropuerto Gustavo Vargas",
         "codigo_iata": "TME",
         "codigo_oaci": "SKTM",
         "pais": "Colombia",
@@ -8705,7 +8705,7 @@
       },
       "properties": {
         "clave_union": "UIB",
-        "nombre_oficial": "El Caraño Airport",
+        "nombre_oficial": "Aeropuerto El Caraño",
         "codigo_iata": "UIB",
         "codigo_oaci": "SKUI",
         "pais": "Colombia",
@@ -8738,7 +8738,7 @@
       },
       "properties": {
         "clave_union": "VUP",
-        "nombre_oficial": "Alfonso López Pumarejo Airport",
+        "nombre_oficial": "Aeropuerto Alfonso López Pumarejo",
         "codigo_iata": "VUP",
         "codigo_oaci": "SKVP",
         "pais": "Colombia",
@@ -8771,7 +8771,7 @@
       },
       "properties": {
         "clave_union": "VVC",
-        "nombre_oficial": "Vanguardia Airport",
+        "nombre_oficial": "Aeropuerto Vanguardia",
         "codigo_iata": "VVC",
         "codigo_oaci": "SKVV",
         "pais": "Colombia",
@@ -8804,7 +8804,7 @@
       },
       "properties": {
         "clave_union": "CUE",
-        "nombre_oficial": "Mariscal Lamar Airport",
+        "nombre_oficial": "Aeropuerto Mariscal Lamar",
         "codigo_iata": "CUE",
         "codigo_oaci": "SECU",
         "pais": "Ecuador",
@@ -8839,7 +8839,7 @@
       },
       "properties": {
         "clave_union": "ESM",
-        "nombre_oficial": "Carlos Concha Torres International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Carlos Concha Torres",
         "codigo_iata": "ESM",
         "codigo_oaci": "SETN",
         "pais": "Ecuador",
@@ -8874,7 +8874,7 @@
       },
       "properties": {
         "clave_union": "ETR",
-        "nombre_oficial": "Santa Rosa - Artillery Colonel Victor Larrea International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Santa Rosa - Artillery Colonel Victor Larrea",
         "codigo_iata": "ETR",
         "codigo_oaci": "SERO",
         "pais": "Ecuador",
@@ -8909,7 +8909,7 @@
       },
       "properties": {
         "clave_union": "GPS",
-        "nombre_oficial": "Seymour Galapagos Ecological Airport",
+        "nombre_oficial": "Aeropuerto Seymour Galapagos Ecological",
         "codigo_iata": "GPS",
         "codigo_oaci": "SEGS",
         "pais": "Ecuador",
@@ -8942,7 +8942,7 @@
       },
       "properties": {
         "clave_union": "GYE",
-        "nombre_oficial": "José Joaquín de Olmedo International Airport",
+        "nombre_oficial": "Aeropuerto Internacional José Joaquín de Olmedo",
         "codigo_iata": "GYE",
         "codigo_oaci": "SEGU",
         "pais": "Ecuador",
@@ -8978,7 +8978,7 @@
       },
       "properties": {
         "clave_union": "IBB",
-        "nombre_oficial": "General Villamil Airport",
+        "nombre_oficial": "Aeropuerto General Villamil",
         "codigo_iata": "IBB",
         "codigo_oaci": "SEII",
         "pais": "Ecuador",
@@ -9011,7 +9011,7 @@
       },
       "properties": {
         "clave_union": "LOH",
-        "nombre_oficial": "Ciudad de Catamayo Airport",
+        "nombre_oficial": "Aeropuerto Ciudad de Catamayo",
         "codigo_iata": "LOH",
         "codigo_oaci": "SECA",
         "pais": "Ecuador",
@@ -9044,7 +9044,7 @@
       },
       "properties": {
         "clave_union": "LTX",
-        "nombre_oficial": "Cotopaxi International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Cotopaxi",
         "codigo_iata": "LTX",
         "codigo_oaci": "SELT",
         "pais": "Ecuador",
@@ -9080,7 +9080,7 @@
       },
       "properties": {
         "clave_union": "MEC",
-        "nombre_oficial": "Eloy Alfaro International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Eloy Alfaro",
         "codigo_iata": "MEC",
         "codigo_oaci": "SEMT",
         "pais": "Ecuador",
@@ -9115,7 +9115,7 @@
       },
       "properties": {
         "clave_union": "OCC",
-        "nombre_oficial": "Francisco De Orellana Airport",
+        "nombre_oficial": "Aeropuerto Francisco De Orellana",
         "codigo_iata": "OCC",
         "codigo_oaci": "SECO",
         "pais": "Ecuador",
@@ -9148,7 +9148,7 @@
       },
       "properties": {
         "clave_union": "SCY",
-        "nombre_oficial": "San Cristóbal Airport",
+        "nombre_oficial": "Aeropuerto San Cristóbal",
         "codigo_iata": "SCY",
         "codigo_oaci": "SEST",
         "pais": "Ecuador",
@@ -9181,7 +9181,7 @@
       },
       "properties": {
         "clave_union": "SNC",
-        "nombre_oficial": "General Ulpiano Paez International Airport",
+        "nombre_oficial": "Aeropuerto Internacional General Ulpiano Paez",
         "codigo_iata": "SNC",
         "codigo_oaci": "SESA",
         "pais": "Ecuador",
@@ -9216,7 +9216,7 @@
       },
       "properties": {
         "clave_union": "TUA",
-        "nombre_oficial": "Lieutenant Colonel Luis A. Mantilla International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Lieutenant Colonel Luis A. Mantilla",
         "codigo_iata": "TUA",
         "codigo_oaci": "SETU",
         "pais": "Ecuador",
@@ -9251,7 +9251,7 @@
       },
       "properties": {
         "clave_union": "UIO",
-        "nombre_oficial": "Mariscal Sucre International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Mariscal Sucre",
         "codigo_iata": "UIO",
         "codigo_oaci": "SEQM",
         "pais": "Ecuador",
@@ -9287,7 +9287,7 @@
       },
       "properties": {
         "clave_union": "XMS",
-        "nombre_oficial": "Coronel E Carvajal Airport",
+        "nombre_oficial": "Aeropuerto Coronel E Carvajal",
         "codigo_iata": "XMS",
         "codigo_oaci": "SEMC",
         "pais": "Ecuador",
@@ -9320,7 +9320,7 @@
       },
       "properties": {
         "clave_union": "CAY",
-        "nombre_oficial": "Cayenne – Félix Eboué Airport",
+        "nombre_oficial": "Aeropuerto Cayenne – Félix Eboué",
         "codigo_iata": "CAY",
         "codigo_oaci": "SOCA",
         "pais": "Guayana Francesa",
@@ -9355,7 +9355,7 @@
       },
       "properties": {
         "clave_union": "LDX",
-        "nombre_oficial": "Saint-Laurent-du-Maroni Airport",
+        "nombre_oficial": "Aeropuerto Saint - Laurent - du - Maroni",
         "codigo_iata": "LDX",
         "codigo_oaci": "SOOM",
         "pais": "Guayana Francesa",
@@ -9390,7 +9390,7 @@
       },
       "properties": {
         "clave_union": "MPY",
-        "nombre_oficial": "Maripasoula Airport",
+        "nombre_oficial": "Aeropuerto Maripasoula",
         "codigo_iata": "MPY",
         "codigo_oaci": "SOOA",
         "pais": "Guayana Francesa",
@@ -9423,7 +9423,7 @@
       },
       "properties": {
         "clave_union": "GEO",
-        "nombre_oficial": "Cheddi Jagan International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Cheddi Jagan",
         "codigo_iata": "GEO",
         "codigo_oaci": "SYCJ",
         "pais": "Guyana",
@@ -9458,7 +9458,7 @@
       },
       "properties": {
         "clave_union": "KAI",
-        "nombre_oficial": "Kaieteur Airport",
+        "nombre_oficial": "Aeropuerto Kaieteur",
         "codigo_iata": "KAI",
         "codigo_oaci": "SYKA",
         "pais": "Guyana",
@@ -9491,7 +9491,7 @@
       },
       "properties": {
         "clave_union": "LTM",
-        "nombre_oficial": "Lethem Airport",
+        "nombre_oficial": "Aeropuerto Lethem",
         "codigo_iata": "LTM",
         "codigo_oaci": "SYLT",
         "pais": "Guyana",
@@ -9524,7 +9524,7 @@
       },
       "properties": {
         "clave_union": "OGL",
-        "nombre_oficial": "Eugene F. Correia International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Eugene F. Correia",
         "codigo_iata": "OGL",
         "codigo_oaci": "SYEC",
         "pais": "Guyana",
@@ -9559,7 +9559,7 @@
       },
       "properties": {
         "clave_union": "AGT",
-        "nombre_oficial": "Guaraní International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Guaraní",
         "codigo_iata": "AGT",
         "codigo_oaci": "SGES",
         "pais": "Paraguay",
@@ -9595,7 +9595,7 @@
       },
       "properties": {
         "clave_union": "ASU",
-        "nombre_oficial": "Silvio Pettirossi International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Silvio Pettirossi",
         "codigo_iata": "ASU",
         "codigo_oaci": "SGAS",
         "pais": "Paraguay",
@@ -9631,7 +9631,7 @@
       },
       "properties": {
         "clave_union": "ENO",
-        "nombre_oficial": "Teniente Ramon A. Ayub Gonzalez International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Teniente Ramon A. Ayub Gonzalez",
         "codigo_iata": "ENO",
         "codigo_oaci": "SGEN",
         "pais": "Paraguay",
@@ -9666,7 +9666,7 @@
       },
       "properties": {
         "clave_union": "ANS",
-        "nombre_oficial": "Andahuaylas Airport",
+        "nombre_oficial": "Aeropuerto Andahuaylas",
         "codigo_iata": "ANS",
         "codigo_oaci": "SPHY",
         "pais": "Perú",
@@ -9699,7 +9699,7 @@
       },
       "properties": {
         "clave_union": "AQP",
-        "nombre_oficial": "Rodríguez Ballón International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Rodríguez Ballón",
         "codigo_iata": "AQP",
         "codigo_oaci": "SPQU",
         "pais": "Perú",
@@ -9734,7 +9734,7 @@
       },
       "properties": {
         "clave_union": "AYP",
-        "nombre_oficial": "Air Force Colonel Alfredo Mendivil Duarte Airport",
+        "nombre_oficial": "Aeropuerto Air Force Colonel Alfredo Mendivil Duarte",
         "codigo_iata": "AYP",
         "codigo_oaci": "SPHO",
         "pais": "Perú",
@@ -9769,7 +9769,7 @@
       },
       "properties": {
         "clave_union": "CHH",
-        "nombre_oficial": "Chachapoyas Airport",
+        "nombre_oficial": "Aeropuerto Chachapoyas",
         "codigo_iata": "CHH",
         "codigo_oaci": "SPPY",
         "pais": "Perú",
@@ -9802,7 +9802,7 @@
       },
       "properties": {
         "clave_union": "CHM",
-        "nombre_oficial": "FAP Lieutenant Jaime Andres de Montreuil Morales Airport",
+        "nombre_oficial": "Aeropuerto FAP Lieutenant Jaime Andres de Montreuil Morales",
         "codigo_iata": "CHM",
         "codigo_oaci": "SPEO",
         "pais": "Perú",
@@ -9835,7 +9835,7 @@
       },
       "properties": {
         "clave_union": "CIX",
-        "nombre_oficial": "Capitán FAP José A. Quiñones González International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Capitán FAP José A. Quiñones González",
         "codigo_iata": "CIX",
         "codigo_oaci": "SPHI",
         "pais": "Perú",
@@ -9870,7 +9870,7 @@
       },
       "properties": {
         "clave_union": "CJA",
-        "nombre_oficial": "Mayor General FAP Armando Revoredo Iglesias Airport",
+        "nombre_oficial": "Aeropuerto Mayor General FAP Armando Revoredo Iglesias",
         "codigo_iata": "CJA",
         "codigo_oaci": "SPJR",
         "pais": "Perú",
@@ -9903,7 +9903,7 @@
       },
       "properties": {
         "clave_union": "CUZ",
-        "nombre_oficial": "Alejandro Velasco Astete International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Alejandro Velasco Astete",
         "codigo_iata": "CUZ",
         "codigo_oaci": "SPZO",
         "pais": "Perú",
@@ -9938,7 +9938,7 @@
       },
       "properties": {
         "clave_union": "HUU",
-        "nombre_oficial": "Alferez Fap David Figueroa Fernandini Airport",
+        "nombre_oficial": "Aeropuerto Alferez Fap David Figueroa Fernandini",
         "codigo_iata": "HUU",
         "codigo_oaci": "SPNC",
         "pais": "Perú",
@@ -9971,7 +9971,7 @@
       },
       "properties": {
         "clave_union": "ILQ",
-        "nombre_oficial": "General Jorge Fernandez Maldon Airport",
+        "nombre_oficial": "Aeropuerto General Jorge Fernandez Maldon",
         "codigo_iata": "ILQ",
         "codigo_oaci": "SPLO",
         "pais": "Perú",
@@ -10004,7 +10004,7 @@
       },
       "properties": {
         "clave_union": "IQT",
-        "nombre_oficial": "Coronel FAP Francisco Secada Vignetta International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Coronel FAP Francisco Secada Vignetta",
         "codigo_iata": "IQT",
         "codigo_oaci": "SPQT",
         "pais": "Perú",
@@ -10039,7 +10039,7 @@
       },
       "properties": {
         "clave_union": "JAE",
-        "nombre_oficial": "Shumba Airport",
+        "nombre_oficial": "Aeropuerto Shumba",
         "codigo_iata": "JAE",
         "codigo_oaci": "SPJE",
         "pais": "Perú",
@@ -10072,7 +10072,7 @@
       },
       "properties": {
         "clave_union": "JAU",
-        "nombre_oficial": "Francisco Carle Airport",
+        "nombre_oficial": "Aeropuerto Francisco Carle",
         "codigo_iata": "JAU",
         "codigo_oaci": "SPJJ",
         "pais": "Perú",
@@ -10105,7 +10105,7 @@
       },
       "properties": {
         "clave_union": "JUL",
-        "nombre_oficial": "Inca Manco Capac International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Inca Manco Capac",
         "codigo_iata": "JUL",
         "codigo_oaci": "SPJL",
         "pais": "Perú",
@@ -10140,7 +10140,7 @@
       },
       "properties": {
         "clave_union": "LIM",
-        "nombre_oficial": "Jorge Chávez International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Jorge Chávez",
         "codigo_iata": "LIM",
         "codigo_oaci": "SPJC",
         "pais": "Perú",
@@ -10176,7 +10176,7 @@
       },
       "properties": {
         "clave_union": "NZC",
-        "nombre_oficial": "Maria Reiche Neuman Airport",
+        "nombre_oficial": "Aeropuerto Maria Reiche Neuman",
         "codigo_iata": "NZC",
         "codigo_oaci": "SPZA",
         "pais": "Perú",
@@ -10209,7 +10209,7 @@
       },
       "properties": {
         "clave_union": "PCL",
-        "nombre_oficial": "Cap FAP David Abenzur Rengifo International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Cap FAP David Abenzur Rengifo",
         "codigo_iata": "PCL",
         "codigo_oaci": "SPCL",
         "pais": "Perú",
@@ -10244,7 +10244,7 @@
       },
       "properties": {
         "clave_union": "PEM",
-        "nombre_oficial": "Padre Aldamiz International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Padre Aldamiz",
         "codigo_iata": "PEM",
         "codigo_oaci": "SPTU",
         "pais": "Perú",
@@ -10279,7 +10279,7 @@
       },
       "properties": {
         "clave_union": "PIU",
-        "nombre_oficial": "PAF Captain Guillermo Concha Iberico International Airport",
+        "nombre_oficial": "Aeropuerto Internacional PAF Capitán Guillermo Concha Iberico",
         "codigo_iata": "PIU",
         "codigo_oaci": "SPUR",
         "pais": "Perú",
@@ -10314,7 +10314,7 @@
       },
       "properties": {
         "clave_union": "TBP",
-        "nombre_oficial": "Captain Pedro Canga Rodríguez International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Capitán Pedro Canga Rodríguez",
         "codigo_iata": "TBP",
         "codigo_oaci": "SPME",
         "pais": "Perú",
@@ -10349,7 +10349,7 @@
       },
       "properties": {
         "clave_union": "TCQ",
-        "nombre_oficial": "Coronel FAP Carlos Ciriani Santa Rosa International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Coronel FAP Carlos Ciriani Santa Rosa",
         "codigo_iata": "TCQ",
         "codigo_oaci": "SPTN",
         "pais": "Perú",
@@ -10384,7 +10384,7 @@
       },
       "properties": {
         "clave_union": "TPP",
-        "nombre_oficial": "Cadete FAP Guillermo Del Castillo Paredes Airport",
+        "nombre_oficial": "Aeropuerto Cadete FAP Guillermo Del Castillo Paredes",
         "codigo_iata": "TPP",
         "codigo_oaci": "SPST",
         "pais": "Perú",
@@ -10417,7 +10417,7 @@
       },
       "properties": {
         "clave_union": "TRU",
-        "nombre_oficial": "Capitán FAP Carlos Martínez de Pinillos International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Capitán FAP Carlos Martínez de Pinillos",
         "codigo_iata": "TRU",
         "codigo_oaci": "SPRU",
         "pais": "Perú",
@@ -10452,7 +10452,7 @@
       },
       "properties": {
         "clave_union": "TYL",
-        "nombre_oficial": "Captain Victor Montes Arias International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Capitán Victor Montes Arias",
         "codigo_iata": "TYL",
         "codigo_oaci": "SPYL",
         "pais": "Perú",
@@ -10487,7 +10487,7 @@
       },
       "properties": {
         "clave_union": "YMS",
-        "nombre_oficial": "Moises Benzaquen Rengifo Airport",
+        "nombre_oficial": "Aeropuerto Moises Benzaquen Rengifo",
         "codigo_iata": "YMS",
         "codigo_oaci": "SPMS",
         "pais": "Perú",
@@ -10520,7 +10520,7 @@
       },
       "properties": {
         "clave_union": "AGI",
-        "nombre_oficial": "Wageningen Airstrip",
+        "nombre_oficial": "Aeropuerto Wageningen Airstrip",
         "codigo_iata": "AGI",
         "codigo_oaci": "SMWA",
         "pais": "Surinam",
@@ -10553,7 +10553,7 @@
       },
       "properties": {
         "clave_union": "DRJ",
-        "nombre_oficial": "Drietabbetje Airport",
+        "nombre_oficial": "Aeropuerto Drietabbetje",
         "codigo_iata": "DRJ",
         "codigo_oaci": "SMDA",
         "pais": "Surinam",
@@ -10586,7 +10586,7 @@
       },
       "properties": {
         "clave_union": "EAX",
-        "nombre_oficial": "Eduard Alexander Gummels Airport",
+        "nombre_oficial": "Aeropuerto Eduard Alexander Gummels",
         "codigo_iata": "EAX",
         "codigo_oaci": "SMEG",
         "pais": "Surinam",
@@ -10619,7 +10619,7 @@
       },
       "properties": {
         "clave_union": "MOJ",
-        "nombre_oficial": "Moengo Airstrip",
+        "nombre_oficial": "Aeropuerto Moengo Airstrip",
         "codigo_iata": "MOJ",
         "codigo_oaci": "SMMO",
         "pais": "Surinam",
@@ -10652,7 +10652,7 @@
       },
       "properties": {
         "clave_union": "ORG",
-        "nombre_oficial": "Zorg en Hoop Airport",
+        "nombre_oficial": "Aeropuerto Zorg en Hoop",
         "codigo_iata": "ORG",
         "codigo_oaci": "SMZO",
         "pais": "Surinam",
@@ -10685,7 +10685,7 @@
       },
       "properties": {
         "clave_union": "PBM",
-        "nombre_oficial": "Johan Adolf Pengel International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Johan Adolf Pengel",
         "codigo_iata": "PBM",
         "codigo_oaci": "SMJP",
         "pais": "Surinam",
@@ -10721,7 +10721,7 @@
       },
       "properties": {
         "clave_union": "MVD",
-        "nombre_oficial": "Carrasco General Cesáreo L. Berisso International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Carrasco General Cesáreo L. Berisso",
         "codigo_iata": "MVD",
         "codigo_oaci": "SUMU",
         "pais": "Uruguay",
@@ -10757,7 +10757,7 @@
       },
       "properties": {
         "clave_union": "PDP",
-        "nombre_oficial": "Capitan Corbeta CA Curbelo International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Capitan Corbeta CA Curbelo",
         "codigo_iata": "PDP",
         "codigo_oaci": "SULS",
         "pais": "Uruguay",
@@ -10792,7 +10792,7 @@
       },
       "properties": {
         "clave_union": "RVY",
-        "nombre_oficial": "Pres. Gral. Óscar D. Gestido Binational Airport",
+        "nombre_oficial": "Aeropuerto Pres. Gral. Óscar D. Gestido Binational",
         "codigo_iata": "RVY",
         "codigo_oaci": "SURV",
         "pais": "Uruguay",
@@ -10827,7 +10827,7 @@
       },
       "properties": {
         "clave_union": "BLA",
-        "nombre_oficial": "General José Antonio Anzoategui International Airport",
+        "nombre_oficial": "Aeropuerto Internacional General José Antonio Anzoategui",
         "codigo_iata": "BLA",
         "codigo_oaci": "SVBC",
         "pais": "Venezuela",
@@ -10862,7 +10862,7 @@
       },
       "properties": {
         "clave_union": "BNS",
-        "nombre_oficial": "Barinas Airport",
+        "nombre_oficial": "Aeropuerto Barinas",
         "codigo_iata": "BNS",
         "codigo_oaci": "SVBI",
         "pais": "Venezuela",
@@ -10895,7 +10895,7 @@
       },
       "properties": {
         "clave_union": "BRM",
-        "nombre_oficial": "Jacinto Lara International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Jacinto Lara",
         "codigo_iata": "BRM",
         "codigo_oaci": "SVBM",
         "pais": "Venezuela",
@@ -10930,7 +10930,7 @@
       },
       "properties": {
         "clave_union": "CAJ",
-        "nombre_oficial": "Canaima Airport",
+        "nombre_oficial": "Aeropuerto Canaima",
         "codigo_iata": "CAJ",
         "codigo_oaci": "SVCN",
         "pais": "Venezuela",
@@ -10963,7 +10963,7 @@
       },
       "properties": {
         "clave_union": "CCS",
-        "nombre_oficial": "Maiquetía Simón Bolívar International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Maiquetía Simón Bolívar",
         "codigo_iata": "CCS",
         "codigo_oaci": "SVMI",
         "pais": "Venezuela",
@@ -10998,7 +10998,7 @@
       },
       "properties": {
         "clave_union": "CUM",
-        "nombre_oficial": "Antonio José de Sucre Airport",
+        "nombre_oficial": "Aeropuerto Antonio José de Sucre",
         "codigo_iata": "CUM",
         "codigo_oaci": "SVCU",
         "pais": "Venezuela",
@@ -11033,7 +11033,7 @@
       },
       "properties": {
         "clave_union": "CUP",
-        "nombre_oficial": "General Francisco Bermúdez Airport",
+        "nombre_oficial": "Aeropuerto General Francisco Bermúdez",
         "codigo_iata": "CUP",
         "codigo_oaci": "SVCP",
         "pais": "Venezuela",
@@ -11066,7 +11066,7 @@
       },
       "properties": {
         "clave_union": "CZE",
-        "nombre_oficial": "José Leonardo Chirinos Airport",
+        "nombre_oficial": "Aeropuerto José Leonardo Chirinos",
         "codigo_iata": "CZE",
         "codigo_oaci": "SVCR",
         "pais": "Venezuela",
@@ -11099,7 +11099,7 @@
       },
       "properties": {
         "clave_union": "ICC",
-        "nombre_oficial": "Andrés Miguel Salazar Marcano Airport",
+        "nombre_oficial": "Aeropuerto Andrés Miguel Salazar Marcano",
         "codigo_iata": "ICC",
         "codigo_oaci": "SVIE",
         "pais": "Venezuela",
@@ -11132,7 +11132,7 @@
       },
       "properties": {
         "clave_union": "LRV",
-        "nombre_oficial": "Los Roques Airport",
+        "nombre_oficial": "Aeropuerto Los Roques",
         "codigo_iata": "LRV",
         "codigo_oaci": "SVRS",
         "pais": "Venezuela",
@@ -11165,7 +11165,7 @@
       },
       "properties": {
         "clave_union": "LSP",
-        "nombre_oficial": "Josefa Camejo International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Josefa Camejo",
         "codigo_iata": "LSP",
         "codigo_oaci": "SVJC",
         "pais": "Venezuela",
@@ -11200,7 +11200,7 @@
       },
       "properties": {
         "clave_union": "MAR",
-        "nombre_oficial": "La Chinita International Airport",
+        "nombre_oficial": "Aeropuerto Internacional La Chinita",
         "codigo_iata": "MAR",
         "codigo_oaci": "SVMC",
         "pais": "Venezuela",
@@ -11235,7 +11235,7 @@
       },
       "properties": {
         "clave_union": "MUN",
-        "nombre_oficial": "José Tadeo Monagas International Airport",
+        "nombre_oficial": "Aeropuerto Internacional José Tadeo Monagas",
         "codigo_iata": "MUN",
         "codigo_oaci": "SVMT",
         "pais": "Venezuela",
@@ -11270,7 +11270,7 @@
       },
       "properties": {
         "clave_union": "PMV",
-        "nombre_oficial": "Del Caribe Santiago Mariño International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Del Caribe Santiago Mariño",
         "codigo_iata": "PMV",
         "codigo_oaci": "SVMG",
         "pais": "Venezuela",
@@ -11305,7 +11305,7 @@
       },
       "properties": {
         "clave_union": "PZO",
-        "nombre_oficial": "General Manuel Carlos Piar International Airport",
+        "nombre_oficial": "Aeropuerto Internacional General Manuel Carlos Piar",
         "codigo_iata": "PZO",
         "codigo_oaci": "SVPR",
         "pais": "Venezuela",
@@ -11340,7 +11340,7 @@
       },
       "properties": {
         "clave_union": "SNV",
-        "nombre_oficial": "Santa Elena de Uairén Airport",
+        "nombre_oficial": "Aeropuerto Santa Elena de Uairén",
         "codigo_iata": "SNV",
         "codigo_oaci": "SVSE",
         "pais": "Venezuela",
@@ -11373,7 +11373,7 @@
       },
       "properties": {
         "clave_union": "SOM",
-        "nombre_oficial": "San Tomé Airport",
+        "nombre_oficial": "Aeropuerto San Tomé",
         "codigo_iata": "SOM",
         "codigo_oaci": "SVST",
         "pais": "Venezuela",
@@ -11408,7 +11408,7 @@
       },
       "properties": {
         "clave_union": "STD",
-        "nombre_oficial": "Mayor Buenaventura Vivas International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Mayor Buenaventura Vivas",
         "codigo_iata": "STD",
         "codigo_oaci": "SVSO",
         "pais": "Venezuela",
@@ -11443,7 +11443,7 @@
       },
       "properties": {
         "clave_union": "SVZ",
-        "nombre_oficial": "Juan Vicente Gómez International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Juan Vicente Gómez",
         "codigo_iata": "SVZ",
         "codigo_oaci": "SVSA",
         "pais": "Venezuela",
@@ -11478,7 +11478,7 @@
       },
       "properties": {
         "clave_union": "VIG",
-        "nombre_oficial": "Juan Pablo Pérez Alfonso Airport",
+        "nombre_oficial": "Aeropuerto Juan Pablo Pérez Alfonso",
         "codigo_iata": "VIG",
         "codigo_oaci": "SVVG",
         "pais": "Venezuela",
@@ -11511,7 +11511,7 @@
       },
       "properties": {
         "clave_union": "VLN",
-        "nombre_oficial": "Arturo Michelena International Airport",
+        "nombre_oficial": "Aeropuerto Internacional Arturo Michelena",
         "codigo_iata": "VLN",
         "codigo_oaci": "SVVA",
         "pais": "Venezuela",
@@ -11546,7 +11546,7 @@
       },
       "properties": {
         "clave_union": "VLV",
-        "nombre_oficial": "Dr. Antonio Nicolás Briceño Airport",
+        "nombre_oficial": "Aeropuerto Dr. Antonio Nicolás Briceño",
         "codigo_iata": "VLV",
         "codigo_oaci": "SVVL",
         "pais": "Venezuela",
