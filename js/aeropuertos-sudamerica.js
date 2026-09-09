@@ -613,35 +613,39 @@ const populationInfo = findAirportPopulation(
   String(properties.pais || ""),
   String(properties.ciudad || "")
 );
-    return {
-      id,
-      geometry: { longitude, latitude },
-      properties,
-      iata,
-      icao,
-      country: String(properties.pais || "Sin país"),
-      name: String(properties.nombre_oficial || "Aeropuerto sin nombre"),
-      city: String(properties.ciudad || "Localidad no informada"),
-      region: String(properties.provincia_estado_departamento || "No informada"),
-      type: TYPE_META[properties.tipo] ? properties.tipo : "doméstico",
-      roles,
-      hasCargo: roles.includes("carga_relevante"),
-      hasOperational: Boolean(operational?.hasData),
-      operational,
-      referencePassengers2025,
-      searchText: normalizeSearch([
-        properties.nombre_oficial,
-        properties.ciudad,
-        properties.provincia_estado_departamento,
-        population: populationInfo?.population ?? null,
-        populationCity: populationInfo?.city || null,
-        populationDistanceKm: populationInfo?.distanceKm ?? null,
-        populationMethod: populationInfo?.method || null,
-        properties.pais,
-        iata,
-        icao
-      ].filter(Boolean).join(" "))
-    };
+return {
+  id,
+  geometry: { longitude, latitude },
+  properties,
+  iata,
+  icao,
+
+  country: String(properties.pais || "Sin país"),
+  name: String(properties.nombre_oficial || "Aeropuerto sin nombre"),
+  city: String(properties.ciudad || "Localidad no informada"),
+  region: String(properties.provincia_estado_departamento || "No informada"),
+
+  population: populationInfo?.population ?? null,
+  populationCity: populationInfo?.city || null,
+  populationDistanceKm: populationInfo?.distanceKm ?? null,
+  populationMethod: populationInfo?.method || null,
+
+  type: TYPE_META[properties.tipo] ? properties.tipo : "doméstico",
+  roles,
+  hasCargo: roles.includes("carga_relevante"),
+  hasOperational: Boolean(operational?.hasData),
+  operational,
+  referencePassengers2025,
+
+  searchText: normalizeSearch([
+    properties.nombre_oficial,
+    properties.ciudad,
+    properties.provincia_estado_departamento,
+    properties.pais,
+    iata,
+    icao
+  ].filter(Boolean).join(" "))
+};
   }
 
 function refreshOperationalData() {
