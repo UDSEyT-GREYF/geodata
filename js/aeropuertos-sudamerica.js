@@ -562,6 +562,13 @@ function getOperationalData(iata, icao) {
     const icao = String(properties.codigo_oaci || "").trim().toUpperCase();
     const id = String(feature.id || properties.clave_union || iata || icao || `airport-${index}`);
     const operational = getOperationalData(iata, icao);
+    const reference2025 =
+  state.annualOperational.get(`${iata}|2025`) ||
+  state.annualOperational.get(`${icao}|2025`) ||
+  null;
+
+const referencePassengers2025 =
+  numericValue(reference2025?.pax_totales) ?? -1;
     const roles = Array.isArray(properties.roles_adicionales) ? properties.roles_adicionales : [];
     const [longitude, latitude] = feature.geometry.coordinates.map(Number);
 
@@ -580,6 +587,7 @@ function getOperationalData(iata, icao) {
       hasCargo: roles.includes("carga_relevante"),
       hasOperational: Boolean(operational?.hasData),
       operational,
+      referencePassengers2025,
       searchText: normalizeSearch([
         properties.nombre_oficial,
         properties.ciudad,
@@ -706,19 +714,10 @@ function refreshOperationalData() {
     if (fit) fitFilteredAirports();
   }
   
-function getReferencePassengers2025(airport) {
-  const data =
-    state.annualOperational.get(`${airport.iata}|2025`) ||
-    state.annualOperational.get(`${airport.icao}|2025`) ||
-    buildAnnualFromMonthly(airport.iata, airport.icao, "2025");
 
-  const value = numericValue(data?.pax_totales);
-
-  return value === null ? -1 : value;
-}
 function compareAirports(a, b, searchTokens) {
-  // Si el usuario está buscando algo concreto,
-  // mantenemos primero la relevancia de la búsqueda.
+
+  // Si hay una búsqueda escrita, primero prioriza la coincidencia.
   if (searchTokens.length) {
     const query = searchTokens.join(" ");
 
@@ -741,15 +740,17 @@ function compareAirports(a, b, searchTokens) {
     }
   }
 
-  // Orden principal: pasajeros 2025, de mayor a menor
-  const paxA = getReferencePassengers2025(a);
-  const paxB = getReferencePassengers2025(b);
+  // Orden normal de la lista:
+  // pasajeros procesados 2025, de mayor a menor.
+  const paxDifference =
+    b.referencePassengers2025 - a.referencePassengers2025;
 
-  if (paxA !== paxB) {
-    return paxB - paxA;
+  if (paxDifference !== 0) {
+    return paxDifference;
   }
 
-  // Desempate alfabético
+  // Los aeropuertos sin dato 2025 quedan al final;
+  // dentro de valores iguales, orden alfabético.
   return (
     a.country.localeCompare(b.country, "es") ||
     a.name.localeCompare(b.name, "es")
