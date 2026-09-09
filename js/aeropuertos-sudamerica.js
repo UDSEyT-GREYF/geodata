@@ -464,6 +464,7 @@ function getOperationalData(iata, icao) {
   const year = state.selectedYear;
   const month = state.selectedMonth;
 
+  // MES SELECCIONADO
   if (month) {
     const yearMonth = `${year}-${month}`;
 
@@ -474,13 +475,81 @@ function getOperationalData(iata, icao) {
     );
   }
 
-  return (
+  // AÑO COMPLETO: primero intenta usar el CSV anual
+  const annual =
     state.annualOperational.get(`${iata}|${year}`) ||
     state.annualOperational.get(`${icao}|${year}`) ||
-    null
-  );
+    null;
+
+  if (annual?.hasData) {
+    return annual;
+  }
+
+  // Si no existe registro anual, lo reconstruye sumando los meses
+  return buildAnnualFromMonthly(iata, icao, year);
 }
-  
+
+  function buildAnnualFromMonthly(iata, icao, year) {
+  const rows = [];
+
+  for (let month = 1; month <= 12; month += 1) {
+    const mm = String(month).padStart(2, "0");
+    const yearMonth = `${year}-${mm}`;
+
+    const row =
+      state.monthlyOperational.get(`${iata}|${yearMonth}`) ||
+      state.monthlyOperational.get(`${icao}|${yearMonth}`);
+
+    if (row) rows.push(row);
+  }
+
+  if (!rows.length) return null;
+
+  const fields = [
+    "pax_nacionales_arribados",
+    "pax_nacionales_partidos",
+    "pax_internacionales_arribados",
+    "pax_internacionales_partidos",
+
+    "pax_nacionales_total",
+    "pax_internacionales_total",
+    "pax_arribados_total",
+    "pax_partidos_total",
+    "pax_totales",
+
+    "mov_nacionales_aterrizajes",
+    "mov_nacionales_despegues",
+    "mov_internacionales_aterrizajes",
+    "mov_internacionales_despegues",
+
+    "mov_nacionales_total",
+    "mov_internacionales_total",
+    "mov_aterrizajes_total",
+    "mov_despegues_total",
+    "mov_totales"
+  ];
+
+  const result = {
+    codigo_iata: iata,
+    codigo_oaci: icao,
+    anio: year,
+    meses_disponibles: rows.length
+  };
+
+  fields.forEach((field) => {
+    const values = rows
+      .map((row) => numericValue(row[field]))
+      .filter((value) => value !== null);
+
+    result[field] = values.length
+      ? values.reduce((sum, value) => sum + value, 0)
+      : "";
+  });
+
+  result.hasData = fields.some((field) => hasValue(result[field]));
+
+  return result;
+}
   function isValidPointFeature(feature) {
     if (feature?.geometry?.type !== "Point" || !Array.isArray(feature.geometry.coordinates)) return false;
     const [longitude, latitude] = feature.geometry.coordinates;
@@ -636,21 +705,56 @@ function refreshOperationalData() {
 
     if (fit) fitFilteredAirports();
   }
+  
+function getReferencePassengers2025(airport) {
+  const data =
+    state.annualOperational.get(`${airport.iata}|2025`) ||
+    state.annualOperational.get(`${airport.icao}|2025`) ||
+    buildAnnualFromMonthly(airport.iata, airport.icao, "2025");
 
-  function compareAirports(a, b, searchTokens) {
-    if (searchTokens.length) {
-      const query = searchTokens.join(" ");
-      const score = (airport) => {
-        if (airport.iata.toLocaleLowerCase("es") === query || airport.icao.toLocaleLowerCase("es") === query) return 0;
-        if (normalizeSearch(airport.name).startsWith(query)) return 1;
-        if (normalizeSearch(airport.city).startsWith(query)) return 2;
-        return 3;
-      };
-      const scoreDifference = score(a) - score(b);
-      if (scoreDifference) return scoreDifference;
+  const value = numericValue(data?.pax_totales);
+
+  return value === null ? -1 : value;
+}
+function compareAirports(a, b, searchTokens) {
+  // Si el usuario está buscando algo concreto,
+  // mantenemos primero la relevancia de la búsqueda.
+  if (searchTokens.length) {
+    const query = searchTokens.join(" ");
+
+    const score = (airport) => {
+      if (
+        airport.iata.toLocaleLowerCase("es") === query ||
+        airport.icao.toLocaleLowerCase("es") === query
+      ) return 0;
+
+      if (normalizeSearch(airport.name).startsWith(query)) return 1;
+      if (normalizeSearch(airport.city).startsWith(query)) return 2;
+
+      return 3;
+    };
+
+    const scoreDifference = score(a) - score(b);
+
+    if (scoreDifference) {
+      return scoreDifference;
     }
-    return a.country.localeCompare(b.country, "es") || a.name.localeCompare(b.name, "es");
   }
+
+  // Orden principal: pasajeros 2025, de mayor a menor
+  const paxA = getReferencePassengers2025(a);
+  const paxB = getReferencePassengers2025(b);
+
+  if (paxA !== paxB) {
+    return paxB - paxA;
+  }
+
+  // Desempate alfabético
+  return (
+    a.country.localeCompare(b.country, "es") ||
+    a.name.localeCompare(b.name, "es")
+  );
+}
 
   function renderMarkers() {
     state.cluster.clearLayers();
@@ -822,13 +926,15 @@ function refreshOperationalData() {
           <div class="operational-heading">
             <h3>Actividad operativa</h3>
                     ${
-          operational
-            ? `<span class="data-year">${
-                state.selectedMonth
-                  ? `${escapeHTML(state.selectedYear)}-${escapeHTML(state.selectedMonth)}`
+        operational
+          ? `<span class="data-year">${
+              state.selectedMonth
+                ? `${escapeHTML(state.selectedYear)}-${escapeHTML(state.selectedMonth)}`
+                : operational.meses_disponibles && operational.meses_disponibles < 12
+                  ? `${escapeHTML(state.selectedYear)} · ${operational.meses_disponibles} meses`
                   : `Año ${escapeHTML(state.selectedYear)}`
-              }</span>`
-            : ""
+            }</span>`
+          : ""
         }
           </div>
           ${operationalSection}
