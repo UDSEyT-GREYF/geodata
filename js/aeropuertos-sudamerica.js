@@ -6,7 +6,9 @@ const DATA_URLS = {
   operationsAnnual: "data/sudamerica/operativo/datos_operativos_aeropuertos_anual.csv",
   operationsMonthly: "data/sudamerica/operativo/datos_operativos_aeropuertos_mensual.csv",
   administrative: "data/sudamerica/divisiones_administrativas_sudamerica.geojson",
-  countries: "data/sudamerica/limites_paises_sudamerica.geojson"
+  countries: "data/sudamerica/limites_paises_sudamerica.geojson",
+  populatedPlaces: "data/sudamerica/ne_50m_populated_places_sudamerica.geojson",
+  urbanAreas: "data/sudamerica/ne_50m_urban_areas_sudamerica.geojson",
 };
 
   const TYPE_META = {
@@ -64,6 +66,8 @@ const DATA_URLS = {
     administrativeLayer: null,
     countryLayer: null,
     administrativeLoaded: false,
+    populatedPlaces: [],
+    urbanAreas: [],
     airports: [],
     filtered: [],
     markers: new Map(),
@@ -228,19 +232,36 @@ state.countryLayer = L.geoJSON(null, {
     dom.errorMessage.textContent = "Comprobá la conexión y volvé a intentar.";
 
     try {
-      const [geoResponse, annualResponse, monthlyResponse] = await Promise.all([
-        fetchWithRetry(DATA_URLS.airports),
-      
-        fetchWithRetry(DATA_URLS.operationsAnnual).catch((error) => {
-          console.warn("Los datos operativos anuales no están disponibles.", error);
-          return null;
-        }),
-      
-        fetchWithRetry(DATA_URLS.operationsMonthly).catch((error) => {
-          console.warn("Los datos operativos mensuales no están disponibles.", error);
-          return null;
-        })
-      ]);
+const [
+  geoResponse,
+  annualResponse,
+  monthlyResponse,
+  populatedPlacesResponse,
+  urbanAreasResponse
+] = await Promise.all([
+
+  fetchWithRetry(DATA_URLS.airports),
+
+  fetchWithRetry(DATA_URLS.operationsAnnual).catch((error) => {
+    console.warn("Los datos operativos anuales no están disponibles.", error);
+    return null;
+  }),
+
+  fetchWithRetry(DATA_URLS.operationsMonthly).catch((error) => {
+    console.warn("Los datos operativos mensuales no están disponibles.", error);
+    return null;
+  }),
+
+  fetchWithRetry(DATA_URLS.populatedPlaces).catch((error) => {
+    console.warn("No fue posible cargar la capa de ciudades.", error);
+    return null;
+  }),
+
+  fetchWithRetry(DATA_URLS.urbanAreas).catch((error) => {
+    console.warn("No fue posible cargar la capa de áreas urbanas.", error);
+    return null;
+  })
+]);
 
 const geojson = await geoResponse.json();
 
@@ -252,12 +273,27 @@ const monthlyText = monthlyResponse
   ? await monthlyResponse.text()
   : "";
 
+      const populatedPlacesGeojson = populatedPlacesResponse
+  ? await populatedPlacesResponse.json()
+  : { type: "FeatureCollection", features: [] };
+
+const urbanAreasGeojson = urbanAreasResponse
+  ? await urbanAreasResponse.json()
+  : { type: "FeatureCollection", features: [] };
+      
       if (geojson.type !== "FeatureCollection" || !Array.isArray(geojson.features)) {
         throw new Error("El archivo geográfico no es un FeatureCollection válido.");
       }
 
       state.annualOperational = buildAnnualIndex(parseCSV(annualText));
       state.monthlyOperational = buildMonthlyIndex(parseCSV(monthlyText));
+
+      state.populatedPlaces = normalizePopulatedPlaces(
+        populatedPlacesGeojson.features || []
+      );
+
+state.urbanAreas = urbanAreasGeojson.features || [];
+      
       state.airports = geojson.features
         .filter(isValidPointFeature)
         .map(normalizeAirportFeature);
@@ -571,7 +607,12 @@ const referencePassengers2025 =
   numericValue(reference2025?.pax_totales) ?? -1;
     const roles = Array.isArray(properties.roles_adicionales) ? properties.roles_adicionales : [];
     const [longitude, latitude] = feature.geometry.coordinates.map(Number);
-
+const populationInfo = findAirportPopulation(
+  longitude,
+  latitude,
+  String(properties.pais || ""),
+  String(properties.ciudad || "")
+);
     return {
       id,
       geometry: { longitude, latitude },
@@ -592,6 +633,10 @@ const referencePassengers2025 =
         properties.nombre_oficial,
         properties.ciudad,
         properties.provincia_estado_departamento,
+        population: populationInfo?.population ?? null,
+        populationCity: populationInfo?.city || null,
+        populationDistanceKm: populationInfo?.distanceKm ?? null,
+        populationMethod: populationInfo?.method || null,
         properties.pais,
         iata,
         icao
@@ -628,7 +673,266 @@ function refreshOperationalData() {
       .toLocaleLowerCase("es")
       .trim();
   }
+function normalizePopulatedPlaces(features) {
+  return features
+    .filter(isValidPointFeature)
+    .map((feature) => {
+      const properties = feature.properties || {};
+      const [longitude, latitude] = feature.geometry.coordinates.map(Number);
 
+      const name =
+        properties.NAME ||
+        properties.NAMEPAR ||
+        properties.NAMEASCII ||
+        properties.name ||
+        "";
+
+      const country =
+        properties.ADM0NAME ||
+        properties.SOV0NAME ||
+        properties.ADMIN ||
+        properties.COUNTRY ||
+        "";
+
+      return {
+        name: String(name),
+        nameNormalized: normalizeSearch(name),
+
+        country: String(country),
+        countryNormalized: normalizeCountry(country),
+
+        population: numericValue(properties.POP_MAX),
+
+        longitude,
+        latitude
+      };
+    })
+    .filter((place) => place.population !== null);
+}
+
+  function normalizeCountry(value) {
+  const normalized = normalizeSearch(value);
+
+  const aliases = {
+    brasil: "brazil",
+    brazil: "brazil",
+
+    peru: "peru",
+
+    surinam: "suriname",
+    suriname: "suriname",
+
+    "guayana francesa": "french guiana",
+    "french guiana": "french guiana",
+
+    argentina: "argentina",
+    bolivia: "bolivia",
+    chile: "chile",
+    colombia: "colombia",
+    ecuador: "ecuador",
+    guyana: "guyana",
+    paraguay: "paraguay",
+    uruguay: "uruguay",
+    venezuela: "venezuela"
+  };
+
+  return aliases[normalized] || normalized;
+}
+
+  function distanceKm(lat1, lon1, lat2, lon2) {
+  const toRadians = (degrees) => degrees * Math.PI / 180;
+
+  const earthRadius = 6371;
+
+  const dLat = toRadians(lat2 - lat1);
+  const dLon = toRadians(lon2 - lon1);
+
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRadians(lat1)) *
+    Math.cos(toRadians(lat2)) *
+    Math.sin(dLon / 2) ** 2;
+
+  return earthRadius * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+  function pointInRing(point, ring) {
+  const [x, y] = point;
+  let inside = false;
+
+  for (
+    let i = 0, j = ring.length - 1;
+    i < ring.length;
+    j = i++
+  ) {
+    const [xi, yi] = ring[i];
+    const [xj, yj] = ring[j];
+
+    const intersect =
+      ((yi > y) !== (yj > y)) &&
+      (
+        x <
+        ((xj - xi) * (y - yi)) /
+        ((yj - yi) || Number.EPSILON) +
+        xi
+      );
+
+    if (intersect) inside = !inside;
+  }
+
+  return inside;
+}
+
+
+  function pointInFeature(point, feature) {
+  const geometry = feature?.geometry;
+
+  if (!geometry) return false;
+
+  if (geometry.type === "Polygon") {
+    return geometry.coordinates.some((ring) =>
+      pointInRing(point, ring)
+    );
+  }
+
+  if (geometry.type === "MultiPolygon") {
+    return geometry.coordinates.some((polygon) =>
+      polygon.some((ring) =>
+        pointInRing(point, ring)
+      )
+    );
+  }
+
+  return false;
+}
+
+  function findAirportPopulation(
+  longitude,
+  latitude,
+  airportCountry,
+  airportCity
+) {
+  const country = normalizeCountry(airportCountry);
+
+  let candidates = state.populatedPlaces.filter((place) =>
+    !place.countryNormalized ||
+    place.countryNormalized === country
+  );
+
+  if (!candidates.length) {
+    candidates = state.populatedPlaces;
+  }
+
+  const cityNormalized = normalizeSearch(airportCity);
+
+  const cityVariants = cityNormalized
+    .replace(/[()]/g, "/")
+    .split(/[\/|-]/)
+    .map((value) => value.trim())
+    .filter(Boolean);
+
+  /*
+   * 1. Preferencia: coincidencia por nombre de ciudad
+   */
+  const nameMatches = candidates.filter((place) =>
+    cityVariants.some((city) =>
+      place.nameNormalized === city ||
+      city.includes(place.nameNormalized) ||
+      place.nameNormalized.includes(city)
+    )
+  );
+
+  if (nameMatches.length) {
+    const closest = nameMatches
+      .map((place) => ({
+        ...place,
+        distance: distanceKm(
+          latitude,
+          longitude,
+          place.latitude,
+          place.longitude
+        )
+      }))
+      .sort((a, b) => a.distance - b.distance)[0];
+
+    return {
+      population: closest.population,
+      city: closest.name,
+      distanceKm: closest.distance,
+      method: "nombre"
+    };
+  }
+
+  /*
+   * 2. Buscar el área urbana que contiene al aeropuerto
+   */
+  const airportPoint = [longitude, latitude];
+
+  const urbanArea = state.urbanAreas.find((feature) =>
+    pointInFeature(airportPoint, feature)
+  );
+
+  if (urbanArea) {
+    const placesInsideUrbanArea = candidates.filter((place) =>
+      pointInFeature(
+        [place.longitude, place.latitude],
+        urbanArea
+      )
+    );
+
+    if (placesInsideUrbanArea.length) {
+      const closest = placesInsideUrbanArea
+        .map((place) => ({
+          ...place,
+          distance: distanceKm(
+            latitude,
+            longitude,
+            place.latitude,
+            place.longitude
+          )
+        }))
+        .sort((a, b) => a.distance - b.distance)[0];
+
+      return {
+        population: closest.population,
+        city: closest.name,
+        distanceKm: closest.distance,
+        method: "area_urbana"
+      };
+    }
+  }
+
+  /*
+   * 3. Último recurso:
+   * ciudad poblada más cercana del mismo país.
+   */
+  const closest = candidates
+    .map((place) => ({
+      ...place,
+      distance: distanceKm(
+        latitude,
+        longitude,
+        place.latitude,
+        place.longitude
+      )
+    }))
+    .sort((a, b) => a.distance - b.distance)[0];
+
+  /*
+   * No asociamos ciudades demasiado lejanas.
+   */
+  if (!closest || closest.distance > 80) {
+    return null;
+  }
+
+  return {
+    population: closest.population,
+    city: closest.name,
+    distanceKm: closest.distance,
+    method: "proximidad"
+  };
+}
+  
   function populateCountries() {
     const countries = [...new Set(state.airports.map((airport) => airport.country))]
       .sort((a, b) => a.localeCompare(b, "es"));
@@ -915,6 +1219,24 @@ function compareAirports(a, b, searchTokens) {
           <h3>Ubicación e infraestructura</h3>
           <div class="fact-grid">
             <div class="fact wide"><span>Provincia / estado / departamento</span><strong>${escapeHTML(airport.region)}</strong></div>
+            <div class="fact wide">
+              <span>
+                Población
+                ${
+                  airport.populationCity
+                    ? ` · ${escapeHTML(airport.populationCity)}`
+                    : ""
+                }
+              </span>
+            
+              <strong>
+                ${
+                  airport.population !== null
+                    ? `${NUMBER_FORMAT.format(airport.population)} habitantes`
+                    : "Sin dato"
+                }
+              </strong>
+            </div>
             <div class="fact"><span>Elevación</span><strong>${formatMeasure(properties.elevacion_m, "m s. n. m.")}</strong></div>
             <div class="fact"><span>Pista principal</span><strong>${formatMeasure(properties.longitud_pista_m, "m")}</strong></div>
             <div class="fact"><span>Latitud</span><strong>${formatCoordinate(airport.geometry.latitude)}</strong></div>
