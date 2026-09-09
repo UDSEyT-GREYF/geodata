@@ -1780,3 +1780,69 @@ h1 {
     animation-iteration-count: 1 !important;
   }
 }
+
+
+/* =========================================================
+   COMPACTACIÓN DEL PANEL IZQUIERDO
+   ========================================================= */
+
+.period-selects {
+  display: grid;
+  grid-template-columns: 0.72fr 1.28fr;
+  gap: 8px;
+}
+
+.period-selects .select-wrap {
+  min-width: 0;
+}
+
+
+/* Menos altura entre bloques */
+.filter-section {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+
+/* Switches más compactos */
+.compact-options .switch-row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.compact-options .switch-row small {
+  margin-top: 1px;
+}
+
+
+/* KPI un poco más bajos */
+.summary-section {
+  gap: 6px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.summary-card {
+  min-height: 58px;
+  padding: 8px 5px;
+}
+
+.summary-value {
+  line-height: 1;
+}
+
+
+/* Más espacio efectivo para resultados */
+.results-section {
+  padding-top: 10px;
+}
+
+.results-heading {
+  margin-bottom: 7px;
+}
+
+.result-item {
+  min-height: 48px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
