@@ -1,12 +1,12 @@
 (() => {
   "use strict";
 
-  const DATA_URLS = {
-    airports: "data/sudamerica/aeropuertos_sudamerica.geojson",
-    operations: "data/sudamerica/datos_operativos_aeropuertos.csv",
-    administrative: "data/sudamerica/divisiones_administrativas_sudamerica.geojson",
-    countries: "data/sudamerica/limites_paises_sudamerica.geojson"
-  };
+const DATA_URLS = {
+  airports: "data/sudamerica/aeropuertos_sudamerica.geojson",
+  operationsAnnual: "data/sudamerica/datos_operativos_aeropuertos_anual.csv",
+  operationsMonthly: "data/sudamerica/datos_operativos_aeropuertos_mensual.csv",
+  administrative: "data/sudamerica/divisiones_administrativas_sudamerica.geojson"
+};
 
   const TYPE_META = {
     internacional: { label: "Internacional", className: "international", color: "#e85d3f" },
