@@ -730,6 +730,44 @@ function refreshOperationalData() {
 
   return text;
 }
+
+function formatCityLocation(city, region) {
+  let cityName = String(city || "").trim();
+  const regionText = String(region || "").trim();
+
+  // Ej.: "Buenos Aires (Ezeiza)" -> "Ezeiza"
+  const parentheticalCity = cityName.match(/^Buenos Aires\s*\(([^)]+)\)$/i);
+
+  if (parentheticalCity) {
+    cityName = parentheticalCity[1].trim();
+  }
+
+  // Provincias
+  const provinceMatch =
+    regionText.match(/^(.+?)\s*\(\s*Province\s*\)$/i) ||
+    regionText.match(/^(.+?)\s+Province$/i);
+
+  if (provinceMatch) {
+    return `${cityName} (Provincia de ${provinceMatch[1].trim()})`;
+  }
+
+  // Departamentos
+  const departmentMatch =
+    regionText.match(/^(.+?)\s*\(\s*Department\s*\)$/i) ||
+    regionText.match(/^(.+?)\s+Department$/i);
+
+  if (departmentMatch) {
+    return `${cityName} (Departamento de ${departmentMatch[1].trim()})`;
+  }
+
+  // Ciudad Autónoma
+  if (/Autonomous City/i.test(regionText)) {
+    return `${cityName} (Ciudad Autónoma de Buenos Aires)`;
+  }
+
+  return cityName;
+}
+  
 function normalizePopulatedPlaces(features) {
   return features
     .filter(isValidPointFeature)
@@ -1314,6 +1352,12 @@ function compareAirports(a, b, searchTokens) {
                     <div class="fact wide">
           <span>División administrativa</span>
           <strong>${escapeHTML(formatAdministrativeRegion(airport.region))}</strong>
+        </div>
+        <div class="fact wide">
+          <span>Ciudad</span>
+          <strong>${escapeHTML(
+            formatCityLocation(airport.city, airport.region)
+          )}</strong>
         </div>
             <div class="fact wide">
               <span>
