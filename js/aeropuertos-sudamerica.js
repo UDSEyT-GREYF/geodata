@@ -1290,7 +1290,7 @@ function compareAirports(a, b, searchTokens) {
 
     const sources = collectSources(airport);
     const operationalSection = airport.hasOperational
-      ? renderOperationalMetrics(operational)
+      ? renderOperationalMetrics(operational, airport.population)
       : `<p class="missing-data-note">No se incorporaron cifras operativas para este aeropuerto en el período seleccionado. Los campos vacíos no representan cero.</p>`;
 
     dom.detailContent.innerHTML = `
@@ -1390,29 +1390,53 @@ function compareAirports(a, b, searchTokens) {
   }
 
 function renderOperationalMetrics(data) {
-  const totalPassengers = numericValue(data.pax_totales);
-  const domesticPassengers = numericValue(data.pax_nacionales_total);
-  const internationalPassengers = numericValue(data.pax_internacionales_total);
-
-  const compositionAvailable =
-    totalPassengers > 0 &&
-    domesticPassengers !== null &&
-    internationalPassengers !== null;
-
-  const domesticShare = compositionAvailable
-    ? (domesticPassengers / totalPassengers) * 100
-    : 0;
-
-  const internationalShare = compositionAvailable
-    ? (internationalPassengers / totalPassengers) * 100
-    : 0;
+function renderOperationalMetrics(data, populationValue) {
+    const totalPassengers = numericValue(data.pax_totales);
+    const totalMovements = numericValue(data.mov_totales);
+    const population = numericValue(populationValue);
+  
+    const domesticPassengers = numericValue(data.pax_nacionales_total);
+    const internationalPassengers = numericValue(data.pax_internacionales_total);
+  
+    const passengersPerInhabitant =
+      population !== null &&
+      population > 0 &&
+      totalPassengers !== null
+        ? totalPassengers / population
+        : null;
+  
+    const movementsPer1000Inhabitants =
+      population !== null &&
+      population > 0 &&
+      totalMovements !== null
+        ? (totalMovements / population) * 1000
+        : null;
+  
+    const compositionAvailable =
+      totalPassengers > 0 &&
+      domesticPassengers !== null &&
+      internationalPassengers !== null;
 
   return `
     <div class="metric-grid">
       ${metricCard("Pasajeros totales", data.pax_totales, "pasajeros")}
       ${metricCard("Movimientos", data.mov_totales, "movimientos")}
     </div>
-
+      <div class="metric-grid">
+        ${metricCard(
+          "Pasajeros / población",
+          passengersPerInhabitant,
+          "pasajeros por habitante",
+          true
+        )}
+      
+        ${metricCard(
+          "Movimientos / población",
+          movementsPer1000Inhabitants,
+          "movimientos por 1.000 hab.",
+          true
+        )}
+      </div>
     ${compositionAvailable ? `
       <div class="composition">
         <div class="composition-labels">
