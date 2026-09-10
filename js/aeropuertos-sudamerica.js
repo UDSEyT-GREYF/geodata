@@ -30,7 +30,6 @@ const DATA_URLS = {
     clearSearch: document.getElementById("clearSearch"),
     country: document.getElementById("countrySelect"),
     year: document.getElementById("yearSelect"),
-    month: document.getElementById("monthSelect"),
     cargoOnly: document.getElementById("cargoOnly"),
     operationalOnly: document.getElementById("operationalOnly"),
     administrativeToggle: document.getElementById("administrativeToggle"),
@@ -74,7 +73,6 @@ const DATA_URLS = {
     annualOperational: new Map(),
     monthlyOperational: new Map(),
     selectedYear: "2025",
-    selectedMonth: "",
     activeTypes: new Set(ALL_TYPES),
     selectedId: null,
     resultsLimit: 18,
@@ -498,20 +496,7 @@ function buildMonthlyIndex(rows) {
 }
 function getOperationalData(iata, icao) {
   const year = state.selectedYear;
-  const month = state.selectedMonth;
 
-  // MES SELECCIONADO
-  if (month) {
-    const yearMonth = `${year}-${month}`;
-
-    return (
-      state.monthlyOperational.get(`${iata}|${yearMonth}`) ||
-      state.monthlyOperational.get(`${icao}|${yearMonth}`) ||
-      null
-    );
-  }
-
-  // AÑO COMPLETO: primero intenta usar el CSV anual
   const annual =
     state.annualOperational.get(`${iata}|${year}`) ||
     state.annualOperational.get(`${icao}|${year}`) ||
@@ -521,7 +506,7 @@ function getOperationalData(iata, icao) {
     return annual;
   }
 
-  // Si no existe registro anual, lo reconstruye sumando los meses
+  // Respaldo: reconstruye el año a partir de los meses disponibles.
   return buildAnnualFromMonthly(iata, icao, year);
 }
 
@@ -586,6 +571,136 @@ function getOperationalData(iata, icao) {
 
   return result;
 }
+
+
+  function getMonthlyOperationalData(iata, icao, year) {
+  const months = [];
+
+  for (let month = 1; month <= 12; month += 1) {
+    const mm = String(month).padStart(2, "0");
+    const yearMonth = `${year}-${mm}`;
+
+    const data =
+      state.monthlyOperational.get(`${iata}|${yearMonth}`) ||
+      state.monthlyOperational.get(`${icao}|${yearMonth}`) ||
+      null;
+
+    months.push({
+      month,
+      yearMonth,
+      data
+    });
+  }
+
+  return months;
+}
+
+  function renderMonthlyBars(values, unit) {
+  const validValues = values
+    .map((item) => item.value)
+    .filter((value) => value !== null);
+
+  if (!validValues.length) return "";
+
+  const max = Math.max(...validValues);
+
+  const MONTHS = [
+    "Ene", "Feb", "Mar", "Abr", "May", "Jun",
+    "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"
+  ];
+
+  return `
+    <div class="monthly-bars">
+      ${values.map((item, index) => {
+        const value = item.value;
+
+        const height =
+          value !== null && max > 0
+            ? Math.max(4, (value / max) * 100)
+            : 0;
+
+        return `
+          <div class="monthly-bar-item"
+               title="${
+                 value !== null
+                   ? `${MONTHS[index]}: ${NUMBER_FORMAT.format(value)} ${unit}`
+                   : `${MONTHS[index]}: sin dato`
+               }">
+
+            <div class="monthly-bar-track">
+              ${
+                value !== null
+                  ? `<span style="height:${height}%"></span>`
+                  : ""
+              }
+            </div>
+
+            <small>${MONTHS[index]}</small>
+          </div>
+        `;
+      }).join("")}
+    </div>
+  `;
+}
+
+  function renderMonthlyOperational(airport) {
+  const months = getMonthlyOperationalData(
+    airport.iata,
+    airport.icao,
+    state.selectedYear
+  );
+
+  const passengers = months.map((item) => ({
+    value: numericValue(item.data?.pax_totales)
+  }));
+
+  const movements = months.map((item) => ({
+    value: numericValue(item.data?.mov_totales)
+  }));
+
+  const hasPassengers =
+    passengers.some((item) => item.value !== null);
+
+  const hasMovements =
+    movements.some((item) => item.value !== null);
+
+  if (!hasPassengers && !hasMovements) {
+    return "";
+  }
+
+  return `
+    <div class="monthly-evolution">
+      <div class="monthly-heading">
+        <strong>Evolución mensual ${escapeHTML(state.selectedYear)}</strong>
+        <small>Datos disponibles por mes</small>
+      </div>
+
+      ${
+        hasPassengers
+          ? `
+            <div class="monthly-series">
+              <span>Pasajeros</span>
+              ${renderMonthlyBars(passengers, "pasajeros")}
+            </div>
+          `
+          : ""
+      }
+
+      ${
+        hasMovements
+          ? `
+            <div class="monthly-series">
+              <span>Movimientos</span>
+              ${renderMonthlyBars(movements, "movimientos")}
+            </div>
+          `
+          : ""
+      }
+    </div>
+  `;
+}
+
+  
   function isValidPointFeature(feature) {
     if (feature?.geometry?.type !== "Point" || !Array.isArray(feature.geometry.coordinates)) return false;
     const [longitude, latitude] = feature.geometry.coordinates;
@@ -1401,22 +1516,19 @@ function compareAirports(a, b, searchTokens) {
           <div class="operational-heading">
             <h3>Actividad operativa</h3>
                     ${
-        operational
-          ? `<span class="data-year">${
-              state.selectedMonth
-                ? `${escapeHTML(state.selectedYear)}-${escapeHTML(state.selectedMonth)}`
-                : operational.meses_disponibles && operational.meses_disponibles < 12
-                  ? `${escapeHTML(state.selectedYear)} · ${operational.meses_disponibles} meses`
-                  : `Año ${escapeHTML(state.selectedYear)}`
-            }</span>`
+        ${operational
+          ? `<span class="data-year">Año ${escapeHTML(state.selectedYear)}</span>`
           : ""
         }
           </div>
-          ${operationalSection}
-        </section>
-
-        <section class="detail-section">
-          <h3>Fuentes y trazabilidad</h3>
+      ${operationalSection}
+      
+      ${renderMonthlyOperational(airport)}
+      
+      </section>
+      
+      <section class="detail-section">
+        <h3>Fuentes y trazabilidad</h3>
           <div class="source-list">${sources.map(renderSourceLink).join("")}</div>
           ${properties.fecha_actualizacion_dato ? `<p class="source-update">Dato geográfico actualizado: ${escapeHTML(formatDate(properties.fecha_actualizacion_dato))}</p>` : ""}
         </section>
@@ -1476,14 +1588,14 @@ function renderOperationalMetrics(data, populationValue) {
 
     <div class="metric-grid">
       ${metricCard(
-        "Pasajeros / población",
+        "Pasajeros anuales / población",
         passengersPerInhabitant,
         "pasajeros por habitante",
         true
       )}
 
       ${metricCard(
-        "Movimientos / población",
+        "Movimientos anuales / población",
         movementsPer1000Inhabitants,
         "movimientos por 1.000 hab.",
         true
@@ -1617,10 +1729,8 @@ function resetFilters() {
   dom.country.value = "";
 
   if (dom.year) dom.year.value = "2025";
-  if (dom.month) dom.month.value = "";
 
   state.selectedYear = "2025";
-  state.selectedMonth = "";
 
   dom.cargoOnly.checked = false;
   dom.operationalOnly.checked = false;
@@ -1699,11 +1809,6 @@ dom.year.addEventListener("change", () => {
   refreshOperationalData();
 });
 
-
-dom.month.addEventListener("change", () => {
-  state.selectedMonth = dom.month.value;
-  refreshOperationalData();
-});
     [dom.cargoOnly, dom.operationalOnly].forEach((checkbox) => {
       checkbox.addEventListener("change", () => {
         state.resultsLimit = 18;
@@ -1790,7 +1895,6 @@ function start() {
     initMap();
     bindEvents();
     state.selectedYear = dom.year?.value || "2025";
-    state.selectedMonth = dom.month?.value || "";
     loadData();
     loadAdministrativeLayer();
     loadCountryLayer();
