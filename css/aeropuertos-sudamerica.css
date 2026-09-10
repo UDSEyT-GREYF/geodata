@@ -1354,7 +1354,7 @@ h1 {
 .metric-card small {
   margin-top: 3px;
   color: var(--slate-500);
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .composition {
