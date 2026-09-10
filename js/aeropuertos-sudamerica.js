@@ -1512,19 +1512,20 @@ function compareAirports(a, b, searchTokens) {
           </div>
         </section>
 
-        <section class="detail-section">
-          <div class="operational-heading">
-            <h3>Actividad operativa</h3>
-                    ${
-        ${operational
-          ? `<span class="data-year">Año ${escapeHTML(state.selectedYear)}</span>`
-          : ""
-        }
-          </div>
-      ${operationalSection}
+      <section class="detail-section">
+        <div class="operational-heading">
+          <h3>Actividad operativa</h3>
       
-      ${renderMonthlyOperational(airport)}
+          ${
+            operational
+              ? `<span class="data-year">Año ${escapeHTML(state.selectedYear)}</span>`
+              : ""
+          }
+        </div>
       
+        ${operationalSection}
+      
+        ${renderMonthlyOperational(airport)}
       </section>
       
       <section class="detail-section">
