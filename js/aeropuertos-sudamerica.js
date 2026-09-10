@@ -625,10 +625,14 @@ return {
   city: String(properties.ciudad || "Localidad no informada"),
   region: String(properties.provincia_estado_departamento || "No informada"),
 
-  population: populationInfo?.population ?? null,
-  populationCity: populationInfo?.city || null,
-  populationDistanceKm: populationInfo?.distanceKm ?? null,
-  populationMethod: populationInfo?.method || null,
+population: populationInfo?.population ?? null,
+populationCity: populationInfo?.city || null,
+populationMegaName: populationInfo?.megaName || null,
+populationAdmin1: populationInfo?.admin1 || null,
+populationWorldCity: Boolean(populationInfo?.worldCity),
+populationMegaCity: Boolean(populationInfo?.megaCity),
+populationDistanceKm: populationInfo?.distanceKm ?? null,
+populationMethod: populationInfo?.method || null,
 
   type: TYPE_META[properties.tipo] ? properties.tipo : "doméstico",
   roles,
@@ -647,7 +651,20 @@ return {
   ].filter(Boolean).join(" "))
 };
   }
+function getUrbanDescription(airport) {
+  const labels = [];
 
+  if (airport.populationMegaCity) {
+    labels.push("Megaciudad");
+  }
+
+  if (airport.populationWorldCity) {
+    labels.push("Ciudad mundial");
+  }
+
+  return labels.join(" · ");
+}
+  
 function refreshOperationalData() {
   state.airports.forEach((airport) => {
     const operational = getOperationalData(airport.iata, airport.icao);
@@ -682,30 +699,49 @@ function normalizePopulatedPlaces(features) {
     .filter(isValidPointFeature)
     .map((feature) => {
       const properties = feature.properties || {};
-      const [longitude, latitude] = feature.geometry.coordinates.map(Number);
+      const [longitude, latitude] =
+        feature.geometry.coordinates.map(Number);
 
       const name =
         properties.NAME ||
-        properties.NAMEPAR ||
+        properties.LS_NAME ||
         properties.NAMEASCII ||
-        properties.name ||
         "";
 
-      const country =
-        properties.ADM0NAME ||
-        properties.SOV0NAME ||
-        properties.ADMIN ||
-        properties.COUNTRY ||
+      const megaName =
+        properties.MEGANAME ||
         "";
+
+      const sovereign =
+        properties.SOV0NAME ||
+        "";
+
+      const admin1 =
+        properties.ADM1NAME ||
+        "";
+
+      const worldCity =
+        Number(properties.WORLDCITY) === 1;
+
+      const megaCity =
+        Number(properties.MEGACITY) === 1;
 
       return {
         name: String(name),
         nameNormalized: normalizeSearch(name),
 
-        country: String(country),
-        countryNormalized: normalizeCountry(country),
+        megaName: String(megaName),
+        megaNameNormalized: normalizeSearch(megaName),
+
+        sovereign: String(sovereign),
+        sovereignNormalized: normalizeCountry(sovereign),
+
+        admin1: String(admin1),
 
         population: numericValue(properties.POP_MAX),
+
+        worldCity,
+        megaCity,
 
         longitude,
         latitude
@@ -838,13 +874,22 @@ function normalizePopulatedPlaces(features) {
   /*
    * 1. Preferencia: coincidencia por nombre de ciudad
    */
-  const nameMatches = candidates.filter((place) =>
-    cityVariants.some((city) =>
-      place.nameNormalized === city ||
-      city.includes(place.nameNormalized) ||
-      place.nameNormalized.includes(city)
+const nameMatches = candidates.filter((place) =>
+  cityVariants.some((city) =>
+    place.nameNormalized === city ||
+    city.includes(place.nameNormalized) ||
+    place.nameNormalized.includes(city) ||
+
+    (
+      place.megaNameNormalized &&
+      (
+        place.megaNameNormalized === city ||
+        city.includes(place.megaNameNormalized) ||
+        place.megaNameNormalized.includes(city)
+      )
     )
-  );
+  )
+);
 
   if (nameMatches.length) {
     const closest = nameMatches
@@ -859,12 +904,16 @@ function normalizePopulatedPlaces(features) {
       }))
       .sort((a, b) => a.distance - b.distance)[0];
 
-    return {
-      population: closest.population,
-      city: closest.name,
-      distanceKm: closest.distance,
-      method: "nombre"
-    };
+  return {
+    population: closest.population,
+    city: closest.name,
+    megaName: closest.megaName,
+    admin1: closest.admin1,
+    worldCity: closest.worldCity,
+    megaCity: closest.megaCity,
+    distanceKm: closest.distance,
+    method: "nombre"
+  };
   }
 
   /*
@@ -1240,7 +1289,21 @@ function compareAirports(a, b, searchTokens) {
                     : "Sin dato"
                 }
               </strong>
-            </div>
+            
+              ${
+                airport.populationMegaName &&
+                normalizeSearch(airport.populationMegaName) !==
+                  normalizeSearch(airport.populationCity)
+                  ? `<small>Área metropolitana: ${escapeHTML(airport.populationMegaName)}</small>`
+                  : ""
+              }
+            
+              ${
+                getUrbanDescription(airport)
+                  ? `<small>${escapeHTML(getUrbanDescription(airport))}</small>`
+                  : ""
+              }
+</div>
             <div class="fact"><span>Elevación</span><strong>${formatMeasure(properties.elevacion_m, "m s. n. m.")}</strong></div>
             <div class="fact"><span>Pista principal</span><strong>${formatMeasure(properties.longitud_pista_m, "m")}</strong></div>
             <div class="fact"><span>Latitud</span><strong>${formatCoordinate(airport.geometry.latitude)}</strong></div>
