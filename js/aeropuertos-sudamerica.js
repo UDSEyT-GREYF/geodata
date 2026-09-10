@@ -904,16 +904,16 @@ const nameMatches = candidates.filter((place) =>
       }))
       .sort((a, b) => a.distance - b.distance)[0];
 
-  return {
-    population: closest.population,
-    city: closest.name,
-    megaName: closest.megaName,
-    admin1: closest.admin1,
-    worldCity: closest.worldCity,
-    megaCity: closest.megaCity,
-    distanceKm: closest.distance,
-    method: "nombre"
-  };
+    return {
+      population: closest.population,
+      city: closest.name,
+      megaName: closest.megaName,
+      admin1: closest.admin1,
+      worldCity: closest.worldCity,
+      megaCity: closest.megaCity,
+      distanceKm: closest.distance,
+      method: "area_urbana"
+    };
   }
 
   /*
@@ -978,12 +978,16 @@ const nameMatches = candidates.filter((place) =>
     return null;
   }
 
-  return {
-    population: closest.population,
-    city: closest.name,
-    distanceKm: closest.distance,
-    method: "proximidad"
-  };
+    return {
+      population: closest.population,
+      city: closest.name,
+      megaName: closest.megaName,
+      admin1: closest.admin1,
+      worldCity: closest.worldCity,
+      megaCity: closest.megaCity,
+      distanceKm: closest.distance,
+      method: "proximidad"
+    };
 }
   
   function populateCountries() {
