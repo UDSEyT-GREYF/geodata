@@ -694,6 +694,42 @@ function refreshOperationalData() {
       .toLocaleLowerCase("es")
       .trim();
   }
+
+  function formatAdministrativeRegion(value) {
+  let text = String(value || "").trim();
+
+  if (!text) return "No informada";
+
+  const replacements = [
+    [/\s*\(\s*Autonomous City\s*\)\s*$/i, " (Ciudad Autónoma)"],
+    [/\s*\(\s*Capital District\s*\)\s*$/i, " (Distrito Capital)"],
+    [/\s*\(\s*Federal District\s*\)\s*$/i, " (Distrito Federal)"],
+    [/\s*\(\s*District\s*\)\s*$/i, " (Distrito)"],
+    [/\s*\(\s*Province\s*\)\s*$/i, " (Provincia)"],
+    [/\s*\(\s*Department\s*\)\s*$/i, " (Departamento)"],
+    [/\s*\(\s*Commune\s*\)\s*$/i, " (Comuna)"],
+    [/\s*\(\s*State\s*\)\s*$/i, " (Estado)"],
+    [/\s*\(\s*Region\s*\)\s*$/i, " (Región)"],
+
+    [/\s+Autonomous City$/i, " (Ciudad Autónoma)"],
+    [/\s+Capital District$/i, " (Distrito Capital)"],
+    [/\s+Federal District$/i, " (Distrito Federal)"],
+    [/\s+District$/i, " (Distrito)"],
+    [/\s+Province$/i, " (Provincia)"],
+    [/\s+Department$/i, " (Departamento)"],
+    [/\s+Commune$/i, " (Comuna)"],
+    [/\s+State$/i, " (Estado)"],
+    [/\s+Region$/i, " (Región)"]
+  ];
+
+  for (const [pattern, replacement] of replacements) {
+    if (pattern.test(text)) {
+      return text.replace(pattern, replacement);
+    }
+  }
+
+  return text;
+}
 function normalizePopulatedPlaces(features) {
   return features
     .filter(isValidPointFeature)
@@ -854,10 +890,10 @@ function normalizePopulatedPlaces(features) {
 ) {
   const country = normalizeCountry(airportCountry);
 
-  let candidates = state.populatedPlaces.filter((place) =>
-    !place.countryNormalized ||
-    place.countryNormalized === country
-  );
+let candidates = state.populatedPlaces.filter((place) =>
+  !place.sovereignNormalized ||
+  place.sovereignNormalized === country
+);
 
   if (!candidates.length) {
     candidates = state.populatedPlaces;
@@ -1264,18 +1300,21 @@ function compareAirports(a, b, searchTokens) {
         <div class="detail-codes">
           <span class="code-badge">IATA&nbsp; ${escapeHTML(airport.iata || "—")}</span>
           <span class="code-badge">OACI&nbsp; ${escapeHTML(airport.icao || "—")}</span>
+                </div>
+              </header>
+              <div class="detail-body">
+                <div class="detail-tags">
+                  <span class="type-badge"><span class="legend-dot ${type.className}"></span>${escapeHTML(type.label)}</span>
+                  ${roleBadges}
+                </div>
+        
+                <section class="detail-section">
+                  <h3>Ubicación e infraestructura</h3>
+                  <div class="fact-grid">
+                    <div class="fact wide">
+          <span>División administrativa</span>
+          <strong>${escapeHTML(formatAdministrativeRegion(airport.region))}</strong>
         </div>
-      </header>
-      <div class="detail-body">
-        <div class="detail-tags">
-          <span class="type-badge"><span class="legend-dot ${type.className}"></span>${escapeHTML(type.label)}</span>
-          ${roleBadges}
-        </div>
-
-        <section class="detail-section">
-          <h3>Ubicación e infraestructura</h3>
-          <div class="fact-grid">
-            <div class="fact wide"><span>Provincia / estado / departamento</span><strong>${escapeHTML(airport.region)}</strong></div>
             <div class="fact wide">
               <span>
                 Población
@@ -1310,8 +1349,6 @@ function compareAirports(a, b, searchTokens) {
 </div>
             <div class="fact"><span>Elevación</span><strong>${formatMeasure(properties.elevacion_m, "m s. n. m.")}</strong></div>
             <div class="fact"><span>Pista principal</span><strong>${formatMeasure(properties.longitud_pista_m, "m")}</strong></div>
-            <div class="fact"><span>Latitud</span><strong>${formatCoordinate(airport.geometry.latitude)}</strong></div>
-            <div class="fact"><span>Longitud</span><strong>${formatCoordinate(airport.geometry.longitude)}</strong></div>
             <div class="fact wide"><span>Entidad operadora</span><strong>${escapeHTML(properties.entidad_operadora || "No verificada en fuente oficial abierta")}</strong></div>
           </div>
         </section>
