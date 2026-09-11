@@ -1726,11 +1726,12 @@ h1 {
     right: 10px;
   }
 
-  .map-legend {
-    right: 10px;
-    bottom: 27px;
-    width: 190px;
-  }
+.map-legend {
+  position: absolute;
+  left: 18px;
+  right: auto;
+  bottom: 76px;
+}
 
   .legend-body p {
     display: none;
