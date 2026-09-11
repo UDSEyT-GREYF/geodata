@@ -240,15 +240,15 @@ const [
 
   fetchWithRetry(DATA_URLS.airports),
 
-  fetchWithRetry(DATA_URLS.operationsAnnual).catch((error) => {
-    console.warn("Los datos operativos anuales no están disponibles.", error);
-    return null;
-  }),
+fetchWithRetry(DATA_URLS.operationsAnnual, 3, 25000).catch((error) => {
+  console.warn("Los datos operativos anuales no están disponibles.", error);
+  return null;
+}),
 
-  fetchWithRetry(DATA_URLS.operationsMonthly).catch((error) => {
-    console.warn("Los datos operativos mensuales no están disponibles.", error);
-    return null;
-  }),
+fetchWithRetry(DATA_URLS.operationsMonthly, 3, 45000).catch((error) => {
+  console.warn("Los datos operativos mensuales no están disponibles.", error);
+  return null;
+}),
 
   fetchWithRetry(DATA_URLS.populatedPlaces).catch((error) => {
     console.warn("No fue posible cargar la capa de ciudades.", error);
@@ -331,12 +331,12 @@ state.urbanAreas = urbanAreasGeojson.features || [];
     }
   }
 
-  async function fetchWithRetry(url, attempts = 3) {
-    let lastError;
+async function fetchWithRetry(url, attempts = 3, timeoutMs = 12000) {
+  let lastError;
 
-    for (let attempt = 1; attempt <= attempts; attempt += 1) {
-      const controller = new AbortController();
-      const timeout = window.setTimeout(() => controller.abort(), 12000);
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), timeoutMs);
 
       try {
         const response = await fetch(url, {
