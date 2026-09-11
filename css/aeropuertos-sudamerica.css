@@ -906,8 +906,9 @@ h1 {
 .map-legend {
   position: absolute;
   z-index: 500;
-  right: 12px;
-  bottom: 28px;
+  left: 18px;
+  right: auto;
+  bottom: 76px;
   width: 208px;
   overflow: hidden;
   background: rgba(255, 255, 255, .96);
@@ -1727,10 +1728,10 @@ h1 {
   }
 
 .map-legend {
-  position: absolute;
-  left: 18px;
+  left: 10px;
   right: auto;
   bottom: 76px;
+  width: 190px;
 }
 
   .legend-body p {
