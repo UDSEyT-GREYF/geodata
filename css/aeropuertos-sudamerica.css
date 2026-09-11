@@ -1944,3 +1944,19 @@ h1 {
   font-size: 8px;
   color: #627485;
 }
+.military-legend-symbol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  margin-right: 6px;
+  color: var(--white);
+  background: var(--mixed);
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0 0 0 1px rgba(7, 21, 34, .2);
+}
