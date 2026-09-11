@@ -821,7 +821,26 @@ h1 {
   font-size: 7px;
   font-weight: 850;
 }
-
+.airport-marker .military-marker-symbol {
+  position: absolute;
+  left: -9px;
+  top: -8px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  color: var(--white);
+  background: var(--mixed);
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0 1px 5px rgba(7, 21, 34, .28);
+  pointer-events: none;
+}
 .airport-tooltip.leaflet-tooltip {
   padding: 8px 10px;
   color: var(--white);
