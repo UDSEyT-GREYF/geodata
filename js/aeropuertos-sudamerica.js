@@ -721,6 +721,20 @@ function getOperationalData(iata, icao) {
 const referencePassengers2025 =
   numericValue(reference2025?.pax_totales) ?? -1;
     const roles = Array.isArray(properties.roles_adicionales) ? properties.roles_adicionales : [];
+    const rawType = String(properties.tipo || "").trim();
+
+const hasMilitaryShared =
+  rawType === "militar-mixto" ||
+  roles.includes("uso_militar_compartido");
+
+const hasInternationalRole =
+  roles.includes("función_internacional") ||
+  roles.includes("funcion_internacional");
+
+const baseType =
+  rawType === "militar-mixto"
+    ? (hasInternationalRole ? "internacional" : "doméstico")
+    : rawType;
     const [longitude, latitude] = feature.geometry.coordinates.map(Number);
 const populationInfo = findAirportPopulation(
   longitude,
@@ -749,9 +763,10 @@ populationMegaCity: Boolean(populationInfo?.megaCity),
 populationDistanceKm: populationInfo?.distanceKm ?? null,
 populationMethod: populationInfo?.method || null,
 
-  type: TYPE_META[properties.tipo] ? properties.tipo : "doméstico",
+  type: TYPE_META[baseType] ? baseType : "doméstico",
   roles,
   hasCargo: roles.includes("carga_relevante"),
+  hasMilitaryShared,
   hasOperational: Boolean(operational?.hasData),
   operational,
   referencePassengers2025,
@@ -1217,18 +1232,26 @@ const nameMatches = candidates.filter((place) =>
   function createAirportIcon(airport, selected = false) {
     const size = markerSize(airport.properties.longitud_pista_m);
     const meta = TYPE_META[airport.type];
-    const classes = [
-      "airport-marker",
-      airport.hasCargo ? "has-cargo" : "",
-      selected ? "is-selected" : ""
-    ].filter(Boolean).join(" ");
+const classes = [
+  "airport-marker",
+  airport.hasCargo ? "has-cargo" : "",
+  selected ? "is-selected" : ""
+].filter(Boolean).join(" ");
 
-    return L.divIcon({
-      className: "airport-marker-wrap",
-      html: `<span class="${classes}" style="--marker-size:${size}px;--marker-color:${meta.color}"></span>`,
-      iconSize: [0, 0],
-      iconAnchor: [0, 0]
-    });
+const militarySymbol = airport.hasMilitaryShared
+  ? `<span class="military-marker-symbol" title="Función militar compartida">M</span>`
+  : "";
+
+return L.divIcon({
+  className: "airport-marker-wrap",
+  html: `
+    <span class="${classes}" style="--marker-size:${size}px;--marker-color:${meta.color}">
+      ${militarySymbol}
+    </span>
+  `,
+  iconSize: [0, 0],
+  iconAnchor: [0, 0]
+});
   }
 
   function markerSize(runwayLength) {
