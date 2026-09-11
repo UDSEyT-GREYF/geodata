@@ -1342,6 +1342,7 @@ h1 {
   font-size: 17px;
   font-weight: 760;
   letter-spacing: -.025em;
+  text-align: center;
 }
 
 .metric-card strong.is-missing {
