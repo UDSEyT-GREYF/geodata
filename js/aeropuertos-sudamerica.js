@@ -1570,7 +1570,16 @@ function compareAirports(a, b, searchTokens) {
 </div>
             <div class="fact"><span>Elevación</span><strong>${formatMeasure(properties.elevacion_m, "m s. n. m.")}</strong></div>
             <div class="fact"><span>Pista principal</span><strong>${formatMeasure(properties.longitud_pista_m, "m")}</strong></div>
-            <div class="fact wide"><span>Entidad operadora</span><strong>${escapeHTML(properties.entidad_operadora || "No verificada en fuente oficial abierta")}</strong></div>
+                  ${
+        properties.entidad_operadora
+          ? `
+            <div class="fact wide">
+              <span>Entidad operadora</span>
+              <strong>${escapeHTML(properties.entidad_operadora)}</strong>
+            </div>
+          `
+          : ""
+      }
           </div>
         </section>
 
