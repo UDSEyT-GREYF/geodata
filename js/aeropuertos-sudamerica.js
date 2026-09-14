@@ -1256,39 +1256,32 @@ const nameMatches = candidates.filter((place) =>
     return marker;
   }
 
-  function createAirportIcon(airport, selected = false) {
-    const size = markerSize(airport.properties.longitud_pista_m);
-    const meta = TYPE_META[airport.type];
+function createAirportIcon(airport, selected = false) {
+  const size = markerSize(airport.properties.longitud_pista_m);
+  const meta = TYPE_META[airport.type];
 
-    const classes = [
-      "airport-marker",
-      airport.hasCargo ? "has-cargo" : "",
-      airport.isTerritorialInterest ? "is-territorial-interest" : "",
-      selected ? "is-selected" : ""
-    ].filter(Boolean).join(" ");
+  const classes = [
+    "airport-marker",
+    airport.hasCargo ? "has-cargo" : "",
+    airport.isTerritorialInterest ? "is-territorial-interest" : "",
+    selected ? "is-selected" : ""
+  ].filter(Boolean).join(" ");
 
-    
-    const classes = [
-      "airport-marker",
-      airport.hasCargo ? "has-cargo" : "",
-      selected ? "is-selected" : ""
-    ].filter(Boolean).join(" ");
+  const militarySymbol = airport.hasMilitaryShared
+    ? `<span class="military-marker-symbol" title="Función militar compartida">M</span>`
+    : "";
 
-const militarySymbol = airport.hasMilitaryShared
-  ? `<span class="military-marker-symbol" title="Función militar compartida">M</span>`
-  : "";
-
-return L.divIcon({
-  className: "airport-marker-wrap",
-  html: `
-    <span class="${classes}" style="--marker-size:${size}px;--marker-color:${meta.color}">
-      ${militarySymbol}
-    </span>
-  `,
-  iconSize: [0, 0],
-  iconAnchor: [0, 0]
-});
-  }
+  return L.divIcon({
+    className: "airport-marker-wrap",
+    html: `
+      <span class="${classes}" style="--marker-size:${size}px;--marker-color:${meta.color}">
+        ${militarySymbol}
+      </span>
+    `,
+    iconSize: [0, 0],
+    iconAnchor: [0, 0]
+  });
+}
 
   function markerSize(runwayLength) {
     const value = Number(runwayLength);
