@@ -774,9 +774,8 @@ return {
   properties,
   iata,
   icao,
+  isTerritorialInterest: normalizeSearch(properties.capa) === "interes_territorial",
   
-  isTerritorialInterest: properties.capa === "interes_territorial",
-
   country: String(properties.pais || "Sin país"),
   name: String(properties.nombre_oficial || "Aeropuerto sin nombre"),
   city: String(properties.ciudad || "Localidad no informada"),
@@ -1260,11 +1259,20 @@ const nameMatches = candidates.filter((place) =>
   function createAirportIcon(airport, selected = false) {
     const size = markerSize(airport.properties.longitud_pista_m);
     const meta = TYPE_META[airport.type];
-const classes = [
-  "airport-marker",
-  airport.hasCargo ? "has-cargo" : "",
-  selected ? "is-selected" : ""
-].filter(Boolean).join(" ");
+
+    const classes = [
+      "airport-marker",
+      airport.hasCargo ? "has-cargo" : "",
+      airport.isTerritorialInterest ? "is-territorial-interest" : "",
+      selected ? "is-selected" : ""
+    ].filter(Boolean).join(" ");
+
+    
+    const classes = [
+      "airport-marker",
+      airport.hasCargo ? "has-cargo" : "",
+      selected ? "is-selected" : ""
+    ].filter(Boolean).join(" ");
 
 const militarySymbol = airport.hasMilitaryShared
   ? `<span class="military-marker-symbol" title="Función militar compartida">M</span>`
@@ -1871,7 +1879,10 @@ dom.year.addEventListener("change", () => {
         applyFilters({ fit: true });
       });
     });
-
+    
+dom.territorialAirportsToggle?.addEventListener("change", () => {
+  applyFilters({ fit: true });
+});
     dom.administrativeToggle.addEventListener("change", () => {
       if (dom.administrativeToggle.checked) {
         if (state.administrativeLoaded && !state.map.hasLayer(state.administrativeLayer)) {
