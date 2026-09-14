@@ -2,10 +2,10 @@
   "type": "FeatureCollection",
   "name": "aeropuertos_sudamerica",
   "metadata": {
-    "fecha_compilacion": "2026-08-04",
+    "fecha_compilacion": "2026-09-14",
     "sistema_referencia": "WGS84 / EPSG:4326",
     "orden_coordenadas": "[longitud, latitud]",
-    "criterio_inclusion": "Aeropuertos de Argentina, Bolivia, Brasil, Chile, Colombia, Ecuador, Guayana Francesa, Guyana, Paraguay, Perú, Surinam, Uruguay y Venezuela con scheduled_service=yes, código IATA y geometría válida en OurAirports; se excluyen helipuertos y aeropuertos cerrados.",
+    "criterio_inclusion": "Aeropuertos de Argentina, Bolivia, Brasil, Chile, Colombia, Ecuador, Guayana Francesa, Guyana, Paraguay, Perú, Surinam, Uruguay y Venezuela con scheduled_service=yes, código IATA y geometría válida en OurAirports; se excluyen helipuertos y aeropuertos cerrados. También se incorporan a la capa principal aeropuertos con datos operativos/pasajeros en las bases integradas aunque no estuvieran incluidos por el filtro inicial de OurAirports.",
     "advertencia_servicio_regular": "scheduled_service es una bandera secundaria. La capa no reemplaza la verificación de horarios, autorizaciones o estado operativo vigente en AIP/NOTAM y fuentes oficiales de cada país.",
     "alcance_militar_carga": "Se identifican algunos roles militares-mixtos y cargueros relevantes, pero no constituye un inventario exhaustivo de aeródromos exclusivamente militares ni de pistas privadas estratégicas.",
     "fuentes_secundarias": [
@@ -14,7 +14,10 @@
       "https://davidmegginson.github.io/ourairports-data/regions.csv"
     ],
     "observacion_mpn": "MPN / EGYP incorporado como aeropuerto argentino a efectos del mapa territorial y de conectividad aérea con el SNA, con fuente operativa SIAC/ANAC-LATAM y coordenadas/infraestructura complementarias de OurAirports.",
-    "cantidad_registros": 342
+    "cantidad_registros": 342,
+    "criterio_ampliado_2026_09_14": "Se incorporan a la capa principal aeropuertos con datos operativos/pasajeros integrados y geometría válida, para evitar que aeropuertos con información estadística queden fuera de la consulta cartográfica.",
+    "aeropuertos_agregados_por_datos_operativos_2026_09_14": 15,
+    "total_registros_geojson": 357
   },
   "features": [
     {
@@ -11602,6 +11605,526 @@
         "roles_adicionales": [
           "función_internacional",
           "uso_militar_compartido"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "AOL",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.15222222,
+          -29.68805556
+        ]
+      },
+      "properties": {
+        "clave_union": "AOL",
+        "codigo_iata": "AOL",
+        "codigo_oaci": "SARL",
+        "nombre_oficial": "Aeropuerto Paso de los Libres",
+        "pais": "Argentina",
+        "provincia_estado_departamento": "Corrientes",
+        "ciudad": "Paso de los Libres",
+        "tipo": "internacional",
+        "elevacion_m": 70,
+        "longitud_pista_m": null,
+        "entidad_operadora": null,
+        "criterio_inclusion": "datos_operativos_con_pasajeros_incorporado_a_capa_principal",
+        "servicio_regular_fuente": "Incorporado a la capa principal por tener datos operativos/pasajeros en la base integrada. No necesariamente cumple el filtro inicial scheduled_service=yes de OurAirports.",
+        "fuente": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: LIB/SARL/AOL | Datos operativos: base integrada del mapa sudamericano",
+        "fuente_tipo": "fuente_oficial_o_abierta+datos_operativos_integrados",
+        "fuente_oficial": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: LIB/SARL/AOL",
+        "fuente_secundaria": null,
+        "nivel_fuente_oficial": "aerodromo_localizado_con_datos_operativos",
+        "fecha_actualizacion_dato": "2026-09-14",
+        "observaciones": "Aeropuerto incorporado a la capa principal por poseer datos operativos en la serie integrada, aunque no formaba parte del filtro inicial de inclusión basado en OurAirports scheduled_service=yes. Cobertura operativa disponible: 2001-2014.",
+        "roles_adicionales": [
+          "función_internacional"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "COC",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.99666667,
+          -31.29694444
+        ]
+      },
+      "properties": {
+        "clave_union": "COC",
+        "codigo_iata": "COC",
+        "codigo_oaci": "SAAC",
+        "nombre_oficial": "Aeropuerto Concordia - Comodoro Pierrestegui",
+        "pais": "Argentina",
+        "provincia_estado_departamento": "Entre Ríos",
+        "ciudad": "Concordia",
+        "tipo": "doméstico",
+        "elevacion_m": 34,
+        "longitud_pista_m": null,
+        "entidad_operadora": null,
+        "criterio_inclusion": "datos_operativos_con_pasajeros_incorporado_a_capa_principal",
+        "servicio_regular_fuente": "Incorporado a la capa principal por tener datos operativos/pasajeros en la base integrada. No necesariamente cumple el filtro inicial scheduled_service=yes de OurAirports.",
+        "fuente": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: DIA/SAAC/COC | Datos operativos: base integrada del mapa sudamericano",
+        "fuente_tipo": "fuente_oficial_o_abierta+datos_operativos_integrados",
+        "fuente_oficial": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: DIA/SAAC/COC",
+        "fuente_secundaria": null,
+        "nivel_fuente_oficial": "aerodromo_localizado_con_datos_operativos",
+        "fecha_actualizacion_dato": "2026-09-14",
+        "observaciones": "Aeropuerto incorporado a la capa principal por poseer datos operativos en la serie integrada, aunque no formaba parte del filtro inicial de inclusión basado en OurAirports scheduled_service=yes. Cobertura operativa disponible: 2001-2026.",
+        "roles_adicionales": []
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "EPA",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.6125,
+          -34.61
+        ]
+      },
+      "properties": {
+        "clave_union": "EPA",
+        "codigo_iata": "EPA",
+        "codigo_oaci": "SADP",
+        "nombre_oficial": "Aeropuerto El Palomar",
+        "pais": "Argentina",
+        "provincia_estado_departamento": "Buenos Aires",
+        "ciudad": "El Palomar",
+        "tipo": "doméstico",
+        "elevacion_m": 18,
+        "longitud_pista_m": null,
+        "entidad_operadora": null,
+        "criterio_inclusion": "datos_operativos_con_pasajeros_incorporado_a_capa_principal",
+        "servicio_regular_fuente": "Incorporado a la capa principal por tener datos operativos/pasajeros en la base integrada. No necesariamente cumple el filtro inicial scheduled_service=yes de OurAirports.",
+        "fuente": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: PAL/SADP/EPA | Datos operativos: base integrada del mapa sudamericano",
+        "fuente_tipo": "fuente_oficial_o_abierta+datos_operativos_integrados",
+        "fuente_oficial": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: PAL/SADP/EPA",
+        "fuente_secundaria": null,
+        "nivel_fuente_oficial": "aerodromo_localizado_con_datos_operativos",
+        "fecha_actualizacion_dato": "2026-09-14",
+        "observaciones": "Aeropuerto incorporado a la capa principal por poseer datos operativos en la serie integrada, aunque no formaba parte del filtro inicial de inclusión basado en OurAirports scheduled_service=yes. Cobertura operativa disponible: 2001-2026.",
+        "roles_adicionales": [
+          "uso_militar_compartido"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FDO",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.59091,
+          -34.45454
+        ]
+      },
+      "properties": {
+        "clave_union": "FDO",
+        "codigo_iata": "FDO",
+        "codigo_oaci": "SADF",
+        "nombre_oficial": "Aeropuerto San Fernando",
+        "pais": "Argentina",
+        "provincia_estado_departamento": "Buenos Aires",
+        "ciudad": "San Fernando",
+        "tipo": "internacional",
+        "elevacion_m": 3,
+        "longitud_pista_m": null,
+        "entidad_operadora": null,
+        "criterio_inclusion": "datos_operativos_con_pasajeros_incorporado_a_capa_principal",
+        "servicio_regular_fuente": "Incorporado a la capa principal por tener datos operativos/pasajeros en la base integrada. No necesariamente cumple el filtro inicial scheduled_service=yes de OurAirports.",
+        "fuente": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: FDO/SADF/FDO | Datos operativos: base integrada del mapa sudamericano",
+        "fuente_tipo": "fuente_oficial_o_abierta+datos_operativos_integrados",
+        "fuente_oficial": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: FDO/SADF/FDO",
+        "fuente_secundaria": null,
+        "nivel_fuente_oficial": "aerodromo_localizado_con_datos_operativos",
+        "fecha_actualizacion_dato": "2026-09-14",
+        "observaciones": "Aeropuerto incorporado a la capa principal por poseer datos operativos en la serie integrada, aunque no formaba parte del filtro inicial de inclusión basado en OurAirports scheduled_service=yes. Cobertura operativa disponible: 2001-2026.",
+        "roles_adicionales": [
+          "función_internacional"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "GPO",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.75888889,
+          -35.69472222
+        ]
+      },
+      "properties": {
+        "clave_union": "GPO",
+        "codigo_iata": "GPO",
+        "codigo_oaci": "SAZG",
+        "nombre_oficial": "Aeropuerto General Pico",
+        "pais": "Argentina",
+        "provincia_estado_departamento": "La Pampa",
+        "ciudad": "General Pico",
+        "tipo": "doméstico",
+        "elevacion_m": 140,
+        "longitud_pista_m": null,
+        "entidad_operadora": null,
+        "criterio_inclusion": "datos_operativos_con_pasajeros_incorporado_a_capa_principal",
+        "servicio_regular_fuente": "Incorporado a la capa principal por tener datos operativos/pasajeros en la base integrada. No necesariamente cumple el filtro inicial scheduled_service=yes de OurAirports.",
+        "fuente": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: GPI/SAZG/GPO | Datos operativos: base integrada del mapa sudamericano",
+        "fuente_tipo": "fuente_oficial_o_abierta+datos_operativos_integrados",
+        "fuente_oficial": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: GPI/SAZG/GPO",
+        "fuente_secundaria": null,
+        "nivel_fuente_oficial": "aerodromo_localizado_con_datos_operativos",
+        "fecha_actualizacion_dato": "2026-09-14",
+        "observaciones": "Aeropuerto incorporado a la capa principal por poseer datos operativos en la serie integrada, aunque no formaba parte del filtro inicial de inclusión basado en OurAirports scheduled_service=yes. Cobertura operativa disponible: 2001-2026.",
+        "roles_adicionales": []
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "JNI",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.93051,
+          -34.54589
+        ]
+      },
+      "properties": {
+        "clave_union": "JNI",
+        "codigo_iata": "JNI",
+        "codigo_oaci": "SAAJ",
+        "nombre_oficial": "Aeropuerto Junín",
+        "pais": "Argentina",
+        "provincia_estado_departamento": "Buenos Aires",
+        "ciudad": "Junín",
+        "tipo": "doméstico",
+        "elevacion_m": 80,
+        "longitud_pista_m": null,
+        "entidad_operadora": null,
+        "criterio_inclusion": "datos_operativos_con_pasajeros_incorporado_a_capa_principal",
+        "servicio_regular_fuente": "Incorporado a la capa principal por tener datos operativos/pasajeros en la base integrada. No necesariamente cumple el filtro inicial scheduled_service=yes de OurAirports.",
+        "fuente": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: NIN/SAAJ/JNI | Datos operativos: base integrada del mapa sudamericano",
+        "fuente_tipo": "fuente_oficial_o_abierta+datos_operativos_integrados",
+        "fuente_oficial": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: NIN/SAAJ/JNI",
+        "fuente_secundaria": null,
+        "nivel_fuente_oficial": "aerodromo_localizado_con_datos_operativos",
+        "fecha_actualizacion_dato": "2026-09-14",
+        "observaciones": "Aeropuerto incorporado a la capa principal por poseer datos operativos en la serie integrada, aunque no formaba parte del filtro inicial de inclusión basado en OurAirports scheduled_service=yes. Cobertura operativa disponible: 2001-2014.",
+        "roles_adicionales": []
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LGS",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.57305556,
+          -35.49527778
+        ]
+      },
+      "properties": {
+        "clave_union": "LGS",
+        "codigo_iata": "LGS",
+        "codigo_oaci": "SAMM",
+        "nombre_oficial": "Aeropuerto Malargüe - Comodoro D. Ricardo Salomón",
+        "pais": "Argentina",
+        "provincia_estado_departamento": "Mendoza",
+        "ciudad": "Malargüe",
+        "tipo": "doméstico",
+        "elevacion_m": 1424,
+        "longitud_pista_m": null,
+        "entidad_operadora": null,
+        "criterio_inclusion": "datos_operativos_con_pasajeros_incorporado_a_capa_principal",
+        "servicio_regular_fuente": "Incorporado a la capa principal por tener datos operativos/pasajeros en la base integrada. No necesariamente cumple el filtro inicial scheduled_service=yes de OurAirports.",
+        "fuente": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: MLG/SAMM/LGS | Datos operativos: base integrada del mapa sudamericano",
+        "fuente_tipo": "fuente_oficial_o_abierta+datos_operativos_integrados",
+        "fuente_oficial": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: MLG/SAMM/LGS",
+        "fuente_secundaria": null,
+        "nivel_fuente_oficial": "aerodromo_localizado_con_datos_operativos",
+        "fecha_actualizacion_dato": "2026-09-14",
+        "observaciones": "Aeropuerto incorporado a la capa principal por poseer datos operativos en la serie integrada, aunque no formaba parte del filtro inicial de inclusión basado en OurAirports scheduled_service=yes. Cobertura operativa disponible: 2001-2026.",
+        "roles_adicionales": []
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LPG",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.89305556,
+          -34.96916667
+        ]
+      },
+      "properties": {
+        "clave_union": "LPG",
+        "codigo_iata": "LPG",
+        "codigo_oaci": "SADL",
+        "nombre_oficial": "Aeropuerto La Plata",
+        "pais": "Argentina",
+        "provincia_estado_departamento": "Buenos Aires",
+        "ciudad": "La Plata",
+        "tipo": "doméstico",
+        "elevacion_m": 22,
+        "longitud_pista_m": null,
+        "entidad_operadora": null,
+        "criterio_inclusion": "datos_operativos_con_pasajeros_incorporado_a_capa_principal",
+        "servicio_regular_fuente": "Incorporado a la capa principal por tener datos operativos/pasajeros en la base integrada. No necesariamente cumple el filtro inicial scheduled_service=yes de OurAirports.",
+        "fuente": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: PTA/SADL/LPG | Datos operativos: base integrada del mapa sudamericano",
+        "fuente_tipo": "fuente_oficial_o_abierta+datos_operativos_integrados",
+        "fuente_oficial": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: PTA/SADL/LPG",
+        "fuente_secundaria": null,
+        "nivel_fuente_oficial": "aerodromo_localizado_con_datos_operativos",
+        "fecha_actualizacion_dato": "2026-09-14",
+        "observaciones": "Aeropuerto incorporado a la capa principal por poseer datos operativos en la serie integrada, aunque no formaba parte del filtro inicial de inclusión basado en OurAirports scheduled_service=yes. Cobertura operativa disponible: 2001-2017.",
+        "roles_adicionales": []
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "RCQ",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.68,
+          -29.21027778
+        ]
+      },
+      "properties": {
+        "clave_union": "RCQ",
+        "codigo_iata": "RCQ",
+        "codigo_oaci": "SATR",
+        "nombre_oficial": "Aeropuerto Reconquista",
+        "pais": "Argentina",
+        "provincia_estado_departamento": "Santa Fe",
+        "ciudad": "Reconquista",
+        "tipo": "doméstico",
+        "elevacion_m": 49,
+        "longitud_pista_m": null,
+        "entidad_operadora": null,
+        "criterio_inclusion": "datos_operativos_con_pasajeros_incorporado_a_capa_principal",
+        "servicio_regular_fuente": "Incorporado a la capa principal por tener datos operativos/pasajeros en la base integrada. No necesariamente cumple el filtro inicial scheduled_service=yes de OurAirports.",
+        "fuente": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: RTA/SATR/RCQ | Datos operativos: base integrada del mapa sudamericano",
+        "fuente_tipo": "fuente_oficial_o_abierta+datos_operativos_integrados",
+        "fuente_oficial": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: RTA/SATR/RCQ",
+        "fuente_secundaria": null,
+        "nivel_fuente_oficial": "aerodromo_localizado_con_datos_operativos",
+        "fecha_actualizacion_dato": "2026-09-14",
+        "observaciones": "Aeropuerto incorporado a la capa principal por poseer datos operativos en la serie integrada, aunque no formaba parte del filtro inicial de inclusión basado en OurAirports scheduled_service=yes. Cobertura operativa disponible: 2001-2026.",
+        "roles_adicionales": []
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "RCU",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.26934,
+          -33.09216
+        ]
+      },
+      "properties": {
+        "clave_union": "RCU",
+        "codigo_iata": "RCU",
+        "codigo_oaci": "SAOC",
+        "nombre_oficial": "Aeropuerto Río Cuarto - Área de Material",
+        "pais": "Argentina",
+        "provincia_estado_departamento": "Córdoba",
+        "ciudad": "Río Cuarto",
+        "tipo": "doméstico",
+        "elevacion_m": 421,
+        "longitud_pista_m": null,
+        "entidad_operadora": null,
+        "criterio_inclusion": "datos_operativos_con_pasajeros_incorporado_a_capa_principal",
+        "servicio_regular_fuente": "Incorporado a la capa principal por tener datos operativos/pasajeros en la base integrada. No necesariamente cumple el filtro inicial scheduled_service=yes de OurAirports.",
+        "fuente": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: TRC/SAOC/RCU | Datos operativos: base integrada del mapa sudamericano",
+        "fuente_tipo": "fuente_oficial_o_abierta+datos_operativos_integrados",
+        "fuente_oficial": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: TRC/SAOC/RCU",
+        "fuente_secundaria": null,
+        "nivel_fuente_oficial": "aerodromo_localizado_con_datos_operativos",
+        "fecha_actualizacion_dato": "2026-09-14",
+        "observaciones": "Aeropuerto incorporado a la capa principal por poseer datos operativos en la serie integrada, aunque no formaba parte del filtro inicial de inclusión basado en OurAirports scheduled_service=yes. Cobertura operativa disponible: 2001-2026.",
+        "roles_adicionales": []
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "RLO",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.18583333,
+          -32.38472222
+        ]
+      },
+      "properties": {
+        "clave_union": "RLO",
+        "codigo_iata": "RLO",
+        "codigo_oaci": "SAOS",
+        "nombre_oficial": "Aeropuerto Valle del Conlara",
+        "pais": "Argentina",
+        "provincia_estado_departamento": "San Luis",
+        "ciudad": "Santa Rosa del Conlara",
+        "tipo": "doméstico",
+        "elevacion_m": 616,
+        "longitud_pista_m": null,
+        "entidad_operadora": null,
+        "criterio_inclusion": "datos_operativos_con_pasajeros_incorporado_a_capa_principal",
+        "servicio_regular_fuente": "Incorporado a la capa principal por tener datos operativos/pasajeros en la base integrada. No necesariamente cumple el filtro inicial scheduled_service=yes de OurAirports.",
+        "fuente": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: SRC/SAOS/RLO | Datos operativos: base integrada del mapa sudamericano",
+        "fuente_tipo": "fuente_oficial_o_abierta+datos_operativos_integrados",
+        "fuente_oficial": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: SRC/SAOS/RLO",
+        "fuente_secundaria": null,
+        "nivel_fuente_oficial": "aerodromo_localizado_con_datos_operativos",
+        "fecha_actualizacion_dato": "2026-09-14",
+        "observaciones": "Aeropuerto incorporado a la capa principal por poseer datos operativos en la serie integrada, aunque no formaba parte del filtro inicial de inclusión basado en OurAirports scheduled_service=yes. Cobertura operativa disponible: 2001-2026.",
+        "roles_adicionales": []
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TDL",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.22858611,
+          -37.23437778
+        ]
+      },
+      "properties": {
+        "clave_union": "TDL",
+        "codigo_iata": "TDL",
+        "codigo_oaci": "SAZT",
+        "nombre_oficial": "Aeropuerto Tandil - Héroes de Malvinas",
+        "pais": "Argentina",
+        "provincia_estado_departamento": "Buenos Aires",
+        "ciudad": "Tandil",
+        "tipo": "doméstico",
+        "elevacion_m": 175,
+        "longitud_pista_m": null,
+        "entidad_operadora": null,
+        "criterio_inclusion": "datos_operativos_con_pasajeros_incorporado_a_capa_principal",
+        "servicio_regular_fuente": "Incorporado a la capa principal por tener datos operativos/pasajeros en la base integrada. No necesariamente cumple el filtro inicial scheduled_service=yes de OurAirports.",
+        "fuente": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: DIL/SAZT/TDL | Datos operativos: base integrada del mapa sudamericano",
+        "fuente_tipo": "fuente_oficial_o_abierta+datos_operativos_integrados",
+        "fuente_oficial": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: DIL/SAZT/TDL",
+        "fuente_secundaria": null,
+        "nivel_fuente_oficial": "aerodromo_localizado_con_datos_operativos",
+        "fecha_actualizacion_dato": "2026-09-14",
+        "observaciones": "Aeropuerto incorporado a la capa principal por poseer datos operativos en la serie integrada, aunque no formaba parte del filtro inicial de inclusión basado en OurAirports scheduled_service=yes. Cobertura operativa disponible: 2001-2025.",
+        "roles_adicionales": []
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "VLG",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.02388889,
+          -37.23444444
+        ]
+      },
+      "properties": {
+        "clave_union": "VLG",
+        "codigo_iata": "VLG",
+        "codigo_oaci": "SAZV",
+        "nombre_oficial": "Aeropuerto Villa Gesell",
+        "pais": "Argentina",
+        "provincia_estado_departamento": "Buenos Aires",
+        "ciudad": "Villa Gesell",
+        "tipo": "doméstico",
+        "elevacion_m": 10,
+        "longitud_pista_m": null,
+        "entidad_operadora": null,
+        "criterio_inclusion": "datos_operativos_con_pasajeros_incorporado_a_capa_principal",
+        "servicio_regular_fuente": "Incorporado a la capa principal por tener datos operativos/pasajeros en la base integrada. No necesariamente cumple el filtro inicial scheduled_service=yes de OurAirports.",
+        "fuente": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: GES/SAZV/VLG | Datos operativos: base integrada del mapa sudamericano",
+        "fuente_tipo": "fuente_oficial_o_abierta+datos_operativos_integrados",
+        "fuente_oficial": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: GES/SAZV/VLG",
+        "fuente_secundaria": null,
+        "nivel_fuente_oficial": "aerodromo_localizado_con_datos_operativos",
+        "fecha_actualizacion_dato": "2026-09-14",
+        "observaciones": "Aeropuerto incorporado a la capa principal por poseer datos operativos en la serie integrada, aunque no formaba parte del filtro inicial de inclusión basado en OurAirports scheduled_service=yes. Cobertura operativa disponible: 2001-2017.",
+        "roles_adicionales": []
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "VME",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.37579,
+          -33.73178
+        ]
+      },
+      "properties": {
+        "clave_union": "VME",
+        "codigo_iata": "VME",
+        "codigo_oaci": "SAOR",
+        "nombre_oficial": "Aeropuerto Villa Reynolds",
+        "pais": "Argentina",
+        "provincia_estado_departamento": "San Luis",
+        "ciudad": "Villa Mercedes",
+        "tipo": "doméstico",
+        "elevacion_m": 485,
+        "longitud_pista_m": null,
+        "entidad_operadora": null,
+        "criterio_inclusion": "datos_operativos_con_pasajeros_incorporado_a_capa_principal",
+        "servicio_regular_fuente": "Incorporado a la capa principal por tener datos operativos/pasajeros en la base integrada. No necesariamente cumple el filtro inicial scheduled_service=yes de OurAirports.",
+        "fuente": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: RYD/SAOR/VME | Datos operativos: base integrada del mapa sudamericano",
+        "fuente_tipo": "fuente_oficial_o_abierta+datos_operativos_integrados",
+        "fuente_oficial": "Ministerio de Transporte Argentina - Gobierno Abierto, aeropuertos: RYD/SAOR/VME",
+        "fuente_secundaria": null,
+        "nivel_fuente_oficial": "aerodromo_localizado_con_datos_operativos",
+        "fecha_actualizacion_dato": "2026-09-14",
+        "observaciones": "Aeropuerto incorporado a la capa principal por poseer datos operativos en la serie integrada, aunque no formaba parte del filtro inicial de inclusión basado en OurAirports scheduled_service=yes. Cobertura operativa disponible: 2001-2026.",
+        "roles_adicionales": [
+          "uso_militar_compartido"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STY",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.985298,
+          -31.438499
+        ]
+      },
+      "properties": {
+        "clave_union": "STY",
+        "codigo_iata": "STY",
+        "codigo_oaci": "SUSO",
+        "nombre_oficial": "Aeropuerto Internacional de Salto Nueva Hespérides",
+        "pais": "Uruguay",
+        "provincia_estado_departamento": "Salto Department",
+        "ciudad": "Salto",
+        "tipo": "internacional",
+        "elevacion_m": 57,
+        "longitud_pista_m": 1588,
+        "entidad_operadora": null,
+        "criterio_inclusion": "datos_operativos_con_pasajeros_incorporado_a_capa_principal",
+        "servicio_regular_fuente": "Incorporado a la capa principal por tener datos operativos/pasajeros en la base integrada. No necesariamente cumple el filtro inicial scheduled_service=yes de OurAirports.",
+        "fuente": "DINACIA Uruguay / AIP SUSO y OurAirports: STY/SUSO | Datos operativos: base integrada del mapa sudamericano",
+        "fuente_tipo": "fuente_oficial_o_abierta+datos_operativos_integrados",
+        "fuente_oficial": "DINACIA Uruguay / AIP SUSO y OurAirports: STY/SUSO",
+        "fuente_secundaria": null,
+        "nivel_fuente_oficial": "aerodromo_localizado_con_datos_operativos",
+        "fecha_actualizacion_dato": "2026-09-14",
+        "observaciones": "Aeropuerto incorporado a la capa principal por poseer datos operativos en la serie integrada, aunque no formaba parte del filtro inicial de inclusión basado en OurAirports scheduled_service=yes. Cobertura operativa disponible: 2024-2025.",
+        "roles_adicionales": [
+          "función_internacional"
         ]
       }
     }
