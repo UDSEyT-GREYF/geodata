@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-
+const DATA_VERSION = "20260914-3";
 const DATA_URLS = {
   airports: "data/sudamerica/aeropuertos_sudamerica.geojson",
   airportsTerritorial: `data/sudamerica/aeropuertos_sudamerica_interes_territorial.geojson?v=${DATA_VERSION}`,
