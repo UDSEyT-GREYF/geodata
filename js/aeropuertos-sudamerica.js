@@ -3,6 +3,7 @@
 
 const DATA_URLS = {
   airports: "data/sudamerica/aeropuertos_sudamerica.geojson",
+  airportsTerritorial: `data/sudamerica/aeropuertos_sudamerica_interes_territorial.geojson?v=${DATA_VERSION}`,
   operationsAnnual: "data/sudamerica/operativo/datos_operativos_aeropuertos_anual.csv",
   operationsMonthly: "data/sudamerica/operativo/datos_operativos_aeropuertos_mensual.csv",
   administrative: "data/sudamerica/divisiones_administrativas_sudamerica.geojson",
@@ -33,6 +34,7 @@ const DATA_URLS = {
     cargoOnly: document.getElementById("cargoOnly"),
     operationalOnly: document.getElementById("operationalOnly"),
     administrativeToggle: document.getElementById("administrativeToggle"),
+    territorialAirportsToggle: document.getElementById("territorialAirportsToggle"),
     administrativeStatus: document.getElementById("administrativeStatus"),
     typeChips: [...document.querySelectorAll("[data-type]")],
     typeCounts: [...document.querySelectorAll("[data-count-type]")],
@@ -65,6 +67,7 @@ const DATA_URLS = {
     administrativeLayer: null,
     countryLayer: null,
     administrativeLoaded: false,
+    territorialAirportsLoaded: false,
     populatedPlaces: [],
     urbanAreas: [],
     airports: [],
@@ -232,14 +235,19 @@ state.countryLayer = L.geoJSON(null, {
     try {
 const [
   geoResponse,
+  territorialResponse,
   annualResponse,
   monthlyResponse,
   populatedPlacesResponse,
   urbanAreasResponse
 ] = await Promise.all([
 
-  fetchWithRetry(DATA_URLS.airports),
-
+fetchWithRetry(DATA_URLS.airports),
+  
+fetchWithRetry(DATA_URLS.airportsTerritorial, 2, 25000).catch((error) => {
+  console.warn("La capa de aeropuertos de interés territorial no está disponible.", error);
+  return null;
+}),
 fetchWithRetry(DATA_URLS.operationsAnnual, 3, 25000).catch((error) => {
   console.warn("Los datos operativos anuales no están disponibles.", error);
   return null;
@@ -262,7 +270,10 @@ fetchWithRetry(DATA_URLS.operationsMonthly, 3, 45000).catch((error) => {
 ]);
 
 const geojson = await geoResponse.json();
-
+const territorialGeojson = territorialResponse
+  ? await territorialResponse.json()
+  : { type: "FeatureCollection", features: [] };
+      
 const annualText = annualResponse
   ? await annualResponse.text()
   : "";
@@ -292,9 +303,24 @@ const urbanAreasGeojson = urbanAreasResponse
 
 state.urbanAreas = urbanAreasGeojson.features || [];
       
-      state.airports = geojson.features
+const mainAirports = geojson.features
+  .filter(isValidPointFeature)
+  .map(normalizeAirportFeature);
+
+const territorialAirports =
+  territorialGeojson.type === "FeatureCollection" &&
+  Array.isArray(territorialGeojson.features)
+    ? territorialGeojson.features
         .filter(isValidPointFeature)
-        .map(normalizeAirportFeature);
+        .map(normalizeAirportFeature)
+    : [];
+
+state.airports = [
+  ...mainAirports,
+  ...territorialAirports
+];
+
+state.territorialAirportsLoaded = territorialAirports.length > 0;
 
       if (!state.airports.length) {
         throw new Error("La capa no contiene puntos válidos.");
@@ -748,6 +774,8 @@ return {
   properties,
   iata,
   icao,
+  
+  isTerritorialInterest: properties.capa === "interes_territorial",
 
   country: String(properties.pais || "Sin país"),
   name: String(properties.nombre_oficial || "Aeropuerto sin nombre"),
@@ -1271,7 +1299,10 @@ return L.divIcon({
     const cargoOnly = dom.cargoOnly.checked;
     const operationalOnly = dom.operationalOnly.checked;
 
+    const showTerritorialAirports = Boolean(dom.territorialAirportsToggle?.checked);
+    
     state.filtered = state.airports
+      .filter((airport) => showTerritorialAirports || !airport.isTerritorialInterest)
       .filter((airport) => state.activeTypes.has(airport.type))
       .filter((airport) => !country || airport.country === country)
       .filter((airport) => !cargoOnly || airport.hasCargo)
