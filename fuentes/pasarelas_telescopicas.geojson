@@ -1,0 +1,3100 @@
+{
+  "type": "FeatureCollection",
+  "name": "pasarelas_telescopicas_desde_psn",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "metadata": {
+    "fuente": "fuentes/psn_posiciones.geojson",
+    "criterio": "Se incluyen exclusivamente las PSN con pasarela = true.",
+    "interpretacion_geometrica": "Cada punto representa la posición de estacionamiento de aeronaves atendida por pasarela telescópica; no la huella física de la pasarela.",
+    "registros_fuente": 559,
+    "registros_pasarela": 88,
+    "aeropuertos_con_pasarela": 24
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 14,
+        "icao": "SAAR",
+        "iata": "ROS",
+        "aeropuerto": "Rosario / Islas Malvinas",
+        "Posicion": "2",
+        "id": "ROS_2",
+        "latitud": -32.91613611,
+        "longitud": -60.78102222,
+        "lat_dms": "32° 54' 58.09'' S",
+        "lon_dms": "60° 46' 51.68'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10590d556a",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAAR AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SAAR AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "El ingreso puede realizarse utilizando la planta de poder de la aeronave, a velocidad reducida y con asistencia de señalero.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 2A y 2B",
+        "salida": "Las aeronaves Clave B salen en forma autónoma. | Las aeronaves Clave C, D y E salen asistidas mediante remolque hasta el eje central de la plataforma. | La puesta en marcha puede realizarse antes de abandonar la posición o durante el tractoreo.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.78102222,
+          -32.91613611
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 15,
+        "icao": "SAAR",
+        "iata": "ROS",
+        "aeropuerto": "Rosario / Islas Malvinas",
+        "Posicion": "2A",
+        "id": "ROS_2A",
+        "latitud": -32.91630278,
+        "longitud": -60.78100556,
+        "lat_dms": "32° 54' 58.69'' S",
+        "lon_dms": "60° 46' 51.62'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10590d556a",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAAR AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SAAR AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "El ingreso puede realizarse utilizando la planta de poder de la aeronave, a velocidad reducida y con asistencia de señalero.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 2",
+        "salida": "Las aeronaves Clave B salen en forma autónoma. | Las aeronaves Clave C, D y E salen asistidas mediante remolque hasta el eje central de la plataforma. | La puesta en marcha puede realizarse antes de abandonar la posición o durante el tractoreo.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.78100556,
+          -32.91630278
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 155,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "10",
+        "id": "EZE_10",
+        "latitud": -34.815425,
+        "longitud": -58.53947778,
+        "lat_dms": "34° 48' 55.53'' S",
+        "lon_dms": "58° 32' 22.12'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.53947778,
+          -34.815425
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 16,
+        "icao": "SAAR",
+        "iata": "ROS",
+        "aeropuerto": "Rosario / Islas Malvinas",
+        "Posicion": "2B",
+        "id": "ROS_2B",
+        "latitud": -32.91585833,
+        "longitud": -60.78116944,
+        "lat_dms": "32° 54' 57.09'' S",
+        "lon_dms": "60° 46' 52.21'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10590d556a",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAAR AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SAAR AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "El ingreso puede realizarse utilizando la planta de poder de la aeronave, a velocidad reducida y con asistencia de señalero.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 2",
+        "salida": "Las aeronaves Clave B salen en forma autónoma. | Las aeronaves Clave C, D y E salen asistidas mediante remolque hasta el eje central de la plataforma. | La puesta en marcha puede realizarse antes de abandonar la posición o durante el tractoreo.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.78116944,
+          -32.91585833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 156,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "11",
+        "id": "EZE_11",
+        "latitud": -34.81591111,
+        "longitud": -58.54002778,
+        "lat_dms": "34° 48' 57.28'' S",
+        "lon_dms": "58° 32' 24.10'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 11A Y 11B",
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.54002778,
+          -34.81591111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 39,
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "Aeroparque Jorge Newbery",
+        "Posicion": "4",
+        "id": "AEP_4",
+        "latitud": -34.55664167,
+        "longitud": -58.41480278,
+        "lat_dms": "34° 33' 23.91'' S",
+        "lon_dms": "58° 24' 53.29'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1062373b79",
+        "nota_fuente": "AMDT AIRAC 1/2026; SABE AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SABE AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder, bajo asistencia de señalero y con potencia reducida normalizada.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Las aeronaves de fuselaje ancho deben ser remolcadas hasta el eje central de la plataforma, con proa al norte, para liberar por FOXTROT. | Las demás salidas se realizan según la posición y el tipo de aeronave, bajo autorización de Torre.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.41480278,
+          -34.55664167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 36,
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "Aeroparque Jorge Newbery",
+        "Posicion": "3",
+        "id": "AEP_3",
+        "latitud": -34.556525,
+        "longitud": -58.41531111,
+        "lat_dms": "34° 33' 23.49'' S",
+        "lon_dms": "58° 24' 55.12'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1062373b79",
+        "nota_fuente": "AMDT AIRAC 1/2026; SABE AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SABE AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder, bajo asistencia de señalero y con potencia reducida normalizada.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 3A",
+        "salida": "Las aeronaves de fuselaje ancho deben ser remolcadas hasta el eje central de la plataforma, con proa al norte, para liberar por FOXTROT. | Las demás salidas se realizan según la posición y el tipo de aeronave, bajo autorización de Torre.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.41531111,
+          -34.556525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 37,
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "Aeroparque Jorge Newbery",
+        "Posicion": "3A",
+        "id": "AEP_3A",
+        "latitud": -34.55658611,
+        "longitud": -58.41535833,
+        "lat_dms": "34° 33' 23.71'' S",
+        "lon_dms": "58° 24' 55.29'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1062373b79",
+        "nota_fuente": "AMDT AIRAC 1/2026; SABE AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SABE AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder, bajo asistencia de señalero y con potencia reducida normalizada.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 3 y 3B",
+        "salida": "Las aeronaves de fuselaje ancho deben ser remolcadas hasta el eje central de la plataforma, con proa al norte, para liberar por FOXTROT. | Las demás salidas se realizan según la posición y el tipo de aeronave, bajo autorización de Torre.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.41535833,
+          -34.55658611
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 40,
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "Aeroparque Jorge Newbery",
+        "Posicion": "5",
+        "id": "AEP_5",
+        "latitud": -34.55683333,
+        "longitud": -58.41438333,
+        "lat_dms": "34° 33' 24.60'' S",
+        "lon_dms": "58° 24' 51.78'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1062373b79",
+        "nota_fuente": "AMDT AIRAC 1/2026; SABE AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SABE AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder, bajo asistencia de señalero y con potencia reducida normalizada.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Las aeronaves de fuselaje ancho deben ser remolcadas hasta el eje central de la plataforma, con proa al norte, para liberar por FOXTROT. | Las demás salidas se realizan según la posición y el tipo de aeronave, bajo autorización de Torre.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.41438333,
+          -34.55683333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 41,
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "Aeroparque Jorge Newbery",
+        "Posicion": "6",
+        "id": "AEP_6",
+        "latitud": -34.55704444,
+        "longitud": -58.41392222,
+        "lat_dms": "34° 33' 25.36'' S",
+        "lon_dms": "58° 24' 50.12'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1062373b79",
+        "nota_fuente": "AMDT AIRAC 1/2026; SABE AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SABE AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder, bajo asistencia de señalero y con potencia reducida normalizada.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Las aeronaves de fuselaje ancho deben ser remolcadas hasta el eje central de la plataforma, con proa al norte, para liberar por FOXTROT. | Las demás salidas se realizan según la posición y el tipo de aeronave, bajo autorización de Torre.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.41392222,
+          -34.55704444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 42,
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "Aeroparque Jorge Newbery",
+        "Posicion": "7",
+        "id": "AEP_7",
+        "latitud": -34.55725278,
+        "longitud": -58.41353333,
+        "lat_dms": "34° 33' 26.11'' S",
+        "lon_dms": "58° 24' 48.72'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1062373b79",
+        "nota_fuente": "AMDT AIRAC 1/2026; SABE AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SABE AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder, bajo asistencia de señalero y con potencia reducida normalizada.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Las aeronaves de fuselaje ancho deben ser remolcadas hasta el eje central de la plataforma, con proa al norte, para liberar por FOXTROT. | Las demás salidas se realizan según la posición y el tipo de aeronave, bajo autorización de Torre.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.41353333,
+          -34.55725278
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 43,
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "Aeroparque Jorge Newbery",
+        "Posicion": "8",
+        "id": "AEP_8",
+        "latitud": -34.55747222,
+        "longitud": -58.413125,
+        "lat_dms": "34° 33' 26.90'' S",
+        "lon_dms": "58° 24' 47.25'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1062373b79",
+        "nota_fuente": "AMDT AIRAC 1/2026; SABE AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SABE AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder, bajo asistencia de señalero y con potencia reducida normalizada.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Las aeronaves de fuselaje ancho deben ser remolcadas hasta el eje central de la plataforma, con proa al norte, para liberar por FOXTROT. | Las demás salidas se realizan según la posición y el tipo de aeronave, bajo autorización de Torre.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.413125,
+          -34.55747222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 44,
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "Aeroparque Jorge Newbery",
+        "Posicion": "9",
+        "id": "AEP_9",
+        "latitud": -34.55768889,
+        "longitud": -58.41273333,
+        "lat_dms": "34° 33' 27.68'' S",
+        "lon_dms": "58° 24' 45.84'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1062373b79",
+        "nota_fuente": "AMDT AIRAC 1/2026; SABE AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SABE AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder, bajo asistencia de señalero y con potencia reducida normalizada.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Las aeronaves de fuselaje ancho deben ser remolcadas hasta el eje central de la plataforma, con proa al norte, para liberar por FOXTROT. | Las demás salidas se realizan según la posición y el tipo de aeronave, bajo autorización de Torre.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.41273333,
+          -34.55768889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 45,
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "Aeroparque Jorge Newbery",
+        "Posicion": "10",
+        "id": "AEP_10",
+        "latitud": -34.55792222,
+        "longitud": -58.41238889,
+        "lat_dms": "34° 33' 28.52'' S",
+        "lon_dms": "58° 24' 44.60'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1062373b79",
+        "nota_fuente": "AMDT AIRAC 1/2026; SABE AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SABE AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder, bajo asistencia de señalero y con potencia reducida normalizada.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Las aeronaves de fuselaje ancho deben ser remolcadas hasta el eje central de la plataforma, con proa al norte, para liberar por FOXTROT. | Las demás salidas se realizan según la posición y el tipo de aeronave, bajo autorización de Torre.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.41238889,
+          -34.55792222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 46,
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "Aeroparque Jorge Newbery",
+        "Posicion": "11",
+        "id": "AEP_11",
+        "latitud": -34.55814722,
+        "longitud": -58.41202778,
+        "lat_dms": "34° 33' 29.33'' S",
+        "lon_dms": "58° 24' 43.30'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1062373b79",
+        "nota_fuente": "AMDT AIRAC 1/2026; SABE AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SABE AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder, bajo asistencia de señalero y con potencia reducida normalizada.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Las aeronaves de fuselaje ancho deben ser remolcadas hasta el eje central de la plataforma, con proa al norte, para liberar por FOXTROT. | Las demás salidas se realizan según la posición y el tipo de aeronave, bajo autorización de Torre.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.41202778,
+          -34.55814722
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 47,
+        "icao": "SABE",
+        "iata": "AEP",
+        "aeropuerto": "Aeroparque Jorge Newbery",
+        "Posicion": "12",
+        "id": "AEP_12",
+        "latitud": -34.55837778,
+        "longitud": -58.41168611,
+        "lat_dms": "34° 33' 30.16'' S",
+        "lon_dms": "58° 24' 42.07'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1062373b79",
+        "nota_fuente": "AMDT AIRAC 1/2026; SABE AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SABE AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder, bajo asistencia de señalero y con potencia reducida normalizada.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Las aeronaves de fuselaje ancho deben ser remolcadas hasta el eje central de la plataforma, con proa al norte, para liberar por FOXTROT. | Las demás salidas se realizan según la posición y el tipo de aeronave, bajo autorización de Torre.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.41168611,
+          -34.55837778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 87,
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "Córdoba / Ing. Ambrosio Taravella",
+        "Posicion": "1",
+        "id": "COR_1",
+        "latitud": -31.31478333,
+        "longitud": -64.21191111,
+        "lat_dms": "31° 18' 53.22'' S",
+        "lon_dms": "64° 12' 42.88'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68de9c0de9fcd",
+        "nota_fuente": "AMDT AIRAC 2/2025; SACO AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SACO AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": null,
+        "pasarela": true,
+        "restricciones": "Penaliza uso PSN 1A",
+        "salida": "El resto debe ser remolcado hasta el eje central de la plataforma.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.21191111,
+          -31.31478333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 88,
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "Córdoba / Ing. Ambrosio Taravella",
+        "Posicion": "1A",
+        "id": "COR_1A",
+        "latitud": -31.31481944,
+        "longitud": -64.21188333,
+        "lat_dms": "31° 18' 53.35'' S",
+        "lon_dms": "64° 12' 42.78'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68de9c0de9fcd",
+        "nota_fuente": "AMDT AIRAC 2/2025; SACO AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SACO AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Las aeronaves Clave E con destino a las posiciones 1A, 3 y 26A ingresan por TWY C.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 1 | Para determinadas aeronaves, penaliza PSN 2 y 12",
+        "salida": "Las aeronaves Clave E desde las posiciones 1A, 3 y 26A egresan por TWY C. | El resto debe ser remolcado hasta el eje central de la plataforma.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.21188333,
+          -31.31481944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 89,
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "Córdoba / Ing. Ambrosio Taravella",
+        "Posicion": "2",
+        "id": "COR_2",
+        "latitud": -31.31505556,
+        "longitud": -64.21167222,
+        "lat_dms": "31° 18' 54.20'' S",
+        "lon_dms": "64° 12' 42.02'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68de9c0de9fcd",
+        "nota_fuente": "AMDT AIRAC 2/2025; SACO AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SACO AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": null,
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "El resto debe ser remolcado hasta el eje central de la plataforma.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.21167222,
+          -31.31505556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 90,
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "Córdoba / Ing. Ambrosio Taravella",
+        "Posicion": "3",
+        "id": "COR_3",
+        "latitud": -31.31544444,
+        "longitud": -64.21193056,
+        "lat_dms": "31° 18' 55.60'' S",
+        "lon_dms": "64° 12' 42.95'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68de9c0de9fcd",
+        "nota_fuente": "AMDT AIRAC 2/2025; SACO AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SACO AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Las aeronaves Clave E con destino a las posiciones 1A, 3 y 26A ingresan por TWY C.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Las aeronaves Clave E desde las posiciones 1A, 3 y 26A egresan por TWY C. | El resto debe ser remolcado hasta el eje central de la plataforma.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.21193056,
+          -31.31544444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 91,
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "Córdoba / Ing. Ambrosio Taravella",
+        "Posicion": "4",
+        "id": "COR_4",
+        "latitud": -31.31590833,
+        "longitud": -64.21190556,
+        "lat_dms": "31° 18' 57.27'' S",
+        "lon_dms": "64° 12' 42.86'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68de9c0de9fcd",
+        "nota_fuente": "AMDT AIRAC 2/2025; SACO AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SACO AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": null,
+        "pasarela": true,
+        "restricciones": "Para aeronaves Clave D/E, penaliza PSN 3 | Penaliza PSN 4A",
+        "salida": "El resto debe ser remolcado hasta el eje central de la plataforma.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.21190556,
+          -31.31590833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 92,
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "Córdoba / Ing. Ambrosio Taravella",
+        "Posicion": "4A",
+        "id": "COR_4A",
+        "latitud": -31.31597778,
+        "longitud": -64.21190278,
+        "lat_dms": "31° 18' 57.52'' S",
+        "lon_dms": "64° 12' 42.85'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68de9c0de9fcd",
+        "nota_fuente": "AMDT AIRAC 2/2025; SACO AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SACO AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": null,
+        "pasarela": true,
+        "restricciones": "Penaliza uso PSN 4 y 5",
+        "salida": "El resto debe ser remolcado hasta el eje central de la plataforma.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.21190278,
+          -31.31597778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 93,
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "Córdoba / Ing. Ambrosio Taravella",
+        "Posicion": "5",
+        "id": "COR_5",
+        "latitud": -31.31617778,
+        "longitud": -64.21178056,
+        "lat_dms": "31° 18' 58.24'' S",
+        "lon_dms": "64° 12' 42.41'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68de9c0de9fcd",
+        "nota_fuente": "AMDT AIRAC 2/2025; SACO AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SACO AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": null,
+        "pasarela": true,
+        "restricciones": "Penaliza uso PSN 4A",
+        "salida": "El resto debe ser remolcado hasta el eje central de la plataforma.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.21178056,
+          -31.31617778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 94,
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "Córdoba / Ing. Ambrosio Taravella",
+        "Posicion": "6",
+        "id": "COR_6",
+        "latitud": -31.31654722,
+        "longitud": -64.21180833,
+        "lat_dms": "31° 18' 59.57'' S",
+        "lon_dms": "64° 12' 42.51'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68de9c0de9fcd",
+        "nota_fuente": "AMDT AIRAC 2/2025; SACO AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SACO AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": null,
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 7A",
+        "salida": "El resto debe ser remolcado hasta el eje central de la plataforma.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.21180833,
+          -31.31654722
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 95,
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "Córdoba / Ing. Ambrosio Taravella",
+        "Posicion": "7",
+        "id": "COR_7",
+        "latitud": -31.31680556,
+        "longitud": -64.21173056,
+        "lat_dms": "31° 19' 00.50'' S",
+        "lon_dms": "64° 12' 42.23'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68de9c0de9fcd",
+        "nota_fuente": "AMDT AIRAC 2/2025; SACO AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SACO AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": null,
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 7A",
+        "salida": "El resto debe ser remolcado hasta el eje central de la plataforma.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.21173056,
+          -31.31680556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 96,
+        "icao": "SACO",
+        "iata": "COR",
+        "aeropuerto": "Córdoba / Ing. Ambrosio Taravella",
+        "Posicion": "7A",
+        "id": "COR_7A",
+        "latitud": -31.31651111,
+        "longitud": -64.21182222,
+        "lat_dms": "31° 18' 59.44'' S",
+        "lon_dms": "64° 12' 42.56'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68de9c0de9fcd",
+        "nota_fuente": "AMDT AIRAC 2/2025; SACO AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SACO AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": null,
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 6 y 7",
+        "salida": "El resto debe ser remolcado hasta el eje central de la plataforma.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.21182222,
+          -31.31651111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 157,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "11A",
+        "id": "EZE_11A",
+        "latitud": -34.81580833,
+        "longitud": -58.54000278,
+        "lat_dms": "34° 48' 56.91'' S",
+        "lon_dms": "58° 32' 24.01'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 11",
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.54000278,
+          -34.81580833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 158,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "11B",
+        "id": "EZE_11B",
+        "latitud": -34.81618333,
+        "longitud": -58.54004444,
+        "lat_dms": "34° 48' 58.26'' S",
+        "lon_dms": "58° 32' 24.16'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 11",
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.54004444,
+          -34.81618333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 152,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "7",
+        "id": "EZE_7",
+        "latitud": -34.81448056,
+        "longitud": -58.53767222,
+        "lat_dms": "34° 48' 52.13'' S",
+        "lon_dms": "58° 32' 15.62'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder. | Las posiciones 6, 7 y 8 están sujetas a restricciones mutuas según la clave de la aeronave.",
+        "pasarela": true,
+        "restricciones": "Con aeronaves Clave D/E, penaliza PSN 6 y 8 | Con aeronaves Clave C, limita PSN 6 y 8 a aeronaves Clave C",
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.53767222,
+          -34.81448056
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 159,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "12",
+        "id": "EZE_12",
+        "latitud": -34.81646389,
+        "longitud": -58.54064167,
+        "lat_dms": "34° 48' 59.27'' S",
+        "lon_dms": "58° 32' 26.31'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.54064167,
+          -34.81646389
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 160,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "13",
+        "id": "EZE_13",
+        "latitud": -34.816675,
+        "longitud": -58.54083889,
+        "lat_dms": "34° 49' 00.03'' S",
+        "lon_dms": "58° 32' 27.02'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.54083889,
+          -34.816675
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 147,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "2",
+        "id": "EZE_2",
+        "latitud": -34.81269167,
+        "longitud": -58.538225,
+        "lat_dms": "34° 48' 45.69'' S",
+        "lon_dms": "58° 32' 17.61'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.538225,
+          -34.81269167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 148,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "3",
+        "id": "EZE_3",
+        "latitud": -34.81264444,
+        "longitud": -58.53772778,
+        "lat_dms": "34° 48' 45.52'' S",
+        "lon_dms": "58° 32' 15.82'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.53772778,
+          -34.81264444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 245,
+        "icao": "SAME",
+        "iata": "MDZ",
+        "aeropuerto": "Mendoza / El Plumerillo",
+        "Posicion": "4A",
+        "id": "MDZ_4A",
+        "latitud": -32.82797778,
+        "longitud": -68.79789444,
+        "lat_dms": "32° 49' 40.72'' S",
+        "lon_dms": "68° 47' 52.42'' W",
+        "fecha_doc": "2025-06-12",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6801727367090",
+        "nota_fuente": "AMDT AIRAC 1/2025; SAME AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SAME AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Ingreso con planta de poder y asistencia de señalero. | Las aeronaves Clave D ingresan por TWY E con PSN 6C libre, o por TWY D con PSN 2A libre.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 3 y 4 | El rodaje central queda restringido a aeronaves hasta Clave C",
+        "salida": "Salida mediante remolque hasta el eje central de plataforma. | Uso obligatorio de señalero para la salida.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.79789444,
+          -32.82797778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 149,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "4",
+        "id": "EZE_4",
+        "latitud": -34.81314167,
+        "longitud": -58.53732778,
+        "lat_dms": "34° 48' 47.31'' S",
+        "lon_dms": "58° 32' 14.38'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.53732778,
+          -34.81314167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 150,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "5",
+        "id": "EZE_5",
+        "latitud": -34.81343889,
+        "longitud": -58.53725833,
+        "lat_dms": "34° 48' 48.38'' S",
+        "lon_dms": "58° 32' 14.13'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.53725833,
+          -34.81343889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 151,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "6",
+        "id": "EZE_6",
+        "latitud": -34.81407222,
+        "longitud": -58.53748889,
+        "lat_dms": "34° 48' 50.66'' S",
+        "lon_dms": "58° 32' 14.96'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder. | Las posiciones 6, 7 y 8 están sujetas a restricciones mutuas según la clave de la aeronave.",
+        "pasarela": true,
+        "restricciones": "CON ACFT CLAVE “D” o “E” Penaliza PSN 7",
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.53748889,
+          -34.81407222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 153,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "8",
+        "id": "EZE_8",
+        "latitud": -34.81485833,
+        "longitud": -58.53798889,
+        "lat_dms": "34° 48' 53.49'' S",
+        "lon_dms": "58° 32' 16.76'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder. | Las posiciones 6, 7 y 8 están sujetas a restricciones mutuas según la clave de la aeronave.",
+        "pasarela": true,
+        "restricciones": "Con aeronaves Clave D/E, penaliza PSN 7",
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.53798889,
+          -34.81485833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 154,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "9",
+        "id": "EZE_9",
+        "latitud": -34.81479722,
+        "longitud": -58.53861667,
+        "lat_dms": "34° 48' 53.27'' S",
+        "lon_dms": "58° 32' 19.02'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.53861667,
+          -34.81479722
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 161,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "14",
+        "id": "EZE_14",
+        "latitud": -34.81665,
+        "longitud": -58.54162778,
+        "lat_dms": "34° 48' 59.94'' S",
+        "lon_dms": "58° 32' 29.86'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 14A Y 14B",
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.54162778,
+          -34.81665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 162,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "14A",
+        "id": "EZE_14A",
+        "latitud": -34.81656111,
+        "longitud": -58.541525,
+        "lat_dms": "34° 48' 59.62'' S",
+        "lon_dms": "58° 32' 29.49'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 14",
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.541525,
+          -34.81656111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 163,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "14B",
+        "id": "EZE_14B",
+        "latitud": -34.81685,
+        "longitud": -58.54186667,
+        "lat_dms": "34° 49' 00.66'' S",
+        "lon_dms": "58° 32' 30.72'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 14",
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.54186667,
+          -34.81685
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 164,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "15",
+        "id": "EZE_15",
+        "latitud": -34.81645556,
+        "longitud": -58.54258889,
+        "lat_dms": "34° 48' 59.24'' S",
+        "lon_dms": "58° 32' 33.32'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 15A Y 15B",
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.54258889,
+          -34.81645556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 165,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "15A",
+        "id": "EZE_15A",
+        "latitud": -34.81638611,
+        "longitud": -58.54255278,
+        "lat_dms": "34° 48' 58.99'' S",
+        "lon_dms": "58° 32' 33.19'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 15",
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.54255278,
+          -34.81638611
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 166,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "15B",
+        "id": "EZE_15B",
+        "latitud": -34.81666389,
+        "longitud": -58.54285833,
+        "lat_dms": "34° 48' 59.99'' S",
+        "lon_dms": "58° 32' 34.29'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 15",
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.54285833,
+          -34.81666389
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 167,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "16",
+        "id": "EZE_16",
+        "latitud": -34.8163,
+        "longitud": -58.54355556,
+        "lat_dms": "34° 48' 58.68'' S",
+        "lon_dms": "58° 32' 36.80'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 16A Y 16B",
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.54355556,
+          -34.8163
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 168,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "16A",
+        "id": "EZE_16A",
+        "latitud": -34.81619167,
+        "longitud": -58.5435,
+        "lat_dms": "34° 48' 58.29'' S",
+        "lon_dms": "58° 32' 36.60'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 16",
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.5435,
+          -34.81619167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 169,
+        "icao": "SAEZ",
+        "iata": "EZE",
+        "aeropuerto": "Ezeiza / Ministro Pistarini",
+        "Posicion": "16B",
+        "id": "EZE_16B",
+        "latitud": -34.81648611,
+        "longitud": -58.54382222,
+        "lat_dms": "34° 48' 59.35'' S",
+        "lon_dms": "58° 32' 37.76'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e1081d3bca8",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAEZ AD 2.B2; Plataforma comercial - Sector I",
+        "sector_plataforma": "Plataforma comercial - Sector I",
+        "aip_pagina": "SAEZ AD 2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso con planta de poder.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 16",
+        "salida": "Salida tractoreada mediante pushback hasta el eje central de la plataforma, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.54382222,
+          -34.81648611
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 241,
+        "icao": "SAME",
+        "iata": "MDZ",
+        "aeropuerto": "Mendoza / El Plumerillo",
+        "Posicion": "2",
+        "id": "MDZ_2",
+        "latitud": -32.82724722,
+        "longitud": -68.79791944,
+        "lat_dms": "32° 49' 38.09'' S",
+        "lon_dms": "68° 47' 52.51'' W",
+        "fecha_doc": "2025-06-12",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6801727367090",
+        "nota_fuente": "AMDT AIRAC 1/2025; SAME AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SAME AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Ingreso con planta de poder y asistencia de señalero.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 2A",
+        "salida": "Salida mediante remolque hasta el eje central de plataforma. | Uso obligatorio de señalero para la salida.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.79791944,
+          -32.82724722
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 242,
+        "icao": "SAME",
+        "iata": "MDZ",
+        "aeropuerto": "Mendoza / El Plumerillo",
+        "Posicion": "2A",
+        "id": "MDZ_2A",
+        "latitud": -32.82719722,
+        "longitud": -68.79788611,
+        "lat_dms": "32° 49' 37.91'' S",
+        "lon_dms": "68° 47' 52.39'' W",
+        "fecha_doc": "2025-06-12",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6801727367090",
+        "nota_fuente": "AMDT AIRAC 1/2025; SAME AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SAME AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Ingreso con planta de poder y asistencia de señalero. | Las aeronaves Clave D y E ingresan exclusivamente por TWY D.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 1 y 2 | Con aeronave Clave D, limita ingresos y salidas por TWY D a aeronaves hasta Clave C | Con aeronave Clave E, penaliza ingresos y salidas por TWY D",
+        "salida": "Las aeronaves Clave D y E deben ser tractoreadas por TWY D hasta el eje central de TWY A. | Uso obligatorio de señalero para la salida.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.79788611,
+          -32.82719722
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 243,
+        "icao": "SAME",
+        "iata": "MDZ",
+        "aeropuerto": "Mendoza / El Plumerillo",
+        "Posicion": "3",
+        "id": "MDZ_3",
+        "latitud": -32.82766944,
+        "longitud": -68.79793611,
+        "lat_dms": "32° 49' 39.61'' S",
+        "lon_dms": "68° 47' 52.57'' W",
+        "fecha_doc": "2025-06-12",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6801727367090",
+        "nota_fuente": "AMDT AIRAC 1/2025; SAME AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SAME AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Ingreso con planta de poder y asistencia de señalero.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 4A",
+        "salida": "Salida mediante remolque hasta el eje central de plataforma. | Uso obligatorio de señalero para la salida.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.79793611,
+          -32.82766944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 244,
+        "icao": "SAME",
+        "iata": "MDZ",
+        "aeropuerto": "Mendoza / El Plumerillo",
+        "Posicion": "4",
+        "id": "MDZ_4",
+        "latitud": -32.82801944,
+        "longitud": -68.79793056,
+        "lat_dms": "32° 49' 40.87'' S",
+        "lon_dms": "68° 47' 52.55'' W",
+        "fecha_doc": "2025-06-12",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6801727367090",
+        "nota_fuente": "AMDT AIRAC 1/2025; SAME AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SAME AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Ingreso con planta de poder y asistencia de señalero.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 4A",
+        "salida": "Salida mediante remolque hasta el eje central de plataforma. | Uso obligatorio de señalero para la salida.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.79793056,
+          -32.82801944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 284,
+        "icao": "SANC",
+        "iata": "CTC",
+        "aeropuerto": "Catamarca",
+        "Posicion": "2",
+        "id": "CTC_2",
+        "latitud": -28.59273056,
+        "longitud": -65.75435,
+        "lat_dms": "28° 35' 33.83'' S",
+        "lon_dms": "65° 45' 15.66'' W",
+        "fecha_doc": "2025-06-12",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68011d8d6a962",
+        "nota_fuente": "AMDT AIRAC 1/2025; SANC AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SANC AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Los ingresos a las posiciones 1 a 4 pueden realizarse con planta de poder, bajo asistencia de señalero y atendiendo las restricciones.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 3 y 4",
+        "salida": "Al iniciar el rodaje de salida se debe realizar giro a la derecha. | Antes de abandonar la posición se requiere autorización de la Torre de Control.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.75435,
+          -28.59273056
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 297,
+        "icao": "SANR",
+        "iata": "RHD",
+        "aeropuerto": "Termas de Río Hondo",
+        "Posicion": "1",
+        "id": "RHD_1",
+        "latitud": -27.506175,
+        "longitud": -64.93359444,
+        "lat_dms": "27° 30' 22.23'' S",
+        "lon_dms": "64° 56' 00.94'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e109ed91d15",
+        "nota_fuente": "AMDT AIRAC 1/2026; SANR AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SANR AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "El ingreso a las posiciones podrá realizarse utilizando la planta de poder de las aeronaves en todos los casos, siempre bajo la asistencia de un Señalero y atendiendo a las \"Excepciones” indicadas en la presente.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 1A",
+        "salida": "La salida de las aeronaves para las PSN 1A, 3A, 4, 5, 6, 7, 8, 9, 10 y 11 será autónoma y para las PSN 1, 2, 3 y 12 será asistida. | Las aeronaves serán remolcadas desde las posiciones de estacionamiento hasta el eje del rodaje en plataforma, donde se procederá a la puesta en marcha de motores.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.93359444,
+          -27.506175
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 317,
+        "icao": "SANT",
+        "iata": "TUC",
+        "aeropuerto": "Tucumán / Tte. B. Matienzo",
+        "Posicion": "2A",
+        "id": "TUC_2A",
+        "latitud": -26.83528333,
+        "longitud": -65.10766667,
+        "lat_dms": "26° 50' 07.02'' S",
+        "lon_dms": "65° 06' 27.60'' W",
+        "fecha_doc": "2024-07-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e10abf364bf",
+        "nota_fuente": "AMDT AIRAC 1/2024; SANT AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SANT AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Ingreso con planta de poder y asistencia de señalero.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 2 y 3",
+        "salida": "Salida mediante remolque hacia atrás hasta el eje central de plataforma. | Aeronaves Clave B/C sin barra de remolque pueden maniobrar con señalero, sin posición adyacente ocupada y con empuje reducido.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.10766667,
+          -26.83528333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 328,
+        "icao": "SANU",
+        "iata": "UAQ",
+        "aeropuerto": "San Juan / Domingo F. Sarmiento",
+        "Posicion": "4",
+        "id": "UAQ_4",
+        "latitud": -31.57163611,
+        "longitud": -68.42217778,
+        "lat_dms": "31° 34' 17.89'' S",
+        "lon_dms": "68° 25' 19.84'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68dea06377505",
+        "nota_fuente": "AMDT AIRAC 2/2025; SANU AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SANU AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Los ingresos pueden realizarse utilizando la planta de poder, atendiendo las restricciones de cada posición.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Las posiciones 3, 4, 5, 6, 7 y 8 salen asistidas por remolque o pushback hasta el eje de rodaje, con señalero principal y puntero de ala. | Todas las salidas deben respetar las restricciones de la tabla de estacionamiento.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.42217778,
+          -31.57163611
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 329,
+        "icao": "SANU",
+        "iata": "UAQ",
+        "aeropuerto": "San Juan / Domingo F. Sarmiento",
+        "Posicion": "5",
+        "id": "UAQ_5",
+        "latitud": -31.57118611,
+        "longitud": -68.42216667,
+        "lat_dms": "31° 34' 16.27'' S",
+        "lon_dms": "68° 25' 19.80'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68dea06377505",
+        "nota_fuente": "AMDT AIRAC 2/2025; SANU AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SANU AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Los ingresos pueden realizarse utilizando la planta de poder, atendiendo las restricciones de cada posición.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Las posiciones 3, 4, 5, 6, 7 y 8 salen asistidas por remolque o pushback hasta el eje de rodaje, con señalero principal y puntero de ala. | Todas las salidas deben respetar las restricciones de la tabla de estacionamiento.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.42216667,
+          -31.57118611
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 346,
+        "icao": "SARC",
+        "iata": "CNQ",
+        "aeropuerto": "Corrientes / Fernando Piragine Niveyro",
+        "Posicion": "1",
+        "id": "CNQ_1",
+        "latitud": -27.44865,
+        "longitud": -58.75869167,
+        "lat_dms": "27° 26' 55.14'' S",
+        "lon_dms": "58° 45' 31.29'' W",
+        "fecha_doc": "2025-06-12",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68066e6ebad80",
+        "nota_fuente": "AMDT AIRAC 1/2025; SARC AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SARC AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Las aeronaves Clave C o superior ingresan con señaleros de punta de ala.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Salida mediante remolque hasta el punto de liberación en el eje central hacia TWY A, bajo asistencia de señaleros.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.75869167,
+          -27.44865
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 363,
+        "icao": "SARF",
+        "iata": "FMA",
+        "aeropuerto": "Formosa / Formosa",
+        "Posicion": "1",
+        "id": "FMA_1",
+        "latitud": -26.21415556,
+        "longitud": -58.23016111,
+        "lat_dms": "26° 12' 50.96'' S",
+        "lon_dms": "58° 13' 48.58'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e110d2641fc",
+        "nota_fuente": "AMDT AIRAC 1/2026; SARF AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SARF AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Los ingresos/salidas deberán ser realizados con señaleros de punta de ala para cualquier aeronave. | Los vehículos/equipos de asistencia a la aeronave, deberán mantenerse dentro de las líneas de seguridad establecidas para cada posición. 2.2.1 Ingresos | Los ingresos de aeronaves a plataforma por las calles de rodaje se harán bajo instrucción del servicio de tránsito aéreo en todos los casos bajo la asistencia de señaleros y atendiendo a las “Excepciones” detalladas en el punto 2.3.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Los ingresos/salidas deberán ser realizados con señaleros de punta de ala para cualquier aeronave. | Los ingresos de aeronaves a plataforma por las calles de rodaje se harán bajo instrucción del servicio de tránsito aéreo en todos los casos bajo la asistencia de señaleros y atendiendo a las “Excepciones” detalladas en el punto 2.3.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.23016111,
+          -26.21415556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 371,
+        "icao": "SARI",
+        "iata": "IGR",
+        "aeropuerto": "Cataratas del Iguazú / Mayor D. Carlos Eduardo Krause",
+        "Posicion": "3",
+        "id": "IGR_3",
+        "latitud": -25.73214167,
+        "longitud": -54.47676389,
+        "lat_dms": "25° 43' 55.71'' S",
+        "lon_dms": "54° 28' 36.35'' W",
+        "fecha_doc": "2023-07-13",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6468d99f9877d",
+        "nota_fuente": "AMDT AIRAC 1/2023; SARI AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SARI AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso autónomo a velocidad reducida, con asistencia de señalero.",
+        "pasarela": true,
+        "restricciones": "Penaliza 3A",
+        "salida": "Salida mediante remolque hasta la línea central de plataforma.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -54.47676389,
+          -25.73214167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 372,
+        "icao": "SARI",
+        "iata": "IGR",
+        "aeropuerto": "Cataratas del Iguazú / Mayor D. Carlos Eduardo Krause",
+        "Posicion": "3A",
+        "id": "IGR_3A",
+        "latitud": -25.73210833,
+        "longitud": -54.4767,
+        "lat_dms": "25° 43' 55.59'' S",
+        "lon_dms": "54° 28' 36.12'' W",
+        "fecha_doc": "2023-07-13",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6468d99f9877d",
+        "nota_fuente": "AMDT AIRAC 1/2023; SARI AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SARI AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso autónomo a velocidad reducida, con asistencia de señalero. | Con PSN 1A ocupada por aeronave Clave D/E, el ingreso o salida de PSN 3A por aeronave Clave D/E se realiza por TWY C.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 3 y 4. Penaliza ACFT clave “D” y “E” en plataforma",
+        "salida": "Salida mediante remolque hasta la línea central de plataforma.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -54.4767,
+          -25.73210833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 373,
+        "icao": "SARI",
+        "iata": "IGR",
+        "aeropuerto": "Cataratas del Iguazú / Mayor D. Carlos Eduardo Krause",
+        "Posicion": "4",
+        "id": "IGR_4",
+        "latitud": -25.731975,
+        "longitud": -54.47713889,
+        "lat_dms": "25° 43' 55.11'' S",
+        "lon_dms": "54° 28' 37.70'' W",
+        "fecha_doc": "2023-07-13",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6468d99f9877d",
+        "nota_fuente": "AMDT AIRAC 1/2023; SARI AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SARI AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso autónomo a velocidad reducida, con asistencia de señalero.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 3A",
+        "salida": "Salida mediante remolque hasta la línea central de plataforma.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -54.47713889,
+          -25.731975
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 383,
+        "icao": "SASA",
+        "iata": "SLA",
+        "aeropuerto": "Salta / Gral. Martín Miguel de Güemes",
+        "Posicion": "1",
+        "id": "SLA_1",
+        "latitud": -24.84455,
+        "longitud": -65.47960833,
+        "lat_dms": "24° 50' 40.38'' S",
+        "lon_dms": "65° 28' 46.59'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68dea17800eb7",
+        "nota_fuente": "AMDT AIRAC 2/2025; SASA AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SASA AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Ingreso con planta de poder, bajo asistencia de señalero principal y puntero de ala.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Salida mediante remolque hasta el eje central de plataforma, con señalero principal y puntero de ala.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.47960833,
+          -24.84455
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 384,
+        "icao": "SASA",
+        "iata": "SLA",
+        "aeropuerto": "Salta / Gral. Martín Miguel de Güemes",
+        "Posicion": "2",
+        "id": "SLA_2",
+        "latitud": -24.84455556,
+        "longitud": -65.47909167,
+        "lat_dms": "24° 50' 40.40'' S",
+        "lon_dms": "65° 28' 44.73'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68dea17800eb7",
+        "nota_fuente": "AMDT AIRAC 2/2025; SASA AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SASA AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Ingreso con planta de poder, bajo asistencia de señalero principal y puntero de ala.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Salida mediante remolque hasta el eje central de plataforma, con señalero principal y puntero de ala.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.47909167,
+          -24.84455556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 386,
+        "icao": "SASA",
+        "iata": "SLA",
+        "aeropuerto": "Salta / Gral. Martín Miguel de Güemes",
+        "Posicion": "4",
+        "id": "SLA_4",
+        "latitud": -24.84485278,
+        "longitud": -65.4783,
+        "lat_dms": "24° 50' 41.47'' S",
+        "lon_dms": "65° 28' 41.88'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68dea17800eb7",
+        "nota_fuente": "AMDT AIRAC 2/2025; SASA AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SASA AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Ingreso con planta de poder, bajo asistencia de señalero principal y puntero de ala.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Salida mediante remolque hasta el eje central de plataforma, con señalero principal y puntero de ala.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.4783,
+          -24.84485278
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 397,
+        "icao": "SASJ",
+        "iata": "JUJ",
+        "aeropuerto": "Jujuy / Gobernador Horacio Guzmán",
+        "Posicion": "3",
+        "id": "JUJ_3",
+        "latitud": -24.38619444,
+        "longitud": -65.09453889,
+        "lat_dms": "24° 23' 10.30'' S",
+        "lon_dms": "65° 05' 40.34'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68dea1b4ba71b",
+        "nota_fuente": "AMDT AIRAC 2/2025; SASJ AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SASJ AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Los ingresos a todas las posiciones podrán realizarse utilizando la planta de poder de las aeronaves, siempre bajo la asistencia de señalero principal y puntera de ala, y atendiendo a las “Restricciones” establecidas en la Tabla del punto 2.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Las salidas de las posiciones 1 a 4 se realizarán exclusivamente mediante uso de remolque (pushback) con asistencia de señalero principal y puntero de ala, debiéndose remolcar a las aeronaves hasta el eje central de la plataforma. | Las salidas de las posiciones 1A, 1B, 2A, 5, 5A y 5B podrán realizarse utilizando la planta de poder de las aeronaves, siempre bajo la asistencia de señalero principal y de punta de ala, atendiendo a las “Restricciones” establecidas en la Tabla del punto 2. | Previo a abandonar cualquiera de las posiciones, se deberá contar con la correspondiente autorización de la Torre de Control.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.09453889,
+          -24.38619444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 412,
+        "icao": "SAVC",
+        "iata": "CRD",
+        "aeropuerto": "Comodoro Rivadavia / Gral. E. Mosconi",
+        "Posicion": "2",
+        "id": "CRD_2",
+        "latitud": -45.78967222,
+        "longitud": -67.46869722,
+        "lat_dms": "45° 47' 22.82'' S",
+        "lon_dms": "67° 28' 07.31'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68dea21e60df8",
+        "nota_fuente": "AMDT AIRAC 2/2025; SAVC AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SAVC AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Ingreso con planta de poder y asistencia de señalero.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Salida mediante pushback hasta el eje central de la plataforma.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.46869722,
+          -45.78967222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 398,
+        "icao": "SASJ",
+        "iata": "JUJ",
+        "aeropuerto": "Jujuy / Gobernador Horacio Guzmán",
+        "Posicion": "4",
+        "id": "JUJ_4",
+        "latitud": -24.38652222,
+        "longitud": -65.09433333,
+        "lat_dms": "24° 23' 11.48'' S",
+        "lon_dms": "65° 05' 39.60'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68dea1b4ba71b",
+        "nota_fuente": "AMDT AIRAC 2/2025; SASJ AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SASJ AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Los ingresos a todas las posiciones podrán realizarse utilizando la planta de poder de las aeronaves, siempre bajo la asistencia de señalero principal y puntera de ala, y atendiendo a las “Restricciones” establecidas en la Tabla del punto 2.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Las salidas de las posiciones 1 a 4 se realizarán exclusivamente mediante uso de remolque (pushback) con asistencia de señalero principal y puntero de ala, debiéndose remolcar a las aeronaves hasta el eje central de la plataforma. | Las salidas de las posiciones 1A, 1B, 2A, 5, 5A y 5B podrán realizarse utilizando la planta de poder de las aeronaves, siempre bajo la asistencia de señalero principal y de punta de ala, atendiendo a las “Restricciones” establecidas en la Tabla del punto 2. | Previo a abandonar cualquiera de las posiciones, se deberá contar con la correspondiente autorización de la Torre de Control.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.09433333,
+          -24.38652222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 411,
+        "icao": "SAVC",
+        "iata": "CRD",
+        "aeropuerto": "Comodoro Rivadavia / Gral. E. Mosconi",
+        "Posicion": "1",
+        "id": "CRD_1",
+        "latitud": -45.78963611,
+        "longitud": -67.46812778,
+        "lat_dms": "45° 47' 22.69'' S",
+        "lon_dms": "67° 28' 05.26'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68dea21e60df8",
+        "nota_fuente": "AMDT AIRAC 2/2025; SAVC AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SAVC AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Ingreso con planta de poder y asistencia de señalero.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Salida mediante pushback hasta el eje central de la plataforma.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.46812778,
+          -45.78963611
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 424,
+        "icao": "SAVT",
+        "iata": "REL",
+        "aeropuerto": "Trelew / Almirante Marcos A. Zar",
+        "Posicion": "1A",
+        "id": "REL_1A",
+        "latitud": -43.21006667,
+        "longitud": -65.28322222,
+        "lat_dms": "43° 12' 36.24'' S",
+        "lon_dms": "65° 16' 59.60'' W",
+        "fecha_doc": "2023-11-30",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651ed95c6f4da",
+        "nota_fuente": "AMDT AIRAC 2/2023; SAVT AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SAVT AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "El ingreso a todas las posiciones podrá realizarse utilizando la planta de poder de las aeronaves en todos los casos y bajo la asistencia de un señalero y atendiendo a las “Excepciones” indicadas.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": null,
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.28322222,
+          -43.21006667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 444,
+        "icao": "SAWC",
+        "iata": "FTE",
+        "aeropuerto": "El Calafate / Comandante Armando Tola",
+        "Posicion": "2",
+        "id": "FTE_2",
+        "latitud": -50.28345,
+        "longitud": -72.05321389,
+        "lat_dms": "50° 17' 00.42'' S",
+        "lon_dms": "72° 03' 11.57'' W",
+        "fecha_doc": "2023-11-30",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651edb49c61df",
+        "nota_fuente": "AMDT AIRAC 2/2023; SAWC AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SAWC AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso autónomo.",
+        "pasarela": true,
+        "restricciones": "Ingreso autónomo; salida asistida con tractor",
+        "salida": "Salida asistida con tractor.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.05321389,
+          -50.28345
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 445,
+        "icao": "SAWC",
+        "iata": "FTE",
+        "aeropuerto": "El Calafate / Comandante Armando Tola",
+        "Posicion": "3",
+        "id": "FTE_3",
+        "latitud": -50.28358333,
+        "longitud": -72.05366111,
+        "lat_dms": "50° 17' 00.90'' S",
+        "lon_dms": "72° 03' 13.18'' W",
+        "fecha_doc": "2023-11-30",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651edb49c61df",
+        "nota_fuente": "AMDT AIRAC 2/2023; SAWC AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SAWC AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso autónomo.",
+        "pasarela": true,
+        "restricciones": "Ingreso autónomo; salida asistida con tractor",
+        "salida": "Salida asistida con tractor.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.05366111,
+          -50.28358333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 446,
+        "icao": "SAWC",
+        "iata": "FTE",
+        "aeropuerto": "El Calafate / Comandante Armando Tola",
+        "Posicion": "4",
+        "id": "FTE_4",
+        "latitud": -50.28356944,
+        "longitud": -72.05456944,
+        "lat_dms": "50° 17' 00.85'' S",
+        "lon_dms": "72° 03' 16.45'' W",
+        "fecha_doc": "2023-11-30",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651edb49c61df",
+        "nota_fuente": "AMDT AIRAC 2/2023; SAWC AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SAWC AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso autónomo.",
+        "pasarela": true,
+        "restricciones": "Ingreso autónomo; salida asistida con tractor | Penaliza PSN 4A",
+        "salida": "Salida asistida con tractor.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.05456944,
+          -50.28356944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 447,
+        "icao": "SAWC",
+        "iata": "FTE",
+        "aeropuerto": "El Calafate / Comandante Armando Tola",
+        "Posicion": "4A",
+        "id": "FTE_4A",
+        "latitud": -50.28366111,
+        "longitud": -72.05459722,
+        "lat_dms": "50° 17' 01.18'' S",
+        "lon_dms": "72° 03' 16.55'' W",
+        "fecha_doc": "2023-11-30",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-651edb49c61df",
+        "nota_fuente": "AMDT AIRAC 2/2023; SAWC AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SAWC AD2.B2",
+        "metodo_extraccion": "Verificación visual contra tabla AIP; geometría original conservada",
+        "ingreso": "Ingreso autónomo.",
+        "pasarela": true,
+        "restricciones": "Ingreso autónomo; salida asistida con tractor | Penaliza PSN 4, 5 y 8",
+        "salida": "Salida asistida con tractor.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.05459722,
+          -50.28366111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 453,
+        "icao": "SAWE",
+        "iata": "RGA",
+        "aeropuerto": "Río Grande",
+        "Posicion": "1",
+        "id": "RGA_1",
+        "latitud": -53.78123333,
+        "longitud": -67.75400833,
+        "lat_dms": "53° 46' 52.44'' S",
+        "lon_dms": "67° 45' 14.43'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e2583c72123",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAWE AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SAWE AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Los ingresos pueden realizarse con planta de poder, bajo asistencia de señalero principal y puntero de ala, atendiendo las restricciones.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": null,
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.75400833,
+          -53.78123333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 460,
+        "icao": "SAWG",
+        "iata": "RGL",
+        "aeropuerto": "Río Gallegos / Piloto Civil Norberto Fernández",
+        "Posicion": "2",
+        "id": "RGL_2",
+        "latitud": -51.611475,
+        "longitud": -69.30556111,
+        "lat_dms": "51° 36' 41.31'' S",
+        "lon_dms": "69° 18' 20.02'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e116030a7f0",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAWG AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SAWG AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Los ingresos a las posiciones de estacionamiento de la plataforma se podrán realizar utilizando el GPU de las aeronaves",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Previo a abandonar las posiciones, se deberá contar con la correspondiente autorización de la Torre de Control. | Las aeronaves que ocupen la PSN 2, serán remolcadas hacia atrás, hasta el eje central de la plataforma.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.30556111,
+          -51.611475
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 461,
+        "icao": "SAWG",
+        "iata": "RGL",
+        "aeropuerto": "Río Gallegos / Piloto Civil Norberto Fernández",
+        "Posicion": "3",
+        "id": "RGL_3",
+        "latitud": -51.61174444,
+        "longitud": -69.30497778,
+        "lat_dms": "51° 36' 42.28'' S",
+        "lon_dms": "69° 18' 17.92'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69e116030a7f0",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAWG AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SAWG AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Los ingresos a las posiciones de estacionamiento de la plataforma se podrán realizar utilizando el GPU de las aeronaves",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Previo a abandonar las posiciones, se deberá contar con la correspondiente autorización de la Torre de Control. | Las que estacionen en la PSN 3, serán remolcadas hacia atrás hasta liberar el giro en forma autónoma con resguardo de las aeronaves de PSN 4 y 5.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.30497778,
+          -51.61174444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 464,
+        "icao": "SAWH",
+        "iata": "USH",
+        "aeropuerto": "Ushuaia / Malvinas Argentinas",
+        "Posicion": "1",
+        "id": "USH_1",
+        "latitud": -54.84003056,
+        "longitud": -68.312525,
+        "lat_dms": "54° 50' 24.11'' S",
+        "lon_dms": "68° 18' 45.09'' W",
+        "fecha_doc": "2025-06-12",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6801972fc475b",
+        "nota_fuente": "AMDT AIRAC 1/2025; SAWH AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SAWH AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Aeronaves Clave E ingresan preferentemente por TWY B.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Salida con asistencia de remolque.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.312525,
+          -54.84003056
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 465,
+        "icao": "SAWH",
+        "iata": "USH",
+        "aeropuerto": "Ushuaia / Malvinas Argentinas",
+        "Posicion": "1A",
+        "id": "USH_1A",
+        "latitud": -54.84011111,
+        "longitud": -68.312575,
+        "lat_dms": "54° 50' 24.40'' S",
+        "lon_dms": "68° 18' 45.27'' W",
+        "fecha_doc": "2025-06-12",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6801972fc475b",
+        "nota_fuente": "AMDT AIRAC 1/2025; SAWH AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SAWH AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Ingreso por TWY A o B.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 1",
+        "salida": "Salida con asistencia de remolque.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.312575,
+          -54.84011111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 466,
+        "icao": "SAWH",
+        "iata": "USH",
+        "aeropuerto": "Ushuaia / Malvinas Argentinas",
+        "Posicion": "2",
+        "id": "USH_2",
+        "latitud": -54.84008056,
+        "longitud": -68.31191389,
+        "lat_dms": "54° 50' 24.29'' S",
+        "lon_dms": "68° 18' 42.89'' W",
+        "fecha_doc": "2025-06-12",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-6801972fc475b",
+        "nota_fuente": "AMDT AIRAC 1/2025; SAWH AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SAWH AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Aeronaves Clave E ingresan preferentemente por TWY B.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Salida con asistencia de remolque.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.31191389,
+          -54.84008056
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 480,
+        "icao": "SAZM",
+        "iata": "MDQ",
+        "aeropuerto": "Mar del Plata / Astor Piazzolla",
+        "Posicion": "3",
+        "id": "MDQ_3",
+        "latitud": -37.93316111,
+        "longitud": -57.580975,
+        "lat_dms": "37° 55' 59.38'' S",
+        "lon_dms": "57° 34' 51.51'' W",
+        "fecha_doc": "2025-11-27",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68dea31b72d78",
+        "nota_fuente": "AMDT AIRAC 2/2025; SAZM AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SAZM AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Ingreso con planta de poder, bajo asistencia de señalero y puntero de ala.",
+        "pasarela": true,
+        "restricciones": "Pasarela limitada a aeronaves con altura de puerta de hasta 2,59 m",
+        "salida": "Salida asistida por señalero y puntero de ala. | Para aeronaves de más de 36 m de envergadura con destino a RWY 13, el egreso es por TWY A con PSN 1, 2, 3 y 4 libres; en los demás casos, por TWY B.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.580975,
+          -37.93316111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 492,
+        "icao": "SAZN",
+        "iata": "NQN",
+        "aeropuerto": "Neuquén / Presidente Perón",
+        "Posicion": "1",
+        "id": "NQN_1",
+        "latitud": -38.95168056,
+        "longitud": -68.14156667,
+        "lat_dms": "38° 57' 06.05'' S",
+        "lon_dms": "68° 08' 29.64'' W",
+        "fecha_doc": "2025-06-12",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68016b5fc7a32",
+        "nota_fuente": "AMDT AIRAC 1/2025; SAZN AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SAZN AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Podrán realizarse utilizando la planta de poder de las aeronaves en todos los casos, siempre bajo la asistencia de un señalero y atendiendo a las restricciones.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "PSN 1 a 5 serán mediante push-back hasta alinearse con el eje de rodaje en plataforma, siempre bajo la asistencia de un señalero y atendiendo a las restricciones. | Previo a abandonar cualquiera de las posiciones, se deberá contar con la correspondiente autorización de la torre de control.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.14156667,
+          -38.95168056
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 505,
+        "icao": "SAZR",
+        "iata": "RSA",
+        "aeropuerto": "Santa Rosa",
+        "Posicion": "4",
+        "id": "RSA_4",
+        "latitud": -36.59158333333333,
+        "longitud": -64.27903055555555,
+        "lat_dms": "36° 35' 29.70'' S",
+        "lon_dms": "64° 16' 44.51'' W",
+        "fecha_doc": "2025-06-12",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-68012a61051ad",
+        "nota_fuente": "AMDT AIRAC 1/2025; SAZR AD2.B2",
+        "sector_plataforma": null,
+        "aip_pagina": "SAZR AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Los ingresos a las posiciones de la plataforma podrán realizarse utilizando la planta de poder de las aeronaves en todos los casos siempre bajo la asistencia de un Señalero.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Previo a abandonar cualquiera de las posiciones, se deberá contar con la correspondiente autorización de la Torre de Control.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.27903055555555,
+          -36.59158333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 511,
+        "icao": "SAZS",
+        "iata": "BRC",
+        "aeropuerto": "San Carlos de Bariloche / San Carlos de Bariloche",
+        "Posicion": "5",
+        "id": "BRC_5",
+        "latitud": -41.14636944,
+        "longitud": -71.162175,
+        "lat_dms": "41° 08' 46.93'' S",
+        "lon_dms": "71° 09' 43.83'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69f1f54c15953",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAZS AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SAZS AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Ingreso con planta de poder y asistencia de señalero.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Salida mediante retroceso hasta permitir movimiento autónomo.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.162175,
+          -41.14636944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 512,
+        "icao": "SAZS",
+        "iata": "BRC",
+        "aeropuerto": "San Carlos de Bariloche / San Carlos de Bariloche",
+        "Posicion": "5B",
+        "id": "BRC_5B",
+        "latitud": -41.14630833,
+        "longitud": -71.162,
+        "lat_dms": "41° 08' 46.71'' S",
+        "lon_dms": "71° 09' 43.20'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69f1f54c15953",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAZS AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SAZS AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Ingreso con planta de poder y asistencia de señalero.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 4, 4A, 5 y 6",
+        "salida": "Salida mediante retroceso hasta permitir movimiento autónomo.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.162,
+          -41.14630833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 513,
+        "icao": "SAZS",
+        "iata": "BRC",
+        "aeropuerto": "San Carlos de Bariloche / San Carlos de Bariloche",
+        "Posicion": "5C",
+        "id": "BRC_5C",
+        "latitud": -41.14632778,
+        "longitud": -71.16193056,
+        "lat_dms": "41° 08' 46.78'' S",
+        "lon_dms": "71° 09' 42.95'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69f1f54c15953",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAZS AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SAZS AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Ingreso con planta de poder y asistencia de señalero.",
+        "pasarela": true,
+        "restricciones": "Penaliza PSN 4, 4A, 5 y 6",
+        "salida": "Salida mediante tractor pushback y señalero.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.16193056,
+          -41.14632778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 515,
+        "icao": "SAZS",
+        "iata": "BRC",
+        "aeropuerto": "San Carlos de Bariloche / San Carlos de Bariloche",
+        "Posicion": "7",
+        "id": "BRC_7",
+        "latitud": -41.14680556,
+        "longitud": -71.16137222,
+        "lat_dms": "41° 08' 48.50'' S",
+        "lon_dms": "71° 09' 40.94'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69f1f54c15953",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAZS AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SAZS AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Ingreso con planta de poder y asistencia de señalero.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Salida mediante retroceso hasta permitir movimiento autónomo.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.16137222,
+          -41.14680556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "fid": 516,
+        "icao": "SAZS",
+        "iata": "BRC",
+        "aeropuerto": "San Carlos de Bariloche / San Carlos de Bariloche",
+        "Posicion": "8",
+        "id": "BRC_8",
+        "latitud": -41.14690833,
+        "longitud": -71.16101111,
+        "lat_dms": "41° 08' 48.87'' S",
+        "lon_dms": "71° 09' 39.64'' W",
+        "fecha_doc": "2026-06-11",
+        "tipo_fuente": "AIP",
+        "url_fuente": "https://ais.anac.gob.ar/descarga/aip-69f1f54c15953",
+        "nota_fuente": "AMDT AIRAC 1/2026; SAZS AD2.B2; Plataforma comercial",
+        "sector_plataforma": "Plataforma comercial",
+        "aip_pagina": "SAZS AD2.B2",
+        "metodo_extraccion": "Tabla de coordenadas AIP; conversión DMS a decimal; validación contra geometría",
+        "ingreso": "Ingreso con planta de poder y asistencia de señalero.",
+        "pasarela": true,
+        "restricciones": null,
+        "salida": "Salida mediante retroceso hasta permitir movimiento autónomo.",
+        "tipo_elemento": "Pasarela telescópica",
+        "fuente_derivacion": "fuentes/psn_posiciones.geojson"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.16101111,
+          -41.14690833
+        ]
+      }
+    }
+  ]
+}
