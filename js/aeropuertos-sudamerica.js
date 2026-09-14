@@ -1582,8 +1582,12 @@ function compareAirports(a, b, searchTokens) {
 
     if (zoom && state.map) {
       const targetZoom = Math.max(state.map.getZoom(), AUTO_SATELLITE_ZOOM);
-      const longitudeOffset = window.innerWidth > 760 ? -0.35 : 0;
-      state.map.flyTo([airport.geometry.latitude, airport.geometry.longitude + longitudeOffset], targetZoom, {
+      const target = L.latLng(
+        airport.geometry.latitude,
+        airport.geometry.longitude
+      );
+    
+      state.map.flyTo(target, targetZoom, {
         duration: .65
       });
     }
