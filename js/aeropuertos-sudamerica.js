@@ -11,7 +11,9 @@ const DATA_URLS = {
   populatedPlaces: "data/sudamerica/ne_10m_populated_places_sudamerica.geojson",
   urbanAreas: "data/sudamerica/ne_10m_urban_areas_sudamerica.geojson",
 };
-
+const ADMIN_HIDE_ZOOM = 8;
+const AUTO_SATELLITE_ZOOM = 11;
+  
   const TYPE_META = {
     internacional: { label: "Internacional", className: "international", color: "#e85d3f" },
     "doméstico": { label: "Doméstico", className: "domestic", color: "#008f9c" },
@@ -50,6 +52,7 @@ const DATA_URLS = {
     mapStage: document.getElementById("mapStage"),
     legend: document.getElementById("mapLegend"),
     legendToggle: document.getElementById("legendToggle"),
+    basemapButtons: [...document.querySelectorAll("[data-basemap]")],
     sidebar: document.getElementById("sidebar"),
     mobileFilter: document.getElementById("mobileFilterButton"),
     mobileBackdrop: document.getElementById("mobileBackdrop"),
@@ -66,6 +69,9 @@ const DATA_URLS = {
     cluster: null,
     administrativeLayer: null,
     countryLayer: null,
+    baseLayers: {},
+    currentBaseLayer: "light",
+    userBaseLayer: "light",
     administrativeLoaded: false,
     territorialAirportsLoaded: false,
     populatedPlaces: [],
@@ -83,10 +89,10 @@ const DATA_URLS = {
     loading: false
   };
 
-  function initMap() {
-    if (!window.L) {
-      throw new Error("La biblioteca del mapa no está disponible.");
-    }
+function initMap() {
+  if (!window.L) {
+    throw new Error("La biblioteca del mapa no está disponible.");
+  }
 
   const lightLayer = L.tileLayer(
     "https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png?key=cb1_325a_1_1e9283ed596ac884153a8003",
@@ -97,66 +103,176 @@ const DATA_URLS = {
     }
   );
 
-    const osmLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  const osmLayer = L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
       maxZoom: 19,
       attribution: "&copy; OpenStreetMap contributors"
-    });
+    }
+  );
 
-    state.map = L.map("map", {
-      center: [-18, -60],
-      zoom: 4,
-      minZoom: 3,
-      maxZoom: 18,
-      zoomControl: false,
-      worldCopyJump: true,
-      layers: [lightLayer]
-    });
+  const satelliteLayer = L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    {
+      maxZoom: 19,
+      attribution: "Tiles &copy; Esri — Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community"
+    }
+  );
 
-    L.control.zoom({ position: "topleft" }).addTo(state.map);
-    L.control.layers(
-      { "Mapa claro": lightLayer, OpenStreetMap: osmLayer },
-      null,
-      { position: "bottomleft", collapsed: true }
-    ).addTo(state.map);
+  state.baseLayers = {
+    light: lightLayer,
+    osm: osmLayer,
+    satellite: satelliteLayer
+  };
 
-    state.map.createPane("administrativePane");
-    state.map.getPane("administrativePane").style.zIndex = 320;
-    state.administrativeLayer = L.geoJSON(null, {
-      pane: "administrativePane",
-      style: administrativeStyle,
-      onEachFeature: bindAdministrativeFeature
-    }).addTo(state.map);
+  state.currentBaseLayer = "light";
+  state.userBaseLayer = "light";
 
-    state.cluster = L.markerClusterGroup({
-      chunkedLoading: true,
-      chunkInterval: 100,
-      chunkDelay: 30,
-      maxClusterRadius: 42,
-      showCoverageOnHover: false,
-      spiderfyOnMaxZoom: true,
-      removeOutsideVisibleBounds: true,
-      animate: true
-    });
-    
-state.map.createPane("countryPane");
-state.map.getPane("countryPane").style.zIndex = 330;
-state.map.getPane("countryPane").style.pointerEvents = "none";
+  state.map = L.map("map", {
+    center: [-18, -60],
+    zoom: 4,
+    minZoom: 3,
+    maxZoom: 19,
+    zoomControl: false,
+    worldCopyJump: true,
+    layers: [lightLayer]
+  });
 
-state.countryLayer = L.geoJSON(null, {
-  pane: "countryPane",
-  interactive: false,
-  style: {
-    color: "#0b1f33",
-    weight: 1.4,
-    opacity: 0.8,
-    fillOpacity: 0
+  L.control.zoom({ position: "topleft" }).addTo(state.map);
+
+  state.map.createPane("administrativePane");
+  state.map.getPane("administrativePane").style.zIndex = 320;
+
+  state.administrativeLayer = L.geoJSON(null, {
+    pane: "administrativePane",
+    style: administrativeStyle,
+    onEachFeature: bindAdministrativeFeature
+  }).addTo(state.map);
+
+  state.cluster = L.markerClusterGroup({
+    chunkedLoading: true,
+    chunkInterval: 100,
+    chunkDelay: 30,
+    maxClusterRadius: 42,
+    showCoverageOnHover: false,
+    spiderfyOnMaxZoom: true,
+    removeOutsideVisibleBounds: true,
+    animate: true
+  });
+
+  state.map.createPane("countryPane");
+  state.map.getPane("countryPane").style.zIndex = 330;
+  state.map.getPane("countryPane").style.pointerEvents = "none";
+
+  state.countryLayer = L.geoJSON(null, {
+    pane: "countryPane",
+    interactive: false,
+    style: {
+      color: "#0b1f33",
+      weight: 1.4,
+      opacity: 0.8,
+      fillOpacity: 0
+    }
+  }).addTo(state.map);
+
+  state.map.addLayer(state.cluster);
+
+  state.map.on("click", () => closeDetail());
+
+  state.map.on("zoomend", () => {
+    updateAdministrativeVisibility();
+    updateBaseLayerForZoom();
+  });
+
+  updateBasemapButtons();
+}
+
+function setBaseLayer(layerKey, { remember = false } = {}) {
+  const layer = state.baseLayers[layerKey];
+
+  if (!state.map || !layer) return;
+
+  Object.entries(state.baseLayers).forEach(([key, baseLayer]) => {
+    if (key !== layerKey && state.map.hasLayer(baseLayer)) {
+      state.map.removeLayer(baseLayer);
+    }
+  });
+
+  if (!state.map.hasLayer(layer)) {
+    layer.addTo(state.map);
   }
-}).addTo(state.map);
-    
-    state.map.addLayer(state.cluster);
-    state.map.on("click", () => closeDetail());
+
+  state.currentBaseLayer = layerKey;
+
+  if (remember) {
+    state.userBaseLayer = layerKey;
   }
 
+  updateBasemapButtons();
+}
+
+function updateBaseLayerForZoom() {
+  if (!state.map) return;
+
+  const targetLayer =
+    state.map.getZoom() >= AUTO_SATELLITE_ZOOM
+      ? "satellite"
+      : state.userBaseLayer;
+
+  setBaseLayer(targetLayer);
+}
+
+function updateBasemapButtons() {
+  dom.basemapButtons.forEach((button) => {
+    const isActive = button.dataset.basemap === state.currentBaseLayer;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+}
+
+function updateAdministrativeStatus() {
+  if (!dom.administrativeStatus) return;
+
+  if (!state.administrativeLoaded) {
+    dom.administrativeStatus.textContent = "Capa temporalmente no disponible";
+    return;
+  }
+
+  if (!dom.administrativeToggle.checked) {
+    dom.administrativeStatus.textContent = "Capa apagada";
+    return;
+  }
+
+  if (state.map && state.map.getZoom() >= ADMIN_HIDE_ZOOM) {
+    dom.administrativeStatus.textContent = "Oculta al acercar el mapa";
+    return;
+  }
+
+  dom.administrativeStatus.textContent =
+    `${NUMBER_FORMAT.format(state.administrativeCount)} unidades cargadas`;
+}
+
+function updateAdministrativeVisibility() {
+  if (!state.map || !state.administrativeLayer) return;
+
+  const shouldShow =
+    dom.administrativeToggle.checked &&
+    state.administrativeLoaded &&
+    state.map.getZoom() < ADMIN_HIDE_ZOOM;
+
+  const isVisible = state.map.hasLayer(state.administrativeLayer);
+
+  if (shouldShow && !isVisible) {
+    state.map.addLayer(state.administrativeLayer);
+  }
+
+  if (!shouldShow && isVisible) {
+    state.map.removeLayer(state.administrativeLayer);
+  }
+
+  updateAdministrativeStatus();
+}
+  
   async function loadAdministrativeLayer() {
     try {
       const response = await fetchWithRetry(DATA_URLS.administrative, 2);
@@ -168,10 +284,14 @@ state.countryLayer = L.geoJSON(null, {
       state.administrativeLayer.clearLayers();
       state.administrativeLayer.addData(geojson);
       state.administrativeLoaded = true;
-      dom.administrativeStatus.textContent = `${NUMBER_FORMAT.format(geojson.features.length)} unidades cargadas`;
+      state.administrativeCount = geojson.features.length;
+      
+      updateAdministrativeVisibility();
+      
     } catch (error) {
       console.warn("No fue posible cargar la capa administrativa.", error);
       state.administrativeLoaded = false;
+      state.administrativeCount = 0;
       dom.administrativeStatus.textContent = "Capa temporalmente no disponible";
       dom.administrativeToggle.checked = false;
     }
@@ -1461,7 +1581,7 @@ function compareAirports(a, b, searchTokens) {
     setSidebarOpen(false);
 
     if (zoom && state.map) {
-      const targetZoom = Math.max(state.map.getZoom(), 8);
+      const targetZoom = Math.max(state.map.getZoom(), AUTO_SATELLITE_ZOOM);
       const longitudeOffset = window.innerWidth > 760 ? -0.35 : 0;
       state.map.flyTo([airport.geometry.latitude, airport.geometry.longitude + longitudeOffset], targetZoom, {
         duration: .65
@@ -1885,16 +2005,22 @@ dom.year.addEventListener("change", () => {
 dom.territorialAirportsToggle?.addEventListener("change", () => {
   applyFilters({ fit: true });
 });
-    dom.administrativeToggle.addEventListener("change", () => {
-      if (dom.administrativeToggle.checked) {
-        if (state.administrativeLoaded && !state.map.hasLayer(state.administrativeLayer)) {
-          state.map.addLayer(state.administrativeLayer);
-        }
-      } else if (state.map.hasLayer(state.administrativeLayer)) {
-        state.map.removeLayer(state.administrativeLayer);
-      }
-    });
+    
+dom.administrativeToggle.addEventListener("change", () => {
+  updateAdministrativeVisibility();
+});
+    
+dom.basemapButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const layerKey = button.dataset.basemap;
 
+    if (!state.baseLayers[layerKey]) return;
+
+    state.userBaseLayer = layerKey;
+    updateBaseLayerForZoom();
+  });
+});
+    
     dom.typeChips.forEach((chip) => {
       chip.addEventListener("click", () => {
         const type = chip.dataset.type;
