@@ -12,7 +12,9 @@
       "https://davidmegginson.github.io/ourairports-data/airports.csv",
       "https://davidmegginson.github.io/ourairports-data/runways.csv",
       "https://davidmegginson.github.io/ourairports-data/regions.csv"
-    ]
+    ],
+    "observacion_mpn": "MPN / EGYP incorporado como aeropuerto argentino a efectos del mapa territorial y de conectividad aérea con el SNA, con fuente operativa SIAC/ANAC-LATAM y coordenadas/infraestructura complementarias de OurAirports.",
+    "cantidad_registros": 342
   },
   "features": [
     {
@@ -11565,6 +11567,42 @@
         "fecha_actualizacion_dato": "2026-08-04",
         "observaciones": "Inclusión basada en scheduled_service=yes y código IATA de OurAirports. La existencia, denominación y códigos deben contrastarse con la AIP vigente antes de uso operacional. Coordenadas, elevación y pista proceden de OurAirports; la pista principal es la mayor pista no cerrada registrada. Campos incompletos: entidad operadora no verificada en una fuente oficial abierta.",
         "roles_adicionales": []
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "MPN",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.445777,
+          -51.822642
+        ]
+      },
+      "properties": {
+        "clave_union": "MPN",
+        "nombre_oficial": "Aeropuerto de Monte Agradable / Mount Pleasant (Islas Malvinas)",
+        "codigo_iata": "MPN",
+        "codigo_oaci": "EGYP",
+        "pais": "Argentina",
+        "provincia_estado_departamento": "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+        "ciudad": "Monte Agradable",
+        "tipo": "internacional",
+        "elevacion_m": 74,
+        "longitud_pista_m": 2590,
+        "entidad_operadora": null,
+        "fuente": "OurAirports: https://ourairports.com/airports/EGYP/ | Elaboración propia sobre SIAC/ANAC y programación LATAM para conectividad regular con escala argentina",
+        "fuente_tipo": "fuente_secundaria_complementaria+fuente_operativa_argentina",
+        "fuente_oficial": null,
+        "fuente_secundaria": "https://ourairports.com/airports/EGYP/",
+        "nivel_fuente_oficial": "sin_aip_oficial_argentina_localizada",
+        "servicio_regular_fuente": "OurAirports airline_service=yes; informe propio SIAC/ANAC y programación LATAM",
+        "fecha_actualizacion_dato": "2026-09-14",
+        "observaciones": "Incorporado como aeropuerto argentino a efectos del mapa territorial. Conectividad regular considerada: servicio LATAM con vínculo SCL-PUQ-MPN y escala periódica en Río Gallegos o, temporalmente en 2025, Ushuaia. Coordenadas, elevación y pista proceden de OurAirports. Rol militar compartido identificado como función adicional, no como tipo principal.",
+        "roles_adicionales": [
+          "función_internacional",
+          "uso_militar_compartido"
+        ]
       }
     }
   ]
