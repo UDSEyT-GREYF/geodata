@@ -22,7 +22,7 @@
     "duplicados_eliminados": 23,
     "candidatos_ya_validados_eliminados": 1,
     "total_candidatos": 0,
-    "generado_utc": "2026-08-15T08:44:16Z"
+    "generado_utc": "2026-09-15T13:33:26Z"
   },
   "fuentes_revisadas": [
     {
@@ -1224,6 +1224,16 @@
       "criterio_busqueda": "solo_notas_generales_primeras_paginas",
       "url": "https://docs.anac.gob.ar/index.php/s/4SQoJmqTgNKXxLq",
       "download_url": "https://docs.anac.gob.ar/index.php/s/4SQoJmqTgNKXxLq/download/Informe%20Mensual%20Julio%202026.pdf"
+    },
+    {
+      "anio": 2026,
+      "mes": "08",
+      "documento": "Informe Mensual Agosto 2026.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "criterio_busqueda": "solo_notas_generales_primeras_paginas",
+      "url": "https://docs.anac.gob.ar/index.php/s/bGdXwwQeDbMb6rZ",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/bGdXwwQeDbMb6rZ/download/Informe%20Mensual%20Agosto%202026.pdf"
     }
   ],
   "candidatos": []

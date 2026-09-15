@@ -26,7 +26,7 @@
       "Cambios comerciales de aerolíneas o rutas sin cierre operativo del aeropuerto."
     ],
     "estado": "base preliminar; requiere extracción exhaustiva 2016-2026 y validación manual",
-    "fecha_actualizacion_candidatos_utc": "2026-08-15T08:44:16Z",
+    "fecha_actualizacion_candidatos_utc": "2026-09-15T13:33:26Z",
     "total_eventos_validados": 5,
     "total_candidatos_pendientes_revision": 0
   },
@@ -1425,6 +1425,16 @@
       "criterio_busqueda": "solo_notas_generales_primeras_paginas",
       "url": "https://docs.anac.gob.ar/index.php/s/4SQoJmqTgNKXxLq",
       "download_url": "https://docs.anac.gob.ar/index.php/s/4SQoJmqTgNKXxLq/download/Informe%20Mensual%20Julio%202026.pdf"
+    },
+    {
+      "anio": 2026,
+      "mes": "08",
+      "documento": "Informe Mensual Agosto 2026.pdf",
+      "estado": "ok",
+      "candidatos_detectados": 0,
+      "criterio_busqueda": "solo_notas_generales_primeras_paginas",
+      "url": "https://docs.anac.gob.ar/index.php/s/bGdXwwQeDbMb6rZ",
+      "download_url": "https://docs.anac.gob.ar/index.php/s/bGdXwwQeDbMb6rZ/download/Informe%20Mensual%20Agosto%202026.pdf"
     }
   ]
 }
