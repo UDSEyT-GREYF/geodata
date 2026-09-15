@@ -213,3 +213,20 @@ footer {
   justify-content: space-between;
   flex-wrap: wrap;
 }
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.4rem;
+  font-size: 0.76rem;
+  color: #6c757d;
+  margin: 2px 0 6px;
+  line-height: 1.35;
+}
+
+.meta time {
+  white-space: nowrap;
+}
+
+.meta .sep {
+  color: #adb5bd;
+}
