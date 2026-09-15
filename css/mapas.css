@@ -230,3 +230,39 @@ footer {
 .meta .sep {
   color: #adb5bd;
 }
+/* =========================================================
+   ALINEACIÓN DE BOTONES Y FECHAS AL PIE DE LAS TARJETAS
+   ========================================================= */
+
+/* La tarjeta funciona como una columna */
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* El cuerpo ocupa todo el espacio disponible */
+.card .body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* El botón baja hasta la parte inferior disponible */
+.card .btn {
+  margin-top: auto;
+}
+
+/* Fechas siempre debajo del botón */
+.card .meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+
+  margin-top: 9px;
+  margin-bottom: 0;
+
+  font-size: 0.76rem;
+  line-height: 1.35;
+  color: #6c757d;
+}
