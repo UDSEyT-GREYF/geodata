@@ -16,8 +16,8 @@
   --slate-50:#f7f9fb;
   --white:#fff;
   --topbar-h:72px;
-  --sidebar-w:380px;
-  --detail-w:520px;
+  --sidebar-w:420px;
+  --detail-w:clamp(620px,58vw,860px);
   --shadow-sm:0 2px 10px rgba(7,21,34,.08);
   --shadow-md:0 12px 34px rgba(7,21,34,.16);
   --shadow-lg:0 22px 60px rgba(7,21,34,.22);
@@ -68,3 +68,230 @@ h1{margin:0;overflow:hidden;font-size:clamp(18px,2vw,23px);font-weight:680;lette
 
 /* Oculta correctamente los overlays controlados con hidden. */
 .map-error[hidden],.loading-overlay[hidden]{display:none!important}
+
+
+/* Corrección de scroll del panel lateral y panel de detalle */
+.app-shell{
+  height:calc(100dvh - var(--topbar-h));
+  min-height:0;
+}
+
+.sidebar{
+  min-height:0;
+  overflow:hidden;
+}
+
+.sidebar-scroll{
+  min-height:0;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+  padding-bottom:28px;
+}
+
+.results-section{
+  padding-bottom:34px;
+}
+
+.detail-panel{
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+}
+
+#detailContent{
+  padding-bottom:72px;
+}
+
+@media (max-width:760px){
+  .sidebar{
+    height:calc(100dvh - var(--topbar-h));
+  }
+}
+
+
+/* ============================================================
+   Entrevista protagonista
+   ============================================================ */
+
+.detail-panel{
+  width:min(var(--detail-w),calc(100vw - 32px));
+}
+
+#detailContent{
+  max-width:860px;
+  margin:0 auto;
+  padding:32px 46px 76px;
+}
+
+.detail-title{
+  font-size:30px;
+  line-height:1.12;
+}
+
+.detail-reference{
+  font-size:14px;
+}
+
+.historic-note{
+  margin:20px 0;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.detail-quote{
+  margin:24px 0;
+  padding:18px 20px;
+  font-size:15px;
+  line-height:1.65;
+}
+
+.detail-body{
+  max-width:760px;
+}
+
+.detail-body p{
+  margin:0 0 18px;
+  font-size:15px;
+  line-height:1.74;
+}
+
+/* Miniaturas sobre el mapa */
+.story-photo-marker{
+  position:relative;
+  display:block;
+  width:60px;
+  height:60px;
+  overflow:visible;
+  background:#fff;
+  border:3px solid #fff;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(7,21,34,.28),0 0 0 1px rgba(7,21,34,.16);
+  transition:transform .16s ease,box-shadow .16s ease;
+}
+
+.story-photo-marker img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:11px;
+}
+
+.story-photo-marker:hover{
+  transform:translateY(-2px) scale(1.04);
+  box-shadow:0 9px 22px rgba(7,21,34,.34),0 0 0 1px rgba(7,21,34,.18);
+}
+
+.story-photo-count{
+  position:absolute;
+  right:-9px;
+  bottom:-9px;
+  display:grid;
+  place-items:center;
+  min-width:25px;
+  height:25px;
+  padding:0 6px;
+  color:#fff;
+  background:var(--teal);
+  border:2px solid #fff;
+  border-radius:999px;
+  box-shadow:0 2px 7px rgba(7,21,34,.28);
+  font-size:10px;
+  font-weight:800;
+}
+
+/* Hace visibles las opciones de mapa base */
+.basemap-buttons{
+  right:16px;
+  bottom:16px;
+  display:grid;
+  grid-template-columns:repeat(3,auto);
+  gap:4px;
+  padding:7px;
+  overflow:visible;
+  background:rgba(255,255,255,.97);
+  border:1px solid rgba(93,111,130,.26);
+  border-radius:11px;
+  box-shadow:var(--shadow-md);
+}
+
+.basemap-buttons::before{
+  content:"Mapa base";
+  grid-column:1/-1;
+  padding:0 4px 4px;
+  color:var(--slate-600);
+  font-size:9px;
+  font-weight:760;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+
+.basemap-buttons button{
+  padding:8px 10px;
+  border:1px solid transparent;
+  border-radius:7px;
+}
+
+.basemap-buttons button.is-active{
+  color:#fff;
+  background:var(--navy-800);
+}
+
+body.detail-open .basemap-buttons{
+  right:calc(var(--detail-w) + 18px);
+}
+
+body.detail-open .map-tools{
+  right:calc(var(--detail-w) + 18px);
+}
+
+/* Mantiene la lectura completa del panel */
+.detail-panel{
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+}
+
+@media (max-width:1100px){
+  :root{
+    --sidebar-w:360px;
+    --detail-w:clamp(560px,62vw,700px);
+  }
+
+  #detailContent{
+    padding-left:34px;
+    padding-right:34px;
+  }
+}
+
+@media (max-width:760px){
+  :root{
+    --detail-w:100vw;
+  }
+
+  body.detail-open .basemap-buttons{
+    right:10px;
+  }
+
+  body.detail-open .map-tools{
+    right:10px;
+  }
+
+  #detailContent{
+    max-width:none;
+    padding:24px 20px 62px;
+  }
+
+  .detail-body{
+    max-width:none;
+  }
+
+  .detail-body p{
+    font-size:14px;
+  }
+
+  .story-photo-marker{
+    width:54px;
+    height:54px;
+  }
+}
