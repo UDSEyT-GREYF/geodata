@@ -413,7 +413,7 @@
       <p class="detail-kicker">${escapeHTML(record.codigo_archivo)} · ${escapeHTML(record.provincia || "")}</p>
       <h2 class="detail-title">${escapeHTML(record.titulo || "Sin título")}</h2>
       <p class="detail-reference">${escapeHTML(record.referencia || "")}</p>
-      <div class="historic-note">${escapeHTML(historicText)} Conservá el testimonio según su contexto original.</div>
+      <div class="historic-note">${escapeHTML(historicText)} Se conservó el testimonio según su contexto original.</div>
       ${galleryHTML(record)}
       ${record.cita_destacada ? `<blockquote class="detail-quote">“${escapeHTML(trimQuote(record.cita_destacada))}”</blockquote>` : ""}
       <div class="detail-body">
