@@ -9,7 +9,7 @@
   };
 
   const AUTO_SATELLITE_ZOOM = 11;
-  const RESULT_STEP = 18;
+  const RESULT_STEP = 1000;
 
   const GROUP_MEMBERS = {
     BUE: ["AEP", "EZE"],
@@ -359,10 +359,20 @@
 
     groups.forEach((group, key) => {
       const count = group.records.length;
-      const size = count >= 5 ? 46 : count >= 3 ? 42 : 38;
+      const representative = group.records.find((record) => firstImage(record)) || group.records[0];
+      const image = representative ? firstImage(representative) : null;
+
+      const markerHTML = image
+        ? `<span class="story-photo-marker">
+             <img src="${escapeAttr(imageUrl(image.archivo))}" alt="" loading="lazy">
+             <span class="story-photo-count">${count}</span>
+           </span>`
+        : `<span class="story-marker ${count === 1 ? "is-single" : ""}">${count}</span>`;
+
+      const size = image ? 64 : (count >= 5 ? 46 : count >= 3 ? 42 : 38);
       const icon = L.divIcon({
         className: "story-marker-wrap",
-        html: `<span class="story-marker ${count === 1 ? "is-single" : ""}">${count}</span>`,
+        html: markerHTML,
         iconSize: [size, size],
         iconAnchor: [size / 2, size / 2]
       });
@@ -370,7 +380,7 @@
       const marker = L.marker([group.location.lat, group.location.lon], { icon });
       marker.bindTooltip(
         `<strong>${escapeHTML(group.location.label)}</strong><br>${count} ${count === 1 ? "historia" : "historias"}`,
-        { className: "story-tooltip", direction: "top", offset: [0, -15] }
+        { className: "story-tooltip", direction: "top", offset: [0, -18] }
       );
       marker.on("click", (event) => {
         L.DomEvent.stopPropagation(event);
@@ -413,7 +423,7 @@
       <p class="detail-kicker">${escapeHTML(record.codigo_archivo)} · ${escapeHTML(record.provincia || "")}</p>
       <h2 class="detail-title">${escapeHTML(record.titulo || "Sin título")}</h2>
       <p class="detail-reference">${escapeHTML(record.referencia || "")}</p>
-      <div class="historic-note">${escapeHTML(historicText)} Se conservó el testimonio según su contexto original.</div>
+      <div class="historic-note">${escapeHTML(historicText)} Conservá el testimonio según su contexto original.</div>
       ${galleryHTML(record)}
       ${record.cita_destacada ? `<blockquote class="detail-quote">“${escapeHTML(trimQuote(record.cita_destacada))}”</blockquote>` : ""}
       <div class="detail-body">
@@ -477,11 +487,13 @@
   function openDetailPanel() {
     dom.detailPanel.classList.add("is-open");
     dom.detailPanel.setAttribute("aria-hidden", "false");
+    document.body.classList.add("detail-open");
   }
 
   function closeDetail() {
     dom.detailPanel.classList.remove("is-open");
     dom.detailPanel.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("detail-open");
     state.selectedLocationKey = null;
     if (location.hash) history.replaceState(null, "", location.pathname + location.search);
   }
