@@ -86,14 +86,14 @@
   function initMap() {
     if (!window.L) throw new Error("La biblioteca del mapa no está disponible.");
 
-    const lightLayer = L.tileLayer(
-      "https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png?key=cb1_325a_1_1e9283ed596ac884153a8003",
-      {
-        subdomains: "abcd",
-        maxZoom: 20,
-        attribution: "&copy; OpenStreetMap &copy; CARTO"
-      }
-    );
+      const lightLayer = L.tileLayer(
+        "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_gris@EPSG%3A3857@png/{z}/{x}/{-y}.png",
+        {
+          minZoom: 3,
+          maxZoom: 18,
+          attribution: "Instituto Geográfico Nacional | Argenmap"
+        }
+      );
 
     const osmLayer = L.tileLayer(
       "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
