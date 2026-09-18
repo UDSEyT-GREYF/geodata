@@ -12,12 +12,11 @@
     "titulo": "Producción bahiense para toda la Patagonia",
     "referencia": "Droguería Sur",
     "sector_principal": "Salud y farmacéutica",
-    "tema_principal": "cadena de frío",
+    "tema_principal": "Logística y carga",
     "palabras_clave": [
-      "cadena de frío",
+      "logística",
       "salud",
-      "carga aérea",
-      "logística"
+      "carga aérea"
     ],
     "funciones_aeropuerto": [
       "Carga y logística",
@@ -51,12 +50,9 @@
     "titulo": "El puerto también necesita del transporte aéreo",
     "referencia": "Puerto Bahia Blanca",
     "sector_principal": "Logística y transporte",
-    "tema_principal": "intermodalidad",
+    "tema_principal": "Logística y carga",
     "palabras_clave": [
-      "intermodalidad",
-      "actividad portuaria",
-      "logística",
-      "mercados internacionales"
+      "logística"
     ],
     "funciones_aeropuerto": [
       "Movilidad laboral y profesional",
@@ -91,12 +87,10 @@
     "titulo": "La ciencia también viaja en avión",
     "referencia": "Balseiro",
     "sector_principal": "Ciencia y educación",
-    "tema_principal": "educación superior",
+    "tema_principal": "Ciencia, tecnología y educación",
     "palabras_clave": [
-      "educación superior",
-      "movilidad académica",
-      "ciencia",
-      "mercados internacionales"
+      "educación",
+      "ciencia"
     ],
     "funciones_aeropuerto": [
       "Conectividad internacional",
@@ -109,16 +103,16 @@
       "Igualmente, por su cargo, Oscar no puede imaginarse su trabajo sin un aeropuerto cerca: “Yo si no tuviera el avión no sé cómo haría. Para todo lo operativo, organizativo y tener un lugar como éste funcionando, necesitas el avión. Para mi ahora el avión es mi lugar para descansar, ahí aprovecho para relajarme”."
     ],
     "imagenes": [
-  {
-    "archivo": "Historias que hablan BRC 2013 Balseiro.png",
-    "ancho": 800,
-    "alto": 600,
-    "orientacion": "horizontal"
-  },
-  {
-    "archivo": "Historias que hablan BRC 2013 Balseiro1.png"
-  }
-]
+      {
+        "archivo": "Historias que hablan BRC 2013 Balseiro.png",
+        "ancho": 800,
+        "alto": 600,
+        "orientacion": "horizontal"
+      },
+      {
+        "archivo": "Historias que hablan BRC 2013 Balseiro1.png"
+      }
+    ]
   },
   {
     "id": "brc-2015-carina-y-massimo",
@@ -133,10 +127,9 @@
     "titulo": "Asentarse en Bariloche",
     "referencia": "Carina y Massimo",
     "sector_principal": "Turismo y hospitalidad",
-    "tema_principal": "radicación",
+    "tema_principal": "Desarrollo local y empleo",
     "palabras_clave": [
-      "radicación",
-      "movilidad internacional",
+      "empleo",
       "turismo"
     ],
     "funciones_aeropuerto": [
@@ -172,12 +165,10 @@
     "titulo": "Una industria que vuela",
     "referencia": "INVAP",
     "sector_principal": "Industria y tecnología",
-    "tema_principal": "industria tecnológica",
+    "tema_principal": "Ciencia, tecnología y educación",
     "palabras_clave": [
-      "industria tecnológica",
-      "movilidad profesional",
-      "tecnología",
-      "mercados internacionales"
+      "industria",
+      "tecnología"
     ],
     "funciones_aeropuerto": [
       "Movilidad laboral y profesional",
@@ -211,11 +202,10 @@
     "titulo": "Un viaje a la naturaleza",
     "referencia": "Posada Los Juncos",
     "sector_principal": "Turismo y hospitalidad",
-    "tema_principal": "turismo de naturaleza",
+    "tema_principal": "Turismo de naturaleza y aventura",
     "palabras_clave": [
       "turismo de naturaleza",
-      "turismo",
-      "mercados internacionales"
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -251,11 +241,10 @@
     "titulo": "Paseos lacustres por los lagos patagónicos",
     "referencia": "Nicolás de la Cruz",
     "sector_principal": "Turismo y recreación",
-    "tema_principal": "paseos lacustres",
+    "tema_principal": "Turismo de naturaleza y aventura",
     "palabras_clave": [
-      "paseos lacustres",
-      "turismo",
-      "mercados internacionales"
+      "turismo de naturaleza",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -290,12 +279,11 @@
     "titulo": "Profesionalismo y pasión en la nieve",
     "referencia": "escuela de esqui",
     "sector_principal": "Turismo y recreación",
-    "tema_principal": "esquí",
+    "tema_principal": "Turismo de naturaleza y aventura",
     "palabras_clave": [
-      "esquí",
-      "snowboard",
-      "turismo",
-      "mercados internacionales"
+      "turismo aventura",
+      "turismo de naturaleza",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -326,18 +314,17 @@
     "iata": [
       "BUE"
     ],
-    "localidad_aeroportuaria": "Aeroparque y Ezeiza",
+    "localidad_aeroportuaria": "Buenos Aires (sistema aeroportuario)",
     "provincia": "CABA / Buenos Aires",
     "anio_datos_informe": 2013,
     "anio_entrevista": 2015,
     "titulo": "Del viaje en avión al paseo en bici",
     "referencia": "BA Bikes",
     "sector_principal": "Turismo y recreación",
-    "tema_principal": "cicloturismo",
+    "tema_principal": "Turismo de naturaleza y aventura",
     "palabras_clave": [
-      "cicloturismo",
-      "turismo",
-      "mercados internacionales"
+      "turismo aventura",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -364,18 +351,17 @@
     "iata": [
       "BUE"
     ],
-    "localidad_aeroportuaria": "Aeroparque y Ezeiza",
+    "localidad_aeroportuaria": "Buenos Aires (sistema aeroportuario)",
     "provincia": "CABA / Buenos Aires",
     "anio_datos_informe": 2013,
     "anio_entrevista": 2015,
     "titulo": "Abasteciendo al país de punta a punta",
     "referencia": "Downstream en YPF",
     "sector_principal": "Energía e hidrocarburos",
-    "tema_principal": "abastecimiento aeroportuario",
+    "tema_principal": "Logística y carga",
     "palabras_clave": [
-      "abastecimiento aeroportuario",
-      "energía",
-      "logística"
+      "logística",
+      "energía"
     ],
     "funciones_aeropuerto": [
       "Movilidad laboral y profesional"
@@ -402,18 +388,18 @@
     "iata": [
       "BUE"
     ],
-    "localidad_aeroportuaria": "Aeroparque y Ezeiza",
+    "localidad_aeroportuaria": "Buenos Aires (sistema aeroportuario)",
     "provincia": "CABA / Buenos Aires",
     "anio_datos_informe": 2013,
     "anio_entrevista": 2015,
     "titulo": "Capital Mundial del Tango",
     "referencia": "Tango Porteño",
     "sector_principal": "Turismo y cultura",
-    "tema_principal": "turismo cultural",
+    "tema_principal": "Turismo cultural y patrimonio",
     "palabras_clave": [
       "turismo cultural",
-      "turismo",
-      "mercados internacionales"
+      "cultura",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -442,19 +428,17 @@
     "iata": [
       "BUE"
     ],
-    "localidad_aeroportuaria": "Aeroparque y Ezeiza",
+    "localidad_aeroportuaria": "Buenos Aires (sistema aeroportuario)",
     "provincia": "CABA / Buenos Aires",
     "anio_datos_informe": 2013,
     "anio_entrevista": 2015,
     "titulo": "Buenos Aires, centro de operaciones petroleras",
     "referencia": "YPF jet fuel",
     "sector_principal": "Energía e hidrocarburos",
-    "tema_principal": "combustible aeronáutico",
+    "tema_principal": "Minería y energía",
     "palabras_clave": [
-      "combustible aeronáutico",
       "energía",
       "exportaciones",
-      "mercados internacionales",
       "logística"
     ],
     "funciones_aeropuerto": [
@@ -483,19 +467,18 @@
     "iata": [
       "BUE"
     ],
-    "localidad_aeroportuaria": "Aeroparque y Ezeiza",
+    "localidad_aeroportuaria": "Buenos Aires (sistema aeroportuario)",
     "provincia": "CABA / Buenos Aires",
     "anio_datos_informe": 2013,
     "anio_entrevista": 2015,
     "titulo": "Acortando distancias en la industria audiovisual",
     "referencia": "documental Qhapaq Ñan",
     "sector_principal": "Cultura e industrias creativas",
-    "tema_principal": "Qhapaq Ñan",
+    "tema_principal": "Turismo cultural y patrimonio",
     "palabras_clave": [
-      "Qhapaq Ñan",
-      "producción audiovisual",
+      "patrimonio",
       "cultura",
-      "mercados internacionales",
+      "producción",
       "logística"
     ],
     "funciones_aeropuerto": [
@@ -529,11 +512,10 @@
     "titulo": "Turismo médico internacional",
     "referencia": "Posada del Qenti",
     "sector_principal": "Turismo y salud",
-    "tema_principal": "turismo de salud",
+    "tema_principal": "Turismo de reuniones y salud",
     "palabras_clave": [
-      "turismo de salud",
       "turismo",
-      "mercados internacionales"
+      "salud"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -569,10 +551,10 @@
     "titulo": "Acercando creatividad",
     "referencia": "agencia de publicidad",
     "sector_principal": "Servicios empresariales",
-    "tema_principal": "economía creativa",
+    "tema_principal": "Producción e industria",
     "palabras_clave": [
-      "economía creativa",
-      "servicios"
+      "cultura",
+      "producción"
     ],
     "funciones_aeropuerto": [
       "Movilidad laboral y profesional"
@@ -606,11 +588,10 @@
     "titulo": "Experiencia espiritual y astroturismo en Córdoba",
     "referencia": "Punto Uritorco Viajes y Turismo",
     "sector_principal": "Turismo y recreación",
-    "tema_principal": "turismo espiritual",
+    "tema_principal": "Turismo cultural y patrimonio",
     "palabras_clave": [
-      "turismo espiritual",
-      "turismo",
-      "mercados internacionales"
+      "turismo cultural",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -646,9 +627,9 @@
     "titulo": "Fabricación de piezas de carburo de tungsteno",
     "referencia": "Tantal Tungsteno",
     "sector_principal": "Industria manufacturera",
-    "tema_principal": "carburo de tungsteno",
+    "tema_principal": "Producción e industria",
     "palabras_clave": [
-      "carburo de tungsteno",
+      "minería",
       "industria",
       "exportaciones",
       "logística"
@@ -685,11 +666,11 @@
     "titulo": "Un destino de montaña que crece impulsado por la conectividad aérea",
     "referencia": "Ski & Resort",
     "sector_principal": "Turismo y recreación",
-    "tema_principal": "centro de esquí",
+    "tema_principal": "Turismo de naturaleza y aventura",
     "palabras_clave": [
-      "centro de esquí",
+      "turismo aventura",
+      "turismo de naturaleza",
       "turismo",
-      "mercados internacionales",
       "empleo"
     ],
     "funciones_aeropuerto": [
@@ -728,11 +709,11 @@
     "titulo": "Abriendo caminos en la Patagonia",
     "referencia": "Burgwardt",
     "sector_principal": "Construcción y servicios industriales",
-    "tema_principal": "construcción",
+    "tema_principal": "Producción e industria",
     "palabras_clave": [
-      "construcción",
-      "servicios petroleros",
-      "industria"
+      "industria",
+      "ingeniería",
+      "energía"
     ],
     "funciones_aeropuerto": [
       "Movilidad laboral y profesional"
@@ -766,11 +747,11 @@
     "titulo": "El sueño de la empresa propia",
     "referencia": "Geopatagonia",
     "sector_principal": "Energía e hidrocarburos",
-    "tema_principal": "servicios geológicos",
+    "tema_principal": "Minería y energía",
     "palabras_clave": [
-      "servicios geológicos",
-      "energía",
-      "mercados internacionales"
+      "ingeniería",
+      "minería",
+      "energía"
     ],
     "funciones_aeropuerto": [
       "Movilidad laboral y profesional",
@@ -805,11 +786,10 @@
     "titulo": "Turismo en Comodoro Rivadavia",
     "referencia": "Viajes Shneider",
     "sector_principal": "Turismo y hospitalidad",
-    "tema_principal": "turismo receptivo",
+    "tema_principal": "Turismo receptivo",
     "palabras_clave": [
       "turismo receptivo",
       "turismo",
-      "mercados internacionales",
       "logística"
     ],
     "funciones_aeropuerto": [
@@ -845,11 +825,9 @@
     "titulo": "Turismo corporativo en Comodoro Rivadavia",
     "referencia": "Lucania Palazzo Hotel",
     "sector_principal": "Turismo y hospitalidad",
-    "tema_principal": "turismo corporativo",
+    "tema_principal": "Turismo de reuniones y salud",
     "palabras_clave": [
-      "turismo corporativo",
-      "turismo",
-      "mercados internacionales"
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -885,11 +863,11 @@
     "titulo": "Calafate extremo",
     "referencia": "Calafate Extremo",
     "sector_principal": "Turismo y recreación",
-    "tema_principal": "turismo aventura",
+    "tema_principal": "Turismo de naturaleza y aventura",
     "palabras_clave": [
       "turismo aventura",
-      "turismo",
-      "mercados internacionales"
+      "turismo de naturaleza",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -924,11 +902,10 @@
     "titulo": "La cocina de El Calafate crece",
     "referencia": "Parrilla Casimiro Biguá",
     "sector_principal": "Gastronomía y alimentos",
-    "tema_principal": "gastronomía turística",
+    "tema_principal": "Agroindustria y alimentos",
     "palabras_clave": [
-      "gastronomía turística",
-      "turismo",
-      "mercados internacionales"
+      "gastronomía",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -963,11 +940,10 @@
     "titulo": "Abasteciendo las necesidades del turismo receptivo",
     "referencia": "Hostería Kau Si Aike",
     "sector_principal": "Turismo y hospitalidad",
-    "tema_principal": "El Chaltén",
+    "tema_principal": "Turismo de naturaleza y aventura",
     "palabras_clave": [
-      "El Chaltén",
-      "turismo",
-      "mercados internacionales"
+      "turismo de naturaleza",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -1004,11 +980,11 @@
     "titulo": "Abasteciendo las necesidades del turismo receptivo",
     "referencia": "Terra Australis",
     "sector_principal": "Comercio y equipamiento",
-    "tema_principal": "equipamiento outdoor",
+    "tema_principal": "Producción e industria",
     "palabras_clave": [
-      "equipamiento outdoor",
-      "turismo",
-      "mercados internacionales"
+      "industria",
+      "producción",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -1043,12 +1019,10 @@
     "titulo": "Del avión al paseo náutico por las Cataratas",
     "referencia": "Jungle Iguazú",
     "sector_principal": "Turismo y recreación",
-    "tema_principal": "paseos náuticos",
+    "tema_principal": "Turismo de naturaleza y aventura",
     "palabras_clave": [
-      "paseos náuticos",
-      "Cataratas del Iguazú",
-      "turismo",
-      "mercados internacionales"
+      "turismo de naturaleza",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -1083,11 +1057,11 @@
     "titulo": "Ecoturismo y trabajo familiar",
     "referencia": "La Aripuca",
     "sector_principal": "Turismo y ambiente",
-    "tema_principal": "educación ambiental",
+    "tema_principal": "Ambiente y conservación",
     "palabras_clave": [
-      "educación ambiental",
+      "educación",
+      "ambiente",
       "turismo",
-      "mercados internacionales",
       "empleo"
     ],
     "funciones_aeropuerto": [
@@ -1125,11 +1099,11 @@
     "titulo": "Producción con identidad local",
     "referencia": "Productores Mineros",
     "sector_principal": "Minería y manufacturas",
-    "tema_principal": "piedras semipreciosas",
+    "tema_principal": "Minería y energía",
     "palabras_clave": [
-      "piedras semipreciosas",
-      "artesanías",
       "minería",
+      "producción",
+      "cultura",
       "exportaciones"
     ],
     "funciones_aeropuerto": [
@@ -1165,12 +1139,10 @@
     "titulo": "Sostenibilidad turística en Iguazú",
     "referencia": "animales silvestres",
     "sector_principal": "Ambiente y conservación",
-    "tema_principal": "rescate de fauna",
+    "tema_principal": "Ambiente y conservación",
     "palabras_clave": [
-      "rescate de fauna",
-      "educación ambiental",
       "ambiente",
-      "mercados internacionales"
+      "educación"
     ],
     "funciones_aeropuerto": [
       "Conectividad internacional"
@@ -1206,10 +1178,10 @@
     "titulo": "Energías renovables con valor agregado",
     "referencia": "Parque Eólico Arauco",
     "sector_principal": "Energía renovable",
-    "tema_principal": "energías renovables",
+    "tema_principal": "Minería y energía",
     "palabras_clave": [
-      "energías renovables",
       "energía",
+      "ambiente",
       "exportaciones",
       "logística"
     ],
@@ -1246,9 +1218,9 @@
     "titulo": "Riqueza vitivinícola riojana como impulsora del turismo",
     "referencia": "enoturismo",
     "sector_principal": "Agroindustria y turismo",
-    "tema_principal": "aceite de oliva",
+    "tema_principal": "Agroindustria y alimentos",
     "palabras_clave": [
-      "aceite de oliva",
+      "agroindustria",
       "turismo"
     ],
     "funciones_aeropuerto": [
@@ -1283,11 +1255,10 @@
     "titulo": "Aterrizando en el norte argentino",
     "referencia": "Paisajes del Noroeste viajes",
     "sector_principal": "Turismo y hospitalidad",
-    "tema_principal": "turismo receptivo",
+    "tema_principal": "Turismo receptivo",
     "palabras_clave": [
       "turismo receptivo",
-      "turismo",
-      "mercados internacionales"
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -1328,12 +1299,10 @@
     "titulo": "Minerales jujeños para cuidar el medio ambiente",
     "referencia": "Sales de Jujuy litio",
     "sector_principal": "Minería",
-    "tema_principal": "carbonato de litio",
+    "tema_principal": "Minería y energía",
     "palabras_clave": [
-      "carbonato de litio",
       "minería",
       "exportaciones",
-      "mercados internacionales",
       "logística"
     ],
     "funciones_aeropuerto": [
@@ -1370,12 +1339,11 @@
     "titulo": "Alfajores de Mar del Plata al mundo",
     "referencia": "Havanna",
     "sector_principal": "Agroindustria y alimentos",
-    "tema_principal": "alfajores",
+    "tema_principal": "Agroindustria y alimentos",
     "palabras_clave": [
-      "alfajores",
       "agroindustria",
-      "exportaciones",
-      "mercados internacionales"
+      "gastronomía",
+      "exportaciones"
     ],
     "funciones_aeropuerto": [
       "Acceso a mercados",
@@ -1410,11 +1378,9 @@
     "titulo": "Turismo de reuniones y eventos en La Feliz",
     "referencia": "Hotel Continental",
     "sector_principal": "Turismo y hospitalidad",
-    "tema_principal": "turismo de reuniones",
+    "tema_principal": "Turismo de reuniones y salud",
     "palabras_clave": [
-      "turismo de reuniones",
-      "turismo",
-      "mercados internacionales"
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -1452,11 +1418,10 @@
     "titulo": "Brindando confort, generando trabajo",
     "referencia": "Hotel Esplendor",
     "sector_principal": "Turismo y hospitalidad",
-    "tema_principal": "empleo hotelero",
+    "tema_principal": "Desarrollo local y empleo",
     "palabras_clave": [
-      "empleo hotelero",
-      "turismo",
-      "empleo"
+      "empleo",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -1493,11 +1458,9 @@
     "titulo": "Con valor agregado",
     "referencia": "Silice tecnologia",
     "sector_principal": "Tecnología y software",
-    "tema_principal": "economía del conocimiento",
+    "tema_principal": "Ciencia, tecnología y educación",
     "palabras_clave": [
-      "economía del conocimiento",
-      "tecnología",
-      "mercados internacionales"
+      "tecnología"
     ],
     "funciones_aeropuerto": [
       "Movilidad laboral y profesional",
@@ -1534,12 +1497,10 @@
     "titulo": "De Mendoza al mundo",
     "referencia": "bodega Renacer",
     "sector_principal": "Agroindustria y alimentos",
-    "tema_principal": "exportación vitivinícola",
+    "tema_principal": "Comercio exterior y exportaciones",
     "palabras_clave": [
-      "exportación vitivinícola",
       "agroindustria",
       "exportaciones",
-      "mercados internacionales",
       "logística"
     ],
     "funciones_aeropuerto": [
@@ -1577,11 +1538,10 @@
     "titulo": "Nuevas propuestas turísticas “hechas a medida” en Mendoza",
     "referencia": "Mendoza Holidays",
     "sector_principal": "Turismo y hospitalidad",
-    "tema_principal": "turismo a medida",
+    "tema_principal": "Turismo receptivo",
     "palabras_clave": [
-      "turismo a medida",
+      "turismo receptivo",
       "turismo",
-      "mercados internacionales",
       "logística"
     ],
     "funciones_aeropuerto": [
@@ -1617,13 +1577,10 @@
     "titulo": "Vinos mendocinos hacia todo el mundo",
     "referencia": "bodega Familia Zuccardi",
     "sector_principal": "Agroindustria y alimentos",
-    "tema_principal": "exportación vitivinícola",
+    "tema_principal": "Comercio exterior y exportaciones",
     "palabras_clave": [
-      "exportación vitivinícola",
-      "aceite de oliva",
       "agroindustria",
-      "exportaciones",
-      "mercados internacionales"
+      "exportaciones"
     ],
     "funciones_aeropuerto": [
       "Acceso a mercados",
@@ -1661,11 +1618,10 @@
     "titulo": "Viajando en avión para evaluar los recursos hídricos nacionales",
     "referencia": "Evarsa",
     "sector_principal": "Servicios ambientales e ingeniería",
-    "tema_principal": "ingeniería hídrica",
+    "tema_principal": "Ciencia, tecnología y educación",
     "palabras_clave": [
-      "ingeniería hídrica",
-      "ambiente",
-      "mercados internacionales"
+      "ingeniería",
+      "ambiente"
     ],
     "funciones_aeropuerto": [
       "Movilidad laboral y profesional",
@@ -1701,10 +1657,10 @@
     "titulo": "Acompañando la industria petrolera argentina",
     "referencia": "Marbar",
     "sector_principal": "Energía e hidrocarburos",
-    "tema_principal": "servicios petroleros",
+    "tema_principal": "Minería y energía",
     "palabras_clave": [
-      "servicios petroleros",
-      "energía"
+      "energía",
+      "industria"
     ],
     "funciones_aeropuerto": [
       "Movilidad laboral y profesional"
@@ -1738,9 +1694,10 @@
     "titulo": "Paleontología y gastronomía en la Patagonia Norte",
     "referencia": "paleontologia",
     "sector_principal": "Turismo y cultura",
-    "tema_principal": "turismo paleontológico",
+    "tema_principal": "Turismo cultural y patrimonio",
     "palabras_clave": [
-      "turismo paleontológico",
+      "turismo cultural",
+      "patrimonio",
       "turismo"
     ],
     "funciones_aeropuerto": [
@@ -1775,11 +1732,10 @@
     "titulo": "Un emprendimiento que surgió gracias al transporte aéreo",
     "referencia": "Argentina Visión",
     "sector_principal": "Turismo y hospitalidad",
-    "tema_principal": "Península Valdés",
+    "tema_principal": "Turismo de naturaleza y aventura",
     "palabras_clave": [
-      "Península Valdés",
-      "turismo",
-      "mercados internacionales"
+      "turismo de naturaleza",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -1816,11 +1772,10 @@
     "titulo": "Un proyecto de calidad artesanal",
     "referencia": "Helados Bomke",
     "sector_principal": "Agroindustria y alimentos",
-    "tema_principal": "producción artesanal",
+    "tema_principal": "Agroindustria y alimentos",
     "palabras_clave": [
-      "producción artesanal",
-      "agroindustria",
-      "mercados internacionales"
+      "producción",
+      "agroindustria"
     ],
     "funciones_aeropuerto": [
       "Movilidad laboral y profesional",
@@ -1856,10 +1811,10 @@
     "titulo": "Producir para generar energía sustentable",
     "referencia": "Industrias Bass",
     "sector_principal": "Industria manufacturera",
-    "tema_principal": "ingeniería",
+    "tema_principal": "Producción e industria",
     "palabras_clave": [
       "ingeniería",
-      "energía eólica",
+      "energía",
       "industria"
     ],
     "funciones_aeropuerto": [
@@ -1895,11 +1850,11 @@
     "titulo": "Descubriendo las riquezas de nuestro pasado",
     "referencia": "Museo Paleontológico",
     "sector_principal": "Ciencia y educación",
-    "tema_principal": "museo",
+    "tema_principal": "Ciencia, tecnología y educación",
     "palabras_clave": [
-      "museo",
-      "divulgación científica",
-      "ciencia"
+      "patrimonio",
+      "ciencia",
+      "educación"
     ],
     "funciones_aeropuerto": [
       "Movilidad laboral y profesional",
@@ -1934,13 +1889,11 @@
     "titulo": "El Sabor del Té sin Fronteras",
     "referencia": "Ruta del te",
     "sector_principal": "Agroindustria y turismo",
-    "tema_principal": "Ruta del Té",
+    "tema_principal": "Agroindustria y alimentos",
     "palabras_clave": [
-      "Ruta del Té",
+      "agroindustria",
       "turismo",
-      "exportaciones",
-      "comercio exterior",
-      "mercados internacionales"
+      "exportaciones"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -1977,11 +1930,11 @@
     "titulo": "Un turismo diferente",
     "referencia": "Eco Tur Chaco",
     "sector_principal": "Turismo y ambiente",
-    "tema_principal": "El Impenetrable",
+    "tema_principal": "Turismo de naturaleza y aventura",
     "palabras_clave": [
-      "El Impenetrable",
-      "turismo",
-      "mercados internacionales"
+      "turismo de naturaleza",
+      "turismo aventura",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -2023,13 +1976,11 @@
     "titulo": "De Chaco al mundo",
     "referencia": "Unitan Tanino",
     "sector_principal": "Industria manufacturera",
-    "tema_principal": "tanino",
+    "tema_principal": "Producción e industria",
     "palabras_clave": [
-      "tanino",
-      "industria forestal",
       "industria",
-      "exportaciones",
-      "mercados internacionales"
+      "producción",
+      "exportaciones"
     ],
     "funciones_aeropuerto": [
       "Acceso a mercados",
@@ -2070,11 +2021,10 @@
     "titulo": "Turismo de safari en el corazón del Impenetrable",
     "referencia": "Fundación Rewilding",
     "sector_principal": "Ambiente y conservación",
-    "tema_principal": "rewilding",
+    "tema_principal": "Ambiente y conservación",
     "palabras_clave": [
-      "rewilding",
-      "desarrollo local",
-      "ambiente"
+      "ambiente",
+      "empleo"
     ],
     "funciones_aeropuerto": [
       "Desarrollo local y empleo"
@@ -2108,13 +2058,10 @@
     "titulo": "Conectando el trabajo en el sur patagónico",
     "referencia": "Grupo IPESA",
     "sector_principal": "Industria manufacturera",
-    "tema_principal": "polietileno",
+    "tema_principal": "Producción e industria",
     "palabras_clave": [
-      "polietileno",
-      "industria plástica",
       "industria",
       "exportaciones",
-      "mercados internacionales",
       "empleo"
     ],
     "funciones_aeropuerto": [
@@ -2153,11 +2100,11 @@
     "titulo": "Pesca con mosca en el Río Grande",
     "referencia": "Pesca con mosca en el Río Grande",
     "sector_principal": "Turismo y recreación",
-    "tema_principal": "pesca con mosca",
+    "tema_principal": "Turismo de naturaleza y aventura",
     "palabras_clave": [
-      "pesca con mosca",
-      "turismo",
-      "mercados internacionales"
+      "turismo aventura",
+      "turismo de naturaleza",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -2194,12 +2141,10 @@
     "titulo": "Río Gallegos, puerta de entrada a la Antártida",
     "referencia": "Base Marambio",
     "sector_principal": "Ciencia y logística antártica",
-    "tema_principal": "logística antártica",
+    "tema_principal": "Logística y carga",
     "palabras_clave": [
-      "logística antártica",
-      "movilidad científica",
-      "ciencia",
-      "logística"
+      "logística",
+      "ciencia"
     ],
     "funciones_aeropuerto": [
       "Soporte científico y operativo"
@@ -2232,10 +2177,10 @@
     "titulo": "Energía desde el sur para toda la Argentina",
     "referencia": "YCRT",
     "sector_principal": "Energía y minería",
-    "tema_principal": "Río Turbio",
+    "tema_principal": "Minería y energía",
     "palabras_clave": [
-      "Río Turbio",
       "minería",
+      "energía",
       "empleo"
     ],
     "funciones_aeropuerto": [
@@ -2271,14 +2216,11 @@
     "titulo": "Exportaciones provinciales con valor agregado por vía aérea",
     "referencia": "El Carancho",
     "sector_principal": "Agroindustria y alimentos",
-    "tema_principal": "carne vacuna",
+    "tema_principal": "Comercio exterior y exportaciones",
     "palabras_clave": [
-      "carne vacuna",
-      "cuota Hilton",
       "agroindustria",
       "exportaciones",
-      "carga aérea",
-      "mercados internacionales"
+      "carga aérea"
     ],
     "funciones_aeropuerto": [
       "Carga y logística",
@@ -2316,12 +2258,10 @@
     "titulo": "Termas todo el año",
     "referencia": "Termas",
     "sector_principal": "Turismo y hospitalidad",
-    "tema_principal": "turismo termal",
+    "tema_principal": "Turismo de reuniones y salud",
     "palabras_clave": [
-      "turismo termal",
-      "eventos deportivos",
       "turismo",
-      "mercados internacionales"
+      "salud"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -2357,12 +2297,11 @@
     "titulo": "Tecnología digital de origen nacional",
     "referencia": "Kretz balanzas",
     "sector_principal": "Industria y tecnología",
-    "tema_principal": "balanzas digitales",
+    "tema_principal": "Producción e industria",
     "palabras_clave": [
-      "balanzas digitales",
+      "industria",
       "tecnología",
-      "comercio exterior",
-      "mercados internacionales",
+      "exportaciones",
       "logística"
     ],
     "funciones_aeropuerto": [
@@ -2399,13 +2338,11 @@
     "titulo": "Equipo médico para la Argentina y el mundo",
     "referencia": "Wiener Lab",
     "sector_principal": "Salud y farmacéutica",
-    "tema_principal": "reactivos de diagnóstico",
+    "tema_principal": "Producción e industria",
     "palabras_clave": [
-      "reactivos de diagnóstico",
       "salud",
+      "producción",
       "exportaciones",
-      "comercio exterior",
-      "mercados internacionales",
       "logística"
     ],
     "funciones_aeropuerto": [
@@ -2442,11 +2379,9 @@
     "titulo": "Poniendo en valor los atractivos turísticos",
     "referencia": "Canuca Travel",
     "sector_principal": "Turismo y hospitalidad",
-    "tema_principal": "turismo pampeano",
+    "tema_principal": "Turismo receptivo",
     "palabras_clave": [
-      "turismo pampeano",
-      "turismo",
-      "mercados internacionales"
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -2482,12 +2417,11 @@
     "titulo": "Un patrimonio cultural de valor histórico en la llanura pampeana",
     "referencia": "Estancia Villaverde",
     "sector_principal": "Turismo rural y patrimonio",
-    "tema_principal": "estancia turística",
+    "tema_principal": "Turismo cultural y patrimonio",
     "palabras_clave": [
-      "estancia turística",
-      "agroturismo",
-      "turismo",
-      "mercados internacionales"
+      "turismo rural",
+      "agroindustria",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -2522,11 +2456,9 @@
     "titulo": "Promoviendo el encuentro",
     "referencia": "Centro de Convenciones Salta",
     "sector_principal": "Turismo y eventos",
-    "tema_principal": "eventos y congresos",
+    "tema_principal": "Turismo de reuniones y salud",
     "palabras_clave": [
-      "eventos y congresos",
-      "turismo",
-      "mercados internacionales"
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -2563,9 +2495,8 @@
     "titulo": "Minerales salteños para exportación",
     "referencia": "Minerales salteños",
     "sector_principal": "Minería",
-    "tema_principal": "comercialización minera",
+    "tema_principal": "Minería y energía",
     "palabras_clave": [
-      "comercialización minera",
       "minería",
       "exportaciones"
     ],
@@ -2602,7 +2533,7 @@
     "titulo": "Salta “La linda”",
     "referencia": "Turismo Tastil",
     "sector_principal": "Turismo y hospitalidad",
-    "tema_principal": "turismo receptivo",
+    "tema_principal": "Turismo receptivo",
     "palabras_clave": [
       "turismo receptivo",
       "turismo",
@@ -2640,14 +2571,12 @@
     "titulo": "El transporte aéreo impulsando la actividad minera",
     "referencia": "Minera Santa Rita",
     "sector_principal": "Minería",
-    "tema_principal": "cadena minera",
+    "tema_principal": "Minería y energía",
     "palabras_clave": [
-      "cadena minera",
-      "manufacturas",
       "minería",
-      "exportaciones",
-      "empleo",
-      "logística"
+      "industria",
+      "producción",
+      "exportaciones"
     ],
     "funciones_aeropuerto": [
       "Acceso a mercados",
@@ -2682,11 +2611,10 @@
     "titulo": "Un turismo nacional para el extranjero",
     "referencia": "Uma Travel",
     "sector_principal": "Turismo y hospitalidad",
-    "tema_principal": "turismo extranjero",
+    "tema_principal": "Turismo receptivo",
     "palabras_clave": [
-      "turismo extranjero",
-      "turismo",
-      "mercados internacionales"
+      "turismo receptivo",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -2721,12 +2649,9 @@
     "titulo": "Exportando frutos rojos al mundo",
     "referencia": "Arándanos de Tucumán",
     "sector_principal": "Agroindustria y alimentos",
-    "tema_principal": "frutos rojos",
+    "tema_principal": "Agroindustria y alimentos",
     "palabras_clave": [
-      "frutos rojos",
-      "contraestación",
       "agroindustria",
-      "mercados internacionales",
       "logística"
     ],
     "funciones_aeropuerto": [
@@ -2762,11 +2687,11 @@
     "titulo": "Desde el avión hacia una nueva aventura",
     "referencia": "Montañas Tucumanas",
     "sector_principal": "Turismo y recreación",
-    "tema_principal": "montañismo",
+    "tema_principal": "Turismo de naturaleza y aventura",
     "palabras_clave": [
-      "montañismo",
-      "turismo",
-      "mercados internacionales"
+      "turismo aventura",
+      "turismo de naturaleza",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -2801,12 +2726,11 @@
     "titulo": "Tecnología de punta con base en Tucumán",
     "referencia": "Scania",
     "sector_principal": "Industria automotriz",
-    "tema_principal": "mecanizados de transmisión",
+    "tema_principal": "Producción e industria",
     "palabras_clave": [
-      "mecanizados de transmisión",
       "industria",
-      "comercio exterior",
-      "mercados internacionales",
+      "ingeniería",
+      "exportaciones",
       "logística"
     ],
     "funciones_aeropuerto": [
@@ -2844,12 +2768,12 @@
     "titulo": "Tesoros históricos y naturaleza en Tafí del Valle",
     "referencia": "Estancia Jesuítica",
     "sector_principal": "Turismo rural y patrimonio",
-    "tema_principal": "Tafí del Valle",
+    "tema_principal": "Turismo cultural y patrimonio",
     "palabras_clave": [
-      "Tafí del Valle",
-      "estancia histórica",
-      "turismo",
-      "mercados internacionales"
+      "patrimonio",
+      "turismo cultural",
+      "turismo rural",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -2888,13 +2812,12 @@
     "titulo": "Indumentaria sanjuanina de alto vuelo",
     "referencia": "Ansilta",
     "sector_principal": "Industria textil",
-    "tema_principal": "indumentaria técnica",
+    "tema_principal": "Producción e industria",
     "palabras_clave": [
-      "indumentaria técnica",
-      "montañismo",
       "industria",
-      "carga aérea",
-      "mercados internacionales"
+      "producción",
+      "turismo aventura",
+      "turismo de naturaleza"
     ],
     "funciones_aeropuerto": [
       "Carga y logística",
@@ -2937,10 +2860,10 @@
     "titulo": "Apoyo aéreo para la industria automotriz",
     "referencia": "ITEC San Juan",
     "sector_principal": "Industria automotriz",
-    "tema_principal": "ramales eléctricos",
+    "tema_principal": "Producción e industria",
     "palabras_clave": [
-      "ramales eléctricos",
       "industria",
+      "producción",
       "logística"
     ],
     "funciones_aeropuerto": [
@@ -2975,11 +2898,10 @@
     "titulo": "San Juan, mucho más que el Parque Ischigualasto",
     "referencia": "Yafar destinos",
     "sector_principal": "Turismo y hospitalidad",
-    "tema_principal": "circuitos regionales",
+    "tema_principal": "Turismo receptivo",
     "palabras_clave": [
-      "circuitos regionales",
-      "turismo",
-      "mercados internacionales"
+      "turismo receptivo",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -3016,12 +2938,10 @@
     "titulo": "Industria nacional",
     "referencia": "Cooperativa Renacer",
     "sector_principal": "Industria manufacturera",
-    "tema_principal": "empresa recuperada",
+    "tema_principal": "Desarrollo local y empleo",
     "palabras_clave": [
-      "empresa recuperada",
-      "electrodomésticos",
-      "industria",
       "empleo",
+      "industria",
       "logística"
     ],
     "funciones_aeropuerto": [
@@ -3058,11 +2978,11 @@
     "titulo": "Turismo invernal en el fin del mundo",
     "referencia": "hotel Las Lengas",
     "sector_principal": "Turismo y hospitalidad",
-    "tema_principal": "turismo invernal",
+    "tema_principal": "Turismo de naturaleza y aventura",
     "palabras_clave": [
-      "turismo invernal",
-      "turismo",
-      "mercados internacionales"
+      "turismo aventura",
+      "turismo de naturaleza",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
@@ -3098,13 +3018,10 @@
     "titulo": "Recibiendo turismo desde 1971",
     "referencia": "Rumbo Sur",
     "sector_principal": "Turismo y hospitalidad",
-    "tema_principal": "Canal de Beagle",
+    "tema_principal": "Turismo de naturaleza y aventura",
     "palabras_clave": [
-      "Canal de Beagle",
-      "turismo antártico",
-      "cruceros",
-      "turismo",
-      "mercados internacionales"
+      "turismo de naturaleza",
+      "turismo"
     ],
     "funciones_aeropuerto": [
       "Turismo y visitantes",
