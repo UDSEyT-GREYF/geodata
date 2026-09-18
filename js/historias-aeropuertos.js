@@ -412,11 +412,12 @@
     const record = state.records.find((item) => item.id === id);
     if (!record) return;
 
-    const location = record._location;
-    const related = location ? state.filtered.filter((item) => item._location?.key === location.key) : [];
-    const historicText = record.anio_datos_informe && record.anio_datos_informe !== record.anio_entrevista
-      ? `Entrevista realizada en ${record.anio_entrevista}. 
-      : `Entrevista realizada en ${record.anio_entrevista}.`;
+const location = record._location;
+const related = location
+  ? state.filtered.filter((item) => item._location?.key === location.key)
+  : [];
+
+const historicText = `Entrevista realizada en ${record.anio_entrevista}.`;
 
     dom.detailContent.innerHTML = `
       ${related.length > 1 ? `<button class="back-to-location" type="button" data-back-location="${escapeAttr(location.key)}">← Volver a ${escapeHTML(location.label)}</button>` : ""}
