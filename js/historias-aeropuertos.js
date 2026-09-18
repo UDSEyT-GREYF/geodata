@@ -412,6 +412,59 @@ if (location) {
 }
   }
 
+function extractQuotedPassages(record) {
+  const passages = [];
+
+  record.texto_parrafos.forEach((paragraph) => {
+    const regex = /“([^”]+)”/g;
+    let match;
+
+    while ((match = regex.exec(paragraph)) !== null) {
+      const text = match[1].trim();
+
+      if (text) passages.push(text);
+    }
+  });
+
+  return passages;
+}
+
+function comparableQuote(value) {
+  return String(value || "")
+    .replace(/…$/, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function featuredQuote(record) {
+  const current = trimQuote(record.cita_destacada || "");
+
+  if (!current) return "";
+
+  const passages = extractQuotedPassages(record);
+
+  if (!passages.length) return current;
+
+  const currentComparable = comparableQuote(current);
+  const searchFragment = currentComparable.slice(0, 140);
+
+  const recovered = passages.find((passage) => {
+    const comparable = comparableQuote(passage);
+
+    return comparable.startsWith(searchFragment)
+      || comparable.includes(searchFragment);
+  });
+
+  if (recovered) return recovered;
+
+  if (current.endsWith("…")) {
+    return [...passages].sort((a, b) => b.length - a.length)[0];
+  }
+
+  return current;
+}
+  
   function openRecord(id, { updateHash = true } = {}) {
     const record = state.records.find((item) => item.id === id);
     if (!record) return;
@@ -430,7 +483,11 @@ const historicText = `Entrevista realizada en ${record.anio_entrevista}.`;
       <p class="detail-reference">${escapeHTML(record.referencia || "")}</p>
       <div class="historic-note">${escapeHTML(historicText)} Se conservó el testimonio según su contexto original.</div>
       ${galleryHTML(record)}
-      ${record.cita_destacada ? `<blockquote class="detail-quote">“${escapeHTML(trimQuote(record.cita_destacada))}”</blockquote>` : ""}
+      ${featuredQuote(record) ? `
+  <blockquote class="detail-quote">
+    “${escapeHTML(featuredQuote(record))}”
+  </blockquote>
+` : ""}
       <div class="detail-body">
         ${record.texto_parrafos.map((paragraph) => `<p>${escapeHTML(paragraph)}</p>`).join("")}
       </div>
@@ -445,23 +502,146 @@ const historicText = `Entrevista realizada en ${record.anio_entrevista}.`;
           ${record.funciones_aeropuerto.map((tag) => `<span class="tag-static function-tag">${escapeHTML(tag)}</span>`).join("")}
         </div>` : ""}`;
 
-    openDetailPanel();
-    if (location) focusLocation(location);
+      openDetailPanel();
+      initCarousel();
+      
+      if (location) focusLocation(location);
     if (updateHash) history.replaceState(null, "", `#${encodeURIComponent(record.id)}`);
   }
 
-  function galleryHTML(record) {
-    if (!record.imagenes.length) return '<div class="gallery-empty">Imagen no disponible.</div>';
-    return `
-      <div class="story-gallery" aria-label="Imágenes de la entrevista">
-        ${record.imagenes.map((image, index) => `
-          <figure>
-            <img src="${escapeAttr(imageUrl(image.archivo))}" alt="${escapeAttr(`${record.titulo}, imagen ${index + 1}`)}" loading="lazy">
-            ${record.imagenes.length > 1 ? `<figcaption>Imagen ${index + 1} de ${record.imagenes.length}</figcaption>` : ""}
-          </figure>`).join("")}
-      </div>`;
+function galleryHTML(record) {
+  if (!record.imagenes.length) {
+    return '<div class="gallery-empty">Imagen no disponible.</div>';
   }
 
+  const multiple = record.imagenes.length > 1;
+
+  return `
+    <div class="story-carousel ${multiple ? "is-multiple" : ""}"
+         data-story-carousel>
+
+      <div class="story-carousel-viewport">
+
+        ${record.imagenes.map((image, index) => `
+          <figure class="story-carousel-slide ${index === 0 ? "is-active" : ""}"
+                  data-carousel-slide>
+
+            <img
+              src="${escapeAttr(imageUrl(image.archivo))}"
+              alt="${escapeAttr(`${record.titulo}, imagen ${index + 1}`)}"
+              loading="lazy">
+
+            ${multiple ? `
+              <figcaption>
+                Imagen ${index + 1} de ${record.imagenes.length}
+              </figcaption>
+            ` : ""}
+
+          </figure>
+        `).join("")}
+
+      </div>
+
+      ${multiple ? `
+        <button class="carousel-button carousel-prev"
+                type="button"
+                data-carousel-prev
+                aria-label="Imagen anterior">
+          ‹
+        </button>
+
+        <button class="carousel-button carousel-next"
+                type="button"
+                data-carousel-next
+                aria-label="Imagen siguiente">
+          ›
+        </button>
+
+        <div class="carousel-dots">
+          ${record.imagenes.map((_, index) => `
+            <button
+              type="button"
+              class="carousel-dot ${index === 0 ? "is-active" : ""}"
+              data-carousel-dot="${index}"
+              aria-label="Mostrar imagen ${index + 1}">
+            </button>
+          `).join("")}
+        </div>
+      ` : ""}
+
+    </div>
+  `;
+}
+
+let carouselTimer = null;
+
+function stopCarousel() {
+  if (!carouselTimer) return;
+
+  clearInterval(carouselTimer);
+  carouselTimer = null;
+}
+
+function initCarousel() {
+  stopCarousel();
+
+  const carousel = dom.detailContent.querySelector("[data-story-carousel]");
+
+  if (!carousel) return;
+
+  const slides = [...carousel.querySelectorAll("[data-carousel-slide]")];
+
+  if (slides.length < 2) return;
+
+  const dots = [...carousel.querySelectorAll("[data-carousel-dot]")];
+  const previous = carousel.querySelector("[data-carousel-prev]");
+  const next = carousel.querySelector("[data-carousel-next]");
+
+  let current = 0;
+
+  function showSlide(index) {
+    current = (index + slides.length) % slides.length;
+
+    slides.forEach((slide, slideIndex) => {
+      slide.classList.toggle("is-active", slideIndex === current);
+    });
+
+    dots.forEach((dot, dotIndex) => {
+      dot.classList.toggle("is-active", dotIndex === current);
+    });
+  }
+
+  function startCarousel() {
+    stopCarousel();
+
+    carouselTimer = window.setInterval(() => {
+      showSlide(current + 1);
+    }, 4500);
+  }
+
+  previous?.addEventListener("click", () => {
+    showSlide(current - 1);
+    startCarousel();
+  });
+
+  next?.addEventListener("click", () => {
+    showSlide(current + 1);
+    startCarousel();
+  });
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      showSlide(index);
+      startCarousel();
+    });
+  });
+
+  carousel.addEventListener("mouseenter", stopCarousel);
+  carousel.addEventListener("mouseleave", startCarousel);
+
+  startCarousel();
+}
+  
   function firstImage(record) {
     return record.imagenes?.[0] || null;
   }
@@ -529,13 +709,19 @@ function focusLocation(location) {
     document.body.classList.add("detail-open");
   }
 
-  function closeDetail() {
-    dom.detailPanel.classList.remove("is-open");
-    dom.detailPanel.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("detail-open");
-    state.selectedLocationKey = null;
-    if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+function closeDetail() {
+  dom.detailPanel.classList.remove("is-open");
+  dom.detailPanel.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("detail-open");
+
+  stopCarousel();
+
+  state.selectedLocationKey = null;
+
+  if (location.hash) {
+    history.replaceState(null, "", location.pathname + location.search);
   }
+}
 
   function setBaseLayer(layerKey, { remember = false } = {}) {
     const layer = state.baseLayers[layerKey];
