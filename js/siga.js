@@ -345,6 +345,52 @@ style: {
     { label: "Posición", keys: ["Posicion"] },
   ],
     },
+
+{
+  id: "pasarelas",
+  group: "Área de movimiento",
+  name: "Pasarelas telescópicas",
+  url: "fuentes/pasarelas_telescopicas.geojson",
+  active: true,
+
+  // Solo se muestran al acercarse al aeropuerto
+  minVisibleZoom: 12,
+
+  opacity: 1,
+  color: "#ff8c00",
+
+  tooltipTitle: "Pasarela telescópica",
+
+  tooltipFields: [
+    { label: "Aeropuerto", keys: ["aeropuerto"] },
+    { label: "IATA", keys: ["iata"] },
+    { label: "Posición", keys: ["Posicion"] },
+    { label: "Sector", keys: ["sector_plataforma"] }
+  ],
+
+  popupFields: [
+    { label: "Aeropuerto", keys: ["aeropuerto"] },
+    { label: "IATA", keys: ["iata"] },
+    { label: "OACI", keys: ["icao"] },
+    { label: "Posición", keys: ["Posicion"] },
+    { label: "Sector de plataforma", keys: ["sector_plataforma"] },
+    { label: "Restricciones", keys: ["restricciones"] },
+    { label: "Ingreso", keys: ["ingreso"] },
+    { label: "Salida", keys: ["salida"] },
+    { label: "Fuente", keys: ["tipo_fuente"] },
+    { label: "Documento AIP", keys: ["aip_pagina"] },
+    { label: "Fecha documento", keys: ["fecha_doc"] }
+  ],
+
+  point: {
+    radius: 5.2,
+    color: "#8a4f00",
+    weight: 1.5,
+    fillColor: "#ff8c00",
+    fillOpacity: 0.95
+  }
+},
+    
 {
   id: "aeroplantas",
   group: "Área de movimiento",
@@ -595,6 +641,7 @@ function getDetailLabelValue(cfg, feature) {
     ],
 
     psn: ["posicion", "Posicion", "posición", "Posición", "POSICION"],
+    pasarelas: ["posicion", "Posicion", "posición", "Posición", "POSICION"],
     terminales2026: ["tipo", "Tipo", "TIPO"]
   };
 
@@ -660,7 +707,8 @@ function getLayerPaneId(layerId) {
     "pistas",
     "cabeceras",
     "plataformas",
-    "psn"
+    "psn",
+    "pasarelas"
   ].includes(layerId)) {
     return "sigaMovimientoPane";
   }
@@ -1380,6 +1428,7 @@ function buildHoverTooltip(cfg, feature) {
     cabeceras: "Cabecera",
     plataformas: "Plataforma",
     psn: "Posición de aeronave",
+    pasarelas: "Pasarela telescópica",
     aeroplantas: "Aeroplanta",
     terminales2026: "Terminal",
     torres: "Torre de control",
