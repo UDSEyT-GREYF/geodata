@@ -149,6 +149,9 @@ h1{margin:0;overflow:hidden;font-size:clamp(18px,2vw,23px);font-weight:680;lette
   font-size:18px;
   line-height:1.1;
 }
+.detail-body em{
+  font-style:italic;
+}
 
 /* Miniaturas sobre el mapa */
 .story-photo-marker{
