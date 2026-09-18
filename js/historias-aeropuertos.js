@@ -260,7 +260,9 @@
       record.codigo_archivo,
       {
         value: record.codigo_archivo,
-        label: `${record.codigo_archivo} · ${record.localidad_aeroportuaria || record.codigo_archivo}`
+        label: record.codigo_archivo === "BUE"
+  ? "BUE · Aeroparque (AEP) + Ezeiza (EZE)"
+  : `${record.codigo_archivo} · ${record.localidad_aeroportuaria || record.codigo_archivo}`
       }
     ])).values()].sort((a, b) => collator.compare(a.label, b.label));
 
