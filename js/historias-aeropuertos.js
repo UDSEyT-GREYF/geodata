@@ -520,7 +520,7 @@ const historicText = `Entrevista realizada en ${record.anio_entrevista}.`;
   </blockquote>
 ` : ""}
       <div class="detail-body">
-        ${record.texto_parrafos.map((paragraph) => `<p>${escapeHTML(paragraph)}</p>`).join("")}
+        ${record.texto_parrafos.map((paragraph) => `<p>${formatQuotedText(paragraph)}</p>`).join("")}
       </div>
       ${record.palabras_clave.length ? `
         <h3 class="detail-subtitle">Palabras clave</h3>
@@ -814,7 +814,24 @@ function closeDetail() {
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
   }
+function formatQuotedText(value) {
+  const text = String(value || "");
+  const pattern = /“([^”]+)”|"([^"]+)"/g;
 
+  let result = "";
+  let lastIndex = 0;
+  let match;
+
+  while ((match = pattern.exec(text)) !== null) {
+    result += escapeHTML(text.slice(lastIndex, match.index));
+    result += `<em>${escapeHTML(match[0])}</em>`;
+    lastIndex = pattern.lastIndex;
+  }
+
+  result += escapeHTML(text.slice(lastIndex));
+
+  return result;
+}
   function escapeAttr(value) {
     return escapeHTML(value);
   }
