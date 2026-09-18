@@ -709,15 +709,26 @@ function focusLocation(location) {
   }, 700);
 }
 
-  function fitVisibleMarkers() {
-    const latlngs = [...state.markers.values()].map((marker) => marker.getLatLng());
-    if (!latlngs.length) return;
-    if (latlngs.length === 1) {
-      state.map.setView(latlngs[0], 7);
-      return;
-    }
-    state.map.fitBounds(L.latLngBounds(latlngs), { padding: [45, 45], maxZoom: 7 });
+function fitVisibleMarkers() {
+  const latlngs = [...state.markers.values()]
+    .map((marker) => marker.getLatLng());
+
+  if (!latlngs.length) return;
+
+  if (latlngs.length === 1) {
+    state.map.setView(latlngs[0], 7);
+    return;
   }
+
+  const bounds = L.latLngBounds(latlngs);
+
+  const zoom = Math.min(
+    state.map.getBoundsZoom(bounds, false, [45, 45]) + 1,
+    7
+  );
+
+  state.map.setView(bounds.getCenter(), zoom);
+}
 
   function openDetailPanel() {
     dom.detailPanel.classList.add("is-open");
