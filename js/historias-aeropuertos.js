@@ -83,33 +83,51 @@
 
   const collator = new Intl.Collator("es", { sensitivity: "base" });
 
-  function initMap() {
-    if (!window.L) throw new Error("La biblioteca del mapa no está disponible.");
-}
-const lightLayer = L.tileLayer(
+ function initMap() {
+  if (!window.L) {
+    throw new Error("La biblioteca del mapa no está disponible.");
+  }
 
-    const osmLayer = L.tileLayer(
-      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      {
-        maxZoom: 19,
-        attribution: "&copy; OpenStreetMap contributors"
-      }
-    );
+  const lightLayer = L.tileLayer(
+    "https://wms.ign.gob.ar/geoserver/mapabase_gris/gwc/service/wmts" +
+    "?SERVICE=WMTS" +
+    "&REQUEST=GetTile" +
+    "&VERSION=1.0.0" +
+    "&LAYER=mapabase_gris" +
+    "&STYLE=" +
+    "&TILEMATRIXSET=EPSG:3857" +
+    "&TILEMATRIX=EPSG:3857:{z}" +
+    "&TILEROW={y}" +
+    "&TILECOL={x}" +
+    "&FORMAT=image/png",
+    {
+      minZoom: 3,
+      maxZoom: 18,
+      attribution: "Instituto Geográfico Nacional | Argenmap"
+    }
+  );
 
-    const satelliteLayer = L.tileLayer(
-      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-      {
-        maxZoom: 19,
-        attribution: "Tiles &copy; Esri"
-      }
-    );
+  const osmLayer = L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
+      maxZoom: 19,
+      attribution: "&copy; OpenStreetMap contributors"
+    }
+  );
 
-    state.baseLayers = {
-      light: lightLayer,
-      osm: osmLayer,
-      satellite: satelliteLayer
-    };
+  const satelliteLayer = L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    {
+      maxZoom: 19,
+      attribution: "Tiles &copy; Esri"
+    }
+  );
 
+  state.baseLayers = {
+    light: lightLayer,
+    osm: osmLayer,
+    satellite: satelliteLayer
+  };
     state.map = L.map("map", {
       center: [-38.2, -64.2],
       zoom: 4,
