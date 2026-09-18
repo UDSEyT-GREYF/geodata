@@ -478,10 +478,26 @@ const historicText = `Entrevista realizada en ${record.anio_entrevista}.`;
 
     dom.detailContent.innerHTML = `
       ${related.length > 1 ? `<button class="back-to-location" type="button" data-back-location="${escapeAttr(location.key)}">← Volver a ${escapeHTML(location.label)}</button>` : ""}
-      <p class="detail-kicker">${escapeHTML(record.codigo_archivo)} · ${escapeHTML(record.provincia || "")}</p>
-      <h2 class="detail-title">${escapeHTML(record.titulo || "Sin título")}</h2>
-      <p class="detail-reference">${escapeHTML(record.referencia || "")}</p>
-      <div class="historic-note">${escapeHTML(historicText)} Se conservó el testimonio según su contexto original.</div>
+<div class="detail-meta-row">
+
+  <p class="detail-kicker">
+    ${escapeHTML(record.codigo_archivo)} · ${escapeHTML(record.provincia || "")}
+  </p>
+
+  <p class="historic-note-inline">
+    ${escapeHTML(historicText)}
+    Se conservó el testimonio según su contexto original.
+  </p>
+
+</div>
+
+<h2 class="detail-title">
+  ${escapeHTML(record.titulo || "Sin título")}
+</h2>
+
+<p class="detail-reference">
+  ${escapeHTML(record.referencia || "")}
+</p>
       ${galleryHTML(record)}
       ${featuredQuote(record) ? `
   <blockquote class="detail-quote">
