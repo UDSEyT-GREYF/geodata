@@ -375,11 +375,13 @@
       const representative = group.records.find((record) => firstImage(record)) || group.records[0];
       const image = representative ? firstImage(representative) : null;
 
-      const markerHTML = image
-        ? `<span class="story-photo-marker">
+    const markerHTML = image
+      ? `<span class="story-photo-marker">
+           <span class="story-photo-frame">
              <img src="${escapeAttr(imageUrl(image.archivo))}" alt="" loading="lazy">
-             <span class="story-photo-count">${count}</span>
-           </span>`
+           </span>
+           <span class="story-photo-count">${count}</span>
+         </span>`
         : `<span class="story-marker ${count === 1 ? "is-single" : ""}">${count}</span>`;
 
       const size = image ? 64 : (count >= 5 ? 46 : count >= 3 ? 42 : 38);
