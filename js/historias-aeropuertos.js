@@ -70,8 +70,8 @@
     markerLayer: null,
     countryLayer: null,
     baseLayers: {},
-    currentBaseLayer: "light",
-    userBaseLayer: "light",
+    currentBaseLayer: "satellite",
+    userBaseLayer: "satellite",
     records: [],
     filtered: [],
     airportCatalog: new Map(),
@@ -135,7 +135,7 @@
       maxZoom: 19,
       zoomControl: false,
       worldCopyJump: true,
-      layers: [lightLayer]
+      layers: [satelliteLayer]
     });
 
     L.control.zoom({ position: "topleft" }).addTo(state.map);
