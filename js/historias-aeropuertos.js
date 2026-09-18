@@ -406,6 +406,10 @@
           </button>`).join("")}
       </div>`;
     openDetailPanel();
+
+if (location) {
+  focusLocation(location);
+}
   }
 
   function openRecord(id, { updateHash = true } = {}) {
@@ -470,10 +474,44 @@ const historicText = `Entrevista realizada en ${record.anio_entrevista}.`;
     return String(value || "").replace(/^[“\"'«]+|[”\"'»]+$/g, "").trim();
   }
 
-  function focusLocation(location) {
-    if (!state.map || !location) return;
-    state.map.flyTo([location.lat, location.lon], Math.max(state.map.getZoom(), 7), { duration: 0.7 });
-  }
+function focusLocation(location) {
+  if (!state.map || !location) return;
+
+  const target = L.latLng(location.lat, location.lon);
+  const zoom = Math.max(state.map.getZoom(), 7);
+
+  state.map.flyTo(target, zoom, {
+    duration: 0.6
+  });
+
+  window.setTimeout(() => {
+    if (!dom.detailPanel.classList.contains("is-open")) return;
+    if (window.innerWidth <= 760) return;
+
+    const mapRect = dom.mapStage.getBoundingClientRect();
+    const panelRect = dom.detailPanel.getBoundingClientRect();
+
+    const overlap = Math.max(
+      0,
+      Math.min(mapRect.right, panelRect.right) -
+      Math.max(mapRect.left, panelRect.left)
+    );
+
+    const visibleWidth = mapRect.width - overlap;
+
+    if (visibleWidth < 180) return;
+
+    const point = state.map.latLngToContainerPoint(target);
+
+    const desiredX = visibleWidth / 2;
+    const deltaX = point.x - desiredX;
+
+    state.map.panBy([deltaX, 0], {
+      animate: true,
+      duration: 0.35
+    });
+  }, 700);
+}
 
   function fitVisibleMarkers() {
     const latlngs = [...state.markers.values()].map((marker) => marker.getLatLng());
