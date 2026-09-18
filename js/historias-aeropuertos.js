@@ -415,7 +415,7 @@
     const location = record._location;
     const related = location ? state.filtered.filter((item) => item._location?.key === location.key) : [];
     const historicText = record.anio_datos_informe && record.anio_datos_informe !== record.anio_entrevista
-      ? `Entrevista realizada en ${record.anio_entrevista}. Informe elaborado con datos ${record.anio_datos_informe}.`
+      ? `Entrevista realizada en ${record.anio_entrevista}. 
       : `Entrevista realizada en ${record.anio_entrevista}.`;
 
     dom.detailContent.innerHTML = `
@@ -423,7 +423,7 @@
       <p class="detail-kicker">${escapeHTML(record.codigo_archivo)} · ${escapeHTML(record.provincia || "")}</p>
       <h2 class="detail-title">${escapeHTML(record.titulo || "Sin título")}</h2>
       <p class="detail-reference">${escapeHTML(record.referencia || "")}</p>
-      <div class="historic-note">${escapeHTML(historicText)} Conservá el testimonio según su contexto original.</div>
+      <div class="historic-note">${escapeHTML(historicText)} Se conservó el testimonio según su contexto original.</div>
       ${galleryHTML(record)}
       ${record.cita_destacada ? `<blockquote class="detail-quote">“${escapeHTML(trimQuote(record.cita_destacada))}”</blockquote>` : ""}
       <div class="detail-body">
