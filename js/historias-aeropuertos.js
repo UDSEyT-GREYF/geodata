@@ -85,7 +85,7 @@
 
   function initMap() {
     if (!window.L) throw new Error("La biblioteca del mapa no está disponible.");
-
+}
 const lightLayer = L.tileLayer(
 
     const osmLayer = L.tileLayer(
