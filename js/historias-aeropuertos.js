@@ -86,14 +86,7 @@
   function initMap() {
     if (!window.L) throw new Error("La biblioteca del mapa no está disponible.");
 
-      const lightLayer = L.tileLayer(
-        "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG%3A3857@png/{z}/{x}/{-y}.png",
-        {
-          minZoom: 3,
-          maxZoom: 19,
-          attribution: "Instituto Geográfico Nacional + OpenStreetMap"
-        }
-      );
+const lightLayer = L.tileLayer(
 
     const osmLayer = L.tileLayer(
       "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
