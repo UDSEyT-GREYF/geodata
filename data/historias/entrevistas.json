@@ -109,13 +109,16 @@
       "Igualmente, por su cargo, Oscar no puede imaginarse su trabajo sin un aeropuerto cerca: “Yo si no tuviera el avión no sé cómo haría. Para todo lo operativo, organizativo y tener un lugar como éste funcionando, necesitas el avión. Para mi ahora el avión es mi lugar para descansar, ahí aprovecho para relajarme”."
     ],
     "imagenes": [
-      {
-        "archivo": "Historias que hablan BRC 2013 Balseiro.png",
-        "ancho": 800,
-        "alto": 600,
-        "orientacion": "horizontal"
-      }
-    ]
+  {
+    "archivo": "Historias que hablan BRC 2013 Balseiro.png",
+    "ancho": 800,
+    "alto": 600,
+    "orientacion": "horizontal"
+  },
+  {
+    "archivo": "Historias que hablan BRC 2013 Balseiro1.png"
+  }
+]
   },
   {
     "id": "brc-2015-carina-y-massimo",
