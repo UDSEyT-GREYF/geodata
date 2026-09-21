@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GeoData – Estadísticas</title>
+<link rel="icon" type="image/png" href="img/icons/mapas_pagina.png?v=1">
+<link rel="stylesheet" href="css/index.css">
+<style>
+.stats-main{max-width:1180px}.stats-header{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:22px}
+.stats-header h1{margin:0 0 7px;color:#003366;font-size:2rem}.stats-header p{margin:0;max-width:720px;color:#555}
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.controls label{font-size:.82rem;font-weight:600;color:#495057}
+.controls select,.controls button{min-height:38px;border:1px solid #bdc7d1;border-radius:5px;background:#fff;padding:7px 11px;font:inherit}
+.controls button{border-color:#0072bb;background:#0072bb;color:#fff;cursor:pointer;font-weight:600}.controls button:hover{background:#005f99}
+.status{margin:-10px 0 20px;min-height:20px;color:#6c757d;font-size:.8rem}.status.error{color:#a12622}
+.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-bottom:22px}.kpi{background:#fff;border:1px solid #d6dde5;border-radius:5px;padding:16px}
+.kpi-label{margin-bottom:5px;color:#6c757d;font-size:.74rem;font-weight:700;text-transform:uppercase}.kpi-value{color:#002855;font-size:1.85rem;font-weight:700}
+.kpi-note{margin-top:5px;color:#6c757d;font-size:.72rem}.panels{display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-bottom:18px}
+.panels.equal{grid-template-columns:1fr 1fr}.panel{background:#fff;border:1px solid #d6dde5;border-radius:5px;padding:18px;min-width:0}
+.panel h2{margin:0 0 4px;color:#002855;font-size:1.05rem}.sub{margin:0 0 15px;color:#6c757d;font-size:.78rem}.chart-wrap{height:310px;position:relative}
+.bar-list{display:grid;gap:11px}.bar-row{display:grid;grid-template-columns:minmax(95px,1fr) 2fr auto;gap:9px;align-items:center;font-size:.82rem}
+.bar-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#495057}.bar-track{height:9px;background:#e9eef3;border-radius:999px;overflow:hidden}.bar-fill{height:100%;background:#0072bb;border-radius:inherit}
+.bar-number{text-align:right;color:#495057}.table-panel{margin-bottom:18px}.table-wrap{overflow-x:auto;border:1px solid #e1e5e9;border-radius:4px}
+table{width:100%;border-collapse:collapse;font-size:.82rem}th,td{padding:9px 10px;border-bottom:1px solid #e8ecef;text-align:left;vertical-align:top}
+th{background:#f5f7f9;color:#495057;font-size:.74rem;text-transform:uppercase;white-space:nowrap}td.num,th.num{text-align:right}
+.path{color:#0072bb;font-weight:600;white-space:nowrap}.empty{padding:18px;color:#6c757d;text-align:center;font-size:.84rem}
+.privacy{margin-top:20px;padding:12px 14px;border-left:3px solid #0072bb;background:#eef5f9;color:#495057;font-size:.8rem}
+@media(max-width:980px){.kpis{grid-template-columns:repeat(3,1fr)}.panels,.panels.equal{grid-template-columns:1fr}.stats-header{align-items:flex-start;flex-direction:column}}
+@media(max-width:620px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi:last-child{grid-column:1/-1}.controls{width:100%}.controls select,.controls button{flex:1}}
+</style>
+</head>
+<body>
+<div class="topbar" aria-hidden="true"><div class="topbar-inner"></div></div>
+<div class="gov-header"><div class="gov-header-inner">
+  <div class="brand"><div class="brand-logo" aria-hidden="true"></div><div class="brand-text">
+    <span>Organismo Regulador del Sistema Nacional de Aeropuertos</span><span>ORSNA</span>
+  </div></div>
+  <div class="gov-actions"><a class="gov-link" href="index.html">Volver a GeoData</a></div>
+</div></div>
+<nav class="breadcrumb"><div class="breadcrumb-inner"><a href="index.html">Inicio</a> › Estadísticas</div></nav>
+
+<main class="stats-main">
+  <div class="stats-header">
+    <div><h1>Estadísticas de GeoData</h1><p>Uso de páginas, informes y recursos publicados por la Gerencia de Regulación Económica y Financiera.</p></div>
+    <div class="controls"><label for="period">Período</label>
+      <select id="period"><option value="7">Últimos 7 días</option><option value="30" selected>Últimos 30 días</option><option value="90">Últimos 90 días</option><option value="365">Último año</option><option value="0">Todo el período</option></select>
+      <button id="refresh" type="button">Actualizar</button>
+    </div>
+  </div>
+  <div id="status" class="status">Cargando estadísticas…</div>
+
+  <section class="kpis">
+    <div class="kpi"><div class="kpi-label">Visitas</div><div id="visits" class="kpi-value">—</div><div class="kpi-note">Aperturas de páginas</div></div>
+    <div class="kpi"><div class="kpi-label">Visitantes</div><div id="visitors" class="kpi-value">—</div><div class="kpi-note">Navegadores anónimos</div></div>
+    <div class="kpi"><div class="kpi-label">Sesiones</div><div id="sessions" class="kpi-value">—</div><div class="kpi-note">30 min de inactividad</div></div>
+    <div class="kpi"><div class="kpi-label">PDF abiertos</div><div id="pdfs" class="kpi-value">—</div><div class="kpi-note">Clics en documentos PDF</div></div>
+    <div class="kpi"><div class="kpi-label">Descargas</div><div id="downloads" class="kpi-value">—</div><div class="kpi-note">Enlaces con descarga</div></div>
+  </section>
+
+  <section class="panels">
+    <article class="panel"><h2>Evolución diaria</h2><p class="sub">Visitas y visitantes anónimos por día</p><div class="chart-wrap"><canvas id="dailyChart"></canvas></div></article>
+    <article class="panel"><h2>Dispositivos</h2><p class="sub">Distribución de las visitas</p><div id="devices" class="bar-list"></div></article>
+  </section>
+
+  <section class="panel table-panel"><h2>Páginas más visitadas</h2><p class="sub">No incluye esta página de estadísticas</p>
+    <div class="table-wrap"><table><thead><tr><th>Página</th><th>Título</th><th class="num">Visitas</th><th class="num">Visitantes</th><th class="num">Sesiones</th></tr></thead><tbody id="pagesBody"></tbody></table></div>
+  </section>
+
+  <section class="panels equal">
+    <article class="panel"><h2>Navegadores</h2><p class="sub">Participación sobre las visitas</p><div id="browsers" class="bar-list"></div></article>
+    <article class="panel"><h2>Origen de las visitas</h2><p class="sub">Páginas de referencia disponibles</p><div id="referrers" class="bar-list"></div></article>
+  </section>
+
+  <section class="panel table-panel"><h2>PDF más consultados</h2><p class="sub">Aperturas registradas desde GeoData</p>
+    <div class="table-wrap"><table><thead><tr><th>Documento</th><th class="num">Aperturas</th><th class="num">Visitantes</th></tr></thead><tbody id="pdfBody"></tbody></table></div>
+  </section>
+
+  <div class="privacy">Las estadísticas usan identificadores anónimos del navegador. Este tablero no muestra nombres, correos electrónicos, direcciones IP ni identificadores individuales.</div>
+</main>
+
+<footer><div class="footer-inner"><div>© 2026 Gerencia de Regulación Económica y Financiera - ORSNA</div></div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script>
+(() => {
+  "use strict";
+  const SUPABASE_URL="https://arsmoxqyosomorakzasa.supabase.co";
+  const SUPABASE_KEY="sb_publishable_rzlL03Rek-M5XUbw-NwXcA_CBNjaKvy";
+  const RPC_URL=`${SUPABASE_URL}/rest/v1/rpc/get_geodata_analytics_dashboard`;
+  const nf=new Intl.NumberFormat("es-AR");
+  const $=id=>document.getElementById(id);
+  let chart=null;
+
+  const esc=v=>String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
+  const day=v=>{const [y,m,d]=v.split("-").map(Number);return new Intl.DateTimeFormat("es-AR",{day:"2-digit",month:"2-digit"}).format(new Date(y,m-1,d));};
+  const dt=v=>!v?"Sin datos":new Intl.DateTimeFormat("es-AR",{dateStyle:"short",timeStyle:"short",timeZone:"America/Argentina/Buenos_Aires"}).format(new Date(v));
+
+  function bars(id,rows,labelKey,valueKey,empty){
+    const el=$(id);
+    if(!rows?.length){el.innerHTML=`<div class="empty">${esc(empty)}</div>`;return;}
+    const max=Math.max(...rows.map(r=>Number(r[valueKey])||0),1);
+    el.innerHTML=rows.slice(0,10).map(r=>{
+      const value=Number(r[valueKey])||0,label=r[labelKey]||"Sin identificar",width=Math.max(2,value/max*100);
+      return `<div class="bar-row" title="${esc(label)}"><div class="bar-label">${esc(label)}</div><div class="bar-track"><div class="bar-fill" style="width:${width}%"></div></div><div class="bar-number">${nf.format(value)}</div></div>`;
+    }).join("");
+  }
+
+  function render(data){
+    const s=data.summary||{};
+    $("visits").textContent=nf.format(Number(s.visits)||0);
+    $("visitors").textContent=nf.format(Number(s.visitors)||0);
+    $("sessions").textContent=nf.format(Number(s.sessions)||0);
+    $("pdfs").textContent=nf.format(Number(s.pdf_opens)||0);
+    $("downloads").textContent=nf.format(Number(s.downloads)||0);
+
+    const rows=data.pages||[];
+    $("pagesBody").innerHTML=rows.length?rows.map(r=>`<tr><td class="path">${esc(r.page_path)}</td><td>${esc(r.page_title||"—")}</td><td class="num">${nf.format(Number(r.visits)||0)}</td><td class="num">${nf.format(Number(r.visitors)||0)}</td><td class="num">${nf.format(Number(r.sessions)||0)}</td></tr>`).join(""):`<tr><td colspan="5" class="empty">Todavía no hay visitas registradas.</td></tr>`;
+
+    const pdfRows=data.pdfs||[];
+    $("pdfBody").innerHTML=pdfRows.length?pdfRows.map(r=>`<tr><td class="path">${esc(r.target_path)}</td><td class="num">${nf.format(Number(r.opens)||0)}</td><td class="num">${nf.format(Number(r.visitors)||0)}</td></tr>`).join(""):`<tr><td colspan="3" class="empty">Todavía no hay aperturas de PDF registradas.</td></tr>`;
+
+    bars("devices",data.devices||[],"label","visits","Todavía no hay datos.");
+    bars("browsers",data.browsers||[],"label","visits","Todavía no hay datos.");
+    bars("referrers",data.referrers||[],"referrer","visits","Las visitas actuales son directas o no informan referencia.");
+
+    if(chart) chart.destroy();
+    const d=data.daily||[];
+    chart=new Chart($("dailyChart"),{type:"line",data:{labels:d.map(x=>day(x.day)),datasets:[
+      {label:"Visitas",data:d.map(x=>Number(x.visits)||0),borderWidth:2,tension:.22,pointRadius:d.length>45?0:2.5},
+      {label:"Visitantes",data:d.map(x=>Number(x.visitors)||0),borderWidth:2,tension:.22,pointRadius:d.length>45?0:2.5}
+    ]},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:"index"},plugins:{legend:{position:"bottom"}},scales:{y:{beginAtZero:true,ticks:{precision:0}}}}});
+
+    $("status").classList.remove("error");
+    $("status").textContent=`Datos de ${Number(data.period_days)===0?"todo el período disponible":`los últimos ${data.period_days} días`}. Último evento: ${dt(s.last_event)}.`;
+  }
+
+  async function load(){
+    $("status").classList.remove("error");$("status").textContent="Actualizando estadísticas…";$("refresh").disabled=true;
+    try{
+      const res=await fetch(RPC_URL,{method:"POST",headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY,"Authorization":`Bearer ${SUPABASE_KEY}`},body:JSON.stringify({p_days:Number($("period").value)}),cache:"no-store"});
+      if(!res.ok) throw new Error(await res.text());
+      render(await res.json());
+    }catch(e){
+      console.error(e);$("status").classList.add("error");$("status").textContent="No se pudieron cargar las estadísticas. Revisá la función de Supabase.";
+    }finally{$("refresh").disabled=false;}
+  }
+
+  $("period").addEventListener("change",load);
+  $("refresh").addEventListener("click",load);
+  load();
+})();
+</script>
+<script src="/geodata/js/siga-analytics.js"></script>
+</body>
+</html>
