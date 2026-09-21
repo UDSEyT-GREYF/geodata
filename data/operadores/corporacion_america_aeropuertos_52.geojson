@@ -1,0 +1,1434 @@
+{
+  "type": "FeatureCollection",
+  "name": "corporacion_america_aeropuertos_global",
+  "metadata": {
+    "descripcion": "Aeropuertos actualmente operados o gestionados por Corporación América Airports (CAAP).",
+    "fecha_verificacion": "2026-09-21",
+    "sistema_referencia": "WGS84 / EPSG:4326",
+    "orden_coordenadas": "[longitud, latitud]",
+    "cantidad_registros": 52,
+    "paises": [
+      "Argentina",
+      "Brasil",
+      "Uruguay",
+      "Ecuador",
+      "Armenia",
+      "Italia"
+    ],
+    "distribucion": {
+      "Argentina": 37,
+      "Uruguay": 8,
+      "Ecuador": 2,
+      "Brasil": 1,
+      "Armenia": 2,
+      "Italia": 2
+    },
+    "nota": "La capa sudamericana original contiene 48 registros; esta versión agrega 2 aeropuertos en Armenia y 2 en Italia para completar los 52 informados por CAAP."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-01",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.1693,
+          -38.725
+        ]
+      },
+      "properties": {
+        "iata": "BHI",
+        "icao": "SAZB",
+        "nombre": "Aeropuerto Comandante Espora",
+        "pais": "Argentina",
+        "ciudad": "Bahía Blanca",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuerto de Bahía Blanca S.A.",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-01",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-02",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.415536,
+          -34.559419
+        ]
+      },
+      "properties": {
+        "iata": "AEP",
+        "icao": "SABE",
+        "nombre": "Aeroparque Jorge Newbery",
+        "pais": "Argentina",
+        "ciudad": "Buenos Aires",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-02",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-03",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.5358,
+          -34.8222
+        ]
+      },
+      "properties": {
+        "iata": "EZE",
+        "icao": "SAEZ",
+        "nombre": "Aeropuerto Internacional Ezeiza - Ministro Pistarini",
+        "pais": "Argentina",
+        "ciudad": "Buenos Aires (Ezeiza)",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-03",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-04",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.7512,
+          -28.593117
+        ]
+      },
+      "properties": {
+        "iata": "CTC",
+        "icao": "SANC",
+        "nombre": "Aeropuerto Internacional Coronel Felipe Varela",
+        "pais": "Argentina",
+        "ciudad": "Catamarca",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-04",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-05",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.463355,
+          -45.786941
+        ]
+      },
+      "properties": {
+        "iata": "CRD",
+        "icao": "SAVC",
+        "nombre": "Aeropuerto Internacional General Enrique Mosconi",
+        "pais": "Argentina",
+        "ciudad": "Comodoro Rivadavia",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-05",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-06",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.208329,
+          -31.312346
+        ]
+      },
+      "properties": {
+        "iata": "COR",
+        "icao": "SACO",
+        "nombre": "Aeropuerto Internacional Ingeniero Aeronáutico Ambrosio L.V. Taravella",
+        "pais": "Argentina",
+        "ciudad": "Cordoba",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-06",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-07",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.6125,
+          -34.61
+        ]
+      },
+      "properties": {
+        "iata": "EPA",
+        "icao": "SADP",
+        "nombre": "Aeropuerto El Palomar",
+        "pais": "Argentina",
+        "ciudad": "El Palomar",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-07",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-08",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.139503,
+          -42.908001
+        ]
+      },
+      "properties": {
+        "iata": "EQS",
+        "icao": "SAVE",
+        "nombre": "Aeropuerto Internacional Esquel Brigadier Antonio Parodi",
+        "pais": "Argentina",
+        "ciudad": "Esquel",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-08",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-09",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2281,
+          -26.2127
+        ]
+      },
+      "properties": {
+        "iata": "FMA",
+        "icao": "SARF",
+        "nombre": "Aeropuerto Formosa",
+        "pais": "Argentina",
+        "ciudad": "Formosa",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-09",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-10",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.75888889,
+          -35.69472222
+        ]
+      },
+      "properties": {
+        "iata": "GPO",
+        "icao": "SAZG",
+        "nombre": "Aeropuerto General Pico",
+        "pais": "Argentina",
+        "ciudad": "General Pico",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-10",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-11",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.795799,
+          -29.381599
+        ]
+      },
+      "properties": {
+        "iata": "IRJ",
+        "icao": "SANL",
+        "nombre": "Aeropuerto Capitan V A Almonacid",
+        "pais": "Argentina",
+        "ciudad": "La Rioja",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-11",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-12",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.57305556,
+          -35.49527778
+        ]
+      },
+      "properties": {
+        "iata": "LGS",
+        "icao": "SAMM",
+        "nombre": "Aeropuerto Malargüe - Comodoro D. Ricardo Salomón",
+        "pais": "Argentina",
+        "ciudad": "Malargüe",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-12",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-13",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.5733,
+          -37.9342
+        ]
+      },
+      "properties": {
+        "iata": "MDQ",
+        "icao": "SAZM",
+        "nombre": "Aeropuerto Internacional Ástor Piazzola",
+        "pais": "Argentina",
+        "ciudad": "Mar del Plata",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-13",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-14",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.7929,
+          -32.831699
+        ]
+      },
+      "properties": {
+        "iata": "MDZ",
+        "icao": "SAME",
+        "nombre": "Aeropuerto Internacional Gobernador Francisco Gabrielli",
+        "pais": "Argentina",
+        "ciudad": "Mendoza",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-14",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-15",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.155701,
+          -38.949001
+        ]
+      },
+      "properties": {
+        "iata": "NQN",
+        "icao": "SAZN",
+        "nombre": "Aeropuerto Internacional Presidente Perón",
+        "pais": "Argentina",
+        "ciudad": "Neuquén",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos del Neuquén S.A.",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-15",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-16",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.4804,
+          -31.7948
+        ]
+      },
+      "properties": {
+        "iata": "PRA",
+        "icao": "SAAP",
+        "nombre": "Aeropuerto General Urquiza",
+        "pais": "Argentina",
+        "ciudad": "Parana",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-16",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-17",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -55.9707,
+          -27.3858
+        ]
+      },
+      "properties": {
+        "iata": "PSS",
+        "icao": "SARP",
+        "nombre": "Aeropuerto Libertador Gral D Jose De San Martin",
+        "pais": "Argentina",
+        "ciudad": "Posadas",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-17",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-18",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -54.4734,
+          -25.737301
+        ]
+      },
+      "properties": {
+        "iata": "IGR",
+        "icao": "SARI",
+        "nombre": "Aeropuerto Internacional Cataratas Del Iguazú",
+        "pais": "Argentina",
+        "ciudad": "Puerto Iguazu",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-18",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-19",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.1027,
+          -42.7592
+        ]
+      },
+      "properties": {
+        "iata": "PMY",
+        "icao": "SAVY",
+        "nombre": "Aeropuerto El Tehuelche",
+        "pais": "Argentina",
+        "ciudad": "Puerto Madryn",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-19",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-20",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.68,
+          -29.21027778
+        ]
+      },
+      "properties": {
+        "iata": "RCQ",
+        "icao": "SATR",
+        "nombre": "Aeropuerto Reconquista",
+        "pais": "Argentina",
+        "ciudad": "Reconquista",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-20",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-21",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.056125,
+          -27.44991
+        ]
+      },
+      "properties": {
+        "iata": "RES",
+        "icao": "SARE",
+        "nombre": "Aeropuerto Internacional Resistencia",
+        "pais": "Argentina",
+        "ciudad": "Resistencia",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-21",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-22",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.308948,
+          -51.608791
+        ]
+      },
+      "properties": {
+        "iata": "RGL",
+        "icao": "SAWG",
+        "nombre": "Aeropuerto Internacional Piloto Civil Norberto Fernández",
+        "pais": "Argentina",
+        "ciudad": "Rio Gallegos",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-22",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-23",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.7494,
+          -53.7777
+        ]
+      },
+      "properties": {
+        "iata": "RGA",
+        "icao": "SAWE",
+        "nombre": "Aeropuerto Internacional Gobernador Ramón Trejo Noel",
+        "pais": "Argentina",
+        "ciudad": "Rio Grande",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-23",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-24",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.26934,
+          -33.09216
+        ]
+      },
+      "properties": {
+        "iata": "RCU",
+        "icao": "SAOC",
+        "nombre": "Aeropuerto Río Cuarto - Área de Material",
+        "pais": "Argentina",
+        "ciudad": "Río Cuarto",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-24",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-25",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.486198,
+          -24.856001
+        ]
+      },
+      "properties": {
+        "iata": "SLA",
+        "icao": "SASA",
+        "nombre": "Aeropuerto Internacional Martín Miguel de Güemes",
+        "pais": "Argentina",
+        "ciudad": "Salta",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-25",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-26",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.157501,
+          -41.151199
+        ]
+      },
+      "properties": {
+        "iata": "BRC",
+        "icao": "SAZS",
+        "nombre": "Aeropuerto Internacional Teniente Luis Candelaria",
+        "pais": "Argentina",
+        "ciudad": "San Carlos de Bariloche",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-26",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-27",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.59091,
+          -34.45454
+        ]
+      },
+      "properties": {
+        "iata": "FDO",
+        "icao": "SADF",
+        "nombre": "Aeropuerto San Fernando",
+        "pais": "Argentina",
+        "ciudad": "San Fernando",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-27",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-28",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.418198,
+          -31.571501
+        ]
+      },
+      "properties": {
+        "iata": "UAQ",
+        "icao": "SANU",
+        "nombre": "Aeropuerto Domingo Faustino Sarmiento",
+        "pais": "Argentina",
+        "ciudad": "San Juan",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-28",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-29",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.3564,
+          -33.273201
+        ]
+      },
+      "properties": {
+        "iata": "LUQ",
+        "icao": "SAOU",
+        "nombre": "Aeropuerto Brigadier Mayor D Cesar Raul Ojeda",
+        "pais": "Argentina",
+        "ciudad": "San Luis",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-29",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-30",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.104195,
+          -26.837397
+        ]
+      },
+      "properties": {
+        "iata": "TUC",
+        "icao": "SANT",
+        "nombre": "Aeropuerto Internacional Teniente Benjamín Matienzo",
+        "pais": "Argentina",
+        "ciudad": "San Miguel de Tucumán",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-30",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-31",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.4039,
+          -34.588299
+        ]
+      },
+      "properties": {
+        "iata": "AFA",
+        "icao": "SAMR",
+        "nombre": "Aeropuerto Suboficial Ay Santiago Germano",
+        "pais": "Argentina",
+        "ciudad": "San Rafael",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-31",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-32",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.097801,
+          -24.392799
+        ]
+      },
+      "properties": {
+        "iata": "JUJ",
+        "icao": "SASJ",
+        "nombre": "Aeropuerto Internacional Gobernador Horacio Guzman",
+        "pais": "Argentina",
+        "ciudad": "San Salvador de Jujuy",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-32",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-33",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.275703,
+          -36.588299
+        ]
+      },
+      "properties": {
+        "iata": "RSA",
+        "icao": "SAZR",
+        "nombre": "Aeropuerto Santa Rosa",
+        "pais": "Argentina",
+        "ciudad": "Santa Rosa",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-33",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-34",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.3099975586,
+          -27.765556335399996
+        ]
+      },
+      "properties": {
+        "iata": "SDE",
+        "icao": "SANE",
+        "nombre": "Aeropuerto Vicecomodoro Angel D. La Paz Aragonés",
+        "pais": "Argentina",
+        "ciudad": "Santiago del Estero",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-34",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-35",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.93595,
+          -27.4966
+        ]
+      },
+      "properties": {
+        "iata": "RHD",
+        "icao": "SANR",
+        "nombre": "Aeropuerto Internacional Termas de Río Hondo",
+        "pais": "Argentina",
+        "ciudad": "Termas de Río Hondo",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-35",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-36",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.0004,
+          -40.8692
+        ]
+      },
+      "properties": {
+        "iata": "VDM",
+        "icao": "SAVV",
+        "nombre": "Aeropuerto Gobernador Castello",
+        "pais": "Argentina",
+        "ciudad": "Viedma / Carmen de Patagones",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-36",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-37",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.37579,
+          -33.73178
+        ]
+      },
+      "properties": {
+        "iata": "VME",
+        "icao": "SAOR",
+        "nombre": "Aeropuerto Villa Reynolds",
+        "pais": "Argentina",
+        "ciudad": "Villa Mercedes",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Argentina 2000 S.A. (Aeropuertos Argentina)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP Annual Report 2025 / Aeropuertos Argentina",
+        "id_caap": "CAAP-SA-37",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-38",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -47.920834,
+          -15.869167
+        ]
+      },
+      "properties": {
+        "iata": "BSB",
+        "icao": "SBBR",
+        "nombre": "Aeropuerto Internacional Presidente Juscelino Kubitschek",
+        "pais": "Brasil",
+        "ciudad": "Brasília",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Inframerica Concessionária do Aeroporto de Brasília S.A.",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP portfolio: Aeropuerto de Brasília",
+        "id_caap": "CAAP-SA-38",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-39",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.883598,
+          -2.15742
+        ]
+      },
+      "properties": {
+        "iata": "GYE",
+        "icao": "SEGU",
+        "nombre": "Aeropuerto Internacional José Joaquín de Olmedo",
+        "pais": "Ecuador",
+        "ciudad": "Guayaquil",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Terminal Aeroportuaria de Guayaquil S.A. (TAGSA)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP portfolio: Guayaquil y Galápagos",
+        "id_caap": "CAAP-SA-39",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-40",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.2659,
+          -0.453758
+        ]
+      },
+      "properties": {
+        "iata": "GPS",
+        "icao": "SEGS",
+        "nombre": "Aeropuerto Seymour Galapagos Ecological",
+        "pais": "Ecuador",
+        "ciudad": "Isla Baltra",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Aeropuertos Ecológicos de Galápagos S.A. (ECOGAL)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP portfolio: Guayaquil y Galápagos",
+        "id_caap": "CAAP-SA-40",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-41",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.325189,
+          -33.967399
+        ]
+      },
+      "properties": {
+        "iata": null,
+        "icao": "SUCM",
+        "nombre": "Aeropuerto Internacional de Carmelo - Balneario Zagarzazú",
+        "pais": "Uruguay",
+        "ciudad": "Carmelo",
+        "fuente_geometria": "Coordenada verificada en Google Maps por la usuaria; Aeropuerto de Carmelo / Aeropuertos Uruguay",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Puerta del Sur S.A. / Aeropuertos Uruguay",
+        "tipo_vinculo": "Concesión, gestión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP / Aeropuertos Uruguay / SINAI",
+        "id_caap": "CAAP-SA-41",
+        "nota_geometria": "Punto del aeropuerto verificado manualmente.",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-42",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.026497,
+          -34.835647
+        ]
+      },
+      "properties": {
+        "iata": "MVD",
+        "icao": "SUMU",
+        "nombre": "Aeropuerto Internacional Carrasco General Cesáreo L. Berisso",
+        "pais": "Uruguay",
+        "ciudad": "Ciudad de la Costa",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Puerta del Sur S.A. / Aeropuertos Uruguay",
+        "tipo_vinculo": "Concesión, gestión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP / Aeropuertos Uruguay / SINAI",
+        "id_caap": "CAAP-SA-42",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-43",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.499199,
+          -33.358898
+        ]
+      },
+      "properties": {
+        "iata": "DZO",
+        "icao": "SUDU",
+        "nombre": "Aeropuerto Internacional de Durazno - Santa Bernardina",
+        "pais": "Uruguay",
+        "ciudad": "Durazno",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica_interes_territorial.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Puerta del Sur S.A. / Aeropuertos Uruguay",
+        "tipo_vinculo": "Concesión, gestión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP / Aeropuertos Uruguay / SINAI",
+        "id_caap": "CAAP-SA-43",
+        "nota_geometria": "Geometría existente en la capa de aeropuertos de interés territorial.",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-44",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -54.223274,
+          -32.340009
+        ]
+      },
+      "properties": {
+        "iata": "MLZ",
+        "icao": "SUMO",
+        "nombre": "Aeropuerto Internacional de Melo",
+        "pais": "Uruguay",
+        "ciudad": "Melo",
+        "fuente_geometria": "Coordenada del aeropuerto verificada en Google Maps por la usuaria; referencia urbana complementaria: ne_10m_populated_places_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Puerta del Sur S.A. / Aeropuertos Uruguay",
+        "tipo_vinculo": "Concesión, gestión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP / Aeropuertos Uruguay / SINAI",
+        "id_caap": "CAAP-SA-44",
+        "nota_geometria": "Se usa el punto aeroportuario verificado, no el centro urbano de Melo.",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-45",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.061901,
+          -32.3633
+        ]
+      },
+      "properties": {
+        "iata": "PDU",
+        "icao": "SUPU",
+        "nombre": "Aeropuerto Internacional de Paysandú - Tydeo Larre Borges",
+        "pais": "Uruguay",
+        "ciudad": "Paysandú",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica_interes_territorial.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Puerta del Sur S.A. / Aeropuertos Uruguay",
+        "tipo_vinculo": "Concesión, gestión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP / Aeropuertos Uruguay / SINAI",
+        "id_caap": "CAAP-SA-45",
+        "nota_geometria": "Geometría existente en la capa de aeropuertos de interés territorial.",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-46",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -55.094299,
+          -34.855099
+        ]
+      },
+      "properties": {
+        "iata": "PDP",
+        "icao": "SULS",
+        "nombre": "Aeropuerto Internacional Capitan Corbeta CA Curbelo",
+        "pais": "Uruguay",
+        "ciudad": "Punta del Este",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Consorcio Aeropuertos Internacionales S.A. (CAISA) / Aeropuertos Uruguay",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP / Aeropuertos Uruguay / SINAI",
+        "id_caap": "CAAP-SA-46",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-47",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -55.4762,
+          -30.9746
+        ]
+      },
+      "properties": {
+        "iata": "RVY",
+        "icao": "SURV",
+        "nombre": "Aeropuerto Pres. Gral. Óscar D. Gestido Binational",
+        "pais": "Uruguay",
+        "ciudad": "Rivera/Santana do Livramento",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Puerta del Sur S.A. / Aeropuertos Uruguay",
+        "tipo_vinculo": "Concesión, gestión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP / Aeropuertos Uruguay / SINAI",
+        "id_caap": "CAAP-SA-47",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-SA-48",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.985298,
+          -31.438499
+        ]
+      },
+      "properties": {
+        "iata": "STY",
+        "icao": "SUSO",
+        "nombre": "Aeropuerto Internacional de Salto Nueva Hespérides",
+        "pais": "Uruguay",
+        "ciudad": "Salto",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Puerta del Sur S.A. / Aeropuertos Uruguay",
+        "tipo_vinculo": "Concesión, gestión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP / Aeropuertos Uruguay / SINAI",
+        "id_caap": "CAAP-SA-48",
+        "continente": "Sudamérica"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-GLOBAL-EVN",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.397887,
+          40.148941
+        ]
+      },
+      "properties": {
+        "iata": "EVN",
+        "icao": "UDYZ",
+        "nombre": "Zvartnots International Airport",
+        "pais": "Armenia",
+        "ciudad": "Yerevan",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Armenia International Airports CJSC (AIA)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP - Zvartnots / Armenia International Airports",
+        "fuente_geometria": "OurAirports UDYZ/EVN",
+        "continente": "Asia"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-GLOBAL-LWN",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.859299,
+          40.750401
+        ]
+      },
+      "properties": {
+        "iata": "LWN",
+        "icao": "UDSG",
+        "nombre": "Shirak International Airport",
+        "pais": "Armenia",
+        "ciudad": "Gyumri",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Armenia International Airports CJSC (AIA)",
+        "tipo_vinculo": "Concesión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP - Armenia International Airports",
+        "fuente_geometria": "OurAirports UDSG/LWN",
+        "continente": "Asia"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-GLOBAL-FLR",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.202822,
+          43.808558
+        ]
+      },
+      "properties": {
+        "iata": "FLR",
+        "icao": "LIRQ",
+        "nombre": "Florence Airport, Peretola (Amerigo Vespucci)",
+        "pais": "Italia",
+        "ciudad": "Florencia",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Toscana Aeroporti S.p.A.",
+        "tipo_vinculo": "Gestión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP - Toscana Aeroporti",
+        "fuente_geometria": "OurAirports LIRQ/FLR",
+        "continente": "Europa"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CAAP-GLOBAL-PSA",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.3927,
+          43.683899
+        ]
+      },
+      "properties": {
+        "iata": "PSA",
+        "icao": "LIRP",
+        "nombre": "Pisa International Airport (Galileo Galilei)",
+        "pais": "Italia",
+        "ciudad": "Pisa",
+        "grupo": "Corporación América Airports",
+        "entidad_operadora": "Toscana Aeroporti S.p.A.",
+        "tipo_vinculo": "Gestión y operación",
+        "estado_caap": "vigente",
+        "fecha_verificacion": "2026-09-21",
+        "fuente_caap": "CAAP - Toscana Aeroporti",
+        "fuente_geometria": "OurAirports LIRP/PSA",
+        "continente": "Europa"
+      }
+    }
+  ]
+}
