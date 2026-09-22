@@ -425,14 +425,18 @@ state.urbanAreas = urbanAreasGeojson.features || [];
       
 const mainAirports = geojson.features
   .filter(isValidPointFeature)
-  .map(normalizeAirportFeature);
+  .map((feature, index) =>
+    normalizeAirportFeature(feature, index, false)
+  );
 
 const territorialAirports =
   territorialGeojson.type === "FeatureCollection" &&
   Array.isArray(territorialGeojson.features)
     ? territorialGeojson.features
         .filter(isValidPointFeature)
-        .map(normalizeAirportFeature)
+        .map((feature, index) =>
+          normalizeAirportFeature(feature, index, true)
+        )
     : [];
 
 state.airports = [
@@ -853,7 +857,7 @@ function getOperationalData(iata, icao) {
     return Number.isFinite(Number(longitude)) && Number.isFinite(Number(latitude));
   }
 
-  function normalizeAirportFeature(feature, index) {
+  function normalizeAirportFeature(feature, index, isTerritorialInterest = false) {
     const properties = feature.properties || {};
     const iata = String(properties.codigo_iata || "").trim().toUpperCase();
     const icao = String(properties.codigo_oaci || "").trim().toUpperCase();
@@ -894,7 +898,7 @@ return {
   properties,
   iata,
   icao,
-  isTerritorialInterest: normalizeSearch(properties.capa) === "interes_territorial",
+  isTerritorialInterest,
   
   country: String(properties.pais || "Sin país"),
   name: String(properties.nombre_oficial || "Aeropuerto sin nombre"),
@@ -2007,7 +2011,7 @@ dom.year.addEventListener("change", () => {
     });
     
 dom.territorialAirportsToggle?.addEventListener("change", () => {
-  applyFilters({ fit: true });
+  applyFilters();
 });
     
 dom.administrativeToggle.addEventListener("change", () => {
