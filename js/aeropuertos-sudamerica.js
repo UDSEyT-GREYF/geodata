@@ -1893,8 +1893,8 @@ function renderOperationalMetrics(data, populationValue) {
 
   return `
     <div class="metric-grid">
-      ${metricCard("Pasajeros totales", data.pax_totales, "pasajeros")}
-      ${metricCard("Movimientos", data.mov_totales, "movimientos")}
+      ${metricCard("Pasajeros totales", data.pax_totales, "")}
+      ${metricCard("Movimientos", data.mov_totales, "")}
     </div>
 
     <div class="metric-grid">
@@ -1930,8 +1930,8 @@ function renderOperationalMetrics(data, populationValue) {
     <div class="metric-grid">
       ${metricCard("Pax nacionales arribados", data.pax_nacionales_arribados, "pasajeros")}
       ${metricCard("Pax nacionales partidos", data.pax_nacionales_partidos, "pasajeros")}
-      ${metricCard("Pax internacionales arribados", data.pax_internacionales_arribados, "pasajeros")}
-      ${metricCard("Pax internacionales partidos", data.pax_internacionales_partidos, "pasajeros")}
+      ${metricCard("Pax internac. arribados", data.pax_internacionales_arribados, "pasajeros")}
+      ${metricCard("Pax internac. partidos", data.pax_internacionales_partidos, "pasajeros")}
     </div>
 
     <div class="metric-grid">
@@ -1943,13 +1943,28 @@ function renderOperationalMetrics(data, populationValue) {
   `;
 }
 
-  function metricCard(label, rawValue, unit, decimals = false) {
-    const value = numericValue(rawValue);
-    if (value === null) {
-      return `<div class="metric-card"><span>${escapeHTML(label)}</span><strong class="is-missing">Sin dato publicado</strong></div>`;
-    }
-    return `<div class="metric-card"><span>${escapeHTML(label)}</span><strong>${decimals ? DECIMAL_FORMAT.format(value) : NUMBER_FORMAT.format(value)}</strong><small>${escapeHTML(unit)}</small></div>`;
+function metricCard(label, rawValue, unit, decimals = false) {
+  const value = numericValue(rawValue);
+
+  if (value === null) {
+    return `
+      <div class="metric-card">
+        <span>${escapeHTML(label)}</span>
+        <strong class="is-missing">Sin dato publicado</strong>
+      </div>
+    `;
   }
+
+  return `
+    <div class="metric-card">
+      <span>${escapeHTML(label)}</span>
+      <strong>
+        ${decimals ? DECIMAL_FORMAT.format(value) : NUMBER_FORMAT.format(value)}
+      </strong>
+      ${unit ? `<small>${escapeHTML(unit)}</small>` : ""}
+    </div>
+  `;
+}
 
   function collectSources(airport) {
     const properties = airport.properties;
