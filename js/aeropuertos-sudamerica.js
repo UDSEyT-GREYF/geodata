@@ -4,6 +4,7 @@ const DATA_VERSION = "20260914-3";
 const DATA_URLS = {
   airports: "data/sudamerica/aeropuertos_sudamerica.geojson",
   airportsTerritorial: `data/sudamerica/aeropuertos_sudamerica_interes_territorial.geojson?v=${DATA_VERSION}`,
+  managementCaap: "data/operadores/corporacion_america_aeropuertos_sudamerica.geojson",
   operationsAnnual: "data/sudamerica/operativo/datos_operativos_aeropuertos_anual.csv",
   operationsMonthly: "data/sudamerica/operativo/datos_operativos_aeropuertos_mensual.csv",
   administrative: "data/sudamerica/divisiones_administrativas_sudamerica.geojson",
@@ -81,6 +82,7 @@ const AUTO_SATELLITE_ZOOM = 11;
     markers: new Map(),
     annualOperational: new Map(),
     monthlyOperational: new Map(),
+    management: new Map(),
     selectedYear: "2025",
     activeTypes: new Set(ALL_TYPES),
     selectedId: null,
@@ -356,6 +358,7 @@ function updateAdministrativeVisibility() {
 const [
   geoResponse,
   territorialResponse,
+  managementCaapResponse,
   annualResponse,
   monthlyResponse,
   populatedPlacesResponse,
@@ -368,6 +371,12 @@ fetchWithRetry(DATA_URLS.airportsTerritorial, 2, 25000).catch((error) => {
   console.warn("La capa de aeropuertos de interés territorial no está disponible.", error);
   return null;
 }),
+  
+fetchWithRetry(DATA_URLS.managementCaap, 2, 25000).catch((error) => {
+  console.warn("Los datos de gestión aeroportuaria de Corporación América no están disponibles.", error);
+  return null;
+}),
+  
 fetchWithRetry(DATA_URLS.operationsAnnual, 3, 25000).catch((error) => {
   console.warn("Los datos operativos anuales no están disponibles.", error);
   return null;
@@ -393,6 +402,10 @@ const geojson = await geoResponse.json();
 const territorialGeojson = territorialResponse
   ? await territorialResponse.json()
   : { type: "FeatureCollection", features: [] };
+
+const managementCaapGeojson = managementCaapResponse
+  ? await managementCaapResponse.json()
+  : { type: "FeatureCollection", features: [] };
       
 const annualText = annualResponse
   ? await annualResponse.text()
@@ -416,7 +429,9 @@ const urbanAreasGeojson = urbanAreasResponse
 
       state.annualOperational = buildAnnualIndex(parseCSV(annualText));
       state.monthlyOperational = buildMonthlyIndex(parseCSV(monthlyText));
-
+      state.management = buildManagementIndex(
+        managementCaapGeojson.features || []
+      );
       state.populatedPlaces = normalizePopulatedPlaces(
         populatedPlacesGeojson.features || []
       );
@@ -857,10 +872,50 @@ function getOperationalData(iata, icao) {
     return Number.isFinite(Number(longitude)) && Number.isFinite(Number(latitude));
   }
 
+function buildManagementIndex(features) {
+  const index = new Map();
+
+  features.forEach((feature) => {
+    const properties = feature.properties || {};
+
+    const iata = String(properties.iata || "")
+      .trim()
+      .toUpperCase();
+
+    const icao = String(properties.icao || "")
+      .trim()
+      .toUpperCase();
+
+    const management = {
+      operator: String(properties.entidad_operadora || "").trim(),
+      group: String(properties.grupo || "").trim(),
+      relationship: String(properties.tipo_vinculo || "").trim(),
+      status: String(properties.estado_caap || "").trim(),
+      source: String(properties.fuente_caap || "").trim(),
+      verificationDate: String(properties.fecha_verificacion || "").trim()
+    };
+
+    if (icao) index.set(icao, management);
+    if (iata) index.set(iata, management);
+  });
+
+  return index;
+}
+
+
+function getAirportManagement(iata, icao) {
+  return (
+    state.management.get(icao) ||
+    state.management.get(iata) ||
+    null
+  );
+}
+  
   function normalizeAirportFeature(feature, index, isTerritorialInterest = false) {
     const properties = feature.properties || {};
     const iata = String(properties.codigo_iata || "").trim().toUpperCase();
     const icao = String(properties.codigo_oaci || "").trim().toUpperCase();
+    const management = getAirportManagement(iata, icao);
     const id = String(feature.id || properties.clave_union || iata || icao || `airport-${index}`);
     const operational = getOperationalData(iata, icao);
     const reference2025 =
@@ -898,6 +953,7 @@ return {
   properties,
   iata,
   icao,
+  management,
   isTerritorialInterest,
   
   country: String(properties.pais || "Sin país"),
@@ -1609,6 +1665,98 @@ function compareAirports(a, b, searchTokens) {
     renderResults();
   }
 
+function renderManagementSection(airport) {
+  const management = airport.management;
+
+  if (!management) {
+    return `
+      <section class="detail-section">
+        <h3>Gestión aeroportuaria</h3>
+        <p class="missing-data-note">
+          Información de gestión aeroportuaria pendiente de relevamiento.
+        </p>
+      </section>
+    `;
+  }
+
+  return `
+    <section class="detail-section">
+      <h3>Gestión aeroportuaria</h3>
+
+      <div class="fact-grid">
+
+        ${
+          management.operator
+            ? `
+              <div class="fact wide">
+                <span>Operador / concesionario</span>
+                <strong>${escapeHTML(management.operator)}</strong>
+              </div>
+            `
+            : ""
+        }
+
+        ${
+          management.group
+            ? `
+              <div class="fact wide">
+                <span>Grupo empresarial</span>
+                <strong>${escapeHTML(management.group)}</strong>
+              </div>
+            `
+            : ""
+        }
+
+        ${
+          management.relationship
+            ? `
+              <div class="fact wide">
+                <span>Modalidad de gestión</span>
+                <strong>${escapeHTML(management.relationship)}</strong>
+              </div>
+            `
+            : ""
+        }
+
+        ${
+          management.status
+            ? `
+              <div class="fact">
+                <span>Estado</span>
+                <strong>${escapeHTML(management.status)}</strong>
+              </div>
+            `
+            : ""
+        }
+
+        ${
+          management.verificationDate
+            ? `
+              <div class="fact">
+                <span>Verificado</span>
+                <strong>${escapeHTML(
+                  formatDate(management.verificationDate)
+                )}</strong>
+              </div>
+            `
+            : ""
+        }
+
+      </div>
+
+      ${
+        management.source
+          ? `
+            <p class="source-update">
+              Fuente: ${escapeHTML(management.source)}
+            </p>
+          `
+          : ""
+      }
+    </section>
+  `;
+}
+  
   function renderDetail(airport) {
     const properties = airport.properties;
     const type = TYPE_META[airport.type];
