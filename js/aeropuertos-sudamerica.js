@@ -1839,18 +1839,11 @@ function renderManagementSection(airport) {
 </div>
             <div class="fact"><span>Elevación</span><strong>${formatMeasure(properties.elevacion_m, "m s. n. m.")}</strong></div>
             <div class="fact"><span>Pista principal</span><strong>${formatMeasure(properties.longitud_pista_m, "m")}</strong></div>
-                  ${
-        properties.entidad_operadora
-          ? `
-            <div class="fact wide">
-              <span>Entidad operadora</span>
-              <strong>${escapeHTML(properties.entidad_operadora)}</strong>
-            </div>
-          `
-          : ""
-      }
+                 
           </div>
         </section>
+
+      ${renderManagementSection(airport)}
 
       <section class="detail-section">
         <div class="operational-heading">
