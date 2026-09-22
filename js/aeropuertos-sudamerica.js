@@ -1717,30 +1717,7 @@ function renderManagementSection(airport) {
             `
             : ""
         }
-
-        ${
-          management.status
-            ? `
-              <div class="fact">
-                <span>Estado</span>
-                <strong>${escapeHTML(management.status)}</strong>
-              </div>
-            `
-            : ""
-        }
-
-        ${
-          management.verificationDate
-            ? `
-              <div class="fact">
-                <span>Verificado</span>
-                <strong>${escapeHTML(
-                  formatDate(management.verificationDate)
-                )}</strong>
-              </div>
-            `
-            : ""
-        }
+   
 
       </div>
 
