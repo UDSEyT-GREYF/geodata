@@ -1,0 +1,104 @@
+{
+  "type": "FeatureCollection",
+  "name": "london_supply_aeropuertos_sudamerica",
+  "metadata": {
+    "descripcion": "Aeropuertos gestionados por London Supply Group en Sudamérica.",
+    "fecha_compilacion": "2026-09-23",
+    "sistema_referencia": "WGS84 / EPSG:4326",
+    "orden_coordenadas": "[longitud, latitud]",
+    "cantidad_registros": 3,
+    "alcance": "Aeropuertos actualmente operados por London Supply Group en Argentina: Trelew, El Calafate y Ushuaia.",
+    "criterio": "La pertenencia a la red se toma de London Supply Group y se contrasta con resoluciones ORSNA de 2026 que identifican a London Supply S.A.C.I.F.I. como concesionario vigente.",
+    "nota_el_calafate": "La página corporativa publica concesión 1998-2025, pero ORSNA 26/2026 confirma la continuidad de London Supply como concesionario y cita un Acta Acuerdo del 28/05/2025.",
+    "fuente_principal": "https://www.londonsupplygroup.com/unidad.php?id_unidad=2"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "LS-ARG-01",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.2703,
+          -43.2105
+        ]
+      },
+      "properties": {
+        "iata": "REL",
+        "icao": "SAVT",
+        "nombre": "Aeropuerto Almirante Marco Andres Zar",
+        "pais": "Argentina",
+        "ciudad": "Trelew",
+        "provincia_estado_departamento": "Chubut",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "London Supply Group",
+        "entidad_operadora": "London Supply S.A.C.I.F.I.",
+        "tipo_vinculo": "Concesión y operación",
+        "concesion_periodo_publicado": "1995-2034",
+        "estado_gestion": "vigente",
+        "fuente_gestion": "https://www.londonsupplygroup.com/unidad.php?id_unidad=2",
+        "fuente_confirmacion_actual": "https://www.argentina.gob.ar/normativa/nacional/norma-429106/texto",
+        "observaciones_gestion": "La Resolución ORSNA 58/2026 identifica a London Supply S.A.C.I.F.I. como concesionario del Aeropuerto Internacional Almirante Zar de Trelew.",
+        "id_gestion": "LS-ARG-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LS-ARG-02",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.053401,
+          -50.280267
+        ]
+      },
+      "properties": {
+        "iata": "FTE",
+        "icao": "SAWC",
+        "nombre": "Aeropuerto Internacional El Calafate - Comandante Armando Tola",
+        "pais": "Argentina",
+        "ciudad": "El Calafate",
+        "provincia_estado_departamento": "Santa Cruz",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "London Supply Group",
+        "entidad_operadora": "London Supply S.A.C.I.F.I.",
+        "tipo_vinculo": "Concesión y operación",
+        "concesion_periodo_publicado": "1998-2025",
+        "estado_gestion": "vigente",
+        "fuente_gestion": "https://www.londonsupplygroup.com/unidad.php?id_unidad=2",
+        "fuente_confirmacion_actual": "https://www.argentina.gob.ar/normativa/nacional/resoluci%C3%B3n-26-2026-425781/texto",
+        "observaciones_gestion": "La web de London Supply publica el período 1998-2025. No obstante, la Resolución ORSNA 26/2026 reconoce a London Supply S.A.C.I.F.I. como concesionario vigente y menciona un Acta Acuerdo del 28/05/2025 con la Provincia de Santa Cruz.",
+        "id_gestion": "LS-ARG-02"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LS-ARG-03",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.2958,
+          -54.8433
+        ]
+      },
+      "properties": {
+        "iata": "USH",
+        "icao": "SAWH",
+        "nombre": "Aeropuerto Internacional Ushuaia - Malvinas Argentinas",
+        "pais": "Argentina",
+        "ciudad": "Ushuaia",
+        "provincia_estado_departamento": "Tierra del Fuego",
+        "fuente_geometria": "GeoData: data/sudamerica/aeropuertos_sudamerica.geojson",
+        "grupo": "London Supply Group",
+        "entidad_operadora": "London Supply S.A.C.I.F.I.",
+        "tipo_vinculo": "Concesión y operación",
+        "concesion_periodo_publicado": "1995-2027",
+        "estado_gestion": "vigente",
+        "fuente_gestion": "https://www.londonsupplygroup.com/unidad.php?id_unidad=2",
+        "fuente_confirmacion_actual": "https://www.argentina.gob.ar/normativa/nacional/norma-428231/texto",
+        "observaciones_gestion": "La Resolución ORSNA 51/2026 identifica a London Supply S.A.C.I.F.I. como concesionario del Aeropuerto Internacional Malvinas Argentinas de Ushuaia.",
+        "id_gestion": "LS-ARG-03"
+      }
+    }
+  ]
+}
