@@ -448,35 +448,45 @@ function getOverviewAirports() {
     return promise;
   }
 
-  function travelTimeStyle(feature, overview = false) {
-    const to = getToBreak(feature);
+function travelTimeStyle(feature, overview = false) {
+  const to = getToBreak(feature);
 
-    // Tres bandas reales de los GeoJSON:
-    // 0–60 min, 60–120 min y 120–180 min.
-    // Paleta ajustada para aproximar la simbología del mapa ArcGIS original.
-    let color = "#A7C0F3";
-    if (to === 60) color = "#1547B3";
-    else if (to === 120) color = "#416FF9";
-    else if (to === 180) color = "#A7C0F3";
+  // Tres bandas reales de los GeoJSON:
+  // 0–60 min, 60–120 min y 120–180 min.
+  // Paleta ajustada para aproximar la simbología del mapa ArcGIS original.
+  let color = "#A7C0F3";
 
-    // En la vista de los 57 aeropuertos se reduce la transparencia del relleno
-    // para compensar la mayor superposición entre áreas.
-    return overview
-      ? {
-          color,
-          weight: 1.0,
-          opacity: 0.92,
-          fillColor: color,
-          fillOpacity: 0.17
-        }
-      : {
-          color,
-          weight: 1.2,
-          opacity: 0.96,
-          fillColor: color,
-          fillOpacity: 0.40
-        };
+  if (to === 60) color = "#1547B3";
+  else if (to === 120) color = "#416FF9";
+  else if (to === 180) color = "#A7C0F3";
+
+  // Vista general de aeropuertos con vuelos regulares:
+  // se prioriza el relleno y se suavizan los bordes individuales.
+  if (overview) {
+    let fillOpacity = 0.28;
+
+    if (to === 60) fillOpacity = 0.46;
+    else if (to === 120) fillOpacity = 0.36;
+    else if (to === 180) fillOpacity = 0.26;
+
+    return {
+      color,
+      weight: 0.55,
+      opacity: 0.55,
+      fillColor: color,
+      fillOpacity
+    };
   }
+
+  // Vista individual del aeropuerto seleccionado.
+  return {
+    color,
+    weight: 1.2,
+    opacity: 0.96,
+    fillColor: color,
+    fillOpacity: 0.40
+  };
+}
 
   function ensureOverviewTimeLayer() {
     if (!state.overviewTimeLayer) {
