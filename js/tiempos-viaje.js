@@ -395,7 +395,7 @@ function getOverviewAirports() {
     dom.details.hidden = false;
     dom.airportIata.textContent = airport.iata;
     dom.airportLocation.textContent = airport.province || "Sistema Nacional de Aeropuertos";
-    dom.airportName.textContent = airport.name;
+    dom.airportName.textContent = getAirportDisplayName(airport);
     dom.populationInfluence.textContent = formatInteger(p["Población del Área de Influencia (Censo 2022)"]);
     dom.populationOneHour.textContent = state.populationOneHour.get(airport.iata) || "—";
     dom.airportProvince.textContent = airport.province || "—";
@@ -405,7 +405,38 @@ function getOverviewAirports() {
     dom.airportDistance.textContent = Number.isFinite(distance) ? `${formatDecimal(distance)} km` : "—";
     dom.airportOperator.textContent = clean(p.Explotador) || "—";
   }
+function getAirportDisplayName(airport) {
+  if (!airport) return "—";
 
+  const iata = clean(airport.iata).toUpperCase();
+
+  // Excepciones que conservan su denominación habitual en GeoData.
+  const specialNames = {
+    AEP: "Aeroparque Jorge Newbery"
+  };
+
+  if (specialNames[iata]) {
+    return specialNames[iata];
+  }
+
+  const placeName =
+    clean(airport.shortName) ||
+    clean(airport.raw?.Aeropuerto) ||
+    clean(airport.city) ||
+    iata;
+
+  // Evitar duplicar el prefijo si la fuente ya lo tuviera.
+  if (/^Aeropuerto\b/i.test(placeName)) {
+    return placeName;
+  }
+
+  if (/^Aeroparque\b/i.test(placeName)) {
+    return placeName;
+  }
+
+  return `Aeropuerto de ${placeName}`;
+}
+  
   async function drawTravelTimes(airport) {
     const geojson = await loadTravelTimeGeoJSON(airport);
     const features = [...(geojson.features || [])].sort((a, b) => getToBreak(b) - getToBreak(a));
