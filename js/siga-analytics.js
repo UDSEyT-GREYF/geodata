@@ -1,6 +1,6 @@
 // SIGA / GEODATA - Analítica anónima de uso
 // Registra páginas y eventos en Supabase sin guardar nombre, email ni IP en la tabla.
-// Versión: 2026-09-21
+// Versión: 2026-09-25
 
 (() => {
   "use strict";
@@ -103,12 +103,54 @@
     return path;
   }
 
-  function sanitizeReferrer() {
+  function isPrivateOrInternalHost(hostname) {
+    const host = String(hostname || "").trim().toLowerCase();
+
+    if (!host) return false;
+
+    if (
+      host === "localhost" ||
+      host.endsWith(".localhost") ||
+      host.endsWith(".local") ||
+      host.endsWith(".lan") ||
+      host.endsWith(".internal") ||
+      host.endsWith(".intranet") ||
+      host.endsWith(".corp")
+    ) {
+      return true;
+    }
+
+    if (/^10\./.test(host)) return true;
+    if (/^192\.168\./.test(host)) return true;
+    if (/^172\.(1[6-9]|2\d|3[01])\./.test(host)) return true;
+    if (/^127\./.test(host)) return true;
+    if (/^169\.254\./.test(host)) return true;
+
+    // Un hostname sin punto suele corresponder a nombres internos de red.
+    if (!host.includes(".") && !/^\d+\.\d+\.\d+\.\d+$/.test(host)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  function classifyReferrer() {
     if (!document.referrer) return null;
 
     try {
       const url = new URL(document.referrer);
-      return url.origin + url.pathname;
+      const host = url.hostname.toLowerCase();
+
+      // Nunca guardar hostname ni ruta de una red interna.
+      if (isPrivateOrInternalHost(host)) return "internal";
+
+      // Categorías útiles para analítica sin conservar la URL exacta.
+      if (host === "linkedin.com" || host.endsWith(".linkedin.com")) return "linkedin";
+      if (host === "google.com" || host.endsWith(".google.com")) return "google";
+      if (host === "github.com" || host.endsWith(".github.com")) return "github";
+      if (host === "argentina.gob.ar" || host.endsWith(".argentina.gob.ar")) return "argentina.gob.ar";
+
+      return "other";
     } catch {
       return null;
     }
@@ -143,8 +185,13 @@
         return url.pathname;
       }
 
-      // Para externos guardamos dominio + pathname, nunca querystring.
-      return url.origin + url.pathname;
+      // No registrar destinos internos si alguna página de GeoData los enlaza.
+      if (isPrivateOrInternalHost(url.hostname)) {
+        return "internal";
+      }
+
+      // Para externos guardamos sólo el origen; nunca querystring ni pathname.
+      return url.origin;
     } catch {
       return null;
     }
@@ -159,7 +206,7 @@
       p_page_title: document.title || null,
       p_visitor_id: getVisitorId(),
       p_session_id: getSessionId(),
-      p_referrer: sanitizeReferrer(),
+      p_referrer: classifyReferrer(),
       p_device_type: getDeviceType(),
       p_browser: getBrowser(),
       p_screen_width: window.screen?.width || null,
@@ -190,7 +237,45 @@
     }
   }
 
-  window.sigaAnalytics = { track };
+  /**
+   * Registra una consulta explícita de aeropuerto.
+   *
+   * No debe llamarse por una selección automática por defecto.
+   *
+   * Ejemplo:
+   * sigaAnalytics.trackAirport("SLA", {
+   *   airport_name: "Salta",
+   *   province: "Salta",
+   *   source: "selector"
+   * });
+   */
+  function trackAirport(iata, options = {}) {
+    const airportIata = String(iata || "").trim().toUpperCase();
+    if (!/^[A-Z0-9]{3}$/.test(airportIata)) return;
+
+    // Evita contar como consulta un aeropuerto cargado sólo por defecto.
+    if (options.is_automatic === true || options.is_default === true) return;
+
+    const allowedSources = new Set(["selector", "marker", "url", "other"]);
+    const requestedSource = String(options.source || "other").trim().toLowerCase();
+    const source = allowedSources.has(requestedSource) ? requestedSource : "other";
+
+    track("airport_view", {
+      airport_iata: airportIata,
+      airport_name: options.airport_name
+        ? String(options.airport_name).trim().slice(0, 150)
+        : null,
+      province: options.province
+        ? String(options.province).trim().slice(0, 100)
+        : null,
+      source
+    });
+  }
+
+  window.sigaAnalytics = {
+    track,
+    trackAirport
+  };
 
   // Una vista por carga real de página.
   track("page_view");
