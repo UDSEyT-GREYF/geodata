@@ -22,7 +22,7 @@
   // Vista inicial más cercana, similar a la escala visual del mapa original de ArcGIS.
   // El botón "Ver todos los aeropuertos" sigue ajustando la extensión a los 57 puntos.
   const INITIAL_CENTER = [-36.8, -64.2];
-  const INITIAL_ZOOM = 6;
+  const INITIAL_ZOOM = 7;
 
   const REGULAR_SERVICE_EXCEPTIONS_2025 = new Set([
   "EPA",
