@@ -24,6 +24,31 @@
   const INITIAL_CENTER = [-36.8, -64.2];
   const INITIAL_ZOOM = 6;
 
+  const REGULAR_SERVICE_EXCEPTIONS_2025 = new Set([
+  "EPA",
+  "LGS"
+]);
+
+function hasRegularService2025(airport) {
+  if (!airport) return false;
+
+  const regular = clean(
+    airport.raw?.["Vuelos comerciales regulares"]
+  ).toLowerCase();
+
+  if (regular === "no aplica") return false;
+
+  if (REGULAR_SERVICE_EXCEPTIONS_2025.has(airport.iata)) {
+    return false;
+  }
+
+  return true;
+}
+
+function getOverviewAirports() {
+  return state.airports.filter(hasRegularService2025);
+}
+
   const dom = {
     loading: document.getElementById("loadingOverlay"),
     error: document.getElementById("mapError"),
@@ -577,12 +602,14 @@ async function showOverviewCoverage() {
     state.overviewLoading = true;
     setOverviewHint("Cargando tiempos de viaje", "Las isócronas de los 57 aeropuertos se incorporan progresivamente al mapa.");
 
-    let nextIndex = 0;
-    const workerCount = 6;
+const overviewAirports = getOverviewAirports();
 
-    async function worker() {
-      while (nextIndex < state.airports.length) {
-        const airport = state.airports[nextIndex++];
+let nextIndex = 0;
+const workerCount = 6;
+
+async function worker() {
+  while (nextIndex < overviewAirports.length) {
+    const airport = overviewAirports[nextIndex++];
         try {
           const geojson = await loadTravelTimeGeoJSON(airport);
           const features = [...(geojson.features || [])].sort((a, b) => getToBreak(b) - getToBreak(a));
