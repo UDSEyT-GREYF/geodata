@@ -8,7 +8,11 @@
     polygons: `fuentes/poligonos_aeropuertos.geojson?v=${DATA_VERSION}`,
     influence: `fuentes/Areasinfluencia39.geojson?v=${DATA_VERSION}`,
     populationOneHour: `fuentes/PoblacionDentro1hora.geojson?v=${DATA_VERSION}`,
-    localities: `fuentes/INDEC/localidades_censales.geojson?v=${DATA_VERSION}`
+    localities: `fuentes/INDEC/localidades_censales.geojson?v=${DATA_VERSION}`,
+  
+    coverage60: `img/Tiempos/Cobertura%20Tiempo%20de%20viaje%20SNA%2060%20min%20vuelos%20reg.geojson?v=${DATA_VERSION}`,
+    coverage120: `img/Tiempos/Cobertura%20Tiempo%20de%20viaje%20SNA%20120%20min%20vuelos%20reg.geojson?v=${DATA_VERSION}`,
+    coverage180: `img/Tiempos/Cobertura%20Tiempo%20de%20viaje%20SNA%20180%20min%20vuelos%20reg.geojson?v=${DATA_VERSION}`
   };
 
   const TIME_FILE_OVERRIDES = {
@@ -60,9 +64,14 @@
     baseLayers: {},
     currentBaseLayer: "argenmap",
     airportLayer: null,
+    
     overviewTimeLayer: null,
     overviewLoaded: false,
     overviewLoading: false,
+    
+    overviewCoverageLayer: null,
+    overviewCoverageLoaded: false,
+    overviewCoverageLoading: false,
     timeLayer: null,
     influenceLayer: null,
     localityLayer: null,
@@ -150,6 +159,8 @@
     state.map.createPane("timePane");
     state.map.getPane("timePane").style.zIndex = 410;
     state.map.createPane("influencePane");
+    state.map.createPane("coveragePane");
+    state.map.getPane("coveragePane").style.zIndex = 420;
     state.map.getPane("influencePane").style.zIndex = 430;
     state.map.createPane("localityPane");
     state.map.getPane("localityPane").style.zIndex = 440;
@@ -328,6 +339,7 @@
     renderAirportDetails(airport);
     updateSelectedMarker();
     hideOverviewTravelTimes();
+    hideOverviewCoverage();
     clearSelectedLayers();
     showMapBusy(true);
 
@@ -459,6 +471,105 @@
     }
   }
 
+function ensureOverviewCoverageLayer() {
+  if (!state.overviewCoverageLayer) {
+    state.overviewCoverageLayer = L.layerGroup();
+  }
+
+  if (!state.map.hasLayer(state.overviewCoverageLayer)) {
+    state.overviewCoverageLayer.addTo(state.map);
+  }
+
+  return state.overviewCoverageLayer;
+}
+
+function hideOverviewCoverage() {
+  if (
+    state.overviewCoverageLayer &&
+    state.map.hasLayer(state.overviewCoverageLayer)
+  ) {
+    state.map.removeLayer(state.overviewCoverageLayer);
+  }
+}
+
+function coverageStyle(minutes) {
+  let color = "#A7C0F3";
+
+  if (minutes === 60) color = "#1547B3";
+  else if (minutes === 120) color = "#416FF9";
+  else if (minutes === 180) color = "#A7C0F3";
+
+  return {
+    color,
+    weight: 2.4,
+    opacity: 1,
+    fill: false,
+    fillOpacity: 0,
+    lineCap: "round",
+    lineJoin: "round"
+  };
+}
+
+async function showOverviewCoverage() {
+  ensureOverviewCoverageLayer();
+
+  if (
+    state.overviewCoverageLoaded ||
+    state.overviewCoverageLoading
+  ) {
+    return;
+  }
+
+  state.overviewCoverageLoading = true;
+
+  try {
+    const [coverage180, coverage120, coverage60] =
+      await Promise.all([
+        fetchJSON(URLS.coverage180),
+        fetchJSON(URLS.coverage120),
+        fetchJSON(URLS.coverage60)
+      ]);
+
+    /*
+     * Orden deliberado:
+     * primero 180, luego 120 y finalmente 60.
+     * Así el borde de menor tiempo queda visualmente arriba.
+     */
+
+    L.geoJSON(coverage180, {
+      pane: "coveragePane",
+      interactive: false,
+      smoothFactor: 1.5,
+      style: coverageStyle(180)
+    }).addTo(state.overviewCoverageLayer);
+
+    L.geoJSON(coverage120, {
+      pane: "coveragePane",
+      interactive: false,
+      smoothFactor: 1.5,
+      style: coverageStyle(120)
+    }).addTo(state.overviewCoverageLayer);
+
+    L.geoJSON(coverage60, {
+      pane: "coveragePane",
+      interactive: false,
+      smoothFactor: 1.5,
+      style: coverageStyle(60)
+    }).addTo(state.overviewCoverageLayer);
+
+    state.overviewCoverageLoaded = true;
+
+  } catch (error) {
+    console.warn(
+      "No se pudieron cargar las coberturas generales SNA",
+      error
+    );
+
+  } finally {
+    state.overviewCoverageLoading = false;
+  }
+}
+  
   async function showOverviewTravelTimes() {
     ensureOverviewTimeLayer();
     if (state.overviewLoaded || state.overviewLoading) return;
@@ -714,7 +825,9 @@ function fitOverview() {
     clearSelectedLayers();
     updateSelectedMarker();
     ensureOverviewTimeLayer();
+    
     showOverviewTravelTimes();
+    showOverviewCoverage();
     fitAll ? fitOverview() : setInitialView();
     if (updateUrl) updateUrlAirport("");
     track("map_overview", {});
