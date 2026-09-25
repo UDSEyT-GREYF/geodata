@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Mapa interactivo de tiempos de viaje por carretera y áreas de influencia de los aeropuertos del Sistema Nacional de Aeropuertos.">
+  <meta name="theme-color" content="#0b1f33">
+  <title>Tiempos de viaje desde aeropuertos | GeoData</title>
+
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="css/tiempos-viaje.css?v=20260925-1">
+</head>
+<body>
+  <a class="skip-link" href="#map">Ir al mapa</a>
+
+  <header class="topbar">
+    <div class="brand-block">
+      <a class="back-link" href="mapas.html" aria-label="Volver a mapas">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+      </a>
+
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M3 18h18M5 15l4-6 3 3 3-7 4 10"/><circle cx="9" cy="9" r="1.2"/></svg>
+      </div>
+
+      <div class="brand-copy">
+        <p class="eyebrow">GeoData · Accesibilidad aeroportuaria</p>
+        <h1>Tiempos de viaje desde aeropuertos</h1>
+      </div>
+    </div>
+
+    <div class="topbar-actions">
+      <span class="update-badge" title="Aeropuertos con isócronas disponibles">
+        <span class="status-dot" aria-hidden="true"></span>
+        57 aeropuertos
+      </span>
+
+      <button class="header-button" id="aboutButton" type="button" aria-haspopup="dialog">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></svg>
+        <span>Acerca del mapa</span>
+      </button>
+
+      <button class="mobile-panel-button" id="mobilePanelButton" type="button" aria-controls="sidebar" aria-expanded="false">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+        Aeropuertos
+      </button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Selección e información del aeropuerto">
+      <div class="sidebar-scroll">
+        <section class="intro-section">
+          <p><strong>Explorá la accesibilidad territorial de cada aeropuerto.</strong></p>
+          <p>Seleccioná un aeropuerto para visualizar áreas alcanzables por carretera en hasta 1, 2 y 3 horas.</p>
+        </section>
+
+        <section class="selector-section">
+          <label class="field-label" for="airportSearch">Buscar aeropuerto</label>
+          <div class="search-box">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+            <input id="airportSearch" type="search" autocomplete="off" placeholder="Nombre, ciudad, provincia o IATA">
+            <button class="clear-search" id="clearSearch" type="button" aria-label="Limpiar búsqueda" hidden>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg>
+            </button>
+          </div>
+
+          <label class="field-label select-label" for="airportSelect">Aeropuerto</label>
+          <span class="select-wrap">
+            <select id="airportSelect">
+              <option value="">Seleccionar aeropuerto…</option>
+            </select>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg>
+          </span>
+
+          <button class="overview-button" id="overviewButton" type="button">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 4H4v4M16 4h4v4M20 16v4h-4M4 16v4h4"/></svg>
+            Ver todos los aeropuertos
+          </button>
+        </section>
+
+        <section class="airport-panel" id="airportPanel" aria-live="polite">
+          <div class="empty-selection" id="emptySelection">
+            <div class="empty-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>
+            </div>
+            <strong>Elegí un aeropuerto</strong>
+            <span>También podés seleccionarlo directamente sobre el mapa.</span>
+          </div>
+
+          <div id="airportDetails" hidden>
+            <div class="airport-heading">
+              <div>
+                <span class="iata-badge" id="airportIata">—</span>
+                <p class="airport-location" id="airportLocation">—</p>
+                <h2 id="airportName">—</h2>
+              </div>
+              <button class="share-button" id="shareButton" type="button" title="Copiar enlace de este aeropuerto" aria-label="Copiar enlace de este aeropuerto">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.5-4.4M8.2 13.2l7.5 4.4"/></svg>
+              </button>
+            </div>
+
+            <div class="kpi-grid">
+              <div class="kpi-card kpi-primary">
+                <span class="kpi-label">Población del área de influencia</span>
+                <strong id="populationInfluence">—</strong>
+                <small>Censo 2022</small>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-label">Población a ≤ 1 hora</span>
+                <strong id="populationOneHour">—</strong>
+                <small>del área de influencia</small>
+              </div>
+            </div>
+
+            <dl class="airport-meta">
+              <div><dt>Provincia</dt><dd id="airportProvince">—</dd></div>
+              <div><dt>Localidad</dt><dd id="airportCity">—</dd></div>
+              <div><dt>Distancia al centro</dt><dd id="airportDistance">—</dd></div>
+              <div><dt>Explotador</dt><dd id="airportOperator">—</dd></div>
+            </dl>
+          </div>
+        </section>
+
+        <section class="legend-section">
+          <h2>Referencias</h2>
+          <div class="legend-row"><span class="swatch t1"></span><span>Hasta 1 hora</span></div>
+          <div class="legend-row"><span class="swatch t2"></span><span>Entre 1 y 2 horas</span></div>
+          <div class="legend-row"><span class="swatch t3"></span><span>Entre 2 y 3 horas</span></div>
+          <div class="legend-row"><span class="line-swatch"></span><span>Área de influencia aeroportuaria</span></div>
+          <div class="legend-row"><span class="locality-swatch"></span><span>Localidades censales</span></div>
+        </section>
+      </div>
+
+      <div class="sidebar-footer">
+        <span>ORSNA · GeoData</span>
+        <span>Datos territoriales 2025</span>
+      </div>
+    </aside>
+
+    <section class="map-stage" id="mapStage" aria-label="Mapa de tiempos de viaje">
+      <div id="map" tabindex="0"></div>
+
+      <div class="loading-overlay" id="loadingOverlay" role="status">
+        <div class="loader" aria-hidden="true"></div>
+        <strong>Cargando mapa</strong>
+        <span>Preparando aeropuertos y capas territoriales…</span>
+      </div>
+
+      <div class="map-error" id="mapError" role="alert" hidden>
+        <strong>No fue posible cargar el mapa</strong>
+        <span id="mapErrorMessage">Comprobá las fuentes de datos.</span>
+        <button type="button" id="retryButton">Reintentar</button>
+      </div>
+
+      <div class="map-tools" aria-label="Herramientas del mapa">
+        <button id="fitMapButton" type="button" title="Ajustar vista" aria-label="Ajustar vista">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 4H4v4M16 4h4v4M20 16v4h-4M4 16v4h4"/></svg>
+        </button>
+        <button id="fullscreenButton" type="button" title="Pantalla completa" aria-label="Alternar pantalla completa">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M3 16v5h5"/></svg>
+        </button>
+      </div>
+
+      <div class="map-hint" id="mapHint">
+        <strong>57 aeropuertos</strong>
+        <span>Hacé clic sobre un marcador para explorar sus tiempos de viaje.</span>
+      </div>
+
+      <div class="basemap-buttons" id="basemapButtons" aria-label="Mapa base">
+        <button type="button" class="is-active" data-basemap="argenmap" aria-pressed="true">Argenmap</button>
+        <button type="button" data-basemap="osm" aria-pressed="false">OSM</button>
+        <button type="button" data-basemap="satellite" aria-pressed="false">Satelital</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="mobile-backdrop" id="mobileBackdrop" hidden></div>
+
+  <dialog class="about-dialog" id="aboutDialog" aria-labelledby="aboutTitle">
+    <button class="dialog-close" id="aboutClose" type="button" aria-label="Cerrar">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg>
+    </button>
+    <p class="eyebrow">Accesibilidad aeroportuaria</p>
+    <h2 id="aboutTitle">Tiempos de viaje desde aeropuertos</h2>
+    <p>El mapa representa áreas alcanzables por carretera desde cada aeropuerto en intervalos de hasta 1, 2 y 3 horas, junto con el área de influencia aeroportuaria y localidades censales.</p>
+    <p>Las capas se integran en GeoData y pueden consultarse directamente mediante una URL parametrizada por código IATA.</p>
+    <div class="about-grid">
+      <div><strong>57</strong><span>aeropuertos</span></div>
+      <div><strong>3 h</strong><span>alcance máximo</span></div>
+      <div><strong>2022</strong><span>censo poblacional</span></div>
+    </div>
+    <p class="about-note">La consulta de aeropuertos se registra de manera anónima para conocer qué contenidos son más utilizados.</p>
+    <form method="dialog"><button class="primary-button" type="submit">Entendido</button></form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden>Enlace copiado</div>
+
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="js/tiempos-viaje.js?v=20260925-1" defer></script>
+  <script src="/geodata/js/siga-analytics.js"></script>
+</body>
+</html>
