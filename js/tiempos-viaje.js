@@ -2,7 +2,7 @@
 (() => {
   "use strict";
 
-  const DATA_VERSION = "20260925-2";
+  const DATA_VERSION = "20260925-4";
   const URLS = {
     airports: `fuentes/Datos_aeropuertos.geojson?v=${DATA_VERSION}`,
     polygons: `fuentes/poligonos_aeropuertos.geojson?v=${DATA_VERSION}`,
@@ -14,6 +14,11 @@
   const TIME_FILE_OVERRIDES = {
     LPG: "LGP"
   };
+
+  // Vista inicial más cercana, similar a la escala visual del mapa original de ArcGIS.
+  // El botón "Ver todos los aeropuertos" sigue ajustando la extensión a los 57 puntos.
+  const INITIAL_CENTER = [-36.8, -64.2];
+  const INITIAL_ZOOM = 6;
 
   const dom = {
     loading: document.getElementById("loadingOverlay"),
@@ -74,7 +79,8 @@
     selectedIata: "",
     selectedAirport: null,
     selectedBounds: null,
-    initialized: false
+    initialized: false,
+    initialOverviewApplied: false
   };
 
   const collator = new Intl.Collator("es", { sensitivity: "base" });
@@ -88,7 +94,7 @@
       await loadCoreData();
       populateAirportSelect(state.airports);
       renderAirportMarkers();
-      fitOverview();
+      setInitialView();
       state.initialized = true;
       setLoading(false);
       openAirportFromUrl();
@@ -407,25 +413,31 @@
 
   function travelTimeStyle(feature, overview = false) {
     const to = getToBreak(feature);
-    let color = "#9ecae1";
-    if (to === 60) color = "#08306b";
-    else if (to === 120) color = "#2171b5";
-    else if (to === 180) color = "#6baed6";
 
+    // Tres bandas reales de los GeoJSON:
+    // 0–60 min, 60–120 min y 120–180 min.
+    // Paleta ajustada para aproximar la simbología del mapa ArcGIS original.
+    let color = "#A7C0F3";
+    if (to === 60) color = "#1547B3";
+    else if (to === 120) color = "#416FF9";
+    else if (to === 180) color = "#A7C0F3";
+
+    // En la vista de los 57 aeropuertos se reduce la transparencia del relleno
+    // para compensar la mayor superposición entre áreas.
     return overview
       ? {
           color,
-          weight: 0.65,
-          opacity: 0.72,
+          weight: 1.0,
+          opacity: 0.92,
           fillColor: color,
-          fillOpacity: 0.12
+          fillOpacity: 0.17
         }
       : {
           color,
-          weight: 1,
-          opacity: 0.9,
+          weight: 1.2,
+          opacity: 0.96,
           fillColor: color,
-          fillOpacity: 0.34
+          fillOpacity: 0.40
         };
   }
 
@@ -670,6 +682,10 @@
     }
   }
 
+  function setInitialView() {
+    state.map.setView(INITIAL_CENTER, INITIAL_ZOOM);
+  }
+
   function fitOverview() {
     const centers = state.airports.map(a => a.center).filter(Boolean);
     if (!centers.length) {
@@ -679,7 +695,7 @@
     state.map.fitBounds(L.latLngBounds(centers), { padding: [28, 28], maxZoom: 5 });
   }
 
-  function showOverview({ updateUrl = true } = {}) {
+  function showOverview({ updateUrl = true, fitAll = true } = {}) {
     state.selectedIata = "";
     state.selectedAirport = null;
     state.selectedBounds = null;
@@ -691,7 +707,7 @@
     updateSelectedMarker();
     ensureOverviewTimeLayer();
     showOverviewTravelTimes();
-    fitOverview();
+    fitAll ? fitOverview() : setInitialView();
     if (updateUrl) updateUrlAirport("");
     track("map_overview", {});
     closeMobilePanel();
@@ -810,9 +826,12 @@
     const iata = clean(params.get("airport")).toUpperCase();
 
     if (iata && state.airports.some(a => a.iata === iata)) {
+      state.initialOverviewApplied = true;
       selectAirport(iata, { source: "url", updateUrl: false });
     } else if (!iata) {
-      showOverview({ updateUrl: false });
+      const isFirstOverview = !state.initialOverviewApplied;
+      showOverview({ updateUrl: false, fitAll: !isFirstOverview });
+      state.initialOverviewApplied = true;
     }
   }
 
