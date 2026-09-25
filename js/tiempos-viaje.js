@@ -686,14 +686,22 @@
     state.map.setView(INITIAL_CENTER, INITIAL_ZOOM);
   }
 
-  function fitOverview() {
-    const centers = state.airports.map(a => a.center).filter(Boolean);
-    if (!centers.length) {
-      state.map.setView([-38.2, -64.2], 4);
-      return;
-    }
-    state.map.fitBounds(L.latLngBounds(centers), { padding: [28, 28], maxZoom: 5 });
+function fitOverview() {
+  const centers = state.airports.map(a => a.center).filter(Boolean);
+
+  if (!centers.length) {
+    state.map.setView([-38.2, -64.2], 5);
+    return;
   }
+
+  state.map.fitBounds(
+    L.latLngBounds(centers),
+    {
+      padding: [20, 20],
+      maxZoom: 6
+    }
+  );
+}
 
   function showOverview({ updateUrl = true, fitAll = true } = {}) {
     state.selectedIata = "";
