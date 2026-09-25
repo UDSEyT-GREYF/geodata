@@ -5,6 +5,7 @@ const DATA_URLS = {
   airports: "data/sudamerica/aeropuertos_sudamerica.geojson",
   airportsTerritorial: `data/sudamerica/aeropuertos_sudamerica_interes_territorial.geojson?v=${DATA_VERSION}`,
   managementCaap: "data/operadores/corporacion_america_aeropuertos_sudamerica.geojson",
+  managementLondon: "data/operadores/london_supply_aeropuertos_sudamerica.geojson",
   operationsAnnual: "data/sudamerica/operativo/datos_operativos_aeropuertos_anual.csv",
   operationsMonthly: "data/sudamerica/operativo/datos_operativos_aeropuertos_mensual.csv",
   administrative: "data/sudamerica/divisiones_administrativas_sudamerica.geojson",
@@ -359,6 +360,7 @@ const [
   geoResponse,
   territorialResponse,
   managementCaapResponse,
+  managementLondonResponse,
   annualResponse,
   monthlyResponse,
   populatedPlacesResponse,
@@ -374,6 +376,14 @@ fetchWithRetry(DATA_URLS.airportsTerritorial, 2, 25000).catch((error) => {
   
 fetchWithRetry(DATA_URLS.managementCaap, 2, 25000).catch((error) => {
   console.warn("Los datos de gestión aeroportuaria de Corporación América no están disponibles.", error);
+  return null;
+}),
+
+fetchWithRetry(DATA_URLS.managementLondon, 2, 25000).catch((error) => {
+  console.warn(
+    "Los datos de gestión aeroportuaria de London Supply no están disponibles.",
+    error
+  );
   return null;
 }),
   
@@ -406,6 +416,10 @@ const territorialGeojson = territorialResponse
 const managementCaapGeojson = managementCaapResponse
   ? await managementCaapResponse.json()
   : { type: "FeatureCollection", features: [] };
+
+const managementLondonGeojson = managementLondonResponse
+  ? await managementLondonResponse.json()
+  : { type: "FeatureCollection", features: [] };
       
 const annualText = annualResponse
   ? await annualResponse.text()
@@ -429,9 +443,10 @@ const urbanAreasGeojson = urbanAreasResponse
 
       state.annualOperational = buildAnnualIndex(parseCSV(annualText));
       state.monthlyOperational = buildMonthlyIndex(parseCSV(monthlyText));
-      state.management = buildManagementIndex(
-        managementCaapGeojson.features || []
-      );
+      state.management = buildManagementIndex([
+        ...(managementCaapGeojson.features || []),
+        ...(managementLondonGeojson.features || [])
+      ]);
       state.populatedPlaces = normalizePopulatedPlaces(
         populatedPlacesGeojson.features || []
       );
@@ -886,14 +901,25 @@ function buildManagementIndex(features) {
       .trim()
       .toUpperCase();
 
-    const management = {
-      operator: String(properties.entidad_operadora || "").trim(),
-      group: String(properties.grupo || "").trim(),
-      relationship: String(properties.tipo_vinculo || "").trim(),
-      status: String(properties.estado_caap || "").trim(),
-      source: String(properties.fuente_caap || "").trim(),
-      verificationDate: String(properties.fecha_verificacion || "").trim()
-    };
+const management = {
+  operator: String(
+    properties.entidad_operadora || ""
+  ).trim(),
+
+  group: String(
+    properties.grupo || ""
+  ).trim(),
+
+  relationship: String(
+    properties.tipo_vinculo || ""
+  ).trim(),
+
+  source: String(
+    properties.fuente_gestion ||
+    properties.fuente_caap ||
+    ""
+  ).trim()
+};
 
     if (icao) index.set(icao, management);
     if (iata) index.set(iata, management);
