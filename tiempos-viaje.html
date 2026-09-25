@@ -6,6 +6,7 @@
   <meta name="description" content="Mapa interactivo de tiempos de viaje por carretera y áreas de influencia de los aeropuertos del Sistema Nacional de Aeropuertos.">
   <meta name="theme-color" content="#0b1f33">
   <title>Tiempos de viaje desde aeropuertos | GeoData</title>
+  <link rel="icon" type="image/png" href="img/icons/favicon-tiempos-viaje.png">
 
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="css/tiempos-viaje.css?v=20260925-2">
@@ -24,7 +25,7 @@
       </div>
 
       <div class="brand-copy">
-        <p class="eyebrow">GeoData · Accesibilidad aeroportuaria</p>
+        <p class="eyebrow">Accesibilidad aeroportuaria</p>
         <h1>Tiempos de viaje desde aeropuertos</h1>
       </div>
     </div>
@@ -51,8 +52,8 @@
     <aside class="sidebar" id="sidebar" aria-label="Selección e información del aeropuerto">
       <div class="sidebar-scroll">
         <section class="intro-section">
-          <p><strong>Explorá la accesibilidad territorial de cada aeropuerto.</strong></p>
-          <p>Seleccioná un aeropuerto para visualizar áreas alcanzables por carretera en hasta 1, 2 y 3 horas.</p>
+          <p><strong>Explore la accesibilidad territorial de cada aeropuerto.</strong></p>
+          <p>Seleccione un aeropuerto para visualizar sus tiempos de viaje por red vial.</p>
         </section>
 
         <section class="selector-section">
@@ -85,7 +86,7 @@
               <svg viewBox="0 0 24 24"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>
             </div>
             <strong>Elegí un aeropuerto</strong>
-            <span>También podés seleccionarlo directamente sobre el mapa.</span>
+            <span>También puede seleccionarse directamente sobre el mapa.</span>
           </div>
 
           <div id="airportDetails" hidden>
@@ -156,7 +157,7 @@
 
       <div class="map-hint" id="mapHint">
         <strong>57 aeropuertos</strong>
-        <span>Hacé clic sobre un marcador para explorar sus tiempos de viaje.</span>
+        <span>Haga clic sobre un aeropuerto para explorar sus tiempos de viaje.</span>
       </div>
 
       <div class="map-reference-stack" aria-label="Referencias y mapa base">
@@ -186,8 +187,8 @@
     </button>
     <p class="eyebrow">Accesibilidad aeroportuaria</p>
     <h2 id="aboutTitle">Tiempos de viaje desde aeropuertos</h2>
-    <p>El mapa representa áreas alcanzables por carretera desde cada aeropuerto en intervalos de hasta 1, 2 y 3 horas, junto con el área de influencia aeroportuaria y localidades censales.</p>
-    <p>Las capas se integran en GeoData y pueden consultarse directamente mediante una URL parametrizada por código IATA.</p>
+    <p>El mapa representa áreas alcanzables por red vial desde cada aeropuerto en intervalos de hasta 1, 2 y 3 horas, junto con el área de influencia aeroportuaria y localidades censales.</p>
+    <p>Las capas se integran en GeoData y pueden consultarse mediante código IATA.</p>
     <div class="about-grid">
       <div><strong>57</strong><span>aeropuertos</span></div>
       <div><strong>3 h</strong><span>alcance máximo</span></div>
