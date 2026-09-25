@@ -68,7 +68,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "7"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.4134190239,
+          -34.5605855384
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -136,7 +142,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4D",
         "CATEGORÍA SEI NORMAL": "7"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.1537984793,
+          -38.7236753422
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -204,7 +216,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4E",
         "CATEGORÍA SEI NORMAL": "8"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.159307879,
+          -41.1503194338
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -272,7 +290,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "6"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.75271079,
+          -28.5943155455
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -340,7 +364,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "6"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.140680852,
+          -40.0767010424
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -408,7 +438,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4E",
         "CATEGORÍA SEI NORMAL": "7"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.4655327946,
+          -45.7849424865
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -476,7 +512,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": null
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.997305,
+          -31.2970201284
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -544,7 +586,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4E",
         "CATEGORÍA SEI NORMAL": "9"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.2082032342,
+          -31.3155808776
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -612,7 +660,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4D",
         "CATEGORÍA SEI NORMAL": "7"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.7620132521,
+          -27.4481637376
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -680,7 +734,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4E",
         "CATEGORÍA SEI NORMAL": "7"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.0530451841,
+          -50.2803488895
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -748,7 +808,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "-",
         "CATEGORÍA SEI NORMAL": "6"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.6045279023,
+          -34.610235198
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -816,7 +882,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "5"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.2237137399,
+          -51.604785793
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -884,7 +956,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "6"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.1366517822,
+          -42.9047083107
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -952,7 +1030,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4F",
         "CATEGORÍA SEI NORMAL": "10"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.5424618656,
+          -34.8122874734
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -1020,7 +1104,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "7"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2267864558,
+          -26.2140763279
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -1088,7 +1178,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4D",
         "CATEGORÍA SEI NORMAL": "1"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.7597232222,
+          -35.6912609447
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -1156,7 +1252,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "S/D"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.6188925551,
+          -38.999443252
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -1224,7 +1326,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4E",
         "CATEGORÍA SEI NORMAL": "8"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -54.4758314487,
+          -25.7344749475
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -1292,7 +1400,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "7"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.0991094244,
+          -24.3898594024
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -1360,7 +1474,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": null
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.9301235806,
+          -34.5456760243
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -1428,7 +1548,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4D",
         "CATEGORÍA SEI NORMAL": "5"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.8953807903,
+          -34.9761093311
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -1496,7 +1622,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "6"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.7923488936,
+          -29.3745246692
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -1564,7 +1696,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4D",
         "CATEGORÍA SEI NORMAL": "5"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.5801992252,
+          -35.4864105894
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -1632,7 +1770,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4D",
         "CATEGORÍA SEI NORMAL": "7"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.5740449979,
+          -37.9321130178
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -1700,7 +1844,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4E",
         "CATEGORÍA SEI NORMAL": "7"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.7938610498,
+          -32.8304028407
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -1768,7 +1918,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "5"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.1857694216,
+          -32.3843821704
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -1836,7 +1992,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4D",
         "CATEGORÍA SEI NORMAL": null
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.8138938768,
+          -38.4890140313
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -1904,7 +2066,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "7"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.1544361883,
+          -38.9489462173
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -1972,7 +2140,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "5"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.4804791456,
+          -31.7960258365
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -2040,7 +2214,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "NO"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.1520674194,
+          -29.6892685077
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -2108,7 +2288,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "2B",
         "CATEGORÍA SEI NORMAL": "5"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.9782720729,
+          -46.5379547665
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -2176,7 +2362,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "7"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -55.9712220854,
+          -27.389104
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -2244,7 +2436,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "6"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.1035197895,
+          -42.7588127088
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -2312,7 +2510,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4E",
         "CATEGORÍA SEI NORMAL": "5"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.6813890817,
+          -29.2104570711
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -2380,7 +2584,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4E",
         "CATEGORÍA SEI NORMAL": "7"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.0572367358,
+          -27.4527672781
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -2448,7 +2658,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4E",
         "CATEGORÍA SEI NORMAL": "5"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.2692882583,
+          -33.0943359757
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -2516,7 +2732,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4E",
         "CATEGORÍA SEI NORMAL": "8"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.3079189026,
+          -51.6089507962
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -2584,7 +2806,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4D",
         "CATEGORÍA SEI NORMAL": "7"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.7530829771,
+          -53.7778402388
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -2652,7 +2880,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4D",
         "CATEGORÍA SEI NORMAL": "9"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.7852315547,
+          -32.9097209663
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -2720,7 +2954,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4D",
         "CATEGORÍA SEI NORMAL": "7"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.4843872447,
+          -24.853779839
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -2788,7 +3028,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4D",
         "CATEGORÍA SEI NORMAL": "5"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.589139553,
+          -34.4530935849
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -2856,7 +3102,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "6"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.4187752541,
+          -31.5699102341
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -2924,7 +3176,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "5"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.3562805328,
+          -33.2730870448
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -2992,7 +3250,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "5"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.4031998682,
+          -34.5883153696
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -3060,7 +3324,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "6"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.8118014885,
+          -31.7114170682
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -3128,7 +3398,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4D",
         "CATEGORÍA SEI NORMAL": "5"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.2748450739,
+          -36.5857800431
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -3196,7 +3472,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": null
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.7203057781,
+          -36.5425734151
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -3264,7 +3546,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4D",
         "CATEGORÍA SEI NORMAL": "6"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.3100211158,
+          -27.7660696693
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -3332,7 +3620,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C???",
         "CATEGORÍA SEI NORMAL": "S/D"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.2288128944,
+          -37.2362205798
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -3400,7 +3694,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "S/D"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.79372687,
+          -22.6186382952
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -3468,7 +3768,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "6"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.9379400962,
+          -27.5090276342
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -3536,7 +3842,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4E",
         "CATEGORÍA SEI NORMAL": "6"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.2686989064,
+          -43.2118303789
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -3604,7 +3916,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4D",
         "CATEGORÍA SEI NORMAL": "7"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.1022544667,
+          -26.835503409
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -3672,7 +3990,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4E",
         "CATEGORÍA SEI NORMAL": "8"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.3081049861,
+          -54.8435864009
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -3740,7 +4064,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "5"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.9992672146,
+          -40.8698946723
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -3808,7 +4138,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": null
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.0291239481,
+          -37.2349152025
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -3876,7 +4212,13 @@
         "CLAVE DE REFERENCIA DE AERÓDROMO": "4C",
         "CATEGORÍA SEI NORMAL": "4"
       },
-      "geometry": null
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.3861281049,
+          -33.7298068287
+        ]
+      }
     }
   ]
 }
