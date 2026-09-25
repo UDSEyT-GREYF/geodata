@@ -2,7 +2,7 @@
 (() => {
   "use strict";
 
-  const DATA_VERSION = "20260925-1";
+  const DATA_VERSION = "20260925-2";
   const URLS = {
     airports: `fuentes/Datos_aeropuertos.geojson?v=${DATA_VERSION}`,
     polygons: `fuentes/poligonos_aeropuertos.geojson?v=${DATA_VERSION}`,
@@ -55,6 +55,9 @@
     baseLayers: {},
     currentBaseLayer: "argenmap",
     airportLayer: null,
+    overviewTimeLayer: null,
+    overviewLoaded: false,
+    overviewLoading: false,
     timeLayer: null,
     influenceLayer: null,
     localityLayer: null,
@@ -66,6 +69,8 @@
     localitiesPromise: null,
     populationOneHour: new Map(),
     markerByIata: new Map(),
+    timeCache: new Map(),
+    timePromises: new Map(),
     selectedIata: "",
     selectedAirport: null,
     selectedBounds: null,
@@ -257,7 +262,7 @@
     state.airports.forEach(airport => {
       const marker = L.marker(airport.center, {
         pane: "airportPane",
-        icon: createAirportIcon(airport.iata, airport.iata === state.selectedIata),
+        icon: createAirportIcon(airport, airport.iata === state.selectedIata),
         keyboard: true,
         title: airport.label
       });
@@ -274,13 +279,22 @@
     });
   }
 
-  function createAirportIcon(iata, selected) {
+  function createAirportIcon(airport, selected) {
+    const iata = airport.iata;
+    const image = `img/Terminales/${encodeURIComponent(iata)}_terminal.png`;
+
     return L.divIcon({
       className: "airport-marker",
-      html: `<span class="airport-marker-dot${selected ? " is-selected" : ""}">${escapeHTML(iata)}</span>`,
-      iconSize: [24, 24],
-      iconAnchor: [12, 12],
-      tooltipAnchor: [0, -10]
+      html: `
+        <span class="airport-photo-marker${selected ? " is-selected" : ""}">
+          <span class="airport-photo-frame">
+            <img src="${image}" alt="" loading="lazy" draggable="false" onerror="this.style.display='none'">
+          </span>
+          <span class="airport-photo-code">${escapeHTML(iata)}</span>
+        </span>`,
+      iconSize: [46, 46],
+      iconAnchor: [23, 23],
+      tooltipAnchor: [0, -25]
     });
   }
 
@@ -307,6 +321,7 @@
     dom.mapHint.classList.add("is-hidden");
     renderAirportDetails(airport);
     updateSelectedMarker();
+    hideOverviewTravelTimes();
     clearSelectedLayers();
     showMapBusy(true);
 
@@ -349,32 +364,135 @@
   }
 
   async function drawTravelTimes(airport) {
-    const fileCode = TIME_FILE_OVERRIDES[airport.iata] || airport.iata;
-    const url = `img/Tiempos/Tiempos_${fileCode}.geojson?v=${DATA_VERSION}`;
-    const geojson = await fetchJSON(url);
-
+    const geojson = await loadTravelTimeGeoJSON(airport);
     const features = [...(geojson.features || [])].sort((a, b) => getToBreak(b) - getToBreak(a));
     if (!features.length) throw new Error(`Sin isócronas para ${airport.iata}`);
 
     state.timeLayer = L.geoJSON({ type: "FeatureCollection", features }, {
       pane: "timePane",
       interactive: false,
-      style: feature => {
-        const to = getToBreak(feature);
-        let color = "#9ecae1";
-        if (to === 60) color = "#08306b";
-        else if (to === 120) color = "#2171b5";
-        else if (to === 180) color = "#6baed6";
+      smoothFactor: 1.2,
+      style: feature => travelTimeStyle(feature, false)
+    }).addTo(state.map);
+  }
 
-        return {
+  function getTravelTimeUrl(airport) {
+    const fileCode = TIME_FILE_OVERRIDES[airport.iata] || airport.iata;
+    return `img/Tiempos/Tiempos_${fileCode}.geojson?v=${DATA_VERSION}`;
+  }
+
+  async function loadTravelTimeGeoJSON(airport) {
+    if (state.timeCache.has(airport.iata)) {
+      return state.timeCache.get(airport.iata);
+    }
+
+    if (state.timePromises.has(airport.iata)) {
+      return state.timePromises.get(airport.iata);
+    }
+
+    const promise = fetchJSON(getTravelTimeUrl(airport))
+      .then(geojson => {
+        state.timeCache.set(airport.iata, geojson);
+        state.timePromises.delete(airport.iata);
+        return geojson;
+      })
+      .catch(error => {
+        state.timePromises.delete(airport.iata);
+        throw error;
+      });
+
+    state.timePromises.set(airport.iata, promise);
+    return promise;
+  }
+
+  function travelTimeStyle(feature, overview = false) {
+    const to = getToBreak(feature);
+    let color = "#9ecae1";
+    if (to === 60) color = "#08306b";
+    else if (to === 120) color = "#2171b5";
+    else if (to === 180) color = "#6baed6";
+
+    return overview
+      ? {
+          color,
+          weight: 0.65,
+          opacity: 0.72,
+          fillColor: color,
+          fillOpacity: 0.12
+        }
+      : {
           color,
           weight: 1,
           opacity: 0.9,
           fillColor: color,
           fillOpacity: 0.34
         };
+  }
+
+  function ensureOverviewTimeLayer() {
+    if (!state.overviewTimeLayer) {
+      state.overviewTimeLayer = L.layerGroup();
+    }
+
+    if (!state.map.hasLayer(state.overviewTimeLayer)) {
+      state.overviewTimeLayer.addTo(state.map);
+    }
+
+    return state.overviewTimeLayer;
+  }
+
+  function hideOverviewTravelTimes() {
+    if (state.overviewTimeLayer && state.map.hasLayer(state.overviewTimeLayer)) {
+      state.map.removeLayer(state.overviewTimeLayer);
+    }
+  }
+
+  async function showOverviewTravelTimes() {
+    ensureOverviewTimeLayer();
+    if (state.overviewLoaded || state.overviewLoading) return;
+
+    state.overviewLoading = true;
+    setOverviewHint("Cargando tiempos de viaje", "Las isócronas de los 57 aeropuertos se incorporan progresivamente al mapa.");
+
+    let nextIndex = 0;
+    const workerCount = 6;
+
+    async function worker() {
+      while (nextIndex < state.airports.length) {
+        const airport = state.airports[nextIndex++];
+        try {
+          const geojson = await loadTravelTimeGeoJSON(airport);
+          const features = [...(geojson.features || [])].sort((a, b) => getToBreak(b) - getToBreak(a));
+          if (!features.length) continue;
+
+          L.geoJSON({ type: "FeatureCollection", features }, {
+            pane: "timePane",
+            interactive: false,
+            smoothFactor: 3,
+            style: feature => travelTimeStyle(feature, true)
+          }).addTo(state.overviewTimeLayer);
+        } catch (error) {
+          console.warn(`No se pudo cargar la isócrona general de ${airport.iata}`, error);
+        }
       }
-    }).addTo(state.map);
+    }
+
+    try {
+      await Promise.all(Array.from({ length: workerCount }, () => worker()));
+      state.overviewLoaded = true;
+    } finally {
+      state.overviewLoading = false;
+      if (!state.selectedIata) {
+        setOverviewHint("57 aeropuertos", "Hacé clic sobre una terminal para explorar sus tiempos de viaje en detalle.");
+      }
+    }
+  }
+
+  function setOverviewHint(title, text) {
+    const titleEl = dom.mapHint.querySelector("strong");
+    const textEl = dom.mapHint.querySelector("span");
+    if (titleEl) titleEl.textContent = title;
+    if (textEl) textEl.textContent = text;
   }
 
   function getToBreak(feature) {
@@ -571,6 +689,8 @@
     dom.mapHint.classList.remove("is-hidden");
     clearSelectedLayers();
     updateSelectedMarker();
+    ensureOverviewTimeLayer();
+    showOverviewTravelTimes();
     fitOverview();
     if (updateUrl) updateUrlAirport("");
     track("map_overview", {});
@@ -587,7 +707,8 @@
 
   function updateSelectedMarker() {
     state.markerByIata.forEach((marker, iata) => {
-      marker.setIcon(createAirportIcon(iata, iata === state.selectedIata));
+      const airport = state.airports.find(item => item.iata === iata);
+      if (airport) marker.setIcon(createAirportIcon(airport, iata === state.selectedIata));
     });
   }
 
@@ -690,7 +811,7 @@
 
     if (iata && state.airports.some(a => a.iata === iata)) {
       selectAirport(iata, { source: "url", updateUrl: false });
-    } else if (!iata && state.selectedIata) {
+    } else if (!iata) {
       showOverview({ updateUrl: false });
     }
   }
@@ -703,6 +824,15 @@
   }
 
   function trackAirportView(airport, source) {
+    if (window.sigaAnalytics?.trackAirport) {
+      window.sigaAnalytics.trackAirport(airport.iata, {
+        airport_name: airport.shortName,
+        province: airport.province || null,
+        source
+      });
+      return;
+    }
+
     track("airport_view", {
       airport_iata: airport.iata,
       airport_name: airport.shortName,
