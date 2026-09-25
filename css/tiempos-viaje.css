@@ -74,3 +74,165 @@ h1{margin:0;overflow:hidden;font-size:clamp(18px,2vw,23px);font-weight:680;lette
 @media (max-width:980px){:root{--sidebar-w:350px}.update-badge{display:none}}
 @media (max-width:760px){:root{--topbar-h:66px}.topbar{padding:0 12px}.brand-mark{display:none}.topbar-actions .header-button span{display:none}.header-button{width:36px;padding:0}.mobile-panel-button{display:inline-flex}.app-shell{display:block}.sidebar{position:fixed;top:var(--topbar-h);left:0;bottom:0;z-index:1000;width:min(360px,88vw);height:calc(100dvh - var(--topbar-h));transform:translateX(-105%);transition:transform .23s ease}.sidebar.is-open{transform:translateX(0)}.map-stage{height:100%}.map-tools{top:10px;right:10px}.basemap-buttons{right:10px;bottom:10px}.map-hint{left:10px;bottom:58px;width:220px}.sidebar-footer{display:none}}
 @media (max-width:520px){h1{font-size:15px}.brand-block{gap:7px}.back-link{width:30px}.basemap-buttons button{padding:8px}.map-hint{display:none}.kpi-grid{grid-template-columns:1fr}.about-grid{grid-template-columns:1fr}}
+
+/* =========================================================
+   REV 2026-09-25 · Referencias dentro del mapa
+   ========================================================= */
+.map-reference-stack{
+  position:absolute;
+  top:12px;
+  left:54px;
+  z-index:650;
+  width:238px;
+  display:grid;
+  gap:6px;
+}
+
+.map-legend-panel{
+  padding:11px 12px;
+  background:rgba(255,255,255,.97);
+  border:1px solid rgba(93,111,130,.25);
+  border-radius:11px;
+  box-shadow:var(--shadow-sm);
+  backdrop-filter:blur(4px);
+}
+
+.map-legend-title{
+  margin:0 0 8px;
+  color:var(--slate-700);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.065em;
+  text-transform:uppercase;
+}
+
+.map-legend-panel .legend-row{
+  margin-top:6px;
+  color:var(--slate-600);
+  font-size:10px;
+}
+
+.map-reference-stack .basemap-buttons{
+  position:static;
+  right:auto;
+  bottom:auto;
+  z-index:auto;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  width:100%;
+  overflow:hidden;
+}
+
+.map-reference-stack .basemap-buttons button{
+  min-width:0;
+  padding:8px 6px;
+  text-align:center;
+}
+
+/* =========================================================
+   Marcadores con imagen de terminal
+   ========================================================= */
+.airport-marker{
+  background:transparent;
+  border:0;
+}
+
+.airport-photo-marker{
+  position:relative;
+  display:block;
+  width:46px;
+  height:46px;
+  transition:transform .14s ease;
+}
+
+.airport-photo-frame{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  background:linear-gradient(145deg,#dce9ef,#f8fbfc);
+  border:3px solid rgba(255,255,255,.98);
+  border-radius:12px;
+  box-shadow:
+    0 5px 14px rgba(7,21,34,.28),
+    0 0 0 1px rgba(7,21,34,.18);
+}
+
+.airport-photo-frame img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  pointer-events:none;
+  user-select:none;
+}
+
+.airport-photo-code{
+  position:absolute;
+  right:-6px;
+  bottom:-6px;
+  display:grid;
+  place-items:center;
+  min-width:27px;
+  height:20px;
+  padding:0 5px;
+  color:#fff;
+  background:var(--teal);
+  border:2px solid #fff;
+  border-radius:999px;
+  box-shadow:0 2px 7px rgba(7,21,34,.28);
+  font-size:8px;
+  font-weight:850;
+  letter-spacing:.02em;
+}
+
+.airport-photo-marker:hover{
+  transform:translateY(-2px) scale(1.06);
+}
+
+.airport-photo-marker.is-selected{
+  transform:scale(1.12);
+}
+
+.airport-photo-marker.is-selected .airport-photo-frame{
+  border-color:#fff;
+  box-shadow:
+    0 7px 18px rgba(7,21,34,.32),
+    0 0 0 3px rgba(232,93,63,.92);
+}
+
+.airport-photo-marker.is-selected .airport-photo-code{
+  background:#e85d3f;
+}
+
+@media (max-width:760px){
+  .map-reference-stack{
+    top:10px;
+    left:52px;
+    width:214px;
+  }
+
+  .map-reference-stack .basemap-buttons{
+    right:auto;
+    bottom:auto;
+  }
+}
+
+@media (max-width:520px){
+  .map-reference-stack{
+    width:190px;
+  }
+
+  .map-legend-panel{
+    padding:9px 10px;
+  }
+
+  .map-legend-panel .legend-row{
+    font-size:9px;
+  }
+
+  .airport-photo-marker{
+    width:42px;
+    height:42px;
+  }
+}
