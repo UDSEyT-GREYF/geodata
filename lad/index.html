@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mapa de Lugares Aptos Declarados (LAD) y aeropuertos del Sistema Nacional de Aeropuertos.">
+  <title>Lugares Aptos Declarados | GeoData ORSNA</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="/geodata/css/lad.css">
+</head>
+<body>
+<div id="map"></div>
+
+  <div class="map-header">
+    <h1>Lugares Aptos Declarados (LAD) y Aeropuertos del SNA</h1>
+    <p>Localización de pistas declaradas y aeropuertos integrantes del Sistema Nacional de Aeropuertos.</p>
+  </div>
+
+  <div class="search-panel">
+    <input id="searchInput" type="search"
+           placeholder="Buscar LAD, Registro, aeropuerto, IATA u OACI…"
+           autocomplete="off">
+    <div id="searchResults"></div>
+  </div>
+
+  <div class="map-summary">
+    <div class="counter">LAD <b id="ladCount">—</b></div>
+    <div class="counter">Aeropuertos SNA <b id="snaCount">—</b></div>
+  </div>
+
+  <div id="loadWarning" class="load-warning"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/geodata/js/lad.js"></script>
+</body>
+</html>
