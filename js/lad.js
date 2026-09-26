@@ -37,18 +37,6 @@
     const ladLayer = L.layerGroup().addTo(map);
     const snaLayer = L.layerGroup().addTo(map);
 
-    L.control.layers(
-      {
-        "Argenmap (IGN)": argenmap,
-        "OpenStreetMap": osm
-      },
-      {
-        "Lugares Aptos Declarados (LAD)": ladLayer,
-        "Aeropuertos del SNA": snaLayer
-      },
-      { collapsed: false }
-    ).addTo(map);
-
     const airportIcon = L.icon({
       iconUrl: "/geodata/img/icons/AeropuertosSNA.png",
       iconSize: [28, 28],
@@ -376,51 +364,64 @@
       el.style.display = "block";
     }
 
+    function renderResults(found) {
+      const list = document.getElementById("resultList");
+      if (!found.length) {
+        list.innerHTML = '<p class="initial-note">No se encontraron coincidencias.</p>';
+        return;
+      }
+      list.innerHTML = found.map((item, i) => `
+        <button class="result-item" type="button" data-index="${i}">
+          <span class="result-code">${esc(item.type === "LAD" ? item.label.split(" · ")[0] : "SNA")}</span>
+          <span class="result-copy"><strong>${esc(item.label)}</strong><span>${esc(item.sublabel)}</span></span>
+        </button>`).join("");
+      list.querySelectorAll(".result-item").forEach((el, i) => {
+        el.addEventListener("click", () => focusItem(found[i]));
+      });
+    }
+
+    function focusItem(item) {
+      if (item.type === "LAD" && !map.hasLayer(ladLayer)) {
+        map.addLayer(ladLayer);
+        document.getElementById("ladToggle").checked = true;
+      }
+      if (item.type === "SNA" && !map.hasLayer(snaLayer)) {
+        map.addLayer(snaLayer);
+        document.getElementById("snaToggle").checked = true;
+      }
+      map.setView(item.marker.getLatLng(), 13);
+      item.marker.openPopup();
+    }
+
     function setupSearch() {
       const input = document.getElementById("searchInput");
-      const results = document.getElementById("searchResults");
-
       input.addEventListener("input", () => {
         const q = normalize(input.value);
-
         if (q.length < 2) {
-          results.innerHTML = "";
-          results.style.display = "none";
+          document.getElementById("resultList").innerHTML =
+            '<p class="initial-note">Escribí al menos dos caracteres para buscar por denominación, Registro, provincia, IATA u OACI.</p>';
           return;
         }
-
-        const found = searchIndex
-          .filter(item => item.search.includes(q))
-          .slice(0, 15);
-
-        results.innerHTML = found.map((item, i) => `
-          <div class="search-result" data-index="${i}">
-            <strong>${esc(item.label)}</strong>
-            <small>${esc(item.sublabel)}</small>
-          </div>
-        `).join("");
-
-        results.style.display = found.length ? "block" : "none";
-
-        results.querySelectorAll(".search-result").forEach((el, i) => {
-          el.addEventListener("click", () => {
-            const item = found[i];
-            const ll = item.marker.getLatLng();
-
-            if (item.type === "LAD" && !map.hasLayer(ladLayer)) map.addLayer(ladLayer);
-            if (item.type === "SNA" && !map.hasLayer(snaLayer)) map.addLayer(snaLayer);
-
-            map.setView(ll, Math.max(map.getZoom(), 13));
-            item.marker.openPopup();
-
-            input.value = item.label;
-            results.style.display = "none";
-          });
-        });
+        const found = searchIndex.filter(item => item.search.includes(q)).slice(0, 40);
+        renderResults(found);
       });
 
-      document.addEventListener("click", e => {
-        if (!e.target.closest(".search-panel")) results.style.display = "none";
+      document.getElementById("clearSearch").addEventListener("click", () => {
+        input.value = "";
+        input.focus();
+        document.getElementById("resultList").innerHTML =
+          '<p class="initial-note">Escribí al menos dos caracteres para buscar por denominación, Registro, provincia, IATA u OACI.</p>';
+      });
+
+      document.getElementById("ladToggle").addEventListener("change", e => {
+        e.target.checked ? map.addLayer(ladLayer) : map.removeLayer(ladLayer);
+      });
+      document.getElementById("snaToggle").addEventListener("change", e => {
+        e.target.checked ? map.addLayer(snaLayer) : map.removeLayer(snaLayer);
+      });
+      document.getElementById("fitMapButton").addEventListener("click", () => {
+        const layers = [...ladLayer.getLayers(), ...snaLayer.getLayers()];
+        if (layers.length) map.fitBounds(L.featureGroup(layers).getBounds(), {padding:[25,25]});
       });
     }
 
@@ -452,6 +453,7 @@
       if (allLayers.getLayers().length) {
         map.fitBounds(allLayers.getBounds(), { padding: [25, 25] });
       }
+      document.getElementById("loadingOverlay").classList.add("is-hidden");
     }
 
     init();
