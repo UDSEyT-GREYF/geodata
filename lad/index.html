@@ -2,36 +2,67 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="Mapa de Lugares Aptos Declarados (LAD) y aeropuertos del Sistema Nacional de Aeropuertos.">
-  <title>Lugares Aptos Declarados | GeoData ORSNA</title>
-
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <meta name="theme-color" content="#0b1f33">
+  <title>Lugares Aptos Declarados | GeoData</title>
+  <link rel="stylesheet" href="/geodata/vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="/geodata/css/lad.css">
 </head>
 <body>
-<div id="map"></div>
+  <header class="topbar">
+    <div class="brand-block">
+      <a class="back-link" href="/geodata/mapas.html" aria-label="Volver a mapas">‹</a>
+      <div class="brand-mark">⌖</div>
+      <div><p class="eyebrow">GeoData · Infraestructura aeroportuaria</p><h1>Lugares Aptos Declarados (LAD)</h1></div>
+    </div>
+    <div class="topbar-actions"><span class="update-badge"><span class="status-dot"></span>Fuente LAD actualizada</span></div>
+  </header>
 
-  <div class="map-header">
-    <h1>Lugares Aptos Declarados (LAD) y Aeropuertos del SNA</h1>
-    <p>Localización de pistas declaradas y aeropuertos integrantes del Sistema Nacional de Aeropuertos.</p>
-  </div>
+  <main class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-scroll">
+        <section class="filter-section">
+          <label class="field-label" for="searchInput">Buscar</label>
+          <div class="search-box">
+            <span class="search-icon">⌕</span>
+            <input id="searchInput" type="search" autocomplete="off" placeholder="Nombre, Registro, IATA u OACI">
+          </div>
+          <div id="searchResults" class="search-results"></div>
+        </section>
 
-  <div class="search-panel">
-    <input id="searchInput" type="search"
-           placeholder="Buscar LAD, Registro, aeropuerto, IATA u OACI…"
-           autocomplete="off">
-    <div id="searchResults"></div>
-  </div>
+        <section class="filter-section">
+          <span class="field-label">Capas</span>
+          <label class="switch-row"><span><strong>Lugares Aptos Declarados</strong><small>KML original · Registro compatible con SIAC</small></span><input id="ladToggle" type="checkbox" checked><span class="switch"></span></label>
+          <label class="switch-row"><span><strong>Aeropuertos del SNA</strong><small>Sistema Nacional de Aeropuertos</small></span><input id="snaToggle" type="checkbox" checked><span class="switch"></span></label>
+        </section>
 
-  <div class="map-summary">
-    <div class="counter">LAD <b id="ladCount">—</b></div>
-    <div class="counter">Aeropuertos SNA <b id="snaCount">—</b></div>
-  </div>
+        <section class="summary-section">
+          <div class="summary-card summary-primary"><span class="summary-value" id="ladCount">—</span><span class="summary-label">LAD</span></div>
+          <div class="summary-card"><span class="summary-value" id="snaCount">—</span><span class="summary-label">Aeropuertos SNA</span></div>
+        </section>
 
-  <div id="loadWarning" class="load-warning"></div>
+        <section class="results-section">
+          <div class="results-heading"><h2>Resultados</h2><button id="clearSearch" class="text-button" type="button">Limpiar</button></div>
+          <div id="resultList" class="result-list"><p class="initial-note">Escribí al menos dos caracteres para buscar por denominación, Registro, provincia, IATA u OACI.</p></div>
+        </section>
+      </div>
+      <div class="sidebar-footer"><span>Fuente LAD: Google My Maps</span><span>GeoData</span></div>
+    </aside>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <section class="map-stage">
+      <div id="map"></div>
+      <div id="loadingOverlay" class="loading-overlay"><div class="loader"></div><strong>Cargando datos</strong><span>Preparando LAD y aeropuertos SNA…</span></div>
+      <div class="map-tools"><button id="fitMapButton" title="Ver todos">⛶</button></div>
+      <div class="map-legend">
+        <div class="legend-title">Referencias</div>
+        <div class="legend-body"><div><span class="lad-symbol"></span>Lugar Apto Declarado</div><div><img src="/geodata/img/icons/AeropuertosSNA.png" alt="">Aeropuerto SNA</div><p>El número de Registro identifica cada LAD y permite su vinculación con SIAC.</p></div>
+      </div>
+      <div id="loadWarning" class="load-warning"></div>
+    </section>
+  </main>
+  <script src="/geodata/vendor/leaflet/leaflet.js"></script>
   <script src="/geodata/js/lad.js"></script>
+  <script src="/geodata/js/siga-analytics.js"></script>
 </body>
 </html>
