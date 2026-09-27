@@ -135,7 +135,7 @@ def main():
     ap.add_argument("--registro", type=int)
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--only-pending", action="store_true")
-    ap.add_argument("--model", default="gpt-5.4-mini")
+    ap.add_argument("--model", default="gpt-5.6-luna")
     args = ap.parse_args()
 
     if not os.environ.get("OPENAI_API_KEY"):
