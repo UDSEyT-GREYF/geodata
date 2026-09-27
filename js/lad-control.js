@@ -95,10 +95,21 @@ function contains(feature,lon,lat){
   if(g.type==="MultiPolygon")return g.coordinates.some(p=>pointInPolygon([lon,lat],p));
   return false;
 }
+  
 function provinceName(f){
-  const p=f.properties||{};
-  return p.nombre||p.NOMBRE||p.provincia||p.Provincia||p.name||p.NAME_1||"";
+  const p = f.properties || {};
+  return (
+    p.Nombre ||
+    p.nombre ||
+    p.NOMBRE ||
+    p.provincia ||
+    p.Provincia ||
+    p.name ||
+    p.NAME_1 ||
+    ""
+  );
 }
+  
 function buildGeoChecks(){
   if(!state.provinceFeatures.length)return;
   for(const r of state.catalog){
