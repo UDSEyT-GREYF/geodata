@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1f33">
+  <meta name="description" content="Galería de control visual de posición de Lugares Aptos Declarados.">
+  <title>Control de posición LAD | GeoData</title>
+  <link rel="icon" type="image/svg+xml" href="/geodata/img/icons/favicon-lad.svg">
+  <link rel="stylesheet" href="/geodata/vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="/geodata/css/lad-control.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-block">
+      <a class="back-link" href="/geodata/lad/" aria-label="Volver al mapa LAD">
+        <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+      </a>
+      <div>
+        <p class="eyebrow">GeoData · Control de calidad geográfica</p>
+        <h1>Control de posición de LAD</h1>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <button id="exportCsv" class="header-button" type="button">Exportar CSV</button>
+      <label class="header-button file-button">Importar CSV<input id="importCsv" type="file" accept=".csv,text/csv"></label>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <aside class="sidebar">
+      <section class="search-section">
+        <label class="field-label" for="searchInput">Buscar LAD</label>
+        <input id="searchInput" type="search" placeholder="Registro, denominación o provincia">
+      </section>
+
+      <section class="summary-section">
+        <div><strong id="totalCount">892</strong><span>Total</span></div>
+        <div><strong id="reviewedCount">0</strong><span>Revisados</span></div>
+        <div><strong id="problemCount">0</strong><span>A corregir</span></div>
+      </section>
+
+      <section class="filters">
+        <label><span>Estado</span>
+          <select id="statusFilter">
+            <option value="">Todos</option>
+            <option value="sin_revisar">Sin revisar</option>
+            <option value="correcta">Correcta</option>
+            <option value="dudosa">Dudosa</option>
+            <option value="incorrecta">Incorrecta</option>
+          </select>
+        </label>
+        <label><span>Tipo</span>
+          <select id="typeFilter"><option value="">Todos</option></select>
+        </label>
+      </section>
+
+      <section class="gallery-section">
+        <div class="gallery-heading"><span>LAD</span><small id="visibleCount"></small></div>
+        <div id="galleryList" class="gallery-list"></div>
+      </section>
+    </aside>
+
+    <section class="detail-shell">
+      <div class="detail-head">
+        <div>
+          <p class="eyebrow" id="detailType">LAD</p>
+          <h2 id="detailTitle">Seleccione un registro</h2>
+          <p id="detailSub"></p>
+        </div>
+        <div class="nav-buttons">
+          <button id="copyLinkButton" type="button" title="Copiar enlace de este LAD">Copiar enlace</button>
+          <button id="prevButton" type="button">Anterior</button>
+          <button id="nextButton" type="button">Siguiente</button>
+          <button id="nextPendingButton" type="button">Siguiente sin revisar</button>
+        </div>
+      </div>
+
+      <div class="workspace">
+        <section class="image-panel">
+          <div id="detailMap"></div>
+          <div class="map-note">
+            <span class="source-dot"></span> Coordenada fuente
+            <span class="corrected-dot"></span> Posición corregida
+            <span class="expected-line"></span> Geometría esperada
+          </div>
+          <button id="recenterButton" class="recenter-button" type="button">Recentrar en coordenada fuente</button>
+        </section>
+
+        <aside class="review-panel">
+          <section class="facts" id="facts"></section>
+
+          <section id="geoCheck" class="geo-check"></section>
+
+          <section class="review-block">
+            <h3>Evaluación visual</h3>
+            <p id="criterion" class="criterion"></p>
+            <div class="status-buttons">
+              <button type="button" data-status="correcta">Correcta</button>
+              <button type="button" data-status="dudosa">Dudosa</button>
+              <button type="button" data-status="incorrecta">Incorrecta</button>
+              <button type="button" data-status="sin_revisar">Sin revisar</button>
+            </div>
+          </section>
+
+          <section class="review-block">
+            <label class="field-label" for="reasonInput">Motivo</label>
+            <select id="reasonInput">
+              <option value="">Seleccione</option>
+              <option>El punto no coincide con el centro de la pista/instalación</option>
+              <option>No se observa una instalación compatible</option>
+              <option>La coordenada está fuera de la provincia declarada</option>
+              <option>La coordenada está fuera del territorio argentino</option>
+              <option>La imagen disponible no permite validar</option>
+              <option>Otro</option>
+            </select>
+
+            <label class="field-label" for="observationInput">Observación</label>
+            <textarea id="observationInput" rows="5" placeholder="Registre la observación de control."></textarea>
+          </section>
+
+          <section class="review-block correction-block">
+            <h3>Posición corregida</h3>
+            <p>Para definir una nueva posición, active el modo de corrección y haga clic en la imagen satelital.</p>
+            <button id="correctionMode" class="secondary-button" type="button">Definir posición corregida</button>
+            <div class="coord-grid">
+              <div><span>Latitud</span><strong id="correctedLat">—</strong></div>
+              <div><span>Longitud</span><strong id="correctedLon">—</strong></div>
+              <div><span>Desplazamiento</span><strong id="shiftDistance">—</strong></div>
+            </div>
+            <button id="clearCorrection" class="text-button" type="button">Quitar posición corregida</button>
+          </section>
+
+          <section class="review-actions">
+            <button id="saveReview" class="primary-button" type="button">Guardar revisión</button>
+            <span id="saveStatus"></span>
+          </section>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <script src="/geodata/vendor/leaflet/leaflet.js"></script>
+  <script src="/geodata/js/lad-control.js"></script>
+</body>
+</html>
