@@ -6,6 +6,7 @@
   <meta name="description" content="Mapa de Lugares Aptos Declarados (LAD) y aeropuertos del Sistema Nacional de Aeropuertos.">
   <meta name="theme-color" content="#0b1f33">
   <title>Lugares Aptos Declarados | GeoData</title>
+  <link rel="icon" type="image/svg+xml" href="/geodata/img/icons/favicon-lad.svg">
   <link rel="stylesheet" href="/geodata/vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="/geodata/css/lad.css">
 </head>
@@ -126,11 +127,26 @@
         </div>
       </div>
 
-      <div class="basemap-buttons" id="basemapButtons" aria-label="Mapa base">
-        <button type="button" data-basemap="light" aria-pressed="false">Argenmap</button>
-        <button type="button" data-basemap="osm" aria-pressed="false">OSM</button>
-        <button type="button" class="is-active" data-basemap="satellite" aria-pressed="true">Satelital</button>
-      </div>
+<div class="basemap-buttons" id="basemapButtons" aria-label="Mapa base">
+  <button type="button"
+          class="is-active"
+          data-basemap="light"
+          aria-pressed="true">
+    Argenmap
+  </button>
+
+  <button type="button"
+          data-basemap="osm"
+          aria-pressed="false">
+    OSM
+  </button>
+
+  <button type="button"
+          data-basemap="satellite"
+          aria-pressed="false">
+    Satelital
+  </button>
+</div>
 
       <div id="loadWarning" class="load-warning"></div>
     </section>
