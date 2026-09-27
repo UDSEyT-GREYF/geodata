@@ -1,0 +1,83 @@
+name: LAD - revisión automática
+
+on:
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: "Inventario de imágenes o análisis por IA"
+        required: true
+        default: "inventario"
+        type: choice
+        options:
+          - inventario
+          - analisis
+      registro:
+        description: "Registro LAD específico (vacío = varios/todos)"
+        required: false
+        default: ""
+        type: string
+      limite:
+        description: "Cantidad máxima (0 = todos)"
+        required: false
+        default: "20"
+        type: string
+      solo_pendientes:
+        description: "Analizar sólo registros sin resultado automático"
+        required: false
+        default: true
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  revisar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements-lad-auto.txt
+
+      - name: Inventariar cobertura CBERS
+        if: ${{ inputs.modo == 'inventario' }}
+        shell: bash
+        run: |
+          ARGS=""
+          if [ -n "${{ inputs.registro }}" ]; then ARGS="$ARGS --registro ${{ inputs.registro }}"; fi
+          if [ "${{ inputs.limite }}" != "0" ]; then ARGS="$ARGS --limit ${{ inputs.limite }}"; fi
+          python scripts/lad_auto/inventariar_cbers.py $ARGS
+
+      - name: Revisar imágenes automáticamente
+        if: ${{ inputs.modo == 'analisis' }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        shell: bash
+        run: |
+          ARGS=""
+          if [ -n "${{ inputs.registro }}" ]; then ARGS="$ARGS --registro ${{ inputs.registro }}"; fi
+          if [ "${{ inputs.limite }}" != "0" ]; then ARGS="$ARGS --limit ${{ inputs.limite }}"; fi
+          if [ "${{ inputs.solo_pendientes }}" = "true" ]; then ARGS="$ARGS --only-pending"; fi
+          python scripts/lad_auto/revisar_imagenes.py $ARGS
+
+      - name: Guardar resultados
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/lad-control/lad_cobertura_imagenes.csv data/lad-control/lad_revision_automatica.csv 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No hay cambios para guardar."
+          else
+            git commit -m "Actualiza control automático de LAD"
+            git push
+          fi
