@@ -2,6 +2,8 @@
     "use strict";
 
     const SNA_URL = "/geodata/fuentes/Datos_aeropuertos.geojson";
+    const LAD_MAP_URL =
+      "https://www.google.com/maps/d/u/0/viewer?mid=13BCxH0lhQw9sGNiQKtAdVoavn7y21EC9";
 
     // Fuente original LAD en Google My Maps.
     // Si Google permite CORS desde GitHub Pages, ésta será la fuente viva.
@@ -12,27 +14,53 @@
     // fuentes/AD_y_LAD_Argentina_v5.kml
     const LAD_FALLBACK_URL = "/geodata/fuentes/AD_y_LAD_Argentina_v5.kml";
 
-    const map = L.map("map", {
-      zoomControl: true,
-      minZoom: 3
-    }).setView([-38.5, -64.2], 4);
-
     const argenmap = L.tileLayer(
-      "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG:3857@png/{z}/{x}/{-y}.png",
+      "https://wms.ign.gob.ar/geoserver/mapabase_gris/gwc/service/wmts" +
+      "?SERVICE=WMTS" +
+      "&REQUEST=GetTile" +
+      "&VERSION=1.0.0" +
+      "&LAYER=mapabase_gris" +
+      "&STYLE=" +
+      "&TILEMATRIXSET=EPSG:3857" +
+      "&TILEMATRIX=EPSG:3857:{z}" +
+      "&TILEROW={y}" +
+      "&TILECOL={x}" +
+      "&FORMAT=image/png",
       {
-        tms: true,
+        minZoom: 3,
         maxZoom: 18,
-        attribution: "© IGN Argentina - Argenmap"
+        attribution: "Instituto Geográfico Nacional | Argenmap"
       }
-    ).addTo(map);
+    );
 
     const osm = L.tileLayer(
       "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       {
         maxZoom: 19,
-        attribution: "© OpenStreetMap contributors"
+        attribution: "&copy; OpenStreetMap contributors"
       }
     );
+
+    const satellite = L.tileLayer(
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+      {
+        maxZoom: 19,
+        attribution: "Tiles &copy; Esri — Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community"
+      }
+    );
+
+    const baseLayers = { light: argenmap, osm, satellite };
+    let currentBaseLayer = "satellite";
+
+    const map = L.map("map", {
+      zoomControl: false,
+      minZoom: 3,
+      maxZoom: 19,
+      worldCopyJump: true,
+      layers: [satellite]
+    }).setView([-38.5, -64.2], 4);
+
+    L.control.zoom({ position: "topleft" }).addTo(map);
 
     const ladLayer = L.layerGroup().addTo(map);
     const snaLayer = L.layerGroup().addTo(map);
@@ -163,7 +191,7 @@
         ${row("Superficie", p.Superficie)}
         ${row("Elevación", p.Elevacion)}
         ${p.Ubicacion ? `<div class="popup-location">${esc(p.Ubicacion)}</div>` : ""}
-        <div class="source-note">Fuente LAD: Google My Maps / KML original.</div>
+        <div class="source-note">Fuente cartográfica: <a href="${LAD_MAP_URL}" target="_blank" rel="noopener">AD y LAD Argentina v5</a>.</div>
       `;
     }
 
@@ -393,13 +421,31 @@
       item.marker.openPopup();
     }
 
+    function setBaseLayer(layerKey) {
+      const layer = baseLayers[layerKey];
+      if (!layer) return;
+
+      Object.entries(baseLayers).forEach(([key, baseLayer]) => {
+        if (key !== layerKey && map.hasLayer(baseLayer)) map.removeLayer(baseLayer);
+      });
+
+      if (!map.hasLayer(layer)) layer.addTo(map);
+      currentBaseLayer = layerKey;
+
+      document.querySelectorAll("[data-basemap]").forEach(button => {
+        const active = button.dataset.basemap === currentBaseLayer;
+        button.classList.toggle("is-active", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+    }
+
     function setupSearch() {
       const input = document.getElementById("searchInput");
       input.addEventListener("input", () => {
         const q = normalize(input.value);
         if (q.length < 2) {
           document.getElementById("resultList").innerHTML =
-            '<p class="initial-note">Escribí al menos dos caracteres para buscar por denominación, Registro, provincia, IATA u OACI.</p>';
+            '<p class="initial-note">Ingrese al menos dos caracteres para buscar por denominación, Registro, provincia, IATA u OACI.</p>';
           return;
         }
         const found = searchIndex.filter(item => item.search.includes(q)).slice(0, 40);
@@ -410,7 +456,7 @@
         input.value = "";
         input.focus();
         document.getElementById("resultList").innerHTML =
-          '<p class="initial-note">Escribí al menos dos caracteres para buscar por denominación, Registro, provincia, IATA u OACI.</p>';
+          '<p class="initial-note">Ingrese al menos dos caracteres para buscar por denominación, Registro, provincia, IATA u OACI.</p>';
       });
 
       document.getElementById("ladToggle").addEventListener("change", e => {
@@ -420,9 +466,41 @@
         e.target.checked ? map.addLayer(snaLayer) : map.removeLayer(snaLayer);
       });
       document.getElementById("fitMapButton").addEventListener("click", () => {
-        const layers = [...ladLayer.getLayers(), ...snaLayer.getLayers()];
-        if (layers.length) map.fitBounds(L.featureGroup(layers).getBounds(), {padding:[25,25]});
+        const layers = [
+          ...(map.hasLayer(ladLayer) ? ladLayer.getLayers() : []),
+          ...(map.hasLayer(snaLayer) ? snaLayer.getLayers() : [])
+        ];
+        if (layers.length) map.fitBounds(L.featureGroup(layers).getBounds(), { padding: [25, 25] });
       });
+
+      document.querySelectorAll("[data-basemap]").forEach(button => {
+        button.addEventListener("click", () => setBaseLayer(button.dataset.basemap));
+      });
+
+      const legend = document.getElementById("mapLegend");
+      const legendToggle = document.getElementById("legendToggle");
+      legendToggle.addEventListener("click", () => {
+        const collapsed = legend.classList.toggle("is-collapsed");
+        legendToggle.setAttribute("aria-expanded", String(!collapsed));
+      });
+
+      document.getElementById("fullscreenButton").addEventListener("click", async () => {
+        const stage = document.getElementById("mapStage");
+        try {
+          if (!document.fullscreenElement) await stage.requestFullscreen();
+          else await document.exitFullscreen();
+        } catch (error) {
+          console.warn("No fue posible cambiar el modo de pantalla completa.", error);
+        }
+      });
+
+      document.addEventListener("fullscreenchange", () => {
+        setTimeout(() => map.invalidateSize(), 100);
+      });
+
+      const aboutDialog = document.getElementById("aboutDialog");
+      document.getElementById("aboutButton").addEventListener("click", () => aboutDialog.showModal());
+      document.getElementById("aboutClose").addEventListener("click", () => aboutDialog.close());
     }
 
     async function init() {
