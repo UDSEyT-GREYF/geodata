@@ -56,9 +56,11 @@
       zoomControl: false,
       minZoom: 3,
       maxZoom: 19,
+      zoomSnap: 0.25,
+      zoomDelta: 0.25,
       worldCopyJump: true,
       layers: [argenmap]
-    }).setView([-38.5, -64.2], 4);
+    }).setView([-39.0, -64.2], 4.75);
 
     L.control.zoom({ position: "topleft" }).addTo(map);
 
@@ -525,7 +527,7 @@
 
 // Vista inicial nacional fija.
 // Mantiene la escala mostrada en la vista general del mapa.
-map.setView([-38.5, -64.2], 4);
+map.setView([-39.0, -64.2], 4.75);
 
 document.getElementById("loadingOverlay").classList.add("is-hidden");
     }
