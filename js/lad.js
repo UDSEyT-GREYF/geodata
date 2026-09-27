@@ -523,15 +523,11 @@
         showWarning(results[1].reason.message);
       }
 
-      const allLayers = L.featureGroup([
-        ...ladLayer.getLayers(),
-        ...snaLayer.getLayers()
-      ]);
+// Vista inicial nacional fija.
+// Mantiene la escala mostrada en la vista general del mapa.
+map.setView([-38.5, -64.2], 4);
 
-      if (allLayers.getLayers().length) {
-        map.fitBounds(allLayers.getBounds(), { padding: [25, 25] });
-      }
-      document.getElementById("loadingOverlay").classList.add("is-hidden");
+document.getElementById("loadingOverlay").classList.add("is-hidden");
     }
 
     init();
