@@ -50,14 +50,14 @@
     );
 
     const baseLayers = { light: argenmap, osm, satellite };
-    let currentBaseLayer = "satellite";
+    let currentBaseLayer = "light";
 
     const map = L.map("map", {
       zoomControl: false,
       minZoom: 3,
       maxZoom: 19,
       worldCopyJump: true,
-      layers: [satellite]
+      layers: [argenmap]
     }).setView([-38.5, -64.2], 4);
 
     L.control.zoom({ position: "topleft" }).addTo(map);
