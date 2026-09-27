@@ -10,57 +10,171 @@
   <link rel="stylesheet" href="/geodata/css/lad.css">
 </head>
 <body>
+  <a class="skip-link" href="#map">Ir al mapa</a>
+
   <header class="topbar">
     <div class="brand-block">
-      <a class="back-link" href="/geodata/mapas.html" aria-label="Volver a mapas">‹</a>
-      <div class="brand-mark">⌖</div>
-      <div><p class="eyebrow">GeoData · Infraestructura aeroportuaria</p><h1>Lugares Aptos Declarados (LAD)</h1></div>
+      <a class="back-link" href="/geodata/mapas.html" aria-label="Volver a mapas">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+      </a>
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4"/><path d="M12 5v14"/></svg>
+      </div>
+      <div>
+        <p class="eyebrow">GeoData · Infraestructura aeroportuaria</p>
+        <h1>Lugares Aptos Declarados (LAD)</h1>
+      </div>
     </div>
-    <div class="topbar-actions"><span class="update-badge"><span class="status-dot"></span>Fuente LAD actualizada</span></div>
+
+    <div class="topbar-actions">
+      <span class="update-badge" title="La capa se consulta desde el KML del mapa fuente">
+        <span class="status-dot" aria-hidden="true"></span>
+        Fuente LAD · KML original
+      </span>
+      <button class="header-button" id="aboutButton" type="button" aria-haspopup="dialog">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></svg>
+        <span>Acerca de los datos</span>
+      </button>
+    </div>
   </header>
 
   <main class="app-shell">
-    <aside class="sidebar">
+    <aside class="sidebar" aria-label="Consulta y resultados">
       <div class="sidebar-scroll">
-        <section class="filter-section">
-          <label class="field-label" for="searchInput">Buscar</label>
+        <section class="intro-section">
+          <p><strong>Se presentan los Lugares Aptos Declarados y los aeropuertos integrantes del SNA.</strong></p>
+          <p>El número de Registro se conserva como identificador para su vinculación con información del SIAC.</p>
+        </section>
+
+        <section class="filter-section search-section">
+          <label class="field-label" for="searchInput">Buscar LAD o aeropuerto</label>
           <div class="search-box">
-            <span class="search-icon">⌕</span>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
             <input id="searchInput" type="search" autocomplete="off" placeholder="Nombre, Registro, IATA u OACI">
           </div>
-          <div id="searchResults" class="search-results"></div>
         </section>
 
-        <section class="filter-section">
-          <span class="field-label">Capas</span>
-          <label class="switch-row"><span><strong>Lugares Aptos Declarados</strong><small>KML original · Registro compatible con SIAC</small></span><input id="ladToggle" type="checkbox" checked><span class="switch"></span></label>
-          <label class="switch-row"><span><strong>Aeropuertos del SNA</strong><small>Sistema Nacional de Aeropuertos</small></span><input id="snaToggle" type="checkbox" checked><span class="switch"></span></label>
+        <section class="filter-section" aria-labelledby="layersTitle">
+          <span class="field-label" id="layersTitle">Capas de información</span>
+          <label class="switch-row">
+            <span><strong>Lugares Aptos Declarados</strong><small>KML del mapa fuente · Registro compatible con SIAC</small></span>
+            <input id="ladToggle" type="checkbox" checked>
+            <span class="switch" aria-hidden="true"></span>
+          </label>
+          <label class="switch-row">
+            <span><strong>Aeropuertos del SNA</strong><small>Sistema Nacional de Aeropuertos</small></span>
+            <input id="snaToggle" type="checkbox" checked>
+            <span class="switch" aria-hidden="true"></span>
+          </label>
         </section>
 
-        <section class="summary-section">
-          <div class="summary-card summary-primary"><span class="summary-value" id="ladCount">—</span><span class="summary-label">LAD</span></div>
-          <div class="summary-card"><span class="summary-value" id="snaCount">—</span><span class="summary-label">Aeropuertos SNA</span></div>
+        <section class="summary-section" aria-live="polite" aria-atomic="true">
+          <div class="summary-card summary-primary">
+            <span class="summary-value" id="ladCount">—</span>
+            <span class="summary-label">LAD</span>
+          </div>
+          <div class="summary-card">
+            <span class="summary-value" id="snaCount">—</span>
+            <span class="summary-label">Aeropuertos SNA</span>
+          </div>
         </section>
 
-        <section class="results-section">
-          <div class="results-heading"><h2>Resultados</h2><button id="clearSearch" class="text-button" type="button">Limpiar</button></div>
-          <div id="resultList" class="result-list"><p class="initial-note">Escribí al menos dos caracteres para buscar por denominación, Registro, provincia, IATA u OACI.</p></div>
+        <section class="results-section" aria-labelledby="resultsTitle">
+          <div class="results-heading">
+            <h2 id="resultsTitle">Resultados</h2>
+            <button id="clearSearch" class="text-button" type="button">Limpiar</button>
+          </div>
+          <div id="resultList" class="result-list">
+            <p class="initial-note">Ingrese al menos dos caracteres para buscar por denominación, Registro, provincia, IATA u OACI.</p>
+          </div>
         </section>
       </div>
-      <div class="sidebar-footer"><span>Fuente LAD: Google My Maps</span><span>GeoData</span></div>
+
+      <div class="sidebar-footer">
+        <a href="https://www.google.com/maps/d/u/0/viewer?mid=13BCxH0lhQw9sGNiQKtAdVoavn7y21EC9" target="_blank" rel="noopener">Fuente LAD: AD y LAD Argentina v5</a>
+        <span>ORSNA · GeoData</span>
+      </div>
     </aside>
 
-    <section class="map-stage">
-      <div id="map"></div>
-      <div id="loadingOverlay" class="loading-overlay"><div class="loader"></div><strong>Cargando datos</strong><span>Preparando LAD y aeropuertos SNA…</span></div>
-      <div class="map-tools"><button id="fitMapButton" title="Ver todos">⛶</button></div>
-      <div class="map-legend">
-        <div class="legend-title">Referencias</div>
-        <div class="legend-body"><div><span class="lad-symbol"></span>Lugar Apto Declarado</div><div><img src="/geodata/img/icons/AeropuertosSNA.png" alt="">Aeropuerto SNA</div><p>El número de Registro identifica cada LAD y permite su vinculación con SIAC.</p></div>
+    <section class="map-stage" id="mapStage" aria-label="Mapa de LAD y aeropuertos SNA">
+      <div id="map" tabindex="0"></div>
+
+      <div id="loadingOverlay" class="loading-overlay" role="status">
+        <div class="loader" aria-hidden="true"></div>
+        <strong>Cargando datos</strong>
+        <span>Se están preparando los LAD y aeropuertos del SNA…</span>
       </div>
+
+      <div class="map-tools" aria-label="Herramientas del mapa">
+        <button id="fitMapButton" type="button" title="Ver todos los elementos" aria-label="Ver todos los elementos">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 4H4v4M16 4h4v4M20 16v4h-4M4 16v4h4"/></svg>
+        </button>
+        <button id="fullscreenButton" type="button" title="Pantalla completa" aria-label="Alternar pantalla completa">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M3 16v5h5"/></svg>
+        </button>
+      </div>
+
+      <div class="map-legend" id="mapLegend">
+        <button class="legend-title" id="legendToggle" type="button" aria-expanded="true" aria-controls="legendBody">
+          <span>Referencias</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg>
+        </button>
+        <div class="legend-body" id="legendBody">
+          <div><span class="lad-symbol"></span>Lugar Apto Declarado</div>
+          <div><img src="/geodata/img/icons/AeropuertosSNA.png" alt="">Aeropuerto SNA</div>
+          <p>El número de Registro identifica cada LAD y permite su vinculación con SIAC.</p>
+        </div>
+      </div>
+
+      <div class="basemap-buttons" id="basemapButtons" aria-label="Mapa base">
+        <button type="button" data-basemap="light" aria-pressed="false">Argenmap</button>
+        <button type="button" data-basemap="osm" aria-pressed="false">OSM</button>
+        <button type="button" class="is-active" data-basemap="satellite" aria-pressed="true">Satelital</button>
+      </div>
+
       <div id="loadWarning" class="load-warning"></div>
     </section>
   </main>
+
+  <dialog class="about-dialog" id="aboutDialog" aria-labelledby="aboutTitle">
+    <button class="dialog-close" id="aboutClose" type="button" aria-label="Cerrar">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg>
+    </button>
+    <p class="eyebrow">Fuente y alcance</p>
+    <h2 id="aboutTitle">Acerca de los datos LAD</h2>
+
+    <p>La capa LAD se obtiene del mapa <strong>“AD y LAD Argentina v5”</strong>. El mapa original describe el conjunto como “Aeródromos y Lugares Aptos Denunciados de la República Argentina” e incluye radial y distancia a los dos VOR más próximos a cada AD o LAD.</p>
+
+    <h3>Actualización declarada en el mapa fuente</h3>
+    <div class="about-grid">
+      <div><strong>JUN 2024</strong><span>LAD</span></div>
+      <div><strong>SEP 2021</strong><span>Aeródromos</span></div>
+      <div><strong>ENR 2025</strong><span>Declinación magnética</span></div>
+    </div>
+
+    <h3>Fuentes declaradas por el mapa original</h3>
+    <div class="source-list">
+      <a class="source-link" href="https://www.google.com/maps/d/u/0/viewer?mid=13BCxH0lhQw9sGNiQKtAdVoavn7y21EC9" target="_blank" rel="noopener">
+        <strong>Mapa original</strong><span>AD y LAD Argentina v5 · Google My Maps</span>
+      </a>
+      <a class="source-link" href="https://servicios.transporte.gob.ar/gobierno_abierto/detalle.php?t=aeropuertos&d=detalle" target="_blank" rel="noopener">
+        <strong>Datos abiertos de transporte</strong><span>Información de aeropuertos</span>
+      </a>
+      <a class="source-link" href="https://www.argentina.gob.ar/sites/default/files/listado_de_lugares_aptos_denunciados_ene_21.pdf" target="_blank" rel="noopener">
+        <strong>Listado de Lugares Aptos Denunciados</strong><span>Documento publicado en Argentina.gob.ar</span>
+      </a>
+      <a class="source-link" href="http://geo.anac.gov.ar/geoserver/web/" target="_blank" rel="noopener">
+        <strong>GeoServer ANAC</strong><span>Fuente geográfica indicada en el mapa original</span>
+      </a>
+      <a class="source-link" href="https://drive.google.com/file/d/1FbWhh46rSw_i4tAiPPbuYUl51X79aW0e/view?usp=sharing" target="_blank" rel="noopener">
+        <strong>Archivo GPX de LAD</strong><span>Recurso para navegadores Garmin indicado por el mapa original</span>
+      </a>
+    </div>
+
+    <p class="dialog-note">El mapa original consigna a Hernán Burguener (EANA) como contacto. La denominación, fechas y fuentes anteriores se reproducen como información de atribución del mapa fuente.</p>
+    <form method="dialog"><button class="primary-button" type="submit">Cerrar</button></form>
+  </dialog>
+
   <script src="/geodata/vendor/leaflet/leaflet.js"></script>
   <script src="/geodata/js/lad.js"></script>
   <script src="/geodata/js/siga-analytics.js"></script>
