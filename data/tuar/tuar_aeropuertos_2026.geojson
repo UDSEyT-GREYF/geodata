@@ -1,0 +1,1055 @@
+{
+  "type": "FeatureCollection",
+  "name": "Aeropuertos utilizados en mapa TUAR 2026",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "AEP",
+        "ciudad": "Barrio de Palermo",
+        "pais": "AR",
+        "oaci": "SABE",
+        "categorias_rutas": [
+          "Nueva TUAR",
+          "TUAI",
+          "TUAR previa"
+        ],
+        "es_origen_argentina": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.4134190239,
+          -34.5605855384
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "AMS",
+        "ciudad": "Amsterdam",
+        "pais": "NL",
+        "oaci": "EHAM",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.76389,
+          52.308601
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "ASU",
+        "ciudad": "Asunción",
+        "pais": "PY",
+        "oaci": "SGAS",
+        "categorias_rutas": [
+          "Nueva TUAR",
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.519227,
+          -25.240156
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "ATL",
+        "ciudad": "Atlanta",
+        "pais": "US",
+        "oaci": "KATL",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.428101,
+          33.6367
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "AUA",
+        "ciudad": "Oranjestad",
+        "pais": "AW",
+        "oaci": "TNCA",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.015198,
+          12.5014
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "BCN",
+        "ciudad": "Barcelona",
+        "pais": "ES",
+        "oaci": "LEBL",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.07846,
+          41.2971
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "BOG",
+        "ciudad": "Bogotá",
+        "pais": "CO",
+        "oaci": "SKBO",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1469,
+          4.70159
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "BPS",
+        "ciudad": "Porto Seguro",
+        "pais": "BR",
+        "oaci": "SBPS",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -39.080584,
+          -16.438426
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "BRC",
+        "ciudad": "San Carlos de Bariloche",
+        "pais": "AR",
+        "oaci": "SAZS",
+        "categorias_rutas": [
+          "Nueva TUAR",
+          "TUAI"
+        ],
+        "es_origen_argentina": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.159307879,
+          -41.1503194338
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "BSB",
+        "ciudad": "Brasília",
+        "pais": "BR",
+        "oaci": "SBBR",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -47.920834,
+          -15.869167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "CDG",
+        "ciudad": "París",
+        "pais": "FR",
+        "oaci": "LFPG",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.55,
+          49.012798
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "CFB",
+        "ciudad": "Cabo Frio",
+        "pais": "BR",
+        "oaci": "SBCB",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -42.071874,
+          -22.921485
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "COR",
+        "ciudad": "Córdoba",
+        "pais": "AR",
+        "oaci": "SACO",
+        "categorias_rutas": [
+          "Nueva TUAR",
+          "TUAI"
+        ],
+        "es_origen_argentina": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.2082032342,
+          -31.3155808776
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "CUN",
+        "ciudad": "Cancún",
+        "pais": "MX",
+        "oaci": "MMUN",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.874304,
+          21.039444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "CWB",
+        "ciudad": "Curitiba",
+        "pais": "BR",
+        "oaci": "SBCT",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -49.1758,
+          -25.5285
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "DFW",
+        "ciudad": "Dallas-Fort Worth",
+        "pais": "US",
+        "oaci": "KDFW",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.038002,
+          32.896801
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "EZE",
+        "ciudad": "Ezeiza",
+        "pais": "AR",
+        "oaci": "SAEZ",
+        "categorias_rutas": [
+          "TUAI",
+          "TUAR previa"
+        ],
+        "es_origen_argentina": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.5424618656,
+          -34.8122874734
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "FCO",
+        "ciudad": "Roma",
+        "pais": "IT",
+        "oaci": "LIRF",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.251998,
+          41.804532
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "FLN",
+        "ciudad": "Florianópolis",
+        "pais": "BR",
+        "oaci": "SBFL",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -48.552502,
+          -27.670279
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "FOR",
+        "ciudad": "Fortaleza",
+        "pais": "BR",
+        "oaci": "SBFZ",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -38.532222,
+          -3.775833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "FRA",
+        "ciudad": "Frankfurt",
+        "pais": "DE",
+        "oaci": "EDDF",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.561096,
+          50.030241
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "GIG",
+        "ciudad": "Río de Janeiro",
+        "pais": "BR",
+        "oaci": "SBGL",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.250557,
+          -22.809999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "GRU",
+        "ciudad": "São Paulo",
+        "pais": "BR",
+        "oaci": "SBGR",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -46.467778,
+          -23.431944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "GYE",
+        "ciudad": "Guayaquil",
+        "pais": "EC",
+        "oaci": "SEGU",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.883598,
+          -2.15742
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "IAH",
+        "ciudad": "Houston",
+        "pais": "US",
+        "oaci": "KIAH",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -95.34140014648438,
+          29.9843997955322
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "JFK",
+        "ciudad": "Nueva York",
+        "pais": "US",
+        "oaci": "KJFK",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.779317,
+          40.639447
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "LIM",
+        "ciudad": "Lima",
+        "pais": "PE",
+        "oaci": "SPJC",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.114305,
+          -12.0219
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "MAD",
+        "ciudad": "Madrid",
+        "pais": "ES",
+        "oaci": "LEMD",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.56264,
+          40.471926
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "MCZ",
+        "ciudad": "Maceió",
+        "pais": "BR",
+        "oaci": "SBMO",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -35.791698,
+          -9.51081
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "MDE",
+        "ciudad": "Medellín",
+        "pais": "CO",
+        "oaci": "SKRG",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.4231,
+          6.16454
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "MDZ",
+        "ciudad": "Mendoza",
+        "pais": "AR",
+        "oaci": "SAME",
+        "categorias_rutas": [
+          "TUAI",
+          "TUAR previa"
+        ],
+        "es_origen_argentina": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.7938610498,
+          -32.8304028407
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "MEX",
+        "ciudad": "Ciudad de México",
+        "pais": "MX",
+        "oaci": "MMMX",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.071328,
+          19.435137
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "MIA",
+        "ciudad": "Miami",
+        "pais": "US",
+        "oaci": "KMIA",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.29060363769531,
+          25.7931995391845
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "MVD",
+        "ciudad": "Montevideo",
+        "pais": "UY",
+        "oaci": "SUMU",
+        "categorias_rutas": [
+          "TUAR previa"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.026497,
+          -34.835647
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "NAT",
+        "ciudad": "Natal",
+        "pais": "BR",
+        "oaci": "SBSG",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -35.36657,
+          -5.76887
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "NQN",
+        "ciudad": "Neuquén",
+        "pais": "AR",
+        "oaci": "SAZN",
+        "categorias_rutas": [
+          "Nueva TUAR"
+        ],
+        "es_origen_argentina": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.1544361883,
+          -38.9489462173
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "PDP",
+        "ciudad": "Punta del Este",
+        "pais": "UY",
+        "oaci": "SULS",
+        "categorias_rutas": [
+          "Nueva TUAR"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -55.094299,
+          -34.855099
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "POA",
+        "ciudad": "Porto Alegre",
+        "pais": "BR",
+        "oaci": "SBPA",
+        "categorias_rutas": [
+          "Nueva TUAR"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -51.166592,
+          -29.994712
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "POS",
+        "ciudad": "Port of Spain",
+        "pais": "TT",
+        "oaci": "TTPP",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -61.3372,
+          10.5954
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "PTY",
+        "ciudad": "Panamá/Tocumen",
+        "pais": "PA",
+        "oaci": "MPTO",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.383499,
+          9.07136
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "PUJ",
+        "ciudad": "Punta Cana",
+        "pais": "DO",
+        "oaci": "MDPC",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.363403,
+          18.5674
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "REC",
+        "ciudad": "Recife",
+        "pais": "BR",
+        "oaci": "SBRF",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.923316,
+          -8.125984
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "ROS",
+        "ciudad": "Rosario",
+        "pais": "AR",
+        "oaci": "SAAR",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.7852315547,
+          -32.9097209663
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "SCL",
+        "ciudad": "Santiago",
+        "pais": "CL",
+        "oaci": "SCEL",
+        "categorias_rutas": [
+          "Nueva TUAR",
+          "TUAI",
+          "TUAR previa"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.78579711914062,
+          -33.393001556396484
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "SDQ",
+        "ciudad": "Santo Domingo",
+        "pais": "DO",
+        "oaci": "MDSD",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.668899536133,
+          18.42970085144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "SLA",
+        "ciudad": "Salta",
+        "pais": "AR",
+        "oaci": "SASA",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.4843872447,
+          -24.853779839
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "SSA",
+        "ciudad": "Salvador",
+        "pais": "BR",
+        "oaci": "SBSV",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -38.322498,
+          -12.908611
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "TUC",
+        "ciudad": "San Miguel de Tucumán",
+        "pais": "AR",
+        "oaci": "SANT",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.1022544667,
+          -26.835503409
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "UIO",
+        "ciudad": "Quito",
+        "pais": "EC",
+        "oaci": "",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.490598,
+          -0.136782
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "USH",
+        "ciudad": "Ushuaia",
+        "pais": "AR",
+        "oaci": "SAWH",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.3081049861,
+          -54.8435864009
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "VCP",
+        "ciudad": "Campinas",
+        "pais": "BR",
+        "oaci": "SBKP",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -47.134502,
+          -23.007404
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "VVI",
+        "ciudad": "Santa Cruz de la Sierra",
+        "pais": "BO",
+        "oaci": "SLVR",
+        "categorias_rutas": [
+          "TUAI"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.135399,
+          -17.6448
+        ]
+      }
+    }
+  ]
+}
