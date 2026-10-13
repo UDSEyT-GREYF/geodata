@@ -1,10 +1,11 @@
 (() => {
 "use strict";
 
-const DATA_VERSION="20261013-6";
+const DATA_VERSION="20261013-9";
 const ROUTES_URL=`/geodata/data/tuar/tuar_rutas_2026.geojson?v=${DATA_VERSION}`;
 const AIRPORTS_URL=`/geodata/data/tuar/tuar_aeropuertos_2026.geojson?v=${DATA_VERSION}`;
 const METRICS_URL=`/geodata/data/tuar/tuar_metricas_2026.json?v=${DATA_VERSION}`;
+const HISTORY_URL=`/geodata/data/tuar/tuar_pasajeros_historicos.json?v=${DATA_VERSION}`;
 
 const COLORS={
   "TUAR previa":"#139b8d",
@@ -34,7 +35,12 @@ const dom={
   benefitKpi:document.getElementById("benefitKpi"),
   benefitKpiValue:document.getElementById("benefitKpiValue"),
   benefitKpiPax:document.getElementById("benefitKpiPax"),
-  benefitKpiNote:document.getElementById("benefitKpiNote")
+  benefitKpiNote:document.getElementById("benefitKpiNote"),
+  historyPanel:document.getElementById("historyPanel"),
+  historyToggle:document.getElementById("historyToggle"),
+  historyHead:document.getElementById("historyHead"),
+  historyRows:document.getElementById("historyRows"),
+  historyNote:document.getElementById("historyNote")
 };
 
 const argenmap=L.tileLayer(
@@ -84,6 +90,7 @@ let routes=[];
 let airports=[];
 let visibleRoutes=[];
 let routeMarkers=new Map();
+let historyData=null;
 let airportByIata=new Map();
 
 const CURVE_FACTORS={
@@ -200,8 +207,43 @@ function popup(p){
       <strong>${esc(airlineNames)}</strong>
     </div>
 
+    ${p.beneficiada_ampliacion && p.base_estimacion_pasajeros
+      ? `<div class="popup-method">Estimación de pasajeros: promedio histórico de ${fmt(p.anios_con_dato_promedio)} año${Number(p.anios_con_dato_promedio)===1?"":"s"} con datos${p.ruta_historica_base==="BUE - POA" ? " · BUE = AEP + EZE" : ""}.</div>`
+      : ""}
+
     ${econ}
   `;
+}
+
+
+function renderHistoryTable(){
+  if(!historyData || !dom.historyHead || !dom.historyRows) return;
+
+  const years=historyData.anios||[];
+  const routes=historyData.rutas||[];
+
+  dom.historyHead.innerHTML=`
+    <tr>
+      <th>Ruta</th>
+      ${years.map(y=>`<th>${esc(y)}</th>`).join("")}
+      <th>Promedio</th>
+    </tr>`;
+
+  dom.historyRows.innerHTML=routes.map(r=>`
+    <tr>
+      <td>${esc(r.ruta)}</td>
+      ${years.map(y=>{
+        const v=r.valores?.[String(y)];
+        return v===null || v===undefined
+          ? `<td class="missing">—</td>`
+          : `<td>${fmt(v)}</td>`;
+      }).join("")}
+      <td><strong>${r.promedio_anual===null || r.promedio_anual===undefined ? "—" : fmt(r.promedio_anual)}</strong></td>
+    </tr>`).join("");
+
+  if(dom.historyNote){
+    dom.historyNote.textContent="Promedio = años con datos disponibles · BUE = AEP + EZE · — sin registro";
+  }
 }
 
 function buildOriginOptions(){
@@ -285,18 +327,18 @@ function updateBenefitKpi(){
   );
 
   // Respaldo para la vista general si el navegador conserva una versión vieja del GeoJSON.
-  const savingValue = (!origin && totalSaving===0) ? 5799640 : totalSaving;
-  const paxValue = (!origin && totalPax===0) ? 182149 : totalPax;
+  const savingValue = (!origin && totalSaving===0) ? 4462939 : totalSaving;
+  const paxValue = (!origin && totalPax===0) ? 140168 : totalPax;
 
   dom.benefitKpiValue.textContent=fmtUsdCompact(savingValue);
   dom.benefitKpiPax.textContent=fmtPaxCompact(paxValue);
 
   if(origin){
     dom.benefitKpiNote.textContent=
-      `Estimación anual · ${benefited.length} ruta${benefited.length===1?"":"s"} incorporada${benefited.length===1?"":"s"} desde ${origin}`;
+      `Estimación anual · promedio histórico · ${benefited.length} ruta${benefited.length===1?"":"s"} desde ${origin}`;
   }else{
     dom.benefitKpiNote.textContent=
-      `Estimación anual · ${benefited.length || 6} rutas incorporadas a la TUAR`;
+      `Estimación anual · promedio histórico · ${benefited.length || 5} rutas TUAR nuevas`;
   }
 }
 
@@ -505,6 +547,14 @@ function bind(){
     }catch{}
   });
 
+
+  if(dom.historyToggle){
+    dom.historyToggle.addEventListener("click",()=>{
+      const collapsed=dom.historyPanel.classList.toggle("is-collapsed");
+      dom.historyToggle.setAttribute("aria-expanded",String(!collapsed));
+    });
+  }
+
   dom.legendToggle.addEventListener("click",()=>{
     const collapsed=dom.legend.classList.toggle("is-collapsed");
     dom.legendToggle.setAttribute("aria-expanded",String(!collapsed));
@@ -521,15 +571,17 @@ function bind(){
 
 async function init(){
   try{
-    const [rr,aa,mm]=await Promise.all([
+    const [rr,aa,mm,hh]=await Promise.all([
       fetch(ROUTES_URL,{cache:"no-store"}),
       fetch(AIRPORTS_URL,{cache:"no-store"}),
-      fetch(METRICS_URL,{cache:"no-store"})
+      fetch(METRICS_URL,{cache:"no-store"}),
+      fetch(HISTORY_URL,{cache:"no-store"})
     ]);
-    if(!rr.ok||!aa.ok||!mm.ok) throw new Error("No fue posible cargar los datos del mapa.");
+    if(!rr.ok||!aa.ok||!mm.ok||!hh.ok) throw new Error("No fue posible cargar los datos del mapa.");
     const rj=await rr.json();
     const aj=await aa.json();
     const mj=await mm.json();
+    historyData=await hh.json();
 
     routes=rj.features||[];
     airports=aj.features||[];
@@ -550,6 +602,7 @@ async function init(){
     });
 
     buildOriginOptions();
+    renderHistoryTable();
     bind();
     renderRoutes();
     fitTUAR();
