@@ -36,9 +36,13 @@ const argenmap=L.tileLayer(
   {tms:true,maxZoom:14,attribution:"© IGN Argentina"}
 );
 
-const light=L.tileLayer(
-  "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-  {subdomains:"abcd",maxZoom:20,attribution:"© OpenStreetMap © CARTO"}
+const light = L.tileLayer(
+  "https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png?key=cb1_325a_1_1e9283ed596ac884153a8003",
+  {
+    subdomains: "abcd",
+    maxZoom: 20,
+    attribution: "&copy; OpenStreetMap &copy; CARTO"
+  }
 );
 
 const osm=L.tileLayer(
