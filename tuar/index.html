@@ -9,7 +9,7 @@
   <link rel="icon" type="image/svg+xml" href="/geodata/img/icons/favicon-tuar.svg">
   <link rel="preconnect" href="https://a.basemaps.cartocdn.com">
   <link rel="stylesheet" href="/geodata/vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="/geodata/css/tuar.css?v=20261013-6">
+  <link rel="stylesheet" href="/geodata/css/tuar.css?v=20261013-8">
 </head>
 <body>
   <a class="skip-link" href="#map">Ir al mapa</a>
@@ -23,7 +23,7 @@
         <svg viewBox="0 0 24 24"><path d="M4 17c4-7 8-9 16-10"/><path d="m15 5 5 2-3 4"/></svg>
       </div>
       <div>
-        <p class="eyebrow">Transporte aéreo - Resolución 69/2026</p>
+        <p class="eyebrow">GeoData · Transporte aéreo</p>
         <h1>Ampliación de la Tasa Aeroportuaria Regional (TUAR)</h1>
       </div>
     </div>
@@ -41,7 +41,7 @@
       <div class="sidebar-scroll">
         <section class="intro-section">
           <p><strong>Se identifican las rutas internacionales regulares alcanzadas por la ampliación del radio TUAR de 300 a 1.000 km.</strong></p>
-          <p>La selección considera rutas con al menos 3 despegues semanales</p>
+          <p>La selección considera rutas con al menos 3 despegues semanales durante 4 o más semanas del período analizado.</p>
         </section>
 
         <section class="filter-section">
@@ -61,7 +61,7 @@
           <label class="switch-row">
             <span>
               <strong><span class="inline-line previous"></span>TUAR previa</strong>
-              <small>Rutas de hasta 300 km</small>
+              <small>Rutas ya alcanzadas por la TUAR</small>
             </span>
             <input id="previousToggle" type="checkbox" checked>
             <span class="switch" aria-hidden="true"></span>
@@ -70,7 +70,7 @@
           <label class="switch-row">
             <span>
               <strong><span class="inline-line new"></span>Nueva TUAR</strong>
-              <small>Rutas de 301 a 1.000 km</small>
+              <small>Rutas incorporadas por la ampliación</small>
             </span>
             <input id="newToggle" type="checkbox" checked>
             <span class="switch" aria-hidden="true"></span>
@@ -88,11 +88,11 @@
 
         <section class="summary-section" aria-live="polite">
           <div class="summary-card">
-            <span class="summary-value" id="previousCount">3</span>
+            <span class="summary-value" id="previousCount">4</span>
             <span class="summary-label">TUAR previa</span>
           </div>
           <div class="summary-card summary-primary">
-            <span class="summary-value" id="newCount">6</span>
+            <span class="summary-value" id="newCount">5</span>
             <span class="summary-label">Nuevas beneficiadas</span>
           </div>
           <div class="summary-card">
@@ -146,11 +146,25 @@
         <span>Se está preparando el análisis TUAR…</span>
       </div>
 
-      <div class="benefit-kpi" id="benefitKpi" aria-live="polite">
-        <span class="benefit-kpi-label">Beneficio para los pasajeros</span>
-        <strong id="benefitKpiValue">≈ USD 5,8 millones/año</strong>
-        <span class="benefit-kpi-pax" id="benefitKpiPax">≈ 182 mil pasajeros/año</span>
-        <small id="benefitKpiNote">Estimación anual · 6 rutas incorporadas a la TUAR</small>
+      <div class="map-kpi-stack">
+        <div class="benefit-kpi" id="benefitKpi" aria-live="polite">
+          <span class="benefit-kpi-label">Beneficio para los pasajeros</span>
+          <strong id="benefitKpiValue">≈ USD 4,5 millones/año</strong>
+          <span class="benefit-kpi-pax" id="benefitKpiPax">≈ 140 mil pasajeros/año</span>
+          <small id="benefitKpiNote">Estimación anual · promedio histórico · 5 rutas TUAR nuevas</small>
+        </div>
+
+        <div class="domestic-kpi" aria-label="Estimación del cambio de TUA en cabotaje">
+          <span class="domestic-kpi-label">Cabotaje · estimación anual</span>
+          <strong>≈ 17 millones de pasajeros</strong>
+          <span class="domestic-kpi-rate">
+            <b>ARS 6.878,85</b>
+            <span aria-hidden="true">→</span>
+            <b>USD 9 ≈ ARS 13.815</b>
+          </span>
+          <small>Incremento estimado: ARS 6.936,15 por pasajero</small>
+          <small class="domestic-kpi-total">≈ ARS 117,9 mil millones/año</small>
+        </div>
       </div>
 
       <div class="map-tools" aria-label="Herramientas del mapa">
@@ -168,13 +182,33 @@
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg>
         </button>
         <div class="legend-body" id="legendBody">
-          <div><span class="legend-line previous"></span>TUAR previa · ≤ 300 km</div>
-          <div><span class="legend-line new"></span>Nueva TUAR · 301–1.000 km</div>
-          <div><span class="legend-line context"></span>TUAI · &gt; 1.000 km</div>
+          <div><span class="legend-line previous"></span>TUAR previa · régimen anterior</div>
+          <div><span class="legend-line new"></span>Nueva TUAR · incorporadas hasta 1.000 km</div>
+          <div><span class="legend-line context"></span>TUAI · resto de rutas</div>
           <div><span class="airport-legend-symbol"></span>Aeropuerto con vuelos internacionales</div>
           <div><span class="radius-symbol r300"></span>Radio 300 km</div>
           <div><span class="radius-symbol r1000"></span>Radio 1.000 km</div>
           <p>Las líneas representan rutas con al menos 3 despegues semanales durante 4 o más semanas.</p>
+        </div>
+      </div>
+
+
+      <div class="history-panel" id="historyPanel">
+        <button class="history-title" id="historyToggle" type="button" aria-expanded="true" aria-controls="historyBody">
+          <span>
+            <strong>Pasajeros históricos</strong>
+            <small>Rutas incorporadas a la TUAR</small>
+          </span>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg>
+        </button>
+        <div class="history-body" id="historyBody">
+          <div class="history-table-wrap">
+            <table class="history-table">
+              <thead id="historyHead"></thead>
+              <tbody id="historyRows"></tbody>
+            </table>
+          </div>
+          <p class="history-note" id="historyNote">BUE = AEP + EZE</p>
         </div>
       </div>
 
@@ -193,20 +227,24 @@
     <p class="eyebrow">Metodología</p>
     <h2 id="aboutTitle">Rutas alcanzadas por la ampliación TUAR</h2>
 
-    <p>El análisis compara el radio anterior de 300 km con el nuevo alcance de 1.000 km desde el aeropuerto de salida. Se consideran rutas internacionales regulares observadas entre enero y agosto de 2026.</p>
+    <p>El análisis compara el régimen regional previo con el nuevo alcance de 1.000 km desde el aeropuerto de salida. El régimen anterior incluía las rutas de hasta 300 km y los vuelos entre Buenos Aires (AEP/EZE) y Uruguay. Se consideran rutas internacionales regulares observadas entre enero y agosto de 2026.</p>
 
     <div class="about-grid">
-      <div><strong>≤ 300 km</strong><span>TUAR previa</span></div>
-      <div><strong>301–1.000 km</strong><span>Nueva TUAR</span></div>
-      <div><strong>&gt; 1.000 km</strong><span>TUAI</span></div>
+      <div><strong>Régimen previo</strong><span>TUAR previa</span></div>
+      <div><strong>Hasta 1.000 km</strong><span>Nueva TUAR</span></div>
+      <div><strong>Resto</strong><span>TUAI</span></div>
     </div>
 
     <h3>Criterio de regularidad</h3>
     <p>Se incluyen rutas con <strong>3 o más despegues semanales durante al menos 4 semanas</strong> del período enero–agosto 2026. La frecuencia mostrada corresponde a la mediana de las semanas que cumplen ese umbral.</p>
 
     <h3>Estimación de pasajeros y ahorro</h3>
-    <p>Para cada ruta y aerolínea se toma el volumen de pasajeros de los despegues regulares internacionales disponibles, se calcula un promedio semanal sobre el período observado y se lo expande a 52 semanas como estimación anual. Para las rutas incorporadas por la ampliación, el ahorro se estima multiplicando esa estimación anual de pasajeros por USD 31,84 por pasajero y tramo.</p>
-    <p><strong>Importante:</strong> el archivo detallado utilizado en esta versión llega hasta el 26 de julio de 2026. La estimación es preliminar y se actualizará cuando se incorpore el período completo enero–agosto.</p>
+    <p>Para las cinco rutas incorporadas a la TUAR, la estimación anual de pasajeros se calcula como el <strong>promedio simple de los años con datos disponibles en la tabla histórica</strong>. En el caso de Buenos Aires se utiliza <strong>BUE = AEP + EZE</strong>. El beneficio se estima multiplicando ese promedio anual por <strong>USD 31,84 por pasajero y tramo</strong>.</p>
+    <p>Las aerolíneas y las frecuencias mostradas en las ventanas emergentes corresponden a la información operativa 2026; la estimación de pasajeros y beneficio utiliza la serie histórica indicada.</p>
+
+
+    <h3>Pasajeros históricos de las nuevas rutas</h3>
+    <p>La tabla del mapa utiliza los años disponibles en la fuente suministrada. Para Buenos Aires se presenta <strong>BUE</strong>, agregando los pasajeros de <strong>AEP + EZE</strong>. El símbolo “—” indica ausencia de registro para esa ruta y año en la fuente.</p>
 
     <h3>Fuentes de elaboración</h3>
     <p>Frecuencias por ruta internacional 2026, movimientos y pasajeros por ruta y aerolínea, distancias entre aeropuertos, catálogo geográfico de aeropuertos del SNA y catálogo internacional de aeropuertos utilizados en GeoData. Elaboración propia.</p>
@@ -217,7 +255,7 @@
   </dialog>
 
   <script src="/geodata/vendor/leaflet/leaflet.js"></script>
-  <script src="/geodata/js/tuar.js?v=20261013-6"></script>
+  <script src="/geodata/js/tuar.js?v=20261013-9"></script>
   <script src="/geodata/js/siga-analytics.js"></script>
 </body>
 </html>
