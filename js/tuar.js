@@ -28,7 +28,10 @@ const dom={
   aboutDialog:document.getElementById("aboutDialog"),
   aboutClose:document.getElementById("aboutClose"),
   loading:document.getElementById("loadingOverlay"),
-  basemapButtons:document.getElementById("basemapButtons")
+  basemapButtons:document.getElementById("basemapButtons"),
+  benefitKpi:document.getElementById("benefitKpi"),
+  benefitKpiValue:document.getElementById("benefitKpiValue"),
+  benefitKpiNote:document.getElementById("benefitKpiNote")
 };
 
 const argenmap=L.tileLayer(
@@ -87,6 +90,22 @@ function fmt(v,d=0){
   if(!Number.isFinite(n)) return "–";
   return n.toLocaleString("es-AR",{minimumFractionDigits:d,maximumFractionDigits:d});
 }
+function fmtUsd(v){
+  const n=Number(v);
+  if(!Number.isFinite(n)) return "–";
+  return `USD ${n.toLocaleString("es-AR",{maximumFractionDigits:0})}`;
+}
+function fmtUsdCompact(v){
+  const n=Number(v);
+  if(!Number.isFinite(n)) return "–";
+  if(n>=1000000){
+    return `≈ USD ${(n/1000000).toLocaleString("es-AR",{minimumFractionDigits:1,maximumFractionDigits:1})} millones/año`;
+  }
+  if(n>=1000){
+    return `≈ USD ${(n/1000).toLocaleString("es-AR",{maximumFractionDigits:0})} mil/año`;
+  }
+  return `≈ USD ${n.toLocaleString("es-AR",{maximumFractionDigits:0})}/año`;
+}
 function catClass(cat){
   if(cat==="TUAR previa") return "previous";
   if(cat==="Nueva TUAR") return "new";
@@ -108,9 +127,43 @@ function routeStyle(p){
 }
 function popup(p){
   const cls=catClass(p.categoria_tasa);
-  const saving=p.beneficiada_ampliacion
-    ? `<div class="popup-saving">Ahorro estimado: USD ${fmt(p.ahorro_usd_tramo,2)} por tramo</div>`
+  const airlines=Array.isArray(p.aerolineas)?p.aerolineas:[];
+
+  const airlineRows=airlines.slice(0,5).map(a=>{
+    const savingLine=p.beneficiada_ampliacion
+      ? `<span class="airline-saving">${fmtUsd(a.ahorro_anual_proxy_usd)} ahorro/año</span>`
+      : "";
+    return `<div class="airline-row">
+      <strong>${esc(a.aerolinea)}</strong>
+      <span>${fmt(a.pasajeros_promedio_semana,1)} pax/sem · ${fmt(a.pasajeros_anuales_proxy)} pax/año proxy</span>
+      ${savingLine}
+    </div>`;
+  }).join("");
+
+  const extra=airlines.length>5
+    ? `<div class="airline-extra">+ ${airlines.length-5} operador${airlines.length-5===1?"":"es"} adicional${airlines.length-5===1?"":"es"}</div>`
     : "";
+
+  const saving=p.beneficiada_ampliacion
+    ? `<div class="popup-saving">
+        <span>Ahorro anual estimado por la ampliación</span>
+        <strong>${fmtUsd(p.ahorro_anual_proxy_usd)}</strong>
+      </div>`
+    : p.categoria_tasa==="TUAR previa"
+      ? `<div class="popup-status previous">La ruta ya estaba alcanzada por TUAR antes de la ampliación.</div>`
+      : "";
+
+  const paxBlock=Number.isFinite(Number(p.pasajeros_anuales_proxy))
+    ? `<div class="popup-proxy">
+        <div><span>Pasajeros promedio</span><strong>${fmt(p.pasajeros_promedio_semana,1)}/semana</strong></div>
+        <div><span>Proxy anual</span><strong>${fmt(p.pasajeros_anuales_proxy)} pax</strong></div>
+      </div>`
+    : "";
+
+  const period=(p.periodo_pasajeros_desde&&p.periodo_pasajeros_hasta)
+    ? `<div class="popup-method">Proxy de pasajeros calculado con información detallada disponible entre ${esc(p.periodo_pasajeros_desde)} y ${esc(p.periodo_pasajeros_hasta)}, extrapolada a 52 semanas.</div>`
+    : "";
+
   return `
     <div class="popup-category ${cls}">${esc(p.categoria_tasa)}</div>
     <div class="popup-title">${esc(p.ruta)}</div>
@@ -119,7 +172,10 @@ function popup(p){
     <div class="popup-row"><span>Semanas ≥3</span><span>${fmt(p.semanas_frecuencia_ge3)}</span></div>
     <div class="popup-row"><span>Tasa anterior</span><span>${esc(p.tasa_antes)}</span></div>
     <div class="popup-row"><span>Tasa actual</span><span>${esc(p.tasa_nueva)}</span></div>
+    ${paxBlock}
     ${saving}
+    ${airlineRows ? `<div class="popup-airlines"><h4>Aerolíneas y pasajeros</h4>${airlineRows}${extra}</div>` : ""}
+    ${period}
   `;
 }
 
@@ -177,6 +233,32 @@ function renderRadii(){
   }).addTo(radiusLayer);
 }
 
+function updateBenefitKpi(){
+  if(!dom.benefitKpiValue || !dom.benefitKpiNote) return;
+
+  const origin=dom.origin.value;
+  const benefited=routes.filter(f=>{
+    const p=f.properties||{};
+    return p.categoria_tasa==="Nueva TUAR"
+      && (!origin || p.origen_iata===origin);
+  });
+
+  const total=benefited.reduce(
+    (acc,f)=>acc+(Number(f.properties?.ahorro_anual_proxy_usd)||0),
+    0
+  );
+
+  dom.benefitKpiValue.textContent=fmtUsdCompact(total);
+
+  if(origin){
+    dom.benefitKpiNote.textContent=
+      `Proxy anual · ${benefited.length} ruta${benefited.length===1?"":"s"} incorporada${benefited.length===1?"":"s"} desde ${origin}`;
+  }else{
+    dom.benefitKpiNote.textContent=
+      `Proxy anual · ${benefited.length} rutas incorporadas a la TUAR`;
+  }
+}
+
 function renderRoutes(){
   routeLayer.clearLayers();
   routeMarkers.clear();
@@ -191,7 +273,7 @@ function renderRoutes(){
   const ordered=[...visibleRoutes].sort((a,b)=>(b.properties.categoria_orden||9)-(a.properties.categoria_orden||9));
   for(const f of ordered){
     const p=f.properties;
-    const line=L.geoJSON(f,{style:routeStyle(p)}).bindPopup(popup(p),{maxWidth:330});
+    const line=L.geoJSON(f,{style:routeStyle(p)}).bindPopup(popup(p),{maxWidth:390});
     line.on("mouseover",e=>{
       const layer=e.propagatedFrom||e.target;
       if(layer?.setStyle){
@@ -212,6 +294,7 @@ function renderRoutes(){
   renderRadii();
   renderList();
   updateCounts();
+  updateBenefitKpi();
 }
 
 function updateCounts(){
