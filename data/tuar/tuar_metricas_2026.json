@@ -1,0 +1,2969 @@
+{
+  "metadata": {
+    "version": "20261013-6",
+    "semanas_disponibles": 36,
+    "periodo_frecuencias": "Semanas ISO 01–36 de 2026",
+    "periodo_pasajeros_desde": "2026-01-01",
+    "periodo_pasajeros_hasta": "2026-07-26",
+    "metodo_pasajeros": "Pasajeros observados / semanas equivalentes observadas × 52",
+    "ahorro_unitario_usd": 31.84
+  },
+  "rutas": {
+    "AEP-CNF": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 1,
+      "porcentaje_semanas_frecuencia_ge3": 2.8,
+      "aerolineas": [
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 26,
+          "pasajeros_observados": 3252,
+          "pasajeros_anuales_estimados": 5718,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 159,
+          "pasajeros_anuales_estimados": 280,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 5998,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "AEP-CWB": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 115,
+          "pasajeros_observados": 14789,
+          "pasajeros_anuales_estimados": 26006,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 159,
+          "pasajeros_anuales_estimados": 280,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 26285,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-AUA": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 34,
+      "porcentaje_semanas_frecuencia_ge3": 94.4,
+      "aerolineas": [
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 102,
+          "pasajeros_observados": 15082,
+          "pasajeros_anuales_estimados": 26521,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 26521,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-GYE": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 34,
+      "porcentaje_semanas_frecuencia_ge3": 94.4,
+      "aerolineas": [
+        {
+          "aerolinea": "Avianca Costa Rica",
+          "vuelos_observados": 87,
+          "pasajeros_observados": 11719,
+          "pasajeros_anuales_estimados": 20607,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Avianca",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 150,
+          "pasajeros_anuales_estimados": 264,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Andes Líneas Aéreas",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 145,
+          "pasajeros_anuales_estimados": 255,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "N/A",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 76,
+          "pasajeros_anuales_estimados": 134,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 59,
+          "pasajeros_anuales_estimados": 104,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 21363,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-MVD": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 15,
+      "porcentaje_semanas_frecuencia_ge3": 41.7,
+      "aerolineas": [
+        {
+          "aerolinea": "Copa Airlines",
+          "vuelos_observados": 9,
+          "pasajeros_observados": 1176,
+          "pasajeros_anuales_estimados": 2068,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Air Europa",
+          "vuelos_observados": 3,
+          "pasajeros_observados": 899,
+          "pasajeros_anuales_estimados": 1581,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Avianca",
+          "vuelos_observados": 2,
+          "pasajeros_observados": 327,
+          "pasajeros_anuales_estimados": 575,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "LATAM Perú",
+          "vuelos_observados": 2,
+          "pasajeros_observados": 224,
+          "pasajeros_anuales_estimados": 394,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Sky Airline",
+          "vuelos_observados": 2,
+          "pasajeros_observados": 196,
+          "pasajeros_anuales_estimados": 345,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 2,
+          "pasajeros_observados": 174,
+          "pasajeros_anuales_estimados": 306,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "LATAM",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 71,
+          "pasajeros_anuales_estimados": 125,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "American Jet",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 50,
+          "pasajeros_anuales_estimados": 88,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 5481,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "SLA-FLN": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 4,
+      "porcentaje_semanas_frecuencia_ge3": 11.1,
+      "aerolineas": [
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 16,
+          "pasajeros_observados": 2521,
+          "pasajeros_anuales_estimados": 4433,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Flybondi",
+          "vuelos_observados": 3,
+          "pasajeros_observados": 465,
+          "pasajeros_anuales_estimados": 818,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 5251,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "ROS-LIM": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 34,
+      "porcentaje_semanas_frecuencia_ge3": 94.4,
+      "aerolineas": [
+        {
+          "aerolinea": "LATAM Perú",
+          "vuelos_observados": 96,
+          "pasajeros_observados": 11324,
+          "pasajeros_anuales_estimados": 19913,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 19913,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "TUC-LIM": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 12,
+      "porcentaje_semanas_frecuencia_ge3": 33.3,
+      "aerolineas": [
+        {
+          "aerolinea": "LATAM Perú",
+          "vuelos_observados": 37,
+          "pasajeros_observados": 4542,
+          "pasajeros_anuales_estimados": 7987,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 7987,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "SLA-PTY": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 35,
+      "porcentaje_semanas_frecuencia_ge3": 97.2,
+      "aerolineas": [
+        {
+          "aerolinea": "Copa Airlines",
+          "vuelos_observados": 87,
+          "pasajeros_observados": 12218,
+          "pasajeros_anuales_estimados": 21485,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "LATAM Perú",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 82,
+          "pasajeros_anuales_estimados": 144,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 21629,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "TUC-PTY": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 35,
+      "porcentaje_semanas_frecuencia_ge3": 97.2,
+      "aerolineas": [
+        {
+          "aerolinea": "Copa Airlines",
+          "vuelos_observados": 89,
+          "pasajeros_observados": 12465,
+          "pasajeros_anuales_estimados": 21919,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 21919,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "AEP-BPS": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 13,
+      "porcentaje_semanas_frecuencia_ge3": 36.1,
+      "aerolineas": [
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 53,
+          "pasajeros_observados": 7919,
+          "pasajeros_anuales_estimados": 13925,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 10,
+          "pasajeros_observados": 941,
+          "pasajeros_anuales_estimados": 1655,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 15580,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "COR-ASU": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 7,
+      "porcentaje_semanas_frecuencia_ge3": 19.4,
+      "aerolineas": [
+        {
+          "aerolinea": "Flybondi",
+          "vuelos_observados": 20,
+          "pasajeros_observados": 746,
+          "pasajeros_anuales_estimados": 1312,
+          "ahorro_anual_estimado_usd": 41774
+        },
+        {
+          "aerolinea": "Amaszonas",
+          "vuelos_observados": 10,
+          "pasajeros_observados": 194,
+          "pasajeros_anuales_estimados": 341,
+          "ahorro_anual_estimado_usd": 10857
+        }
+      ],
+      "pasajeros_anuales_estimados": 1653,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 52632
+    },
+    "EZE-BPS": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 8,
+      "porcentaje_semanas_frecuencia_ge3": 22.2,
+      "aerolineas": [
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 33,
+          "pasajeros_observados": 4292,
+          "pasajeros_anuales_estimados": 7547,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 6,
+          "pasajeros_observados": 837,
+          "pasajeros_anuales_estimados": 1472,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 9019,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "ROS-CFB": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 6,
+      "porcentaje_semanas_frecuencia_ge3": 16.7,
+      "aerolineas": [
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 27,
+          "pasajeros_observados": 3708,
+          "pasajeros_anuales_estimados": 6520,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Flybondi",
+          "vuelos_observados": 5,
+          "pasajeros_observados": 670,
+          "pasajeros_anuales_estimados": 1178,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 7699,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-ASU": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 9,
+      "porcentaje_semanas_frecuencia_ge3": 25.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Arajet",
+          "vuelos_observados": 18,
+          "pasajeros_observados": 3011,
+          "pasajeros_anuales_estimados": 5295,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Flybondi",
+          "vuelos_observados": 8,
+          "pasajeros_observados": 780,
+          "pasajeros_anuales_estimados": 1372,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 2,
+          "pasajeros_observados": 254,
+          "pasajeros_anuales_estimados": 447,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 89,
+          "pasajeros_anuales_estimados": 157,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Andes Líneas Aéreas",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 89,
+          "pasajeros_anuales_estimados": 157,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 7426,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "BRC-SCL": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 15,
+      "porcentaje_semanas_frecuencia_ge3": 41.7,
+      "aerolineas": [
+        {
+          "aerolinea": "Sky Airline",
+          "vuelos_observados": 43,
+          "pasajeros_observados": 6346,
+          "pasajeros_anuales_estimados": 11159,
+          "ahorro_anual_estimado_usd": 355303
+        },
+        {
+          "aerolinea": "Andes Líneas Aéreas",
+          "vuelos_observados": 4,
+          "pasajeros_observados": 561,
+          "pasajeros_anuales_estimados": 986,
+          "ahorro_anual_estimado_usd": 31394
+        }
+      ],
+      "pasajeros_anuales_estimados": 12146,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 386729
+    },
+    "EZE-SDQ": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 5,
+      "porcentaje_semanas_frecuencia_ge3": 13.9,
+      "aerolineas": [
+        {
+          "aerolinea": "Arajet",
+          "vuelos_observados": 51,
+          "pasajeros_observados": 6538,
+          "pasajeros_anuales_estimados": 11497,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 11497,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-FOR": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 9,
+      "porcentaje_semanas_frecuencia_ge3": 25.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 39,
+          "pasajeros_observados": 5669,
+          "pasajeros_anuales_estimados": 9969,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "N/A",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 56,
+          "pasajeros_anuales_estimados": 98,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 10067,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-UIO": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Avianca Costa Rica",
+          "vuelos_observados": 114,
+          "pasajeros_observados": 14619,
+          "pasajeros_anuales_estimados": 25707,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 3,
+          "pasajeros_observados": 214,
+          "pasajeros_anuales_estimados": 376,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Avianca",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 74,
+          "pasajeros_anuales_estimados": 130,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 26213,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "ROS-FLN": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 10,
+      "porcentaje_semanas_frecuencia_ge3": 27.8,
+      "aerolineas": [
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 43,
+          "pasajeros_observados": 6200,
+          "pasajeros_anuales_estimados": 10902,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 20,
+          "pasajeros_observados": 2256,
+          "pasajeros_anuales_estimados": 3967,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 14869,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "AEP-REC": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 23,
+      "porcentaje_semanas_frecuencia_ge3": 63.9,
+      "aerolineas": [
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 72,
+          "pasajeros_observados": 11807,
+          "pasajeros_anuales_estimados": 20762,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 48,
+          "pasajeros_observados": 7226,
+          "pasajeros_anuales_estimados": 12707,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 33469,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "COR-FLN": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 15,
+      "porcentaje_semanas_frecuencia_ge3": 41.7,
+      "aerolineas": [
+        {
+          "aerolinea": "Flybondi",
+          "vuelos_observados": 50,
+          "pasajeros_observados": 7771,
+          "pasajeros_anuales_estimados": 13665,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 39,
+          "pasajeros_observados": 5770,
+          "pasajeros_anuales_estimados": 10146,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 27,
+          "pasajeros_observados": 3574,
+          "pasajeros_anuales_estimados": 6285,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Andes Líneas Aéreas",
+          "vuelos_observados": 10,
+          "pasajeros_observados": 1361,
+          "pasajeros_anuales_estimados": 2393,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 225,
+          "pasajeros_anuales_estimados": 396,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 32885,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "SLA-LIM": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 34,
+      "porcentaje_semanas_frecuencia_ge3": 94.4,
+      "aerolineas": [
+        {
+          "aerolinea": "LATAM Perú",
+          "vuelos_observados": 114,
+          "pasajeros_observados": 13131,
+          "pasajeros_anuales_estimados": 23090,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 23090,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "AEP-BSB": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 23,
+      "porcentaje_semanas_frecuencia_ge3": 63.9,
+      "aerolineas": [
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 63,
+          "pasajeros_observados": 9433,
+          "pasajeros_anuales_estimados": 16587,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 2,
+          "pasajeros_observados": 301,
+          "pasajeros_anuales_estimados": 529,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 168,
+          "pasajeros_anuales_estimados": 295,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 17412,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-SSA": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 16,
+      "porcentaje_semanas_frecuencia_ge3": 44.4,
+      "aerolineas": [
+        {
+          "aerolinea": "Sky Airline",
+          "vuelos_observados": 79,
+          "pasajeros_observados": 11568,
+          "pasajeros_anuales_estimados": 20342,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Flybondi",
+          "vuelos_observados": 34,
+          "pasajeros_observados": 5037,
+          "pasajeros_anuales_estimados": 8857,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 30,
+          "pasajeros_observados": 4615,
+          "pasajeros_anuales_estimados": 8115,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 13,
+          "pasajeros_observados": 2075,
+          "pasajeros_anuales_estimados": 3649,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 40963,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "MDZ-GIG": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 20,
+      "porcentaje_semanas_frecuencia_ge3": 55.6,
+      "aerolineas": [
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 72,
+          "pasajeros_observados": 13236,
+          "pasajeros_anuales_estimados": 23275,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 27,
+          "pasajeros_observados": 3885,
+          "pasajeros_anuales_estimados": 6832,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 151,
+          "pasajeros_anuales_estimados": 266,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Sky Airline",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 144,
+          "pasajeros_anuales_estimados": 253,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 30625,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "ROS-GIG": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 35,
+      "porcentaje_semanas_frecuencia_ge3": 97.2,
+      "aerolineas": [
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 146,
+          "pasajeros_observados": 22429,
+          "pasajeros_anuales_estimados": 39440,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 41,
+          "pasajeros_observados": 5958,
+          "pasajeros_anuales_estimados": 10477,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 49917,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-CUN": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 21,
+      "porcentaje_semanas_frecuencia_ge3": 58.3,
+      "aerolineas": [
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 121,
+          "pasajeros_observados": 27555,
+          "pasajeros_anuales_estimados": 48454,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 48454,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "COR-GIG": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 149,
+          "pasajeros_observados": 22896,
+          "pasajeros_anuales_estimados": 40262,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 74,
+          "pasajeros_observados": 15285,
+          "pasajeros_anuales_estimados": 26878,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 73,
+          "pasajeros_observados": 10488,
+          "pasajeros_anuales_estimados": 18443,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Flybondi",
+          "vuelos_observados": 49,
+          "pasajeros_observados": 7542,
+          "pasajeros_anuales_estimados": 13262,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "TAM Linhas Aéreas",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 149,
+          "pasajeros_anuales_estimados": 262,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 99106,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "AEP-NAT": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 23,
+      "porcentaje_semanas_frecuencia_ge3": 63.9,
+      "aerolineas": [
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 63,
+          "pasajeros_observados": 9677,
+          "pasajeros_anuales_estimados": 17017,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 32,
+          "pasajeros_observados": 4702,
+          "pasajeros_anuales_estimados": 8268,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 25285,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "MDZ-PUJ": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 8,
+      "porcentaje_semanas_frecuencia_ge3": 22.2,
+      "aerolineas": [
+        {
+          "aerolinea": "Arajet",
+          "vuelos_observados": 30,
+          "pasajeros_observados": 3434,
+          "pasajeros_anuales_estimados": 6039,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 6039,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "AEP-FLN": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 35,
+      "porcentaje_semanas_frecuencia_ge3": 97.2,
+      "aerolineas": [
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 303,
+          "pasajeros_observados": 46674,
+          "pasajeros_anuales_estimados": 82074,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 210,
+          "pasajeros_observados": 31145,
+          "pasajeros_anuales_estimados": 54767,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 91,
+          "pasajeros_observados": 16832,
+          "pasajeros_anuales_estimados": 29598,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Flybondi",
+          "vuelos_observados": 99,
+          "pasajeros_observados": 14622,
+          "pasajeros_anuales_estimados": 25712,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 192152,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-DFW": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 22,
+      "porcentaje_semanas_frecuencia_ge3": 61.1,
+      "aerolineas": [
+        {
+          "aerolinea": "American Airlines",
+          "vuelos_observados": 121,
+          "pasajeros_observados": 27683,
+          "pasajeros_anuales_estimados": 48679,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 3,
+          "pasajeros_observados": 539,
+          "pasajeros_anuales_estimados": 948,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 49627,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "ROS-PUJ": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 6,
+      "porcentaje_semanas_frecuencia_ge3": 16.7,
+      "aerolineas": [
+        {
+          "aerolinea": "Arajet",
+          "vuelos_observados": 17,
+          "pasajeros_observados": 2306,
+          "pasajeros_anuales_estimados": 4055,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 4055,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "AEP-SSA": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 30,
+      "porcentaje_semanas_frecuencia_ge3": 83.3,
+      "aerolineas": [
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 121,
+          "pasajeros_observados": 17917,
+          "pasajeros_anuales_estimados": 31506,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 53,
+          "pasajeros_observados": 7431,
+          "pasajeros_anuales_estimados": 13067,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 166,
+          "pasajeros_anuales_estimados": 292,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 44865,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "AEP-VVI": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 2,
+      "porcentaje_semanas_frecuencia_ge3": 5.6,
+      "aerolineas": [
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 51,
+          "pasajeros_observados": 3793,
+          "pasajeros_anuales_estimados": 6670,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 6670,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "MDZ-VCP": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 4,
+      "porcentaje_semanas_frecuencia_ge3": 11.1,
+      "aerolineas": [
+        {
+          "aerolinea": "Azul Linhas Aéreas Brasileiras",
+          "vuelos_observados": 13,
+          "pasajeros_observados": 1939,
+          "pasajeros_anuales_estimados": 3410,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 3410,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "BRC-CNF": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 2,
+      "porcentaje_semanas_frecuencia_ge3": 5.6,
+      "aerolineas": [
+        {
+          "aerolinea": "Azul Linhas Aéreas Brasileiras",
+          "vuelos_observados": 5,
+          "pasajeros_observados": 602,
+          "pasajeros_anuales_estimados": 1059,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "N/A",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 180,
+          "pasajeros_anuales_estimados": 317,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 1375,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "COR-PUJ": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 33,
+      "porcentaje_semanas_frecuencia_ge3": 91.7,
+      "aerolineas": [
+        {
+          "aerolinea": "Arajet",
+          "vuelos_observados": 141,
+          "pasajeros_observados": 21351,
+          "pasajeros_anuales_estimados": 37545,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 29,
+          "pasajeros_observados": 3316,
+          "pasajeros_anuales_estimados": 5831,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 43376,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "NQN-SCL": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 22,
+      "porcentaje_semanas_frecuencia_ge3": 61.1,
+      "aerolineas": [
+        {
+          "aerolinea": "LATAM",
+          "vuelos_observados": 68,
+          "pasajeros_observados": 5492,
+          "pasajeros_anuales_estimados": 9657,
+          "ahorro_anual_estimado_usd": 307479
+        }
+      ],
+      "pasajeros_anuales_estimados": 9657,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 307479
+    },
+    "AEP-CFB": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 1,
+      "porcentaje_semanas_frecuencia_ge3": 2.8,
+      "aerolineas": [
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 26,
+          "pasajeros_observados": 4048,
+          "pasajeros_anuales_estimados": 7118,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 7118,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "JUJ-ASU": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 1,
+      "porcentaje_semanas_frecuencia_ge3": 2.8,
+      "aerolineas": [
+        {
+          "aerolinea": "Amaszonas",
+          "vuelos_observados": 23,
+          "pasajeros_observados": 556,
+          "pasajeros_anuales_estimados": 978,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Paranair",
+          "vuelos_observados": 17,
+          "pasajeros_observados": 464,
+          "pasajeros_anuales_estimados": 816,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 1794,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "COR-MAD": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Air Europa",
+          "vuelos_observados": 118,
+          "pasajeros_observados": 34555,
+          "pasajeros_anuales_estimados": 60763,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 60763,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "COR-PDP": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 1,
+      "porcentaje_semanas_frecuencia_ge3": 2.8,
+      "aerolineas": [
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 11,
+          "pasajeros_observados": 932,
+          "pasajeros_anuales_estimados": 1639,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 1639,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "TUC-FLN": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 1,
+      "porcentaje_semanas_frecuencia_ge3": 2.8,
+      "aerolineas": [
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 17,
+          "pasajeros_observados": 2660,
+          "pasajeros_anuales_estimados": 4677,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 4677,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "ROS-GRU": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "TAM Linhas Aéreas",
+          "vuelos_observados": 118,
+          "pasajeros_observados": 13628,
+          "pasajeros_anuales_estimados": 23964,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 51,
+          "pasajeros_observados": 7451,
+          "pasajeros_anuales_estimados": 13102,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 37066,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-POS": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 4,
+      "porcentaje_semanas_frecuencia_ge3": 11.1,
+      "aerolineas": [
+        {
+          "aerolinea": "Arajet",
+          "vuelos_observados": 33,
+          "pasajeros_observados": 5765,
+          "pasajeros_anuales_estimados": 10137,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 10137,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-MCZ": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 13,
+      "porcentaje_semanas_frecuencia_ge3": 36.1,
+      "aerolineas": [
+        {
+          "aerolinea": "Flybondi",
+          "vuelos_observados": 45,
+          "pasajeros_observados": 7541,
+          "pasajeros_anuales_estimados": 13261,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 26,
+          "pasajeros_observados": 3962,
+          "pasajeros_anuales_estimados": 6967,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 20227,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-BSB": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 13,
+      "porcentaje_semanas_frecuencia_ge3": 36.1,
+      "aerolineas": [
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 84,
+          "pasajeros_observados": 13117,
+          "pasajeros_anuales_estimados": 23066,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 23066,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "MDZ-LIM": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "LATAM Perú",
+          "vuelos_observados": 147,
+          "pasajeros_observados": 19685,
+          "pasajeros_anuales_estimados": 34615,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 34615,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "AEP-PDP": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 344,
+          "pasajeros_observados": 29772,
+          "pasajeros_anuales_estimados": 52353,
+          "ahorro_anual_estimado_usd": 1666920
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 11,
+          "pasajeros_observados": 1648,
+          "pasajeros_anuales_estimados": 2898,
+          "ahorro_anual_estimado_usd": 92272
+        },
+        {
+          "aerolinea": "Flybondi",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 189,
+          "pasajeros_anuales_estimados": 332,
+          "ahorro_anual_estimado_usd": 10571
+        },
+        {
+          "aerolinea": "Andes Líneas Aéreas",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 109,
+          "pasajeros_anuales_estimados": 192,
+          "ahorro_anual_estimado_usd": 6113
+        }
+      ],
+      "pasajeros_anuales_estimados": 55775,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 1775876
+    },
+    "EZE-MDE": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Avianca",
+          "vuelos_observados": 191,
+          "pasajeros_observados": 27418,
+          "pasajeros_anuales_estimados": 48213,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 58,
+          "pasajeros_anuales_estimados": 102,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "N/A",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 13,
+          "pasajeros_anuales_estimados": 23,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 48338,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "BRC-MVD": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 1,
+      "porcentaje_semanas_frecuencia_ge3": 2.8,
+      "aerolineas": [
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 5,
+          "pasajeros_observados": 819,
+          "pasajeros_anuales_estimados": 1440,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 2,
+          "pasajeros_observados": 479,
+          "pasajeros_anuales_estimados": 842,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 2282,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "BRC-PDP": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 2,
+      "porcentaje_semanas_frecuencia_ge3": 5.6,
+      "aerolineas": [
+        {
+          "aerolinea": "Andes Líneas Aéreas",
+          "vuelos_observados": 9,
+          "pasajeros_observados": 1480,
+          "pasajeros_anuales_estimados": 2603,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 2603,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-CDG": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Air France",
+          "vuelos_observados": 205,
+          "pasajeros_observados": 59246,
+          "pasajeros_anuales_estimados": 104181,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 104181,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "MDZ-PTY": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Copa Airlines",
+          "vuelos_observados": 198,
+          "pasajeros_observados": 29175,
+          "pasajeros_anuales_estimados": 51303,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 51303,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "COR-BOG": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Avianca",
+          "vuelos_observados": 203,
+          "pasajeros_observados": 25776,
+          "pasajeros_anuales_estimados": 45326,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 158,
+          "pasajeros_anuales_estimados": 278,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Copa Airlines",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 154,
+          "pasajeros_anuales_estimados": 271,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 45875,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-ATL": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Delta Air Lines",
+          "vuelos_observados": 249,
+          "pasajeros_observados": 61195,
+          "pasajeros_anuales_estimados": 107609,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 107609,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "USH-GRU": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 9,
+      "porcentaje_semanas_frecuencia_ge3": 25.0,
+      "aerolineas": [
+        {
+          "aerolinea": "TAM Linhas Aéreas",
+          "vuelos_observados": 14,
+          "pasajeros_observados": 2327,
+          "pasajeros_anuales_estimados": 4092,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 7,
+          "pasajeros_observados": 1123,
+          "pasajeros_anuales_estimados": 1975,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 6067,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "AEP-POA": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 110,
+          "pasajeros_observados": 14719,
+          "pasajeros_anuales_estimados": 25883,
+          "ahorro_anual_estimado_usd": 824115
+        },
+        {
+          "aerolinea": "TAM Linhas Aéreas",
+          "vuelos_observados": 87,
+          "pasajeros_observados": 11729,
+          "pasajeros_anuales_estimados": 20625,
+          "ahorro_anual_estimado_usd": 656700
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 25,
+          "pasajeros_observados": 2671,
+          "pasajeros_anuales_estimados": 4697,
+          "ahorro_anual_estimado_usd": 149552
+        }
+      ],
+      "pasajeros_anuales_estimados": 51204,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 1630335
+    },
+    "EZE-PUJ": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Arajet",
+          "vuelos_observados": 434,
+          "pasajeros_observados": 62996,
+          "pasajeros_anuales_estimados": 110776,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 159,
+          "pasajeros_observados": 36900,
+          "pasajeros_anuales_estimados": 64887,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 175663,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-MEX": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 35,
+      "porcentaje_semanas_frecuencia_ge3": 97.2,
+      "aerolineas": [
+        {
+          "aerolinea": "Aeroméxico",
+          "vuelos_observados": 227,
+          "pasajeros_observados": 53270,
+          "pasajeros_anuales_estimados": 93673,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 93673,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-BCN": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Iberia Airlines",
+          "vuelos_observados": 236,
+          "pasajeros_observados": 66927,
+          "pasajeros_anuales_estimados": 117688,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 117688,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-IAH": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "United Airlines",
+          "vuelos_observados": 276,
+          "pasajeros_observados": 69023,
+          "pasajeros_anuales_estimados": 121374,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Delta Air Lines",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 281,
+          "pasajeros_anuales_estimados": 494,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "American Airlines",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 102,
+          "pasajeros_anuales_estimados": 179,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 122047,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "COR-LIM": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "LATAM Perú",
+          "vuelos_observados": 310,
+          "pasajeros_observados": 37985,
+          "pasajeros_anuales_estimados": 66795,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Andes Líneas Aéreas",
+          "vuelos_observados": 3,
+          "pasajeros_observados": 503,
+          "pasajeros_anuales_estimados": 885,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "LATAM",
+          "vuelos_observados": 2,
+          "pasajeros_observados": 314,
+          "pasajeros_anuales_estimados": 552,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 68232,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "BRC-VCP": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 10,
+      "porcentaje_semanas_frecuencia_ge3": 27.8,
+      "aerolineas": [
+        {
+          "aerolinea": "Azul Linhas Aéreas Brasileiras",
+          "vuelos_observados": 28,
+          "pasajeros_observados": 3897,
+          "pasajeros_anuales_estimados": 6853,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 6853,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-JFK": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "American Airlines",
+          "vuelos_observados": 201,
+          "pasajeros_observados": 53351,
+          "pasajeros_anuales_estimados": 93815,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Delta Air Lines",
+          "vuelos_observados": 83,
+          "pasajeros_observados": 20953,
+          "pasajeros_anuales_estimados": 36845,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 3,
+          "pasajeros_observados": 664,
+          "pasajeros_anuales_estimados": 1168,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 131828,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-AMS": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "KLM",
+          "vuelos_observados": 206,
+          "pasajeros_observados": 55744,
+          "pasajeros_anuales_estimados": 98023,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Lufthansa",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 365,
+          "pasajeros_anuales_estimados": 642,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 98665,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-FRA": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Lufthansa",
+          "vuelos_observados": 201,
+          "pasajeros_observados": 69303,
+          "pasajeros_anuales_estimados": 121866,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 121866,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "COR-SCL": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "LATAM",
+          "vuelos_observados": 224,
+          "pasajeros_observados": 29157,
+          "pasajeros_anuales_estimados": 51271,
+          "ahorro_anual_estimado_usd": 1632469
+        },
+        {
+          "aerolinea": "Sky Airline",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 171,
+          "pasajeros_anuales_estimados": 301,
+          "ahorro_anual_estimado_usd": 9584
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 81,
+          "pasajeros_anuales_estimados": 142,
+          "ahorro_anual_estimado_usd": 4521
+        }
+      ],
+      "pasajeros_anuales_estimados": 51714,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 1646574
+    },
+    "EZE-NAT": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 13,
+      "porcentaje_semanas_frecuencia_ge3": 36.1,
+      "aerolineas": [
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 87,
+          "pasajeros_observados": 14720,
+          "pasajeros_anuales_estimados": 25884,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 24,
+          "pasajeros_observados": 3700,
+          "pasajeros_anuales_estimados": 6506,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 32391,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "MDZ-GRU": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "TAM Linhas Aéreas",
+          "vuelos_observados": 128,
+          "pasajeros_observados": 18957,
+          "pasajeros_anuales_estimados": 33335,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 113,
+          "pasajeros_observados": 17144,
+          "pasajeros_anuales_estimados": 30147,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Sky Airline",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 176,
+          "pasajeros_anuales_estimados": 309,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 136,
+          "pasajeros_anuales_estimados": 239,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 64031,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-REC": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 14,
+      "porcentaje_semanas_frecuencia_ge3": 38.9,
+      "aerolineas": [
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 89,
+          "pasajeros_observados": 14671,
+          "pasajeros_anuales_estimados": 25798,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "TAM Linhas Aéreas",
+          "vuelos_observados": 28,
+          "pasajeros_observados": 3936,
+          "pasajeros_anuales_estimados": 6921,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 12,
+          "pasajeros_observados": 1883,
+          "pasajeros_anuales_estimados": 3311,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 36031,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "COR-GRU": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "TAM Linhas Aéreas",
+          "vuelos_observados": 205,
+          "pasajeros_observados": 27522,
+          "pasajeros_anuales_estimados": 48396,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 44,
+          "pasajeros_observados": 6541,
+          "pasajeros_anuales_estimados": 11502,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 227,
+          "pasajeros_anuales_estimados": 399,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 166,
+          "pasajeros_anuales_estimados": 292,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 60589,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "BRC-GRU": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 11,
+      "porcentaje_semanas_frecuencia_ge3": 30.6,
+      "aerolineas": [
+        {
+          "aerolinea": "TAM Linhas Aéreas",
+          "vuelos_observados": 50,
+          "pasajeros_observados": 7972,
+          "pasajeros_anuales_estimados": 14018,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 24,
+          "pasajeros_observados": 3407,
+          "pasajeros_anuales_estimados": 5991,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 10,
+          "pasajeros_observados": 1364,
+          "pasajeros_anuales_estimados": 2399,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Andes Líneas Aéreas",
+          "vuelos_observados": 4,
+          "pasajeros_observados": 689,
+          "pasajeros_anuales_estimados": 1212,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Azul Linhas Aéreas Brasileiras",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 160,
+          "pasajeros_anuales_estimados": 281,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "LATAM",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 141,
+          "pasajeros_anuales_estimados": 248,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 24149,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-PDP": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 1,
+      "porcentaje_semanas_frecuencia_ge3": 2.8,
+      "aerolineas": [],
+      "pasajeros_anuales_estimados": 0,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "AEP-BOG": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Avianca",
+          "vuelos_observados": 199,
+          "pasajeros_observados": 29363,
+          "pasajeros_anuales_estimados": 51633,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 135,
+          "pasajeros_observados": 17400,
+          "pasajeros_anuales_estimados": 30597,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 82231,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-FCO": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "ITA Airways",
+          "vuelos_observados": 266,
+          "pasajeros_observados": 80062,
+          "pasajeros_anuales_estimados": 140785,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 117,
+          "pasajeros_observados": 28332,
+          "pasajeros_anuales_estimados": 49821,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 190606,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-VVI": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Boliviana de Aviacion",
+          "vuelos_observados": 337,
+          "pasajeros_observados": 49644,
+          "pasajeros_anuales_estimados": 87297,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 2,
+          "pasajeros_observados": 125,
+          "pasajeros_anuales_estimados": 220,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 87517,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "ROS-PTY": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Copa Airlines",
+          "vuelos_observados": 363,
+          "pasajeros_observados": 50924,
+          "pasajeros_anuales_estimados": 89548,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 89548,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "AEP-MVD": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 511,
+          "pasajeros_observados": 45312,
+          "pasajeros_anuales_estimados": 79679,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Copa Airlines",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 157,
+          "pasajeros_anuales_estimados": 276,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "LATAM Perú",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 149,
+          "pasajeros_anuales_estimados": 262,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Paranair",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 50,
+          "pasajeros_anuales_estimados": 88,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "American Jet",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 45,
+          "pasajeros_anuales_estimados": 79,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 80384,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "AEP-ASU": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 274,
+          "pasajeros_observados": 42567,
+          "pasajeros_anuales_estimados": 74852,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 264,
+          "pasajeros_observados": 26662,
+          "pasajeros_anuales_estimados": 46884,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Flybondi",
+          "vuelos_observados": 77,
+          "pasajeros_observados": 7293,
+          "pasajeros_anuales_estimados": 12824,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Amaszonas",
+          "vuelos_observados": 67,
+          "pasajeros_observados": 2176,
+          "pasajeros_anuales_estimados": 3826,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Paranair",
+          "vuelos_observados": 25,
+          "pasajeros_observados": 699,
+          "pasajeros_anuales_estimados": 1229,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 139616,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "COR-PTY": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Copa Airlines",
+          "vuelos_observados": 596,
+          "pasajeros_observados": 84772,
+          "pasajeros_anuales_estimados": 149068,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "N/A",
+          "vuelos_observados": 6,
+          "pasajeros_observados": 914,
+          "pasajeros_anuales_estimados": 1607,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "LATAM Perú",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 166,
+          "pasajeros_anuales_estimados": 292,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 150967,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-LIM": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "LATAM Perú",
+          "vuelos_observados": 367,
+          "pasajeros_observados": 55027,
+          "pasajeros_anuales_estimados": 96762,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "LATAM Ecuador",
+          "vuelos_observados": 201,
+          "pasajeros_observados": 25505,
+          "pasajeros_anuales_estimados": 44849,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Sky Airline",
+          "vuelos_observados": 84,
+          "pasajeros_observados": 12503,
+          "pasajeros_anuales_estimados": 21986,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Andes Líneas Aéreas",
+          "vuelos_observados": 13,
+          "pasajeros_observados": 2013,
+          "pasajeros_anuales_estimados": 3540,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 6,
+          "pasajeros_observados": 749,
+          "pasajeros_anuales_estimados": 1317,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "LATAM",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 174,
+          "pasajeros_anuales_estimados": 306,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 168761,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-FLN": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 14,
+      "porcentaje_semanas_frecuencia_ge3": 38.9,
+      "aerolineas": [
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 220,
+          "pasajeros_observados": 41059,
+          "pasajeros_anuales_estimados": 72200,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Flybondi",
+          "vuelos_observados": 128,
+          "pasajeros_observados": 18760,
+          "pasajeros_anuales_estimados": 32989,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 109,
+          "pasajeros_observados": 16469,
+          "pasajeros_anuales_estimados": 28960,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "TAM Linhas Aéreas",
+          "vuelos_observados": 58,
+          "pasajeros_observados": 9639,
+          "pasajeros_anuales_estimados": 16950,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 27,
+          "pasajeros_observados": 3845,
+          "pasajeros_anuales_estimados": 6761,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Andes Líneas Aéreas",
+          "vuelos_observados": 9,
+          "pasajeros_observados": 642,
+          "pasajeros_anuales_estimados": 1129,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 158989,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-GIG": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 210,
+          "pasajeros_observados": 39119,
+          "pasajeros_anuales_estimados": 68789,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Flybondi",
+          "vuelos_observados": 265,
+          "pasajeros_observados": 39113,
+          "pasajeros_anuales_estimados": 68778,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "British Airways",
+          "vuelos_observados": 201,
+          "pasajeros_observados": 37183,
+          "pasajeros_anuales_estimados": 65385,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 228,
+          "pasajeros_observados": 33853,
+          "pasajeros_anuales_estimados": 59529,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Emirates Airline",
+          "vuelos_observados": 154,
+          "pasajeros_observados": 33389,
+          "pasajeros_anuales_estimados": 58713,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "LATAM",
+          "vuelos_observados": 112,
+          "pasajeros_observados": 19795,
+          "pasajeros_anuales_estimados": 34809,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 62,
+          "pasajeros_observados": 9872,
+          "pasajeros_anuales_estimados": 17359,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "TAM Linhas Aéreas",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 151,
+          "pasajeros_anuales_estimados": 266,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 373628,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-BOG": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Avianca",
+          "vuelos_observados": 608,
+          "pasajeros_observados": 109748,
+          "pasajeros_anuales_estimados": 192987,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 2,
+          "pasajeros_observados": 190,
+          "pasajeros_anuales_estimados": 334,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Copa Airlines",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 90,
+          "pasajeros_anuales_estimados": 158,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 193479,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "MDZ-SCL": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "LATAM",
+          "vuelos_observados": 334,
+          "pasajeros_observados": 50531,
+          "pasajeros_anuales_estimados": 88856,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Sky Airline",
+          "vuelos_observados": 282,
+          "pasajeros_observados": 33275,
+          "pasajeros_anuales_estimados": 58513,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 168,
+          "pasajeros_observados": 22192,
+          "pasajeros_anuales_estimados": 39024,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Copa Airlines",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 154,
+          "pasajeros_anuales_estimados": 271,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "LATAM Perú",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 146,
+          "pasajeros_anuales_estimados": 257,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerovías DAP",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 69,
+          "pasajeros_anuales_estimados": 121,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 187041,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-GRU": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Ethiopian Airlines",
+          "vuelos_observados": 206,
+          "pasajeros_observados": 39564,
+          "pasajeros_anuales_estimados": 69571,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Air Canada",
+          "vuelos_observados": 128,
+          "pasajeros_observados": 33971,
+          "pasajeros_anuales_estimados": 59736,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Turkish Airlines",
+          "vuelos_observados": 137,
+          "pasajeros_observados": 32277,
+          "pasajeros_anuales_estimados": 56758,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "TAM Linhas Aéreas",
+          "vuelos_observados": 171,
+          "pasajeros_observados": 25457,
+          "pasajeros_anuales_estimados": 44765,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "LATAM",
+          "vuelos_observados": 121,
+          "pasajeros_observados": 17598,
+          "pasajeros_anuales_estimados": 30945,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Swiss International Air Lines",
+          "vuelos_observados": 56,
+          "pasajeros_observados": 8839,
+          "pasajeros_anuales_estimados": 15543,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 3,
+          "pasajeros_observados": 532,
+          "pasajeros_anuales_estimados": 935,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 6,
+          "pasajeros_observados": 530,
+          "pasajeros_anuales_estimados": 932,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "British Airways",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 199,
+          "pasajeros_anuales_estimados": 350,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Flybondi",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 152,
+          "pasajeros_anuales_estimados": 267,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Avianca",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 149,
+          "pasajeros_anuales_estimados": 262,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Andes Líneas Aéreas",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 138,
+          "pasajeros_anuales_estimados": 243,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Emirates Airline",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 12,
+          "pasajeros_anuales_estimados": 21,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 280329,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "AEP-LIM": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "LATAM Perú",
+          "vuelos_observados": 492,
+          "pasajeros_observados": 73747,
+          "pasajeros_anuales_estimados": 129681,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 200,
+          "pasajeros_observados": 34001,
+          "pasajeros_anuales_estimados": 59789,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 147,
+          "pasajeros_observados": 20990,
+          "pasajeros_anuales_estimados": 36910,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Sky Airline",
+          "vuelos_observados": 124,
+          "pasajeros_observados": 20112,
+          "pasajeros_anuales_estimados": 35366,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "TAM Linhas Aéreas",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 173,
+          "pasajeros_anuales_estimados": 304,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 139,
+          "pasajeros_anuales_estimados": 244,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 262295,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-SCL": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "LATAM",
+          "vuelos_observados": 383,
+          "pasajeros_observados": 72610,
+          "pasajeros_anuales_estimados": 127681,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "KLM",
+          "vuelos_observados": 204,
+          "pasajeros_observados": 36758,
+          "pasajeros_anuales_estimados": 64637,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Sky Airline",
+          "vuelos_observados": 81,
+          "pasajeros_observados": 11213,
+          "pasajeros_anuales_estimados": 19718,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 44,
+          "pasajeros_observados": 6525,
+          "pasajeros_anuales_estimados": 11474,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 22,
+          "pasajeros_observados": 2710,
+          "pasajeros_anuales_estimados": 4765,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Flybondi",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 122,
+          "pasajeros_anuales_estimados": 215,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "N/A",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 58,
+          "pasajeros_anuales_estimados": 102,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "American Jet",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 48,
+          "pasajeros_anuales_estimados": 84,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 228676,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-MIA": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "American Airlines",
+          "vuelos_observados": 638,
+          "pasajeros_observados": 155909,
+          "pasajeros_anuales_estimados": 274159,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 370,
+          "pasajeros_observados": 81352,
+          "pasajeros_anuales_estimados": 143054,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "LATAM",
+          "vuelos_observados": 221,
+          "pasajeros_observados": 48877,
+          "pasajeros_anuales_estimados": 85948,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "United Airlines",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 269,
+          "pasajeros_anuales_estimados": 473,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 503634,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-PTY": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Copa Airlines",
+          "vuelos_observados": 1131,
+          "pasajeros_observados": 174000,
+          "pasajeros_anuales_estimados": 305971,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 305971,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "EZE-MAD": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Iberia Airlines",
+          "vuelos_observados": 611,
+          "pasajeros_observados": 197876,
+          "pasajeros_anuales_estimados": 347956,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 296,
+          "pasajeros_observados": 74264,
+          "pasajeros_anuales_estimados": 130590,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Air Europa",
+          "vuelos_observados": 207,
+          "pasajeros_observados": 68116,
+          "pasajeros_anuales_estimados": 119779,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Plus Ultra Líneas Aéreas",
+          "vuelos_observados": 28,
+          "pasajeros_observados": 7206,
+          "pasajeros_anuales_estimados": 12671,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 610996,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "AEP-GIG": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 780,
+          "pasajeros_observados": 117014,
+          "pasajeros_anuales_estimados": 205764,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 446,
+          "pasajeros_observados": 84461,
+          "pasajeros_anuales_estimados": 148521,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 425,
+          "pasajeros_observados": 63559,
+          "pasajeros_anuales_estimados": 111766,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Flybondi",
+          "vuelos_observados": 188,
+          "pasajeros_observados": 29574,
+          "pasajeros_anuales_estimados": 52005,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "TAM Linhas Aéreas",
+          "vuelos_observados": 84,
+          "pasajeros_observados": 11535,
+          "pasajeros_anuales_estimados": 20284,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 538338,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "AEP-SCL": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "LATAM",
+          "vuelos_observados": 682,
+          "pasajeros_observados": 97300,
+          "pasajeros_anuales_estimados": 171098,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 497,
+          "pasajeros_observados": 83176,
+          "pasajeros_anuales_estimados": 146261,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Sky Airline",
+          "vuelos_observados": 491,
+          "pasajeros_observados": 68692,
+          "pasajeros_anuales_estimados": 120792,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 409,
+          "pasajeros_observados": 55731,
+          "pasajeros_anuales_estimados": 98000,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "LATAM Perú",
+          "vuelos_observados": 192,
+          "pasajeros_observados": 28769,
+          "pasajeros_anuales_estimados": 50589,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 586740,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    },
+    "AEP-GRU": {
+      "semanas_totales_disponibles": 36,
+      "semanas_frecuencia_ge3": 36,
+      "porcentaje_semanas_frecuencia_ge3": 100.0,
+      "aerolineas": [
+        {
+          "aerolinea": "TAM Linhas Aéreas",
+          "vuelos_observados": 980,
+          "pasajeros_observados": 142243,
+          "pasajeros_anuales_estimados": 250128,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Gol Transportes Aéreos",
+          "vuelos_observados": 705,
+          "pasajeros_observados": 104221,
+          "pasajeros_anuales_estimados": 183268,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Aerolíneas Argentinas",
+          "vuelos_observados": 675,
+          "pasajeros_observados": 90306,
+          "pasajeros_anuales_estimados": 158799,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "LATAM Perú",
+          "vuelos_observados": 81,
+          "pasajeros_observados": 12571,
+          "pasajeros_anuales_estimados": 22106,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "JetSMART Airlines",
+          "vuelos_observados": 14,
+          "pasajeros_observados": 2571,
+          "pasajeros_anuales_estimados": 4521,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "LATAM",
+          "vuelos_observados": 2,
+          "pasajeros_observados": 324,
+          "pasajeros_anuales_estimados": 570,
+          "ahorro_anual_estimado_usd": 0
+        },
+        {
+          "aerolinea": "Flybondi",
+          "vuelos_observados": 1,
+          "pasajeros_observados": 175,
+          "pasajeros_anuales_estimados": 308,
+          "ahorro_anual_estimado_usd": 0
+        }
+      ],
+      "pasajeros_anuales_estimados": 619699,
+      "periodo_pasajeros_desde": "2026-01-01",
+      "periodo_pasajeros_hasta": "2026-07-26",
+      "ahorro_anual_estimado_usd": 0
+    }
+  }
+}
