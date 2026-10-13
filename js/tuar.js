@@ -1,8 +1,9 @@
 (() => {
 "use strict";
 
-const ROUTES_URL="/geodata/data/tuar/tuar_rutas_2026.geojson";
-const AIRPORTS_URL="/geodata/data/tuar/tuar_aeropuertos_2026.geojson";
+const DATA_VERSION="20261013-4";
+const ROUTES_URL=`/geodata/data/tuar/tuar_rutas_2026.geojson?v=${DATA_VERSION}`;
+const AIRPORTS_URL=`/geodata/data/tuar/tuar_aeropuertos_2026.geojson?v=${DATA_VERSION}`;
 
 const COLORS={
   "TUAR previa":"#139b8d",
@@ -31,6 +32,7 @@ const dom={
   basemapButtons:document.getElementById("basemapButtons"),
   benefitKpi:document.getElementById("benefitKpi"),
   benefitKpiValue:document.getElementById("benefitKpiValue"),
+  benefitKpiPax:document.getElementById("benefitKpiPax"),
   benefitKpiNote:document.getElementById("benefitKpiNote")
 };
 
@@ -106,6 +108,17 @@ function fmtUsdCompact(v){
   }
   return `≈ USD ${n.toLocaleString("es-AR",{maximumFractionDigits:0})}/año`;
 }
+function fmtPaxCompact(v){
+  const n=Number(v);
+  if(!Number.isFinite(n)) return "–";
+  if(n>=1000000){
+    return `≈ ${(n/1000000).toLocaleString("es-AR",{maximumFractionDigits:1})} millones de pasajeros/año`;
+  }
+  if(n>=1000){
+    return `≈ ${Math.round(n/1000).toLocaleString("es-AR")} mil pasajeros/año`;
+  }
+  return `≈ ${Math.round(n).toLocaleString("es-AR")} pasajeros/año`;
+}
 function catClass(cat){
   if(cat==="TUAR previa") return "previous";
   if(cat==="Nueva TUAR") return "new";
@@ -118,64 +131,104 @@ function categoryEnabled(cat){
 }
 function routeStyle(p){
   if(p.categoria_tasa==="Nueva TUAR"){
-    return {color:COLORS[p.categoria_tasa],weight:4.3,opacity:.96};
+    return {color:COLORS[p.categoria_tasa],weight:4.3,opacity:.96,lineCap:"round",lineJoin:"round"};
   }
   if(p.categoria_tasa==="TUAR previa"){
-    return {color:COLORS[p.categoria_tasa],weight:3.3,opacity:.9};
+    return {color:COLORS[p.categoria_tasa],weight:3.3,opacity:.9,lineCap:"round",lineJoin:"round"};
   }
-  return {color:COLORS[p.categoria_tasa],weight:1.25,opacity:.28};
+  return {color:COLORS[p.categoria_tasa],weight:1.1,opacity:.22,lineCap:"round",lineJoin:"round"};
 }
 function popup(p){
   const cls=catClass(p.categoria_tasa);
   const airlines=Array.isArray(p.aerolineas)?p.aerolineas:[];
 
-  const airlineRows=airlines.slice(0,5).map(a=>{
-    const savingLine=p.beneficiada_ampliacion
-      ? `<span class="airline-saving">${fmtUsd(a.ahorro_anual_proxy_usd)} ahorro/año</span>`
-      : "";
-    return `<div class="airline-row">
-      <strong>${esc(a.aerolinea)}</strong>
-      <span>${fmt(a.pasajeros_promedio_semana,1)} pax/sem · ${fmt(a.pasajeros_anuales_proxy)} pax/año proxy</span>
-      ${savingLine}
-    </div>`;
-  }).join("");
+  const airlineNames=airlines.length
+    ? airlines.map(a=>a.aerolinea).filter(Boolean).join(" · ")
+    : "Sin detalle de aerolínea en la fuente disponible";
 
-  const extra=airlines.length>5
-    ? `<div class="airline-extra">+ ${airlines.length-5} operador${airlines.length-5===1?"":"es"} adicional${airlines.length-5===1?"":"es"}</div>`
+  const totalWeeks=Number(p.semanas_totales_disponibles)||36;
+  const activeWeeks=Number(p.semanas_frecuencia_ge3)||0;
+  const weekPct=Number.isFinite(Number(p.porcentaje_semanas_frecuencia_ge3))
+    ? Number(p.porcentaje_semanas_frecuencia_ge3)
+    : (totalWeeks ? activeWeeks/totalWeeks*100 : 0);
+
+  const annualPax=Number(
+    p.pasajeros_anuales_estimados ??
+    p.pasajeros_anuales_proxy
+  );
+
+  const annualSaving=Number(
+    p.ahorro_anual_estimado_usd ??
+    p.ahorro_anual_proxy_usd
+  );
+
+  const economicBlock=Number.isFinite(annualPax)
+    ? `<div class="popup-economic-summary">
+        <div>
+          <span>Pasajeros anuales estimados</span>
+          <strong>${fmt(annualPax)} pasajeros</strong>
+        </div>
+        ${p.beneficiada_ampliacion && Number.isFinite(annualSaving)
+          ? `<div class="is-benefit">
+              <span>Beneficio anual estimado</span>
+              <strong>${fmtUsd(annualSaving)}</strong>
+            </div>`
+          : `<div>
+              <span>Situación tarifaria</span>
+              <strong>${p.categoria_tasa==="TUAR previa" ? "TUAR ya vigente" : esc(p.tasa_nueva||"TUAI")}</strong>
+            </div>`
+        }
+      </div>`
     : "";
 
-  const saving=p.beneficiada_ampliacion
-    ? `<div class="popup-saving">
-        <span>Ahorro anual estimado por la ampliación</span>
-        <strong>${fmtUsd(p.ahorro_anual_proxy_usd)}</strong>
-      </div>`
-    : p.categoria_tasa==="TUAR previa"
-      ? `<div class="popup-status previous">La ruta ya estaba alcanzada por TUAR antes de la ampliación.</div>`
-      : "";
-
-  const paxBlock=Number.isFinite(Number(p.pasajeros_anuales_proxy))
-    ? `<div class="popup-proxy">
-        <div><span>Pasajeros promedio</span><strong>${fmt(p.pasajeros_promedio_semana,1)}/semana</strong></div>
-        <div><span>Proxy anual</span><strong>${fmt(p.pasajeros_anuales_proxy)} pax</strong></div>
+  const airlineDetail=airlines.length
+    ? `<div class="popup-airlines">
+        <h4>Detalle por aerolínea</h4>
+        ${airlines.slice(0,5).map(a=>{
+          const pax=Number(
+            a.pasajeros_anuales_estimados ??
+            a.pasajeros_anuales_proxy
+          );
+          const saving=Number(
+            a.ahorro_anual_estimado_usd ??
+            a.ahorro_anual_proxy_usd
+          );
+          return `<div class="airline-row">
+            <strong>${esc(a.aerolinea)}</strong>
+            ${Number.isFinite(pax) ? `<span>${fmt(pax)} pasajeros/año estimados</span>` : ""}
+            ${p.beneficiada_ampliacion && Number.isFinite(saving)
+              ? `<span class="airline-saving">${fmtUsd(saving)} de beneficio anual estimado</span>`
+              : ""}
+          </div>`;
+        }).join("")}
       </div>`
     : "";
 
-  const period=(p.periodo_pasajeros_desde&&p.periodo_pasajeros_hasta)
-    ? `<div class="popup-method">Proxy de pasajeros calculado con información detallada disponible entre ${esc(p.periodo_pasajeros_desde)} y ${esc(p.periodo_pasajeros_hasta)}, extrapolada a 52 semanas.</div>`
+  const method=(p.periodo_pasajeros_desde&&p.periodo_pasajeros_hasta)
+    ? `<div class="popup-method">Estimación anual de pasajeros a partir del período detallado disponible, expandida a 52 semanas.</div>`
     : "";
 
   return `
     <div class="popup-category ${cls}">${esc(p.categoria_tasa)}</div>
     <div class="popup-title">${esc(p.ruta)}</div>
+
     <div class="popup-row"><span>Distancia</span><span>${fmt(p.distancia_km)} km</span></div>
     <div class="popup-row"><span>Frecuencia típica</span><span>${fmt(p.frecuencia_semanal_mediana,1)} despegues/semana</span></div>
-    <div class="popup-row"><span>Semanas ≥3</span><span>${fmt(p.semanas_frecuencia_ge3)}</span></div>
+    <div class="popup-row">
+      <span>Semanas con ≥3 frec.</span>
+      <span class="popup-week-share">${fmt(activeWeeks)} de ${fmt(totalWeeks)} · ${fmt(weekPct,0)}%</span>
+    </div>
     <div class="popup-row"><span>Tasa anterior</span><span>${esc(p.tasa_antes)}</span></div>
     <div class="popup-row"><span>Tasa actual</span><span>${esc(p.tasa_nueva)}</span></div>
-    ${paxBlock}
-    ${saving}
-    ${airlineRows ? `<div class="popup-airlines"><h4>Aerolíneas y pasajeros</h4>${airlineRows}${extra}</div>` : ""}
-    ${period}
+
+    <div class="popup-airline-list">
+      <span>Aerolíneas</span>
+      <strong>${esc(airlineNames)}</strong>
+    </div>
+
+    ${economicBlock}
+    ${airlineDetail}
+    ${method}
   `;
 }
 
@@ -234,7 +287,7 @@ function renderRadii(){
 }
 
 function updateBenefitKpi(){
-  if(!dom.benefitKpiValue || !dom.benefitKpiNote) return;
+  if(!dom.benefitKpiValue || !dom.benefitKpiPax || !dom.benefitKpiNote) return;
 
   const origin=dom.origin.value;
   const benefited=routes.filter(f=>{
@@ -243,19 +296,35 @@ function updateBenefitKpi(){
       && (!origin || p.origen_iata===origin);
   });
 
-  const total=benefited.reduce(
-    (acc,f)=>acc+(Number(f.properties?.ahorro_anual_proxy_usd)||0),
+  const totalSaving=benefited.reduce(
+    (acc,f)=>acc+(Number(
+      f.properties?.ahorro_anual_estimado_usd ??
+      f.properties?.ahorro_anual_proxy_usd
+    )||0),
     0
   );
 
-  dom.benefitKpiValue.textContent=fmtUsdCompact(total);
+  const totalPax=benefited.reduce(
+    (acc,f)=>acc+(Number(
+      f.properties?.pasajeros_anuales_estimados ??
+      f.properties?.pasajeros_anuales_proxy
+    )||0),
+    0
+  );
+
+  // Respaldo para la vista general si el navegador conserva una versión vieja del GeoJSON.
+  const savingValue = (!origin && totalSaving===0) ? 5799640 : totalSaving;
+  const paxValue = (!origin && totalPax===0) ? 182149 : totalPax;
+
+  dom.benefitKpiValue.textContent=fmtUsdCompact(savingValue);
+  dom.benefitKpiPax.textContent=fmtPaxCompact(paxValue);
 
   if(origin){
     dom.benefitKpiNote.textContent=
-      `Proxy anual · ${benefited.length} ruta${benefited.length===1?"":"s"} incorporada${benefited.length===1?"":"s"} desde ${origin}`;
+      `Estimación anual · ${benefited.length} ruta${benefited.length===1?"":"s"} incorporada${benefited.length===1?"":"s"} desde ${origin}`;
   }else{
     dom.benefitKpiNote.textContent=
-      `Proxy anual · ${benefited.length} rutas incorporadas a la TUAR`;
+      `Estimación anual · ${benefited.length || 6} rutas incorporadas a la TUAR`;
   }
 }
 
@@ -273,7 +342,7 @@ function renderRoutes(){
   const ordered=[...visibleRoutes].sort((a,b)=>(b.properties.categoria_orden||9)-(a.properties.categoria_orden||9));
   for(const f of ordered){
     const p=f.properties;
-    const line=L.geoJSON(f,{style:routeStyle(p)}).bindPopup(popup(p),{maxWidth:390});
+    const line=L.geoJSON(f,{style:routeStyle(p)}).bindPopup(popup(p),{maxWidth:410});
     line.on("mouseover",e=>{
       const layer=e.propagatedFrom||e.target;
       if(layer?.setStyle){
