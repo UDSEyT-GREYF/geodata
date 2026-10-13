@@ -1325,34 +1325,34 @@
           "vuelos_observados": 344,
           "pasajeros_observados": 29772,
           "pasajeros_anuales_estimados": 52353,
-          "ahorro_anual_estimado_usd": 1666920
+          "ahorro_anual_estimado_usd": 0
         },
         {
           "aerolinea": "Gol Transportes Aéreos",
           "vuelos_observados": 11,
           "pasajeros_observados": 1648,
           "pasajeros_anuales_estimados": 2898,
-          "ahorro_anual_estimado_usd": 92272
+          "ahorro_anual_estimado_usd": 0
         },
         {
           "aerolinea": "Flybondi",
           "vuelos_observados": 1,
           "pasajeros_observados": 189,
           "pasajeros_anuales_estimados": 332,
-          "ahorro_anual_estimado_usd": 10571
+          "ahorro_anual_estimado_usd": 0
         },
         {
           "aerolinea": "Andes Líneas Aéreas",
           "vuelos_observados": 1,
           "pasajeros_observados": 109,
           "pasajeros_anuales_estimados": 192,
-          "ahorro_anual_estimado_usd": 6113
+          "ahorro_anual_estimado_usd": 0
         }
       ],
       "pasajeros_anuales_estimados": 55775,
       "periodo_pasajeros_desde": "2026-01-01",
       "periodo_pasajeros_hasta": "2026-07-26",
-      "ahorro_anual_estimado_usd": 1775876
+      "ahorro_anual_estimado_usd": 0
     },
     "EZE-MDE": {
       "semanas_totales_disponibles": 36,
