@@ -1,9 +1,10 @@
 (() => {
 "use strict";
 
-const DATA_VERSION="20261013-4";
+const DATA_VERSION="20261013-6";
 const ROUTES_URL=`/geodata/data/tuar/tuar_rutas_2026.geojson?v=${DATA_VERSION}`;
 const AIRPORTS_URL=`/geodata/data/tuar/tuar_aeropuertos_2026.geojson?v=${DATA_VERSION}`;
+const METRICS_URL=`/geodata/data/tuar/tuar_metricas_2026.json?v=${DATA_VERSION}`;
 
 const COLORS={
   "TUAR previa":"#139b8d",
@@ -83,6 +84,19 @@ let routes=[];
 let airports=[];
 let visibleRoutes=[];
 let routeMarkers=new Map();
+let airportByIata=new Map();
+
+const CURVE_FACTORS={
+  "AEP-MVD":-0.20,
+  "EZE-MVD":0.18,
+  "MDZ-SCL":0.34,
+  "AEP-PDP":0.22,
+  "AEP-POA":-0.18,
+  "BRC-SCL":-0.28,
+  "COR-ASU":-0.18,
+  "COR-SCL":-0.34,
+  "NQN-SCL":0.24
+};
 
 function esc(v){
   return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
@@ -141,28 +155,15 @@ function routeStyle(p){
 function popup(p){
   const cls=catClass(p.categoria_tasa);
   const airlines=Array.isArray(p.aerolineas)?p.aerolineas:[];
-
   const airlineNames=airlines.length
     ? airlines.map(a=>a.aerolinea).filter(Boolean).join(" · ")
-    : "Sin detalle de aerolínea en la fuente disponible";
+    : "Sin dato";
 
-  const totalWeeks=Number(p.semanas_totales_disponibles)||36;
-  const activeWeeks=Number(p.semanas_frecuencia_ge3)||0;
-  const weekPct=Number.isFinite(Number(p.porcentaje_semanas_frecuencia_ge3))
-    ? Number(p.porcentaje_semanas_frecuencia_ge3)
-    : (totalWeeks ? activeWeeks/totalWeeks*100 : 0);
+  const weekPct=Number(p.porcentaje_semanas_frecuencia_ge3);
+  const annualPax=Number(p.pasajeros_anuales_estimados);
+  const annualSaving=Number(p.ahorro_anual_estimado_usd);
 
-  const annualPax=Number(
-    p.pasajeros_anuales_estimados ??
-    p.pasajeros_anuales_proxy
-  );
-
-  const annualSaving=Number(
-    p.ahorro_anual_estimado_usd ??
-    p.ahorro_anual_proxy_usd
-  );
-
-  const economicBlock=Number.isFinite(annualPax)
+  const econ = Number.isFinite(annualPax)
     ? `<div class="popup-economic-summary">
         <div>
           <span>Pasajeros anuales estimados</span>
@@ -170,7 +171,7 @@ function popup(p){
         </div>
         ${p.beneficiada_ampliacion && Number.isFinite(annualSaving)
           ? `<div class="is-benefit">
-              <span>Beneficio anual estimado</span>
+              <span>Ahorro anual estimado</span>
               <strong>${fmtUsd(annualSaving)}</strong>
             </div>`
           : `<div>
@@ -181,33 +182,6 @@ function popup(p){
       </div>`
     : "";
 
-  const airlineDetail=airlines.length
-    ? `<div class="popup-airlines">
-        <h4>Detalle por aerolínea</h4>
-        ${airlines.slice(0,5).map(a=>{
-          const pax=Number(
-            a.pasajeros_anuales_estimados ??
-            a.pasajeros_anuales_proxy
-          );
-          const saving=Number(
-            a.ahorro_anual_estimado_usd ??
-            a.ahorro_anual_proxy_usd
-          );
-          return `<div class="airline-row">
-            <strong>${esc(a.aerolinea)}</strong>
-            ${Number.isFinite(pax) ? `<span>${fmt(pax)} pasajeros/año estimados</span>` : ""}
-            ${p.beneficiada_ampliacion && Number.isFinite(saving)
-              ? `<span class="airline-saving">${fmtUsd(saving)} de beneficio anual estimado</span>`
-              : ""}
-          </div>`;
-        }).join("")}
-      </div>`
-    : "";
-
-  const method=(p.periodo_pasajeros_desde&&p.periodo_pasajeros_hasta)
-    ? `<div class="popup-method">Estimación anual de pasajeros a partir del período detallado disponible, expandida a 52 semanas.</div>`
-    : "";
-
   return `
     <div class="popup-category ${cls}">${esc(p.categoria_tasa)}</div>
     <div class="popup-title">${esc(p.ruta)}</div>
@@ -216,7 +190,7 @@ function popup(p){
     <div class="popup-row"><span>Frecuencia típica</span><span>${fmt(p.frecuencia_semanal_mediana,1)} despegues/semana</span></div>
     <div class="popup-row">
       <span>Semanas con ≥3 frec.</span>
-      <span class="popup-week-share">${fmt(activeWeeks)} de ${fmt(totalWeeks)} · ${fmt(weekPct,0)}%</span>
+      <span class="popup-week-share">${Number.isFinite(weekPct) ? fmt(weekPct,0)+"%" : "–"}</span>
     </div>
     <div class="popup-row"><span>Tasa anterior</span><span>${esc(p.tasa_antes)}</span></div>
     <div class="popup-row"><span>Tasa actual</span><span>${esc(p.tasa_nueva)}</span></div>
@@ -226,9 +200,7 @@ function popup(p){
       <strong>${esc(airlineNames)}</strong>
     </div>
 
-    ${economicBlock}
-    ${airlineDetail}
-    ${method}
+    ${econ}
   `;
 }
 
@@ -328,6 +300,73 @@ function updateBenefitKpi(){
   }
 }
 
+
+function projectMercator(lon,lat){
+  const R=6378137;
+  const clamped=Math.max(-85.05112878,Math.min(85.05112878,lat));
+  return [
+    R*lon*Math.PI/180,
+    R*Math.log(Math.tan(Math.PI/4+(clamped*Math.PI/180)/2))
+  ];
+}
+
+function unprojectMercator(x,y){
+  const R=6378137;
+  return [
+    x/R*180/Math.PI,
+    (2*Math.atan(Math.exp(y/R))-Math.PI/2)*180/Math.PI
+  ];
+}
+
+function curveFactorFor(p){
+  if(CURVE_FACTORS[p.id]!==undefined) return CURVE_FACTORS[p.id];
+
+  // Curvatura suave para las rutas TUAI de contexto.
+  const id=String(p.id||p.ruta||"");
+  let hash=0;
+  for(let i=0;i<id.length;i++) hash=(hash+id.charCodeAt(i)*(i+1))%997;
+  const sign=(hash%2===0)?1:-1;
+  const mag=.055+(hash%4)*.012;
+  return sign*mag;
+}
+
+function curvedLatLngs(p){
+  const a=airportByIata.get(p.origen_iata);
+  const b=airportByIata.get(p.destino_iata);
+
+  if(!a||!b){
+    return [];
+  }
+
+  const [x1,y1]=projectMercator(a.lon,a.lat);
+  const [x2,y2]=projectMercator(b.lon,b.lat);
+  const dx=x2-x1,dy=y2-y1;
+  const len=Math.hypot(dx,dy);
+  if(!len) return [[a.lat,a.lon],[b.lat,b.lon]];
+
+  const factor=curveFactorFor(p);
+  const px=-dy/len,py=dx/len;
+
+  let offset=len*factor;
+  const maxOffset=p.categoria_tasa==="TUAI"?600000:420000;
+  offset=Math.max(-maxOffset,Math.min(maxOffset,offset));
+
+  const cx=(x1+x2)/2+px*offset;
+  const cy=(y1+y2)/2+py*offset;
+
+  const points=[];
+  const n=56;
+  for(let i=0;i<n;i++){
+    const t=i/(n-1);
+    const u=1-t;
+    const x=u*u*x1+2*u*t*cx+t*t*x2;
+    const y=u*u*y1+2*u*t*cy+t*t*y2;
+    const [lon,lat]=unprojectMercator(x,y);
+    points.push([lat,lon]);
+  }
+  return points;
+}
+
 function renderRoutes(){
   routeLayer.clearLayers();
   routeMarkers.clear();
@@ -342,19 +381,15 @@ function renderRoutes(){
   const ordered=[...visibleRoutes].sort((a,b)=>(b.properties.categoria_orden||9)-(a.properties.categoria_orden||9));
   for(const f of ordered){
     const p=f.properties;
-    const line=L.geoJSON(f,{style:routeStyle(p)}).bindPopup(popup(p),{maxWidth:410});
-    line.on("mouseover",e=>{
-      const layer=e.propagatedFrom||e.target;
-      if(layer?.setStyle){
-        const base=routeStyle(p);
-        layer.setStyle({...base,weight:base.weight+2,opacity:1});
-        layer.bringToFront();
-      }
+    const latlngs=curvedLatLngs(p);
+    if(!latlngs.length) continue;
+    const line=L.polyline(latlngs,routeStyle(p)).bindPopup(popup(p),{maxWidth:410});
+    line.on("mouseover",()=>{
+      const base=routeStyle(p);
+      line.setStyle({...base,weight:base.weight+2,opacity:1});
+      line.bringToFront();
     });
-    line.on("mouseout",e=>{
-      const layer=e.propagatedFrom||e.target;
-      if(layer?.setStyle) layer.setStyle(routeStyle(p));
-    });
+    line.on("mouseout",()=>line.setStyle(routeStyle(p)));
     line.addTo(routeLayer);
     routeMarkers.set(p.id,line);
   }
@@ -418,8 +453,9 @@ function fitTUAR(){
     return isTUAR && (!dom.origin.value || p.origen_iata===dom.origin.value);
   });
   if(!target.length) return;
-  const group=L.geoJSON({type:"FeatureCollection",features:target});
-  const b=group.getBounds();
+  const latlngs=target.flatMap(f=>curvedLatLngs(f.properties));
+  if(!latlngs.length) return;
+  const b=L.latLngBounds(latlngs);
   if(b.isValid()) map.fitBounds(b,{padding:[28,28],maxZoom:6});
 }
 
@@ -485,15 +521,33 @@ function bind(){
 
 async function init(){
   try{
-    const [rr,aa]=await Promise.all([
+    const [rr,aa,mm]=await Promise.all([
       fetch(ROUTES_URL,{cache:"no-store"}),
-      fetch(AIRPORTS_URL,{cache:"no-store"})
+      fetch(AIRPORTS_URL,{cache:"no-store"}),
+      fetch(METRICS_URL,{cache:"no-store"})
     ]);
-    if(!rr.ok||!aa.ok) throw new Error("No fue posible cargar los archivos GeoJSON.");
+    if(!rr.ok||!aa.ok||!mm.ok) throw new Error("No fue posible cargar los datos del mapa.");
     const rj=await rr.json();
     const aj=await aa.json();
+    const mj=await mm.json();
+
     routes=rj.features||[];
     airports=aj.features||[];
+
+    airportByIata=new Map(
+      airports
+        .filter(f=>f?.geometry?.type==="Point" && f?.properties?.iata)
+        .map(f=>[
+          f.properties.iata,
+          {lon:Number(f.geometry.coordinates[0]),lat:Number(f.geometry.coordinates[1])}
+        ])
+    );
+
+    const metricsByRoute=mj.rutas||{};
+    routes.forEach(f=>{
+      const m=metricsByRoute[f.properties?.id];
+      if(m) Object.assign(f.properties,m);
+    });
 
     buildOriginOptions();
     bind();
