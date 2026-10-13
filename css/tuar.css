@@ -159,7 +159,7 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
   min-width:0;
   padding:11px 14px 10px;
   color:#fff;
-  background:linear-gradient(105deg,rgba(11,31,51,.96),rgba(29,72,109,.94));
+  background: var(--new);
   border:1px solid rgba(255,255,255,.16);
   border-radius:11px;
   box-shadow:var(--shadow-md);
