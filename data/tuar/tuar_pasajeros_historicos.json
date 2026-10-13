@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "version": "20261013-9",
+    "titulo": "Pasajeros históricos · rutas incorporadas a la TUAR",
+    "fuente": "rutas regionales nuevas en años anteriores.csv",
+    "unidad": "pasajeros comerciales",
+    "regla_bue": "BUE = AEP + EZE",
+    "metodo_estimacion": "Promedio simple de los años con datos disponibles por ruta.",
+    "nota_faltantes": "— indica que no hay registro para esa ruta/año en la fuente recibida."
+  },
+  "anios": [
+    2019,
+    2023,
+    2024,
+    2025
+  ],
+  "rutas": [
+    {
+      "ruta": "BUE - POA",
+      "valores": {
+        "2019": 51233,
+        "2023": 32235,
+        "2024": 14719,
+        "2025": 32275
+      },
+      "promedio_anual": 32615.5,
+      "anios_con_dato": 4
+    },
+    {
+      "ruta": "BRC - SCL",
+      "valores": {
+        "2019": null,
+        "2023": 13505,
+        "2024": 17366,
+        "2025": 22609
+      },
+      "promedio_anual": 17826.7,
+      "anios_con_dato": 3
+    },
+    {
+      "ruta": "COR - ASU",
+      "valores": {
+        "2019": 26938,
+        "2023": 26862,
+        "2024": 3572,
+        "2025": 5168
+      },
+      "promedio_anual": 15635.0,
+      "anios_con_dato": 4
+    },
+    {
+      "ruta": "COR - SCL",
+      "valores": {
+        "2019": 90302,
+        "2023": 44816,
+        "2024": 46835,
+        "2025": 59773
+      },
+      "promedio_anual": 60431.5,
+      "anios_con_dato": 4
+    },
+    {
+      "ruta": "NQN - SCL",
+      "valores": {
+        "2019": 13659,
+        "2023": null,
+        "2024": null,
+        "2025": null
+      },
+      "promedio_anual": 13659.0,
+      "anios_con_dato": 1
+    }
+  ]
+}

@@ -1,12 +1,13 @@
 {
   "metadata": {
-    "version": "20261013-6",
+    "version": "20261013-9",
     "semanas_disponibles": 36,
     "periodo_frecuencias": "Semanas ISO 01–36 de 2026",
     "periodo_pasajeros_desde": "2026-01-01",
     "periodo_pasajeros_hasta": "2026-07-26",
     "metodo_pasajeros": "Pasajeros observados / semanas equivalentes observadas × 52",
-    "ahorro_unitario_usd": 31.84
+    "ahorro_unitario_usd": 31.84,
+    "metodo_pasajeros_nuevas_tuar": "Promedio simple de pasajeros de los años con datos disponibles en la tabla histórica; BUE agrupa AEP + EZE."
   },
   "rutas": {
     "AEP-CNF": {
@@ -339,10 +340,14 @@
           "ahorro_anual_estimado_usd": 10857
         }
       ],
-      "pasajeros_anuales_estimados": 1653,
+      "pasajeros_anuales_estimados": 15635,
       "periodo_pasajeros_desde": "2026-01-01",
       "periodo_pasajeros_hasta": "2026-07-26",
-      "ahorro_anual_estimado_usd": 52632
+      "ahorro_anual_estimado_usd": 497818,
+      "pasajeros_promedio_historico": 15635.0,
+      "base_estimacion_pasajeros": "promedio histórico",
+      "ruta_historica_base": "COR - ASU",
+      "anios_con_dato_promedio": 4
     },
     "EZE-BPS": {
       "semanas_totales_disponibles": 36,
@@ -460,10 +465,14 @@
           "ahorro_anual_estimado_usd": 31394
         }
       ],
-      "pasajeros_anuales_estimados": 12146,
+      "pasajeros_anuales_estimados": 17827,
       "periodo_pasajeros_desde": "2026-01-01",
       "periodo_pasajeros_hasta": "2026-07-26",
-      "ahorro_anual_estimado_usd": 386729
+      "ahorro_anual_estimado_usd": 567601,
+      "pasajeros_promedio_historico": 17826.7,
+      "base_estimacion_pasajeros": "promedio histórico",
+      "ruta_historica_base": "BRC - SCL",
+      "anios_con_dato_promedio": 3
     },
     "EZE-SDQ": {
       "semanas_totales_disponibles": 36,
@@ -1109,10 +1118,14 @@
           "ahorro_anual_estimado_usd": 307479
         }
       ],
-      "pasajeros_anuales_estimados": 9657,
+      "pasajeros_anuales_estimados": 13659,
       "periodo_pasajeros_desde": "2026-01-01",
       "periodo_pasajeros_hasta": "2026-07-26",
-      "ahorro_anual_estimado_usd": 307479
+      "ahorro_anual_estimado_usd": 434903,
+      "pasajeros_promedio_historico": 13659.0,
+      "base_estimacion_pasajeros": "promedio histórico",
+      "ruta_historica_base": "NQN - SCL",
+      "anios_con_dato_promedio": 1
     },
     "AEP-CFB": {
       "semanas_totales_disponibles": 36,
@@ -1567,10 +1580,14 @@
           "ahorro_anual_estimado_usd": 149552
         }
       ],
-      "pasajeros_anuales_estimados": 51204,
+      "pasajeros_anuales_estimados": 32616,
       "periodo_pasajeros_desde": "2026-01-01",
       "periodo_pasajeros_hasta": "2026-07-26",
-      "ahorro_anual_estimado_usd": 1630335
+      "ahorro_anual_estimado_usd": 1038478,
+      "pasajeros_promedio_historico": 32615.5,
+      "base_estimacion_pasajeros": "promedio histórico",
+      "ruta_historica_base": "BUE - POA",
+      "anios_con_dato_promedio": 4
     },
     "EZE-PUJ": {
       "semanas_totales_disponibles": 36,
@@ -1817,10 +1834,14 @@
           "ahorro_anual_estimado_usd": 4521
         }
       ],
-      "pasajeros_anuales_estimados": 51714,
+      "pasajeros_anuales_estimados": 60432,
       "periodo_pasajeros_desde": "2026-01-01",
       "periodo_pasajeros_hasta": "2026-07-26",
-      "ahorro_anual_estimado_usd": 1646574
+      "ahorro_anual_estimado_usd": 1924139,
+      "pasajeros_promedio_historico": 60431.5,
+      "base_estimacion_pasajeros": "promedio histórico",
+      "ruta_historica_base": "COR - SCL",
+      "anios_con_dato_promedio": 4
     },
     "EZE-NAT": {
       "semanas_totales_disponibles": 36,
