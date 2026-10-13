@@ -6,7 +6,7 @@
       "type": "Feature",
       "properties": {
         "iata": "AEP",
-        "ciudad": "Barrio de Palermo",
+        "ciudad": "Aeroparque",
         "pais": "AR",
         "oaci": "SABE",
         "categorias_rutas": [
