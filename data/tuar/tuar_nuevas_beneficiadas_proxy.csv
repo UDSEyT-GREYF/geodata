@@ -1,0 +1,7 @@
+﻿ruta,distancia_km,pasajeros_promedio_semana,pasajeros_anuales_proxy,ahorro_anual_proxy_usd,aerolineas
+AEP - PDP,306.0,1072.6,55775,1775865,"Aerolíneas Argentinas, Gol Transportes Aéreos, Flybondi, Andes Líneas Aéreas"
+AEP - POA,850.0,984.7,51204,1630349,"Aerolíneas Argentinas, TAM Linhas Aéreas, Gol Transportes Aéreos"
+BRC - SCL,864.0,233.6,12146,386717,"Sky Airline, Andes Líneas Aéreas"
+COR - ASU,942.0,31.8,1653,52630,"Flybondi, Amaszonas"
+COR - SCL,660.0,994.5,51714,1646586,"LATAM, Sky Airline, Aerolíneas Argentinas"
+NQN - SCL,662.0,185.7,9657,307493,LATAM

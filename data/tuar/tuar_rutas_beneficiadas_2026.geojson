@@ -19,7 +19,19 @@
       "RutasInter2026.csv",
       "geodata/fuentes/ourairports.csv",
       "geodata/fuentes/Datos_aeropuertos.geojson"
-    ]
+    ],
+    "estimacion_pasajeros_anual": {
+      "fuente": "RutasInter2026.csv",
+      "periodo_disponible": "2026-01-01 a 2026-07-26",
+      "dias_observados": 207,
+      "semanas_equivalentes": 29.571,
+      "formula": "pasajeros observados / semanas equivalentes × 52",
+      "ahorro_unitario_usd": 31.84,
+      "advertencia": "Estimación preliminar construida con el período detallado disponible; se extrapola a 52 semanas.",
+      "tipo": "estimación anual"
+    },
+    "semanas_datos_disponibles": 36,
+    "semanas_datos_etiqueta": "Semanas ISO 01–36 de 2026"
   },
   "features": [
     {
@@ -50,7 +62,74 @@
         "ahorro_usd_tramo": 0.0,
         "tuar_usd": 25.16,
         "tuai_usd": 57.0,
-        "periodo": "enero-agosto 2026"
+        "periodo": "enero-agosto 2026",
+        "aerolineas": [
+          {
+            "aerolinea": "Aerolíneas Argentinas",
+            "vuelos_observados": 511,
+            "pasajeros_observados": 45312,
+            "pasajeros_promedio_semana": 1532.3,
+            "pasajeros_anuales_proxy": 79679,
+            "ahorro_anual_proxy_usd": 0,
+            "pasajeros_anuales_estimados": 79679,
+            "ahorro_anual_estimado_usd": 0
+          },
+          {
+            "aerolinea": "Copa Airlines",
+            "vuelos_observados": 1,
+            "pasajeros_observados": 157,
+            "pasajeros_promedio_semana": 5.3,
+            "pasajeros_anuales_proxy": 276,
+            "ahorro_anual_proxy_usd": 0,
+            "pasajeros_anuales_estimados": 276,
+            "ahorro_anual_estimado_usd": 0
+          },
+          {
+            "aerolinea": "LATAM Perú",
+            "vuelos_observados": 1,
+            "pasajeros_observados": 149,
+            "pasajeros_promedio_semana": 5.0,
+            "pasajeros_anuales_proxy": 262,
+            "ahorro_anual_proxy_usd": 0,
+            "pasajeros_anuales_estimados": 262,
+            "ahorro_anual_estimado_usd": 0
+          },
+          {
+            "aerolinea": "Paranair",
+            "vuelos_observados": 1,
+            "pasajeros_observados": 50,
+            "pasajeros_promedio_semana": 1.7,
+            "pasajeros_anuales_proxy": 88,
+            "ahorro_anual_proxy_usd": 0,
+            "pasajeros_anuales_estimados": 88,
+            "ahorro_anual_estimado_usd": 0
+          },
+          {
+            "aerolinea": "American Jet",
+            "vuelos_observados": 1,
+            "pasajeros_observados": 45,
+            "pasajeros_promedio_semana": 1.5,
+            "pasajeros_anuales_proxy": 79,
+            "ahorro_anual_proxy_usd": 0,
+            "pasajeros_anuales_estimados": 79,
+            "ahorro_anual_estimado_usd": 0
+          }
+        ],
+        "aerolineas_cantidad": 5,
+        "vuelos_observados_pax": 515,
+        "pasajeros_observados": 45713,
+        "pasajeros_promedio_semana": 1545.9,
+        "pasajeros_anuales_proxy": 80384,
+        "ahorro_anual_proxy_usd": 0,
+        "periodo_pasajeros_desde": "2026-01-01",
+        "periodo_pasajeros_hasta": "2026-07-26",
+        "semanas_equivalentes_observadas": 29.571,
+        "metodo_proxy_pasajeros": "Pasajeros observados / semanas equivalentes del período detallado × 52",
+        "pasajeros_anuales_estimados": 80384,
+        "ahorro_anual_estimado_usd": 0,
+        "curvatura_mapa": -0.16,
+        "semanas_totales_disponibles": 36,
+        "porcentaje_semanas_frecuencia_ge3": 100.0
       },
       "geometry": {
         "type": "LineString",
@@ -60,220 +139,252 @@
             -34.560586
           ],
           [
-            -58.370166,
-            -34.566001
+            -58.377204,
+            -34.574784
           ],
           [
-            -58.326906,
-            -34.571401
+            -58.340934,
+            -34.588663
           ],
           [
-            -58.283642,
-            -34.576786
+            -58.304611,
+            -34.602223
           ],
           [
-            -58.240371,
-            -34.582156
+            -58.268234,
+            -34.615463
           ],
           [
-            -58.197095,
-            -34.58751
+            -58.231803,
+            -34.628385
           ],
           [
-            -58.153814,
-            -34.592849
+            -58.195318,
+            -34.640988
           ],
           [
-            -58.110527,
-            -34.598173
+            -58.158779,
+            -34.653273
           ],
           [
-            -58.067234,
-            -34.603481
+            -58.122186,
+            -34.665239
           ],
           [
-            -58.023936,
-            -34.608774
+            -58.085539,
+            -34.676887
           ],
           [
-            -57.980633,
-            -34.614052
+            -58.048839,
+            -34.688217
           ],
           [
-            -57.937323,
-            -34.619315
+            -58.012084,
+            -34.699229
           ],
           [
-            -57.894009,
-            -34.624562
+            -57.975275,
+            -34.709923
           ],
           [
-            -57.850689,
-            -34.629794
+            -57.938412,
+            -34.7203
           ],
           [
-            -57.807363,
-            -34.635011
+            -57.901496,
+            -34.730358
           ],
           [
-            -57.764032,
-            -34.640212
+            -57.864525,
+            -34.7401
           ],
           [
-            -57.720696,
-            -34.645398
+            -57.827501,
+            -34.749523
           ],
           [
-            -57.677354,
-            -34.650569
+            -57.790422,
+            -34.75863
           ],
           [
-            -57.634007,
-            -34.655724
+            -57.75329,
+            -34.767419
           ],
           [
-            -57.590654,
-            -34.660864
+            -57.716104,
+            -34.775891
           ],
           [
-            -57.547296,
-            -34.665989
+            -57.678863,
+            -34.784047
           ],
           [
-            -57.503933,
-            -34.671098
+            -57.641569,
+            -34.791885
           ],
           [
-            -57.460564,
-            -34.676192
+            -57.604221,
+            -34.799407
           ],
           [
-            -57.41719,
-            -34.681271
+            -57.566819,
+            -34.806612
           ],
           [
-            -57.373811,
-            -34.686334
+            -57.529363,
+            -34.8135
           ],
           [
-            -57.330426,
-            -34.691382
+            -57.491853,
+            -34.820072
           ],
           [
-            -57.287037,
-            -34.696414
+            -57.454289,
+            -34.826327
           ],
           [
-            -57.243641,
-            -34.701431
+            -57.416671,
+            -34.832266
           ],
           [
-            -57.200241,
-            -34.706433
+            -57.378999,
+            -34.837888
           ],
           [
-            -57.156835,
-            -34.71142
+            -57.341273,
+            -34.843194
           ],
           [
-            -57.113424,
-            -34.71639
+            -57.303493,
+            -34.848184
           ],
           [
-            -57.070008,
-            -34.721346
+            -57.26566,
+            -34.852858
           ],
           [
-            -57.026587,
-            -34.726286
+            -57.227772,
+            -34.857216
           ],
           [
-            -56.983161,
-            -34.731211
+            -57.189831,
+            -34.861258
           ],
           [
-            -56.939729,
-            -34.73612
+            -57.151835,
+            -34.864983
           ],
           [
-            -56.896292,
-            -34.741014
+            -57.113785,
+            -34.868393
           ],
           [
-            -56.85285,
-            -34.745892
+            -57.075682,
+            -34.871487
           ],
           [
-            -56.809403,
-            -34.750756
+            -57.037525,
+            -34.874265
           ],
           [
-            -56.765951,
-            -34.755603
+            -56.999313,
+            -34.876727
           ],
           [
-            -56.722494,
-            -34.760435
+            -56.961048,
+            -34.878873
           ],
           [
-            -56.679031,
-            -34.765252
+            -56.922729,
+            -34.880704
           ],
           [
-            -56.635564,
-            -34.770053
+            -56.884356,
+            -34.882219
           ],
           [
-            -56.592092,
-            -34.774839
+            -56.845928,
+            -34.883417
           ],
           [
-            -56.548614,
-            -34.77961
+            -56.807447,
+            -34.884301
           ],
           [
-            -56.505132,
-            -34.784364
+            -56.768912,
+            -34.884868
           ],
           [
-            -56.461644,
-            -34.789104
+            -56.730323,
+            -34.88512
           ],
           [
-            -56.418152,
-            -34.793828
+            -56.691681,
+            -34.885056
           ],
           [
-            -56.374654,
-            -34.798536
+            -56.652984,
+            -34.884676
           ],
           [
-            -56.331152,
-            -34.803229
+            -56.614233,
+            -34.883981
           ],
           [
-            -56.287644,
-            -34.807907
+            -56.575428,
+            -34.882969
           ],
           [
-            -56.244132,
-            -34.812569
+            -56.536569,
+            -34.881643
           ],
           [
-            -56.200615,
-            -34.817216
+            -56.497657,
+            -34.88
           ],
           [
-            -56.157093,
-            -34.821847
+            -56.45869,
+            -34.878041
           ],
           [
-            -56.113566,
-            -34.826462
+            -56.41967,
+            -34.875767
           ],
           [
-            -56.070034,
-            -34.831062
+            -56.380595,
+            -34.873177
+          ],
+          [
+            -56.341467,
+            -34.870271
+          ],
+          [
+            -56.302284,
+            -34.867049
+          ],
+          [
+            -56.263048,
+            -34.863511
+          ],
+          [
+            -56.223758,
+            -34.859657
+          ],
+          [
+            -56.184413,
+            -34.855488
+          ],
+          [
+            -56.145015,
+            -34.851002
+          ],
+          [
+            -56.105563,
+            -34.8462
+          ],
+          [
+            -56.066057,
+            -34.841081
           ],
           [
             -56.026497,
@@ -310,7 +421,104 @@
         "ahorro_usd_tramo": 0.0,
         "tuar_usd": 25.16,
         "tuai_usd": 57.0,
-        "periodo": "enero-agosto 2026"
+        "periodo": "enero-agosto 2026",
+        "aerolineas": [
+          {
+            "aerolinea": "Copa Airlines",
+            "vuelos_observados": 9,
+            "pasajeros_observados": 1176,
+            "pasajeros_promedio_semana": 39.8,
+            "pasajeros_anuales_proxy": 2068,
+            "ahorro_anual_proxy_usd": 0,
+            "pasajeros_anuales_estimados": 2068,
+            "ahorro_anual_estimado_usd": 0
+          },
+          {
+            "aerolinea": "Air Europa",
+            "vuelos_observados": 3,
+            "pasajeros_observados": 899,
+            "pasajeros_promedio_semana": 30.4,
+            "pasajeros_anuales_proxy": 1581,
+            "ahorro_anual_proxy_usd": 0,
+            "pasajeros_anuales_estimados": 1581,
+            "ahorro_anual_estimado_usd": 0
+          },
+          {
+            "aerolinea": "Avianca",
+            "vuelos_observados": 2,
+            "pasajeros_observados": 327,
+            "pasajeros_promedio_semana": 11.1,
+            "pasajeros_anuales_proxy": 575,
+            "ahorro_anual_proxy_usd": 0,
+            "pasajeros_anuales_estimados": 575,
+            "ahorro_anual_estimado_usd": 0
+          },
+          {
+            "aerolinea": "LATAM Perú",
+            "vuelos_observados": 2,
+            "pasajeros_observados": 224,
+            "pasajeros_promedio_semana": 7.6,
+            "pasajeros_anuales_proxy": 394,
+            "ahorro_anual_proxy_usd": 0,
+            "pasajeros_anuales_estimados": 394,
+            "ahorro_anual_estimado_usd": 0
+          },
+          {
+            "aerolinea": "Sky Airline",
+            "vuelos_observados": 2,
+            "pasajeros_observados": 196,
+            "pasajeros_promedio_semana": 6.6,
+            "pasajeros_anuales_proxy": 345,
+            "ahorro_anual_proxy_usd": 0,
+            "pasajeros_anuales_estimados": 345,
+            "ahorro_anual_estimado_usd": 0
+          },
+          {
+            "aerolinea": "Aerolíneas Argentinas",
+            "vuelos_observados": 2,
+            "pasajeros_observados": 174,
+            "pasajeros_promedio_semana": 5.9,
+            "pasajeros_anuales_proxy": 306,
+            "ahorro_anual_proxy_usd": 0,
+            "pasajeros_anuales_estimados": 306,
+            "ahorro_anual_estimado_usd": 0
+          },
+          {
+            "aerolinea": "LATAM",
+            "vuelos_observados": 1,
+            "pasajeros_observados": 71,
+            "pasajeros_promedio_semana": 2.4,
+            "pasajeros_anuales_proxy": 125,
+            "ahorro_anual_proxy_usd": 0,
+            "pasajeros_anuales_estimados": 125,
+            "ahorro_anual_estimado_usd": 0
+          },
+          {
+            "aerolinea": "American Jet",
+            "vuelos_observados": 1,
+            "pasajeros_observados": 50,
+            "pasajeros_promedio_semana": 1.7,
+            "pasajeros_anuales_proxy": 88,
+            "ahorro_anual_proxy_usd": 0,
+            "pasajeros_anuales_estimados": 88,
+            "ahorro_anual_estimado_usd": 0
+          }
+        ],
+        "aerolineas_cantidad": 8,
+        "vuelos_observados_pax": 22,
+        "pasajeros_observados": 3117,
+        "pasajeros_promedio_semana": 105.4,
+        "pasajeros_anuales_proxy": 5481,
+        "ahorro_anual_proxy_usd": 0,
+        "periodo_pasajeros_desde": "2026-01-01",
+        "periodo_pasajeros_hasta": "2026-07-26",
+        "semanas_equivalentes_observadas": 29.571,
+        "metodo_proxy_pasajeros": "Pasajeros observados / semanas equivalentes del período detallado × 52",
+        "pasajeros_anuales_estimados": 5481,
+        "ahorro_anual_estimado_usd": 0,
+        "curvatura_mapa": 0.13,
+        "semanas_totales_disponibles": 36,
+        "porcentaje_semanas_frecuencia_ge3": 41.7
       },
       "geometry": {
         "type": "LineString",
@@ -320,220 +528,252 @@
             -34.812287
           ],
           [
-            -58.496734,
-            -34.813174
+            -58.50241,
+            -34.804268
           ],
           [
-            -58.451006,
-            -34.814044
+            -58.462363,
+            -34.796518
           ],
           [
-            -58.405276,
-            -34.814897
+            -58.422319,
+            -34.789039
           ],
           [
-            -58.359546,
-            -34.815732
+            -58.382278,
+            -34.78183
           ],
           [
-            -58.313815,
-            -34.816551
+            -58.342242,
+            -34.774891
           ],
           [
-            -58.268082,
-            -34.817352
+            -58.302209,
+            -34.768222
           ],
           [
-            -58.222349,
-            -34.818137
+            -58.26218,
+            -34.761823
           ],
           [
-            -58.176615,
-            -34.818904
+            -58.222154,
+            -34.755695
           ],
           [
-            -58.13088,
-            -34.819654
+            -58.182132,
+            -34.749837
           ],
           [
-            -58.085145,
-            -34.820387
+            -58.142115,
+            -34.744249
           ],
           [
-            -58.039408,
-            -34.821103
+            -58.1021,
+            -34.738932
           ],
           [
-            -57.993671,
-            -34.821801
+            -58.06209,
+            -34.733886
           ],
           [
-            -57.947933,
-            -34.822483
+            -58.022083,
+            -34.72911
           ],
           [
-            -57.902194,
-            -34.823147
+            -57.98208,
+            -34.724604
           ],
           [
-            -57.856455,
-            -34.823795
+            -57.942081,
+            -34.72037
           ],
           [
-            -57.810715,
-            -34.824425
+            -57.902085,
+            -34.716406
           ],
           [
-            -57.764974,
-            -34.825038
+            -57.862093,
+            -34.712713
           ],
           [
-            -57.719232,
-            -34.825634
+            -57.822105,
+            -34.709291
           ],
           [
-            -57.67349,
-            -34.826213
+            -57.782121,
+            -34.706139
           ],
           [
-            -57.627747,
-            -34.826775
+            -57.74214,
+            -34.703259
           ],
           [
-            -57.582004,
-            -34.827319
+            -57.702163,
+            -34.700649
           ],
           [
-            -57.53626,
-            -34.827847
+            -57.66219,
+            -34.69831
           ],
           [
-            -57.490515,
-            -34.828357
+            -57.62222,
+            -34.696243
           ],
           [
-            -57.44477,
-            -34.82885
+            -57.582254,
+            -34.694446
           ],
           [
-            -57.399024,
-            -34.829327
+            -57.542292,
+            -34.69292
           ],
           [
-            -57.353278,
-            -34.829786
+            -57.502334,
+            -34.691665
           ],
           [
-            -57.307531,
-            -34.830227
+            -57.462379,
+            -34.690682
           ],
           [
-            -57.261784,
-            -34.830652
+            -57.422429,
+            -34.689969
           ],
           [
-            -57.216037,
-            -34.83106
+            -57.382481,
+            -34.689527
           ],
           [
-            -57.170288,
-            -34.83145
+            -57.342538,
+            -34.689356
           ],
           [
-            -57.12454,
-            -34.831824
+            -57.302598,
+            -34.689457
           ],
           [
-            -57.078791,
-            -34.83218
+            -57.262662,
+            -34.689828
           ],
           [
-            -57.033042,
-            -34.832519
+            -57.22273,
+            -34.690471
           ],
           [
-            -56.987292,
-            -34.832841
+            -57.182802,
+            -34.691384
           ],
           [
-            -56.941542,
-            -34.833146
+            -57.142877,
+            -34.692569
           ],
           [
-            -56.895791,
-            -34.833434
+            -57.102956,
+            -34.694024
           ],
           [
-            -56.850041,
-            -34.833705
+            -57.063038,
+            -34.695751
           ],
           [
-            -56.80429,
-            -34.833958
+            -57.023125,
+            -34.697748
           ],
           [
-            -56.758539,
-            -34.834194
+            -56.983215,
+            -34.700016
           ],
           [
-            -56.712787,
-            -34.834414
+            -56.943309,
+            -34.702556
           ],
           [
-            -56.667035,
-            -34.834616
+            -56.903407,
+            -34.705366
           ],
           [
-            -56.621283,
-            -34.834801
+            -56.863508,
+            -34.708447
           ],
           [
-            -56.575531,
-            -34.834969
+            -56.823613,
+            -34.711799
           ],
           [
-            -56.529779,
-            -34.835119
+            -56.783722,
+            -34.715422
           ],
           [
-            -56.484026,
-            -34.835253
+            -56.743834,
+            -34.719315
           ],
           [
-            -56.438274,
-            -34.83537
+            -56.70395,
+            -34.72348
           ],
           [
-            -56.392521,
-            -34.835469
+            -56.66407,
+            -34.727915
           ],
           [
-            -56.346768,
-            -34.835551
+            -56.624194,
+            -34.732621
           ],
           [
-            -56.301015,
-            -34.835616
+            -56.584322,
+            -34.737597
           ],
           [
-            -56.255262,
-            -34.835664
+            -56.544453,
+            -34.742844
           ],
           [
-            -56.209509,
-            -34.835695
+            -56.504588,
+            -34.748361
           ],
           [
-            -56.163756,
-            -34.835709
+            -56.464726,
+            -34.754149
           ],
           [
-            -56.118003,
-            -34.835705
+            -56.424869,
+            -34.760207
           ],
           [
-            -56.07225,
-            -34.835685
+            -56.385015,
+            -34.766536
+          ],
+          [
+            -56.345164,
+            -34.773135
+          ],
+          [
+            -56.305318,
+            -34.780004
+          ],
+          [
+            -56.265475,
+            -34.787143
+          ],
+          [
+            -56.225636,
+            -34.794552
+          ],
+          [
+            -56.185801,
+            -34.802231
+          ],
+          [
+            -56.145969,
+            -34.810181
+          ],
+          [
+            -56.106141,
+            -34.8184
+          ],
+          [
+            -56.066317,
+            -34.826888
           ],
           [
             -56.026497,
@@ -570,7 +810,84 @@
         "ahorro_usd_tramo": 0.0,
         "tuar_usd": 25.16,
         "tuai_usd": 57.0,
-        "periodo": "enero-agosto 2026"
+        "periodo": "enero-agosto 2026",
+        "aerolineas": [
+          {
+            "aerolinea": "LATAM",
+            "vuelos_observados": 334,
+            "pasajeros_observados": 50531,
+            "pasajeros_promedio_semana": 1708.8,
+            "pasajeros_anuales_proxy": 88856,
+            "ahorro_anual_proxy_usd": 0,
+            "pasajeros_anuales_estimados": 88856,
+            "ahorro_anual_estimado_usd": 0
+          },
+          {
+            "aerolinea": "Sky Airline",
+            "vuelos_observados": 282,
+            "pasajeros_observados": 33275,
+            "pasajeros_promedio_semana": 1125.2,
+            "pasajeros_anuales_proxy": 58513,
+            "ahorro_anual_proxy_usd": 0,
+            "pasajeros_anuales_estimados": 58513,
+            "ahorro_anual_estimado_usd": 0
+          },
+          {
+            "aerolinea": "JetSMART Airlines",
+            "vuelos_observados": 168,
+            "pasajeros_observados": 22192,
+            "pasajeros_promedio_semana": 750.5,
+            "pasajeros_anuales_proxy": 39024,
+            "ahorro_anual_proxy_usd": 0,
+            "pasajeros_anuales_estimados": 39024,
+            "ahorro_anual_estimado_usd": 0
+          },
+          {
+            "aerolinea": "Copa Airlines",
+            "vuelos_observados": 1,
+            "pasajeros_observados": 154,
+            "pasajeros_promedio_semana": 5.2,
+            "pasajeros_anuales_proxy": 271,
+            "ahorro_anual_proxy_usd": 0,
+            "pasajeros_anuales_estimados": 271,
+            "ahorro_anual_estimado_usd": 0
+          },
+          {
+            "aerolinea": "LATAM Perú",
+            "vuelos_observados": 1,
+            "pasajeros_observados": 146,
+            "pasajeros_promedio_semana": 4.9,
+            "pasajeros_anuales_proxy": 257,
+            "ahorro_anual_proxy_usd": 0,
+            "pasajeros_anuales_estimados": 257,
+            "ahorro_anual_estimado_usd": 0
+          },
+          {
+            "aerolinea": "Aerovías DAP",
+            "vuelos_observados": 1,
+            "pasajeros_observados": 69,
+            "pasajeros_promedio_semana": 2.3,
+            "pasajeros_anuales_proxy": 121,
+            "ahorro_anual_proxy_usd": 0,
+            "pasajeros_anuales_estimados": 121,
+            "ahorro_anual_estimado_usd": 0
+          }
+        ],
+        "aerolineas_cantidad": 6,
+        "vuelos_observados_pax": 787,
+        "pasajeros_observados": 106367,
+        "pasajeros_promedio_semana": 3597.0,
+        "pasajeros_anuales_proxy": 187041,
+        "ahorro_anual_proxy_usd": 0,
+        "periodo_pasajeros_desde": "2026-01-01",
+        "periodo_pasajeros_hasta": "2026-07-26",
+        "semanas_equivalentes_observadas": 29.571,
+        "metodo_proxy_pasajeros": "Pasajeros observados / semanas equivalentes del período detallado × 52",
+        "pasajeros_anuales_estimados": 187041,
+        "ahorro_anual_estimado_usd": 0,
+        "curvatura_mapa": -0.27,
+        "semanas_totales_disponibles": 36,
+        "porcentaje_semanas_frecuencia_ge3": 100.0
       },
       "geometry": {
         "type": "LineString",
@@ -580,220 +897,252 @@
             -32.830403
           ],
           [
-            -68.82985,
-            -32.840913
+            -68.831145,
+            -32.825243
           ],
           [
-            -68.865847,
-            -32.851413
+            -68.868246,
+            -32.820537
           ],
           [
-            -68.901852,
-            -32.861903
+            -68.905164,
+            -32.816287
           ],
           [
-            -68.937866,
-            -32.872382
+            -68.9419,
+            -32.812493
           ],
           [
-            -68.973889,
-            -32.882852
+            -68.978453,
+            -32.809154
           ],
           [
-            -69.00992,
-            -32.89331
+            -69.014823,
+            -32.80627
           ],
           [
-            -69.045959,
-            -32.903759
+            -69.05101,
+            -32.803842
           ],
           [
-            -69.082007,
-            -32.914197
+            -69.087015,
+            -32.801869
           ],
           [
-            -69.118064,
-            -32.924625
+            -69.122836,
+            -32.800352
           ],
           [
-            -69.154129,
-            -32.935042
+            -69.158475,
+            -32.79929
           ],
           [
-            -69.190203,
-            -32.945449
+            -69.193932,
+            -32.798684
           ],
           [
-            -69.226285,
-            -32.955846
+            -69.229205,
+            -32.798534
           ],
           [
-            -69.262375,
-            -32.966232
+            -69.264296,
+            -32.798839
           ],
           [
-            -69.298474,
-            -32.976608
+            -69.299203,
+            -32.7996
           ],
           [
-            -69.334582,
-            -32.986973
+            -69.333929,
+            -32.800816
           ],
           [
-            -69.370698,
-            -32.997329
+            -69.368471,
+            -32.802488
           ],
           [
-            -69.406822,
-            -33.007673
+            -69.402831,
+            -32.804616
           ],
           [
-            -69.442955,
-            -33.018008
+            -69.437007,
+            -32.807199
           ],
           [
-            -69.479096,
-            -33.028331
+            -69.471001,
+            -32.810237
           ],
           [
-            -69.515246,
-            -33.038645
+            -69.504813,
+            -32.813731
           ],
           [
-            -69.551405,
-            -33.048948
+            -69.538441,
+            -32.817681
           ],
           [
-            -69.587571,
-            -33.059241
+            -69.571887,
+            -32.822086
           ],
           [
-            -69.623747,
-            -33.069523
+            -69.60515,
+            -32.826946
           ],
           [
-            -69.65993,
-            -33.079795
+            -69.63823,
+            -32.832261
           ],
           [
-            -69.696122,
-            -33.090056
+            -69.671127,
+            -32.838031
           ],
           [
-            -69.732323,
-            -33.100307
+            -69.703842,
+            -32.844256
           ],
           [
-            -69.768532,
-            -33.110547
+            -69.736374,
+            -32.850936
           ],
           [
-            -69.804749,
-            -33.120777
+            -69.768723,
+            -32.858071
           ],
           [
-            -69.840975,
-            -33.130996
+            -69.800889,
+            -32.865661
           ],
           [
-            -69.87721,
-            -33.141205
+            -69.832873,
+            -32.873705
           ],
           [
-            -69.913452,
-            -33.151404
+            -69.864674,
+            -32.882204
           ],
           [
-            -69.949704,
-            -33.161592
+            -69.896292,
+            -32.891157
           ],
           [
-            -69.985963,
-            -33.171769
+            -69.927727,
+            -32.900564
           ],
           [
-            -70.022231,
-            -33.181936
+            -69.95898,
+            -32.910425
           ],
           [
-            -70.058508,
-            -33.192092
+            -69.990049,
+            -32.92074
           ],
           [
-            -70.094792,
-            -33.202238
+            -70.020936,
+            -32.931509
           ],
           [
-            -70.131086,
-            -33.212374
+            -70.05164,
+            -32.942732
           ],
           [
-            -70.167387,
-            -33.222498
+            -70.082162,
+            -32.954407
           ],
           [
-            -70.203697,
-            -33.232613
+            -70.112501,
+            -32.966537
           ],
           [
-            -70.240016,
-            -33.242716
+            -70.142656,
+            -32.979119
           ],
           [
-            -70.276343,
-            -33.25281
+            -70.172629,
+            -32.992153
           ],
           [
-            -70.312678,
-            -33.262892
+            -70.20242,
+            -33.005641
           ],
           [
-            -70.349021,
-            -33.272964
+            -70.232027,
+            -33.019581
           ],
           [
-            -70.385373,
-            -33.283026
+            -70.261452,
+            -33.033973
           ],
           [
-            -70.421734,
-            -33.293076
+            -70.290694,
+            -33.048817
           ],
           [
-            -70.458102,
-            -33.303117
+            -70.319753,
+            -33.064113
           ],
           [
-            -70.494479,
-            -33.313146
+            -70.34863,
+            -33.07986
           ],
           [
-            -70.530865,
-            -33.323165
+            -70.377324,
+            -33.096059
           ],
           [
-            -70.567259,
-            -33.333174
+            -70.405835,
+            -33.112709
           ],
           [
-            -70.603661,
-            -33.343172
+            -70.434163,
+            -33.129809
           ],
           [
-            -70.640071,
-            -33.353159
+            -70.462308,
+            -33.14736
           ],
           [
-            -70.67649,
-            -33.363136
+            -70.490271,
+            -33.165361
           ],
           [
-            -70.712918,
-            -33.373102
+            -70.518051,
+            -33.183812
           ],
           [
-            -70.749353,
-            -33.383057
+            -70.545648,
+            -33.202713
+          ],
+          [
+            -70.573062,
+            -33.222063
+          ],
+          [
+            -70.600294,
+            -33.241862
+          ],
+          [
+            -70.627342,
+            -33.26211
+          ],
+          [
+            -70.654208,
+            -33.282806
+          ],
+          [
+            -70.680892,
+            -33.30395
+          ],
+          [
+            -70.707392,
+            -33.325542
+          ],
+          [
+            -70.73371,
+            -33.347582
+          ],
+          [
+            -70.759845,
+            -33.370069
           ],
           [
             -70.785797,
@@ -830,7 +1179,64 @@
         "ahorro_usd_tramo": 31.84,
         "tuar_usd": 25.16,
         "tuai_usd": 57.0,
-        "periodo": "enero-agosto 2026"
+        "periodo": "enero-agosto 2026",
+        "aerolineas": [
+          {
+            "aerolinea": "Aerolíneas Argentinas",
+            "vuelos_observados": 344,
+            "pasajeros_observados": 29772,
+            "pasajeros_promedio_semana": 1006.8,
+            "pasajeros_anuales_proxy": 52353,
+            "ahorro_anual_proxy_usd": 1666910,
+            "pasajeros_anuales_estimados": 52353,
+            "ahorro_anual_estimado_usd": 1666910
+          },
+          {
+            "aerolinea": "Gol Transportes Aéreos",
+            "vuelos_observados": 11,
+            "pasajeros_observados": 1648,
+            "pasajeros_promedio_semana": 55.7,
+            "pasajeros_anuales_proxy": 2898,
+            "ahorro_anual_proxy_usd": 92270,
+            "pasajeros_anuales_estimados": 2898,
+            "ahorro_anual_estimado_usd": 92270
+          },
+          {
+            "aerolinea": "Flybondi",
+            "vuelos_observados": 1,
+            "pasajeros_observados": 189,
+            "pasajeros_promedio_semana": 6.4,
+            "pasajeros_anuales_proxy": 332,
+            "ahorro_anual_proxy_usd": 10582,
+            "pasajeros_anuales_estimados": 332,
+            "ahorro_anual_estimado_usd": 10582
+          },
+          {
+            "aerolinea": "Andes Líneas Aéreas",
+            "vuelos_observados": 1,
+            "pasajeros_observados": 109,
+            "pasajeros_promedio_semana": 3.7,
+            "pasajeros_anuales_proxy": 192,
+            "ahorro_anual_proxy_usd": 6103,
+            "pasajeros_anuales_estimados": 192,
+            "ahorro_anual_estimado_usd": 6103
+          }
+        ],
+        "aerolineas_cantidad": 4,
+        "vuelos_observados_pax": 357,
+        "pasajeros_observados": 31718,
+        "pasajeros_promedio_semana": 1072.6,
+        "pasajeros_anuales_proxy": 55775,
+        "ahorro_anual_proxy_usd": 1775865,
+        "periodo_pasajeros_desde": "2026-01-01",
+        "periodo_pasajeros_hasta": "2026-07-26",
+        "semanas_equivalentes_observadas": 29.571,
+        "metodo_proxy_pasajeros": "Pasajeros observados / semanas equivalentes del período detallado × 52",
+        "pasajeros_anuales_estimados": 55775,
+        "ahorro_anual_estimado_usd": 1775865,
+        "curvatura_mapa": 0.18,
+        "semanas_totales_disponibles": 36,
+        "porcentaje_semanas_frecuencia_ge3": 100.0
       },
       "geometry": {
         "type": "LineString",
@@ -840,220 +1246,252 @@
             -34.560586
           ],
           [
-            -58.353292,
-            -34.566741
+            -58.35872,
+            -34.549897
           ],
           [
-            -58.293156,
-            -34.572868
+            -58.304086,
+            -34.539703
           ],
           [
-            -58.233011,
-            -34.578965
+            -58.249517,
+            -34.530003
           ],
           [
-            -58.172858,
-            -34.585032
+            -58.195012,
+            -34.520798
           ],
           [
-            -58.112696,
-            -34.59107
+            -58.140573,
+            -34.512089
           ],
           [
-            -58.052525,
-            -34.597078
+            -58.086199,
+            -34.503875
           ],
           [
-            -57.992345,
-            -34.603057
+            -58.03189,
+            -34.496156
           ],
           [
-            -57.932157,
-            -34.609006
+            -57.977646,
+            -34.488933
           ],
           [
-            -57.87196,
-            -34.614926
+            -57.923466,
+            -34.482205
           ],
           [
-            -57.811754,
-            -34.620816
+            -57.869352,
+            -34.475973
           ],
           [
-            -57.75154,
-            -34.626676
+            -57.815303,
+            -34.470238
           ],
           [
-            -57.691318,
-            -34.632507
+            -57.761319,
+            -34.464998
           ],
           [
-            -57.631087,
-            -34.638309
+            -57.707399,
+            -34.460254
           ],
           [
-            -57.570848,
-            -34.64408
+            -57.653545,
+            -34.456007
           ],
           [
-            -57.5106,
-            -34.649822
+            -57.599756,
+            -34.452256
           ],
           [
-            -57.450344,
-            -34.655535
+            -57.546031,
+            -34.449001
           ],
           [
-            -57.39008,
-            -34.661218
+            -57.492372,
+            -34.446243
           ],
           [
-            -57.329807,
-            -34.666871
+            -57.438778,
+            -34.443981
           ],
           [
-            -57.269526,
-            -34.672494
+            -57.385249,
+            -34.442215
           ],
           [
-            -57.209237,
-            -34.678088
+            -57.331784,
+            -34.440946
           ],
           [
-            -57.14894,
-            -34.683652
+            -57.278385,
+            -34.440174
           ],
           [
-            -57.088635,
-            -34.689187
+            -57.22505,
+            -34.439898
           ],
           [
-            -57.028322,
-            -34.694691
+            -57.171781,
+            -34.440119
           ],
           [
-            -56.968001,
-            -34.700166
+            -57.118577,
+            -34.440836
           ],
           [
-            -56.907672,
-            -34.705612
+            -57.065437,
+            -34.44205
           ],
           [
-            -56.847334,
-            -34.711027
+            -57.012363,
+            -34.443761
           ],
           [
-            -56.78699,
-            -34.716413
+            -56.959354,
+            -34.445967
           ],
           [
-            -56.726637,
-            -34.721769
+            -56.906409,
+            -34.448671
           ],
           [
-            -56.666276,
-            -34.727095
+            -56.85353,
+            -34.451871
           ],
           [
-            -56.605908,
-            -34.732392
+            -56.800715,
+            -34.455567
           ],
           [
-            -56.545532,
-            -34.737658
+            -56.747966,
+            -34.459759
           ],
           [
-            -56.485148,
-            -34.742895
+            -56.695281,
+            -34.464448
           ],
           [
-            -56.424757,
-            -34.748102
+            -56.642662,
+            -34.469633
           ],
           [
-            -56.364358,
-            -34.75328
+            -56.590108,
+            -34.475314
           ],
           [
-            -56.303951,
-            -34.758427
+            -56.537618,
+            -34.48149
           ],
           [
-            -56.243537,
-            -34.763545
+            -56.485194,
+            -34.488163
           ],
           [
-            -56.183116,
-            -34.768632
+            -56.432834,
+            -34.495331
           ],
           [
-            -56.122687,
-            -34.77369
+            -56.38054,
+            -34.502995
           ],
           [
-            -56.06225,
-            -34.778718
+            -56.32831,
+            -34.511154
           ],
           [
-            -56.001807,
-            -34.783717
+            -56.276146,
+            -34.519809
           ],
           [
-            -55.941356,
-            -34.788685
+            -56.224046,
+            -34.528959
           ],
           [
-            -55.880898,
-            -34.793623
+            -56.172012,
+            -34.538604
           ],
           [
-            -55.820432,
-            -34.798532
+            -56.120042,
+            -34.548743
           ],
           [
-            -55.75996,
-            -34.803411
+            -56.068137,
+            -34.559377
           ],
           [
-            -55.69948,
-            -34.808259
+            -56.016298,
+            -34.570506
           ],
           [
-            -55.638993,
-            -34.813078
+            -55.964523,
+            -34.582129
           ],
           [
-            -55.578499,
-            -34.817867
+            -55.912814,
+            -34.594246
           ],
           [
-            -55.517998,
-            -34.822626
+            -55.861169,
+            -34.606856
           ],
           [
-            -55.45749,
-            -34.827355
+            -55.809589,
+            -34.619961
           ],
           [
-            -55.396975,
-            -34.832054
+            -55.758075,
+            -34.633558
           ],
           [
-            -55.336454,
-            -34.836723
+            -55.706625,
+            -34.647649
           ],
           [
-            -55.275925,
-            -34.841362
+            -55.655241,
+            -34.662233
           ],
           [
-            -55.21539,
-            -34.845971
+            -55.603921,
+            -34.677309
           ],
           [
-            -55.154848,
-            -34.85055
+            -55.552666,
+            -34.692877
+          ],
+          [
+            -55.501477,
+            -34.708938
+          ],
+          [
+            -55.450352,
+            -34.72549
+          ],
+          [
+            -55.399292,
+            -34.742534
+          ],
+          [
+            -55.348298,
+            -34.760069
+          ],
+          [
+            -55.297368,
+            -34.778094
+          ],
+          [
+            -55.246503,
+            -34.796611
+          ],
+          [
+            -55.195703,
+            -34.815617
+          ],
+          [
+            -55.144969,
+            -34.835113
           ],
           [
             -55.094299,
@@ -1090,7 +1528,54 @@
         "ahorro_usd_tramo": 31.84,
         "tuar_usd": 25.16,
         "tuai_usd": 57.0,
-        "periodo": "enero-agosto 2026"
+        "periodo": "enero-agosto 2026",
+        "aerolineas": [
+          {
+            "aerolinea": "Aerolíneas Argentinas",
+            "vuelos_observados": 110,
+            "pasajeros_observados": 14719,
+            "pasajeros_promedio_semana": 497.7,
+            "pasajeros_anuales_proxy": 25883,
+            "ahorro_anual_proxy_usd": 824105,
+            "pasajeros_anuales_estimados": 25883,
+            "ahorro_anual_estimado_usd": 824105
+          },
+          {
+            "aerolinea": "TAM Linhas Aéreas",
+            "vuelos_observados": 87,
+            "pasajeros_observados": 11729,
+            "pasajeros_promedio_semana": 396.6,
+            "pasajeros_anuales_proxy": 20625,
+            "ahorro_anual_proxy_usd": 656697,
+            "pasajeros_anuales_estimados": 20625,
+            "ahorro_anual_estimado_usd": 656697
+          },
+          {
+            "aerolinea": "Gol Transportes Aéreos",
+            "vuelos_observados": 25,
+            "pasajeros_observados": 2671,
+            "pasajeros_promedio_semana": 90.3,
+            "pasajeros_anuales_proxy": 4697,
+            "ahorro_anual_proxy_usd": 149547,
+            "pasajeros_anuales_estimados": 4697,
+            "ahorro_anual_estimado_usd": 149547
+          }
+        ],
+        "aerolineas_cantidad": 3,
+        "vuelos_observados_pax": 222,
+        "pasajeros_observados": 29119,
+        "pasajeros_promedio_semana": 984.7,
+        "pasajeros_anuales_proxy": 51204,
+        "ahorro_anual_proxy_usd": 1630349,
+        "periodo_pasajeros_desde": "2026-01-01",
+        "periodo_pasajeros_hasta": "2026-07-26",
+        "semanas_equivalentes_observadas": 29.571,
+        "metodo_proxy_pasajeros": "Pasajeros observados / semanas equivalentes del período detallado × 52",
+        "pasajeros_anuales_estimados": 51204,
+        "ahorro_anual_estimado_usd": 1630349,
+        "curvatura_mapa": -0.13,
+        "semanas_totales_disponibles": 36,
+        "porcentaje_semanas_frecuencia_ge3": 100.0
       },
       "geometry": {
         "type": "LineString",
@@ -1100,220 +1585,252 @@
             -34.560586
           ],
           [
-            -58.274942,
-            -34.481434
+            -58.276446,
+            -34.514185
           ],
           [
-            -58.136728,
-            -34.402126
+            -58.140181,
+            -34.466975
           ],
           [
-            -57.998776,
-            -34.322663
+            -58.004624,
+            -34.418956
           ],
           [
-            -57.861086,
-            -34.243046
+            -57.869774,
+            -34.370125
           ],
           [
-            -57.723655,
-            -34.163275
+            -57.735633,
+            -34.320481
           ],
           [
-            -57.586485,
-            -34.083351
+            -57.602199,
+            -34.270024
           ],
           [
-            -57.449573,
-            -34.003275
+            -57.469473,
+            -34.218751
           ],
           [
-            -57.31292,
-            -33.923048
+            -57.337455,
+            -34.166661
           ],
           [
-            -57.176524,
-            -33.84267
+            -57.206145,
+            -34.113754
           ],
           [
-            -57.040384,
-            -33.762142
+            -57.075543,
+            -34.060026
           ],
           [
-            -56.904501,
-            -33.681465
+            -56.945649,
+            -34.005477
           ],
           [
-            -56.768872,
-            -33.60064
+            -56.816462,
+            -33.950106
           ],
           [
-            -56.633498,
-            -33.519667
+            -56.687984,
+            -33.89391
           ],
           [
-            -56.498377,
-            -33.438547
+            -56.560213,
+            -33.836889
           ],
           [
-            -56.363509,
-            -33.35728
+            -56.43315,
+            -33.779041
           ],
           [
-            -56.228892,
-            -33.275869
+            -56.306795,
+            -33.720364
           ],
           [
-            -56.094527,
-            -33.194312
+            -56.181148,
+            -33.660856
           ],
           [
-            -55.960412,
-            -33.112611
+            -56.056209,
+            -33.600516
           ],
           [
-            -55.826546,
-            -33.030767
+            -55.931978,
+            -33.539343
           ],
           [
-            -55.692929,
-            -32.94878
+            -55.808454,
+            -33.477335
           ],
           [
-            -55.55956,
-            -32.866651
+            -55.685639,
+            -33.414489
           ],
           [
-            -55.426438,
-            -32.784381
+            -55.563531,
+            -33.350805
           ],
           [
-            -55.293562,
-            -32.701971
+            -55.442131,
+            -33.286281
           ],
           [
-            -55.160931,
-            -32.61942
+            -55.321439,
+            -33.220915
           ],
           [
-            -55.028545,
-            -32.536731
+            -55.201455,
+            -33.154705
           ],
           [
-            -54.896403,
-            -32.453903
+            -55.082179,
+            -33.087649
           ],
           [
-            -54.764504,
-            -32.370937
+            -54.96361,
+            -33.019746
           ],
           [
-            -54.632846,
-            -32.287834
+            -54.84575,
+            -32.950995
           ],
           [
-            -54.501431,
-            -32.204595
+            -54.728597,
+            -32.881392
           ],
           [
-            -54.370255,
-            -32.12122
+            -54.612152,
+            -32.810936
           ],
           [
-            -54.239319,
-            -32.03771
+            -54.496416,
+            -32.739627
           ],
           [
-            -54.108622,
-            -31.954066
+            -54.381387,
+            -32.66746
           ],
           [
-            -53.978164,
-            -31.870288
+            -54.267065,
+            -32.594436
           ],
           [
-            -53.847942,
-            -31.786377
+            -54.153452,
+            -32.520551
           ],
           [
-            -53.717956,
-            -31.702334
+            -54.040547,
+            -32.445805
           ],
           [
-            -53.588206,
-            -31.61816
+            -53.928349,
+            -32.370194
           ],
           [
-            -53.458691,
-            -31.533854
+            -53.81686,
+            -32.293717
           ],
           [
-            -53.32941,
-            -31.449418
+            -53.706078,
+            -32.216373
           ],
           [
-            -53.200361,
-            -31.364853
+            -53.596004,
+            -32.138159
           ],
           [
-            -53.071545,
-            -31.280159
+            -53.486638,
+            -32.059073
           ],
           [
-            -52.94296,
-            -31.195336
+            -53.37798,
+            -31.979113
           ],
           [
-            -52.814606,
-            -31.110386
+            -53.27003,
+            -31.898278
           ],
           [
-            -52.686481,
-            -31.025308
+            -53.162787,
+            -31.816565
           ],
           [
-            -52.558585,
-            -30.940105
+            -53.056253,
+            -31.733971
           ],
           [
-            -52.430917,
-            -30.854775
+            -52.950426,
+            -31.650496
           ],
           [
-            -52.303477,
-            -30.769321
+            -52.845307,
+            -31.566137
           ],
           [
-            -52.176262,
-            -30.683742
+            -52.740896,
+            -31.480892
           ],
           [
-            -52.049273,
-            -30.59804
+            -52.637193,
+            -31.394759
           ],
           [
-            -51.922509,
-            -30.512215
+            -52.534198,
+            -31.307735
           ],
           [
-            -51.795968,
-            -30.426267
+            -52.431911,
+            -31.219819
           ],
           [
-            -51.66965,
-            -30.340197
+            -52.330331,
+            -31.131008
           ],
           [
-            -51.543555,
-            -30.254006
+            -52.22946,
+            -31.041301
           ],
           [
-            -51.41768,
-            -30.167694
+            -52.129296,
+            -30.950695
           ],
           [
-            -51.292026,
-            -30.081263
+            -52.02984,
+            -30.859188
+          ],
+          [
+            -51.931092,
+            -30.766777
+          ],
+          [
+            -51.833052,
+            -30.673462
+          ],
+          [
+            -51.73572,
+            -30.579238
+          ],
+          [
+            -51.639096,
+            -30.484105
+          ],
+          [
+            -51.543179,
+            -30.388059
+          ],
+          [
+            -51.447971,
+            -30.2911
+          ],
+          [
+            -51.35347,
+            -30.193223
+          ],
+          [
+            -51.259677,
+            -30.094428
           ],
           [
             -51.166592,
@@ -1350,7 +1867,44 @@
         "ahorro_usd_tramo": 31.84,
         "tuar_usd": 25.16,
         "tuai_usd": 57.0,
-        "periodo": "enero-agosto 2026"
+        "periodo": "enero-agosto 2026",
+        "aerolineas": [
+          {
+            "aerolinea": "Sky Airline",
+            "vuelos_observados": 43,
+            "pasajeros_observados": 6346,
+            "pasajeros_promedio_semana": 214.6,
+            "pasajeros_anuales_proxy": 11159,
+            "ahorro_anual_proxy_usd": 355307,
+            "pasajeros_anuales_estimados": 11159,
+            "ahorro_anual_estimado_usd": 355307
+          },
+          {
+            "aerolinea": "Andes Líneas Aéreas",
+            "vuelos_observados": 4,
+            "pasajeros_observados": 561,
+            "pasajeros_promedio_semana": 19.0,
+            "pasajeros_anuales_proxy": 986,
+            "ahorro_anual_proxy_usd": 31410,
+            "pasajeros_anuales_estimados": 986,
+            "ahorro_anual_estimado_usd": 31410
+          }
+        ],
+        "aerolineas_cantidad": 2,
+        "vuelos_observados_pax": 47,
+        "pasajeros_observados": 6907,
+        "pasajeros_promedio_semana": 233.6,
+        "pasajeros_anuales_proxy": 12146,
+        "ahorro_anual_proxy_usd": 386717,
+        "periodo_pasajeros_desde": "2026-01-01",
+        "periodo_pasajeros_hasta": "2026-07-26",
+        "semanas_equivalentes_observadas": 29.571,
+        "metodo_proxy_pasajeros": "Pasajeros observados / semanas equivalentes del período detallado × 52",
+        "pasajeros_anuales_estimados": 12146,
+        "ahorro_anual_estimado_usd": 386717,
+        "curvatura_mapa": -0.18,
+        "semanas_totales_disponibles": 36,
+        "porcentaje_semanas_frecuencia_ge3": 41.7
       },
       "geometry": {
         "type": "LineString",
@@ -1360,220 +1914,252 @@
             -41.150319
           ],
           [
-            -71.151771,
-            -41.009289
+            -71.098469,
+            -41.035095
           ],
           [
-            -71.144266,
-            -40.868257
+            -71.039401,
+            -40.919619
           ],
           [
-            -71.136794,
-            -40.727226
+            -70.982105,
+            -40.803889
           ],
           [
-            -71.129352,
-            -40.586193
+            -70.92658,
+            -40.687905
           ],
           [
-            -71.121943,
-            -40.44516
+            -70.872826,
+            -40.571668
           ],
           [
-            -71.114564,
-            -40.304127
+            -70.820844,
+            -40.455176
           ],
           [
-            -71.107216,
-            -40.163094
+            -70.770633,
+            -40.338431
           ],
           [
-            -71.099898,
-            -40.022059
+            -70.722193,
+            -40.221432
           ],
           [
-            -71.092611,
-            -39.881025
+            -70.675524,
+            -40.104179
           ],
           [
-            -71.085353,
-            -39.73999
+            -70.630627,
+            -39.986671
           ],
           [
-            -71.078125,
-            -39.598954
+            -70.587501,
+            -39.868909
           ],
           [
-            -71.070927,
-            -39.457918
+            -70.546146,
+            -39.750892
           ],
           [
-            -71.063758,
-            -39.316882
+            -70.506563,
+            -39.63262
           ],
           [
-            -71.056617,
-            -39.175845
+            -70.468751,
+            -39.514094
           ],
           [
-            -71.049505,
-            -39.034808
+            -70.43271,
+            -39.395312
           ],
           [
-            -71.042422,
-            -38.89377
+            -70.398441,
+            -39.276276
           ],
           [
-            -71.035366,
-            -38.752732
+            -70.365942,
+            -39.156984
           ],
           [
-            -71.028338,
-            -38.611693
+            -70.335216,
+            -39.037438
           ],
           [
-            -71.021338,
-            -38.470654
+            -70.30626,
+            -38.917636
           ],
           [
-            -71.014365,
-            -38.329615
+            -70.279076,
+            -38.797578
           ],
           [
-            -71.00742,
-            -38.188575
+            -70.253663,
+            -38.677265
           ],
           [
-            -71.000501,
-            -38.047535
+            -70.230021,
+            -38.556697
           ],
           [
-            -70.993609,
-            -37.906494
+            -70.208151,
+            -38.435873
           ],
           [
-            -70.986743,
-            -37.765453
+            -70.188051,
+            -38.314793
           ],
           [
-            -70.979903,
-            -37.624412
+            -70.169724,
+            -38.193457
           ],
           [
-            -70.973089,
-            -37.48337
+            -70.153167,
+            -38.071866
           ],
           [
-            -70.966301,
-            -37.342328
+            -70.138382,
+            -37.950018
           ],
           [
-            -70.959538,
-            -37.201285
+            -70.125368,
+            -37.827915
           ],
           [
-            -70.952801,
-            -37.060242
+            -70.114125,
+            -37.705556
           ],
           [
-            -70.946089,
-            -36.919199
+            -70.104654,
+            -37.58294
           ],
           [
-            -70.939401,
-            -36.778155
+            -70.096954,
+            -37.460069
           ],
           [
-            -70.932738,
-            -36.637111
+            -70.091025,
+            -37.336942
           ],
           [
-            -70.926099,
-            -36.496067
+            -70.086868,
+            -37.213558
           ],
           [
-            -70.919484,
-            -36.355022
+            -70.084482,
+            -37.089918
           ],
           [
-            -70.912894,
-            -36.213977
+            -70.083867,
+            -36.966022
           ],
           [
-            -70.906327,
-            -36.072931
+            -70.085023,
+            -36.84187
           ],
           [
-            -70.899783,
-            -35.931885
+            -70.087951,
+            -36.717462
           ],
           [
-            -70.893263,
-            -35.790839
+            -70.09265,
+            -36.592797
           ],
           [
-            -70.886766,
-            -35.649793
+            -70.09912,
+            -36.467877
           ],
           [
-            -70.880292,
-            -35.508746
+            -70.107362,
+            -36.3427
           ],
           [
-            -70.87384,
-            -35.367698
+            -70.117375,
+            -36.217266
           ],
           [
-            -70.867411,
-            -35.226651
+            -70.129159,
+            -36.091577
           ],
           [
-            -70.861005,
-            -35.085603
+            -70.142714,
+            -35.965632
           ],
           [
-            -70.85462,
-            -34.944554
+            -70.158041,
+            -35.83943
           ],
           [
-            -70.848258,
-            -34.803506
+            -70.175139,
+            -35.712972
           ],
           [
-            -70.841917,
-            -34.662457
+            -70.194009,
+            -35.586258
           ],
           [
-            -70.835598,
-            -34.521407
+            -70.21465,
+            -35.459289
           ],
           [
-            -70.8293,
-            -34.380358
+            -70.237062,
+            -35.332063
           ],
           [
-            -70.823023,
-            -34.239308
+            -70.261245,
+            -35.204581
           ],
           [
-            -70.816767,
-            -34.098258
+            -70.287199,
+            -35.076843
           ],
           [
-            -70.810532,
-            -33.957207
+            -70.314925,
+            -34.94885
           ],
           [
-            -70.804318,
-            -33.816156
+            -70.344422,
+            -34.820601
           ],
           [
-            -70.798124,
-            -33.675105
+            -70.375691,
+            -34.692096
           ],
           [
-            -70.791951,
-            -33.534053
+            -70.408731,
+            -34.563335
+          ],
+          [
+            -70.443542,
+            -34.434319
+          ],
+          [
+            -70.480124,
+            -34.305047
+          ],
+          [
+            -70.518478,
+            -34.17552
+          ],
+          [
+            -70.558603,
+            -34.045738
+          ],
+          [
+            -70.600499,
+            -33.915701
+          ],
+          [
+            -70.644167,
+            -33.785408
+          ],
+          [
+            -70.689605,
+            -33.654861
+          ],
+          [
+            -70.736816,
+            -33.524059
           ],
           [
             -70.785797,
@@ -1610,7 +2196,44 @@
         "ahorro_usd_tramo": 31.84,
         "tuar_usd": 25.16,
         "tuai_usd": 57.0,
-        "periodo": "enero-agosto 2026"
+        "periodo": "enero-agosto 2026",
+        "aerolineas": [
+          {
+            "aerolinea": "Flybondi",
+            "vuelos_observados": 20,
+            "pasajeros_observados": 746,
+            "pasajeros_promedio_semana": 25.2,
+            "pasajeros_anuales_proxy": 1312,
+            "ahorro_anual_proxy_usd": 41768,
+            "pasajeros_anuales_estimados": 1312,
+            "ahorro_anual_estimado_usd": 41768
+          },
+          {
+            "aerolinea": "Amaszonas",
+            "vuelos_observados": 10,
+            "pasajeros_observados": 194,
+            "pasajeros_promedio_semana": 6.6,
+            "pasajeros_anuales_proxy": 341,
+            "ahorro_anual_proxy_usd": 10862,
+            "pasajeros_anuales_estimados": 341,
+            "ahorro_anual_estimado_usd": 10862
+          }
+        ],
+        "aerolineas_cantidad": 2,
+        "vuelos_observados_pax": 30,
+        "pasajeros_observados": 940,
+        "pasajeros_promedio_semana": 31.8,
+        "pasajeros_anuales_proxy": 1653,
+        "ahorro_anual_proxy_usd": 52630,
+        "periodo_pasajeros_desde": "2026-01-01",
+        "periodo_pasajeros_hasta": "2026-07-26",
+        "semanas_equivalentes_observadas": 29.571,
+        "metodo_proxy_pasajeros": "Pasajeros observados / semanas equivalentes del período detallado × 52",
+        "pasajeros_anuales_estimados": 1653,
+        "ahorro_anual_estimado_usd": 52630,
+        "curvatura_mapa": -0.12,
+        "semanas_totales_disponibles": 36,
+        "porcentaje_semanas_frecuencia_ge3": 19.4
       },
       "geometry": {
         "type": "LineString",
@@ -1620,220 +2243,252 @@
             -31.315581
           ],
           [
-            -64.079409,
-            -31.208206
+            -64.076146,
+            -31.243357
           ],
           [
-            -63.950907,
-            -31.100702
+            -63.944924,
+            -31.170386
           ],
           [
-            -63.822695,
-            -30.993072
+            -63.814537,
+            -31.096666
           ],
           [
-            -63.694773,
-            -30.885315
+            -63.684984,
+            -31.022196
           ],
           [
-            -63.567138,
-            -30.777433
+            -63.556267,
+            -30.946973
           ],
           [
-            -63.43979,
-            -30.669425
+            -63.428385,
+            -30.870997
           ],
           [
-            -63.312726,
-            -30.561294
+            -63.301337,
+            -30.794266
           ],
           [
-            -63.185945,
-            -30.45304
+            -63.175125,
+            -30.716778
           ],
           [
-            -63.059446,
-            -30.344664
+            -63.049747,
+            -30.638531
           ],
           [
-            -62.933226,
-            -30.236166
+            -62.925204,
+            -30.559525
           ],
           [
-            -62.807286,
-            -30.127547
+            -62.801497,
+            -30.479757
           ],
           [
-            -62.681622,
-            -30.018809
+            -62.678624,
+            -30.399226
           ],
           [
-            -62.556233,
-            -29.909951
+            -62.556586,
+            -30.317931
           ],
           [
-            -62.431119,
-            -29.800975
+            -62.435383,
+            -30.235868
           ],
           [
-            -62.306276,
-            -29.691882
+            -62.315015,
+            -30.153038
           ],
           [
-            -62.181705,
-            -29.582671
+            -62.195482,
+            -30.069438
           ],
           [
-            -62.057404,
-            -29.473345
+            -62.076784,
+            -29.985067
           ],
           [
-            -61.93337,
-            -29.363903
+            -61.958921,
+            -29.899923
           ],
           [
-            -61.809602,
-            -29.254347
+            -61.841892,
+            -29.814004
           ],
           [
-            -61.6861,
-            -29.144677
+            -61.725699,
+            -29.727308
           ],
           [
-            -61.562861,
-            -29.034894
+            -61.61034,
+            -29.639835
           ],
           [
-            -61.439884,
-            -28.924999
+            -61.495817,
+            -29.551582
           ],
           [
-            -61.317168,
-            -28.814993
+            -61.382128,
+            -29.462547
           ],
           [
-            -61.194711,
-            -28.704875
+            -61.269275,
+            -29.372729
           ],
           [
-            -61.072511,
-            -28.594648
+            -61.157256,
+            -29.282127
           ],
           [
-            -60.950568,
-            -28.484311
+            -61.046072,
+            -29.190737
           ],
           [
-            -60.828879,
-            -28.373866
+            -60.935723,
+            -29.09856
           ],
           [
-            -60.707443,
-            -28.263313
+            -60.826209,
+            -29.005592
           ],
           [
-            -60.586259,
-            -28.152652
+            -60.71753,
+            -28.911832
           ],
           [
-            -60.465326,
-            -28.041886
+            -60.609686,
+            -28.817279
           ],
           [
-            -60.344642,
-            -27.931013
+            -60.502677,
+            -28.721931
           ],
           [
-            -60.224205,
-            -27.820036
+            -60.396503,
+            -28.625785
           ],
           [
-            -60.104014,
-            -27.708954
+            -60.291164,
+            -28.528841
           ],
           [
-            -59.984067,
-            -27.597769
+            -60.186659,
+            -28.431095
           ],
           [
-            -59.864364,
-            -27.486481
+            -60.08299,
+            -28.332548
           ],
           [
-            -59.744903,
-            -27.375091
+            -59.980155,
+            -28.233196
           ],
           [
-            -59.625682,
-            -27.263599
+            -59.878156,
+            -28.133039
           ],
           [
-            -59.5067,
-            -27.152007
+            -59.776991,
+            -28.032073
           ],
           [
-            -59.387956,
-            -27.040314
+            -59.676661,
+            -27.930298
           ],
           [
-            -59.269448,
-            -26.928522
+            -59.577166,
+            -27.827712
           ],
           [
-            -59.151174,
-            -26.816631
+            -59.478507,
+            -27.724313
           ],
           [
-            -59.033134,
-            -26.704642
+            -59.380682,
+            -27.620098
           ],
           [
-            -58.915326,
-            -26.592555
+            -59.283692,
+            -27.515067
           ],
           [
-            -58.797749,
-            -26.480372
+            -59.187537,
+            -27.409218
           ],
           [
-            -58.680401,
-            -26.368093
+            -59.092217,
+            -27.302548
           ],
           [
-            -58.56328,
-            -26.255718
+            -58.997731,
+            -27.195056
           ],
           [
-            -58.446387,
-            -26.143248
+            -58.904081,
+            -27.08674
           ],
           [
-            -58.329718,
-            -26.030684
+            -58.811266,
+            -26.977598
           ],
           [
-            -58.213273,
-            -25.918027
+            -58.719285,
+            -26.867629
           ],
           [
-            -58.097051,
-            -25.805277
+            -58.62814,
+            -26.756831
           ],
           [
-            -57.981049,
-            -25.692435
+            -58.537829,
+            -26.645201
           ],
           [
-            -57.865267,
-            -25.579501
+            -58.448354,
+            -26.532738
           ],
           [
-            -57.749704,
-            -25.466476
+            -58.359713,
+            -26.419441
           ],
           [
-            -57.634358,
-            -25.353361
+            -58.271907,
+            -26.305307
+          ],
+          [
+            -58.184936,
+            -26.190334
+          ],
+          [
+            -58.0988,
+            -26.074521
+          ],
+          [
+            -58.013499,
+            -25.957867
+          ],
+          [
+            -57.929033,
+            -25.840368
+          ],
+          [
+            -57.845402,
+            -25.722024
+          ],
+          [
+            -57.762606,
+            -25.602833
+          ],
+          [
+            -57.680645,
+            -25.482792
+          ],
+          [
+            -57.599518,
+            -25.3619
           ],
           [
             -57.519227,
@@ -1870,7 +2525,54 @@
         "ahorro_usd_tramo": 31.84,
         "tuar_usd": 25.16,
         "tuai_usd": 57.0,
-        "periodo": "enero-agosto 2026"
+        "periodo": "enero-agosto 2026",
+        "aerolineas": [
+          {
+            "aerolinea": "LATAM",
+            "vuelos_observados": 224,
+            "pasajeros_observados": 29157,
+            "pasajeros_promedio_semana": 986.0,
+            "pasajeros_anuales_proxy": 51271,
+            "ahorro_anual_proxy_usd": 1632476,
+            "pasajeros_anuales_estimados": 51271,
+            "ahorro_anual_estimado_usd": 1632476
+          },
+          {
+            "aerolinea": "Sky Airline",
+            "vuelos_observados": 1,
+            "pasajeros_observados": 171,
+            "pasajeros_promedio_semana": 5.8,
+            "pasajeros_anuales_proxy": 301,
+            "ahorro_anual_proxy_usd": 9574,
+            "pasajeros_anuales_estimados": 301,
+            "ahorro_anual_estimado_usd": 9574
+          },
+          {
+            "aerolinea": "Aerolíneas Argentinas",
+            "vuelos_observados": 1,
+            "pasajeros_observados": 81,
+            "pasajeros_promedio_semana": 2.7,
+            "pasajeros_anuales_proxy": 142,
+            "ahorro_anual_proxy_usd": 4535,
+            "pasajeros_anuales_estimados": 142,
+            "ahorro_anual_estimado_usd": 4535
+          }
+        ],
+        "aerolineas_cantidad": 3,
+        "vuelos_observados_pax": 226,
+        "pasajeros_observados": 29409,
+        "pasajeros_promedio_semana": 994.5,
+        "pasajeros_anuales_proxy": 51714,
+        "ahorro_anual_proxy_usd": 1646586,
+        "periodo_pasajeros_desde": "2026-01-01",
+        "periodo_pasajeros_hasta": "2026-07-26",
+        "semanas_equivalentes_observadas": 29.571,
+        "metodo_proxy_pasajeros": "Pasajeros observados / semanas equivalentes del período detallado × 52",
+        "pasajeros_anuales_estimados": 51714,
+        "ahorro_anual_estimado_usd": 1646586,
+        "curvatura_mapa": 0.22,
+        "semanas_totales_disponibles": 36,
+        "porcentaje_semanas_frecuencia_ge3": 100.0
       },
       "geometry": {
         "type": "LineString",
@@ -1880,220 +2582,252 @@
             -31.315581
           ],
           [
-            -64.325082,
-            -31.356339
+            -64.295705,
+            -31.387528
           ],
           [
-            -64.442063,
-            -31.396992
+            -64.383752,
+            -31.458177
           ],
           [
-            -64.559144,
-            -31.437538
+            -64.472344,
+            -31.527528
           ],
           [
-            -64.676327,
-            -31.477978
+            -64.561482,
+            -31.595587
           ],
           [
-            -64.793611,
-            -31.518311
+            -64.651165,
+            -31.662354
           ],
           [
-            -64.910996,
-            -31.558536
+            -64.741394,
+            -31.727833
           ],
           [
-            -65.028483,
-            -31.598655
+            -64.832167,
+            -31.792026
           ],
           [
-            -65.14607,
-            -31.638666
+            -64.923486,
+            -31.854936
           ],
           [
-            -65.263759,
-            -31.678569
+            -65.015351,
+            -31.916565
           ],
           [
-            -65.381548,
-            -31.718363
+            -65.10776,
+            -31.976915
           ],
           [
-            -65.499439,
-            -31.75805
+            -65.200715,
+            -32.03599
           ],
           [
-            -65.61743,
-            -31.797628
+            -65.294215,
+            -32.093791
           ],
           [
-            -65.735523,
-            -31.837096
+            -65.388261,
+            -32.150321
           ],
           [
-            -65.853716,
-            -31.876456
+            -65.482852,
+            -32.205582
           ],
           [
-            -65.972011,
-            -31.915706
+            -65.577988,
+            -32.259576
           ],
           [
-            -66.090406,
-            -31.954847
+            -65.673669,
+            -32.312306
           ],
           [
-            -66.208902,
-            -31.993877
+            -65.769896,
+            -32.363773
           ],
           [
-            -66.327499,
-            -32.032798
+            -65.866668,
+            -32.413979
           ],
           [
-            -66.446196,
-            -32.071608
+            -65.963985,
+            -32.462927
           ],
           [
-            -66.564995,
-            -32.110307
+            -66.061848,
+            -32.510619
           ],
           [
-            -66.683893,
-            -32.148895
+            -66.160256,
+            -32.557056
           ],
           [
-            -66.802893,
-            -32.187372
+            -66.259209,
+            -32.602241
           ],
           [
-            -66.921992,
-            -32.225737
+            -66.358707,
+            -32.646175
           ],
           [
-            -67.041193,
-            -32.263991
+            -66.458751,
+            -32.68886
           ],
           [
-            -67.160493,
-            -32.302133
+            -66.55934,
+            -32.730297
           ],
           [
-            -67.279894,
-            -32.340162
+            -66.660475,
+            -32.77049
           ],
           [
-            -67.399396,
-            -32.378079
+            -66.762154,
+            -32.809438
           ],
           [
-            -67.518997,
-            -32.415883
+            -66.864379,
+            -32.847144
           ],
           [
-            -67.638698,
-            -32.453574
+            -66.96715,
+            -32.88361
           ],
           [
-            -67.7585,
-            -32.491151
+            -67.070465,
+            -32.918836
           ],
           [
-            -67.878401,
-            -32.528615
+            -67.174326,
+            -32.952824
           ],
           [
-            -67.998403,
-            -32.565965
+            -67.278733,
+            -32.985576
           ],
           [
-            -68.118504,
-            -32.603201
+            -67.383684,
+            -33.017093
           ],
           [
-            -68.238705,
-            -32.640323
+            -67.489181,
+            -33.047377
           ],
           [
-            -68.359006,
-            -32.67733
+            -67.595223,
+            -33.076428
           ],
           [
-            -68.479406,
-            -32.714222
+            -67.701811,
+            -33.104247
           ],
           [
-            -68.599905,
-            -32.750999
+            -67.808943,
+            -33.130837
           ],
           [
-            -68.720504,
-            -32.78766
+            -67.916622,
+            -33.156198
           ],
           [
-            -68.841203,
-            -32.824206
+            -68.024845,
+            -33.180331
           ],
           [
-            -68.962,
-            -32.860636
+            -68.133614,
+            -33.203236
           ],
           [
-            -69.082897,
-            -32.89695
+            -68.242928,
+            -33.224916
           ],
           [
-            -69.203893,
-            -32.933147
+            -68.352787,
+            -33.245371
           ],
           [
-            -69.324987,
-            -32.969228
+            -68.463191,
+            -33.264602
           ],
           [
-            -69.446181,
-            -33.005192
+            -68.574141,
+            -33.282609
           ],
           [
-            -69.567473,
-            -33.041038
+            -68.685637,
+            -33.299394
           ],
           [
-            -69.688863,
-            -33.076767
+            -68.797677,
+            -33.314957
           ],
           [
-            -69.810352,
-            -33.112379
+            -68.910263,
+            -33.329298
           ],
           [
-            -69.93194,
-            -33.147872
+            -69.023394,
+            -33.342419
           ],
           [
-            -70.053626,
-            -33.183247
+            -69.13707,
+            -33.35432
           ],
           [
-            -70.17541,
-            -33.218504
+            -69.251292,
+            -33.365001
           ],
           [
-            -70.297292,
-            -33.253642
+            -69.366059,
+            -33.374462
           ],
           [
-            -70.419271,
-            -33.288661
+            -69.481371,
+            -33.382705
           ],
           [
-            -70.541349,
-            -33.323561
+            -69.597229,
+            -33.38973
           ],
           [
-            -70.663524,
-            -33.358341
+            -69.713632,
+            -33.395537
+          ],
+          [
+            -69.83058,
+            -33.400125
+          ],
+          [
+            -69.948074,
+            -33.403496
+          ],
+          [
+            -70.066113,
+            -33.405649
+          ],
+          [
+            -70.184697,
+            -33.406585
+          ],
+          [
+            -70.303826,
+            -33.406304
+          ],
+          [
+            -70.423501,
+            -33.404805
+          ],
+          [
+            -70.543721,
+            -33.402088
+          ],
+          [
+            -70.664486,
+            -33.398154
           ],
           [
             -70.785797,
@@ -2130,7 +2864,34 @@
         "ahorro_usd_tramo": 31.84,
         "tuar_usd": 25.16,
         "tuai_usd": 57.0,
-        "periodo": "enero-agosto 2026"
+        "periodo": "enero-agosto 2026",
+        "aerolineas": [
+          {
+            "aerolinea": "LATAM",
+            "vuelos_observados": 68,
+            "pasajeros_observados": 5492,
+            "pasajeros_promedio_semana": 185.7,
+            "pasajeros_anuales_proxy": 9657,
+            "ahorro_anual_proxy_usd": 307493,
+            "pasajeros_anuales_estimados": 9657,
+            "ahorro_anual_estimado_usd": 307493
+          }
+        ],
+        "aerolineas_cantidad": 1,
+        "vuelos_observados_pax": 68,
+        "pasajeros_observados": 5492,
+        "pasajeros_promedio_semana": 185.7,
+        "pasajeros_anuales_proxy": 9657,
+        "ahorro_anual_proxy_usd": 307493,
+        "periodo_pasajeros_desde": "2026-01-01",
+        "periodo_pasajeros_hasta": "2026-07-26",
+        "semanas_equivalentes_observadas": 29.571,
+        "metodo_proxy_pasajeros": "Pasajeros observados / semanas equivalentes del período detallado × 52",
+        "pasajeros_anuales_estimados": 9657,
+        "ahorro_anual_estimado_usd": 307493,
+        "curvatura_mapa": 0.17,
+        "semanas_totales_disponibles": 36,
+        "porcentaje_semanas_frecuencia_ge3": 61.1
       },
       "geometry": {
         "type": "LineString",
@@ -2140,220 +2901,252 @@
             -38.948946
           ],
           [
-            -68.2058,
-            -38.848472
+            -68.232787,
+            -38.874746
           ],
           [
-            -68.257019,
-            -38.747976
+            -68.309958,
+            -38.800117
           ],
           [
-            -68.308094,
-            -38.647457
+            -68.385949,
+            -38.725059
           ],
           [
-            -68.359026,
-            -38.546916
+            -68.46076,
+            -38.649569
           ],
           [
-            -68.409815,
-            -38.446353
+            -68.534391,
+            -38.573647
           ],
           [
-            -68.460463,
-            -38.345769
+            -68.606842,
+            -38.497292
           ],
           [
-            -68.510971,
-            -38.245162
+            -68.678112,
+            -38.420503
           ],
           [
-            -68.561339,
-            -38.144534
+            -68.748203,
+            -38.343278
           ],
           [
-            -68.611568,
-            -38.043885
+            -68.817113,
+            -38.265617
           ],
           [
-            -68.66166,
-            -37.943214
+            -68.884843,
+            -38.187519
           ],
           [
-            -68.711614,
-            -37.842522
+            -68.951393,
+            -38.108982
           ],
           [
-            -68.761432,
-            -37.741809
+            -69.016763,
+            -38.030005
           ],
           [
-            -68.811115,
-            -37.641075
+            -69.080953,
+            -37.950588
           ],
           [
-            -68.860663,
-            -37.54032
+            -69.143963,
+            -37.870729
           ],
           [
-            -68.910077,
-            -37.439545
+            -69.205793,
+            -37.790427
           ],
           [
-            -68.959359,
-            -37.338749
+            -69.266442,
+            -37.709681
           ],
           [
-            -69.008508,
-            -37.237933
+            -69.325911,
+            -37.62849
           ],
           [
-            -69.057526,
-            -37.137096
+            -69.384201,
+            -37.546852
           ],
           [
-            -69.106413,
-            -37.036239
+            -69.44131,
+            -37.464768
           ],
           [
-            -69.155171,
-            -36.935363
+            -69.497239,
+            -37.382234
           ],
           [
-            -69.2038,
-            -36.834466
+            -69.551988,
+            -37.299252
           ],
           [
-            -69.252301,
-            -36.73355
+            -69.605557,
+            -37.215818
           ],
           [
-            -69.300674,
-            -36.632614
+            -69.657945,
+            -37.131933
           ],
           [
-            -69.348921,
-            -36.531659
+            -69.709154,
+            -37.047595
           ],
           [
-            -69.397042,
-            -36.430684
+            -69.759182,
+            -36.962803
           ],
           [
-            -69.445038,
-            -36.32969
+            -69.808031,
+            -36.877555
           ],
           [
-            -69.49291,
-            -36.228677
+            -69.855699,
+            -36.791852
           ],
           [
-            -69.540658,
-            -36.127644
+            -69.902187,
+            -36.705691
           ],
           [
-            -69.588284,
-            -36.026593
+            -69.947495,
+            -36.619071
           ],
           [
-            -69.635787,
-            -35.925523
+            -69.991623,
+            -36.531992
           ],
           [
-            -69.683169,
-            -35.824435
+            -70.034571,
+            -36.444452
           ],
           [
-            -69.730431,
-            -35.723328
+            -70.076338,
+            -36.35645
           ],
           [
-            -69.777572,
-            -35.622202
+            -70.116926,
+            -36.267985
           ],
           [
-            -69.824595,
-            -35.521058
+            -70.156333,
+            -36.179055
           ],
           [
-            -69.871499,
-            -35.419896
+            -70.19456,
+            -36.089661
           ],
           [
-            -69.918286,
-            -35.318716
+            -70.231608,
+            -35.999799
           ],
           [
-            -69.964956,
-            -35.217518
+            -70.267475,
+            -35.909471
           ],
           [
-            -70.011509,
-            -35.116302
+            -70.302162,
+            -35.818673
           ],
           [
-            -70.057947,
-            -35.015068
+            -70.335668,
+            -35.727405
           ],
           [
-            -70.10427,
-            -34.913817
+            -70.367995,
+            -35.635667
           ],
           [
-            -70.150479,
-            -34.812548
+            -70.399142,
+            -35.543456
           ],
           [
-            -70.196574,
-            -34.711262
+            -70.429108,
+            -35.450771
           ],
           [
-            -70.242557,
-            -34.609958
+            -70.457895,
+            -35.357612
           ],
           [
-            -70.288428,
-            -34.508637
+            -70.485501,
+            -35.263978
           ],
           [
-            -70.334187,
-            -34.407299
+            -70.511927,
+            -35.169866
           ],
           [
-            -70.379835,
-            -34.305944
+            -70.537173,
+            -35.075277
           ],
           [
-            -70.425374,
-            -34.204572
+            -70.561239,
+            -34.980208
           ],
           [
-            -70.470803,
-            -34.103184
+            -70.584125,
+            -34.884659
           ],
           [
-            -70.516123,
-            -34.001778
+            -70.60583,
+            -34.788629
           ],
           [
-            -70.561335,
-            -33.900356
+            -70.626356,
+            -34.692116
           ],
           [
-            -70.60644,
-            -33.798918
+            -70.645701,
+            -34.595119
           ],
           [
-            -70.651438,
-            -33.697463
+            -70.663866,
+            -34.497638
           ],
           [
-            -70.696329,
-            -33.595992
+            -70.680852,
+            -34.39967
           ],
           [
-            -70.741116,
-            -33.494505
+            -70.696657,
+            -34.301215
+          ],
+          [
+            -70.711282,
+            -34.202271
+          ],
+          [
+            -70.724726,
+            -34.102838
+          ],
+          [
+            -70.736991,
+            -34.002914
+          ],
+          [
+            -70.748076,
+            -33.902499
+          ],
+          [
+            -70.75798,
+            -33.80159
+          ],
+          [
+            -70.766705,
+            -33.700187
+          ],
+          [
+            -70.774249,
+            -33.598289
+          ],
+          [
+            -70.780613,
+            -33.495894
           ],
           [
             -70.785797,
