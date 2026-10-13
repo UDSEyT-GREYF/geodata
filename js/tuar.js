@@ -1,7 +1,7 @@
 (() => {
 "use strict";
 
-const DATA_VERSION="20261013-9";
+const DATA_VERSION="20261013-10";
 const ROUTES_URL=`/geodata/data/tuar/tuar_rutas_2026.geojson?v=${DATA_VERSION}`;
 const AIRPORTS_URL=`/geodata/data/tuar/tuar_aeropuertos_2026.geojson?v=${DATA_VERSION}`;
 const METRICS_URL=`/geodata/data/tuar/tuar_metricas_2026.json?v=${DATA_VERSION}`;
