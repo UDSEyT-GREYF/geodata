@@ -60,14 +60,6 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
 
 
 /* Estimación de pasajeros y ahorro */
-.annual-proxy-card{
-  margin-top:7px;
-  padding:10px;
-  background:#fff8f5;
-  border:1px solid #f1c4b8;
-  border-radius:9px;
-}
-.annual-proxy-card span,.annual-proxy-card strong,.annual-proxy-card small{display:block}
 .annual-proxy-card span{color:var(--slate-600);font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
 .annual-proxy-card strong{margin-top:4px;color:var(--new);font-size:18px}
 .annual-proxy-card small{margin-top:3px;color:var(--slate-500);font-size:8px;line-height:1.35}
@@ -157,7 +149,7 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
   z-index:500;
   top:12px;
   right:64px;
-  min-width:245px;
+  min-width:275px;
   padding:11px 14px 10px;
   color:#fff;
   background:linear-gradient(105deg,rgba(11,31,51,.96),rgba(29,72,109,.94));
@@ -186,6 +178,14 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
   line-height:1.08;
   letter-spacing:-.02em;
 }
+.benefit-kpi-pax{
+  display:block;
+  margin-top:3px;
+  color:#dce8f1;
+  font-size:12px;
+  font-weight:720;
+  line-height:1.15;
+}
 .benefit-kpi small{
   margin-top:4px;
   color:#b9cad9;
@@ -193,7 +193,7 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
   line-height:1.3;
 }
 @media(max-width:900px){
-  .benefit-kpi{right:58px;min-width:220px}
+  .benefit-kpi{right:58px;min-width:250px}
   .benefit-kpi strong{font-size:18px}
 }
 @media(max-width:720px){
@@ -205,5 +205,84 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
     padding:9px 10px;
   }
   .benefit-kpi strong{font-size:15px}
+  .benefit-kpi-pax{font-size:10px}
   .benefit-kpi-label,.benefit-kpi small{font-size:7.5px}
+}
+
+
+/* Aeropuerto internacional en referencias */
+.airport-legend-symbol{
+  display:inline-block;
+  flex:0 0 auto;
+  width:12px;
+  height:12px;
+  background:var(--navy-900);
+  border:2px solid #fff;
+  border-radius:50%;
+  box-shadow:0 0 0 1px rgba(7,21,34,.35);
+}
+
+/* Resumen económico en popup */
+.popup-economic-summary{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+  margin-top:8px;
+}
+.popup-economic-summary>div{
+  padding:8px 9px;
+  background:#f7f9fb;
+  border:1px solid #dde4eb;
+  border-radius:7px;
+}
+.popup-economic-summary>div.is-benefit{
+  background:#fff1ed;
+  border-color:#f1c4b8;
+}
+.popup-economic-summary span,
+.popup-economic-summary strong{
+  display:block;
+}
+.popup-economic-summary span{
+  color:#728498;
+  font-size:8px;
+  font-weight:720;
+  line-height:1.25;
+  text-transform:uppercase;
+}
+.popup-economic-summary strong{
+  margin-top:3px;
+  color:#0b1f33;
+  font-size:12px;
+  line-height:1.15;
+}
+.popup-economic-summary .is-benefit strong{
+  color:#a6402f;
+}
+.popup-airline-list{
+  margin-top:8px;
+  padding:7px 8px;
+  background:#f7f9fb;
+  border:1px solid #dde4eb;
+  border-radius:7px;
+}
+.popup-airline-list span,
+.popup-airline-list strong{
+  display:block;
+}
+.popup-airline-list span{
+  color:#728498;
+  font-size:8px;
+  font-weight:720;
+  text-transform:uppercase;
+}
+.popup-airline-list strong{
+  margin-top:3px;
+  color:#17212b;
+  font-size:10px;
+  line-height:1.4;
+}
+.popup-week-share{
+  font-weight:700;
+  color:#425466;
 }
