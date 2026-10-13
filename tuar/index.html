@@ -29,10 +29,6 @@
     </div>
 
     <div class="topbar-actions">
-      <span class="update-badge">
-        <span class="status-dot" aria-hidden="true"></span>
-        Enero–agosto 2026
-      </span>
       <button class="header-button" id="aboutButton" type="button" aria-haspopup="dialog">
         <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></svg>
         <span>Metodología</span>
@@ -124,12 +120,7 @@
             <strong>USD 31,84</strong>
             <small>por pasajero y tramo</small>
           </div>
-          <div class="annual-proxy-card">
-            <span>Proxy anual · 6 nuevas rutas</span>
-            <strong>≈ USD 5,8 millones</strong>
-            <small>Estimación preliminar expandida a 52 semanas</small>
-          </div>
-        </section>
+</section>
 
         <section class="results-section">
           <div class="results-heading">
@@ -158,7 +149,8 @@
       <div class="benefit-kpi" id="benefitKpi" aria-live="polite">
         <span class="benefit-kpi-label">Beneficio para los pasajeros</span>
         <strong id="benefitKpiValue">≈ USD 5,8 millones/año</strong>
-        <small id="benefitKpiNote">Proxy anual · rutas incorporadas a la TUAR</small>
+        <span class="benefit-kpi-pax" id="benefitKpiPax">≈ 182 mil pasajeros/año</span>
+        <small id="benefitKpiNote">Estimación anual · 6 rutas incorporadas a la TUAR</small>
       </div>
 
       <div class="map-tools" aria-label="Herramientas del mapa">
@@ -179,6 +171,7 @@
           <div><span class="legend-line previous"></span>TUAR previa · ≤ 300 km</div>
           <div><span class="legend-line new"></span>Nueva TUAR · 301–1.000 km</div>
           <div><span class="legend-line context"></span>TUAI · &gt; 1.000 km</div>
+          <div><span class="airport-legend-symbol"></span>Aeropuerto con vuelos internacionales</div>
           <div><span class="radius-symbol r300"></span>Radio 300 km</div>
           <div><span class="radius-symbol r1000"></span>Radio 1.000 km</div>
           <p>Las líneas representan rutas con al menos 3 despegues semanales durante 4 o más semanas.</p>
@@ -212,7 +205,7 @@
     <p>Se incluyen rutas con <strong>3 o más despegues semanales durante al menos 4 semanas</strong> del período enero–agosto 2026. La frecuencia mostrada corresponde a la mediana de las semanas que cumplen ese umbral.</p>
 
     <h3>Estimación de pasajeros y ahorro</h3>
-    <p>Para cada ruta y aerolínea se toma el volumen de pasajeros de los despegues regulares internacionales disponibles, se calcula un promedio semanal sobre el período observado y se lo expande a 52 semanas como proxy anual. Para las rutas incorporadas por la ampliación, el ahorro se estima multiplicando ese proxy de pasajeros por USD 31,84 por pasajero y tramo.</p>
+    <p>Para cada ruta y aerolínea se toma el volumen de pasajeros de los despegues regulares internacionales disponibles, se calcula un promedio semanal sobre el período observado y se lo expande a 52 semanas como estimación anual. Para las rutas incorporadas por la ampliación, el ahorro se estima multiplicando esa estimación anual de pasajeros por USD 31,84 por pasajero y tramo.</p>
     <p><strong>Importante:</strong> el archivo detallado utilizado en esta versión llega hasta el 26 de julio de 2026. La estimación es preliminar y se actualizará cuando se incorpore el período completo enero–agosto.</p>
 
     <h3>Fuentes de elaboración</h3>
