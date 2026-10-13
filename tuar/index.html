@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Mapa interactivo de rutas internacionales regulares alcanzadas por la ampliación de la Tasa Aeroportuaria Regional (TUAR).">
+  <meta name="theme-color" content="#0b1f33">
+  <title>Ampliación TUAR | GeoData</title>
+  <link rel="icon" type="image/svg+xml" href="/geodata/img/icons/favicon-tuar.svg">
+  <link rel="stylesheet" href="/geodata/vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="/geodata/css/tuar.css">
+</head>
+<body>
+  <a class="skip-link" href="#map">Ir al mapa</a>
+
+  <header class="topbar">
+    <div class="brand-block">
+      <a class="back-link" href="/geodata/mapas.html" aria-label="Volver a mapas">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+      </a>
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 17c4-7 8-9 16-10"/><path d="m15 5 5 2-3 4"/></svg>
+      </div>
+      <div>
+        <p class="eyebrow">GeoData · Transporte aéreo</p>
+        <h1>Ampliación de la Tasa Aeroportuaria Regional (TUAR)</h1>
+      </div>
+    </div>
+
+    <div class="topbar-actions">
+      <span class="update-badge">
+        <span class="status-dot" aria-hidden="true"></span>
+        Enero–agosto 2026
+      </span>
+      <button class="header-button" id="aboutButton" type="button" aria-haspopup="dialog">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></svg>
+        <span>Metodología</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <aside class="sidebar" aria-label="Filtros y resultados">
+      <div class="sidebar-scroll">
+        <section class="intro-section">
+          <p><strong>Se identifican las rutas internacionales regulares alcanzadas por la ampliación del radio TUAR de 300 a 1.000 km.</strong></p>
+          <p>La selección considera rutas con al menos 3 despegues semanales durante 4 o más semanas del período analizado.</p>
+        </section>
+
+        <section class="filter-section">
+          <label class="field-label" for="originSelect">Aeropuerto de salida</label>
+          <div class="select-wrap">
+            <select id="originSelect">
+              <option value="">Todos los aeropuertos</option>
+            </select>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg>
+          </div>
+          <p class="filter-note">Al seleccionar un aeropuerto se representan los radios de 300 y 1.000 km.</p>
+        </section>
+
+        <section class="filter-section" aria-labelledby="categoryTitle">
+          <span class="field-label" id="categoryTitle">Categorías de tasa</span>
+
+          <label class="switch-row">
+            <span>
+              <strong><span class="inline-line previous"></span>TUAR previa</strong>
+              <small>Rutas de hasta 300 km</small>
+            </span>
+            <input id="previousToggle" type="checkbox" checked>
+            <span class="switch" aria-hidden="true"></span>
+          </label>
+
+          <label class="switch-row">
+            <span>
+              <strong><span class="inline-line new"></span>Nueva TUAR</strong>
+              <small>Rutas de 301 a 1.000 km</small>
+            </span>
+            <input id="newToggle" type="checkbox" checked>
+            <span class="switch" aria-hidden="true"></span>
+          </label>
+
+          <label class="switch-row">
+            <span>
+              <strong><span class="inline-line context"></span>TUAI · contexto</strong>
+              <small>Rutas regulares de más de 1.000 km</small>
+            </span>
+            <input id="contextToggle" type="checkbox" checked>
+            <span class="switch" aria-hidden="true"></span>
+          </label>
+        </section>
+
+        <section class="summary-section" aria-live="polite">
+          <div class="summary-card">
+            <span class="summary-value" id="previousCount">3</span>
+            <span class="summary-label">TUAR previa</span>
+          </div>
+          <div class="summary-card summary-primary">
+            <span class="summary-value" id="newCount">6</span>
+            <span class="summary-label">Nuevas beneficiadas</span>
+          </div>
+          <div class="summary-card">
+            <span class="summary-value" id="contextCount">78</span>
+            <span class="summary-label">TUAI contexto</span>
+          </div>
+        </section>
+
+        <section class="tariff-section">
+          <span class="field-label">Cambio tarifario</span>
+          <div class="tariff-grid">
+            <div>
+              <span class="tariff-name">TUAI</span>
+              <strong>USD 57,00</strong>
+              <small>por tramo</small>
+            </div>
+            <div class="tariff-highlight">
+              <span class="tariff-name">TUAR</span>
+              <strong>USD 25,16</strong>
+              <small>por tramo</small>
+            </div>
+          </div>
+          <div class="saving-card">
+            <span>Ahorro en rutas incorporadas</span>
+            <strong>USD 31,84</strong>
+            <small>por tramo</small>
+          </div>
+        </section>
+
+        <section class="results-section">
+          <div class="results-heading">
+            <h2>Rutas visibles</h2>
+            <button id="resetFilters" class="text-button" type="button">Restablecer</button>
+          </div>
+          <div id="resultList" class="result-list"></div>
+        </section>
+      </div>
+
+      <div class="sidebar-footer">
+        <span>Frecuencias regulares · ene–ago 2026</span>
+        <span>ORSNA · GeoData</span>
+      </div>
+    </aside>
+
+    <section class="map-stage" id="mapStage" aria-label="Mapa de rutas TUAR">
+      <div id="map" tabindex="0"></div>
+
+      <div id="loadingOverlay" class="loading-overlay" role="status">
+        <div class="loader" aria-hidden="true"></div>
+        <strong>Cargando rutas</strong>
+        <span>Se está preparando el análisis TUAR…</span>
+      </div>
+
+      <div class="map-tools" aria-label="Herramientas del mapa">
+        <button id="fitMapButton" type="button" title="Ver rutas TUAR" aria-label="Ver rutas TUAR">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 4H4v4M16 4h4v4M20 16v4h-4M4 16v4h4"/></svg>
+        </button>
+        <button id="fullscreenButton" type="button" title="Pantalla completa" aria-label="Alternar pantalla completa">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M3 16v5h5"/></svg>
+        </button>
+      </div>
+
+      <div class="map-legend" id="mapLegend">
+        <button class="legend-title" id="legendToggle" type="button" aria-expanded="true" aria-controls="legendBody">
+          <span>Referencias</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg>
+        </button>
+        <div class="legend-body" id="legendBody">
+          <div><span class="legend-line previous"></span>TUAR previa · ≤ 300 km</div>
+          <div><span class="legend-line new"></span>Nueva TUAR · 301–1.000 km</div>
+          <div><span class="legend-line context"></span>TUAI · &gt; 1.000 km</div>
+          <div><span class="radius-symbol r300"></span>Radio 300 km</div>
+          <div><span class="radius-symbol r1000"></span>Radio 1.000 km</div>
+          <p>Las líneas representan rutas con al menos 3 despegues semanales durante 4 o más semanas.</p>
+        </div>
+      </div>
+
+      <div class="basemap-buttons" id="basemapButtons" aria-label="Mapa base">
+        <button type="button" class="is-active" data-basemap="light" aria-pressed="true">Claro</button>
+        <button type="button" data-basemap="osm" aria-pressed="false">OSM</button>
+        <button type="button" data-basemap="satellite" aria-pressed="false">Satelital</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="about-dialog" id="aboutDialog" aria-labelledby="aboutTitle">
+    <button class="dialog-close" id="aboutClose" type="button" aria-label="Cerrar">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg>
+    </button>
+    <p class="eyebrow">Metodología</p>
+    <h2 id="aboutTitle">Rutas alcanzadas por la ampliación TUAR</h2>
+
+    <p>El análisis compara el radio anterior de 300 km con el nuevo alcance de 1.000 km desde el aeropuerto de salida. Se consideran rutas internacionales regulares observadas entre enero y agosto de 2026.</p>
+
+    <div class="about-grid">
+      <div><strong>≤ 300 km</strong><span>TUAR previa</span></div>
+      <div><strong>301–1.000 km</strong><span>Nueva TUAR</span></div>
+      <div><strong>&gt; 1.000 km</strong><span>TUAI</span></div>
+    </div>
+
+    <h3>Criterio de regularidad</h3>
+    <p>Se incluyen rutas con <strong>3 o más despegues semanales durante al menos 4 semanas</strong> del período enero–agosto 2026. La frecuencia mostrada corresponde a la mediana de las semanas que cumplen ese umbral.</p>
+
+    <h3>Fuentes de elaboración</h3>
+    <p>Frecuencias por ruta internacional 2026, distancias entre aeropuertos, catálogo geográfico de aeropuertos del SNA y catálogo internacional de aeropuertos utilizados en GeoData. Elaboración propia.</p>
+
+    <p class="dialog-note">Valores tarifarios utilizados en el análisis: TUAR USD 25,16 por tramo y TUAI USD 57,00 por tramo. El mapa tiene finalidad analítica y no reemplaza la normativa tarifaria vigente.</p>
+
+    <form method="dialog"><button class="primary-button" type="submit">Cerrar</button></form>
+  </dialog>
+
+  <script src="/geodata/vendor/leaflet/leaflet.js"></script>
+  <script src="/geodata/js/tuar.js"></script>
+  <script src="/geodata/js/siga-analytics.js"></script>
+</body>
+</html>
