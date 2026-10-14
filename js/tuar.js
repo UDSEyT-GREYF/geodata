@@ -568,7 +568,53 @@ function bind(){
   dom.aboutButton.addEventListener("click",()=>dom.aboutDialog.showModal());
   dom.aboutClose.addEventListener("click",()=>dom.aboutDialog.close());
 }
+async function updateDomesticKpiUsd(){
+  const TOTAL_ARS = 117914550000;
 
+  const usdEl = document.getElementById("domesticKpiUsd");
+  const fxEl = document.getElementById("domesticKpiFx");
+
+  try{
+    const response = await fetch(
+      "https://api.bcra.gob.ar/estadisticascambiarias/v1.0/Cotizaciones/REF",
+      {cache:"no-store"}
+    );
+
+    if(!response.ok) throw new Error("BCRA no disponible");
+
+    const data = await response.json();
+
+    const ultimo = data.results?.[0];
+    const detalle = ultimo?.detalle?.[0];
+
+    const tc = Number(detalle?.tipoCotizacion);
+    const fecha = ultimo?.fecha;
+
+    if(!Number.isFinite(tc) || tc <= 0){
+      throw new Error("Cotización inválida");
+    }
+
+    const totalUsd = TOTAL_ARS / tc;
+
+    usdEl.textContent =
+      `≈ USD ${(totalUsd / 1000000).toLocaleString("es-AR",{
+        minimumFractionDigits:1,
+        maximumFractionDigits:1
+      })} millones adicionales/año`;
+
+    fxEl.textContent =
+      `TC BCRA A 3500: ARS ${tc.toLocaleString("es-AR",{
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+      })} por USD · ${fecha}`;
+
+  }catch(error){
+    console.error("Error al consultar BCRA:",error);
+
+    usdEl.textContent = "Equivalencia en USD no disponible";
+    fxEl.textContent = "Fuente: BCRA · Comunicación A 3500";
+  }
+}
 async function init(){
   try{
     const [rr,aa,mm,hh]=await Promise.all([
@@ -606,7 +652,8 @@ async function init(){
     bind();
     renderRoutes();
     fitTUAR();
-
+    updateDomesticKpiUsd();
+    
     dom.loading.classList.add("is-hidden");
   }catch(err){
     console.error(err);
