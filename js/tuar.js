@@ -1,7 +1,7 @@
 (() => {
 "use strict";
 
-const DATA_VERSION="20261019-3";
+const DATA_VERSION="20261019-4";
 const ROUTES_URL=`/geodata/data/tuar/tuar_rutas_2026.geojson?v=${DATA_VERSION}`;
 const AIRPORTS_URL=`/geodata/data/tuar/tuar_aeropuertos_2026.geojson?v=${DATA_VERSION}`;
 const METRICS_URL=`/geodata/data/tuar/tuar_metricas_2026.json?v=${DATA_VERSION}`;
@@ -324,40 +324,18 @@ function renderPotentialRoutes(){
     const line=L.polyline(latlngs,style)
       .bindPopup(potentialPopup(p),{maxWidth:420});
 
-const baseStyle=routeStyle(p);
-
-const line=L.polyline(latlngs,baseStyle)
-  .bindPopup(popup(p),{maxWidth:410});
-
-line.on("mouseover",()=>{
-  if(p.categoria_tasa==="TUAI"){
-    // Contexto: resaltado moderado y sin alterar el orden de capas
-    line.setStyle({
-      ...baseStyle,
-      weight:2,
-      opacity:.65
+    line.on("mouseover",()=>{
+      line.setStyle({
+        ...style,
+        weight:4,
+        opacity:1
+      });
+      line.bringToFront();
     });
-  }else{
-    line.setStyle({
-      ...baseStyle,
-      weight:baseStyle.weight+1.5,
-      opacity:1
+
+    line.on("mouseout",()=>{
+      line.setStyle(style);
     });
-    line.bringToFront();
-  }
-});
-
-line.on("mouseout",()=>{
-  line.setStyle(baseStyle);
-
-  // Las TUAI vuelven siempre al fondo
-  if(p.categoria_tasa==="TUAI"){
-    line.bringToBack();
-  }
-});
-
-line.addTo(routeLayer);
-routeMarkers.set(p.id,line);
 
     line.addTo(potentialLayer);
     potentialRouteMarkers.set(`POT-${p.id}`,line);
@@ -620,19 +598,51 @@ function renderRoutes(){
     return categoryEnabled(p.categoria_tasa) && (!origin || p.origen_iata===origin);
   });
 
-  // Context first; highlighted routes above it.
-  const ordered=[...visibleRoutes].sort((a,b)=>(b.properties.categoria_orden||9)-(a.properties.categoria_orden||9));
+  // Dibujar primero el contexto TUAI y luego las rutas destacadas.
+  const ordered=[...visibleRoutes].sort(
+    (a,b)=>(b.properties.categoria_orden||9)-(a.properties.categoria_orden||9)
+  );
+
   for(const f of ordered){
-    const p=f.properties;
+    const p=f.properties||{};
     const latlngs=curvedLatLngs(p);
     if(!latlngs.length) continue;
-    const line=L.polyline(latlngs,routeStyle(p)).bindPopup(popup(p),{maxWidth:410});
+
+    const baseStyle=routeStyle(p);
+
+    const line=L.polyline(latlngs,baseStyle)
+      .bindPopup(popup(p),{maxWidth:410});
+
+    const resetLine=()=>{
+      line.setStyle(baseStyle);
+
+      // Las TUAI vuelven siempre al fondo y a su trazo fino.
+      if(p.categoria_tasa==="TUAI"){
+        line.bringToBack();
+      }
+    };
+
     line.on("mouseover",()=>{
-      const base=routeStyle(p);
-      line.setStyle({...base,weight:base.weight+2,opacity:1});
-      line.bringToFront();
+      if(p.categoria_tasa==="TUAI"){
+        // Contexto: resaltado moderado, sin llevar la línea al frente.
+        line.setStyle({
+          ...baseStyle,
+          weight:2,
+          opacity:.65
+        });
+      }else{
+        line.setStyle({
+          ...baseStyle,
+          weight:baseStyle.weight+1.5,
+          opacity:1
+        });
+        line.bringToFront();
+      }
     });
-    line.on("mouseout",()=>line.setStyle(routeStyle(p)));
+
+    line.on("mouseout",resetLine);
+    line.on("popupclose",resetLine);
+
     line.addTo(routeLayer);
     routeMarkers.set(p.id,line);
   }
