@@ -324,11 +324,40 @@ function renderPotentialRoutes(){
     const line=L.polyline(latlngs,style)
       .bindPopup(potentialPopup(p),{maxWidth:420});
 
-    line.on("mouseover",()=>{
-      line.setStyle({...style,weight:4,opacity:1});
-      line.bringToFront();
+const baseStyle=routeStyle(p);
+
+const line=L.polyline(latlngs,baseStyle)
+  .bindPopup(popup(p),{maxWidth:410});
+
+line.on("mouseover",()=>{
+  if(p.categoria_tasa==="TUAI"){
+    // Contexto: resaltado moderado y sin alterar el orden de capas
+    line.setStyle({
+      ...baseStyle,
+      weight:2,
+      opacity:.65
     });
-    line.on("mouseout",()=>line.setStyle(style));
+  }else{
+    line.setStyle({
+      ...baseStyle,
+      weight:baseStyle.weight+1.5,
+      opacity:1
+    });
+    line.bringToFront();
+  }
+});
+
+line.on("mouseout",()=>{
+  line.setStyle(baseStyle);
+
+  // Las TUAI vuelven siempre al fondo
+  if(p.categoria_tasa==="TUAI"){
+    line.bringToBack();
+  }
+});
+
+line.addTo(routeLayer);
+routeMarkers.set(p.id,line);
 
     line.addTo(potentialLayer);
     potentialRouteMarkers.set(`POT-${p.id}`,line);
@@ -680,16 +709,35 @@ function focusRoute(id){
 }
 
 function fitTUAR(){
-  const target=routes.filter(f=>{
+  const origin=dom.origin.value;
+
+  const activeTUAR=routes.filter(f=>{
     const p=f.properties||{};
-    const isTUAR=p.categoria_tasa!=="TUAI";
-    return isTUAR && (!dom.origin.value || p.origen_iata===dom.origin.value);
+    return p.categoria_tasa!=="TUAI"
+      && (!origin || p.origen_iata===origin);
   });
-  if(!target.length) return;
-  const latlngs=target.flatMap(f=>curvedLatLngs(f.properties));
+
+  const potential=(dom.potentialToggle?.checked ? potentialRoutes : [])
+    .filter(f=>{
+      const p=f.properties||{};
+      return !origin || p.origen_iata===origin;
+    });
+
+  const latlngs=[
+    ...activeTUAR.flatMap(f=>curvedLatLngs(f.properties)),
+    ...potential.flatMap(f=>potentialCurvedLatLngs(f))
+  ];
+
   if(!latlngs.length) return;
+
   const b=L.latLngBounds(latlngs);
-  if(b.isValid()) map.fitBounds(b,{padding:[28,28],maxZoom:6});
+
+  if(b.isValid()){
+    map.fitBounds(b,{
+      padding:[28,28],
+      maxZoom:6
+    });
+  }
 }
 
 function setBasemap(name){
