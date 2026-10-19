@@ -1,11 +1,12 @@
 (() => {
 "use strict";
 
-const DATA_VERSION="20261013-10";
+const DATA_VERSION="20261019-2";
 const ROUTES_URL=`/geodata/data/tuar/tuar_rutas_2026.geojson?v=${DATA_VERSION}`;
 const AIRPORTS_URL=`/geodata/data/tuar/tuar_aeropuertos_2026.geojson?v=${DATA_VERSION}`;
 const METRICS_URL=`/geodata/data/tuar/tuar_metricas_2026.json?v=${DATA_VERSION}`;
 const HISTORY_URL=`/geodata/data/tuar/tuar_pasajeros_historicos.json?v=${DATA_VERSION}`;
+const POTENTIAL_URL=`/geodata/data/tuar/tuar_rutas_potenciales.geojson?v=${DATA_VERSION}`;
 
 const COLORS={
   "TUAR previa":"#139b8d",
@@ -18,6 +19,7 @@ const dom={
   previousToggle:document.getElementById("previousToggle"),
   newToggle:document.getElementById("newToggle"),
   contextToggle:document.getElementById("contextToggle"),
+  potentialToggle:document.getElementById("potentialToggle"),
   previousCount:document.getElementById("previousCount"),
   newCount:document.getElementById("newCount"),
   contextCount:document.getElementById("contextCount"),
@@ -85,11 +87,15 @@ L.control.zoom({position:"topleft"}).addTo(map);
 const routeLayer=L.layerGroup().addTo(map);
 const airportLayer=L.layerGroup().addTo(map);
 const radiusLayer=L.layerGroup().addTo(map);
+const potentialLayer=L.layerGroup().addTo(map);
 
 let routes=[];
 let airports=[];
 let visibleRoutes=[];
 let routeMarkers=new Map();
+let potentialRoutes=[];
+let visiblePotentialRoutes=[];
+let potentialRouteMarkers=new Map();
 let historyData=null;
 let airportByIata=new Map();
 
@@ -215,6 +221,119 @@ function popup(p){
   `;
 }
 
+
+
+function potentialPopup(p){
+  const years=["2015","2016","2017","2018","2019"];
+  const hist=p.pasajeros_por_anio_2015_2019||{};
+  const airlines=Array.isArray(p.aerolineas_historicas)?p.aerolineas_historicas:[];
+
+  return `
+    <div class="popup-category potential">Ruta potencial</div>
+    <div class="popup-title">${esc(p.ruta)}</div>
+
+    <div class="popup-row"><span>Distancia</span><span>${fmt(p.distancia_km)} km</span></div>
+    <div class="popup-airline-list">
+      <span>Aerolíneas documentadas</span>
+      <strong>${airlines.length ? esc(airlines.join(" · ")) : "Sin dato"}</strong>
+    </div>
+
+    <div class="potential-summary">
+      <div>
+        <span>Pasajeros 2015–2019</span>
+        <strong>${fmt(p.pasajeros_2015_2019)}</strong>
+      </div>
+      <div>
+        <span>Máximo anual</span>
+        <strong>${fmt(p.max_pasajeros_anual)} · ${esc(p.anio_max_pasajeros)}</strong>
+      </div>
+    </div>
+
+    <div class="potential-history">
+      <div class="potential-history-title">Pasajeros por año</div>
+      <div class="potential-history-grid">
+        ${years.map(y=>`
+          <div>
+            <span>${y}</span>
+            <strong>${hist[y]===null || hist[y]===undefined ? "—" : fmt(hist[y])}</strong>
+          </div>`).join("")}
+      </div>
+    </div>
+
+    <div class="potential-note">
+      Antecedente histórico. La línea discontinua no representa un servicio regular activo en la capa 2026.
+    </div>
+  `;
+}
+
+function potentialCurvedLatLngs(f){
+  const coords=f?.geometry?.coordinates||[];
+  if(coords.length<2) return [];
+
+  const [lon1,lat1]=coords[0];
+  const [lon2,lat2]=coords[coords.length-1];
+  const [x1,y1]=projectMercator(lon1,lat1);
+  const [x2,y2]=projectMercator(lon2,lat2);
+  const dx=x2-x1,dy=y2-y1;
+  const len=Math.hypot(dx,dy);
+  if(!len) return [[lat1,lon1],[lat2,lon2]];
+
+  const px=-dy/len,py=dx/len;
+  let offset=len*(Number(f.properties?.curvatura_mapa)||.14);
+  offset=Math.max(-420000,Math.min(420000,offset));
+
+  const cx=(x1+x2)/2+px*offset;
+  const cy=(y1+y2)/2+py*offset;
+  const points=[];
+  const n=56;
+
+  for(let i=0;i<n;i++){
+    const t=i/(n-1),u=1-t;
+    const x=u*u*x1+2*u*t*cx+t*t*x2;
+    const y=u*u*y1+2*u*t*cy+t*t*y2;
+    const [lon,lat]=unprojectMercator(x,y);
+    points.push([lat,lon]);
+  }
+  return points;
+}
+
+function renderPotentialRoutes(){
+  potentialLayer.clearLayers();
+  potentialRouteMarkers.clear();
+
+  const origin=dom.origin.value;
+  visiblePotentialRoutes=(dom.potentialToggle?.checked ? potentialRoutes : []).filter(f=>{
+    const p=f.properties||{};
+    return !origin || p.origen_iata===origin;
+  });
+
+  for(const f of visiblePotentialRoutes){
+    const p=f.properties||{};
+    const latlngs=potentialCurvedLatLngs(f);
+    if(!latlngs.length) continue;
+
+    const style={
+      color:"#7357a6",
+      weight:2.7,
+      opacity:.82,
+      dashArray:"8 6",
+      lineCap:"round",
+      lineJoin:"round"
+    };
+
+    const line=L.polyline(latlngs,style)
+      .bindPopup(potentialPopup(p),{maxWidth:420});
+
+    line.on("mouseover",()=>{
+      line.setStyle({...style,weight:4,opacity:1});
+      line.bringToFront();
+    });
+    line.on("mouseout",()=>line.setStyle(style));
+
+    line.addTo(potentialLayer);
+    potentialRouteMarkers.set(`POT-${p.id}`,line);
+  }
+}
 
 function renderHistoryTable(){
   if(!historyData || !dom.historyHead || !dom.historyRows) return;
@@ -438,6 +557,7 @@ function renderRoutes(){
 
   renderAirports();
   renderRadii();
+  renderPotentialRoutes();
   renderList();
   updateCounts();
   updateBenefitKpi();
@@ -454,12 +574,17 @@ function updateCounts(){
 }
 
 function renderList(){
-  const priority={"Nueva TUAR":0,"TUAR previa":1,"TUAI":2};
-  const list=[...visibleRoutes].sort((a,b)=>{
-    const pa=a.properties,pb=b.properties;
-    return (priority[pa.categoria_tasa]-priority[pb.categoria_tasa])
-      || pa.origen_iata.localeCompare(pb.origen_iata)
-      || pa.destino_iata.localeCompare(pb.destino_iata);
+  const priority={"Nueva TUAR":0,"TUAR previa":1,"TUAI":3};
+  const current=[...visibleRoutes].map(f=>({kind:"current",feature:f}));
+  const potential=[...visiblePotentialRoutes].map(f=>({kind:"potential",feature:f}));
+
+  const list=[...current,...potential].sort((a,b)=>{
+    const pa=a.feature.properties||{},pb=b.feature.properties||{};
+    const pra=a.kind==="potential"?2:(priority[pa.categoria_tasa]??9);
+    const prb=b.kind==="potential"?2:(priority[pb.categoria_tasa]??9);
+    return (pra-prb)
+      || String(pa.origen_iata||"").localeCompare(String(pb.origen_iata||""))
+      || String(pa.destino_iata||"").localeCompare(String(pb.destino_iata||""));
   });
 
   if(!list.length){
@@ -467,8 +592,21 @@ function renderList(){
     return;
   }
 
-  dom.resultList.innerHTML=list.map(f=>{
-    const p=f.properties,cls=catClass(p.categoria_tasa);
+  dom.resultList.innerHTML=list.map(item=>{
+    const p=item.feature.properties||{};
+
+    if(item.kind==="potential"){
+      return `<button class="route-item" type="button" data-route="POT-${esc(p.id)}">
+        <span class="route-code potential">${esc(p.origen_iata)}–${esc(p.destino_iata)}</span>
+        <span class="route-copy">
+          <strong>${esc(p.origen_ciudad)} → ${esc(p.destino_ciudad)}</strong>
+          <span>Ruta potencial · ${fmt(p.pasajeros_2015_2019)} pax 2015–2019</span>
+        </span>
+        <span class="route-km">${fmt(p.distancia_km)} km</span>
+      </button>`;
+    }
+
+    const cls=catClass(p.categoria_tasa);
     return `<button class="route-item" type="button" data-route="${esc(p.id)}">
       <span class="route-code ${cls}">${esc(p.origen_iata)}–${esc(p.destino_iata)}</span>
       <span class="route-copy">
@@ -481,7 +619,7 @@ function renderList(){
 }
 
 function focusRoute(id){
-  const layer=routeMarkers.get(id);
+  const layer=routeMarkers.get(id) || potentialRouteMarkers.get(id);
   if(!layer) return;
   const bounds=layer.getBounds?.();
   if(bounds?.isValid()) map.fitBounds(bounds,{padding:[80,80],maxZoom:6.75});
@@ -518,12 +656,13 @@ function reset(){
   dom.previousToggle.checked=true;
   dom.newToggle.checked=true;
   dom.contextToggle.checked=true;
+  if(dom.potentialToggle) dom.potentialToggle.checked=true;
   renderRoutes();
   fitTUAR();
 }
 
 function bind(){
-  [dom.origin,dom.previousToggle,dom.newToggle,dom.contextToggle].forEach(el=>{
+  [dom.origin,dom.previousToggle,dom.newToggle,dom.potentialToggle,dom.contextToggle].filter(Boolean).forEach(el=>{
     el.addEventListener("change",()=>{
       renderRoutes();
       if(dom.origin.value) fitTUAR();
@@ -568,66 +707,60 @@ function bind(){
   dom.aboutButton.addEventListener("click",()=>dom.aboutDialog.showModal());
   dom.aboutClose.addEventListener("click",()=>dom.aboutDialog.close());
 }
+
+
 async function updateDomesticKpiUsd(){
   const TOTAL_ARS = 117914550000;
-
   const usdEl = document.getElementById("domesticKpiUsd");
   const fxEl = document.getElementById("domesticKpiFx");
+  if(!usdEl || !fxEl) return;
 
   try{
     const response = await fetch(
       "https://api.bcra.gob.ar/estadisticascambiarias/v1.0/Cotizaciones/REF",
       {cache:"no-store"}
     );
-
     if(!response.ok) throw new Error("BCRA no disponible");
 
     const data = await response.json();
-
     const ultimo = data.results?.[0];
     const detalle = ultimo?.detalle?.[0];
-
     const tc = Number(detalle?.tipoCotizacion);
     const fecha = ultimo?.fecha;
 
-    if(!Number.isFinite(tc) || tc <= 0){
-      throw new Error("Cotización inválida");
-    }
+    if(!Number.isFinite(tc) || tc<=0) throw new Error("Cotización inválida");
 
-    const totalUsd = TOTAL_ARS / tc;
+    const totalUsd=TOTAL_ARS/tc;
+    usdEl.textContent=`≈ USD ${(totalUsd/1000000).toLocaleString("es-AR",{
+      minimumFractionDigits:1,maximumFractionDigits:1
+    })} millones adicionales/año`;
 
-    usdEl.textContent =
-      `≈ USD ${(totalUsd / 1000000).toLocaleString("es-AR",{
-        minimumFractionDigits:1,
-        maximumFractionDigits:1
-      })} millones adicionales/año`;
-
-    fxEl.textContent =
-      `TC BCRA A 3500: ARS ${tc.toLocaleString("es-AR",{
-        minimumFractionDigits:2,
-        maximumFractionDigits:2
-      })} por USD · ${fecha}`;
-
+    fxEl.textContent=`TC BCRA A 3500: ARS ${tc.toLocaleString("es-AR",{
+      minimumFractionDigits:2,maximumFractionDigits:2
+    })} por USD · ${fecha}`;
   }catch(error){
     console.error("Error al consultar BCRA:",error);
-
-    usdEl.textContent = "Equivalencia en USD no disponible";
-    fxEl.textContent = "Fuente: BCRA · Comunicación A 3500";
+    usdEl.textContent="Equivalencia en USD no disponible";
+    fxEl.textContent="Fuente: BCRA · Comunicación A 3500";
   }
 }
+
 async function init(){
   try{
-    const [rr,aa,mm,hh]=await Promise.all([
+    const [rr,aa,mm,hh,pp]=await Promise.all([
       fetch(ROUTES_URL,{cache:"no-store"}),
       fetch(AIRPORTS_URL,{cache:"no-store"}),
       fetch(METRICS_URL,{cache:"no-store"}),
-      fetch(HISTORY_URL,{cache:"no-store"})
+      fetch(HISTORY_URL,{cache:"no-store"}),
+      fetch(POTENTIAL_URL,{cache:"no-store"})
     ]);
-    if(!rr.ok||!aa.ok||!mm.ok||!hh.ok) throw new Error("No fue posible cargar los datos del mapa.");
+    if(!rr.ok||!aa.ok||!mm.ok||!hh.ok||!pp.ok) throw new Error("No fue posible cargar los datos del mapa.");
     const rj=await rr.json();
     const aj=await aa.json();
     const mj=await mm.json();
     historyData=await hh.json();
+    const pj=await pp.json();
+    potentialRoutes=pj.features||[];
 
     routes=rj.features||[];
     airports=aj.features||[];
@@ -653,7 +786,7 @@ async function init(){
     renderRoutes();
     fitTUAR();
     updateDomesticKpiUsd();
-    
+
     dom.loading.classList.add("is-hidden");
   }catch(err){
     console.error(err);
