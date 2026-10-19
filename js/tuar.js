@@ -1,7 +1,7 @@
 (() => {
 "use strict";
 
-const DATA_VERSION="20261019-2";
+const DATA_VERSION="20261019-3";
 const ROUTES_URL=`/geodata/data/tuar/tuar_rutas_2026.geojson?v=${DATA_VERSION}`;
 const AIRPORTS_URL=`/geodata/data/tuar/tuar_aeropuertos_2026.geojson?v=${DATA_VERSION}`;
 const METRICS_URL=`/geodata/data/tuar/tuar_metricas_2026.json?v=${DATA_VERSION}`;
@@ -378,25 +378,78 @@ function buildOriginOptions(){
 
 function renderAirports(){
   airportLayer.clearLayers();
+
   const needed=new Set();
   for(const f of visibleRoutes){
     needed.add(f.properties.origen_iata);
     needed.add(f.properties.destino_iata);
   }
-  for(const f of airports){
-    const p=f.properties||{};
-    if(!needed.has(p.iata)) continue;
-    const [lon,lat]=f.geometry.coordinates;
-    const isOrigin=visibleRoutes.some(r=>r.properties.origen_iata===p.iata);
+  for(const f of visiblePotentialRoutes){
+    needed.add(f.properties.origen_iata);
+    needed.add(f.properties.destino_iata);
+  }
+
+  const rendered=new Set();
+
+  function addAirportMarker(iata,city,lon,lat,isOrigin){
+    if(!iata || rendered.has(iata)) return;
+
     const icon=L.divIcon({
       className:"",
       html:`<div class="airport-marker ${isOrigin?"":"foreign"}"></div>`,
       iconSize:isOrigin?[16,16]:[11,11],
       iconAnchor:isOrigin?[8,8]:[5.5,5.5]
     });
+
     L.marker([lat,lon],{icon,keyboard:false,interactive:true})
-      .bindTooltip(`${esc(p.iata)} · ${esc(p.ciudad||"")}`,{direction:"top",offset:[0,-6]})
+      .bindTooltip(`${esc(iata)} · ${esc(city||"")}`,{direction:"top",offset:[0,-6]})
       .addTo(airportLayer);
+
+    rendered.add(iata);
+  }
+
+  // Aeropuertos de la capa principal.
+  for(const f of airports){
+    const p=f.properties||{};
+    if(!needed.has(p.iata)) continue;
+
+    const [lon,lat]=f.geometry.coordinates;
+    const isOrigin=
+      visibleRoutes.some(r=>r.properties.origen_iata===p.iata) ||
+      visiblePotentialRoutes.some(r=>r.properties.origen_iata===p.iata);
+
+    addAirportMarker(p.iata,p.ciudad,lon,lat,isOrigin);
+  }
+
+  // Fallback para aeropuertos que sólo aparecen en la capa potencial.
+  // Esto incorpora, entre otros, IQQ como destino de SLA–IQQ.
+  for(const f of visiblePotentialRoutes){
+    const p=f.properties||{};
+    const coords=f.geometry?.coordinates||[];
+    if(coords.length<2) continue;
+
+    const originCoord=coords[0];
+    const destCoord=coords[coords.length-1];
+
+    if(!rendered.has(p.origen_iata)){
+      addAirportMarker(
+        p.origen_iata,
+        p.origen_ciudad,
+        Number(originCoord[0]),
+        Number(originCoord[1]),
+        true
+      );
+    }
+
+    if(!rendered.has(p.destino_iata)){
+      addAirportMarker(
+        p.destino_iata,
+        p.destino_ciudad,
+        Number(destCoord[0]),
+        Number(destCoord[1]),
+        false
+      );
+    }
   }
 }
 
@@ -555,9 +608,9 @@ function renderRoutes(){
     routeMarkers.set(p.id,line);
   }
 
+  renderPotentialRoutes();
   renderAirports();
   renderRadii();
-  renderPotentialRoutes();
   renderList();
   updateCounts();
   updateBenefitKpi();
