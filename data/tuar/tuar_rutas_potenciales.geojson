@@ -1,0 +1,312 @@
+{
+  "type": "FeatureCollection",
+  "name": "Rutas potenciales TUAR - antecedentes históricos",
+  "metadata": {
+    "version": "20261019-1",
+    "criterio": "Seis rutas no incluidas como activas en la capa TUAR 2026 con mayor volumen de pasajeros acumulado en 2015–2019.",
+    "fuente_pasajeros": "rutaspotencial.csv suministrado por la usuaria; campo SIAC TablaFinal - Pasajeros comerciales por aeropuerto.",
+    "periodo_seleccion": "2015–2019",
+    "aclaracion": "Los registros posteriores incluidos en la fuente no se interpretan por sí solos como existencia de un servicio regular activo.",
+    "aerolineas": "Operadores históricos documentados en fuentes públicas; la lista se presenta como antecedente y no necesariamente como inventario exhaustivo de vuelos no regulares."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ROS-SCL",
+        "ruta": "ROS - SCL",
+        "origen_iata": "ROS",
+        "origen_ciudad": "Rosario",
+        "destino_iata": "SCL",
+        "destino_ciudad": "Santiago",
+        "distancia_km": 932,
+        "categoria": "Ruta potencial",
+        "criterio_seleccion": "Entre las rutas no incluidas como activas en la capa 2026, se seleccionan las seis con mayor volumen de pasajeros acumulado 2015–2019.",
+        "pasajeros_2015_2019": 73087,
+        "max_pasajeros_anual": 44776,
+        "anio_max_pasajeros": 2018,
+        "pasajeros_por_anio_2015_2019": {
+          "2015": null,
+          "2016": null,
+          "2017": 14628,
+          "2018": 44776,
+          "2019": 13683
+        },
+        "registros_posteriores": {
+          "2023": 0,
+          "2025": 123
+        },
+        "aerolineas_historicas": [
+          "LATAM Chile",
+          "SKY Airline"
+        ],
+        "nota_aerolineas": "Operadores regulares documentados en la reapertura de la ruta en 2017.",
+        "fuentes_aerolineas": [
+          "Aviacionline · Frecuencias internacionales desde el interior argentino (2017)",
+          "Prensa sectorial de Rosario · inicio de SKY en 2017"
+        ],
+        "curvatura_mapa": 0.19,
+        "estado": "Potencial / antecedente histórico"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -60.7852315547,
+            -32.9097209663
+          ],
+          [
+            -70.78579711914062,
+            -33.393001556396484
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "SLA-VVI",
+        "ruta": "SLA - VVI",
+        "origen_iata": "SLA",
+        "origen_ciudad": "Salta",
+        "destino_iata": "VVI",
+        "destino_ciudad": "Santa Cruz de la Sierra",
+        "distancia_km": 838,
+        "categoria": "Ruta potencial",
+        "criterio_seleccion": "Entre las rutas no incluidas como activas en la capa 2026, se seleccionan las seis con mayor volumen de pasajeros acumulado 2015–2019.",
+        "pasajeros_2015_2019": 34632,
+        "max_pasajeros_anual": 9630,
+        "anio_max_pasajeros": 2017,
+        "pasajeros_por_anio_2015_2019": {
+          "2015": 5713,
+          "2016": 6465,
+          "2017": 9630,
+          "2018": 8810,
+          "2019": 4014
+        },
+        "registros_posteriores": {},
+        "aerolineas_historicas": [
+          "Boliviana de Aviación (BoA)"
+        ],
+        "nota_aerolineas": "Operador regular documentado desde 2014 y durante el período histórico analizado.",
+        "fuentes_aerolineas": [
+          "Gobierno de Salta · presentación de la ruta Salta–Santa Cruz de la Sierra",
+          "Aviacionline · conectividad internacional del interior"
+        ],
+        "curvatura_mapa": -0.16,
+        "estado": "Potencial / antecedente histórico"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -65.4843872447,
+            -24.853779839
+          ],
+          [
+            -63.135399,
+            -17.6448
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "TUC-SCL",
+        "ruta": "TUC - SCL",
+        "origen_iata": "TUC",
+        "origen_ciudad": "San Miguel de Tucumán",
+        "destino_iata": "SCL",
+        "destino_ciudad": "Santiago",
+        "distancia_km": 911,
+        "categoria": "Ruta potencial",
+        "criterio_seleccion": "Entre las rutas no incluidas como activas en la capa 2026, se seleccionan las seis con mayor volumen de pasajeros acumulado 2015–2019.",
+        "pasajeros_2015_2019": 18473,
+        "max_pasajeros_anual": 13174,
+        "anio_max_pasajeros": 2018,
+        "pasajeros_por_anio_2015_2019": {
+          "2015": null,
+          "2016": null,
+          "2017": 3050,
+          "2018": 13174,
+          "2019": 2249
+        },
+        "registros_posteriores": {
+          "2023": 1
+        },
+        "aerolineas_historicas": [
+          "LATAM"
+        ],
+        "nota_aerolineas": "La conexión histórica Tucumán–Santiago fue operada por LATAM.",
+        "fuentes_aerolineas": [
+          "EANA / estadísticas 2018",
+          "Prensa de Tucumán · programación LATAM"
+        ],
+        "curvatura_mapa": -0.2,
+        "estado": "Potencial / antecedente histórico"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -65.1022544667,
+            -26.835503409
+          ],
+          [
+            -70.78579711914062,
+            -33.393001556396484
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "SLA-IQQ",
+        "ruta": "SLA - IQQ",
+        "origen_iata": "SLA",
+        "origen_ciudad": "Salta",
+        "destino_iata": "IQQ",
+        "destino_ciudad": "Iquique",
+        "distancia_km": 680,
+        "categoria": "Ruta potencial",
+        "criterio_seleccion": "Entre las rutas no incluidas como activas en la capa 2026, se seleccionan las seis con mayor volumen de pasajeros acumulado 2015–2019.",
+        "pasajeros_2015_2019": 11378,
+        "max_pasajeros_anual": 3133,
+        "anio_max_pasajeros": 2018,
+        "pasajeros_por_anio_2015_2019": {
+          "2015": 1505,
+          "2016": 2253,
+          "2017": 2945,
+          "2018": 3133,
+          "2019": 1542
+        },
+        "registros_posteriores": {},
+        "aerolineas_historicas": [
+          "LATAM",
+          "Amaszonas Paraguay / Paranair"
+        ],
+        "nota_aerolineas": "Ambos operadores aparecen documentados en antecedentes de la ruta; Amaszonas Paraguay pasó luego a operar como Paranair.",
+        "fuentes_aerolineas": [
+          "Gobierno de Salta · vuelo inaugural Asunción–Salta–Iquique (2017)",
+          "Secretaría de Turismo · conectividad Argentina–Chile (2018)"
+        ],
+        "curvatura_mapa": 0.18,
+        "estado": "Potencial / antecedente histórico"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -65.4843872447,
+            -24.853779839
+          ],
+          [
+            -70.181373,
+            -20.536273
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "COR-PDP",
+        "ruta": "COR - PDP",
+        "origen_iata": "COR",
+        "origen_ciudad": "Córdoba",
+        "destino_iata": "PDP",
+        "destino_ciudad": "Punta del Este",
+        "distancia_km": 935,
+        "categoria": "Ruta potencial",
+        "criterio_seleccion": "Entre las rutas no incluidas como activas en la capa 2026, se seleccionan las seis con mayor volumen de pasajeros acumulado 2015–2019.",
+        "pasajeros_2015_2019": 10285,
+        "max_pasajeros_anual": 4019,
+        "anio_max_pasajeros": 2019,
+        "pasajeros_por_anio_2015_2019": {
+          "2015": 38,
+          "2016": 744,
+          "2017": 2361,
+          "2018": 3123,
+          "2019": 4019
+        },
+        "registros_posteriores": {
+          "2025": 74
+        },
+        "aerolineas_historicas": [
+          "Aerolíneas Argentinas",
+          "Flybondi"
+        ],
+        "nota_aerolineas": "Aerolíneas Argentinas operó la conexión en el período histórico; Flybondi incorporó la ruta directa en diciembre de 2018.",
+        "fuentes_aerolineas": [
+          "EANA · Anuario Estadístico 2017",
+          "Aviacionline · rutas inauguradas en 2018"
+        ],
+        "curvatura_mapa": 0.15,
+        "estado": "Potencial / antecedente histórico"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -64.2082032342,
+            -31.3155808776
+          ],
+          [
+            -55.094299,
+            -34.855099
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ROS-POA",
+        "ruta": "ROS - POA",
+        "origen_iata": "ROS",
+        "origen_ciudad": "Rosario",
+        "destino_iata": "POA",
+        "destino_ciudad": "Porto Alegre",
+        "distancia_km": 968,
+        "categoria": "Ruta potencial",
+        "criterio_seleccion": "Entre las rutas no incluidas como activas en la capa 2026, se seleccionan las seis con mayor volumen de pasajeros acumulado 2015–2019.",
+        "pasajeros_2015_2019": 9467,
+        "max_pasajeros_anual": 5890,
+        "anio_max_pasajeros": 2018,
+        "pasajeros_por_anio_2015_2019": {
+          "2015": 76,
+          "2016": 278,
+          "2017": 168,
+          "2018": 5890,
+          "2019": 3055
+        },
+        "registros_posteriores": {},
+        "aerolineas_historicas": [
+          "Azul"
+        ],
+        "nota_aerolineas": "Azul operó el servicio regular directo Rosario–Porto Alegre entre 2018 y 2019.",
+        "fuentes_aerolineas": [
+          "Aviacionline · rutas inauguradas en 2018",
+          "FlightsFrom · historial ROS–POA"
+        ],
+        "curvatura_mapa": -0.17,
+        "estado": "Potencial / antecedente histórico"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -60.7852315547,
+            -32.9097209663
+          ],
+          [
+            -51.166592,
+            -29.994712
+          ]
+        ]
+      }
+    }
+  ]
+}
