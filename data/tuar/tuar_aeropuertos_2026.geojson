@@ -1051,5 +1051,25 @@
         ]
       }
     }
+{
+  "type": "Feature",
+  "properties": {
+    "iata": "IQQ",
+    "ciudad": "Iquique",
+    "pais": "CL",
+    "oaci": "SCDA",
+    "categorias_rutas": [
+      "Ruta potencial"
+    ],
+    "es_origen_argentina": false
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -70.181373,
+      -20.536273
+    ]
+  }
+}
   ]
 }
