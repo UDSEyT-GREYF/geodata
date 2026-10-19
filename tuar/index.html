@@ -9,7 +9,7 @@
   <link rel="icon" type="image/svg+xml" href="/geodata/img/icons/favicon-tuar.svg">
   <link rel="preconnect" href="https://a.basemaps.cartocdn.com">
   <link rel="stylesheet" href="/geodata/vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="/geodata/css/tuar.css?v=20261013-10">
+  <link rel="stylesheet" href="/geodata/css/tuar.css?v=20261019-2">
 </head>
 <body>
   <a class="skip-link" href="#map">Ir al mapa</a>
@@ -73,6 +73,15 @@
               <small>Rutas incorporadas por la ampliación</small>
             </span>
             <input id="newToggle" type="checkbox" checked>
+            <span class="switch" aria-hidden="true"></span>
+          </label>
+
+          <label class="switch-row">
+            <span>
+              <strong><span class="inline-line potential"></span>Rutas potenciales</strong>
+              <small>6 rutas de mayor demanda histórica 2015–2019</small>
+            </span>
+            <input id="potentialToggle" type="checkbox" checked>
             <span class="switch" aria-hidden="true"></span>
           </label>
 
@@ -195,6 +204,7 @@
         <div class="legend-body" id="legendBody">
           <div><span class="legend-line previous"></span>TUAR previa · régimen anterior</div>
           <div><span class="legend-line new"></span>Nueva TUAR · incorporadas hasta 1.000 km</div>
+          <div><span class="legend-line potential"></span>Ruta potencial · antecedente histórico</div>
           <div><span class="legend-line context"></span>TUAI · resto de rutas</div>
           <div><span class="airport-legend-symbol"></span>Aeropuerto con vuelos internacionales</div>
           <div><span class="radius-symbol r300"></span>Radio 300 km</div>
@@ -254,6 +264,9 @@
     <p>Las aerolíneas y las frecuencias mostradas en las ventanas emergentes corresponden a la información operativa 2026; la estimación de pasajeros y beneficio utiliza la serie histórica indicada.</p>
 
 
+    <h3>Rutas potenciales</h3>
+    <p>Se incorpora una capa exploratoria con las <strong>seis rutas no incluidas como activas en la capa 2026 que registraron mayor demanda acumulada entre 2015 y 2019</strong>. Se representan con línea discontinua y no implican un servicio programado actual. Las ventanas emergentes muestran los pasajeros históricos por año y las aerolíneas documentadas que operaron cada conexión.</p>
+
     <h3>Pasajeros históricos de las nuevas rutas</h3>
     <p>La tabla del mapa utiliza los años disponibles en la fuente suministrada. Para Buenos Aires se presenta <strong>BUE</strong>, agregando los pasajeros de <strong>AEP + EZE</strong>. El símbolo “—” indica ausencia de registro para esa ruta y año en la fuente.</p>
 
@@ -266,7 +279,7 @@
   </dialog>
 
   <script src="/geodata/vendor/leaflet/leaflet.js"></script>
-  <script src="/geodata/js/tuar.js?v=20261013-10"></script>
+  <script src="/geodata/js/tuar.js?v=20261019-2"></script>
   <script src="/geodata/js/siga-analytics.js"></script>
 </body>
 </html>
