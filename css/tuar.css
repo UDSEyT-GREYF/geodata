@@ -744,3 +744,151 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
   font-size:10px;
   color:#718295;
 }
+/* =========================================================
+   COLUMNA DERECHA · KPI + TABLAS HISTÓRICAS
+   ========================================================= */
+
+.map-kpi-stack{
+  position:absolute;
+  z-index:500;
+  top:12px;
+  right:64px;
+
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+
+  width:360px;
+  max-height:calc(100% - 24px);
+
+  overflow-x:hidden;
+  overflow-y:auto;
+
+  padding-right:2px;
+
+  scrollbar-width:thin;
+  scrollbar-color:rgba(114,132,152,.45) transparent;
+}
+
+.map-kpi-stack > .benefit-kpi,
+.map-kpi-stack > .domestic-kpi,
+.map-kpi-stack > .history-panel{
+  flex:0 0 auto;
+  width:100%;
+  box-sizing:border-box;
+}
+
+
+/* Las tablas dejan de estar posicionadas independientemente */
+.map-kpi-stack .history-panel{
+  position:relative;
+  right:auto;
+  bottom:auto;
+
+  width:100%;
+  margin:0;
+
+  overflow:hidden;
+
+  background:rgba(255,255,255,.97);
+  border:1px solid rgba(201,211,221,.92);
+  border-radius:11px;
+
+  box-shadow:var(--shadow-md);
+  backdrop-filter:blur(8px);
+}
+
+
+/* Identificación visual de rutas potenciales */
+.map-kpi-stack .potential-history-panel{
+  border-left:3px solid var(--potential);
+}
+
+
+/* Cabecera */
+.map-kpi-stack .history-title{
+  padding:9px 11px;
+}
+
+.map-kpi-stack .history-title strong{
+  font-size:9px;
+  line-height:1.25;
+  letter-spacing:.035em;
+}
+
+.map-kpi-stack .history-title small{
+  margin-top:2px;
+  font-size:8px;
+}
+
+
+/* Tabla */
+.map-kpi-stack .history-body{
+  padding:0 9px 8px;
+}
+
+.map-kpi-stack .history-table{
+  width:100%;
+  table-layout:auto;
+  font-size:8.4px;
+}
+
+.map-kpi-stack .history-table th,
+.map-kpi-stack .history-table td{
+  padding:4px 4px;
+}
+
+.map-kpi-stack .history-table thead th{
+  font-size:7.4px;
+}
+
+.map-kpi-stack .history-table th:first-child,
+.map-kpi-stack .history-table td:first-child{
+  width:70px;
+  min-width:70px;
+}
+
+.map-kpi-stack .history-note{
+  margin-top:5px;
+  font-size:7.4px;
+}
+
+
+/* La tabla potencial tiene una columna adicional */
+.map-kpi-stack .potential-history-table{
+  font-size:8px;
+}
+
+.map-kpi-stack .potential-history-table th,
+.map-kpi-stack .potential-history-table td{
+  padding-left:3px;
+  padding-right:3px;
+}
+
+.map-kpi-stack .potential-history-table th:first-child,
+.map-kpi-stack .potential-history-table td:first-child{
+  width:62px;
+  min-width:62px;
+}
+
+
+/* Responsive */
+@media(max-width:1100px){
+  .map-kpi-stack{
+    width:340px;
+    right:58px;
+  }
+}
+
+@media(max-width:720px){
+  .map-kpi-stack{
+    top:10px;
+    right:54px;
+    width:min(315px,calc(58vw - 62px));
+    max-height:calc(100% - 20px);
+  }
+
+  .map-kpi-stack .history-table{
+    font-size:7.5px;
+  }
+}
