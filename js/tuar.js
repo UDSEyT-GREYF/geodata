@@ -42,7 +42,13 @@ const dom={
   historyToggle:document.getElementById("historyToggle"),
   historyHead:document.getElementById("historyHead"),
   historyRows:document.getElementById("historyRows"),
-  historyNote:document.getElementById("historyNote")
+  historyNote:document.getElementById("historyNote"),
+  
+  potentialHistoryPanel:document.getElementById("potentialHistoryPanel"),
+  potentialHistoryToggle:document.getElementById("potentialHistoryToggle"),
+  potentialHistoryHead:document.getElementById("potentialHistoryHead"),
+  potentialHistoryRows:document.getElementById("potentialHistoryRows"),
+  potentialHistoryNote:document.getElementById("potentialHistoryNote")
 };
 
 const argenmap=L.tileLayer(
@@ -372,6 +378,73 @@ function renderHistoryTable(){
   }
 }
 
+function renderPotentialHistoryTable(){
+  if(
+    !dom.potentialHistoryHead ||
+    !dom.potentialHistoryRows
+  ) return;
+
+  const years=[2015,2016,2017,2018,2019];
+
+  const rows=[...(potentialRoutes||[])].sort((a,b)=>{
+    const pa=Number(a.properties?.pasajeros_2015_2019)||0;
+    const pb=Number(b.properties?.pasajeros_2015_2019)||0;
+    return pb-pa;
+  });
+
+  dom.potentialHistoryHead.innerHTML=`
+    <tr>
+      <th>Ruta</th>
+      ${years.map(y=>`<th>${y}</th>`).join("")}
+      <th>Total</th>
+    </tr>
+  `;
+
+  dom.potentialHistoryRows.innerHTML=rows.map(f=>{
+    const p=f.properties||{};
+    const hist=p.pasajeros_por_anio_2015_2019||{};
+
+    return `
+      <tr>
+        <td>${esc(
+          p.ruta ||
+          `${p.origen_iata||""} - ${p.destino_iata||""}`
+        )}</td>
+
+        ${years.map(y=>{
+          const raw=hist[String(y)];
+
+          if(
+            raw===null ||
+            raw===undefined ||
+            raw===""
+          ){
+            return `<td class="missing">—</td>`;
+          }
+
+          const value=Number(raw);
+
+          return Number.isFinite(value)
+            ? `<td>${fmt(value)}</td>`
+            : `<td class="missing">—</td>`;
+        }).join("")}
+
+        <td>
+          <strong>
+            ${fmt(p.pasajeros_2015_2019)}
+          </strong>
+        </td>
+      </tr>
+    `;
+  }).join("");
+
+  if(dom.potentialHistoryNote){
+    dom.potentialHistoryNote.textContent=
+      "Total = pasajeros acumulados 2015–2019 · — sin registro";
+  }
+}
+
+  
 function buildOriginOptions(){
   const origins=[...new Set(routes.map(f=>f.properties.origen_iata))].sort();
   for(const code of origins){
