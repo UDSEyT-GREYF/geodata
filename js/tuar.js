@@ -893,6 +893,7 @@ async function init(){
 
     buildOriginOptions();
     renderHistoryTable();
+    renderPotentialHistoryTable();
     bind();
     renderRoutes();
     fitTUAR();
