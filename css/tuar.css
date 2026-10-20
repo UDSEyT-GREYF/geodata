@@ -5,7 +5,7 @@
   --previous:#139b8d;--new:#e85d3f;--potential:#7357a6;--context:#8796a6;--r300:#139b8d;--r1000:#d89d16;
   --topbar-h:72px;--sidebar-w:370px;
   --shadow-sm:0 2px 10px rgba(7,21,34,.08);--shadow-md:0 12px 34px rgba(7,21,34,.16);
-  --right-stack-width: 360px;
+  --right-stack-width:340px;
 }
 *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0}
 body{overflow:hidden;color:var(--slate-900);background:var(--slate-100);font-family:Inter,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
@@ -145,16 +145,6 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
 
 
 /* KPI flotante de beneficio para pasajeros */
-.map-kpi-stack{
-  position:absolute;
-  z-index:500;
-  top:12px;
-  right:64px;
-  display:grid;
-  gap:8px;
-  width:295px;
-}
-
 .benefit-kpi{
   position:relative;
   min-width:0;
@@ -199,22 +189,6 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
   color:rgba(255,255,255,.86);
   font-size:8.5px;
   line-height:1.3;
-}
-@media(max-width:900px){
-  .map-kpi-stack{right:58px;width:270px}
-  .benefit-kpi strong{font-size:18px}
-}
-@media(max-width:720px){
-  .map-kpi-stack{
-    top:10px;
-    right:54px;
-    width:205px;
-    gap:6px;
-  }
-  .benefit-kpi{padding:9px 10px}
-  .benefit-kpi strong{font-size:15px}
-  .benefit-kpi-pax{font-size:10px}
-  .benefit-kpi-label,.benefit-kpi small{font-size:7.5px}
 }
 
 
@@ -398,26 +372,6 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
   line-height:1.35;
 }
 
-@media(max-width:1100px){
-  .history-panel{
-    width:370px;
-  }
-}
-@media(max-width:720px){
-  .history-panel{
-    right:10px;
-    bottom:82px;
-    width:min(360px,calc(58vw - 20px));
-  }
-  .history-table{
-    font-size:8px;
-  }
-  .history-table th:first-child,
-  .history-table td:first-child{
-    width:78px;
-  }
-}
-
 
 /* KPI cabotaje: cambio de TUA */
 .domestic-kpi{
@@ -480,123 +434,6 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
   font-size:9.5px;
   font-weight:760;
 }
-
-@media(max-width:720px){
-  .domestic-kpi{
-    padding:9px 10px;
-  }
-  .domestic-kpi>strong{
-    font-size:14px;
-  }
-  .domestic-kpi-rate{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:2px;
-    font-size:8px;
-  }
-  .domestic-kpi-rate>span{
-    display:none;
-  }
-  .domestic-kpi small{
-    font-size:7.5px;
-  }
-}
-
-
-/* =========================================================
-   v20261013-10 · VISIBILIDAD FORZADA DE KPI Y TABLA HISTÓRICA
-   ========================================================= */
-
-#mapStage .map-kpi-stack{
-  position:absolute !important;
-  z-index:650 !important;
-  top:12px !important;
-  right:64px !important;
-  width:305px !important;
-  display:grid !important;
-  gap:8px !important;
-  pointer-events:auto;
-}
-
-#mapStage .map-kpi-stack .benefit-kpi{
-  position:relative !important;
-  inset:auto !important;
-  min-width:0 !important;
-  width:100% !important;
-  display:block !important;
-}
-
-#mapStage .domestic-kpi{
-  position:relative !important;
-  display:block !important;
-  width:100% !important;
-  padding:11px 14px 10px !important;
-  color:var(--navy-900) !important;
-  background:rgba(255,255,255,.98) !important;
-  border:1px solid rgba(201,211,221,.95) !important;
-  border-left:4px solid #d89d16 !important;
-  border-radius:11px !important;
-  box-shadow:var(--shadow-md) !important;
-}
-
-#mapStage .history-panel{
-  position:absolute !important;
-  z-index:640 !important;
-  right:18px !important;
-  bottom:38px !important;
-  width:445px !important;
-  display:block !important;
-  overflow:hidden !important;
-  background:rgba(255,255,255,.98) !important;
-  border:1px solid rgba(201,211,221,.95) !important;
-  border-radius:11px !important;
-  box-shadow:var(--shadow-md) !important;
-}
-
-#mapStage .history-panel:not(.is-collapsed) .history-body{
-  display:block !important;
-}
-
-#mapStage .history-table{
-  width:100% !important;
-  border-collapse:collapse !important;
-  table-layout:auto !important;
-}
-
-#mapStage .history-table th,
-#mapStage .history-table td{
-  padding:5px 6px !important;
-  white-space:nowrap !important;
-}
-
-#mapStage .history-table th:first-child,
-#mapStage .history-table td:first-child{
-  min-width:74px !important;
-}
-
-@media(max-width:1100px){
-  #mapStage .map-kpi-stack{
-    right:58px !important;
-    width:285px !important;
-  }
-  #mapStage .history-panel{
-    width:410px !important;
-  }
-}
-
-@media(max-width:720px){
-  #mapStage .map-kpi-stack{
-    top:10px !important;
-    right:54px !important;
-    width:215px !important;
-  }
-  #mapStage .history-panel{
-    right:10px !important;
-    bottom:82px !important;
-    width:min(390px,calc(58vw - 20px)) !important;
-  }
-}
-
 
 /* Rutas potenciales */
 .route-code.potential{
@@ -667,139 +504,55 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
   font-size:7.8px;
   line-height:1.35;
 }
-.map-right-stack{
-  position:absolute;
-  top:78px;
-  right:18px;
-  z-index:500;
-  width:var(--right-stack-width);
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  pointer-events:none;
-}
 
-.map-right-stack > *{
-  pointer-events:auto;
-}
-
-.benefit-kpi,
-.domestic-kpi,
-.history-panel{
-  width:100%;
-  box-sizing:border-box;
-}
-.history-panel .panel-toggle{
-  width:100%;
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:10px;
-  padding:14px 14px 10px 14px;
-  background:none;
-  border:0;
-  text-align:left;
-  cursor:pointer;
-}
-
-.history-panel h3{
-  margin:0;
-  font-size:13px;
-  line-height:1.2;
-}
-
-.history-panel p{
-  margin:2px 0 0 0;
-  font-size:11px;
-  color:#5b6b7c;
-}
-
-.panel-body{
-  padding:0 12px 12px 12px;
-}
-
-.history-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:11px;
-}
-
-.history-table th,
-.history-table td{
-  padding:6px 5px;
-  border-bottom:1px solid #d9e1e8;
-  text-align:right;
-  white-space:nowrap;
-}
-
-.history-table th:first-child,
-.history-table td:first-child{
-  text-align:left;
-  font-weight:600;
-}
-
-.panel-note{
-  display:block;
-  margin-top:8px;
-  font-size:10px;
-  color:#718295;
-}
 /* =========================================================
-   COLUMNA DERECHA · KPI + TABLAS HISTÓRICAS
+   COLUMNA DERECHA ÚNICA · KPI + TABLAS HISTÓRICAS
    ========================================================= */
 
 .map-kpi-stack{
   position:absolute;
-  z-index:500;
+  z-index:650;
   top:12px;
   right:64px;
+  width:var(--right-stack-width);
   display:flex;
   flex-direction:column;
   gap:8px;
-  width:360px;
-  max-height:calc(100% - 24px);
-  overflow-y:auto;
-  overflow-x:hidden;
-  padding-right:2px;
+  pointer-events:auto;
 }
 
+/* Todos los bloques comparten exactamente el mismo ancho */
 .map-kpi-stack > .benefit-kpi,
 .map-kpi-stack > .domestic-kpi,
 .map-kpi-stack > .history-panel{
+  position:relative;
+  inset:auto;
   flex:0 0 auto;
   width:100%;
+  min-width:0;
+  margin:0;
   box-sizing:border-box;
 }
 
-
-/* Las tablas dejan de estar posicionadas independientemente */
+/* Tablas: ya no son paneles flotantes independientes */
 .map-kpi-stack .history-panel{
-  position:relative;
-  right:auto;
-  bottom:auto;
-
-  width:100%;
-  margin:0;
-
+  z-index:auto;
   overflow:hidden;
-
   background:rgba(255,255,255,.97);
   border:1px solid rgba(201,211,221,.92);
   border-radius:11px;
-
   box-shadow:var(--shadow-md);
   backdrop-filter:blur(8px);
 }
 
-
-/* Identificación visual de rutas potenciales */
+/* Segunda tabla: identificación discreta */
 .map-kpi-stack .potential-history-panel{
   border-left:3px solid var(--potential);
 }
 
-
-/* Cabecera */
+/* Cabeceras de tablas */
 .map-kpi-stack .history-title{
+  width:100%;
   padding:9px 11px;
 }
 
@@ -814,93 +567,142 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
   font-size:8px;
 }
 
-
-/* Tabla */
+/* Cuerpo de tablas */
 .map-kpi-stack .history-body{
   padding:0 9px 8px;
 }
 
+.map-kpi-stack .history-table-wrap{
+  width:100%;
+  overflow-x:auto;
+}
+
 .map-kpi-stack .history-table{
   width:100%;
+  border-collapse:collapse;
   table-layout:auto;
-  font-size:8.4px;
+  font-size:8.2px;
 }
 
 .map-kpi-stack .history-table th,
 .map-kpi-stack .history-table td{
-  padding:4px 4px;
+  padding:4px 3px;
+  white-space:nowrap;
 }
 
 .map-kpi-stack .history-table thead th{
-  font-size:7.4px;
+  font-size:7.2px;
 }
 
 .map-kpi-stack .history-table th:first-child,
 .map-kpi-stack .history-table td:first-child{
-  width:70px;
-  min-width:70px;
+  width:66px;
+  min-width:66px;
+  text-align:left;
 }
 
 .map-kpi-stack .history-note{
-  margin-top:5px;
-  font-size:7.4px;
+  margin:5px 1px 0;
+  font-size:7.2px;
+  line-height:1.3;
 }
-
 
 /* La tabla potencial tiene una columna adicional */
 .map-kpi-stack .potential-history-table{
-  font-size:8px;
+  font-size:7.8px;
 }
 
 .map-kpi-stack .potential-history-table th,
 .map-kpi-stack .potential-history-table td{
-  padding-left:3px;
-  padding-right:3px;
+  padding-left:2.5px;
+  padding-right:2.5px;
 }
 
 .map-kpi-stack .potential-history-table th:first-child,
 .map-kpi-stack .potential-history-table td:first-child{
-  width:62px;
-  min-width:62px;
+  width:58px;
+  min-width:58px;
 }
 
-
-/* Responsive */
-@media(max-width:1100px){
+/* Si el viewport es bajo, la columna puede desplazarse sin superponer el mapa */
+@media(max-height:720px){
   .map-kpi-stack{
-    width:340px;
-    right:58px;
+    max-height:calc(100% - 24px);
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding-right:2px;
+    scrollbar-width:thin;
   }
 }
 
+/* Ajustes de ancho */
+@media(max-width:1100px){
+  :root{--right-stack-width:320px}
+
+  .map-kpi-stack{
+    right:58px;
+  }
+
+  .benefit-kpi strong{
+    font-size:18px;
+  }
+}
+
+/* Vista angosta */
 @media(max-width:720px){
+  :root{--right-stack-width:min(300px,calc(58vw - 62px))}
+
   .map-kpi-stack{
     top:10px;
     right:54px;
-    width:min(315px,calc(58vw - 62px));
+    gap:6px;
     max-height:calc(100% - 20px);
+    overflow-y:auto;
+    overflow-x:hidden;
+  }
+
+  .benefit-kpi{
+    padding:9px 10px;
+  }
+
+  .benefit-kpi strong{
+    font-size:15px;
+  }
+
+  .benefit-kpi-pax{
+    font-size:10px;
+  }
+
+  .benefit-kpi-label,
+  .benefit-kpi small{
+    font-size:7.5px;
+  }
+
+  .domestic-kpi{
+    padding:9px 10px;
+  }
+
+  .domestic-kpi>strong{
+    font-size:14px;
+  }
+
+  .domestic-kpi-rate{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:2px;
+    font-size:8px;
+  }
+
+  .domestic-kpi-rate>span{
+    display:none;
+  }
+
+  .domestic-kpi small{
+    font-size:7.5px;
   }
 
   .map-kpi-stack .history-table{
-    font-size:7.5px;
+    font-size:7.4px;
   }
 }
-.potential-history-panel{
-  border-left:3px solid var(--potential);
-}
 
-.potential-history-table{
-  font-size:8px;
-}
-
-.potential-history-table th,
-.potential-history-table td{
-  padding-left:3px;
-  padding-right:3px;
-}
-
-.potential-history-table th:first-child,
-.potential-history-table td:first-child{
-  width:62px;
-  min-width:62px;
-}
