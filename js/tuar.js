@@ -1,7 +1,7 @@
 (() => {
 "use strict";
 
-const DATA_VERSION="20261019-4";
+const DATA_VERSION="20261020-4";
 const ROUTES_URL=`/geodata/data/tuar/tuar_rutas_2026.geojson?v=${DATA_VERSION}`;
 const AIRPORTS_URL=`/geodata/data/tuar/tuar_aeropuertos_2026.geojson?v=${DATA_VERSION}`;
 const METRICS_URL=`/geodata/data/tuar/tuar_metricas_2026.json?v=${DATA_VERSION}`;
@@ -43,7 +43,7 @@ const dom={
   historyHead:document.getElementById("historyHead"),
   historyRows:document.getElementById("historyRows"),
   historyNote:document.getElementById("historyNote"),
-  
+
   potentialHistoryPanel:document.getElementById("potentialHistoryPanel"),
   potentialHistoryToggle:document.getElementById("potentialHistoryToggle"),
   potentialHistoryHead:document.getElementById("potentialHistoryHead"),
@@ -267,7 +267,8 @@ function potentialPopup(p){
     </div>
 
     <div class="potential-note">
-      Antecedente histórico. La línea discontinua no representa un servicio regular activo en la capa 2026.
+      ${p.criterio_pasajeros ? esc(p.criterio_pasajeros) + " " : ""}
+      La línea discontinua no representa un servicio regular activo en la capa 2026.
     </div>
   `;
 }
@@ -378,11 +379,9 @@ function renderHistoryTable(){
   }
 }
 
+
 function renderPotentialHistoryTable(){
-  if(
-    !dom.potentialHistoryHead ||
-    !dom.potentialHistoryRows
-  ) return;
+  if(!dom.potentialHistoryHead || !dom.potentialHistoryRows) return;
 
   const years=[2015,2016,2017,2018,2019];
 
@@ -406,19 +405,12 @@ function renderPotentialHistoryTable(){
 
     return `
       <tr>
-        <td>${esc(
-          p.ruta ||
-          `${p.origen_iata||""} - ${p.destino_iata||""}`
-        )}</td>
+        <td>${esc(p.ruta || `${p.origen_iata||""} - ${p.destino_iata||""}`)}</td>
 
         ${years.map(y=>{
           const raw=hist[String(y)];
 
-          if(
-            raw===null ||
-            raw===undefined ||
-            raw===""
-          ){
+          if(raw===null || raw===undefined || raw===""){
             return `<td class="missing">—</td>`;
           }
 
@@ -430,9 +422,7 @@ function renderPotentialHistoryTable(){
         }).join("")}
 
         <td>
-          <strong>
-            ${fmt(p.pasajeros_2015_2019)}
-          </strong>
+          <strong>${fmt(p.pasajeros_2015_2019)}</strong>
         </td>
       </tr>
     `;
@@ -440,11 +430,11 @@ function renderPotentialHistoryTable(){
 
   if(dom.potentialHistoryNote){
     dom.potentialHistoryNote.textContent=
-      "Total = pasajeros acumulados 2015–2019 · — sin registro";
+      "Total = pasajeros acumulados 2015–2019 · incluye operaciones regulares, no regulares y aviación general en las nuevas rutas turísticas · — sin registro";
   }
 }
 
-  
+
 function buildOriginOptions(){
   const origins=[...new Set(routes.map(f=>f.properties.origen_iata))].sort();
   for(const code of origins){
@@ -875,6 +865,13 @@ function bind(){
     dom.historyToggle.addEventListener("click",()=>{
       const collapsed=dom.historyPanel.classList.toggle("is-collapsed");
       dom.historyToggle.setAttribute("aria-expanded",String(!collapsed));
+    });
+  }
+
+  if(dom.potentialHistoryToggle){
+    dom.potentialHistoryToggle.addEventListener("click",()=>{
+      const collapsed=dom.potentialHistoryPanel.classList.toggle("is-collapsed");
+      dom.potentialHistoryToggle.setAttribute("aria-expanded",String(!collapsed));
     });
   }
 
