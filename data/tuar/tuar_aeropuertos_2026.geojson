@@ -6,7 +6,7 @@
       "type": "Feature",
       "properties": {
         "iata": "AEP",
-        "ciudad": "Aeroparque",
+        "ciudad": "Barrio de Palermo",
         "pais": "AR",
         "oaci": "SABE",
         "categorias_rutas": [
@@ -1051,25 +1051,85 @@
         ]
       }
     },
-{
-  "type": "Feature",
-  "properties": {
-    "iata": "IQQ",
-    "ciudad": "Iquique",
-    "pais": "CL",
-    "oaci": "SCDA",
-    "categorias_rutas": [
-      "Ruta potencial"
-    ],
-    "es_origen_argentina": false
-  },
-  "geometry": {
-    "type": "Point",
-    "coordinates": [
-      -70.181373,
-      -20.536273
-    ]
-  }
-}
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "IQQ",
+        "ciudad": "Iquique",
+        "pais": "CL",
+        "oaci": "SCDA",
+        "categorias_rutas": [
+          "Ruta potencial"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.181373,
+          -20.536273
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "LSC",
+        "ciudad": "La Serena-Coquimbo",
+        "pais": "CL",
+        "oaci": "SCSE",
+        "categorias_rutas": [
+          "Ruta potencial"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.199501,
+          -29.916201
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "CCP",
+        "ciudad": "Concepción",
+        "pais": "CL",
+        "oaci": "SCIE",
+        "categorias_rutas": [
+          "Ruta potencial"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.062828,
+          -36.77235
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "ZPC",
+        "ciudad": "Pucón",
+        "pais": "CL",
+        "oaci": "SCPC",
+        "categorias_rutas": [
+          "Ruta potencial"
+        ],
+        "es_origen_argentina": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.915901,
+          -39.292801
+        ]
+      }
+    }
   ]
 }

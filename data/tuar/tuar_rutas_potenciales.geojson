@@ -1,13 +1,23 @@
 {
   "type": "FeatureCollection",
-  "name": "Rutas potenciales TUAR - antecedentes históricos",
+  "name": "Rutas potenciales TUAR - antecedentes históricos y potencial turístico",
   "metadata": {
-    "version": "20261019-1",
-    "criterio": "Seis rutas no incluidas como activas en la capa TUAR 2026 con mayor volumen de pasajeros acumulado en 2015–2019.",
-    "fuente_pasajeros": "rutaspotencial.csv suministrado por la usuaria; campo SIAC TablaFinal - Pasajeros comerciales por aeropuerto.",
-    "periodo_seleccion": "2015–2019",
-    "aclaracion": "Los registros posteriores incluidos en la fuente no se interpretan por sí solos como existencia de un servicio regular activo.",
-    "aerolineas": "Operadores históricos documentados en fuentes públicas; la lista se presenta como antecedente y no necesariamente como inventario exhaustivo de vuelos no regulares."
+    "version": "20261020-2",
+    "criterio": "Once rutas no incluidas como activas en la capa TUAR 2026: seis seleccionadas por mayor demanda histórica acumulada 2015–2019 y cinco adicionales por potencial turístico dentro del radio de 1.000 km.",
+    "grupos": {
+      "demanda_historica": 6,
+      "potencial_turistico": 5
+    },
+    "rutas_turisticas_agregadas": [
+      "COR-LSC",
+      "MDZ-LSC",
+      "MDZ-CCP",
+      "MDZ-ZPC",
+      "BRC-ZPC"
+    ],
+    "fuente_pasajeros": "Primeras seis rutas: rutaspotencial.csv. Nuevas rutas turísticas: extractos COR-LSC.csv, LSC-MDZ.csv, CCP-MDZ.csv, MDZ-ZPC.csv y BRC-ZPC.csv. Para la tabla histórica se contabilizan únicamente pasajeros de registros clasificados como Regular Internacional.",
+    "periodo_historico": "2015–2019",
+    "aclaracion": "La inclusión en la capa potencial no implica servicio regular actual. Todas las rutas agregadas por criterio turístico tienen distancia aérea menor o igual a 1.000 km."
   },
   "features": [
     {
@@ -304,6 +314,281 @@
           [
             -51.166592,
             -29.994712
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "COR-LSC",
+        "ruta": "COR - LSC",
+        "origen_iata": "COR",
+        "origen_ciudad": "Córdoba",
+        "destino_iata": "LSC",
+        "destino_ciudad": "La Serena-Coquimbo",
+        "distancia_km": 688,
+        "categoria": "Ruta potencial",
+        "grupo_seleccion": "Potencial turístico ≤1.000 km",
+        "criterio_seleccion": "Ruta no incluida como activa en la capa 2026, incorporada por su potencial turístico y por encontrarse dentro del radio máximo de 1.000 km desde el aeropuerto argentino de origen.",
+        "pasajeros_2015_2019": 2050,
+        "max_pasajeros_anual": 1910,
+        "anio_max_pasajeros": 2019,
+        "pasajeros_por_anio_2015_2019": {
+          "2015": null,
+          "2016": null,
+          "2017": null,
+          "2018": 140,
+          "2019": 1910
+        },
+        "registros_posteriores": {},
+        "aerolineas_historicas": [
+          "JetSMART Airlines",
+          "Andes Líneas Aéreas"
+        ],
+        "nota_aerolineas": "Operador regular identificado en el extracto histórico suministrado.",
+        "fuentes_aerolineas": [
+          "Extracto SIAC suministrado para la ruta; clasificación Regular Internacional"
+        ],
+        "curvatura_mapa": 0.16,
+        "estado": "Potencial turístico / dentro de 1.000 km",
+        "otros_antecedentes_no_regulares": {
+          "2015": 19,
+          "2018": 6
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -64.2082032342,
+            -31.3155808776
+          ],
+          [
+            -71.199501,
+            -29.916201
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "MDZ-LSC",
+        "ruta": "MDZ - LSC",
+        "origen_iata": "MDZ",
+        "origen_ciudad": "Mendoza",
+        "destino_iata": "LSC",
+        "destino_ciudad": "La Serena-Coquimbo",
+        "distancia_km": 397,
+        "categoria": "Ruta potencial",
+        "grupo_seleccion": "Potencial turístico ≤1.000 km",
+        "criterio_seleccion": "Ruta no incluida como activa en la capa 2026, incorporada por su potencial turístico y por encontrarse dentro del radio máximo de 1.000 km desde el aeropuerto argentino de origen.",
+        "pasajeros_2015_2019": 3569,
+        "max_pasajeros_anual": 2990,
+        "anio_max_pasajeros": 2019,
+        "pasajeros_por_anio_2015_2019": {
+          "2015": null,
+          "2016": null,
+          "2017": null,
+          "2018": 579,
+          "2019": 2990
+        },
+        "registros_posteriores": {},
+        "aerolineas_historicas": [
+          "JetSMART Airlines"
+        ],
+        "nota_aerolineas": "Operador regular identificado en el extracto histórico suministrado.",
+        "fuentes_aerolineas": [
+          "Extracto SIAC suministrado para la ruta; clasificación Regular Internacional"
+        ],
+        "curvatura_mapa": -0.13,
+        "estado": "Potencial turístico / dentro de 1.000 km",
+        "otros_antecedentes_no_regulares": {
+          "2017": 5,
+          "2018": 9,
+          "2019": 4,
+          "2025": 3,
+          "2026": 19
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -68.7938610498,
+            -32.8304028407
+          ],
+          [
+            -71.199501,
+            -29.916201
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "MDZ-CCP",
+        "ruta": "MDZ - CCP",
+        "origen_iata": "MDZ",
+        "origen_ciudad": "Mendoza",
+        "destino_iata": "CCP",
+        "destino_ciudad": "Concepción",
+        "distancia_km": 587,
+        "categoria": "Ruta potencial",
+        "grupo_seleccion": "Potencial turístico ≤1.000 km",
+        "criterio_seleccion": "Ruta no incluida como activa en la capa 2026, incorporada por su potencial turístico y por encontrarse dentro del radio máximo de 1.000 km desde el aeropuerto argentino de origen.",
+        "pasajeros_2015_2019": 103,
+        "max_pasajeros_anual": 103,
+        "anio_max_pasajeros": 2016,
+        "pasajeros_por_anio_2015_2019": {
+          "2015": null,
+          "2016": 103,
+          "2017": null,
+          "2018": null,
+          "2019": null
+        },
+        "registros_posteriores": {
+          "2023": 265
+        },
+        "aerolineas_historicas": [
+          "LATAM",
+          "Aerolíneas Argentinas"
+        ],
+        "nota_aerolineas": "Se registra antecedente regular con LATAM en 2016 y reaparecen movimientos regulares en 2023 con LATAM y Aerolíneas Argentinas.",
+        "fuentes_aerolineas": [
+          "Extracto SIAC suministrado para la ruta; clasificación Regular Internacional"
+        ],
+        "curvatura_mapa": 0.15,
+        "estado": "Potencial turístico / dentro de 1.000 km",
+        "otros_antecedentes_no_regulares": {
+          "2018": 1,
+          "2019": 4,
+          "2023": 3,
+          "2024": 10,
+          "2026": 3
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -68.7938610498,
+            -32.8304028407
+          ],
+          [
+            -73.062828,
+            -36.77235
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "MDZ-ZPC",
+        "ruta": "MDZ - ZPC",
+        "origen_iata": "MDZ",
+        "origen_ciudad": "Mendoza",
+        "destino_iata": "ZPC",
+        "destino_ciudad": "Pucón",
+        "distancia_km": 772,
+        "categoria": "Ruta potencial",
+        "grupo_seleccion": "Potencial turístico ≤1.000 km",
+        "criterio_seleccion": "Ruta no incluida como activa en la capa 2026, incorporada por su potencial turístico y por encontrarse dentro del radio máximo de 1.000 km desde el aeropuerto argentino de origen.",
+        "pasajeros_2015_2019": 0,
+        "max_pasajeros_anual": 0,
+        "anio_max_pasajeros": "—",
+        "pasajeros_por_anio_2015_2019": {
+          "2015": null,
+          "2016": null,
+          "2017": null,
+          "2018": null,
+          "2019": null
+        },
+        "registros_posteriores": {},
+        "aerolineas_historicas": [],
+        "nota_aerolineas": "No se identificaron operaciones regulares en la fuente 2015–2019. El extracto suministrado registra 3 pasajeros de aviación general internacional en 2019, dato que no se incorpora al total de pasajeros regulares de la tabla.",
+        "fuentes_aerolineas": [
+          "Extracto SIAC suministrado para la ruta; clasificación Regular Internacional"
+        ],
+        "curvatura_mapa": -0.17,
+        "estado": "Potencial turístico / dentro de 1.000 km",
+        "otros_antecedentes_no_regulares": {
+          "2019": 3
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -68.7938610498,
+            -32.8304028407
+          ],
+          [
+            -71.915901,
+            -39.292801
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "BRC-ZPC",
+        "ruta": "BRC - ZPC",
+        "origen_iata": "BRC",
+        "origen_ciudad": "San Carlos de Bariloche",
+        "destino_iata": "ZPC",
+        "destino_ciudad": "Pucón",
+        "distancia_km": 217,
+        "categoria": "Ruta potencial",
+        "grupo_seleccion": "Potencial turístico ≤1.000 km",
+        "criterio_seleccion": "Ruta no incluida como activa en la capa 2026, incorporada por su potencial turístico y por encontrarse dentro del radio máximo de 1.000 km desde el aeropuerto argentino de origen.",
+        "pasajeros_2015_2019": 0,
+        "max_pasajeros_anual": 0,
+        "anio_max_pasajeros": "—",
+        "pasajeros_por_anio_2015_2019": {
+          "2015": null,
+          "2016": null,
+          "2017": null,
+          "2018": null,
+          "2019": null
+        },
+        "registros_posteriores": {},
+        "aerolineas_historicas": [],
+        "nota_aerolineas": "No se identificaron operaciones regulares internacionales en el extracto suministrado. Sí existen antecedentes no regulares y de aviación general internacional.",
+        "fuentes_aerolineas": [
+          "Extracto SIAC suministrado para BRC–ZPC"
+        ],
+        "antecedentes_no_regulares": {
+          "2015": 5,
+          "2017": 3,
+          "2023": 1
+        },
+        "antecedentes_aviacion_general": {
+          "2015": 6,
+          "2017": 19,
+          "2018": 11,
+          "2019": 7,
+          "2020": 10,
+          "2023": 3,
+          "2026": 2
+        },
+        "curvatura_mapa": 0.18,
+        "estado": "Potencial turístico / dentro de 1.000 km"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -71.159307879,
+            -41.1503194338
+          ],
+          [
+            -71.915901,
+            -39.292801
           ]
         ]
       }
