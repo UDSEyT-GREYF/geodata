@@ -155,24 +155,35 @@
         <span>Se está preparando el análisis TUAR…</span>
       </div>
 
-      <div class="map-kpi-stack">
+<div class="map-kpi-stack">
 
   <div class="benefit-kpi" id="benefitKpi" aria-live="polite">
-    <span class="benefit-kpi-label">Beneficios para pasajeros con cambio de tasa regional</span>
+    <span class="benefit-kpi-label">
+      Beneficios para pasajeros con cambio de tasa regional
+    </span>
     <strong id="benefitKpiValue">≈ USD 4,5 millones/año</strong>
-    <span class="benefit-kpi-pax" id="benefitKpiPax">≈ 140 mil pasajeros/año</span>
-    <small id="benefitKpiNote">Estimación anual · promedio histórico · 5 rutas TUAR nuevas</small>
+    <span class="benefit-kpi-pax" id="benefitKpiPax">
+      ≈ 140 mil pasajeros/año
+    </span>
+    <small id="benefitKpiNote">
+      Estimación anual · promedio histórico · 5 rutas TUAR nuevas
+    </small>
   </div>
 
   <div class="domestic-kpi" aria-label="Estimación del cambio de TUA en cabotaje">
     <span class="domestic-kpi-label">Cabotaje · cambio de TUA</span>
+
     <strong>≈ 17 millones de pasajeros/año</strong>
+
     <span class="domestic-kpi-rate">
       <b>ARS 6.878,85</b>
       <span aria-hidden="true">→</span>
       <b>USD 9 ≈ ARS 13.815</b>
     </span>
-    <small>Estimación anual · incremento de ARS 6.936,15 por pasajero</small>
+
+    <small>
+      Estimación anual · incremento de ARS 6.936,15 por pasajero
+    </small>
 
     <small class="domestic-kpi-total">
       ≈ ARS 117,9 mil millones adicionales/año
@@ -187,53 +198,83 @@
     </small>
   </div>
 
+
   <!-- PASAJEROS HISTÓRICOS · NUEVAS RUTAS TUAR -->
   <div class="history-panel" id="historyPanel">
-    <button class="history-title" id="historyToggle" type="button"
-            aria-expanded="true" aria-controls="historyBody">
+
+    <button
+      class="history-title"
+      id="historyToggle"
+      type="button"
+      aria-expanded="true"
+      aria-controls="historyBody"
+    >
       <span>
         <strong>Pasajeros históricos · nuevas rutas TUAR</strong>
         <small>Rutas incorporadas por la ampliación</small>
       </span>
+
       <svg aria-hidden="true" viewBox="0 0 24 24">
         <path d="m8 10 4 4 4-4"/>
       </svg>
     </button>
 
     <div class="history-body" id="historyBody">
+
       <div class="history-table-wrap">
         <table class="history-table">
           <thead id="historyHead"></thead>
           <tbody id="historyRows"></tbody>
         </table>
       </div>
-      <p class="history-note" id="historyNote">BUE = AEP + EZE</p>
+
+      <p class="history-note" id="historyNote">
+        BUE = AEP + EZE
+      </p>
+
     </div>
   </div>
 
+
   <!-- PASAJEROS HISTÓRICOS · RUTAS POTENCIALES -->
-  <div class="history-panel potential-history-panel" id="potentialHistoryPanel">
-    <button class="history-title" id="potentialHistoryToggle" type="button"
-            aria-expanded="true" aria-controls="potentialHistoryBody">
+  <div
+    class="history-panel potential-history-panel"
+    id="potentialHistoryPanel"
+  >
+
+    <button
+      class="history-title"
+      id="potentialHistoryToggle"
+      type="button"
+      aria-expanded="true"
+      aria-controls="potentialHistoryBody"
+    >
       <span>
         <strong>Pasajeros históricos · rutas potenciales</strong>
-        <small>Pasajeros regulares históricos 2015–2019</small>
+        <small>Pasajeros históricos 2015–2019 · todos los tipos de operación</small>
       </span>
+
       <svg aria-hidden="true" viewBox="0 0 24 24">
         <path d="m8 10 4 4 4-4"/>
       </svg>
     </button>
 
     <div class="history-body" id="potentialHistoryBody">
+
       <div class="history-table-wrap">
         <table class="history-table potential-history-table">
           <thead id="potentialHistoryHead"></thead>
           <tbody id="potentialHistoryRows"></tbody>
         </table>
       </div>
-      <p class="history-note" id="potentialHistoryNote">
+
+      <p
+        class="history-note"
+        id="potentialHistoryNote"
+      >
         Total = pasajeros acumulados 2015–2019
       </p>
+
     </div>
   </div>
 
@@ -264,6 +305,8 @@
           <p>Las líneas representan rutas con al menos 3 despegues semanales durante 4 o más semanas.</p>
         </div>
       </div>
+
+
 
 
       <div class="basemap-buttons" id="basemapButtons" aria-label="Mapa base">
@@ -298,7 +341,10 @@
 
 
     <h3>Rutas potenciales</h3>
-    <p>Se incorpora una capa exploratoria con <strong>once rutas potenciales no incluidas como activas en la capa 2026</strong>. Seis fueron seleccionadas por su mayor demanda histórica acumulada entre 2015 y 2019. Se agregan cinco conexiones por <strong>potencial turístico dentro del radio de 1.000 km</strong>: <strong>COR–LSC, MDZ–LSC, MDZ–CCP, MDZ–ZPC y BRC–ZPC</strong>. La inclusión no implica un servicio programado actual. Para las nuevas rutas turísticas, la tabla histórica contabiliza únicamente pasajeros de movimientos clasificados como Regular Internacional; la ausencia de registros regulares se muestra como “—”.</p>
+    <p>Se incorpora una capa exploratoria con <strong>once rutas potenciales no incluidas como activas en la capa 2026</strong>. Seis fueron seleccionadas por su mayor demanda histórica acumulada entre 2015 y 2019. Se agregan cinco conexiones por <strong>potencial turístico dentro del radio de 1.000 km</strong>: <strong>COR–LSC, MDZ–LSC, MDZ–CCP, MDZ–ZPC y BRC–ZPC</strong>. La inclusión no implica un servicio programado actual.</p>
+
+    <h3>Pasajeros históricos de las rutas potenciales</h3>
+    <p>Para las cinco rutas turísticas incorporadas se utilizan como <strong>referencia de demanda todos los pasajeros internacionales registrados</strong> en los extractos suministrados, incluyendo operaciones regulares, no regulares y de aviación general. Estos registros sirven como antecedente de movilidad y <strong>no implican la existencia de un servicio regular</strong>. El símbolo “—” indica ausencia de registro para la ruta y el año.</p>
 
     <h3>Pasajeros históricos de las nuevas rutas</h3>
     <p>La tabla del mapa utiliza los años disponibles en la fuente suministrada. Para Buenos Aires se presenta <strong>BUE</strong>, agregando los pasajeros de <strong>AEP + EZE</strong>. El símbolo “—” indica ausencia de registro para esa ruta y año en la fuente.</p>
@@ -312,7 +358,7 @@
   </dialog>
 
   <script src="/geodata/vendor/leaflet/leaflet.js"></script>
-  <script src="/geodata/js/tuar.js?v=20261020-3"></script>
+  <script src="/geodata/js/tuar.js?v=20261020-4"></script>
   <script src="/geodata/js/siga-analytics.js"></script>
 </body>
 </html>
