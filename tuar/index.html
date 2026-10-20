@@ -9,7 +9,7 @@
   <link rel="icon" type="image/svg+xml" href="/geodata/img/icons/favicon-tuar.svg">
   <link rel="preconnect" href="https://a.basemaps.cartocdn.com">
   <link rel="stylesheet" href="/geodata/vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="/geodata/css/tuar.css?v=20261019-2">
+  <link rel="stylesheet" href="/geodata/css/tuar.css?v=20261020-2">
 </head>
 <body>
   <a class="skip-link" href="#map">Ir al mapa</a>
@@ -79,7 +79,7 @@
           <label class="switch-row">
             <span>
               <strong><span class="inline-line potential"></span>Rutas potenciales</strong>
-              <small>6 rutas de mayor demanda histórica 2015–2019</small>
+              <small>11 rutas · antecedente histórico o potencial turístico ≤1.000 km</small>
             </span>
             <input id="potentialToggle" type="checkbox" checked>
             <span class="switch" aria-hidden="true"></span>
@@ -155,130 +155,37 @@
         <span>Se está preparando el análisis TUAR…</span>
       </div>
 
-<div class="map-kpi-stack">
+      <div class="map-kpi-stack">
+        <div class="benefit-kpi" id="benefitKpi" aria-live="polite">
+          <span class="benefit-kpi-label">Beneficios para pasajeros con cambio de tasa regional</span>
+          <strong id="benefitKpiValue">≈ USD 4,5 millones/año</strong>
+          <span class="benefit-kpi-pax" id="benefitKpiPax">≈ 140 mil pasajeros/año</span>
+          <small id="benefitKpiNote">Estimación anual · promedio histórico · 5 rutas TUAR nuevas</small>
+        </div>
 
-  <div class="benefit-kpi" id="benefitKpi" aria-live="polite">
-    <span class="benefit-kpi-label">
-      Beneficios para pasajeros con cambio de tasa regional
-    </span>
-    <strong id="benefitKpiValue">≈ USD 4,5 millones/año</strong>
-    <span class="benefit-kpi-pax" id="benefitKpiPax">
-      ≈ 140 mil pasajeros/año
-    </span>
-    <small id="benefitKpiNote">
-      Estimación anual · promedio histórico · 5 rutas TUAR nuevas
-    </small>
-  </div>
-
-  <div class="domestic-kpi" aria-label="Estimación del cambio de TUA en cabotaje">
-    <span class="domestic-kpi-label">Cabotaje · cambio de TUA</span>
-
-    <strong>≈ 17 millones de pasajeros/año</strong>
-
-    <span class="domestic-kpi-rate">
-      <b>ARS 6.878,85</b>
-      <span aria-hidden="true">→</span>
-      <b>USD 9 ≈ ARS 13.815</b>
-    </span>
-
-    <small>
-      Estimación anual · incremento de ARS 6.936,15 por pasajero
-    </small>
-
-    <small class="domestic-kpi-total">
-      ≈ ARS 117,9 mil millones adicionales/año
-    </small>
-
-    <small class="domestic-kpi-usd" id="domesticKpiUsd">
-      ≈ USD — millones adicionales/año
-    </small>
-
-    <small class="domestic-kpi-fx" id="domesticKpiFx">
-      Conversión según BCRA · cargando cotización…
-    </small>
-  </div>
-
-
-  <!-- PASAJEROS HISTÓRICOS · NUEVAS RUTAS TUAR -->
-  <div class="history-panel" id="historyPanel">
-
-    <button
-      class="history-title"
-      id="historyToggle"
-      type="button"
-      aria-expanded="true"
-      aria-controls="historyBody"
-    >
-      <span>
-        <strong>Pasajeros históricos · nuevas rutas TUAR</strong>
-        <small>Rutas incorporadas por la ampliación</small>
-      </span>
-
-      <svg aria-hidden="true" viewBox="0 0 24 24">
-        <path d="m8 10 4 4 4-4"/>
-      </svg>
-    </button>
-
-    <div class="history-body" id="historyBody">
-
-      <div class="history-table-wrap">
-        <table class="history-table">
-          <thead id="historyHead"></thead>
-          <tbody id="historyRows"></tbody>
-        </table>
+        <div class="domestic-kpi" aria-label="Estimación del cambio de TUA en cabotaje">
+          <span class="domestic-kpi-label">Cabotaje · cambio de TUA</span>
+          <strong>≈ 17 millones de pasajeros/año</strong>
+          <span class="domestic-kpi-rate">
+            <b>ARS 6.878,85</b>
+            <span aria-hidden="true">→</span>
+            <b>USD 9 ≈ ARS 13.815</b>
+          </span>
+          <small>Estimación anual · incremento de ARS 6.936,15 por pasajero</small>
+          
+          <small class="domestic-kpi-total">
+            ≈ ARS 117,9 mil millones adicionales/año
+          </small>
+          
+          <small class="domestic-kpi-usd" id="domesticKpiUsd">
+            ≈ USD — millones adicionales/año
+          </small>
+          
+          <small class="domestic-kpi-fx" id="domesticKpiFx">
+            Conversión según BCRA · cargando cotización…
+          </small>
+        </div>
       </div>
-
-      <p class="history-note" id="historyNote">
-        BUE = AEP + EZE
-      </p>
-
-    </div>
-  </div>
-
-
-  <!-- PASAJEROS HISTÓRICOS · RUTAS POTENCIALES -->
-  <div
-    class="history-panel potential-history-panel"
-    id="potentialHistoryPanel"
-  >
-
-    <button
-      class="history-title"
-      id="potentialHistoryToggle"
-      type="button"
-      aria-expanded="true"
-      aria-controls="potentialHistoryBody"
-    >
-      <span>
-        <strong>Pasajeros históricos · rutas potenciales</strong>
-        <small>Antecedentes de demanda 2015–2019</small>
-      </span>
-
-      <svg aria-hidden="true" viewBox="0 0 24 24">
-        <path d="m8 10 4 4 4-4"/>
-      </svg>
-    </button>
-
-    <div class="history-body" id="potentialHistoryBody">
-
-      <div class="history-table-wrap">
-        <table class="history-table potential-history-table">
-          <thead id="potentialHistoryHead"></thead>
-          <tbody id="potentialHistoryRows"></tbody>
-        </table>
-      </div>
-
-      <p
-        class="history-note"
-        id="potentialHistoryNote"
-      >
-        Total = pasajeros acumulados 2015–2019
-      </p>
-
-    </div>
-  </div>
-
-</div>
 
       <div class="map-tools" aria-label="Herramientas del mapa">
         <button id="fitMapButton" type="button" title="Ver rutas TUAR" aria-label="Ver rutas TUAR">
@@ -297,7 +204,7 @@
         <div class="legend-body" id="legendBody">
           <div><span class="legend-line previous"></span>TUAR previa · régimen anterior</div>
           <div><span class="legend-line new"></span>Nueva TUAR · incorporadas hasta 1.000 km</div>
-          <div><span class="legend-line potential"></span>Ruta potencial · antecedente histórico</div>
+          <div><span class="legend-line potential"></span>Ruta potencial · histórica / turística ≤1.000 km</div>
           <div><span class="legend-line context"></span>TUAI · resto de rutas</div>
           <div><span class="airport-legend-symbol"></span>Aeropuerto con vuelos internacionales</div>
           <div><span class="radius-symbol r300"></span>Radio 300 km</div>
@@ -307,7 +214,24 @@
       </div>
 
 
-
+      <div class="history-panel" id="historyPanel">
+        <button class="history-title" id="historyToggle" type="button" aria-expanded="true" aria-controls="historyBody">
+          <span>
+            <strong>Pasajeros históricos</strong>
+            <small>Rutas incorporadas a la TUAR</small>
+          </span>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg>
+        </button>
+        <div class="history-body" id="historyBody">
+          <div class="history-table-wrap">
+            <table class="history-table">
+              <thead id="historyHead"></thead>
+              <tbody id="historyRows"></tbody>
+            </table>
+          </div>
+          <p class="history-note" id="historyNote">BUE = AEP + EZE</p>
+        </div>
+      </div>
 
       <div class="basemap-buttons" id="basemapButtons" aria-label="Mapa base">
         <button type="button" class="is-active" data-basemap="light" aria-pressed="true">Claro</button>
@@ -341,7 +265,7 @@
 
 
     <h3>Rutas potenciales</h3>
-    <p>Se incorpora una capa exploratoria con las <strong>seis rutas no incluidas como activas en la capa 2026 que registraron mayor demanda acumulada entre 2015 y 2019</strong>. Se representan con línea discontinua y no implican un servicio programado actual. Las ventanas emergentes muestran los pasajeros históricos por año y las aerolíneas documentadas que operaron cada conexión.</p>
+    <p>Se incorpora una capa exploratoria con <strong>once rutas potenciales no incluidas como activas en la capa 2026</strong>. Seis fueron seleccionadas por su mayor demanda histórica acumulada entre 2015 y 2019. Se agregan cinco conexiones por <strong>potencial turístico dentro del radio de 1.000 km</strong>: <strong>COR–LSC, MDZ–LSC, MDZ–CCP, MDZ–ZPC y BRC–ZPC</strong>. La inclusión no implica un servicio programado actual. Para las nuevas rutas turísticas, la tabla histórica contabiliza únicamente pasajeros de movimientos clasificados como Regular Internacional; la ausencia de registros regulares se muestra como “—”.</p>
 
     <h3>Pasajeros históricos de las nuevas rutas</h3>
     <p>La tabla del mapa utiliza los años disponibles en la fuente suministrada. Para Buenos Aires se presenta <strong>BUE</strong>, agregando los pasajeros de <strong>AEP + EZE</strong>. El símbolo “—” indica ausencia de registro para esa ruta y año en la fuente.</p>
