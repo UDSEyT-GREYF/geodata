@@ -299,13 +299,13 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
 /* Tabla flotante de pasajeros históricos */
 .history-panel{
   position:relative;
-  z-index:500;
-  right:18px;
-  bottom:38px;
-  width:430px;
+  z-index:auto;
+  right:auto;
+  bottom:auto;
+  width:100%;
+  margin:0;
   overflow:hidden;
   background:rgba(255,255,255,.96);
-  box-shadow:0 10px 28px rgba(10,30,50,.14);
   border:1px solid rgba(201,211,221,.92);
   border-radius:11px;
   box-shadow:var(--shadow-md);
@@ -753,21 +753,14 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
   z-index:500;
   top:12px;
   right:64px;
-
   display:flex;
   flex-direction:column;
   gap:8px;
-
   width:360px;
   max-height:calc(100% - 24px);
-
-  overflow-x:hidden;
   overflow-y:auto;
-
+  overflow-x:hidden;
   padding-right:2px;
-
-  scrollbar-width:thin;
-  scrollbar-color:rgba(114,132,152,.45) transparent;
 }
 
 .map-kpi-stack > .benefit-kpi,
@@ -891,4 +884,23 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
   .map-kpi-stack .history-table{
     font-size:7.5px;
   }
+}
+.potential-history-panel{
+  border-left:3px solid var(--potential);
+}
+
+.potential-history-table{
+  font-size:8px;
+}
+
+.potential-history-table th,
+.potential-history-table td{
+  padding-left:3px;
+  padding-right:3px;
+}
+
+.potential-history-table th:first-child,
+.potential-history-table td:first-child{
+  width:62px;
+  min-width:62px;
 }
