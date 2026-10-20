@@ -156,36 +156,88 @@
       </div>
 
       <div class="map-kpi-stack">
-        <div class="benefit-kpi" id="benefitKpi" aria-live="polite">
-          <span class="benefit-kpi-label">Beneficios para pasajeros con cambio de tasa regional</span>
-          <strong id="benefitKpiValue">≈ USD 4,5 millones/año</strong>
-          <span class="benefit-kpi-pax" id="benefitKpiPax">≈ 140 mil pasajeros/año</span>
-          <small id="benefitKpiNote">Estimación anual · promedio histórico · 5 rutas TUAR nuevas</small>
-        </div>
 
-        <div class="domestic-kpi" aria-label="Estimación del cambio de TUA en cabotaje">
-          <span class="domestic-kpi-label">Cabotaje · cambio de TUA</span>
-          <strong>≈ 17 millones de pasajeros/año</strong>
-          <span class="domestic-kpi-rate">
-            <b>ARS 6.878,85</b>
-            <span aria-hidden="true">→</span>
-            <b>USD 9 ≈ ARS 13.815</b>
-          </span>
-          <small>Estimación anual · incremento de ARS 6.936,15 por pasajero</small>
-          
-          <small class="domestic-kpi-total">
-            ≈ ARS 117,9 mil millones adicionales/año
-          </small>
-          
-          <small class="domestic-kpi-usd" id="domesticKpiUsd">
-            ≈ USD — millones adicionales/año
-          </small>
-          
-          <small class="domestic-kpi-fx" id="domesticKpiFx">
-            Conversión según BCRA · cargando cotización…
-          </small>
-        </div>
+  <div class="benefit-kpi" id="benefitKpi" aria-live="polite">
+    <span class="benefit-kpi-label">Beneficios para pasajeros con cambio de tasa regional</span>
+    <strong id="benefitKpiValue">≈ USD 4,5 millones/año</strong>
+    <span class="benefit-kpi-pax" id="benefitKpiPax">≈ 140 mil pasajeros/año</span>
+    <small id="benefitKpiNote">Estimación anual · promedio histórico · 5 rutas TUAR nuevas</small>
+  </div>
+
+  <div class="domestic-kpi" aria-label="Estimación del cambio de TUA en cabotaje">
+    <span class="domestic-kpi-label">Cabotaje · cambio de TUA</span>
+    <strong>≈ 17 millones de pasajeros/año</strong>
+    <span class="domestic-kpi-rate">
+      <b>ARS 6.878,85</b>
+      <span aria-hidden="true">→</span>
+      <b>USD 9 ≈ ARS 13.815</b>
+    </span>
+    <small>Estimación anual · incremento de ARS 6.936,15 por pasajero</small>
+
+    <small class="domestic-kpi-total">
+      ≈ ARS 117,9 mil millones adicionales/año
+    </small>
+
+    <small class="domestic-kpi-usd" id="domesticKpiUsd">
+      ≈ USD — millones adicionales/año
+    </small>
+
+    <small class="domestic-kpi-fx" id="domesticKpiFx">
+      Conversión según BCRA · cargando cotización…
+    </small>
+  </div>
+
+  <!-- PASAJEROS HISTÓRICOS · NUEVAS RUTAS TUAR -->
+  <div class="history-panel" id="historyPanel">
+    <button class="history-title" id="historyToggle" type="button"
+            aria-expanded="true" aria-controls="historyBody">
+      <span>
+        <strong>Pasajeros históricos · nuevas rutas TUAR</strong>
+        <small>Rutas incorporadas por la ampliación</small>
+      </span>
+      <svg aria-hidden="true" viewBox="0 0 24 24">
+        <path d="m8 10 4 4 4-4"/>
+      </svg>
+    </button>
+
+    <div class="history-body" id="historyBody">
+      <div class="history-table-wrap">
+        <table class="history-table">
+          <thead id="historyHead"></thead>
+          <tbody id="historyRows"></tbody>
+        </table>
       </div>
+      <p class="history-note" id="historyNote">BUE = AEP + EZE</p>
+    </div>
+  </div>
+
+  <!-- PASAJEROS HISTÓRICOS · RUTAS POTENCIALES -->
+  <div class="history-panel potential-history-panel" id="potentialHistoryPanel">
+    <button class="history-title" id="potentialHistoryToggle" type="button"
+            aria-expanded="true" aria-controls="potentialHistoryBody">
+      <span>
+        <strong>Pasajeros históricos · rutas potenciales</strong>
+        <small>Pasajeros regulares históricos 2015–2019</small>
+      </span>
+      <svg aria-hidden="true" viewBox="0 0 24 24">
+        <path d="m8 10 4 4 4-4"/>
+      </svg>
+    </button>
+
+    <div class="history-body" id="potentialHistoryBody">
+      <div class="history-table-wrap">
+        <table class="history-table potential-history-table">
+          <thead id="potentialHistoryHead"></thead>
+          <tbody id="potentialHistoryRows"></tbody>
+        </table>
+      </div>
+      <p class="history-note" id="potentialHistoryNote">
+        Total = pasajeros acumulados 2015–2019
+      </p>
+    </div>
+  </div>
+
+</div>
 
       <div class="map-tools" aria-label="Herramientas del mapa">
         <button id="fitMapButton" type="button" title="Ver rutas TUAR" aria-label="Ver rutas TUAR">
@@ -213,25 +265,6 @@
         </div>
       </div>
 
-
-      <div class="history-panel" id="historyPanel">
-        <button class="history-title" id="historyToggle" type="button" aria-expanded="true" aria-controls="historyBody">
-          <span>
-            <strong>Pasajeros históricos</strong>
-            <small>Rutas incorporadas a la TUAR</small>
-          </span>
-          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg>
-        </button>
-        <div class="history-body" id="historyBody">
-          <div class="history-table-wrap">
-            <table class="history-table">
-              <thead id="historyHead"></thead>
-              <tbody id="historyRows"></tbody>
-            </table>
-          </div>
-          <p class="history-note" id="historyNote">BUE = AEP + EZE</p>
-        </div>
-      </div>
 
       <div class="basemap-buttons" id="basemapButtons" aria-label="Mapa base">
         <button type="button" class="is-active" data-basemap="light" aria-pressed="true">Claro</button>
@@ -279,7 +312,7 @@
   </dialog>
 
   <script src="/geodata/vendor/leaflet/leaflet.js"></script>
-  <script src="/geodata/js/tuar.js?v=20261019-4"></script>
+  <script src="/geodata/js/tuar.js?v=20261020-3"></script>
   <script src="/geodata/js/siga-analytics.js"></script>
 </body>
 </html>
