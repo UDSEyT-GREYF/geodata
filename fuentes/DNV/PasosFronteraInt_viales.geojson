@@ -1,1 +1,803 @@
-{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"EPSG:4326"}},"features":[{"type":"Feature","id":1,"geometry":{"type":"Point","coordinates":[-63.6845016479492,-22.0536804199219]},"properties":{"Año":2023,"Provincia":"Salta","Nombre":"Salvador Mazza - Yacuiba","Paso_de_Frontera_Internacional":"Salvador Mazza - Yacuiba","País_limítrofe":"Bolivia","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-22.05368,"Longitud":-63.6845,"FID":1}},{"type":"Feature","id":2,"geometry":{"type":"Point","coordinates":[-65.5961227416992,-22.0969505310059]},"properties":{"Año":2023,"Provincia":"Jujuy","Nombre":"La Quiaca - Villazón","Paso_de_Frontera_Internacional":"La Quiaca - Villazón","País_limítrofe":"Bolivia","Tipo":"Vial","Estado":"Cerrado","Con_Carga":"si","Latitud":-22.09695,"Longitud":-65.59612,"FID":2}},{"type":"Feature","id":3,"geometry":{"type":"Point","coordinates":[-62.5229682922363,-22.3790493011475]},"properties":{"Año":2023,"Provincia":"Salta","Nombre":"Misión La Paz - Pozo Hondo","Paso_de_Frontera_Internacional":"Misión La Paz - Pozo Hondo","País_limítrofe":"Paraguay","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-22.37905,"Longitud":-62.52297,"FID":3}},{"type":"Feature","id":4,"geometry":{"type":"Point","coordinates":[-64.3598327636719,-22.730110168457]},"properties":{"Año":2023,"Provincia":"Salta","Nombre":"Aguas Blancas - Bermejo","Paso_de_Frontera_Internacional":"Aguas Blancas - Bermejo","País_limítrofe":"Bolivia","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-22.73011,"Longitud":-64.35983,"FID":4}},{"type":"Feature","id":5,"geometry":{"type":"Point","coordinates":[-64.3598327636719,-22.730110168457]},"properties":{"Año":2023,"Provincia":"Salta","Nombre":"Puerto Chalanas - Bermejo","Paso_de_Frontera_Internacional":"Aguas Blancas - Bermejo","País_limítrofe":"Bolivia","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-22.73011,"Longitud":-64.35983,"FID":5}},{"type":"Feature","id":6,"geometry":{"type":"Point","coordinates":[-67.0230102539063,-23.2372093200684]},"properties":{"Año":2023,"Provincia":"Jujuy","Nombre":"Jama","Paso_de_Frontera_Internacional":"Paraje Jama - San Pedro de Atacama","País_limítrofe":"Chile","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-23.23721,"Longitud":-67.02301,"FID":6}},{"type":"Feature","id":7,"geometry":{"type":"Point","coordinates":[-67.1569900512695,-23.8737907409668]},"properties":{"Año":2023,"Provincia":"Salta","Nombre":"Sico","Paso_de_Frontera_Internacional":"San Antonio de los Cobres - San Pedro de Atacama ","País_limítrofe":"Chile","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-23.87379,"Longitud":-67.15699,"FID":7}},{"type":"Feature","id":8,"geometry":{"type":"Point","coordinates":[-68.287239074707,-24.4534797668457]},"properties":{"Año":2023,"Provincia":"Salta","Nombre":"Socompa","Paso_de_Frontera_Internacional":"Salta - Antofagasta ","País_limítrofe":"Chile","Tipo":"Vial","Estado":"Cerrado","Con_Carga":"si","Latitud":-24.45348,"Longitud":-68.28724,"FID":8}},{"type":"Feature","id":9,"geometry":{"type":"Point","coordinates":[-57.7259902954101,-25.2647399902344]},"properties":{"Año":2023,"Provincia":"Formosa ","Nombre":"Clorinda - Puerto José Falcón","Paso_de_Frontera_Internacional":"Clorinda - José Falcón","País_limítrofe":"Paraguay","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-25.26474,"Longitud":-57.72599,"FID":9}},{"type":"Feature","id":10,"geometry":{"type":"Point","coordinates":[-54.5619087219238,-25.5999603271484]},"properties":{"Año":2023,"Provincia":"Misiones","Nombre":"Iguazú - Foz de Iguazú","Paso_de_Frontera_Internacional":"Puerto Iguazú - Foz de Iguazú","País_limítrofe":"Brasil","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-25.59996,"Longitud":-54.56191,"FID":10}},{"type":"Feature","id":11,"geometry":{"type":"Point","coordinates":[-53.6439781188965,-26.2547206878662]},"properties":{"Año":2023,"Provincia":"Misiones","Nombre":"Bernardo de Irigoyen - Dionisio Cerqueira","Paso_de_Frontera_Internacional":"Bernardo de Irigoyen - Dionisio Cerqueira","País_limítrofe":"Brasil","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-26.25472,"Longitud":-53.64398,"FID":11}},{"type":"Feature","id":12,"geometry":{"type":"Point","coordinates":[-68.2999648981094,-26.8724050422715]},"properties":{"Año":2023,"Provincia":"Catamarca","Nombre":"San Francisco","Paso_de_Frontera_Internacional":"Las Grutas - Copiapó ","País_limítrofe":"Chile","Tipo":"Vial","Estado":"Cerrado","Con_Carga":"si","Latitud":-26.91364,"Longitud":-68.12922,"FID":12}},{"type":"Feature","id":13,"geometry":{"type":"Point","coordinates":[-55.8820114135742,-27.3760299682617]},"properties":{"Año":2023,"Provincia":"Misiones","Nombre":"Posadas - Encarnación","Paso_de_Frontera_Internacional":"Posadas - Encarnación","País_limítrofe":"Paraguay","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-27.37603,"Longitud":-55.88201,"FID":13}},{"type":"Feature","id":14,"geometry":{"type":"Point","coordinates":[-69.2938232560586,-28.0708314392742]},"properties":{"Año":2023,"Provincia":"La Rioja","Nombre":"Pircas Negras","Paso_de_Frontera_Internacional":"Paraje Jagüé – Paraje Los Loros","País_limítrofe":"Chile","Tipo":"Vial","Estado":"Cerrado","Con_Carga":"si","Latitud":-28.17378,"Longitud":-69.14505,"FID":14}},{"type":"Feature","id":15,"geometry":{"type":"Point","coordinates":[-56.0322608947754,-28.5916004180908]},"properties":{"Año":2023,"Provincia":"Corrientes","Nombre":"Santo Tomé - Sao Borja","Paso_de_Frontera_Internacional":"Santo Tomé - Sao Borja","País_limítrofe":"Brasil","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-28.5916,"Longitud":-56.03226,"FID":15}},{"type":"Feature","id":16,"geometry":{"type":"Point","coordinates":[-57.1018600463867,-29.7337799072266]},"properties":{"Año":2023,"Provincia":"Corrientes","Nombre":"Paso de los Libres - Uruguayana","Paso_de_Frontera_Internacional":"Paso de los Libres - Uruguayana","País_limítrofe":"Brasil","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-29.73378,"Longitud":-57.10186,"FID":16}},{"type":"Feature","id":17,"geometry":{"type":"Point","coordinates":[-69.8248215004384,-30.1922098756289]},"properties":{"Año":2023,"Provincia":"San Juan ","Nombre":"Agua Negra","Paso_de_Frontera_Internacional":"Las Flores-Huanta","País_limítrofe":"Chile","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-33.32783,"Longitud":-69.23614,"FID":17}},{"type":"Feature","id":18,"geometry":{"type":"Point","coordinates":[-58.1061135312176,-32.2641273941346]},"properties":{"Año":2023,"Provincia":"Entre Ríos","Nombre":"Colón- Paysandú","Paso_de_Frontera_Internacional":"Colón- Paysandú","País_limítrofe":"Uruguay","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-30.76212,"Longitud":-57.82001,"FID":18}},{"type":"Feature","id":19,"geometry":{"type":"Point","coordinates":[-58.2487071594788,-33.0955915438869]},"properties":{"Año":2023,"Provincia":"Entre Ríos","Nombre":"Gualeguaychú- Fray Bentos","Paso_de_Frontera_Internacional":"Gualeguaychú- Fray Bentos","País_limítrofe":"Uruguay","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-30.76212,"Longitud":-57.82001,"FID":19}},{"type":"Feature","id":20,"geometry":{"type":"Point","coordinates":[-57.9420050400642,-31.2727057489257]},"properties":{"Año":2023,"Provincia":"Entre Ríos","Nombre":"Concordia- Salto","Paso_de_Frontera_Internacional":"Concordia- Salto","País_limítrofe":"Uruguay","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-34.27495,"Longitud":-57.93812,"FID":20}},{"type":"Feature","id":21,"geometry":{"type":"Point","coordinates":[-69.8812331596996,-33.6291085379132]},"properties":{"Año":2023,"Provincia":"Mendoza","Nombre":"Sistema Cristo Redentor","Paso_de_Frontera_Internacional":"Villa Las Cuevas - Los Andes ","País_limítrofe":"Chile","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-33.61386,"Longitud":-69.49854,"FID":21}},{"type":"Feature","id":22,"geometry":{"type":"Point","coordinates":[-70.3249893325443,-35.8083371078461]},"properties":{"Año":2023,"Provincia":"Mendoza","Nombre":"Pehuenche","Paso_de_Frontera_Internacional":"Malargüe - Talca","País_limítrofe":"Chile","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-35.79497,"Longitud":-70.14326,"FID":22}},{"type":"Feature","id":23,"geometry":{"type":"Point","coordinates":[-70.8396682739258,-38.6678886413574]},"properties":{"Año":2023,"Provincia":"Neuquén","Nombre":"Pino Hachado","Paso_de_Frontera_Internacional":"Las Lajas - Liucura ","País_limítrofe":"Chile","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-38.66789,"Longitud":-70.83967,"FID":23}},{"type":"Feature","id":24,"geometry":{"type":"Point","coordinates":[-71.8092880249023,-40.7292289733887]},"properties":{"Año":2023,"Provincia":"Neuquén","Nombre":"Cardenal Antonio Samoré","Paso_de_Frontera_Internacional":"Villa La Angostura - Entre Lagos ","País_limítrofe":"Chile","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-40.72923,"Longitud":-71.80929,"FID":24}},{"type":"Feature","id":25,"geometry":{"type":"Point","coordinates":[-71.7531509399414,-43.1741485595703]},"properties":{"Año":2023,"Provincia":"Chubut","Nombre":"Fataleufú ","Paso_de_Frontera_Internacional":"Travelin  - Fataleufú ","País_limítrofe":"Chile","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-43.17415,"Longitud":-71.75315,"FID":25}},{"type":"Feature","id":26,"geometry":{"type":"Point","coordinates":[-71.7051010131836,-43.5885200500488]},"properties":{"Año":2023,"Provincia":"Chubut","Nombre":"Río Encuentro","Paso_de_Frontera_Internacional":"Travelin - Palena","País_limítrofe":"Chile","Tipo":"Vial","Estado":"Cerrado","Con_Carga":"si","Latitud":-43.58852,"Longitud":-71.7051,"FID":26}},{"type":"Feature","id":27,"geometry":{"type":"Point","coordinates":[-71.5658416748047,-45.5287017822266]},"properties":{"Año":2023,"Provincia":"Chubut","Nombre":"Coyhaique ","Paso_de_Frontera_Internacional":"Río Mayo - Coyhaique ","País_limítrofe":"Chile","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-45.5287,"Longitud":-71.56584,"FID":27}},{"type":"Feature","id":28,"geometry":{"type":"Point","coordinates":[-71.6446075439453,-45.9154281616211]},"properties":{"Año":2023,"Provincia":"Chubut","Nombre":"Huemules","Paso_de_Frontera_Internacional":"Lago Blanco-Balmaceda","País_limítrofe":"Chile","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-45.91543,"Longitud":-71.64461,"FID":28}},{"type":"Feature","id":29,"geometry":{"type":"Point","coordinates":[-71.6546630859375,-46.5595817565918]},"properties":{"Año":2023,"Provincia":"Santa Cruz","Nombre":"Jeinimeni","Paso_de_Frontera_Internacional":"Los Antiguos - Chile Chico ","País_limítrofe":"Chile","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-46.55958,"Longitud":-71.65466,"FID":29}},{"type":"Feature","id":30,"geometry":{"type":"Point","coordinates":[-68.4553357294835,-53.2988347975291]},"properties":{"Año":2023,"Provincia":"Tierra Del Fuego, AIAS","Nombre":"San Sebastián","Paso_de_Frontera_Internacional":"Paraje San Sebastián - Porvenir ","País_limítrofe":"Chile","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-49.12612,"Longitud":-72.4919,"FID":30}},{"type":"Feature","id":31,"geometry":{"type":"Point","coordinates":[-72.3499908447266,-51.5745697021484]},"properties":{"Año":2023,"Provincia":"Santa Cruz","Nombre":"Dorotea","Paso_de_Frontera_Internacional":"Río Turbio - Puerto Natales ","País_limítrofe":"Chile","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-51.57457,"Longitud":-72.34999,"FID":31}},{"type":"Feature","id":32,"geometry":{"type":"Point","coordinates":[-72.2974319458008,-51.6902694702148]},"properties":{"Año":2023,"Provincia":"Santa Cruz","Nombre":"Laurita - Casas Viejas","Paso_de_Frontera_Internacional":"28 de Noviembre - Puerto Natales ","País_limítrofe":"Chile","Tipo":"Vial","Estado":"Cerrado","Con_Carga":"si","Latitud":-51.69027,"Longitud":-72.29743,"FID":32}},{"type":"Feature","id":33,"geometry":{"type":"Point","coordinates":[-69.5194702148438,-52.139030456543]},"properties":{"Año":2023,"Provincia":"Santa Cruz","Nombre":"Integración Austral","Paso_de_Frontera_Internacional":"Río Gallegos - Punta Arenas ","País_limítrofe":"Chile","Tipo":"Vial","Estado":"Abierto","Con_Carga":"si","Latitud":-52.13903,"Longitud":-69.51947,"FID":33}}]}
+{
+    "type": "FeatureCollection",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "EPSG:4326"
+        }
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "id": 1,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.6845016479492,
+                    -22.0536804199219
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Salta",
+                "Nombre": "Salvador Mazza - Yacuiba",
+                "Paso_de_Frontera_Internacional": "Salvador Mazza - Yacuiba",
+                "País_limítrofe": "Bolivia",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -22.05368,
+                "Longitud": -63.6845,
+                "FID": 1
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 2,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -65.5961227416992,
+                    -22.0969505310059
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Jujuy",
+                "Nombre": "La Quiaca - Villazón",
+                "Paso_de_Frontera_Internacional": "La Quiaca - Villazón",
+                "País_limítrofe": "Bolivia",
+                "Tipo": "Vial",
+                "Estado": "Cerrado",
+                "Con_Carga": "si",
+                "Latitud": -22.09695,
+                "Longitud": -65.59612,
+                "FID": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 3,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -62.5229682922363,
+                    -22.3790493011475
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Salta",
+                "Nombre": "Misión La Paz - Pozo Hondo",
+                "Paso_de_Frontera_Internacional": "Misión La Paz - Pozo Hondo",
+                "País_limítrofe": "Paraguay",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -22.37905,
+                "Longitud": -62.52297,
+                "FID": 3
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 4,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -64.3598327636719,
+                    -22.730110168457
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Salta",
+                "Nombre": "Aguas Blancas - Bermejo",
+                "Paso_de_Frontera_Internacional": "Aguas Blancas - Bermejo",
+                "País_limítrofe": "Bolivia",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -22.73011,
+                "Longitud": -64.35983,
+                "FID": 4
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 5,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -64.3598327636719,
+                    -22.730110168457
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Salta",
+                "Nombre": "Puerto Chalanas - Bermejo",
+                "Paso_de_Frontera_Internacional": "Aguas Blancas - Bermejo",
+                "País_limítrofe": "Bolivia",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -22.73011,
+                "Longitud": -64.35983,
+                "FID": 5
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 6,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -67.0230102539063,
+                    -23.2372093200684
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Jujuy",
+                "Nombre": "Jama",
+                "Paso_de_Frontera_Internacional": "Paraje Jama - San Pedro de Atacama",
+                "País_limítrofe": "Chile",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -23.23721,
+                "Longitud": -67.02301,
+                "FID": 6
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 7,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -67.1569900512695,
+                    -23.8737907409668
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Salta",
+                "Nombre": "Sico",
+                "Paso_de_Frontera_Internacional": "San Antonio de los Cobres - San Pedro de Atacama ",
+                "País_limítrofe": "Chile",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -23.87379,
+                "Longitud": -67.15699,
+                "FID": 7
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 8,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -68.287239074707,
+                    -24.4534797668457
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Salta",
+                "Nombre": "Socompa",
+                "Paso_de_Frontera_Internacional": "Salta - Antofagasta ",
+                "País_limítrofe": "Chile",
+                "Tipo": "Vial",
+                "Estado": "Cerrado",
+                "Con_Carga": "si",
+                "Latitud": -24.45348,
+                "Longitud": -68.28724,
+                "FID": 8
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 9,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -57.7259902954101,
+                    -25.2647399902344
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Formosa ",
+                "Nombre": "Clorinda - Puerto José Falcón",
+                "Paso_de_Frontera_Internacional": "Clorinda - José Falcón",
+                "País_limítrofe": "Paraguay",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -25.26474,
+                "Longitud": -57.72599,
+                "FID": 9
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 10,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -54.5619087219238,
+                    -25.5999603271484
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Misiones",
+                "Nombre": "Iguazú - Foz de Iguazú",
+                "Paso_de_Frontera_Internacional": "Puerto Iguazú - Foz de Iguazú",
+                "País_limítrofe": "Brasil",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -25.59996,
+                "Longitud": -54.56191,
+                "FID": 10
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 11,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -53.6439781188965,
+                    -26.2547206878662
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Misiones",
+                "Nombre": "Bernardo de Irigoyen - Dionisio Cerqueira",
+                "Paso_de_Frontera_Internacional": "Bernardo de Irigoyen - Dionisio Cerqueira",
+                "País_limítrofe": "Brasil",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -26.25472,
+                "Longitud": -53.64398,
+                "FID": 11
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 12,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -68.2999648981094,
+                    -26.8724050422715
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Catamarca",
+                "Nombre": "San Francisco",
+                "Paso_de_Frontera_Internacional": "Las Grutas - Copiapó ",
+                "País_limítrofe": "Chile",
+                "Tipo": "Vial",
+                "Estado": "Cerrado",
+                "Con_Carga": "si",
+                "Latitud": -26.91364,
+                "Longitud": -68.12922,
+                "FID": 12
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 13,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -55.8820114135742,
+                    -27.3760299682617
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Misiones",
+                "Nombre": "Posadas - Encarnación",
+                "Paso_de_Frontera_Internacional": "Posadas - Encarnación",
+                "País_limítrofe": "Paraguay",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -27.37603,
+                "Longitud": -55.88201,
+                "FID": 13
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 14,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -69.2938232560586,
+                    -28.0708314392742
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "La Rioja",
+                "Nombre": "Pircas Negras",
+                "Paso_de_Frontera_Internacional": "Paraje Jagüé – Paraje Los Loros",
+                "País_limítrofe": "Chile",
+                "Tipo": "Vial",
+                "Estado": "Cerrado",
+                "Con_Carga": "si",
+                "Latitud": -28.17378,
+                "Longitud": -69.14505,
+                "FID": 14
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 15,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -56.0322608947754,
+                    -28.5916004180908
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Corrientes",
+                "Nombre": "Santo Tomé - Sao Borja",
+                "Paso_de_Frontera_Internacional": "Santo Tomé - Sao Borja",
+                "País_limítrofe": "Brasil",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -28.5916,
+                "Longitud": -56.03226,
+                "FID": 15
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 16,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -57.1018600463867,
+                    -29.7337799072266
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Corrientes",
+                "Nombre": "Paso de los Libres - Uruguayana",
+                "Paso_de_Frontera_Internacional": "Paso de los Libres - Uruguayana",
+                "País_limítrofe": "Brasil",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -29.73378,
+                "Longitud": -57.10186,
+                "FID": 16
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 17,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -69.8248215004384,
+                    -30.1922098756289
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "San Juan ",
+                "Nombre": "Agua Negra",
+                "Paso_de_Frontera_Internacional": "Las Flores-Huanta",
+                "País_limítrofe": "Chile",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -33.32783,
+                "Longitud": -69.23614,
+                "FID": 17
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 18,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -58.1061135312176,
+                    -32.2641273941346
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Entre Ríos",
+                "Nombre": "Colón- Paysandú",
+                "Paso_de_Frontera_Internacional": "Colón- Paysandú",
+                "País_limítrofe": "Uruguay",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -30.76212,
+                "Longitud": -57.82001,
+                "FID": 18
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 19,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -58.2487071594788,
+                    -33.0955915438869
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Entre Ríos",
+                "Nombre": "Gualeguaychú- Fray Bentos",
+                "Paso_de_Frontera_Internacional": "Gualeguaychú- Fray Bentos",
+                "País_limítrofe": "Uruguay",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -30.76212,
+                "Longitud": -57.82001,
+                "FID": 19
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 20,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -57.9420050400642,
+                    -31.2727057489257
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Entre Ríos",
+                "Nombre": "Concordia- Salto",
+                "Paso_de_Frontera_Internacional": "Concordia- Salto",
+                "País_limítrofe": "Uruguay",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -34.27495,
+                "Longitud": -57.93812,
+                "FID": 20
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 21,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -69.8812331596996,
+                    -33.6291085379132
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Mendoza",
+                "Nombre": "Sistema Cristo Redentor",
+                "Paso_de_Frontera_Internacional": "Villa Las Cuevas - Los Andes ",
+                "País_limítrofe": "Chile",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -33.61386,
+                "Longitud": -69.49854,
+                "FID": 21
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 22,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -70.3249893325443,
+                    -35.8083371078461
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Mendoza",
+                "Nombre": "Pehuenche",
+                "Paso_de_Frontera_Internacional": "Malargüe - Talca",
+                "País_limítrofe": "Chile",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -35.79497,
+                "Longitud": -70.14326,
+                "FID": 22
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 23,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -70.8396682739258,
+                    -38.6678886413574
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Neuquén",
+                "Nombre": "Pino Hachado",
+                "Paso_de_Frontera_Internacional": "Las Lajas - Liucura ",
+                "País_limítrofe": "Chile",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -38.66789,
+                "Longitud": -70.83967,
+                "FID": 23
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 24,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -71.8092880249023,
+                    -40.7292289733887
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Neuquén",
+                "Nombre": "Cardenal Antonio Samoré",
+                "Paso_de_Frontera_Internacional": "Villa La Angostura - Entre Lagos ",
+                "País_limítrofe": "Chile",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -40.72923,
+                "Longitud": -71.80929,
+                "FID": 24
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 25,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -71.7531509399414,
+                    -43.1741485595703
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Chubut",
+                "Nombre": "Fataleufú ",
+                "Paso_de_Frontera_Internacional": "Travelin  - Fataleufú ",
+                "País_limítrofe": "Chile",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -43.17415,
+                "Longitud": -71.75315,
+                "FID": 25
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 26,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -71.7051010131836,
+                    -43.5885200500488
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Chubut",
+                "Nombre": "Río Encuentro",
+                "Paso_de_Frontera_Internacional": "Travelin - Palena",
+                "País_limítrofe": "Chile",
+                "Tipo": "Vial",
+                "Estado": "Cerrado",
+                "Con_Carga": "si",
+                "Latitud": -43.58852,
+                "Longitud": -71.7051,
+                "FID": 26
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 27,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -71.5658416748047,
+                    -45.5287017822266
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Chubut",
+                "Nombre": "Coyhaique ",
+                "Paso_de_Frontera_Internacional": "Río Mayo - Coyhaique ",
+                "País_limítrofe": "Chile",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -45.5287,
+                "Longitud": -71.56584,
+                "FID": 27
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 28,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -71.6446075439453,
+                    -45.9154281616211
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Chubut",
+                "Nombre": "Huemules",
+                "Paso_de_Frontera_Internacional": "Lago Blanco-Balmaceda",
+                "País_limítrofe": "Chile",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -45.91543,
+                "Longitud": -71.64461,
+                "FID": 28
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 29,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -71.6546630859375,
+                    -46.5595817565918
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Santa Cruz",
+                "Nombre": "Jeinimeni",
+                "Paso_de_Frontera_Internacional": "Los Antiguos - Chile Chico ",
+                "País_limítrofe": "Chile",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -46.55958,
+                "Longitud": -71.65466,
+                "FID": 29
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 30,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -68.4553357294835,
+                    -53.2988347975291
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Tierra Del Fuego, AIAS",
+                "Nombre": "San Sebastián",
+                "Paso_de_Frontera_Internacional": "Paraje San Sebastián - Porvenir ",
+                "País_limítrofe": "Chile",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -49.12612,
+                "Longitud": -72.4919,
+                "FID": 30
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 31,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -72.3499908447266,
+                    -51.5745697021484
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Santa Cruz",
+                "Nombre": "Dorotea",
+                "Paso_de_Frontera_Internacional": "Río Turbio - Puerto Natales ",
+                "País_limítrofe": "Chile",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -51.57457,
+                "Longitud": -72.34999,
+                "FID": 31
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 32,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -72.2974319458008,
+                    -51.6902694702148
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Santa Cruz",
+                "Nombre": "Laurita - Casas Viejas",
+                "Paso_de_Frontera_Internacional": "28 de Noviembre - Puerto Natales ",
+                "País_limítrofe": "Chile",
+                "Tipo": "Vial",
+                "Estado": "Cerrado",
+                "Con_Carga": "si",
+                "Latitud": -51.69027,
+                "Longitud": -72.29743,
+                "FID": 32
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 33,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -69.5194702148438,
+                    -52.139030456543
+                ]
+            },
+            "properties": {
+                "Año": 2023,
+                "Provincia": "Santa Cruz",
+                "Nombre": "Integración Austral",
+                "Paso_de_Frontera_Internacional": "Río Gallegos - Punta Arenas ",
+                "País_limítrofe": "Chile",
+                "Tipo": "Vial",
+                "Estado": "Abierto",
+                "Con_Carga": "si",
+                "Latitud": -52.13903,
+                "Longitud": -69.51947,
+                "FID": 33
+            }
+        }
+    ]
+}
