@@ -1,0 +1,5055 @@
+{
+  "type": "FeatureCollection",
+  "name": "Aeródromos MADHEL ANAC 2026",
+  "metadata": {
+    "titulo": "Aeródromos MADHEL ANAC 2026",
+    "fuente": "MADHEL / Administración Nacional de Aviación Civil (ANAC)",
+    "anio_referencia": 2026,
+    "crs": "EPSG:4326 - WGS 84",
+    "cantidad_registros": 140,
+    "descripcion": "Capa geográfica de aeródromos de Argentina con atributos de identificación, localización y operación.",
+    "nota": "Para uso cartográfico y analítico. La información operacional debe verificarse en las fuentes aeronáuticas vigentes."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "ACH",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "GENERAL ACHA - (ACH / SAEA) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "LA PAMPA",
+        "localidad_referencia": "General Acha",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 277.0,
+        "descripcion_ubicacion": "372405S 0643649W - 3 KM al SW de la ciudad de GENERAL ACHA (Pcia. de LA PAMPA) - ELEV 277 M 908 FT",
+        "latitud": -37.40164,
+        "longitud": -64.61351,
+        "pistas_texto": "04/22 900x23 M - ASPH – AUW 16t/1 20t/2.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-01",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.61351,
+          -37.40164
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "ADO",
+        "codigo_oaci": "SAWD",
+        "codigo_iata": "PUD",
+        "nombre_madhel": "PUERTO DESEADO - (ADO / SAWD) - DRSU - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "SANTA CRUZ",
+        "localidad_referencia": "Puerto Deseado",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 82.0,
+        "descripcion_ubicacion": "474405S 0655412W - 2 KM al N de la ciudad de PUERTO DESEADO (Pcia. de SANTA CRUZ) - ELEV 82 M 268 FT - ILE",
+        "latitud": -47.73511,
+        "longitud": -65.9041,
+        "pistas_texto": "06/24 1500x30 M - ASPH.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-09-05",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.9041,
+          -47.73511
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "AER",
+        "codigo_oaci": "SABE",
+        "codigo_iata": "AEP",
+        "nombre_madhel": "BUENOS AIRES / AEROPARQUE J. NEWBERY - (AER / SABE) - DRCE - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "CIUDAD AUTÓNOMA DE BUENOS AIRES",
+        "localidad_referencia": "Ciudad de Buenos Aires",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 5.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SABE-AD-2.0 (Aeródromos)***",
+        "latitud": -34.5588888888889,
+        "longitud": -58.4163888888889,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-02",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.4163888888889,
+          -34.5588888888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "APO",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "APÓSTOLES - (APO) - DRNE - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "MISIONES",
+        "localidad_referencia": "Apóstoles",
+        "region": "RANE",
+        "fir": "SARR",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 117.0,
+        "descripcion_ubicacion": "275412S 0554556W - 1,6 KM al NW de la ciudad de APÓSTOLES (Pcia. de MISIONES) - ELEV 177 M 580 FT - ILE",
+        "latitud": -27.9033333333333,
+        "longitud": -55.7655555555556,
+        "pistas_texto": "06/24 1850x30 M - ASPH.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2025-10-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -55.7655555555556,
+          -27.9033333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "BAR",
+        "codigo_oaci": "SAZS",
+        "codigo_iata": "BRC",
+        "nombre_madhel": "SAN CARLOS DE BARILOCHE - (BAR / SAZS) - DRCE - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "RÍO NEGRO",
+        "localidad_referencia": "San Carlos de Bariloche",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 846.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAZS-AD-2.0 (Aeródromos)***",
+        "latitud": -41.1511111111111,
+        "longitud": -71.1577777777778,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-05",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.1577777777778,
+          -41.1511111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "BCA",
+        "codigo_oaci": "SAZB",
+        "codigo_iata": "BHI",
+        "nombre_madhel": "BAHÍA BLANCA / CTE. ESPORA - (BCA / SAZB) - DRCE - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Bahía Blanca",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 75.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAZB-AD-2.0 (Aeródromos)***",
+        "latitud": -38.7275,
+        "longitud": -62.1533333333333,
+        "pistas_texto": "",
+        "cantidad_pistas": 3,
+        "cantidad_pistas_pavimentadas": 3,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": false,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.1533333333333,
+          -38.7275
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "BDR",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "BAHÍA DORADA - (BDR) - DRSU - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "RÍO NEGRO",
+        "localidad_referencia": "Sierra Grande",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 36.0,
+        "descripcion_ubicacion": "415014S 0650425W - 35 KM al SE de la ciudad de SIERRA GRANDE (Pcia. de RÍO NEGRO) - ELEV 45 M 148 FT",
+        "latitud": -41.8427777777778,
+        "longitud": -65.0822222222222,
+        "pistas_texto": "05/23 1871x30 M - ASPH - PCN 28/F/A/X/T.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2025-10-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.0822222222222,
+          -41.8427777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "BEL",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "BELL VILLE - (BEL) - DRNO - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "CÓRDOBA",
+        "localidad_referencia": "Bell Ville",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 131.0,
+        "descripcion_ubicacion": "323934S 0624208W - 2,5 KM al SSW de la ciudad de BELL VILLE (Pcia. de CÓRDOBA) - ELEV 131 M 429 FT - ILE",
+        "latitud": -32.6583333333333,
+        "longitud": -62.7019444444444,
+        "pistas_texto": "01/19 1546x24 M – ASPH – PCR 175/F/D/X/T.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2025-09-24",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.7019444444444,
+          -32.6583333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "BIO",
+        "codigo_oaci": "SAWT",
+        "codigo_iata": "RYO",
+        "nombre_madhel": "EL TURBIO / 28 DE NOVIEMBRE - (BIO / SAWT) - DRSU - PÚBLICO NO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "SANTA CRUZ",
+        "localidad_referencia": "El Turbio",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 273.0,
+        "descripcion_ubicacion": "513633S 0721318W - 10 KM al WNW de la ciudad de EL TURBIO (Pcia. de SANTA CRUZ) - ELEV 273 M 895 FT - ILE",
+        "latitud": -51.60502,
+        "longitud": -72.22034,
+        "pistas_texto": "06/24 1750x30 M - ASPH – PCN 29/F/C/Y/U.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-08-21",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.22034,
+          -51.60502
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "BLE",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "BALCARCE / EA. LA ESTRELLA - (BLE) - DRCE - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Balcarce",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 139.0,
+        "descripcion_ubicacion": "373334S 0583958W - 53 KM al NW de la ciudad de BALCARCE (Pcia. de BUENOS AIRES) - ELEV 138 M 453 FT - ILE",
+        "latitud": -37.5594444444444,
+        "longitud": -58.6661111111111,
+        "pistas_texto": "05/23 1400x23 M - ASPH.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-01",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.6661111111111,
+          -37.5594444444444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "BLN",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "LONDRES / BELÉN - (BLN) - DRNO - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "CATAMARCA",
+        "localidad_referencia": "Belén",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 1200.0,
+        "descripcion_ubicacion": "274229S 0670542W - 2 KM al NE de la ciudad de BELÉN (Pcia. de CATAMARCA) - ELEV 1179 M 3868 FT",
+        "latitud": -27.7080555555556,
+        "longitud": -67.095,
+        "pistas_texto": "07/25 1650x23 M - ASPH – AUW 22t/1 38t/2.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-01",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.095,
+          -27.7080555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "BLR",
+        "codigo_oaci": "SAZI",
+        "codigo_iata": "",
+        "nombre_madhel": "BOLÍVAR  - (BLR / SAZI) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "San Carlos de Bolivar",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 94.0,
+        "descripcion_ubicacion": "361112S 0610433W - 6 KM al NNE de la ciudad de BOLÍVAR (Pcia. de BUENOS AIRES) - ELEV 94 M 308 FT - ILE",
+        "latitud": -36.1866666666667,
+        "longitud": -61.0758333333333,
+        "pistas_texto": "02/20 1200x30 M - ASPH - AUW 18t/1 26t/2. | Operar con precaución por obras de mantenimiento.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-01",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -61.0758333333333,
+          -36.1866666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "BOL",
+        "codigo_oaci": "SAVB",
+        "codigo_iata": "EHL",
+        "nombre_madhel": "EL BOLSÓN - (BOL / SAVB) - DRSU - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "RÍO NEGRO",
+        "localidad_referencia": "El Bolsón",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 348.0,
+        "descripcion_ubicacion": "415636S 0713155W - Lindante al NW de la localidad de EL BOLSÓN (Pcia. de RÍO NEGRO) - ELEV 348 M 1141 FT",
+        "latitud": -41.94323,
+        "longitud": -71.53215,
+        "pistas_texto": "18/36 1300x30 M - ASPH – AUW 23t/1 30t/2.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-01",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.53215,
+          -41.94323
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "BRQ",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "BUTA RANQUIL / EL PORTÓN - (BRQ) - DRNO - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "NEUQUÉN",
+        "localidad_referencia": "Buta Ranquil",
+        "region": "RACE",
+        "fir": "SAMF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 870.0,
+        "descripcion_ubicacion": "371140S 0693648W - 22 KM al SE de la localidad de BUTA RANQUIL (Pcia. de NEUQUÉN) - ELEV 872 M 2861 FT - ILE",
+        "latitud": -37.195,
+        "longitud": -69.6097222222222,
+        "pistas_texto": "10/28 1790x23 M - ASPH - PCN 7/F/Y/U. | 16/34 860x20 M - Tierra",
+        "cantidad_pistas": 2,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-01",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.6097222222222,
+          -37.195
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "BTA",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "BELLA VISTA (CORRIENTES) - (BTA) - DRNE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "CORRIENTES",
+        "localidad_referencia": "Bella Vista",
+        "region": "RANE",
+        "fir": "SARR",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 55.0,
+        "descripcion_ubicacion": "283134S 0590217W - Al SE de la ciudad de BELLA VISTA (Pcia. de CORRIENTES) - ELEV 55 M 180 FT",
+        "latitud": -28.5261111111111,
+        "longitud": -59.0380555555556,
+        "pistas_texto": "17/35 1100x30 M - ASPH – AUW 11t/1 14t/2 20t/4.  Pavimento deteriorado operar con precaución. No se recomienda OPS ACFT JET.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2025-10-17",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.0380555555556,
+          -28.5261111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "CAF",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "CAFAYATE - (CAF) - DRNO - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "SALTA",
+        "localidad_referencia": "Cafayate",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 1639.0,
+        "descripcion_ubicacion": "260320S 0655613W - 4,5 KM al NE de la ciudad de CAFAYATE (Pcia. de SALTA) - ELEV 1602 M 5256 FT - ILE",
+        "latitud": -26.0641666666667,
+        "longitud": -65.9305555555556,
+        "pistas_texto": "16/34 2100x23 M - ASPH – AUW 13t/1 16t/2.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2025-02-11",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.9305555555556,
+          -26.0641666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "CAL",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "CAMPO ARENAL - (CAL) - DRNO - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "CATAMARCA",
+        "localidad_referencia": "Santa María",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 2324.0,
+        "descripcion_ubicacion": "270421S 0663510W - 58 KM al SW de la ciudad de SANTA MARÍA (Pcia. de CATAMARCA) - ELEV 2303 M 7556 FT",
+        "latitud": -27.0722222222222,
+        "longitud": -66.5863888888889,
+        "pistas_texto": "06/24 1935x23 M - ASPH.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2022-12-28",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.5863888888889,
+          -27.0722222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "CAT",
+        "codigo_oaci": "SANC",
+        "codigo_iata": "CTC",
+        "nombre_madhel": "CATAMARCA - (CAT / SANC) - DRNO - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "CATAMARCA",
+        "localidad_referencia": "San Fernando del Valle de Catamarca",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 464.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SANC-AD-2.0 (Aeródromos)***",
+        "latitud": -28.5930555555556,
+        "longitud": -65.7511111111111,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.7511111111111,
+          -28.5930555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "CBA",
+        "codigo_oaci": "SACO",
+        "codigo_iata": "COR",
+        "nombre_madhel": "CÓRDOBA / ING. AER. A.L.V. TARAVELLA - (CBA / SACO) - DRNO - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "CÓRDOBA",
+        "localidad_referencia": "Córdoba",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 489.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SACO-AD-2.0 (Aeródromos)***",
+        "latitud": -31.31,
+        "longitud": -64.2083333333333,
+        "pistas_texto": "",
+        "cantidad_pistas": 2,
+        "cantidad_pistas_pavimentadas": 2,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2025-04-25",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.2083333333333,
+          -31.31
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "CDS",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "CAÑADÓN SECO - (CDS) - DRSU - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "SANTA CRUZ",
+        "localidad_referencia": "Cañadón Seco",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 90.0,
+        "descripcion_ubicacion": "463217S 0673333W - 5 KM al NE de la localidad de CAÑADÓN SECO (Pcia. de SANTA CRUZ) - ELEV 91 M 295 FT",
+        "latitud": -46.5380555555556,
+        "longitud": -67.5597222222222,
+        "pistas_texto": "06/24 1100x20 M - ASPH. | 10/28 1100x20 M - ASPH.",
+        "cantidad_pistas": 2,
+        "cantidad_pistas_pavimentadas": 2,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-01",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.5597222222222,
+          -46.5380555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "CHM",
+        "codigo_oaci": "SAHC",
+        "codigo_iata": "HOS",
+        "nombre_madhel": "CHOS MALAL - (CHM / SAHC) - DRNO - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "NEUQUÉN",
+        "localidad_referencia": "Chos Malal",
+        "region": "RACE",
+        "fir": "SAMF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 850.0,
+        "descripcion_ubicacion": "372640S 0701323W - 10 KM al SE de la ciudad de CHOS MALAL (Pcia. del NEUQUÉN) - ELEV 844,5 M 2771 FT",
+        "latitud": -37.4441666666667,
+        "longitud": -70.2230555555556,
+        "pistas_texto": "12/30 1512x30 M - ASPH – PCR 112/F/B/X/T.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-01",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.2230555555556,
+          -37.4441666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "CHP",
+        "codigo_oaci": "SAZY",
+        "codigo_iata": "CPC",
+        "nombre_madhel": "SAN MARTÍN DE LOS ANDES / AVIADOR C. CAMPOS - (CHP / SAZY) - DRCE - PÚBLICO CONTROLADO - ILE",
+        "tipo": "AD_SNA",
+        "provincia": "NEUQUÉN",
+        "localidad_referencia": "San Martín de los Andes",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 783.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAZY-AD-2.0 (Aeródromos)***",
+        "latitud": -40.0752777777778,
+        "longitud": -71.1372222222222,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.1372222222222,
+          -40.0752777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "CLH",
+        "codigo_oaci": "SAVH",
+        "codigo_iata": "LHS",
+        "nombre_madhel": "LAS HERAS - (CLH / SAVH) - DRSU - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "SANTA CRUZ",
+        "localidad_referencia": "Las Heras",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 330.0,
+        "descripcion_ubicacion": "463218S 0685758W - 2 KM al W de la ciudad de LAS HERAS (Pcia. de SANTA CRUZ) - ELEV 330 M 1082 FT - ILE",
+        "latitud": -46.53848,
+        "longitud": -68.96583,
+        "pistas_texto": "09/27 1400x17 M - ASPH.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.96583,
+          -46.53848
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "CLI",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "CALILEGUA - (CLI) - DRNO - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "JUJUY",
+        "localidad_referencia": "Calilegua",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 442.0,
+        "descripcion_ubicacion": "234654S 0644459W - 1,7 KM al E de la ciudad de CALILEGUA (Pcia. de JUJUY) - ELEV 448 M 1470 FT",
+        "latitud": -23.7816666666667,
+        "longitud": -64.7497222222222,
+        "pistas_texto": "08/26 1799x22 M - ASPH - AUW 17t/1 20t/2",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-01",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.7497222222222,
+          -23.7816666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "CPO",
+        "codigo_oaci": "SADO",
+        "codigo_iata": "",
+        "nombre_madhel": "CAMPO DE MAYO - (CPO / SADO) - DRCE - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Estación San Miguel",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 24.0,
+        "descripcion_ubicacion": "343204S 0584019W - 3,5 KM al ENE de la ESTACIÓN SAN MIGUEL (Pcia. de BUENOS AIRES) - ELEV 26 M 85 FT - ILE",
+        "latitud": -34.53433,
+        "longitud": -58.672,
+        "pistas_texto": "18/36 1800x30 M - ASPH - ILE",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2025-08-27",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.672,
+          -34.53433
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "CRR",
+        "codigo_oaci": "SARC",
+        "codigo_iata": "CNQ",
+        "nombre_madhel": "CORRIENTES - (CRR / SARC) - DRNE - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "CORRIENTES",
+        "localidad_referencia": "Corrientes",
+        "region": "RANE",
+        "fir": "SARR",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 61.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SARC-AD-2.0 (Aeródromos)***",
+        "latitud": -27.4455555555556,
+        "longitud": -58.7619444444444,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-05",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": false,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.7619444444444,
+          -27.4455555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "CRV",
+        "codigo_oaci": "SAVC",
+        "codigo_iata": "CRD",
+        "nombre_madhel": "COMODORO RIVADAVIA / GRAL. E. MOSCONI - (CRV / SAVC) - DRSU - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "CHUBUT",
+        "localidad_referencia": "Comodoro Rivadavia",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 57.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAVC-AD-2.0 (Aeródromos)***",
+        "latitud": -45.7852777777778,
+        "longitud": -67.4655555555556,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-05",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.4655555555556,
+          -45.7852777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "CUA",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "RÍO CUARTO / AEROCLUB - (CUA) - DRNO - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "CÓRDOBA",
+        "localidad_referencia": "Río Cuarto",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 424.0,
+        "descripcion_ubicacion": "330938S 0642014W - 4 KM al SSE de la ciudad de RÍO CUARTO (Pcia. de CÓRDOBA) - ELEV 424 M 1391 FT - ILE",
+        "latitud": -33.1605555555556,
+        "longitud": -64.3372222222222,
+        "pistas_texto": "01L/19R 930x19 M - ASPH. | 01R/19L 848x50 M - Tierra.",
+        "cantidad_pistas": 2,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-10-08",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.3372222222222,
+          -33.1605555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "CUT",
+        "codigo_oaci": "SAZW",
+        "codigo_iata": "CUT",
+        "nombre_madhel": "CUTRAL CÓ - (CUT / SAZW) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "NEUQUÉN",
+        "localidad_referencia": "Cutral Có",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 650.0,
+        "descripcion_ubicacion": "385623S 0691554W - 2 KM al WSW de la ciudad de CUTRAL CÓ (Pcia. de NEUQUÉN) - ELEV 650 M 2132 FT",
+        "latitud": -38.9397222222222,
+        "longitud": -69.265,
+        "pistas_texto": "07/25 1694x30 M - ASPH – AUW 33t/1 43t/2.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-07-13",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.265,
+          -38.9397222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "DIA",
+        "codigo_oaci": "SAAC",
+        "codigo_iata": "COC",
+        "nombre_madhel": "CONCORDIA / COMODORO JUAN JOSÉ PIERRESTEGUI - (DIA / SAAC) - DRCE - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "ENTRE RÍOS",
+        "localidad_referencia": "Concordia",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 34.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAAC-AD-2.0 (Aeródromos)***",
+        "latitud": -31.2969444444444,
+        "longitud": -57.9966666666667,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": false,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.9966666666667,
+          -31.2969444444444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "DIL",
+        "codigo_oaci": "SAZT",
+        "codigo_iata": "TDL",
+        "nombre_madhel": "TANDIL / HÉROES DE MALVINAS - (DIL / SAZT) - DRCE - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Tandil",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 175.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAZT-AD-2.0 (Aeródromos)***",
+        "latitud": -37.2343777777778,
+        "longitud": -59.2285861111111,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": false,
+        "proveedor_navegacion": "DNCTA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.2285861111111,
+          -37.2343777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "DOP",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "MENDOZA / LA PUNTILLA - (DOP) - DRNO - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "MENDOZA",
+        "localidad_referencia": "Ap. El Plumerillo",
+        "region": "RANO",
+        "fir": "SAMF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 942.0,
+        "descripcion_ubicacion": "325745S 0685227W - 16 KM al SW del Aeropuerto El PLUMERILLO (Pcia. de MENDOZA) - ELEV 934,5 M 3066 FT",
+        "latitud": -32.96254,
+        "longitud": -68.87395,
+        "pistas_texto": "05/23 1006x19 M - ASPH. | Extremo RWY 23 325755,6S 0685241,1W - ELEV 934,5 M 3066 FT",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-02-26",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.87395,
+          -32.96254
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "DOZ",
+        "codigo_oaci": "SAME",
+        "codigo_iata": "MDZ",
+        "nombre_madhel": "MENDOZA / EL PLUMERILLO - (DOZ / SAME) - DRNO - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "MENDOZA",
+        "localidad_referencia": "Mendoza",
+        "region": "RANO",
+        "fir": "SAMF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 704.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAME-AD-2.0 (Aeródromos)***",
+        "latitud": -32.8316666666667,
+        "longitud": -68.7927777777778,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-02",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.7927777777778,
+          -32.8316666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "DRY",
+        "codigo_oaci": "SAVY",
+        "codigo_iata": "PMY",
+        "nombre_madhel": "PUERTO MADRYN / EL TEHUELCHE - (DRY / SAVY) - DRSU - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "CHUBUT",
+        "localidad_referencia": "Puerto Madryn",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 130.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAVY-AD-2.0 (Aeródromos)***",
+        "latitud": -42.7591666666667,
+        "longitud": -65.1027777777778,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.1027777777778,
+          -42.7591666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "EAU",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "USHUAIA / EST. AERONAVAL - (EAU) - DRSU - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "TIERRA DEL FUEGO ANTÁRTIDA E ISLAS DEL ATLÁNTICO SUR",
+        "localidad_referencia": "Ushuaia",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 6.0,
+        "descripcion_ubicacion": "544922S 0681815W - 1 KM al S de la ciudad de USHUAIA (Pcia. de TIERRA DEL FUEGO, ANTÁRTIDA E ISLAS DEL ATLÁNTICO SUR) - ELEV 6 M 19 FT - ILE",
+        "latitud": -54.8227777777778,
+        "longitud": -68.3041666666667,
+        "pistas_texto": "16/34 1615x49 M - ASPH – AUW 35t/1 46t/2 76t/4.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.3041666666667,
+          -54.8227777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "ECA",
+        "codigo_oaci": "SAWC",
+        "codigo_iata": "FTE",
+        "nombre_madhel": "EL CALAFATE - (ECA / SAWC) - DRSU - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "SANTA CRUZ",
+        "localidad_referencia": "El Calafate",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 204.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAWC-AD-2.0 (Aeródromos)***",
+        "latitud": -50.28,
+        "longitud": -72.0530555555556,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-03-05",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.0530555555556,
+          -50.28
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "ELC",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "25 DE MAYO / ESTANCIA LA CRIOLLA - (ELC) - DRCE - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "25 de Mayo",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 48.0,
+        "descripcion_ubicacion": "353213S 0600746W - 12 KM al SE de la ciudad de 25 de MAYO (Pcia. de BUENOS AIRES) - ELEV 48 M 157 FT",
+        "latitud": -35.5366666666667,
+        "longitud": -60.1291666666667,
+        "pistas_texto": "05/23 1500x23 M - ASPH - ILE – PCN 12/F/B/W/U.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2025-10-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.1291666666667,
+          -35.5366666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "ELD",
+        "codigo_oaci": "SATD",
+        "codigo_iata": "ELO",
+        "nombre_madhel": "AEROCLUB ALTO PARANÁ EL DORADO - (ELD / SATD) - DRNE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "MISIONES",
+        "localidad_referencia": "Eldorado",
+        "region": "RANE",
+        "fir": "SARR",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 209.0,
+        "descripcion_ubicacion": "262349S 0543429W - Lindante al E de la ciudad de EL DORADO (Pcia. de MISIONES) - ELEV 209 M 685 FT - ILE",
+        "latitud": -26.3969444444444,
+        "longitud": -54.5747222222222,
+        "pistas_texto": "01/19 1431x30 M - ASPH.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2025-10-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -54.5747222222222,
+          -26.3969444444444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "ERT",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "VILLA MERCEDES / ESTANCIA DON ROBERTO - (ERT) - DRNO - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "SAN LUIS",
+        "localidad_referencia": "Villa Mercedes",
+        "region": "RANO",
+        "fir": "SAMF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 436.0,
+        "descripcion_ubicacion": "340004S 0652160W - 37 KM al SSE de la ciudad de VILLA MERCEDES (Pcia. de SAN LUIS) - ELEV 438 M 1437 FT - ILE",
+        "latitud": -34.0011,
+        "longitud": -65.36657,
+        "pistas_texto": "06/24 1550x18 M - ASPH.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.36657,
+          -34.0011
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "ESC",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "CÓRDOBA / ESCUELA DE AVIACIÓN MILITAR - (ESC / SACE) – FIR CBA - MILITAR CONTROLADO (FUERZA AÉREA ARGENTINA)",
+        "tipo": "AD",
+        "provincia": "CÓRDOBA",
+        "localidad_referencia": "Córdoba",
+        "region": "RANO",
+        "fir": "",
+        "condicion": "MILITAR",
+        "control": "no controlado",
+        "elevacion_m": null,
+        "descripcion_ubicacion": "312638S 0641700W - 15 KM al SW de la Ciudad de Córdoba - ELEV 497,41 M 1631,92 FT - GUND 26 M - ILE",
+        "latitud": -31.46055556,
+        "longitud": -64.28333333,
+        "pistas_texto": "02/20 1733x49 M - ASPH | 07/25 1514x44 M – Tierra | Franja de RWY 02/20 Sector W de 75 M de ancho.",
+        "cantidad_pistas": 2,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-08-21",
+        "tipo_trafico": "",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.28333333,
+          -31.46055556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "ESQ",
+        "codigo_oaci": "SAVE",
+        "codigo_iata": "EQS",
+        "nombre_madhel": "ESQUEL / BRIGADIER GENERAL ANTONIO PARODI - (ESQ / SAVE) - DRSU - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "CHUBUT",
+        "localidad_referencia": "Esquel",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 799.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAVE-AD-2.0 (Aeródromos)***",
+        "latitud": -42.90381,
+        "longitud": -71.13554,
+        "pistas_texto": "",
+        "cantidad_pistas": 2,
+        "cantidad_pistas_pavimentadas": 2,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.13554,
+          -42.90381
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "EZE",
+        "codigo_oaci": "SAEZ",
+        "codigo_iata": "EZE",
+        "nombre_madhel": "EZEIZA / MINISTRO PISTARINI - (EZE / SAEZ) - DRCE - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Capital Federal",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 20.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAEZ-AD-2.0 (Aeródromos)***",
+        "latitud": -34.8222222222222,
+        "longitud": -58.5358333333333,
+        "pistas_texto": "",
+        "cantidad_pistas": 2,
+        "cantidad_pistas_pavimentadas": 2,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-02",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.5358333333333,
+          -34.8222222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "FDO",
+        "codigo_oaci": "SADF",
+        "codigo_iata": "FDO",
+        "nombre_madhel": "SAN FERNANDO - (FDO / SADF) - DRCE - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "San Fernando",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 3.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SADF-AD-2.0 (Aeródromos)***",
+        "latitud": -34.45454,
+        "longitud": -58.59091,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-02",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.59091,
+          -34.45454
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "FMA",
+        "codigo_oaci": "SACA",
+        "codigo_iata": "",
+        "nombre_madhel": "CÓRDOBA / CAPITÁN D. OMAR DARÍO GELARDI - FADEA - (FMA / SACA) - DRNO - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "CÓRDOBA",
+        "localidad_referencia": "Córdoba",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 486.0,
+        "descripcion_ubicacion": "312612S 0641527W - 7 KM al SW de la ciudad de CÓRDOBA - ELEV 479,75 M 1574 FT",
+        "latitud": -31.44195,
+        "longitud": -64.25847,
+        "pistas_texto": "17/35 1290x30 M - ASPH - AUW 11t/1 18t/2.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-09-21",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.25847,
+          -31.44195
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "FSA",
+        "codigo_oaci": "SARF",
+        "codigo_iata": "FMA",
+        "nombre_madhel": "FORMOSA - (FSA / SARF) - DRNE - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "FORMOSA",
+        "localidad_referencia": "Formosa",
+        "region": "RANE",
+        "fir": "SARR",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 59.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SARF-AD-2.0 (Aeródromos)***",
+        "latitud": -26.2127777777778,
+        "longitud": -58.2280555555556,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-05",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2280555555556,
+          -26.2127777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "GAL",
+        "codigo_oaci": "SAWG",
+        "codigo_iata": "RGL",
+        "nombre_madhel": "RÍO GALLEGOS / PILOTO CIVIL N. FERNÁNDEZ - (GAL / SAWG) - DRSU - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "SANTA CRUZ",
+        "localidad_referencia": "Río Gallegos",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 19.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAWG-AD-2.0 (Aeródromos)***",
+        "latitud": -51.60881,
+        "longitud": -69.31217,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-05",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "DNCTA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.31217,
+          -51.60881
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "GAS",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "GENERAL VILLEGAS - (GAS) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "General Villegas",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 117.0,
+        "descripcion_ubicacion": "345958S 0630003W - 4,5 KM al NNE de la ciudad de GENERAL VILLEGAS (Pcia. de BUENOS AIRES) - ELEV 117 M 383 FT - ILE",
+        "latitud": -34.99615,
+        "longitud": -62.99883,
+        "pistas_texto": "13/31 980x30 M - Tierra - Balizada. | 03/21 900x23 M - ASPH – AUW 18t/1 22t/2 32t/4 (CLSD).",
+        "cantidad_pistas": 2,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-01",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.99883,
+          -34.99615
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "GES",
+        "codigo_oaci": "SAZV",
+        "codigo_iata": "VLG",
+        "nombre_madhel": "VILLA GESELL - (GES / SAZV) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Villa Gesell",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 10.0,
+        "descripcion_ubicacion": "371407,49S 0570143,72W - 3 KM al W de la ciudad de Villa Gesell - ELEV 5,5 M (18 FT) - Temperatura de referencia 27.1ºC - Temperatura mínima media 3.7 ºC - GUND 14 M (46 FT)",
+        "latitud": -37.2344444444444,
+        "longitud": -57.0238888888889,
+        "pistas_texto": "11/29 1.591x30 M - ASPH - PCN 37t/1 48t/4 (Precaución: RWY 11/29 limitado aeronaves con motores a reacción, excepto vuelos Estado, SAN, HUM, SAR y Oficial). | Pendiente de RWY 11/29 0,015%. | Franja de RWY 11/29 1.711x140 M (Sector lateral N reducida a 30 M y sector lateral S reducida a 40 M en toda su extensión). | RESA 90x 56 M.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-07-22",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": false,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.0238888888889,
+          -37.2344444444444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "GNR",
+        "codigo_oaci": "SAHR",
+        "codigo_iata": "GNR",
+        "nombre_madhel": "GENERAL ROCA / DR. ARTURO H. ILLIA - (GNR / SAHR) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "RÍO NEGRO",
+        "localidad_referencia": "General Roca",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 260.0,
+        "descripcion_ubicacion": "390000S 0673711W - 4,8 KM al NW de la ciudad de GENERAL ROCA (Pcia. de RÍO NEGRO) - ELEV 260 M 852 FT",
+        "latitud": -39.0,
+        "longitud": -67.6197222222222,
+        "pistas_texto": "09/27 2156x45 M - ASPH – AUW 36t/1 50t/2 75t/4 – ILE.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-08-21",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": false,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.6197222222222,
+          -39.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "GOR",
+        "codigo_oaci": "SACT",
+        "codigo_iata": "",
+        "nombre_madhel": "CHAMICAL / GOBERNADOR GORDILLO - (GOR / SACT) - FIR CBA - MILITAR CONTROLADO (FUERZA AÉREA ARGENTINA)",
+        "tipo": "AD",
+        "provincia": "LA RIOJA",
+        "localidad_referencia": "El Chamical",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 458.0,
+        "descripcion_ubicacion": "302022S 0661739W - 2 Km al E de la ciudad de CHAMICAL (Pcia. de la Rioja) - (CELPA I - Centro de Experimentación de Lanzamiento y Proyectiles Aeropropulsados) - ELEV 458 M 1502 FT",
+        "latitud": -30.34416,
+        "longitud": -66.29403,
+        "pistas_texto": "01/19 2050x30 M - ASPH",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-08-21",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.29403,
+          -30.34416
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "GOY",
+        "codigo_oaci": "SATG",
+        "codigo_iata": "OYA",
+        "nombre_madhel": "GOYA - (GOY / SATG) - DRNE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "CORRIENTES",
+        "localidad_referencia": "Goya",
+        "region": "RANE",
+        "fir": "SARR",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 39.0,
+        "descripcion_ubicacion": "290621,50S 0591307,40W - 6 KM al NE de la ciudad de GOYA (Pcia. de CORRIENTES) - ELEV 39 M 128 FT - T 32.4º - ILE",
+        "latitud": -29.10595,
+        "longitud": -59.21874,
+        "pistas_texto": "04/22 1700x45 M - ASPH – AUW 34t/1 45t/2 70t/4.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2025-07-17",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.21874,
+          -29.10595
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "GPI",
+        "codigo_oaci": "SAZG",
+        "codigo_iata": "GPO",
+        "nombre_madhel": "GENERAL PICO - (GPI / SAZG) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "LA PAMPA",
+        "localidad_referencia": "General Pico",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 140.0,
+        "descripcion_ubicacion": "354145,54S 0634529,98W - 3,5 KM al SW de la ciudad de GENERAL PICO (Pcia. de LA PAMPA) - ELEV 140,25 M 460 FT - GUND 19 M 62 FT - T 30,7º - ILE",
+        "latitud": -35.6947222222222,
+        "longitud": -63.7588888888889,
+        "pistas_texto": "16/34 2350x45 M - ASPH – AUW 22t/1 29t/2 45t/4. | Extremo 16 - 354221,35S 0634513,99W - 138,25 M 454 FT. | Franja de RWY 2470x280 M",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-07-22",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.7588888888889,
+          -35.6947222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "GRA",
+        "codigo_oaci": "SAWE",
+        "codigo_iata": "RGA",
+        "nombre_madhel": "RÍO GRANDE - (GRA / SAWE) - DRSU - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "TIERRA DEL FUEGO ANTÁRTIDA E ISLAS DEL ATLÁNTICO SUR",
+        "localidad_referencia": "Río Grande",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 20.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAWE-AD-2.0 (Aeródromos)***",
+        "latitud": -53.7776,
+        "longitud": -67.74952,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-05",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.74952,
+          -53.7776
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "HUI",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "HUINCA RENANCÓ - (HUI) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "CÓRDOBA",
+        "localidad_referencia": "Huinca Renancó",
+        "region": "RACE",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 180.0,
+        "descripcion_ubicacion": "344858S 0642203W - 2 KM al N de la ciudad de HUINCA RENANCÓ (Pcia. de CÓRDOBA) - ELEV 180 M 590 FT - ILE",
+        "latitud": -34.82041,
+        "longitud": -64.37412,
+        "pistas_texto": "01/19 1000x26 M - ASPH.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.37412,
+          -34.82041
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "ICO",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "COMODORO RIVADAVIA / 13 DE DICIEMBRE - (ICO) - DRSU - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "CHUBUT",
+        "localidad_referencia": "Comodoro Rivadavia",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 52.0,
+        "descripcion_ubicacion": "455415S 0673332W - 8 KM al SSW de la ciudad de COMODORO RIVADAVIA (Pcia. de CHUBUT) - ELEV 62 M 203 FT - ILE",
+        "latitud": -45.9041666666667,
+        "longitud": -67.5588888888889,
+        "pistas_texto": "07/25 790x20 M - ASPH (Inhabilitada). | 09/27 1056x23 M - ASPH – AUW 5,7 TN - ILE (Disponible OPS NGT) | SWY RWY 09 105x23 M - ASPH | Franja SUR de SWY reducida a 25 M.",
+        "cantidad_pistas": 2,
+        "cantidad_pistas_pavimentadas": 2,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-10-31",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.5588888888889,
+          -45.9041666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "IGU",
+        "codigo_oaci": "SARI",
+        "codigo_iata": "IGR",
+        "nombre_madhel": "CATARATAS DEL IGUAZÚ / MY. D. C. E. KRAUSE - (IGU / SARI) - DRNE - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "MISIONES",
+        "localidad_referencia": "Cataratas del Iguazú",
+        "region": "RANE",
+        "fir": "SARR",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 279.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SARI-AD-2.0 (Aeródromos)***",
+        "latitud": -25.73722,
+        "longitud": -54.47354,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-05",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -54.47354,
+          -25.73722
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "IJC",
+        "codigo_oaci": "SAVJ",
+        "codigo_iata": "IGB",
+        "nombre_madhel": "INGENIERO JACOBACCI / CABO F.A.A. H. R. BORDÓN - (IJC / SAVJ) - DRSU - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "RÍO NEGRO",
+        "localidad_referencia": "Ingeniero Jacobacci",
+        "region": "RASU",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 892.0,
+        "descripcion_ubicacion": "411916S 0693434W - 2,5KM al WNW de la ciudad de INGENIERO JACOBACCI (Pcia. de RÍO NEGRO) - ELEV 892 M 2925 FT",
+        "latitud": -41.3211111111111,
+        "longitud": -69.5761111111111,
+        "pistas_texto": "07/25 2100x30 M - ASPH - AUW 23t/1 30t/2.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-08-21",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.5761111111111,
+          -41.3211111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "IRA",
+        "codigo_oaci": "SAEM",
+        "codigo_iata": "",
+        "nombre_madhel": "MIRAMAR / AERÓDROMO JUAN DOMINGO PERÓN - (IRA / SAEM) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Miramar",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 13.0,
+        "descripcion_ubicacion": "381334S 0575215W - 4 KM al NW de la ciudad de MIRAMAR (Pcia. de BUENOS AIRES) - ELEV 13 M 42 FT - ILE",
+        "latitud": -38.2261111111111,
+        "longitud": -57.8708333333333,
+        "pistas_texto": "04/22 619x30 M - Tierra. | 09/27 600x30 M - Tierra (CLSD). | 18/36 1668x31 M - ASPH – AUW 35t/1 56t/2 80t/4. (OPS CTN Piedras Sueltas)",
+        "cantidad_pistas": 3,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-08-21",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.8708333333333,
+          -38.2261111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "ITO",
+        "codigo_oaci": "SANO",
+        "codigo_iata": "",
+        "nombre_madhel": "CHILECITO / BRIG. MY. JUAN FACUNDO QUIROGA - (ITO / SANO) - DRNO - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "LA RIOJA",
+        "localidad_referencia": "Chilecito",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 945.0,
+        "descripcion_ubicacion": "291324S 0672622W - 7,2 KM al SE de la ciudad de CHILECITO (Pcia. de LA RIOJA) - ELEV 945 M 3099 FT - ILE",
+        "latitud": -29.2233333333333,
+        "longitud": -67.4394444444444,
+        "pistas_texto": "17/35 2100x34 M - ASPH – AUW 035t/1 045t/2 072t/4.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-01",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.4394444444444,
+          -29.2233333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "JAR",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "JACINTO ARÁUZ - (JAR) - DRCE - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "LA PAMPA",
+        "localidad_referencia": "Jacinto Arauz",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 160.0,
+        "descripcion_ubicacion": "380357S 0632544W - 1 KM al N de la localidad de JACINTO ARÁUZ (Pcia. de LA PAMPA) - ELEV 169 M 554 FT",
+        "latitud": -38.066,
+        "longitud": -63.42902,
+        "pistas_texto": "18/36 900x23 M - ASPH – AUW 16t/1 20t/2.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.42902,
+          -38.066
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "JGA",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "JOAQUÍN V. GONZÁLEZ / AGROPECUARIA RÍO JURAMENTO - (JGA) - DRNO - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "SALTA",
+        "localidad_referencia": "Salta",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 1184.0,
+        "descripcion_ubicacion": "251112S 0640453W - 8 KM al SE de la ciudad de la ciudad de JOAQUÍN V. GONZÁLEZ (Pcia. de SALTA) - ELEV 367 M 1204 FT - ILE",
+        "latitud": -25.1866,
+        "longitud": -64.08135,
+        "pistas_texto": "11/29 1500x25 M - ASPH.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.08135,
+          -25.1866
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "JUA",
+        "codigo_oaci": "SANU",
+        "codigo_iata": "UAQ",
+        "nombre_madhel": "SAN JUAN / DOMINGO FAUSTINO SARMIENTO - (JUA / SANU) - DRNO - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "SAN JUAN",
+        "localidad_referencia": "San Juan",
+        "region": "RANO",
+        "fir": "SAMF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 597.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SANU-AD-2.0 (Aeródromos)***",
+        "latitud": -31.5713888888889,
+        "longitud": -68.4183333333333,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.4183333333333,
+          -31.5713888888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "JUJ",
+        "codigo_oaci": "SASJ",
+        "codigo_iata": "JUJ",
+        "nombre_madhel": "JUJUY / GOBERNADOR GUZMÁN - (JUJ / SASJ) - DRNO - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "JUJUY",
+        "localidad_referencia": "San Salvador de Jujuy",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 920.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SASJ-AD-2.0 (Aeródromos)***",
+        "latitud": -24.3925,
+        "longitud": -65.0977777777778,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-05",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.0977777777778,
+          -24.3925
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "LAR",
+        "codigo_oaci": "SANL",
+        "codigo_iata": "IRJ",
+        "nombre_madhel": "LA RIOJA / CAPITÁN VICENTE ALMANDOS ALMONACID - (LAR / SANL) - DRNO - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "LA RIOJA",
+        "localidad_referencia": "La Rioja",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 438.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SANL-AD-2.0 (Aeródromos)***",
+        "latitud": -29.3805555555556,
+        "longitud": -66.7958333333333,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.7958333333333,
+          -29.3805555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "LCP",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "LONCOPUÉ - (LCP) - DRNO - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "NEUQUÉN",
+        "localidad_referencia": "Loncopué",
+        "region": "RACE",
+        "fir": "SAMF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 1106.0,
+        "descripcion_ubicacion": "380455S 0703838W - 3 KM al WSW de la localidad de LONCOPUÉ (Pcia. de NEUQUÉN) - ELEV 1106 M 3629 FT",
+        "latitud": -38.08177,
+        "longitud": -70.64406,
+        "pistas_texto": "09/27 1600x30 M - ASPH - AUW 15t/1 25t/2.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-01",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.64406,
+          -38.08177
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "LDR",
+        "codigo_oaci": "SAOD",
+        "codigo_iata": "VDR",
+        "nombre_madhel": "VILLA DOLORES - (LDR / SAOD) - DRNO - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "CÓRDOBA",
+        "localidad_referencia": "Cordoba",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 563.0,
+        "descripcion_ubicacion": "315650S 0650849W - 4,2 KM al E de la ciudad de VILLA DOLORES (Pcia. de CÓRDOBA) - ELEV 563 M 1845 FT",
+        "latitud": -31.9475,
+        "longitud": -65.1475,
+        "pistas_texto": "17/35 1400x23 M - ASPH – AUW 13t/1 17t/2 - ILE.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.1475,
+          -31.9475
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "LHP",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "LAS HERAS / LOS PERALES - (LHP) - DRSU - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "SANTA CRUZ",
+        "localidad_referencia": "Las Heras",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 426.0,
+        "descripcion_ubicacion": "461127S 0691649W - 47 KM al NW de la ciudad de LAS HERAS (Pcia. de SANTA CRUZ) - ELEV 429 M 1407 FT - ILE",
+        "latitud": -46.1919444444444,
+        "longitud": -69.2869444444444,
+        "pistas_texto": "08/26 1468x23 M - ASPH – PCN 27 F/C/X/U.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.2869444444444,
+          -46.1919444444444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "LIB",
+        "codigo_oaci": "SARL",
+        "codigo_iata": "AOL",
+        "nombre_madhel": "PASO DE LOS LIBRES - (LIB / SARL) - DRNE - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "CORRIENTES",
+        "localidad_referencia": "Paso de los Libres",
+        "region": "RANE",
+        "fir": "SARR",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 70.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SARL-AD-2.0 (Aeródromos)***",
+        "latitud": -29.6880555555556,
+        "longitud": -57.1522222222222,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-05",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": false,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.1522222222222,
+          -29.6880555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "LYE",
+        "codigo_oaci": "SAOL",
+        "codigo_iata": "",
+        "nombre_madhel": "LABOULAYE - (LYE / SAOL) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "CÓRDOBA",
+        "localidad_referencia": "Laboulaye",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 137.0,
+        "descripcion_ubicacion": "340807S 0632144W - 2,7 KM al E de la ciudad de LABOULAYE (Pcia. de CÓRDOBA) - ELEV 137 M 449 FT - ILE",
+        "latitud": -34.13544,
+        "longitud": -63.36237,
+        "pistas_texto": "18/36 1200x23 M - ASPH – AUW 7t/1 10t/2.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-01",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.36237,
+          -34.13544
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "MAO",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "VEINTICINCO DE MAYO - (MAO) - DRCE - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "LA PAMPA",
+        "localidad_referencia": "25 de Mayo",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 347.0,
+        "descripcion_ubicacion": "374835S 0673934W - 7,5 KM al ESE de la ciudad 25 de MAYO (Pcia. de LA PAMPA) - ELEV 352 M 1155 FT - ILE",
+        "latitud": -37.80974,
+        "longitud": -67.65938,
+        "pistas_texto": "06/24 1250x25 M - ASPH – AUW 20t/1 30t/2.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.65938,
+          -37.80974
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "MDP",
+        "codigo_oaci": "SAZM",
+        "codigo_iata": "MDQ",
+        "nombre_madhel": "MAR DEL PLATA / ASTOR PIAZZOLLA - (MDP / SAZM) - DRCE  - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Mar del Plata",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 22.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAZM-AD-2.0 (Aeródromos)***",
+        "latitud": -37.9341666666667,
+        "longitud": -57.5733333333333,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-05",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.5733333333333,
+          -37.9341666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "MGI",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "ISLA MARTÍN GARCÍA - (MGI / SAAK) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Isla Martín Garcia",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 2.0,
+        "descripcion_ubicacion": "341053S 0581450W - Al NE de la ISLA MARTÍN GARCÍA (Pcia. de BUENOS AIRES) - 4,25 M 14 FT (Progresiva 425 M de THR 17) - ILE",
+        "latitud": -34.1822222222222,
+        "longitud": -58.2469444444444,
+        "pistas_texto": "17/35 1100x23 M - ASPH.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.2469444444444,
+          -34.1822222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "MIN",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "VILLA MINETTI - (MIN) - DRNO - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "SANTA FÉ",
+        "localidad_referencia": "Villa Minetti",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 75.0,
+        "descripcion_ubicacion": "283708S 0613613W - 2 KM al E de la localidad de VILLA MINETTI (Pcia. de santa Fe) - ELEV 78 M 256 FT.",
+        "latitud": -28.61901,
+        "longitud": -61.60359,
+        "pistas_texto": "02/20 1000x26 M - CONC.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "CONC",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -61.60359,
+          -28.61901
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "MJZ",
+        "codigo_oaci": "SAOM",
+        "codigo_iata": "",
+        "nombre_madhel": "MARCOS JUÁREZ - (MJZ / SAOM) - DRNO - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "CÓRDOBA",
+        "localidad_referencia": "Marcos Juarez",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 110.0,
+        "descripcion_ubicacion": "324102S 0620927W - 5 KM al W de la ciudad de MARCOS JUÁREZ (Pcia. de CÓRDOBA) - ELEV 111 M 364 FT - ILE.",
+        "latitud": -32.684,
+        "longitud": -62.15772,
+        "pistas_texto": "08/26 1200x30 - ASPH - PCR 201/F/D/X/T - ILE.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-05-24",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.15772,
+          -32.684
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "MLG",
+        "codigo_oaci": "SAMM",
+        "codigo_iata": "LGS",
+        "nombre_madhel": "MALARGÜE / COMODORO D. R. SALOMÓN - (MLG / SAMM) - DRNO - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "MENDOZA",
+        "localidad_referencia": "Malargüe",
+        "region": "RANO",
+        "fir": "SAMF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 1424.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAMM-AD-2.0 (Aeródromos)***",
+        "latitud": -35.4952777777778,
+        "longitud": -69.5730555555556,
+        "pistas_texto": "",
+        "cantidad_pistas": 2,
+        "cantidad_pistas_pavimentadas": 2,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.5730555555556,
+          -35.4952777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "MUS",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "CHASCOMÚS - (MUS) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Chascomús",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 10.0,
+        "descripcion_ubicacion": "353232S 0580307W - 5 KM al NW de la ciudad de CHASCOMÚS (Pcia. de BUENOS AIRES) - ELEV 10 M 32 FT",
+        "latitud": -35.5422222222222,
+        "longitud": -58.0519444444444,
+        "pistas_texto": "04/22 1199x23 M - ASPH.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-01",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0519444444444,
+          -35.5422222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "NEC",
+        "codigo_oaci": "SAZO",
+        "codigo_iata": "NEC",
+        "nombre_madhel": "NECOCHEA - (NEC / SAZO) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Necochea",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 22.0,
+        "descripcion_ubicacion": "382922S 0584859W - 10 KM al NW de la ciudad de NECOCHEA (Pcia. de BUENOS AIRES) - ELEV 28 M 92 FT",
+        "latitud": -38.48954,
+        "longitud": -58.81626,
+        "pistas_texto": "17/35 1100x30 M - Tierra. | 18/36 1500x30 M - ASPH – AUW 23t/1 30t/2 47t/4. | 13/31 799x18 M - Tierra.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-09-23",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.81626,
+          -38.48954
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "NEU",
+        "codigo_oaci": "SAZN",
+        "codigo_iata": "NQN",
+        "nombre_madhel": "NEUQUÉN / PRESIDENTE PERÓN - (NEU / SAZN) - DRCE - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "NEUQUÉN",
+        "localidad_referencia": "Neuquén",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 273.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAZN-AD-2.0 (Aeródromos)***",
+        "latitud": -38.9488888888889,
+        "longitud": -68.1558333333333,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-05",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.1558333333333,
+          -38.9488888888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "NIN",
+        "codigo_oaci": "SAAJ",
+        "codigo_iata": "JNI",
+        "nombre_madhel": "JUNÍN - (NIN / SAAJ) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Junín",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 80.0,
+        "descripcion_ubicacion": "343245S 0605550W - 6,5 KM al NNE de la ciudad de JUNÍN (Pcia. de BUENOS AIRES) - ELEV 80 M 262 FT - ILE",
+        "latitud": -34.54589,
+        "longitud": -60.93051,
+        "pistas_texto": "18/36 1500x30 M - Tierra.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-05-28",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": false,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.93051,
+          -34.54589
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "OBE",
+        "codigo_oaci": "SATO",
+        "codigo_iata": "",
+        "nombre_madhel": "OBERÁ - (OBE / SATO) - DRNE - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "MISIONES",
+        "localidad_referencia": "Oberá",
+        "region": "RANE",
+        "fir": "SARR",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 343.0,
+        "descripcion_ubicacion": "273057S 0550729W - 3 KM al SE de la ciudad de OBERÁ (Pcia. de MISIONES) - ELEV 379 M 1243 FT",
+        "latitud": -27.5181,
+        "longitud": -55.12421,
+        "pistas_texto": "17/35 1800x30 M - ASPH – AUW 13t/1 16t/2.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2025-10-21",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -55.12421,
+          -27.5181
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "OEL",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "CHOELE CHOEL - (OEL) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "RÍO NEGRO",
+        "localidad_referencia": "Choele Choel",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 196.0,
+        "descripcion_ubicacion": "391711S 0653636W - 3,5 KM al E de la ciudad de CHOELE CHOEL (Pcia. de RÍO NEGRO) - ELEV 196 M 642 FT",
+        "latitud": -39.2863888888889,
+        "longitud": -65.61,
+        "pistas_texto": "09/27 2000x45 M - ASPH – AUW 23t/1 30t/2. | Operaciones limitadas aeronaves Turbohelice y Jets, disponible solo aeronaves CAT Turb L, por desprendimiento de asfalto.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-01",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.61,
+          -39.2863888888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "OLA",
+        "codigo_oaci": "SAZF",
+        "codigo_iata": "OVR",
+        "nombre_madhel": "OLAVARRÍA - (OLA / SAZF) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Olavarría",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 168.0,
+        "descripcion_ubicacion": "365320S 0601340W - 11 KM al ENE de la ciudad de OLAVARRÍA (Pcia. de BUENOS AIRES) - ELEV 168 M 551 FT - ILE",
+        "latitud": -36.8888888888889,
+        "longitud": -60.2277777777778,
+        "pistas_texto": "04/22 2200x45 M - ASPH – AUW  37t/1 50t/2 75t/4. | 13/31 1060x45 M - Tierra.",
+        "cantidad_pistas": 2,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.2277777777778,
+          -36.8888888888889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "ORA",
+        "codigo_oaci": "SASO",
+        "codigo_iata": "ORA",
+        "nombre_madhel": "ORÁN - (ORA / SASO) - DRNO - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "SALTA",
+        "localidad_referencia": "San Ramón de la Nueva Orán",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 357.0,
+        "descripcion_ubicacion": "230908S 0641943W - 2,5 KM al S de la ciudad de ORÁN (Pcia. de SALTA) - ELEV 358 M 1175 FT",
+        "latitud": -23.15221,
+        "longitud": -64.3288,
+        "pistas_texto": "02/20 1474x27 M - ASPH – AUW 24t/1 31t/2.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.3288,
+          -23.15221
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "OSA",
+        "codigo_oaci": "SAZR",
+        "codigo_iata": "RSA",
+        "nombre_madhel": "SANTA ROSA - (OSA / SAZR) - DRCE - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "LA PAMPA",
+        "localidad_referencia": "Santa Rosa",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 192.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAZR-AD-2.0 (Aeródromos)***",
+        "latitud": -36.5883333333333,
+        "longitud": -64.2758333333333,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.2758333333333,
+          -36.5883333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "PAL",
+        "codigo_oaci": "SADP",
+        "codigo_iata": "EPA",
+        "nombre_madhel": "EL PALOMAR - (PAL / SADP) - DRCE - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "El Palomar",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 18.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SADP-AD-2.0 (Aeródromos)***",
+        "latitud": -34.61,
+        "longitud": -58.6125,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": false,
+        "proveedor_navegacion": "DNCTA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.6125,
+          -34.61
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "PAR",
+        "codigo_oaci": "SAAP",
+        "codigo_iata": "PRA",
+        "nombre_madhel": "PARANÁ / AEROPUERTO GENERAL JUSTO JOSÉ DE URQUIZA - (PAR / SAAP) - DRCE - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "ENTRE RÍOS",
+        "localidad_referencia": "Paraná",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 74.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAAP-AD-2.0 (Aeródromos)***",
+        "latitud": -31.7947222222222,
+        "longitud": -60.4802777777778,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.4802777777778,
+          -31.7947222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "PDI",
+        "codigo_oaci": "SAAI",
+        "codigo_iata": "",
+        "nombre_madhel": "PUNTA INDIO / BASE AERONAVAL PUNTA INDIO - (PDI/SAAI) – FIR EZE – MILITAR CONTROLADO (ARMADA ARGENTINA)",
+        "tipo": "AD",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "",
+        "region": "RACE",
+        "fir": "",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": null,
+        "descripcion_ubicacion": "352043S 0571632W – 7 KM AL NNE de la Ciudad de Verónica (Pcia. de Buenos Aires) – ELEV 47 FT 14,326 M",
+        "latitud": -35.345278,
+        "longitud": -57.275556,
+        "pistas_texto": "06/24 2150x40 M – ASPH. Límite de peso hasta 18.000 lbs (por eje). | 07/25 1400x30 M – ASPH. Sin iluminación. | 12/30 1200x23 M – ASPH. CLSD. Sin iluminación.",
+        "cantidad_pistas": 3,
+        "cantidad_pistas_pavimentadas": 3,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-08-21",
+        "tipo_trafico": "",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.275556,
+          -35.345278
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "PDP",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "PRESIDENCIA ROCA / ESTANCIA DON PANOS - (PDP) - DRNE - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "CHACO",
+        "localidad_referencia": "Presidencia Roca",
+        "region": "RANE",
+        "fir": "SARR",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 80.0,
+        "descripcion_ubicacion": "261745S 0593207W - 16 KM al SSE de la localidad de PRESIDENCIA ROCA (Pcia. del CHACO) - ELEV 84 M 276 FT - ILE",
+        "latitud": -26.29586,
+        "longitud": -59.53539,
+        "pistas_texto": "16/34 1500x25 M - CONC.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "CONC",
+        "fecha_ultima_actualizacion_madhel": "2024-04-22",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.53539,
+          -26.29586
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "PEH",
+        "codigo_oaci": "SAZP",
+        "codigo_iata": "PEH",
+        "nombre_madhel": "PEHUAJÓ / COM. PEDRO ZANNI - (PEH / SAZP) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Pehuajó",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 85.0,
+        "descripcion_ubicacion": "355026S 0615140W - 5 KM al SE de la ciudad de PEHUAJÓ (Pcia. de BUENOS AIRES) - ELEV 85 M 278 FT",
+        "latitud": -35.84451,
+        "longitud": -61.85748,
+        "pistas_texto": "18/36 1500x30 M - ASPH - AUW t/1 24 t/2.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-04-23",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -61.85748,
+          -35.84451
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "PER",
+        "codigo_oaci": "SAAN",
+        "codigo_iata": "",
+        "nombre_madhel": "PERGAMINO - (PER / SAAN) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Pergamino",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 72.0,
+        "descripcion_ubicacion": "335512S 0603854W - 8 KM al SW de la ciudad de PERGAMINO (Pcia. de BUENOS AIRES) - ELEV 78 M 256 FT - ILE",
+        "latitud": -33.9202777777778,
+        "longitud": -60.6480555555556,
+        "pistas_texto": "05/23 1200x30 M - ASPH – PCR 37/F/C/X/U - ILE. | 13/31 870x23 M - Tierra.",
+        "cantidad_pistas": 2,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.6480555555556,
+          -33.9202777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "POS",
+        "codigo_oaci": "SARP",
+        "codigo_iata": "PSS",
+        "nombre_madhel": "POSADAS / LIBERTADOR GRAL. D. J. DE SAN MARTÍN - (POS / SARP) - DRNE - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "MISIONES",
+        "localidad_referencia": "Posadas",
+        "region": "RANE",
+        "fir": "SARR",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 131.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SARP-AD-2.0 (Aeródromos)***",
+        "latitud": -27.38573,
+        "longitud": -55.97049,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-05",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -55.97049,
+          -27.38573
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "PTA",
+        "codigo_oaci": "SADL",
+        "codigo_iata": "LPG",
+        "nombre_madhel": "LA PLATA - (PTA / SADL) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "La Plata",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 22.0,
+        "descripcion_ubicacion": "345811,2S 0575335,4W - 5 KM al SE de la ciudad de LA PLATA (Pcia. de BUENOS AIRES) - ELEV 22 M 72 FT - ILE",
+        "latitud": -34.9691666666667,
+        "longitud": -57.8930555555556,
+        "pistas_texto": "02/20: 1427x45 M - ASPH – AUW 25t/1 33t/2 54t/4 - OPS con CTN franjas de seguridad desniveladas.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2025-11-27",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": false,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -57.8930555555556,
+          -34.9691666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "PTM",
+        "codigo_oaci": "SAWP",
+        "codigo_iata": "PMQ",
+        "nombre_madhel": "PERITO MORENO - JALIL HAMER (PTM / SAWP) - DRSU - PÚBLICO NO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "SANTA CRUZ",
+        "localidad_referencia": "Perito Moreno",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 430.0,
+        "descripcion_ubicacion": "463216S 0705843W - 7,5 KM al NW de la ciudad de PERITO MORENO (Pcia. de SANTA CRUZ) - ELEV 430 M 1411 FT - ILE",
+        "latitud": -46.53844,
+        "longitud": -70.97879,
+        "pistas_texto": "10/28: 1700x30 M - ASPH – AUW 20t/1 34t/2 58t/4.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-11-04",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.97879,
+          -46.53844
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "RCE",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "MERCEDES - (RCE / SATM) - DRNE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "CORRIENTES",
+        "localidad_referencia": "Mercedes",
+        "region": "RANE",
+        "fir": "SARR",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 106.0,
+        "descripcion_ubicacion": "291320S 0580517W - 4 KM al S de la ciudad de MERCEDES (Pcia. de CORRIENTES) - ELEV 106 M 347 FT",
+        "latitud": -29.2222222222222,
+        "longitud": -58.0880555555556,
+        "pistas_texto": "03/21 1800x30 M - ASPH – PCN 22/F/D/X/U - ILE.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-07-22",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.0880555555556,
+          -29.2222222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "RCV",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "RÍO COLORADO / VALE - (RCV) - DRNO - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "MENDOZA",
+        "localidad_referencia": "Rincón de los Sauces",
+        "region": "RANO",
+        "fir": "SAMF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 930.0,
+        "descripcion_ubicacion": "370356S 0692345W - 56 KM al NW de la ciudad de RINCÓN DE LOS SAUCES (Pcia. de NEUQUÉN) - ELEV 930 M 3051 FT",
+        "latitud": -37.0655555555556,
+        "longitud": -69.3955555555556,
+        "pistas_texto": "10/28 1800x30 M - ASPH – PCN 30 F/D/X/U.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2025-04-25",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.3955555555556,
+          -37.0655555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "RGR",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "RÍO GALLEGOS / RÍO CHICO - (RGR) - DRSU - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "SANTA CRUZ",
+        "localidad_referencia": "Río Chico",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 21.0,
+        "descripcion_ubicacion": "514008S 0691558W - 5 KM al S de RÍO CHICO (Pcia. de SANTA CRUZ) - ELEV 21 M 69 FT - IPO",
+        "latitud": -51.6686111111111,
+        "longitud": -69.2602777777778,
+        "pistas_texto": "08/26 1100x23 M - ASPH.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-04-22",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.2602777777778,
+          -51.6686111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "RIN",
+        "codigo_oaci": "SAHS",
+        "codigo_iata": "RDS",
+        "nombre_madhel": "RINCÓN DE LOS SAUCES - (RIN / SAHS) - DRNO - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "NEUQUÉN",
+        "localidad_referencia": "Rincón de los Sauces",
+        "region": "RACE",
+        "fir": "SAMF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 600.0,
+        "descripcion_ubicacion": "372325S 0685419W - 1 KM al E de la ciudad de RINCÓN DE LOS SAUCES (Pcia. de NEUQUÉN) - ELEV 590 M 1936 FT - ILE",
+        "latitud": -37.3902777777778,
+        "longitud": -68.9044444444445,
+        "pistas_texto": "10/28 1500x30 M - ASPH.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2025-05-15",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.9044444444445,
+          -37.3902777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "RLA",
+        "codigo_oaci": "SAFR",
+        "codigo_iata": "",
+        "nombre_madhel": "RAFAELA - (RLA / SAFR) - DRNO - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "SANTA FÉ",
+        "localidad_referencia": "Rafaela",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 99.0,
+        "descripcion_ubicacion": "311657S 0613006W - 3,5 KM al S de la ciudad de RAFAELA (Pcia. de SANTA FE) - ELEV 99 M 325 FT - ILE",
+        "latitud": -31.2825,
+        "longitud": -61.5016666666667,
+        "pistas_texto": "01 R/19 L 1377x23 M - CONC - AUW 13t/1 20t/2. | 06/24 1099x42 M - Tierra. | 01 L/19 R 1107x44 M - Tierra. | SWY RWY 01R 125x23 M - Tierra - ILE (U/S).",
+        "cantidad_pistas": 3,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "CONC",
+        "fecha_ultima_actualizacion_madhel": "2025-08-18",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -61.5016666666667,
+          -31.2825
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "RLC",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "REALICÓ - (RLC) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "LA PAMPA",
+        "localidad_referencia": "Realicó",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 165.0,
+        "descripcion_ubicacion": "350332S 0641241W - 6 KM al ESE de la localidad de REALICÓ (Pcia. de LA PAMPA) - ELEV 165 M 541 FT - ILE baja intensidad.",
+        "latitud": -35.05892,
+        "longitud": -64.21277,
+        "pistas_texto": "14/32 900x23 M - ASPH - AUW 17t/1 21t/2.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-04-22",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.21277,
+          -35.05892
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "ROS",
+        "codigo_oaci": "SAAR",
+        "codigo_iata": "ROS",
+        "nombre_madhel": "ROSARIO / ISLAS MALVINAS - (ROS / SAAR) - DRCE - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "SANTA FÉ",
+        "localidad_referencia": "Rosario",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 26.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAAR-AD-2.0 (Aeródromos)***",
+        "latitud": -32.9036111111111,
+        "longitud": -60.7844444444444,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-02",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": false,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.7844444444444,
+          -32.9036111111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "RTA",
+        "codigo_oaci": "SATR",
+        "codigo_iata": "RCQ",
+        "nombre_madhel": "RECONQUISTA - (RTA / SATR) - DRNE - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "SANTA FÉ",
+        "localidad_referencia": "Reconquista",
+        "region": "RANE",
+        "fir": "SARR",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 49.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SATR-AD-2.0 (Aeródromos)***",
+        "latitud": -29.2102777777778,
+        "longitud": -59.68,
+        "pistas_texto": "",
+        "cantidad_pistas": 2,
+        "cantidad_pistas_pavimentadas": 2,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "DNCTA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.68,
+          -29.2102777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "RTC",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "GENERAL ACHA / ROBERTO TRAPPA - (RTC) - DRCE – PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "LA PAMPA",
+        "localidad_referencia": "",
+        "region": "RACE",
+        "fir": "",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": null,
+        "descripcion_ubicacion": "373230,60S 0644249,91W – 21 KM al SW de la ciudad de General Acha (Pcia. de LA PAMPA) ELEV 243,5 M (799 FT) - ILE",
+        "latitud": -37.541612744097,
+        "longitud": -64.7138157235335,
+        "pistas_texto": "08/26 1700x22 M - ASPH - PCR 180/F/A/Y/T",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2025-09-09",
+        "tipo_trafico": "",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.7138157235335,
+          -37.541612744097
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "RYD",
+        "codigo_oaci": "SAOR",
+        "codigo_iata": "VME",
+        "nombre_madhel": "VILLA REYNOLDS - (RYD / SAOR) - DRNO - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "SAN LUIS",
+        "localidad_referencia": "Villa Mercedes",
+        "region": "RANO",
+        "fir": "SAMF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 485.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAOR-AD-2.0 (Aeródromos)***",
+        "latitud": -33.73178,
+        "longitud": -65.37579,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "DNCTA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.37579,
+          -33.73178
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "SAL",
+        "codigo_oaci": "SASA",
+        "codigo_iata": "SLA",
+        "nombre_madhel": "SALTA / GENERAL D. MARTÍN MIGUEL DE GÜEMES - (SAL / SASA) - DRNO - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "SALTA",
+        "localidad_referencia": "Salta",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 1246.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SASA-AD-2.0 (Aeródromos)***",
+        "latitud": -24.8597222222222,
+        "longitud": -65.4869444444444,
+        "pistas_texto": "",
+        "cantidad_pistas": 2,
+        "cantidad_pistas_pavimentadas": 2,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-05",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.4869444444444,
+          -24.8597222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "SAN",
+        "codigo_oaci": "SAVN",
+        "codigo_iata": "OES",
+        "nombre_madhel": "SAN ANTONIO OESTE / ANTOINE DE SAINT EXUPERY - (SAN / SAVN) - DRSU - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "RÍO NEGRO",
+        "localidad_referencia": "San Antonio Oeste",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 26.0,
+        "descripcion_ubicacion": "404502S 0650207W - 10 KM al SW de la ciudad de SAN ANTONIO OESTE (Pcia. de RÍO NEGRO) - ELEV 26 M 85 FT",
+        "latitud": -40.7505555555556,
+        "longitud": -65.0352777777778,
+        "pistas_texto": "12/30 1800x30 M - ASPH – AUW 23t/1 30t/2 - Operar con precaución desprendimiento capa asfáltica.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-08-21",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.0352777777778,
+          -40.7505555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "SCA",
+        "codigo_oaci": "SAFS",
+        "codigo_iata": "NCJ",
+        "nombre_madhel": "SUNCHALES / Comandante Hilario Alcides VALINOTTI - (SCA / SAFS) - DRNO - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "SANTA FÉ",
+        "localidad_referencia": "Sunchales",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 91.0,
+        "descripcion_ubicacion": "305727,37S 0613127,84W - 2 KM al ESE de la ciudad de SUNCHALES (Pcia. de SANTA FE) - ELEV 91,50 M 300 FT - ILE",
+        "latitud": -30.9572222222222,
+        "longitud": -61.5288888888889,
+        "pistas_texto": "11/29 2000x30 M - CONC - PCR 120/R/D/W/T;  PCR 210/F/D/X/T – ILE (Media intensidad). | Extremo RWY 29 305721,81S 0613159,32W - ELEV 91,50 M 300 FT. | Extremo 305720,85S 0613204,75W - ELEV 91,50 M 300 FT. | Por clave de referencia 3C extremo de RWY 29 reducido en 147 M.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "CONC",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -61.5288888888889,
+          -30.9572222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "SCZ",
+        "codigo_oaci": "SAWU",
+        "codigo_iata": "RZA",
+        "nombre_madhel": "SANTA CRUZ - (SCZ / SAWU) - DRSU - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "SANTA CRUZ",
+        "localidad_referencia": "Puerto Santa Cruz",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 111.0,
+        "descripcion_ubicacion": "500104S 0683449W - 5 KM al W de la ciudad de PUERTO SANTA CRUZ (Pcia. de SANTA CRUZ) - ELEV 111 M 364 FT - ILE",
+        "latitud": -50.0177777777778,
+        "longitud": -68.5802777777778,
+        "pistas_texto": "07/25 2000x30 M - ASPH – AUW 20t/1 25t/2 40t/4.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2025-02-20",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.5802777777778,
+          -50.0177777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "SDE",
+        "codigo_oaci": "SANE",
+        "codigo_iata": "SDE",
+        "nombre_madhel": "SANTIAGO DEL ESTERO / VCOM. ÁNGEL D. LA PAZ ARAGONÉS - (SDE / SANE) - DRNO - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "SANTIAGO DEL ESTERO",
+        "localidad_referencia": "Santiago del Estero",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 200.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SANE-AD-2.0 (Aeródromos)***",
+        "latitud": -27.7655555555556,
+        "longitud": -64.31,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.31,
+          -27.7655555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "SDL",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "SALADILLO - (SDL) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Saladillo",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 45.0,
+        "descripcion_ubicacion": "353635S 0594859W - 4 KM al NW de la ciudad de SALADILLO (Pcia. de BUENOS AIRES) - ELEV 45 M 147 FT - ILE",
+        "latitud": -35.60439,
+        "longitud": -59.81676,
+        "pistas_texto": "18/36 1199x23 M - CONC - AUW 16t/1 25t/2. | 13/31 1000x30 M - Tierra.",
+        "cantidad_pistas": 2,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "CONC",
+        "fecha_ultima_actualizacion_madhel": "2025-12-15",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.81676,
+          -35.60439
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "SIS",
+        "codigo_oaci": "SARE",
+        "codigo_iata": "RES",
+        "nombre_madhel": "RESISTENCIA - (SIS / SARE) - DRNE - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "CHACO",
+        "localidad_referencia": "Resistencia",
+        "region": "RANE",
+        "fir": "SARR",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 53.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SARE-AD-2.0 (Aeródromos)***",
+        "latitud": -27.45,
+        "longitud": -59.0561111111111,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-05",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.0561111111111,
+          -27.45
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "SJA",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "SAN JUAN / AEROCLUB - (SJA) - DRNO - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "SAN JUAN",
+        "localidad_referencia": "San Juan",
+        "region": "RANO",
+        "fir": "SAMF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 634.0,
+        "descripcion_ubicacion": "313611S 0683250W - 7 KM al S de la ciudad de SAN JUAN - ELEV 634 M 2079 FT - ILE",
+        "latitud": -31.6030555555556,
+        "longitud": -68.5472222222222,
+        "pistas_texto": "18/36 1515x30 M - ASPH.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2025-07-12",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.5472222222222,
+          -31.6030555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "SJU",
+        "codigo_oaci": "SAWJ",
+        "codigo_iata": "ULA",
+        "nombre_madhel": "SAN JULIÁN / CAPITAN D. DANIEL VÁZQUEZ - (SJU / SAWJ) - DRSU - PÚBLICO NO CONTROLADO [** RWY 07/25, TWY \"A\", TWY \"B\" y APN CLSD DESDE 31-AGO-26 HASTA 10-DIC-26 **]",
+        "tipo": "AD",
+        "provincia": "SANTA CRUZ",
+        "localidad_referencia": "Puerto San Julián",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 62.0,
+        "descripcion_ubicacion": "491824S 0674810W - 7 KM al W de la ciudad de PUERTO SAN JULIÁN (Pcia. de SANTA CRUZ) - ELEV 53,75 M 176 FT - ILE",
+        "latitud": -49.30671,
+        "longitud": -67.80282,
+        "pistas_texto": "07/25 2000x40 M - CONC – AUW 50t/1 74t/2 115t/4. | Franja de RWY 2120 x 280 M.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "CONC",
+        "fecha_ultima_actualizacion_madhel": "2026-10-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.80282,
+          -49.30671
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "SMC",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "SANTA MARÍA - (SMC) - DRNO - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "CATAMARCA",
+        "localidad_referencia": "Santa María",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 1800.0,
+        "descripcion_ubicacion": "264026S 0660129W - 2 KM al ENE de la ciudad de SANTA MARÍA (Pcia. de CATAMARCA) - ELEV 1889 M 6198 FT",
+        "latitud": -26.67385,
+        "longitud": -66.02481,
+        "pistas_texto": "18/36 1800x30 M - ASPH – AUW 22t/1 40t/2.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-04-22",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.02481,
+          -26.67385
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "SNY",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "SAN NICOLÁS DE LOS ARROYOS - (SNY) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "San Nicolás de los Arroyos",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 30.0,
+        "descripcion_ubicacion": "332327S 0601144W - 6 KM al SSE de la ciudad de SAN NICOLÁS DE LOS ARROYOS (Pcia. de BUENOS AIRES) - ELEV 30 M 98 FT - ILE",
+        "latitud": -33.3908333333333,
+        "longitud": -60.1955555555556,
+        "pistas_texto": "18/36 1080x30 M - ASPH – AUW 23t/1 30t/2 - Limitada a aeronaves reactores y turbohélices. | 09/27 809x23 M - Tierra.",
+        "cantidad_pistas": 2,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-04-23",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.1955555555556,
+          -33.3908333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "SRA",
+        "codigo_oaci": "SAMR",
+        "codigo_iata": "AFA",
+        "nombre_madhel": "SAN RAFAEL / S. A. SANTIAGO GERMANO - (SRA / SAMR) - DRNO - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "MENDOZA",
+        "localidad_referencia": "San Rafael",
+        "region": "RANO",
+        "fir": "SAMF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 753.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAMR-AD-2.0 (Aeródromos)***",
+        "latitud": -34.5878166666666,
+        "longitud": -68.4035888888889,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.4035888888889,
+          -34.5878166666666
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "SRC",
+        "codigo_oaci": "SAOS",
+        "codigo_iata": "RLO",
+        "nombre_madhel": "VALLE DEL CONLARA - (SRC / SAOS) - DRNO - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "SAN LUIS",
+        "localidad_referencia": "Santa Rosa del Conlara",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 616.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAOS-AD-2.0 (Aeródromos)***",
+        "latitud": -32.3847222222222,
+        "longitud": -65.1858333333333,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": false,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.1858333333333,
+          -32.3847222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "SSR",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "SALADILLO / SANTA RITA - (SSR) - DRCE - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Saladillo",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 54.0,
+        "descripcion_ubicacion": "355005S 0600901W - 38 KM al SW de la ciudad de SALADILLO (Pcia. de BUENOS AIRES) - ELEV 57 M 187 FT - ILE",
+        "latitud": -35.8283333333333,
+        "longitud": -60.1466666666667,
+        "pistas_texto": "03/21 1500x18 M - CONC.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "CONC",
+        "fecha_ultima_actualizacion_madhel": "2025-03-11",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.1466666666667,
+          -35.8283333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "STI",
+        "codigo_oaci": "SAMI",
+        "codigo_iata": "",
+        "nombre_madhel": "SAN MARTÍN - (STI / SAMI) - DRNO - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "MENDOZA",
+        "localidad_referencia": "San Martín",
+        "region": "RANO",
+        "fir": "SAMF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 696.0,
+        "descripcion_ubicacion": "330344S 0683034W - 3 KM al NE de la ciudad de SAN MARTÍN (Pcia. de MENDOZA) - ELEV 696 M 2283 FT",
+        "latitud": -33.0622222222222,
+        "longitud": -68.5094444444444,
+        "pistas_texto": "03/21 1350x30 M - ASPH - PCN 4/F/D/Y/U - ILE. | 04/22 700x45 M - Tierra.",
+        "cantidad_pistas": 2,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-07-13",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.5094444444444,
+          -33.0622222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "STR",
+        "codigo_oaci": "SAZL",
+        "codigo_iata": "SST",
+        "nombre_madhel": "SANTA TERESITA - (STR / SAZL) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Santa Teresita",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 3.0,
+        "descripcion_ubicacion": "363232S 0564317W - 2 KM al W de la ciudad de SANTA TERESITA (Pcia. de BUENOS AIRES) - ELEV 4 M 13 FT - ILE",
+        "latitud": -36.5422222222222,
+        "longitud": -56.7213888888889,
+        "pistas_texto": "18/36 1500x30 M - ASPH – AUW 23t/1 30t/2 47t/4.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-11-04",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.7213888888889,
+          -36.5422222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "SUZ",
+        "codigo_oaci": "SAZC",
+        "codigo_iata": "CSZ",
+        "nombre_madhel": "CORONEL SUÁREZ / BRIG. D. H. E. RUIZ - (SUZ / SAZC) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Coronel Suárez",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 234.0,
+        "descripcion_ubicacion": "372646S 0615321W - 3 KM al ENE de la ciudad de CORONEL SUÁREZ (Pcia. de BUENOS AIRES) - ELEV 234 M 767 FT - ILE",
+        "latitud": -37.44609,
+        "longitud": -61.88934,
+        "pistas_texto": "17/35 1300x30 M - ASPH – AUW 23t/1 30t/2 47t/4.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-01",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -61.88934,
+          -37.44609
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "SVO",
+        "codigo_oaci": "SAAV",
+        "codigo_iata": "SFN",
+        "nombre_madhel": "SANTA FE / SAUCE VIEJO - (SVO / SAAV) - DRCE - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "SANTA FÉ",
+        "localidad_referencia": "Santa Fé",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 17.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAAV-AD-2.0 (Aeródromos)***",
+        "latitud": -31.7108333333333,
+        "longitud": -60.8113888888889,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": false,
+        "proveedor_navegacion": "DNCTA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.8113888888889,
+          -31.7108333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "TAR",
+        "codigo_oaci": "SAST",
+        "codigo_iata": "TTG",
+        "nombre_madhel": "TARTAGAL / GENERAL E. MOSCONI - (TAR / SAST) - DRNO - PÚBLICO NO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "SALTA",
+        "localidad_referencia": "Tartagal",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 449.0,
+        "descripcion_ubicacion": "223656S 0634734W - 11 KM al S de la ciudad de TARTAGAL (Pcia. de SALTA) - ELEV 450,75 M 1479 FT",
+        "latitud": -22.6183333333333,
+        "longitud": -63.7930555555556,
+        "pistas_texto": "02/20 2500x45 M - ASPH – AUW 33t/1 41t/2 61t/4. | EXT RWY 02 223616,17S 0634728,66W - ELEV 450,75 M (1479 FT). | EXT RWY 20 223736,77S 0634739,79W - ELEV 443,75 M (1456 FT). | Franja de pista 2620x150 M.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-10-03",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.7930555555556,
+          -22.6183333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "THN",
+        "codigo_oaci": "SAWL",
+        "codigo_iata": "",
+        "nombre_madhel": "TOLHUIN - (THN / SAWL) - DRSU - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "TIERRA DEL FUEGO ANTÁRTIDA E ISLAS DEL ATLÁNTICO SUR",
+        "localidad_referencia": "Tolhuin",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 213.0,
+        "descripcion_ubicacion": "542959S 0671020W - 1,5 KM al NE de la localidad de TOLHUIN (Pcia. de TIERRA DEL FUEGO, ANTÁRTIDA E ISLAS DEL ATLÁNTICO SUR) - ELEV 113 M 371 FT",
+        "latitud": -54.49961,
+        "longitud": -67.17226,
+        "pistas_texto": "07/25 1150x20 M - ASPH.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.17226,
+          -54.49961
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "TQL",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "TRENQUE LAUQUEN / ÑANCO LAUQUEN - (TQL) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Trenque Lauquen",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 92.0,
+        "descripcion_ubicacion": "355813S 0624619W - 3,5 KM al W de la ciudad de TRENQUE LAUQUEN (Pcia. de BUENOS AIRES) - ELEV 92 M 301 FT - ILE",
+        "latitud": -35.9702777777778,
+        "longitud": -62.7719444444444,
+        "pistas_texto": "02/20 1199x30 M - ASPH – AUW 23t/1 30t/2 47t/4.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.7719444444444,
+          -35.9702777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "TRC",
+        "codigo_oaci": "SAOC",
+        "codigo_iata": "RCU",
+        "nombre_madhel": "RÍO CUARTO / ÁREA DE MATERIAL - (TRC / SAOC) - DRNO - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "CÓRDOBA",
+        "localidad_referencia": "Río Cuarto",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 421.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAOC-AD-2.0 (Aeródromos)***",
+        "latitud": -33.09216,
+        "longitud": -64.26934,
+        "pistas_texto": "",
+        "cantidad_pistas": 2,
+        "cantidad_pistas_pavimentadas": 2,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "DNCTA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.26934,
+          -33.09216
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "TRE",
+        "codigo_oaci": "SAVT",
+        "codigo_iata": "REL",
+        "nombre_madhel": "TRELEW / ALMIRANTE ZAR - (TRE / SAVT) - DRSU - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "CHUBUT",
+        "localidad_referencia": "Trelew",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 43.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAVT-AD-2.0 (Aeródromos)***",
+        "latitud": -43.2105555555556,
+        "longitud": -65.2702777777778,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-05",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.2702777777778,
+          -43.2105555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "TRH",
+        "codigo_oaci": "SANR",
+        "codigo_iata": "RHD",
+        "nombre_madhel": "TERMAS DE RÍO HONDO - (TRH / SANR) - DRNO - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "SANTIAGO DEL ESTERO",
+        "localidad_referencia": "Termas de Río Hondo",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 280.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SANR-AD-2.0 (Aeródromos)***",
+        "latitud": -27.49662,
+        "longitud": -64.93596,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "DNCTA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.93596,
+          -27.49662
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "TRW",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "TRELEW / AEROCLUB - (TRW) - DRSU - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "CHUBUT",
+        "localidad_referencia": "Trelew",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 39.0,
+        "descripcion_ubicacion": "431408S 0651927W - 2,5 KM al NNW de la ciudad de TRELEW (Pcia. de CHUBUT) - ELEV 39 M 127 FT",
+        "latitud": -43.23564,
+        "longitud": -65.32414,
+        "pistas_texto": "08/26 1650x30 M - ASPH – AUW 15 t/1 19 t/2 31t/4.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.32414,
+          -43.23564
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "TUC",
+        "codigo_oaci": "SANT",
+        "codigo_iata": "TUC",
+        "nombre_madhel": "TUCUMÁN / TENIENTE BENJAMÍN MATIENZO - (TUC / SANT) - DRNO - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "TUCUMÁN",
+        "localidad_referencia": "San Miguel de Tucumán",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 455.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SANT-AD-2.0 (Aeródromos)***",
+        "latitud": -26.8408333333333,
+        "longitud": -65.1047222222222,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-02",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.1047222222222,
+          -26.8408333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "TXO",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "EL TRAPIAL / CHEVRON TEXACO - (TXO) - DRNO - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "NEUQUÉN",
+        "localidad_referencia": "Rincón de los Sauces",
+        "region": "RACE",
+        "fir": "SAMF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 883.0,
+        "descripcion_ubicacion": "372155S 0691803W - 32 KM al W de la ciudad de RINCÓN DE LOS SAUCES (Pcia. de NEUQUÉN) - ELEV 891 M 2923 FT - ILE",
+        "latitud": -37.365,
+        "longitud": -69.3019444444444,
+        "pistas_texto": "08/26 1500x30 M - ASPH – PCN 10/F/A/Y/U.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-01",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.3019444444444,
+          -37.365
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "UIS",
+        "codigo_oaci": "SAOU",
+        "codigo_iata": "LUQ",
+        "nombre_madhel": "SAN LUIS / BRIG. My D. CÉSAR R. OJEDA - (UIS / SAOU) - DRNO - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "SAN LUIS",
+        "localidad_referencia": "San Luis",
+        "region": "RANO",
+        "fir": "SAMF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 710.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAOU-AD-2.0 (Aeródromos)***",
+        "latitud": -33.2722222222222,
+        "longitud": -66.3566666666667,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.3566666666667,
+          -33.2722222222222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "URO",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "PEDRO LURO - (URO) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Pedro Luro",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 27.0,
+        "descripcion_ubicacion": "392721S 0624030W - 4 KM al N de la ciudad de PEDRO LURO (Pcia. de BUENOS AIRES) - ELEV 27 M 88 FT - ILE",
+        "latitud": -39.4558333333333,
+        "longitud": -62.675,
+        "pistas_texto": "08/26 660x30 M - Tierra. | 16/34 900x30 M - ASPH - AUW 23/1 30t/2 47t/4.",
+        "cantidad_pistas": 2,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.675,
+          -39.4558333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "USU",
+        "codigo_oaci": "SAWH",
+        "codigo_iata": "USH",
+        "nombre_madhel": "USHUAIA / MALVINAS ARGENTINAS - (USU / SAWH) - DRSU - PÚBLICO CONTROLADO INTERNACIONAL",
+        "tipo": "AD_SNA",
+        "provincia": "TIERRA DEL FUEGO ANTÁRTIDA E ISLAS DEL ATLÁNTICO SUR",
+        "localidad_referencia": "Ushuaia",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 31.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAWH-AD-2.0 (Aeródromos)***",
+        "latitud": -54.8433333333333,
+        "longitud": -68.2955555555556,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-05",
+        "tipo_trafico": "INTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.2955555555556,
+          -54.8433333333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "VCA",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "VICTORICA - (VCA / SAHV) - DRCE - PRIVADO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "LA PAMPA",
+        "localidad_referencia": "Victorica",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PRIVADO",
+        "control": "no controlado",
+        "elevacion_m": 311.0,
+        "descripcion_ubicacion": "361225S 0652458W - 1,2 KM al NE de la ciudad de VICTORICA (Pcia. de LA PAMPA) - ELEV 312 M 1024 FT.",
+        "latitud": -36.20694,
+        "longitud": -65.41617,
+        "pistas_texto": "01/19 900x23 M - ASPH – AUW 16t/1 20t/2.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.41617,
+          -36.20694
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "VIE",
+        "codigo_oaci": "SAVV",
+        "codigo_iata": "VDM",
+        "nombre_madhel": "VIEDMA / GOBERNADOR CASTELLO - (VIE / SAVV) - DRSU - PÚBLICO CONTROLADO",
+        "tipo": "AD_SNA",
+        "provincia": "RÍO NEGRO",
+        "localidad_referencia": "Viedma",
+        "region": "RASU",
+        "fir": "SAVF",
+        "condicion": "PUBLICO",
+        "control": "controlado",
+        "elevacion_m": 6.0,
+        "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAVV-AD-2.0 (Aeródromos)***",
+        "latitud": -40.8702777777778,
+        "longitud": -62.9966666666667,
+        "pistas_texto": "",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2024-02-06",
+        "tipo_trafico": "NTL",
+        "incluido_sna": true,
+        "concesionado": true,
+        "proveedor_navegacion": "EANA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.9966666666667,
+          -40.8702777777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "VMR",
+        "codigo_oaci": "SAOV",
+        "codigo_iata": "",
+        "nombre_madhel": "VILLA MARÍA / AEROPUERTO REGIONAL - (VMR / SAOV) - DRNO - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "CÓRDOBA",
+        "localidad_referencia": "Villa María",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 202.0,
+        "descripcion_ubicacion": "321936S 0631342W - 9 KM al N de la ciudad de VILLA MARÍA (Pcia. de CÓRDOBA) - ELEV 202 M 663 FT - ILE",
+        "latitud": -32.32006,
+        "longitud": -63.22654,
+        "pistas_texto": "02/20 1800x30 M - CONC - PCN 16/R/C/Y/U.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "CONC",
+        "fecha_ultima_actualizacion_madhel": "2026-08-21",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.22654,
+          -32.32006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "VNO",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "VENADO TUERTO - (VNO / SAFV) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "SANTA FÉ",
+        "localidad_referencia": "Venado Tuerto",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 112.0,
+        "descripcion_ubicacion": "334043S 0615716W - 6 KM al N de la ciudad de VENADO TUERTO (Pcia. de SANTA FE) - ELEV 112 M 367 FT - ILE",
+        "latitud": -33.6783135156616,
+        "longitud": -61.9544206115213,
+        "pistas_texto": "04/22 1500x30 M - ASPH – AUW 13t/1 17t/2.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -61.9544206115213,
+          -33.6783135156616
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "VRU",
+        "codigo_oaci": "",
+        "codigo_iata": "",
+        "nombre_madhel": "VILLA RUMIPAL / PRIMER TENIENTE MARIO NÍVOLI - (VRU) - DRNO - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "CÓRDOBA",
+        "localidad_referencia": "Villa Rumipal",
+        "region": "RANO",
+        "fir": "SACF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 666.0,
+        "descripcion_ubicacion": "321103S 0642920W - Lindando al W de la localidad de VILLA RUMIPAL (Pcia. de CÓRDOBA) - ELEV 543 M 1781 FT",
+        "latitud": -32.1841666666667,
+        "longitud": -64.4888888888889,
+        "pistas_texto": "16/34 1253x23 M - ASPH – PCN 7/F/B/X/T.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-06-02",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.4888888888889,
+          -32.1841666666667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "YOS",
+        "codigo_oaci": "SAZH",
+        "codigo_iata": "OYO",
+        "nombre_madhel": "TRES ARROYOS - (YOS / SAZH) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "BUENOS AIRES",
+        "localidad_referencia": "Tres Arroyos",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 122.0,
+        "descripcion_ubicacion": "382308S 0601939W - 5 KM al SW de la ciudad de TRES ARROYOS (Pcia. de BUENOS AIRES) - ELEV 122 M 400 FT - ILE",
+        "latitud": -38.3855555555556,
+        "longitud": -60.3275,
+        "pistas_texto": "18/36 1199x30 M - ASPH – AUW 20t/1 30t/2 47t/4. | 04/22 710x30 M - Tierra. | 14/32 1060x30 M - Tierra.",
+        "cantidad_pistas": 3,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-05-04",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -60.3275,
+          -38.3855555555556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "codigo_local": "ZAP",
+        "codigo_oaci": "SAHZ",
+        "codigo_iata": "APZ",
+        "nombre_madhel": "ZAPALA - (ZAP / SAHZ) - DRCE - PÚBLICO NO CONTROLADO",
+        "tipo": "AD",
+        "provincia": "NEUQUÉN",
+        "localidad_referencia": "Zapala",
+        "region": "RACE",
+        "fir": "SAEF",
+        "condicion": "PUBLICO",
+        "control": "no controlado",
+        "elevacion_m": 1048.0,
+        "descripcion_ubicacion": "385833S 0700648W - 7,5 KM al SW de la ciudad de ZAPALA (Pcia. de NEUQUÉN) - ELEV 1085 M 3560 FT - ILE",
+        "latitud": -38.9758861111111,
+        "longitud": -70.1134638888889,
+        "pistas_texto": "09/27 2200x40 M - ASPH – AUW 51t/1 65t/2 104t/4.",
+        "cantidad_pistas": 1,
+        "cantidad_pistas_pavimentadas": 1,
+        "materiales_pistas_pavimentadas": "ASPH",
+        "fecha_ultima_actualizacion_madhel": "2026-08-21",
+        "tipo_trafico": "NTL",
+        "incluido_sna": false,
+        "concesionado": false,
+        "proveedor_navegacion": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.1134638888889,
+          -38.9758861111111
+        ]
+      }
+    }
+  ]
+}
