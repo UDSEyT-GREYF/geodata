@@ -1,14 +1,16 @@
 {
   "type": "FeatureCollection",
-  "name": "Aeródromos MADHEL ANAC 2026",
+  "name": "Aeródromos con pistas pavimentadas - MADHEL ANAC 2026",
   "metadata": {
-    "titulo": "Aeródromos MADHEL ANAC 2026",
+    "titulo": "Aeródromos con pistas pavimentadas - MADHEL ANAC 2026",
     "fuente": "MADHEL / Administración Nacional de Aviación Civil (ANAC)",
     "anio_referencia": 2026,
     "crs": "EPSG:4326 - WGS 84",
     "cantidad_registros": 140,
-    "descripcion": "Capa geográfica de aeródromos de Argentina con atributos de identificación, localización y operación.",
-    "nota": "Para uso cartográfico y analítico. La información operacional debe verificarse en las fuentes aeronáuticas vigentes."
+    "descripcion": "Selección de aeródromos de Argentina con al menos una pista pavimentada, elaborada a partir de MADHEL/ANAC 2026.",
+    "nota": "El atributo tipo_trafico se conserva como dato de origen, pero no se utiliza para clasificar el visor porque refiere a habilitación y no acredita operación efectiva.",
+    "criterio_seleccion": "Aeródromos con cantidad_pistas_pavimentadas >= 1.",
+    "elaboracion": "Selección, normalización y representación cartográfica: GREYF / ORSNA."
   },
   "features": [
     {
