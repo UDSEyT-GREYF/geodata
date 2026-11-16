@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Mapa interactivo de aeródromos de Argentina a partir de la capa MADHEL/ANAC 2026.">
+  <meta name="theme-color" content="#0b1f33">
+  <title>Aeródromos de Argentina | GeoData</title>
+  <link rel="icon" type="image/png" href="/geodata/img/icons/mapas_pagina.png">
+  <link rel="stylesheet" href="/geodata/vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="/geodata/css/aerodromos.css?v=20261116-1">
+</head>
+<body>
+  <a class="skip-link" href="#map">Ir al mapa</a>
+
+  <header class="topbar">
+    <div class="brand-block">
+      <a class="back-link" href="/geodata/mapas.html" aria-label="Volver a mapas">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+      </a>
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 17c4-7 8-9 16-10"/><path d="m15 5 5 2-3 4"/></svg>
+      </div>
+      <div>
+        <p class="eyebrow">Infraestructura aeroportuaria · Argentina</p>
+        <h1>Aeródromos de Argentina · MADHEL 2026</h1>
+      </div>
+    </div>
+
+    <div class="topbar-actions">
+      <button class="header-button" id="aboutButton" type="button" aria-haspopup="dialog">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></svg>
+        <span>Fuente y metodología</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <aside class="sidebar" aria-label="Filtros y resultados">
+      <div class="sidebar-scroll">
+        <section class="intro-section">
+          <p><strong>Visor de aeródromos de Argentina elaborado a partir de MADHEL/ANAC 2026.</strong></p>
+          <p>La capa contiene información de identificación, localización, condición, control, pistas y pertenencia al Sistema Nacional de Aeropuertos.</p>
+        </section>
+
+        <section class="filter-section">
+          <label class="field-label" for="searchInput">Buscar aeródromo</label>
+          <div class="search-wrap">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg>
+            <input id="searchInput" type="search" placeholder="Nombre, localidad, IATA, OACI o código local" autocomplete="off">
+          </div>
+        </section>
+
+        <section class="filter-section filter-grid-section">
+          <div>
+            <label class="field-label" for="provinceSelect">Provincia</label>
+            <div class="select-wrap">
+              <select id="provinceSelect"><option value="">Todas</option></select>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg>
+            </div>
+          </div>
+
+          <div>
+            <label class="field-label" for="conditionSelect">Condición</label>
+            <div class="select-wrap">
+              <select id="conditionSelect"><option value="">Todas</option></select>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg>
+            </div>
+          </div>
+
+          <div>
+            <label class="field-label" for="controlSelect">Control</label>
+            <div class="select-wrap">
+              <select id="controlSelect"><option value="">Todos</option></select>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg>
+            </div>
+          </div>
+
+          <div>
+            <label class="field-label" for="trafficSelect">Tráfico</label>
+            <div class="select-wrap">
+              <select id="trafficSelect"><option value="">Todos</option></select>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg>
+            </div>
+          </div>
+        </section>
+
+        <section class="filter-section" aria-labelledby="typeTitle">
+          <span class="field-label" id="typeTitle">Tipo de aeródromo</span>
+
+          <label class="switch-row">
+            <span>
+              <strong><span class="inline-dot sna"></span>Aeropuertos del SNA</strong>
+              <small>Incluidos en el Sistema Nacional de Aeropuertos</small>
+            </span>
+            <input id="snaToggle" type="checkbox" checked>
+            <span class="switch" aria-hidden="true"></span>
+          </label>
+
+          <label class="switch-row">
+            <span>
+              <strong><span class="inline-dot other"></span>Otros aeródromos</strong>
+              <small>Aeródromos MADHEL no incluidos en el SNA</small>
+            </span>
+            <input id="otherToggle" type="checkbox" checked>
+            <span class="switch" aria-hidden="true"></span>
+          </label>
+        </section>
+
+        <section class="summary-section" aria-live="polite">
+          <div class="summary-card summary-primary">
+            <span class="summary-value" id="visibleCount">140</span>
+            <span class="summary-label">Visibles</span>
+          </div>
+          <div class="summary-card">
+            <span class="summary-value" id="snaCount">57</span>
+            <span class="summary-label">SNA</span>
+          </div>
+          <div class="summary-card">
+            <span class="summary-value" id="intlCount">23</span>
+            <span class="summary-label">Internacionales</span>
+          </div>
+        </section>
+
+        <section class="results-section">
+          <div class="results-heading">
+            <h2>Aeródromos visibles</h2>
+            <button id="resetFilters" class="text-button" type="button">Restablecer</button>
+          </div>
+          <div id="resultList" class="result-list"></div>
+        </section>
+      </div>
+
+      <div class="sidebar-footer">
+        <span>Fuente: MADHEL / ANAC · 2026</span>
+        <span>ORSNA · GeoData</span>
+      </div>
+    </aside>
+
+    <section class="map-stage" id="mapStage" aria-label="Mapa de aeródromos de Argentina">
+      <div id="map" tabindex="0"></div>
+
+      <div id="loadingOverlay" class="loading-overlay" role="status">
+        <div class="loader" aria-hidden="true"></div>
+        <strong>Cargando aeródromos</strong>
+        <span>Se está preparando la capa MADHEL 2026…</span>
+      </div>
+
+      <div class="map-tools" aria-label="Herramientas del mapa">
+        <button id="fitMapButton" type="button" title="Ver todos los aeródromos visibles" aria-label="Ver todos los aeródromos visibles">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 4H4v4M16 4h4v4M20 16v4h-4M4 16v4h4"/></svg>
+        </button>
+        <button id="fullscreenButton" type="button" title="Pantalla completa" aria-label="Alternar pantalla completa">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M3 16v5h5"/></svg>
+        </button>
+      </div>
+
+      <div class="map-legend" id="mapLegend">
+        <button class="legend-title" id="legendToggle" type="button" aria-expanded="true" aria-controls="legendBody">
+          <span>Referencias</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg>
+        </button>
+        <div class="legend-body" id="legendBody">
+          <div><span class="legend-dot sna"></span>Aeropuerto del SNA</div>
+          <div><span class="legend-dot other"></span>Otro aeródromo MADHEL</div>
+          <div><span class="legend-ring intl"></span>Tráfico internacional</div>
+          <p>La clasificación SNA corresponde al atributo conciliado de la capa. La condición operativa debe verificarse en la información aeronáutica vigente.</p>
+        </div>
+      </div>
+
+      <div class="basemap-buttons" id="basemapButtons" aria-label="Mapa base">
+        <button type="button" class="is-active" data-basemap="argenmap" aria-pressed="true">Argenmap</button>
+        <button type="button" data-basemap="osm" aria-pressed="false">OSM</button>
+        <button type="button" data-basemap="satellite" aria-pressed="false">Satelital</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="about-dialog" id="aboutDialog" aria-labelledby="aboutTitle">
+    <button class="dialog-close" id="aboutClose" type="button" aria-label="Cerrar">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg>
+    </button>
+    <p class="eyebrow">Fuente y metodología</p>
+    <h2 id="aboutTitle">Aeródromos MADHEL ANAC 2026</h2>
+
+    <p>El visor representa la capa geográfica de aeródromos elaborada a partir de información MADHEL/ANAC 2026. La versión publicada en GeoData conserva los atributos de identificación, localización y operación de la capa de origen.</p>
+
+    <div class="about-grid">
+      <div><strong>140</strong><span>Aeródromos</span></div>
+      <div><strong>57</strong><span>Incluidos en SNA</span></div>
+      <div><strong>EPSG:4326</strong><span>Sistema de referencia</span></div>
+    </div>
+
+    <h3>Campos principales</h3>
+    <p>Códigos local, OACI e IATA; denominación MADHEL; provincia y localidad; región y FIR; condición pública, privada o militar; control; elevación; pistas; tipo de tráfico; inclusión en el SNA; concesión y proveedor de navegación aérea.</p>
+
+    <h3>Fuente</h3>
+    <p><strong>MADHEL / Administración Nacional de Aviación Civil (ANAC).</strong> Año de referencia 2026. Para uso cartográfico y analítico; la información operacional debe verificarse en las fuentes aeronáuticas vigentes.</p>
+
+    <h3>Mapa base</h3>
+    <p>Argenmap del Instituto Geográfico Nacional (IGN), utilizado como mapa base predeterminado por tratarse de una capa exclusivamente argentina.</p>
+
+    <form method="dialog"><button class="primary-button" type="submit">Cerrar</button></form>
+  </dialog>
+
+  <script src="/geodata/vendor/leaflet/leaflet.js"></script>
+  <script src="/geodata/js/aerodromos.js?v=20261116-1"></script>
+  <script src="/geodata/js/siga-analytics.js"></script>
+</body>
+</html>
