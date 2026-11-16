@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="Mapa interactivo de aeródromos de Argentina a partir de la capa MADHEL/ANAC 2026.">
+  <meta name="description" content="Mapa interactivo de aeródromos de Argentina con al menos una pista pavimentada, elaborado a partir de MADHEL/ANAC 2026.">
   <meta name="theme-color" content="#0b1f33">
-  <title>Aeródromos de Argentina | GeoData</title>
+  <title>Aeródromos con pistas pavimentadas | GeoData</title>
   <link rel="icon" type="image/png" href="/geodata/img/icons/mapas_pagina.png">
   <link rel="stylesheet" href="/geodata/vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="/geodata/css/aerodromos.css?v=20261116-1">
+  <link rel="stylesheet" href="/geodata/css/aerodromos.css?v=20261116-2">
 </head>
 <body>
   <a class="skip-link" href="#map">Ir al mapa</a>
@@ -23,7 +23,7 @@
       </div>
       <div>
         <p class="eyebrow">Infraestructura aeroportuaria · Argentina</p>
-        <h1>Aeródromos de Argentina · MADHEL 2026</h1>
+        <h1>Aeródromos con pistas pavimentadas · Argentina</h1>
       </div>
     </div>
 
@@ -39,8 +39,8 @@
     <aside class="sidebar" aria-label="Filtros y resultados">
       <div class="sidebar-scroll">
         <section class="intro-section">
-          <p><strong>Visor de aeródromos de Argentina elaborado a partir de MADHEL/ANAC 2026.</strong></p>
-          <p>La capa contiene información de identificación, localización, condición, control, pistas y pertenencia al Sistema Nacional de Aeropuertos.</p>
+          <p><strong>Visor de aeródromos de Argentina que cuentan con al menos una pista pavimentada.</strong></p>
+          <p>La selección se elaboró a partir de MADHEL/ANAC 2026 y permite distinguir pertenencia al Sistema Nacional de Aeropuertos y condición pública, privada o militar.</p>
         </section>
 
         <section class="filter-section">
@@ -76,17 +76,10 @@
             </div>
           </div>
 
-          <div>
-            <label class="field-label" for="trafficSelect">Tráfico</label>
-            <div class="select-wrap">
-              <select id="trafficSelect"><option value="">Todos</option></select>
-              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg>
-            </div>
-          </div>
         </section>
 
         <section class="filter-section" aria-labelledby="typeTitle">
-          <span class="field-label" id="typeTitle">Tipo de aeródromo</span>
+          <span class="field-label" id="typeTitle">Pertenencia al SNA</span>
 
           <label class="switch-row">
             <span>
@@ -117,8 +110,12 @@
             <span class="summary-label">SNA</span>
           </div>
           <div class="summary-card">
-            <span class="summary-value" id="intlCount">23</span>
-            <span class="summary-label">Internacionales</span>
+            <span class="summary-value" id="publicCount">110</span>
+            <span class="summary-label">Públicos</span>
+          </div>
+          <div class="summary-card">
+            <span class="summary-value" id="privateCount">29</span>
+            <span class="summary-label">Privados</span>
           </div>
         </section>
 
@@ -132,18 +129,18 @@
       </div>
 
       <div class="sidebar-footer">
-        <span>Fuente: MADHEL / ANAC · 2026</span>
+        <span>Fuente: MADHEL / ANAC · selección GREYF · 2026</span>
         <span>ORSNA · GeoData</span>
       </div>
     </aside>
 
-    <section class="map-stage" id="mapStage" aria-label="Mapa de aeródromos de Argentina">
+    <section class="map-stage" id="mapStage" aria-label="Mapa de aeródromos con pistas pavimentadas de Argentina">
       <div id="map" tabindex="0"></div>
 
       <div id="loadingOverlay" class="loading-overlay" role="status">
         <div class="loader" aria-hidden="true"></div>
         <strong>Cargando aeródromos</strong>
-        <span>Se está preparando la capa MADHEL 2026…</span>
+        <span>Se está preparando la selección de aeródromos con pistas pavimentadas…</span>
       </div>
 
       <div class="map-tools" aria-label="Herramientas del mapa">
@@ -161,10 +158,11 @@
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg>
         </button>
         <div class="legend-body" id="legendBody">
-          <div><span class="legend-dot sna"></span>Aeropuerto del SNA</div>
-          <div><span class="legend-dot other"></span>Otro aeródromo MADHEL</div>
-          <div><span class="legend-ring intl"></span>Tráfico internacional</div>
-          <p>La clasificación SNA corresponde al atributo conciliado de la capa. La condición operativa debe verificarse en la información aeronáutica vigente.</p>
+          <div><span class="legend-dot sna-public"></span>SNA · público</div>
+          <div><span class="legend-dot other-public"></span>No SNA · público</div>
+          <div><span class="legend-dot other-private"></span>No SNA · privado</div>
+          <div><span class="legend-dot other-military"></span>No SNA · militar</div>
+          <p>El color combina pertenencia al SNA y condición. El visor no clasifica por tráfico internacional: ese atributo refiere a habilitación y no a operación efectiva.</p>
         </div>
       </div>
 
@@ -181,30 +179,36 @@
       <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg>
     </button>
     <p class="eyebrow">Fuente y metodología</p>
-    <h2 id="aboutTitle">Aeródromos MADHEL ANAC 2026</h2>
+    <h2 id="aboutTitle">Aeródromos con pistas pavimentadas · Argentina</h2>
 
-    <p>El visor representa la capa geográfica de aeródromos elaborada a partir de información MADHEL/ANAC 2026. La versión publicada en GeoData conserva los atributos de identificación, localización y operación de la capa de origen.</p>
+    <p>El visor presenta una selección de aeródromos argentinos que cuentan con <strong>al menos una pista pavimentada</strong>, elaborada a partir de la información MADHEL de la Administración Nacional de Aviación Civil (ANAC), con referencia 2026.</p>
 
     <div class="about-grid">
-      <div><strong>140</strong><span>Aeródromos</span></div>
+      <div><strong>140</strong><span>Aeródromos seleccionados</span></div>
       <div><strong>57</strong><span>Incluidos en SNA</span></div>
-      <div><strong>EPSG:4326</strong><span>Sistema de referencia</span></div>
+      <div><strong>110 / 29</strong><span>Públicos / privados</span></div>
     </div>
 
+    <h3>Criterio de selección</h3>
+    <p>Se incluyen únicamente aeródromos con una o más pistas identificadas como pavimentadas en la base procesada. La pertenencia al <strong>Sistema Nacional de Aeropuertos (SNA)</strong> y la <strong>condición pública, privada o militar</strong> se presentan como dimensiones independientes y combinadas en la simbología.</p>
+
+    <h3>Interpretación de los atributos</h3>
+    <p>El visor no utiliza el campo de tipo de tráfico para clasificar los aeródromos. La referencia a tráfico nacional o internacional en MADHEL expresa una <strong>habilitación</strong> y no implica que exista operación comercial o internacional efectiva en el período observado.</p>
+
     <h3>Campos principales</h3>
-    <p>Códigos local, OACI e IATA; denominación MADHEL; provincia y localidad; región y FIR; condición pública, privada o militar; control; elevación; pistas; tipo de tráfico; inclusión en el SNA; concesión y proveedor de navegación aérea.</p>
+    <p>Códigos local, OACI e IATA; denominación MADHEL; provincia y localidad; región y FIR; condición; control; elevación; cantidad y características de pistas; inclusión en el SNA; concesión y proveedor de navegación aérea.</p>
 
     <h3>Fuente</h3>
-    <p><strong>MADHEL / Administración Nacional de Aviación Civil (ANAC).</strong> Año de referencia 2026. Para uso cartográfico y analítico; la información operacional debe verificarse en las fuentes aeronáuticas vigentes.</p>
+    <p><strong>MADHEL / Administración Nacional de Aviación Civil (ANAC).</strong> Año de referencia 2026. Selección, normalización y representación cartográfica: <strong>GREYF · ORSNA</strong>. Para información operacional o aeronáutica vigente debe consultarse la documentación oficial correspondiente.</p>
 
     <h3>Mapa base</h3>
-    <p>Argenmap del Instituto Geográfico Nacional (IGN), utilizado como mapa base predeterminado por tratarse de una capa exclusivamente argentina.</p>
+    <p>Argenmap del Instituto Geográfico Nacional (IGN), utilizado como mapa base predeterminado por tratarse de información exclusivamente argentina.</p>
 
     <form method="dialog"><button class="primary-button" type="submit">Cerrar</button></form>
   </dialog>
 
   <script src="/geodata/vendor/leaflet/leaflet.js"></script>
-  <script src="/geodata/js/aerodromos.js?v=20261116-1"></script>
+  <script src="/geodata/js/aerodromos.js?v=20261116-2"></script>
   <script src="/geodata/js/siga-analytics.js"></script>
 </body>
 </html>
