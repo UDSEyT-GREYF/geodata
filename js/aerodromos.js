@@ -1,7 +1,7 @@
 (() => {
 "use strict";
 
-const DATA_VERSION="20261116-1";
+const DATA_VERSION="20261116-2";
 const DATA_URL=`/geodata/fuentes/ANAC/aerodromos_madhel_2026.geojson?v=${DATA_VERSION}`;
 
 const dom={
@@ -9,12 +9,12 @@ const dom={
   province:document.getElementById("provinceSelect"),
   condition:document.getElementById("conditionSelect"),
   control:document.getElementById("controlSelect"),
-  traffic:document.getElementById("trafficSelect"),
   snaToggle:document.getElementById("snaToggle"),
   otherToggle:document.getElementById("otherToggle"),
   visibleCount:document.getElementById("visibleCount"),
   snaCount:document.getElementById("snaCount"),
-  intlCount:document.getElementById("intlCount"),
+  publicCount:document.getElementById("publicCount"),
+  privateCount:document.getElementById("privateCount"),
   resultList:document.getElementById("resultList"),
   reset:document.getElementById("resetFilters"),
   fit:document.getElementById("fitMapButton"),
@@ -76,12 +76,6 @@ function norm(v){
   return String(v??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();
 }
 
-function prettyTraffic(v){
-  if(v==="INTL") return "Internacional";
-  if(v==="NTL") return "Nacional";
-  return v || "Sin dato";
-}
-
 function boolText(v){
   return v===true ? "Sí" : v===false ? "No" : "Sin dato";
 }
@@ -101,14 +95,35 @@ function featureId(f,index){
   return [p.codigo_local,p.codigo_oaci,p.codigo_iata,index].filter(Boolean).join("-");
 }
 
-function markerStyle(p){
+function conditionKey(p){
   const sna=Boolean(p.incluido_sna);
-  const intl=String(p.tipo_trafico||"").toUpperCase()==="INTL";
+  const condition=String(p.condicion||"").toUpperCase();
+  if(sna) return "sna-public";
+  if(condition==="PRIVADO") return "other-private";
+  if(condition==="MILITAR") return "other-military";
+  return "other-public";
+}
+
+function conditionLabel(p){
+  const condition=String(p.condicion||"SIN DATO").toUpperCase();
+  const label=condition==="PUBLICO"?"Público":condition==="PRIVADO"?"Privado":condition==="MILITAR"?"Militar":condition;
+  return `${label} · ${p.incluido_sna?"SNA":"No SNA"}`;
+}
+
+function markerStyle(p){
+  const key=conditionKey(p);
+  const sna=Boolean(p.incluido_sna);
+  const colors={
+    "sna-public":"#e85d3f",
+    "other-public":"#1d486d",
+    "other-private":"#7357a6",
+    "other-military":"#66778a"
+  };
   return {
     radius:sna?7:5.5,
-    color:intl?"#d89d16":"#ffffff",
-    weight:intl?3:1.5,
-    fillColor:sna?"#e85d3f":"#1d486d",
+    color:"#ffffff",
+    weight:sna?2.5:1.5,
+    fillColor:colors[key]||"#1d486d",
     fillOpacity:.94,
     opacity:1
   };
@@ -123,7 +138,7 @@ function popupHtml(p){
   ].filter(Boolean).join(" · ") || "Sin códigos informados";
 
   return `
-    <div class="popup-badge ${sna?"sna":"other"}">${sna?"Sistema Nacional de Aeropuertos":"Aeródromo MADHEL"}</div>
+    <div class="popup-badge ${conditionKey(p)}">${esc(conditionLabel(p))}</div>
     <div class="popup-title">${esc(displayName(p))}</div>
     <div class="popup-subtitle">${esc(codes)}</div>
 
@@ -132,7 +147,6 @@ function popupHtml(p){
       <div class="popup-cell"><span>Localidad</span><strong>${esc(p.localidad_referencia||"—")}</strong></div>
       <div class="popup-cell"><span>Condición</span><strong>${esc(p.condicion||"—")}</strong></div>
       <div class="popup-cell"><span>Control</span><strong>${esc(p.control||"—")}</strong></div>
-      <div class="popup-cell"><span>Tráfico</span><strong>${esc(prettyTraffic(p.tipo_trafico))}</strong></div>
       <div class="popup-cell"><span>Elevación</span><strong>${Number.isFinite(Number(p.elevacion_m))?`${Number(p.elevacion_m).toLocaleString("es-AR")} m`:"—"}</strong></div>
       <div class="popup-cell"><span>Pistas</span><strong>${p.cantidad_pistas??"—"}</strong></div>
       <div class="popup-cell"><span>Pavimentadas</span><strong>${p.cantidad_pistas_pavimentadas??"—"}</strong></div>
@@ -163,14 +177,6 @@ function buildFilters(){
   fillSelect(dom.province,props.map(p=>p.provincia));
   fillSelect(dom.condition,props.map(p=>p.condicion));
   fillSelect(dom.control,props.map(p=>p.control));
-
-  const traffic=[...new Set(props.map(p=>p.tipo_trafico).filter(v=>String(v??"").trim()))];
-  traffic.sort().forEach(v=>{
-    const o=document.createElement("option");
-    o.value=v;
-    o.textContent=prettyTraffic(v);
-    dom.traffic.appendChild(o);
-  });
 }
 
 function matches(f){
@@ -181,7 +187,6 @@ function matches(f){
   if(dom.province.value && p.provincia!==dom.province.value) return false;
   if(dom.condition.value && p.condicion!==dom.condition.value) return false;
   if(dom.control.value && p.control!==dom.control.value) return false;
-  if(dom.traffic.value && p.tipo_trafico!==dom.traffic.value) return false;
 
   const q=norm(dom.search.value);
   if(q){
@@ -222,7 +227,8 @@ function renderMap(){
 function renderCounts(){
   dom.visibleCount.textContent=visible.length.toLocaleString("es-AR");
   dom.snaCount.textContent=visible.filter(f=>Boolean(f.properties?.incluido_sna)).length.toLocaleString("es-AR");
-  dom.intlCount.textContent=visible.filter(f=>String(f.properties?.tipo_trafico||"").toUpperCase()==="INTL").length.toLocaleString("es-AR");
+  dom.publicCount.textContent=visible.filter(f=>String(f.properties?.condicion||"").toUpperCase()==="PUBLICO").length.toLocaleString("es-AR");
+  dom.privateCount.textContent=visible.filter(f=>String(f.properties?.condicion||"").toUpperCase()==="PRIVADO").length.toLocaleString("es-AR");
 }
 
 function renderList(){
@@ -239,14 +245,13 @@ function renderList(){
 
   dom.resultList.innerHTML=rows.map(f=>{
     const p=f.properties||{};
-    const sna=Boolean(p.incluido_sna);
     return `<button class="airport-item" type="button" data-airport="${esc(f.__mapId)}">
-      <span class="airport-code ${sna?"sna":"other"}">${esc(codeLabel(p))}</span>
+      <span class="airport-code ${conditionKey(p)}">${esc(codeLabel(p))}</span>
       <span class="airport-copy">
         <strong>${esc(displayName(p))}</strong>
         <span>${esc(p.localidad_referencia||"")} · ${esc(p.provincia||"")}</span>
       </span>
-      <span class="airport-meta">${esc(prettyTraffic(p.tipo_trafico))}</span>
+      <span class="airport-meta">${esc(conditionLabel(p))}</span>
     </button>`;
   }).join("");
 }
@@ -287,7 +292,6 @@ function resetFilters(){
   dom.province.value="";
   dom.condition.value="";
   dom.control.value="";
-  dom.traffic.value="";
   dom.snaToggle.checked=true;
   dom.otherToggle.checked=true;
   renderMap();
@@ -295,7 +299,7 @@ function resetFilters(){
 }
 
 function bind(){
-  [dom.province,dom.condition,dom.control,dom.traffic,dom.snaToggle,dom.otherToggle].forEach(el=>{
+  [dom.province,dom.condition,dom.control,dom.snaToggle,dom.otherToggle].forEach(el=>{
     el.addEventListener("change",renderMap);
   });
   dom.search.addEventListener("input",renderMap);
