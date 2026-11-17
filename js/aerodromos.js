@@ -110,24 +110,34 @@ function conditionLabel(p){
   return `${label} · ${p.incluido_sna?"SNA":"No SNA"}`;
 }
 
-function markerStyle(p){
-  const key=conditionKey(p);
-  const sna=Boolean(p.incluido_sna);
-  const colors={
-    "sna-public":"#e85d3f",
-    "other-public":"#1d486d",
-    "other-private":"#7357a6",
-    "other-military":"#66778a"
-  };
-  return {
-    radius:sna?7:5.5,
-    color:"#ffffff",
-    weight:sna?2.5:1.5,
-    fillColor:colors[key]||"#1d486d",
-    fillOpacity:.94,
-    opacity:1
-  };
+
+function airportIcon(p) {
+  const key = conditionKey(p);
+  const size = p.incluido_sna ? 24 : 18;
+
+  return L.divIcon({
+    className: "aerodromo-marker " + key,
+    html: `
+      <span class="aerodromo-plane" aria-hidden="true">✈</span>
+      <span class="aerodromo-name">${esc(displayName(p))}</span>
+    `,
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size / 2],
+    popupAnchor: [0, -size / 2],
+    tooltipAnchor: [0, -size / 2]
+  });
 }
+
+function updateAirportLabels() {
+  map.getContainer().classList.toggle(
+    "show-airport-names",
+    map.getZoom() >= 7
+  );
+}
+
+map.on("zoomend", updateAirportLabels);
+updateAirportLabels();
+
 
 function popupHtml(p){
   const sna=Boolean(p.incluido_sna);
@@ -209,12 +219,16 @@ function renderMap(){
     if(!Number.isFinite(Number(lat)) || !Number.isFinite(Number(lon))) return;
 
     const id=featureId(f,index);
-    const marker=L.circleMarker([lat,lon],markerStyle(p))
-      .bindTooltip(`${esc(codeLabel(p))} · ${esc(displayName(p))}`,{direction:"top",offset:[0,-5]})
-      .bindPopup(popupHtml(p),{maxWidth:390});
 
-    marker.on("mouseover",()=>marker.setStyle({weight:4,fillOpacity:1}));
-    marker.on("mouseout",()=>marker.setStyle(markerStyle(p)));
+    const marker = L.marker([lat, lon], {
+      icon: airportIcon(p)
+    })
+    .bindTooltip(
+      `${esc(codeLabel(p))} · ${esc(displayName(p))}`,
+      { direction: "top", offset: [0, -5] }
+    )
+    .bindPopup(popupHtml(p), { maxWidth: 390 });
+
     marker.addTo(airportLayer);
     layerById.set(id,marker);
     f.__mapId=id;
