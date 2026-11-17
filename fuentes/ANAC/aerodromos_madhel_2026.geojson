@@ -1,16 +1,14 @@
 {
   "type": "FeatureCollection",
-  "name": "Aeródromos con pistas pavimentadas - MADHEL ANAC 2026",
+  "name": "Aeródromos MADHEL ANAC 2026",
   "metadata": {
-    "titulo": "Aeródromos con pistas pavimentadas - MADHEL ANAC 2026",
+    "titulo": "Aeródromos MADHEL ANAC 2026",
     "fuente": "MADHEL / Administración Nacional de Aviación Civil (ANAC)",
     "anio_referencia": 2026,
     "crs": "EPSG:4326 - WGS 84",
     "cantidad_registros": 140,
-    "descripcion": "Selección de aeródromos de Argentina con al menos una pista pavimentada, elaborada a partir de MADHEL/ANAC 2026.",
-    "nota": "El atributo tipo_trafico se conserva como dato de origen, pero no se utiliza para clasificar el visor porque refiere a habilitación y no acredita operación efectiva.",
-    "criterio_seleccion": "Aeródromos con cantidad_pistas_pavimentadas >= 1.",
-    "elaboracion": "Selección, normalización y representación cartográfica: GREYF / ORSNA."
+    "descripcion": "Capa geográfica de aeródromos de Argentina con atributos de identificación, localización y operación.",
+    "nota": "Para uso cartográfico y analítico. La información operacional debe verificarse en las fuentes aeronáuticas vigentes."
   },
   "features": [
     {
@@ -27,7 +25,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 277.0,
+        "elevacion_m": 277,
         "descripcion_ubicacion": "372405S 0643649W - 3 KM al SW de la ciudad de GENERAL ACHA (Pcia. de LA PAMPA) - ELEV 277 M 908 FT",
         "latitud": -37.40164,
         "longitud": -64.61351,
@@ -39,7 +37,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de General Acha"
       },
       "geometry": {
         "type": "Point",
@@ -63,7 +62,7 @@
         "fir": "SAVF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 82.0,
+        "elevacion_m": 82,
         "descripcion_ubicacion": "474405S 0655412W - 2 KM al N de la ciudad de PUERTO DESEADO (Pcia. de SANTA CRUZ) - ELEV 82 M 268 FT - ILE",
         "latitud": -47.73511,
         "longitud": -65.9041,
@@ -75,7 +74,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Puerto Deseado"
       },
       "geometry": {
         "type": "Point",
@@ -99,7 +99,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 5.0,
+        "elevacion_m": 5,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SABE-AD-2.0 (Aeródromos)***",
         "latitud": -34.5588888888889,
         "longitud": -58.4163888888889,
@@ -111,7 +111,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeroparque Jorge Newbery"
       },
       "geometry": {
         "type": "Point",
@@ -135,7 +136,7 @@
         "fir": "SARR",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 117.0,
+        "elevacion_m": 117,
         "descripcion_ubicacion": "275412S 0554556W - 1,6 KM al NW de la ciudad de APÓSTOLES (Pcia. de MISIONES) - ELEV 177 M 580 FT - ILE",
         "latitud": -27.9033333333333,
         "longitud": -55.7655555555556,
@@ -147,7 +148,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Apóstoles"
       },
       "geometry": {
         "type": "Point",
@@ -171,7 +173,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 846.0,
+        "elevacion_m": 846,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAZS-AD-2.0 (Aeródromos)***",
         "latitud": -41.1511111111111,
         "longitud": -71.1577777777778,
@@ -183,7 +185,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Bariloche"
       },
       "geometry": {
         "type": "Point",
@@ -207,7 +210,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 75.0,
+        "elevacion_m": 75,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAZB-AD-2.0 (Aeródromos)***",
         "latitud": -38.7275,
         "longitud": -62.1533333333333,
@@ -219,7 +222,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": false,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Bahía Blanca"
       },
       "geometry": {
         "type": "Point",
@@ -243,7 +247,7 @@
         "fir": "SAVF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 36.0,
+        "elevacion_m": 36,
         "descripcion_ubicacion": "415014S 0650425W - 35 KM al SE de la ciudad de SIERRA GRANDE (Pcia. de RÍO NEGRO) - ELEV 45 M 148 FT",
         "latitud": -41.8427777777778,
         "longitud": -65.0822222222222,
@@ -255,7 +259,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Bahía Dorada"
       },
       "geometry": {
         "type": "Point",
@@ -279,7 +284,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 131.0,
+        "elevacion_m": 131,
         "descripcion_ubicacion": "323934S 0624208W - 2,5 KM al SSW de la ciudad de BELL VILLE (Pcia. de CÓRDOBA) - ELEV 131 M 429 FT - ILE",
         "latitud": -32.6583333333333,
         "longitud": -62.7019444444444,
@@ -291,7 +296,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Bell Ville"
       },
       "geometry": {
         "type": "Point",
@@ -315,7 +321,7 @@
         "fir": "SAVF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 273.0,
+        "elevacion_m": 273,
         "descripcion_ubicacion": "513633S 0721318W - 10 KM al WNW de la ciudad de EL TURBIO (Pcia. de SANTA CRUZ) - ELEV 273 M 895 FT - ILE",
         "latitud": -51.60502,
         "longitud": -72.22034,
@@ -327,7 +333,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de El Turbio/28 de Noviembre"
       },
       "geometry": {
         "type": "Point",
@@ -351,7 +358,7 @@
         "fir": "SAEF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 139.0,
+        "elevacion_m": 139,
         "descripcion_ubicacion": "373334S 0583958W - 53 KM al NW de la ciudad de BALCARCE (Pcia. de BUENOS AIRES) - ELEV 138 M 453 FT - ILE",
         "latitud": -37.5594444444444,
         "longitud": -58.6661111111111,
@@ -363,7 +370,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Balcarce"
       },
       "geometry": {
         "type": "Point",
@@ -387,7 +395,7 @@
         "fir": "SACF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 1200.0,
+        "elevacion_m": 1200,
         "descripcion_ubicacion": "274229S 0670542W - 2 KM al NE de la ciudad de BELÉN (Pcia. de CATAMARCA) - ELEV 1179 M 3868 FT",
         "latitud": -27.7080555555556,
         "longitud": -67.095,
@@ -399,7 +407,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Londres"
       },
       "geometry": {
         "type": "Point",
@@ -423,7 +432,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 94.0,
+        "elevacion_m": 94,
         "descripcion_ubicacion": "361112S 0610433W - 6 KM al NNE de la ciudad de BOLÍVAR (Pcia. de BUENOS AIRES) - ELEV 94 M 308 FT - ILE",
         "latitud": -36.1866666666667,
         "longitud": -61.0758333333333,
@@ -435,7 +444,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Bolívar"
       },
       "geometry": {
         "type": "Point",
@@ -459,7 +469,7 @@
         "fir": "SAVF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 348.0,
+        "elevacion_m": 348,
         "descripcion_ubicacion": "415636S 0713155W - Lindante al NW de la localidad de EL BOLSÓN (Pcia. de RÍO NEGRO) - ELEV 348 M 1141 FT",
         "latitud": -41.94323,
         "longitud": -71.53215,
@@ -471,7 +481,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de el Bolsón"
       },
       "geometry": {
         "type": "Point",
@@ -495,7 +506,7 @@
         "fir": "SAMF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 870.0,
+        "elevacion_m": 870,
         "descripcion_ubicacion": "371140S 0693648W - 22 KM al SE de la localidad de BUTA RANQUIL (Pcia. de NEUQUÉN) - ELEV 872 M 2861 FT - ILE",
         "latitud": -37.195,
         "longitud": -69.6097222222222,
@@ -507,7 +518,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Buta Ranquil"
       },
       "geometry": {
         "type": "Point",
@@ -531,7 +543,7 @@
         "fir": "SARR",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 55.0,
+        "elevacion_m": 55,
         "descripcion_ubicacion": "283134S 0590217W - Al SE de la ciudad de BELLA VISTA (Pcia. de CORRIENTES) - ELEV 55 M 180 FT",
         "latitud": -28.5261111111111,
         "longitud": -59.0380555555556,
@@ -543,7 +555,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Bella Vista (Corrientes)"
       },
       "geometry": {
         "type": "Point",
@@ -567,7 +580,7 @@
         "fir": "SACF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 1639.0,
+        "elevacion_m": 1639,
         "descripcion_ubicacion": "260320S 0655613W - 4,5 KM al NE de la ciudad de CAFAYATE (Pcia. de SALTA) - ELEV 1602 M 5256 FT - ILE",
         "latitud": -26.0641666666667,
         "longitud": -65.9305555555556,
@@ -579,7 +592,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Cafayate"
       },
       "geometry": {
         "type": "Point",
@@ -603,7 +617,7 @@
         "fir": "SACF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 2324.0,
+        "elevacion_m": 2324,
         "descripcion_ubicacion": "270421S 0663510W - 58 KM al SW de la ciudad de SANTA MARÍA (Pcia. de CATAMARCA) - ELEV 2303 M 7556 FT",
         "latitud": -27.0722222222222,
         "longitud": -66.5863888888889,
@@ -615,7 +629,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Campo Arenal"
       },
       "geometry": {
         "type": "Point",
@@ -639,7 +654,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 464.0,
+        "elevacion_m": 464,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SANC-AD-2.0 (Aeródromos)***",
         "latitud": -28.5930555555556,
         "longitud": -65.7511111111111,
@@ -651,7 +666,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Catamarca"
       },
       "geometry": {
         "type": "Point",
@@ -675,7 +691,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 489.0,
+        "elevacion_m": 489,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SACO-AD-2.0 (Aeródromos)***",
         "latitud": -31.31,
         "longitud": -64.2083333333333,
@@ -687,7 +703,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Córdoba"
       },
       "geometry": {
         "type": "Point",
@@ -711,7 +728,7 @@
         "fir": "SAVF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 90.0,
+        "elevacion_m": 90,
         "descripcion_ubicacion": "463217S 0673333W - 5 KM al NE de la localidad de CAÑADÓN SECO (Pcia. de SANTA CRUZ) - ELEV 91 M 295 FT",
         "latitud": -46.5380555555556,
         "longitud": -67.5597222222222,
@@ -723,7 +740,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Cañadón Seco"
       },
       "geometry": {
         "type": "Point",
@@ -747,7 +765,7 @@
         "fir": "SAMF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 850.0,
+        "elevacion_m": 850,
         "descripcion_ubicacion": "372640S 0701323W - 10 KM al SE de la ciudad de CHOS MALAL (Pcia. del NEUQUÉN) - ELEV 844,5 M 2771 FT",
         "latitud": -37.4441666666667,
         "longitud": -70.2230555555556,
@@ -759,7 +777,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Chos Malal"
       },
       "geometry": {
         "type": "Point",
@@ -783,7 +802,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 783.0,
+        "elevacion_m": 783,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAZY-AD-2.0 (Aeródromos)***",
         "latitud": -40.0752777777778,
         "longitud": -71.1372222222222,
@@ -795,7 +814,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de San Martín de los Andes"
       },
       "geometry": {
         "type": "Point",
@@ -819,7 +839,7 @@
         "fir": "SAVF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 330.0,
+        "elevacion_m": 330,
         "descripcion_ubicacion": "463218S 0685758W - 2 KM al W de la ciudad de LAS HERAS (Pcia. de SANTA CRUZ) - ELEV 330 M 1082 FT - ILE",
         "latitud": -46.53848,
         "longitud": -68.96583,
@@ -831,7 +851,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de las Heras"
       },
       "geometry": {
         "type": "Point",
@@ -855,7 +876,7 @@
         "fir": "SACF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 442.0,
+        "elevacion_m": 442,
         "descripcion_ubicacion": "234654S 0644459W - 1,7 KM al E de la ciudad de CALILEGUA (Pcia. de JUJUY) - ELEV 448 M 1470 FT",
         "latitud": -23.7816666666667,
         "longitud": -64.7497222222222,
@@ -867,7 +888,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Calilegua"
       },
       "geometry": {
         "type": "Point",
@@ -891,7 +913,7 @@
         "fir": "SAEF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 24.0,
+        "elevacion_m": 24,
         "descripcion_ubicacion": "343204S 0584019W - 3,5 KM al ENE de la ESTACIÓN SAN MIGUEL (Pcia. de BUENOS AIRES) - ELEV 26 M 85 FT - ILE",
         "latitud": -34.53433,
         "longitud": -58.672,
@@ -903,7 +925,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Campo de Mayo"
       },
       "geometry": {
         "type": "Point",
@@ -927,7 +950,7 @@
         "fir": "SARR",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 61.0,
+        "elevacion_m": 61,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SARC-AD-2.0 (Aeródromos)***",
         "latitud": -27.4455555555556,
         "longitud": -58.7619444444444,
@@ -939,7 +962,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": false,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Corrientes"
       },
       "geometry": {
         "type": "Point",
@@ -963,7 +987,7 @@
         "fir": "SAVF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 57.0,
+        "elevacion_m": 57,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAVC-AD-2.0 (Aeródromos)***",
         "latitud": -45.7852777777778,
         "longitud": -67.4655555555556,
@@ -975,7 +999,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Comodoro Rivadavia"
       },
       "geometry": {
         "type": "Point",
@@ -999,7 +1024,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 424.0,
+        "elevacion_m": 424,
         "descripcion_ubicacion": "330938S 0642014W - 4 KM al SSE de la ciudad de RÍO CUARTO (Pcia. de CÓRDOBA) - ELEV 424 M 1391 FT - ILE",
         "latitud": -33.1605555555556,
         "longitud": -64.3372222222222,
@@ -1011,7 +1036,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Río Cuarto"
       },
       "geometry": {
         "type": "Point",
@@ -1035,7 +1061,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 650.0,
+        "elevacion_m": 650,
         "descripcion_ubicacion": "385623S 0691554W - 2 KM al WSW de la ciudad de CUTRAL CÓ (Pcia. de NEUQUÉN) - ELEV 650 M 2132 FT",
         "latitud": -38.9397222222222,
         "longitud": -69.265,
@@ -1047,7 +1073,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Cutral Có"
       },
       "geometry": {
         "type": "Point",
@@ -1071,7 +1098,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 34.0,
+        "elevacion_m": 34,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAAC-AD-2.0 (Aeródromos)***",
         "latitud": -31.2969444444444,
         "longitud": -57.9966666666667,
@@ -1083,7 +1110,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": false,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Concordia"
       },
       "geometry": {
         "type": "Point",
@@ -1107,7 +1135,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 175.0,
+        "elevacion_m": 175,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAZT-AD-2.0 (Aeródromos)***",
         "latitud": -37.2343777777778,
         "longitud": -59.2285861111111,
@@ -1119,7 +1147,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": false,
-        "proveedor_navegacion": "DNCTA"
+        "proveedor_navegacion": "DNCTA",
+        "etiqueta": "Aeropuerto de Tandil"
       },
       "geometry": {
         "type": "Point",
@@ -1143,7 +1172,7 @@
         "fir": "SAMF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 942.0,
+        "elevacion_m": 942,
         "descripcion_ubicacion": "325745S 0685227W - 16 KM al SW del Aeropuerto El PLUMERILLO (Pcia. de MENDOZA) - ELEV 934,5 M 3066 FT",
         "latitud": -32.96254,
         "longitud": -68.87395,
@@ -1155,7 +1184,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeroclub de Mendoza"
       },
       "geometry": {
         "type": "Point",
@@ -1179,7 +1209,7 @@
         "fir": "SAMF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 704.0,
+        "elevacion_m": 704,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAME-AD-2.0 (Aeródromos)***",
         "latitud": -32.8316666666667,
         "longitud": -68.7927777777778,
@@ -1191,7 +1221,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Mendoza"
       },
       "geometry": {
         "type": "Point",
@@ -1215,7 +1246,7 @@
         "fir": "SAVF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 130.0,
+        "elevacion_m": 130,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAVY-AD-2.0 (Aeródromos)***",
         "latitud": -42.7591666666667,
         "longitud": -65.1027777777778,
@@ -1227,7 +1258,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Puerto Madryn"
       },
       "geometry": {
         "type": "Point",
@@ -1251,7 +1283,7 @@
         "fir": "SAVF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 6.0,
+        "elevacion_m": 6,
         "descripcion_ubicacion": "544922S 0681815W - 1 KM al S de la ciudad de USHUAIA (Pcia. de TIERRA DEL FUEGO, ANTÁRTIDA E ISLAS DEL ATLÁNTICO SUR) - ELEV 6 M 19 FT - ILE",
         "latitud": -54.8227777777778,
         "longitud": -68.3041666666667,
@@ -1263,7 +1295,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Estación Aeronaval de Ushuaia"
       },
       "geometry": {
         "type": "Point",
@@ -1287,7 +1320,7 @@
         "fir": "SAVF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 204.0,
+        "elevacion_m": 204,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAWC-AD-2.0 (Aeródromos)***",
         "latitud": -50.28,
         "longitud": -72.0530555555556,
@@ -1299,7 +1332,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de El Calafate"
       },
       "geometry": {
         "type": "Point",
@@ -1323,7 +1357,7 @@
         "fir": "SAEF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 48.0,
+        "elevacion_m": 48,
         "descripcion_ubicacion": "353213S 0600746W - 12 KM al SE de la ciudad de 25 de MAYO (Pcia. de BUENOS AIRES) - ELEV 48 M 157 FT",
         "latitud": -35.5366666666667,
         "longitud": -60.1291666666667,
@@ -1335,7 +1369,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de 25 de Mayo"
       },
       "geometry": {
         "type": "Point",
@@ -1359,7 +1394,7 @@
         "fir": "SARR",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 209.0,
+        "elevacion_m": 209,
         "descripcion_ubicacion": "262349S 0543429W - Lindante al E de la ciudad de EL DORADO (Pcia. de MISIONES) - ELEV 209 M 685 FT - ILE",
         "latitud": -26.3969444444444,
         "longitud": -54.5747222222222,
@@ -1371,7 +1406,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeroclub Alto Paraná el Dorado"
       },
       "geometry": {
         "type": "Point",
@@ -1395,7 +1431,7 @@
         "fir": "SAMF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 436.0,
+        "elevacion_m": 436,
         "descripcion_ubicacion": "340004S 0652160W - 37 KM al SSE de la ciudad de VILLA MERCEDES (Pcia. de SAN LUIS) - ELEV 438 M 1437 FT - ILE",
         "latitud": -34.0011,
         "longitud": -65.36657,
@@ -1407,7 +1443,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Villa Mercedes"
       },
       "geometry": {
         "type": "Point",
@@ -1443,7 +1480,8 @@
         "tipo_trafico": "",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Escuela de Aviación Militar de Córdoba"
       },
       "geometry": {
         "type": "Point",
@@ -1467,7 +1505,7 @@
         "fir": "SAVF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 799.0,
+        "elevacion_m": 799,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAVE-AD-2.0 (Aeródromos)***",
         "latitud": -42.90381,
         "longitud": -71.13554,
@@ -1479,7 +1517,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Esquel"
       },
       "geometry": {
         "type": "Point",
@@ -1503,7 +1542,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 20.0,
+        "elevacion_m": 20,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAEZ-AD-2.0 (Aeródromos)***",
         "latitud": -34.8222222222222,
         "longitud": -58.5358333333333,
@@ -1515,7 +1554,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto Internacional de Ezeiza"
       },
       "geometry": {
         "type": "Point",
@@ -1539,7 +1579,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 3.0,
+        "elevacion_m": 3,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SADF-AD-2.0 (Aeródromos)***",
         "latitud": -34.45454,
         "longitud": -58.59091,
@@ -1551,7 +1591,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de San Fernando"
       },
       "geometry": {
         "type": "Point",
@@ -1575,7 +1616,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 486.0,
+        "elevacion_m": 486,
         "descripcion_ubicacion": "312612S 0641527W - 7 KM al SW de la ciudad de CÓRDOBA - ELEV 479,75 M 1574 FT",
         "latitud": -31.44195,
         "longitud": -64.25847,
@@ -1587,7 +1628,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "FAdeA"
       },
       "geometry": {
         "type": "Point",
@@ -1611,7 +1653,7 @@
         "fir": "SARR",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 59.0,
+        "elevacion_m": 59,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SARF-AD-2.0 (Aeródromos)***",
         "latitud": -26.2127777777778,
         "longitud": -58.2280555555556,
@@ -1623,7 +1665,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Formosa"
       },
       "geometry": {
         "type": "Point",
@@ -1647,7 +1690,7 @@
         "fir": "SAVF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 19.0,
+        "elevacion_m": 19,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAWG-AD-2.0 (Aeródromos)***",
         "latitud": -51.60881,
         "longitud": -69.31217,
@@ -1659,7 +1702,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "DNCTA"
+        "proveedor_navegacion": "DNCTA",
+        "etiqueta": "Aeropuerto de Río Gallegos"
       },
       "geometry": {
         "type": "Point",
@@ -1683,7 +1727,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 117.0,
+        "elevacion_m": 117,
         "descripcion_ubicacion": "345958S 0630003W - 4,5 KM al NNE de la ciudad de GENERAL VILLEGAS (Pcia. de BUENOS AIRES) - ELEV 117 M 383 FT - ILE",
         "latitud": -34.99615,
         "longitud": -62.99883,
@@ -1695,7 +1739,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de General Villegas"
       },
       "geometry": {
         "type": "Point",
@@ -1719,7 +1764,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 10.0,
+        "elevacion_m": 10,
         "descripcion_ubicacion": "371407,49S 0570143,72W - 3 KM al W de la ciudad de Villa Gesell - ELEV 5,5 M (18 FT) - Temperatura de referencia 27.1ºC - Temperatura mínima media 3.7 ºC - GUND 14 M (46 FT)",
         "latitud": -37.2344444444444,
         "longitud": -57.0238888888889,
@@ -1731,7 +1776,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": false,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Villa Gesell"
       },
       "geometry": {
         "type": "Point",
@@ -1755,9 +1801,9 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 260.0,
+        "elevacion_m": 260,
         "descripcion_ubicacion": "390000S 0673711W - 4,8 KM al NW de la ciudad de GENERAL ROCA (Pcia. de RÍO NEGRO) - ELEV 260 M 852 FT",
-        "latitud": -39.0,
+        "latitud": -39,
         "longitud": -67.6197222222222,
         "pistas_texto": "09/27 2156x45 M - ASPH – AUW 36t/1 50t/2 75t/4 – ILE.",
         "cantidad_pistas": 1,
@@ -1767,13 +1813,14 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": false,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de General Roca"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -67.6197222222222,
-          -39.0
+          -39
         ]
       }
     },
@@ -1791,7 +1838,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 458.0,
+        "elevacion_m": 458,
         "descripcion_ubicacion": "302022S 0661739W - 2 Km al E de la ciudad de CHAMICAL (Pcia. de la Rioja) - (CELPA I - Centro de Experimentación de Lanzamiento y Proyectiles Aeropropulsados) - ELEV 458 M 1502 FT",
         "latitud": -30.34416,
         "longitud": -66.29403,
@@ -1803,7 +1850,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Chamical (Militar)"
       },
       "geometry": {
         "type": "Point",
@@ -1827,7 +1875,7 @@
         "fir": "SARR",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 39.0,
+        "elevacion_m": 39,
         "descripcion_ubicacion": "290621,50S 0591307,40W - 6 KM al NE de la ciudad de GOYA (Pcia. de CORRIENTES) - ELEV 39 M 128 FT - T 32.4º - ILE",
         "latitud": -29.10595,
         "longitud": -59.21874,
@@ -1839,7 +1887,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Goya"
       },
       "geometry": {
         "type": "Point",
@@ -1863,7 +1912,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 140.0,
+        "elevacion_m": 140,
         "descripcion_ubicacion": "354145,54S 0634529,98W - 3,5 KM al SW de la ciudad de GENERAL PICO (Pcia. de LA PAMPA) - ELEV 140,25 M 460 FT - GUND 19 M 62 FT - T 30,7º - ILE",
         "latitud": -35.6947222222222,
         "longitud": -63.7588888888889,
@@ -1875,7 +1924,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de General Pico"
       },
       "geometry": {
         "type": "Point",
@@ -1899,7 +1949,7 @@
         "fir": "SAVF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 20.0,
+        "elevacion_m": 20,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAWE-AD-2.0 (Aeródromos)***",
         "latitud": -53.7776,
         "longitud": -67.74952,
@@ -1911,7 +1961,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Río Grande"
       },
       "geometry": {
         "type": "Point",
@@ -1935,7 +1986,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 180.0,
+        "elevacion_m": 180,
         "descripcion_ubicacion": "344858S 0642203W - 2 KM al N de la ciudad de HUINCA RENANCÓ (Pcia. de CÓRDOBA) - ELEV 180 M 590 FT - ILE",
         "latitud": -34.82041,
         "longitud": -64.37412,
@@ -1947,7 +1998,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Huinca Renancó"
       },
       "geometry": {
         "type": "Point",
@@ -1971,7 +2023,7 @@
         "fir": "SAVF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 52.0,
+        "elevacion_m": 52,
         "descripcion_ubicacion": "455415S 0673332W - 8 KM al SSW de la ciudad de COMODORO RIVADAVIA (Pcia. de CHUBUT) - ELEV 62 M 203 FT - ILE",
         "latitud": -45.9041666666667,
         "longitud": -67.5588888888889,
@@ -1983,7 +2035,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Comodoro Rivadavia"
       },
       "geometry": {
         "type": "Point",
@@ -2007,7 +2060,7 @@
         "fir": "SARR",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 279.0,
+        "elevacion_m": 279,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SARI-AD-2.0 (Aeródromos)***",
         "latitud": -25.73722,
         "longitud": -54.47354,
@@ -2019,7 +2072,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Cataratas del Iguazú"
       },
       "geometry": {
         "type": "Point",
@@ -2043,7 +2097,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 892.0,
+        "elevacion_m": 892,
         "descripcion_ubicacion": "411916S 0693434W - 2,5KM al WNW de la ciudad de INGENIERO JACOBACCI (Pcia. de RÍO NEGRO) - ELEV 892 M 2925 FT",
         "latitud": -41.3211111111111,
         "longitud": -69.5761111111111,
@@ -2055,7 +2109,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Ingeniero Jacobacci"
       },
       "geometry": {
         "type": "Point",
@@ -2079,7 +2134,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 13.0,
+        "elevacion_m": 13,
         "descripcion_ubicacion": "381334S 0575215W - 4 KM al NW de la ciudad de MIRAMAR (Pcia. de BUENOS AIRES) - ELEV 13 M 42 FT - ILE",
         "latitud": -38.2261111111111,
         "longitud": -57.8708333333333,
@@ -2091,7 +2146,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Miramar"
       },
       "geometry": {
         "type": "Point",
@@ -2115,7 +2171,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 945.0,
+        "elevacion_m": 945,
         "descripcion_ubicacion": "291324S 0672622W - 7,2 KM al SE de la ciudad de CHILECITO (Pcia. de LA RIOJA) - ELEV 945 M 3099 FT - ILE",
         "latitud": -29.2233333333333,
         "longitud": -67.4394444444444,
@@ -2127,7 +2183,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Chilecito"
       },
       "geometry": {
         "type": "Point",
@@ -2151,7 +2208,7 @@
         "fir": "SAEF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 160.0,
+        "elevacion_m": 160,
         "descripcion_ubicacion": "380357S 0632544W - 1 KM al N de la localidad de JACINTO ARÁUZ (Pcia. de LA PAMPA) - ELEV 169 M 554 FT",
         "latitud": -38.066,
         "longitud": -63.42902,
@@ -2163,7 +2220,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Jacinto Aráuz"
       },
       "geometry": {
         "type": "Point",
@@ -2187,7 +2245,7 @@
         "fir": "SACF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 1184.0,
+        "elevacion_m": 1184,
         "descripcion_ubicacion": "251112S 0640453W - 8 KM al SE de la ciudad de la ciudad de JOAQUÍN V. GONZÁLEZ (Pcia. de SALTA) - ELEV 367 M 1204 FT - ILE",
         "latitud": -25.1866,
         "longitud": -64.08135,
@@ -2199,7 +2257,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Joaquín V. González"
       },
       "geometry": {
         "type": "Point",
@@ -2223,7 +2282,7 @@
         "fir": "SAMF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 597.0,
+        "elevacion_m": 597,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SANU-AD-2.0 (Aeródromos)***",
         "latitud": -31.5713888888889,
         "longitud": -68.4183333333333,
@@ -2235,7 +2294,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de San Juan"
       },
       "geometry": {
         "type": "Point",
@@ -2259,7 +2319,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 920.0,
+        "elevacion_m": 920,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SASJ-AD-2.0 (Aeródromos)***",
         "latitud": -24.3925,
         "longitud": -65.0977777777778,
@@ -2271,7 +2331,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Jujuy"
       },
       "geometry": {
         "type": "Point",
@@ -2295,7 +2356,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 438.0,
+        "elevacion_m": 438,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SANL-AD-2.0 (Aeródromos)***",
         "latitud": -29.3805555555556,
         "longitud": -66.7958333333333,
@@ -2307,7 +2368,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de la Rioja"
       },
       "geometry": {
         "type": "Point",
@@ -2331,7 +2393,7 @@
         "fir": "SAMF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 1106.0,
+        "elevacion_m": 1106,
         "descripcion_ubicacion": "380455S 0703838W - 3 KM al WSW de la localidad de LONCOPUÉ (Pcia. de NEUQUÉN) - ELEV 1106 M 3629 FT",
         "latitud": -38.08177,
         "longitud": -70.64406,
@@ -2343,7 +2405,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Loncopué"
       },
       "geometry": {
         "type": "Point",
@@ -2367,7 +2430,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 563.0,
+        "elevacion_m": 563,
         "descripcion_ubicacion": "315650S 0650849W - 4,2 KM al E de la ciudad de VILLA DOLORES (Pcia. de CÓRDOBA) - ELEV 563 M 1845 FT",
         "latitud": -31.9475,
         "longitud": -65.1475,
@@ -2379,7 +2442,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Villa Dolores"
       },
       "geometry": {
         "type": "Point",
@@ -2403,7 +2467,7 @@
         "fir": "SAVF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 426.0,
+        "elevacion_m": 426,
         "descripcion_ubicacion": "461127S 0691649W - 47 KM al NW de la ciudad de LAS HERAS (Pcia. de SANTA CRUZ) - ELEV 429 M 1407 FT - ILE",
         "latitud": -46.1919444444444,
         "longitud": -69.2869444444444,
@@ -2415,7 +2479,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de las Heras"
       },
       "geometry": {
         "type": "Point",
@@ -2439,7 +2504,7 @@
         "fir": "SARR",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 70.0,
+        "elevacion_m": 70,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SARL-AD-2.0 (Aeródromos)***",
         "latitud": -29.6880555555556,
         "longitud": -57.1522222222222,
@@ -2451,7 +2516,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": false,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Paso de los Libres"
       },
       "geometry": {
         "type": "Point",
@@ -2475,7 +2541,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 137.0,
+        "elevacion_m": 137,
         "descripcion_ubicacion": "340807S 0632144W - 2,7 KM al E de la ciudad de LABOULAYE (Pcia. de CÓRDOBA) - ELEV 137 M 449 FT - ILE",
         "latitud": -34.13544,
         "longitud": -63.36237,
@@ -2487,7 +2553,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Laboulaye"
       },
       "geometry": {
         "type": "Point",
@@ -2511,7 +2578,7 @@
         "fir": "SAEF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 347.0,
+        "elevacion_m": 347,
         "descripcion_ubicacion": "374835S 0673934W - 7,5 KM al ESE de la ciudad 25 de MAYO (Pcia. de LA PAMPA) - ELEV 352 M 1155 FT - ILE",
         "latitud": -37.80974,
         "longitud": -67.65938,
@@ -2523,7 +2590,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Veinticinco de Mayo"
       },
       "geometry": {
         "type": "Point",
@@ -2547,7 +2615,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 22.0,
+        "elevacion_m": 22,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAZM-AD-2.0 (Aeródromos)***",
         "latitud": -37.9341666666667,
         "longitud": -57.5733333333333,
@@ -2559,7 +2627,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Mar del Plata"
       },
       "geometry": {
         "type": "Point",
@@ -2583,7 +2652,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 2.0,
+        "elevacion_m": 2,
         "descripcion_ubicacion": "341053S 0581450W - Al NE de la ISLA MARTÍN GARCÍA (Pcia. de BUENOS AIRES) - 4,25 M 14 FT (Progresiva 425 M de THR 17) - ILE",
         "latitud": -34.1822222222222,
         "longitud": -58.2469444444444,
@@ -2595,7 +2664,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Isla Martín García"
       },
       "geometry": {
         "type": "Point",
@@ -2619,7 +2689,7 @@
         "fir": "SACF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 75.0,
+        "elevacion_m": 75,
         "descripcion_ubicacion": "283708S 0613613W - 2 KM al E de la localidad de VILLA MINETTI (Pcia. de santa Fe) - ELEV 78 M 256 FT.",
         "latitud": -28.61901,
         "longitud": -61.60359,
@@ -2631,7 +2701,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Villa Minetti"
       },
       "geometry": {
         "type": "Point",
@@ -2655,7 +2726,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 110.0,
+        "elevacion_m": 110,
         "descripcion_ubicacion": "324102S 0620927W - 5 KM al W de la ciudad de MARCOS JUÁREZ (Pcia. de CÓRDOBA) - ELEV 111 M 364 FT - ILE.",
         "latitud": -32.684,
         "longitud": -62.15772,
@@ -2667,7 +2738,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Marcos Juárez"
       },
       "geometry": {
         "type": "Point",
@@ -2691,7 +2763,7 @@
         "fir": "SAMF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 1424.0,
+        "elevacion_m": 1424,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAMM-AD-2.0 (Aeródromos)***",
         "latitud": -35.4952777777778,
         "longitud": -69.5730555555556,
@@ -2703,7 +2775,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Malargüe"
       },
       "geometry": {
         "type": "Point",
@@ -2727,7 +2800,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 10.0,
+        "elevacion_m": 10,
         "descripcion_ubicacion": "353232S 0580307W - 5 KM al NW de la ciudad de CHASCOMÚS (Pcia. de BUENOS AIRES) - ELEV 10 M 32 FT",
         "latitud": -35.5422222222222,
         "longitud": -58.0519444444444,
@@ -2739,7 +2812,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Chascomús"
       },
       "geometry": {
         "type": "Point",
@@ -2763,7 +2837,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 22.0,
+        "elevacion_m": 22,
         "descripcion_ubicacion": "382922S 0584859W - 10 KM al NW de la ciudad de NECOCHEA (Pcia. de BUENOS AIRES) - ELEV 28 M 92 FT",
         "latitud": -38.48954,
         "longitud": -58.81626,
@@ -2775,7 +2849,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Necochea"
       },
       "geometry": {
         "type": "Point",
@@ -2799,7 +2874,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 273.0,
+        "elevacion_m": 273,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAZN-AD-2.0 (Aeródromos)***",
         "latitud": -38.9488888888889,
         "longitud": -68.1558333333333,
@@ -2811,7 +2886,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Neuquén"
       },
       "geometry": {
         "type": "Point",
@@ -2835,7 +2911,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 80.0,
+        "elevacion_m": 80,
         "descripcion_ubicacion": "343245S 0605550W - 6,5 KM al NNE de la ciudad de JUNÍN (Pcia. de BUENOS AIRES) - ELEV 80 M 262 FT - ILE",
         "latitud": -34.54589,
         "longitud": -60.93051,
@@ -2847,7 +2923,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": false,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Junín"
       },
       "geometry": {
         "type": "Point",
@@ -2871,7 +2948,7 @@
         "fir": "SARR",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 343.0,
+        "elevacion_m": 343,
         "descripcion_ubicacion": "273057S 0550729W - 3 KM al SE de la ciudad de OBERÁ (Pcia. de MISIONES) - ELEV 379 M 1243 FT",
         "latitud": -27.5181,
         "longitud": -55.12421,
@@ -2883,7 +2960,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Oberá"
       },
       "geometry": {
         "type": "Point",
@@ -2907,7 +2985,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 196.0,
+        "elevacion_m": 196,
         "descripcion_ubicacion": "391711S 0653636W - 3,5 KM al E de la ciudad de CHOELE CHOEL (Pcia. de RÍO NEGRO) - ELEV 196 M 642 FT",
         "latitud": -39.2863888888889,
         "longitud": -65.61,
@@ -2919,7 +2997,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Choele Choel"
       },
       "geometry": {
         "type": "Point",
@@ -2943,7 +3022,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 168.0,
+        "elevacion_m": 168,
         "descripcion_ubicacion": "365320S 0601340W - 11 KM al ENE de la ciudad de OLAVARRÍA (Pcia. de BUENOS AIRES) - ELEV 168 M 551 FT - ILE",
         "latitud": -36.8888888888889,
         "longitud": -60.2277777777778,
@@ -2955,7 +3034,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Olavarría"
       },
       "geometry": {
         "type": "Point",
@@ -2979,7 +3059,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 357.0,
+        "elevacion_m": 357,
         "descripcion_ubicacion": "230908S 0641943W - 2,5 KM al S de la ciudad de ORÁN (Pcia. de SALTA) - ELEV 358 M 1175 FT",
         "latitud": -23.15221,
         "longitud": -64.3288,
@@ -2991,7 +3071,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Orán"
       },
       "geometry": {
         "type": "Point",
@@ -3015,7 +3096,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 192.0,
+        "elevacion_m": 192,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAZR-AD-2.0 (Aeródromos)***",
         "latitud": -36.5883333333333,
         "longitud": -64.2758333333333,
@@ -3027,7 +3108,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Santa Rosa"
       },
       "geometry": {
         "type": "Point",
@@ -3051,7 +3133,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 18.0,
+        "elevacion_m": 18,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SADP-AD-2.0 (Aeródromos)***",
         "latitud": -34.61,
         "longitud": -58.6125,
@@ -3063,7 +3145,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": false,
-        "proveedor_navegacion": "DNCTA"
+        "proveedor_navegacion": "DNCTA",
+        "etiqueta": "Aeropuerto El Palomar"
       },
       "geometry": {
         "type": "Point",
@@ -3087,7 +3170,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 74.0,
+        "elevacion_m": 74,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAAP-AD-2.0 (Aeródromos)***",
         "latitud": -31.7947222222222,
         "longitud": -60.4802777777778,
@@ -3099,7 +3182,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Paraná"
       },
       "geometry": {
         "type": "Point",
@@ -3135,7 +3219,8 @@
         "tipo_trafico": "",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Punta Indio"
       },
       "geometry": {
         "type": "Point",
@@ -3159,7 +3244,7 @@
         "fir": "SARR",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 80.0,
+        "elevacion_m": 80,
         "descripcion_ubicacion": "261745S 0593207W - 16 KM al SSE de la localidad de PRESIDENCIA ROCA (Pcia. del CHACO) - ELEV 84 M 276 FT - ILE",
         "latitud": -26.29586,
         "longitud": -59.53539,
@@ -3171,7 +3256,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Presidencia Roca"
       },
       "geometry": {
         "type": "Point",
@@ -3195,7 +3281,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 85.0,
+        "elevacion_m": 85,
         "descripcion_ubicacion": "355026S 0615140W - 5 KM al SE de la ciudad de PEHUAJÓ (Pcia. de BUENOS AIRES) - ELEV 85 M 278 FT",
         "latitud": -35.84451,
         "longitud": -61.85748,
@@ -3207,7 +3293,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Pehuajó"
       },
       "geometry": {
         "type": "Point",
@@ -3231,7 +3318,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 72.0,
+        "elevacion_m": 72,
         "descripcion_ubicacion": "335512S 0603854W - 8 KM al SW de la ciudad de PERGAMINO (Pcia. de BUENOS AIRES) - ELEV 78 M 256 FT - ILE",
         "latitud": -33.9202777777778,
         "longitud": -60.6480555555556,
@@ -3243,7 +3330,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Pergamino"
       },
       "geometry": {
         "type": "Point",
@@ -3267,7 +3355,7 @@
         "fir": "SARR",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 131.0,
+        "elevacion_m": 131,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SARP-AD-2.0 (Aeródromos)***",
         "latitud": -27.38573,
         "longitud": -55.97049,
@@ -3279,7 +3367,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Posadas"
       },
       "geometry": {
         "type": "Point",
@@ -3303,7 +3392,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 22.0,
+        "elevacion_m": 22,
         "descripcion_ubicacion": "345811,2S 0575335,4W - 5 KM al SE de la ciudad de LA PLATA (Pcia. de BUENOS AIRES) - ELEV 22 M 72 FT - ILE",
         "latitud": -34.9691666666667,
         "longitud": -57.8930555555556,
@@ -3315,7 +3404,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": false,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de La Plata"
       },
       "geometry": {
         "type": "Point",
@@ -3339,7 +3429,7 @@
         "fir": "SAVF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 430.0,
+        "elevacion_m": 430,
         "descripcion_ubicacion": "463216S 0705843W - 7,5 KM al NW de la ciudad de PERITO MORENO (Pcia. de SANTA CRUZ) - ELEV 430 M 1411 FT - ILE",
         "latitud": -46.53844,
         "longitud": -70.97879,
@@ -3351,7 +3441,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Perito Moreno"
       },
       "geometry": {
         "type": "Point",
@@ -3375,7 +3466,7 @@
         "fir": "SARR",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 106.0,
+        "elevacion_m": 106,
         "descripcion_ubicacion": "291320S 0580517W - 4 KM al S de la ciudad de MERCEDES (Pcia. de CORRIENTES) - ELEV 106 M 347 FT",
         "latitud": -29.2222222222222,
         "longitud": -58.0880555555556,
@@ -3387,7 +3478,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Mercedes"
       },
       "geometry": {
         "type": "Point",
@@ -3411,7 +3503,7 @@
         "fir": "SAMF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 930.0,
+        "elevacion_m": 930,
         "descripcion_ubicacion": "370356S 0692345W - 56 KM al NW de la ciudad de RINCÓN DE LOS SAUCES (Pcia. de NEUQUÉN) - ELEV 930 M 3051 FT",
         "latitud": -37.0655555555556,
         "longitud": -69.3955555555556,
@@ -3423,7 +3515,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Río Colorado"
       },
       "geometry": {
         "type": "Point",
@@ -3447,7 +3540,7 @@
         "fir": "SAVF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 21.0,
+        "elevacion_m": 21,
         "descripcion_ubicacion": "514008S 0691558W - 5 KM al S de RÍO CHICO (Pcia. de SANTA CRUZ) - ELEV 21 M 69 FT - IPO",
         "latitud": -51.6686111111111,
         "longitud": -69.2602777777778,
@@ -3459,7 +3552,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Río Gallegos"
       },
       "geometry": {
         "type": "Point",
@@ -3483,7 +3577,7 @@
         "fir": "SAMF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 600.0,
+        "elevacion_m": 600,
         "descripcion_ubicacion": "372325S 0685419W - 1 KM al E de la ciudad de RINCÓN DE LOS SAUCES (Pcia. de NEUQUÉN) - ELEV 590 M 1936 FT - ILE",
         "latitud": -37.3902777777778,
         "longitud": -68.9044444444445,
@@ -3495,7 +3589,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Rincón de los Sauces"
       },
       "geometry": {
         "type": "Point",
@@ -3519,7 +3614,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 99.0,
+        "elevacion_m": 99,
         "descripcion_ubicacion": "311657S 0613006W - 3,5 KM al S de la ciudad de RAFAELA (Pcia. de SANTA FE) - ELEV 99 M 325 FT - ILE",
         "latitud": -31.2825,
         "longitud": -61.5016666666667,
@@ -3531,7 +3626,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Rafaela"
       },
       "geometry": {
         "type": "Point",
@@ -3555,7 +3651,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 165.0,
+        "elevacion_m": 165,
         "descripcion_ubicacion": "350332S 0641241W - 6 KM al ESE de la localidad de REALICÓ (Pcia. de LA PAMPA) - ELEV 165 M 541 FT - ILE baja intensidad.",
         "latitud": -35.05892,
         "longitud": -64.21277,
@@ -3567,7 +3663,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Realicó"
       },
       "geometry": {
         "type": "Point",
@@ -3591,7 +3688,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 26.0,
+        "elevacion_m": 26,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAAR-AD-2.0 (Aeródromos)***",
         "latitud": -32.9036111111111,
         "longitud": -60.7844444444444,
@@ -3603,7 +3700,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": false,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Rosario"
       },
       "geometry": {
         "type": "Point",
@@ -3627,7 +3725,7 @@
         "fir": "SARR",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 49.0,
+        "elevacion_m": 49,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SATR-AD-2.0 (Aeródromos)***",
         "latitud": -29.2102777777778,
         "longitud": -59.68,
@@ -3639,7 +3737,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "DNCTA"
+        "proveedor_navegacion": "DNCTA",
+        "etiqueta": "Aeropuerto de Reconquista"
       },
       "geometry": {
         "type": "Point",
@@ -3675,7 +3774,8 @@
         "tipo_trafico": "",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de General Acha"
       },
       "geometry": {
         "type": "Point",
@@ -3699,7 +3799,7 @@
         "fir": "SAMF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 485.0,
+        "elevacion_m": 485,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAOR-AD-2.0 (Aeródromos)***",
         "latitud": -33.73178,
         "longitud": -65.37579,
@@ -3711,7 +3811,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "DNCTA"
+        "proveedor_navegacion": "DNCTA",
+        "etiqueta": "Aeropuerto de Villa Mercedes"
       },
       "geometry": {
         "type": "Point",
@@ -3735,7 +3836,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 1246.0,
+        "elevacion_m": 1246,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SASA-AD-2.0 (Aeródromos)***",
         "latitud": -24.8597222222222,
         "longitud": -65.4869444444444,
@@ -3747,7 +3848,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Salta"
       },
       "geometry": {
         "type": "Point",
@@ -3771,7 +3873,7 @@
         "fir": "SAVF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 26.0,
+        "elevacion_m": 26,
         "descripcion_ubicacion": "404502S 0650207W - 10 KM al SW de la ciudad de SAN ANTONIO OESTE (Pcia. de RÍO NEGRO) - ELEV 26 M 85 FT",
         "latitud": -40.7505555555556,
         "longitud": -65.0352777777778,
@@ -3783,7 +3885,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de San Antonio Oeste"
       },
       "geometry": {
         "type": "Point",
@@ -3807,7 +3910,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 91.0,
+        "elevacion_m": 91,
         "descripcion_ubicacion": "305727,37S 0613127,84W - 2 KM al ESE de la ciudad de SUNCHALES (Pcia. de SANTA FE) - ELEV 91,50 M 300 FT - ILE",
         "latitud": -30.9572222222222,
         "longitud": -61.5288888888889,
@@ -3819,7 +3922,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Sunchales"
       },
       "geometry": {
         "type": "Point",
@@ -3843,7 +3947,7 @@
         "fir": "SAVF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 111.0,
+        "elevacion_m": 111,
         "descripcion_ubicacion": "500104S 0683449W - 5 KM al W de la ciudad de PUERTO SANTA CRUZ (Pcia. de SANTA CRUZ) - ELEV 111 M 364 FT - ILE",
         "latitud": -50.0177777777778,
         "longitud": -68.5802777777778,
@@ -3855,7 +3959,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Santa Cruz"
       },
       "geometry": {
         "type": "Point",
@@ -3879,7 +3984,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 200.0,
+        "elevacion_m": 200,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SANE-AD-2.0 (Aeródromos)***",
         "latitud": -27.7655555555556,
         "longitud": -64.31,
@@ -3891,7 +3996,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Santiago del Estero"
       },
       "geometry": {
         "type": "Point",
@@ -3915,7 +4021,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 45.0,
+        "elevacion_m": 45,
         "descripcion_ubicacion": "353635S 0594859W - 4 KM al NW de la ciudad de SALADILLO (Pcia. de BUENOS AIRES) - ELEV 45 M 147 FT - ILE",
         "latitud": -35.60439,
         "longitud": -59.81676,
@@ -3927,7 +4033,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Saladillo"
       },
       "geometry": {
         "type": "Point",
@@ -3951,7 +4058,7 @@
         "fir": "SARR",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 53.0,
+        "elevacion_m": 53,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SARE-AD-2.0 (Aeródromos)***",
         "latitud": -27.45,
         "longitud": -59.0561111111111,
@@ -3963,7 +4070,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Resistencia"
       },
       "geometry": {
         "type": "Point",
@@ -3987,7 +4095,7 @@
         "fir": "SAMF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 634.0,
+        "elevacion_m": 634,
         "descripcion_ubicacion": "313611S 0683250W - 7 KM al S de la ciudad de SAN JUAN - ELEV 634 M 2079 FT - ILE",
         "latitud": -31.6030555555556,
         "longitud": -68.5472222222222,
@@ -3999,7 +4107,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de San Juan"
       },
       "geometry": {
         "type": "Point",
@@ -4023,7 +4132,7 @@
         "fir": "SAVF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 62.0,
+        "elevacion_m": 62,
         "descripcion_ubicacion": "491824S 0674810W - 7 KM al W de la ciudad de PUERTO SAN JULIÁN (Pcia. de SANTA CRUZ) - ELEV 53,75 M 176 FT - ILE",
         "latitud": -49.30671,
         "longitud": -67.80282,
@@ -4035,7 +4144,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de San Julián"
       },
       "geometry": {
         "type": "Point",
@@ -4059,7 +4169,7 @@
         "fir": "SACF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 1800.0,
+        "elevacion_m": 1800,
         "descripcion_ubicacion": "264026S 0660129W - 2 KM al ENE de la ciudad de SANTA MARÍA (Pcia. de CATAMARCA) - ELEV 1889 M 6198 FT",
         "latitud": -26.67385,
         "longitud": -66.02481,
@@ -4071,7 +4181,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Santa María"
       },
       "geometry": {
         "type": "Point",
@@ -4095,7 +4206,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 30.0,
+        "elevacion_m": 30,
         "descripcion_ubicacion": "332327S 0601144W - 6 KM al SSE de la ciudad de SAN NICOLÁS DE LOS ARROYOS (Pcia. de BUENOS AIRES) - ELEV 30 M 98 FT - ILE",
         "latitud": -33.3908333333333,
         "longitud": -60.1955555555556,
@@ -4107,7 +4218,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de San Nicolás de los Arroyos"
       },
       "geometry": {
         "type": "Point",
@@ -4131,7 +4243,7 @@
         "fir": "SAMF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 753.0,
+        "elevacion_m": 753,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAMR-AD-2.0 (Aeródromos)***",
         "latitud": -34.5878166666666,
         "longitud": -68.4035888888889,
@@ -4143,7 +4255,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de San Rafael"
       },
       "geometry": {
         "type": "Point",
@@ -4167,7 +4280,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 616.0,
+        "elevacion_m": 616,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAOS-AD-2.0 (Aeródromos)***",
         "latitud": -32.3847222222222,
         "longitud": -65.1858333333333,
@@ -4179,7 +4292,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": false,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto Valle del Conlara"
       },
       "geometry": {
         "type": "Point",
@@ -4203,7 +4317,7 @@
         "fir": "SAEF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 54.0,
+        "elevacion_m": 54,
         "descripcion_ubicacion": "355005S 0600901W - 38 KM al SW de la ciudad de SALADILLO (Pcia. de BUENOS AIRES) - ELEV 57 M 187 FT - ILE",
         "latitud": -35.8283333333333,
         "longitud": -60.1466666666667,
@@ -4215,7 +4329,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Saladillo"
       },
       "geometry": {
         "type": "Point",
@@ -4239,7 +4354,7 @@
         "fir": "SAMF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 696.0,
+        "elevacion_m": 696,
         "descripcion_ubicacion": "330344S 0683034W - 3 KM al NE de la ciudad de SAN MARTÍN (Pcia. de MENDOZA) - ELEV 696 M 2283 FT",
         "latitud": -33.0622222222222,
         "longitud": -68.5094444444444,
@@ -4251,7 +4366,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de San Martín"
       },
       "geometry": {
         "type": "Point",
@@ -4275,7 +4391,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 3.0,
+        "elevacion_m": 3,
         "descripcion_ubicacion": "363232S 0564317W - 2 KM al W de la ciudad de SANTA TERESITA (Pcia. de BUENOS AIRES) - ELEV 4 M 13 FT - ILE",
         "latitud": -36.5422222222222,
         "longitud": -56.7213888888889,
@@ -4287,7 +4403,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Santa Teresita"
       },
       "geometry": {
         "type": "Point",
@@ -4311,7 +4428,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 234.0,
+        "elevacion_m": 234,
         "descripcion_ubicacion": "372646S 0615321W - 3 KM al ENE de la ciudad de CORONEL SUÁREZ (Pcia. de BUENOS AIRES) - ELEV 234 M 767 FT - ILE",
         "latitud": -37.44609,
         "longitud": -61.88934,
@@ -4323,7 +4440,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Coronel Suárez"
       },
       "geometry": {
         "type": "Point",
@@ -4347,7 +4465,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 17.0,
+        "elevacion_m": 17,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAAV-AD-2.0 (Aeródromos)***",
         "latitud": -31.7108333333333,
         "longitud": -60.8113888888889,
@@ -4359,7 +4477,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": false,
-        "proveedor_navegacion": "DNCTA"
+        "proveedor_navegacion": "DNCTA",
+        "etiqueta": "Aeropuerto de Santa Fe"
       },
       "geometry": {
         "type": "Point",
@@ -4383,7 +4502,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 449.0,
+        "elevacion_m": 449,
         "descripcion_ubicacion": "223656S 0634734W - 11 KM al S de la ciudad de TARTAGAL (Pcia. de SALTA) - ELEV 450,75 M 1479 FT",
         "latitud": -22.6183333333333,
         "longitud": -63.7930555555556,
@@ -4395,7 +4514,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Tartagal"
       },
       "geometry": {
         "type": "Point",
@@ -4419,7 +4539,7 @@
         "fir": "SAVF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 213.0,
+        "elevacion_m": 213,
         "descripcion_ubicacion": "542959S 0671020W - 1,5 KM al NE de la localidad de TOLHUIN (Pcia. de TIERRA DEL FUEGO, ANTÁRTIDA E ISLAS DEL ATLÁNTICO SUR) - ELEV 113 M 371 FT",
         "latitud": -54.49961,
         "longitud": -67.17226,
@@ -4431,7 +4551,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Tolhuin"
       },
       "geometry": {
         "type": "Point",
@@ -4455,7 +4576,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 92.0,
+        "elevacion_m": 92,
         "descripcion_ubicacion": "355813S 0624619W - 3,5 KM al W de la ciudad de TRENQUE LAUQUEN (Pcia. de BUENOS AIRES) - ELEV 92 M 301 FT - ILE",
         "latitud": -35.9702777777778,
         "longitud": -62.7719444444444,
@@ -4467,7 +4588,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Trenque Lauquen"
       },
       "geometry": {
         "type": "Point",
@@ -4491,7 +4613,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 421.0,
+        "elevacion_m": 421,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAOC-AD-2.0 (Aeródromos)***",
         "latitud": -33.09216,
         "longitud": -64.26934,
@@ -4503,7 +4625,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "DNCTA"
+        "proveedor_navegacion": "DNCTA",
+        "etiqueta": "Aeropuerto de Río Cuarto"
       },
       "geometry": {
         "type": "Point",
@@ -4527,7 +4650,7 @@
         "fir": "SAVF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 43.0,
+        "elevacion_m": 43,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAVT-AD-2.0 (Aeródromos)***",
         "latitud": -43.2105555555556,
         "longitud": -65.2702777777778,
@@ -4539,7 +4662,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Trelew"
       },
       "geometry": {
         "type": "Point",
@@ -4563,7 +4687,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 280.0,
+        "elevacion_m": 280,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SANR-AD-2.0 (Aeródromos)***",
         "latitud": -27.49662,
         "longitud": -64.93596,
@@ -4575,7 +4699,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "DNCTA"
+        "proveedor_navegacion": "DNCTA",
+        "etiqueta": "Aeropuerto Termas de Río Hondo"
       },
       "geometry": {
         "type": "Point",
@@ -4599,7 +4724,7 @@
         "fir": "SAVF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 39.0,
+        "elevacion_m": 39,
         "descripcion_ubicacion": "431408S 0651927W - 2,5 KM al NNW de la ciudad de TRELEW (Pcia. de CHUBUT) - ELEV 39 M 127 FT",
         "latitud": -43.23564,
         "longitud": -65.32414,
@@ -4611,7 +4736,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Trelew"
       },
       "geometry": {
         "type": "Point",
@@ -4635,7 +4761,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 455.0,
+        "elevacion_m": 455,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SANT-AD-2.0 (Aeródromos)***",
         "latitud": -26.8408333333333,
         "longitud": -65.1047222222222,
@@ -4647,7 +4773,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Tucumán"
       },
       "geometry": {
         "type": "Point",
@@ -4671,7 +4798,7 @@
         "fir": "SAMF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 883.0,
+        "elevacion_m": 883,
         "descripcion_ubicacion": "372155S 0691803W - 32 KM al W de la ciudad de RINCÓN DE LOS SAUCES (Pcia. de NEUQUÉN) - ELEV 891 M 2923 FT - ILE",
         "latitud": -37.365,
         "longitud": -69.3019444444444,
@@ -4683,7 +4810,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de El Trapial"
       },
       "geometry": {
         "type": "Point",
@@ -4707,7 +4835,7 @@
         "fir": "SAMF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 710.0,
+        "elevacion_m": 710,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAOU-AD-2.0 (Aeródromos)***",
         "latitud": -33.2722222222222,
         "longitud": -66.3566666666667,
@@ -4719,7 +4847,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de San Luis"
       },
       "geometry": {
         "type": "Point",
@@ -4743,7 +4872,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 27.0,
+        "elevacion_m": 27,
         "descripcion_ubicacion": "392721S 0624030W - 4 KM al N de la ciudad de PEDRO LURO (Pcia. de BUENOS AIRES) - ELEV 27 M 88 FT - ILE",
         "latitud": -39.4558333333333,
         "longitud": -62.675,
@@ -4755,7 +4884,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Pedro Luro"
       },
       "geometry": {
         "type": "Point",
@@ -4779,7 +4909,7 @@
         "fir": "SAVF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 31.0,
+        "elevacion_m": 31,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAWH-AD-2.0 (Aeródromos)***",
         "latitud": -54.8433333333333,
         "longitud": -68.2955555555556,
@@ -4791,7 +4921,8 @@
         "tipo_trafico": "INTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Ushuaia"
       },
       "geometry": {
         "type": "Point",
@@ -4815,7 +4946,7 @@
         "fir": "SAEF",
         "condicion": "PRIVADO",
         "control": "no controlado",
-        "elevacion_m": 311.0,
+        "elevacion_m": 311,
         "descripcion_ubicacion": "361225S 0652458W - 1,2 KM al NE de la ciudad de VICTORICA (Pcia. de LA PAMPA) - ELEV 312 M 1024 FT.",
         "latitud": -36.20694,
         "longitud": -65.41617,
@@ -4827,7 +4958,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeródromo de Victorica"
       },
       "geometry": {
         "type": "Point",
@@ -4851,7 +4983,7 @@
         "fir": "SAVF",
         "condicion": "PUBLICO",
         "control": "controlado",
-        "elevacion_m": 6.0,
+        "elevacion_m": 6,
         "descripcion_ubicacion": "***Consultar en el sitio web https://ais.anac.gob.ar/aip: AIP Parte AD SAVV-AD-2.0 (Aeródromos)***",
         "latitud": -40.8702777777778,
         "longitud": -62.9966666666667,
@@ -4863,7 +4995,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": true,
         "concesionado": true,
-        "proveedor_navegacion": "EANA"
+        "proveedor_navegacion": "EANA",
+        "etiqueta": "Aeropuerto de Viedma"
       },
       "geometry": {
         "type": "Point",
@@ -4887,7 +5020,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 202.0,
+        "elevacion_m": 202,
         "descripcion_ubicacion": "321936S 0631342W - 9 KM al N de la ciudad de VILLA MARÍA (Pcia. de CÓRDOBA) - ELEV 202 M 663 FT - ILE",
         "latitud": -32.32006,
         "longitud": -63.22654,
@@ -4899,7 +5032,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Villa María"
       },
       "geometry": {
         "type": "Point",
@@ -4923,7 +5057,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 112.0,
+        "elevacion_m": 112,
         "descripcion_ubicacion": "334043S 0615716W - 6 KM al N de la ciudad de VENADO TUERTO (Pcia. de SANTA FE) - ELEV 112 M 367 FT - ILE",
         "latitud": -33.6783135156616,
         "longitud": -61.9544206115213,
@@ -4935,7 +5069,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Venado Tuerto"
       },
       "geometry": {
         "type": "Point",
@@ -4959,7 +5094,7 @@
         "fir": "SACF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 666.0,
+        "elevacion_m": 666,
         "descripcion_ubicacion": "321103S 0642920W - Lindando al W de la localidad de VILLA RUMIPAL (Pcia. de CÓRDOBA) - ELEV 543 M 1781 FT",
         "latitud": -32.1841666666667,
         "longitud": -64.4888888888889,
@@ -4971,7 +5106,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Villa Rumipal"
       },
       "geometry": {
         "type": "Point",
@@ -4995,7 +5131,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 122.0,
+        "elevacion_m": 122,
         "descripcion_ubicacion": "382308S 0601939W - 5 KM al SW de la ciudad de TRES ARROYOS (Pcia. de BUENOS AIRES) - ELEV 122 M 400 FT - ILE",
         "latitud": -38.3855555555556,
         "longitud": -60.3275,
@@ -5007,7 +5143,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Tres Arroyos"
       },
       "geometry": {
         "type": "Point",
@@ -5031,7 +5168,7 @@
         "fir": "SAEF",
         "condicion": "PUBLICO",
         "control": "no controlado",
-        "elevacion_m": 1048.0,
+        "elevacion_m": 1048,
         "descripcion_ubicacion": "385833S 0700648W - 7,5 KM al SW de la ciudad de ZAPALA (Pcia. de NEUQUÉN) - ELEV 1085 M 3560 FT - ILE",
         "latitud": -38.9758861111111,
         "longitud": -70.1134638888889,
@@ -5043,7 +5180,8 @@
         "tipo_trafico": "NTL",
         "incluido_sna": false,
         "concesionado": false,
-        "proveedor_navegacion": null
+        "proveedor_navegacion": null,
+        "etiqueta": "Aeropuerto de Zapala"
       },
       "geometry": {
         "type": "Point",
