@@ -101,20 +101,38 @@ function featureId(f,index){
   return [p.codigo_local,p.codigo_oaci,p.codigo_iata,index].filter(Boolean).join("-");
 }
 
-function conditionKey(p){
-  const sna=Boolean(p.incluido_sna);
-  const condition=String(p.condicion||"").toUpperCase();
-  if(sna) return "sna-public";
-  if(condition==="PRIVADO") return "other-private";
-  if(condition==="MILITAR") return "other-military";
+
+function conditionKey(p) {
+  const sna = Boolean(p.incluido_sna);
+  const condicion = String(p.condicion || "").toUpperCase();
+  const control = String(p.control || "").toLowerCase();
+
+  // Prioridad: identificar aeródromos militares
+  if (condicion === "MILITAR" || control.includes("militar")) {
+    return "other-military";
+  }
+
+  if (sna) return "sna-public";
+  if (condicion === "PRIVADO") return "other-private";
+
   return "other-public";
 }
 
-function conditionLabel(p){
-  const condition=String(p.condicion||"SIN DATO").toUpperCase();
-  const label=condition==="PUBLICO"?"Público":condition==="PRIVADO"?"Privado":condition==="MILITAR"?"Militar":condition;
-  return `${label} · ${p.incluido_sna?"SNA":"No SNA"}`;
+
+
+function conditionLabel(p) {
+  const key = conditionKey(p);
+
+  const etiquetas = {
+    "sna-public": "SNA",
+    "other-public": "Público · No SNA",
+    "other-private": "Privado · No SNA",
+    "other-military": "Militar · No SNA"
+  };
+
+  return etiquetas[key] || "Sin clasificación";
 }
+
 
 
 function airportIcon(p) {
