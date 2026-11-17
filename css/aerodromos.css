@@ -2,7 +2,13 @@
   --navy-950:#071522;--navy-900:#0b1f33;--navy-800:#12324f;--navy-700:#1d486d;
   --slate-900:#17212b;--slate-700:#425466;--slate-600:#5c6f82;--slate-500:#728498;
   --slate-300:#c9d3dd;--slate-200:#dde4eb;--slate-100:#edf2f6;--slate-50:#f7f9fb;--white:#fff;
-  --sna:#306fb0;--other:#1d486d;--public:#1d486d;--private:#7357a6;--military:#66778a;
+  
+--sna: #2375C7;
+--other: #E68A19;
+--public: #E68A19;
+--private: #9333EA;
+--military: #198754;
+
   --topbar-h:72px;--sidebar-w:380px;
   --shadow-sm:0 2px 10px rgba(7,21,34,.08);--shadow-md:0 12px 34px rgba(7,21,34,.16);
 }
