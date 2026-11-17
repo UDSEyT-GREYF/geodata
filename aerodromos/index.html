@@ -15,9 +15,7 @@
 
   <header class="topbar">
     <div class="brand-block">
-      <a class="back-link" href="/geodata/mapas.html" aria-label="Volver a mapas">
-        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
-      </a>
+
       <div class="brand-mark" aria-hidden="true">
         <svg viewBox="0 0 24 24"><path d="M4 17c4-7 8-9 16-10"/><path d="m15 5 5 2-3 4"/></svg>
       </div>
@@ -157,14 +155,26 @@
           <span>Referencias</span>
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg>
         </button>
-        <div class="legend-body" id="legendBody">
-          <div><span class="legend-dot sna-public"></span>SNA · público</div>
-          <div><span class="legend-dot other-public"></span>No SNA · público</div>
-          <div><span class="legend-dot other-private"></span>No SNA · privado</div>
-          <div><span class="legend-dot other-military"></span>No SNA · militar</div>
-          <p>El color combina pertenencia al SNA y condición. El visor no clasifica por tráfico internacional: ese atributo refiere a habilitación y no a operación efectiva.</p>
+
+      <div class="legend-body" id="legendBody">
+        <div>
+          <span class="legend-dot sna-public"></span>
+          Sistema Nacional de Aeropuertos
+        </div>
+        <div>
+          <span class="legend-dot other-public"></span>
+          Aeródromos públicos
+        </div>
+        <div>
+          <span class="legend-dot other-private"></span>
+          Aeródromos privados
+        </div>
+        <div>
+          <span class="legend-dot other-military"></span>
+          Aeródromo militar
         </div>
       </div>
+
 
       <div class="basemap-buttons" id="basemapButtons" aria-label="Mapa base">
         <button type="button" class="is-active" data-basemap="argenmap" aria-pressed="true">Argenmap</button>
