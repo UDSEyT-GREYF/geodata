@@ -8,7 +8,9 @@
     "crs": "EPSG:4326 - WGS 84",
     "cantidad_registros": 140,
     "descripcion": "Capa geográfica de aeródromos de Argentina con atributos de identificación, localización y operación.",
-    "nota": "Para uso cartográfico y analítico. La información operacional debe verificarse en las fuentes aeronáuticas vigentes."
+    "nota": "Para uso cartográfico y analítico. La información operacional debe verificarse en las fuentes aeronáuticas vigentes.",
+    "criterio_control_militar": "Cuando nombre_madhel indica MILITAR CONTROLADO se usa condicion MILITAR y control militar controlado. Fuente: MADHEL ANAC https://datos.anac.gob.ar/madhel/api/v2/airports/",
+    "criterio_clasificacion": "La condicion se conserva como fue registrada en MADHEL; el control militar controlado se registra separadamente. La simbolizacion militar del visor se basa en el control."
   },
   "features": [
     {
@@ -1874,7 +1876,7 @@
         "region": "RANE",
         "fir": "SARR",
         "condicion": "PUBLICO",
-        "control": "controlado",
+        "control": "no controlado",
         "elevacion_m": 39,
         "descripcion_ubicacion": "290621,50S 0591307,40W - 6 KM al NE de la ciudad de GOYA (Pcia. de CORRIENTES) - ELEV 39 M 128 FT - T 32.4º - ILE",
         "latitud": -29.10595,
@@ -3220,7 +3222,7 @@
         "incluido_sna": false,
         "concesionado": false,
         "proveedor_navegacion": null,
-        "etiqueta": "Base Aeronaval de Punta Indio"
+        "etiqueta": "Aeropuerto de Punta Indio"
       },
       "geometry": {
         "type": "Point",
