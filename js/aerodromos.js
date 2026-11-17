@@ -7,7 +7,6 @@ const DATA_URL=`/geodata/fuentes/ANAC/aerodromos_madhel_2026.geojson?v=${DATA_VE
 const dom={
   search:document.getElementById("searchInput"),
   province:document.getElementById("provinceSelect"),
-  condition:document.getElementById("conditionSelect"),
   control:document.getElementById("controlSelect"),
   snaToggle:document.getElementById("snaToggle"),
   otherToggle:document.getElementById("otherToggle"),
@@ -102,17 +101,18 @@ function featureId(f,index){
 }
 
 
-function conditionKey(p) {
-  const sna = Boolean(p.incluido_sna);
-  const condicion = String(p.condicion || "").toUpperCase();
-  const control = String(p.control || "").toLowerCase();
 
-  // Prioridad: identificar aeródromos militares
-  if (condicion === "MILITAR" || control.includes("militar")) {
+function conditionKey(p) {
+  const control = String(p.control || "").toLowerCase();
+  const condicion = String(p.condicion || "").toUpperCase();
+
+  // Simbología militar según el campo CONTROL
+  if (control === "militar controlado") {
     return "other-military";
   }
 
-  if (sna) return "sna-public";
+  if (p.incluido_sna) return "sna-public";
+  if (condicion === "MILITAR") return "other-military";
   if (condicion === "PRIVADO") return "other-private";
 
   return "other-public";
@@ -120,18 +120,24 @@ function conditionKey(p) {
 
 
 
+
+
 function conditionLabel(p) {
-  const key = conditionKey(p);
+  const control = String(p.control || "").toLowerCase();
 
-  const etiquetas = {
-    "sna-public": "SNA",
-    "other-public": "Público · No SNA",
-    "other-private": "Privado · No SNA",
-    "other-military": "Militar · No SNA"
-  };
+  if (control === "militar controlado") {
+    return "Militar controlado · No SNA";
+  }
 
-  return etiquetas[key] || "Sin clasificación";
+  const condicion = String(p.condicion || "").toUpperCase();
+
+  if (p.incluido_sna) return "SNA";
+  if (condicion === "PRIVADO") return "Privado · No SNA";
+  if (condicion === "MILITAR") return "Militar · No SNA";
+
+  return "Público · No SNA";
 }
+
 
 
 
@@ -209,7 +215,6 @@ function fillSelect(el,values){
 function buildFilters(){
   const props=features.map(f=>f.properties||{});
   fillSelect(dom.province,props.map(p=>p.provincia));
-  fillSelect(dom.condition,props.map(p=>p.condicion));
   fillSelect(dom.control,props.map(p=>p.control));
 }
 
@@ -219,7 +224,6 @@ function matches(f){
   if(isSna && !dom.snaToggle.checked) return false;
   if(!isSna && !dom.otherToggle.checked) return false;
   if(dom.province.value && p.provincia!==dom.province.value) return false;
-  if(dom.condition.value && p.condicion!==dom.condition.value) return false;
   if(dom.control.value && p.control!==dom.control.value) return false;
 
   const q=norm(dom.search.value);
@@ -328,7 +332,6 @@ function setBasemap(name){
 function resetFilters(){
   dom.search.value="";
   dom.province.value="";
-  dom.condition.value="";
   dom.control.value="";
   dom.snaToggle.checked=true;
   dom.otherToggle.checked=true;
@@ -336,8 +339,9 @@ function resetFilters(){
   fitVisible();
 }
 
+
 function bind(){
-  [dom.province,dom.condition,dom.control,dom.snaToggle,dom.otherToggle].forEach(el=>{
+  [dom.province,dom.control,dom.snaToggle,dom.otherToggle].forEach(el=>{
     el.addEventListener("change",renderMap);
   });
   dom.search.addEventListener("input",renderMap);
@@ -372,6 +376,7 @@ function bind(){
   dom.aboutButton.addEventListener("click",()=>dom.aboutDialog.showModal());
   dom.aboutClose.addEventListener("click",()=>dom.aboutDialog.close());
 }
+
 
 async function init(){
   try{
