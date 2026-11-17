@@ -148,3 +148,35 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
 .legend-dot.sna-public::after {
   font-size: 12px;
 }
+
+/* UBICACIÓN DE CONTROLES DEL MAPA */
+
+.map-legend {
+  top: auto;
+  bottom: 18px;
+  left: 18px;
+}
+
+.basemap-buttons {
+  top: 96px;
+  bottom: auto;
+  left: auto;
+  right: 12px;
+  width: 245px;
+}
+
+@media (max-width: 720px) {
+  .map-legend {
+    bottom: 12px;
+    left: 10px;
+    width: 205px;
+  }
+
+  .basemap-buttons {
+    top: 96px;
+    right: 10px;
+    left: auto;
+    bottom: auto;
+    width: 205px;
+  }
+}
