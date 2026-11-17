@@ -1467,7 +1467,7 @@
         "region": "RANO",
         "fir": "",
         "condicion": "MILITAR",
-        "control": "no controlado",
+        "control": "militar controlado",
         "elevacion_m": null,
         "descripcion_ubicacion": "312638S 0641700W - 15 KM al SW de la Ciudad de Córdoba - ELEV 497,41 M 1631,92 FT - GUND 26 M - ILE",
         "latitud": -31.46055556,
@@ -1837,7 +1837,7 @@
         "region": "RANO",
         "fir": "SACF",
         "condicion": "PUBLICO",
-        "control": "no controlado",
+        "control": "militar controlado",
         "elevacion_m": 458,
         "descripcion_ubicacion": "302022S 0661739W - 2 Km al E de la ciudad de CHAMICAL (Pcia. de la Rioja) - (CELPA I - Centro de Experimentación de Lanzamiento y Proyectiles Aeropropulsados) - ELEV 458 M 1502 FT",
         "latitud": -30.34416,
@@ -3206,7 +3206,7 @@
         "region": "RACE",
         "fir": "",
         "condicion": "PUBLICO",
-        "control": "no controlado",
+        "control": "militar controlado",
         "elevacion_m": null,
         "descripcion_ubicacion": "352043S 0571632W – 7 KM AL NNE de la Ciudad de Verónica (Pcia. de Buenos Aires) – ELEV 47 FT 14,326 M",
         "latitud": -35.345278,
@@ -3220,7 +3220,7 @@
         "incluido_sna": false,
         "concesionado": false,
         "proveedor_navegacion": null,
-        "etiqueta": "Aeropuerto de Punta Indio"
+        "etiqueta": "Base Aeronaval de Punta Indio"
       },
       "geometry": {
         "type": "Point",
