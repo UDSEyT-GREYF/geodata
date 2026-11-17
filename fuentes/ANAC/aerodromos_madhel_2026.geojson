@@ -1039,7 +1039,7 @@
         "incluido_sna": false,
         "concesionado": false,
         "proveedor_navegacion": null,
-        "etiqueta": "Aeropuerto de Río Cuarto"
+        "etiqueta": "Aeroclub de Río Cuarto"
       },
       "geometry": {
         "type": "Point",
@@ -4110,7 +4110,7 @@
         "incluido_sna": false,
         "concesionado": false,
         "proveedor_navegacion": null,
-        "etiqueta": "Aeropuerto de San Juan"
+        "etiqueta": "Aeroclub de San Juan"
       },
       "geometry": {
         "type": "Point",
@@ -4739,7 +4739,7 @@
         "incluido_sna": false,
         "concesionado": false,
         "proveedor_navegacion": null,
-        "etiqueta": "Aeropuerto de Trelew"
+        "etiqueta": "Aeroclub de Trelew"
       },
       "geometry": {
         "type": "Point",
