@@ -84,11 +84,17 @@ function codeLabel(p){
   return p.codigo_iata || p.codigo_oaci || p.codigo_local || "—";
 }
 
-function displayName(p){
-  const full=String(p.nombre_madhel||"");
-  const clean=full.split(" - (")[0].trim();
+
+function displayName(p) {
+  const etiqueta = String(p.etiqueta || "").trim();
+  if (etiqueta) return etiqueta;
+
+  const full = String(p.nombre_madhel || "");
+  const clean = full.split(" - (")[0].trim();
+
   return clean || p.localidad_referencia || "Aeródromo";
 }
+
 
 function featureId(f,index){
   const p=f.properties||{};
@@ -201,7 +207,7 @@ function matches(f){
   const q=norm(dom.search.value);
   if(q){
     const haystack=norm([
-      p.nombre_madhel,p.localidad_referencia,p.provincia,p.codigo_local,p.codigo_oaci,p.codigo_iata
+      p.etiqueta,p.nombre_madhel,p.localidad_referencia,p.provincia,p.codigo_local,p.codigo_oaci,p.codigo_iata
     ].join(" "));
     if(!haystack.includes(q)) return false;
   }
