@@ -2,7 +2,7 @@
 "use strict";
 
 const DATA_VERSION="20261118-4";
-const DATA_URL=`/geodata/fuentes/ANAC/aerodromos_madhel_anac_2026.geojson?v=${DATA_VERSION}`;
+const DATA_URL=`/geodata/fuentes/ANAC/aerodromos_madhel_2026.geojson?v=${DATA_VERSION}`;
 
 // Los valores coinciden con categoria_mapa del GeoJSON publicado.
 const CATEGORIES = [
