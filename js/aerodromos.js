@@ -139,7 +139,7 @@ function categoryInfo(p){
 
 function airportIcon(p){
   const cat=categoryInfo(p);
-  const size=cat.key==="cat-sna" ? 24 : 19;
+  const size=cat.key==="cat-sna" ? 24 : cat.key==="cat-heli" ? 12 : 19;
   const glyph=cat.key==="cat-heli" ? "H" : "✈";
   return L.divIcon({
     className:"aerodromo-marker "+cat.key,
