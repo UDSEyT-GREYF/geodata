@@ -154,3 +154,56 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
 .legend-dot.sna-public::after {
   font-size: 12px;
 }
+
+
+/* Actualización MADHEL completo + LAD + AIP (2026-11-18).
+   categoria_mapa determina la categoría. Los valores MADHEL no se modifican. */
+:root {
+  --cat-sna:#2375C7;
+  --cat-paved:#E68A19;
+  --cat-club-paved:#7C3AED;
+  --cat-club:#9333EA;
+  --cat-unpaved:#AD7847;
+  --cat-closed:#777F89;
+  --cat-military:#198754;
+  --cat-heli:#008C95;
+  --cat-lad:#E68A19;
+  --cat-unknown:#C0A03A;
+}
+.category-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.category-heading .field-label{margin:0}
+.category-list{display:grid;gap:3px}
+.category-option{display:grid;grid-template-columns:17px 12px minmax(0,1fr) auto;align-items:center;gap:7px;min-height:27px;padding:2px 4px;border-radius:6px;cursor:pointer}
+.category-option:hover{background:var(--slate-50)}
+.category-option input{width:14px;height:14px;margin:0;accent-color:var(--navy-700)}
+.category-color{display:block;width:11px;height:11px;border-radius:50%;background:var(--category-color);border:1px solid rgba(0,0,0,.12)}
+.category-name{font-size:10px;line-height:1.22;color:var(--slate-700)}
+.category-count{font-size:10px;font-weight:750;color:var(--slate-600);font-variant-numeric:tabular-nums}
+.cat-sna{--category-color:var(--cat-sna)}
+.cat-paved{--category-color:var(--cat-paved)}
+.cat-club-paved{--category-color:var(--cat-club-paved)}
+.cat-club{--category-color:var(--cat-club)}
+.cat-unpaved{--category-color:var(--cat-unpaved)}
+.cat-closed{--category-color:var(--cat-closed)}
+.cat-military{--category-color:var(--cat-military)}
+.cat-heli{--category-color:var(--cat-heli)}
+.cat-lad{--category-color:var(--cat-lad)}
+.cat-unknown{--category-color:var(--cat-unknown)}
+.aerodromo-marker[class*="cat-"] .aerodromo-plane{background:var(--category-color)}
+.aerodromo-marker.cat-sna .aerodromo-plane{width:24px;height:24px;font-size:14px}
+.aerodromo-marker.cat-heli .aerodromo-plane{font-family:Arial,sans-serif;font-size:11px;font-weight:900}
+.legend-dot[class*="cat-"]{background:var(--category-color)}
+.legend-dot.cat-heli::after{content:"H";font-size:9px}
+.legend-dot.cat-sna{width:18px;height:18px}
+.legend-dot.cat-sna::after{font-size:12px}
+.airport-code[class*="cat-"],.popup-badge[class*="cat-"]{background:var(--category-color)}
+.airport-meta{max-width:110px;line-height:1.2;overflow-wrap:anywhere}
+.map-legend{width:min(275px,calc(100% - 36px))}
+.legend-body{max-height:min(36vh,300px);overflow-y:auto}
+.legend-body>div{line-height:1.2}
+@media(max-width:720px){.category-name{font-size:9px}.category-option{gap:5px}.map-legend{width:min(245px,calc(100% - 20px))}}
+
+/* Selector de categorías visible y accesible */
+.category-list{max-height:265px;overflow-y:auto;scrollbar-width:thin}
+.category-option:focus-within{outline:2px solid var(--navy-700);outline-offset:1px}
+.category-option input:focus-visible{outline:2px solid var(--navy-700)}
