@@ -1,19 +1,37 @@
 (() => {
 "use strict";
 
-const DATA_VERSION="20261116-2";
-const DATA_URL=`/geodata/fuentes/ANAC/aerodromos_madhel_2026.geojson?v=${DATA_VERSION}`;
+const DATA_VERSION="20261118-4";
+const DATA_URL=`/geodata/fuentes/ANAC/aerodromos_madhel_anac_2026.geojson?v=${DATA_VERSION}`;
+
+// Los valores coinciden con categoria_mapa del GeoJSON publicado.
+const CATEGORIES = [
+  {label:"Aeropuertos del SNA", key:"cat-sna"},
+  {label:"Aeródromos con pista pavimentada", key:"cat-paved"},
+  {label:"Aeroclubes con pista asfaltada", key:"cat-club-paved"},
+  {label:"Aeroclubes", key:"cat-club"},
+  {label:"Aeródromos con pista no pavimentada", key:"cat-unpaved"},
+  {label:"Aeródromos con cierre indicado", key:"cat-closed"},
+  {label:"Aeródromos militares", key:"cat-military"},
+  {label:"Helipuertos", key:"cat-heli"},
+  {label:"LAD con pista asfaltada", key:"cat-lad"},
+  {label:"Aeródromos sin información suficiente de pista", key:"cat-unknown"}
+];
+const categoryLookup = new Map(CATEGORIES.map(c=>[c.label,c]));
 
 const dom={
   search:document.getElementById("searchInput"),
   province:document.getElementById("provinceSelect"),
   control:document.getElementById("controlSelect"),
-  snaToggle:document.getElementById("snaToggle"),
-  otherToggle:document.getElementById("otherToggle"),
+  categories:document.getElementById("categoryFilters"),
+  categoriesAll:document.getElementById("categoryAllButton"),
   visibleCount:document.getElementById("visibleCount"),
   snaCount:document.getElementById("snaCount"),
-  publicCount:document.getElementById("publicCount"),
-  privateCount:document.getElementById("privateCount"),
+  heliCount:document.getElementById("heliCount"),
+  ladCount:document.getElementById("ladCount"),
+  aboutTotal:document.getElementById("aboutTotal"),
+  aboutMadhel:document.getElementById("aboutMadhel"),
+  aboutLad:document.getElementById("aboutLad"),
   resultList:document.getElementById("resultList"),
   reset:document.getElementById("resetFilters"),
   fit:document.getElementById("fitMapButton"),
@@ -80,12 +98,12 @@ function boolText(v){
 }
 
 function codeLabel(p){
-  return p.codigo_iata || p.codigo_oaci || p.codigo_local || "—";
+  return p.codigo_iata || p.codigo_oaci || p.codigo_local || p.codigo_lad || "—";
 }
 
 
 function displayName(p) {
-  const etiqueta = String(p.etiqueta || "").trim();
+  const etiqueta = String(p.etiqueta_normalizada || p.etiqueta || "").trim();
   if (etiqueta) return etiqueta;
 
   const full = String(p.nombre_madhel || "");
@@ -102,59 +120,32 @@ function featureId(f,index){
 
 
 
-function conditionKey(p) {
-  const control = String(p.control || "").toLowerCase();
-  const condicion = String(p.condicion || "").toUpperCase();
-
-  // Simbología militar según el campo CONTROL
-  if (control === "militar controlado") {
-    return "other-military";
-  }
-
-  if (p.incluido_sna) return "sna-public";
-  if (condicion === "MILITAR") return "other-military";
-  if (condicion === "PRIVADO") return "other-private";
-
-  return "other-public";
+function isLad(p){
+  return p.categoria_mapa === "LAD con pista asfaltada" || String(p.origen_registro||"").toUpperCase().startsWith("ANAC LAD");
 }
 
-
-
-
-
-function conditionLabel(p) {
-  const control = String(p.control || "").toLowerCase();
-
-  if (control === "militar controlado") {
-    return "Militar controlado · No SNA";
-  }
-
-  const condicion = String(p.condicion || "").toUpperCase();
-
-  if (p.incluido_sna) return "SNA";
-  if (condicion === "PRIVADO") return "Privado · No SNA";
-  if (condicion === "MILITAR") return "Militar · No SNA";
-
-  return "Público · No SNA";
+function provinceOf(p){
+  // El LAD 2026-09 coloca la provincia en localidad_referencia.
+  return p.provincia || (isLad(p) ? p.localidad_referencia : "") || "";
 }
 
+function localityOf(p){
+  return isLad(p) ? "" : (p.localidad_referencia||"");
+}
 
+function categoryInfo(p){
+  return categoryLookup.get(String(p.categoria_mapa||"")) || {label:"Sin categoría",key:"cat-unknown"};
+}
 
-
-function airportIcon(p) {
-  const key = conditionKey(p);
-  const size = p.incluido_sna ? 24 : 18;
-
+function airportIcon(p){
+  const cat=categoryInfo(p);
+  const size=cat.key==="cat-sna" ? 24 : 19;
+  const glyph=cat.key==="cat-heli" ? "H" : "✈";
   return L.divIcon({
-    className: "aerodromo-marker " + key,
-    html: `
-      <span class="aerodromo-plane" aria-hidden="true">✈</span>
-      <span class="aerodromo-name">${esc(displayName(p))}</span>
-    `,
-    iconSize: [size, size],
-    iconAnchor: [size / 2, size / 2],
-    popupAnchor: [0, -size / 2],
-    tooltipAnchor: [0, -size / 2]
+    className:"aerodromo-marker "+cat.key,
+    html:`<span class="aerodromo-plane" aria-hidden="true">${glyph}</span><span class="aerodromo-name">${esc(displayName(p))}</span>`,
+    iconSize:[size,size], iconAnchor:[size/2,size/2],
+    popupAnchor:[0,-size/2], tooltipAnchor:[0,-size/2]
   });
 }
 
@@ -170,34 +161,45 @@ updateAirportLabels();
 
 
 function popupHtml(p){
-  const sna=Boolean(p.incluido_sna);
   const codes=[
-    p.codigo_local?`Local ${p.codigo_local}`:null,
-    p.codigo_oaci?`OACI ${p.codigo_oaci}`:null,
-    p.codigo_iata?`IATA ${p.codigo_iata}`:null
+    p.codigo_local?`Local ${esc(p.codigo_local)}`:null,
+    p.codigo_oaci?`OACI ${esc(p.codigo_oaci)}`:null,
+    p.codigo_iata?`IATA ${esc(p.codigo_iata)}`:null,
+    p.codigo_lad?`LAD ${esc(p.codigo_lad)}`:null
   ].filter(Boolean).join(" · ") || "Sin códigos informados";
-
+  const cat=categoryInfo(p);
+  const fuente=String(p.origen_registro||"MADHEL");
+  const elevacion=(p.elevacion_m!==null && p.elevacion_m!==undefined && p.elevacion_m!=="")
+    ? `${Number(p.elevacion_m).toLocaleString("es-AR")} m` : "—";
+  const casilla=(titulo,valor)=>`<div class="popup-cell"><span>${esc(titulo)}</span><strong>${esc(valor??"—")}</strong></div>`;
+  const extendida=(titulo,valor)=>valor ? `<div class="popup-wide"><span>${esc(titulo)}</span><strong>${esc(valor)}</strong></div>` : "";
+  const notaFecha=isLad(p) ? "Registro LAD, septiembre de 2026" :
+    `Actualización MADHEL: ${esc(p.fecha_ultima_actualizacion_madhel||"sin dato")}`;
   return `
-    <div class="popup-badge ${conditionKey(p)}">${esc(conditionLabel(p))}</div>
+    <div class="popup-badge ${cat.key}">${esc(cat.label)}</div>
     <div class="popup-title">${esc(displayName(p))}</div>
-    <div class="popup-subtitle">${esc(codes)}</div>
-
+    <div class="popup-subtitle">${codes}</div>
     <div class="popup-grid">
-      <div class="popup-cell"><span>Provincia</span><strong>${esc(p.provincia||"—")}</strong></div>
-      <div class="popup-cell"><span>Localidad</span><strong>${esc(p.localidad_referencia||"—")}</strong></div>
-      <div class="popup-cell"><span>Condición</span><strong>${esc(p.condicion||"—")}</strong></div>
-      <div class="popup-cell"><span>Control</span><strong>${esc(p.control||"—")}</strong></div>
-      <div class="popup-cell"><span>Elevación</span><strong>${Number.isFinite(Number(p.elevacion_m))?`${Number(p.elevacion_m).toLocaleString("es-AR")} m`:"—"}</strong></div>
-      <div class="popup-cell"><span>Pistas</span><strong>${p.cantidad_pistas??"—"}</strong></div>
-      <div class="popup-cell"><span>Pavimentadas</span><strong>${p.cantidad_pistas_pavimentadas??"—"}</strong></div>
-      <div class="popup-cell"><span>Concesionado</span><strong>${boolText(p.concesionado)}</strong></div>
-      <div class="popup-cell"><span>Navegación</span><strong>${esc(p.proveedor_navegacion||"—")}</strong></div>
+      ${casilla("Provincia",provinceOf(p)||"—")}
+      ${casilla("Localidad",localityOf(p)||"—")}
+      ${casilla("Superficie",p.superficie_pista||"Sin información")}
+      ${casilla("Pistas",p.cantidad_pistas??"—")}
+      ${casilla("Pistas pavimentadas",p.cantidad_pistas_pavimentadas??"—")}
+      ${casilla("Fuente",fuente)}
+      ${casilla("Condición MADHEL",p.condicion||"—")}
+      ${casilla("Control MADHEL",p.control||"—")}
+      ${casilla("Elevación",elevacion)}
+      ${casilla("Navegación",p.proveedor_navegacion||"—")}
     </div>
-
-    ${p.pistas_texto?`<div class="popup-wide"><span>Información de pistas</span><strong>${esc(p.pistas_texto)}</strong></div>`:""}
-    ${p.descripcion_ubicacion?`<div class="popup-wide"><span>Ubicación MADHEL</span><strong>${esc(p.descripcion_ubicacion)}</strong></div>`:""}
-
-    <div class="popup-note">Última actualización MADHEL: ${esc(p.fecha_ultima_actualizacion_madhel||"sin dato")}. Para información operacional vigente, verificar la documentación aeronáutica oficial.</div>
+    ${extendida("Información de pistas",p.pistas_texto)}
+    ${extendida("Pista y dimensiones",[p.pista_designacion,p.pista_dimensiones].filter(Boolean).join(" · "))}
+    ${extendida("Verificación de pista",p.verificacion_pista)}
+    ${extendida("Fuente de pistas",p.fuente_pistas)}
+    ${extendida("Referencia AIP",p.referencia_aip)}
+    ${extendida("Uso civil / militar",p.uso_civil_militar && p.uso_civil_militar!=="Sin verificar" ? p.uso_civil_militar : "")}
+    ${extendida("Restricción operacional",p.restriccion_operacional && p.restriccion_operacional!=="Sin verificación operacional en esta capa" ? p.restriccion_operacional : "")}
+    ${extendida("Ubicación informada",p.descripcion_ubicacion)}
+    <div class="popup-note">${notaFecha}. Datos cartográficos; verificar AIP/NOTAM para uso operacional.</div>
   `;
 }
 
@@ -212,34 +214,75 @@ function fillSelect(el,values){
     });
 }
 
-function buildFilters(){
-  const props=features.map(f=>f.properties||{});
-  fillSelect(dom.province,props.map(p=>p.provincia));
-  fillSelect(dom.control,props.map(p=>p.control));
+function categoryCheckboxes(){
+  if (!dom.categories.querySelector('input[name="category"]')) {
+    dom.categories.innerHTML=CATEGORIES.map((cat,i)=>`
+      <label class="category-option">
+        <input type="checkbox" name="category" value="${esc(cat.label)}" checked>
+        <span class="category-color ${cat.key}" aria-hidden="true"></span>
+        <span class="category-name">${esc(cat.label)}</span>
+        <span class="category-count" data-category-index="${i}">—</span>
+      </label>
+    `).join("");
+  }
+  document.getElementById("legendBody").innerHTML=CATEGORIES.map(cat=>`
+    <div><span class="legend-dot ${cat.key}" aria-hidden="true"></span><span>${esc(cat.label)}</span></div>
+  `).join("");
 }
 
-function matches(f){
-  const p=f.properties||{};
-  const isSna=Boolean(p.incluido_sna);
-  if(isSna && !dom.snaToggle.checked) return false;
-  if(!isSna && !dom.otherToggle.checked) return false;
-  if(dom.province.value && p.provincia!==dom.province.value) return false;
-  if(dom.control.value && p.control!==dom.control.value) return false;
+function buildFilters(){
+  const props=features.map(f=>f.properties||{});
+  fillSelect(dom.province,props.map(provinceOf));
+  fillSelect(dom.control,props.map(p=>p.control));
+  categoryCheckboxes();
+  const total=features.length;
+  const lad=features.filter(f=>isLad(f.properties||{})).length;
+  dom.aboutTotal.textContent=total.toLocaleString("es-AR");
+  dom.aboutMadhel.textContent=(total-lad).toLocaleString("es-AR");
+  dom.aboutLad.textContent=lad.toLocaleString("es-AR");
+}
 
+function categorySelection(){
+  return new Set([...dom.categories.querySelectorAll('input[name="category"]:checked')].map(el=>el.value));
+}
+
+function matches(f,applyCategory=true,selected=null){
+  const p=f.properties||{};
+  if(dom.province.value && provinceOf(p)!==dom.province.value) return false;
+  if(dom.control.value && p.control!==dom.control.value) return false;
+  if(applyCategory && !(selected||categorySelection()).has(p.categoria_mapa)) return false;
   const q=norm(dom.search.value);
   if(q){
     const haystack=norm([
-      p.etiqueta,p.nombre_madhel,p.localidad_referencia,p.provincia,p.codigo_local,p.codigo_oaci,p.codigo_iata
+      p.etiqueta_normalizada,p.etiqueta,p.nombre_madhel,p.localidad_referencia,
+      provinceOf(p),p.codigo_local,p.codigo_oaci,p.codigo_iata,p.codigo_lad,p.categoria_mapa
     ].join(" "));
     if(!haystack.includes(q)) return false;
   }
   return true;
 }
 
+function renderCategoryCounts(){
+  const valid=features.filter(f=>matches(f,false));
+  const counts=new Map();
+  for(const f of valid){
+    const cat=f.properties?.categoria_mapa;
+    counts.set(cat,(counts.get(cat)||0)+1);
+  }
+  dom.categories.querySelectorAll("[data-category-index]").forEach(el=>{
+    const cat=CATEGORIES[Number(el.dataset.categoryIndex)].label;
+    el.textContent=(counts.get(cat)||0).toLocaleString("es-AR");
+  });
+  const inputs=[...dom.categories.querySelectorAll('input[name="category"]')];
+  dom.categoriesAll.textContent=inputs.every(x=>x.checked)?"Quitar todas":"Seleccionar todas";
+}
+
 function renderMap(){
   airportLayer.clearLayers();
   layerById.clear();
-  visible=features.filter(matches);
+  const selected=categorySelection();
+  visible=features.filter(f=>matches(f,true,selected));
+  renderCategoryCounts();
 
   visible.forEach((f,index)=>{
     const p=f.properties||{};
@@ -268,15 +311,15 @@ function renderMap(){
 
 function renderCounts(){
   dom.visibleCount.textContent=visible.length.toLocaleString("es-AR");
-  dom.snaCount.textContent=visible.filter(f=>Boolean(f.properties?.incluido_sna)).length.toLocaleString("es-AR");
-  dom.publicCount.textContent=visible.filter(f=>String(f.properties?.condicion||"").toUpperCase()==="PUBLICO").length.toLocaleString("es-AR");
-  dom.privateCount.textContent=visible.filter(f=>String(f.properties?.condicion||"").toUpperCase()==="PRIVADO").length.toLocaleString("es-AR");
+  dom.snaCount.textContent=visible.filter(f=>f.properties?.categoria_mapa==="Aeropuertos del SNA").length.toLocaleString("es-AR");
+  dom.heliCount.textContent=visible.filter(f=>f.properties?.categoria_mapa==="Helipuertos").length.toLocaleString("es-AR");
+  dom.ladCount.textContent=visible.filter(f=>isLad(f.properties||{})).length.toLocaleString("es-AR");
 }
 
 function renderList(){
   const rows=[...visible].sort((a,b)=>{
     const pa=a.properties||{},pb=b.properties||{};
-    return String(pa.provincia||"").localeCompare(String(pb.provincia||""),"es") ||
+    return String(provinceOf(pa)).localeCompare(String(provinceOf(pb)),"es") ||
       displayName(pa).localeCompare(displayName(pb),"es");
   });
 
@@ -288,12 +331,12 @@ function renderList(){
   dom.resultList.innerHTML=rows.map(f=>{
     const p=f.properties||{};
     return `<button class="airport-item" type="button" data-airport="${esc(f.__mapId)}">
-      <span class="airport-code ${conditionKey(p)}">${esc(codeLabel(p))}</span>
+      <span class="airport-code ${categoryInfo(p).key}">${esc(codeLabel(p))}</span>
       <span class="airport-copy">
         <strong>${esc(displayName(p))}</strong>
-        <span>${esc(p.localidad_referencia||"")} · ${esc(p.provincia||"")}</span>
+        <span>${esc(localityOf(p))}${localityOf(p)?" · ":""}${esc(provinceOf(p))}</span>
       </span>
-      <span class="airport-meta">${esc(conditionLabel(p))}</span>
+      <span class="airport-meta">${esc(categoryInfo(p).label)}</span>
     </button>`;
   }).join("");
 }
@@ -333,16 +376,21 @@ function resetFilters(){
   dom.search.value="";
   dom.province.value="";
   dom.control.value="";
-  dom.snaToggle.checked=true;
-  dom.otherToggle.checked=true;
+  dom.categories.querySelectorAll('input[name="category"]').forEach(el=>{el.checked=true;});
   renderMap();
   fitVisible();
 }
 
-
 function bind(){
-  [dom.province,dom.control,dom.snaToggle,dom.otherToggle].forEach(el=>{
+  [dom.province,dom.control].forEach(el=>{
     el.addEventListener("change",renderMap);
+  });
+  dom.categories.addEventListener("change",renderMap);
+  dom.categoriesAll.addEventListener("click",()=>{
+    const inputs=[...dom.categories.querySelectorAll('input[name="category"]')];
+    const mark=!inputs.every(x=>x.checked);
+    inputs.forEach(x=>{x.checked=mark;});
+    renderMap();
   });
   dom.search.addEventListener("input",renderMap);
 
@@ -384,6 +432,12 @@ async function init(){
     if(!response.ok) throw new Error("No fue posible cargar la capa de aeródromos.");
     const data=await response.json();
     features=Array.isArray(data.features)?data.features:[];
+    if(!features.length) throw new Error("El GeoJSON no contiene registros.");
+    const desconocidas=[...new Set(features.map(f=>f.properties?.categoria_mapa||"(sin categoría)"))]
+      .filter(c=>!categoryLookup.has(c));
+    if(desconocidas.length) throw new Error("El GeoJSON contiene categorías no reconocidas: "+desconocidas.join(", "));
+    // El archivo anterior de 135 puntos carece de categoria_mapa.
+    // La validación anterior evita publicar datos viejos con apariencia correcta.
 
     buildFilters();
     bind();
