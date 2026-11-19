@@ -227,6 +227,10 @@ function categoryCheckboxes(){
   }
 document.getElementById("legendBody").innerHTML =
   [...dom.categories.querySelectorAll(".category-option")]
+    .filter(elemento => {
+      const valor = elemento.querySelector('input[name="category"]').value;
+      return features.some(f => f.properties?.categoria_mapa === valor);
+    })
     .map(elemento => {
       const valor = elemento.querySelector('input[name="category"]').value;
       const cat = categoryLookup.get(valor);
