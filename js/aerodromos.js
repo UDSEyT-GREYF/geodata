@@ -27,8 +27,8 @@ const dom={
   categoriesAll:document.getElementById("categoryAllButton"),
   visibleCount:document.getElementById("visibleCount"),
   snaCount:document.getElementById("snaCount"),
-  heliCount:document.getElementById("heliCount"),
-  ladCount:document.getElementById("ladCount"),
+  pavedCount:document.getElementById("pavedCount"),
+  militaryCount:document.getElementById("militaryCount"),
   aboutTotal:document.getElementById("aboutTotal"),
   aboutMadhel:document.getElementById("aboutMadhel"),
   aboutLad:document.getElementById("aboutLad"),
@@ -323,10 +323,23 @@ function renderMap(){
 }
 
 function renderCounts(){
-  dom.visibleCount.textContent=visible.length.toLocaleString("es-AR");
-  dom.snaCount.textContent=visible.filter(f=>f.properties?.categoria_mapa==="Aeropuertos del SNA").length.toLocaleString("es-AR");
-  dom.heliCount.textContent=visible.filter(f=>f.properties?.categoria_mapa==="Helipuertos").length.toLocaleString("es-AR");
-  dom.ladCount.textContent=visible.filter(f=>isLad(f.properties||{})).length.toLocaleString("es-AR");
+  dom.visibleCount.textContent =
+    visible.length.toLocaleString("es-AR");
+
+  dom.snaCount.textContent =
+    visible.filter(f =>
+      f.properties?.categoria_mapa === "Aeropuertos del SNA"
+    ).length.toLocaleString("es-AR");
+
+  dom.pavedCount.textContent =
+    visible.filter(f =>
+      f.properties?.categoria_mapa === "Aeródromos con pista pavimentada"
+    ).length.toLocaleString("es-AR");
+
+  dom.militaryCount.textContent =
+    visible.filter(f =>
+      f.properties?.categoria_mapa === "Aeródromos militares"
+    ).length.toLocaleString("es-AR");
 }
 
 function renderList(){
