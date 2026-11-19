@@ -225,7 +225,12 @@ function categoryCheckboxes(){
       </label>
     `).join("");
   }
-  document.getElementById("legendBody").innerHTML=CATEGORIES.map(cat=>`
+  document.getElementById("legendBody").innerHTML=CATEGORIES
+  .filter(cat => features.some(
+    f => f.properties?.categoria_mapa === cat.label
+  ))
+  .map(cat=>`
+  
     <div><span class="legend-dot ${cat.key}" aria-hidden="true"></span><span>${esc(cat.display || cat.label)}</span></div>
   `).join("");
 }
@@ -272,6 +277,14 @@ function renderCategoryCounts(){
   dom.categories.querySelectorAll("[data-category-index]").forEach(el=>{
     const cat=CATEGORIES[Number(el.dataset.categoryIndex)].label;
     el.textContent=(counts.get(cat)||0).toLocaleString("es-AR");
+
+    const total = features.filter(
+  f => f.properties?.categoria_mapa === cat
+).length;
+
+el.closest(".category-option").style.display =
+  total === 0 ? "none" : "";
+    
   });
   const inputs=[...dom.categories.querySelectorAll('input[name="category"]')];
   dom.categoriesAll.textContent=inputs.every(x=>x.checked)?"Quitar todas":"Seleccionar todas";
