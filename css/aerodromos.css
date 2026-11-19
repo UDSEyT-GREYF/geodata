@@ -191,14 +191,7 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
 .cat-unknown{--category-color:var(--cat-unknown)}
 .aerodromo-marker[class*="cat-"] .aerodromo-plane{background:var(--category-color)}
 .aerodromo-marker.cat-sna .aerodromo-plane{width:24px;height:24px;font-size:14px}
-.aerodromo-marker.cat-heli .aerodromo-plane {
-  width: 12px;
-  height: 12px;
-  font-family: Arial, sans-serif;
-  font-size: 8px;
-  font-weight: 900;
-  border-width: 1px;
-}
+.aerodromo-marker.cat-heli .aerodromo-plane{width:12px;height:12px;border-width:1px;font-family:Arial,sans-serif;font-size:8px;font-weight:900}
 .legend-dot[class*="cat-"]{background:var(--category-color)}
 .legend-dot.cat-heli::after{content:"H";font-size:9px}
 .legend-dot.cat-sna{width:18px;height:18px}
