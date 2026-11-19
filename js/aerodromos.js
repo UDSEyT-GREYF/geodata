@@ -225,14 +225,18 @@ function categoryCheckboxes(){
       </label>
     `).join("");
   }
-  document.getElementById("legendBody").innerHTML=CATEGORIES
-  .filter(cat => features.some(
-    f => f.properties?.categoria_mapa === cat.label
-  ))
-  .map(cat=>`
-  
-    <div><span class="legend-dot ${cat.key}" aria-hidden="true"></span><span>${esc(cat.display || cat.label)}</span></div>
-  `).join("");
+document.getElementById("legendBody").innerHTML =
+  [...dom.categories.querySelectorAll(".category-option")]
+    .map(elemento => {
+      const valor = elemento.querySelector('input[name="category"]').value;
+      const cat = categoryLookup.get(valor);
+      const nombre = elemento.querySelector(".category-name").textContent.trim();
+
+      return `<div>
+        <span class="legend-dot ${cat.key}" aria-hidden="true"></span>
+        <span>${esc(nombre)}</span>
+      </div>`;
+    }).join("");
 }
 
 function buildFilters(){
