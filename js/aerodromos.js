@@ -1,7 +1,7 @@
 (() => {
 "use strict";
 
-const DATA_VERSION="20261118-4";
+const DATA_VERSION="20261119-2";
 const DATA_URL=`/geodata/fuentes/ANAC/aerodromos_madhel_2026.geojson?v=${DATA_VERSION}`;
 
 // Los valores coinciden con categoria_mapa del GeoJSON publicado.
@@ -176,7 +176,7 @@ function popupHtml(p){
   const notaFecha=isLad(p) ? "Registro LAD, septiembre de 2026" :
     `Actualización MADHEL: ${esc(p.fecha_ultima_actualizacion_madhel||"sin dato")}`;
   return `
-    <div class="popup-badge ${cat.key}">${esc(cat.label)}</div>
+    <div class="popup-badge ${cat.key}">${esc(cat.display || cat.label)}</div>
     <div class="popup-title">${esc(displayName(p))}</div>
     <div class="popup-subtitle">${codes}</div>
     <div class="popup-grid">
@@ -220,13 +220,13 @@ function categoryCheckboxes(){
       <label class="category-option">
         <input type="checkbox" name="category" value="${esc(cat.label)}" checked>
         <span class="category-color ${cat.key}" aria-hidden="true"></span>
-        <span class="category-name">${esc(cat.label)}</span>
+        <span class="category-name">${esc(cat.display || cat.label)}</span>
         <span class="category-count" data-category-index="${i}">—</span>
       </label>
     `).join("");
   }
   document.getElementById("legendBody").innerHTML=CATEGORIES.map(cat=>`
-    <div><span class="legend-dot ${cat.key}" aria-hidden="true"></span><span>${esc(cat.label)}</span></div>
+    <div><span class="legend-dot ${cat.key}" aria-hidden="true"></span><span>${esc(cat.display || cat.label)}</span></div>
   `).join("");
 }
 
@@ -336,7 +336,7 @@ function renderList(){
         <strong>${esc(displayName(p))}</strong>
         <span>${esc(localityOf(p))}${localityOf(p)?" · ":""}${esc(provinceOf(p))}</span>
       </span>
-      <span class="airport-meta">${esc(categoryInfo(p).label)}</span>
+      <span class="airport-meta">${esc(categoryInfo(p).display || categoryInfo(p).label)}</span>
     </button>`;
   }).join("");
 }
