@@ -162,12 +162,12 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
   --cat-sna:#2375C7;
   --cat-paved:#E68A19;
   --cat-club-paved:#7C3AED;
-  --cat-club:#9333EA;
+  --cat-club:#D94695;
   --cat-unpaved:#AD7847;
   --cat-closed:#777F89;
   --cat-military:#198754;
   --cat-heli:#008C95;
-  --cat-lad:#E68A19;
+  --cat-lad:#C83745;
   --cat-unknown:#C0A03A;
 }
 .category-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
