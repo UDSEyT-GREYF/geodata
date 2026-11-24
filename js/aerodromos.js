@@ -19,6 +19,14 @@ const CATEGORIES = [
 ];
 const categoryLookup = new Map(CATEGORIES.map(c=>[c.label,c]));
 
+const DEFAULT_CATEGORIES = new Set([
+  "Aeropuertos del SNA",
+  "Aeródromos con pista pavimentada",
+  "Aeroclubes con pista asfaltada",
+  "Aeródromos militares",
+  "LAD con pista asfaltada"
+]);
+
 const dom={
   search:document.getElementById("searchInput"),
   province:document.getElementById("provinceSelect"),
@@ -142,7 +150,10 @@ function airportIcon(p){
   const size=cat.key==="cat-sna" ? 24 : cat.key==="cat-heli" ? 12 : 19;
   const glyph=cat.key==="cat-heli" ? "H" : "✈";
   return L.divIcon({
-    className:"aerodromo-marker "+cat.key,
+    
+className:"aerodromo-marker "+cat.key+
+  (norm(p.condicion)==="privado" ? " is-private" : ""),
+
     html:`<span class="aerodromo-plane" aria-hidden="true">${glyph}</span><span class="aerodromo-name">${esc(displayName(p))}</span>`,
     iconSize:[size,size], iconAnchor:[size/2,size/2],
     popupAnchor:[0,-size/2], tooltipAnchor:[0,-size/2]
@@ -248,6 +259,13 @@ function buildFilters(){
   fillSelect(dom.province,props.map(provinceOf));
   fillSelect(dom.control,props.map(p=>p.control));
   categoryCheckboxes();
+  
+dom.categories
+  .querySelectorAll('input[name="category"]')
+  .forEach(input => {
+    input.checked = DEFAULT_CATEGORIES.has(input.value);
+  });
+
   const total=features.length;
   const lad=features.filter(f=>isLad(f.properties||{})).length;
   dom.aboutTotal.textContent=total.toLocaleString("es-AR");
@@ -410,7 +428,9 @@ function resetFilters(){
   dom.search.value="";
   dom.province.value="";
   dom.control.value="";
-  dom.categories.querySelectorAll('input[name="category"]').forEach(el=>{el.checked=true;});
+  dom.categories.querySelectorAll('input[name="category"]').forEach(el=>{
+  el.checked=DEFAULT_CATEGORIES.has(el.value);
+});
   renderMap();
   fitVisible();
 }
