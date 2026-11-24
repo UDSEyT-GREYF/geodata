@@ -152,7 +152,7 @@ function airportIcon(p){
   return L.divIcon({
     
 className:"aerodromo-marker "+cat.key+
-  (norm(p.condicion)==="privado" ? " is-private" : ""),
+  (norm(p.condicion)==="privado" || isLad(p) ? " is-private" : ""),
 
     html:`<span class="aerodromo-plane" aria-hidden="true">${glyph}</span><span class="aerodromo-name">${esc(displayName(p))}</span>`,
     iconSize:[size,size], iconAnchor:[size/2,size/2],
@@ -254,7 +254,7 @@ document.getElementById("legendBody").innerHTML =
     
 }).join("") + `
   <p class="legend-private-note">
-    Avión gris oscuro: Condición MADHEL privada.
+    Avión gris oscuro: Aeródromos Privados.
   </p>`;
 
 }
