@@ -207,3 +207,10 @@ h1{margin:0;overflow:hidden;font-size:clamp(17px,2vw,22px);font-weight:680;lette
 .category-list{max-height:265px;overflow-y:auto;scrollbar-width:thin}
 .category-option:focus-within{outline:2px solid var(--navy-700);outline-offset:1px}
 .category-option input:focus-visible{outline:2px solid var(--navy-700)}
+
+
+/* Avión oscuro para condición MADHEL privada */
+.aerodromo-marker.is-private .aerodromo-plane {
+  color: #263238;
+}
+
