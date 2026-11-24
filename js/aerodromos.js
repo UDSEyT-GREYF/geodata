@@ -251,7 +251,12 @@ document.getElementById("legendBody").innerHTML =
         <span class="legend-dot ${cat.key}" aria-hidden="true"></span>
         <span>${esc(nombre)}</span>
       </div>`;
-    }).join("");
+    
+}).join("") + `
+  <p class="legend-private-note">
+    Avión gris oscuro: Condición MADHEL privada.
+  </p>`;
+
 }
 
 function buildFilters(){
